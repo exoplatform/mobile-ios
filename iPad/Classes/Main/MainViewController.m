@@ -452,7 +452,7 @@
 	
 	[_filesViewController._tbvFiles reloadData];
 	
-
+	[popoverController dismissPopoverAnimated:YES];
 }
 
 - (void)startMessengerApplication
@@ -480,7 +480,7 @@
 		}
 	}
 
-
+	[popoverController dismissPopoverAnimated:YES];
 }
 
 - (MessengerViewController*)getMessengerViewController
@@ -532,6 +532,7 @@
 	[[self view] addSubview:[_gadgetDisplayController view]];
 	[_gadgetDisplayController startGadget:gadget];
 	_vPrevious = [_gadgetDisplayController view];
+	[popoverController dismissPopoverAnimated:YES];
 }
 
 - (IBAction)onHomeBtn:(id)sender

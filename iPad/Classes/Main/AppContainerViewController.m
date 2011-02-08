@@ -518,7 +518,7 @@ static NSString* kCellIdentifier = @"Cell";
 				{
 					lbTitle.text = @"Files";
 					//lbDescription.text = [_dictLocalize objectForKey:@"FileDescription"];
-					imgV.image = [UIImage imageNamed:@"FileApp.png"];
+					imgV.image = [UIImage imageNamed:@"filesApp.png"];
 					break;
 				}
 					
