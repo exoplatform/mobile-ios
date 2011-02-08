@@ -9,12 +9,11 @@
 #import "eXoChatView.h"
 #import "eXoApplicationsViewController.h"
 #import "DataProcess.h"
-#import "httpClient.h"
-#import "eXoAccount.h"
 #import "XMPPClient.h"
 #import "XMPPUser.h"
 #import "XMPPJID.h"
 #import "XMPPElement.h"
+#import "defines.h"
 
 static NSString *kCellIdentifier = @"MyIdentifier";
 static BOOL didUpdateRosterForTheFirstTime = NO;

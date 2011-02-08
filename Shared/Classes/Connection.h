@@ -11,13 +11,8 @@
 
 @interface Connection : NSObject 
 {
-	NSString*				_strUsername;
-	NSString*				_strPassword;
-	NSString*				_strFirstLoginContent;
-}
 
-@property (nonatomic, retain) NSString* _strUsername;
-@property (nonatomic, retain) NSString* _strPassword;
+}
 
 - (NSString*)stringEncodedWithBase64:(NSString*)str;
 - (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password;
@@ -29,4 +24,9 @@
 - (NSData*)sendRequestWithAuthorization:(NSString*)urlStr;
 - (NSData*)sendRequest:(NSString*)urlStr;
 - (NSData*)sendRequestWithAuthorization:(NSString*)urlStr;
+
+- (NSMutableArray*)getItemsInDashboard;
+- (NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr;
+- (NSArray*)listOfGadgetsWithURL:(NSString *)url;
+
 @end

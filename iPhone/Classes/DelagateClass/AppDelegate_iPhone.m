@@ -11,11 +11,10 @@
 #import "eXoAppViewController.h"
 #import "eXoApplicationsViewController.h"
 #import "eXoSetting.h"
-
 #import "eXoWebViewController.h"
 #import "eXoSplash.h"
 #import "defines.h"
-#import "eXoUserClient.h"
+#import "Connection.h"
 
 @implementation AppDelegate_iPhone
 
@@ -50,13 +49,9 @@
 	{
 		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN_iPhone" ofType:@"xml"] retain];
 	}	
-	else if(selectedLanguage == 1)
+	else
 	{	
 		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR_iPhone" ofType:@"xml"] retain];
-	}	
-	else if(selectedLanguage == 2)
-	{	
-		filePath = [[[NSBundle mainBundle] pathForResource:@"LocalizeVN" ofType:@"xml"] retain];
 	}
 	
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
@@ -115,9 +110,9 @@
 	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
 	
-	eXoUserClient* exoUserClient = [eXoUserClient instance];
+	Connection* conn = [[Connection alloc] init];
 	
-	NSString *_bSuccessful = [exoUserClient signInDomain:domain withUserName:username password:password];
+	NSString *_bSuccessful = [conn sendAuthenticateRequest:domain username:username password:password];
 	
 	if(_bSuccessful == @"YES")
 	{
@@ -218,14 +213,7 @@
 	[applicationView.tabBarItem setImage:[UIImage imageNamed:@"application.png"]];
 	applicationsViewController.tabBarItem  = applicationView.tabBarItem; // is it need (to show badge)?
 	
-	//[myCalendarView.navigationBar setBarStyle:UIBarStyleDefault];
-	//	[myCalendarView.tabBarItem setTitle:[_dictLocalize objectForKey:@"ApplicationTitle"]];
-	//	[myCalendarView.tabBarItem setImage:[UIImage imageNamed:@"application.png"]];
-	//	_myCalendar.tabBarItem  = myCalendarView.tabBarItem; // is it need (to show badge)?
-	
-	
 	[settingView.navigationBar setBarStyle:UIBarStyleDefault];
-	//[settingView.tabBarItem setTitle:@"Setting"];
 	[settingView.tabBarItem setTitle:[_dictLocalize objectForKey:@"Settings"]];
 	[settingView.tabBarItem setImage:[UIImage imageNamed:@"setting.png"]];
 	settingViewController.tabBarItem  = settingView.tabBarItem; // is it need (to show badge)?
@@ -260,7 +248,6 @@
     [viewController release];
 	[applicationsViewController release];
 	[gadgetsViewController release];
-	//[eachGadgetViewController release];
     [window release];
     [super dealloc];
 }

@@ -26,7 +26,6 @@
 	UITextField* _txtfUserName;
 	UITextField* _txtfUserPasswd;
 	UITextField* _txtfDomainName;
-	UITextField* _txtfDomainName1;	
 	NSString*	 _bSuccessful;
 	UIActivityIndicatorView* _indicator;
 	UIBarButtonItem* btnSignIn;
@@ -34,6 +33,7 @@
 	BOOL endGetData;
 	BOOL bRememberMe;
 	BOOL bAutoLogin;
+	BOOL isFirstTimeLogin;
 	
 	int			  _selectedLanguage;
 	NSDictionary* _dictLocalize;

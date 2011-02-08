@@ -59,4 +59,5 @@
 - (void)createChatContent:(NSString *)content;
 - (void)receivedChatMsg;
 - (void)moveFrameUp:(BOOL)bUp;
+
 @end

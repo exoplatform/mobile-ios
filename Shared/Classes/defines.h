@@ -20,3 +20,4 @@
 #define EXO_AUTO_LOGIN						@"auto_sigin"
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define DOMAINLIST							@"http://platform.demo.exoplatform.org /portal/private/intranet;"
+

@@ -18,6 +18,8 @@
 @class XMPPMessage;
 @class eXoFile_iPhone;
 @class eXoFileAction;
+@class Connection;
+
 //==============================================================
 @interface eXoChatUser : NSObject 
 {
@@ -64,10 +66,11 @@
 	
 	
 	NSMutableArray*		_arrDicts;
-	eXoFile_iPhone*			_currenteXoFile;
+	eXoFile_iPhone*		_currenteXoFile;
 	
 	XMPPClient*			_xmppClient;
 	XMPPStream*			_xmppStream;
+	Connection*			_conn;
 	
 	NSMutableArray*		_arrChatUsers;
 	
@@ -139,7 +142,6 @@
 - (void)createFileView;
 - (NSDictionary*)getDictLocalize;
 
-+ (NSMutableArray*)listOfGadgets;
 - (NSMutableArray*)getPersonalDriveContent:(eXoFile_iPhone *)file;
 
 -(void)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data;

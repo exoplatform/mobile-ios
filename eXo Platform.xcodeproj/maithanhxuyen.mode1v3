@@ -264,8 +264,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>89D66E7212E002FC008018ED</string>
+								<string>89D66E7312E002FC008018ED</string>
+								<string>89D66E9212E002FD008018ED</string>
 								<string>89D66AB612DFF411008018ED</string>
 								<string>89D66AB712DFF411008018ED</string>
+								<string>89D66ADD12DFF411008018ED</string>
 								<string>89D66AE812DFF411008018ED</string>
 								<string>89D66AEB12DFF411008018ED</string>
 								<string>89D66AEC12DFF411008018ED</string>
@@ -277,15 +281,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>12</integer>
-									<integer>10</integer>
-									<integer>3</integer>
+									<integer>9</integer>
+									<integer>7</integer>
 									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {388, 641}}</string>
+							<string>{{0, 583}, {388, 641}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -304,7 +308,7 @@
 							<real>388</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>3 78 1209 700 0 0 1280 778 </string>
+						<string>138 78 1209 700 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -322,7 +326,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>eXoWebViewController.m</string>
+								<string>AppContainerViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -330,11 +334,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>eXoWebViewController.m</string>
+										<string>AppContainerViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>89D66F7E12E00DCC008018ED</string>
+										<string>89CF6AB113015B7300286867</string>
 										<key>history</key>
 										<array>
 											<string>89C9ED6D12DEF29800910C9C</string>
@@ -348,10 +352,7 @@
 											<string>89C9EE4B12DEFE7A00910C9C</string>
 											<string>89C9EE4C12DEFE7A00910C9C</string>
 											<string>89C9EE5412DEFE7A00910C9C</string>
-											<string>89C9EE5512DEFE7A00910C9C</string>
-											<string>89C9EE5812DEFE7A00910C9C</string>
 											<string>89C9EEA912DF013B00910C9C</string>
-											<string>89C9EED412DF093B00910C9C</string>
 											<string>89C9EED612DF093B00910C9C</string>
 											<string>89D66B2912DFF4C3008018ED</string>
 											<string>89D66B3812DFF5A7008018ED</string>
@@ -419,7 +420,8 @@
 											<string>89D66F6512E00689008018ED</string>
 											<string>89D66F7B12E00DCC008018ED</string>
 											<string>89D66F7C12E00DCC008018ED</string>
-											<string>89D66F7D12E00DCC008018ED</string>
+											<string>89CF6AAF13015B7300286867</string>
+											<string>89CF6AB013015B7300286867</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -431,14 +433,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {799, 455}}</string>
+								<string>{{0, 0}, {799, 449}}</string>
 								<key>RubberWindowFrame</key>
-								<string>3 78 1209 700 0 0 1280 778 </string>
+								<string>138 78 1209 700 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>455pt</string>
+							<string>449pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -451,14 +453,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 460}, {799, 199}}</string>
+								<string>{{0, 454}, {799, 205}}</string>
 								<key>RubberWindowFrame</key>
-								<string>3 78 1209 700 0 0 1280 778 </string>
+								<string>138 78 1209 700 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>199pt</string>
+							<string>205pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -477,9 +479,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>89D66F4D12E0042D008018ED</string>
+				<string>89CF6AAC1301596800286867</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>89D66F4E12E0042D008018ED</string>
+				<string>89CF6AAD1301596800286867</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -617,14 +619,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>89C9EB9D12DEEAEE00910C9C</string>
-		<string>/Volumes/Leopard/Project/eXo Platform/eXo Platform.xcodeproj</string>
+		<string>/Volumes/Leopard/Project/SVN/trunk/exo-mobile-ios/eXo Platform.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>3 78 1209 700 0 0 1280 778 </string>
+	<string>138 78 1209 700 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -662,8 +661,6 @@
 							<string>281pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -703,7 +700,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>89C9EB9D12DEEAEE00910C9C</string>
-				<string>89D66F3C12E003B7008018ED</string>
+				<string>89CF6AAE1301596800286867</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

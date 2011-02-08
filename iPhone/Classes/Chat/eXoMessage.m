@@ -7,11 +7,11 @@
 //
 
 #import "eXoMessage.h"
-#import "eXoAccount.h"
+#import "defines.h"
 
 @implementation eXoMessage
 
-@synthesize statusId, name, screenName, text, icon, timestamp, replyType, status, user, source, favorited;
+@synthesize statusId, name, screenName, text, icon, timestamp, replyType, status, source, favorited;
 
 - (void) dealloc {
     [statusId release];
@@ -41,7 +41,8 @@
 
 - (BOOL) isReplyToMe 
 {
-    if ([text hasPrefix:[@"@" stringByAppendingString:[[eXoAccount instance] userName]]]) 
+	NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
+    if ([text hasPrefix:[@"@" stringByAppendingString:userName]]) 
 	{
         return TRUE;
     }
@@ -50,7 +51,8 @@
 
 - (BOOL) isProbablyReplyToMe 
 {
-    NSString *query = [@"@" stringByAppendingString:[[eXoAccount instance] userName]];
+	NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
+    NSString *query = [@"@" stringByAppendingString:userName];
     NSRange range = [text rangeOfString:query];
     
     if (range.location != NSNotFound) 
@@ -63,7 +65,8 @@
 
 - (BOOL) isMyUpdate 
 {
-    return [screenName isEqualToString:[[eXoAccount instance] userName]];
+	NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
+    return [screenName isEqualToString:userName];
 }
 
 - (void) finishedToSetProperties:(BOOL)forDirectMessage 

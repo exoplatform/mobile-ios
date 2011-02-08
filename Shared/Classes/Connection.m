@@ -9,18 +9,21 @@
 #import "Connection.h"
 #import "DataProcess.h"
 #import "defines.h"
+#import "Gadget_iPhone.h"
+#import "Gadget.h"
+
+static NSString* _strUsername;
+static NSString* _strPassword;
+static NSString* _strFirstLoginContent;
 
 @implementation Connection
-
-@synthesize _strUsername;
-@synthesize _strPassword;
 
 - (id)init 
 {
 	self = [super init];
 	if(self)
 	{
-		_strFirstLoginContent = [[NSString alloc] init];
+		
 	}	
 	return self;
 }
@@ -96,11 +99,6 @@
 	
 }
 
-- (NSString*)getFirstLoginContent
-{
-	return _strFirstLoginContent;
-}
-
 - (NSString*)sendAuthenticateRequest:(NSString*)domain username:(NSString*)username password:(NSString*)password
 {	
 	NSURLResponse* response;
@@ -134,31 +132,6 @@
 	}
 	
 	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	
-//	NSArray* tmpCookie = [store cookies];
-//	for(int i = 0; i < [tmpCookie count]; i++) 
-//	{
-//		[store deleteCookie:(NSHTTPCookie *)[tmpCookie objectAtIndex:i]];
-//	}
-//	
-//	NSURL* redirectURL = [NSURL URLWithString:redirectStr];
-//	NSMutableURLRequest* redirectRequest = [[NSMutableURLRequest alloc] init];	
-//	[redirectRequest setURL:redirectURL]; 
-//	[redirectRequest setTimeoutInterval:60.0];
-//	[redirectRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-//	[redirectRequest setHTTPShouldHandleCookies:YES];	
-//	[redirectRequest setHTTPMethod: @"GET"];
-//	
-//	dataResponse = [NSURLConnection sendSynchronousRequest:redirectRequest returningResponse:&response error:&error];
-//	
-//	NSArray* cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[(NSHTTPURLResponse*)response allHeaderFields] forURL:redirectURL];
-//	NSEnumerator* c = [cookies objectEnumerator];
-//	id cookie;
-//	while (cookie = [c nextObject]) 
-//	{
-//		//	NSString* ckstr = [cookie description];
-//		[store setCookie:cookie];
-//	}
 	
 	
 	NSRange rangeOfPrivate = [redirectStr rangeOfString:@"/classic"];
@@ -198,8 +171,8 @@
 		[loginRequest release];
 		return @"ERROR";
 	}
-	urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
 	
+	_strFirstLoginContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
 	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
@@ -209,9 +182,13 @@
 	else
 	{
 		[loginRequest release];
-		_strFirstLoginContent = urlContent;
 		return @"YES";
 	}
+}
+
+- (NSString*)getFirstLoginContent
+{
+	return _strFirstLoginContent;
 }
 
 - (NSData*)sendRequestToGetGadget:(NSString*)urlStr
@@ -354,5 +331,179 @@
 	return dataResponse;
 }
 
+- (NSMutableArray*)getItemsInDashboard
+{
+	NSMutableArray* arrDbItems = [[NSMutableArray alloc] init];
+	
+	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];	
+	
+	NSString* strContent = _strFirstLoginContent;
+	
+	NSRange range1;
+	NSRange range2;
+	NSRange range3;
+	range1 = [strContent rangeOfString:@"DashboardIcon TBIcon"];
+	
+	if(range1.length <= 0)
+		return nil;
+	
+	strContent = [strContent substringFromIndex:range1.location + range1.length];
+	range1 = [strContent rangeOfString:@"TBIcon"];
+	
+	if(range1.length <= 0)
+		return nil;
+	
+	strContent = [strContent substringToIndex:range1.location];
+	
+	do 
+	{
+		range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
+		range2 = [strContent rangeOfString:@"\" >"];
+		
+		if (range1.length > 0 && range2.length > 0) 
+		{
+			NSString *gadgetTabUrlStr = [strContent substringWithRange:NSMakeRange(range1.location + range1.length, range2.location - range1.location - range1.length)];
+			NSURL *gadgetTabUrl = [NSURL URLWithString:gadgetTabUrlStr];
+			
+			strContent = [strContent substringFromIndex:range2.location + range2.length];
+			range3 = [strContent rangeOfString:@"</a>"];
+			
+			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
+			NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
+			arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
+			GateInDbItem* tmpGateInDbItem = [[GateInDbItem alloc] init];
+			[tmpGateInDbItem setObjectWithName:gadgetTabName andURL:gadgetTabUrl andGadgets:arrTmpGadgetsInItem];
+			[arrDbItems addObject:tmpGateInDbItem];
+			
+			strContent = [strContent substringFromIndex:range3.location];
+			range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
+		}	
+	} 
+	while (range1.length > 0);
+	
+	return arrDbItems;
+	
+}
+
+-(NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr
+{
+	NSString *returnValue = @"";
+	NSRange range1;
+	NSRange range2;
+	
+	range1 = [gadgetStr rangeOfString:startStr];
+	
+	if(range1.length > 0)
+	{
+		NSString *tmpStr = [gadgetStr substringFromIndex:range1.location + range1.length];
+		range2 = [tmpStr rangeOfString:endStr];
+		if(range2.length > 0)
+		{
+			returnValue = [tmpStr substringToIndex:range2.location];
+		}
+	}
+	
+	return [returnValue retain];
+}
+
+- (NSArray*)listOfGadgetsWithURL:(NSString *)url
+{
+	NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
+	
+	NSString* strGadgetName;
+	NSString* strGadgetDescription;
+	NSURL* urlGadgetContent;
+	UIImage* imgGadgetIcon;
+	
+	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+	
+	NSMutableString* strContent;
+	
+	NSData *data = [self sendRequestToGetGadget:url];
+	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	NSRange range1;
+	NSRange range2;
+	
+	range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
+	if(range1.length <= 0)
+		return nil;
+	
+	do 
+	{
+		strContent = (NSMutableString *)[strContent substringFromIndex:range1.location + range1.length];
+		range2 = [strContent rangeOfString:@"'/eXoGadgetServer/gadgets',"];
+		if (range2.length > 0) 
+		{
+			NSString *tmpStr = [strContent substringToIndex:range2.location + range2.length + 10];
+			
+			strGadgetName = [self getStringForGadget:tmpStr startStr:@"\"title\":\"" endStr:@"\","]; 
+			strGadgetDescription = [self getStringForGadget:tmpStr startStr:@"\"description\":\"" endStr:@"\","];
+			NSString *gadgetIconUrl = [self getStringForGadget:tmpStr startStr:@"\"thumbnail\":\"" endStr:@"\","];
+			if([gadgetIconUrl isEqualToString:@""])
+				imgGadgetIcon = [UIImage imageNamed:@"PortletsIcon.png"];
+			else
+			{
+				imgGadgetIcon = [UIImage imageWithData:[self sendRequest:gadgetIconUrl]];
+				if(imgGadgetIcon == nil)
+				{	
+					NSRange range3 = [gadgetIconUrl rangeOfString:@"://"];
+					if(range3.length == 0)
+					{
+						strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
+						range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
+						continue;
+					}
+					
+					gadgetIconUrl = [gadgetIconUrl substringFromIndex:range3.location + range3.length];
+					range3 = [gadgetIconUrl rangeOfString:@"/"];
+					gadgetIconUrl = [gadgetIconUrl substringFromIndex:range3.location];
+					//gadgetIconUrl = [NSString stringWithFormat:@"%@%@", domain, gadgetIconUrl];		
+					NSString* tmpGGIC= [NSString stringWithFormat:@"%@%@", domain, gadgetIconUrl];		
+					imgGadgetIcon = [UIImage imageWithData:[self sendRequest:tmpGGIC]];
+					if(imgGadgetIcon == nil)
+					{
+						imgGadgetIcon = [UIImage imageNamed:@"PortletsIcon.png"];
+					}	
+				}
+			}
+			
+			NSMutableString *gadgetUrl = [[NSMutableString alloc] initWithString:@""];
+			[gadgetUrl appendString:domain];
+			
+			[gadgetUrl appendFormat:@"%@/", [self getStringForGadget:tmpStr startStr:@"'home', '" endStr:@"',"]];
+			[gadgetUrl appendFormat:@"ifr?container=default&mid=1&nocache=0&lang=%@&debug=1&st=default", [self getStringForGadget:tmpStr startStr:@"&lang=" endStr:@"\","]];
+			
+			NSString *token = [NSString stringWithFormat:@":%@", [self getStringForGadget:tmpStr startStr:@"\"default:" endStr:@"\","]];
+			token = [token stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
+			token = [token stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
+			token = [token stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+			
+			
+			[gadgetUrl appendFormat:@"%@&url=", token];
+			
+			NSString *gadgetXmlFile = [self getStringForGadget:tmpStr startStr:@"\"url\":\"" endStr:@"\","];
+			gadgetXmlFile = [gadgetXmlFile stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
+			gadgetXmlFile = [gadgetXmlFile stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
+			
+			[gadgetUrl appendFormat:@"%@", gadgetXmlFile];
+			
+			urlGadgetContent = [NSURL URLWithString:gadgetUrl];
+			
+			Gadget* gadget = [[Gadget alloc] init];
+			
+			[gadget setObjectWithName:strGadgetName description:strGadgetDescription urlContent:urlGadgetContent urlIcon:nil imageIcon:imgGadgetIcon];
+			[arrTmpGadgets addObject:gadget];
+			
+			strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
+			range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
+		}	
+		
+	} while (range1.length > 0);
+	
+	return arrTmpGadgets;
+}
 
 @end

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "eXoUser.h"
 
 
 enum EXOReplyType 
@@ -42,7 +41,6 @@ enum EXOMessageStatus
     UIImage *icon;
     enum EXOReplyType replyType;
     enum EXOMessageStatus status;
-    eXoUser *user;
 	BOOL favorited;
 	NSObject<eXoMessageIconUpdate> *iconUpdateDelegate;
 }
@@ -52,7 +50,6 @@ enum EXOMessageStatus
 @property(readwrite, retain) NSDate *timestamp;
 @property(readwrite) enum EXOReplyType replyType;
 @property(readwrite) enum EXOMessageStatus status;
-@property(readwrite, retain) eXoUser *user;
 @property BOOL favorited;
 
 - (BOOL) isEqual:(id)anObject;

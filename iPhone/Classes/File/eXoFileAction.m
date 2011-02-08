@@ -29,6 +29,9 @@ static short fileActionMode = 0;//1:copy, 2:move
 		_file = file;
 		_deleteFolderEnable = enable;
 		
+		NSArray *arrValues = [_delegate._dictLocalize allValues];
+		NSArray *arrKeys = [_delegate._dictLocalize allKeys];
+		
 		strTakePicture = [NSString stringWithString:[_delegate._dictLocalize objectForKey:@"TakePicture"]];
 		strDelete = [NSString stringWithString:[_delegate._dictLocalize objectForKey:@"Delete"]];
 		strCopy = [NSString stringWithString:[_delegate._dictLocalize objectForKey:@"Copy"]];
@@ -240,14 +243,12 @@ static short fileActionMode = 0;//1:copy, 2:move
 		_delegate._indicator.frame = CGRectMake(75, 140, 40, 40);
 	}
 	
-	
 	[_filesView._fileActionViewShape removeFromSuperview];
 	_filesView._tblvFilesGrp.userInteractionEnabled = YES;
 	_delegate.navigationController.navigationBar.userInteractionEnabled = YES;
 	_delegate.tabBarController.tabBar.userInteractionEnabled = YES;
 	
 	[self.view removeFromSuperview];
-	
 }
 
 -(void)startInProgress {

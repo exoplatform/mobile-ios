@@ -11,8 +11,7 @@
 #import "defines.h"
 #import "DataProcess.h"
 #import "eXoFilesView.h"
-#import "httpClient.h"
-#import "eXoAccount.h"
+#import "Connection.h"
 #import "eXoAppViewController.h"
 #import "eXoFilesView.h"
 #import "eXoChatView.h"
@@ -137,6 +136,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		[_btnNotificationRecievedMessage setBackgroundImage:[UIImage imageNamed:@"newmessage.png"] forState:UIControlStateNormal];
 		_btnNotificationRecievedMessage.userInteractionEnabled = NO;
 		_btnNotificationRecievedMessage.hidden = YES;
+		
+		_conn = [[Connection alloc] init];
     }
     return self;
 }
@@ -195,7 +196,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 - (void)viewDidLoad 
 {
 	[_arrGadgets removeAllObjects];
-	_arrGadgets = [[eXoApplicationsViewController listOfGadgets] retain];	
+	_arrGadgets = [[_conn getItemsInDashboard] retain];	
 	
 	[super viewDidLoad];	
 	//_tblvGadgetsGrp.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBg.png"]];	
@@ -239,11 +240,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	NSString* filePath;
 	if(_selectedLanguage == 0)
 	{
-		filePath = [[[NSBundle mainBundle] pathForResource:@"LocalizeEN" ofType:@"xml"] retain];
+		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN_iPhone" ofType:@"xml"] retain];
 	}	
 	else
 	{	
-		filePath = [[[NSBundle mainBundle] pathForResource:@"LocalizeFR" ofType:@"xml"] retain];
+		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR_iPhone" ofType:@"xml"] retain];
 	}	
 	
 	[_dictLocalize release];
@@ -284,193 +285,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 - (void)dealloc 
 {
     [super dealloc];
-}
-
-+(NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr
-{
-	NSString *returnValue = @"";
-	NSRange range1;
-	NSRange range2;
-	
-	range1 = [gadgetStr rangeOfString:startStr];
-	
-	if(range1.length > 0)
-	{
-		NSString *tmpStr = [gadgetStr substringFromIndex:range1.location + range1.length];
-		range2 = [tmpStr rangeOfString:endStr];
-		if(range2.length > 0)
-			returnValue = [tmpStr substringToIndex:range2.location];
-	}
-		
-	return returnValue;
-}
-
-+ (NSArray*)listOfGadgetsWithURL:(NSString *)url
-{
-	NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
-	
-	NSString* strGadgetName;
-	NSString* strGadgetDescription;
-	NSURL* urlGadgetContent;
-	UIImage* imgGadgetIcon;
-	
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	NSString* userName = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-	NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-	
-	NSMutableString* strContent;
-	
-//	NSRange rangeOfSocial = [domain rangeOfString:@"social"];
-//	if (rangeOfSocial.length > 0) 
-//	{
-//		//dataReply = [[_delegate getConnection] sendRequestToSocialToGetGadget:[url absoluteString]];
-//	}
-//	else
-//	{
-//		NSData *data = [httpClient sendRequestToGetGadget:url username:userName password:password];
-//		strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//	}
-	
-	NSData *data = [httpClient sendRequestToGetGadget:url username:userName password:password];
-	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
-	NSRange range1;
-	NSRange range2;
-	
-	range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
-	if(range1.length <= 0)
-		return nil;
-	
-	do {
-		strContent = (NSMutableString *)[strContent substringFromIndex:range1.location + range1.length];
-		range2 = [strContent rangeOfString:@"'/eXoGadgetServer/gadgets',"];
-		if(range2.length <= 0)
-			return nil;
-		NSString *tmpStr = [strContent substringToIndex:range2.location + range2.length + 10];
-		
-		strGadgetName = [eXoApplicationsViewController getStringForGadget:tmpStr startStr:@"\"title\":\"" endStr:@"\","]; 
-		strGadgetDescription = [eXoApplicationsViewController getStringForGadget:tmpStr startStr:@"\"description\":\"" endStr:@"\","];
-		NSString *gadgetIconUrl = [eXoApplicationsViewController getStringForGadget:tmpStr startStr:@"\"thumbnail\":\"" endStr:@"\","];
-
-		if([gadgetIconUrl isEqualToString:@""])
-			imgGadgetIcon = [UIImage imageNamed:@"PortletsIcon.png"];
-		else
-		{
-			imgGadgetIcon = [UIImage imageWithData:[httpClient sendRequest:gadgetIconUrl]];
-			if (imgGadgetIcon == nil) 
-			{
-				NSRange range3 = [gadgetIconUrl rangeOfString:@"://"];
-				if(range3.length == 0)
-				{
-					strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
-					range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
-					continue;
-				}
-				
-				gadgetIconUrl = [gadgetIconUrl substringFromIndex:range3.location + range3.length];
-				range3 = [gadgetIconUrl rangeOfString:@"/"];
-				gadgetIconUrl = [gadgetIconUrl substringFromIndex:range3.location];	
-				NSString* tmpGGIC= [NSString stringWithFormat:@"%@%@", domain, gadgetIconUrl];		
-				imgGadgetIcon = [UIImage imageWithData:[httpClient sendRequest:tmpGGIC]];
-				if (imgGadgetIcon == nil) 
-				{
-					imgGadgetIcon = [UIImage imageNamed:@"PortletsIcon.png"];
-				}
-			}
-		}
-		
-		NSMutableString *gadgetUrl = [[NSMutableString alloc] initWithString:@""];
-		[gadgetUrl appendString:domain];
-		
-		[gadgetUrl appendFormat:@"%@/", [eXoApplicationsViewController getStringForGadget:tmpStr startStr:@"'home', '" endStr:@"',"]];
-		[gadgetUrl appendFormat:@"ifr?container=default&mid=1&nocache=0&lang=%@&debug=1&st=default", [eXoApplicationsViewController getStringForGadget:tmpStr startStr:@"&lang=" endStr:@"\","]];
-		
-		NSString *token = [NSString stringWithFormat:@":%@", [eXoApplicationsViewController getStringForGadget:tmpStr startStr:@"\"default:" endStr:@"\","]];
-		token = [token stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
-		token = [token stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
-		token = [token stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-		token = [token stringByReplacingOccurrencesOfString:@"=" withString:@"%3D"];
-		
-		
-		[gadgetUrl appendFormat:@"%@&url=", token];
-		
-		NSString *gadgetXmlFile = [eXoApplicationsViewController getStringForGadget:tmpStr startStr:@"\"url\":\"" endStr:@"\","];
-		gadgetXmlFile = [gadgetXmlFile stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
-		gadgetXmlFile = [gadgetXmlFile stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
-		
-		[gadgetUrl appendFormat:@"%@", gadgetXmlFile];
-		
-		urlGadgetContent = [NSURL URLWithString:gadgetUrl];
-		
-		Gadget_iPhone* gadget = [[Gadget_iPhone alloc] init];
-		
-		[gadget setObjectWithName:strGadgetName description:strGadgetDescription urlContent:urlGadgetContent urlIcon:nil imageIcon:imgGadgetIcon];
-		[arrTmpGadgets addObject:gadget];
-
-		strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
-		range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
-
-		
-	} while (range1.length > 0);
-		
-		
-	return arrTmpGadgets;
-}
-
-+ (NSMutableArray*)listOfGadgets
-{
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	
-	NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
-
-	NSString* strContent = [httpClient getFirstLoginContent];
-
-	NSRange range1;
-	NSRange range2;
-	NSRange range3;
-	range1 = [strContent rangeOfString:@"DashboardIcon TBIcon"];
-	
-	if(range1.length <= 0)
-		return nil;
-	
-	strContent = [strContent substringFromIndex:range1.location + range1.length];
-	range1 = [strContent rangeOfString:@"TBIcon"];
-	
-	if(range1.length <= 0)
-		return nil;
-	
-	strContent = [strContent substringToIndex:range1.location];
-	
-	
-	do {
-		range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
-		range2 = [strContent rangeOfString:@"\" >"];
-		if(range1.length > 0 && range2.length > 0)
-		{				
-			NSString *gadgetTabUrlStr = [strContent substringWithRange:NSMakeRange(range1.location + range1.length, range2.location - range1.location - range1.length)];
-			NSURL* gadgetTabUrl = [NSURL URLWithString:gadgetTabUrlStr];
-			
-			strContent = [strContent substringFromIndex:range2.location + range2.length];
-			range3 = [strContent rangeOfString:@"</a>"];
-			if(range3.length <= 0)
-				return nil;
-			
-			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
-			NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
-
-			arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
-			GateInDbItem_iPhone* tmpGateInDbItem = [[GateInDbItem_iPhone alloc] init];
-			[tmpGateInDbItem setObjectWithName:gadgetTabName andURL:gadgetTabUrl andGadgets:arrTmpGadgetsInItem];
-			[arrTmpGadgets addObject:tmpGateInDbItem];
-			
-			strContent = [strContent substringFromIndex:range3.location];
-			range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
-		}	
-	} while (range1.length > 0);
-	
-	return arrTmpGadgets;
 }
 
 - (id)getAppDelegate
@@ -582,7 +396,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	{
 		[request setHTTPMethod:@"PUT"];
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
-		NSData *dataFile = [httpClient sendRequestWithAuthorization:destination];
+		NSData *dataFile = [_conn sendRequestWithAuthorization:destination];
 		[request setHTTPBody:dataFile];
 
 	}else
@@ -593,7 +407,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	}
 	
 	NSString *s = @"Basic ";
-    NSString *author = [s stringByAppendingString: [httpClient stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
+    NSString *author = [s stringByAppendingString: [_conn stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
 	[request setValue:author forHTTPHeaderField:@"Authorization"];
 	
 	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -625,7 +439,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		[chatUser setObjectWithXMPPUser:[arrUsers objectAtIndex:i] andArrMsg:arrMessages  andHtmlstr:htmlStr];
 		[_arrChatUsers addObject:chatUser]; 
 	}
-	//_arrChatUsers = arrUsers;
 	 
 }
 
@@ -695,7 +508,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	NSString *urlStr = [file._fatherUrlStr stringByAppendingFormat:@"/%@",
 								 [file._fileName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
 		
-	NSData* dataReply = [httpClient sendRequestWithAuthorization:urlStr];
+	NSData* dataReply = [_conn sendRequestWithAuthorization:urlStr];
 	NSString* strData = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
 	
 	NSMutableArray* arrDicts = [[NSMutableArray alloc] init];

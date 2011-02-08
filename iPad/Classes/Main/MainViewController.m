@@ -446,7 +446,7 @@
 	
 	[_vPrevious removeFromSuperview];
 	[[self view] addSubview:[_filesViewController view]];
-	[_filesViewController initRootDirectoryWithUsername:[self getConnection]._strUsername];
+	[_filesViewController initWithRootDirectory];
 	[_filesViewController getPersonalDriveContent:_filesViewController._currenteXoFile];
 	_vPrevious = [_filesViewController view];
 	

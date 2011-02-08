@@ -123,17 +123,11 @@ static NSString* kCellIdentifier = @"Cell";
 - (void)loadGadgets
 {
 	[self getConnection];
-	_arrGateInDbItems = [self getItemsInDashboard];
+	_arrGateInDbItems = [_connection getItemsInDashboard];
 	
 	if([_arrGateInDbItems count] == 0)
 	{	
 		_bExistGadget = NO;
-		//UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"GadgetMessageTitle"]
-//														message:[_dictLocalize objectForKey:@"GadgetMessageContent"]
-//													   delegate:self 
-//											  cancelButtonTitle:@"OK"
-//											  otherButtonTitles: nil];
-//		[alert show];
 	}
 	else
 	{	
@@ -186,200 +180,6 @@ static NSString* kCellIdentifier = @"Cell";
 	
 	[_gadgetViewController onGridBtn];
 }
-
-
-- (NSMutableArray*)getItemsInDashboard
-{
-	NSMutableArray* arrDbItems = [[NSMutableArray alloc] init];
-	
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];	
-
-	NSString* strContent = [_connection getFirstLoginContent];
-	
-	NSRange range1;
-	NSRange range2;
-	NSRange range3;
-	range1 = [strContent rangeOfString:@"DashboardIcon TBIcon"];
-	
-	if(range1.length <= 0)
-		return nil;
-	
-	strContent = [strContent substringFromIndex:range1.location + range1.length];
-	range1 = [strContent rangeOfString:@"TBIcon"];
-	
-	if(range1.length <= 0)
-		return nil;
-	
-	strContent = [strContent substringToIndex:range1.location];
-	
-	do 
-	{
-		range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
-		range2 = [strContent rangeOfString:@"\" >"];
-		
-		if (range1.length > 0 && range2.length > 0) 
-		{
-			NSString *gadgetTabUrlStr = [strContent substringWithRange:NSMakeRange(range1.location + range1.length, range2.location - range1.location - range1.length)];
-			NSURL *gadgetTabUrl = [NSURL URLWithString:gadgetTabUrlStr];
-			
-			strContent = [strContent substringFromIndex:range2.location + range2.length];
-			range3 = [strContent rangeOfString:@"</a>"];
-			
-			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
-			NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
-			arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
-			GateInDbItem* tmpGateInDbItem = [[GateInDbItem alloc] init];
-			[tmpGateInDbItem setObjectWithName:gadgetTabName andURL:gadgetTabUrl andGadgets:arrTmpGadgetsInItem];
-			[arrDbItems addObject:tmpGateInDbItem];
-			
-			strContent = [strContent substringFromIndex:range3.location];
-			range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
-		}	
-	} 
-	while (range1.length > 0);
-	
-	return arrDbItems;
-
-}
-
--(NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr
-{
-	NSString *returnValue = @"";
-	NSRange range1;
-	NSRange range2;
-	
-	range1 = [gadgetStr rangeOfString:startStr];
-	
-	if(range1.length > 0)
-	{
-		NSString *tmpStr = [gadgetStr substringFromIndex:range1.location + range1.length];
-		range2 = [tmpStr rangeOfString:endStr];
-		if(range2.length > 0)
-		{
-			returnValue = [tmpStr substringToIndex:range2.location];
-		}
-	}
-	
-	return [returnValue retain];
-}
-
-- (NSArray*)listOfGadgetsWithURL:(NSString *)url
-{
-	NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
-	
-	NSString* strGadgetName;
-	NSString* strGadgetDescription;
-	NSURL* urlGadgetContent;
-	UIImage* imgGadgetIcon;
-	
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	
-	NSMutableString* strContent;
-	
-//	NSRange rangeOfSocial = [domain rangeOfString:@"social"];
-//	if (rangeOfSocial.length > 0) 
-//	{
-//		//dataReply = [[_delegate getConnection] sendRequestToSocialToGetGadget:[url absoluteString]];
-//	}
-//	else
-//	{
-//		NSData *data = [[_delegate getConnection] sendRequestToGetGadget:url];
-//		strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//		//dataReply = [[_delegate getConnection] sendRequestWithAuthorization:[url absoluteString]];
-//		//dataReply = [[_delegate getConnection] sendRequestToGetGadget:[url absoluteString]];
-//	}
-
-	NSData *data = [[_delegate getConnection] sendRequestToGetGadget:url];
-	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
-	NSRange range1;
-	NSRange range2;
-	
-	range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
-	if(range1.length <= 0)
-		return nil;
-	
-	do 
-	{
-		strContent = (NSMutableString *)[strContent substringFromIndex:range1.location + range1.length];
-		range2 = [strContent rangeOfString:@"'/eXoGadgetServer/gadgets',"];
-		if (range2.length > 0) 
-		{
-			NSString *tmpStr = [strContent substringToIndex:range2.location + range2.length + 10];
-
-			strGadgetName = [self getStringForGadget:tmpStr startStr:@"\"title\":\"" endStr:@"\","]; 
-			strGadgetDescription = [self getStringForGadget:tmpStr startStr:@"\"description\":\"" endStr:@"\","];
-			NSString *gadgetIconUrl = [self getStringForGadget:tmpStr startStr:@"\"thumbnail\":\"" endStr:@"\","];
-			if([gadgetIconUrl isEqualToString:@""])
-				imgGadgetIcon = [UIImage imageNamed:@"PortletsIcon.png"];
-			else
-			{
-				imgGadgetIcon = [UIImage imageWithData:[[_delegate getConnection] sendRequest:gadgetIconUrl]];
-				if(imgGadgetIcon == nil)
-				{	
-					NSRange range3 = [gadgetIconUrl rangeOfString:@"://"];
-					if(range3.length == 0)
-					{
-						strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
-						range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
-						continue;
-					}
-					
-					gadgetIconUrl = [gadgetIconUrl substringFromIndex:range3.location + range3.length];
-					range3 = [gadgetIconUrl rangeOfString:@"/"];
-					gadgetIconUrl = [gadgetIconUrl substringFromIndex:range3.location];
-					//gadgetIconUrl = [NSString stringWithFormat:@"%@%@", domain, gadgetIconUrl];		
-					NSString* tmpGGIC= [NSString stringWithFormat:@"%@%@", domain, gadgetIconUrl];		
-					imgGadgetIcon = [UIImage imageWithData:[[_delegate getConnection] sendRequest:tmpGGIC]];
-					if(imgGadgetIcon == nil)
-					{
-						imgGadgetIcon = [UIImage imageNamed:@"PortletsIcon.png"];
-					}	
-				}
-			}
-		
-			NSMutableString *gadgetUrl = [[NSMutableString alloc] initWithString:@""];
-			[gadgetUrl appendString:domain];
-		
-			[gadgetUrl appendFormat:@"%@/", [self getStringForGadget:tmpStr startStr:@"'home', '" endStr:@"',"]];
-			[gadgetUrl appendFormat:@"ifr?container=default&mid=1&nocache=0&lang=%@&debug=1&st=default", [self getStringForGadget:tmpStr startStr:@"&lang=" endStr:@"\","]];
-		
-			NSString *token = [NSString stringWithFormat:@":%@", [self getStringForGadget:tmpStr startStr:@"\"default:" endStr:@"\","]];
-			token = [token stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
-			token = [token stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
-			token = [token stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-		
-		
-			[gadgetUrl appendFormat:@"%@&url=", token];
-		
-			NSString *gadgetXmlFile = [self getStringForGadget:tmpStr startStr:@"\"url\":\"" endStr:@"\","];
-			gadgetXmlFile = [gadgetXmlFile stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
-			gadgetXmlFile = [gadgetXmlFile stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
-		
-			[gadgetUrl appendFormat:@"%@", gadgetXmlFile];
-		
-			urlGadgetContent = [NSURL URLWithString:gadgetUrl];
-		
-			Gadget* gadget = [[Gadget alloc] init];
-		
-			[gadget setObjectWithName:strGadgetName description:strGadgetDescription urlContent:urlGadgetContent urlIcon:nil imageIcon:imgGadgetIcon];
-			[arrTmpGadgets addObject:gadget];
-		
-			strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
-			range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
-		}	
-		
-	} while (range1.length > 0);
-	
-	return arrTmpGadgets;
-}
-
-//- (void)onGadgetTableViewCell:(NSURL*)gadgetUrl
-//{
-//	[_delegate startGadget:gadgetUrl];
-//}
 																												
 - (void)onGadget:(Gadget*)gadget
 {
@@ -518,7 +318,7 @@ static NSString* kCellIdentifier = @"Cell";
 				{
 					lbTitle.text = @"Files";
 					//lbDescription.text = [_dictLocalize objectForKey:@"FileDescription"];
-					imgV.image = [UIImage imageNamed:@"filesApp.png"];
+					imgV.image = [UIImage imageNamed:@"FileApp.png"];
 					break;
 				}
 					

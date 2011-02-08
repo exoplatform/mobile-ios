@@ -7,16 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+ 
 @class eXoApplicationsViewController;
 
-@interface eXoSetting : UITableViewController {
+@interface eXoSetting : UITableViewController <UITextFieldDelegate>{
 	BOOL bRememberMe;
 	BOOL bAutoLogin;
 	NSString *languageStr;
+	NSString *serverNameStr;
 	
 	UISwitch *rememberMe;
 	UISwitch *autoLogin;
+	UITextField *txtfDomainName;
 	NSString*	_localizeStr;
 	int			_selectedLanguage;
 	NSDictionary*	_dictLocalize;

@@ -9,10 +9,10 @@
 #import "eXoAppViewController.h"
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
-#import "eXoAccount.h"
 #import "CXMLDocument.h"
 #import "eXoSetting.h"
 #import "eXoApplicationsViewController.h"
+#import "Connection.h"
 
 
 @implementation eXoAppViewController
@@ -34,6 +34,8 @@
 		[btnTmp setBackgroundImage:[UIImage imageNamed:@"setting.png"] forState:UIControlStateNormal];
 		btnSetting = [[UIBarButtonItem alloc] initWithCustomView:btnTmp];
 		
+		isFirstTimeLogin = YES;
+		
     }
     return self;
 }
@@ -47,21 +49,7 @@
 	
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 	
-	_txtfDomainName = [eXoAppViewController textInputFieldForCellWithSecure:NO];
-	_txtfDomainName.delegate = self;
-	_txtfUserName = [eXoAppViewController textAccountInputFieldForCellWithSecure:NO];
-	_txtfUserName.delegate = self;
-	_txtfUserPasswd = [eXoAppViewController textAccountInputFieldForCellWithSecure:YES];
-	_txtfUserPasswd.delegate = self; 
-	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	if(domain)
-	{
-		[_txtfDomainName setText:domain];
-	}
-	
-	[self viewWillAppear:NO];
+	//[self viewWillAppear:NO];
 }
 
 - (void)viewDidLoad 
@@ -93,6 +81,19 @@
 	bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
 	bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 
+	_txtfDomainName = [eXoAppViewController textInputFieldForCellWithSecure:NO];
+	_txtfDomainName.delegate = self;
+	_txtfUserName = [eXoAppViewController textAccountInputFieldForCellWithSecure:NO];
+	_txtfUserName.delegate = self;
+	_txtfUserPasswd = [eXoAppViewController textAccountInputFieldForCellWithSecure:YES];
+	_txtfUserPasswd.delegate = self; 
+
+	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+	if(domain)
+	{
+		[_txtfDomainName setText:domain];
+	}
+	
 	
 	if(bRememberMe || bAutoLogin)
 	{
@@ -157,19 +158,9 @@
 	}
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-	
-}
-
-- (void)dealloc 
-{
-	[_txtfUserName release];
-	[_txtfUserPasswd release];
-	[_txtfDomainName release];
-	[_txtfDomainName1 release];
-	
-    [super dealloc];	
+	isFirstTimeLogin = NO;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -254,8 +245,8 @@
 		case 0:
 		{
 			UILabel* domainNameLabel = [[UILabel alloc] init];
-			domainNameLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];			
-			//domainNameLabel.text = @"Domain";
+ 	 		domainNameLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
+			
 			return [self containerCellWithLabel:domainNameLabel view:_txtfDomainName];
 			break;
 		}
@@ -291,6 +282,14 @@
 	}
 		
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {	
+	if(indexPath.section == 0 && !isFirstTimeLogin) {
+		cell.userInteractionEnabled = NO;
+		[cell setBackgroundColor:[UIColor cyanColor]];
+	}
+	
 }
 
 
@@ -375,7 +374,6 @@
 
 -(void)login
 {
-	
 	[[self navigationItem] setRightBarButtonItem:nil];
 	[self view].userInteractionEnabled = NO;
 	_indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
@@ -390,10 +388,9 @@
 	NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 	[startThread start];
 	
-	//[self performSelectorOnMainThread:@selector(signInProgress) withObject:nil waitUntilDone:NO];
 	endThread = [[NSThread alloc] initWithTarget:self selector:@selector(signInProgress) object:nil];
 	[endThread start];
-	//[NSThread detachNewThreadSelector:@selector(signInProgress) toTarget:self withObject:nil];
+	
 	[startThread release];
 	
 }
@@ -430,8 +427,6 @@
 		
 		[self login];
 	}
-	
-	
 }
 
 -(void)loginSuccess
@@ -465,7 +460,7 @@
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	eXoUserClient* exoUserClient = [eXoUserClient instance];
+	Connection* conn = [[Connection alloc] init];
 	
 	NSString* domain = [_txtfDomainName text];
 	NSString* username = [_txtfUserName text];
@@ -496,21 +491,10 @@
 	[userDefaults setObject:username forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:password forKey:EXO_PREFERENCE_PASSWORD];	
 	
-	_bSuccessful = [exoUserClient signInDomain:domain withUserName:username password:password];
-	
-	
-	//[[self navigationItem] setRightBarButtonItem:signInBtn];
+	_bSuccessful = [conn sendAuthenticateRequest:domain username:username password:password];
 	
 	if(_bSuccessful == @"YES")
 	{
-		//[_indicator stopAnimating];
-		eXoAccount* account = [eXoAccount instance];
-		if(account)
-		{
-			[account setUsername:username];
-			[account setPassword:password];
-		}
-		
 		[self performSelectorOnMainThread:@selector(loginSuccess) withObject:nil waitUntilDone:NO];
 	}
 	else if(_bSuccessful == @"NO")
@@ -546,6 +530,14 @@
 	
 }
 	
+- (void)dealloc 
+{
+	[_txtfUserName release];
+	[_txtfUserPasswd release];
+	[_txtfDomainName release];
+	
+    [super dealloc];	
+}
 
 @end
 

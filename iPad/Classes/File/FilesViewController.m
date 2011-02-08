@@ -295,11 +295,12 @@ NSString* fileType(NSString *fileName)
 	[pool release];
 }
 
-- (void)initRootDirectoryWithUsername:(NSString*)username
+- (void)initWithRootDirectory
 {
 	if([_strRootDirectory length] == 0)
 	{
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 		NSString* urlStr = [strHost stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users/"];
 		
@@ -635,6 +636,9 @@ NSString* fileType(NSString *fileName)
 	NSHTTPURLResponse* response;
 	NSError* error;
 	
+	NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
+	NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD];
+	
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 	[request setURL:[NSURL URLWithString:[strSource stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]; 
 	
@@ -663,9 +667,7 @@ NSString* fileType(NSString *fileName)
 	NSString* s = @"Basic ";
 	NSString* author = [s stringByAppendingString: 
 						[[_delegate getConnection] stringEncodedWithBase64:
-						 [NSString stringWithFormat:@"%@:%@", 
-						  [[_delegate getConnection] _strUsername], 
-						  [[_delegate getConnection] _strPassword]]]];
+						 [NSString stringWithFormat:@"%@:%@", userName, password]]];
 	
 	[request setValue:author forHTTPHeaderField:@"Authorization"];
 	

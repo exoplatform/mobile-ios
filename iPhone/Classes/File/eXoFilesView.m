@@ -9,11 +9,11 @@
 #import "eXoFilesView.h"
 #import "eXoApplicationsViewController.h"
 #import "DataProcess.h"
-#import "httpClient.h"
-#import "eXoAccount.h"
+#import "Connection.h"
 #import "eXoWebViewController.h"
 #import "eXoFileAction.h"
 #import "eXoFileActionView.h"
+#import "defines.h"
 
 
 NSString *fileType_iPhone(NSString *fileName)
@@ -81,6 +81,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 	_contentType = [[NSString alloc] initWithString:@""];
 	
+	Connection *conn = [[Connection alloc] init];
+	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
 	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
@@ -99,7 +101,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	[request setHTTPBody: [[NSString stringWithString: @"<?xml version=\"1.0\" encoding=\"utf-8\" ?><D:propfind xmlns:D=\"DAV:\">"
 							"<D:prop><D:getcontenttype/></D:prop></D:propfind>"] dataUsingEncoding:NSUTF8StringEncoding]]; 
 	
-	[request setValue:[httpClient stringOfAuthorizationHeaderWithUsername:username password:password] forHTTPHeaderField:@"Authorization"];
+	[request setValue:[conn stringOfAuthorizationHeaderWithUsername:username password:password] forHTTPHeaderField:@"Authorization"];
 	
 	NSData *dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString *responseStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];

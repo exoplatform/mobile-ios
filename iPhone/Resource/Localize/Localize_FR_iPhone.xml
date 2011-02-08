@@ -42,14 +42,8 @@
 	<string>OK</string>
 	<key>ActionButton</key>
 	<string>Actions</string>
-	<key>TakePicture</key>
-	<string>Prendre une photo</string>
 	<key>Delete</key>
 	<string>Supprimer</string>
-    <key>Paste</key>
-	<string>Coller</string>
-	<key>Cancel</key>
-	<string>Annuler</string>
     <key>DeleteButton</key>
 	<string>Supprimer</string>
 	<key>DeleteButtonDone</key>

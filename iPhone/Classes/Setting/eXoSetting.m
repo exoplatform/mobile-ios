@@ -36,6 +36,8 @@
 		bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] intValue];
 		bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] intValue];
 		
+		serverNameStr = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN]; 
+		
 		_delegate = delegate;
 		_dictLocalize = delegate._dictLocalize;
     }
@@ -146,7 +148,7 @@
     int numofRows = 0;
 	if(section == 0)
 	{
-		numofRows = 2;
+		numofRows = 3;
 	}	
 	if(section == 1)
 	{	
@@ -175,23 +177,42 @@
 	{
 		case 0:
 		{
+			cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			if(indexPath.row == 0) {
-				cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
-				cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-				rememberMe.on = bRememberMe;
 			
-				[cell addSubview:rememberMe];
+			if(indexPath.row == 0) {
+				
+				cell.textLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
+				
+				txtfDomainName = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 200, 30)];
+				txtfDomainName.delegate = self;
+				txtfDomainName.keyboardType = UIKeyboardTypeASCIICapable;
+				txtfDomainName.returnKeyType = UIReturnKeyDone;
+				txtfDomainName.autocorrectionType = UITextAutocorrectionTypeNo;
+				txtfDomainName.autocapitalizationType = UITextAutocapitalizationTypeNone;
+				txtfDomainName.clearButtonMode = UITextFieldViewModeWhileEditing;
+				
+				txtfDomainName.text = serverNameStr;
+				
+				[cell addSubview:txtfDomainName];
 				
 			}
-			else
+			else if(indexPath.row == 1)
 			{
+				
+				cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
+				rememberMe.on = bRememberMe;
+				
+				[cell addSubview:rememberMe];
+			}
+			else {
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
 				cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
-				cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
 				autoLogin.on = bAutoLogin;
 				
 				[cell addSubview:autoLogin];
 			}
+	
 		}
 		break;
 			
@@ -266,7 +287,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	
 	if(indexPath.section == 1)
 	{
 		_selectedLanguage = indexPath.row;
@@ -290,6 +310,15 @@
 		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
 	
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:txtfDomainName.text forKey:EXO_PREFERENCE_DOMAIN];
+	NSString *tmp = txtfDomainName.text;
+	[textField resignFirstResponder];
+	return YES;
 }
 
 - (void)dealloc {

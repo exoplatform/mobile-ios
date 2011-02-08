@@ -21,12 +21,6 @@
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
 	{
-		// Custom initialization
-//		_btnSetting = [[UIButton alloc] init];
-//		[_btnSetting setBackgroundImage:[UIImage imageNamed:@"SettingBtn.png"] forState:UIControlStateNormal];
-//		[_btnSetting addTarget:self action:@selector(onSettingBtn:) forControlEvents:UIControlEventTouchDown];
-//		[[self view] addSubview:_btnSetting];
-		
 		_settingViewController = [[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil];
 		[_settingViewController setDelegate:self];
 		_bDismissSettingView = NO;
@@ -155,19 +149,6 @@
 {
 	_dictLocalize = [_delegate getLocalization];
 	_intSelectedLanguage = [_delegate getSelectedLanguage];
-
-//	if (_intSelectedLanguage == 0) 
-//	{
-//		[_btnSetting setBackgroundImage:[UIImage imageNamed:@"EN.gif"] forState:UIControlStateNormal];
-//	}
-//	else if (_intSelectedLanguage == 1) 
-//	{
-//		[_btnSetting setBackgroundImage:[UIImage imageNamed:@"FR.gif"] forState:UIControlStateNormal];
-//	}
-//	else if (_intSelectedLanguage == 2) 
-//	{
-//		[_btnSetting setBackgroundImage:[UIImage imageNamed:@"VN.gif"] forState:UIControlStateNormal];
-//	}
 	
 	[_lbHostInstruction setText:[_dictLocalize objectForKey:@"DomainHeader"]];
 	[_lbHost setText:[_dictLocalize objectForKey:@"DomainCellTitle"]];
@@ -309,10 +290,6 @@
 	[_btnSignIn setFrame:CGRectMake(463, 565 - 85 + intOffset, 110, 37)];
 	[_actiSigningIn setFrame:CGRectMake(448, 565 - 85 + intOffset, 37, 37)];
 	[_lbSigningInStatus setFrame:CGRectMake(511, 573 - 85 + intOffset, 170, 21)];	
-	//[_wvHelp setFrame:CGRectMake(0, 80 + intOffset, 1024, 668)];
-	//[_btnHelp setFrame:CGRectMake(908, 20 + intOffset, 31, 31)];
-	//[_btnHelpClose setFrame:CGRectMake(973, 20 + intOffset, 31, 31)];
-	//[_btnSetting setFrame:CGRectMake(959, 20 + intOffset, 45, 31)];	
 	
 	if (intOffset < 0) 
 	{
@@ -350,17 +327,6 @@
 
 - (IBAction)onHelpBtn:(id)sender
 {	
-//	[_lbHelpTitle removeFromSuperview];
-//	[_btnHelp removeFromSuperview];
-//	[_wvHelp removeFromSuperview];
-//	[_btnHelpClose removeFromSuperview];
-//	[_btnSetting removeFromSuperview];
-//	[[self view] addSubview:_wvHelp];
-//	[[self view] addSubview:_btnHelpClose];
-//	[[self view] addSubview:_lbHelpTitle];
-//	_urlHelp = [NSURLRequest requestWithURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"HowtoUse-EN" ofType:@"htm"]]];
-//	[_wvHelp loadRequest:_urlHelp];
-
 	if (_supportViewController == nil)
 	{
 		_supportViewController = [[SupportViewController alloc] initWithNibName:@"SupportViewController" bundle:nil];
@@ -378,11 +344,6 @@
 - (IBAction)onCloseBtn:(id)sender
 {
 	[[_supportViewController view] removeFromSuperview];
-//	[_lbHelpTitle removeFromSuperview];	
-//	[_wvHelp removeFromSuperview];
-//	[_btnHelpClose removeFromSuperview];
-//	[[self view] addSubview:_btnHelp];
-//	[[self view] addSubview:_btnSetting];
 }
 
 /*
@@ -513,33 +474,20 @@
 	[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
 
-	[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-	[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
-	[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
-
-	
-
 	_bRememberMe = [_cbxRememberMe getStatus];
 	if(_bRememberMe)
 	{
-		//[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-		//[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
-		//[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
-
 		[userDefaults setObject:@"YES" forKey:EXO_REMEMBER_ME];
 	}
 	else 
 	{
 		[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
 	}
-
+	
 	_bAutoSignIn = [_cbxAutoSignIn getStatus];
 	if(_bAutoSignIn)
 	{
-		//[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-		//[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
-		//[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
-
+		
 		[userDefaults setObject:@"YES" forKey:EXO_AUTO_LOGIN];
 	}
 	else 

@@ -8,7 +8,6 @@
 
 #import "eXoChatWindow.h"
 #import "eXoApplicationsViewController.h"
-#import "eXoAccount.h"
 #import "DDXML.h"
 #import "XMPPUser.h"
 #import "XMPPJID.h"
@@ -269,13 +268,13 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	[message addChild:body];
 	[_xmppClient sendElement:message];
 	
-	eXoAccount* account = [eXoAccount instance];
-	NSString* msgDisplayContent = [[account userName] stringByAppendingString:@": "];
+	NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
+	NSString* msgDisplayContent = [userName stringByAppendingString:@": "];
 	msgDisplayContent = [msgDisplayContent stringByAppendingString:msgContent];
 	
 	[_arrMessages addObject:msgDisplayContent];
 	
-	NSString *tempStr = createChatContent(iconChatMe, [account userName], 
+	NSString *tempStr = createChatContent(iconChatMe, userName, 
 										  [msgContent stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"], 
 										  topLeftStr, topRightStr, 
 										  bottomLeftStr, bottomRightStr, topHorizontalStr, bottomHorizontalStr, @"#F7F7F7");

@@ -42,8 +42,6 @@
 	<string>Done</string>
 	<key>ActionButton</key>
 	<string>Actions</string>
-    <key>TakePicture</key>
-	<string>Take a picture</string>
 	<key>Delete</key>
 	<string>Delete</string>
 	<key>DeleteButton</key>

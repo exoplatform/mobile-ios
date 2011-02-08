@@ -37,10 +37,6 @@
 - (int)getSelectedLanguage;
 - (NSDictionary*)getLocalization;
 - (void)loadGadgets;
-- (NSMutableArray*)getItemsInDashboard;
-- (NSArray*)listOfGadgetsWithURL:(NSString *)url;
-//- (void)onGadgetTableViewCell:(NSURL*)gadgetUrl;
 - (void)onGadget:(Gadget*)gadget;
-- (NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr;
 - (IBAction)onGridBtn:(id)sender;
 @end

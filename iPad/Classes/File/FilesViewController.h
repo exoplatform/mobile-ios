@@ -91,7 +91,7 @@
 - (void)localize;
 - (int)getSelectedLanguage;
 - (NSDictionary*)getLocalization;
-- (void)initRootDirectoryWithUsername:(NSString*)username;
+- (void)initWithRootDirectory;
 - (NSMutableArray*)getPersonalDriveContent:(eXoFile *)file;
 - (void)onAction:(NSString*)strAction;
 - (void)doAction:(NSString *)strAction source:(NSString *)strSource destination:(NSString *)strDes;
