@@ -90,5 +90,7 @@
 	<string>Invalid server name</string>
 	<key>UserNameEmpty</key>
 	<string>Incorrect username</string>
+	<key>EmptyPage</key>
+	<string>Empty Page</string>
 </dict>
 </plist>

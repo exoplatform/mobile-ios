@@ -41,6 +41,7 @@
 	eXoApplicationsViewController* _delegate;
 	eXoFileActionView *_fileActionViewShape;
 	
+	UIImageView *imgViewEmptyPage;
 }
 
 @property (nonatomic, readonly) IBOutlet UITableView* _tblvFilesGrp;

@@ -10,7 +10,7 @@
  
 @class eXoApplicationsViewController;
 
-@interface eXoSetting : UITableViewController <UITextFieldDelegate>{
+@interface eXoSetting : UITableViewController <UITextFieldDelegate> {
 	BOOL bRememberMe;
 	BOOL bAutoLogin;
 	NSString *languageStr;

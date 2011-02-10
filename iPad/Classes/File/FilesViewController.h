@@ -71,6 +71,8 @@
 	eXoFile*								_currenteXoFile;	
 	eXoFile*								_fileForDeleteRename;
 	eXoFile*								_fileForCopyMove;
+	
+	UIImageView *imgViewEmptyPage;
 }
 
 @property (nonatomic, retain) NSString* _strRootDirectory;

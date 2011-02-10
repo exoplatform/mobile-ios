@@ -173,6 +173,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 //		_delegate.navigationItem.rightBarButtonItem = _delegate._btnFileAcion;
 //	}
 	
+	[imgViewEmptyPage removeFromSuperview];
 }
 
 -(void) onFileActionbtn
@@ -289,7 +290,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 	[startThread start];
 	
-	
 	eXoFile_iPhone *file = [_arrDicts objectAtIndex:indexPath.row];
 	
 	if(file._isFolder)
@@ -299,6 +299,13 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		
 		[self setDriverContent:_arrDicts withDelegate:_delegate];
 		_delegate.navigationItem.leftBarButtonItem = _delegate._btnBack;
+		
+		if([_arrDicts count] == 0) {
+			imgViewEmptyPage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
+			imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
+			
+			[self addSubview:imgViewEmptyPage];
+		}
 		
 	}
 	else

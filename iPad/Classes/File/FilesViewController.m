@@ -261,6 +261,13 @@ NSString* fileType(NSString *fileName)
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
 	[popoverController dismissPopoverAnimated:YES];
+	
+	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
+		imgViewEmptyPage.frame = CGRectMake(0, 43, 768, 976);
+	} else {
+		
+	}
+
     return YES;
 }
 
@@ -355,6 +362,8 @@ NSString* fileType(NSString *fileName)
 {
 	NSThread* startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 	[startThread start];
+	
+	[imgViewEmptyPage removeFromSuperview];
 	
 	_currenteXoFile._fileName = [[_currenteXoFile._fatherUrlStr lastPathComponent] stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
 	_currenteXoFile._fatherUrlStr = [_currenteXoFile._fatherUrlStr stringByDeletingLastPathComponent];
@@ -533,6 +542,15 @@ NSString* fileType(NSString *fileName)
 		
 		[startThread release];
 		[self performSelectorOnMainThread:@selector(endProgress) withObject:nil waitUntilDone:NO];
+		
+		if([_arrDicts count] == 0) {
+			imgViewEmptyPage = [[UIImageView alloc] initWithFrame:tableView.frame];
+			imgViewEmptyPage.center = tableView.center;
+			imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
+			
+			[self.view addSubview:imgViewEmptyPage];
+		}
+		
 	}
 	else
 	{	
