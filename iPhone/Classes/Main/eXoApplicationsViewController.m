@@ -178,6 +178,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	[_btnClearMsg setTitle:[_dictLocalize objectForKey:@"Clear"]];
 	[_btnSignOut setTitle:[_dictLocalize objectForKey:@"SignOutButton"]];
 	
+	_filesView.labelEmptyPage.text = [_dictLocalize objectForKey:@"EmptyPage"];
+	
 	if(!_bFilesChatEnterred)
 	{
 		self.title = [_dictLocalize objectForKey:@"ApplicationsTitle"];

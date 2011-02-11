@@ -42,11 +42,13 @@
 	eXoFileActionView *_fileActionViewShape;
 	
 	UIImageView *imgViewEmptyPage;
+	UILabel *labelEmptyPage;
 }
 
 @property (nonatomic, readonly) IBOutlet UITableView* _tblvFilesGrp;
 @property (nonatomic, readonly)	NSMutableArray*			_arrDicts;
 @property (nonatomic, readonly)	eXoFileActionView *_fileActionViewShape;
+@property (nonatomic, retain) UILabel *labelEmptyPage;
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated;
 - (void)setDriverContent:(NSMutableArray*)arrDriveContent withDelegate:(id)delegate;

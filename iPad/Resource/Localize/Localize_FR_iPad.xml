@@ -97,6 +97,8 @@
 	<key>GadgetMessageContent</key>
 	<string>Il n'ya pas de n'importe quel gadget</string>	
 	<key>SupportViewTitle</key>
-	<string>Information</string>	
+	<string>Information</string>
+	<key>EmptyPage</key>
+	<string>Vide Page</string>	
 </dict>
 </plist>

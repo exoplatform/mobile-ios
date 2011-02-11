@@ -316,7 +316,6 @@
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:txtfDomainName.text forKey:EXO_PREFERENCE_DOMAIN];
-	NSString *tmp = txtfDomainName.text;
 	[textField resignFirstResponder];
 	return YES;
 }

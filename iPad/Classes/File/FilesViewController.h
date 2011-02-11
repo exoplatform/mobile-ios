@@ -73,6 +73,7 @@
 	eXoFile*								_fileForCopyMove;
 	
 	UIImageView *imgViewEmptyPage;
+	UILabel *labelEmptyPage;
 }
 
 @property (nonatomic, retain) NSString* _strRootDirectory;

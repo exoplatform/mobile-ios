@@ -98,5 +98,7 @@
 	<string>Please add gadget(s) to your portal dashboard to use them on your mobile device.</string>
 	<key>SupportViewTitle</key>
 	<string>Information</string>
+	<key>EmptyPage</key>
+	<string>Empty Page</string>
 </dict>
 </plist>

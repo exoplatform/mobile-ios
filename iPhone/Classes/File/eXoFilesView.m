@@ -152,7 +152,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 @implementation eXoFilesView
 
-@synthesize _tblvFilesGrp, _arrDicts, _fileActionViewShape;
+@synthesize _tblvFilesGrp, _arrDicts, _fileActionViewShape, labelEmptyPage;
 
 
 - (void)setDriverContent:(NSMutableArray*)arrDriveContent withDelegate:(id)delegate
@@ -164,14 +164,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_delegate.navigationItem.title = _delegate._currenteXoFile._fileName;
 	[_tblvFilesGrp setEditing:NO];
 	[_tblvFilesGrp reloadData];
-	
-	//NSString *tmpStr = _delegate._currenteXoFile._fileName; 
 
 	_delegate.navigationItem.rightBarButtonItem = _delegate._btnFileAcion;
-	//if(![tmpStr isEqualToString:@"Private"])
-//	{
-//		_delegate.navigationItem.rightBarButtonItem = _delegate._btnFileAcion;
-//	}
 	
 	[imgViewEmptyPage removeFromSuperview];
 }
@@ -228,24 +222,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 	
-	//if (editingStyle == UITableViewCellEditingStyleDelete) {
-//		
-//		
-//		eXoFile *file = [_arrDicts objectAtIndex:indexPath.row];
-//		NSString *deleteFile = [NSString stringWithString:[file._fatherUrlStr stringByAppendingFormat:@"/%@", 
-//														   [file._fileName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
-//		
-//		[_delegate fileAction:@"DELETE" source:deleteFile destination:nil data:nil];
-//		
-//		
-//		[_tblvFilesGrp setEditing:NO animated:YES];
-//				
-//		_delegate.navigationItem.leftBarButtonItem.enabled = YES;
-//		
-//	}
-//	if (editingStyle == UITableViewCellEditingStyleInsert) {
-//	}
-//	
 }
 
 
@@ -304,6 +280,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 			imgViewEmptyPage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
 			imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
 			
+			labelEmptyPage = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 320, 40)];
+			labelEmptyPage.backgroundColor = [UIColor clearColor];
+			labelEmptyPage.textAlignment = UITextAlignmentCenter;
+			labelEmptyPage.text = [_delegate._dictLocalize objectForKey:@"EmptyPage"];
+			[imgViewEmptyPage addSubview:labelEmptyPage];
 			[self addSubview:imgViewEmptyPage];
 		}
 		
@@ -340,7 +321,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSString *tmpStr = _delegate._currenteXoFile._fileName;
 	
-	//_delegate.navigationItem.leftBarButtonItem = nil;
 	if([tmpStr isEqualToString:@"Private"])
 	{
 		[_delegate addCloseBtn];

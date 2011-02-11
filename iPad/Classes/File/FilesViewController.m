@@ -212,6 +212,12 @@ NSString* fileType(NSString *fileName)
 	[self localize];
 	[_navigationBar setRightBarButtonItem:_bbtnActions];
 	[super viewDidLoad];
+	
+	labelEmptyPage = [[UILabel alloc] init];
+	labelEmptyPage.backgroundColor = [UIColor clearColor];
+	labelEmptyPage.textAlignment = UITextAlignmentCenter;
+	labelEmptyPage.font = [UIFont systemFontOfSize:24];
+	labelEmptyPage.text = [_dictLocalize objectForKey:@"EmptyPage"];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -264,8 +270,10 @@ NSString* fileType(NSString *fileName)
 	
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
 		imgViewEmptyPage.frame = CGRectMake(0, 43, 768, 976);
+		labelEmptyPage.frame = CGRectMake(0, 670, 768, 40);
 	} else {
-		
+		imgViewEmptyPage.frame = CGRectMake(0, 43, 703, 705);
+		labelEmptyPage.frame = CGRectMake(0, 500, 703, 40);
 	}
 
     return YES;
@@ -548,6 +556,8 @@ NSString* fileType(NSString *fileName)
 			imgViewEmptyPage.center = tableView.center;
 			imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
 			
+			[imgViewEmptyPage addSubview:labelEmptyPage];
+			
 			[self.view addSubview:imgViewEmptyPage];
 		}
 		
@@ -565,7 +575,6 @@ NSString* fileType(NSString *fileName)
 		[_navigationBar setTitle:_currenteXoFile._fileName];
 		[_navigationBar setLeftBarButtonItem:_bbtnBack];
 	}
-	
 
 }
 
