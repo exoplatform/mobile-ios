@@ -151,16 +151,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 	[super loadView];
 	
-	//self.title = [_dictLocalize objectForKey:@"ApplicationsTitle"];
-//	
-//	if(self.navigationItem.rightBarButtonItem == _btnSignOut)
-//	{
-//		[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"ApplicationsTitle"]];
-//		[_btnSignOut setTitle:[_dictLocalize objectForKey:@"SignOutButton"]];
-//		self.navigationItem.rightBarButtonItem = _btnSignOut;
-//	}
-//	
-//	[_tblvGadgetsGrp reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -261,19 +251,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	//if(_bFilesEnterred)
-//	{	
-//		if(_markParent)
-//		{	
-//			[self displayFolderContent:_markParent];
-//		}	
-//	}	
-//	else
-//	{
-//		[_tblvGadgetsGrp reloadData];
-//	}
+	
 }
-
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -282,7 +261,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_filesView._tblvFilesGrp.userInteractionEnabled = YES;
 
 }
-
 
 - (void)dealloc 
 {
@@ -327,13 +305,10 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 
 	[self addCloseBtn];
-	
 	//process to get info from personal_drive
 	[_arrDicts removeAllObjects];
 	_arrDicts = [self getPersonalDriveContent:self._currenteXoFile];
-	
 	[_filesView setDriverContent:_arrDicts withDelegate:self];
-
 }
 
 - (IBAction)onNewsBtn
@@ -452,7 +427,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	{
 		if([[_arrChatUsers objectAtIndex:i] getChatUserId] == [[xmppUser jid] user])
 		{
-			//[_chatWindow initChatWindowWithDelegate:self andXMPPClient:_xmppClient andXMPPUsers:xmppUser];
 				
 			[ _chatWindow initChatWindowWithDelegate:self andXMPPClient:_xmppClient andExoChatUser:[_arrChatUsers objectAtIndex:i]  listMsg:listMsg];
 			_chatWindow._arrChatUsers = self._arrChatUsers;
@@ -525,7 +499,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		
 		if(range1.length > 0)
 		{
-			NSString *fileName = [strData substringWithRange:NSMakeRange(range1.length + range1.location, range2.location - range1.location - range1.length)];
+			NSString *fileName = [strData substringWithRange:NSMakeRange(range1.length + range1.location, 
+																		 range2.location - range1.location - range1.length)];
 			if(![fileName isEqualToString:@".."])
 			{
 				eXoFile_iPhone *file = [[eXoFile_iPhone alloc] initWithUrlStr:[urlStr stringByAppendingFormat:@"/%@", fileName]];
@@ -552,13 +527,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	_arrDicts = [self getPersonalDriveContent:self._currenteXoFile];
 	
-	
 	[_filesView setDriverContent:_arrDicts withDelegate:self];
 	
 	[startThread release];
 	
 	[self performSelectorOnMainThread:@selector(endProgress) withObject:nil waitUntilDone:NO];
-
 }
 
 -(void)onDoneCopy 
@@ -588,7 +561,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	}
 	else
 	{
-		//[_btnBack setTitle:[_dictLocalize objectForKey:@"BackButton"]];
 		[[self navigationItem] setLeftBarButtonItem:_btnBack];
 	}
 	
@@ -610,7 +582,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	}
 }
 
-
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return UITableViewCellEditingStyleNone;
@@ -626,16 +597,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	NSString* tmpStr = @"";
 	if(section == 0)
 	{
-		//tmpStr = @"eXo Native Applications";
 		tmpStr = [_dictLocalize objectForKey:@"NativeApplicationsHeader"];
 	}
 	else if(section == 1)
 	{
-		//tmpStr = @"List of eXo Gadgets";
 		if([_arrGadgets count] > 0)
-		{	
-		tmpStr = [_dictLocalize objectForKey:@"GadgetsHeader"];
-	}	
+			tmpStr = [_dictLocalize objectForKey:@"GadgetsHeader"];
 	}	
 	return tmpStr;
 }
@@ -657,8 +624,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	//if(indexPath.section == 0)
-	//	return 60.0;
 	return 60;
 }
 
@@ -677,20 +642,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 			titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
 			[cell addSubview:titleLabel];
 			
-			/*
-			UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 25.0, 210.0, 33.0)];
-			descriptionLabel.numberOfLines = 2;
-			descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-			[cell addSubview:descriptionLabel];
-			*/
-			
 			UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
 			[cell addSubview:imgV];
 
 			if(indexPath.row == 0)
 			{
 				titleLabel.text = @"Chat";		
-				//descriptionLabel.text = [_dictLocalize objectForKey:@"ChatDescription"];
 				if(_xmppClient != nil && [_xmppClient isConnected] && [_xmppClient isAuthenticated])
 					imgV.image = [UIImage imageNamed:@"onlineicon.png"];
 				else
@@ -698,18 +655,14 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 			}
 			else if(indexPath.row == 1)
 			{
-				
 				titleLabel.text = @"Files";
-				//descriptionLabel.text = [_dictLocalize objectForKey:@"FileDescription"];
 				imgV.image = [UIImage imageNamed:@"filesApp.png"];
 
 			}
 			else
 			{
 				titleLabel.text = @"eXoActivity";					
-				//descriptionLabel.text = [_dictLocalize objectForKey:@"ActivityDescription"];
 				imgV.image = [UIImage imageNamed:@"ActivityIcon.png"];
-				
 			}
 			
 			break;
@@ -757,7 +710,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		urlStr = [urlStr stringByAppendingString:@"/Private"];
 		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr];
 	}
-	
 	
 	if(!_filesView)
 	{
@@ -828,7 +780,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	}
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 }
 
 @end

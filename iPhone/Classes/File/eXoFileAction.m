@@ -28,10 +28,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		_filesView = filesView;
 		_file = file;
 		_deleteFolderEnable = enable;
-		
-		NSArray *arrValues = [_delegate._dictLocalize allValues];
-		NSArray *arrKeys = [_delegate._dictLocalize allKeys];
-		
+	
 		strTakePicture = [NSString stringWithString:[_delegate._dictLocalize objectForKey:@"TakePicture"]];
 		strDelete = [NSString stringWithString:[_delegate._dictLocalize objectForKey:@"Delete"]];
 		strCopy = [NSString stringWithString:[_delegate._dictLocalize objectForKey:@"Copy"]];

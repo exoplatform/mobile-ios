@@ -43,7 +43,7 @@ static eXoAccount *_instance;
 
 - (void)setUsername:(NSString*)username
 {
-    [[NSUserDefaults standardUserDefaults] setObject:username forKey:EXO_PREFERENCE_USERID];
+    [[NSUserDefaults standardUserDefaults] setObject:username forKey:EXO_PREFERENCE_USERNAME];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -61,7 +61,7 @@ static eXoAccount *_instance;
 
 - (NSString*)userName
 {
-	return [[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_USERID];
+	return [[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_USERNAME];
 }
 
 - (NSString*)password
@@ -78,8 +78,7 @@ static eXoAccount *_instance;
 {
 	NSString *pwd = self.password;
 	NSString *usn = self.userName;
-	return usn != nil && usn.length > 0 &&
-	pwd != nil && pwd.length > 0;
+	return usn != nil && usn.length > 0 && pwd != nil && pwd.length > 0;
 }
 
 - (void)getUserId

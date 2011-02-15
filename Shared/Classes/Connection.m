@@ -68,7 +68,7 @@ static NSString* _strFirstLoginContent;
 	
 	*p = '\0';
 	
-	NSString* ret = [NSString stringWithCString:tmp];
+	NSString* ret = [NSString stringWithCString:tmp encoding:NSASCIIStringEncoding];
 	free(tmp);
 	
 	return ret;
