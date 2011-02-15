@@ -52,6 +52,8 @@
 	UIInterfaceOrientation					_interfaceOrientation;
 }
 
+- (NSString*)getUsername;
+- (NSString*)getPassword;
 - (void)setCurrentViewIndex:(short)index;
 - (short)getCurrentViewIndex;
 - (void)showChatToolBar:(BOOL)show;

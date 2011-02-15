@@ -21,6 +21,7 @@
 	IBOutlet UILabel*						_lbStatus;
 	IBOutlet UIButton*						_btnLeftEdgeNavigation;
 	IBOutlet UIButton*						_btnRightEdgeNavigation;
+	NSString*								_strBConnectStatus;
 }
 @property (nonatomic, retain) UIWebView* _wvGadgetDisplay;
 @property (nonatomic, retain) UIActivityIndicatorView* _actiLoading;

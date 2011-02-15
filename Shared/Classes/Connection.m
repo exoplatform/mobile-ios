@@ -331,6 +331,92 @@ static NSString* _strFirstLoginContent;
 	return dataResponse;
 }
 
+
+- (NSString*)loginForStandaloneGadget:(NSString*)domain
+{
+	NSURLResponse* response;
+	NSError* error;
+	NSData* dataResponse;
+	NSString* urlContent = [[NSString alloc] init];
+	NSData* bodyData;
+	
+	NSURL* tmpURL = [NSURL URLWithString:domain];
+	NSString* tmpCheck = [NSString stringWithContentsOfURL:tmpURL encoding:NSUTF8StringEncoding error:nil];
+	NSRange tmpRange = [tmpCheck rangeOfString:@"'error', '/main?url"];
+	if(tmpCheck == nil || tmpRange.length > 0) 
+	{
+		tmpURL = nil;
+		[tmpURL release];
+		return @"ERROR";
+	}
+	
+	NSString* redirectStr = [NSString stringWithFormat:@"%@%@", domain, [self getExtend:domain]];
+	
+	NSURL* redirectURL1 = [NSURL URLWithString:redirectStr];
+	NSString* checkUrlStr = [NSString stringWithContentsOfURL:redirectURL1 encoding:NSUTF8StringEncoding error:nil];
+	if(checkUrlStr == nil) 
+	{
+		redirectURL1 = nil;
+		[redirectURL1 release];
+		return @"ERROR";
+	}
+	
+
+	NSString* loginStr;
+	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	
+//	NSRange rangeOfPrivate = [redirectStr rangeOfString:@"/classic"];
+//	if(rangeOfPrivate.length > 0)
+//		loginStr = [[redirectStr substringToIndex:rangeOfPrivate.location] stringByAppendingString:@"/j_security_check"];
+//	else
+//		loginStr = [redirectStr stringByAppendingString:@"/j_security_check"];
+	
+	loginStr = @"http://mobile.demo.exoplatform.org/portal/login";
+	//Request to login
+	NSURL* loginURL = [NSURL URLWithString:loginStr];
+	NSMutableURLRequest* loginRequest = [[NSMutableURLRequest alloc] init];	
+	[loginRequest setURL:loginURL];
+	[loginRequest setTimeoutInterval:60.0];
+	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+	[loginRequest setHTTPShouldHandleCookies:NO];
+	
+	NSDictionary* postDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
+	[postDictionary setValue:_strUsername forKey:@"username"];
+	[postDictionary setValue:_strPassword forKey:@"password"];
+	DataProcess* dataProcess = [DataProcess instance];
+	bodyData = [dataProcess formatDictData:postDictionary WithEncoding:NSUTF8StringEncoding];
+	
+	[loginRequest setHTTPBody:bodyData];
+	[loginRequest setHTTPMethod: @"POST"]; 
+	
+	NSDictionary *cookiesInfo = [NSHTTPCookie requestHeaderFieldsWithCookies:[store cookies]];
+	[loginRequest setValue:[cookiesInfo objectForKey:@"Cookie"] forHTTPHeaderField:@"Cookie"];
+	
+	
+	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
+	//NSString *tmpStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
+	if([dataResponse bytes] == nil) 
+	{
+		[loginRequest release];
+		return @"ERROR";
+	}
+	urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
+	
+	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
+	if(rgCheck.length > 0)
+	{
+		[loginRequest release];
+		return @"NO";
+	}
+	else
+	{
+		[loginRequest release];
+		_strFirstLoginContent = urlContent;
+		return @"YES";
+	}
+}
+
+
 - (NSMutableArray*)getItemsInDashboard
 {
 	NSMutableArray* arrDbItems = [[NSMutableArray alloc] init];
@@ -370,8 +456,26 @@ static NSString* _strFirstLoginContent;
 			range3 = [strContent rangeOfString:@"</a>"];
 			
 			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
-			NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
+			//NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
+			NSMutableArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
+			NSMutableArray* arrTmpStandaloneGadgetsInITem = [[NSArray alloc] init];
 			arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
+			arrTmpStandaloneGadgetsInITem = [self listOfStandaloneGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
+			for (int i = 0; i < [arrTmpGadgetsInItem count]; i++) 
+			{
+				Gadget* tmpGadget = [arrTmpGadgetsInItem objectAtIndex:i];
+				for (int j = 0; j < [arrTmpStandaloneGadgetsInITem count]; j++) 
+				{
+					StandaloneGadget* tmpStandaloneGadget = [arrTmpStandaloneGadgetsInITem objectAtIndex:j];
+					if ([tmpStandaloneGadget._strName isEqualToString:tmpGadget._strName]) 
+					{
+						tmpGadget._urlContent = tmpStandaloneGadget._urlContent;
+						[arrTmpGadgetsInItem replaceObjectAtIndex:i withObject:tmpGadget];
+						break;
+					}
+				}
+			}
+			
 			GateInDbItem* tmpGateInDbItem = [[GateInDbItem alloc] init];
 			[tmpGateInDbItem setObjectWithName:gadgetTabName andURL:gadgetTabUrl andGadgets:arrTmpGadgetsInItem];
 			[arrDbItems addObject:tmpGateInDbItem];
@@ -383,7 +487,6 @@ static NSString* _strFirstLoginContent;
 	while (range1.length > 0);
 	
 	return arrDbItems;
-	
 }
 
 -(NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr
@@ -407,7 +510,7 @@ static NSString* _strFirstLoginContent;
 	return [returnValue retain];
 }
 
-- (NSArray*)listOfGadgetsWithURL:(NSString *)url
+- (NSMutableArray*)listOfGadgetsWithURL:(NSString *)url
 {
 	NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
 	
@@ -504,6 +607,71 @@ static NSString* _strFirstLoginContent;
 	} while (range1.length > 0);
 	
 	return arrTmpGadgets;
+}
+
+- (NSMutableArray*)listOfStandaloneGadgetsWithURL:(NSString *)url
+{
+	NSMutableArray* arrTmpStandaloneGadgets = [[NSMutableArray alloc] init];
+	
+	NSMutableString* strContent;
+	
+	NSData *data = [self sendRequestToGetGadget:url];
+	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	NSRange range1;
+	NSRange range2;
+	
+	NSArray* arrParagraphs = [strContent componentsSeparatedByString:@"<div class=\"UIGadget\""];
+	
+	for (int i = 1; i < [arrParagraphs count]; i++) 
+	{
+		NSString* tmpStr1 = [arrParagraphs objectAtIndex:i];
+		range1 = [tmpStr1 rangeOfString:@"standalone"];
+		if (range1.length > 0) 
+		{
+			range2 = [tmpStr1 rangeOfString:@"<a style=\"display:none\" href=\""];
+			NSString* strStandaloneUrl = @"";
+			NSString* strStandaloneName = @"";
+			if (range2.length > 0) 
+			{
+				int mark = 0;
+				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
+				{
+					if ([tmpStr1 characterAtIndex:j] == '"') 
+					{
+						mark = j;
+						break;
+					}
+				}
+				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
+				strStandaloneUrl = [tmpStr1 substringWithRange:range3];
+			}
+			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
+			if (range2.length > 0) 
+			{
+				int mark = 0;
+				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
+				{
+					if ([tmpStr1 characterAtIndex:j] == '<') 
+					{
+						mark = j;
+						break;
+					}
+				}
+				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
+				strStandaloneName = [tmpStr1 substringWithRange:range3];
+			}
+			
+			if ([strStandaloneUrl length] > 0 && [strStandaloneName length] > 0) 
+			{
+				StandaloneGadget* tmpStandaloneGadget = [[StandaloneGadget alloc] init];
+				tmpStandaloneGadget._strName = strStandaloneName;
+				tmpStandaloneGadget._urlContent = [NSURL URLWithString:strStandaloneUrl];
+				[arrTmpStandaloneGadgets addObject:tmpStandaloneGadget];
+			}
+		}
+	}
+	return arrTmpStandaloneGadgets;
 }
 
 @end

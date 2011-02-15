@@ -53,3 +53,16 @@
 - (NSURL*)urlIcon;
 - (UIImage*)imageIcon;
 @end
+
+
+
+@interface StandaloneGadget : NSObject 
+{
+	NSString*			_strName;
+	NSURL*				_urlContent;
+} 
+
+@property (nonatomic, retain) NSString* _strName;
+@property (nonatomic, retain) NSURL* _urlContent;
+@end
+

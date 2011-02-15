@@ -125,3 +125,11 @@
 }
 
 @end
+
+
+
+@implementation StandaloneGadget
+@synthesize _strName;
+@synthesize _urlContent;
+@end
+

@@ -14,6 +14,7 @@
 
 }
 
+- (NSString*)loginForStandaloneGadget:(NSString*)domain;
 - (NSString*)stringEncodedWithBase64:(NSString*)str;
 - (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password;
 - (NSString*)getExtend:(NSString*)domain;
@@ -27,6 +28,6 @@
 
 - (NSMutableArray*)getItemsInDashboard;
 - (NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr;
-- (NSArray*)listOfGadgetsWithURL:(NSString *)url;
-
+- (NSMutableArray*)listOfGadgetsWithURL:(NSString *)url;
+- (NSMutableArray*)listOfStandaloneGadgetsWithURL:(NSString *)url;
 @end

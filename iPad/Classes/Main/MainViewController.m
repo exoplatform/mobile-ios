@@ -598,4 +598,13 @@
 
 }
 
+- (NSString*)getUsername
+{
+	return _strUsername;
+}
+
+- (NSString*)getPassword
+{
+	return _strPassword;
+}
 @end

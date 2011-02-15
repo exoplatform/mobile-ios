@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 @class GateInDbItem_iPhone;
 @class eXoApplicationsViewController;
+@class GadgetDisplayViewController;
 
 @interface eXoGadgetViewController : UITableViewController {
 	GateInDbItem_iPhone *_gadgetTab;
 	eXoApplicationsViewController *_delegate;
+	GadgetDisplayViewController* _gadgetDisplayViewController;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style delegate:(eXoApplicationsViewController *)delegate 

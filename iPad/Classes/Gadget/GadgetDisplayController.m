@@ -9,6 +9,7 @@
 #import "GadgetDisplayController.h"
 #import "MainViewController.h"
 #import "Gadget.h"
+#import "Connection.h"
 
 @implementation GadgetDisplayController
 
@@ -24,6 +25,7 @@
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
 	{
 		// Custom initialization
+		_strBConnectStatus = @"NO";
 	}
 	return self;
 }
@@ -120,9 +122,14 @@
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 	[request setURL:[gadget urlContent]]; 
 	
-	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	NSUInteger statusCode = [response statusCode];
 	
+	if (![_strBConnectStatus isEqualToString:@"YES"]) 
+	{
+		_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
+	}
+
+	[[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] retain];
+	NSUInteger statusCode = [response statusCode];
 	if(statusCode >= 200 && statusCode < 300)
 	{
 		[_wvGadgetDisplay loadRequest:request];

@@ -10,6 +10,7 @@
 #import "Gadget_iPhone.h"
 #import "eXoApplicationsViewController.h"
 #import "eXoWebViewController.h"
+#import "GadgetDisplayViewController.h"
 
 @implementation eXoGadgetViewController
 
@@ -173,9 +174,25 @@
     
 	Gadget_iPhone *gadget = [_gadgetTab._arrGadgetsInItem objectAtIndex:indexPath.row];
 	NSURL *tmpURL = gadget._urlContent;
-	eXoWebViewController* tmpView = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:tmpURL];
-	tmpView._delegate = _delegate;
-	[[self navigationController] pushViewController:tmpView animated:YES];
+//	eXoWebViewController* tmpView = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:tmpURL];
+//	tmpView._delegate = _delegate;
+//	[[self navigationController] pushViewController:tmpView animated:YES];
+	
+	if (_gadgetDisplayViewController == nil) 
+	{
+		_gadgetDisplayViewController = [[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController" bundle:nil url:tmpURL];
+	}
+	
+	//[_gadgetDisplayViewController startGadget:gadget];
+	[_gadgetDisplayViewController setUrl:tmpURL];
+	if ([self.navigationController.viewControllers containsObject:_gadgetDisplayViewController]) 
+	{
+		[self.navigationController popToViewController:_gadgetDisplayViewController animated:YES];
+	}
+	else 
+	{
+		[self.navigationController pushViewController:_gadgetDisplayViewController animated:YES];
+	}
 	
 }
 
