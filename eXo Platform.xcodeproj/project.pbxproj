@@ -1471,7 +1471,7 @@
 					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"/**",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphonesimulator3.2;
 			};
 			name = Debug;
 		};
