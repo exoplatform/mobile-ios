@@ -123,11 +123,12 @@
 	[request setURL:[gadget urlContent]]; 
 	
 	
-	if (![_strBConnectStatus isEqualToString:@"YES"]) 
-	{
-		_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
-	}
+//	if (![_strBConnectStatus isEqualToString:@"YES"]) 
+//	{
+//		_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
+//	}
 
+	_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
 	[[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] retain];
 	NSUInteger statusCode = [response statusCode];
 	if(statusCode >= 200 && statusCode < 300)
