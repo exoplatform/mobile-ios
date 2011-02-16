@@ -12,6 +12,7 @@
 #import "eXoApplicationsViewController.h"
 #import "Gadget_iPhone.h"
 #import "httpClient.h"
+#import "Connection.h"
 
 @implementation GadgetDisplayViewController
 
@@ -40,11 +41,13 @@
 		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 		[request setURL:_url]; 
 		
-		if (![_strBConnectStatus isEqualToString:@"YES"]) 
-		{
-			_strBConnectStatus = [httpClient loginForStandaloneGadget:[_url absoluteString]];
-		}
+//		if (![_strBConnectStatus isEqualToString:@"YES"]) 
+//		{
+//			_strBConnectStatus = [httpClient loginForStandaloneGadget:[_url absoluteString]];
+//		}
 		
+		Connection* connection = [[Connection alloc] init];
+		_strBConnectStatus = [connection loginForStandaloneGadget:[_url absoluteString]];
 		[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 		NSUInteger statusCode = [response statusCode];
 		
@@ -57,6 +60,7 @@
 			[_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
 									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
 		}
+		[connection release];
 	}
 }
 
