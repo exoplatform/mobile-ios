@@ -525,7 +525,6 @@ static NSString* _strFirstLoginContent;
 	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 	
 	NSMutableString* strContent;
-	NSMutableArray* strContent1;
 	
 	NSData *data = [self sendRequestToGetGadget:url];
 	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -665,7 +664,7 @@ static NSString* _strFirstLoginContent;
 					Gadget* tmpGadget = [arrTmpGadgets objectAtIndex:i];
 					if ([strStandaloneName isEqualToString:tmpGadget._strName]) 
 					{
-						tmpGadget._urlContent = [NSURL URLWithString:strStandaloneName];
+						tmpGadget._urlContent = [NSURL URLWithString:strStandaloneUrl];
 						[arrTmpGadgets replaceObjectAtIndex:i withObject:tmpGadget];
 						break;
 					}
