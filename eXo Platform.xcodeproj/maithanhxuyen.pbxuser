@@ -145,8 +145,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 319427216;
-			PBXWorkspaceStateSaveDate = 319427216;
+			PBXPerProjectTemplateStateSaveDate = 319691889;
+			PBXWorkspaceStateSaveDate = 319691889;
 		};
 		perUserProjectItems = {
 			89C9ED6D12DEF29800910C9C = 89C9ED6D12DEF29800910C9C /* PBXTextBookmark */;
@@ -166,6 +166,9 @@
 			89CABDB21302B1DF004C12DC = 89CABDB21302B1DF004C12DC /* PBXTextBookmark */;
 			89CABDB31302B1DF004C12DC = 89CABDB31302B1DF004C12DC /* PBXTextBookmark */;
 			89CF6AAF13015B7300286867 = 89CF6AAF13015B7300286867 /* PBXTextBookmark */;
+			89D1A448130E1C81008B63B9 /* PBXTextBookmark */ = 89D1A448130E1C81008B63B9 /* PBXTextBookmark */;
+			89D1A449130E1C81008B63B9 /* PBXTextBookmark */ = 89D1A449130E1C81008B63B9 /* PBXTextBookmark */;
+			89D1A44A130E1C81008B63B9 /* PBXTextBookmark */ = 89D1A44A130E1C81008B63B9 /* PBXTextBookmark */;
 			89D66B2912DFF4C3008018ED = 89D66B2912DFF4C3008018ED /* PBXTextBookmark */;
 			89D66B3812DFF5A7008018ED = 89D66B3812DFF5A7008018ED /* PBXTextBookmark */;
 			89D66C9212DFFB8A008018ED = 89D66C9212DFFB8A008018ED /* PBXTextBookmark */;
@@ -614,6 +617,36 @@
 		vrLen = 1141;
 		vrLoc = 638;
 	};
+	89D1A448130E1C81008B63B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66AC112DFF411008018ED /* eXoAccount.m */;
+		name = "eXoAccount.m: 13";
+		rLen = 0;
+		rLoc = 234;
+		rType = 0;
+		vrLen = 1280;
+		vrLoc = 624;
+	};
+	89D1A449130E1C81008B63B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66F3412E00397008018ED /* Connection.h */;
+		name = "Connection.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1172;
+		vrLoc = 0;
+	};
+	89D1A44A130E1C81008B63B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66F3412E00397008018ED /* Connection.h */;
+		name = "Connection.h: 16";
+		rLen = 0;
+		rLoc = 218;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 0;
+	};
 	89D66ABB12DFF411008018ED /* eXoChatWindow.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {817, 845}}";
@@ -651,9 +684,9 @@
 	};
 	89D66AC112DFF411008018ED /* eXoAccount.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {911, 1365}}";
+			sepNavIntBoundsRect = "{{0, 0}, {911, 1326}}";
 			sepNavSelRange = "{234, 0}";
-			sepNavVisRange = "{666, 1199}";
+			sepNavVisRange = "{624, 1280}";
 		};
 	};
 	89D66AC212DFF411008018ED /* eXoUser.h */ = {
@@ -1132,6 +1165,13 @@
 			sepNavIntBoundsRect = "{{0, 0}, {771, 1365}}";
 			sepNavSelRange = "{2962, 0}";
 			sepNavVisRange = "{1723, 1277}";
+		};
+	};
+	89D66F3412E00397008018ED /* Connection.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {911, 594}}";
+			sepNavSelRange = "{218, 0}";
+			sepNavVisRange = "{0, 1179}";
 		};
 	};
 	89D66F3512E00397008018ED /* Connection.m */ = {
