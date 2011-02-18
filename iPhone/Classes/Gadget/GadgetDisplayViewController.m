@@ -41,13 +41,14 @@
 		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 		[request setURL:_url]; 
 		
-//		if (![_strBConnectStatus isEqualToString:@"YES"]) 
-//		{
-//			_strBConnectStatus = [httpClient loginForStandaloneGadget:[_url absoluteString]];
-//		}
+		Connection* connection;
+		NSRange rang = [[_url absoluteString] rangeOfString:@"standalone"];
+		if (rang.length > 0) 
+		{
+			connection = [[Connection alloc] init];
+			_strBConnectStatus = [connection loginForStandaloneGadget:[_url absoluteString]];
+		}
 		
-		Connection* connection = [[Connection alloc] init];
-		_strBConnectStatus = [connection loginForStandaloneGadget:[_url absoluteString]];
 		[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 		NSUInteger statusCode = [response statusCode];
 		

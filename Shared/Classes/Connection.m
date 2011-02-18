@@ -458,8 +458,9 @@ static NSString* _strFirstLoginContent;
 			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
 			//NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
 			NSMutableArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
-			NSMutableArray* arrTmpStandaloneGadgetsInITem = [[NSArray alloc] init];
+			//NSMutableArray* arrTmpStandaloneGadgetsInITem = [[NSArray alloc] init];
 			arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
+			/*
 			arrTmpStandaloneGadgetsInITem = [self listOfStandaloneGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
 			for (int i = 0; i < [arrTmpGadgetsInItem count]; i++) 
 			{
@@ -475,6 +476,7 @@ static NSString* _strFirstLoginContent;
 					}
 				}
 			}
+			*/
 			
 			GateInDbItem* tmpGateInDbItem = [[GateInDbItem alloc] init];
 			[tmpGateInDbItem setObjectWithName:gadgetTabName andURL:gadgetTabUrl andGadgets:arrTmpGadgetsInItem];
@@ -523,6 +525,7 @@ static NSString* _strFirstLoginContent;
 	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 	
 	NSMutableString* strContent;
+	NSMutableArray* strContent1;
 	
 	NSData *data = [self sendRequestToGetGadget:url];
 	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -606,6 +609,70 @@ static NSString* _strFirstLoginContent;
 		
 	} while (range1.length > 0);
 	
+	//return arrTmpGadgets;
+	
+	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	NSArray* arrParagraphs = [strContent componentsSeparatedByString:@"<div class=\"UIGadget\""];
+	
+	for (int i = 1; i < [arrParagraphs count]; i++) 
+	{
+		NSString* tmpStr1 = [arrParagraphs objectAtIndex:i];
+		range1 = [tmpStr1 rangeOfString:@"standalone"];
+		if (range1.length > 0) 
+		{
+			range2 = [tmpStr1 rangeOfString:@"<a style=\"display:none\" href=\""];
+			NSString* strStandaloneUrl = @"";
+			NSString* strStandaloneName = @"";
+			if (range2.length > 0) 
+			{
+				int mark = 0;
+				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
+				{
+					if ([tmpStr1 characterAtIndex:j] == '"') 
+					{
+						mark = j;
+						break;
+					}
+				}
+				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
+				strStandaloneUrl = [tmpStr1 substringWithRange:range3];
+			}
+			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
+			if (range2.length > 0) 
+			{
+				int mark = 0;
+				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
+				{
+					if ([tmpStr1 characterAtIndex:j] == '<') 
+					{
+						mark = j;
+						break;
+					}
+				}
+				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
+				strStandaloneName = [tmpStr1 substringWithRange:range3];
+			}
+			
+			if ([strStandaloneUrl length] > 0 && [strStandaloneName length] > 0) 
+			{
+				//StandaloneGadget* tmpStandaloneGadget = [[StandaloneGadget alloc] init];
+				//tmpStandaloneGadget._strName = strStandaloneName;
+				//tmpStandaloneGadget._urlContent = [NSURL URLWithString:strStandaloneUrl];
+				//[arrTmpStandaloneGadgets addObject:tmpStandaloneGadget];
+				for (int i = 0; i < [arrTmpGadgets count]; i++) 
+				{
+					Gadget* tmpGadget = [arrTmpGadgets objectAtIndex:i];
+					if ([strStandaloneName isEqualToString:tmpGadget._strName]) 
+					{
+						tmpGadget._urlContent = [NSURL URLWithString:strStandaloneName];
+						[arrTmpGadgets replaceObjectAtIndex:i withObject:tmpGadget];
+						break;
+					}
+				}
+			}
+		}
+	}
 	return arrTmpGadgets;
 }
 

@@ -122,13 +122,12 @@
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 	[request setURL:[gadget urlContent]]; 
 	
+	NSRange rang = [[[gadget urlContent] absoluteString] rangeOfString:@"standalone"];
+	if (rang.length > 0) 
+	{
+		_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
+	}
 	
-//	if (![_strBConnectStatus isEqualToString:@"YES"]) 
-//	{
-//		_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
-//	}
-
-	_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
 	[[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] retain];
 	NSUInteger statusCode = [response statusCode];
 	if(statusCode >= 200 && statusCode < 300)

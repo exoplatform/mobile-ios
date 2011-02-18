@@ -11,7 +11,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		7C29F47A130A8EB80029F505 /* GadgetViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C29F479130A8EB80029F505 /* GadgetViewController_iPhone.xib */; };
-		7C29F47D130A8EC50029F505 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C29F47C130A8EC50029F505 /* GadgetDisplayViewController.m */; };
+		7CDE4FB4130E0CE800C8E8B8 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDE4FB3130E0CE800C8E8B8 /* GadgetDisplayViewController.m */; };
 		89C9ED0D12DEED7700910C9C /* DataProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ECBE12DEED7700910C9C /* DataProcess.m */; };
 		89C9ED0E12DEED7700910C9C /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ECC312DEED7700910C9C /* DDXMLDocument.m */; };
 		89C9ED0F12DEED7700910C9C /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ECC512DEED7700910C9C /* DDXMLElement.m */; };
@@ -223,8 +223,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C29F479130A8EB80029F505 /* GadgetViewController_iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GadgetViewController_iPhone.xib; sourceTree = "<group>"; };
-		7C29F47B130A8EC50029F505 /* GadgetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GadgetDisplayViewController.h; path = "../../../../../exo-mobile-ios copy/iPhone/Classes/Gadget/GadgetDisplayViewController.h"; sourceTree = SOURCE_ROOT; };
-		7C29F47C130A8EC50029F505 /* GadgetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GadgetDisplayViewController.m; path = "../../../../../exo-mobile-ios copy/iPhone/Classes/Gadget/GadgetDisplayViewController.m"; sourceTree = SOURCE_ROOT; };
+		7CDE4FB2130E0CE800C8E8B8 /* GadgetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayViewController.h; sourceTree = "<group>"; };
+		7CDE4FB3130E0CE800C8E8B8 /* GadgetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayViewController.m; sourceTree = "<group>"; };
 		89C9ECBD12DEED7700910C9C /* DataProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcess.h; sourceTree = "<group>"; };
 		89C9ECBE12DEED7700910C9C /* DataProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcess.m; sourceTree = "<group>"; };
 		89C9ECBF12DEED7700910C9C /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
@@ -843,8 +843,8 @@
 				89D66ADA12DFF411008018ED /* GadgetButton_iPhone.m */,
 				89D66ADB12DFF411008018ED /* GadgetViewController_iPhone.h */,
 				89D66ADC12DFF411008018ED /* GadgetViewController_iPhone.m */,
-				7C29F47B130A8EC50029F505 /* GadgetDisplayViewController.h */,
-				7C29F47C130A8EC50029F505 /* GadgetDisplayViewController.m */,
+				7CDE4FB2130E0CE800C8E8B8 /* GadgetDisplayViewController.h */,
+				7CDE4FB3130E0CE800C8E8B8 /* GadgetDisplayViewController.m */,
 			);
 			path = Gadget;
 			sourceTree = "<group>";
@@ -1448,7 +1448,7 @@
 				89D66EF612E002FD008018ED /* SettingViewController.m in Sources */,
 				89D66F3612E00397008018ED /* Checkbox.m in Sources */,
 				89D66F3712E00397008018ED /* Connection.m in Sources */,
-				7C29F47D130A8EC50029F505 /* GadgetDisplayViewController.m in Sources */,
+				7CDE4FB4130E0CE800C8E8B8 /* GadgetDisplayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1471,7 +1471,7 @@
 					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"/**",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				SDKROOT = iphonesimulator3.2;
+				SDKROOT = iphonesimulator4.0;
 			};
 			name = Debug;
 		};
