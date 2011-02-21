@@ -96,6 +96,7 @@ static NSString* _strFirstLoginContent;
 	}
 	
 	return @"/portal/private/intranet";
+	//return @"/portal/private/classic";
 	
 }
 
@@ -173,6 +174,7 @@ static NSString* _strFirstLoginContent;
 	}
 	
 	_strFirstLoginContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
+	NSString* test = _strFirstLoginContent;
 	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
@@ -514,6 +516,7 @@ static NSString* _strFirstLoginContent;
 
 - (NSMutableArray*)listOfGadgetsWithURL:(NSString *)url
 {
+	
 	NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
 	
 	NSString* strGadgetName;
@@ -527,6 +530,7 @@ static NSString* _strFirstLoginContent;
 	NSMutableString* strContent;
 	
 	NSData *data = [self sendRequestToGetGadget:url];
+	//NSData *data = [self sendRequest:url];
 	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	NSRange range1;
@@ -608,8 +612,9 @@ static NSString* _strFirstLoginContent;
 		
 	} while (range1.length > 0);
 	
-	//return arrTmpGadgets;
+	return arrTmpGadgets;
 	
+	/*
 	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	NSArray* arrParagraphs = [strContent componentsSeparatedByString:@"<div class=\"UIGadget\""];
@@ -634,8 +639,22 @@ static NSString* _strFirstLoginContent;
 						break;
 					}
 				}
-				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
-				strStandaloneUrl = [tmpStr1 substringWithRange:range3];
+//				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
+//				strStandaloneUrl = [tmpStr1 substringWithRange:range3];
+//				
+//				NSURL* url = [NSURL URLWithString:@"http://mobile.demo.exoplatform.org:80/portal/standalone/2da0b5050a6825a80169058fc8ec1ecb"];
+//				NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
+//				NSHTTPURLResponse* response;
+//				NSError* error;
+//				[request setURL:url];
+//				[request setTimeoutInterval:60.0];
+//				[request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+//				[request setHTTPMethod:@"GET"];
+//				NSData* dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+//				
+//				NSString* urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
+//				int a = 1;
+				
 			}
 			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
 			if (range2.length > 0) 
@@ -673,6 +692,7 @@ static NSString* _strFirstLoginContent;
 		}
 	}
 	return arrTmpGadgets;
+	*/ 
 }
 
 - (NSMutableArray*)listOfStandaloneGadgetsWithURL:(NSString *)url
@@ -711,6 +731,23 @@ static NSString* _strFirstLoginContent;
 				}
 				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
 				strStandaloneUrl = [tmpStr1 substringWithRange:range3];
+				
+				
+				
+				NSURL* url = [NSURL URLWithString:strStandaloneUrl];
+				NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
+				NSHTTPURLResponse* response;
+				NSError* error;
+				[request setURL:url];
+				[request setTimeoutInterval:60.0];
+				[request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+				[request setHTTPMethod:@"GET"];
+				NSData* dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+				
+				NSString* urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
+				int a = 1;
+				
+				
 			}
 			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
 			if (range2.length > 0) 

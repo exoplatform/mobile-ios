@@ -11,6 +11,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		7C29F47A130A8EB80029F505 /* GadgetViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C29F479130A8EB80029F505 /* GadgetViewController_iPhone.xib */; };
+		7CC51F5C130E2A4B00B00188 /* GadgetDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC51F5B130E2A4B00B00188 /* GadgetDisplayViewController.xib */; };
 		7CDE4FB4130E0CE800C8E8B8 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDE4FB3130E0CE800C8E8B8 /* GadgetDisplayViewController.m */; };
 		89C9ED0D12DEED7700910C9C /* DataProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ECBE12DEED7700910C9C /* DataProcess.m */; };
 		89C9ED0E12DEED7700910C9C /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ECC312DEED7700910C9C /* DDXMLDocument.m */; };
@@ -223,6 +224,7 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C29F479130A8EB80029F505 /* GadgetViewController_iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GadgetViewController_iPhone.xib; sourceTree = "<group>"; };
+		7CC51F5B130E2A4B00B00188 /* GadgetDisplayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GadgetDisplayViewController.xib; sourceTree = "<group>"; };
 		7CDE4FB2130E0CE800C8E8B8 /* GadgetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayViewController.h; sourceTree = "<group>"; };
 		7CDE4FB3130E0CE800C8E8B8 /* GadgetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayViewController.m; sourceTree = "<group>"; };
 		89C9ECBD12DEED7700910C9C /* DataProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcess.h; sourceTree = "<group>"; };
@@ -924,6 +926,7 @@
 				89D66AF912DFF411008018ED /* eXoWebViewController.xib */,
 				89D66AFA12DFF411008018ED /* GadgetViewController_iPhone.xib */,
 				7C29F479130A8EB80029F505 /* GadgetViewController_iPhone.xib */,
+				7CC51F5B130E2A4B00B00188 /* GadgetDisplayViewController.xib */,
 			);
 			path = Nib;
 			sourceTree = "<group>";
@@ -1367,6 +1370,7 @@
 				89D66F7312E00766008018ED /* setting.png in Resources */,
 				89D856821303D6A9007E1A6F /* emptypage.png in Resources */,
 				7C29F47A130A8EB80029F505 /* GadgetViewController_iPhone.xib in Resources */,
+				7CC51F5C130E2A4B00B00188 /* GadgetDisplayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1471,7 +1475,7 @@
 					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"/**",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Debug;
 		};
@@ -1482,6 +1486,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = eXo_Platform_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1491,7 +1496,9 @@
 					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphoneos\"",
 					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphonesimulator\"",
 				);
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "eXo Platform";
+				SDKROOT = iphoneos4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1517,14 +1524,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "454F6663-6E53-4A55-B28C-DF1656D341DB";
+				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
