@@ -16,7 +16,10 @@
 + (id)instance;
 + (id)newInstance;
 + (NSMutableArray*)parseData:(NSData*)data;
++ (NSString *)decodeUrl:(NSString *)urlString;
++ (NSString *)encodeUrl:(NSString *)urlString;
 
 - (NSString*)escapeString:(NSString*)str withEncoding:(NSStringEncoding)encoding;
 - (NSData*)formatDictData:(NSDictionary*)dictData WithEncoding:(NSStringEncoding)encoding;
+
 @end
