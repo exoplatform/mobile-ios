@@ -99,6 +99,6 @@
 	<key>SupportViewTitle</key>
 	<string>Information</string>
 	<key>EmptyPage</key>
-	<string>Empty Page</string>
+	<string>Folder is empty</string>
 </dict>
 </plist>

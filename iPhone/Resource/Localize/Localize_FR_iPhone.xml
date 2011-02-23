@@ -91,6 +91,6 @@
 	<key>UserNameEmpty</key>
 	<string>Nom d'utilisateur incorrect</string>
 	<key>EmptyPage</key>
-	<string>Vide Page</string>
+	<string>Le dossier est vide</string>
 </dict>
 </plist>
