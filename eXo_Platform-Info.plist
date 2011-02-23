@@ -16,7 +16,7 @@
 		<string>icon72x72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.exoplatform.mob.eXoPlatform</string>
+	<string>com.exoplatform.mob.eXoPlatformiPad</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

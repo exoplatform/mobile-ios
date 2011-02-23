@@ -14,6 +14,7 @@
 #import "eXoFileAction.h"
 #import "eXoFileActionView.h"
 #import "defines.h"
+#import "NSString+HTML.h"
 
 
 NSString *fileType_iPhone(NSString *fileName)
@@ -243,8 +244,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 200.0, 20.0)];
 	titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
 	NSString* tmpStr = file._fileName;
-	tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
-	titleLabel.text = tmpStr;
+	//tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
+
+	titleLabel.text = [tmpStr stringByDecodingHTMLEntities];
 	[cell addSubview:titleLabel];
 	
 	
@@ -319,6 +321,18 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	//NSString *tmpStr = _delegate._currenteXoFile._fatherUrlStr;
+//	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+//	if([tmpStr isEqualToString:[domainStr stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users"]])
+//	{
+//		[_delegate addCloseBtn];
+//	}
+//	else
+//	{
+//		[_delegate._btnBack setTitle:[_delegate._dictLocalize objectForKey:@"BackButton"]];
+//		_delegate.navigationItem.leftBarButtonItem = _delegate._btnBack;
+//	}
+	
 	NSString *tmpStr = _delegate._currenteXoFile._fileName;
 	
 	if([tmpStr isEqualToString:@"Private"])

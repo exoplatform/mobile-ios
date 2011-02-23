@@ -13,7 +13,8 @@
 #import "eXoSetting.h"
 #import "eXoApplicationsViewController.h"
 #import "Connection.h"
-
+#import "DataProcess.h"
+#import "NSString+HTML.h"
 
 @implementation eXoAppViewController
 

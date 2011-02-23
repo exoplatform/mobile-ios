@@ -9,7 +9,7 @@
 #import "eXoApplicationsViewController.h"
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
-#import "DataProcess.h"
+#import "NSString+HTML.h"
 #import "eXoFilesView.h"
 #import "Connection.h"
 #import "eXoAppViewController.h"
@@ -187,6 +187,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (void)viewDidLoad 
 {
+	
 	[_arrGadgets removeAllObjects];
 	_arrGadgets = [[_conn getItemsInDashboard] retain];	
 	
@@ -381,6 +382,15 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		[request setHTTPMethod:@"MOVE"];
 		[request setValue:destination forHTTPHeaderField:@"Destination"];
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
+		
+		if([source isEqualToString:destination]) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cut file" message:@"Can not move file to its location" delegate:self 
+												  cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+			[alert show];
+			[alert release];
+			
+			return;
+		}
 	}
 	
 	NSString *s = @"Basic ";
@@ -481,9 +491,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (NSMutableArray*)getPersonalDriveContent:(eXoFile_iPhone *)file
 {
+	//NSString *urlStr = [file._fatherUrlStr stringByAppendingFormat:@"/%@",
+//								 [file._fileName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+
 	NSString *urlStr = [file._fatherUrlStr stringByAppendingFormat:@"/%@",
-								 [file._fileName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-		
+						[file._fileName stringByEncodingHTMLEntities]];
+	
 	NSData* dataReply = [_conn sendRequestWithAuthorization:urlStr];
 	NSString* strData = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
 	
@@ -552,6 +565,24 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 -(void)endProgress
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	//NSString *tmpStr = _currenteXoFile._fatherUrlStr;
+//	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+//	
+//	if(_bBackFromGadgets)
+//		self.navigationItem.leftBarButtonItem = nil;
+//	else if([tmpStr isEqualToString:[domainStr stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users"]])
+//	{
+//		[self addCloseBtn];
+//	}
+//	else
+//	{
+//		[[self navigationItem] setLeftBarButtonItem:_btnBack];
+//	}
+//	
+//	if(_bBackFromGadgets)
+//		self.navigationItem.rightBarButtonItem = _btnSignOut;
+
+	
 	NSString *tmpStr = _currenteXoFile._fileName;
 	if(_bBackFromGadgets)
 		self.navigationItem.leftBarButtonItem = nil;
@@ -566,7 +597,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	if(_bBackFromGadgets)
 		self.navigationItem.rightBarButtonItem = _btnSignOut;
-
+	
 	[pool release];
 }
 

@@ -13,6 +13,7 @@
 #import "FileContentDisplayController.h"
 #import "FileActionsViewController.h"
 #import "OptionsViewController.h"
+#import "NSString+HTML.h"
 
 static NSString* kCellIdentifier = @"Cell";
 
@@ -295,6 +296,9 @@ NSString* fileType(NSString *fileName)
 -(void)endProgress
 {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	//NSString *tmpStr = _currenteXoFile._fatherUrlStr;
+	//NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+	
 	NSString *tmpStr = _currenteXoFile._fileName;
 	if([tmpStr isEqualToString:@"Private"])
 	{
@@ -306,7 +310,19 @@ NSString* fileType(NSString *fileName)
 	{
 		[_navigationBar setTitle:tmpStr];
 		[_navigationBar setLeftBarButtonItem:_bbtnBack];
-	}	
+	}
+	
+	//if([tmpStr isEqualToString:[domainStr stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users"]])
+//	{
+//		[_navigationBar setTitle:@"Files Application"];
+//		[_navigationBar setLeftBarButtonItem:nil];
+//		//[_navigationBar setRightBarButtonItem:_bbtnActions];
+//	}
+//	else
+//	{
+//		[_navigationBar setTitle:_currenteXoFile._fileName];
+//		[_navigationBar setLeftBarButtonItem:_bbtnBack];
+//	}	
 	[pool release];
 }
 
@@ -475,7 +491,10 @@ NSString* fileType(NSString *fileName)
 	
 	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 5.0, 400.0, 30.0)];
 	titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-	titleLabel.text = file._fileName;
+	//titleLabel.text = file._fileName;
+	NSString* tmpStr = file._fileName;
+	titleLabel.text = [tmpStr stringByDecodingHTMLEntities];
+	
 	[cell addSubview:titleLabel];
 	
 	UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 34.0, 34.0)];
@@ -711,6 +730,10 @@ NSString* fileType(NSString *fileName)
 		[alert release];
 	}
 	_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
+	if([_arrDicts count] > 0) {
+		[imgViewEmptyPage removeFromSuperview];
+	}
+		
 	[_tbvFiles reloadData];
 }
 

@@ -1,6 +1,6 @@
 //
 //  SupportViewController.m
-//  iTradeDirect
+//  eXoMobile
 //
 //  Created by Tran Hoai Son on 4/8/10.
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
