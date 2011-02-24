@@ -11,7 +11,7 @@
 
 @interface Connection : NSObject 
 {
-
+	NSString *localDashboardGadgetsString_;
 }
 ///test
 - (NSString*)stringEncodedWithBase64:(NSString*)str;
@@ -24,9 +24,8 @@
 - (NSData*)sendRequestWithAuthorization:(NSString*)urlStr;
 - (NSData*)sendRequest:(NSString*)urlStr;
 - (NSData*)sendRequestWithAuthorization:(NSString*)urlStr;
-
+- (NSString*)loginForStandaloneGadget:(NSString*)domain;
 - (NSMutableArray*)getItemsInDashboard;
 - (NSString *)getStringForGadget:(NSString *)gadgetStr startStr:(NSString *)startStr endStr:(NSString *)endStr;
 - (NSMutableArray*)listOfGadgetsWithURL:(NSString *)url;
-- (NSMutableArray*)listOfStandaloneGadgetsWithURL:(NSString *)url;
 @end

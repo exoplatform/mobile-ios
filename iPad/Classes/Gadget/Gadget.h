@@ -34,6 +34,7 @@
 	NSURL*				_urlContent;
 	NSURL*				_urlIcon;
 	UIImage*			_imgIcon;
+	NSString*			_strID;
 } 
 
 @property (nonatomic, retain) NSString* _strName;
@@ -41,6 +42,8 @@
 @property (nonatomic, retain) NSURL* _urlContent;
 @property (nonatomic, retain) NSURL* _urlIcon;
 @property (nonatomic, retain) UIImage* _imgIcon;
+@property (nonatomic, retain) NSString* _strID;
+
 
 - (void)setObjectWithName:(NSString*)name 
 			  description:(NSString*)description 

@@ -48,6 +48,8 @@
 @synthesize _urlContent;
 @synthesize _urlIcon;
 @synthesize _imgIcon;
+@synthesize _strID;
+
 
 - (id)init
 {

@@ -15,6 +15,18 @@
 static NSString* _strUsername;
 static NSString* _strPassword;
 static NSString* _strFirstLoginContent;
+static NSString* _strDomain;
+
+
+@interface Connection (PrivateMethods)
+
+- (NSMutableDictionary *)retrieveURLsForStandaloneGadget:(NSString *)dashboardString;
+- (BOOL)isAGadgetIDString:(NSString *)potentialIDString;
+
+@end
+
+
+
 
 @implementation Connection
 
@@ -30,6 +42,8 @@ static NSString* _strFirstLoginContent;
 
 - (void)dealloc 
 {
+	[localDashboardGadgetsString_ release];localDashboardGadgetsString_ = nil;
+	
 	[super dealloc];
 }
 
@@ -83,7 +97,7 @@ static NSString* _strFirstLoginContent;
 
 - (NSString*)getExtend:(NSString*)domain
 {
-	NSArray *domainArr = [DOMAINLIST componentsSeparatedByString:@";"];
+	/*NSArray *domainArr = [DOMAINLIST componentsSeparatedByString:@";"];
 	for(int i = 0; i < [domainArr count]; i++)
 	{
 		NSString *domainStr = [domainArr objectAtIndex:i];
@@ -93,7 +107,7 @@ static NSString* _strFirstLoginContent;
 			NSRange rangeOfSpace = [domainStr rangeOfString:@" "];
 			return [domainStr substringFromIndex:rangeOfSpace.location + 1];
 		}
-	}
+	}*/
 	
 	return @"/portal/private/intranet";
 	//return @"/portal/private/classic";
@@ -120,6 +134,10 @@ static NSString* _strFirstLoginContent;
 	
 	_strUsername = username;
 	_strPassword = password;
+	_strDomain = domain;
+	if ([_strDomain hasSuffix:@"/"]) {
+		_strDomain = [_strDomain substringToIndex:[_strDomain length]-1];
+	}
 	
 	NSString* redirectStr = [NSString stringWithFormat:@"%@%@", domain, [self getExtend:domain]];
 	
@@ -371,27 +389,22 @@ static NSString* _strFirstLoginContent;
 			range3 = [strContent rangeOfString:@"</a>"];
 			
 			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
-			//NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
-			NSMutableArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
-			//NSMutableArray* arrTmpStandaloneGadgetsInITem = [[NSArray alloc] init];
+			
+			//Getting informations about a gadget from not standalone gadgets
+			NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
 			arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
-			/*
-			arrTmpStandaloneGadgetsInITem = [self listOfStandaloneGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
+			
+			//Retrieving standalone urls for gadgets			
+			NSMutableDictionary *dictionaryStandaloneURL = [self retrieveURLsForStandaloneGadget:localDashboardGadgetsString_];
+			
 			for (int i = 0; i < [arrTmpGadgetsInItem count]; i++) 
 			{
 				Gadget* tmpGadget = [arrTmpGadgetsInItem objectAtIndex:i];
-				for (int j = 0; j < [arrTmpStandaloneGadgetsInITem count]; j++) 
-				{
-					StandaloneGadget* tmpStandaloneGadget = [arrTmpStandaloneGadgetsInITem objectAtIndex:j];
-					if ([tmpStandaloneGadget._strName isEqualToString:tmpGadget._strName]) 
-					{
-						tmpGadget._urlContent = tmpStandaloneGadget._urlContent;
-						[arrTmpGadgetsInItem replaceObjectAtIndex:i withObject:tmpGadget];
-						break;
-					}
-				}
+				
+				NSString *urlStandalone = [dictionaryStandaloneURL objectForKey:tmpGadget._strID];
+				// If the url is not find, we maintain the iframe url
+				if (urlStandalone) tmpGadget._urlContent = [NSURL URLWithString:urlStandalone]; 
 			}
-			*/
 			
 			GateInDbItem* tmpGateInDbItem = [[GateInDbItem alloc] init];
 			[tmpGateInDbItem setObjectWithName:gadgetTabName andURL:gadgetTabUrl andGadgets:arrTmpGadgetsInItem];
@@ -446,6 +459,8 @@ static NSString* _strFirstLoginContent;
 	//NSData *data = [self sendRequest:url];
 	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
+	localDashboardGadgetsString_ = [strContent copy];
+	
 	NSRange range1;
 	NSRange range2;
 	
@@ -464,6 +479,8 @@ static NSString* _strFirstLoginContent;
 			strGadgetName = [self getStringForGadget:tmpStr startStr:@"\"title\":\"" endStr:@"\","]; 
 			strGadgetDescription = [self getStringForGadget:tmpStr startStr:@"\"description\":\"" endStr:@"\","];
 			NSString *gadgetIconUrl = [self getStringForGadget:tmpStr startStr:@"\"thumbnail\":\"" endStr:@"\","];
+			NSString *idString = [self getStringForGadget:tmpStr startStr:@"'content-" endStr:@"'"];
+
 			if([gadgetIconUrl isEqualToString:@""])
 				imgGadgetIcon = [UIImage imageNamed:@"PortletsIcon.png"];
 			else
@@ -517,6 +534,7 @@ static NSString* _strFirstLoginContent;
 			Gadget* gadget = [[Gadget alloc] init];
 			
 			[gadget setObjectWithName:strGadgetName description:strGadgetDescription urlContent:urlGadgetContent urlIcon:nil imageIcon:imgGadgetIcon];
+			gadget._strID = [idString copy];
 			[arrTmpGadgets addObject:gadget];
 			
 			strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
@@ -526,150 +544,143 @@ static NSString* _strFirstLoginContent;
 	} while (range1.length > 0);
 	
 	return arrTmpGadgets;
-	
-	/*
-	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
-	NSArray* arrParagraphs = [strContent componentsSeparatedByString:@"<div class=\"UIGadget\""];
-	
-	for (int i = 1; i < [arrParagraphs count]; i++) 
-	{
-		NSString* tmpStr1 = [arrParagraphs objectAtIndex:i];
-		range1 = [tmpStr1 rangeOfString:@"standalone"];
-		if (range1.length > 0) 
-		{
-			range2 = [tmpStr1 rangeOfString:@"<a style=\"display:none\" href=\""];
-			NSString* strStandaloneUrl = @"";
-			NSString* strStandaloneName = @"";
-			if (range2.length > 0) 
-			{
-				int mark = 0;
-				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
-				{
-					if ([tmpStr1 characterAtIndex:j] == '"') 
-					{
-						mark = j;
-						break;
-					}
-				}
-			}
-			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
-			if (range2.length > 0) 
-			{
-				int mark = 0;
-				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
-				{
-					if ([tmpStr1 characterAtIndex:j] == '<') 
-					{
-						mark = j;
-						break;
-					}
-				}
-				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
-				strStandaloneName = [tmpStr1 substringWithRange:range3];
-			}
-			
-			if ([strStandaloneUrl length] > 0 && [strStandaloneName length] > 0) 
-			{
-				//StandaloneGadget* tmpStandaloneGadget = [[StandaloneGadget alloc] init];
-				//tmpStandaloneGadget._strName = strStandaloneName;
-				//tmpStandaloneGadget._urlContent = [NSURL URLWithString:strStandaloneUrl];
-				//[arrTmpStandaloneGadgets addObject:tmpStandaloneGadget];
-				for (int i = 0; i < [arrTmpGadgets count]; i++) 
-				{
-					Gadget* tmpGadget = [arrTmpGadgets objectAtIndex:i];
-					if ([strStandaloneName isEqualToString:tmpGadget._strName]) 
-					{
-						tmpGadget._urlContent = [NSURL URLWithString:strStandaloneUrl];
-						[arrTmpGadgets replaceObjectAtIndex:i withObject:tmpGadget];
-						break;
-					}
-				}
-			}
-		}
-	}
-	return arrTmpGadgets;
-	*/ 
+
 }
 
-- (NSMutableArray*)listOfStandaloneGadgetsWithURL:(NSString *)url
+- (NSString*)loginForStandaloneGadget:(NSString*)domain
 {
-	NSMutableArray* arrTmpStandaloneGadgets = [[NSMutableArray alloc] init];
+	NSURLResponse* response;
+	NSError* error;
+	NSData* dataResponse;
+	NSString* urlContent = [[NSString alloc] init];
+	NSData* bodyData;
 	
-	NSMutableString* strContent;
+	NSURL* tmpURL = [NSURL URLWithString:domain];
+	NSString* tmpCheck = [NSString stringWithContentsOfURL:tmpURL encoding:NSUTF8StringEncoding error:nil];
+	NSRange tmpRange = [tmpCheck rangeOfString:@"'error', '/main?url"];
+	if(tmpCheck == nil || tmpRange.length > 0) 
+	{
+		tmpURL = nil;
+		[tmpURL release];
+		return @"ERROR";
+	}
 	
-	NSData *data = [self sendRequestToGetGadget:url];
-	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	/*NSString* redirectStr = [NSString stringWithFormat:@"%@%@", domain, [self getExtend:domain]];
+	
+	NSURL* redirectURL1 = [NSURL URLWithString:redirectStr];
+	NSString* checkUrlStr = [NSString stringWithContentsOfURL:redirectURL1 encoding:NSUTF8StringEncoding error:nil];
+	if(checkUrlStr == nil) 
+	{
+		redirectURL1 = nil;
+		[redirectURL1 release];
+		return @"ERROR";
+	}*/
+	
+	
+	NSString* loginStr;
+	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	
+	//	NSRange rangeOfPrivate = [redirectStr rangeOfString:@"/classic"];
+	//	if(rangeOfPrivate.length > 0)
+	//		loginStr = [[redirectStr substringToIndex:rangeOfPrivate.location] stringByAppendingString:@"/j_security_check"];
+	//	else
+	//		loginStr = [redirectStr stringByAppendingString:@"/j_security_check"];
+	
+	loginStr = [NSString stringWithFormat:@"%@%@",_strDomain,@"/portal/login"];
+	//Request to login
+	NSURL* loginURL = [NSURL URLWithString:loginStr];
+	NSMutableURLRequest* loginRequest = [[NSMutableURLRequest alloc] init];	
+	[loginRequest setURL:loginURL];
+	[loginRequest setTimeoutInterval:60.0];
+	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+	[loginRequest setHTTPShouldHandleCookies:NO];
+	
+	NSDictionary* postDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
+	[postDictionary setValue:_strUsername forKey:@"username"];
+	[postDictionary setValue:_strPassword forKey:@"password"];
+	DataProcess* dataProcess = [DataProcess instance];
+	bodyData = [dataProcess formatDictData:postDictionary WithEncoding:NSUTF8StringEncoding];
+	
+	[loginRequest setHTTPBody:bodyData];
+	[loginRequest setHTTPMethod: @"POST"]; 
+	
+	NSDictionary *cookiesInfo = [NSHTTPCookie requestHeaderFieldsWithCookies:[store cookies]];
+	[loginRequest setValue:[cookiesInfo objectForKey:@"Cookie"] forHTTPHeaderField:@"Cookie"];
+	
+	
+	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
+	//NSString *tmpStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
+	if([dataResponse bytes] == nil) 
+	{
+		[loginRequest release];
+		return @"ERROR";
+	}
+	urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
+	
+	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
+	if(rgCheck.length > 0)
+	{
+		[loginRequest release];
+		return @"NO";
+	}
+	else
+	{
+		[loginRequest release];
+		_strFirstLoginContent = urlContent;
+		return @"YES";
+	}
+}
+
+- (NSMutableDictionary *)retrieveURLsForStandaloneGadget:(NSString *)dashboardString
+{
 	
 	NSRange range1;
 	NSRange range2;
 	
-	NSArray* arrParagraphs = [strContent componentsSeparatedByString:@"<div class=\"UIGadget\""];
+	NSString* strStandaloneUrl = nil;
+	
+	NSMutableDictionary* dictionaryURLForStandaloneGadget = [[NSMutableDictionary alloc] init];
+	
+	NSArray* arrParagraphs = [dashboardString componentsSeparatedByString:@"<div class=\"UIGadget\" id=\""];
 	
 	for (int i = 1; i < [arrParagraphs count]; i++) 
 	{
 		NSString* tmpStr1 = [arrParagraphs objectAtIndex:i];
-		range1 = [tmpStr1 rangeOfString:@"standalone"];
-		if (range1.length > 0) 
-		{
-			range2 = [tmpStr1 rangeOfString:@"<a style=\"display:none\" href=\""];
-			NSString* strStandaloneUrl = @"";
-			NSString* strStandaloneName = @"";
-			if (range2.length > 0) 
+		
+		NSRange tmpRange = NSMakeRange(0, 36);
+		
+		NSString *idString = [tmpStr1 substringWithRange:tmpRange];
+		
+		if ([self isAGadgetIDString:idString]) {
+			range1 = [tmpStr1 rangeOfString:@"standalone"];
+			if (range1.length > 0) 
 			{
-				int mark = 0;
-				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
+				range2 = [tmpStr1 rangeOfString:@"<a style=\"display:none\" href=\""];
+				if (range2.length > 0) 
 				{
-					if ([tmpStr1 characterAtIndex:j] == '"') 
+					int mark = 0;
+					for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
 					{
-						mark = j;
-						break;
+						if ([tmpStr1 characterAtIndex:j] == '"') 
+						{
+							mark = j;
+							break;
+						}
 					}
+					NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
+					strStandaloneUrl = [tmpStr1 substringWithRange:range3];
 				}
-				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
-				strStandaloneUrl = [tmpStr1 substringWithRange:range3];
-				
-				
-				
-				NSURL* url = [NSURL URLWithString:strStandaloneUrl];
-				NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-				NSHTTPURLResponse* response;
-				NSError* error;
-				[request setURL:url];
-				[request setTimeoutInterval:60.0];
-				[request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-				[request setHTTPMethod:@"GET"];
-				//NSData* dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-				
-				//NSString* urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
-				
-			}
-			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
-			if (range2.length > 0) 
-			{
-				int mark = 0;
-				for (int j = range2.location + range2.length; j < [tmpStr1 length]; j++) 
-				{
-					if ([tmpStr1 characterAtIndex:j] == '<') 
-					{
-						mark = j;
-						break;
-					}
-				}
-				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
-				strStandaloneName = [tmpStr1 substringWithRange:range3];
-			}
-			
-			if ([strStandaloneUrl length] > 0 && [strStandaloneName length] > 0) 
-			{
-				StandaloneGadget* tmpStandaloneGadget = [[StandaloneGadget alloc] init];
-				tmpStandaloneGadget._strName = strStandaloneName;
-				tmpStandaloneGadget._urlContent = [NSURL URLWithString:strStandaloneUrl];
-				[arrTmpStandaloneGadgets addObject:tmpStandaloneGadget];
+				[dictionaryURLForStandaloneGadget setObject:strStandaloneUrl forKey:idString];
 			}
 		}
 	}
-	return arrTmpStandaloneGadgets;
+	return dictionaryURLForStandaloneGadget;
+}
+
+- (BOOL)isAGadgetIDString:(NSString *)potentialIDString
+{
+	if(([potentialIDString characterAtIndex:8] == '-')&&([potentialIDString characterAtIndex:13] == '-')) return TRUE;
+	return FALSE;
 }
 
 @end

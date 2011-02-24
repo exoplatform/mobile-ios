@@ -104,12 +104,7 @@
 	[_actiLoading startAnimating];
 }
 
-//- (void)startGadget:(NSURL*)gadgetUrl
-//{
-//	NSURLRequest* request = [[NSURLRequest alloc] initWithURL:gadgetUrl];
-//	[_wvGadgetDisplay  setDelegate:self];
-//	[_wvGadgetDisplay loadRequest:request];
-//}
+
 
 - (void)startGadget:(Gadget*)gadget
 {
