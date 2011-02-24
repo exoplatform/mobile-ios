@@ -406,26 +406,6 @@
 	
 	UIAlertView* alert;
 	
-	NSString *tmp = [_strHost lowercaseString];
-	NSRange range = [tmp rangeOfString:@"platform.demo.exoplatform"];
-	
-	if(range.length > 0)
-	{
-		if(![tmp isEqualToString:@"http://platform.demo.exoplatform.org"])
-		{
-			alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
-					 message:[_dictLocalize objectForKey:@"NetworkConnectionFailed"]
-					 delegate:self 
-									 cancelButtonTitle:@"OK"
-									 otherButtonTitles: nil];
-			[alert show];
-			[alert release];
-			
-			[self performSelectorOnMainThread:@selector(signInFailed) withObject:nil waitUntilDone:NO]; 
-			return;
-		}
-	}
-	
 	NSString* strResult = [[_delegate _connection] sendAuthenticateRequest:_strHost username:_strUsername password:_strPassword];
 	
 	if(strResult == @"YES")
