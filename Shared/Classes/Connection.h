@@ -14,7 +14,6 @@
 
 }
 ///test
-- (NSString*)loginForStandaloneGadget:(NSString*)domain;
 - (NSString*)stringEncodedWithBase64:(NSString*)str;
 - (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password;
 - (NSString*)getExtend:(NSString*)domain;
