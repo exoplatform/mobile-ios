@@ -466,27 +466,7 @@
 	NSString* domain = [_txtfDomainName text];
 	NSString* username = [_txtfUserName text];
 	NSString* password = [_txtfUserPasswd text];
-	
-	NSString *tmp = [domain lowercaseString];
-	NSRange range = [tmp rangeOfString:@"platform.demo.exoplatform"];
-	
-	if(range.length > 0)
-	{
-		if(![tmp isEqualToString:@"http://platform.demo.exoplatform.org"])
-		{
-			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
-					 message:[_dictLocalize objectForKey:@"NetworkConnectionFailed"]
-					 delegate:self 
-									 cancelButtonTitle:@"OK"
-									 otherButtonTitles: nil];
-			[alert show];
-			[alert release];
-			
-			[self performSelectorOnMainThread:@selector(loginFailed) withObject:nil waitUntilDone:NO];		
-			return;
-		}
-	}
-	
+		
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:domain forKey:EXO_PREFERENCE_DOMAIN];
 	[userDefaults setObject:username forKey:EXO_PREFERENCE_USERNAME];
