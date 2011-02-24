@@ -18,18 +18,18 @@
 @interface eXoFile: NSObject
 {
 	NSString *_fileName;
-	NSString *_fatherUrlStr;
+	NSString *_urlStr;
 	NSString *_contentType;
 	BOOL _isFolder;	
 }
 
 @property(nonatomic, retain) NSString *_fileName;
-@property(nonatomic, retain) NSString *_fatherUrlStr;
+@property(nonatomic, retain) NSString *_urlStr;
 @property(nonatomic, retain) NSString *_contentType;
 @property BOOL _isFolder;
 
-- (BOOL)isFolder:(NSString *)urlStr fileName:(NSString *)name;
--(id)initWithUrlStr:(NSString *)urlStr;
+- (BOOL)isFolder:(NSString *)urlStr;
+-(id)initWithUrlStr:(NSString *)urlStr fileName:(NSString *)fileName;
 
 @end
 
@@ -72,6 +72,8 @@
 	eXoFile*								_fileForDeleteRename;
 	eXoFile*								_fileForCopyMove;
 	
+	NSString*								_fileNameStackStr;
+	
 	UIImageView *imgViewEmptyPage;
 	UILabel *labelEmptyPage;
 }
@@ -100,6 +102,7 @@
 - (void)doAction:(NSString *)strAction source:(NSString *)strSource destination:(NSString *)strDes;
 - (void)onOKBtnOptionsView:(NSString*)strName;
 - (void)onCancelBtnOptionView;
-- (NSString *)urlForFileAction:(eXoFile *)file;
+//- (NSString *)urlForFileAction:(eXoFile *)file;
+- (NSString *)urlForFileAction:(NSString *)url;
 
 @end

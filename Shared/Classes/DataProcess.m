@@ -47,15 +47,15 @@ static DataProcess *_instance;
 	// It must be done to allow lossy conversion, because stringByAddingPercentEscapesUsingEncoding may return nil otherwise
 	NSData* data = [str dataUsingEncoding:encoding allowLossyConversion:YES];
 	NSString* lossyString = [[NSString alloc] initWithData:data encoding:encoding];
-	NSString* escapedString = [lossyString stringByAddingPercentEscapesUsingEncoding:encoding];
+	NSString* tempString = [lossyString stringByAddingPercentEscapesUsingEncoding:encoding];
 	[lossyString release];
 	
-	NSMutableString *mutableString = [NSMutableString stringWithString:escapedString];
+	NSMutableString *mutableString = [NSMutableString stringWithString:tempString];
 	
-	[mutableString replaceOccurrencesOfString:@"+" withString:@"%2B" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[escapedString length])];
-	[mutableString replaceOccurrencesOfString:@"=" withString:@"%3D" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[escapedString length])];
-	[mutableString replaceOccurrencesOfString:@"?" withString:@"%3F" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[escapedString length])];
-	[mutableString replaceOccurrencesOfString:@"&" withString:@"%26" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[escapedString length])];
+	[mutableString replaceOccurrencesOfString:@"+" withString:@"%2B" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[tempString length])];
+	[mutableString replaceOccurrencesOfString:@"=" withString:@"%3D" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[tempString length])];
+	[mutableString replaceOccurrencesOfString:@"?" withString:@"%3F" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[tempString length])];
+	[mutableString replaceOccurrencesOfString:@"&" withString:@"%26" options:NSCaseInsensitiveSearch range:NSMakeRange(0,[tempString length])];
 	
 	return mutableString;
 }
@@ -138,49 +138,49 @@ static DataProcess *_instance;
 {
     NSMutableString *temp = [urlString mutableCopy];
 	
-    [temp replaceOccurrencesOfString:@"&" withString:@"&amp;" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
+    //[temp replaceOccurrencesOfString:@"&" withString:@"&amp;" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//    [temp replaceOccurrencesOfString:@"<" withString:@"&lt;" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//    [temp replaceOccurrencesOfString:@">" withString:@"&gt;" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//    [temp replaceOccurrencesOfString:@"\"" withString:@"&quot;" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//    [temp replaceOccurrencesOfString:@"'" withString:@"&apos;" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//	[temp replaceOccurrencesOfString:@"/" withString:@"%2F" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//	[temp replaceOccurrencesOfString:@"+" withString:@"&%2B" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//	[temp replaceOccurrencesOfString:@" " withString:@"%20" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
+//	
+//	[temp replaceOccurrencesOfString:@":" withString:@"%3A" options:NSCaseInsensitiveSearch
+//                               range:NSMakeRange(0, [temp length])];
 	
-    [temp replaceOccurrencesOfString:@"<" withString:@"&lt;" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-    [temp replaceOccurrencesOfString:@">" withString:@"&gt;" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-    [temp replaceOccurrencesOfString:@"\"" withString:@"&quot;" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-    [temp replaceOccurrencesOfString:@"'" withString:@"&apos;" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-	[temp replaceOccurrencesOfString:@"/" withString:@"%2F" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-	[temp replaceOccurrencesOfString:@"+" withString:@"&%2B" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-	[temp replaceOccurrencesOfString:@" " withString:@"%20" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-	[temp replaceOccurrencesOfString:@":" withString:@"%3A" options:NSCaseInsensitiveSearch
-                               range:NSMakeRange(0, [temp length])];
-	
-	//[escaped replaceOccurrencesOfString:@"&" withString:@"%26" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"+" withString:@"%2B" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"," withString:@"%2C" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"/" withString:@"%2F" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@":" withString:@"%3A" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@";" withString:@"%3B" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"=" withString:@"%3D" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"?" withString:@"%3F" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"@" withString:@"%40" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@" " withString:@"%20" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"\t" withString:@"%09" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"#" withString:@"%23" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"<" withString:@"%3C" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@">" withString:@"%3E" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"\"" withString:@"%22" options:NSCaseInsensitiveSearch range:wholeString];
-//	[escaped replaceOccurrencesOfString:@"\n" withString:@"%0A" options:NSCaseInsensitiveSearch range:wholeString];
+	[temp replaceOccurrencesOfString:@"&" withString:@"%26" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"+" withString:@"%2B" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"," withString:@"%2C" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	//[temp replaceOccurrencesOfString:@"/" withString:@"%2F" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	//[temp replaceOccurrencesOfString:@":" withString:@"%3A" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@";" withString:@"%3B" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"=" withString:@"%3D" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"?" withString:@"%3F" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"@" withString:@"%40" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@" " withString:@"%20" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"\t" withString:@"%09" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"#" withString:@"%23" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"<" withString:@"%3C" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@">" withString:@"%3E" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"\"" withString:@"%22" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
+	[temp replaceOccurrencesOfString:@"\n" withString:@"%0A" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temp length])];
 	
 	
     return [temp autorelease];

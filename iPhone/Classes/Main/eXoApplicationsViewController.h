@@ -67,6 +67,7 @@
 	
 	NSMutableArray*		_arrDicts;
 	eXoFile_iPhone*		_currenteXoFile;
+	NSString*			_fileNameStackStr;
 	
 	XMPPClient*			_xmppClient;
 	XMPPStream*			_xmppStream;
@@ -115,6 +116,7 @@
 @property (nonatomic, retain) NSMutableArray* _arrChatUsers;
 @property (nonatomic, retain) NSMutableArray* _arrGadgets;
 @property (nonatomic, retain) eXoFile_iPhone* _currenteXoFile;
+@property (nonatomic, retain) NSString* _fileNameStackStr;
 @property int				_selectedLanguage;
 @property (nonatomic, retain) NSDictionary*		_dictLocalize;
 

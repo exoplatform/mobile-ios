@@ -197,9 +197,6 @@ static short fileActionMode = 0;//1:copy, 2:move
 		NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 		[startThread start];
 		
-		//NSString* currentFileFolderStr = [_file._fatherUrlStr stringByAppendingFormat:@"/%@/", 
-//										  [_file._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
-		
 		if(row == 0)
 		{
 			[self takePicture];
@@ -222,11 +219,13 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
 			if(fileActionMode == 1)
 			{
-				[_delegate fileAction:@"COPY" source:_file._urlStr destination:copyMoveFile._urlStr data:nil];
+				[_delegate fileAction:@"COPY" source:[_file._urlStr stringByAppendingPathComponent:[copyMoveFile._urlStr lastPathComponent]] 
+						  destination:copyMoveFile._urlStr data:nil];
 			}
 			else
 			{	
-				[_delegate fileAction:@"MOVE" source:copyMoveFile._urlStr destination:_file._urlStr data:nil];
+				[_delegate fileAction:@"MOVE" source:copyMoveFile._urlStr 
+						  destination:[_file._urlStr stringByAppendingPathComponent:[copyMoveFile._urlStr lastPathComponent]] data:nil];
 				fileActionMode = 0;
 			}
 		}

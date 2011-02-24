@@ -164,7 +164,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	[_arrDicts removeAllObjects];
 	_arrDicts = arrDriveContent;
 	_delegate = delegate;
-	_delegate.navigationItem.title = _delegate._currenteXoFile._fileName;
+	_delegate.navigationItem.title = [_delegate._fileNameStackStr lastPathComponent];
 	[_tblvFilesGrp setEditing:NO];
 	[_tblvFilesGrp reloadData];
 
@@ -274,6 +274,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	if(file._isFolder)
 	{
 		_delegate._currenteXoFile = file;
+		_delegate._fileNameStackStr = [_delegate._fileNameStackStr stringByAppendingPathComponent:file._fileName];
 		_arrDicts = [_delegate getPersonalDriveContent:file];
 		
 		[self setDriverContent:_arrDicts withDelegate:_delegate];
@@ -295,7 +296,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	else
 	{
 		
-		NSURL *url = [NSURL URLWithString:file._urlStr];
+		NSURL *url = [NSURL URLWithString:[file._urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 		eXoWebViewController* tmpView = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:url];
 		tmpView._delegate = _delegate;
 		[[_delegate navigationController] pushViewController:tmpView animated:YES];

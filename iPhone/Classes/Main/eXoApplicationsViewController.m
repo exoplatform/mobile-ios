@@ -10,6 +10,7 @@
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "NSString+HTML.h"
+#import "DataProcess.h"
 #import "eXoFilesView.h"
 #import "Connection.h"
 #import "eXoAppViewController.h"
@@ -81,7 +82,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 @synthesize _filesView, _newsView, _chatView, _chatWindow, _fileAction;
 @synthesize _xmppStream, _currentChatUser, _isNewMsg;
 @synthesize _arrDicts, _arrChatUsers, _arrGadgets;
-@synthesize _currenteXoFile;
+@synthesize _currenteXoFile, _fileNameStackStr;
 @synthesize _btnSignOut, _btnBack, _btnFileAcion, _btnChatViewBack, _btnChatSend, _btnClearMsg, _bBackFromGadgets;
 @synthesize _indicator;
 @synthesize _dictLocalize;
@@ -349,7 +350,18 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 }
 
 -(void)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
-{
+{	
+	source = [DataProcess encodeUrl:source];
+	destination = [DataProcess encodeUrl:destination];
+	
+	NSRange range;
+	range = [source rangeOfString:@"http://"];
+	if(range.length == 0)
+		source = [source stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	range = [destination rangeOfString:@"http://"];
+	if(range.length == 0)
+		destination = [destination stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
@@ -516,8 +528,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 				NSRange range4 = [strData rangeOfString:@"\"><img src"];
 				NSString *urlStr = [strData substringWithRange:NSMakeRange(range3.length + range3.location, 
 																		   range4.location - range3.location - range3.length)];
-				eXoFile_iPhone *file = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:fileName];
-				[arrDicts addObject:file];
+				eXoFile_iPhone *file2 = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:fileName];
+				[arrDicts addObject:file2];
 			}
 
 		}
@@ -534,7 +546,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 	[startThread start];
 	
-	_currenteXoFile._fileName = [_currenteXoFile._urlStr lastPathComponent];
+	_fileNameStackStr = [[_fileNameStackStr stringByDeletingLastPathComponent] retain];
+	
+	_currenteXoFile._fileName = [_fileNameStackStr lastPathComponent];
 	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByDeletingLastPathComponent];
 	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
 	
@@ -583,9 +597,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 //		self.navigationItem.rightBarButtonItem = _btnSignOut;
 
 	
-	NSString *tmpStr = _currenteXoFile._fileName;
-	if(_bBackFromGadgets)
+	NSString *tmpStr = [_currenteXoFile._urlStr lastPathComponent];
+	if(_bBackFromGadgets) {
+		
 		self.navigationItem.leftBarButtonItem = nil;
+		self.navigationItem.rightBarButtonItem = _btnSignOut;
+	}
 	else if([tmpStr isEqualToString:@"Private"])
 	{
 		[self addCloseBtn];
@@ -594,9 +611,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	{
 		[[self navigationItem] setLeftBarButtonItem:_btnBack];
 	}
-	
-	if(_bBackFromGadgets)
-		self.navigationItem.rightBarButtonItem = _btnSignOut;
 	
 	[pool release];
 }
@@ -736,10 +750,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* urlStr = [domain stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users/"];
-		
+		_fileNameStackStr = @"Private";
 		urlStr = [urlStr stringByAppendingString:username];
 		urlStr = [urlStr stringByAppendingString:@"/Private"];
-		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:@"/Private"];
+		
+		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:@"Private"];
 	}
 	
 	if(!_filesView)
