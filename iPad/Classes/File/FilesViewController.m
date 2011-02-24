@@ -91,7 +91,8 @@ NSString* fileType(NSString *fileName)
 	
 	BOOL returnValue = FALSE;
 	
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", urlStr, [name stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+	//NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", urlStr, [name stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", urlStr, [name stringByEncodingHTMLEntities]]];
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 	[request setURL:url];
 	[request setTimeoutInterval:60.0];
@@ -139,7 +140,7 @@ NSString* fileType(NSString *fileName)
 	if(self = [super init])
 	{
 		_fileName = [[NSString alloc] initWithString:[urlStr lastPathComponent]];
-		_fatherUrlStr = [[NSString alloc] initWithString:[self convertPathToUrlStr:[urlStr stringByDeletingLastPathComponent]]];
+		_fatherUrlStr = [[NSString alloc] initWithString:urlStr];
 		_isFolder = [self isFolder:_fatherUrlStr fileName:_fileName];
 	}
 	

@@ -17,17 +17,17 @@
 @interface eXoFile_iPhone: NSObject
 {
 	NSString *_fileName;
-	NSString *_fatherUrlStr;
+	NSString *_urlStr;
 	NSString *_contentType;
 	BOOL _isFolder;	
 }
 
 @property(nonatomic, retain) NSString *_fileName;
-@property(nonatomic, retain) NSString *_fatherUrlStr;
+@property(nonatomic, retain) NSString *_urlStr;
 @property(nonatomic, retain) NSString *_contentType;
 @property BOOL _isFolder;
 
--(id)initWithUrlStr:(NSString *)urlStr;
+-(id)initWithUrlStr:(NSString *)urlStr fileName:(NSString *)fileName;
 
 @end
 

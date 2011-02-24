@@ -197,8 +197,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 		NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 		[startThread start];
 		
-		NSString* currentFileFolderStr = [_file._fatherUrlStr stringByAppendingFormat:@"/%@/", 
-										  [_file._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+		//NSString* currentFileFolderStr = [_file._fatherUrlStr stringByAppendingFormat:@"/%@/", 
+//										  [_file._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 		
 		if(row == 0)
 		{
@@ -206,7 +206,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		}
 		else if(row == 1)
 		{
-			[_delegate fileAction:@"DELETE" source:currentFileFolderStr destination:nil data:nil];
+			[_delegate fileAction:@"DELETE" source:_file._urlStr destination:nil data:nil];
 		}
 		else if(row == 2)
 		{
@@ -220,16 +220,13 @@ static short fileActionMode = 0;//1:copy, 2:move
 		}
 		else
 		{
-			currentFileFolderStr = [currentFileFolderStr stringByAppendingString:[copyMoveFile._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
-			NSString *destination = [copyMoveFile._fatherUrlStr stringByAppendingFormat:@"/%@", 
-									 [copyMoveFile._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 			if(fileActionMode == 1)
 			{
-				[_delegate fileAction:@"COPY" source:currentFileFolderStr destination:destination data:nil];
+				[_delegate fileAction:@"COPY" source:_file._urlStr destination:copyMoveFile._urlStr data:nil];
 			}
 			else
 			{	
-				[_delegate fileAction:@"MOVE" source:destination destination:currentFileFolderStr data:nil];
+				[_delegate fileAction:@"MOVE" source:copyMoveFile._urlStr destination:_file._urlStr data:nil];
 				fileActionMode = 0;
 			}
 		}
@@ -292,8 +289,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
 		tmp = [tmp stringByAppendingFormat:@".png"];
 		
-		NSString* _savedFileDirectory = [_delegate._currenteXoFile._fatherUrlStr stringByAppendingFormat:@"/%@/",
-										 [_delegate._currenteXoFile._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+		NSString* _savedFileDirectory = [_delegate._currenteXoFile._urlStr stringByAppendingFormat:@"/%@/", _delegate._currenteXoFile._fileName];
 		if(_file != _delegate._currenteXoFile)
 			_savedFileDirectory = [_savedFileDirectory stringByAppendingFormat:@"%@/", [_file._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 		

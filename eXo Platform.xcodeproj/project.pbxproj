@@ -53,6 +53,8 @@
 		89C9EDB912DEF8AD00910C9C /* DefaultPortlet.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDB512DEF8AD00910C9C /* DefaultPortlet.png */; };
 		89C9EDBA12DEF8AD00910C9C /* PortletsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDB612DEF8AD00910C9C /* PortletsIcon.png */; };
 		89C9EE2312DEFC0200910C9C /* Dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EE2212DEFC0200910C9C /* Dashboard.png */; };
+		89CD08CC1315F49B00577305 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CD08C91315F49B00577305 /* GTMNSString+HTML.m */; };
+		89CD08CD1315F49B00577305 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CD08CB1315F49B00577305 /* NSString+HTML.m */; };
 		89D66AFB12DFF411008018ED /* eXoChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ABA12DFF411008018ED /* eXoChatView.m */; };
 		89D66AFC12DFF411008018ED /* eXoChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ABC12DFF411008018ED /* eXoChatWindow.m */; };
 		89D66AFD12DFF411008018ED /* eXoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ABE12DFF411008018ED /* eXoMessage.m */; };
@@ -303,6 +305,11 @@
 		89C9EDB512DEF8AD00910C9C /* DefaultPortlet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultPortlet.png; sourceTree = "<group>"; };
 		89C9EDB612DEF8AD00910C9C /* PortletsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PortletsIcon.png; sourceTree = "<group>"; };
 		89C9EE2212DEFC0200910C9C /* Dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dashboard.png; sourceTree = "<group>"; };
+		89CD08C71315F49B00577305 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		89CD08C81315F49B00577305 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		89CD08C91315F49B00577305 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		89CD08CA1315F49B00577305 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		89CD08CB1315F49B00577305 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		89D66AB912DFF411008018ED /* eXoChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoChatView.h; sourceTree = "<group>"; };
 		89D66ABA12DFF411008018ED /* eXoChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoChatView.m; sourceTree = "<group>"; };
 		89D66ABB12DFF411008018ED /* eXoChatWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoChatWindow.h; sourceTree = "<group>"; };
@@ -582,6 +589,11 @@
 		89C9ECB812DEED7700910C9C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				89CD08C71315F49B00577305 /* GTMDefines.h */,
+				89CD08C81315F49B00577305 /* GTMNSString+HTML.h */,
+				89CD08C91315F49B00577305 /* GTMNSString+HTML.m */,
+				89CD08CA1315F49B00577305 /* NSString+HTML.h */,
+				89CD08CB1315F49B00577305 /* NSString+HTML.m */,
 				89D66F3212E00397008018ED /* Checkbox.h */,
 				89D66F3312E00397008018ED /* Checkbox.m */,
 				89D66F3412E00397008018ED /* Connection.h */,
@@ -1453,6 +1465,8 @@
 				89D66F3612E00397008018ED /* Checkbox.m in Sources */,
 				89D66F3712E00397008018ED /* Connection.m in Sources */,
 				7CDE4FB4130E0CE800C8E8B8 /* GadgetDisplayViewController.m in Sources */,
+				89CD08CC1315F49B00577305 /* GTMNSString+HTML.m in Sources */,
+				89CD08CD1315F49B00577305 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

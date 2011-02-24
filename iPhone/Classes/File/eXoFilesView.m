@@ -76,11 +76,13 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 @implementation eXoFile_iPhone
 
-@synthesize _fileName, _fatherUrlStr, _contentType, _isFolder;
+@synthesize _fileName, _urlStr, _contentType, _isFolder;
 
--(BOOL)isFolder:(NSString *)urlStr fileName:(NSString *)name
+-(BOOL)isFolder:(NSString *)urlStr
 {
 	_contentType = [[NSString alloc] initWithString:@""];
+	
+	urlStr = [urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 	
 	Connection *conn = [[Connection alloc] init];
 	
@@ -91,7 +93,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	BOOL returnValue = FALSE;
 	
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", urlStr, [name stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithString:urlStr]];
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 	[request setURL:url];
 	[request setTimeoutInterval:60.0];
@@ -133,13 +135,13 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	return [path stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
 }
 
--(id)initWithUrlStr:(NSString *)urlStr
+-(id)initWithUrlStr:(NSString *)urlStr fileName:(NSString *)fileName
 {
 	if(self = [super init])
 	{
-		_fileName = [[NSString alloc] initWithString:[urlStr lastPathComponent]];
-		_fatherUrlStr = [[NSString alloc] initWithString:[self convertPathToUrlStr:[urlStr stringByDeletingLastPathComponent]]];
-		_isFolder = [self isFolder:_fatherUrlStr fileName:_fileName];
+		_fileName = [[NSString alloc] initWithString:fileName];
+		_urlStr = [[NSString alloc] initWithString:urlStr];
+		_isFolder = [self isFolder:urlStr];
 
 	}
 	
@@ -244,9 +246,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 200.0, 20.0)];
 	titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
 	NSString* tmpStr = file._fileName;
-	//tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
 
-	titleLabel.text = [tmpStr stringByDecodingHTMLEntities];
+	titleLabel.text = tmpStr;
 	[cell addSubview:titleLabel];
 	
 	
@@ -294,8 +295,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	else
 	{
 		
-		NSURL *url = [NSURL URLWithString:[file._fatherUrlStr stringByAppendingFormat:@"/%@",
-										   [file._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]]];
+		NSURL *url = [NSURL URLWithString:file._urlStr];
 		eXoWebViewController* tmpView = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:url];
 		tmpView._delegate = _delegate;
 		[[_delegate navigationController] pushViewController:tmpView animated:YES];

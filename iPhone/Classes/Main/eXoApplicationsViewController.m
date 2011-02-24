@@ -491,13 +491,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (NSMutableArray*)getPersonalDriveContent:(eXoFile_iPhone *)file
 {
-	//NSString *urlStr = [file._fatherUrlStr stringByAppendingFormat:@"/%@",
-//								 [file._fileName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-
-	NSString *urlStr = [file._fatherUrlStr stringByAppendingFormat:@"/%@",
-						[file._fileName stringByEncodingHTMLEntities]];
 	
-	NSData* dataReply = [_conn sendRequestWithAuthorization:urlStr];
+	NSData* dataReply = [_conn sendRequestWithAuthorization:file._urlStr];
 	NSString* strData = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
 	
 	NSMutableArray* arrDicts = [[NSMutableArray alloc] init];
@@ -514,9 +509,14 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		{
 			NSString *fileName = [strData substringWithRange:NSMakeRange(range1.length + range1.location, 
 																		 range2.location - range1.location - range1.length)];
+			fileName = [fileName stringByDecodingHTMLEntities];
 			if(![fileName isEqualToString:@".."])
 			{
-				eXoFile_iPhone *file = [[eXoFile_iPhone alloc] initWithUrlStr:[urlStr stringByAppendingFormat:@"/%@", fileName]];
+				NSRange range3 = [strData rangeOfString:@"<a href=\""];
+				NSRange range4 = [strData rangeOfString:@"\"><img src"];
+				NSString *urlStr = [strData substringWithRange:NSMakeRange(range3.length + range3.location, 
+																		   range4.location - range3.location - range3.length)];
+				eXoFile_iPhone *file = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:fileName];
 				[arrDicts addObject:file];
 			}
 
@@ -534,9 +534,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 	[startThread start];
 	
-	_currenteXoFile._fileName = [_currenteXoFile._fatherUrlStr lastPathComponent];
-	_currenteXoFile._fatherUrlStr = [_currenteXoFile._fatherUrlStr stringByDeletingLastPathComponent];
-	_currenteXoFile._fatherUrlStr = [_currenteXoFile._fatherUrlStr stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	_currenteXoFile._fileName = [_currenteXoFile._urlStr lastPathComponent];
+	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByDeletingLastPathComponent];
+	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
 	
 	_arrDicts = [self getPersonalDriveContent:self._currenteXoFile];
 	
@@ -739,7 +739,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		
 		urlStr = [urlStr stringByAppendingString:username];
 		urlStr = [urlStr stringByAppendingString:@"/Private"];
-		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr];
+		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:@"/Private"];
 	}
 	
 	if(!_filesView)

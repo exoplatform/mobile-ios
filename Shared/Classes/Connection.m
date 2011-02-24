@@ -174,7 +174,6 @@ static NSString* _strFirstLoginContent;
 	}
 	
 	_strFirstLoginContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
-	NSString* test = _strFirstLoginContent;
 	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
@@ -742,11 +741,9 @@ static NSString* _strFirstLoginContent;
 				[request setTimeoutInterval:60.0];
 				[request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
 				[request setHTTPMethod:@"GET"];
-				NSData* dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+				//NSData* dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 				
-				NSString* urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
-				int a = 1;
-				
+				//NSString* urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
 				
 			}
 			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
