@@ -332,92 +332,6 @@ static NSString* _strFirstLoginContent;
 	return dataResponse;
 }
 
-
-- (NSString*)loginForStandaloneGadget:(NSString*)domain
-{
-	NSURLResponse* response;
-	NSError* error;
-	NSData* dataResponse;
-	NSString* urlContent = [[NSString alloc] init];
-	NSData* bodyData;
-	
-	NSURL* tmpURL = [NSURL URLWithString:domain];
-	NSString* tmpCheck = [NSString stringWithContentsOfURL:tmpURL encoding:NSUTF8StringEncoding error:nil];
-	NSRange tmpRange = [tmpCheck rangeOfString:@"'error', '/main?url"];
-	if(tmpCheck == nil || tmpRange.length > 0) 
-	{
-		tmpURL = nil;
-		[tmpURL release];
-		return @"ERROR";
-	}
-	
-	NSString* redirectStr = [NSString stringWithFormat:@"%@%@", domain, [self getExtend:domain]];
-	
-	NSURL* redirectURL1 = [NSURL URLWithString:redirectStr];
-	NSString* checkUrlStr = [NSString stringWithContentsOfURL:redirectURL1 encoding:NSUTF8StringEncoding error:nil];
-	if(checkUrlStr == nil) 
-	{
-		redirectURL1 = nil;
-		[redirectURL1 release];
-		return @"ERROR";
-	}
-	
-
-	NSString* loginStr;
-	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	
-//	NSRange rangeOfPrivate = [redirectStr rangeOfString:@"/classic"];
-//	if(rangeOfPrivate.length > 0)
-//		loginStr = [[redirectStr substringToIndex:rangeOfPrivate.location] stringByAppendingString:@"/j_security_check"];
-//	else
-//		loginStr = [redirectStr stringByAppendingString:@"/j_security_check"];
-	
-	loginStr = @"http://mobile.demo.exoplatform.org/portal/login";
-	//Request to login
-	NSURL* loginURL = [NSURL URLWithString:loginStr];
-	NSMutableURLRequest* loginRequest = [[NSMutableURLRequest alloc] init];	
-	[loginRequest setURL:loginURL];
-	[loginRequest setTimeoutInterval:60.0];
-	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-	[loginRequest setHTTPShouldHandleCookies:NO];
-	
-	NSDictionary* postDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
-	[postDictionary setValue:_strUsername forKey:@"username"];
-	[postDictionary setValue:_strPassword forKey:@"password"];
-	DataProcess* dataProcess = [DataProcess instance];
-	bodyData = [dataProcess formatDictData:postDictionary WithEncoding:NSUTF8StringEncoding];
-	
-	[loginRequest setHTTPBody:bodyData];
-	[loginRequest setHTTPMethod: @"POST"]; 
-	
-	NSDictionary *cookiesInfo = [NSHTTPCookie requestHeaderFieldsWithCookies:[store cookies]];
-	[loginRequest setValue:[cookiesInfo objectForKey:@"Cookie"] forHTTPHeaderField:@"Cookie"];
-	
-	
-	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
-	//NSString *tmpStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
-	if([dataResponse bytes] == nil) 
-	{
-		[loginRequest release];
-		return @"ERROR";
-	}
-	urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
-	
-	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
-	if(rgCheck.length > 0)
-	{
-		[loginRequest release];
-		return @"NO";
-	}
-	else
-	{
-		[loginRequest release];
-		_strFirstLoginContent = urlContent;
-		return @"YES";
-	}
-}
-
-
 - (NSMutableArray*)getItemsInDashboard
 {
 	NSMutableArray* arrDbItems = [[NSMutableArray alloc] init];
@@ -638,22 +552,6 @@ static NSString* _strFirstLoginContent;
 						break;
 					}
 				}
-//				NSRange range3 = NSMakeRange(range2.location + range2.length, mark - range2.location - range2.length);
-//				strStandaloneUrl = [tmpStr1 substringWithRange:range3];
-//				
-//				NSURL* url = [NSURL URLWithString:@"http://mobile.demo.exoplatform.org:80/portal/standalone/2da0b5050a6825a80169058fc8ec1ecb"];
-//				NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-//				NSHTTPURLResponse* response;
-//				NSError* error;
-//				[request setURL:url];
-//				[request setTimeoutInterval:60.0];
-//				[request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-//				[request setHTTPMethod:@"GET"];
-//				NSData* dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//				
-//				NSString* urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
-//				int a = 1;
-				
 			}
 			range2 = [tmpStr1 rangeOfString:@"<div class=\"GadgetTitle\" style=\"display: none; float: none; width: auto; margin-right: 75px\">"];
 			if (range2.length > 0) 
