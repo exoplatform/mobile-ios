@@ -579,31 +579,14 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 -(void)endProgress
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	//NSString *tmpStr = _currenteXoFile._fatherUrlStr;
-//	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
-//	
-//	if(_bBackFromGadgets)
-//		self.navigationItem.leftBarButtonItem = nil;
-//	else if([tmpStr isEqualToString:[domainStr stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users"]])
-//	{
-//		[self addCloseBtn];
-//	}
-//	else
-//	{
-//		[[self navigationItem] setLeftBarButtonItem:_btnBack];
-//	}
-//	
-//	if(_bBackFromGadgets)
-//		self.navigationItem.rightBarButtonItem = _btnSignOut;
-
 	
-	NSString *tmpStr = [_currenteXoFile._urlStr lastPathComponent];
-	if(_bBackFromGadgets) {
-		
+	NSString *tmpStr = _currenteXoFile._urlStr;
+	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+	
+	if(_bBackFromGadgets)
 		self.navigationItem.leftBarButtonItem = nil;
-		self.navigationItem.rightBarButtonItem = _btnSignOut;
-	}
-	else if([tmpStr isEqualToString:@"Private"])
+	else if([tmpStr isEqualToString:[domainStr stringByAppendingFormat:@"/rest/private/jcr/repository/collaboration/Users/%@",
+									 [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME]]])
 	{
 		[self addCloseBtn];
 	}
@@ -612,6 +595,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		[[self navigationItem] setLeftBarButtonItem:_btnBack];
 	}
 	
+	if(_bBackFromGadgets)
+		self.navigationItem.rightBarButtonItem = _btnSignOut;
+
 	[pool release];
 }
 
@@ -750,11 +736,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* urlStr = [domain stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users/"];
-		_fileNameStackStr = @"Private";
+		_fileNameStackStr = username;
 		urlStr = [urlStr stringByAppendingString:username];
-		urlStr = [urlStr stringByAppendingString:@"/Private"];
+		//urlStr = [urlStr stringByAppendingString:@"/Private"];
 		
-		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:@"Private"];
+		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:username];
 	}
 	
 	if(!_filesView)

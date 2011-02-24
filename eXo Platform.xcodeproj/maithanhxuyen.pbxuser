@@ -15,8 +15,9 @@
 			1D6058900D05DD3D006BFB54 /* eXo Platform */,
 		);
 		breakpoints = (
-			89CD0C531316581000577305 /* FilesViewController.m:700 */,
+			89CD0C531316581000577305 /* FilesViewController.m:701 */,
 			89CD0CA3131661DD00577305 /* FilesViewController.m:858 */,
+			89CD0CF41316692B00577305 /* FilesViewController.m:317 */,
 		);
 		codeSenseManager = 89C9EBA012DEEAEE00910C9C /* Code sense */;
 		executables = (
@@ -665,6 +666,40 @@
 			89CD0CC31316635300577305 /* PBXTextBookmark */ = 89CD0CC31316635300577305 /* PBXTextBookmark */;
 			89CD0CC41316635300577305 /* PBXTextBookmark */ = 89CD0CC41316635300577305 /* PBXTextBookmark */;
 			89CD0CC71316637000577305 /* PBXTextBookmark */ = 89CD0CC71316637000577305 /* PBXTextBookmark */;
+			89CD0CC81316663A00577305 /* PBXTextBookmark */ = 89CD0CC81316663A00577305 /* PBXTextBookmark */;
+			89CD0CC91316663A00577305 /* PBXTextBookmark */ = 89CD0CC91316663A00577305 /* PBXTextBookmark */;
+			89CD0CCA1316663A00577305 /* PBXTextBookmark */ = 89CD0CCA1316663A00577305 /* PBXTextBookmark */;
+			89CD0CCB1316663A00577305 /* PBXTextBookmark */ = 89CD0CCB1316663A00577305 /* PBXTextBookmark */;
+			89CD0CCE1316663F00577305 /* PBXTextBookmark */ = 89CD0CCE1316663F00577305 /* PBXTextBookmark */;
+			89CD0CCF1316663F00577305 /* PBXTextBookmark */ = 89CD0CCF1316663F00577305 /* PBXTextBookmark */;
+			89CD0CD21316668900577305 /* PBXTextBookmark */ = 89CD0CD21316668900577305 /* PBXTextBookmark */;
+			89CD0CD31316668900577305 /* PBXTextBookmark */ = 89CD0CD31316668900577305 /* PBXTextBookmark */;
+			89CD0CD8131666B000577305 /* PBXTextBookmark */ = 89CD0CD8131666B000577305 /* PBXTextBookmark */;
+			89CD0CD9131666B000577305 /* PBXTextBookmark */ = 89CD0CD9131666B000577305 /* PBXTextBookmark */;
+			89CD0CDB131666F200577305 /* PBXTextBookmark */ = 89CD0CDB131666F200577305 /* PBXTextBookmark */;
+			89CD0CDC131666F200577305 /* PBXTextBookmark */ = 89CD0CDC131666F200577305 /* PBXTextBookmark */;
+			89CD0CDF1316677B00577305 /* XCBuildMessageTextBookmark */ = 89CD0CDF1316677B00577305 /* XCBuildMessageTextBookmark */;
+			89CD0CE01316677B00577305 /* PBXTextBookmark */ = 89CD0CE01316677B00577305 /* PBXTextBookmark */;
+			89CD0CE11316677B00577305 /* PBXTextBookmark */ = 89CD0CE11316677B00577305 /* PBXTextBookmark */;
+			89CD0CE41316678A00577305 /* PBXTextBookmark */ = 89CD0CE41316678A00577305 /* PBXTextBookmark */;
+			89CD0CE61316679C00577305 /* PBXTextBookmark */ = 89CD0CE61316679C00577305 /* PBXTextBookmark */;
+			89CD0CE9131667B500577305 /* PBXTextBookmark */ = 89CD0CE9131667B500577305 /* PBXTextBookmark */;
+			89CD0CEC1316682C00577305 /* PBXTextBookmark */ = 89CD0CEC1316682C00577305 /* PBXTextBookmark */;
+			89CD0CED1316682C00577305 /* PBXTextBookmark */ = 89CD0CED1316682C00577305 /* PBXTextBookmark */;
+			89CD0CEE1316682C00577305 /* PBXTextBookmark */ = 89CD0CEE1316682C00577305 /* PBXTextBookmark */;
+			89CD0CF1131668BA00577305 /* PBXTextBookmark */ = 89CD0CF1131668BA00577305 /* PBXTextBookmark */;
+			89CD0CF2131668BA00577305 /* PBXTextBookmark */ = 89CD0CF2131668BA00577305 /* PBXTextBookmark */;
+			89CD0CF3131668BA00577305 /* PBXTextBookmark */ = 89CD0CF3131668BA00577305 /* PBXTextBookmark */;
+			89CD0CF81316692F00577305 /* PBXTextBookmark */ = 89CD0CF81316692F00577305 /* PBXTextBookmark */;
+			89CD0CF91316692F00577305 /* PBXTextBookmark */ = 89CD0CF91316692F00577305 /* PBXTextBookmark */;
+			89CD0CFA1316692F00577305 /* PBXTextBookmark */ = 89CD0CFA1316692F00577305 /* PBXTextBookmark */;
+			89CD0CFB1316692F00577305 /* PBXTextBookmark */ = 89CD0CFB1316692F00577305 /* PBXTextBookmark */;
+			89CD0CFD1316699300577305 /* PBXTextBookmark */ = 89CD0CFD1316699300577305 /* PBXTextBookmark */;
+			89CD0CFE1316699300577305 /* PBXTextBookmark */ = 89CD0CFE1316699300577305 /* PBXTextBookmark */;
+			89CD0D01131669B400577305 /* PBXTextBookmark */ = 89CD0D01131669B400577305 /* PBXTextBookmark */;
+			89CD0D02131669B400577305 /* PBXTextBookmark */ = 89CD0D02131669B400577305 /* PBXTextBookmark */;
+			89CD0D03131669B400577305 /* PBXTextBookmark */ = 89CD0D03131669B400577305 /* PBXTextBookmark */;
+			89CD0D04131669B400577305 /* PBXTextBookmark */ = 89CD0D04131669B400577305 /* PBXTextBookmark */;
 			89CF6AAF13015B7300286867 = 89CF6AAF13015B7300286867 /* PBXTextBookmark */;
 			89D1A448130E1C81008B63B9 = 89D1A448130E1C81008B63B9 /* PBXTextBookmark */;
 			89D1A449130E1C81008B63B9 = 89D1A449130E1C81008B63B9 /* PBXTextBookmark */;
@@ -1470,7 +1505,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 741";
 		rLen = 0;
-		rLoc = 21534;
+		rLoc = 21234;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 21582;
@@ -1968,7 +2003,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 390";
 		rLen = 0;
-		rLoc = 12106;
+		rLoc = 12184;
 		rType = 0;
 		vrLen = 1446;
 		vrLoc = 11378;
@@ -2298,7 +2333,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 741";
 		rLen = 108;
-		rLoc = 21194;
+		rLoc = 20903;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 20663;
@@ -2307,7 +2342,7 @@
 		isa = PBXTextBookmark;
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		rLen = 1;
-		rLoc = 337;
+		rLoc = 338;
 		rType = 1;
 	};
 	89CD09CE13160F8200577305 /* PBXTextBookmark */ = {
@@ -2315,7 +2350,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2355,7 +2390,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 589";
 		rLen = 0;
-		rLoc = 17297;
+		rLoc = 17349;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 15997;
@@ -2365,7 +2400,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 589";
 		rLen = 0;
-		rLoc = 17297;
+		rLoc = 17349;
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 16147;
@@ -2375,7 +2410,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 745";
 		rLen = 0;
-		rLoc = 21527;
+		rLoc = 21234;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 19808;
@@ -2385,7 +2420,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 745";
 		rLen = 0;
-		rLoc = 21527;
+		rLoc = 21234;
 		rType = 0;
 		vrLen = 980;
 		vrLoc = 16540;
@@ -2405,7 +2440,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2415,7 +2450,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 745";
 		rLen = 0;
-		rLoc = 21527;
+		rLoc = 21234;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 4044;
@@ -2454,7 +2489,7 @@
 		isa = PBXTextBookmark;
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		rLen = 0;
-		rLoc = 605;
+		rLoc = 599;
 		rType = 1;
 	};
 	89CD09F7131611E200577305 /* PBXTextBookmark */ = {
@@ -2462,7 +2497,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 595";
 		rLen = 0;
-		rLoc = 17496;
+		rLoc = 17349;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 16719;
@@ -2472,7 +2507,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 595";
 		rLen = 0;
-		rLoc = 17496;
+		rLoc = 17349;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 16719;
@@ -2509,7 +2544,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2556,7 +2591,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2576,7 +2611,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2615,7 +2650,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 10122;
@@ -2644,7 +2679,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 10122;
@@ -2703,7 +2738,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2750,7 +2785,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2830,7 +2865,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2890,7 +2925,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2937,7 +2972,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2957,7 +2992,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -2987,7 +3022,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3007,7 +3042,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3097,7 +3132,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3117,7 +3152,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3137,7 +3172,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3157,7 +3192,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3224,7 +3259,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3274,7 +3309,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3294,7 +3329,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3383,7 +3418,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 10122;
@@ -3394,7 +3429,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 756;
+		rLoc = 742;
 		rType = 1;
 	};
 	89CD0AA313161D9D00577305 /* PBXTextBookmark */ = {
@@ -3402,7 +3437,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 652;
 		vrLoc = 20871;
@@ -3412,7 +3447,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 10122;
@@ -3452,7 +3487,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 20119;
@@ -3502,7 +3537,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 589;
 		vrLoc = 20974;
@@ -3512,7 +3547,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3542,7 +3577,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21452;
+		rLoc = 21161;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 20574;
@@ -3552,7 +3587,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21452;
+		rLoc = 21161;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 20574;
@@ -3562,7 +3597,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 20974;
@@ -3572,7 +3607,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3582,7 +3617,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21452;
+		rLoc = 21161;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 20765;
@@ -3592,7 +3627,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 466;
 		vrLoc = 21122;
@@ -3602,7 +3637,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3612,7 +3647,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 466;
 		vrLoc = 21122;
@@ -3622,7 +3657,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3632,7 +3667,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21452;
+		rLoc = 21161;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 20765;
@@ -3772,7 +3807,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 379;
 		vrLoc = 21235;
@@ -3782,7 +3817,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 337";
 		rLen = 109;
-		rLoc = 10181;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3829,7 +3864,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 991;
 		vrLoc = 20728;
@@ -3886,7 +3921,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 987;
 		vrLoc = 20732;
@@ -3933,7 +3968,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 162;
 		vrLoc = 21470;
@@ -3943,7 +3978,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 338";
 		rLen = 0;
-		rLoc = 10323;
+		rLoc = 10401;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3953,7 +3988,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 755";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 392;
 		vrLoc = 21392;
@@ -3963,7 +3998,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 338";
 		rLen = 0;
-		rLoc = 10323;
+		rLoc = 10401;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 10122;
@@ -3972,7 +4007,7 @@
 		isa = PBXTextBookmark;
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		rLen = 1;
-		rLoc = 751;
+		rLoc = 737;
 		rType = 1;
 	};
 	89CD0B0913163E6F00577305 /* PBXTextBookmark */ = {
@@ -3980,7 +4015,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 754";
 		rLen = 0;
-		rLoc = 21449;
+		rLoc = 21158;
 		rType = 0;
 		vrLen = 430;
 		vrLoc = 21242;
@@ -3990,7 +4025,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 346";
 		rLen = 59;
-		rLoc = 10572;
+		rLoc = 10650;
 		rType = 0;
 		vrLen = 1650;
 		vrLoc = 9653;
@@ -4040,7 +4075,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 755";
 		rLen = 0;
-		rLoc = 21535;
+		rLoc = 21242;
 		rType = 0;
 		vrLen = 392;
 		vrLoc = 21392;
@@ -4050,7 +4085,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21542;
+		rLoc = 21249;
 		rType = 0;
 		vrLen = 552;
 		vrLoc = 21055;
@@ -4080,7 +4115,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 763";
 		rLen = 0;
-		rLoc = 21649;
+		rLoc = 21356;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 20840;
@@ -4090,7 +4125,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 763";
 		rLen = 0;
-		rLoc = 21649;
+		rLoc = 21356;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 20776;
@@ -4110,7 +4145,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 763";
 		rLen = 0;
-		rLoc = 21649;
+		rLoc = 21356;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 20838;
@@ -4181,7 +4216,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 756;
+		rLoc = 742;
 		rType = 1;
 	};
 	89CD0B2D131640E100577305 /* PBXTextBookmark */ = {
@@ -4189,7 +4224,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 515;
 		vrLoc = 21185;
@@ -4199,7 +4234,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 759";
 		rLen = 0;
-		rLoc = 21542;
+		rLoc = 21249;
 		rType = 0;
 		vrLen = 364;
 		vrLoc = 21504;
@@ -4219,7 +4254,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 317;
 		vrLoc = 21407;
@@ -4229,7 +4264,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 759";
 		rLen = 0;
-		rLoc = 21542;
+		rLoc = 21249;
 		rType = 0;
 		vrLen = 219;
 		vrLoc = 21635;
@@ -4319,7 +4354,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 363;
 		vrLoc = 21327;
@@ -4329,7 +4364,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 759";
 		rLen = 0;
-		rLoc = 21542;
+		rLoc = 21249;
 		rType = 0;
 		vrLen = 361;
 		vrLoc = 21327;
@@ -4339,7 +4374,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 363;
 		vrLoc = 21327;
@@ -4349,7 +4384,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 759";
 		rLen = 0;
-		rLoc = 21542;
+		rLoc = 21249;
 		rType = 0;
 		vrLen = 361;
 		vrLoc = 21327;
@@ -4379,7 +4414,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 252;
 		vrLoc = 21543;
@@ -4389,7 +4424,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 759";
 		rLen = 0;
-		rLoc = 21542;
+		rLoc = 21249;
 		rType = 0;
 		vrLen = 589;
 		vrLoc = 20974;
@@ -4409,7 +4444,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 392;
 		vrLoc = 21504;
@@ -4429,7 +4464,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 752";
 		rLen = 108;
-		rLoc = 21194;
+		rLoc = 20903;
 		rType = 0;
 		vrLen = 589;
 		vrLoc = 20971;
@@ -4456,7 +4491,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 392;
 		vrLoc = 21504;
@@ -4476,7 +4511,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 392;
 		vrLoc = 21504;
@@ -4560,7 +4595,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 347";
 		rLen = 23;
-		rLoc = 10591;
+		rLoc = 10669;
 		rType = 0;
 		vrLen = 1710;
 		vrLoc = 9995;
@@ -4584,7 +4619,7 @@
 		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
 		name = "eXoApplicationsViewController.m: 757";
 		rLen = 0;
-		rLoc = 21504;
+		rLoc = 21213;
 		rType = 0;
 		vrLen = 252;
 		vrLoc = 21543;
@@ -4689,7 +4724,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14467;
+		rLoc = 14545;
 		rType = 0;
 		vrLen = 1300;
 		vrLoc = 13280;
@@ -4709,7 +4744,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 742";
 		rLen = 0;
-		rLoc = 24068;
+		rLoc = 24146;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 23637;
@@ -4742,7 +4777,7 @@
 		isa = PBXTextBookmark;
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		rLen = 1;
-		rLoc = 346;
+		rLoc = 347;
 		rType = 1;
 	};
 	89CD0BB013164E6300577305 /* PBXTextBookmark */ = {
@@ -4750,7 +4785,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 361";
 		rLen = 0;
-		rLoc = 11022;
+		rLoc = 11100;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 10571;
@@ -4780,7 +4815,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 571";
 		rLen = 0;
-		rLoc = 18067;
+		rLoc = 18145;
 		rType = 0;
 		vrLen = 1637;
 		vrLoc = 16920;
@@ -4790,7 +4825,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 571";
 		rLen = 0;
-		rLoc = 18067;
+		rLoc = 18145;
 		rType = 0;
 		vrLen = 1636;
 		vrLoc = 16921;
@@ -4840,7 +4875,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 571";
 		rLen = 0;
-		rLoc = 18067;
+		rLoc = 18145;
 		rType = 0;
 		vrLen = 1636;
 		vrLoc = 16921;
@@ -4920,7 +4955,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 585";
 		rLen = 0;
-		rLoc = 18679;
+		rLoc = 18757;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 16978;
@@ -4930,7 +4965,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 571";
 		rLen = 0;
-		rLoc = 18160;
+		rLoc = 18238;
 		rType = 0;
 		vrLen = 1723;
 		vrLoc = 17026;
@@ -4967,7 +5002,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 312";
 		rLen = 0;
-		rLoc = 9391;
+		rLoc = 9121;
 		rType = 0;
 		vrLen = 1353;
 		vrLoc = 8655;
@@ -5000,8 +5035,8 @@
 		isa = PBXTextBookmark;
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 312";
-		rLen = 17;
-		rLoc = 9356;
+		rLen = 0;
+		rLoc = 9121;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 11695;
@@ -5011,7 +5046,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 396";
 		rLen = 0;
-		rLoc = 12234;
+		rLoc = 12312;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 11704;
@@ -5041,7 +5076,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 391";
 		rLen = 0;
-		rLoc = 11979;
+		rLoc = 12057;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 11704;
@@ -5051,7 +5086,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 389";
 		rLen = 0;
-		rLoc = 11968;
+		rLoc = 12046;
 		rType = 0;
 		vrLen = 1304;
 		vrLoc = 11732;
@@ -5071,7 +5106,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 609";
 		rLen = 38;
-		rLoc = 19232;
+		rLoc = 19310;
 		rType = 0;
 		vrLen = 1335;
 		vrLoc = 20505;
@@ -5081,7 +5116,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 609";
 		rLen = 38;
-		rLoc = 19232;
+		rLoc = 19310;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 20714;
@@ -5125,7 +5160,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 609";
 		rLen = 38;
-		rLoc = 19232;
+		rLoc = 19310;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 20714;
@@ -5135,7 +5170,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 673";
 		rLen = 0;
-		rLoc = 21651;
+		rLoc = 21729;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 20508;
@@ -5195,7 +5230,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 673";
 		rLen = 0;
-		rLoc = 21651;
+		rLoc = 21729;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 20508;
@@ -5235,7 +5270,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 715";
 		rLen = 0;
-		rLoc = 22652;
+		rLoc = 22730;
 		rType = 0;
 		vrLen = 1483;
 		vrLoc = 22174;
@@ -5245,7 +5280,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 715";
 		rLen = 0;
-		rLoc = 22652;
+		rLoc = 22730;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 22203;
@@ -5265,7 +5300,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 715";
 		rLen = 0;
-		rLoc = 22652;
+		rLoc = 22730;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 22353;
@@ -5275,7 +5310,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 707";
 		rLen = 0;
-		rLoc = 22500;
+		rLoc = 22578;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 22200;
@@ -5345,7 +5380,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 628";
 		rLen = 0;
-		rLoc = 19369;
+		rLoc = 19447;
 		rType = 0;
 		vrLen = 1984;
 		vrLoc = 19134;
@@ -5355,7 +5390,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 628";
 		rLen = 0;
-		rLoc = 19369;
+		rLoc = 19447;
 		rType = 0;
 		vrLen = 1952;
 		vrLoc = 19185;
@@ -5375,7 +5410,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 626";
 		rLen = 0;
-		rLoc = 19322;
+		rLoc = 19400;
 		rType = 0;
 		vrLen = 1894;
 		vrLoc = 19321;
@@ -5415,7 +5450,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 626";
 		rLen = 0;
-		rLoc = 19322;
+		rLoc = 19400;
 		rType = 0;
 		vrLen = 1988;
 		vrLoc = 19371;
@@ -5435,7 +5470,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 626";
 		rLen = 0;
-		rLoc = 19322;
+		rLoc = 19400;
 		rType = 0;
 		vrLen = 1935;
 		vrLoc = 19431;
@@ -5450,7 +5485,7 @@
 		vrLen = 1549;
 		vrLoc = 9813;
 	};
-	89CD0C531316581000577305 /* FilesViewController.m:700 */ = {
+	89CD0C531316581000577305 /* FilesViewController.m:701 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5460,11 +5495,11 @@
 		delayBeforeContinue = 0;
 		fileReference = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		functionName = "-doAction:source:destination:";
-		hitCount = 2;
+		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 700;
+		lineNumber = 701;
 		location = "eXo Platform";
-		modificationTime = 320234312.819243;
+		modificationTime = 320235824.502982;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -5513,7 +5548,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 647";
 		rLen = 0;
-		rLoc = 20267;
+		rLoc = 20345;
 		rType = 0;
 		vrLen = 1952;
 		vrLoc = 19185;
@@ -5533,7 +5568,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 626";
 		rLen = 0;
-		rLoc = 19322;
+		rLoc = 19400;
 		rType = 0;
 		vrLen = 1656;
 		vrLoc = 19078;
@@ -5552,7 +5587,7 @@
 		isa = PBXTextBookmark;
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		rLen = 1;
-		rLoc = 454;
+		rLoc = 455;
 		rType = 1;
 	};
 	89CD0C631316593F00577305 /* PBXTextBookmark */ = {
@@ -5560,7 +5595,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 628";
 		rLen = 0;
-		rLoc = 19544;
+		rLoc = 19622;
 		rType = 0;
 		vrLen = 1526;
 		vrLoc = 18787;
@@ -5580,7 +5615,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 713";
 		rLen = 0;
-		rLoc = 22425;
+		rLoc = 22503;
 		rType = 0;
 		vrLen = 1315;
 		vrLoc = 22225;
@@ -5600,7 +5635,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 673";
 		rLen = 0;
-		rLoc = 21497;
+		rLoc = 21575;
 		rType = 0;
 		vrLen = 1374;
 		vrLoc = 21400;
@@ -5610,7 +5645,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 693";
 		rLen = 0;
-		rLoc = 22056;
+		rLoc = 22134;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 21419;
@@ -5630,7 +5665,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 673";
 		rLen = 0;
-		rLoc = 21433;
+		rLoc = 21511;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 20749;
@@ -5659,7 +5694,7 @@
 		isa = PBXTextBookmark;
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		rLen = 1;
-		rLoc = 454;
+		rLoc = 455;
 		rType = 1;
 	};
 	89CD0C7C13165B5300577305 /* PBXTextBookmark */ = {
@@ -5667,7 +5702,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 47;
-		rLoc = 14214;
+		rLoc = 14292;
 		rType = 0;
 		vrLen = 442;
 		vrLoc = 14067;
@@ -5687,7 +5722,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 16;
-		rLoc = 14228;
+		rLoc = 14306;
 		rType = 0;
 		vrLen = 1275;
 		vrLoc = 13609;
@@ -5697,7 +5732,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 672";
 		rLen = 0;
-		rLoc = 21433;
+		rLoc = 21511;
 		rType = 0;
 		vrLen = 1199;
 		vrLoc = 20928;
@@ -5707,7 +5742,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 633";
 		rLen = 0;
-		rLoc = 19725;
+		rLoc = 19803;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 19216;
@@ -5727,7 +5762,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 405;
 		vrLoc = 14067;
@@ -5747,7 +5782,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 405;
 		vrLoc = 14067;
@@ -5767,7 +5802,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 405;
 		vrLoc = 14067;
@@ -5787,7 +5822,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 405;
 		vrLoc = 14067;
@@ -5797,7 +5832,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 631";
 		rLen = 0;
-		rLoc = 19632;
+		rLoc = 19710;
 		rType = 0;
 		vrLen = 1276;
 		vrLoc = 21374;
@@ -5817,7 +5852,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 405;
 		vrLoc = 14067;
@@ -5827,7 +5862,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 686";
 		rLen = 0;
-		rLoc = 21877;
+		rLoc = 21955;
 		rType = 0;
 		vrLen = 1276;
 		vrLoc = 21374;
@@ -5842,11 +5877,11 @@
 		delayBeforeContinue = 0;
 		fileReference = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		functionName = "-onOKBtnOptionsView:";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 858;
 		location = "eXo Platform";
-		modificationTime = 320234214.32343;
+		modificationTime = 320235824.503428;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -5885,7 +5920,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 859";
 		rLen = 0;
-		rLoc = 26806;
+		rLoc = 26874;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 26176;
@@ -5895,7 +5930,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 791";
 		rLen = 0;
-		rLoc = 25035;
+		rLoc = 25113;
 		rType = 0;
 		vrLen = 1183;
 		vrLoc = 24373;
@@ -5915,7 +5950,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 14211;
@@ -5935,7 +5970,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 14211;
@@ -5955,7 +5990,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 14211;
@@ -5975,7 +6010,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 795";
 		rLen = 0;
-		rLoc = 25102;
+		rLoc = 25170;
 		rType = 0;
 		vrLen = 1183;
 		vrLoc = 24373;
@@ -5985,7 +6020,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 859";
 		rLen = 0;
-		rLoc = 26927;
+		rLoc = 26995;
 		rType = 0;
 		vrLen = 1190;
 		vrLoc = 26458;
@@ -6005,7 +6040,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 14213;
@@ -6025,7 +6060,7 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 455";
 		rLen = 0;
-		rLoc = 14260;
+		rLoc = 14338;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 14213;
@@ -6035,10 +6070,358 @@
 		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
 		name = "FilesViewController.m: 801";
 		rLen = 0;
-		rLoc = 25322;
+		rLoc = 25390;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 24772;
+	};
+	89CD0CC81316663A00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 97";
+		rLen = 0;
+		rLoc = 2534;
+		rType = 0;
+		vrLen = 256;
+		vrLoc = 6422;
+	};
+	89CD0CC91316663A00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 343";
+		rLen = 0;
+		rLoc = 10633;
+		rType = 0;
+		vrLen = 527;
+		vrLoc = 10108;
+	};
+	89CD0CCA1316663A00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		rLen = 1;
+		rLoc = 737;
+		rType = 1;
+	};
+	89CD0CCB1316663A00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 758";
+		rLen = 0;
+		rLoc = 21247;
+		rType = 0;
+		vrLen = 589;
+		vrLoc = 20974;
+	};
+	89CD0CCE1316663F00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		rLen = 1;
+		rLoc = 338;
+		rType = 1;
+	};
+	89CD0CCF1316663F00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 336";
+		rLen = 0;
+		rLoc = 10126;
+		rType = 0;
+		vrLen = 1447;
+		vrLoc = 9576;
+	};
+	89CD0CD21316668900577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		rLen = 1;
+		rLoc = 298;
+		rType = 1;
+	};
+	89CD0CD31316668900577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 322";
+		rLen = 0;
+		rLoc = 9828;
+		rType = 0;
+		vrLen = 1501;
+		vrLoc = 9120;
+	};
+	89CD0CD8131666B000577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 317";
+		rLen = 0;
+		rLoc = 9463;
+		rType = 0;
+		vrLen = 1501;
+		vrLoc = 9120;
+	};
+	89CD0CD9131666B000577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 317";
+		rLen = 0;
+		rLoc = 9463;
+		rType = 0;
+		vrLen = 1413;
+		vrLoc = 9212;
+	};
+	89CD0CDB131666F200577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 97";
+		rLen = 0;
+		rLoc = 2534;
+		rType = 0;
+		vrLen = 314;
+		vrLoc = 6501;
+	};
+	89CD0CDC131666F200577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 758";
+		rLen = 0;
+		rLoc = 21247;
+		rType = 0;
+		vrLen = 589;
+		vrLoc = 20974;
+	};
+	89CD0CDF1316677B00577305 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Expected ']' before ')' token";
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 317;
+		rType = 1;
+	};
+	89CD0CE01316677B00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 318";
+		rLen = 89;
+		rLoc = 9582;
+		rType = 0;
+		vrLen = 604;
+		vrLoc = 9118;
+	};
+	89CD0CE11316677B00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 758";
+		rLen = 0;
+		rLoc = 21247;
+		rType = 0;
+		vrLen = 636;
+		vrLoc = 20974;
+	};
+	89CD0CE41316678A00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 318";
+		rLen = 0;
+		rLoc = 9669;
+		rType = 0;
+		vrLen = 1384;
+		vrLoc = 8615;
+	};
+	89CD0CE61316679C00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 318";
+		rLen = 0;
+		rLoc = 9669;
+		rType = 0;
+		vrLen = 1385;
+		vrLoc = 8615;
+	};
+	89CD0CE9131667B500577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 312";
+		rLen = 0;
+		rLoc = 9333;
+		rType = 0;
+		vrLen = 1361;
+		vrLoc = 8679;
+	};
+	89CD0CEC1316682C00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 312";
+		rLen = 0;
+		rLoc = 9333;
+		rType = 0;
+		vrLen = 1361;
+		vrLoc = 8679;
+	};
+	89CD0CED1316682C00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 544";
+		rLen = 0;
+		rLoc = 15523;
+		rType = 0;
+		vrLen = 1454;
+		vrLoc = 9226;
+	};
+	89CD0CEE1316682C00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 589";
+		rLen = 0;
+		rLoc = 17166;
+		rType = 0;
+		vrLen = 1184;
+		vrLoc = 16352;
+	};
+	89CD0CF1131668BA00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 589";
+		rLen = 0;
+		rLoc = 17166;
+		rType = 0;
+		vrLen = 1184;
+		vrLoc = 16352;
+	};
+	89CD0CF2131668BA00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66AD312DFF411008018ED /* eXoFilesView.m */;
+		name = "eXoFilesView.m: 321";
+		rLen = 19;
+		rLoc = 10425;
+		rType = 0;
+		vrLen = 1473;
+		vrLoc = 9669;
+	};
+	89CD0CF3131668BA00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66AD312DFF411008018ED /* eXoFilesView.m */;
+		name = "eXoFilesView.m: 329";
+		rLen = 0;
+		rLoc = 10868;
+		rType = 0;
+		vrLen = 1346;
+		vrLoc = 10292;
+	};
+	89CD0CF41316692B00577305 /* FilesViewController.m:317 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		functionName = "-endProgress";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 317;
+		location = "eXo Platform";
+		modificationTime = 320235824.503555;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	89CD0CF81316692F00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66AD312DFF411008018ED /* eXoFilesView.m */;
+		name = "eXoFilesView.m: 329";
+		rLen = 0;
+		rLoc = 10868;
+		rType = 0;
+		vrLen = 1321;
+		vrLoc = 10351;
+	};
+	89CD0CF91316692F00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 561";
+		rLen = 11;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1376;
+		vrLoc = 15212;
+	};
+	89CD0CFA1316692F00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 317";
+		rLen = 0;
+		rLoc = 9463;
+		rType = 0;
+		vrLen = 1342;
+		vrLoc = 8770;
+	};
+	89CD0CFB1316692F00577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 317";
+		rLen = 0;
+		rLoc = 9463;
+		rType = 0;
+		vrLen = 1391;
+		vrLoc = 8870;
+	};
+	89CD0CFD1316699300577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 318";
+		rLen = 0;
+		rLoc = 9669;
+		rType = 0;
+		vrLen = 519;
+		vrLoc = 9316;
+	};
+	89CD0CFE1316699300577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 744";
+		rLen = 0;
+		rLoc = 21247;
+		rType = 0;
+		vrLen = 219;
+		vrLoc = 21317;
+	};
+	89CD0D01131669B400577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66AD312DFF411008018ED /* eXoFilesView.m */;
+		name = "eXoFilesView.m: 329";
+		rLen = 0;
+		rLoc = 10868;
+		rType = 0;
+		vrLen = 2479;
+		vrLoc = 33;
+	};
+	89CD0D02131669B400577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */;
+		name = "eXoApplicationsViewController.m: 739";
+		rLen = 20;
+		rLoc = 21013;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 20547;
+	};
+	89CD0D03131669B400577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 317";
+		rLen = 0;
+		rLoc = 9463;
+		rType = 0;
+		vrLen = 1373;
+		vrLoc = 8888;
+	};
+	89CD0D04131669B400577305 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 89D66E8812E002FD008018ED /* FilesViewController.m */;
+		name = "FilesViewController.m: 340";
+		rLen = 0;
+		rLoc = 10400;
+		rType = 0;
+		vrLen = 1401;
+		vrLoc = 9724;
 	};
 	89CF6AAF13015B7300286867 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -6202,10 +6585,10 @@
 	};
 	89D66AD312DFF411008018ED /* eXoFilesView.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{424, 1244}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 12233}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {943, 4290}}";
-			sepNavSelRange = "{9182, 19}";
-			sepNavVisRange = "{8426, 1473}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{424, 1244}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 12000}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1349, 4134}}";
+			sepNavSelRange = "{9625, 0}";
+			sepNavVisRange = "{33, 1236}";
 			sepNavWindowFrame = "{{12, 23}, {1231, 755}}";
 		};
 	};
@@ -6247,9 +6630,9 @@
 	};
 	89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1398, 10595}}";
-			sepNavSelRange = "{9387, 423}";
-			sepNavVisRange = "{10203, 1655}";
+			sepNavIntBoundsRect = "{{0, 0}, {950, 10608}}";
+			sepNavSelRange = "{21013, 20}";
+			sepNavVisRange = "{20547, 1027}";
 			sepNavWindowFrame = "{{11, 18}, {1231, 755}}";
 		};
 	};
@@ -6568,10 +6951,9 @@
 	};
 	89D66E8812E002FD008018ED /* FilesViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{492, 1217}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 27756}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {985, 11271}}";
-			sepNavSelRange = "{24106, 0}";
-			sepNavVisRange = "{23556, 1040}";
+			sepNavIntBoundsRect = "{{0, 0}, {1118, 11752}}";
+			sepNavSelRange = "{10400, 0}";
+			sepNavVisRange = "{9724, 1401}";
 		};
 	};
 	89D66E9412E002FD008018ED /* AppContainerViewController.m */ = {

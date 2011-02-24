@@ -322,21 +322,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	//NSString *tmpStr = _delegate._currenteXoFile._fatherUrlStr;
-//	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
-//	if([tmpStr isEqualToString:[domainStr stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users"]])
-//	{
-//		[_delegate addCloseBtn];
-//	}
-//	else
-//	{
-//		[_delegate._btnBack setTitle:[_delegate._dictLocalize objectForKey:@"BackButton"]];
-//		_delegate.navigationItem.leftBarButtonItem = _delegate._btnBack;
-//	}
 	
-	NSString *tmpStr = _delegate._currenteXoFile._fileName;
-	
-	if([tmpStr isEqualToString:@"Private"])
+	NSString *tmpStr = _delegate._currenteXoFile._urlStr;
+	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+	if([tmpStr isEqualToString:[domainStr stringByAppendingFormat:@"/rest/private/jcr/repository/collaboration/Users/%@", 
+								[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME]]])
 	{
 		[_delegate addCloseBtn];
 	}
@@ -346,6 +336,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		_delegate.navigationItem.leftBarButtonItem = _delegate._btnBack;
 	}
 	
+		
 	[pool release];
 }
 

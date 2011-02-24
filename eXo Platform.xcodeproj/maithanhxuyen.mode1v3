@@ -267,7 +267,6 @@
 								<string>89D66E7212E002FC008018ED</string>
 								<string>89D66E7312E002FC008018ED</string>
 								<string>89D66E8212E002FC008018ED</string>
-								<string>89D66E9212E002FD008018ED</string>
 								<string>89D66AB612DFF411008018ED</string>
 								<string>89D66AB712DFF411008018ED</string>
 								<string>89D66ACC12DFF411008018ED</string>
@@ -281,7 +280,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
+									<integer>11</integer>
 									<integer>5</integer>
 									<integer>2</integer>
 									<integer>1</integer>
@@ -289,7 +288,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 85}, {343, 664}}</string>
+							<string>{{0, 0}, {343, 664}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -338,7 +337,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>89CD0CC71316637000577305</string>
+										<string>89CD0D04131669B400577305</string>
 										<key>history</key>
 										<array>
 											<string>89C9ED6D12DEF29800910C9C</string>
@@ -436,13 +435,13 @@
 											<string>89CD0B701316454600577305</string>
 											<string>89CD0B9A13164C8D00577305</string>
 											<string>89CD0B9B13164C8D00577305</string>
-											<string>89CD0BD81316501E00577305</string>
-											<string>89CD0C02131651E900577305</string>
 											<string>89CD0C351316570200577305</string>
 											<string>89CD0CA8131661EF00577305</string>
 											<string>89CD0CA9131661EF00577305</string>
 											<string>89CD0CBB131662D800577305</string>
-											<string>89CD0CBC131662D800577305</string>
+											<string>89CD0D01131669B400577305</string>
+											<string>89CD0D02131669B400577305</string>
+											<string>89CD0D03131669B400577305</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -665,8 +664,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -689,6 +686,8 @@
 							<string>281pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -888,7 +887,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>FilesViewController.m</string>
+										<string>eXoApplicationsViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>

@@ -299,32 +299,33 @@ NSString* fileType(NSString *fileName)
 -(void)endProgress
 {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	//NSString *tmpStr = _currenteXoFile._fatherUrlStr;
-	//NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+	NSString *tmpStr = _currenteXoFile._urlStr;
+	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
 	
-	NSString *tmpStr = _currenteXoFile._fileName;
-	if([tmpStr isEqualToString:@"Private"])
-	{
-		[_navigationBar setTitle:@"Files Application"];
-		[_navigationBar setLeftBarButtonItem:nil];
-	}
-	else
-	{
-		[_navigationBar setTitle:[_fileNameStackStr lastPathComponent]];
-		[_navigationBar setLeftBarButtonItem:_bbtnBack];
-	}
-	
-	//if([tmpStr isEqualToString:[domainStr stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users"]])
+	//NSString *tmpStr = _currenteXoFile._fileName;
+//	if([tmpStr isEqualToString:@"Private"])
 //	{
 //		[_navigationBar setTitle:@"Files Application"];
 //		[_navigationBar setLeftBarButtonItem:nil];
-//		//[_navigationBar setRightBarButtonItem:_bbtnActions];
 //	}
 //	else
 //	{
-//		[_navigationBar setTitle:_currenteXoFile._fileName];
+//		[_navigationBar setTitle:[_fileNameStackStr lastPathComponent]];
 //		[_navigationBar setLeftBarButtonItem:_bbtnBack];
-//	}	
+//	}
+	
+	if([tmpStr isEqualToString:[domainStr stringByAppendingFormat:@"/rest/private/jcr/repository/collaboration/Users/%@",
+								[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME]]]	)
+	{
+		[_navigationBar setTitle:@"Files Application"];
+		[_navigationBar setLeftBarButtonItem:nil];
+		//[_navigationBar setRightBarButtonItem:_bbtnActions];
+	}
+	else
+	{
+		[_navigationBar setTitle:_currenteXoFile._fileName];
+		[_navigationBar setLeftBarButtonItem:_bbtnBack];
+	}	
 	[pool release];
 }
 
@@ -336,11 +337,11 @@ NSString* fileType(NSString *fileName)
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 		NSString* urlStr = [strHost stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users/"];
-		_fileNameStackStr = @"Private";
+		_fileNameStackStr = username;
 		urlStr = [urlStr stringByAppendingString:username];
-		urlStr = [urlStr stringByAppendingString:@"/Private"];
+		//urlStr = [urlStr stringByAppendingString:@"/Private"];
 		_strRootDirectory = [urlStr retain];
-		_currenteXoFile = [[eXoFile alloc] initWithUrlStr:_strRootDirectory fileName:@"Private"];
+		_currenteXoFile = [[eXoFile alloc] initWithUrlStr:_strRootDirectory fileName:username];
 	}
 }
 
@@ -791,8 +792,7 @@ NSString* fileType(NSString *fileName)
 					strName = [strName stringByEncodingHTMLEntities];
 					strName = [DataProcess encodeUrl:strName];
 				}
-					
-				
+
 				NSString* strNewFolderPath = [self urlForFileAction:[_currenteXoFile._urlStr stringByAppendingPathComponent:strName]];
 				
 				[self doAction:@"MKCOL" source: strNewFolderPath destination:@""];				
