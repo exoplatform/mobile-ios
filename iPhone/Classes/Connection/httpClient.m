@@ -227,50 +227,6 @@ static NSString* _fullDomainStr;
 	}
 	
 	return @"/portal/private/intranet";
-	
-	/*
-	NSURLResponse* response;
-	NSError* error;
-	NSData* dataReply;
-	NSString* urlContent = [[NSString alloc] init];
-	
-	NSURL* homeURL = [NSURL URLWithString:domain];
-	NSMutableURLRequest* homeRequest = [[NSMutableURLRequest alloc] init];
-	[homeRequest setURL:homeURL];
-	[homeRequest setHTTPMethod:@"GET"];
-	dataReply = [NSURLConnection sendSynchronousRequest:homeRequest returningResponse:&response error:&error];
-	
-	urlContent = [[NSMutableString alloc] initWithData:dataReply encoding:NSISOLatin1StringEncoding];
-	NSString* context = @"";
-	
-	NSRange range = [urlContent rangeOfString:@"error', '/main?url"];
-	if(range.length > 0)
-		return @"ERROR";
-	
-	range = [urlContent rangeOfString:@"eXo.env.server.portalBaseURL = \""];
-	if(range.length > 0)
-	{
-		urlContent = [urlContent substringWithRange:NSMakeRange(range.location + range.length, 100)];
-		range = [urlContent rangeOfString:@"/\" ;"];
-		urlContent = [urlContent substringToIndex:range.location];
-		
-		NSRange tmpRange = [urlContent rangeOfString:@"public"];
-		if(tmpRange.length > 0)
-		{
-			context = [urlContent stringByReplacingOccurrencesOfString:@"public" withString:@"private"];
-		}
-	}
-	else if([domain isEqualToString:@"http://platform.demo.exoplatform.org"]|| [domain isEqualToString:@"http://localhost:8080"])
-	{
-		context = @"/portal/private/intranet";
-	}
-	else 
-	{
-		context = @"/portal/private/classic";
-	}
-
-	return context;
-	*/ 
 }
 
 
