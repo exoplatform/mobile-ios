@@ -393,7 +393,8 @@ NSString* fileType(NSString *fileName)
 	NSThread* startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 	[startThread start];
 	
-	[imgViewEmptyPage removeFromSuperview];
+	//[imgViewEmptyPage removeFromSuperview];
+	imgViewEmptyPage.hidden = YES;
 	
 	_fileNameStackStr = [[_fileNameStackStr stringByDeletingLastPathComponent] retain];
 	
@@ -488,6 +489,7 @@ NSString* fileType(NSString *fileName)
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
 	int n = [_arrDicts count];
+	
 	return n;
 }
 
@@ -527,6 +529,16 @@ NSString* fileType(NSString *fileName)
 	
 	[titleLabel release];
 	[imgV release];
+	
+	if (imgViewEmptyPage == nil) {
+		imgViewEmptyPage = [[UIImageView alloc] initWithFrame:tableView.frame];
+		imgViewEmptyPage.center = tableView.center;
+		imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
+		
+		[imgViewEmptyPage addSubview:labelEmptyPage];
+		[self.view addSubview:imgViewEmptyPage];
+		imgViewEmptyPage.hidden = YES;
+	}
 	
 	return cell;
 }
@@ -587,13 +599,8 @@ NSString* fileType(NSString *fileName)
 		[self performSelectorOnMainThread:@selector(endProgress) withObject:nil waitUntilDone:NO];
 		
 		if([_arrDicts count] == 0) {
-			imgViewEmptyPage = [[UIImageView alloc] initWithFrame:tableView.frame];
-			imgViewEmptyPage.center = tableView.center;
-			imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
+			imgViewEmptyPage.hidden = NO;
 			
-			[imgViewEmptyPage addSubview:labelEmptyPage];
-			
-			[self.view addSubview:imgViewEmptyPage];
 		}
 		
 	}
@@ -675,7 +682,7 @@ NSString* fileType(NSString *fileName)
 		
 		if(_bCopy)
 		{
-			[self doAction:@"COPY" source:strDestination destination:strSource];
+			[self doAction:@"COPY" source:strSource destination:strDestination];
 			_bCopy = NO;
 		}
 		if(_bMove)
@@ -710,10 +717,9 @@ NSString* fileType(NSString *fileName)
 	}
 	else if([strAction isEqualToString:@"COPY"])
 	{
-		[request setHTTPMethod:@"PUT"];
+		[request setHTTPMethod:@"COPY"];
+		[request setValue:strDes forHTTPHeaderField:@"Destination"];
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
-		NSData* dataFile = [[_delegate getConnection] sendRequestWithAuthorization:strDes];
-		[request setHTTPBody:dataFile];
 	}
 	else if([strAction isEqualToString:@"MOVE"])
 	{
@@ -743,8 +749,14 @@ NSString* fileType(NSString *fileName)
 	}
 	_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
 	if([_arrDicts count] > 0) {
-		[imgViewEmptyPage removeFromSuperview];
+		//[imgViewEmptyPage removeFromSuperview];
+		imgViewEmptyPage.hidden = YES;
+	} else {
+		
+		imgViewEmptyPage.hidden = NO;
+		
 	}
+
 		
 	[_tbvFiles reloadData];
 }

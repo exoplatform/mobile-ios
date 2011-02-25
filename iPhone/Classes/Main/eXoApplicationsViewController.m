@@ -384,10 +384,14 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		
 	}else if([protocol isEqualToString:@"COPY"])
 	{
-		[request setHTTPMethod:@"PUT"];
+//		[request setHTTPMethod:@"PUT"];
+//		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
+		//NSData *dataFile = [_conn sendRequestWithAuthorization:destination];
+		//[request setHTTPBody:dataFile];
+		
+		[request setHTTPMethod:@"COPY"];
+		[request setValue:destination forHTTPHeaderField:@"Destination"];
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
-		NSData *dataFile = [_conn sendRequestWithAuthorization:destination];
-		[request setHTTPBody:dataFile];
 
 	}else
 	{

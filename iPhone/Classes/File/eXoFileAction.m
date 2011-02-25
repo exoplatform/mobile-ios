@@ -219,8 +219,12 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
 			if(fileActionMode == 1)
 			{
-				[_delegate fileAction:@"COPY" source:[_file._urlStr stringByAppendingPathComponent:[copyMoveFile._urlStr lastPathComponent]] 
-						  destination:copyMoveFile._urlStr data:nil];
+				//[_delegate fileAction:@"COPY" source:[_file._urlStr stringByAppendingPathComponent:[copyMoveFile._urlStr lastPathComponent]] 
+//						  destination:copyMoveFile._urlStr data:nil];
+
+				[_delegate fileAction:@"COPY" source: copyMoveFile._urlStr
+				 						  destination:[_file._urlStr stringByAppendingPathComponent:[copyMoveFile._urlStr lastPathComponent]] data:nil];
+
 			}
 			else
 			{	

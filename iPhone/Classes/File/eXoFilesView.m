@@ -170,7 +170,10 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 	_delegate.navigationItem.rightBarButtonItem = _delegate._btnFileAcion;
 	
-	[imgViewEmptyPage removeFromSuperview];
+	if([_arrDicts count] > 0)
+		imgViewEmptyPage.hidden = YES;
+	else
+		imgViewEmptyPage.hidden = NO;
 }
 
 -(void) onFileActionbtn
@@ -257,6 +260,20 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	btnFileAction.tag = indexPath.row;
 	[cell addSubview:btnFileAction];
 
+	if (imgViewEmptyPage == nil) {
+		imgViewEmptyPage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
+		imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
+		
+		labelEmptyPage = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 320, 40)];
+		labelEmptyPage.backgroundColor = [UIColor clearColor];
+		labelEmptyPage.textAlignment = UITextAlignmentCenter;
+		labelEmptyPage.text = [_delegate._dictLocalize objectForKey:@"EmptyPage"];
+		[imgViewEmptyPage addSubview:labelEmptyPage];
+		[self addSubview:imgViewEmptyPage];
+
+		imgViewEmptyPage.hidden = YES;
+	}
+
 	
 	return cell;
 }
@@ -281,15 +298,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		_delegate.navigationItem.leftBarButtonItem = _delegate._btnBack;
 		
 		if([_arrDicts count] == 0) {
-			imgViewEmptyPage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
-			imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];
-			
-			labelEmptyPage = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 320, 40)];
-			labelEmptyPage.backgroundColor = [UIColor clearColor];
-			labelEmptyPage.textAlignment = UITextAlignmentCenter;
-			labelEmptyPage.text = [_delegate._dictLocalize objectForKey:@"EmptyPage"];
-			[imgViewEmptyPage addSubview:labelEmptyPage];
-			[self addSubview:imgViewEmptyPage];
+			imgViewEmptyPage.hidden = NO;
 		}
 		
 	}
