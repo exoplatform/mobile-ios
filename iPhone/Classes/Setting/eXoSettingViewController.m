@@ -6,12 +6,12 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "eXoSetting.h"
+#import "eXoSettingViewController.h"
 #import "defines.h"
 #import "eXoWebViewController.h"
 #import "eXoApplicationsViewController.h"
 
-@implementation eXoSetting
+@implementation eXoSettingViewController
 
 @synthesize _dictLocalize;
 

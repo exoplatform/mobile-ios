@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface GadgetButton_iPhone : UIView {
+@interface GadgetButtonView_iPhone : UIView {
 	id					_delegate;
 	UIButton*			_btnGadget;
 	UILabel*			_lbName;

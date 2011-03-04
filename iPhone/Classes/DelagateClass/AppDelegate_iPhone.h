@@ -11,10 +11,9 @@
 @class eXoAppViewController;
 @class eXoApplicationsViewController;
 @class eXoGadgetsViewController;
-@class eXoRelationsAndContactViewController;
 @class eXoWebViewController;
-@class eXoSplash;
-@class eXoSetting;
+@class eXoSplashViewController;
+@class eXoSettingViewController;
 
 @interface AppDelegate_iPhone : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
     IBOutlet UIWindow*					window;
@@ -24,10 +23,9 @@
 	eXoAppViewController*				viewController;
 	eXoApplicationsViewController*		applicationsViewController;
 	eXoGadgetsViewController*			gadgetsViewController;
-	eXoRelationsAndContactViewController* relationAndContactViewController;
-	eXoSetting*							settingViewController;
+	eXoSettingViewController*			settingViewController;
 	eXoWebViewController*				webViewController;
-	eXoSplash*							_splash;
+	eXoSplashViewController*			_splash;
 	
 	
 	int									_selectedLanguage;
@@ -40,7 +38,7 @@
 @property (nonatomic, retain) eXoAppViewController *viewController;
 @property (nonatomic, retain) IBOutlet eXoApplicationsViewController* applicationsViewController;
 @property (nonatomic, retain) IBOutlet eXoGadgetsViewController* gadgetsViewController;
-@property (nonatomic, retain) IBOutlet eXoSetting*	settingViewController;
+@property (nonatomic, retain) IBOutlet eXoSettingViewController*	settingViewController;
 @property (nonatomic, retain) eXoWebViewController* webViewController;
 
 -(void)login;

@@ -13,7 +13,7 @@
 @class eXoFile_iPhone;
 @class eXoFileActionView;
 
-@interface eXoFileAction : UIViewController <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface eXoFileActionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
 
 	eXoApplicationsViewController *_delegate;
 	eXoFilesView *_filesView;

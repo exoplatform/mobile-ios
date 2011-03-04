@@ -8,7 +8,7 @@
 
 #import "GadgetViewController_iPhone.h"
 #import "Gadget_iPhone.h"
-#import "GadgetButton_iPhone.h"
+#import "GadgetButtonView_iPhone.h"
 
 @implementation GadgetViewController_iPhone
 
@@ -147,7 +147,7 @@
 	_pageController.numberOfPages = _intPageNumber;
 	_pageController.currentPage = 0;
 	
-	GadgetButton_iPhone* tmpBtn;
+	GadgetButtonView_iPhone* tmpBtn;
 	int row = 0;	
 	
 	for(int i = 0; i < [_arrGateInDbItems count]; i++)
@@ -160,7 +160,7 @@
 			}
 			
 			CGRect tmpRect = CGRectMake(i*290 + 93*(j%3) + 1, 90*row + 7, 93, 90);
-			tmpBtn = [[GadgetButton_iPhone alloc] initWithFrame:tmpRect];
+			tmpBtn = [[GadgetButtonView_iPhone alloc] initWithFrame:tmpRect];
 			[tmpBtn setDelegate:self];
 			[tmpBtn setName:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _strName]];
 			[tmpBtn setIcon:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _imgIcon]];

@@ -6,10 +6,10 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "GadgetButton_iPhone.h"
+#import "GadgetButtonView_iPhone.h"
 #import "GadgetViewController_iPhone.h"
 
-@implementation GadgetButton_iPhone
+@implementation GadgetButtonView_iPhone
 
 - (id)initWithFrame:(CGRect)rect
 {

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface eXoSplash : UIViewController {
+@interface eXoSplashViewController : UIViewController {
 	UIActivityIndicatorView *activity;
 	UILabel *label;
 	UILabel *lDomain;

@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "eXoFileAction.h"
+#import "eXoFileActionViewController.h"
 #import "eXoFilesView.h"
 #import "eXoApplicationsViewController.h"
 #import "eXoFileActionView.h"
@@ -15,7 +15,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 static eXoFile_iPhone *copyMoveFile;
 static short fileActionMode = 0;//1:copy, 2:move
 
-@implementation eXoFileAction
+@implementation eXoFileActionViewController
 
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

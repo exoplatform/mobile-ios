@@ -11,7 +11,6 @@
 #import "defines.h"
 #import "eXoApplicationsViewController.h"
 #import "Gadget_iPhone.h"
-#import "httpClient.h"
 #import "Connection.h"
 
 @implementation GadgetDisplayViewController

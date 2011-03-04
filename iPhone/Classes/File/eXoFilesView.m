@@ -11,7 +11,7 @@
 #import "DataProcess.h"
 #import "Connection.h"
 #import "eXoWebViewController.h"
-#import "eXoFileAction.h"
+#import "eXoFileActionViewController.h"
 #import "eXoFileActionView.h"
 #import "defines.h"
 #import "NSString+HTML.h"
@@ -190,7 +190,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_delegate.navigationController.navigationBar.userInteractionEnabled = NO;
 	_delegate.tabBarController.tabBar.userInteractionEnabled = NO;
 	
-	eXoFileAction *fileAction = [[eXoFileAction alloc] initWithNibName:@"eXoFileAction" bundle:nil delegate:_delegate filesView:self file:_delegate._currenteXoFile enableDeleteThisFolder:NO];
+	eXoFileActionViewController *fileAction = [[eXoFileActionViewController alloc] initWithNibName:@"eXoFileActionViewController" bundle:nil delegate:_delegate filesView:self file:_delegate._currenteXoFile enableDeleteThisFolder:NO];
 	fileAction.view.frame = CGRectMake(50, 60, 230, 270);
 	[_delegate.view addSubview:fileAction.view];
 	
@@ -366,7 +366,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	[_delegate._fileAction release];
 	_delegate._fileAction = nil;
-	_delegate._fileAction = [[eXoFileAction alloc] initWithNibName:@"eXoFileAction" bundle:nil delegate:_delegate filesView:self file:file enableDeleteThisFolder:YES];
+	_delegate._fileAction = [[eXoFileActionViewController alloc] initWithNibName:@"eXoFileActionViewController" bundle:nil delegate:_delegate filesView:self file:file enableDeleteThisFolder:YES];
 	_delegate._fileAction.view.frame = CGRectMake(50, 60, 230, 270);
 	[_delegate.view addSubview:_delegate._fileAction.view];
 	

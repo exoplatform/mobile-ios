@@ -10,9 +10,9 @@
 
 #import "eXoAppViewController.h"
 #import "eXoApplicationsViewController.h"
-#import "eXoSetting.h"
+#import "eXoSettingViewController.h"
 #import "eXoWebViewController.h"
-#import "eXoSplash.h"
+#import "eXoSplashViewController.h"
 #import "defines.h"
 #import "Connection.h"
 
@@ -58,11 +58,10 @@
 	
 	viewController = nil;
 	applicationsViewController = nil;
-	relationAndContactViewController = nil;
 	settingViewController = nil;
 	webViewController = nil;
 	
-	_splash = [[eXoSplash alloc] initWithNibName:@"eXoSplash" bundle:nil];
+	_splash = [[eXoSplashViewController alloc] initWithNibName:@"eXoSplashViewController" bundle:nil];
 	_splash._dictLocalize = _dictLocalize;
 	[window makeKeyAndVisible];
 	[window addSubview:_splash.view];
@@ -178,7 +177,7 @@
 	
 	settingViewController = nil;
 	[settingViewController release];
-	settingViewController = [[eXoSetting alloc] initWithStyle:UITableViewStyleGrouped delegate:applicationsViewController];
+	settingViewController = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:applicationsViewController];
 	
 	
 	UINavigationController *applicationView = [[UINavigationController alloc] 

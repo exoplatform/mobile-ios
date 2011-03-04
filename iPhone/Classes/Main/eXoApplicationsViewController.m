@@ -33,7 +33,7 @@
 #import "DDXML.h"
 #import "Gadget_iPhone.h"
 #import "eXoGadgetViewController.h"
-#import "eXoFileAction.h"
+#import "eXoFileActionViewController.h"
 
 static NSString *kCellIdentifier = @"MyIdentifier";
 

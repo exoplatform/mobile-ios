@@ -17,7 +17,7 @@
 @class XMPPJID;
 @class XMPPMessage;
 @class eXoFile_iPhone;
-@class eXoFileAction;
+@class eXoFileActionViewController;
 @class Connection;
 
 //==============================================================
@@ -48,7 +48,7 @@
 	UIView*				_newsView;
 	eXoChatView*		_chatView;
 	eXoChatWindow*		_chatWindow;
-	eXoFileAction*		_fileAction;
+	eXoFileActionViewController*		_fileAction;
 	NSString*			_currentChatUser;
 	BOOL				_isNewMsg;
 	UIView*				_tempView;
@@ -106,7 +106,7 @@
 @property (nonatomic, retain) IBOutlet UIView* _newsView;
 @property (nonatomic, retain) IBOutlet UIView* _chatView;
 @property (nonatomic, retain) IBOutlet UIView* _chatWindow;
-@property (nonatomic, retain) eXoFileAction*	_fileAction;
+@property (nonatomic, retain) eXoFileActionViewController*	_fileAction;
 @property (nonatomic, retain) NSString*			_currentChatUser;
 @property BOOL				_isNewMsg;
 

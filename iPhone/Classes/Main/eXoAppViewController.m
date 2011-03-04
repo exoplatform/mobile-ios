@@ -10,7 +10,7 @@
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "CXMLDocument.h"
-#import "eXoSetting.h"
+#import "eXoSettingViewController.h"
 #import "eXoApplicationsViewController.h"
 #import "Connection.h"
 #import "DataProcess.h"
@@ -400,7 +400,7 @@
 {
 	eXoApplicationsViewController *apps = [[eXoApplicationsViewController alloc] init];
 	apps._dictLocalize = _dictLocalize;
-	eXoSetting *setting = [[eXoSetting alloc] initWithStyle:UITableViewStyleGrouped delegate:apps];
+	eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:apps];
 
 	[self.navigationController pushViewController:setting animated:YES];
 	

@@ -6,10 +6,10 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "eXoSplash.h"
+#import "eXoSplashViewController.h"
 #import "defines.h"
 
-@implementation eXoSplash
+@implementation eXoSplashViewController
 
 @synthesize activity, label, lDomain, lUserName, lDomainStr, lUserNameStr, autoLoginImg, _dictLocalize;
 
