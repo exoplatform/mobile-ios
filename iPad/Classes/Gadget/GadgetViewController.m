@@ -9,7 +9,7 @@
 #import "GadgetViewController.h"
 #import "AppContainerViewController.h"
 #import "Gadget.h"
-#import "GadgetButton.h"
+#import "GadgetButtonView.h"
 #import "GrayPageControl.h"
 
 @implementation GadgetViewController
@@ -155,7 +155,7 @@
 	_pageController.numberOfPages = _intPageNumber;
 	_pageController.currentPage = 0;
 	
-	GadgetButton* tmpBtn;
+	GadgetButtonView* tmpBtn;
 	int row = 0;	
 	
 	for(int i = 0; i < [_arrGateInDbItems count]; i++)
@@ -168,7 +168,7 @@
 			}
 			
 			CGRect tmpRect = CGRectMake(i*290 + 72*(j%4) + 1, 102*row + 8, 72, 102);
-			tmpBtn = [[GadgetButton alloc] initWithFrame:tmpRect];
+			tmpBtn = [[GadgetButtonView alloc] initWithFrame:tmpRect];
 			[tmpBtn setDelegate:self];
 			[tmpBtn setGadget:[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j]];
 			[tmpBtn setName:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _strName]];
@@ -264,7 +264,7 @@
 //}
 
 
-- (void)onGadgetButton:(GadgetButton*)gadgetBtn
+- (void)onGadgetButton:(GadgetButtonView*)gadgetBtn
 {
 	[_delegate onGadget:[gadgetBtn getGadget]];
 }

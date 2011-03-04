@@ -10,7 +10,7 @@
 
 @class Gadget;
 
-@interface GadgetButton : UIView {
+@interface GadgetButtonView: UIView {
 	id					_delegate;
 	UIButton*			_btnGadget;
 	UILabel*			_lbName;

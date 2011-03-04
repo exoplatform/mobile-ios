@@ -18,8 +18,7 @@
 #import "ChatWindowViewController.h"
 #import "XMPPClient.h"
 #import "XMPPUser.h"
-#import "CloseOpenChatWindows.h"
-#import "MoreLiveChat.h"
+#import "MoreLiveChatViewController.h"
 #import "Gadget.h"
 
 @implementation MainViewController
@@ -229,7 +228,7 @@
 		}
 			
 	}
-	MoreLiveChat *moreLiveChat = [[MoreLiveChat alloc] initWithNibName:@"MoreLiveChat" bundle:nil liveChat: tmpArr delegate:self];
+	MoreLiveChatViewController *moreLiveChat = [[MoreLiveChatViewController alloc] initWithNibName:@"MoreLiveChatViewController" bundle:nil liveChat: tmpArr delegate:self];
 	UIPopoverController *popoverCtr = [[UIPopoverController alloc] initWithContentViewController:moreLiveChat];
 	[popoverCtr setPopoverContentSize:CGSizeMake(260, 300) animated:YES];
 	moreLiveChat._popViewController = popoverCtr;

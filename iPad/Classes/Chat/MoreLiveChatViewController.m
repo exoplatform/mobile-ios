@@ -6,14 +6,14 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "MoreLiveChat.h"
+#import "MoreLiveChatViewController.h"
 #import "MessengerViewController.h"
 #import "MainViewController.h"
 #import "XMPPUser.h"
 
 static NSString* kCellIdentifier = @"MyIdentifier";
 
-@implementation MoreLiveChat
+@implementation MoreLiveChatViewController
 
 @synthesize arrLiveChat, _delegate, _popViewController;
 

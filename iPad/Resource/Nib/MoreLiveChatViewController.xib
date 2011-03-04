@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">800</int>
-		<string key="IBDocument.SystemVersion">10F569</string>
-		<string key="IBDocument.InterfaceBuilderVersion">788</string>
-		<string key="IBDocument.AppKitVersion">1038.29</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<int key="IBDocument.SystemTarget">1056</int>
+		<string key="IBDocument.SystemVersion">10J567</string>
+		<string key="IBDocument.InterfaceBuilderVersion">823</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.HIToolboxVersion">462.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">117</string>
+			<string key="NS.object.0">132</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -212,7 +212,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>MoreLiveChat</string>
+					<string>MoreLiveChatViewController</string>
 					<string>UIResponder</string>
 					<string>{{556, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -242,7 +242,7 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">MoreLiveChat</string>
+					<string key="className">MoreLiveChatViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">closeAllLiveChat</string>
@@ -289,14 +289,14 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/Chat/MoreLiveChat.h</string>
+						<string key="minorKey">iPad/Classes/Chat/MoreLiveChatViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/TCP/AsyncSocket.h</string>
+						<string key="minorKey">Shared/Classes/TCP/AsyncSocket.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -310,11 +310,11 @@
 						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">xmppPing:didReceivePong:</string>
 							<string key="candidateClassName">XMPPPing</string>
+						</object>
 					</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="559773714">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="84871500">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/XMPP/Extensions/XMPPPing.h</string>
+						<string key="minorKey">Shared/Classes/XMPP/Extensions/XMPPPing.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -378,7 +378,7 @@
 							<object class="IBActionInfo">
 								<string key="name">xmppClient:didNotRegister:</string>
 								<string key="candidateClassName">XMPPClient</string>
-					</object>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">xmppClient:didReceiveBuddyRequest:</string>
 								<string key="candidateClassName">XMPPClient</string>
@@ -421,9 +421,9 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="585079716">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="896504641">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/XMPP/XMPPClient.h</string>
+						<string key="minorKey">Shared/Classes/XMPP/XMPPClient.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -523,15 +523,15 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="354013052">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="953044672">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/XMPP/XMPPStream.h</string>
+						<string key="minorKey">Shared/Classes/XMPP/XMPPStream.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">XMPPClient</string>
 					<string key="superclassName">NSObject</string>
-					<reference key="sourceIdentifier" ref="585079716"/>
+					<reference key="sourceIdentifier" ref="896504641"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">XMPPPing</string>
@@ -547,7 +547,7 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
-					<reference key="sourceIdentifier" ref="559773714"/>
+					<reference key="sourceIdentifier" ref="84871500"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">XMPPStream</string>
@@ -563,7 +563,7 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
-					<reference key="sourceIdentifier" ref="354013052"/>
+					<reference key="sourceIdentifier" ref="953044672"/>
 				</object>
 			</object>
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
@@ -797,19 +797,19 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<integer value="800" key="NS.object.0"/>
+			<integer value="1056" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../../eXoMobile.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../../eXo Platform.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">Close.png</string>
 			<string key="NS.object.0">{260, 41}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">117</string>
+		<string key="IBCocoaTouchPluginVersion">132</string>
 	</data>
 </archive>

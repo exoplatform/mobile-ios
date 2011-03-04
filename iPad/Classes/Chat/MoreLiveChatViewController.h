@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class MainViewController;
 
-@interface MoreLiveChat : UIViewController<UITableViewDelegate, UITableViewDataSource>{
+@interface MoreLiveChatViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
 
 	IBOutlet UITableView *_tblLiveChat;
 	IBOutlet UIButton *_btnCloseAllLiveChat;
