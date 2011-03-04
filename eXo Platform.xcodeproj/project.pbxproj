@@ -58,26 +58,19 @@
 		89D66AFB12DFF411008018ED /* eXoChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ABA12DFF411008018ED /* eXoChatView.m */; };
 		89D66AFC12DFF411008018ED /* eXoChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ABC12DFF411008018ED /* eXoChatWindow.m */; };
 		89D66AFD12DFF411008018ED /* eXoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ABE12DFF411008018ED /* eXoMessage.m */; };
-		89D66AFE12DFF411008018ED /* eXoAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AC112DFF411008018ED /* eXoAccount.m */; };
-		89D66AFF12DFF411008018ED /* eXoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AC312DFF411008018ED /* eXoUser.m */; };
-		89D66B0012DFF411008018ED /* eXoUserClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AC512DFF411008018ED /* eXoUserClient.m */; };
-		89D66B0112DFF411008018ED /* httpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AC712DFF411008018ED /* httpClient.m */; };
 		89D66B0212DFF411008018ED /* AppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ACA12DFF411008018ED /* AppDelegate_iPhone.m */; };
-		89D66B0312DFF411008018ED /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ACB12DFF411008018ED /* MainWindow_iPhone.xib */; };
-		89D66B0412DFF411008018ED /* eXoFileAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ACE12DFF411008018ED /* eXoFileAction.m */; };
-		89D66B0512DFF411008018ED /* eXoFileAction.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ACF12DFF411008018ED /* eXoFileAction.xib */; };
+		89D66B0412DFF411008018ED /* eXoFileActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ACE12DFF411008018ED /* eXoFileActionViewController.m */; };
 		89D66B0612DFF411008018ED /* eXoFileActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AD112DFF411008018ED /* eXoFileActionView.m */; };
 		89D66B0712DFF411008018ED /* eXoFilesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AD312DFF411008018ED /* eXoFilesView.m */; };
 		89D66B0812DFF411008018ED /* eXoGadgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AD612DFF411008018ED /* eXoGadgetViewController.m */; };
 		89D66B0912DFF411008018ED /* Gadget_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AD812DFF411008018ED /* Gadget_iPhone.m */; };
-		89D66B0A12DFF411008018ED /* GadgetButton_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ADA12DFF411008018ED /* GadgetButton_iPhone.m */; };
+		89D66B0A12DFF411008018ED /* GadgetButtonView_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ADA12DFF411008018ED /* GadgetButtonView_iPhone.m */; };
 		89D66B0B12DFF411008018ED /* GadgetViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ADC12DFF411008018ED /* GadgetViewController_iPhone.m */; };
 		89D66B0C12DFF411008018ED /* eXoApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */; };
 		89D66B0D12DFF411008018ED /* eXoAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AE112DFF411008018ED /* eXoAppViewController.m */; };
-		89D66B0E12DFF411008018ED /* eXoRelationsAndContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AE312DFF411008018ED /* eXoRelationsAndContactViewController.m */; };
-		89D66B0F12DFF411008018ED /* eXoSplash.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AE512DFF411008018ED /* eXoSplash.m */; };
+		89D66B0F12DFF411008018ED /* eXoSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AE512DFF411008018ED /* eXoSplashViewController.m */; };
 		89D66B1012DFF411008018ED /* eXoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AE712DFF411008018ED /* eXoWebViewController.m */; };
-		89D66B1112DFF411008018ED /* eXoSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AEA12DFF411008018ED /* eXoSetting.m */; };
+		89D66B1112DFF411008018ED /* eXoSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66AEA12DFF411008018ED /* eXoSettingViewController.m */; };
 		89D66B1212DFF411008018ED /* HowtoUse_EN_iPhone.htm in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AED12DFF411008018ED /* HowtoUse_EN_iPhone.htm */; };
 		89D66B1312DFF411008018ED /* HowtoUse_FR_iPhone.htm in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AEE12DFF411008018ED /* HowtoUse_FR_iPhone.htm */; };
 		89D66B1412DFF411008018ED /* 320x480v1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF012DFF411008018ED /* 320x480v1.jpg */; };
@@ -86,7 +79,7 @@
 		89D66B1712DFF411008018ED /* eXoApplicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF512DFF411008018ED /* eXoApplicationsViewController.xib */; };
 		89D66B1812DFF411008018ED /* eXoAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF612DFF411008018ED /* eXoAppViewController.xib */; };
 		89D66B1912DFF411008018ED /* eXoGadgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF712DFF411008018ED /* eXoGadgetsViewController.xib */; };
-		89D66B1A12DFF411008018ED /* eXoSplash.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF812DFF411008018ED /* eXoSplash.xib */; };
+		89D66B1A12DFF411008018ED /* eXoSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF812DFF411008018ED /* eXoSplashViewController.xib */; };
 		89D66B1B12DFF411008018ED /* eXoWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF912DFF411008018ED /* eXoWebViewController.xib */; };
 		89D66B1C12DFF411008018ED /* GadgetViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AFA12DFF411008018ED /* GadgetViewController_iPhone.xib */; };
 		89D66C5912DFFB48008018ED /* bl.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66C2B12DFFB48008018ED /* bl.png */; };
@@ -135,17 +128,14 @@
 		89D66C8412DFFB48008018ED /* word.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66C5712DFFB48008018ED /* word.png */; };
 		89D66C8512DFFB48008018ED /* xls.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66C5812DFFB48008018ED /* xls.png */; };
 		89D66EE112E002FD008018ED /* ChatWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E7612E002FC008018ED /* ChatWindowViewController.m */; };
-		89D66EE212E002FD008018ED /* CloseOpenChatWindows.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E7812E002FC008018ED /* CloseOpenChatWindows.m */; };
 		89D66EE312E002FD008018ED /* MessengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E7A12E002FC008018ED /* MessengerViewController.m */; };
-		89D66EE412E002FD008018ED /* MoreLiveChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E7C12E002FC008018ED /* MoreLiveChat.m */; };
-		89D66EE512E002FD008018ED /* MoreLiveChat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66E7D12E002FC008018ED /* MoreLiveChat.xib */; };
+		89D66EE412E002FD008018ED /* MoreLiveChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E7C12E002FC008018ED /* MoreLiveChatViewController.m */; };
 		89D66EE612E002FD008018ED /* AppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8012E002FC008018ED /* AppDelegate_iPad.m */; };
-		89D66EE712E002FD008018ED /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66E8112E002FC008018ED /* MainWindow_iPad.xib */; };
 		89D66EE812E002FD008018ED /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8412E002FC008018ED /* FileActionsViewController.m */; };
 		89D66EE912E002FD008018ED /* FileContentDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8612E002FC008018ED /* FileContentDisplayController.m */; };
 		89D66EEA12E002FD008018ED /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8812E002FD008018ED /* FilesViewController.m */; };
 		89D66EEB12E002FD008018ED /* Gadget.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8B12E002FD008018ED /* Gadget.m */; };
-		89D66EEC12E002FD008018ED /* GadgetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8D12E002FD008018ED /* GadgetButton.m */; };
+		89D66EEC12E002FD008018ED /* GadgetButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8D12E002FD008018ED /* GadgetButtonView.m */; };
 		89D66EED12E002FD008018ED /* GadgetDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E8F12E002FD008018ED /* GadgetDisplayController.m */; };
 		89D66EEE12E002FD008018ED /* GadgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E9112E002FD008018ED /* GadgetViewController.m */; };
 		89D66EEF12E002FD008018ED /* AppContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D66E9412E002FD008018ED /* AppContainerViewController.m */; };
@@ -217,6 +207,10 @@
 		89D66F7212E00766008018ED /* application.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66F7012E00766008018ED /* application.png */; };
 		89D66F7312E00766008018ED /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66F7112E00766008018ED /* setting.png */; };
 		89D856821303D6A9007E1A6F /* emptypage.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D856811303D6A9007E1A6F /* emptypage.png */; };
+		89DDD1AB1320E17700391327 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DDD1AA1320E17700391327 /* MainWindow_iPhone.xib */; };
+		89DDD1DA1320E43000391327 /* MoreLiveChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DDD1D91320E43000391327 /* MoreLiveChatViewController.xib */; };
+		89DDD1DC1320E46300391327 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DDD1DB1320E46300391327 /* MainWindow_iPad.xib */; };
+		89DDD1EC1320E83800391327 /* eXoFileActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DDD1EB1320E83800391327 /* eXoFileActionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -316,20 +310,10 @@
 		89D66ABC12DFF411008018ED /* eXoChatWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoChatWindow.m; sourceTree = "<group>"; };
 		89D66ABD12DFF411008018ED /* eXoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMessage.h; sourceTree = "<group>"; };
 		89D66ABE12DFF411008018ED /* eXoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoMessage.m; sourceTree = "<group>"; };
-		89D66AC012DFF411008018ED /* eXoAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoAccount.h; sourceTree = "<group>"; };
-		89D66AC112DFF411008018ED /* eXoAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoAccount.m; sourceTree = "<group>"; };
-		89D66AC212DFF411008018ED /* eXoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoUser.h; sourceTree = "<group>"; };
-		89D66AC312DFF411008018ED /* eXoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoUser.m; sourceTree = "<group>"; };
-		89D66AC412DFF411008018ED /* eXoUserClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoUserClient.h; sourceTree = "<group>"; };
-		89D66AC512DFF411008018ED /* eXoUserClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoUserClient.m; sourceTree = "<group>"; };
-		89D66AC612DFF411008018ED /* httpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httpClient.h; sourceTree = "<group>"; };
-		89D66AC712DFF411008018ED /* httpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = httpClient.m; sourceTree = "<group>"; };
 		89D66AC912DFF411008018ED /* AppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPhone.h; sourceTree = "<group>"; };
 		89D66ACA12DFF411008018ED /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPhone.m; sourceTree = "<group>"; };
-		89D66ACB12DFF411008018ED /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
-		89D66ACD12DFF411008018ED /* eXoFileAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoFileAction.h; sourceTree = "<group>"; };
-		89D66ACE12DFF411008018ED /* eXoFileAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoFileAction.m; sourceTree = "<group>"; };
-		89D66ACF12DFF411008018ED /* eXoFileAction.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoFileAction.xib; sourceTree = "<group>"; };
+		89D66ACD12DFF411008018ED /* eXoFileActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoFileActionViewController.h; sourceTree = "<group>"; };
+		89D66ACE12DFF411008018ED /* eXoFileActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoFileActionViewController.m; sourceTree = "<group>"; };
 		89D66AD012DFF411008018ED /* eXoFileActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoFileActionView.h; sourceTree = "<group>"; };
 		89D66AD112DFF411008018ED /* eXoFileActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoFileActionView.m; sourceTree = "<group>"; };
 		89D66AD212DFF411008018ED /* eXoFilesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoFilesView.h; sourceTree = "<group>"; };
@@ -338,22 +322,20 @@
 		89D66AD612DFF411008018ED /* eXoGadgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoGadgetViewController.m; sourceTree = "<group>"; };
 		89D66AD712DFF411008018ED /* Gadget_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gadget_iPhone.h; sourceTree = "<group>"; };
 		89D66AD812DFF411008018ED /* Gadget_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget_iPhone.m; sourceTree = "<group>"; };
-		89D66AD912DFF411008018ED /* GadgetButton_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetButton_iPhone.h; sourceTree = "<group>"; };
-		89D66ADA12DFF411008018ED /* GadgetButton_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetButton_iPhone.m; sourceTree = "<group>"; };
+		89D66AD912DFF411008018ED /* GadgetButtonView_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetButtonView_iPhone.h; sourceTree = "<group>"; };
+		89D66ADA12DFF411008018ED /* GadgetButtonView_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetButtonView_iPhone.m; sourceTree = "<group>"; };
 		89D66ADB12DFF411008018ED /* GadgetViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetViewController_iPhone.h; sourceTree = "<group>"; };
 		89D66ADC12DFF411008018ED /* GadgetViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetViewController_iPhone.m; sourceTree = "<group>"; };
 		89D66ADE12DFF411008018ED /* eXoApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoApplicationsViewController.h; sourceTree = "<group>"; };
 		89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoApplicationsViewController.m; sourceTree = "<group>"; };
 		89D66AE012DFF411008018ED /* eXoAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoAppViewController.h; sourceTree = "<group>"; };
 		89D66AE112DFF411008018ED /* eXoAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoAppViewController.m; sourceTree = "<group>"; };
-		89D66AE212DFF411008018ED /* eXoRelationsAndContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoRelationsAndContactViewController.h; sourceTree = "<group>"; };
-		89D66AE312DFF411008018ED /* eXoRelationsAndContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoRelationsAndContactViewController.m; sourceTree = "<group>"; };
-		89D66AE412DFF411008018ED /* eXoSplash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoSplash.h; sourceTree = "<group>"; };
-		89D66AE512DFF411008018ED /* eXoSplash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoSplash.m; sourceTree = "<group>"; };
+		89D66AE412DFF411008018ED /* eXoSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoSplashViewController.h; sourceTree = "<group>"; };
+		89D66AE512DFF411008018ED /* eXoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoSplashViewController.m; sourceTree = "<group>"; };
 		89D66AE612DFF411008018ED /* eXoWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoWebViewController.h; sourceTree = "<group>"; };
 		89D66AE712DFF411008018ED /* eXoWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoWebViewController.m; sourceTree = "<group>"; };
-		89D66AE912DFF411008018ED /* eXoSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoSetting.h; sourceTree = "<group>"; };
-		89D66AEA12DFF411008018ED /* eXoSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoSetting.m; sourceTree = "<group>"; };
+		89D66AE912DFF411008018ED /* eXoSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoSettingViewController.h; sourceTree = "<group>"; };
+		89D66AEA12DFF411008018ED /* eXoSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoSettingViewController.m; sourceTree = "<group>"; };
 		89D66AED12DFF411008018ED /* HowtoUse_EN_iPhone.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HowtoUse_EN_iPhone.htm; sourceTree = "<group>"; };
 		89D66AEE12DFF411008018ED /* HowtoUse_FR_iPhone.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HowtoUse_FR_iPhone.htm; sourceTree = "<group>"; };
 		89D66AF012DFF411008018ED /* 320x480v1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 320x480v1.jpg; sourceTree = "<group>"; };
@@ -362,7 +344,7 @@
 		89D66AF512DFF411008018ED /* eXoApplicationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoApplicationsViewController.xib; sourceTree = "<group>"; };
 		89D66AF612DFF411008018ED /* eXoAppViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoAppViewController.xib; sourceTree = "<group>"; };
 		89D66AF712DFF411008018ED /* eXoGadgetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoGadgetsViewController.xib; sourceTree = "<group>"; };
-		89D66AF812DFF411008018ED /* eXoSplash.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoSplash.xib; sourceTree = "<group>"; };
+		89D66AF812DFF411008018ED /* eXoSplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoSplashViewController.xib; sourceTree = "<group>"; };
 		89D66AF912DFF411008018ED /* eXoWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoWebViewController.xib; sourceTree = "<group>"; };
 		89D66AFA12DFF411008018ED /* GadgetViewController_iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GadgetViewController_iPhone.xib; sourceTree = "<group>"; };
 		89D66C2B12DFFB48008018ED /* bl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bl.png; sourceTree = "<group>"; };
@@ -412,16 +394,12 @@
 		89D66C5812DFFB48008018ED /* xls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xls.png; sourceTree = "<group>"; };
 		89D66E7512E002FC008018ED /* ChatWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController.h; sourceTree = "<group>"; };
 		89D66E7612E002FC008018ED /* ChatWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController.m; sourceTree = "<group>"; };
-		89D66E7712E002FC008018ED /* CloseOpenChatWindows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseOpenChatWindows.h; sourceTree = "<group>"; };
-		89D66E7812E002FC008018ED /* CloseOpenChatWindows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseOpenChatWindows.m; sourceTree = "<group>"; };
 		89D66E7912E002FC008018ED /* MessengerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController.h; sourceTree = "<group>"; };
 		89D66E7A12E002FC008018ED /* MessengerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController.m; sourceTree = "<group>"; };
-		89D66E7B12E002FC008018ED /* MoreLiveChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreLiveChat.h; sourceTree = "<group>"; };
-		89D66E7C12E002FC008018ED /* MoreLiveChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreLiveChat.m; sourceTree = "<group>"; };
-		89D66E7D12E002FC008018ED /* MoreLiveChat.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreLiveChat.xib; sourceTree = "<group>"; };
+		89D66E7B12E002FC008018ED /* MoreLiveChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreLiveChatViewController.h; sourceTree = "<group>"; };
+		89D66E7C12E002FC008018ED /* MoreLiveChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreLiveChatViewController.m; sourceTree = "<group>"; };
 		89D66E7F12E002FC008018ED /* AppDelegate_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPad.h; sourceTree = "<group>"; };
 		89D66E8012E002FC008018ED /* AppDelegate_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPad.m; sourceTree = "<group>"; };
-		89D66E8112E002FC008018ED /* MainWindow_iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
 		89D66E8312E002FC008018ED /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileActionsViewController.h; sourceTree = "<group>"; };
 		89D66E8412E002FC008018ED /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileActionsViewController.m; sourceTree = "<group>"; };
 		89D66E8512E002FC008018ED /* FileContentDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileContentDisplayController.h; sourceTree = "<group>"; };
@@ -430,8 +408,8 @@
 		89D66E8812E002FD008018ED /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		89D66E8A12E002FD008018ED /* Gadget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gadget.h; sourceTree = "<group>"; };
 		89D66E8B12E002FD008018ED /* Gadget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget.m; sourceTree = "<group>"; };
-		89D66E8C12E002FD008018ED /* GadgetButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetButton.h; sourceTree = "<group>"; };
-		89D66E8D12E002FD008018ED /* GadgetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetButton.m; sourceTree = "<group>"; };
+		89D66E8C12E002FD008018ED /* GadgetButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetButtonView.h; sourceTree = "<group>"; };
+		89D66E8D12E002FD008018ED /* GadgetButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetButtonView.m; sourceTree = "<group>"; };
 		89D66E8E12E002FD008018ED /* GadgetDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayController.h; sourceTree = "<group>"; };
 		89D66E8F12E002FD008018ED /* GadgetDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayController.m; sourceTree = "<group>"; };
 		89D66E9012E002FD008018ED /* GadgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetViewController.h; sourceTree = "<group>"; };
@@ -515,6 +493,10 @@
 		89D66F7012E00766008018ED /* application.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = application.png; sourceTree = "<group>"; };
 		89D66F7112E00766008018ED /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		89D856811303D6A9007E1A6F /* emptypage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptypage.png; sourceTree = "<group>"; };
+		89DDD1AA1320E17700391327 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		89DDD1D91320E43000391327 /* MoreLiveChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreLiveChatViewController.xib; sourceTree = "<group>"; };
+		89DDD1DB1320E46300391327 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
+		89DDD1EB1320E83800391327 /* eXoFileActionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoFileActionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -784,7 +766,6 @@
 			isa = PBXGroup;
 			children = (
 				89D66AB812DFF411008018ED /* Chat */,
-				89D66ABF12DFF411008018ED /* Connection */,
 				89D66AC812DFF411008018ED /* DelagateClass */,
 				89D66ACC12DFF411008018ED /* File */,
 				89D66AD412DFF411008018ED /* Gadget */,
@@ -807,27 +788,11 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		89D66ABF12DFF411008018ED /* Connection */ = {
-			isa = PBXGroup;
-			children = (
-				89D66AC012DFF411008018ED /* eXoAccount.h */,
-				89D66AC112DFF411008018ED /* eXoAccount.m */,
-				89D66AC212DFF411008018ED /* eXoUser.h */,
-				89D66AC312DFF411008018ED /* eXoUser.m */,
-				89D66AC412DFF411008018ED /* eXoUserClient.h */,
-				89D66AC512DFF411008018ED /* eXoUserClient.m */,
-				89D66AC612DFF411008018ED /* httpClient.h */,
-				89D66AC712DFF411008018ED /* httpClient.m */,
-			);
-			path = Connection;
-			sourceTree = "<group>";
-		};
 		89D66AC812DFF411008018ED /* DelagateClass */ = {
 			isa = PBXGroup;
 			children = (
 				89D66AC912DFF411008018ED /* AppDelegate_iPhone.h */,
 				89D66ACA12DFF411008018ED /* AppDelegate_iPhone.m */,
-				89D66ACB12DFF411008018ED /* MainWindow_iPhone.xib */,
 			);
 			path = DelagateClass;
 			sourceTree = "<group>";
@@ -835,9 +800,8 @@
 		89D66ACC12DFF411008018ED /* File */ = {
 			isa = PBXGroup;
 			children = (
-				89D66ACD12DFF411008018ED /* eXoFileAction.h */,
-				89D66ACE12DFF411008018ED /* eXoFileAction.m */,
-				89D66ACF12DFF411008018ED /* eXoFileAction.xib */,
+				89D66ACD12DFF411008018ED /* eXoFileActionViewController.h */,
+				89D66ACE12DFF411008018ED /* eXoFileActionViewController.m */,
 				89D66AD012DFF411008018ED /* eXoFileActionView.h */,
 				89D66AD112DFF411008018ED /* eXoFileActionView.m */,
 				89D66AD212DFF411008018ED /* eXoFilesView.h */,
@@ -853,8 +817,8 @@
 				89D66AD612DFF411008018ED /* eXoGadgetViewController.m */,
 				89D66AD712DFF411008018ED /* Gadget_iPhone.h */,
 				89D66AD812DFF411008018ED /* Gadget_iPhone.m */,
-				89D66AD912DFF411008018ED /* GadgetButton_iPhone.h */,
-				89D66ADA12DFF411008018ED /* GadgetButton_iPhone.m */,
+				89D66AD912DFF411008018ED /* GadgetButtonView_iPhone.h */,
+				89D66ADA12DFF411008018ED /* GadgetButtonView_iPhone.m */,
 				89D66ADB12DFF411008018ED /* GadgetViewController_iPhone.h */,
 				89D66ADC12DFF411008018ED /* GadgetViewController_iPhone.m */,
 				7CDE4FB2130E0CE800C8E8B8 /* GadgetDisplayViewController.h */,
@@ -870,10 +834,8 @@
 				89D66ADF12DFF411008018ED /* eXoApplicationsViewController.m */,
 				89D66AE012DFF411008018ED /* eXoAppViewController.h */,
 				89D66AE112DFF411008018ED /* eXoAppViewController.m */,
-				89D66AE212DFF411008018ED /* eXoRelationsAndContactViewController.h */,
-				89D66AE312DFF411008018ED /* eXoRelationsAndContactViewController.m */,
-				89D66AE412DFF411008018ED /* eXoSplash.h */,
-				89D66AE512DFF411008018ED /* eXoSplash.m */,
+				89D66AE412DFF411008018ED /* eXoSplashViewController.h */,
+				89D66AE512DFF411008018ED /* eXoSplashViewController.m */,
 				89D66AE612DFF411008018ED /* eXoWebViewController.h */,
 				89D66AE712DFF411008018ED /* eXoWebViewController.m */,
 			);
@@ -883,8 +845,8 @@
 		89D66AE812DFF411008018ED /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				89D66AE912DFF411008018ED /* eXoSetting.h */,
-				89D66AEA12DFF411008018ED /* eXoSetting.m */,
+				89D66AE912DFF411008018ED /* eXoSettingViewController.h */,
+				89D66AEA12DFF411008018ED /* eXoSettingViewController.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -931,10 +893,12 @@
 		89D66AF412DFF411008018ED /* Nib */ = {
 			isa = PBXGroup;
 			children = (
+				89DDD1EB1320E83800391327 /* eXoFileActionViewController.xib */,
+				89DDD1AA1320E17700391327 /* MainWindow_iPhone.xib */,
 				89D66AF512DFF411008018ED /* eXoApplicationsViewController.xib */,
 				89D66AF612DFF411008018ED /* eXoAppViewController.xib */,
 				89D66AF712DFF411008018ED /* eXoGadgetsViewController.xib */,
-				89D66AF812DFF411008018ED /* eXoSplash.xib */,
+				89D66AF812DFF411008018ED /* eXoSplashViewController.xib */,
 				89D66AF912DFF411008018ED /* eXoWebViewController.xib */,
 				89D66AFA12DFF411008018ED /* GadgetViewController_iPhone.xib */,
 				7C29F479130A8EB80029F505 /* GadgetViewController_iPhone.xib */,
@@ -1030,13 +994,10 @@
 			children = (
 				89D66E7512E002FC008018ED /* ChatWindowViewController.h */,
 				89D66E7612E002FC008018ED /* ChatWindowViewController.m */,
-				89D66E7712E002FC008018ED /* CloseOpenChatWindows.h */,
-				89D66E7812E002FC008018ED /* CloseOpenChatWindows.m */,
 				89D66E7912E002FC008018ED /* MessengerViewController.h */,
 				89D66E7A12E002FC008018ED /* MessengerViewController.m */,
-				89D66E7B12E002FC008018ED /* MoreLiveChat.h */,
-				89D66E7C12E002FC008018ED /* MoreLiveChat.m */,
-				89D66E7D12E002FC008018ED /* MoreLiveChat.xib */,
+				89D66E7B12E002FC008018ED /* MoreLiveChatViewController.h */,
+				89D66E7C12E002FC008018ED /* MoreLiveChatViewController.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1046,7 +1007,6 @@
 			children = (
 				89D66E7F12E002FC008018ED /* AppDelegate_iPad.h */,
 				89D66E8012E002FC008018ED /* AppDelegate_iPad.m */,
-				89D66E8112E002FC008018ED /* MainWindow_iPad.xib */,
 			);
 			path = DelagateClass;
 			sourceTree = "<group>";
@@ -1069,8 +1029,8 @@
 			children = (
 				89D66E8A12E002FD008018ED /* Gadget.h */,
 				89D66E8B12E002FD008018ED /* Gadget.m */,
-				89D66E8C12E002FD008018ED /* GadgetButton.h */,
-				89D66E8D12E002FD008018ED /* GadgetButton.m */,
+				89D66E8C12E002FD008018ED /* GadgetButtonView.h */,
+				89D66E8D12E002FD008018ED /* GadgetButtonView.m */,
 				89D66E8E12E002FD008018ED /* GadgetDisplayController.h */,
 				89D66E8F12E002FD008018ED /* GadgetDisplayController.m */,
 				89D66E9012E002FD008018ED /* GadgetViewController.h */,
@@ -1185,6 +1145,8 @@
 		89D66ED112E002FD008018ED /* Nib */ = {
 			isa = PBXGroup;
 			children = (
+				89DDD1DB1320E46300391327 /* MainWindow_iPad.xib */,
+				89DDD1D91320E43000391327 /* MoreLiveChatViewController.xib */,
 				89D66ED212E002FD008018ED /* AppContainerViewController.xib */,
 				89D66ED312E002FD008018ED /* ChatWindowViewController.xib */,
 				89D66ED412E002FD008018ED /* eXoMobileViewController.xib */,
@@ -1262,8 +1224,6 @@
 				89C9EDB912DEF8AD00910C9C /* DefaultPortlet.png in Resources */,
 				89C9EDBA12DEF8AD00910C9C /* PortletsIcon.png in Resources */,
 				89C9EE2312DEFC0200910C9C /* Dashboard.png in Resources */,
-				89D66B0312DFF411008018ED /* MainWindow_iPhone.xib in Resources */,
-				89D66B0512DFF411008018ED /* eXoFileAction.xib in Resources */,
 				89D66B1212DFF411008018ED /* HowtoUse_EN_iPhone.htm in Resources */,
 				89D66B1312DFF411008018ED /* HowtoUse_FR_iPhone.htm in Resources */,
 				89D66B1412DFF411008018ED /* 320x480v1.jpg in Resources */,
@@ -1272,7 +1232,7 @@
 				89D66B1712DFF411008018ED /* eXoApplicationsViewController.xib in Resources */,
 				89D66B1812DFF411008018ED /* eXoAppViewController.xib in Resources */,
 				89D66B1912DFF411008018ED /* eXoGadgetsViewController.xib in Resources */,
-				89D66B1A12DFF411008018ED /* eXoSplash.xib in Resources */,
+				89D66B1A12DFF411008018ED /* eXoSplashViewController.xib in Resources */,
 				89D66B1B12DFF411008018ED /* eXoWebViewController.xib in Resources */,
 				89D66B1C12DFF411008018ED /* GadgetViewController_iPhone.xib in Resources */,
 				89D66C5912DFFB48008018ED /* bl.png in Resources */,
@@ -1320,8 +1280,6 @@
 				89D66C8312DFFB48008018ED /* video.png in Resources */,
 				89D66C8412DFFB48008018ED /* word.png in Resources */,
 				89D66C8512DFFB48008018ED /* xls.png in Resources */,
-				89D66EE512E002FD008018ED /* MoreLiveChat.xib in Resources */,
-				89D66EE712E002FD008018ED /* MainWindow_iPad.xib in Resources */,
 				89D66EF712E002FD008018ED /* ChatImage.gif in Resources */,
 				89D66EF812E002FD008018ED /* ChatImage01.gif in Resources */,
 				89D66EF912E002FD008018ED /* DashboardImage.gif in Resources */,
@@ -1383,6 +1341,10 @@
 				89D856821303D6A9007E1A6F /* emptypage.png in Resources */,
 				7C29F47A130A8EB80029F505 /* GadgetViewController_iPhone.xib in Resources */,
 				7CC51F5C130E2A4B00B00188 /* GadgetDisplayViewController.xib in Resources */,
+				89DDD1AB1320E17700391327 /* MainWindow_iPhone.xib in Resources */,
+				89DDD1DA1320E43000391327 /* MoreLiveChatViewController.xib in Resources */,
+				89DDD1DC1320E46300391327 /* MainWindow_iPad.xib in Resources */,
+				89DDD1EC1320E83800391327 /* eXoFileActionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1424,34 +1386,28 @@
 				89D66AFB12DFF411008018ED /* eXoChatView.m in Sources */,
 				89D66AFC12DFF411008018ED /* eXoChatWindow.m in Sources */,
 				89D66AFD12DFF411008018ED /* eXoMessage.m in Sources */,
-				89D66AFE12DFF411008018ED /* eXoAccount.m in Sources */,
-				89D66AFF12DFF411008018ED /* eXoUser.m in Sources */,
-				89D66B0012DFF411008018ED /* eXoUserClient.m in Sources */,
-				89D66B0112DFF411008018ED /* httpClient.m in Sources */,
 				89D66B0212DFF411008018ED /* AppDelegate_iPhone.m in Sources */,
-				89D66B0412DFF411008018ED /* eXoFileAction.m in Sources */,
+				89D66B0412DFF411008018ED /* eXoFileActionViewController.m in Sources */,
 				89D66B0612DFF411008018ED /* eXoFileActionView.m in Sources */,
 				89D66B0712DFF411008018ED /* eXoFilesView.m in Sources */,
 				89D66B0812DFF411008018ED /* eXoGadgetViewController.m in Sources */,
 				89D66B0912DFF411008018ED /* Gadget_iPhone.m in Sources */,
-				89D66B0A12DFF411008018ED /* GadgetButton_iPhone.m in Sources */,
+				89D66B0A12DFF411008018ED /* GadgetButtonView_iPhone.m in Sources */,
 				89D66B0B12DFF411008018ED /* GadgetViewController_iPhone.m in Sources */,
 				89D66B0C12DFF411008018ED /* eXoApplicationsViewController.m in Sources */,
 				89D66B0D12DFF411008018ED /* eXoAppViewController.m in Sources */,
-				89D66B0E12DFF411008018ED /* eXoRelationsAndContactViewController.m in Sources */,
-				89D66B0F12DFF411008018ED /* eXoSplash.m in Sources */,
+				89D66B0F12DFF411008018ED /* eXoSplashViewController.m in Sources */,
 				89D66B1012DFF411008018ED /* eXoWebViewController.m in Sources */,
-				89D66B1112DFF411008018ED /* eXoSetting.m in Sources */,
+				89D66B1112DFF411008018ED /* eXoSettingViewController.m in Sources */,
 				89D66EE112E002FD008018ED /* ChatWindowViewController.m in Sources */,
-				89D66EE212E002FD008018ED /* CloseOpenChatWindows.m in Sources */,
 				89D66EE312E002FD008018ED /* MessengerViewController.m in Sources */,
-				89D66EE412E002FD008018ED /* MoreLiveChat.m in Sources */,
+				89D66EE412E002FD008018ED /* MoreLiveChatViewController.m in Sources */,
 				89D66EE612E002FD008018ED /* AppDelegate_iPad.m in Sources */,
 				89D66EE812E002FD008018ED /* FileActionsViewController.m in Sources */,
 				89D66EE912E002FD008018ED /* FileContentDisplayController.m in Sources */,
 				89D66EEA12E002FD008018ED /* FilesViewController.m in Sources */,
 				89D66EEB12E002FD008018ED /* Gadget.m in Sources */,
-				89D66EEC12E002FD008018ED /* GadgetButton.m in Sources */,
+				89D66EEC12E002FD008018ED /* GadgetButtonView.m in Sources */,
 				89D66EED12E002FD008018ED /* GadgetDisplayController.m in Sources */,
 				89D66EEE12E002FD008018ED /* GadgetViewController.m in Sources */,
 				89D66EEF12E002FD008018ED /* AppContainerViewController.m in Sources */,
