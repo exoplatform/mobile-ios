@@ -50,19 +50,6 @@
 	_dictLocalize = [_delegate getLocalization];
 	_selectedLanguage = [_delegate getSelectedLanguage];
 	[self setTitle:[_dictLocalize objectForKey:@"SupportViewTitle"]];
-	
-//	NSURLRequest* urlHelp;
-//	if(_selectedLanguage == 0)
-//	{
-//		urlHelp = [NSURLRequest requestWithURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"HowtoUse-EN" ofType:@"htm"]]];		
-//	}
-//	else 
-//	{
-//		urlHelp = [NSURLRequest requestWithURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"HowtoUse-FR" ofType:@"htm"]]];
-//	}
-//	
-//	[_wvHelp loadRequest:urlHelp];
-//	[[self view] addSubview:_wvHelp];
 }
 
 // Override to allow orientations other than the default portrait orientation.

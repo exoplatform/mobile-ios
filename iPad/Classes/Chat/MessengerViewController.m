@@ -255,11 +255,6 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	return _dictLocalize;
 }
 
-//- (void)localize
-//{
-//	_dictLocalize = [_delegate getLocalization];
-//}
-
 - (void)initMessengerParameters
 {
 	if(_xmppClient == nil)
@@ -460,9 +455,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	[cell addSubview:titleLabel];
 	
 	UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 10.0, 24, 24)];
-	//XMPPResource *resource = [user primaryResource];
-//	XMPPPresence *presence = [resource presence];
-	//NSString *type = [presence type];
+
 	if([user isOnline])
 	{
 		titleLabel.textColor = [UIColor blueColor];

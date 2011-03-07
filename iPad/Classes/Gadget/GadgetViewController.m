@@ -182,12 +182,6 @@
 	[_lbTitleItemInDb setText:tmpStr];
 }
 
-//- (IBAction)onGridBtn:(id)sender
-//{
-//	_bGrid = !_bGrid;
-//	[self checkGrid];
-//}
-
 - (void)onGridBtn
 {
 	_bGrid = !_bGrid;
@@ -258,11 +252,6 @@
     _bPageControlUsed = NO;
 }
 
-//- (void)onGadgetButton:(NSURL*)gadgetUrl
-//{
-//	[_delegate onGadgetTableViewCell:gadgetUrl];
-//}
-
 
 - (void)onGadgetButton:(GadgetButtonView*)gadgetBtn
 {
@@ -329,9 +318,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	//NSURL* tmpURL = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] urlContent];
-	//[_delegate onGadgetTableViewCell:tmpURL];
-	
 	Gadget* tmpGadget = [[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row];
 	[_delegate onGadget:tmpGadget];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];

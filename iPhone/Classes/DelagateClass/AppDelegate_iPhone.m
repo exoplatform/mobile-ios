@@ -70,8 +70,6 @@
 
 -(void)splashScreen {
 	
-	//[_splash.view removeFromSuperview];
-	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	BOOL autoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 	if(autoLogin)
@@ -79,7 +77,6 @@
 		
 		NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startLogin) object:nil];
 		[startThread start];
-		//[NSThread detachNewThreadSelector:@selector(startLogin) toTarget:self withObject:nil];
 		[self login];
 		[startThread release];
 	}
@@ -170,11 +167,6 @@
 	applicationsViewController.navigationItem.rightBarButtonItem = applicationsViewController._btnSignOut;
 	applicationsViewController._dictLocalize = dic;
 	
-	//_myCalendar = nil;
-	//	[_myCalendar release];
-	//	_myCalendar = [[eXoMyCalendar alloc] initWithNibName:@"eXoMyCalendar" bundle:nil];
-	
-	
 	settingViewController = nil;
 	[settingViewController release];
 	settingViewController = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:applicationsViewController];
@@ -183,16 +175,6 @@
 	UINavigationController *applicationView = [[UINavigationController alloc] 
 											   initWithRootViewController:applicationsViewController];
 	applicationView.navigationBar.tintColor = [UIColor blackColor];
-	
-	//UINavigationController *myCalendarView = [[UINavigationController alloc] 
-	//											   initWithRootViewController:_myCalendar];
-	//	myCalendarView.navigationBar.tintColor = [UIColor blackColor];
-	//	
-	//	[myCalendarView.navigationBar addSubview:_myCalendar.btnToday];
-	//	[myCalendarView.navigationBar addSubview:_myCalendar.segCalendartype];
-	
-	
-	
 	
 	UINavigationController *settingView = [[UINavigationController alloc]
 										   initWithRootViewController:settingViewController];
@@ -230,16 +212,9 @@
 
 - (void)changeToEachGadgetViewController:(NSString*)urlStr
 {
-	//eachGadgetViewController = [[eXoEachGadgetViewController alloc] initWithNibName:@"eXoEachGadgetViewController" bundle:nil];
-//	[eachGadgetViewController setUrl:urlStr];
-//	[navigationController pushViewController:eachGadgetViewController animated:NO];
-	
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	//NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	//	NSString *autoLogin = [userDefaults objectForKey:EXO_AUTO_LOGIN];
-	//	NSLog(autoLogin);
 }
 
 - (void)dealloc {

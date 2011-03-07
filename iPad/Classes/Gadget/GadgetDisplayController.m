@@ -30,14 +30,6 @@
 	return self;
 }
 
-//- (id)initWithNibAndUrl:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *)defaultURL 
-//{
-//	[super initWithNibName:nibName bundle:nibBundle];
-//	_url = defaultURL;
-//	
-//	return self;
-//}
-
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView 
 {
@@ -134,11 +126,7 @@
 		[_wvGadgetDisplay loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
 										  [_dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
 		 
-		 }
-		 
-		 
-		 //NSURLRequest* request = [[NSURLRequest alloc] initWithURL:[gadget urlContent]];
-		 
+	}		 
 }
 
 @end

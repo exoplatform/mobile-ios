@@ -54,14 +54,6 @@ static short fileActionMode = 0;//1:copy, 2:move
 }
 
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return 2;
@@ -120,7 +112,6 @@ static short fileActionMode = 0;//1:copy, 2:move
 			titleLabel.text = strTakePicture;
 			if(!_file._isFolder)
 			{
-				//cell.backgroundColor = [UIColor grayColor];
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
 			}
@@ -131,7 +122,6 @@ static short fileActionMode = 0;//1:copy, 2:move
 			titleLabel.text = strDelete;
 			if(!_deleteFolderEnable)
 			{
-				//cell.backgroundColor = [UIColor grayColor];
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
 			}
@@ -166,9 +156,6 @@ static short fileActionMode = 0;//1:copy, 2:move
 				cell.userInteractionEnabled = NO;
 			}
 		}
-		//UIButton* tmpButton = [[UIButton alloc] initWithFrame:[cell frame]];
-		//[tmpButton setBackgroundImage:[UIImage imageNamed:@"actionitem.png"] forState:UIControlStateNormal];
-		//[cell setBackgroundView:tmpButton];	
 	}
 	else
 	{
@@ -219,12 +206,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
 			if(fileActionMode == 1)
 			{
-				//[_delegate fileAction:@"COPY" source:[_file._urlStr stringByAppendingPathComponent:[copyMoveFile._urlStr lastPathComponent]] 
-//						  destination:copyMoveFile._urlStr data:nil];
-
 				[_delegate fileAction:@"COPY" source: copyMoveFile._urlStr
 				 						  destination:[_file._urlStr stringByAppendingPathComponent:[copyMoveFile._urlStr lastPathComponent]] data:nil];
-
 			}
 			else
 			{	

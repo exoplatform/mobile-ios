@@ -72,7 +72,7 @@ NSString *fileType_iPhone(NSString *fileName)
 static NSString *kCellIdentifier = @"MyIdentifier";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 @implementation eXoFile_iPhone
 
@@ -151,7 +151,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation eXoFilesView
 
@@ -201,12 +200,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	return 1;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//	NSDictionary* tmpDict = [_arrDicts objectAtIndex:section];	
-//	return [[tmpDict allKeys] objectAtIndex:0];
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 50.0;
@@ -221,8 +214,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated 
 {
 
-	//[_tblvFilesGrp setEditing:editing animated:animated];
-		
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 

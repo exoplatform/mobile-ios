@@ -53,8 +53,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	//_wvChatContentDisplay.userInteractionEnabled = YES;
-	//_wvChatContentDisplay.scalesPageToFit = YES;
 	[self.navigationItem setLeftBarButtonItem:_bbtnClose];
 	[self.navigationItem setRightBarButtonItem:_bbtnClear];
 	[self localize];
@@ -251,15 +249,11 @@
 		_intBShowKeyboard = 0;
 		if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 		{	
-			//rect.size.height -= kOFFSET_FOR_PORTRAIT_KEYBOARD;
 			rect.origin.y -= kOFFSET_FOR_PORTRAIT_KEYBOARD;
-			//rect2.origin.y -= kOFFSET_FOR_PORTRAIT_KEYBOARD; 
 		}	
 		if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 		{	
-			//rect.size.height -= kOFFSET_FOR_LANSCAPE_KEYBOARD;
 			rect.origin.y -= kOFFSET_FOR_LANSCAPE_KEYBOARD;
-			//rect2.origin.y -= kOFFSET_FOR_LANSCAPE_KEYBOARD;
 		}	
 		[_wvChatContentDisplay removeFromSuperview];
 		_wvChatContentDisplayUp = [[UIWebView alloc] initWithFrame:rect2];
@@ -271,15 +265,11 @@
 		_intBShowKeyboard = 1;
 		if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 		{	
-			//rect.size.height += kOFFSET_FOR_PORTRAIT_KEYBOARD;
 			rect.origin.y += kOFFSET_FOR_PORTRAIT_KEYBOARD;
-			//rect2.origin.y += kOFFSET_FOR_PORTRAIT_KEYBOARD;
 		}	
 		if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 		{	
-			//rect.size.height += kOFFSET_FOR_LANSCAPE_KEYBOARD;
 			rect.origin.y += kOFFSET_FOR_LANSCAPE_KEYBOARD;
-			//rect2.origin.y += kOFFSET_FOR_LANSCAPE_KEYBOARD;
 		}
 		[_wvChatContentDisplayUp removeFromSuperview];
 		[_wvChatContentDisplay loadHTMLString:_strHtml baseURL:nil];

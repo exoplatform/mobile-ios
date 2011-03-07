@@ -346,20 +346,6 @@
 	[[_supportViewController view] removeFromSuperview];
 }
 
-/*
-- (void)onCheckBoxBtn:(Checkbox*)checkbox
-{
-	if(checkbox == _cbxRememberMe)
-	{
-		_bRememberMe == [checkbox getStatus];
-	}
-	if(checkbox == _cbxAutoSignIn)
-	{
-		_bAutoSignIn = [checkbox getStatus];
-	}
-}
-*/
-
 - (IBAction)onSignInBtn:(id)sender
 {
 	[_txtfHost resignFirstResponder];

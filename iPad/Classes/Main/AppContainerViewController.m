@@ -288,14 +288,6 @@ static NSString* kCellIdentifier = @"Cell";
 			lbTitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
 			[cell addSubview:lbTitle];
 			
-			/*
-			UILabel* lbDescription = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 25.0, 230.0, 33.0)];
-			lbDescription.backgroundColor = [UIColor clearColor];
-			lbDescription.numberOfLines = 2;
-			lbDescription.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-			[cell addSubview:lbDescription];
-			*/
-			
 			UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
 			[cell addSubview:imgV];
 			
@@ -304,7 +296,6 @@ static NSString* kCellIdentifier = @"Cell";
 				case 0:
 				{
 					lbTitle.text = @"Chat";		
-					//lbDescription.text = [_dictLocalize objectForKey:@"ChatDescription"];
 					XMPPClient *client = [MessengerViewController getXmppClient];
 					if(client != nil && [client isAuthenticated])
 						imgV.image = [UIImage imageNamed:@"onlineicon.png"];
@@ -317,7 +308,6 @@ static NSString* kCellIdentifier = @"Cell";
 				case 1:
 				{
 					lbTitle.text = @"Files";
-					//lbDescription.text = [_dictLocalize objectForKey:@"FileDescription"];
 					imgV.image = [UIImage imageNamed:@"filesApp.png"];
 					break;
 				}

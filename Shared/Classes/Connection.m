@@ -97,21 +97,7 @@ static NSString* _strDomain;
 
 - (NSString*)getExtend:(NSString*)domain
 {
-	/*NSArray *domainArr = [DOMAINLIST componentsSeparatedByString:@";"];
-	for(int i = 0; i < [domainArr count]; i++)
-	{
-		NSString *domainStr = [domainArr objectAtIndex:i];
-		NSRange rangeOfDomain = [domainStr rangeOfString:domain];
-		if (rangeOfDomain.length > 0)
-		{
-			NSRange rangeOfSpace = [domainStr rangeOfString:@" "];
-			return [domainStr substringFromIndex:rangeOfSpace.location + 1];
-		}
-	}*/
-	
 	return @"/portal/private/intranet";
-	//return @"/portal/private/classic";
-	
 }
 
 - (NSString*)sendAuthenticateRequest:(NSString*)domain username:(NSString*)username password:(NSString*)password
@@ -565,26 +551,9 @@ static NSString* _strDomain;
 		return @"ERROR";
 	}
 	
-	/*NSString* redirectStr = [NSString stringWithFormat:@"%@%@", domain, [self getExtend:domain]];
-	
-	NSURL* redirectURL1 = [NSURL URLWithString:redirectStr];
-	NSString* checkUrlStr = [NSString stringWithContentsOfURL:redirectURL1 encoding:NSUTF8StringEncoding error:nil];
-	if(checkUrlStr == nil) 
-	{
-		redirectURL1 = nil;
-		[redirectURL1 release];
-		return @"ERROR";
-	}*/
-	
-	
+
 	NSString* loginStr;
 	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	
-	//	NSRange rangeOfPrivate = [redirectStr rangeOfString:@"/classic"];
-	//	if(rangeOfPrivate.length > 0)
-	//		loginStr = [[redirectStr substringToIndex:rangeOfPrivate.location] stringByAppendingString:@"/j_security_check"];
-	//	else
-	//		loginStr = [redirectStr stringByAppendingString:@"/j_security_check"];
 	
 	loginStr = [NSString stringWithFormat:@"%@%@",_strDomain,@"/portal/login"];
 	//Request to login

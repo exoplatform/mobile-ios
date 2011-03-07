@@ -23,7 +23,6 @@
 @property (nonatomic, retain) UIActivityIndicatorView* _actiLoading;
 @property (nonatomic, retain) UILabel* _lbStatus;
 
-//- (id)initWithNibAndUrl:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *)defaultURL;
 - (void)setDelegate:(id)delegate;
 - (void)localize;
 - (void)startDisplayFileContent:(NSURL*)url;

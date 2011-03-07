@@ -131,19 +131,6 @@
 		titleLabel.text = [_dictLocalize objectForKey:@"French"];
 		[cell addSubview:titleLabel];		
 	}
-	/*
-	else if(indexPath.row == 2)
-	{
-		UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-		imgV.image = [UIImage imageNamed:@"VN.gif"];
-		[cell addSubview:imgV];		
-		
-		UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-		titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-		titleLabel.text = [_dictLocalize objectForKey:@"Vietnamese"];				
-		[cell addSubview:titleLabel];
-	}
-	*/
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 	return cell;

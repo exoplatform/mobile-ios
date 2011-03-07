@@ -63,9 +63,6 @@
 									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
 		}
 	}
-	
-	//[_webView loadRequest:request];
-	//[request release];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 

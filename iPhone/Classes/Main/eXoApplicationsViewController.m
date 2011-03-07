@@ -158,8 +158,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 	if(_currenteXoFile != nil)
 	{
-		//_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
-		//[_filesView setDriverContent:_arrDicts withDelegate:self];
 	}
 	
 	[_btnBack setTitle:[_dictLocalize objectForKey:@"BackButton"]];
@@ -176,8 +174,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		self.title = [_dictLocalize objectForKey:@"ApplicationsTitle"];
 	}	
 	
-	//self.navigationItem.rightBarButtonItem = _btnSignOut;
-	
 	[_tblvGadgetsGrp reloadData];
 }
 
@@ -193,7 +189,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_arrGadgets = [[_conn getItemsInDashboard] retain];	
 	
 	[super viewDidLoad];	
-	//_tblvGadgetsGrp.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBg.png"]];	
 }
 
 -(void)onSignOutBtn
@@ -382,13 +377,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
 		[request setHTTPBody:data];
 		
-	}else if([protocol isEqualToString:@"COPY"])
+	}
+	else if([protocol isEqualToString:@"COPY"])
 	{
-//		[request setHTTPMethod:@"PUT"];
-//		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
-		//NSData *dataFile = [_conn sendRequestWithAuthorization:destination];
-		//[request setHTTPBody:dataFile];
-		
 		[request setHTTPMethod:@"COPY"];
 		[request setValue:destination forHTTPHeaderField:@"Destination"];
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
@@ -458,7 +449,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 			_chatWindow._arrChatUsers = self._arrChatUsers;
 			
 			[[self navigationItem] setLeftBarButtonItem:_btnChatViewBack];
-			//self.navigationItem.leftBarButtonItem = _btnClose;
 			[[self view] addSubview: _chatWindow];
 			_tempView =  _chatWindow;
 			[_chatView removeFromSuperview];

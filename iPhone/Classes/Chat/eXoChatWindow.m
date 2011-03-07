@@ -152,14 +152,10 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	[self addSubview:_delegate._btnChatSend];
 	[self bringSubviewToFront:_delegate._btnChatSend];
 	
-	//[_btnSendMsg setTitle:[_delegate._dictLocalize objectForKey:@"Send"] forState:UIControlStateNormal];
-	//[self bringSubviewToFront:_btnSendMsg];
-	
 	if(!_arrMessages)
 		_arrMessages = [[NSMutableArray alloc] init];
 	
 	_xmppClient = xmppClient;
-	//_xmppUser = xmppUser;
 	_xmppUser = [exoChatUser getXmppUser];
 	_strMessage = @"";
 	
@@ -235,7 +231,6 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 - (IBAction)onClearBtn
 {
 	[_arrMessages removeAllObjects];
-	//[_tblvChatContent reloadData ];
 	
 	[_chatHtmlStr release];
 	_chatHtmlStr = [[NSMutableString alloc] init];
@@ -283,10 +278,7 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	NSRange insertIndex = [_chatHtmlStr rangeOfString:@"</table></body>"];
 	[_chatHtmlStr insertString:tempStr atIndex:insertIndex.location];
 	
-	//NSLog(_chatHtmlStr);
-	
 	[_chatWebView loadHTMLString:_chatHtmlStr baseURL:nil];
-	//[_chatPanel.webView loadHTMLString:_chatHtmlStr baseURL:nil];
 
 	[_txtViewMsg setText:@""];
 	
@@ -341,11 +333,8 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	[_chatHtmlStr insertString:tempStr atIndex:insertIndex.location];
 	
 	[_chatWebView loadHTMLString:_chatHtmlStr baseURL:nil];
-	//[_chatPanel.webView loadHTMLString:_chatHtmlStr baseURL:nil];
 	
 	[_delegate updateForEachExoChatUser:_xmppUser withArrMsg:_arrMessages withHtmlStr:_chatHtmlStr];
-
-	
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event 
@@ -399,16 +388,9 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
     // of taking place immediately.
     CGRect rect = self.frame;
 	
-	//CGRect webRect = [_chatWebView frame];
-	//CGRect webRect = _chatPanel.view.frame;
-	
     if (bUp)
 	{
 		if(!_bShowInputMsgKeyboard) {
-			
-			//webRect.size.height -= kOFFSET_FOR_KEYBOARD;
-//			webRect.origin.y += kOFFSET_FOR_KEYBOARD;
-			
 			_bShowInputMsgKeyboard = YES;
 		}
 		
@@ -420,10 +402,6 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	{
 		
 		if(_bShowInputMsgKeyboard) {
-			// If moving down, not only increase the origin but decrease the height.
-			//webRect.size.height += kOFFSET_FOR_KEYBOARD;
-//			webRect.origin.y -= kOFFSET_FOR_KEYBOARD;
-			
 			_bShowInputMsgKeyboard = NO;
 		}
 		
@@ -432,16 +410,8 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
     }
 	
     self.frame = rect;
-	//_chatWebView.frame = webRect;
-	//_chatPanel.view.frame = webRect;
-	//_chatWebView.frame = _chatPanel.frame;
 	[_chatWebView loadHTMLString:_chatHtmlStr baseURL:nil];
 	[UIView commitAnimations];	
-	
-    
-	//[_chatPanel.webView loadHTMLString:_chatHtmlStr baseURL:nil];
-   
-	
 }
  
  

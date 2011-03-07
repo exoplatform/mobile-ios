@@ -119,12 +119,6 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 	return 1;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//	NSDictionary* tmpDict = [_arrDicts objectAtIndex:section];	
-//	return [[tmpDict allKeys] objectAtIndex:0];
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 50.0;
@@ -139,12 +133,9 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	//if (cell == nil)
-	//{
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
-		cell.textLabel.font = [UIFont systemFontOfSize:18.0];
-		cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-	//}
+	cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+	cell.textLabel.font = [UIFont systemFontOfSize:18.0];
+	cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
 
 	XMPPUser *user = [_arrUsers objectAtIndex:indexPath.row];
 	
@@ -168,17 +159,6 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 	[cell addSubview:titleLabel];
 	
 	int msgCount = [[_msgCount objectAtIndex:indexPath.row] intValue];
-	
-	/*
-	if(msgCount > 0)
-	{
-		UILabel* msgCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(260.0, 10.0, 50.0, 20.0)];
-		msgCountLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-		msgCountLabel.text = [NSString stringWithFormat:@"%d", msgCount];
-		
-		[cell addSubview:msgCountLabel];
-	}
-	*/
 	
 	if (msgCount > 0) 
 	{
@@ -206,7 +186,6 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	if(_delegate && [_delegate respondsToSelector:@selector(showChatWindowWithXMPPUser: listMsg:)])
 	{
-		//[[_delegate navigationItem] setLeftBarButtonItem:nil];
 		XMPPUser* xmppUser = [_arrUsers objectAtIndex:indexPath.row];
 		_delegate._currentChatUser = [xmppUser address];
 		[_msgCount replaceObjectAtIndex:indexPath.row withObject:@"0"];
@@ -217,19 +196,11 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 	}
 }
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark XMPPClient Delegate Methods:
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)xmppClientDidConnect:(XMPPClient *)sender
 {
 	[_xmppClient authenticateUser];
-	//	if(isRegistering)
-	//		[xmppClient registerUser];
-	//	else
-	//		[xmppClient authenticateUser];
 }
 
 - (void)xmppClientDidUpdateRoster:(XMPPClient *)sender

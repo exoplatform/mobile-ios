@@ -73,7 +73,6 @@ NSString* fileType(NSString *fileName)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation eXoFile
 
@@ -151,7 +150,6 @@ NSString* fileType(NSString *fileName)
 
 @end
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -302,24 +300,12 @@ NSString* fileType(NSString *fileName)
 	NSString *tmpStr = _currenteXoFile._urlStr;
 	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
 	
-	//NSString *tmpStr = _currenteXoFile._fileName;
-//	if([tmpStr isEqualToString:@"Private"])
-//	{
-//		[_navigationBar setTitle:@"Files Application"];
-//		[_navigationBar setLeftBarButtonItem:nil];
-//	}
-//	else
-//	{
-//		[_navigationBar setTitle:[_fileNameStackStr lastPathComponent]];
-//		[_navigationBar setLeftBarButtonItem:_bbtnBack];
-//	}
 	
 	if([tmpStr isEqualToString:[domainStr stringByAppendingFormat:@"/rest/private/jcr/repository/collaboration/Users/%@",
 								[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME]]]	)
 	{
 		[_navigationBar setTitle:@"Files Application"];
 		[_navigationBar setLeftBarButtonItem:nil];
-		//[_navigationBar setRightBarButtonItem:_bbtnActions];
 	}
 	else
 	{
@@ -339,7 +325,6 @@ NSString* fileType(NSString *fileName)
 		NSString* urlStr = [strHost stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users/"];
 		_fileNameStackStr = username;
 		urlStr = [urlStr stringByAppendingString:username];
-		//urlStr = [urlStr stringByAppendingString:@"/Private"];
 		_strRootDirectory = [urlStr retain];
 		_currenteXoFile = [[eXoFile alloc] initWithUrlStr:_strRootDirectory fileName:username];
 	}
@@ -393,7 +378,6 @@ NSString* fileType(NSString *fileName)
 	NSThread* startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 	[startThread start];
 	
-	//[imgViewEmptyPage removeFromSuperview];
 	imgViewEmptyPage.hidden = YES;
 	
 	_fileNameStackStr = [[_fileNameStackStr stringByDeletingLastPathComponent] retain];
@@ -479,11 +463,6 @@ NSString* fileType(NSString *fileName)
 	return 44;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//	NSString* tmpStr = @"";
-//	return tmpStr;
-//}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
@@ -508,7 +487,6 @@ NSString* fileType(NSString *fileName)
 	
 	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 5.0, 400.0, 30.0)];
 	titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-	//titleLabel.text = file._fileName;
 	NSString* tmpStr = file._fileName;
 	titleLabel.text = [tmpStr stringByDecodingHTMLEntities];
 	
@@ -749,7 +727,6 @@ NSString* fileType(NSString *fileName)
 	}
 	_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
 	if([_arrDicts count] > 0) {
-		//[imgViewEmptyPage removeFromSuperview];
 		imgViewEmptyPage.hidden = YES;
 	} else {
 		

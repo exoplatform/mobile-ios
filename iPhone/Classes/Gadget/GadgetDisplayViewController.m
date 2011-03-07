@@ -72,29 +72,7 @@
 
 - (void)startGadget:(Gadget_iPhone*)gadget
 {
-	/*
-	if(_url != nil)
-	{
-		NSHTTPURLResponse* response;
-		NSError* error;
-		
-		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-		[request setURL:[gadget urlContent]]; 
-		
-		[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-		NSUInteger statusCode = [response statusCode];
-		
-		if(statusCode >= 200 && statusCode < 300)
-		{
-			[_webView loadRequest:request];
-		}
-		else
-		{
-			[_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
-									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
-		}
-	}
-	*/ 
+	
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 

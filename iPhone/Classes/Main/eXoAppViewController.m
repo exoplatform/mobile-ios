@@ -181,14 +181,12 @@
 	{
 		case 0:
 		{
-			//tmpStr = @"Please input domain name:";
 			tmpStr = [_dictLocalize objectForKey:@"DomainHeader"];
 			break;
 		}
 			
 		case 1:
 		{
-			//tmpStr = @"Sign In with an eXo account:";
 			tmpStr = [_dictLocalize objectForKey:@"AccountHeader"];			
 			break;
 		}
@@ -259,7 +257,6 @@
 				case 0:
 				{
 					UILabel* userNameLabel = [[UILabel alloc] init];
-					//userNameLabel.text = @"UserName";
 					userNameLabel.text = [_dictLocalize objectForKey:@"UserNameCellTitle"];
 					return [self containerCellWithLabel:userNameLabel view:_txtfUserName];
 					break;
@@ -267,7 +264,6 @@
 				case 1:
 				{
 					UILabel* userPswdLabel = [[UILabel alloc] init];
-					//userPswdLabel.text = @"Password";
 					userPswdLabel.text = [_dictLocalize objectForKey:@"PasswordCellTitle"];
 					return [self containerCellWithLabel:userPswdLabel view:_txtfUserPasswd];
 					

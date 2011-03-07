@@ -132,10 +132,6 @@
 	_btnMoreChat = [[UIButton alloc] init];
 	[_btnMoreChat addTarget:self action:@selector(showLiveChat:) forControlEvents:UIControlEventTouchUpInside];
 	[_btnMoreChat setBackgroundImage:[UIImage imageNamed:@"more.png"] forState:UIControlStateNormal];
-
-	//UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithCustomView:_btnMoreChat];
-	//[_liveChatArr addObject:barBtn];
-	//[_toolBarChatsLive setItems:_liveChatArr];
 }
 
 - (void)addChatButton:(XMPPUser *)user userIndex:(int)index
@@ -162,7 +158,6 @@
 			tmpStr = [tmpStr substringToIndex:r.location];
 		}
 		[btn setTitle:tmpStr forState:UIControlStateNormal];
-		//[btn setBackgroundImage:[UIImage imageNamed:@"chatnamebackground.png"] forState:UIControlStateNormal];
 		[btn setBackgroundImage:[UIImage imageNamed:@"ChatMinimize.png"] forState:UIControlStateNormal];
 		[btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		[btn setTag:index];
@@ -265,15 +260,6 @@
 	{
 		[[self view] bringSubviewToFront:_toolBarChatsLive];
 	}
-	
-//	CGRect rect = [[_nvMessengerViewController view] frame];
-//	CGRect rect2;
-//	if(show)
-//		rect2 = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height - 44);
-//	else
-//		rect2 = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 44);
-//	
-//	[[_nvMessengerViewController view] setFrame:rect2];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -517,14 +503,6 @@
 	[_chatWindowViewController receivedChatMsg];
 }
 
-//- (void)startGadget:(NSURL*)gadgetUrl
-//{
-//	[_vPrevious removeFromSuperview];
-//	[[self view] addSubview:[_gadgetDisplayController view]];
-//	[_gadgetDisplayController startGadget:gadgetUrl];
-//	_vPrevious = [_gadgetDisplayController view];
-//}
-
 - (void)startGadget:(Gadget*)gadget
 {
 	[_vPrevious removeFromSuperview];
@@ -570,8 +548,6 @@
 	[_filesViewController._navigationBar setLeftBarButtonItem:nil];
 	
 	//messenger app
-	
-	
 }
 
 
@@ -583,7 +559,6 @@
 	{
 		rect.origin.y -= 270;
 		[_chatWindowViewController._wvChatContentDisplay removeFromSuperview];
-		//[_chatWindowViewController._wvChatContentDisplay setFrame:rect];
 		UIWebView* tmp = [[UIWebView alloc] initWithFrame:rect];
 		[[_chatWindowViewController view] addSubview:tmp];
 	}

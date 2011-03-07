@@ -64,16 +64,6 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-//	AudioServicesPlaySystemSound(1000);
-//	AudioServicesPlaySystemSound(1105);
-	
-//	if(!_bTouched)
-//	{
-//		_bTouched = YES;
-//		[self setBackgroundImage:[UIImage imageNamed:@"radioselected.png"] forState:UIControlStateNormal];
-//		[_delegate changeLanguage:_languageId];
-//	}
 }
 
 - (void)onBtnGadget:(id)sender
