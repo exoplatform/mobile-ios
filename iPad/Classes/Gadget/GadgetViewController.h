@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class GadgetButtonView;
+@class GadgetButtonView_iPad;
 @class GrayPageControl;
 
 @interface GadgetViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate> 
@@ -44,5 +44,5 @@
 - (void)showGrid;
 - (void)loadScrollViewWithPage:(int)page;
 - (IBAction)onPageViewController:(id)sender;
-- (void)onGadgetButton:(GadgetButtonView*)gadgetBtn;
+- (void)onGadgetButton:(GadgetButtonView_iPad*)gadgetBtn;
 @end

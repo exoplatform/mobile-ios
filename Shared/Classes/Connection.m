@@ -10,7 +10,7 @@
 #import "DataProcess.h"
 #import "defines.h"
 #import "Gadget_iPhone.h"
-#import "Gadget.h"
+#import "Gadget_iPad.h"
 
 static NSString* _strUsername;
 static NSString* _strPassword;
@@ -385,7 +385,7 @@ static NSString* _strDomain;
 			
 			for (int i = 0; i < [arrTmpGadgetsInItem count]; i++) 
 			{
-				Gadget* tmpGadget = [arrTmpGadgetsInItem objectAtIndex:i];
+				Gadget_iPad* tmpGadget = [arrTmpGadgetsInItem objectAtIndex:i];
 				
 				NSString *urlStandalone = [dictionaryStandaloneURL objectForKey:tmpGadget._strID];
 				// If the url is not find, we maintain the iframe url
@@ -517,7 +517,7 @@ static NSString* _strDomain;
 			
 			urlGadgetContent = [NSURL URLWithString:gadgetUrl];
 			
-			Gadget* gadget = [[Gadget alloc] init];
+			Gadget_iPad* gadget = [[Gadget_iPad alloc] init];
 			
 			[gadget setObjectWithName:strGadgetName description:strGadgetDescription urlContent:urlGadgetContent urlIcon:nil imageIcon:imgGadgetIcon];
 			gadget._strID = [idString copy];

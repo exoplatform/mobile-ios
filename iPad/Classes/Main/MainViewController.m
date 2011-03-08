@@ -19,7 +19,7 @@
 #import "XMPPClient.h"
 #import "XMPPUser.h"
 #import "MoreLiveChatViewController.h"
-#import "Gadget.h"
+#import "Gadget_iPad.h"
 
 @implementation MainViewController
 

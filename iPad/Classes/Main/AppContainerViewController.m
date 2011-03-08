@@ -10,7 +10,7 @@
 #import "MainViewController.h"
 #import "GadgetViewController.h"
 #import "defines.h"
-#import "Gadget.h"
+#import "Gadget_iPad.h"
 #import "Connection.h"
 #import "MessengerViewController.h"
 #import "XMPPClient.h"
