@@ -8,17 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+//Dashboard tab
 @interface GateInDbItem : NSObject 
 {
-	NSString*			_strDbItemName;
-	NSURL*				_urlDbItem;
-	NSArray*		_arrGadgetsInItem;
+	NSString*			_strDbItemName; //Dashboard tab name
+	NSURL*				_urlDbItem;	//Dashboard tab URL
+	NSArray*		_arrGadgetsInItem;	//Gadgets in dashboard tab
 }
 
 @property (nonatomic, retain) NSString* _strDbItemName;
 @property (nonatomic, retain) NSURL* _urlDbItem;
 @property (nonatomic, retain) NSArray* _arrGadgetsInItem;
 
+//Constructor
 - (void)setObjectWithName:(NSString*)name andURL:(NSURL*)url andGadgets:(NSArray*)arrGadgets;
 @end
 
@@ -26,15 +28,15 @@
 
 
 
-
-@interface Gadget : NSObject 
+//Gadget info
+@interface Gadget_iPad : NSObject 
 {
-	NSString*			_strName;
-	NSString*			_strDescription;
-	NSURL*				_urlContent;
-	NSURL*				_urlIcon;
-	UIImage*			_imgIcon;
-	NSString*			_strID;
+	NSString*			_strName;	//Gadget name
+	NSString*			_strDescription;	//Gadget description
+	NSURL*				_urlContent;	//Gadget URL
+	NSURL*				_urlIcon;	//Gadget icon URL
+	UIImage*			_imgIcon;	//Gadget icon image
+	NSString*			_strID;	//Gadget ID
 } 
 
 @property (nonatomic, retain) NSString* _strName;
@@ -44,12 +46,13 @@
 @property (nonatomic, retain) UIImage* _imgIcon;
 @property (nonatomic, retain) NSString* _strID;
 
-
+//Constructor
 - (void)setObjectWithName:(NSString*)name 
 			  description:(NSString*)description 
 			   urlContent:(NSURL*)urlContent 
 				  urlIcon:(NSURL*)urlIcon 
 				imageIcon:(UIImage*)imageIcon;
+//Gettors
 - (NSString*)name;
 - (NSString*)description;
 - (NSURL*)urlContent;
@@ -58,11 +61,11 @@
 @end
 
 
-
+//Standalone gadgets
 @interface StandaloneGadget : NSObject 
 {
-	NSString*			_strName;
-	NSURL*				_urlContent;
+	NSString*			_strName; //Gadget name
+	NSURL*				_urlContent;	//Gadget URL
 } 
 
 @property (nonatomic, retain) NSString* _strName;

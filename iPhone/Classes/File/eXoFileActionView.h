@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-
+//Display backgournd for file, folder action view
 @interface eXoFileActionView : UIView {
 
-	UITableView *tblFileAction;
+	UITableView *tblFileAction;	//Action list
 }
 
 @end

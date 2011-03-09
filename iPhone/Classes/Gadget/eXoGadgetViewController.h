@@ -11,12 +11,14 @@
 @class eXoApplicationsViewController;
 @class GadgetDisplayViewController;
 
+//Display gadgets in each tab
 @interface eXoGadgetViewController : UITableViewController {
-	GateInDbItem_iPhone *_gadgetTab;
-	eXoApplicationsViewController *_delegate;
-	GadgetDisplayViewController* _gadgetDisplayViewController;
+	GateInDbItem_iPhone *_gadgetTab;	//Gadget tab contains gadgets
+	eXoApplicationsViewController *_delegate;	//Main eXo app
+	GadgetDisplayViewController* _gadgetDisplayViewController;	//Display gadget
 }
 
+//Constructor
 - (id)initWithStyle:(UITableViewStyle)style delegate:(eXoApplicationsViewController *)delegate 
 		  gadgetTab:(GateInDbItem_iPhone *)gagetTab;
 

@@ -8,22 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-
+//Display file content
 @interface FileContentDisplayController : UIViewController <UIWebViewDelegate>
 {
-	id										_delegate;
-	NSDictionary*							_dictLocalize;
-	int										_intSelectedLanguage;
+	id										_delegate; //The delegate
+	NSDictionary*							_dictLocalize;	//Language dictionary
+	int										_intSelectedLanguage;	//Index of language
 	
-	IBOutlet UIWebView*						_wvFileContentDisplay;
-	IBOutlet UIActivityIndicatorView*		_actiLoading;	
-	IBOutlet UILabel*						_lbStatus;
+	IBOutlet UIWebView*						_wvFileContentDisplay;	//File content is displayed on a web view
+	IBOutlet UIActivityIndicatorView*		_actiLoading;	//Loading file content
+	IBOutlet UILabel*						_lbStatus;	//Loading status
 }
 @property (nonatomic, retain) UIWebView* _wvFileContentDisplay;
 @property (nonatomic, retain) UIActivityIndicatorView* _actiLoading;
 @property (nonatomic, retain) UILabel* _lbStatus;
 
-- (void)setDelegate:(id)delegate;
-- (void)localize;
-- (void)startDisplayFileContent:(NSURL*)url;
+- (void)setDelegate:(id)delegate;	//Set the delegate
+- (void)localize;	//Get current language
+- (void)startDisplayFileContent:(NSURL*)url;	//View file with its url
 @end

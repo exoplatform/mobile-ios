@@ -8,7 +8,7 @@
 
 #import "GadgetDisplayController.h"
 #import "MainViewController.h"
-#import "Gadget.h"
+#import "Gadget_iPad.h"
 #import "Connection.h"
 
 @implementation GadgetDisplayController
@@ -98,7 +98,7 @@
 
 
 
-- (void)startGadget:(Gadget*)gadget
+- (void)startGadget:(Gadget_iPad*)gadget
 {
 	[_wvGadgetDisplay  setDelegate:self];
 	_nvTitle.topItem.title = [gadget name];

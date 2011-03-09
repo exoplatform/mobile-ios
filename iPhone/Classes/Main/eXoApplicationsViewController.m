@@ -308,13 +308,13 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	[_filesView setDriverContent:_arrDicts withDelegate:self];
 }
 
-- (IBAction)onNewsBtn
-{
-	[self addCloseBtn];
-	[[self view] addSubview:_newsView];
-	_tempView = _newsView;
-	
-}
+//- (IBAction)onNewsBtn
+//{
+//	[self addCloseBtn];
+//	[[self view] addSubview:_newsView];
+//	_tempView = _newsView;
+//	
+//}
 
 - (IBAction)onChatBtn
 {

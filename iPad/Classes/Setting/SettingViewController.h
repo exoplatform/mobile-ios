@@ -8,14 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+//Change language
 @interface SettingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {	
-	id										_delegate;
-	IBOutlet UITableView*					_tblLanguage;
-	NSDictionary*							_dictLocalize;
-	int										_intSelectedLanguage;
+	id										_delegate;	//The delegate
+	IBOutlet UITableView*					_tblLanguage;	//Language list
+	NSDictionary*							_dictLocalize;	//Language dictionary
+	int										_intSelectedLanguage;	//Language index
 }
 
-- (void)setDelegate:(id)delegate;
-- (void)localize;
+- (void)setDelegate:(id)delegate;	//Set delegate
+- (void)localize;	//Set language dictionary
 @end

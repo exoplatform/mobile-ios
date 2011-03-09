@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-
+//Gadget page controller
 @interface GrayPageControl : UIPageControl
 {
-    UIImage* activeImage;
-    UIImage* inactiveImage;
+    UIImage* activeImage;	//Black image
+    UIImage* inactiveImage;	//Gray image
 }
 
 @end

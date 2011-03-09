@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-
+//User guide view controller
 @interface SupportViewController : UIViewController {
-	id						_delegate;
-	int						_selectedLanguage;
-	NSDictionary*			_dictLocalize;
-	UIWebView*				_wvHelp;
+	id						_delegate;	//The delegate
+	int						_selectedLanguage;	//Language index
+	NSDictionary*			_dictLocalize;	//Language dictionary
+	UIWebView*				_wvHelp;	//Display help content
 }
 @property (nonatomic, retain) id	_delegate;
 @property (nonatomic, retain) NSDictionary*	_dictLocalize;
 
-- (void)setDelegate:(id)delegate;
-- (void)localize;
-- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
-- (IBAction)close:(id)sender;
+- (void)setDelegate:(id)delegate;	//Set delegate
+- (void)localize;	//Set language dictionary
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change orientation
+- (IBAction)close:(id)sender;	//Close view
 @end

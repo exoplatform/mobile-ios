@@ -11,38 +11,37 @@
 @class GadgetButtonView_iPad;
 @class GrayPageControl;
 
+//Display gadget list
 @interface GadgetViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate> 
 {
-	id										_delegate;
-	IBOutlet UITableView*					_tblGadgetList;
-	NSDictionary*							_dictLocalize;
-	int										_intSelectedLanguage;
+	id										_delegate;	//The delegate
+	IBOutlet UITableView*					_tblGadgetList;	//show gadget in a list
+	NSDictionary*							_dictLocalize;	//Language dictionary
+	int										_intSelectedLanguage;	//language index
 
-	NSMutableArray*							_arrGadgets;
-	NSMutableArray*							_arrGateInDbItems;
+	NSMutableArray*							_arrGadgets;	//Gadgets list
+	NSMutableArray*							_arrGateInDbItems;		//Dashboard tab list
 	
-	IBOutlet UIButton*						_btnGrid;
-	BOOL									_bGrid;
-	BOOL									_bPageControlUsed;
-	int										_intPageNumber;
-	//IBOutlet UIPageControl*					_pageController;
-	IBOutlet GrayPageControl*					_pageController;
-	IBOutlet UIScrollView*					_scrollView;
-	IBOutlet UILabel*						_lbTitleItemInDb;
+	IBOutlet UIButton*						_btnGrid;	//Show gadget as list or grid
+	BOOL									_bGrid;	//Is in grid vie mode
+	BOOL									_bPageControlUsed;	//Is page control activing
+	int										_intPageNumber;		//Number of gadget page
+	IBOutlet GrayPageControl*				_pageController;	//Gadget page controller
+	IBOutlet UIScrollView*					_scrollView;	//Scroll view for gadget pages
+	IBOutlet UILabel*						_lbTitleItemInDb;	//Dashboard title
 }
 
 @property(nonatomic, retain) UITableView* _tblGadgetList;
 
-- (void)setDelegate:(id)delegate;
-- (void)localize;
-- (int)getSelectedLanguage;
-- (NSDictionary*)getLocalization;
-- (void)loadGateInDbItems:(NSMutableArray*)arrGateInDbItems;
-//- (IBAction)onGridBtn:(id)sender;
-- (void)checkGrid;
-- (void)onGridBtn;
-- (void)showGrid;
-- (void)loadScrollViewWithPage:(int)page;
-- (IBAction)onPageViewController:(id)sender;
-- (void)onGadgetButton:(GadgetButtonView_iPad*)gadgetBtn;
+- (void)setDelegate:(id)delegate;	//Set delegate
+- (void)localize;	//Get current language
+- (int)getSelectedLanguage;	//Get current language index
+- (NSDictionary*)getLocalization;	//Get cuurent language dictionary
+- (void)loadGateInDbItems:(NSMutableArray*)arrGateInDbItems;	//Get dashboar tab list
+- (void)checkGrid;	//Check gadget tabs view mode
+- (void)onGridBtn;	//Change gadget tabs view mode
+- (void)showGrid;	//Change gadget tabs view mode
+//- (void)loadScrollViewWithPage:(int)page;
+- (IBAction)onPageViewController:(id)sender;	//Scroll gadget page
+- (void)onGadgetButton:(GadgetButtonView_iPad*)gadgetBtn; //View gadget
 @end

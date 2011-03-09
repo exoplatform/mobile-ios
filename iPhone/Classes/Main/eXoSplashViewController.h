@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-
+//Display splash view
 @interface eXoSplashViewController : UIViewController {
-	UIActivityIndicatorView *activity;
-	UILabel *label;
-	UILabel *lDomain;
-	UILabel *lUserName;
-	UILabel *lDomainStr;
-	UILabel *lUserNameStr;
-	UIImageView *autoLoginImg;
+	UIActivityIndicatorView *activity;	//Loading indicator
+	UILabel *label;	//Auto signin title
+	UILabel *lDomain;	//Host title
+	UILabel *lUserName;	//Username title
+	UILabel *lDomainStr;	//Host value
+	UILabel *lUserNameStr;	//Username value
+	UIImageView *autoLoginImg;	//Auto signin image view
 	
-	NSDictionary* _dictLocalize;
+	NSDictionary* _dictLocalize;	//Language dictionary
 }
 
 @property(nonatomic, retain) UIActivityIndicatorView *activity;

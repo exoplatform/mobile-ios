@@ -6,11 +6,11 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "GadgetButtonView.h"
+#import "GadgetButtonView_iPad.h"
 #import "GadgetViewController.h"
-#import "Gadget.h"
+#import "Gadget_iPad.h"
 
-@implementation GadgetButtonView
+@implementation GadgetButtonView_iPad
 
 - (id)initWithFrame:(CGRect)rect
 {
@@ -20,7 +20,7 @@
 		_btnGadget = [[UIButton alloc] initWithFrame:CGRectMake(11, 5, 50, 50)];
 		[_btnGadget addTarget:self action:@selector(onBtnGadget:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:_btnGadget];
-		_gadget = [[Gadget alloc] init];
+		_gadget = [[Gadget_iPad alloc] init];
 		_lbName = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, 72, 42)];
 		[_lbName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
 		[_lbName setNumberOfLines:3];
@@ -36,12 +36,12 @@
 	_delegate = delegate;
 }
 
-- (void)setGadget:(Gadget*)gadget
+- (void)setGadget:(Gadget_iPad*)gadget
 {
 	_gadget = gadget;
 }
 
-- (Gadget*)getGadget
+- (Gadget_iPad*)getGadget
 {
 	return _gadget;
 }

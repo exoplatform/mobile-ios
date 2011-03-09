@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 @class eXoApplicationsViewController;
 
+//View file or gadget
 @interface eXoWebViewController : UIViewController <UIWebViewDelegate>{
-	UIWebView*	_webView;
-	UILabel*	_statusLabel;
-	UIActivityIndicatorView* _progressIndicator;
-	NSURL* _url;	
-	int			_selectedLanguage;
-	NSDictionary*	_dictLocalize;
-	eXoApplicationsViewController *_delegate;
+	UIWebView*	_webView;	//Display file, gadget
+	UILabel*	_statusLabel;	//Loding label
+	UIActivityIndicatorView* _progressIndicator;	//Loading indicator
+	NSURL* _url;	//File, gadget URL
+	int			_selectedLanguage;	//Current language index
+	NSDictionary*	_dictLocalize;	//Language dictionary
+	eXoApplicationsViewController *_delegate;	//Main app view controller
 }
 
 @property (nonatomic, retain) IBOutlet NSURL* _url;
@@ -25,6 +26,7 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView* _progressIndicator;
 @property (nonatomic, retain) eXoApplicationsViewController *_delegate;
 
+//Constructor
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;
 
 @end

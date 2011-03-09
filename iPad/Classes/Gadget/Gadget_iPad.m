@@ -6,7 +6,7 @@
 //  Copyright 2010 home. All rights reserved.
 //
 
-#import "Gadget.h"
+#import "Gadget_iPad.h"
 
 
 @implementation GateInDbItem 
@@ -41,7 +41,7 @@
 
 
 
-@implementation Gadget
+@implementation Gadget_iPad
 
 @synthesize _strName;
 @synthesize _strDescription;

@@ -12,66 +12,69 @@
 @class SettingViewController;
 @class SupportViewController;
 
+//Login page
 @interface LoginViewController : UIViewController <UITextFieldDelegate> {
 	
 	id										_delegate;
 	//UI variables
-	IBOutlet UIButton*						_btnLogo;
-	IBOutlet UIButton*						_btnHelp;
-	IBOutlet UIButton*						_btnSetting;
-	IBOutlet UILabel*						_lbHostInstruction;
-	IBOutlet UILabel*						_lbAccountInstruction;
-	IBOutlet UILabel*						_lbHost;
-	IBOutlet UILabel*						_lbRememberMe;
-	IBOutlet UILabel*						_lbAutoSignIn;
-	IBOutlet UILabel*						_lbSigningInStatus;
-	IBOutlet UIActivityIndicatorView*		_actiSigningIn;
-	IBOutlet UIButton*						_btnHost;
-	IBOutlet UITextField*					_txtfHost;
-	IBOutlet UIButton*						_btnUsername;
-	IBOutlet UITextField*					_txtfUsername;
-	IBOutlet UIButton*						_btnPassword;
-	IBOutlet UITextField*					_txtfPassword;
-	Checkbox*								_cbxRememberMe;
-	Checkbox*								_cbxAutoSignIn;
-	IBOutlet UIButton*						_btnSignIn;
-	UILabel*								_lbHelpTitle;
-	NSURLRequest*							_urlHelp;
-	UIWebView*								_wvHelp;
-	UIButton*								_btnHelpClose;
+	IBOutlet UIButton*						_btnLogo;	//Company logo
+	IBOutlet UIButton*						_btnHelp;	//User guide
+	IBOutlet UIButton*						_btnSetting;	//Change language
+	IBOutlet UILabel*						_lbHostInstruction;	//Host title
+	IBOutlet UILabel*						_lbAccountInstruction;	//Account title
+	IBOutlet UILabel*						_lbHost;	//Host label
+	IBOutlet UILabel*						_lbRememberMe;	//Remember label
+	IBOutlet UILabel*						_lbAutoSignIn;	//Auto sign-in label
+	IBOutlet UILabel*						_lbSigningInStatus;	//Loading label
+	IBOutlet UIActivityIndicatorView*		_actiSigningIn;	//Loading indicator
+	IBOutlet UIButton*						_btnHost;	//Host button
+	IBOutlet UITextField*					_txtfHost;	//Host text box
+	IBOutlet UIButton*						_btnUsername;	//Username button
+	IBOutlet UITextField*					_txtfUsername;	//Username text box
+	IBOutlet UIButton*						_btnPassword;	//Password button
+	IBOutlet UITextField*					_txtfPassword;	//Password text box
+	Checkbox*								_cbxRememberMe;	//Remember check box
+	Checkbox*								_cbxAutoSignIn;	//AutoSignIn check box
+	IBOutlet UIButton*						_btnSignIn;	//Sign in buuton
+	UILabel*								_lbHelpTitle;	//Help label
+	NSURLRequest*							_urlHelp;	//Help file URL
+	UIWebView*								_wvHelp;	//Display help
+	UIButton*								_btnHelpClose;	//Close help page
 	
-	SettingViewController*					_settingViewController;
-	SupportViewController*					_supportViewController;
-	BOOL									_bDismissSettingView;
+	SettingViewController*					_settingViewController;	//Setting page
+	SupportViewController*					_supportViewController;	//Support page
+	BOOL									_bDismissSettingView;	//Is dissmiss setting page
 	UIPopoverController*					popoverController;
-	UIInterfaceOrientation					_interfaceOrientation;
+	UIInterfaceOrientation					_interfaceOrientation;	//Divice orientation
 	//
-	NSString*								_strHost;
-	NSString*								_strUsername;
-	NSString*								_strPassword;
+	NSString*								_strHost;	//Host
+	NSString*								_strUsername;	//Username
+	NSString*								_strPassword;	//Passowrd
 	
-	BOOL									_bRememberMe;
-	BOOL									_bAutoSignIn;
-	BOOL									_bMoveUp;
+	BOOL									_bRememberMe;	//Is remember
+	BOOL									_bAutoSignIn;	//Is auto sign in
+	BOOL									_bMoveUp;	// Is move UI up
 	
-	NSDictionary*							_dictLocalize;
-	int										_intSelectedLanguage;
+	NSDictionary*							_dictLocalize;	//Language dictionary
+	int										_intSelectedLanguage;	//Language index
 }
 
 
-- (void)setDelegate:(id)delegate;
-- (void)setPreferenceValues;
-- (void)localize;
-- (int)getSelectedLanguage;
-- (NSDictionary*)getLocalization;
-- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)setDelegate:(id)delegate;	//Set delegate
+- (void)setPreferenceValues;	//Set prefrrences
+- (void)localize;	//Set language dictionary
+- (int)getSelectedLanguage;	//Get current language
+- (NSDictionary*)getLocalization;	//Get language dictionary
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
+//Move UI when typing at host, username, password
 - (IBAction)onHostInput:(id)sender;
 - (IBAction)onUsernameInput:(id)sender;
 - (IBAction)onPasswordInput:(id)sender;
 - (void)moveUIControls:(int)intOffset;
-- (IBAction)onSettingBtn:(id)sender;
-- (IBAction)onHelpBtn:(id)sender;
-- (IBAction)onCloseBtn:(id)sender;
+- (IBAction)onSettingBtn:(id)sender;	//Show setting
+- (IBAction)onHelpBtn:(id)sender;	//Show help
+- (IBAction)onCloseBtn:(id)sender;	//Remove support view
+//Sign in
 - (IBAction)onSignInBtn:(id)sender;
 - (void)doSignIn;
 - (void)startSignInProgress;

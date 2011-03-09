@@ -31,18 +31,19 @@ enum EXOMessageStatus
 - (void)iconUpdate:(eXoMessage*)sender;
 @end
 
+//Message info
 @interface eXoMessage : NSObject {
-    NSString *statusId;
-    NSString *name;
-    NSString *screenName;
-    NSString *text;
-	NSString *source;
-    NSDate *timestamp;
-    UIImage *icon;
-    enum EXOReplyType replyType;
-    enum EXOMessageStatus status;
-	BOOL favorited;
-	NSObject<eXoMessageIconUpdate> *iconUpdateDelegate;
+    NSString *statusId;	//Status ID
+    NSString *name;	//message owner name
+    NSString *screenName;	//Owner display name
+    NSString *text;	//Content
+	NSString *source;	//address
+    NSDate *timestamp;	
+    UIImage *icon;	
+    enum EXOReplyType replyType;	
+    enum EXOMessageStatus status;	
+	BOOL favorited;	
+	NSObject<eXoMessageIconUpdate> *iconUpdateDelegate;	
 }
 
 @property(readwrite, retain) NSString *statusId, *name, *screenName, *text, *source;

@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-
+//Remeber & Autologin check box
 @interface Checkbox : UIButton {
-	id			_delegate;
-	BOOL		_bTouched;
+	id			_delegate;	//Main app view controller
+	BOOL		_bTouched;	//Is touched
 }
 
+//Instructor
 - (id)initWithFrame:(CGRect)rect andState:(BOOL)bTouch;
+//Gettors & settors
 - (void)setDelegate:(id)delegate;
 - (void)setStatus:(BOOL)status;
 - (BOOL)getStatus;

@@ -252,52 +252,6 @@ static NSString* _strDomain;
 	return dataResponse;
 }
 
-- (NSData*)sendRequestToSocialToGetGadget:(NSString*)urlStr
-{
-	NSURLResponse* response;
-	NSError* error;
-	NSData* dataResponse;
-	NSData* bodyData;
-		
-	NSURL* redirectURL = [NSURL URLWithString:urlStr];
-	NSString* checkUrlStr = [NSString stringWithContentsOfURL:redirectURL encoding:NSUTF8StringEncoding error:nil];
-	if(checkUrlStr == nil) 
-	{
-		redirectURL = nil;
-		[redirectURL release];
-		return nil;
-	}
-	
-	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	
-	NSRange rangeOfPrivate = [urlStr rangeOfString:@"/classic"];
-	
-	//Request to login
-	NSString* loginStr = [[urlStr substringToIndex:rangeOfPrivate.location] stringByAppendingString:@"/j_security_check"];
-	NSURL* loginURL = [NSURL URLWithString:loginStr];
-	NSMutableURLRequest* loginRequest = [[NSMutableURLRequest alloc] init];	
-	[loginRequest setURL:loginURL];
-	[loginRequest setTimeoutInterval:60.0];
-	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-	[loginRequest setHTTPShouldHandleCookies:NO];
-	
-	NSDictionary* postDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
-	[postDictionary setValue:_strUsername forKey:@"j_username"];
-	[postDictionary setValue:_strPassword forKey:@"j_password"];
-	DataProcess* dataProcess = [DataProcess instance];
-	bodyData = [dataProcess formatDictData:postDictionary WithEncoding:NSUTF8StringEncoding];
-	
-	[loginRequest setHTTPBody:bodyData];
-	[loginRequest setHTTPMethod: @"POST"]; 
-	
-	NSDictionary *cookiesInfo = [NSHTTPCookie requestHeaderFieldsWithCookies:[store cookies]];
-	[loginRequest setValue:[cookiesInfo objectForKey:@"Cookie"] forHTTPHeaderField:@"Cookie"];
-	
-	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
-	
-	return dataResponse;
-}
-
 - (NSData*)sendRequestWithAuthorization:(NSString*)urlStr
 {
 	NSURLResponse* response;

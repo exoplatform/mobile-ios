@@ -8,8 +8,8 @@
 
 #import "GadgetViewController.h"
 #import "AppContainerViewController.h"
-#import "Gadget.h"
-#import "GadgetButtonView.h"
+#import "Gadget_iPad.h"
+#import "GadgetButtonView_iPad.h"
 #import "GrayPageControl.h"
 
 @implementation GadgetViewController
@@ -155,7 +155,7 @@
 	_pageController.numberOfPages = _intPageNumber;
 	_pageController.currentPage = 0;
 	
-	GadgetButtonView* tmpBtn;
+	GadgetButtonView_iPad* tmpBtn;
 	int row = 0;	
 	
 	for(int i = 0; i < [_arrGateInDbItems count]; i++)
@@ -168,7 +168,7 @@
 			}
 			
 			CGRect tmpRect = CGRectMake(i*290 + 72*(j%4) + 1, 102*row + 8, 72, 102);
-			tmpBtn = [[GadgetButtonView alloc] initWithFrame:tmpRect];
+			tmpBtn = [[GadgetButtonView_iPad alloc] initWithFrame:tmpRect];
 			[tmpBtn setDelegate:self];
 			[tmpBtn setGadget:[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j]];
 			[tmpBtn setName:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _strName]];
@@ -192,9 +192,9 @@
 {
 	int page = _pageController.currentPage;
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
+   // [self loadScrollViewWithPage:page - 1];
+//    [self loadScrollViewWithPage:page];
+//    [self loadScrollViewWithPage:page + 1];
     // update the scroll view to the appropriate page
     CGRect frame = _scrollView.frame;
     frame.origin.x = frame.size.width * page;
@@ -204,17 +204,17 @@
     _bPageControlUsed = YES;
 }
 
-- (void)loadScrollViewWithPage:(int)page 
-{
-    if (page < 0) 
-	{
-		return;
-	}	
-    if (page >= _intPageNumber) 
-	{
-		return;
-	}	
-}
+//- (void)loadScrollViewWithPage:(int)page 
+//{
+//    if (page < 0) 
+//	{
+//		return;
+//	}	
+//    if (page >= _intPageNumber) 
+//	{
+//		return;
+//	}	
+//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender 
 {
@@ -232,9 +232,9 @@
     _pageController.currentPage = page;
 	
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
+    //[self loadScrollViewWithPage:page - 1];
+//    [self loadScrollViewWithPage:page];
+//    [self loadScrollViewWithPage:page + 1];
 	
 	NSString* tmpStr = [[_arrGateInDbItems objectAtIndex:_pageController.currentPage] _strDbItemName];
 	[_lbTitleItemInDb setText:tmpStr];	
@@ -253,7 +253,7 @@
 }
 
 
-- (void)onGadgetButton:(GadgetButtonView*)gadgetBtn
+- (void)onGadgetButton:(GadgetButtonView_iPad*)gadgetBtn
 {
 	[_delegate onGadget:[gadgetBtn getGadget]];
 }
@@ -318,7 +318,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	Gadget* tmpGadget = [[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row];
+	Gadget_iPad* tmpGadget = [[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row];
 	[_delegate onGadget:tmpGadget];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

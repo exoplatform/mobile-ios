@@ -503,7 +503,7 @@
 	[_chatWindowViewController receivedChatMsg];
 }
 
-- (void)startGadget:(Gadget*)gadget
+- (void)startGadget:(Gadget_iPad*)gadget
 {
 	[_vPrevious removeFromSuperview];
 	[[self view] addSubview:[_gadgetDisplayController view]];

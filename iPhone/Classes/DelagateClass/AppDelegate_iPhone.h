@@ -15,21 +15,22 @@
 @class eXoSplashViewController;
 @class eXoSettingViewController;
 
+//App delegate
 @interface AppDelegate_iPhone : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
     IBOutlet UIWindow*					window;
 	IBOutlet UINavigationController*	navigationController;
 	IBOutlet UITabBarController*		tabBarController;
 	
-	eXoAppViewController*				viewController;
-	eXoApplicationsViewController*		applicationsViewController;
-	eXoGadgetsViewController*			gadgetsViewController;
-	eXoSettingViewController*			settingViewController;
-	eXoWebViewController*				webViewController;
-	eXoSplashViewController*			_splash;
+	eXoAppViewController*				viewController;	//Login page
+	eXoApplicationsViewController*		applicationsViewController;	//Main app page
+	eXoGadgetsViewController*			gadgetsViewController;	//Gadgeta page
+	eXoSettingViewController*			settingViewController;	//Setting page
+	eXoWebViewController*				webViewController;	//Display help or file content
+	eXoSplashViewController*			_splash;	//Splash view
 	
 	
-	int									_selectedLanguage;
-	NSDictionary*						_dictLocalize;
+	int									_selectedLanguage;	//Language index
+	NSDictionary*						_dictLocalize;	//Language dictionary
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow* window;
@@ -41,10 +42,9 @@
 @property (nonatomic, retain) IBOutlet eXoSettingViewController*	settingViewController;
 @property (nonatomic, retain) eXoWebViewController* webViewController;
 
--(void)login;
-- (void)changeToActivityStreamsViewController:(NSDictionary *)dic;
-- (void)changeToGadgetsViewController;
-- (void)changeToEachGadgetViewController:(NSString*)urlStr;
+-(void)login;	//Login action
+- (void)changeToActivityStreamsViewController:(NSDictionary *)dic;	//Show main view of application
+- (void)changeToGadgetsViewController;	//Display gadget view controller
 
 @end
 

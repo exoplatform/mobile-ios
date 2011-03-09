@@ -8,20 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@class Gadget;
+@class Gadget_iPad;
 
+//Display gadget
 @interface GadgetDisplayController : UIViewController <UIWebViewDelegate>
 {
-	id										_delegate;
-	NSDictionary*							_dictLocalize;
-	int										_intSelectedLanguage;
-	IBOutlet UINavigationBar*				_nvTitle;
-	IBOutlet UIWebView*						_wvGadgetDisplay;
-	IBOutlet UIActivityIndicatorView*		_actiLoading;	
-	IBOutlet UILabel*						_lbStatus;
-	IBOutlet UIButton*						_btnLeftEdgeNavigation;
-	IBOutlet UIButton*						_btnRightEdgeNavigation;
-	NSString*								_strBConnectStatus;
+	id										_delegate;	//The delegate
+	NSDictionary*							_dictLocalize;	//Language dictionary
+	int										_intSelectedLanguage;	//language index
+	IBOutlet UINavigationBar*				_nvTitle;	//Navigation bar
+	IBOutlet UIWebView*						_wvGadgetDisplay;	//display gaget on webview
+	IBOutlet UIActivityIndicatorView*		_actiLoading;	//Loading indicator
+	IBOutlet UILabel*						_lbStatus;	//Loading label
+	IBOutlet UIButton*						_btnLeftEdgeNavigation;	//Left image for navigation bar
+	IBOutlet UIButton*						_btnRightEdgeNavigation;	//Right image for navigation bar
+	NSString*								_strBConnectStatus;	//Loading text
 }
 @property (nonatomic, retain) UIWebView* _wvGadgetDisplay;
 @property (nonatomic, retain) UIActivityIndicatorView* _actiLoading;
@@ -30,9 +31,7 @@
 @property (nonatomic, retain) UIButton* _btnRightEdgeNavigation;
 
 
-//- (id)initWithNibAndUrl:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *)defaultURL;
-- (void)setDelegate:(id)delegate;
-- (void)localize;
-//- (void)startGadget:(NSURL*)gadgetUrl;
-- (void)startGadget:(Gadget*)gadget;
+- (void)setDelegate:(id)delegate; //Set delegate
+- (void)localize;	//Get current language
+- (void)startGadget:(Gadget_iPad*)gadget; //Display gadget
 @end

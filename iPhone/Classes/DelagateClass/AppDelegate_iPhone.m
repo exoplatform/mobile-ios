@@ -210,9 +210,6 @@
 	[navigationController pushViewController:gadgetsViewController animated:NO];	
 }
 
-- (void)changeToEachGadgetViewController:(NSString*)urlStr
-{
-}
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 }

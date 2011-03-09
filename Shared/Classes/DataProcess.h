@@ -8,18 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-
+//Process data
 @interface DataProcess : NSObject {
 
 }
 
+//Singleton constructor
 + (id)instance;
 + (id)newInstance;
-+ (NSMutableArray*)parseData:(NSData*)data;
-+ (NSString *)decodeUrl:(NSString *)urlString;
-+ (NSString *)encodeUrl:(NSString *)urlString;
 
-- (NSString*)escapeString:(NSString*)str withEncoding:(NSStringEncoding)encoding;
-- (NSData*)formatDictData:(NSDictionary*)dictData WithEncoding:(NSStringEncoding)encoding;
++ (NSMutableArray*)parseData:(NSData*)data;	//Parsing data
++ (NSString *)decodeUrl:(NSString *)urlString;	//Decode URL
++ (NSString *)encodeUrl:(NSString *)urlString;	//Encode URL
+
+- (NSString*)escapeString:(NSString*)str withEncoding:(NSStringEncoding)encoding;	//Replace some spacial charactors
+- (NSData*)formatDictData:(NSDictionary*)dictData WithEncoding:(NSStringEncoding)encoding;	//Get data from dictionary
 
 @end

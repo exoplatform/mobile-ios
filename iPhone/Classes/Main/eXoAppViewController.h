@@ -8,50 +8,39 @@
 
 #import <UIKit/UIKit.h>
 
-
-//@interface eXoAppViewController : UIViewController <UITextFieldDelegate, UIWebViewDelegate> {
-//	IBOutlet UITextField* _txtfUserName;
-//	IBOutlet UITextField* _txtfUserPasswd;
-//}
-//
-//@property (nonatomic, retain) UITextField *_txtfUserName;
-//@property (nonatomic, retain) UITextField *_txtfUserPasswd;
-//
-//-(IBAction)onSignInBtn:(id)sender;
-//-(IBAction)onGadgetsBtn:(id)sender;
-//@end
-
+//Login page
 @interface eXoAppViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
-	UITextField* _txtfUserName;
-	UITextField* _txtfUserPasswd;
-	UITextField* _txtfDomainName;
-	NSString*	 _bSuccessful;
-	UIActivityIndicatorView* _indicator;
-	UIBarButtonItem* btnSignIn;
-	UIBarButtonItem* btnSetting;
-	BOOL endGetData;
-	BOOL bRememberMe;
-	BOOL bAutoLogin;
-	BOOL isFirstTimeLogin;
+	UITextField* _txtfUserName;	//Username
+	UITextField* _txtfUserPasswd;	//Password
+	UITextField* _txtfDomainName;	//Host
+	NSString*	 _bSuccessful;	//Login status
+	UIActivityIndicatorView* _indicator;	//Loding indicator
+	UIBarButtonItem* btnSignIn;	//Login button
+	UIBarButtonItem* btnSetting;	//Setting button
+	BOOL endGetData;	//Check if it ends get data
+	BOOL bRememberMe;	//Remember
+	BOOL bAutoLogin;	//Autologin
+	BOOL isFirstTimeLogin;	//Is first time login
 	
-	int			  _selectedLanguage;
-	NSDictionary* _dictLocalize;
+	int			  _selectedLanguage;	//Current language index
+	NSDictionary* _dictLocalize;	//Language dictionary
 	
-	//NSThread *startThread;
-	NSThread *endThread;
+	NSThread *endThread;	//Get data thread
 }
 
 @property (nonatomic, retain) UITextField *_txtfUserName;
 @property (nonatomic, retain) UITextField *_txtfUserPasswd;
 
--(IBAction)onSignInBtn:(id)sender;
--(IBAction)onSettingBtn;
--(void)login;
-- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
-- (UITableViewCell*)textCellWithLabel:(UILabel*)label;
-+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;
-+ (UITextField*)textAccountInputFieldForCellWithSecure:(BOOL)secure;
+-(IBAction)onSignInBtn:(id)sender;	//Login action
+-(IBAction)onSettingBtn;	//Setting action
+-(void)login;	//Login progress
+//Create UITableViewCell
+- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;	
+- (UITableViewCell*)textCellWithLabel:(UILabel*)label;	
+//Create UITextField
++ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;	
++ (UITextField*)textAccountInputFieldForCellWithSecure:(BOOL)secure;	
 
 @end
 

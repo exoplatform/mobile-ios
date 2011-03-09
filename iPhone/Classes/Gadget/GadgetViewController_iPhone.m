@@ -8,7 +8,6 @@
 
 #import "GadgetViewController_iPhone.h"
 #import "Gadget_iPhone.h"
-#import "GadgetButtonView_iPhone.h"
 
 @implementation GadgetViewController_iPhone
 
@@ -101,82 +100,6 @@
 - (void)loadGateInDbItems:(NSMutableArray*)arrGateInDbItems
 {
 	_arrGateInDbItems = arrGateInDbItems;
-}
-
-- (void)checkGrid
-{
-	if(!_bGrid)
-	{
-		[_btnGrid setTitle:[_dictLocalize objectForKey:@"GridButton"] forState:UIControlStateNormal];
-		[_scrollView setHidden:YES];
-		[_pageController setHidden:YES];
-		[_lbTitleItemInDb setHidden:YES];
-		[_tblGadgetList setHidden:NO];
-		[_tblGadgetList reloadData];	
-	}
-	else
-	{
-		[_scrollView setHidden:NO];
-		[_pageController setHidden:NO];		
-		[_lbTitleItemInDb setHidden:NO];		
-		[_btnGrid setTitle:[_dictLocalize objectForKey:@"ListButton"]forState:UIControlStateNormal];		
-		[_tblGadgetList setHidden:YES];
-		[self showGrid];
-	}
-}
-
-- (void)showGrid
-{
-	_intPageNumber = [_arrGateInDbItems count];
-	
-	if(_intPageNumber <= 1)
-	{
-		[_pageController setHidden:YES];
-	}
-	else
-	{
-		[_pageController setHidden:NO];
-	}
-	
-	_scrollView.pagingEnabled = YES;
-    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * _intPageNumber, _scrollView.frame.size.height);
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.scrollsToTop = NO;
-    _scrollView.delegate = self;
-	_pageController.numberOfPages = _intPageNumber;
-	_pageController.currentPage = 0;
-	
-	GadgetButtonView_iPhone* tmpBtn;
-	int row = 0;	
-	
-	for(int i = 0; i < [_arrGateInDbItems count]; i++)
-	{
-		for(int j = 0; j < [[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] count]; j++)
-		{
-			if((j!= 0) && (j%3 == 0))
-			{
-				row++;
-			}
-			
-			CGRect tmpRect = CGRectMake(i*290 + 93*(j%3) + 1, 90*row + 7, 93, 90);
-			tmpBtn = [[GadgetButtonView_iPhone alloc] initWithFrame:tmpRect];
-			[tmpBtn setDelegate:self];
-			[tmpBtn setName:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _strName]];
-			[tmpBtn setIcon:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _imgIcon]];
-			[tmpBtn setUrl:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _urlContent]];
-			[_scrollView addSubview:tmpBtn];
-		}
-		row = 0;
-	}
-	NSString* tmpStr = [[_arrGateInDbItems objectAtIndex:_pageController.currentPage] _strDbItemName];
-	[_lbTitleItemInDb setText:tmpStr];
-}
-
-- (IBAction)onGridBtn:(id)sender
-{
-	_bGrid = !_bGrid;
-	[self checkGrid];
 }
 
 - (IBAction)onPageViewController:(id)sender

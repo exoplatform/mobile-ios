@@ -17,12 +17,13 @@
 @class AppContainerViewController;
 @class MainViewController;
 
+//User messenger
 @interface MessengerUser : NSObject 
 {
-	int					_intMessageCount;
-	XMPPUser*			_xmppUser;
-	NSMutableString*	_mstrHtmlPortrait;
-	NSMutableString*	_mstrHtmlLanscape;
+	int					_intMessageCount; //Number of message user has received
+	XMPPUser*			_xmppUser;	//XMPP user, connect to XMPPClient
+	NSMutableString*	_mstrHtmlPortrait;	//Message content for portait mode
+	NSMutableString*	_mstrHtmlLanscape;	//Message content for lanscape mode
 	
 }
 
@@ -31,29 +32,32 @@
 @property(nonatomic, retain) NSMutableString* _mstrHtmlPortrait;
 @property(nonatomic, retain) NSMutableString* _mstrHtmlLanscape;
 
-- (void)creatHTMLstring;
+- (void)creatHTMLstring; //Create chat content
 
 @end
 
 
 
 //========================================================================================
+
+//List of chat users
 @interface MessengerViewController : UIViewController <UINavigationControllerDelegate, 
 														UITableViewDelegate, 
 														UITableViewDataSource, 
 														UIPopoverControllerDelegate>
 {
-	MainViewController*						_delegate;
-	NSDictionary*							_dictLocalize;
-	int										_intSelectedLanguage;
+	MainViewController*						_delegate; // Point to MainViewController
+	NSDictionary*							_dictLocalize;	//Language dictionary
+	int										_intSelectedLanguage;	//index of language
 	
 	//IBOutlet UITableView*					_tblvUsers;
-	UITableView*							_tblvUsers;
+	UITableView*							_tblvUsers;	//show contact list
 	
-	NSMutableArray*							arrChatUsers;
-	int										currentChatUserIndex;
+	NSMutableArray*							arrChatUsers;	//list of contacr
+	int										currentChatUserIndex;	//index of current chat user
 	
-	NSString*								iconChatMe;
+	//String 64 for chat icons
+	NSString*								iconChatMe;	
 	NSString*								iconChatFriend;
 	NSString*								timeBg;
 	
@@ -67,16 +71,16 @@
 
 @property(nonatomic, retain)UITableView* _tblvUsers;
 
-- (int)getCurrentChatUserIndex;
-- (void)setCurrentChatUserIndex:(int)index;
-- (NSArray *)getArrChatUsers;
-- (void)setDelegate:(id)delegate;
-- (int)getSelectedLanguage;
-- (NSDictionary*)getLocalization;
+- (int)getCurrentChatUserIndex;	//Get current chat user index in the list
+- (void)setCurrentChatUserIndex:(int)index;	//Set current chat user index in the list
+- (NSArray *)getArrChatUsers;	//Get chat user list
+- (void)setDelegate:(id)delegate;	//Set the delegate
+- (int)getSelectedLanguage;	//Get current language index
+- (NSDictionary*)getLocalization;	//Get current language dictionary
 //- (void)localize;
-- (void)initMessengerParameters;
-- (NSString *)createChatContentFor:(NSString *)chatName content:(NSString *)content isMe:(BOOL)isMe portrait:(BOOL)portrait;
-- (void)updateAccountInfo;
+- (void)initMessengerParameters;	//Creat parametters for new chat 
+- (NSString *)createChatContentFor:(NSString *)chatName content:(NSString *)content isMe:(BOOL)isMe portrait:(BOOL)portrait;	//Format the chat content
+- (void)updateAccountInfo; //Get contact info
 
-+ (XMPPClient *)getXmppClient;
++ (XMPPClient *)getXmppClient;	//Get chat socket
 @end

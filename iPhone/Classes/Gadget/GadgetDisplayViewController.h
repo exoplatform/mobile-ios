@@ -10,15 +10,16 @@
 @class eXoApplicationsViewController;
 @class Gadget_iPhone;
 
+//Display gadget content
 @interface GadgetDisplayViewController : UIViewController <UIWebViewDelegate>{
-	UIWebView*	_webView;
-	UILabel*	_statusLabel;
-	UIActivityIndicatorView* _progressIndicator;
-	NSURL* _url;	
-	int			_selectedLanguage;
-	NSDictionary*	_dictLocalize;
-	eXoApplicationsViewController *_delegate;
-	NSString*	_strBConnectStatus;
+	UIWebView*	_webView;	//Display gadget on webview
+	UILabel*	_statusLabel;	//Loading label
+	UIActivityIndicatorView* _progressIndicator;	//Loading indicator
+	NSURL* _url;	//Gadget URL
+	int			_selectedLanguage;	//Current language index
+	NSDictionary*	_dictLocalize;	//Language dictionary
+	eXoApplicationsViewController *_delegate;	//main app view controller
+	NSString*	_strBConnectStatus;	//Network connection status
 }
 
 @property (nonatomic, retain) IBOutlet NSURL* _url;
@@ -27,8 +28,8 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView* _progressIndicator;
 @property (nonatomic, retain) eXoApplicationsViewController *_delegate;
 
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;
-- (void)startGadget:(Gadget_iPhone*)gadget;
-- (void)setUrl:(NSURL*)url;
+- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;	//Constructor
+- (void)startGadget:(Gadget_iPhone*)gadget;	//Display gadget
+- (void)setUrl:(NSURL*)url;	//Set gadget URL
 @end
 

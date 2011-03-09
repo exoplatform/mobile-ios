@@ -181,7 +181,7 @@ static NSString* kCellIdentifier = @"Cell";
 	[_gadgetViewController onGridBtn];
 }
 																												
-- (void)onGadget:(Gadget*)gadget
+- (void)onGadget:(Gadget_iPad*)gadget
 {
 	[_delegate startGadget:gadget];	
 }
