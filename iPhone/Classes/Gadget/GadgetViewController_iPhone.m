@@ -9,6 +9,13 @@
 #import "GadgetViewController_iPhone.h"
 #import "Gadget_iPhone.h"
 
+
+//Constants Definitions
+#define kTagForCellSubviewTitleLabel 22
+#define kTagForCellSubviewDescriptionLabel 33
+#define kTagForCellSubviewImageView 44
+
+
 @implementation GadgetViewController_iPhone
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -199,10 +206,6 @@
 
 
 
-#define kTagForCellSubviewTitleLabel 22
-#define kTagForCellSubviewDescriptionLabel 33
-#define kTagForCellSubviewImageView 44
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
@@ -212,7 +215,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     //Check if we found a cell
-    if (!cell) 
+    if (cell==nil) 
     {
         //Not found, so create a new one
         cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
