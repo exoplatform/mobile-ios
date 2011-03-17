@@ -10,6 +10,12 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		46BC64471316F5C50034E7E3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BC64411316F5C50034E7E3 /* Icon.png */; };
+		46BC64481316F5C50034E7E3 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BC64421316F5C50034E7E3 /* Icon-72.png */; };
+		46BC64491316F5C50034E7E3 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BC64431316F5C50034E7E3 /* Icon-Small.png */; };
+		46BC644A1316F5C50034E7E3 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BC64441316F5C50034E7E3 /* Icon-Small-50.png */; };
+		46BC644B1316F5C50034E7E3 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BC64451316F5C50034E7E3 /* Icon-Small@2x.png */; };
+		46BC644C1316F5C50034E7E3 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BC64461316F5C50034E7E3 /* Icon@2x.png */; };
 		7C1C7D3C1324C68600123447 /* bl.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C1C7D271324C68600123447 /* bl.png */; };
 		7C1C7D3D1324C68600123447 /* BottomHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C1C7D281324C68600123447 /* BottomHorizontal.png */; };
 		7C1C7D3E1324C68600123447 /* br.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C1C7D291324C68600123447 /* br.png */; };
@@ -62,15 +68,12 @@
 		89C9ED2912DEED7700910C9C /* XMPPResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ED0612DEED7700910C9C /* XMPPResource.m */; };
 		89C9ED2A12DEED7700910C9C /* XMPPStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ED0812DEED7700910C9C /* XMPPStream.m */; };
 		89C9ED2B12DEED7700910C9C /* XMPPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C9ED0A12DEED7700910C9C /* XMPPUser.m */; };
-		89C9ED3812DEEEAC00910C9C /* eXo_Platform-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89C9ED3712DEEEAC00910C9C /* eXo_Platform-Info.plist */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 		89C9ED8D12DEF33C00910C9C /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED8C12DEF33C00910C9C /* libidn-iPhone.a */; };
 		89C9ED8F12DEF34700910C9C /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED8E12DEF34700910C9C /* libidn-simulator.a */; };
 		89C9EDA912DEF59E00910C9C /* EN.gif in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDA312DEF59E00910C9C /* EN.gif */; };
 		89C9EDAA12DEF59E00910C9C /* FR.gif in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDA412DEF59E00910C9C /* FR.gif */; };
-		89C9EDAC12DEF59E00910C9C /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDA712DEF59E00910C9C /* icon57x57.png */; };
 		89C9EDAD12DEF59E00910C9C /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDA812DEF59E00910C9C /* iTunesArtwork */; };
-		89C9EDAF12DEF67300910C9C /* icon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDAE12DEF67300910C9C /* icon72x72.png */; };
 		89C9EDBA12DEF8AD00910C9C /* PortletsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EDB612DEF8AD00910C9C /* PortletsIcon.png */; };
 		89C9EE2312DEFC0200910C9C /* Dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C9EE2212DEFC0200910C9C /* Dashboard.png */; };
 		89CD08CC1315F49B00577305 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CD08C91315F49B00577305 /* GTMNSString+HTML.m */; };
@@ -215,6 +218,13 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
+		46BC64101316F1410034E7E3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		46BC64411316F5C50034E7E3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		46BC64421316F5C50034E7E3 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		46BC64431316F5C50034E7E3 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		46BC64441316F5C50034E7E3 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		46BC64451316F5C50034E7E3 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		46BC64461316F5C50034E7E3 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		7C1C7D271324C68600123447 /* bl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bl.png; sourceTree = "<group>"; };
 		7C1C7D281324C68600123447 /* BottomHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomHorizontal.png; sourceTree = "<group>"; };
 		7C1C7D291324C68600123447 /* br.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = br.png; sourceTree = "<group>"; };
@@ -310,9 +320,7 @@
 		89C9ED8E12DEF34700910C9C /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libidn-simulator.a"; path = "/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphonesimulator/libidn-simulator.a"; sourceTree = "<absolute>"; };
 		89C9EDA312DEF59E00910C9C /* EN.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = EN.gif; sourceTree = "<group>"; };
 		89C9EDA412DEF59E00910C9C /* FR.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FR.gif; sourceTree = "<group>"; };
-		89C9EDA712DEF59E00910C9C /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x57.png; sourceTree = "<group>"; };
 		89C9EDA812DEF59E00910C9C /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		89C9EDAE12DEF67300910C9C /* icon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72x72.png; sourceTree = "<group>"; };
 		89C9EDB612DEF8AD00910C9C /* PortletsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PortletsIcon.png; sourceTree = "<group>"; };
 		89C9EE2212DEFC0200910C9C /* Dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dashboard.png; sourceTree = "<group>"; };
 		89CD08C71315F49B00577305 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -558,6 +566,7 @@
 				89C9EDA112DEF59E00910C9C /* Image */,
 				89C9ED3712DEEEAC00910C9C /* eXo_Platform-Info.plist */,
 				89C9ECB812DEED7700910C9C /* Classes */,
+				46BC64101316F1410034E7E3 /* Entitlements.plist */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -732,8 +741,12 @@
 		89C9EDA612DEF59E00910C9C /* iCon */ = {
 			isa = PBXGroup;
 			children = (
-				89C9EDAE12DEF67300910C9C /* icon72x72.png */,
-				89C9EDA712DEF59E00910C9C /* icon57x57.png */,
+				46BC64411316F5C50034E7E3 /* Icon.png */,
+				46BC64421316F5C50034E7E3 /* Icon-72.png */,
+				46BC64431316F5C50034E7E3 /* Icon-Small.png */,
+				46BC64441316F5C50034E7E3 /* Icon-Small-50.png */,
+				46BC64451316F5C50034E7E3 /* Icon-Small@2x.png */,
+				46BC64461316F5C50034E7E3 /* Icon@2x.png */,
 			);
 			path = iCon;
 			sourceTree = "<group>";
@@ -1185,12 +1198,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89C9ED3812DEEEAC00910C9C /* eXo_Platform-Info.plist in Resources */,
 				89C9EDA912DEF59E00910C9C /* EN.gif in Resources */,
 				89C9EDAA12DEF59E00910C9C /* FR.gif in Resources */,
-				89C9EDAC12DEF59E00910C9C /* icon57x57.png in Resources */,
 				89C9EDAD12DEF59E00910C9C /* iTunesArtwork in Resources */,
-				89C9EDAF12DEF67300910C9C /* icon72x72.png in Resources */,
 				89C9EDBA12DEF8AD00910C9C /* PortletsIcon.png in Resources */,
 				89C9EE2312DEFC0200910C9C /* Dashboard.png in Resources */,
 				89D66B1212DFF411008018ED /* HowtoUse_EN_iPhone.htm in Resources */,
@@ -1284,6 +1294,12 @@
 				89D856821303D6A9007E1A6F /* emptypage.png in Resources */,
 				7C29F47A130A8EB80029F505 /* GadgetViewController_iPhone.xib in Resources */,
 				7CC51F5C130E2A4B00B00188 /* GadgetDisplayViewController.xib in Resources */,
+				46BC64471316F5C50034E7E3 /* Icon.png in Resources */,
+				46BC64481316F5C50034E7E3 /* Icon-72.png in Resources */,
+				46BC64491316F5C50034E7E3 /* Icon-Small.png in Resources */,
+				46BC644A1316F5C50034E7E3 /* Icon-Small-50.png in Resources */,
+				46BC644B1316F5C50034E7E3 /* Icon-Small@2x.png in Resources */,
+				46BC644C1316F5C50034E7E3 /* Icon@2x.png in Resources */,
 				89DDD1AB1320E17700391327 /* MainWindow_iPhone.xib in Resources */,
 				89DDD1DA1320E43000391327 /* MoreLiveChatViewController.xib in Resources */,
 				89DDD1DC1320E46300391327 /* MainWindow_iPad.xib in Resources */,
@@ -1399,6 +1415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1411,7 +1428,7 @@
 					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"/**",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1419,6 +1436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = eXo_Platform_Prefix.pch;
@@ -1434,10 +1452,52 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "eXo Platform";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		46BC64021316F05B0034E7E3 /* Distribution AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8A39A736-7EF6-4980-B31F-AC976A4EC92E";
+				SDKROOT = iphoneos4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Distribution AppStore";
+		};
+		46BC64031316F05B0034E7E3 /* Distribution AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = eXo_Platform_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "eXo_Platform-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
+					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"",
+					"\"$(SRCROOT)/Shared/Classes/libidn/Mac\"",
+					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphoneos\"",
+					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphonesimulator\"",
+				);
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_NAME = "eXo Platform";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Distribution AppStore";
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1481,6 +1541,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				46BC64031316F05B0034E7E3 /* Distribution AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1490,6 +1551,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				46BC64021316F05B0034E7E3 /* Distribution AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
