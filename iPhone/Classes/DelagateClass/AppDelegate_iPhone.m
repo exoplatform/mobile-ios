@@ -216,10 +216,36 @@
 
 - (void)dealloc {
 	
+	[navigationController release];
+    navigationController = nil;
+    
+	[tabBarController release];
+	tabBarController = nil;
+    
+	[settingViewController release];	//Setting page
+    settingViewController = nil;
+    
+	[webViewController release];	//Display help or file content
+    webViewController = nil;
+    
+	[_splash release];	//Splash view
+    _splash = nil;
+	
+	[_dictLocalize release];
+    _dictLocalize = nil;
+    
     [viewController release];
+    viewController = nil;
+    
 	[applicationsViewController release];
+    applicationsViewController = nil;
+    
 	[gadgetsViewController release];
+    gadgetsViewController = nil;
+    
     [window release];
+    window = nil;
+    
     [super dealloc];
 }
 
