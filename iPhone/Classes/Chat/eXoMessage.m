@@ -15,13 +15,29 @@
 
 - (void) dealloc {
     [statusId release];
+    statusId = nil;
+    
     [name release];
+    name = nil;
+    
     [screenName release];
+    screenName = nil;
+    
     [text release];
+    text = nil;
+    
     [icon release];
+    icon = nil;
+    
     [timestamp release];
+    timestamp = nil;
+    
     [source release];
+    source= nil;
+    
 	[iconUpdateDelegate release];
+    iconUpdateDelegate = nil;
+    
     [super dealloc];
 }
 

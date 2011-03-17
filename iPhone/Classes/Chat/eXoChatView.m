@@ -54,8 +54,31 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 			
 		}
 	}	
-
 }
+
+//Dealloc method.
+- (void) dealloc
+{
+    [_tblvUsersList release];
+    _tblvUsersList = nil;
+    
+	_delegate = nil;
+	
+    [_xmppClient release];
+	_xmppClient = nil;
+    
+	[_arrUsers release];
+    _arrUsers = nil;
+    
+	[_msgCount release];
+    _msgCount = nil;
+	
+    [_msgDict release];
+    _msgDict = nil;
+    
+    [super dealloc];
+}
+
 
 - (void)updateAccountInfo
 {
@@ -157,6 +180,11 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 	}
 	
 	[cell addSubview:titleLabel];
+    
+    //titleLabel is added as subview (retainCount += 1) when can release
+    [titleLabel release];
+    [imgV release];
+    
 	
 	int msgCount = [[_msgCount objectAtIndex:indexPath.row] intValue];
 	
@@ -170,6 +198,9 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 		[notificationBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[notificationBtn setEnabled:NO];
 		[cell addSubview:notificationBtn];
+        
+        //no release of the notificationBtn, because it is created with an autorelease
+        
 	}
 	
 	[cell addSubview:imgV];

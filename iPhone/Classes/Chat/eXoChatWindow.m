@@ -18,6 +18,9 @@
 #define BACKGROUNDCOLOR @"#E9E9E9"
 #define CHATBOX @"#F7F7F7"
 
+
+// UTILS Methods
+
 NSString* processMsg_iPhone(NSString* message)
 {
 	NSMutableString *returnStr = [[NSMutableString alloc] initWithString:@""];
@@ -127,6 +130,10 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	return tempStr;
 }
 
+
+// Implementation
+
+
 @implementation eXoChatWindow
 
 
@@ -220,8 +227,48 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	[_delegate updateForEachExoChatUser:_xmppUser withArrMsg:_arrMessages withHtmlStr:_chatHtmlStr];
 	
 	[listMsg setObject:@"" forKey:from];
-
 }
+
+
+- (void)dealloc {
+    _delegate = nil;
+    
+    [_xmppClient release];
+	_xmppClient = nil;
+    
+	[_xmppUser release];
+    _xmppUser = nil;
+    
+	[_xmppMessage release];
+    _xmppMessage = nil;
+	
+	[_arrMessages release];
+    _arrMessages = nil;
+	
+    [_strMessage release];
+	_strMessage = nil;
+    
+	[_chatWebView release];
+    _chatWebView = nil;
+    
+	[_txtViewMsg release];
+    _txtViewMsg = nil;
+    
+	[_newMsgImg release];
+    _newMsgImg = nil;
+    
+	[_txtInputMsg release];
+    _txtInputMsg = nil;
+    
+	[_chatHtmlStr release];
+    _chatHtmlStr = nil;
+	
+	[_arrChatUsers release];
+    _arrChatUsers = nil;
+    
+    [super dealloc];
+}
+
 
 - (eXoApplicationsViewController *)delegate
 {
