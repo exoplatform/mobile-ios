@@ -6,6 +6,8 @@
 	<string>Login Page</string>
 	<key>SignInButton</key>
 	<string>Login</string>
+    <key>ConnectionTimedOut</key>
+	<string>Connection timed out</string>
 	<key>SigningIn</key>
 	<string>Signing in ...</string>
 	<key>SignOutButton</key>
@@ -30,20 +32,26 @@
 	<string>Back</string>
 	<key>SelectCopyButton</key>	
 	<string>Select</string>	
+    <key>TakePicture</key>
+	<string>Take a picture</string>
 	<key>NewFolderTitle</key>
 	<string>New Folder</string>
 	<key>RenameTitle</key>
 	<string>Rename</string>
-	<key>CopyTitle</key>
+	<key>Copy</key>
 	<string>Copy</string>
-	<key>MoveTitle</key>
+	<key>Move</key>
 	<string>Cut</string>		
-	<key>PasteTitle</key>
+	<key>Paste</key>
 	<string>Paste</string>		
+    <key>Cancel</key>
+	<string>Cancel</string>
 	<key>DoneButton</key>
 	<string>Done</string>
 	<key>ActionButton</key>
 	<string>Actions</string>
+    <key>Delete</key>
+	<string>Delete</string>
 	<key>DeleteButton</key>
 	<string>Delete</string>	
 	<key>DeleteButtonDone</key>

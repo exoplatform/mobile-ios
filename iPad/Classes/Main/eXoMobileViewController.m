@@ -108,11 +108,11 @@
 	
 	if(_intSelectedLanguage == 0)
 	{
-		strLocalizeFilePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN_iPad" ofType:@"xml"] retain];
+		strLocalizeFilePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"] retain];
 	}	
 	else
 	{	
-		strLocalizeFilePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR_iPad" ofType:@"xml"] retain];
+		strLocalizeFilePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"] retain];
 	}
 	
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:strLocalizeFilePath];

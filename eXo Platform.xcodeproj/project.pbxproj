@@ -92,8 +92,6 @@
 		89D66B1212DFF411008018ED /* HowtoUse_EN_iPhone.htm in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AED12DFF411008018ED /* HowtoUse_EN_iPhone.htm */; };
 		89D66B1312DFF411008018ED /* HowtoUse_FR_iPhone.htm in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AEE12DFF411008018ED /* HowtoUse_FR_iPhone.htm */; };
 		89D66B1412DFF411008018ED /* 320x480v1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF012DFF411008018ED /* 320x480v1.jpg */; };
-		89D66B1512DFF411008018ED /* Localize_EN_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF212DFF411008018ED /* Localize_EN_iPhone.xml */; };
-		89D66B1612DFF411008018ED /* Localize_FR_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF312DFF411008018ED /* Localize_FR_iPhone.xml */; };
 		89D66B1712DFF411008018ED /* eXoApplicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF512DFF411008018ED /* eXoApplicationsViewController.xib */; };
 		89D66B1812DFF411008018ED /* eXoAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF612DFF411008018ED /* eXoAppViewController.xib */; };
 		89D66B1912DFF411008018ED /* eXoGadgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66AF712DFF411008018ED /* eXoGadgetsViewController.xib */; };
@@ -180,8 +178,6 @@
 		89D66F1B12E002FD008018ED /* Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ECB12E002FD008018ED /* Small.png */; };
 		89D66F1C12E002FD008018ED /* TextBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ECC12E002FD008018ED /* TextBox.png */; };
 		89D66F1D12E002FD008018ED /* TextField.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ECD12E002FD008018ED /* TextField.png */; };
-		89D66F1E12E002FD008018ED /* Localize_EN_iPad.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ECF12E002FD008018ED /* Localize_EN_iPad.xml */; };
-		89D66F1F12E002FD008018ED /* Localize_FR_iPad.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ED012E002FD008018ED /* Localize_FR_iPad.xml */; };
 		89D66F2012E002FD008018ED /* AppContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ED212E002FD008018ED /* AppContainerViewController.xib */; };
 		89D66F2112E002FD008018ED /* ChatWindowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ED312E002FD008018ED /* ChatWindowViewController.xib */; };
 		89D66F2212E002FD008018ED /* eXoMobileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D66ED412E002FD008018ED /* eXoMobileViewController.xib */; };
@@ -209,6 +205,8 @@
 		89DFD7BF13275D7500D056C0 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DFD7BE13275D7500D056C0 /* SupportViewController.m */; };
 		89DFD7D2132767F300D056C0 /* GadgetViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DFD7D1132767F300D056C0 /* GadgetViewController_iPhone.m */; };
 		89ECBF541331F868005157C2 /* Configuration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89ECBF531331F868005157C2 /* Configuration.xml */; };
+		89ECBF5713321985005157C2 /* Localize_EN.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89ECBF5513321985005157C2 /* Localize_EN.xml */; };
+		89ECBF5813321985005157C2 /* Localize_FR.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89ECBF5613321985005157C2 /* Localize_FR.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -353,8 +351,6 @@
 		89D66AED12DFF411008018ED /* HowtoUse_EN_iPhone.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HowtoUse_EN_iPhone.htm; sourceTree = "<group>"; };
 		89D66AEE12DFF411008018ED /* HowtoUse_FR_iPhone.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HowtoUse_FR_iPhone.htm; sourceTree = "<group>"; };
 		89D66AF012DFF411008018ED /* 320x480v1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 320x480v1.jpg; sourceTree = "<group>"; };
-		89D66AF212DFF411008018ED /* Localize_EN_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Localize_EN_iPhone.xml; sourceTree = "<group>"; };
-		89D66AF312DFF411008018ED /* Localize_FR_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Localize_FR_iPhone.xml; sourceTree = "<group>"; };
 		89D66AF512DFF411008018ED /* eXoApplicationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoApplicationsViewController.xib; sourceTree = "<group>"; };
 		89D66AF612DFF411008018ED /* eXoAppViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoAppViewController.xib; sourceTree = "<group>"; };
 		89D66AF712DFF411008018ED /* eXoGadgetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoGadgetsViewController.xib; sourceTree = "<group>"; };
@@ -459,8 +455,6 @@
 		89D66ECB12E002FD008018ED /* Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Small.png; sourceTree = "<group>"; };
 		89D66ECC12E002FD008018ED /* TextBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextBox.png; sourceTree = "<group>"; };
 		89D66ECD12E002FD008018ED /* TextField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextField.png; sourceTree = "<group>"; };
-		89D66ECF12E002FD008018ED /* Localize_EN_iPad.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Localize_EN_iPad.xml; sourceTree = "<group>"; };
-		89D66ED012E002FD008018ED /* Localize_FR_iPad.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Localize_FR_iPad.xml; sourceTree = "<group>"; };
 		89D66ED212E002FD008018ED /* AppContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppContainerViewController.xib; sourceTree = "<group>"; };
 		89D66ED312E002FD008018ED /* ChatWindowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatWindowViewController.xib; sourceTree = "<group>"; };
 		89D66ED412E002FD008018ED /* eXoMobileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eXoMobileViewController.xib; sourceTree = "<group>"; };
@@ -492,6 +486,8 @@
 		89DFD7D0132767F300D056C0 /* GadgetViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetViewController_iPhone.h; sourceTree = "<group>"; };
 		89DFD7D1132767F300D056C0 /* GadgetViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetViewController_iPhone.m; sourceTree = "<group>"; };
 		89ECBF531331F868005157C2 /* Configuration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Configuration.xml; sourceTree = "<group>"; };
+		89ECBF5513321985005157C2 /* Localize_EN.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Localize_EN.xml; sourceTree = "<group>"; };
+		89ECBF5613321985005157C2 /* Localize_FR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Localize_FR.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +552,8 @@
 		89C9EBA212DEEC0F00910C9C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				89ECBF5513321985005157C2 /* Localize_EN.xml */,
+				89ECBF5613321985005157C2 /* Localize_FR.xml */,
 				89ECBF531331F868005157C2 /* Configuration.xml */,
 				89C9EDA112DEF59E00910C9C /* Image */,
 				89C9ED3712DEEEAC00910C9C /* eXo_Platform-Info.plist */,
@@ -849,7 +847,6 @@
 			children = (
 				89D66AEC12DFF411008018ED /* HowToUse */,
 				89D66AEF12DFF411008018ED /* Image */,
-				89D66AF112DFF411008018ED /* Localize */,
 				89D66AF412DFF411008018ED /* Nib */,
 			);
 			path = Resource;
@@ -872,15 +869,6 @@
 				89D66AF012DFF411008018ED /* 320x480v1.jpg */,
 			);
 			path = Image;
-			sourceTree = "<group>";
-		};
-		89D66AF112DFF411008018ED /* Localize */ = {
-			isa = PBXGroup;
-			children = (
-				89D66AF212DFF411008018ED /* Localize_EN_iPhone.xml */,
-				89D66AF312DFF411008018ED /* Localize_FR_iPhone.xml */,
-			);
-			path = Localize;
 			sourceTree = "<group>";
 		};
 		89D66AF412DFF411008018ED /* Nib */ = {
@@ -1066,7 +1054,6 @@
 			children = (
 				89D66EA512E002FD008018ED /* HowToUse */,
 				89D66EAE12E002FD008018ED /* Image */,
-				89D66ECE12E002FD008018ED /* Localize */,
 				89D66ED112E002FD008018ED /* Nib */,
 			);
 			path = Resource;
@@ -1123,15 +1110,6 @@
 				89D66ECD12E002FD008018ED /* TextField.png */,
 			);
 			path = Image;
-			sourceTree = "<group>";
-		};
-		89D66ECE12E002FD008018ED /* Localize */ = {
-			isa = PBXGroup;
-			children = (
-				89D66ECF12E002FD008018ED /* Localize_EN_iPad.xml */,
-				89D66ED012E002FD008018ED /* Localize_FR_iPad.xml */,
-			);
-			path = Localize;
 			sourceTree = "<group>";
 		};
 		89D66ED112E002FD008018ED /* Nib */ = {
@@ -1218,8 +1196,6 @@
 				89D66B1212DFF411008018ED /* HowtoUse_EN_iPhone.htm in Resources */,
 				89D66B1312DFF411008018ED /* HowtoUse_FR_iPhone.htm in Resources */,
 				89D66B1412DFF411008018ED /* 320x480v1.jpg in Resources */,
-				89D66B1512DFF411008018ED /* Localize_EN_iPhone.xml in Resources */,
-				89D66B1612DFF411008018ED /* Localize_FR_iPhone.xml in Resources */,
 				89D66B1712DFF411008018ED /* eXoApplicationsViewController.xib in Resources */,
 				89D66B1812DFF411008018ED /* eXoAppViewController.xib in Resources */,
 				89D66B1912DFF411008018ED /* eXoGadgetsViewController.xib in Resources */,
@@ -1288,8 +1264,6 @@
 				89D66F1B12E002FD008018ED /* Small.png in Resources */,
 				89D66F1C12E002FD008018ED /* TextBox.png in Resources */,
 				89D66F1D12E002FD008018ED /* TextField.png in Resources */,
-				89D66F1E12E002FD008018ED /* Localize_EN_iPad.xml in Resources */,
-				89D66F1F12E002FD008018ED /* Localize_FR_iPad.xml in Resources */,
 				89D66F2012E002FD008018ED /* AppContainerViewController.xib in Resources */,
 				89D66F2112E002FD008018ED /* ChatWindowViewController.xib in Resources */,
 				89D66F2212E002FD008018ED /* eXoMobileViewController.xib in Resources */,
@@ -1336,6 +1310,8 @@
 				7C1C7D4F1324C68600123447 /* tr.png in Resources */,
 				7C1C7D501324C68600123447 /* you.png in Resources */,
 				89ECBF541331F868005157C2 /* Configuration.xml in Resources */,
+				89ECBF5713321985005157C2 /* Localize_EN.xml in Resources */,
+				89ECBF5813321985005157C2 /* Localize_FR.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

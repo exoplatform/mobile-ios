@@ -47,11 +47,11 @@
 	NSString* filePath;
 	if(selectedLanguage == 0)
 	{
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN_iPhone" ofType:@"xml"] retain];
+		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"] retain];
 	}	
 	else
 	{	
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR_iPhone" ofType:@"xml"] retain];
+		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"] retain];
 	}
 	
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];

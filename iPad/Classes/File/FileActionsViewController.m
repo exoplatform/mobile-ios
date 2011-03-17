@@ -164,19 +164,19 @@
 	else if(indexPath.row == 3)
 	{
 		imgV.image = [UIImage imageNamed:@"copy.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"CopyTitle"];
+		titleLabel.text = [_dictLocalize objectForKey:@"Copy"];
 		bOption = _bCopy;
 	}
 	else if(indexPath.row == 4)
 	{
 		imgV.image = [UIImage imageNamed:@"move.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"MoveTitle"];				
+		titleLabel.text = [_dictLocalize objectForKey:@"Move"];				
 		bOption = _bMove;
 	}
 	else if(indexPath.row == 5)
 	{
 		imgV.image = [UIImage imageNamed:@"paste.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"PasteTitle"];				
+		titleLabel.text = [_dictLocalize objectForKey:@"Paste"];				
 		bOption = _bPaste;
 	}
 	
