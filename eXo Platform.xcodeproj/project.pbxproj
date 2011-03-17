@@ -208,6 +208,7 @@
 		89DDD1EC1320E83800391327 /* eXoFileActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DDD1EB1320E83800391327 /* eXoFileActionViewController.xib */; };
 		89DFD7BF13275D7500D056C0 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DFD7BE13275D7500D056C0 /* SupportViewController.m */; };
 		89DFD7D2132767F300D056C0 /* GadgetViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DFD7D1132767F300D056C0 /* GadgetViewController_iPhone.m */; };
+		89ECBF541331F868005157C2 /* Configuration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89ECBF531331F868005157C2 /* Configuration.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -490,6 +491,7 @@
 		89DFD7BE13275D7500D056C0 /* SupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportViewController.m; sourceTree = "<group>"; };
 		89DFD7D0132767F300D056C0 /* GadgetViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetViewController_iPhone.h; sourceTree = "<group>"; };
 		89DFD7D1132767F300D056C0 /* GadgetViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetViewController_iPhone.m; sourceTree = "<group>"; };
+		89ECBF531331F868005157C2 /* Configuration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Configuration.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -554,6 +556,7 @@
 		89C9EBA212DEEC0F00910C9C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				89ECBF531331F868005157C2 /* Configuration.xml */,
 				89C9EDA112DEF59E00910C9C /* Image */,
 				89C9ED3712DEEEAC00910C9C /* eXo_Platform-Info.plist */,
 				89C9ECB812DEED7700910C9C /* Classes */,
@@ -1332,6 +1335,7 @@
 				7C1C7D4E1324C68600123447 /* TopHorizontal.png in Resources */,
 				7C1C7D4F1324C68600123447 /* tr.png in Resources */,
 				7C1C7D501324C68600123447 /* you.png in Resources */,
+				89ECBF541331F868005157C2 /* Configuration.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
