@@ -243,7 +243,7 @@
     if (cell==nil) 
     {
         //Not found, so create a new one
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
         //Add subviews only one time, and use the propertie 'Tag' of UIView to retrieve them
