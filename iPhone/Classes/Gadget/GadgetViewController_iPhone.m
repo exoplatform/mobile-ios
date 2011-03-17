@@ -72,6 +72,31 @@
 
 - (void)dealloc 
 {
+    _delegate = nil;
+    
+	[_tblGadgetList release]; //Gadget list view
+    _tblGadgetList = nil;
+    
+	[_dictLocalize release];	//Language dictionary
+	    
+	[_arrGadgets release];	//List of gadgets
+    _arrGadgets = nil;
+    
+	[_arrGateInDbItems release];	//List of gadget tabs
+    _arrGateInDbItems = nil;
+	
+	[_btnGrid release];		//Change gadget view mode
+    _btnGrid = nil;
+	
+    [_pageController release];	//Gadget page controller
+    _pageController = nil;
+    
+	[_scrollView release];	//Scroll view for gadget page
+    _scrollView = nil;
+    
+	[_lbTitleItemInDb release];	//Gadget tab title
+    _lbTitleItemInDb = nil;
+    
     [super dealloc];
 }
 

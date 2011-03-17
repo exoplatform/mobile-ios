@@ -12,6 +12,13 @@
 #import "eXoWebViewController.h"
 #import "GadgetDisplayViewController.h"
 
+
+
+#define kTagCellSubviewForTitleLabel 97
+#define kTagCellSubviewForDescriptionLabel 98
+#define kTagCellSubviewForImageView 99
+
+
 @implementation eXoGadgetViewController
 
 
@@ -30,7 +37,17 @@
     return self;
 }
 
-
+- (void)dealloc {
+    [_gadgetTab release];	//Gadget tab contains gadgets
+    _gadgetTab = nil;
+    
+	_delegate = nil;	//Main eXo app
+    
+	[_gadgetDisplayViewController release];	//Display gadget
+    _gadgetDisplayViewController = nil;
+    
+    [super dealloc];
+}
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -71,28 +88,27 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		
-		//Configure the cell
-#define TAG_FOR_TITLE_LABEL 97
-#define TAG_FOR_DESCRIPTION_LABEL 98
-#define TAG_FOR_IMGVIEW_LABEL 99
-		
+		//Configure the cell		
 		//Add the title label
 		UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 210.0, 20.0)];
 		titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-		titleLabel.tag = TAG_FOR_TITLE_LABEL;
-		[cell addSubview:titleLabel];	
+		titleLabel.tag = kTagCellSubviewForTitleLabel;
+		[cell addSubview:titleLabel];
+        [titleLabel release];
 		
 		//Add the description label
 		UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 210.0, 33.0)];
 		descriptionLabel.numberOfLines = 2;
 		descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-		descriptionLabel.tag = TAG_FOR_DESCRIPTION_LABEL;
+		descriptionLabel.tag = kTagCellSubviewForDescriptionLabel;
 		[cell addSubview:descriptionLabel];
-		
+		[descriptionLabel release];
+        
 		//Add the imageview
 		UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
-		imgView.tag = TAG_FOR_IMGVIEW_LABEL;
+		imgView.tag = kTagCellSubviewForImageView;
 		[cell addSubview:imgView];
+        [imgView release];
 
     } 
 
@@ -100,13 +116,13 @@
 	Gadget_iPhone *gadget = [_gadgetTab._arrGadgetsInItem objectAtIndex:indexPath.row];
   
 	//Add values...
-	UILabel* titleLabel = (UILabel *)[cell viewWithTag:TAG_FOR_TITLE_LABEL];
+	UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagCellSubviewForTitleLabel];
 	titleLabel.text = gadget._strName;
 
-	UILabel* descriptionLabel = (UILabel *)[cell viewWithTag:TAG_FOR_DESCRIPTION_LABEL];
+	UILabel* descriptionLabel = (UILabel *)[cell viewWithTag:kTagCellSubviewForDescriptionLabel];
 	descriptionLabel.text = gadget._strDescription;
 	
-	UIImageView* imgView = (UIImageView *)[cell viewWithTag:TAG_FOR_IMGVIEW_LABEL];
+	UIImageView* imgView = (UIImageView *)[cell viewWithTag:kTagCellSubviewForImageView];
 	imgView.image = gadget._imgIcon;			
     
     return cell;
@@ -154,9 +170,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

@@ -35,6 +35,21 @@
 	[_arrGadgetsInItem retain];
 }
 
+
+- (void)dealloc {
+    [_strDbItemName release];
+    _strDbItemName = nil;
+    
+    [_urlDbItem release];
+    _urlDbItem = nil;
+    
+    [_arrGadgetsInItem release];
+    _arrGadgetsInItem = nil;
+    
+    [super dealloc];
+}
+
+
 @end
 //============================================================================================================
 
@@ -60,6 +75,25 @@
 		_imgIcon = [[UIImage alloc] init];
 	}
 	return self;
+}
+
+- (void)dealloc {
+    [_strName release];
+    _strName = nil;
+    
+    [_strDescription release];
+    _strDescription = nil;
+    
+    [_urlContent release];
+    _urlContent = nil;
+    
+    [_urlIcon release];
+    _urlIcon = nil;
+    
+    [_imgIcon release];
+    _imgIcon = nil;
+    
+    [super dealloc];
 }
 
 - (void)setObjectWithName:(NSString*)name 

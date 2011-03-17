@@ -102,9 +102,25 @@
 
 - (void)dealloc 
 {
+	[_url release];	//Gadget URL
+    _url = nil;
+    
+	[_dictLocalize release];	//Language dictionary
+    _dictLocalize = nil;
+	
+    _delegate = nil;	//main app view controller
+	
+    [_strBConnectStatus release];	//Network connection status
+    _strBConnectStatus = nil;
+    
 	[_webView release];
+    _webView = nil;
+    
 	[_statusLabel release];
+    _statusLabel = nil;
+    
 	[_progressIndicator release];
+    _progressIndicator = nil;
 	
     [super dealloc];
 }
