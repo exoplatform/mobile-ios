@@ -56,6 +56,10 @@
 	
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
 	
+    //FilePath not needed any more, so release it
+    [filePath release];
+    
+    
 	viewController = nil;
 	applicationsViewController = nil;
 	settingViewController = nil;
@@ -108,7 +112,9 @@
 	
 	Connection* conn = [[Connection alloc] init];
 	
-	NSString *_bSuccessful = [conn sendAuthenticateRequest:domain username:username password:password];
+	NSString *_bSuccessful = [[conn sendAuthenticateRequest:domain username:username password:password] copy];
+    
+    [conn release];
 	
 	if(_bSuccessful == @"YES")
 	{
@@ -147,6 +153,8 @@
 		
 		
 	}
+    
+    [_bSuccessful release];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

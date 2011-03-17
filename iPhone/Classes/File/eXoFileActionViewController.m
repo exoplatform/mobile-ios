@@ -181,6 +181,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		UIButton* tmpButton = [[UIButton alloc] initWithFrame:[cell frame]];
 		[tmpButton setBackgroundImage:[UIImage imageNamed:@"cancelitem.png"] forState:UIControlStateNormal];
 		[cell setBackgroundView:tmpButton];
+        [tmpButton release];
 	}
 	
 	[cell addSubview:imgViewFileAction];	
