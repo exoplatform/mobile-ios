@@ -198,33 +198,67 @@
 }
 
 
+
+#define kTagForCellSubviewTitleLabel 22
+#define kTagForCellSubviewDescriptionLabel 33
+#define kTagForCellSubviewImageView 44
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
 	static NSString* kCellIdentifier = @"Cell";
 	
+    //We dequeue a cell
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	
-	cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
-	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-	
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 180.0, 20.0)];
-	titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-	titleLabel.text = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] name];
-	[cell addSubview:titleLabel];
-	
-	UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 180.0, 33.0)];
-	descriptionLabel.numberOfLines = 2;
-	descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+    
+    //Check if we found a cell
+    if (!cell) 
+    {
+        //Not found, so create a new one
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        
+        //Add subviews only one time, and use the propertie 'Tag' of UIView to retrieve them
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 180.0, 20.0)];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+        //define the tag for the titleLabel
+        titleLabel.tag = kTagForCellSubviewTitleLabel; 
+        [cell addSubview:titleLabel];
+        //release the titleLabel because cell retain it now
+        [titleLabel release];
+        
+        //Create the descriptionLabel
+        UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 180.0, 33.0)];
+        descriptionLabel.numberOfLines = 2;
+        descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+        descriptionLabel.tag = kTagForCellSubviewDescriptionLabel;
+        [cell addSubview:descriptionLabel];
+        [descriptionLabel release];
+        
+        //Create the imageView
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
+        imgView.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgView];
+        [imgView release];
+    }
+
+    //Configurate the cell
+    //Configurate the titleLabel and assign good value
+	UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+    titleLabel.text = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] name];
+
+	//Configuration the DesriptionLabel
+    UILabel *descriptionLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewDescriptionLabel];
 	descriptionLabel.text = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] description];
-	[cell addSubview:descriptionLabel];
 	
-	UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
-	imgView.image = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] imageIcon];
-	[cell addSubview:imgView];
+    //Configuration of the ImageView
+    UIImageView *imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
+    imgView.image = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] imageIcon];
 	
 	return cell;
 }
+
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
