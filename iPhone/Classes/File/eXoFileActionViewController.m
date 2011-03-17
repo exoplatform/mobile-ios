@@ -43,6 +43,21 @@ static short fileActionMode = 0;//1:copy, 2:move
 }
 
 
+- (void)dealloc {
+    _delegate = nil; //point to main app view controller
+    
+    [_filesView release];	//file view
+    _filesView = nil;
+    
+    [_file release];	//file, folder info
+    _file = nil; 
+    
+    [tblFileAction release];	//file action list
+    tblFileAction = nil;
+    
+    [super dealloc];
+}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -170,6 +185,9 @@ static short fileActionMode = 0;//1:copy, 2:move
 	
 	[cell addSubview:imgViewFileAction];	
 	[cell addSubview:titleLabel];
+    
+    [imgViewFileAction release];
+    [titleLabel release];
 
 	return cell;
 }
@@ -273,6 +291,9 @@ static short fileActionMode = 0;//1:copy, 2:move
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"dd-MM-yyy-HH-mm-ss"];
 		NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
+        
+        //release the date formatter because, not needed after that piece of code
+        [dateFormatter release];
 		tmp = [tmp stringByAppendingFormat:@".png"];
 		
 		NSString* _savedFileDirectory = [_delegate._currenteXoFile._urlStr stringByAppendingFormat:@"/%@/", _delegate._currenteXoFile._fileName];
@@ -311,9 +332,6 @@ static short fileActionMode = 0;//1:copy, 2:move
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

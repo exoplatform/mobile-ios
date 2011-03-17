@@ -41,6 +41,9 @@
 
 
 - (void)dealloc {
+    [tblFileAction release];	//Action list
+    tblFileAction = nil;
+    
     [super dealloc];
 }
 

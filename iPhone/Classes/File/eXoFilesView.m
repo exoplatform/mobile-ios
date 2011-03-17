@@ -84,7 +84,6 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	urlStr = [urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 	
-	Connection *conn = [[Connection alloc] init];
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
@@ -103,8 +102,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	[request setHTTPBody: [[NSString stringWithString: @"<?xml version=\"1.0\" encoding=\"utf-8\" ?><D:propfind xmlns:D=\"DAV:\">"
 							"<D:prop><D:getcontenttype/></D:prop></D:propfind>"] dataUsingEncoding:NSUTF8StringEncoding]]; 
-	
+    
+    
+    Connection *conn = [[Connection alloc] init];
 	[request setValue:[conn stringOfAuthorizationHeaderWithUsername:username password:password] forHTTPHeaderField:@"Authorization"];
+    [conn release];
 	
 	NSData *dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString *responseStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
@@ -126,6 +128,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 												contentTypeRange2.location - contentTypeRange1.location - contentTypeRange1.length)];
 	}
 
+    [responseStr release];
 	
 	return returnValue;
 }
@@ -147,6 +150,20 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	return self;
 }
+
+- (void)dealloc {
+    [_contentType release];
+    _contentType = nil;
+    
+    [_fileName release];
+    _fileName = nil;
+    
+    [_urlStr release];
+    _urlStr = nil;
+    
+    [super dealloc];
+}
+
 
 @end
 
