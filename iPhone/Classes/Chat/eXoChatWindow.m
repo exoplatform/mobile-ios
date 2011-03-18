@@ -39,6 +39,7 @@ NSString* processMsg_iPhone(NSString* message)
 			[returnStr appendString:@"<br/>"];
 		
 		[returnStr appendString: tmp];
+        [tmp release];
 	}
 	
 	return returnStr;
@@ -85,7 +86,13 @@ NSString* imageStr_iPhone(NSString *fileName, NSString *type)
 	
 	iconChat = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
 	iconChatData = [NSData dataWithContentsOfFile:iconChat];
-	return [base64Encoding_iPhone(iconChatData) retain];
+    
+    NSString *returnString = [base64Encoding_iPhone(iconChatData) retain]
+    
+    [iconChat release];
+    [iconChatData release];    
+    
+	return returnString;
 	
 }
 
