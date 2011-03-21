@@ -8,7 +8,6 @@
 
 #import "eXoMobileAppDelegate.h"
 
-
 @implementation eXoMobileAppDelegate
 
 
