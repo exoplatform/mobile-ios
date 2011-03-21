@@ -588,7 +588,6 @@
 		8947301C1336FBC000B0AD11 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				8947323C133701D000B0AD11 /* Classes */,
 				894732361336FFD400B0AD11 /* Custom Views */,
 				894732371336FFD400B0AD11 /* Data Manager */,
 				894732381336FFD400B0AD11 /* View Controllers */,
@@ -776,17 +775,9 @@
 				894732391336FFE400B0AD11 /* Custom Views */,
 				8947323A1336FFE400B0AD11 /* Data Manager */,
 				8947323B1336FFE400B0AD11 /* View Controllers */,
-				894730871336FBC000B0AD11 /* Classes */,
 				894730AE1336FBC000B0AD11 /* Resource */,
 			);
 			path = iPhone;
-			sourceTree = "<group>";
-		};
-		894730871336FBC000B0AD11 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		894730881336FBC000B0AD11 /* Chat */ = {
@@ -1257,13 +1248,6 @@
 				894730AB1336FBC000B0AD11 /* Setting */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		8947323C133701D000B0AD11 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
