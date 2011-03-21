@@ -215,6 +215,7 @@
 		8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351613372CC200B0AD11 /* libidn-iPhone.a */; };
 		8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351813372CD100B0AD11 /* libidn-simulator.a */; };
 		8947351B13372CD900B0AD11 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351A13372CD900B0AD11 /* libidn.a */; };
+		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
@@ -223,7 +224,6 @@
 		1D6058910D05DD3D006BFB54 /* eXo Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		32CA4F630368D1EE00C91783 /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		894731191336FBC000B0AD11 /* Configuration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Configuration.xml; sourceTree = "<group>"; };
 		8947311A1336FBC000B0AD11 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		894732331336FEA500B0AD11 /* eXoMobileAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileAppDelegate.h; sourceTree = "<group>"; };
@@ -502,10 +502,12 @@
 		8947350C1337142200B0AD11 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		8947350D1337142200B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8947350E1337142200B0AD11 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
-		8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "eXo_Platform-Info.plist"; path = "Resources/eXo_Platform-Info.plist"; sourceTree = "<group>"; };
+		8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eXo_Platform-Info.plist"; sourceTree = "<group>"; };
 		8947351613372CC200B0AD11 /* libidn-iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-iPhone.a"; sourceTree = "<group>"; };
 		8947351813372CD100B0AD11 /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-simulator.a"; sourceTree = "<group>"; };
 		8947351A13372CD900B0AD11 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
+		8947351D13375E1900B0AD11 /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
+		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -538,22 +540,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8947351C13375E1800B0AD11 /* Other Sources */,
 				89300A6C1336EF6200804D3B /* Sources */,
 				894733BB13370D7C00B0AD11 /* Resources */,
-				8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				32CA4F630368D1EE00C91783 /* eXo_Platform_Prefix.pch */,
-			);
-			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -582,11 +575,11 @@
 		8947301C1336FBC000B0AD11 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				894733B513370C3600B0AD11 /* AppDelegate_iPad.h */,
-				894733B613370C3600B0AD11 /* AppDelegate_iPad.m */,
 				894732361336FFD400B0AD11 /* Custom Views */,
 				894732371336FFD400B0AD11 /* Data Manager */,
 				894732381336FFD400B0AD11 /* View Controllers */,
+				894733B513370C3600B0AD11 /* AppDelegate_iPad.h */,
+				894733B613370C3600B0AD11 /* AppDelegate_iPad.m */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -594,11 +587,11 @@
 		894730861336FBC000B0AD11 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				894733B813370C9800B0AD11 /* AppDelegate_iPhone.h */,
-				894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */,
 				894732391336FFE400B0AD11 /* Custom Views */,
 				8947323A1336FFE400B0AD11 /* Data Manager */,
 				8947323B1336FFE400B0AD11 /* View Controllers */,
+				894733B813370C9800B0AD11 /* AppDelegate_iPhone.h */,
+				894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -642,6 +635,8 @@
 		894732371336FFD400B0AD11 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				8947352013375EC200B0AD11 /* Model */,
+				8947352113375EC200B0AD11 /* Proxies */,
 			);
 			path = "Data Manager";
 			sourceTree = "<group>";
@@ -677,6 +672,8 @@
 		8947323A1336FFE400B0AD11 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				8947352213375EE000B0AD11 /* Model */,
+				8947352313375EE000B0AD11 /* Proxies */,
 			);
 			path = "Data Manager";
 			sourceTree = "<group>";
@@ -835,6 +832,7 @@
 				894733BC13370D7C00B0AD11 /* HowToUse */,
 				894733BD13370D7C00B0AD11 /* Images */,
 				894733BE13370D7C00B0AD11 /* Localized files */,
+				8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1058,6 +1056,9 @@
 		8947349E1337125D00B0AD11 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				8947352413375EF200B0AD11 /* Model */,
+				8947352513375EF200B0AD11 /* Proxies */,
+				8947352613375EF200B0AD11 /* Settings Management */,
 			);
 			path = "Data Manager";
 			sourceTree = "<group>";
@@ -1244,6 +1245,64 @@
 				8947350E1337142200B0AD11 /* NSString+HTML.h */,
 			);
 			path = eXoUtils;
+			sourceTree = "<group>";
+		};
+		8947351C13375E1800B0AD11 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8947351D13375E1900B0AD11 /* eXo_Platform_Prefix.pch */,
+				8947351E13375E1900B0AD11 /* main.m */,
+			);
+			path = "Other Sources";
+			sourceTree = "<group>";
+		};
+		8947352013375EC200B0AD11 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8947352113375EC200B0AD11 /* Proxies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Proxies;
+			sourceTree = "<group>";
+		};
+		8947352213375EE000B0AD11 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8947352313375EE000B0AD11 /* Proxies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Proxies;
+			sourceTree = "<group>";
+		};
+		8947352413375EF200B0AD11 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8947352513375EF200B0AD11 /* Proxies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Proxies;
+			sourceTree = "<group>";
+		};
+		8947352613375EF200B0AD11 /* Settings Management */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Settings Management";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1507,6 +1566,7 @@
 				894735111337142200B0AD11 /* DataProcess.m in Sources */,
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
 				894735131337142200B0AD11 /* main.m in Sources */,
+				8947351F13375E1900B0AD11 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
