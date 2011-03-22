@@ -19,5 +19,4 @@
 #define EXO_REMEMBER_ME						@"remember_me"
 #define EXO_AUTO_LOGIN						@"auto_sigin"
 #define EXO_PREFERENCE_LANGUAGE				@"language"
-#define DOMAINLIST							@"http://platform.demo.exoplatform.org/ portal/private/intranet;http://mobile.demo.exoplatform.org/ portal/private/intranet"
 
