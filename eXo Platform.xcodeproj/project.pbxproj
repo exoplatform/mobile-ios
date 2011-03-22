@@ -10,35 +10,38 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937A32913387F1D00D8B474 /* NSString+HTML.m */; };
+		8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */; };
+		8937A33F1338993900D8B474 /* AppContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32E1338993900D8B474 /* AppContainerViewController.xib */; };
+		8937A3401338993900D8B474 /* ChatWindowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32F1338993900D8B474 /* ChatWindowViewController.xib */; };
+		8937A3411338993900D8B474 /* eXoMobileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3301338993900D8B474 /* eXoMobileViewController.xib */; };
+		8937A3421338993900D8B474 /* FileActionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3311338993900D8B474 /* FileActionsViewController.xib */; };
+		8937A3431338993900D8B474 /* FileContentDisplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3321338993900D8B474 /* FileContentDisplayController.xib */; };
+		8937A3441338993900D8B474 /* FilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3331338993900D8B474 /* FilesViewController.xib */; };
+		8937A3451338993900D8B474 /* GadgetDisplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3341338993900D8B474 /* GadgetDisplayController.xib */; };
+		8937A3461338993900D8B474 /* GadgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3351338993900D8B474 /* GadgetViewController.xib */; };
+		8937A3471338993900D8B474 /* LoginViewController copy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3361338993900D8B474 /* LoginViewController copy.xib */; };
+		8937A3481338993900D8B474 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3371338993900D8B474 /* LoginViewController.xib */; };
+		8937A3491338993900D8B474 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3381338993900D8B474 /* MainViewController.xib */; };
+		8937A34A1338993900D8B474 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3391338993900D8B474 /* MainWindow_iPad.xib */; };
+		8937A34B1338993900D8B474 /* MessengerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33A1338993900D8B474 /* MessengerViewController.xib */; };
+		8937A34C1338993900D8B474 /* MoreLiveChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33B1338993900D8B474 /* MoreLiveChatViewController.xib */; };
+		8937A34D1338993900D8B474 /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33C1338993900D8B474 /* OptionsViewController.xib */; };
+		8937A34E1338993900D8B474 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33D1338993900D8B474 /* SettingViewController.xib */; };
+		8937A34F1338993900D8B474 /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33E1338993900D8B474 /* SupportViewController.xib */; };
+		8937A35B1338994400D8B474 /* eXoApplicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */; };
+		8937A35C1338994400D8B474 /* eXoAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3521338994400D8B474 /* eXoAppViewController.xib */; };
+		8937A35D1338994400D8B474 /* eXoFileActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3531338994400D8B474 /* eXoFileActionViewController.xib */; };
+		8937A35E1338994400D8B474 /* eXoGadgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */; };
+		8937A35F1338994400D8B474 /* eXoSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3551338994400D8B474 /* eXoSplashViewController.xib */; };
+		8937A3601338994400D8B474 /* eXoWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3561338994400D8B474 /* eXoWebViewController.xib */; };
+		8937A3611338994400D8B474 /* Gadget_iPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */; };
+		8937A3621338994400D8B474 /* GadgetDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */; };
+		8937A3631338994400D8B474 /* GadgetViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3591338994400D8B474 /* GadgetViewController_iPhone.xib */; };
+		8937A3641338994400D8B474 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */; };
 		894731EB1336FBC000B0AD11 /* Configuration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 894731191336FBC000B0AD11 /* Configuration.xml */; };
 		894731EC1336FBC000B0AD11 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8947311A1336FBC000B0AD11 /* Entitlements.plist */; };
 		894732351336FEA600B0AD11 /* eXoMobileAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 894732341336FEA500B0AD11 /* eXoMobileAppDelegate.m */; };
-		8947331A1337099100B0AD11 /* AppContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733091337099100B0AD11 /* AppContainerViewController.xib */; };
-		8947331B1337099100B0AD11 /* ChatWindowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947330A1337099100B0AD11 /* ChatWindowViewController.xib */; };
-		8947331C1337099100B0AD11 /* eXoMobileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947330B1337099100B0AD11 /* eXoMobileViewController.xib */; };
-		8947331D1337099100B0AD11 /* FileActionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947330C1337099100B0AD11 /* FileActionsViewController.xib */; };
-		8947331E1337099100B0AD11 /* FileContentDisplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947330D1337099100B0AD11 /* FileContentDisplayController.xib */; };
-		8947331F1337099100B0AD11 /* FilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947330E1337099100B0AD11 /* FilesViewController.xib */; };
-		894733201337099100B0AD11 /* GadgetDisplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947330F1337099100B0AD11 /* GadgetDisplayController.xib */; };
-		894733211337099100B0AD11 /* GadgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733101337099100B0AD11 /* GadgetViewController.xib */; };
-		894733221337099100B0AD11 /* LoginViewController copy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733111337099100B0AD11 /* LoginViewController copy.xib */; };
-		894733231337099100B0AD11 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733121337099100B0AD11 /* LoginViewController.xib */; };
-		894733241337099100B0AD11 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733131337099100B0AD11 /* MainViewController.xib */; };
-		894733251337099100B0AD11 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733141337099100B0AD11 /* MainWindow_iPad.xib */; };
-		894733261337099100B0AD11 /* MessengerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733151337099100B0AD11 /* MessengerViewController.xib */; };
-		894733271337099100B0AD11 /* MoreLiveChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733161337099100B0AD11 /* MoreLiveChatViewController.xib */; };
-		894733281337099100B0AD11 /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733171337099100B0AD11 /* OptionsViewController.xib */; };
-		894733291337099100B0AD11 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733181337099100B0AD11 /* SettingViewController.xib */; };
-		8947332A1337099100B0AD11 /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894733191337099100B0AD11 /* SupportViewController.xib */; };
-		8947333413370A0400B0AD11 /* eXoApplicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947332B13370A0400B0AD11 /* eXoApplicationsViewController.xib */; };
-		8947333513370A0400B0AD11 /* eXoAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947332C13370A0400B0AD11 /* eXoAppViewController.xib */; };
-		8947333613370A0400B0AD11 /* eXoFileActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947332D13370A0400B0AD11 /* eXoFileActionViewController.xib */; };
-		8947333713370A0400B0AD11 /* eXoGadgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947332E13370A0400B0AD11 /* eXoGadgetsViewController.xib */; };
-		8947333813370A0400B0AD11 /* eXoSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947332F13370A0400B0AD11 /* eXoSplashViewController.xib */; };
-		8947333913370A0400B0AD11 /* eXoWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333013370A0400B0AD11 /* eXoWebViewController.xib */; };
-		8947333A13370A0400B0AD11 /* GadgetDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333113370A0400B0AD11 /* GadgetDisplayViewController.xib */; };
-		8947333B13370A0400B0AD11 /* Gadget_iPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333213370A0400B0AD11 /* Gadget_iPhoneViewController.xib */; };
-		8947333C13370A0400B0AD11 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333313370A0400B0AD11 /* MainWindow_iPhone.xib */; };
 		8947336913370B1900B0AD11 /* ChatWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947333F13370B1900B0AD11 /* ChatWindowViewController.m */; };
 		8947336A13370B1900B0AD11 /* MessengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334113370B1900B0AD11 /* MessengerViewController.m */; };
 		8947336B13370B1900B0AD11 /* MoreLiveChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334313370B1900B0AD11 /* MoreLiveChatViewController.m */; };
@@ -224,36 +227,39 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
+		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
+		8937A32E1338993900D8B474 /* AppContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppContainerViewController.xib; sourceTree = "<group>"; };
+		8937A32F1338993900D8B474 /* ChatWindowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatWindowViewController.xib; sourceTree = "<group>"; };
+		8937A3301338993900D8B474 /* eXoMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoMobileViewController.xib; sourceTree = "<group>"; };
+		8937A3311338993900D8B474 /* FileActionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileActionsViewController.xib; sourceTree = "<group>"; };
+		8937A3321338993900D8B474 /* FileContentDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileContentDisplayController.xib; sourceTree = "<group>"; };
+		8937A3331338993900D8B474 /* FilesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController.xib; sourceTree = "<group>"; };
+		8937A3341338993900D8B474 /* GadgetDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetDisplayController.xib; sourceTree = "<group>"; };
+		8937A3351338993900D8B474 /* GadgetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetViewController.xib; sourceTree = "<group>"; };
+		8937A3361338993900D8B474 /* LoginViewController copy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController copy.xib"; sourceTree = "<group>"; };
+		8937A3371338993900D8B474 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		8937A3381338993900D8B474 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		8937A3391338993900D8B474 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
+		8937A33A1338993900D8B474 /* MessengerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessengerViewController.xib; sourceTree = "<group>"; };
+		8937A33B1338993900D8B474 /* MoreLiveChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreLiveChatViewController.xib; sourceTree = "<group>"; };
+		8937A33C1338993900D8B474 /* OptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsViewController.xib; sourceTree = "<group>"; };
+		8937A33D1338993900D8B474 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		8937A33E1338993900D8B474 /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
+		8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoApplicationsViewController.xib; sourceTree = "<group>"; };
+		8937A3521338994400D8B474 /* eXoAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoAppViewController.xib; sourceTree = "<group>"; };
+		8937A3531338994400D8B474 /* eXoFileActionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoFileActionViewController.xib; sourceTree = "<group>"; };
+		8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoGadgetsViewController.xib; sourceTree = "<group>"; };
+		8937A3551338994400D8B474 /* eXoSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoSplashViewController.xib; sourceTree = "<group>"; };
+		8937A3561338994400D8B474 /* eXoWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoWebViewController.xib; sourceTree = "<group>"; };
+		8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Gadget_iPhoneViewController.xib; sourceTree = "<group>"; };
+		8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetDisplayViewController.xib; sourceTree = "<group>"; };
+		8937A3591338994400D8B474 /* GadgetViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetViewController_iPhone.xib; sourceTree = "<group>"; };
+		8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		894731191336FBC000B0AD11 /* Configuration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Configuration.xml; sourceTree = "<group>"; };
 		8947311A1336FBC000B0AD11 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		894732331336FEA500B0AD11 /* eXoMobileAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileAppDelegate.h; sourceTree = "<group>"; };
 		894732341336FEA500B0AD11 /* eXoMobileAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoMobileAppDelegate.m; sourceTree = "<group>"; };
-		894733091337099100B0AD11 /* AppContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppContainerViewController.xib; sourceTree = "<group>"; };
-		8947330A1337099100B0AD11 /* ChatWindowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatWindowViewController.xib; sourceTree = "<group>"; };
-		8947330B1337099100B0AD11 /* eXoMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoMobileViewController.xib; sourceTree = "<group>"; };
-		8947330C1337099100B0AD11 /* FileActionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileActionsViewController.xib; sourceTree = "<group>"; };
-		8947330D1337099100B0AD11 /* FileContentDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileContentDisplayController.xib; sourceTree = "<group>"; };
-		8947330E1337099100B0AD11 /* FilesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController.xib; sourceTree = "<group>"; };
-		8947330F1337099100B0AD11 /* GadgetDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetDisplayController.xib; sourceTree = "<group>"; };
-		894733101337099100B0AD11 /* GadgetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetViewController.xib; sourceTree = "<group>"; };
-		894733111337099100B0AD11 /* LoginViewController copy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController copy.xib"; sourceTree = "<group>"; };
-		894733121337099100B0AD11 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		894733131337099100B0AD11 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		894733141337099100B0AD11 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
-		894733151337099100B0AD11 /* MessengerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessengerViewController.xib; sourceTree = "<group>"; };
-		894733161337099100B0AD11 /* MoreLiveChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreLiveChatViewController.xib; sourceTree = "<group>"; };
-		894733171337099100B0AD11 /* OptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsViewController.xib; sourceTree = "<group>"; };
-		894733181337099100B0AD11 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
-		894733191337099100B0AD11 /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
-		8947332B13370A0400B0AD11 /* eXoApplicationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoApplicationsViewController.xib; sourceTree = "<group>"; };
-		8947332C13370A0400B0AD11 /* eXoAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoAppViewController.xib; sourceTree = "<group>"; };
-		8947332D13370A0400B0AD11 /* eXoFileActionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoFileActionViewController.xib; sourceTree = "<group>"; };
-		8947332E13370A0400B0AD11 /* eXoGadgetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoGadgetsViewController.xib; sourceTree = "<group>"; };
-		8947332F13370A0400B0AD11 /* eXoSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoSplashViewController.xib; sourceTree = "<group>"; };
-		8947333013370A0400B0AD11 /* eXoWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoWebViewController.xib; sourceTree = "<group>"; };
-		8947333113370A0400B0AD11 /* GadgetDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetDisplayViewController.xib; sourceTree = "<group>"; };
-		8947333213370A0400B0AD11 /* Gadget_iPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Gadget_iPhoneViewController.xib; sourceTree = "<group>"; };
-		8947333313370A0400B0AD11 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		8947333E13370B1900B0AD11 /* ChatWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController.h; sourceTree = "<group>"; };
 		8947333F13370B1900B0AD11 /* ChatWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController.m; sourceTree = "<group>"; };
 		8947334013370B1900B0AD11 /* MessengerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController.h; sourceTree = "<group>"; };
@@ -323,7 +329,7 @@
 		894733B513370C3600B0AD11 /* AppDelegate_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPad.h; sourceTree = "<group>"; };
 		894733B613370C3600B0AD11 /* AppDelegate_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPad.m; sourceTree = "<group>"; };
 		894733B813370C9800B0AD11 /* AppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPhone.h; sourceTree = "<group>"; };
-		894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPhone.m; sourceTree = "<group>"; };
+		894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate_iPhone.m; path = ../AppDelegate_iPhone.m; sourceTree = "<group>"; };
 		894733C013370F3C00B0AD11 /* ChatImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ChatImage.gif; sourceTree = "<group>"; };
 		894733C113370F3C00B0AD11 /* ChatImage01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ChatImage01.gif; sourceTree = "<group>"; };
 		894733C213370F3C00B0AD11 /* DashboardImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DashboardImage.gif; sourceTree = "<group>"; };
@@ -570,12 +576,55 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		8937A32D1338993800D8B474 /* NIB */ = {
+			isa = PBXGroup;
+			children = (
+				8937A32E1338993900D8B474 /* AppContainerViewController.xib */,
+				8937A32F1338993900D8B474 /* ChatWindowViewController.xib */,
+				8937A3301338993900D8B474 /* eXoMobileViewController.xib */,
+				8937A3311338993900D8B474 /* FileActionsViewController.xib */,
+				8937A3321338993900D8B474 /* FileContentDisplayController.xib */,
+				8937A3331338993900D8B474 /* FilesViewController.xib */,
+				8937A3341338993900D8B474 /* GadgetDisplayController.xib */,
+				8937A3351338993900D8B474 /* GadgetViewController.xib */,
+				8937A3361338993900D8B474 /* LoginViewController copy.xib */,
+				8937A3371338993900D8B474 /* LoginViewController.xib */,
+				8937A3381338993900D8B474 /* MainViewController.xib */,
+				8937A3391338993900D8B474 /* MainWindow_iPad.xib */,
+				8937A33A1338993900D8B474 /* MessengerViewController.xib */,
+				8937A33B1338993900D8B474 /* MoreLiveChatViewController.xib */,
+				8937A33C1338993900D8B474 /* OptionsViewController.xib */,
+				8937A33D1338993900D8B474 /* SettingViewController.xib */,
+				8937A33E1338993900D8B474 /* SupportViewController.xib */,
+			);
+			path = NIB;
+			sourceTree = "<group>";
+		};
+		8937A3501338994400D8B474 /* NIB */ = {
+			isa = PBXGroup;
+			children = (
+				894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */,
+				8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */,
+				8937A3521338994400D8B474 /* eXoAppViewController.xib */,
+				8937A3531338994400D8B474 /* eXoFileActionViewController.xib */,
+				8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */,
+				8937A3551338994400D8B474 /* eXoSplashViewController.xib */,
+				8937A3561338994400D8B474 /* eXoWebViewController.xib */,
+				8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */,
+				8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */,
+				8937A3591338994400D8B474 /* GadgetViewController_iPhone.xib */,
+				8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */,
+			);
+			path = NIB;
+			sourceTree = "<group>";
+		};
 		8947301C1336FBC000B0AD11 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
 				894732361336FFD400B0AD11 /* Custom Views */,
 				894732371336FFD400B0AD11 /* Data Manager */,
 				894732381336FFD400B0AD11 /* View Controllers */,
+				8937A32D1338993800D8B474 /* NIB */,
 				894733B513370C3600B0AD11 /* AppDelegate_iPad.h */,
 				894733B613370C3600B0AD11 /* AppDelegate_iPad.m */,
 			);
@@ -588,8 +637,8 @@
 				894732391336FFE400B0AD11 /* Custom Views */,
 				8947323A1336FFE400B0AD11 /* Data Manager */,
 				8947323B1336FFE400B0AD11 /* View Controllers */,
+				8937A3501338994400D8B474 /* NIB */,
 				894733B813370C9800B0AD11 /* AppDelegate_iPhone.h */,
-				894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -601,6 +650,7 @@
 				8947349E1337125D00B0AD11 /* Data Manager */,
 				8947349F1337125D00B0AD11 /* UI */,
 				894731191336FBC000B0AD11 /* Configuration.xml */,
+				8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */,
 				8947311A1336FBC000B0AD11 /* Entitlements.plist */,
 			);
 			path = Shared;
@@ -609,23 +659,6 @@
 		894732361336FFD400B0AD11 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				894733091337099100B0AD11 /* AppContainerViewController.xib */,
-				8947330A1337099100B0AD11 /* ChatWindowViewController.xib */,
-				8947330B1337099100B0AD11 /* eXoMobileViewController.xib */,
-				8947330C1337099100B0AD11 /* FileActionsViewController.xib */,
-				8947330D1337099100B0AD11 /* FileContentDisplayController.xib */,
-				8947330E1337099100B0AD11 /* FilesViewController.xib */,
-				8947330F1337099100B0AD11 /* GadgetDisplayController.xib */,
-				894733101337099100B0AD11 /* GadgetViewController.xib */,
-				894733111337099100B0AD11 /* LoginViewController copy.xib */,
-				894733121337099100B0AD11 /* LoginViewController.xib */,
-				894733131337099100B0AD11 /* MainViewController.xib */,
-				894733141337099100B0AD11 /* MainWindow_iPad.xib */,
-				894733151337099100B0AD11 /* MessengerViewController.xib */,
-				894733161337099100B0AD11 /* MoreLiveChatViewController.xib */,
-				894733171337099100B0AD11 /* OptionsViewController.xib */,
-				894733181337099100B0AD11 /* SettingViewController.xib */,
-				894733191337099100B0AD11 /* SupportViewController.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -654,15 +687,6 @@
 		894732391336FFE400B0AD11 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				8947332B13370A0400B0AD11 /* eXoApplicationsViewController.xib */,
-				8947332C13370A0400B0AD11 /* eXoAppViewController.xib */,
-				8947332D13370A0400B0AD11 /* eXoFileActionViewController.xib */,
-				8947332E13370A0400B0AD11 /* eXoGadgetsViewController.xib */,
-				8947332F13370A0400B0AD11 /* eXoSplashViewController.xib */,
-				8947333013370A0400B0AD11 /* eXoWebViewController.xib */,
-				8947333113370A0400B0AD11 /* GadgetDisplayViewController.xib */,
-				8947333213370A0400B0AD11 /* Gadget_iPhoneViewController.xib */,
-				8947333313370A0400B0AD11 /* MainWindow_iPhone.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -1236,6 +1260,7 @@
 				8947350B1337142200B0AD11 /* GTMNSString+HTML.h */,
 				8947350C1337142200B0AD11 /* GTMNSString+HTML.m */,
 				8947350E1337142200B0AD11 /* NSString+HTML.h */,
+				8937A32913387F1D00D8B474 /* NSString+HTML.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -1353,32 +1378,6 @@
 			files = (
 				894731EB1336FBC000B0AD11 /* Configuration.xml in Resources */,
 				894731EC1336FBC000B0AD11 /* Entitlements.plist in Resources */,
-				8947331A1337099100B0AD11 /* AppContainerViewController.xib in Resources */,
-				8947331B1337099100B0AD11 /* ChatWindowViewController.xib in Resources */,
-				8947331C1337099100B0AD11 /* eXoMobileViewController.xib in Resources */,
-				8947331D1337099100B0AD11 /* FileActionsViewController.xib in Resources */,
-				8947331E1337099100B0AD11 /* FileContentDisplayController.xib in Resources */,
-				8947331F1337099100B0AD11 /* FilesViewController.xib in Resources */,
-				894733201337099100B0AD11 /* GadgetDisplayController.xib in Resources */,
-				894733211337099100B0AD11 /* GadgetViewController.xib in Resources */,
-				894733221337099100B0AD11 /* LoginViewController copy.xib in Resources */,
-				894733231337099100B0AD11 /* LoginViewController.xib in Resources */,
-				894733241337099100B0AD11 /* MainViewController.xib in Resources */,
-				894733251337099100B0AD11 /* MainWindow_iPad.xib in Resources */,
-				894733261337099100B0AD11 /* MessengerViewController.xib in Resources */,
-				894733271337099100B0AD11 /* MoreLiveChatViewController.xib in Resources */,
-				894733281337099100B0AD11 /* OptionsViewController.xib in Resources */,
-				894733291337099100B0AD11 /* SettingViewController.xib in Resources */,
-				8947332A1337099100B0AD11 /* SupportViewController.xib in Resources */,
-				8947333413370A0400B0AD11 /* eXoApplicationsViewController.xib in Resources */,
-				8947333513370A0400B0AD11 /* eXoAppViewController.xib in Resources */,
-				8947333613370A0400B0AD11 /* eXoFileActionViewController.xib in Resources */,
-				8947333713370A0400B0AD11 /* eXoGadgetsViewController.xib in Resources */,
-				8947333813370A0400B0AD11 /* eXoSplashViewController.xib in Resources */,
-				8947333913370A0400B0AD11 /* eXoWebViewController.xib in Resources */,
-				8947333A13370A0400B0AD11 /* GadgetDisplayViewController.xib in Resources */,
-				8947333B13370A0400B0AD11 /* Gadget_iPhoneViewController.xib in Resources */,
-				8947333C13370A0400B0AD11 /* MainWindow_iPhone.xib in Resources */,
 				894733CB13370F3C00B0AD11 /* ChatImage.gif in Resources */,
 				894733CC13370F3C00B0AD11 /* ChatImage01.gif in Resources */,
 				894733CD13370F3C00B0AD11 /* DashboardImage.gif in Resources */,
@@ -1486,6 +1485,34 @@
 				8947349B13370F5D00B0AD11 /* Localize_EN.xml in Resources */,
 				8947349C13370F5D00B0AD11 /* Localize_FR.xml in Resources */,
 				8947351513372BF900B0AD11 /* eXo_Platform-Info.plist in Resources */,
+				8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */,
+				8937A33F1338993900D8B474 /* AppContainerViewController.xib in Resources */,
+				8937A3401338993900D8B474 /* ChatWindowViewController.xib in Resources */,
+				8937A3411338993900D8B474 /* eXoMobileViewController.xib in Resources */,
+				8937A3421338993900D8B474 /* FileActionsViewController.xib in Resources */,
+				8937A3431338993900D8B474 /* FileContentDisplayController.xib in Resources */,
+				8937A3441338993900D8B474 /* FilesViewController.xib in Resources */,
+				8937A3451338993900D8B474 /* GadgetDisplayController.xib in Resources */,
+				8937A3461338993900D8B474 /* GadgetViewController.xib in Resources */,
+				8937A3471338993900D8B474 /* LoginViewController copy.xib in Resources */,
+				8937A3481338993900D8B474 /* LoginViewController.xib in Resources */,
+				8937A3491338993900D8B474 /* MainViewController.xib in Resources */,
+				8937A34A1338993900D8B474 /* MainWindow_iPad.xib in Resources */,
+				8937A34B1338993900D8B474 /* MessengerViewController.xib in Resources */,
+				8937A34C1338993900D8B474 /* MoreLiveChatViewController.xib in Resources */,
+				8937A34D1338993900D8B474 /* OptionsViewController.xib in Resources */,
+				8937A34E1338993900D8B474 /* SettingViewController.xib in Resources */,
+				8937A34F1338993900D8B474 /* SupportViewController.xib in Resources */,
+				8937A35B1338994400D8B474 /* eXoApplicationsViewController.xib in Resources */,
+				8937A35C1338994400D8B474 /* eXoAppViewController.xib in Resources */,
+				8937A35D1338994400D8B474 /* eXoFileActionViewController.xib in Resources */,
+				8937A35E1338994400D8B474 /* eXoGadgetsViewController.xib in Resources */,
+				8937A35F1338994400D8B474 /* eXoSplashViewController.xib in Resources */,
+				8937A3601338994400D8B474 /* eXoWebViewController.xib in Resources */,
+				8937A3611338994400D8B474 /* Gadget_iPhoneViewController.xib in Resources */,
+				8937A3621338994400D8B474 /* GadgetDisplayViewController.xib in Resources */,
+				8937A3631338994400D8B474 /* GadgetViewController_iPhone.xib in Resources */,
+				8937A3641338994400D8B474 /* MainWindow_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1563,6 +1590,7 @@
 				894735111337142200B0AD11 /* DataProcess.m in Sources */,
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
 				8947351F13375E1900B0AD11 /* main.m in Sources */,
+				8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1578,7 +1606,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/tranhoaison/Desktop/EXO/MobileDev/mobile/trunk/exo-mobile-ios/Other Sources/eXo_Platform_Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1603,7 +1631,7 @@
 				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/tranhoaison/Desktop/EXO/MobileDev/mobile/trunk/exo-mobile-ios/Other Sources/eXo_Platform_Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -1651,7 +1679,7 @@
 				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/tranhoaison/Desktop/EXO/MobileDev/mobile/trunk/exo-mobile-ios/Other Sources/eXo_Platform_Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
