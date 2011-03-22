@@ -37,7 +37,7 @@
 		8947333813370A0400B0AD11 /* eXoSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947332F13370A0400B0AD11 /* eXoSplashViewController.xib */; };
 		8947333913370A0400B0AD11 /* eXoWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333013370A0400B0AD11 /* eXoWebViewController.xib */; };
 		8947333A13370A0400B0AD11 /* GadgetDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333113370A0400B0AD11 /* GadgetDisplayViewController.xib */; };
-		8947333B13370A0400B0AD11 /* GadgetViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333213370A0400B0AD11 /* GadgetViewController_iPhone.xib */; };
+		8947333B13370A0400B0AD11 /* Gadget_iPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333213370A0400B0AD11 /* Gadget_iPhoneViewController.xib */; };
 		8947333C13370A0400B0AD11 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8947333313370A0400B0AD11 /* MainWindow_iPhone.xib */; };
 		8947336913370B1900B0AD11 /* ChatWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947333F13370B1900B0AD11 /* ChatWindowViewController.m */; };
 		8947336A13370B1900B0AD11 /* MessengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334113370B1900B0AD11 /* MessengerViewController.m */; };
@@ -46,7 +46,7 @@
 		8947336E13370B1900B0AD11 /* FileContentDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334B13370B1900B0AD11 /* FileContentDisplayController.m */; };
 		8947336F13370B1900B0AD11 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334D13370B1900B0AD11 /* FilesViewController.m */; };
 		8947337013370B1900B0AD11 /* Gadget_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335013370B1900B0AD11 /* Gadget_iPad.m */; };
-		8947337113370B1900B0AD11 /* GadgetButtonView_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335213370B1900B0AD11 /* GadgetButtonView_iPad.m */; };
+		8947337113370B1900B0AD11 /* Gadget_iPadButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335213370B1900B0AD11 /* Gadget_iPadButtonView.m */; };
 		8947337213370B1900B0AD11 /* GadgetDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335413370B1900B0AD11 /* GadgetDisplayController.m */; };
 		8947337313370B1900B0AD11 /* GadgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335613370B1900B0AD11 /* GadgetViewController.m */; };
 		8947337413370B1900B0AD11 /* AppContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335913370B1900B0AD11 /* AppContainerViewController.m */; };
@@ -66,7 +66,7 @@
 		894733A913370B4500B0AD11 /* eXoGadgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947338F13370B4500B0AD11 /* eXoGadgetViewController.m */; };
 		894733AA13370B4500B0AD11 /* Gadget_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339113370B4500B0AD11 /* Gadget_iPhone.m */; };
 		894733AB13370B4500B0AD11 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339313370B4500B0AD11 /* GadgetDisplayViewController.m */; };
-		894733AC13370B4500B0AD11 /* GadgetViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339513370B4500B0AD11 /* GadgetViewController_iPhone.m */; };
+		894733AC13370B4500B0AD11 /* Gadget_iPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339513370B4500B0AD11 /* Gadget_iPhoneViewController.m */; };
 		894733AD13370B4500B0AD11 /* eXoApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339813370B4500B0AD11 /* eXoApplicationsViewController.m */; };
 		894733AE13370B4500B0AD11 /* eXoAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339A13370B4500B0AD11 /* eXoAppViewController.m */; };
 		894733AF13370B4500B0AD11 /* eXoSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339C13370B4500B0AD11 /* eXoSplashViewController.m */; };
@@ -210,7 +210,6 @@
 		894735101337142200B0AD11 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 894735061337142200B0AD11 /* Connection.m */; };
 		894735111337142200B0AD11 /* DataProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 894735081337142200B0AD11 /* DataProcess.m */; };
 		894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947350C1337142200B0AD11 /* GTMNSString+HTML.m */; };
-		894735131337142200B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947350D1337142200B0AD11 /* main.m */; };
 		8947351513372BF900B0AD11 /* eXo_Platform-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */; };
 		8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351613372CC200B0AD11 /* libidn-iPhone.a */; };
 		8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351813372CD100B0AD11 /* libidn-simulator.a */; };
@@ -224,6 +223,7 @@
 		1D6058910D05DD3D006BFB54 /* eXo Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		894731191336FBC000B0AD11 /* Configuration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Configuration.xml; sourceTree = "<group>"; };
 		8947311A1336FBC000B0AD11 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		894732331336FEA500B0AD11 /* eXoMobileAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileAppDelegate.h; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 		8947332F13370A0400B0AD11 /* eXoSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoSplashViewController.xib; sourceTree = "<group>"; };
 		8947333013370A0400B0AD11 /* eXoWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoWebViewController.xib; sourceTree = "<group>"; };
 		8947333113370A0400B0AD11 /* GadgetDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetDisplayViewController.xib; sourceTree = "<group>"; };
-		8947333213370A0400B0AD11 /* GadgetViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetViewController_iPhone.xib; sourceTree = "<group>"; };
+		8947333213370A0400B0AD11 /* Gadget_iPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Gadget_iPhoneViewController.xib; sourceTree = "<group>"; };
 		8947333313370A0400B0AD11 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		8947333E13370B1900B0AD11 /* ChatWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController.h; sourceTree = "<group>"; };
 		8947333F13370B1900B0AD11 /* ChatWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController.m; sourceTree = "<group>"; };
@@ -266,10 +266,10 @@
 		8947334B13370B1900B0AD11 /* FileContentDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileContentDisplayController.m; sourceTree = "<group>"; };
 		8947334C13370B1900B0AD11 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
 		8947334D13370B1900B0AD11 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
-		8947334F13370B1900B0AD11 /* Gadget_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gadget_iPad.h; sourceTree = "<group>"; };
-		8947335013370B1900B0AD11 /* Gadget_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget_iPad.m; sourceTree = "<group>"; };
-		8947335113370B1900B0AD11 /* GadgetButtonView_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetButtonView_iPad.h; sourceTree = "<group>"; };
-		8947335213370B1900B0AD11 /* GadgetButtonView_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetButtonView_iPad.m; sourceTree = "<group>"; };
+		8947334F13370B1900B0AD11 /* Gadget_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gadget_iPad.h; path = "../../View Controllers/Gadget/Gadget_iPad.h"; sourceTree = "<group>"; };
+		8947335013370B1900B0AD11 /* Gadget_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gadget_iPad.m; path = "../../View Controllers/Gadget/Gadget_iPad.m"; sourceTree = "<group>"; };
+		8947335113370B1900B0AD11 /* Gadget_iPadButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gadget_iPadButtonView.h; sourceTree = "<group>"; };
+		8947335213370B1900B0AD11 /* Gadget_iPadButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget_iPadButtonView.m; sourceTree = "<group>"; };
 		8947335313370B1900B0AD11 /* GadgetDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayController.h; sourceTree = "<group>"; };
 		8947335413370B1900B0AD11 /* GadgetDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayController.m; sourceTree = "<group>"; };
 		8947335513370B1900B0AD11 /* GadgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetViewController.h; sourceTree = "<group>"; };
@@ -304,12 +304,12 @@
 		8947338C13370B4500B0AD11 /* eXoFilesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoFilesView.m; sourceTree = "<group>"; };
 		8947338E13370B4500B0AD11 /* eXoGadgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoGadgetViewController.h; sourceTree = "<group>"; };
 		8947338F13370B4500B0AD11 /* eXoGadgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoGadgetViewController.m; sourceTree = "<group>"; };
-		8947339013370B4500B0AD11 /* Gadget_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gadget_iPhone.h; sourceTree = "<group>"; };
-		8947339113370B4500B0AD11 /* Gadget_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget_iPhone.m; sourceTree = "<group>"; };
+		8947339013370B4500B0AD11 /* Gadget_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gadget_iPhone.h; path = "../../View Controllers/Gadget/Gadget_iPhone.h"; sourceTree = "<group>"; };
+		8947339113370B4500B0AD11 /* Gadget_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gadget_iPhone.m; path = "../../View Controllers/Gadget/Gadget_iPhone.m"; sourceTree = "<group>"; };
 		8947339213370B4500B0AD11 /* GadgetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayViewController.h; sourceTree = "<group>"; };
 		8947339313370B4500B0AD11 /* GadgetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayViewController.m; sourceTree = "<group>"; };
-		8947339413370B4500B0AD11 /* GadgetViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetViewController_iPhone.h; sourceTree = "<group>"; };
-		8947339513370B4500B0AD11 /* GadgetViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetViewController_iPhone.m; sourceTree = "<group>"; };
+		8947339413370B4500B0AD11 /* Gadget_iPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gadget_iPhoneViewController.h; sourceTree = "<group>"; };
+		8947339513370B4500B0AD11 /* Gadget_iPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget_iPhoneViewController.m; sourceTree = "<group>"; };
 		8947339713370B4500B0AD11 /* eXoApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoApplicationsViewController.h; sourceTree = "<group>"; };
 		8947339813370B4500B0AD11 /* eXoApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoApplicationsViewController.m; sourceTree = "<group>"; };
 		8947339913370B4500B0AD11 /* eXoAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoAppViewController.h; sourceTree = "<group>"; };
@@ -500,13 +500,11 @@
 		8947350A1337142200B0AD11 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		8947350B1337142200B0AD11 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		8947350C1337142200B0AD11 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
-		8947350D1337142200B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8947350E1337142200B0AD11 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eXo_Platform-Info.plist"; sourceTree = "<group>"; };
 		8947351613372CC200B0AD11 /* libidn-iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-iPhone.a"; sourceTree = "<group>"; };
 		8947351813372CD100B0AD11 /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-simulator.a"; sourceTree = "<group>"; };
 		8947351A13372CD900B0AD11 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
-		8947351D13375E1900B0AD11 /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -663,7 +661,7 @@
 				8947332F13370A0400B0AD11 /* eXoSplashViewController.xib */,
 				8947333013370A0400B0AD11 /* eXoWebViewController.xib */,
 				8947333113370A0400B0AD11 /* GadgetDisplayViewController.xib */,
-				8947333213370A0400B0AD11 /* GadgetViewController_iPhone.xib */,
+				8947333213370A0400B0AD11 /* Gadget_iPhoneViewController.xib */,
 				8947333313370A0400B0AD11 /* MainWindow_iPhone.xib */,
 			);
 			path = "Custom Views";
@@ -719,10 +717,8 @@
 		8947334E13370B1900B0AD11 /* Gadget */ = {
 			isa = PBXGroup;
 			children = (
-				8947334F13370B1900B0AD11 /* Gadget_iPad.h */,
-				8947335013370B1900B0AD11 /* Gadget_iPad.m */,
-				8947335113370B1900B0AD11 /* GadgetButtonView_iPad.h */,
-				8947335213370B1900B0AD11 /* GadgetButtonView_iPad.m */,
+				8947335113370B1900B0AD11 /* Gadget_iPadButtonView.h */,
+				8947335213370B1900B0AD11 /* Gadget_iPadButtonView.m */,
 				8947335313370B1900B0AD11 /* GadgetDisplayController.h */,
 				8947335413370B1900B0AD11 /* GadgetDisplayController.m */,
 				8947335513370B1900B0AD11 /* GadgetViewController.h */,
@@ -792,12 +788,10 @@
 			children = (
 				8947338E13370B4500B0AD11 /* eXoGadgetViewController.h */,
 				8947338F13370B4500B0AD11 /* eXoGadgetViewController.m */,
-				8947339013370B4500B0AD11 /* Gadget_iPhone.h */,
-				8947339113370B4500B0AD11 /* Gadget_iPhone.m */,
 				8947339213370B4500B0AD11 /* GadgetDisplayViewController.h */,
 				8947339313370B4500B0AD11 /* GadgetDisplayViewController.m */,
-				8947339413370B4500B0AD11 /* GadgetViewController_iPhone.h */,
-				8947339513370B4500B0AD11 /* GadgetViewController_iPhone.m */,
+				8947339413370B4500B0AD11 /* Gadget_iPhoneViewController.h */,
+				8947339513370B4500B0AD11 /* Gadget_iPhoneViewController.m */,
 			);
 			path = Gadget;
 			sourceTree = "<group>";
@@ -1241,7 +1235,6 @@
 				8947350A1337142200B0AD11 /* GTMDefines.h */,
 				8947350B1337142200B0AD11 /* GTMNSString+HTML.h */,
 				8947350C1337142200B0AD11 /* GTMNSString+HTML.m */,
-				8947350D1337142200B0AD11 /* main.m */,
 				8947350E1337142200B0AD11 /* NSString+HTML.h */,
 			);
 			path = eXoUtils;
@@ -1250,7 +1243,7 @@
 		8947351C13375E1800B0AD11 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8947351D13375E1900B0AD11 /* eXo_Platform_Prefix.pch */,
+				7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */,
 				8947351E13375E1900B0AD11 /* main.m */,
 			);
 			path = "Other Sources";
@@ -1259,6 +1252,8 @@
 		8947352013375EC200B0AD11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8947334F13370B1900B0AD11 /* Gadget_iPad.h */,
+				8947335013370B1900B0AD11 /* Gadget_iPad.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1273,6 +1268,8 @@
 		8947352213375EE000B0AD11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8947339013370B4500B0AD11 /* Gadget_iPhone.h */,
+				8947339113370B4500B0AD11 /* Gadget_iPhone.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1380,7 +1377,7 @@
 				8947333813370A0400B0AD11 /* eXoSplashViewController.xib in Resources */,
 				8947333913370A0400B0AD11 /* eXoWebViewController.xib in Resources */,
 				8947333A13370A0400B0AD11 /* GadgetDisplayViewController.xib in Resources */,
-				8947333B13370A0400B0AD11 /* GadgetViewController_iPhone.xib in Resources */,
+				8947333B13370A0400B0AD11 /* Gadget_iPhoneViewController.xib in Resources */,
 				8947333C13370A0400B0AD11 /* MainWindow_iPhone.xib in Resources */,
 				894733CB13370F3C00B0AD11 /* ChatImage.gif in Resources */,
 				894733CC13370F3C00B0AD11 /* ChatImage01.gif in Resources */,
@@ -1507,7 +1504,7 @@
 				8947336E13370B1900B0AD11 /* FileContentDisplayController.m in Sources */,
 				8947336F13370B1900B0AD11 /* FilesViewController.m in Sources */,
 				8947337013370B1900B0AD11 /* Gadget_iPad.m in Sources */,
-				8947337113370B1900B0AD11 /* GadgetButtonView_iPad.m in Sources */,
+				8947337113370B1900B0AD11 /* Gadget_iPadButtonView.m in Sources */,
 				8947337213370B1900B0AD11 /* GadgetDisplayController.m in Sources */,
 				8947337313370B1900B0AD11 /* GadgetViewController.m in Sources */,
 				8947337413370B1900B0AD11 /* AppContainerViewController.m in Sources */,
@@ -1527,7 +1524,7 @@
 				894733A913370B4500B0AD11 /* eXoGadgetViewController.m in Sources */,
 				894733AA13370B4500B0AD11 /* Gadget_iPhone.m in Sources */,
 				894733AB13370B4500B0AD11 /* GadgetDisplayViewController.m in Sources */,
-				894733AC13370B4500B0AD11 /* GadgetViewController_iPhone.m in Sources */,
+				894733AC13370B4500B0AD11 /* Gadget_iPhoneViewController.m in Sources */,
 				894733AD13370B4500B0AD11 /* eXoApplicationsViewController.m in Sources */,
 				894733AE13370B4500B0AD11 /* eXoAppViewController.m in Sources */,
 				894733AF13370B4500B0AD11 /* eXoSplashViewController.m in Sources */,
@@ -1565,7 +1562,6 @@
 				894735101337142200B0AD11 /* Connection.m in Sources */,
 				894735111337142200B0AD11 /* DataProcess.m in Sources */,
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
-				894735131337142200B0AD11 /* main.m in Sources */,
 				8947351F13375E1900B0AD11 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1582,7 +1578,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = eXo_Platform_Prefix.pch;
+				GCC_PREFIX_HEADER = "/Users/tranhoaison/Desktop/EXO/MobileDev/mobile/trunk/exo-mobile-ios/Other Sources/eXo_Platform_Prefix.pch";
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1607,7 +1603,7 @@
 				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = eXo_Platform_Prefix.pch;
+				GCC_PREFIX_HEADER = "/Users/tranhoaison/Desktop/EXO/MobileDev/mobile/trunk/exo-mobile-ios/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -1655,7 +1651,7 @@
 				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = eXo_Platform_Prefix.pch;
+				GCC_PREFIX_HEADER = "/Users/tranhoaison/Desktop/EXO/MobileDev/mobile/trunk/exo-mobile-ios/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
