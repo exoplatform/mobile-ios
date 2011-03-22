@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "eXoMobileAppDelegate.h"
 
 @class eXoAppViewController;
 @class eXoApplicationsViewController;
@@ -16,7 +17,7 @@
 @class eXoSettingViewController;
 
 //App delegate
-@interface AppDelegate_iPhone : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
+@interface AppDelegate_iPhone : eXoMobileAppDelegate <UIAlertViewDelegate> {
     IBOutlet UIWindow*					window;
 	IBOutlet UINavigationController*	navigationController;
 	IBOutlet UITabBarController*		tabBarController;

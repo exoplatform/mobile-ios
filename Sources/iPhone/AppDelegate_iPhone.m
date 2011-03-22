@@ -72,6 +72,11 @@
 	[NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(splashScreen) userInfo:nil repeats:NO];
 }
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption {
+    [self applicationDidFinishLaunching:application];
+    return YES;
+}
+
 -(void)splashScreen {
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

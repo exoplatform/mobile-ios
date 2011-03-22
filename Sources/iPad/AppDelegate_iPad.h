@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "eXoMobileAppDelegate.h"
 
 @class eXoMobileViewController;
 
-@interface AppDelegate_iPad : NSObject <UIApplicationDelegate> {
+@interface AppDelegate_iPad : eXoMobileAppDelegate {
     UIWindow *window;
     eXoMobileViewController *viewController;
 }
