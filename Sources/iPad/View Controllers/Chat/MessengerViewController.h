@@ -69,6 +69,7 @@
 	NSString *								bottomHorizontalStr;
 }
 
+@property int currentChatUserIndex;
 @property(nonatomic, retain)UITableView* _tblvUsers;
 
 - (int)getCurrentChatUserIndex;	//Get current chat user index in the list

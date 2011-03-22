@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class GadgetButtonView_iPad;
+@class Gadget_iPadButtonView;
 @class GrayPageControl;
 
 //Display gadget list
@@ -43,5 +43,5 @@
 - (void)showGrid;	//Change gadget tabs view mode
 //- (void)loadScrollViewWithPage:(int)page;
 - (IBAction)onPageViewController:(id)sender;	//Scroll gadget page
-- (void)onGadgetButton:(GadgetButtonView_iPad*)gadgetBtn; //View gadget
+- (void)onGadgetButton:(Gadget_iPadButtonView*)gadgetBtn; //View gadget
 @end

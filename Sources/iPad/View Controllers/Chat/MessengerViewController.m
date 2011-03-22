@@ -173,6 +173,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
 @implementation MessengerViewController
 
 @synthesize _tblvUsers;
+@synthesize currentChatUserIndex;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
