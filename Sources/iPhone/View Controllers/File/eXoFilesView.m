@@ -177,6 +177,23 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 @synthesize _tblvFilesGrp, _arrDicts, _fileActionViewShape, labelEmptyPage;
 
 
+- (void) dealloc {
+    [_tblvFilesGrp release];	//Files, folders list view
+	_tblvFilesGrp = nil;
+    
+    [_arrDicts release];	//Files, folders list
+	_delegate = nil;	//Point to main app view controller
+	[_fileActionViewShape release];	//File action border
+	
+	[imgViewEmptyPage release];	//Empty page image view
+    imgViewEmptyPage = nil;
+	[labelEmptyPage release];	///Empty page label view
+    labelEmptyPage = nil;
+    
+    [super dealloc];
+}
+
+
 - (void)setDriverContent:(NSMutableArray*)arrDriveContent withDelegate:(id)delegate
 {
 	_arrDicts = [[NSMutableArray alloc] init];
