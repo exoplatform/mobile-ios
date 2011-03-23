@@ -16,6 +16,9 @@
 #import "defines.h"
 
 static NSString *kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
+
 static BOOL didUpdateRosterForTheFirstTime = NO;
 
 @implementation eXoChatView
@@ -156,35 +159,39 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
-	cell.textLabel.font = [UIFont systemFontOfSize:18.0];
-	cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+    if(cell == nil) {
+        
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont systemFontOfSize:18.0];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(45.0, 15.0, 260.0, 20.0)];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+        [cell addSubview:titleLabel];
+
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 10.0, 30, 30)];
+        imgView.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgView];
+    }
 
 	XMPPUser *user = [_arrUsers objectAtIndex:indexPath.row];
 	
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(45.0, 15.0, 260.0, 20.0)];
-	titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+	UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
 	titleLabel.text = [user nickname];
 
-	UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 10.0, 30, 30)];
-	
+    UIImageView* imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
 	if([user isOnline])
 	{	
 		titleLabel.textColor = [UIColor blueColor];
-		imgV.image = [UIImage imageNamed:@"onlineuser.png"];
+		imgView.image = [UIImage imageNamed:@"onlineuser.png"];
 	}
 	else
 	{
 		titleLabel.textColor = [UIColor blackColor];
-		imgV.image = [UIImage imageNamed:@"offlineuser.png"];
+		imgView.image = [UIImage imageNamed:@"offlineuser.png"];
 	}
-	
-	[cell addSubview:titleLabel];
-    
-    //titleLabel is added as subview (retainCount += 1) when can release
-    [titleLabel release];
-    [imgV release];
-    
 	
 	int msgCount = [[_msgCount objectAtIndex:indexPath.row] intValue];
 	
@@ -202,11 +209,6 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
         //no release of the notificationBtn, because it is created with an autorelease
         
 	}
-	
-	[cell addSubview:imgV];
-	
-	
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
 	return cell;
 }

@@ -13,10 +13,9 @@
 #import "GadgetDisplayViewController.h"
 
 
-
-#define kTagCellSubviewForTitleLabel 97
-#define kTagCellSubviewForDescriptionLabel 98
-#define kTagCellSubviewForImageView 99
+#define kTagCellSubviewForTitleLabel 222
+#define kTagCellSubviewForDescriptionLabel 333
+#define kTagCellSubviewForImageView 444
 
 
 @implementation eXoGadgetViewController

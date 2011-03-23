@@ -16,6 +16,8 @@
 #import "DataProcess.h"
 #import "NSString+HTML.h"
 
+static NSString *CellIdentifier = @"MyIdentifier";
+
 @implementation eXoAppViewController
 
 @synthesize _txtfUserName;
@@ -23,7 +25,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) 
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) 
 	{
 		//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
 		_bSuccessful = [[NSString alloc] init];
@@ -234,50 +237,51 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	
-	switch (indexPath.section) 
-	{
-		case 0:
-		{
-			UILabel* domainNameLabel = [[UILabel alloc] init];
- 	 		domainNameLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
-			
-			return [self containerCellWithLabel:domainNameLabel view:_txtfDomainName];
-			break;
-		}
-				
-		case 1:
-		{
-			switch (indexPath.row)
-			{
-				case 0:
-				{
-					UILabel* userNameLabel = [[UILabel alloc] init];
-					userNameLabel.text = [_dictLocalize objectForKey:@"UserNameCellTitle"];
-					return [self containerCellWithLabel:userNameLabel view:_txtfUserName];
-					break;
-				}	
-				case 1:
-				{
-					UILabel* userPswdLabel = [[UILabel alloc] init];
-					userPswdLabel.text = [_dictLocalize objectForKey:@"PasswordCellTitle"];
-					return [self containerCellWithLabel:userPswdLabel view:_txtfUserPasswd];
-					
-					break;
-				}
-			}
-			
-			break;
-		}
-			
-		default:
-			break;
-	}
-		
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        switch (indexPath.section) 
+        {
+            case 0:
+            {
+                cell.textLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
+                
+                [cell addSubview:_txtfDomainName];
+                
+                break;
+            }
+            case 1:
+            {
+                switch (indexPath.row)
+                {
+                    case 0:
+                    {
+                        cell.textLabel.text = [_dictLocalize objectForKey:@"UserNameCellTitle"];
+                        [cell addSubview:_txtfUserName];
+                        break;
+                    }	
+                    case 1:
+                    {
+                        cell.textLabel.text = [_dictLocalize objectForKey:@"PasswordCellTitle"];
+                        [cell addSubview:_txtfUserPasswd];
+                        
+                        break;
+                    }
+                }
+                
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }
+	
 	return cell;
 }
 
@@ -288,7 +292,6 @@
 	}
 	
 }
-
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
 {
@@ -524,9 +527,9 @@
 
 - (void)attachContainer:(UIView*)view 
 {
-	[_vContainer removeFromSuperview];
-	[_vContainer release];
-	_vContainer = [view retain];
+//	[_vContainer removeFromSuperview];
+//	[_vContainer release];
+//	_vContainer = [view retain];
 	[self addSubview:view];
 }
 

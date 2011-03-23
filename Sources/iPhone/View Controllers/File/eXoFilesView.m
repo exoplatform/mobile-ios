@@ -70,6 +70,8 @@ NSString *fileType_iPhone(NSString *fileName)
 }
 
 static NSString *kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,7 +142,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 -(id)initWithUrlStr:(NSString *)urlStr fileName:(NSString *)fileName
 {
-	if(self = [super init])
+    self = [super init];
+	if(self)
 	{
 		_fileName = [[NSString alloc] initWithString:fileName];
 		_urlStr = [[NSString alloc] initWithString:urlStr];
@@ -242,32 +245,40 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
-	
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        
+        UIImageView* imgViewFile = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 40, 40)];
+        cell.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgViewFile];
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 200.0, 20.0)];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+        [cell addSubview:titleLabel];
+        
+        UIButton *btnFileAction = [[UIButton alloc] initWithFrame:CGRectMake(285.0, 9, 30, 30)];
+        [btnFileAction setBackgroundImage:[UIImage imageNamed:@"action.png"] forState:UIControlStateNormal];
+        [btnFileAction addTarget:self action:@selector(fileAction:) forControlEvents:UIControlEventTouchUpInside];
+        btnFileAction.tag = indexPath.row;
+        [cell addSubview:btnFileAction];
+        
+    }
+    
 	eXoFile_iPhone *file = [_arrDicts objectAtIndex:indexPath.row];
 	
-	UIImageView* imgViewFile = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 40, 40)];
+	
+    UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
 	if(file._isFolder)
 		imgViewFile.image = [UIImage imageNamed:@"folder.png"];
 	else
 		imgViewFile.image = [UIImage imageNamed:fileType_iPhone(file._fileName)];
-	[cell addSubview:imgViewFile];
+	
+    
+	UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+	titleLabel.text = file._fileName;
 	
 	
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 200.0, 20.0)];
-	titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-	NSString* tmpStr = file._fileName;
-
-	titleLabel.text = tmpStr;
-	[cell addSubview:titleLabel];
-	
-	
-	UIButton *btnFileAction = [[UIButton alloc] initWithFrame:CGRectMake(285.0, 9, 30, 30)];
-	[btnFileAction setBackgroundImage:[UIImage imageNamed:@"action.png"] forState:UIControlStateNormal];
-	[btnFileAction addTarget:self action:@selector(fileAction:) forControlEvents:UIControlEventTouchUpInside];
-	btnFileAction.tag = indexPath.row;
-	[cell addSubview:btnFileAction];
-
 	if (imgViewEmptyPage == nil) {
 		imgViewEmptyPage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
 		imgViewEmptyPage.image = [UIImage imageNamed:@"emptypage.png"];

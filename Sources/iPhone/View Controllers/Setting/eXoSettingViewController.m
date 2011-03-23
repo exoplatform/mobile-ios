@@ -11,6 +11,11 @@
 #import "eXoWebViewController.h"
 #import "eXoApplicationsViewController.h"
 
+static NSString *CellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
+
+
 @implementation eXoSettingViewController
 
 @synthesize _dictLocalize;
@@ -18,7 +23,8 @@
 - (id)initWithStyle:(UITableViewStyle)style delegate:(eXoApplicationsViewController *)delegate
 {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) 
+    self = [super initWithStyle:style];
+    if (self) 
 	{
 		edit = NO;
 		
@@ -156,101 +162,104 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     
+        switch (indexPath.section) 
+        {
+            case 0:
+            {
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                if(indexPath.row == 0) {
+                    
+                    cell.textLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
+                    
+                    txtfDomainName = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 200, 30)];
+                    txtfDomainName.delegate = self;
+                    txtfDomainName.keyboardType = UIKeyboardTypeASCIICapable;
+                    txtfDomainName.returnKeyType = UIReturnKeyDone;
+                    txtfDomainName.autocorrectionType = UITextAutocorrectionTypeNo;
+                    txtfDomainName.autocapitalizationType = UITextAutocapitalizationTypeNone;
+                    txtfDomainName.clearButtonMode = UITextFieldViewModeWhileEditing;
+                    
+                    txtfDomainName.text = serverNameStr;
+                    
+                    [cell addSubview:txtfDomainName];
+                    
+                }
+                else if(indexPath.row == 1)
+                {
+                    cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
+                    rememberMe.on = bRememberMe;
+                    [cell addSubview:rememberMe];
+                }
+                else {
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
+                    autoLogin.on = bAutoLogin;
+                    
+                    [cell addSubview:autoLogin];
+                }
+                
+            }
+                break;
+                
+            case 1: 
+            {
+                
+                if(indexPath.row == 0)
+                {
+                    UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                    imgV.image = [UIImage imageNamed:@"EN.gif"];
+                    [cell addSubview:imgV];
+                    
+                    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                    titleLabel.text = [_dictLocalize objectForKey:@"English"];
+                    [cell addSubview:titleLabel];
+                    
+                }
+                else
+                {
+                    UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                    imgV.image = [UIImage imageNamed:@"FR.gif"];
+                    [cell addSubview:imgV];				
+                    
+                    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                    titleLabel.text = [_dictLocalize objectForKey:@"French"];
+                    [cell addSubview:titleLabel];		
+                }
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+                break;
+                
+            case 2:
+            {
+                cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+
+    }
+	
     // Set up the cell...
-	switch (indexPath.section) 
-	{
-		case 0:
-		{
-			cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			
-			if(indexPath.row == 0) {
-				
-				cell.textLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
-				
-				txtfDomainName = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 200, 30)];
-				txtfDomainName.delegate = self;
-				txtfDomainName.keyboardType = UIKeyboardTypeASCIICapable;
-				txtfDomainName.returnKeyType = UIReturnKeyDone;
-				txtfDomainName.autocorrectionType = UITextAutocorrectionTypeNo;
-				txtfDomainName.autocapitalizationType = UITextAutocapitalizationTypeNone;
-				txtfDomainName.clearButtonMode = UITextFieldViewModeWhileEditing;
-				
-				txtfDomainName.text = serverNameStr;
-				
-				[cell addSubview:txtfDomainName];
-				
-			}
-			else if(indexPath.row == 1)
-			{
-				
-				cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
-				rememberMe.on = bRememberMe;
-				
-				[cell addSubview:rememberMe];
-			}
-			else {
-				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-				cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
-				autoLogin.on = bAutoLogin;
-				
-				[cell addSubview:autoLogin];
-			}
-	
-		}
-		break;
-			
-		case 1: 
-		{
-			if(indexPath.row == _selectedLanguage)
-				cell.accessoryType = UITableViewCellAccessoryCheckmark;
-						
-			if(indexPath.row == 0)
-			{
-				UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-				imgV.image = [UIImage imageNamed:@"EN.gif"];
-				[cell addSubview:imgV];
-				
-				UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-				titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-				titleLabel.text = [_dictLocalize objectForKey:@"English"];
-				[cell addSubview:titleLabel];
-				
-			}
-			else
-			{
-				UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-				imgV.image = [UIImage imageNamed:@"FR.gif"];
-				[cell addSubview:imgV];				
-
-				UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-				titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-				titleLabel.text = [_dictLocalize objectForKey:@"French"];
-				[cell addSubview:titleLabel];		
-			}
-
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		}
-			break;
-
-		case 2:
-		{
-			cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
-			cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-		}
-			break;
-			
-		default:
-			break;
-	}
-	
+    if(indexPath.section == 1) {
+        if(indexPath.row == _selectedLanguage)
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        else
+            cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 

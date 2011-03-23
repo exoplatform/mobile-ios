@@ -36,6 +36,8 @@
 #import "eXoFileActionViewController.h"
 
 static NSString *kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
 
 //--------------------------------------------
 @implementation eXoChatUser
@@ -656,63 +658,52 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	switch (indexPath.section)
-	{
-		case 0:
-		{	
-			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-			
-			cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
-			UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 20.0, 210.0, 20.0)];
-			titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-			[cell addSubview:titleLabel];
-			
-			UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
-			[cell addSubview:imgV];
-
-			if(indexPath.row == 0)
-			{
-				titleLabel.text = @"Chat";		
-				if(_xmppClient != nil && [_xmppClient isConnected] && [_xmppClient isAuthenticated])
-					imgV.image = [UIImage imageNamed:@"onlineicon.png"];
-				else
-					imgV.image = [UIImage imageNamed:@"offlineicon.png"];
-			}
-			else if(indexPath.row == 1)
-			{
-				titleLabel.text = @"Files";
-				imgV.image = [UIImage imageNamed:@"filesApp.png"];
-
-			}
-			else
-			{
-				titleLabel.text = @"eXoActivity";					
-				imgV.image = [UIImage imageNamed:@"ActivityIcon.png"];
-			}
-			
-			break;
-		}	
-			
-		case 1:
-		{
-			GateInDbItem_iPhone *gadgetTab = [_arrGadgets objectAtIndex:indexPath.row];
-			
-			cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
-			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-			
-			UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];			
-			imgView.image = [UIImage imageNamed:@"Dashboard.png"];			
-			[cell addSubview:imgView];
-			
-			UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 20.0, 210.0, 20.0)];
-			titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-			titleLabel.text = gadgetTab._strDbItemName;
-			[cell addSubview:titleLabel];
-			
-			break;
-		}
-	}
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
+            
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 20.0, 210.0, 20.0)];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+        [cell addSubview:titleLabel];
+        
+        UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
+        imgV.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgV];
+        
+    }
 	
+    UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+    UIImageView* imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
+    
+    if(indexPath.section == 0) {
+        if(indexPath.row == 0)
+        {
+            titleLabel.text = @"Chat";		
+            if(_xmppClient != nil && [_xmppClient isConnected] && [_xmppClient isAuthenticated])
+                imgView.image = [UIImage imageNamed:@"onlineicon.png"];
+            else
+                imgView.image = [UIImage imageNamed:@"offlineicon.png"];
+        }
+        else if(indexPath.row == 1)
+        {
+            titleLabel.text = @"Files";
+            imgView.image = [UIImage imageNamed:@"filesApp.png"];
+            
+        }
+        else
+        {
+            titleLabel.text = @"eXoActivity";					
+            imgView.image = [UIImage imageNamed:@"ActivityIcon.png"];
+        }
+    } else {
+        
+        imgView.image = [UIImage imageNamed:@"Dashboard.png"];
+        GateInDbItem_iPhone *gadgetTab = [_arrGadgets objectAtIndex:indexPath.row];
+        titleLabel.text = gadgetTab._strDbItemName;
+    }
+    
 	return cell;
 }
 
