@@ -135,7 +135,6 @@ static short fileActionMode = 0;//1:copy, 2:move
             [cell setBackgroundView:tmpButton];
         }
     }
-	
     
 	UILabel *titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
 	UIImageView *imgViewFileAction = (UIImageView* )[cell viewWithTag:kTagForCellSubviewImageView];
@@ -272,7 +271,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
 		thePicker.allowsImageEditing = YES;
 		[_delegate presentModalViewController:thePicker animated:YES];
-		[thePicker release]; 
+		[thePicker release];
     }
 	else
 	{

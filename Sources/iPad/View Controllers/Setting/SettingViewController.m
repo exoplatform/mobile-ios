@@ -12,6 +12,10 @@
 #import "Connection.h"
 #import "LoginViewController.h"
 
+static NSString* kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
+
 @implementation SettingViewController
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -94,44 +98,42 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-    static NSString *CellIdentifier = @"Cell";
 	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+		titleLabel.backgroundColor = [UIColor clearColor];
+		titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+		[cell addSubview:titleLabel];		
+        
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+        imgView.tag = kTagForCellSubviewImageView;
+		imgView.image = [UIImage imageNamed:@"FR.gif"];
+		[cell addSubview:imgView];				
+    }
 	
 	if(indexPath.row == _intSelectedLanguage)
 	{
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	}
 	
+    UILabel* titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+    UIImageView* imgView = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
+    
 	if(indexPath.row == 0)
 	{
-		UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-		imgV.image = [UIImage imageNamed:@"EN.gif"];
-		[cell addSubview:imgV];
-		
-		UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-		titleLabel.backgroundColor = [UIColor clearColor];
-		titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+		imgView.image = [UIImage imageNamed:@"EN.gif"];
 		titleLabel.text = [_dictLocalize objectForKey:@"English"];
-		[cell addSubview:titleLabel];
-		
 	}
 	else if(indexPath.row == 1)
 	{
-		UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-		imgV.image = [UIImage imageNamed:@"FR.gif"];
-		[cell addSubview:imgV];				
-		
-		UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-		titleLabel.backgroundColor = [UIColor clearColor];
-		titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+		imgView.image = [UIImage imageNamed:@"FR.gif"];
 		titleLabel.text = [_dictLocalize objectForKey:@"French"];
-		[cell addSubview:titleLabel];		
 	}
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 	return cell;
 }

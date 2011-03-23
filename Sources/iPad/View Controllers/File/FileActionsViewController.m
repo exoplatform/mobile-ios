@@ -9,6 +9,9 @@
 #import "FileActionsViewController.h"
 #import "FilesViewController.h"
 
+static NSString *kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
 
 @implementation FileActionsViewController
 
@@ -130,52 +133,64 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-    static NSString *CellIdentifier = @"Cell";
-	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-	cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-	
-	UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 5.0, 35.0, 34.0)];
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0, 13.0, 150.0, 20.0)];
-	titleLabel.backgroundColor = [UIColor clearColor];
-	titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
 
+	
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0, 13.0, 150.0, 20.0)];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+        [cell addSubview:titleLabel];
+        
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 5.0, 35.0, 34.0)];
+        imgView.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgView];
+        
+
+    }
+	
+	UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+	UIImageView* imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
+    
 	BOOL bOption = NO;
 	
 	if(indexPath.row == 0)
 	{
-		imgV.image = [UIImage imageNamed:@"delete.png"];
+		imgView.image = [UIImage imageNamed:@"delete.png"];
 		titleLabel.text = [_dictLocalize objectForKey:@"DeleteButton"];
 		bOption = _bDelete;
 	}
 	else if(indexPath.row == 1)
 	{
-		imgV.image = [UIImage imageNamed:@"addfolder.png"];
+		imgView.image = [UIImage imageNamed:@"addfolder.png"];
 		titleLabel.text = [_dictLocalize objectForKey:@"NewFolderTitle"];
 		bOption = _bNewFolder;
 	}
 	else if(indexPath.row == 2)
 	{
-		imgV.image = [UIImage imageNamed:@"rename.png"];
+		imgView.image = [UIImage imageNamed:@"rename.png"];
 		titleLabel.text = [_dictLocalize objectForKey:@"RenameTitle"];
 		bOption = _bRename;
 	}
 	else if(indexPath.row == 3)
 	{
-		imgV.image = [UIImage imageNamed:@"copy.png"];
+		imgView.image = [UIImage imageNamed:@"copy.png"];
 		titleLabel.text = [_dictLocalize objectForKey:@"Copy"];
 		bOption = _bCopy;
 	}
 	else if(indexPath.row == 4)
 	{
-		imgV.image = [UIImage imageNamed:@"move.png"];
+		imgView.image = [UIImage imageNamed:@"move.png"];
 		titleLabel.text = [_dictLocalize objectForKey:@"Move"];				
 		bOption = _bMove;
 	}
 	else if(indexPath.row == 5)
 	{
-		imgV.image = [UIImage imageNamed:@"paste.png"];
+		imgView.image = [UIImage imageNamed:@"paste.png"];
 		titleLabel.text = [_dictLocalize objectForKey:@"Paste"];				
 		bOption = _bPaste;
 	}
@@ -188,9 +203,6 @@
 	{
 		[titleLabel setEnabled:NO];
 	}
-	
-	[cell addSubview:imgV];
-	[cell addSubview:titleLabel];		
 	
 	return cell;
 }

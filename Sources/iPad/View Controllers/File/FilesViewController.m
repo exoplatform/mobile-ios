@@ -17,6 +17,8 @@
 #import "DataProcess.h"
 
 static NSString* kCellIdentifier = @"Cell";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
 
 NSString* fileType(NSString *fileName)
 {	
@@ -477,36 +479,37 @@ NSString* fileType(NSString *fileName)
 {    
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        cell.textLabel.font = [UIFont systemFontOfSize:17.0];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+        [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 5.0, 400.0, 30.0)];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+        [cell addSubview:titleLabel];
+        
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 34.0, 34.0)];
+        imgView.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgView];
+    }
 	
+	UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+    UIImageView* imgView = (UIImageView* )[cell viewWithTag:kTagForCellSubviewImageView];
+    
 	eXoFile *file = [_arrDicts objectAtIndex:indexPath.row];
 	
-	cell.textLabel.font = [UIFont systemFontOfSize:17.0];
-	cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-	[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
-	
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 5.0, 400.0, 30.0)];
-	titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-	NSString* tmpStr = file._fileName;
-	titleLabel.text = [tmpStr stringByDecodingHTMLEntities];
-	
-	[cell addSubview:titleLabel];
-	
-	UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 34.0, 34.0)];
+	titleLabel.text = [file._fileName stringByDecodingHTMLEntities];
 	
 	if(file._isFolder)
 	{
-		imgV.image = [UIImage imageNamed:@"folder.png"];
+		imgView.image = [UIImage imageNamed:@"folder.png"];
 	}
 	else
 	{		
-		imgV.image = [UIImage imageNamed:fileType(file._fileName)];
+		imgView.image = [UIImage imageNamed:fileType(file._fileName)];
 	}
-	
-		[cell addSubview:imgV];
-	
-	[titleLabel release];
-	[imgV release];
 	
 	if (imgViewEmptyPage == nil) {
 		imgViewEmptyPage = [[UIImageView alloc] initWithFrame:tableView.frame];

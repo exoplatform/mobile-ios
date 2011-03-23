@@ -15,7 +15,9 @@
 #import "MessengerViewController.h"
 #import "XMPPClient.h"
 
-static NSString* kCellIdentifier = @"Cell";
+static NSString* kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
 
 @implementation AppContainerViewController
 
@@ -276,77 +278,63 @@ static NSString* kCellIdentifier = @"Cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
 
+    int section = indexPath.section;
+    int row = indexPath.row;
+    
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
-  		
-	switch (indexPath.section) 
-	{
-		case 0:
-		{
-			UILabel* lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 20.0, 230.0, 20.0)];
-			lbTitle.backgroundColor = [UIColor clearColor];
-			lbTitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-			[cell addSubview:lbTitle];
-			
-			UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
-			[cell addSubview:imgV];
-			
-			switch (indexPath.row) 
-			{
-				case 0:
-				{
-					lbTitle.text = @"Chat";		
-					XMPPClient *client = [MessengerViewController getXmppClient];
-					if(client != nil && [client isAuthenticated])
-						imgV.image = [UIImage imageNamed:@"onlineicon.png"];
-					else
-						imgV.image = [UIImage imageNamed:@"offlineicon.png"];
-					
-					break;
-				}
-				
-				case 1:
-				{
-					lbTitle.text = @"Files";
-					imgV.image = [UIImage imageNamed:@"filesApp.png"];
-					break;
-				}
-					
-				default:
-					break;
-			}
-			
-			break;
-		}
-		
-		case 1:
-		{
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			
-			switch (indexPath.row) 
-			{
-				case 0:
-				{					
-					[[_gadgetViewController view] setFrame:CGRectMake(15.0, 5.0, 290, 445)];
-					[_gadgetViewController loadGateInDbItems:_arrGateInDbItems];
-					[cell addSubview:[_gadgetViewController view]];
-					UIButton* bg = [[UIButton alloc] initWithFrame:[cell frame]];
-					[bg setUserInteractionEnabled:NO];
-					[bg setBackgroundImage:[UIImage imageNamed:@"GadgetsContainerBackground.png"] forState:UIControlStateNormal];
-					[cell setBackgroundView:bg];
-					break;
-				}	
-				default:
-					break;
-			}
-			
-			break;
-		}
-			
-		default:
-			break;
-	}
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        
+        if(section == 0) 
+        {
+            UILabel* lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 20.0, 230.0, 20.0)];
+            lbTitle.tag = kTagForCellSubviewTitleLabel;
+            lbTitle.backgroundColor = [UIColor clearColor];
+            lbTitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+            [cell addSubview:lbTitle];
+            
+            UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
+            imgView.tag = kTagForCellSubviewImageView;
+            [cell addSubview:imgView];
+            
+        }
+        else
+        {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [[_gadgetViewController view] setFrame:CGRectMake(15.0, 5.0, 290, 445)];
+            [cell addSubview:[_gadgetViewController view]];
+            UIButton* bg = [[UIButton alloc] initWithFrame:[cell frame]];
+            [bg setUserInteractionEnabled:NO];
+            [bg setBackgroundImage:[UIImage imageNamed:@"GadgetsContainerBackground.png"] forState:UIControlStateNormal];
+            [cell setBackgroundView:bg];
+            
+        }
+    }
 	
+    UILabel* lbTitle = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+    UIImageView* imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
+    
+    if(section == 0) {
+        if(row == 0)
+        {
+            lbTitle.text = @"Chat";		
+            XMPPClient *client = [MessengerViewController getXmppClient];
+            if(client != nil && [client isAuthenticated])
+                imgView.image = [UIImage imageNamed:@"onlineicon.png"];
+            else
+                imgView.image = [UIImage imageNamed:@"offlineicon.png"];
+        }
+        else
+        {
+            lbTitle.text = @"Files";
+            imgView.image = [UIImage imageNamed:@"filesApp.png"];
+        }
+    }
+    else
+    {
+        [_gadgetViewController loadGateInDbItems:_arrGateInDbItems];
+    }
+    
 	return cell;
 }
 

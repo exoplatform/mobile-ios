@@ -18,6 +18,9 @@
 #import "XMPPPresence.h"
 
 static NSString* kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
+
 static XMPPClient*	_xmppClient;
 static BOOL didUpdateRoster = NO;
 
@@ -124,9 +127,9 @@ NSString* imageStr(NSString* fileName, NSString* type)
 
 -(id)init
 {
-	if(self = [super init])
+    self = [super init];
+	if(self)
 	{
-		
 		[self creatHTMLstring];		
 		_intMessageCount = 0;
 	}
@@ -444,31 +447,40 @@ NSString* imageStr(NSString* fileName, NSString* type)
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
-	cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-	
-	MessengerUser* messengerUser = [arrChatUsers objectAtIndex:indexPath.row];
+    if(cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 5.0, 400.0, 30.0)];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+        [cell addSubview:titleLabel];
+        
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 10.0, 24, 24)];
+        imgView.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgView];
+        
+    }
+
+    MessengerUser* messengerUser = [arrChatUsers objectAtIndex:indexPath.row];
 	XMPPUser* user = messengerUser._xmppUser;
-	
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 5.0, 400.0, 30.0)];
-	titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-	titleLabel.text = [user nickname];
-	[cell addSubview:titleLabel];
-	
-	UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 10.0, 24, 24)];
+    
+    UILabel* titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+    titleLabel.text = [user nickname];
+    
+    UIImageView* imgView = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
 
 	if([user isOnline])
 	{
 		titleLabel.textColor = [UIColor blueColor];
-		imgV.image = [UIImage imageNamed:@"onlineuser.png"];
+		imgView.image = [UIImage imageNamed:@"onlineuser.png"];
 	}
 	else 
 	{
 		titleLabel.textColor = [UIColor blackColor];
-		imgV.image = [UIImage imageNamed:@"offlineuser.png"];
+		imgView.image = [UIImage imageNamed:@"offlineuser.png"];
 	}	
-	
-	[cell addSubview:imgV];
 	
 	int messageCount = messengerUser._intMessageCount;
 
@@ -484,7 +496,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
 		[cell addSubview:notificationBtn];
 	}
 	
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
 	return cell;
 }
 

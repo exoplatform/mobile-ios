@@ -12,6 +12,8 @@
 #import "XMPPUser.h"
 
 static NSString* kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
 
 @implementation MoreLiveChatViewController
 
@@ -72,8 +74,11 @@ static NSString* kCellIdentifier = @"MyIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
-	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.0];
+    if(cell== nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.0];
+    }
+    
 	int chatIndex = [[arrLiveChat objectAtIndex:indexPath.row] intValue];
 	MessengerUser* messengerUser = [[[_delegate getMessengerViewController] getArrChatUsers] objectAtIndex:chatIndex]; 
 	NSString* tmpStr = [messengerUser._xmppUser address];

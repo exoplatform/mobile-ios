@@ -12,6 +12,12 @@
 #import "Gadget_iPadButtonView.h"
 #import "GrayPageControl.h"
 
+static NSString *kCellIdentifier = @"MyIdentifier";
+#define kTagForCellSubviewTitleLabel 222
+#define kTagForCellSubviewImageView 333
+#define kTagForCellSubviewDescriptionLabel 444
+
+
 @implementation GadgetViewController
 
 @synthesize _tblGadgetList;
@@ -204,17 +210,6 @@
     _bPageControlUsed = YES;
 }
 
-//- (void)loadScrollViewWithPage:(int)page 
-//{
-//    if (page < 0) 
-//	{
-//		return;
-//	}	
-//    if (page >= _intPageNumber) 
-//	{
-//		return;
-//	}	
-//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender 
 {
@@ -288,29 +283,38 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-	static NSString* kCellIdentifier = @"Cell";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-	
-	cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
-	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-	
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 180.0, 20.0)];
-	titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-	titleLabel.text = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] name];
-	titleLabel.backgroundColor = [UIColor clearColor];
-	[cell addSubview:titleLabel];
-	
-	UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 180.0, 33.0)];
-	descriptionLabel.numberOfLines = 2;
-	descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-	descriptionLabel.text = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] description];
-	descriptionLabel.backgroundColor = [UIColor clearColor];
-	[cell addSubview:descriptionLabel];
-	
-	UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
-	imgView.image = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] imageIcon];
-	[cell addSubview:imgView];
+	if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 180.0, 20.0)];
+        titleLabel.tag = kTagForCellSubviewTitleLabel;
+        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+        titleLabel.backgroundColor = [UIColor clearColor];
+        [cell addSubview:titleLabel];
+        
+        UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 180.0, 33.0)];
+        descriptionLabel.tag = kTagForCellSubviewDescriptionLabel;
+        descriptionLabel.numberOfLines = 2;
+        descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+        descriptionLabel.backgroundColor = [UIColor clearColor];
+        [cell addSubview:descriptionLabel];
+        
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
+        imgView.tag = kTagForCellSubviewImageView;
+        [cell addSubview:imgView];
+        
+    }
+    UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+    titleLabel.text = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] name];
+    
+    UILabel* descriptionLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewDescriptionLabel];
+    descriptionLabel.text = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] description];
+    
+    UIImageView* imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
+    imgView.image = [[[[_arrGateInDbItems objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] imageIcon];
 	
 	return cell;
 }
