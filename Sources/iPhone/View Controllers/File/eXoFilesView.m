@@ -112,7 +112,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	NSData *dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString *responseStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
-	
+    [request release];
+
+    
 	NSRange dirRange = [responseStr rangeOfString:@"<D:getcontenttype/></D:prop>"];
 			
 	if(dirRange.length > 0)
