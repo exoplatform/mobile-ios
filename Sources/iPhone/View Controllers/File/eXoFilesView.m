@@ -229,6 +229,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_delegate.navigationController.navigationBar.userInteractionEnabled = NO;
 	_delegate.tabBarController.tabBar.userInteractionEnabled = NO;
 	
+    //Try to fix this leak, but a bug appears when we display many times the fileActionView.
 	eXoFileActionViewController *fileAction = [[eXoFileActionViewController alloc] initWithNibName:@"eXoFileActionViewController" bundle:nil delegate:_delegate filesView:self file:_delegate._currenteXoFile enableDeleteThisFolder:NO];
 	fileAction.view.frame = CGRectMake(50, 60, 230, 270);
 	[_delegate.view addSubview:fileAction.view];
@@ -351,6 +352,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		eXoWebViewController* tmpView = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:url];
 		tmpView._delegate = _delegate;
 		[[_delegate navigationController] pushViewController:tmpView animated:YES];
+        [tmpView release];
 		_delegate.navigationItem.rightBarButtonItem = _delegate._btnFileAcion;
 	}
 	
