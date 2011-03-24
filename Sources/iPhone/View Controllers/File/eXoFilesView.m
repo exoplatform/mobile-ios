@@ -184,9 +184,10 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_tblvFilesGrp = nil;
     
     [_arrDicts release];	//Files, folders list
-	_delegate = nil;	//Point to main app view controller
+	//_delegate = nil;	//Point to main app view controller
 	[_fileActionViewShape release];	//File action border
-	
+	_fileActionViewShape = nil;
+    
 	[imgViewEmptyPage release];	//Empty page image view
     imgViewEmptyPage = nil;
 	[labelEmptyPage release];	///Empty page label view
@@ -270,17 +271,20 @@ static NSString *kCellIdentifier = @"MyIdentifier";
         UIImageView* imgViewFile = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 40, 40)];
         cell.tag = kTagForCellSubviewImageView;
         [cell addSubview:imgViewFile];
+        [imgViewFile release];
         
         UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 200.0, 20.0)];
         titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
         titleLabel.tag = kTagForCellSubviewTitleLabel;
         [cell addSubview:titleLabel];
+        [titleLabel release];
         
         UIButton *btnFileAction = [[UIButton alloc] initWithFrame:CGRectMake(285.0, 9, 30, 30)];
         [btnFileAction setBackgroundImage:[UIImage imageNamed:@"action.png"] forState:UIControlStateNormal];
         [btnFileAction addTarget:self action:@selector(fileAction:) forControlEvents:UIControlEventTouchUpInside];
         btnFileAction.tag = indexPath.row;
         [cell addSubview:btnFileAction];
+        [btnFileAction release];
         
     }
     
@@ -402,8 +406,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_delegate.navigationController.navigationBar.userInteractionEnabled = NO;
 	_delegate.tabBarController.tabBar.userInteractionEnabled = NO;
 	
-	[_delegate._fileAction release];
-	_delegate._fileAction = nil;
+	//[_delegate._fileAction release];
+	//_delegate._fileAction = nil;
 	_delegate._fileAction = [[eXoFileActionViewController alloc] initWithNibName:@"eXoFileActionViewController" bundle:nil delegate:_delegate filesView:self file:file enableDeleteThisFolder:YES];
 	_delegate._fileAction.view.frame = CGRectMake(50, 60, 230, 270);
 	[_delegate.view addSubview:_delegate._fileAction.view];

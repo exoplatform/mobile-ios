@@ -81,19 +81,10 @@ NSString* base64Encoding_iPhone(NSData *data)
 
 NSString* imageStr_iPhone(NSString *fileName, NSString *type)
 {
-	NSString *iconChat = [[NSString alloc] init];
-	NSData *iconChatData = [[NSData alloc] init];
-	
-	iconChat = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
-	iconChatData = [NSData dataWithContentsOfFile:iconChat];
-    
-    NSString *returnString = [base64Encoding_iPhone(iconChatData) retain];
-    
-    [iconChat release];
-    [iconChatData release];    
-    
-	return returnString;
-	
+	NSString *iconChat = [[NSBundle mainBundle] pathForResource:fileName ofType:type];;
+	NSData *iconChatData = [NSData dataWithContentsOfFile:iconChat];
+
+	return [base64Encoding_iPhone(iconChatData) retain];;	
 }
 
 NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *content, NSString *tl, NSString *tr, NSString *bl, 
@@ -102,6 +93,7 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"HH:mm:ss"];
 	NSString *msgTime = [dateFormatter stringFromDate:[NSDate date]];
+    [dateFormatter release];
 	
 	NSString *tempStr = [NSString stringWithFormat:@"<table boder=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=310>"
 						 "<tr>"

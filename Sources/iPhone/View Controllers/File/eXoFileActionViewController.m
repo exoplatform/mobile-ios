@@ -47,7 +47,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 
 
 - (void)dealloc {
-    _delegate = nil; //point to main app view controller
+    //_delegate = nil; //point to main app view controller
     
     [_filesView release];	//file view
     _filesView = nil;
@@ -123,16 +123,19 @@ static short fileActionMode = 0;//1:copy, 2:move
             titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
             titleLabel.backgroundColor = [UIColor clearColor];
             [cell addSubview:titleLabel];
+            [titleLabel release];
             
             UIImageView* imgViewFileAction = [[UIImageView alloc] initWithFrame:CGRectMake(18.0, 8.0, 25, 25)];
             imgViewFileAction.tag = kTagForCellSubviewImageView;
             [cell addSubview:imgViewFileAction];
+            [imgViewFileAction release];
         }else {
          
             UIButton* tmpButton = [[UIButton alloc] initWithFrame:[cell frame]];
             [tmpButton setBackgroundImage:[UIImage imageNamed:@"cancelitem.png"] forState:UIControlStateNormal];
             [tmpButton setTitle:strCancel forState:UIControlStateNormal];
             [cell setBackgroundView:tmpButton];
+            [tmpButton release];
         }
     }
     

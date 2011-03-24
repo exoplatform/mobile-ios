@@ -215,23 +215,27 @@ static NSString *CellIdentifier = @"MyIdentifier";
                     UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
                     imgV.image = [UIImage imageNamed:@"EN.gif"];
                     [cell addSubview:imgV];
+                    [imgV release];
                     
                     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
                     titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                     titleLabel.text = [_dictLocalize objectForKey:@"English"];
                     [cell addSubview:titleLabel];
+                    [titleLabel release];
                     
                 }
                 else
                 {
                     UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
                     imgV.image = [UIImage imageNamed:@"FR.gif"];
-                    [cell addSubview:imgV];				
+                    [cell addSubview:imgV];	
+                    [imgV release];
                     
                     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
                     titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                     titleLabel.text = [_dictLocalize objectForKey:@"French"];
-                    [cell addSubview:titleLabel];		
+                    [cell addSubview:titleLabel];	
+                    [titleLabel release];
                 }
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;

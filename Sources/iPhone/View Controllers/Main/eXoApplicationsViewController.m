@@ -275,11 +275,10 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (void)addCloseBtn
 {
-	if(!_btnClose)
-	{	
-		_btnClose = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onCloseBtn)];	
-	}
-	
+	//if(!_btnClose)
+	//{	
+        _btnClose = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onCloseBtn)];	
+    //}
 	[[self navigationItem] setLeftBarButtonItem:_btnClose];		
 }
 
