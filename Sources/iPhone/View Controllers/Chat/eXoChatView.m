@@ -170,10 +170,12 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
         titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
         titleLabel.tag = kTagForCellSubviewTitleLabel;
         [cell addSubview:titleLabel];
+        [titleLabel release];
 
         UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 10.0, 30, 30)];
         imgView.tag = kTagForCellSubviewImageView;
         [cell addSubview:imgView];
+        [imgView release];
     }
 
 	XMPPUser *user = [_arrUsers objectAtIndex:indexPath.row];
@@ -248,6 +250,7 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 		[_msgCount addObject:@"0"];
 		NSMutableString *chatStr = [[NSMutableString alloc] initWithString:@""];
 		[_msgDict setObject:chatStr forKey:[[[_arrUsers objectAtIndex:i] jid] full]];
+        [chatStr release];
 	}
 	
 	if(_delegate && [_delegate respondsToSelector:@selector(setChatClient:)])

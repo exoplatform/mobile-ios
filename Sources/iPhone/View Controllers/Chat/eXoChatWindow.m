@@ -196,8 +196,8 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 								"</script></head><body BGCOLOR=\"#E9E9E9\" onLoad=\"pageScroll()\"><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><table boder=\"0\" width=\"310\"></table></body></html>"];
 	
 	NSArray *keys = [listMsg allKeys];
-	NSString *offlineMsg = [[NSString alloc] initWithString:@""];
-	NSString *from = [[NSString alloc] initWithString:@""];
+	NSString *offlineMsg = @"";
+	NSString *from = @"";
 	
 	for(int i = 0; i < [keys count]; i++)
 	{
