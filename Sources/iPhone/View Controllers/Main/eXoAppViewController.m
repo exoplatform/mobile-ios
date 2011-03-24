@@ -37,6 +37,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		[btnTmp addTarget:self action:@selector(onSettingBtn) forControlEvents:UIControlEventTouchUpInside];
 		[btnTmp setBackgroundImage:[UIImage imageNamed:@"setting.png"] forState:UIControlStateNormal];
 		btnSetting = [[UIBarButtonItem alloc] initWithCustomView:btnTmp];
+        [btnTmp release];
 		
 		isFirstTimeLogin = YES;
 		
@@ -70,11 +71,11 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	NSString* filePath;
 	if(_selectedLanguage == 0)
 	{
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"] retain];
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
 	}	
 	else
 	{	
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"] retain];
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
 	}	
 	
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
@@ -331,7 +332,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) 
 	{
-		cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
+		cell = [[[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
 	}
 	cell.textLabel.text = label.text;
 	cell.accessoryType = UITableViewCellAccessoryNone;
@@ -347,7 +348,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) 
 	{
-		cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
+		cell = [[[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
 	}
 	cell.textLabel.text = label.text;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
