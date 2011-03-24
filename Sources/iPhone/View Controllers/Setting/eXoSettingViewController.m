@@ -274,7 +274,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	if(bAutoLogin)
 		str = @"YES";
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
+	[userDefaults setObject:str forKey:EXO_REMEMBER_ME];
 }
 
 -(void)autoLoginAction 
