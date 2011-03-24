@@ -58,6 +58,17 @@
 
 - (void)dealloc 
 {
+    _delegate = nil;
+    
+    [_dictLocalize release];
+    _dictLocalize = nil;
+    
+    [_wvFileContentDisplay release];
+    _wvFileContentDisplay = nil;
+    
+    [_actiLoading release];
+    _actiLoading = nil;
+    
     [super dealloc];
 }
 

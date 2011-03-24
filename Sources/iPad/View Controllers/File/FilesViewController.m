@@ -239,6 +239,71 @@ NSString* fileType(NSString *fileName)
 
 - (void)dealloc 
 {
+    _delegate = nil;
+    
+    [_dictLocalize release];
+    _dictLocalize = nil;
+    
+    [_btnLeftEdgeNavigation release];
+    _btnLeftEdgeNavigation = nil;
+    
+    [_btnRightEdgeNavigation release];
+    _btnRightEdgeNavigation = nil;
+    
+    [_strRootDirectory release];
+    _strRootDirectory = nil;
+    
+    [_tbvFiles release];
+    _tbvFiles = nil;
+    
+    [_arrDicts release];
+    _arrDicts = nil;
+    
+    [_navigationBar release];
+    _navigationBar = nil;
+    
+    [_bbtnBack release];
+    _bbtnBack = nil;
+    
+    [_bbtnActions release];
+    _bbtnActions = nil;
+    
+    [_actiLoading release];
+    _actiLoading = nil;
+    
+    [_fileContentDisplayController release];
+    _fileContentDisplayController = nil;
+    
+    [_fileActionsViewController release];
+    _fileActionsViewController = nil;
+    
+    [_optionsViewController release];
+    _optionsViewController = nil;
+    
+    [popoverController release];
+    popoverController = nil;
+    
+    [optionsPopoverController release];
+    optionsPopoverController = nil;
+    
+    [_currenteXoFile release];
+    _currenteXoFile = nil;
+    
+    [_fileForDeleteRename release];
+    _fileForDeleteRename = nil;
+    
+    [_fileForCopyMove release];
+    _fileForCopyMove = nil;
+    
+    [_fileNameStackStr release];
+    _fileNameStackStr = nil;
+    
+    [imgViewEmptyPage release];
+    imgViewEmptyPage = nil;
+    
+    [labelEmptyPage release];
+    labelEmptyPage = nil;
+    
     [super dealloc];
 }
 
@@ -489,10 +554,12 @@ NSString* fileType(NSString *fileName)
         titleLabel.tag = kTagForCellSubviewTitleLabel;
         titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
         [cell addSubview:titleLabel];
+        [titleLabel release];
         
         UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 34.0, 34.0)];
         imgView.tag = kTagForCellSubviewImageView;
         [cell addSubview:imgView];
+        [imgView release];
     }
 	
 	UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
