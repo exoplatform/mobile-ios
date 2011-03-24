@@ -55,6 +55,15 @@ static NSString* kCellIdentifier = @"MyIdentifier";
 
 - (void)dealloc 
 {
+    
+    _delegate = nil;
+    
+    [_tblLanguage release];
+    _tblLanguage = nil;
+    
+    [_dictLocalize release];
+    _dictLocalize = nil;
+    
     [super dealloc];
 }
 
@@ -108,12 +117,14 @@ static NSString* kCellIdentifier = @"MyIdentifier";
         titleLabel.tag = kTagForCellSubviewTitleLabel;
 		titleLabel.backgroundColor = [UIColor clearColor];
 		titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-		[cell addSubview:titleLabel];		
+		[cell addSubview:titleLabel];	
+        [titleLabel release];
         
         UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
         imgView.tag = kTagForCellSubviewImageView;
 		imgView.image = [UIImage imageNamed:@"FR.gif"];
-		[cell addSubview:imgView];				
+		[cell addSubview:imgView];	
+        [imgView release];
     }
 	
 	if(indexPath.row == _intSelectedLanguage)
