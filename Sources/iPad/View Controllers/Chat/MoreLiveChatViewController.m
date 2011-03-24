@@ -114,6 +114,24 @@ static NSString* kCellIdentifier = @"MyIdentifier";
 
 
 - (void)dealloc {
+    
+    _delegate = nil;
+    
+    [_tblLiveChat release];
+    _tblLiveChat = nil;
+    
+    [_btnCloseAllLiveChat release];
+    _btnCloseAllLiveChat = nil;
+    
+    [arrLiveChat release];
+    arrLiveChat = nil;
+    
+    [_popViewController release];
+    _popViewController = nil;
+    
+    [_dictLocalize release];
+    _dictLocalize = nil;
+    
     [super dealloc];
 }
 

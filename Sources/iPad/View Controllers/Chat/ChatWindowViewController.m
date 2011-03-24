@@ -78,6 +78,44 @@
 
 - (void)dealloc 
 {
+    _delegate = nil;	//The delegate, point to MainViewController
+	
+    [_dictLocalize release];	//dictionary
+    _dictLocalize = nil;
+	
+    [_xmppClient release];
+    _xmppClient = nil;
+    
+    [_messengerUser release];
+    _messengerUser = nil;
+	
+    [_wvChatContentDisplay release];
+    _wvChatContentDisplay= nil;
+	
+    [_wvChatContentDisplayUp release];
+    _wvChatContentDisplayUp = nil;
+	
+    [_vTextInputArea release];
+    _vTextInputArea = nil;
+	
+    [_imgvNewMsgArea release];
+    _imgvNewMsgArea = nil;
+    
+    [_tvTextInput release];
+    _tvTextInput = nil;
+    
+    [_btnSend release];
+    _btnSend = nil;
+	
+    [_bbtnClear release];
+    _bbtnClear = nil;
+	
+    [_bbtnClose release];
+    _bbtnClose = nil;
+    
+    [_strHtml release];
+    _strHtml = nil;
+	
     [super dealloc];
 }
 

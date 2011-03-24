@@ -49,6 +49,7 @@ NSString* processMsg(NSString* message, int maxLength)
 			}
 		}
 		[returnStr appendFormat:@"%@ ", tmp];
+        [tmp release];
 	}
 	
 	return returnStr;
@@ -109,10 +110,8 @@ NSString* base64Encoding(NSData* data)
 
 NSString* imageStr(NSString* fileName, NSString* type)
 {
-	NSString* iconChat = [[NSString alloc] init];
-	NSData* iconChatData = [[NSData alloc] init];
-	iconChat = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
-	iconChatData = [NSData dataWithContentsOfFile:iconChat];
+	NSString* iconChat = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
+	NSData* iconChatData = [NSData dataWithContentsOfFile:iconChat];
 	return [base64Encoding(iconChatData) retain];
 }
 
@@ -170,6 +169,20 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	 "</body></html>"];	
 }
 
+- (void) dealloc
+{
+    [_xmppClient release];
+    _xmppClient = nil;
+    
+    [_mstrHtmlPortrait release];
+    _mstrHtmlPortrait = nil;
+    
+    [_mstrHtmlLanscape release];
+    _mstrHtmlLanscape = nil;
+    
+    [super dealloc];
+}
+
 @end
 
 
@@ -221,6 +234,17 @@ NSString* imageStr(NSString* fileName, NSString* type)
 
 - (void)dealloc 
 {
+    _delegate = nil;
+    
+    [_dictLocalize release];
+    _dictLocalize = nil;
+    
+    [_tblvUsers release];
+    _tblvUsers = nil;
+    
+    [arrChatUsers release];
+    arrChatUsers = nil;
+    
     [super dealloc];
 }
 
@@ -309,6 +333,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"HH:mm:ss"];
 	NSString *msgTime = [dateFormatter stringFromDate:[NSDate date]];
+    [dateFormatter release];
 	
 	NSString *chatIcon;
 	NSString *tl, *tr, *bl, *br, *th, *bh, *color;
