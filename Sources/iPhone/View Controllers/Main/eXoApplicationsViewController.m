@@ -231,11 +231,11 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	NSString* filePath;
 	if(_selectedLanguage == 0)
 	{
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"] retain];
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
 	}	
 	else
 	{	
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"] retain];
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
 	}	
 	
 	[_dictLocalize release];
@@ -397,6 +397,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 			[alert show];
 			[alert release];
 			
+            [request release];
+            
 			return;
 		}
 	}
@@ -406,6 +408,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	[request setValue:author forHTTPHeaderField:@"Authorization"];
 	
 	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [request release];
+    
 	NSUInteger statusCode = [response statusCode];
 	if(!(statusCode >= 200 && statusCode < 300))
 	{
@@ -433,6 +437,10 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		NSString* htmlStr = [[NSString alloc] init];
 		[chatUser setObjectWithXMPPUser:[arrUsers objectAtIndex:i] andArrMsg:arrMessages  andHtmlstr:htmlStr];
 		[_arrChatUsers addObject:chatUser]; 
+        
+        [chatUser release];
+        [htmlStr release];
+        [arrMessages release];
 	}
 	 
 }
@@ -500,7 +508,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 	
 	NSData* dataReply = [_conn sendRequestWithAuthorization:file._urlStr];
-	NSString* strData = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
+	NSString* strData = [[[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding] autorelease];
 	
 	NSMutableArray* arrDicts = [[NSMutableArray alloc] init];
 	[arrDicts removeAllObjects];
@@ -525,6 +533,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 																		   range4.location - range3.location - range3.length)];
 				eXoFile_iPhone *file2 = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:fileName];
 				[arrDicts addObject:file2];
+                [file2 release];
 			}
 
 		}
@@ -532,6 +541,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 			strData = [strData substringFromIndex:range2.location + range2.length];
 	} while (range1.length > 0);
 	
+    
 	return arrDicts;
 }
 
@@ -658,7 +668,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
             
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
@@ -666,10 +676,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
         titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
         titleLabel.tag = kTagForCellSubviewTitleLabel;
         [cell addSubview:titleLabel];
+        [titleLabel release];
         
         UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
         imgV.tag = kTagForCellSubviewImageView;
         [cell addSubview:imgV];
+        [imgV release];
         
     }
 	
@@ -788,6 +800,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		{
 			eXoGadgetViewController *gadgetViewController = [[eXoGadgetViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:self gadgetTab:[_arrGadgets objectAtIndex:indexPath.row]];
 			[self.navigationController pushViewController:gadgetViewController animated:YES];
+            [gadgetViewController release];
 			break;
 		}
 			
