@@ -31,6 +31,28 @@
 	return self;
 }
 
+- (void) dealloc 
+{
+    _delegate = nil;
+    
+    [_btnGadget release];
+    _btnGadget = nil;
+    
+    [_lbName release];
+    _lbName = nil;
+    
+    [_imgIcon release];
+    _imgIcon = nil;
+    
+    [_url release];
+    _url = nil;
+    
+    [_gadget release];
+    _gadget = nil;
+    
+    [super dealloc];
+}
+
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;

@@ -48,6 +48,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	UIView* bg = [[UIView alloc] initWithFrame:[_tblGadgetList frame]];
 	[bg setBackgroundColor:[UIColor clearColor]];
 	[_tblGadgetList setBackgroundView:bg];
+    [bg release];
 	
 	if(!_bGrid)
 	{
@@ -82,6 +83,32 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (void)dealloc 
 {
+    _delegate = nil;
+    
+    [_tblGadgetList release];
+    _tblGadgetList = nil;
+    
+    [_dictLocalize release];
+    _dictLocalize = nil;
+    
+    [_arrGadgets release];
+    _arrGadgets = nil;
+    
+    [_arrGateInDbItems release];
+    _arrGateInDbItems = nil;
+    
+    [_btnGrid release];
+    _btnGrid = nil;
+    
+    [_pageController release];
+    _pageController = nil;
+    
+    [_scrollView release];
+    _scrollView = nil;
+    
+    [_lbTitleItemInDb release];
+    _lbTitleItemInDb = nil;
+    
     [super dealloc];
 }
 
@@ -181,6 +208,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 			[tmpBtn setIcon:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _imgIcon]];
 			[tmpBtn setUrl:[[[[_arrGateInDbItems objectAtIndex:i] _arrGadgetsInItem] objectAtIndex:j] _urlContent]];
 			[_scrollView addSubview:tmpBtn];
+            [tmpBtn release];
 		}
 		row = 0;
 	}
@@ -286,7 +314,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
 	if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier];
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
         UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 180.0, 20.0)];
@@ -294,6 +322,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
         titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
         titleLabel.backgroundColor = [UIColor clearColor];
         [cell addSubview:titleLabel];
+        [titleLabel release];
         
         UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 180.0, 33.0)];
         descriptionLabel.tag = kTagForCellSubviewDescriptionLabel;
@@ -301,10 +330,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
         descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
         descriptionLabel.backgroundColor = [UIColor clearColor];
         [cell addSubview:descriptionLabel];
+        [descriptionLabel release];
         
         UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
         imgView.tag = kTagForCellSubviewImageView;
         [cell addSubview:imgView];
+        [imgView release];
         
     }
     UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];

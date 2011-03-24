@@ -60,8 +60,35 @@
 
 - (void)dealloc 
 {
+    _delegate = nil;
+    
+    [_dictLocalize release];
+    _dictLocalize = nil;
+    
+    [_nvTitle release];
+    _nvTitle = nil;
+    
+    [_wvGadgetDisplay release];
+    _wvGadgetDisplay = nil;
+    
+    [_actiLoading release];
+    _actiLoading = nil;
+    
+    [_lbStatus release];
+    _lbStatus = nil;
+    
+    [_btnLeftEdgeNavigation release];
+    _btnLeftEdgeNavigation = nil;
+    
+    [_btnRightEdgeNavigation release];
+    _btnRightEdgeNavigation = nil;
+    
+    [_strBConnectStatus release];
+    _strBConnectStatus = nil;
+    
     [super dealloc];
 }
+
 
 - (void)setDelegate:(id)delegate
 {
@@ -115,7 +142,7 @@
 		_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
 	}
 	
-	[[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] retain];
+	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	NSUInteger statusCode = [response statusCode];
 	if(statusCode >= 200 && statusCode < 300)
 	{
@@ -126,7 +153,8 @@
 		[_wvGadgetDisplay loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
 										  [_dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
 		 
-	}		 
+	}	
+    
 }
 
 @end
