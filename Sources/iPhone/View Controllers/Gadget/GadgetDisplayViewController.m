@@ -48,6 +48,7 @@
 		{
 			connection = [[Connection alloc] init];
 			_strBConnectStatus = [connection loginForStandaloneGadget:[_url absoluteString]];
+            [connection release];
 		}
 
 		[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -62,6 +63,9 @@
 			[_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
 									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
 		}
+        
+        [request release];
+
 	}
 }
 
