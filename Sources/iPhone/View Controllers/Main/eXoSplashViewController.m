@@ -83,6 +83,14 @@
 
 
 - (void)dealloc {
+    [activity release];	//Loading indicator
+	[label release];	//Auto signin title
+	[lDomain release];	//Host title
+	[lUserName release];	//Username title
+	[lDomainStr release];	//Host value
+	[lUserNameStr release];	//Username value
+	[autoLoginImg release];	//Auto signin image view
+	    
     [super dealloc];
 }
 

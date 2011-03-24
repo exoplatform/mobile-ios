@@ -62,6 +62,7 @@
 			[_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
 									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
 		}
+        [request release];
 	}
 }
 
