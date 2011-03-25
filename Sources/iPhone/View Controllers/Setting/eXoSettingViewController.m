@@ -10,6 +10,7 @@
 #import "defines.h"
 #import "eXoWebViewController.h"
 #import "eXoApplicationsViewController.h"
+#import "Configuration.h"
 
 static NSString *CellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
@@ -42,6 +43,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		
 		_delegate = delegate;
 		_dictLocalize = delegate._dictLocalize;
+        
+        _arrServerList = [[NSMutableArray alloc] init];
+        _intSelectedServer = -1;
     }
     return self;
 }
@@ -57,12 +61,20 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:[NSString stringWithFormat:@"%d", rememberMe.on] forKey:EXO_REMEMBER_ME];
 	[userDefaults setObject:[NSString stringWithFormat:@"%d", autoLogin.on] forKey:EXO_AUTO_LOGIN];
-	
 }
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    _arrServerList = [[Configuration sharedInstance] getServerList];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
+}
+
+- (void)dealloc 
+{
+    [_arrServerList release];
+    [super dealloc];
 }
 
 -(void)save 
@@ -105,7 +117,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 3;
+    return 4;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -127,6 +139,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
 			
 		case 2:
 		{
+			tmpStr = [_dictLocalize objectForKey:@"ServerList"];
+			break;
+		}
+            
+		case 3:
+		{
 			tmpStr = [_dictLocalize objectForKey:@"UserGuide"];
 			break;
 		}
@@ -145,7 +163,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     int numofRows = 0;
 	if(section == 0)
 	{
-		numofRows = 3;
+		numofRows = 2;
 	}	
 	if(section == 1)
 	{	
@@ -153,8 +171,13 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}	
 	if(section == 2)
 	{	
+		numofRows = [_arrServerList count];
+	}
+    if(section == 3)
+	{	
 		numofRows = 1;
 	}
+
 	return numofRows;
 }
 
@@ -163,9 +186,10 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil) {
+    if(cell == nil) 
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    
+    }
         switch (indexPath.section) 
         {
             case 0:
@@ -173,97 +197,100 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
-                if(indexPath.row == 0) {
-                    
-                    cell.textLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
-                    
-                    txtfDomainName = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 200, 30)];
-                    txtfDomainName.delegate = self;
-                    txtfDomainName.keyboardType = UIKeyboardTypeASCIICapable;
-                    txtfDomainName.returnKeyType = UIReturnKeyDone;
-                    txtfDomainName.autocorrectionType = UITextAutocorrectionTypeNo;
-                    txtfDomainName.autocapitalizationType = UITextAutocapitalizationTypeNone;
-                    txtfDomainName.clearButtonMode = UITextFieldViewModeWhileEditing;
-                    
-                    txtfDomainName.text = serverNameStr;
-                    
-                    [cell addSubview:txtfDomainName];
-                    
-                }
-                else if(indexPath.row == 1)
+            if(indexPath.row == 0)
                 {
                     cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
                     rememberMe.on = bRememberMe;
                     [cell addSubview:rememberMe];
                 }
-                else {
+            else 
+            {
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
                     autoLogin.on = bAutoLogin;
-                    
                     [cell addSubview:autoLogin];
                 }
-                
             }
                 break;
                 
             case 1: 
             {
-                
+            UIImageView* imgV;
+            UILabel* titleLabel;
                 if(indexPath.row == 0)
                 {
-                    UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
                     imgV.image = [UIImage imageNamed:@"EN.gif"];
                     [cell addSubview:imgV];
-                    [imgV release];
-                    
-                    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
                     titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                     titleLabel.text = [_dictLocalize objectForKey:@"English"];
                     [cell addSubview:titleLabel];
-                    [titleLabel release];
-                    
                 }
                 else
                 {
-                    UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
                     imgV.image = [UIImage imageNamed:@"FR.gif"];
                     [cell addSubview:imgV];	
-                    [imgV release];
-                    
-                    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
                     titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                     titleLabel.text = [_dictLocalize objectForKey:@"French"];
                     [cell addSubview:titleLabel];	
+            }
+            [imgV release];
                     [titleLabel release];
-                }
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            if(indexPath.row == _selectedLanguage)
+            {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } 
+            else
+            {            
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
             }
                 break;
                 
             case 2:
             {
+            ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+            
+            UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
+            lbServerName.text = tmpServerObj._strServerName;
+            lbServerName.textColor = [UIColor brownColor];
+            [cell addSubview:lbServerName];
+            [lbServerName release];
+            
+            UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 100, 30)];
+            lbServerUrl.text = tmpServerObj._strServerUrl;
+            [cell addSubview:lbServerUrl];
+            [lbServerUrl release];
+            
+            if (indexPath.row == _intSelectedServer) 
+            {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            else
+            {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        }
+            break;
+            
+        case 3:
+        {
                 cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                
             }
                 break;
                 
             default:
                 break;
-        }
-
     }
 	
-    // Set up the cell...
-    if(indexPath.section == 1) {
-        if(indexPath.row == _selectedLanguage)
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        else
-            cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     return cell;
 }
 
@@ -274,7 +301,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	if(bAutoLogin)
 		str = @"YES";
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:str forKey:EXO_REMEMBER_ME];
+	[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
 }
 
 -(void)autoLoginAction 
@@ -306,12 +333,19 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 	else if(indexPath.section == 2)
 	{
-		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController"
-																							 bundle:nil url:nil];
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+        _intSelectedServer = indexPath.row;
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:tmpServerObj._strServerUrl forKey:EXO_PREFERENCE_DOMAIN];
+        [userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+        [tableView reloadData];
+	}
+	else if(indexPath.section == 3)
+    {
+		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
 		userGuideController._delegate = _delegate;
 		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
-	
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -320,10 +354,6 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[userDefaults setObject:txtfDomainName.text forKey:EXO_PREFERENCE_DOMAIN];
 	[textField resignFirstResponder];
 	return YES;
-}
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 
