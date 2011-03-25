@@ -217,6 +217,8 @@ static NSString* _strDomain;
 	NSRange rangeOfPrivate = [urlStr rangeOfString:@"/classic"];
 	
 	//Request to login
+    // SLM note : here the loginStr could be uninitialized
+    // --> probably cause a problem to retrieve gadgets...
 	NSString* loginStr;
 	if(rangeOfPrivate.length > 0)
 		loginStr = [[urlStr substringToIndex:rangeOfPrivate.location] stringByAppendingString:@"/j_security_check"];
@@ -240,6 +242,7 @@ static NSString* _strDomain;
 	[postDictionary setValue:_strPassword forKey:@"j_password"];
 	DataProcess* dataProcess = [DataProcess instance];
 	bodyData = [dataProcess formatDictData:postDictionary WithEncoding:NSUTF8StringEncoding];
+    [postDictionary release];
 	
 	[loginRequest setHTTPBody:bodyData];
 	[loginRequest setHTTPMethod: @"POST"]; 
@@ -292,7 +295,6 @@ static NSString* _strDomain;
 
 - (NSMutableArray*)getItemsInDashboard
 {
-	NSMutableArray* arrDbItems = [[NSMutableArray alloc] init];
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];	
@@ -313,6 +315,8 @@ static NSString* _strDomain;
 	if(range1.length <= 0)
 		return nil;
 	
+    NSMutableArray* arrDbItems = [[NSMutableArray alloc] init];
+
 	strContent = [strContent substringToIndex:range1.location];
 	
 	do 
@@ -331,8 +335,8 @@ static NSString* _strDomain;
 			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
 			
 			//Getting informations about a gadget from not standalone gadgets
-			NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
-			arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
+			//NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
+			NSArray* arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
 			
 			//Retrieving standalone urls for gadgets			
 			NSMutableDictionary *dictionaryStandaloneURL = [self retrieveURLsForStandaloneGadget:localDashboardGadgetsString_];
@@ -383,7 +387,6 @@ static NSString* _strDomain;
 - (NSMutableArray*)listOfGadgetsWithURL:(NSString *)url
 {
 	
-	NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
 	
 	NSString* strGadgetName;
 	NSString* strGadgetDescription;
@@ -408,6 +411,9 @@ static NSString* _strDomain;
 	if(range1.length <= 0)
 		return nil;
 	
+    NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
+
+    
 	do 
 	{
 		strContent = (NSMutableString *)[strContent substringFromIndex:range1.location + range1.length];
@@ -492,7 +498,6 @@ static NSString* _strDomain;
 	NSURLResponse* response;
 	NSError* error;
 	NSData* dataResponse;
-	NSString* urlContent = [[NSString alloc] init];
 	NSData* bodyData;
 	
 	NSURL* tmpURL = [NSURL URLWithString:domain];
@@ -505,6 +510,8 @@ static NSString* _strDomain;
 		return @"ERROR";
 	}
 	
+    NSString* urlContent = [[NSString alloc] init];
+
 
 	NSString* loginStr;
 	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -523,7 +530,8 @@ static NSString* _strDomain;
 	[postDictionary setValue:_strPassword forKey:@"password"];
 	DataProcess* dataProcess = [DataProcess instance];
 	bodyData = [dataProcess formatDictData:postDictionary WithEncoding:NSUTF8StringEncoding];
-	
+    //SLM release the postDictionary cause some troubles... so don't release it here
+    
 	[loginRequest setHTTPBody:bodyData];
 	[loginRequest setHTTPMethod: @"POST"]; 
 	
