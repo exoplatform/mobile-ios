@@ -15,13 +15,11 @@
 #import "Connection.h"
 #import "DataProcess.h"
 #import "NSString+HTML.h"
+#import "Configuration.h"
 
 static NSString *CellIdentifier = @"MyIdentifier";
 
 @implementation eXoAppViewController
-
-@synthesize _txtfUserName;
-@synthesize _txtfUserPasswd;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -32,15 +30,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		_bSuccessful = [[NSString alloc] init];
 		_bSuccessful = NO;
 		_selectedLanguage = 0;
-		btnSignIn = [[UIBarButtonItem alloc] initWithTitle:@"Sign In" style:UIBarButtonItemStylePlain target:self action:@selector(onSignInBtn:)];
-		UIButton *btnTmp = [[UIButton alloc] initWithFrame:CGRectMake(5, 2, 30, 30)];
-		[btnTmp addTarget:self action:@selector(onSettingBtn) forControlEvents:UIControlEventTouchUpInside];
-		[btnTmp setBackgroundImage:[UIImage imageNamed:@"setting.png"] forState:UIControlStateNormal];
-		btnSetting = [[UIBarButtonItem alloc] initWithCustomView:btnTmp];
-        [btnTmp release];
-		
+        _intSelectedServer = -1;
+        _arrServerList = [[NSMutableArray alloc] init];
 		isFirstTimeLogin = YES;
-		
     }
     return self;
 }
@@ -48,24 +40,20 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)loadView 
 {
 	[super loadView];
-	
-	[[self navigationItem] setRightBarButtonItem:btnSignIn];
-	[[self navigationItem] setLeftBarButtonItem:btnSetting];
-	
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	
-	//[self viewWillAppear:NO];
 }
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
 	_bSuccessful = NO;
-	
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    Configuration* configuration = [Configuration sharedInstance];
+    _arrServerList = [configuration getServerList];
+    
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	_selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
 	NSString* filePath;
@@ -81,24 +69,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
 	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
 	
-	[btnSignIn setTitle:[_dictLocalize objectForKey:@"SignInButton"]];
+	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
 
 	bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
 	bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 
-	_txtfDomainName = [eXoAppViewController textInputFieldForCellWithSecure:NO];
-	_txtfDomainName.delegate = self;
-	_txtfUserName = [eXoAppViewController textAccountInputFieldForCellWithSecure:NO];
-	_txtfUserName.delegate = self;
-	_txtfUserPasswd = [eXoAppViewController textAccountInputFieldForCellWithSecure:YES];
-	_txtfUserPasswd.delegate = self; 
-
-	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	if(domain)
-	{
-		[_txtfDomainName setText:domain];
-	}
-	
+	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 	
 	if(bRememberMe || bAutoLogin)
 	{
@@ -106,26 +82,21 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
 		if(username)
 		{
-			[_txtfUserName setText:username];
+			[_txtfUsername setText:username];
 		}
 		
 		if(password)
 		{
-			[_txtfUserPasswd setText:password];
+			[_txtfPassword setText:password];
 		}
 	}
 	else 
 	{
-		[_txtfUserName setText:@""];
-		[_txtfUserPasswd setText:@""];
-		
-		[_txtfUserName becomeFirstResponder];
+		[_txtfUsername setText:@""];
+		[_txtfPassword setText:@""];
+	}
 	}
 	
-	[self.tableView reloadData];
-	
-}
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
@@ -140,26 +111,22 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)viewDidUnload 
 {
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	if(domain)
-	{
-		[_txtfDomainName setText:domain];
-	}
+	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 	
 	NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]; 
 	if(username)
 	{
-		[_txtfUserName setText:username];
+		[_txtfUsername setText:username];
 	}
 	
-	if (_txtfUserName.text.length == 0 && _txtfUserPasswd.text.length == 0) 
+	if (_txtfUsername.text.length == 0 && _txtfPassword.text.length == 0) 
 	{
-		[_txtfUserName becomeFirstResponder];
+		[_txtfUsername becomeFirstResponder];
 	}
 	
-	if (_txtfUserName.text.length > 0)
+	if (_txtfUsername.text.length > 0)
 	{
-		[_txtfUserPasswd becomeFirstResponder];
+		[_txtfPassword becomeFirstResponder];
 	}
 }
 
@@ -168,16 +135,45 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	isFirstTimeLogin = NO;
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction)onBtnAccount:(id)sender
 {
-	return UITableViewCellEditingStyleNone;
+    [_btnServerList setBackgroundColor:[UIColor grayColor]];
+    [_btnAccount setBackgroundColor:[UIColor blueColor]];
+    [_vLoginView bringSubviewToFront:_vAccountView];
 }
+
+- (IBAction)onBtnServerList:(id)sender
+{
+    [_btnServerList setBackgroundColor:[UIColor blueColor]];
+    [_btnAccount setBackgroundColor:[UIColor grayColor]];    
+    [_vLoginView bringSubviewToFront:_vServerListView];    
+    [_tbvlServerList reloadData];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
+{
+	return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+	return YES;
+}
+
+#pragma UITableView Delegate
+
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	return UITableViewCellEditingStyleNone;
+//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 2;
+	return 1;
 }
 
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	NSString* tmpStr = @"";
@@ -201,91 +197,66 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 	return tmpStr;
 }
+*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {	
-	int numberOfRowsInSection = 0;
-	
-	switch (section) 
-	{
-		case 0:
-		{
-			numberOfRowsInSection = 1;
-			break;
-		}
-		case 1:
-		{
-			numberOfRowsInSection = 2;
-			break;
-		}
-		case 2:
-		{
-			numberOfRowsInSection = 2;
-			break;
-		}
-		default:
-			break;
+    return [_arrServerList count];
 	}
 	
-	return numberOfRowsInSection;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 32.0;
+	return 44;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil) {
+    if(cell == nil) 
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        switch (indexPath.section) 
-        {
-            case 0:
-            {
-                cell.textLabel.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
-                
-                [cell addSubview:_txtfDomainName];
-                
-                break;
-            }
-            case 1:
-            {
-                switch (indexPath.row)
-                {
-                    case 0:
-                    {
-                        cell.textLabel.text = [_dictLocalize objectForKey:@"UserNameCellTitle"];
-                        [cell addSubview:_txtfUserName];
-                        break;
-                    }	
-                    case 1:
-                    {
-                        cell.textLabel.text = [_dictLocalize objectForKey:@"PasswordCellTitle"];
-                        [cell addSubview:_txtfUserPasswd];
-                        
-                        break;
-                    }
+    if (indexPath.row == _intSelectedServer) 
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
                 }
                 
-                break;
+	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+
+    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(2, 5, 150, 30)];
+    lbServerName.text = tmpServerObj._strServerName;
+    lbServerName.textColor = [UIColor brownColor];
+    [cell addSubview:lbServerName];
+    [lbServerName release];
+
+    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 120, 30)];
+    lbServerUrl.text = tmpServerObj._strServerUrl;
+    [cell addSubview:lbServerUrl];
+    [lbServerUrl release];
+
+	return cell;
             }
                 
-            default:
-                break;
-        }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    _strHost = [tmpServerObj._strServerUrl retain];
+    _intSelectedServer = indexPath.row;
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
+	[userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+    [_tbvlServerList reloadData];
     }
 	
-	return cell;
-}
-
+/*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {	
 	if(indexPath.section == 0 && !isFirstTimeLogin) {
 		cell.userInteractionEnabled = NO;
@@ -293,12 +264,6 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 	
 }
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
-{
-	return YES;
-}
-
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
 {
@@ -332,7 +297,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) 
 	{
-		cell = [[[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
+		cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
 	}
 	cell.textLabel.text = label.text;
 	cell.accessoryType = UITableViewCellAccessoryNone;
@@ -348,7 +313,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) 
 	{
-		cell = [[[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
+		cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
 	}
 	cell.textLabel.text = label.text;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -372,6 +337,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [_txtfUserPasswd resignFirstResponder];	
     [super touchesBegan:touches withEvent:event];
 }
+*/
+
 
 -(void)login
 {
@@ -381,9 +348,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[_indicator startAnimating];
 	_indicator.hidesWhenStopped = YES;
 
-	[_txtfDomainName resignFirstResponder];
-	[_txtfUserName resignFirstResponder];
-	[_txtfUserPasswd resignFirstResponder];
+	[_txtfUsername resignFirstResponder];
+	[_txtfPassword resignFirstResponder];
 	
 	
 	NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
@@ -396,7 +362,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 }
 
--(IBAction)onSettingBtn
+- (IBAction)onSettingBtn
 {
 	eXoApplicationsViewController *apps = [[eXoApplicationsViewController alloc] init];
 	apps._dictLocalize = _dictLocalize;
@@ -408,7 +374,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (IBAction)onSignInBtn:(id)sender
 {
-	if([_txtfUserName.text isEqualToString:@""])
+	if([_txtfUsername.text isEqualToString:@""])
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
 														message:[_dictLocalize objectForKey:@"UserNameEmpty"]
@@ -421,11 +387,11 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 	else
 	{		
-		NSString *domainStr = [_txtfDomainName text];
-		NSRange httpRange = [domainStr rangeOfString:@"http://"];
+		NSRange httpRange = [_strHost rangeOfString:@"http://"];
 		if(httpRange.length == 0)
-			_txtfDomainName.text = [NSString stringWithFormat:@"http://%@", domainStr];
-		
+        {
+			_strHost = [NSString stringWithFormat:@"http://%@", _strHost];
+		}
 		[self login];
 	}
 }
@@ -445,8 +411,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	endThread = nil;
 	[endThread release];
 	[self view].userInteractionEnabled = YES;
-	[[self navigationItem] setRightBarButtonItem:btnSignIn];
-	[[self navigationItem] setLeftBarButtonItem:btnSetting];
+	//[[self navigationItem] setRightBarButtonItem:btnSignIn];
+	//[[self navigationItem] setLeftBarButtonItem:btnSetting];
 }
 
 -(void)startInProgress {
@@ -463,16 +429,14 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 	Connection* conn = [[Connection alloc] init];
 	
-	NSString* domain = [_txtfDomainName text];
-	NSString* username = [_txtfUserName text];
-	NSString* password = [_txtfUserPasswd text];
+	NSString* username = [_txtfUsername text];
+	NSString* password = [_txtfPassword text];
 		
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:domain forKey:EXO_PREFERENCE_DOMAIN];
 	[userDefaults setObject:username forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:password forKey:EXO_PREFERENCE_PASSWORD];	
 	
-	_bSuccessful = [conn sendAuthenticateRequest:domain username:username password:password];
+	_bSuccessful = [conn sendAuthenticateRequest:_strHost username:username password:password];
 	
 	if(_bSuccessful == @"YES")
 	{
@@ -513,10 +477,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 - (void)dealloc 
 {
-	[_txtfUserName release];
-	[_txtfUserPasswd release];
-	[_txtfDomainName release];
-	
+	[_txtfUsername release];
+	[_txtfPassword release];
+	[_arrServerList release];
     [super dealloc];	
 }
 
