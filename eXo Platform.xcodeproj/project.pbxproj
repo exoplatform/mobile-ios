@@ -10,6 +10,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C61BB133B3BAE005A365A /* Configuration.m */; };
 		8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937A32913387F1D00D8B474 /* NSString+HTML.m */; };
 		8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */; };
 		8937A33F1338993900D8B474 /* AppContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32E1338993900D8B474 /* AppContainerViewController.xib */; };
@@ -227,6 +228,8 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
+		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
 		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
 		8937A32E1338993900D8B474 /* AppContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppContainerViewController.xib; sourceTree = "<group>"; };
@@ -329,7 +332,7 @@
 		894733B513370C3600B0AD11 /* AppDelegate_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPad.h; sourceTree = "<group>"; };
 		894733B613370C3600B0AD11 /* AppDelegate_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPad.m; sourceTree = "<group>"; };
 		894733B813370C9800B0AD11 /* AppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPhone.h; sourceTree = "<group>"; };
-		894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate_iPhone.m; path = ../AppDelegate_iPhone.m; sourceTree = "<group>"; };
+		894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPhone.m; sourceTree = "<group>"; };
 		894733C013370F3C00B0AD11 /* ChatImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ChatImage.gif; sourceTree = "<group>"; };
 		894733C113370F3C00B0AD11 /* ChatImage01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ChatImage01.gif; sourceTree = "<group>"; };
 		894733C213370F3C00B0AD11 /* DashboardImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DashboardImage.gif; sourceTree = "<group>"; };
@@ -603,7 +606,6 @@
 		8937A3501338994400D8B474 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
-				894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */,
 				8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */,
 				8937A3521338994400D8B474 /* eXoAppViewController.xib */,
 				8937A3531338994400D8B474 /* eXoFileActionViewController.xib */,
@@ -638,6 +640,7 @@
 				8947323A1336FFE400B0AD11 /* Data Manager */,
 				8947323B1336FFE400B0AD11 /* View Controllers */,
 				8937A3501338994400D8B474 /* NIB */,
+				894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */,
 				894733B813370C9800B0AD11 /* AppDelegate_iPhone.h */,
 			);
 			path = iPhone;
@@ -1316,6 +1319,8 @@
 		8947352513375EF200B0AD11 /* Proxies */ = {
 			isa = PBXGroup;
 			children = (
+				7C9C61BA133B3BAE005A365A /* Configuration.h */,
+				7C9C61BB133B3BAE005A365A /* Configuration.m */,
 			);
 			path = Proxies;
 			sourceTree = "<group>";
@@ -1591,6 +1596,7 @@
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
 				8947351F13375E1900B0AD11 /* main.m in Sources */,
 				8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */,
+				7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
