@@ -24,11 +24,12 @@
 	NSDictionary*	_dictLocalize;
 	BOOL edit;
 	
-	eXoApplicationsViewController				*_delegate;
+	eXoApplicationsViewController*  _delegate;
+    NSMutableArray*                 _arrServerList;
+    int                             _intSelectedServer;
 }
 
 @property(nonatomic, retain) NSDictionary*	_dictLocalize;
-
 
 - (id)initWithStyle:(UITableViewStyle)style delegate:(eXoApplicationsViewController *)delegate;
 

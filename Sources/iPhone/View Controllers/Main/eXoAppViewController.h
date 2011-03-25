@@ -9,38 +9,51 @@
 #import <UIKit/UIKit.h>
 
 //Login page
-@interface eXoAppViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
+@interface eXoAppViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
-	UITextField* _txtfUserName;	//Username
-	UITextField* _txtfUserPasswd;	//Password
-	UITextField* _txtfDomainName;	//Host
-	NSString*	 _bSuccessful;	//Login status
-	UIActivityIndicatorView* _indicator;	//Loding indicator
-	UIBarButtonItem* btnSignIn;	//Login button
-	UIBarButtonItem* btnSetting;	//Setting button
-	BOOL endGetData;	//Check if it ends get data
-	BOOL bRememberMe;	//Remember
-	BOOL bAutoLogin;	//Autologin
-	BOOL isFirstTimeLogin;	//Is first time login
-	
-	int			  _selectedLanguage;	//Current language index
-	NSDictionary* _dictLocalize;	//Language dictionary
-	
-	NSThread *endThread;	//Get data thread
+	NSString*                   _bSuccessful;	//Login status
+	UIActivityIndicatorView*    _indicator;	//Loding indicator
+	UIBarButtonItem*            btnSignIn;	//Login button
+	UIBarButtonItem*            btnSetting;	//Setting button
+	BOOL                        endGetData;	//Check if it ends get data
+	BOOL                        bRememberMe;	//Remember
+	BOOL                        bAutoLogin;	//Autologin
+	BOOL                        isFirstTimeLogin;	//Is first time login
+	int                         _selectedLanguage;	//Current language index
+	NSDictionary*               _dictLocalize;	//Language dictionary
+	NSThread*                   endThread;	//Get data thread
+    
+    
+    IBOutlet UIButton*          _btnAccount;
+    IBOutlet UIButton*          _btnServerList;
+    IBOutlet UILabel*           _lbUsername;
+    IBOutlet UILabel*           _lbPassword;
+    IBOutlet UITextField*       _txtfUsername;
+    IBOutlet UITextField*       _txtfPassword;
+    IBOutlet UIButton*          _btnLogin;
+    IBOutlet UIButton*          _btnSettings;
+    IBOutlet UIView*            _vLoginView;
+    IBOutlet UIView*            _vAccountView;
+    IBOutlet UIView*            _vServerListView;
+    IBOutlet UITableView*       _tbvlServerList;
+    
+    NSMutableArray*             _arrServerList;
+    NSString*                   _strHost;
+    int                         _intSelectedServer;
 }
-
-@property (nonatomic, retain) UITextField *_txtfUserName;
-@property (nonatomic, retain) UITextField *_txtfUserPasswd;
 
 -(IBAction)onSignInBtn:(id)sender;	//Login action
 -(IBAction)onSettingBtn;	//Setting action
 -(void)login;	//Login progress
 //Create UITableViewCell
-- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;	
-- (UITableViewCell*)textCellWithLabel:(UILabel*)label;	
+//- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;	
+//- (UITableViewCell*)textCellWithLabel:(UILabel*)label;	
 //Create UITextField
-+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;	
-+ (UITextField*)textAccountInputFieldForCellWithSecure:(BOOL)secure;	
+//+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;	
+//+ (UITextField*)textAccountInputFieldForCellWithSecure:(BOOL)secure;	
+
+- (IBAction)onBtnAccount:(id)sender;
+- (IBAction)onBtnServerList:(id)sender;
 
 @end
 
