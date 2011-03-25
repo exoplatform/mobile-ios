@@ -108,5 +108,7 @@
 	<string>Information</string>
 	<key>EmptyPage</key>
 	<string>Le dossier est vide</string>	
+	<key>ServerList</key>
+	<string>Liste des Serveurs</string>        
 </dict>
 </plist>

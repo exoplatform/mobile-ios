@@ -108,5 +108,7 @@
 	<string>Information</string>
 	<key>EmptyPage</key>
 	<string>Folder is empty</string>
+	<key>ServerList</key>
+	<string>Server list</string>    
 </dict>
 </plist>
