@@ -110,5 +110,7 @@
 	<string>Folder is empty</string>
 	<key>ServerList</key>
 	<string>Server list</string>    
+    <key>ServerModify</key>
+	<string>Modify the list</string>    
 </dict>
 </plist>
