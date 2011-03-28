@@ -11,6 +11,7 @@
 #import "eXoWebViewController.h"
 #import "eXoApplicationsViewController.h"
 #import "Configuration.h"
+#import "ServerManagerViewController.h"
 
 static NSString *CellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
@@ -112,6 +113,25 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 }
 
+-(void)rememberMeAction 
+{
+	NSString *str = @"NO";
+	bRememberMe = rememberMe.on;
+	if(bAutoLogin)
+		str = @"YES";
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
+}
+
+-(void)autoLoginAction 
+{
+	NSString *str = @"NO";
+	bAutoLogin = autoLogin.on;
+	if(bAutoLogin)
+		str = @"YES";
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:str forKey:EXO_AUTO_LOGIN];
+}
 
 #pragma mark Table view methods
 
@@ -171,7 +191,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}	
 	if(section == 2)
 	{	
-		numofRows = [_arrServerList count];
+		numofRows = [_arrServerList count] + 1;
 	}
     if(section == 3)
 	{	
@@ -190,58 +210,58 @@ static NSString *CellIdentifier = @"MyIdentifier";
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-        switch (indexPath.section) 
+    switch (indexPath.section) 
+    {
+        case 0:
         {
-            case 0:
-            {
-                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             if(indexPath.row == 0)
-                {
-                    cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
-                    rememberMe.on = bRememberMe;
-                    [cell addSubview:rememberMe];
-                }
+            {
+                cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
+                rememberMe.on = bRememberMe;
+                [cell addSubview:rememberMe];
+            }
             else 
             {
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
-                    autoLogin.on = bAutoLogin;
-                    [cell addSubview:autoLogin];
-                }
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
+                autoLogin.on = bAutoLogin;
+                [cell addSubview:autoLogin];
             }
-                break;
-                
-            case 1: 
-            {
+        }
+            break;
+            
+        case 1: 
+        {
             UIImageView* imgV;
             UILabel* titleLabel;
-                if(indexPath.row == 0)
-                {
+            if(indexPath.row == 0)
+            {
                 imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-                    imgV.image = [UIImage imageNamed:@"EN.gif"];
-                    [cell addSubview:imgV];
-                
+                imgV.image = [UIImage imageNamed:@"EN.gif"];
+                [cell addSubview:imgV];
+            
                 titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-                    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                    titleLabel.text = [_dictLocalize objectForKey:@"English"];
-                    [cell addSubview:titleLabel];
-                }
-                else
-                {
+                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                titleLabel.text = [_dictLocalize objectForKey:@"English"];
+                [cell addSubview:titleLabel];
+            }
+            else
+            {
                 imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-                    imgV.image = [UIImage imageNamed:@"FR.gif"];
-                    [cell addSubview:imgV];	
-                
+                imgV.image = [UIImage imageNamed:@"FR.gif"];
+                [cell addSubview:imgV];	
+            
                 titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-                    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                    titleLabel.text = [_dictLocalize objectForKey:@"French"];
-                    [cell addSubview:titleLabel];	
+                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                titleLabel.text = [_dictLocalize objectForKey:@"French"];
+                [cell addSubview:titleLabel];	
             }
             [imgV release];
-                    [titleLabel release];
-            
+            [titleLabel release];
+        
             if(indexPath.row == _selectedLanguage)
             {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -250,69 +270,62 @@ static NSString *CellIdentifier = @"MyIdentifier";
             {            
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
-            }
-                break;
-                
-            case 2:
-            {
-            ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-            
-            UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-            lbServerName.text = tmpServerObj._strServerName;
-            lbServerName.textColor = [UIColor brownColor];
-            [cell addSubview:lbServerName];
-            [lbServerName release];
-            
-            UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 100, 30)];
-            lbServerUrl.text = tmpServerObj._strServerUrl;
-            [cell addSubview:lbServerUrl];
-            [lbServerUrl release];
-            
-            if (indexPath.row == _intSelectedServer) 
-            {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            }
-            else
-            {
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
         }
             break;
             
+        case 2:
+        {
+            if (indexPath.row < [_arrServerList count]) 
+            {
+                ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+                
+                UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
+                lbServerName.text = tmpServerObj._strServerName;
+                lbServerName.textColor = [UIColor brownColor];
+                [cell addSubview:lbServerName];
+                [lbServerName release];
+                
+                UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 100, 30)];
+                lbServerUrl.text = tmpServerObj._strServerUrl;
+                [cell addSubview:lbServerUrl];
+                [lbServerUrl release];
+                
+                if (indexPath.row == _intSelectedServer) 
+                {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }
+                else
+                {
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+            }
+            else
+            {
+                UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
+                [lbModify setTextAlignment:UITextAlignmentCenter];
+                lbModify.textColor = [UIColor redColor];
+                [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];
+                [cell addSubview:lbModify];
+                [lbModify release];
+            }
+        }
+        break;
+            
         case 3:
         {
-                cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
-                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-                break;
+            cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            break;
                 
-            default:
-                break;
+        default:
+            break;
     }
 	
     return cell;
 }
 
--(void)rememberMeAction 
-{
-	NSString *str = @"NO";
-	bRememberMe = rememberMe.on;
-	if(bAutoLogin)
-		str = @"YES";
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
-}
-
--(void)autoLoginAction 
-{
-	NSString *str = @"NO";
-	bAutoLogin = autoLogin.on;
-	if(bAutoLogin)
-		str = @"YES";
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:str forKey:EXO_AUTO_LOGIN];
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
@@ -333,12 +346,30 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 	else if(indexPath.section == 2)
 	{
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-        _intSelectedServer = indexPath.row;
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:tmpServerObj._strServerUrl forKey:EXO_PREFERENCE_DOMAIN];
-        [userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
-        [tableView reloadData];
+        if (indexPath.row < [_arrServerList count]) 
+        {
+            ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+            _intSelectedServer = indexPath.row;
+            NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:tmpServerObj._strServerUrl forKey:EXO_PREFERENCE_DOMAIN];
+            [userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+            [tableView reloadData];
+        }
+        else
+        {
+            if (_serverManagerViewController == nil) 
+            {
+                _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
+            }
+            if([self.navigationController.viewControllers containsObject: _serverManagerViewController])
+            {
+                [self.navigationController popToViewController:_serverManagerViewController animated:YES];
+            }
+            else
+            {
+                [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
+            }
+        }
 	}
 	else if(indexPath.section == 3)
     {

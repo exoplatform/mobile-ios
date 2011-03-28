@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
  
 @class eXoApplicationsViewController;
+@class ServerManagerViewController;
 
 @interface eXoSettingViewController : UITableViewController <UITextFieldDelegate> {
 	BOOL bRememberMe;
@@ -27,6 +28,7 @@
 	eXoApplicationsViewController*  _delegate;
     NSMutableArray*                 _arrServerList;
     int                             _intSelectedServer;
+    ServerManagerViewController*    _serverManagerViewController;
 }
 
 @property(nonatomic, retain) NSDictionary*	_dictLocalize;
