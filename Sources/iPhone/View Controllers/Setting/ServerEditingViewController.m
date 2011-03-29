@@ -26,12 +26,17 @@
         _txtfServerName.delegate = self;
         _txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
         _txtfServerUrl.delegate = self;
+        _intIndex = -1;
     }
     return self;
 }
 
 - (void)dealloc
 {
+    [_strServerName release];
+    [_strServerUrl release];
+    [_txtfServerName release];
+    [_txtfServerUrl release];
     [_serverObj release];
     [super dealloc];
 }
@@ -48,8 +53,8 @@
 
 - (void)viewDidLoad
 {
-    _bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
-    [_bbtnEdit setEnabled:NO];
+    //_bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
+    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnEdit)]; //It will be localized later
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
     
     [super viewDidLoad];
@@ -65,6 +70,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    _bEdit = NO;
+    [_txtfServerName setEnabled:NO];
+    [_txtfServerUrl setEnabled:NO];
+    [_txtfServerName setTextColor:[UIColor grayColor]];
+    [_txtfServerUrl setTextColor:[UIColor grayColor]];
     [super viewWillAppear:YES];
 }
 
@@ -79,20 +89,53 @@
     _delegate = delegate;
 }
 
-- (void)setServerObj:(ServerObj*)serverObj
+- (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index
 {
     _serverObj._strServerName = serverObj._strServerName;
     _serverObj._strServerUrl = serverObj._strServerUrl;
     _serverObj._bSystemServer = serverObj._bSystemServer;
     [_txtfServerName setText:_serverObj._strServerName];
     [_txtfServerUrl setText:_serverObj._strServerUrl];
+    
+    _intIndex = index;
 }
 
 - (void)onBbtnEdit
 {
-    //[_delegate editServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];
+    _bEdit = !_bEdit;
+    [_txtfServerName setEnabled:_bEdit];
+    [_txtfServerUrl setEnabled:_bEdit];
+
+    if (_bEdit) 
+    {
+        [_bbtnEdit setTitle:@"Done"];
+        [_txtfServerName setTextColor:[UIColor blackColor]];
+        [_txtfServerUrl setTextColor:[UIColor blackColor]];
+        
+        UIButton* btnDelete = [[UIButton alloc] initWithFrame:CGRectMake(10, 110, 300, 40)];
+        [btnDelete setBackgroundColor:[UIColor redColor]];
+        [btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
+        [btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
+        [self.tableView addSubview:btnDelete];
+        [btnDelete release];                        
+    }
+    else
+    {
+        [_bbtnEdit setTitle:@"Edit"];
+        [_txtfServerName resignFirstResponder];
+        [_txtfServerUrl resignFirstResponder];
+        [_txtfServerName setTextColor:[UIColor grayColor]];
+        [_txtfServerUrl setTextColor:[UIColor grayColor]];
+        _strServerName = [_txtfServerName text];
+        _strServerUrl = [_txtfServerUrl text];
+        [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
+    }
 }
 
+- (void)onBtnDelete
+{
+    [_delegate deleteServerObjAtIndex:_intIndex];
+}
 
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view 
 {
@@ -133,10 +176,7 @@
     
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
-    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
-    {
-        [_bbtnEdit setEnabled:YES];
-    }
+
     return YES;
 }
 

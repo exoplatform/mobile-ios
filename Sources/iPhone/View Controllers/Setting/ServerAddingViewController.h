@@ -8,9 +8,35 @@
 
 #import <UIKit/UIKit.h>
 
+static NSString *ServerObjCellIdentifier = @"ServerObj";
 
-@interface ServerAddingViewController : UIViewController {
+@interface ServerAddingViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
+    id                                  _delegate;
+    
+    UITextField*                        _txtfServerName;
+    UITextField*                        _txtfServerUrl;  
+    
+    NSString*                           _strServerName;
+    NSString*                           _strServerUrl; 
+    UIBarButtonItem*                    _bbtnDone;
 }
 
+@property (nonatomic, retain) UITextField* _txtfServerName;
+@property (nonatomic, retain) UITextField* _txtfServerUrl;
+
+- (void)setDelegate:(id)delegate;
+- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
+- (UITableViewCell*)textCellWithLabel:(UILabel*)label;
++ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;
+
+@end
+
+
+//--------------------------------------------
+@interface ContainerCell : UITableViewCell
+{
+	UIView*	_vContainer;
+}
+- (void)attachContainer:(UIView*)view;
 @end

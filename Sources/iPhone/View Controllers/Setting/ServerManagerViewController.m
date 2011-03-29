@@ -9,6 +9,7 @@
 #import "ServerManagerViewController.h"
 #import "Configuration.h"
 #import "ServerAddingViewController.h"
+#import "ServerEditingViewController.h"
 
 static NSString *ServerCellIdentifier = @"ServerIdentifier";
 
@@ -76,6 +77,7 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     if (_serverAddingViewController == nil) 
     {
         _serverAddingViewController = [[ServerAddingViewController alloc] initWithNibName:@"ServerAddingViewController" bundle:nil];
+        [_serverAddingViewController setDelegate:self];
     }
     if ([self.navigationController.viewControllers containsObject:_serverAddingViewController]) 
     {
@@ -85,6 +87,134 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     {
         [self.navigationController pushViewController:_serverAddingViewController animated:YES];
     }
+}
+
+- (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    BOOL bExist = NO;
+    for (int i = 0; i < [_arrServerList count]; i++) 
+    {
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:i];
+        if ([tmpServerObj._strServerName isEqualToString:strServerName] && [tmpServerObj._strServerUrl isEqualToString:strServerUrl]) 
+        {
+            bExist = YES;
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This Server has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            break;
+        }
+    }
+    
+    if (!bExist) 
+    {
+        Configuration* configuration = [Configuration sharedInstance];
+        
+        ServerObj* serverObj = [[ServerObj alloc] init];
+        serverObj._strServerName = strServerName;
+        serverObj._strServerUrl = strServerUrl;    
+        serverObj._bSystemServer = NO;
+        
+        NSMutableArray* arrAddedServer = [[NSMutableArray alloc] init];
+        arrAddedServer = [configuration loadUserConfiguration];
+        [arrAddedServer addObject:serverObj];
+        [configuration writeUserConfiguration:arrAddedServer];
+        [serverObj release];
+        [arrAddedServer release];
+        
+        [_arrServerList removeAllObjects];
+        _arrServerList = [configuration getServerList];
+        [_tbvlServerList reloadData];
+        [self.navigationController popToViewController:self animated:YES];
+    }    
+}
+
+- (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    BOOL bExist = NO;
+    ServerObj* tmpServerObj;
+    for (int i = 0; i < [_arrServerList count]; i++) 
+    {
+        tmpServerObj = [_arrServerList objectAtIndex:i];
+        if ([tmpServerObj._strServerName isEqualToString:strServerName] && [tmpServerObj._strServerUrl isEqualToString:strServerUrl]) 
+        {
+            bExist = YES;
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This Url has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            break;
+        }
+    }
+   
+    if (!bExist) 
+    {
+        ServerObj* serverObjEdited = [_arrServerList objectAtIndex:index];
+        serverObjEdited._strServerName = strServerName;
+        serverObjEdited._strServerUrl = strServerUrl;
+        
+        [_arrServerList replaceObjectAtIndex:index withObject:serverObjEdited];
+        
+        NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < [_arrServerList count]; i++) 
+        {
+            tmpServerObj = [_arrServerList objectAtIndex:i];
+            if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer) 
+            {
+                [arrTmp addObject:tmpServerObj];
+            }
+        }
+        
+        Configuration* configuration = [Configuration sharedInstance];
+        if (serverObjEdited._bSystemServer) 
+        {
+            [configuration writeSystemConfiguration:arrTmp];
+        }
+        else
+        {
+            [configuration writeUserConfiguration:arrTmp];
+        }
+        
+        [_arrServerList removeAllObjects];
+        _arrServerList = [configuration getServerList];
+        [_tbvlServerList reloadData];
+        [self.navigationController popToViewController:self animated:YES];
+    }
+}
+
+
+- (void)deleteServerObjAtIndex:(int)index
+{
+    ServerObj* deletedServerObj = [_arrServerList objectAtIndex:index];
+    
+    [_arrServerList removeObjectAtIndex:index];
+    
+    NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [_arrServerList count]; i++) 
+    {
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:i];
+        if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer) 
+        {
+            [arrTmp addObject:tmpServerObj];
+        }
+    }
+    
+    Configuration* configuration = [Configuration sharedInstance];
+    if (deletedServerObj._bSystemServer) 
+    {
+        [configuration writeSystemConfiguration:arrTmp];
+    }
+    else
+    {
+        [configuration writeUserConfiguration:arrTmp];
+    }
+    
+    [arrTmp release];
+            
+    [_arrServerList removeAllObjects];
+    _arrServerList = [configuration getServerList];
+    [_tbvlServerList reloadData];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 #pragma mark Table view methods
@@ -117,6 +247,8 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerCellIdentifier] autorelease];
     }
 	
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
     
     UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
@@ -125,7 +257,7 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     [cell addSubview:lbServerName];
     [lbServerName release];
     
-    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 100, 30)];
+    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 80, 30)];
     lbServerUrl.text = tmpServerObj._strServerUrl;
     [cell addSubview:lbServerUrl];
     [lbServerUrl release];
@@ -136,6 +268,23 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    
+    if (_serverEditingViewController == nil) 
+    {
+        _serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
+        [_serverEditingViewController setDelegate:self];
+    }
+    [_serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+    
+    if ([self.navigationController.viewControllers containsObject:_serverEditingViewController]) 
+    {
+        [self.navigationController popToViewController:_serverEditingViewController animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:_serverEditingViewController animated:YES];
+    }
 }
 
 @end

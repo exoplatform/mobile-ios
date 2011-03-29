@@ -22,13 +22,15 @@
     NSString*                           _strServerName;
     NSString*                           _strServerUrl; 
     UIBarButtonItem*                    _bbtnEdit;
+    BOOL                                _bEdit;
+    int                                 _intIndex;
 }
 
 @property (nonatomic, retain) UITextField* _txtfServerName;
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
 
 - (void)setDelegate:(id)delegate;
-- (void)setServerObj:(ServerObj*)serverObj;
+- (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;
 
