@@ -78,7 +78,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [super dealloc];
 }
 
--(void)save 
+- (void)save 
 {
 	edit = !edit;
 	if(edit) 
@@ -113,7 +113,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 }
 
--(void)rememberMeAction 
+- (void)rememberMeAction 
 {
 	NSString *str = @"NO";
 	bRememberMe = rememberMe.on;
@@ -123,7 +123,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
 }
 
--(void)autoLoginAction 
+- (void)autoLoginAction 
 {
 	NSString *str = @"NO";
 	bAutoLogin = autoLogin.on;
@@ -210,13 +210,14 @@ static NSString *CellIdentifier = @"MyIdentifier";
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    
     switch (indexPath.section) 
     {
         case 0:
         {
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];  
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+            cell.accessoryType = UITableViewCellAccessoryNone;
             if(indexPath.row == 0)
             {
                 cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
@@ -225,13 +226,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
             }
             else 
             {
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
                 autoLogin.on = bAutoLogin;
                 [cell addSubview:autoLogin];
             }
-        }
             break;
+        }
             
         case 1: 
         {
@@ -270,8 +270,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
             {            
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
-        }
             break;
+        }
             
         case 2:
         {
@@ -308,16 +308,16 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 [cell addSubview:lbModify];
                 [lbModify release];
             }
+            break;
         }
-        break;
             
         case 3:
         {
             cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
             break;
+        }
                 
         default:
             break;

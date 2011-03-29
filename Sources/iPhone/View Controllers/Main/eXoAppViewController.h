@@ -42,26 +42,10 @@
     int                         _intSelectedServer;
 }
 
--(IBAction)onSignInBtn:(id)sender;	//Login action
--(IBAction)onSettingBtn;	//Setting action
--(void)login;	//Login progress
-//Create UITableViewCell
-//- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;	
-//- (UITableViewCell*)textCellWithLabel:(UILabel*)label;	
-//Create UITextField
-//+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;	
-//+ (UITextField*)textAccountInputFieldForCellWithSecure:(BOOL)secure;	
-
+- (IBAction)onSignInBtn:(id)sender;	//Login action
+- (IBAction)onSettingBtn;	//Setting action
+- (void)login;	//Login progress
 - (IBAction)onBtnAccount:(id)sender;
 - (IBAction)onBtnServerList:(id)sender;
 
-@end
-
-
-//--------------------------------------------
-@interface ContainerCell : UITableViewCell
-{
-
-}
-- (void)attachContainer:(UIView*)view;
 @end

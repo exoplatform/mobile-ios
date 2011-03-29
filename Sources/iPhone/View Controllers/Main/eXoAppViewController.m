@@ -163,46 +163,15 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 #pragma UITableView Delegate
 
-//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	return UITableViewCellEditingStyleNone;
-//}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return 1;
 }
 
-/*
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	NSString* tmpStr = @"";
-	switch (section) 
-	{
-		case 0:
-		{
-			tmpStr = [_dictLocalize objectForKey:@"DomainHeader"];
-			break;
-		}
-			
-		case 1:
-		{
-			tmpStr = [_dictLocalize objectForKey:@"AccountHeader"];			
-			break;
-		}
-			
-		default:
-			break;
-	}
-	
-	return tmpStr;
-}
-*/
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {	
     return [_arrServerList count];
-	}
+}
 	
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -254,93 +223,10 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
 	[userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
     [_tbvlServerList reloadData];
-    }
+}
 	
-/*
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {	
-	if(indexPath.section == 0 && !isFirstTimeLogin) {
-		cell.userInteractionEnabled = NO;
-		[cell setBackgroundColor:[UIColor cyanColor]];
-	}
-	
-}
 
-+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
-{
-	UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 6, 200, 25)];
-	textField.placeholder = @"Required";
-	textField.secureTextEntry = secure;
-	textField.keyboardType = UIKeyboardTypeASCIICapable;
-	textField.returnKeyType = UIReturnKeyDone;
-	textField.autocorrectionType = UITextAutocorrectionTypeNo;
-	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-	textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	return textField;
-}
-
-+ (UITextField*)textAccountInputFieldForCellWithSecure:(BOOL)secure 
-{
-	UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(135, 6, 170, 25)];
-	textField.placeholder = @"Required";
-	textField.secureTextEntry = secure;
-	textField.keyboardType = UIKeyboardTypeASCIICapable;
-	textField.returnKeyType = UIReturnKeyDone;
-	textField.autocorrectionType = UITextAutocorrectionTypeNo;
-	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-	textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	return textField;
-}
-
-- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view 
-{
-	NSString *MyIdentifier = label.text;
-	ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	if (cell == nil) 
-	{
-		cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
-	}
-	cell.textLabel.text = label.text;
-	cell.accessoryType = UITableViewCellAccessoryNone;
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	[cell attachContainer:view];
-	
-	return cell;
-}
-
-- (UITableViewCell*)textCellWithLabel:(UILabel*)label 
-{
-	NSString *MyIdentifier = label.text;
-	ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	if (cell == nil) 
-	{
-		cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
-	}
-	cell.textLabel.text = label.text;
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	return cell;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
-{
-	// When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-	if ((theTextField == _txtfUserName) || (theTextField == _txtfUserPasswd))
-	{
-		[theTextField resignFirstResponder];
-	}
-	return YES;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    // Dismiss the keyboard when the view outside the text field is touched.
-    [_txtfUserName resignFirstResponder];
-    [_txtfUserPasswd resignFirstResponder];	
-    [super touchesBegan:touches withEvent:event];
-}
-*/
-
-
--(void)login
+- (void)login
 {
 	[[self navigationItem] setRightBarButtonItem:nil];
 	[self view].userInteractionEnabled = NO;
@@ -396,27 +282,24 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 }
 
--(void)loginSuccess
+- (void)loginSuccess
 {
 	AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
 	[appDelegate changeToActivityStreamsViewController:_dictLocalize];
 	
 	endThread = nil;
 	[endThread release];
-	
 }
 
--(void)loginFailed
+- (void)loginFailed
 {
 	endThread = nil;
 	[endThread release];
 	[self view].userInteractionEnabled = YES;
-	//[[self navigationItem] setRightBarButtonItem:btnSignIn];
-	//[[self navigationItem] setLeftBarButtonItem:btnSetting];
 }
 
--(void)startInProgress {
-	 
+- (void)startInProgress 
+{	 
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	UIBarButtonItem* progressBtn = [[UIBarButtonItem alloc] initWithCustomView:_indicator];
 	[[self navigationItem] setRightBarButtonItem:progressBtn];
@@ -485,17 +368,4 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 @end
 
-
-//--------------------------------------------
-@implementation ContainerCell
-
-- (void)attachContainer:(UIView*)view 
-{
-//	[_vContainer removeFromSuperview];
-//	[_vContainer release];
-//	_vContainer = [view retain];
-	[self addSubview:view];
-}
-
-@end
 
