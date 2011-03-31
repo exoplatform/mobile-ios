@@ -10,6 +10,7 @@
 #import "ServerAddingViewController.h"
 #import "ServerManagerViewController.h"
 #import "Configuration.h"
+#import "ContainerCell.h"
 
 @implementation ServerEditingViewController
 

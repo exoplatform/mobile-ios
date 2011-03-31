@@ -32,11 +32,3 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 @end
 
-
-//--------------------------------------------
-@interface ContainerCell : UITableViewCell
-{
-	UIView*	_vContainer;
-}
-- (void)attachContainer:(UIView*)view;
-@end

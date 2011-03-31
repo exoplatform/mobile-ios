@@ -11,7 +11,7 @@
 //Login page
 @interface eXoAppViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
-	NSString*                   _bSuccessful;	//Login status
+	NSString*                   _strBSuccessful;	//Login status
 	UIActivityIndicatorView*    _indicator;	//Loding indicator
 	UIBarButtonItem*            btnSignIn;	//Login button
 	UIBarButtonItem*            btnSetting;	//Setting button

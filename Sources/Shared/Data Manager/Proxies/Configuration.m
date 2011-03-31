@@ -75,13 +75,13 @@
         strDefaultConfigPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"xml"];
         strSystemConfigPath = [[paths objectAtIndex:0] stringByAppendingString:@"/SystemConfiguration"];
         [fileManager copyItemAtPath:strDefaultConfigPath toPath:strSystemConfigPath error:&error];
-        data = [self readFileWithName:@"SystemConfiguration"];
-        arrSystemServerList = [self parseConfiguration: data withBSystemSever:YES];
     }
     
+    //Load the system configuration
+    arrSystemServerList = [self loadSystemConfiguration];
+    
     //Load the deleted system configuration
-    data = [self readFileWithName:@"DeletedSystemConfiguration"];
-    arrDeletedSystemServerList = [self parseConfiguration: data withBSystemSever:YES];
+    arrDeletedSystemServerList = [self loadDeletedSystemConfiguration];
     
     if ([arrDeletedSystemServerList count] > 0) 
     {
@@ -106,9 +106,8 @@
         }
     }
     
-    //Load the user configuration
-    data = [self readFileWithName:@"UserConfiguration"];
-    arrUserServerList = [self parseConfiguration: data withBSystemSever:NO];
+    //Load the user configuration    
+    arrUserServerList = [self loadUserConfiguration];
     [_arrServerList removeAllObjects];
     if ([arrSystemServerList count] > 0) 
     {
@@ -124,6 +123,29 @@
     return _arrServerList;
 }
 
+//Load the system configuration
+- (NSMutableArray*)loadSystemConfiguration
+{
+    NSData* data = [self readFileWithName:@"SystemConfiguration"];
+    NSMutableArray* arr = [self parseConfiguration: data withBSystemSever:YES];
+    return arr;
+}
+
+//Load the deleted system configuration
+- (NSMutableArray*)loadDeletedSystemConfiguration
+{
+    NSData* data = [self readFileWithName:@"DeletedSystemConfiguration"];
+    NSMutableArray* arr = [self parseConfiguration: data withBSystemSever:YES];
+    return arr;
+}
+
+//Load the user configuration
+- (NSMutableArray*)loadUserConfiguration
+{
+    NSData* data = [self readFileWithName:@"UserConfiguration"];
+    NSMutableArray* arr = [self parseConfiguration: data withBSystemSever:NO];
+    return arr;
+}
 
 - (NSMutableArray*)parseConfiguration:(NSData*)data withBSystemSever:(BOOL)bSystemServer
 {
@@ -176,6 +198,13 @@
         data = [fileManager contentsAtPath:strFilePath];
     }
     return data;
+}
+
+//Saved the system configuration to the /app/documents
+- (void)writeSystemConfiguration:(NSMutableArray*)arrSystemServerList
+{
+    NSData* dataWrite  = [self createXmlDataWithServerList:arrSystemServerList];
+    [self writeData:dataWrite toFile:@"SystemConfiguration"];
 }
 
 //Saved the deleted system configuration to the /app/documents

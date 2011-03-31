@@ -8,6 +8,7 @@
 
 #import "ServerAddingViewController.h"
 #import "ServerManagerViewController.h"
+#import "ContainerCell.h"
 
 
 @implementation ServerAddingViewController
@@ -198,16 +199,3 @@
 
 @end
 
-
-//--------------------------------------------
-@implementation ContainerCell
-
-- (void)attachContainer:(UIView*)view 
-{
-	[_vContainer removeFromSuperview];
-	[_vContainer release];
-	_vContainer = [view retain];
-	[self addSubview:view];
-}
-
-@end

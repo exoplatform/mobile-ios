@@ -12,6 +12,7 @@
 #import "eXoApplicationsViewController.h"
 #import "Configuration.h"
 #import "ServerManagerViewController.h"
+#import "ContainerCell.h"
 
 static NSString *CellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222

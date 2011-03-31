@@ -32,6 +32,13 @@
 - (NSString*) getNodeValue: (CXMLNode*) node withName: (NSString*) name;
 - (NSMutableArray*)parseConfiguration:(NSData*)data withBSystemSever:(BOOL)bSystemServer;
 - (NSData*)createXmlDataWithServerList:(NSMutableArray*)arrServerList;
+- (NSMutableArray*)loadSystemConfiguration;
+- (NSMutableArray*)loadDeletedSystemConfiguration;
+- (NSMutableArray*)loadUserConfiguration;
 - (NSData*)readFileWithName:(NSString*)strFileName;
+//Saved the deleted system configuration to the /app/documents
+- (void)writeSystemConfiguration:(NSMutableArray*)arrSystemServerList;
+- (void)writeDeletedSystemConfiguration:(NSMutableArray*)arrDeletedSystemServerList;
+- (void)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList;
 - (void)writeData:(NSData*)data toFile:(NSString*)strFileName;
 @end

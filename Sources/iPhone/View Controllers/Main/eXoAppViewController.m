@@ -27,8 +27,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     if (self) 
 	{
 		//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
-		_bSuccessful = [[NSString alloc] init];
-		_bSuccessful = NO;
+        _strBSuccessful = [[NSString alloc] init];
 		_selectedLanguage = 0;
         _intSelectedServer = -1;
         _arrServerList = [[NSMutableArray alloc] init];
@@ -45,8 +44,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (void)viewDidLoad 
 {
+    _strBSuccessful = @"NO";
     [super viewDidLoad];
-	_bSuccessful = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -95,7 +94,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		[_txtfUsername setText:@""];
 		[_txtfPassword setText:@""];
 	}
-	}
+}
 	
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
@@ -319,13 +318,13 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[userDefaults setObject:username forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:password forKey:EXO_PREFERENCE_PASSWORD];	
 	
-	_bSuccessful = [conn sendAuthenticateRequest:_strHost username:username password:password];
+	_strBSuccessful = [conn sendAuthenticateRequest:_strHost username:username password:password];
 	
-	if(_bSuccessful == @"YES")
+	if(_strBSuccessful == @"YES")
 	{
 		[self performSelectorOnMainThread:@selector(loginSuccess) withObject:nil waitUntilDone:NO];
 	}
-	else if(_bSuccessful == @"NO")
+	else if(_strBSuccessful == @"NO")
 	{
 		//[_indicator stopAnimating];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
@@ -338,7 +337,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		
 		[self performSelectorOnMainThread:@selector(loginFailed) withObject:nil waitUntilDone:NO];		
 	}
-	else if(_bSuccessful == @"ERROR")
+	else if(_strBSuccessful == @"ERROR")
 	{
 		//[_indicator stopAnimating];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
