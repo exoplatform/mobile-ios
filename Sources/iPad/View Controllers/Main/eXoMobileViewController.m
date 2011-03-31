@@ -33,7 +33,7 @@
 {
 	_connection = [[Connection alloc] init];
 	_intSelectedLanguage = 0;
-	_loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];					
+	_loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];	
 	[_loginViewController setDelegate:self];
 	_mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
 	[_mainViewController setDelegate:self];
@@ -52,7 +52,11 @@
 	}
 	[self setSelectedLanguage:_intSelectedLanguage];
 	
-	[[self view] addSubview:[_loginViewController view]];
+	//[[self view] addSubview:[_loginViewController view]];
+    //[self.navigationController pushViewController:_loginViewController animated:YES];
+    
+    UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:_loginViewController];
+    [self.view addSubview:[navigationController view]];
 	
     [super viewDidLoad];
 }
@@ -153,4 +157,5 @@
 	[_mainViewController onHomeBtn:nil];
 	[[self view] addSubview:[_mainViewController view]];
 }
+
 @end

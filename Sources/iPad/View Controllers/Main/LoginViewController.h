@@ -9,45 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class Checkbox;
-@class SettingViewController;
 @class SupportViewController;
+@class iPadSettingViewController;
 
 //Login page
-@interface LoginViewController : UIViewController <UITextFieldDelegate> {
+@interface LoginViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
 	
 	id										_delegate;
-	//UI variables
-	IBOutlet UIButton*						_btnLogo;	//Company logo
-	IBOutlet UIButton*						_btnHelp;	//User guide
-	IBOutlet UIButton*						_btnSetting;	//Change language
-	IBOutlet UILabel*						_lbHostInstruction;	//Host title
-	IBOutlet UILabel*						_lbAccountInstruction;	//Account title
-	IBOutlet UILabel*						_lbHost;	//Host label
-	IBOutlet UILabel*						_lbRememberMe;	//Remember label
-	IBOutlet UILabel*						_lbAutoSignIn;	//Auto sign-in label
-	IBOutlet UILabel*						_lbSigningInStatus;	//Loading label
-	IBOutlet UIActivityIndicatorView*		_actiSigningIn;	//Loading indicator
-	IBOutlet UIButton*						_btnHost;	//Host button
-	IBOutlet UITextField*					_txtfHost;	//Host text box
-	IBOutlet UIButton*						_btnUsername;	//Username button
-	IBOutlet UITextField*					_txtfUsername;	//Username text box
-	IBOutlet UIButton*						_btnPassword;	//Password button
-	IBOutlet UITextField*					_txtfPassword;	//Password text box
-	Checkbox*								_cbxRememberMe;	//Remember check box
-	Checkbox*								_cbxAutoSignIn;	//AutoSignIn check box
-	IBOutlet UIButton*						_btnSignIn;	//Sign in buuton
-	UILabel*								_lbHelpTitle;	//Help label
-	NSURLRequest*							_urlHelp;	//Help file URL
-	UIWebView*								_wvHelp;	//Display help
-	UIButton*								_btnHelpClose;	//Close help page
-	
-	SettingViewController*					_settingViewController;	//Setting page
-	SupportViewController*					_supportViewController;	//Support page
-	BOOL									_bDismissSettingView;	//Is dissmiss setting page
-	UIPopoverController*					popoverController;
-	UIInterfaceOrientation					_interfaceOrientation;	//Divice orientation
-	//
-	NSString*								_strHost;	//Host
+
 	NSString*								_strUsername;	//Username
 	NSString*								_strPassword;	//Passowrd
 	
@@ -57,6 +26,34 @@
 	
 	NSDictionary*							_dictLocalize;	//Language dictionary
 	int										_intSelectedLanguage;	//Language index
+    
+    
+    BOOL                        bRememberMe;        //Remember
+	BOOL                        bAutoLogin;         //Autologin
+    BOOL                        isFirstTimeLogin;	//Is first time login
+    NSString*                   _strBSuccessful;	//Login status
+    
+    IBOutlet UILabel*						_lbSigningInStatus;	//Loading label
+    IBOutlet UIActivityIndicatorView*		_actiSigningIn;	//Loading indicator
+    
+    IBOutlet UIButton*          _btnAccount;
+    IBOutlet UIButton*          _btnServerList;
+    IBOutlet UILabel*           _lbUsername;
+    IBOutlet UILabel*           _lbPassword;
+    IBOutlet UITextField*       _txtfUsername;
+    IBOutlet UITextField*       _txtfPassword;
+    IBOutlet UIButton*          _btnLogin;
+    IBOutlet UIButton*          _btnSettings;
+    IBOutlet UIView*            _vLoginView;
+    IBOutlet UIView*            _vAccountView;
+    IBOutlet UIView*            _vServerListView;
+    IBOutlet UITableView*       _tbvlServerList;
+    
+    NSMutableArray*             _arrServerList;
+    NSString*                   _strHost;
+    int                         _intSelectedServer;
+    
+    iPadSettingViewController*  _iPadSettingViewController;
 }
 
 
@@ -66,18 +63,17 @@
 - (int)getSelectedLanguage;	//Get current language
 - (NSDictionary*)getLocalization;	//Get language dictionary
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
-//Move UI when typing at host, username, password
-- (IBAction)onHostInput:(id)sender;
-- (IBAction)onUsernameInput:(id)sender;
-- (IBAction)onPasswordInput:(id)sender;
+
 - (void)moveUIControls:(int)intOffset;
-- (IBAction)onSettingBtn:(id)sender;	//Show setting
-- (IBAction)onHelpBtn:(id)sender;	//Show help
-- (IBAction)onCloseBtn:(id)sender;	//Remove support view
-//Sign in
-- (IBAction)onSignInBtn:(id)sender;
+
 - (void)doSignIn;
 - (void)startSignInProgress;
 - (void)signInSuccesfully;
 - (void)signInFailed;
+
+- (IBAction)onSignInBtn:(id)sender;	//Login action
+- (IBAction)onSettingBtn:(id)sender;	//Setting action
+- (void)login;	//Login progress
+- (IBAction)onBtnAccount:(id)sender;
+- (IBAction)onBtnServerList:(id)sender;
 @end

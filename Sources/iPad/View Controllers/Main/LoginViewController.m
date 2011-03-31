@@ -11,8 +11,11 @@
 #import "Checkbox.h"
 #import "defines.h"
 #import "Connection.h"
-#import "SettingViewController.h"
 #import "SupportViewController.h"
+#import "Configuration.h"
+#import "iPadSettingViewController.h"
+
+static NSString *CellIdentifier = @"MyIdentifier";
 
 @implementation LoginViewController
 
@@ -21,39 +24,11 @@
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
 	{
-		_settingViewController = [[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil];
-		[_settingViewController setDelegate:self];
-		_bDismissSettingView = NO;
-		
-		_lbHelpTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 300, 40)];
-		[_lbHelpTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24]];
-		[_lbHelpTitle setText:@"eXoMobile"];
-		
-		_wvHelp = [[UIWebView alloc] init];
-		_wvHelp.scalesPageToFit = YES;
-		
-		_btnHelpClose = [[UIButton alloc] init];
-		[_btnHelpClose setBackgroundImage:[UIImage imageNamed:@"CloseBtn.png"] forState:UIControlStateNormal];
-		[_btnHelpClose addTarget:self action:@selector(onCloseBtn:) forControlEvents:UIControlEventTouchDown];
-
-		_cbxRememberMe = [[Checkbox alloc] initWithFrame:CGRectMake(280, 280, 20, 20) andState:NO];
-		[_cbxRememberMe setDelegate:self];
-		[[self view] addSubview:_cbxRememberMe];
-		
-		_cbxAutoSignIn = [[Checkbox alloc] initWithFrame:CGRectMake(280, 320, 20, 20) andState:NO];
-		[_cbxAutoSignIn setDelegate:self];
-		[[self view] addSubview:_cbxAutoSignIn];
-		
-		_strHost = @"";
-		_strUsername = @"";
-		_strPassword = @"";
-		
-		_bMoveUp = NO;
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self 
-												 selector:@selector(myKeyboardWillHideHandler:)
-													 name:UIKeyboardWillHideNotification
-												   object:nil];
+		_strBSuccessful = [[NSString alloc] init];
+		_intSelectedLanguage = 0;
+        _intSelectedServer = -1;
+        _arrServerList = [[NSMutableArray alloc] init];
+		isFirstTimeLogin = YES;
 	}
 	return self;
 }
@@ -67,12 +42,52 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	[_actiSigningIn setHidden:YES];
-	[_lbSigningInStatus setHidden:YES];
-	_txtfHost.clearButtonMode = UITextFieldViewModeWhileEditing;
-	_txtfUsername.clearButtonMode = UITextFieldViewModeWhileEditing;
-	_txtfPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _strBSuccessful = @"NO";
+    Configuration* configuration = [Configuration sharedInstance];
+    _arrServerList = [configuration getServerList];
+    
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	_intSelectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
+	NSString* filePath;
+	if(_intSelectedLanguage == 0)
+	{
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
+	}	
+	else
+	{	
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
+	}	
 	
+	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
+	
+	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
+    
+	bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+	bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+    
+	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+	
+	if(bRememberMe || bAutoLogin)
+	{
+		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+		if(username)
+		{
+			[_txtfUsername setText:username];
+		}
+		
+		if(password)
+		{
+			[_txtfPassword setText:password];
+		}
+	}
+	else 
+	{
+		[_txtfUsername setText:@""];
+		[_txtfPassword setText:@""];
+	}
+    
 	[super viewDidLoad];
 }
 
@@ -89,6 +104,11 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+   
+}
+
 - (void)dealloc 
 {
     [super dealloc];
@@ -97,33 +117,6 @@
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;
-	
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	[_txtfHost setText:_strHost];
-	
-	NSString* strAutoSignIn = [userDefaults objectForKey:EXO_AUTO_LOGIN];
-	
-	if([strAutoSignIn isEqualToString:@"YES"])
-	{
-		[_cbxAutoSignIn setStatus:YES];
-		[self setPreferenceValues];
-		[self onSignInBtn:self];
-	}
-	else 
-	{
-		[_cbxAutoSignIn setStatus:NO];
-		NSString* strRememberMe = [userDefaults objectForKey:EXO_REMEMBER_ME];
-		if([strRememberMe isEqualToString:@"YES"])
-		{
-			[_cbxRememberMe setStatus:YES];
-			[self setPreferenceValues];
-		}
-		else 
-		{
-			[_cbxRememberMe setStatus:NO];
-		}
-	}
 }
 
 - (void)setPreferenceValues
@@ -149,7 +142,7 @@
 {
 	_dictLocalize = [_delegate getLocalization];
 	_intSelectedLanguage = [_delegate getSelectedLanguage];
-	
+	/*
 	[_lbHostInstruction setText:[_dictLocalize objectForKey:@"DomainHeader"]];
 	[_lbHost setText:[_dictLocalize objectForKey:@"DomainCellTitle"]];
 	[_lbAccountInstruction setText:[_dictLocalize objectForKey:@"AccountHeader"]];
@@ -160,6 +153,7 @@
 	[_lbSigningInStatus setText:[_dictLocalize objectForKey:@"SigningIn"]];
 						   
 	[_settingViewController localize];
+    */ 
 }
 
 - (void)setSelectedLanguage:(int)languageId
@@ -181,174 +175,42 @@
 {
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
-		[[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LoginBgPortrail.png"]]];
-		[_btnLogo setFrame:CGRectMake(284, 192, 200, 85)];
-		[_lbHostInstruction setFrame:CGRectMake(204, 285, 360, 21)];
-		[_btnHost setFrame:CGRectMake(204, 314, 360, 46)];
-		[_txtfHost setFrame:CGRectMake(220, 314, 325, 46)];
-		[_lbAccountInstruction setFrame:CGRectMake(204, 383, 360, 21)];
-		[_btnUsername setFrame:CGRectMake(204, 418, 360, 46)];
-		[_txtfUsername setFrame:CGRectMake(213, 418, 341, 46)];
-		[_btnPassword setFrame:CGRectMake(204, 472, 360, 46)];
-		[_txtfPassword setFrame:CGRectMake(213, 472, 341, 46)];
-		
-		[_cbxRememberMe setFrame:CGRectMake(224, 531, 21, 21)];
-		[_lbRememberMe setFrame:CGRectMake(249, 531, 160, 21)];
-		[_cbxAutoSignIn setFrame:CGRectMake(419, 531, 21, 21)];
-		[_lbAutoSignIn setFrame:CGRectMake(444, 531, 150, 21)];
-		
-		[_btnSignIn setFrame:CGRectMake(335, 565, 110, 37)];
-		[_actiSigningIn setFrame:CGRectMake(320, 565, 37, 37)];
-		[_lbSigningInStatus setFrame:CGRectMake(373, 573, 170, 21)];
-		
-		[_wvHelp setFrame:CGRectMake(0, 80, 768, 924)];
-		[_btnHelp setFrame:CGRectMake(448, 20, 140, 32)];
-		[_btnHelpClose setFrame:CGRectMake(717, 20, 31, 31)];
-		[_btnSetting setFrame:CGRectMake(608, 20, 140, 32)];
+
 	}
 	
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
-		[[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LoginBgLandscape.png"]]];
-		[_btnLogo setFrame:CGRectMake(412, 137, 200, 85)];		
-		[_lbHostInstruction setFrame:CGRectMake(332, 285 - 60, 360, 21)];
-		[_btnHost setFrame:CGRectMake(332, 314 - 65, 360, 46)];
-		[_txtfHost setFrame:CGRectMake(348, 314 - 65, 325, 46)];
-		[_lbAccountInstruction setFrame:CGRectMake(332, 383 - 75, 360, 21)];
-		[_btnUsername setFrame:CGRectMake(332, 418 - 85, 360, 46)];
-		[_txtfUsername setFrame:CGRectMake(341, 418 - 85, 341, 46)];
-		[_btnPassword setFrame:CGRectMake(332, 472 - 85, 360, 46)];
-		[_txtfPassword setFrame:CGRectMake(341, 472 - 85, 341, 46)];
-		
-		[_cbxRememberMe setFrame:CGRectMake(352, 531 - 85, 21, 21)];
-		[_lbRememberMe setFrame:CGRectMake(377, 531 - 85, 160, 21)];
-		[_cbxAutoSignIn setFrame:CGRectMake(547, 531 - 85, 21, 21)];
-		[_lbAutoSignIn setFrame:CGRectMake(572, 531 - 85, 150, 21)];
-		
-		[_btnSignIn setFrame:CGRectMake(463, 565 - 85, 110, 37)];
-		[_actiSigningIn setFrame:CGRectMake(448, 565 - 85, 37, 37)];
-		[_lbSigningInStatus setFrame:CGRectMake(511, 573 - 85, 170, 21)];
-		
-		[_wvHelp setFrame:CGRectMake(0, 80, 768, 924)];
-		[_btnHelp setFrame:CGRectMake(704, 20, 140, 32)];
-		[_btnHelpClose setFrame:CGRectMake(717, 20, 31, 31)];
-		[_btnSetting setFrame:CGRectMake(864, 20, 140, 32)];	
 	}
 	
-	if(_supportViewController)
-	{
-		[_supportViewController changeOrientation:interfaceOrientation];
-	}
-	
-	_interfaceOrientation = interfaceOrientation;
-	[_txtfHost resignFirstResponder];
-	[_txtfUsername resignFirstResponder];
-	[_txtfPassword resignFirstResponder];
+    [_vLoginView setFrame:CGRectMake(20, 65, 500, 500)];
 }
 
-- (IBAction)onHostInput:(id)sender
-{
-	if(!_bMoveUp && ((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight)))
-	{
-		[self moveUIControls:-130];
-	}
-}
 
-- (IBAction)onUsernameInput:(id)sender
-{
-	if(!_bMoveUp && ((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight)))
-	{
-		[self moveUIControls:-130];
-	}
-}
-
-- (IBAction)onPasswordInput:(id)sender
-{
-	if(!_bMoveUp && ((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight)))
-	{
-		[self moveUIControls:-130];
-	}
-}
-
-- (void)moveUIControls:(int)intOffset
-{
-	[_btnLogo setFrame:CGRectMake(412, 137 + intOffset, 200, 85)];
-	[_lbHostInstruction setFrame:CGRectMake(332, 285 - 60 + intOffset, 360, 21)];
-	[_btnHost setFrame:CGRectMake(332, 314 - 65 + intOffset, 360, 46)];
-	[_txtfHost setFrame:CGRectMake(348, 314 - 65 + intOffset, 325, 46)];
-	[_lbAccountInstruction setFrame:CGRectMake(332, 383 - 75 + intOffset, 360, 21)];
-	[_btnUsername setFrame:CGRectMake(332, 418 - 85 + intOffset, 360, 46)];
-	[_txtfUsername setFrame:CGRectMake(341, 418 - 85 + intOffset, 341, 46)];
-	[_btnPassword setFrame:CGRectMake(332, 472 - 85 + intOffset, 360, 46)];
-	[_txtfPassword setFrame:CGRectMake(341, 472 - 85 + intOffset, 341, 46)];
-	
-	[_cbxRememberMe setFrame:CGRectMake(352, 531 - 85 + intOffset, 21, 21)];
-	[_lbRememberMe setFrame:CGRectMake(377, 531 - 85 + intOffset, 160, 21)];
-	[_cbxAutoSignIn setFrame:CGRectMake(547, 531 - 85 + intOffset, 21, 21)];
-	[_lbAutoSignIn setFrame:CGRectMake(572, 531 - 85 + intOffset, 150, 21)];
-	
-	[_btnSignIn setFrame:CGRectMake(463, 565 - 85 + intOffset, 110, 37)];
-	[_actiSigningIn setFrame:CGRectMake(448, 565 - 85 + intOffset, 37, 37)];
-	[_lbSigningInStatus setFrame:CGRectMake(511, 573 - 85 + intOffset, 170, 21)];	
-	
-	if (intOffset < 0) 
-	{
-		_bMoveUp = YES;
-	}
-	else 
-	{
-		_bMoveUp = NO;
-	}
-}
-
-- (void) myKeyboardWillHideHandler:(NSNotification *)notification 
-{
-	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{
-		if(_bMoveUp)
-		{
-			[self moveUIControls:0];
-		}		
-	}
-}
 
 - (IBAction)onSettingBtn:(id)sender
 {
-	popoverController = [[UIPopoverController alloc] initWithContentViewController:_settingViewController];
-	[popoverController setPopoverContentSize:CGSizeMake(320, 106) animated:YES];
-	[popoverController presentPopoverFromRect:[_btnSetting frame] inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];	
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
-{
-	[popoverController dismissPopoverAnimated:YES];
-    return YES;
-}
-
-- (IBAction)onHelpBtn:(id)sender
-{	
-	if (_supportViewController == nil)
-	{
-		_supportViewController = [[SupportViewController alloc] initWithNibName:@"SupportViewController" bundle:nil];
-		_supportViewController.view.frame = self.view.frame;
-		[_supportViewController setDelegate:self];
-		[[self view] addSubview:[_supportViewController view]];
-	}
-	else 
-	{
-		[[self view] addSubview:[_supportViewController view]];
-	}
-	[_supportViewController changeOrientation:_interfaceOrientation];
-}
-
-- (IBAction)onCloseBtn:(id)sender
-{
-	[[_supportViewController view] removeFromSuperview];
+//	eXoApplicationsViewController *apps = [[eXoApplicationsViewController alloc] init];
+//	apps._dictLocalize = _dictLocalize;
+//	eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:apps];
+//    
+//	[self.navigationController pushViewController:setting animated:YES];
+	if(_iPadSettingViewController == nil)
+    {
+        _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
+    }
+    
+    if ([self.navigationController.viewControllers containsObject:_iPadSettingViewController]) 
+    {
+        [self.navigationController popToViewController:_iPadSettingViewController animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:_iPadSettingViewController animated:YES];
+    }
 }
 
 - (IBAction)onSignInBtn:(id)sender
 {
-	[_txtfHost resignFirstResponder];
 	[_txtfUsername resignFirstResponder];
 	[_txtfPassword resignFirstResponder];
 	
@@ -364,11 +226,10 @@
 	}
 	else
 	{		
-		_strHost = [_txtfHost text];
 		NSRange range = [_strHost rangeOfString:@"http://"];
 		if(range.length == 0)
 		{
-			_txtfHost.text = [NSString stringWithFormat:@"http://%@", _strHost];
+			_strHost = [NSString stringWithFormat:@"http://%@", _strHost];
 		}
 		[self doSignIn];
 	}
@@ -376,7 +237,7 @@
 
 - (void)doSignIn
 {
-	[_btnSignIn setHidden:YES];
+	[_btnLogin setHidden:YES];
 	[_actiSigningIn setHidden:NO];
 	[_lbSigningInStatus setHidden:NO];
 	[_actiSigningIn startAnimating];
@@ -386,7 +247,6 @@
 - (void)startSignInProgress 
 {  	
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	_strHost = [_txtfHost text];
 	_strUsername = [_txtfUsername text];
 	_strPassword = [_txtfPassword text];
 	
@@ -432,34 +292,13 @@
 	[_actiSigningIn stopAnimating];
 	[_actiSigningIn setHidden:YES];
 	[_lbSigningInStatus setHidden:YES];
-	[_btnSignIn setHidden:NO];
+	[_btnLogin setHidden:NO];
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 
 	[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
 	[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
-
-	_bRememberMe = [_cbxRememberMe getStatus];
-	if(_bRememberMe)
-	{
-		[userDefaults setObject:@"YES" forKey:EXO_REMEMBER_ME];
-	}
-	else 
-	{
-		[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
-	}
-	
-	_bAutoSignIn = [_cbxAutoSignIn getStatus];
-	if(_bAutoSignIn)
-	{
-		
-		[userDefaults setObject:@"YES" forKey:EXO_AUTO_LOGIN];
-	}
-	else 
-	{
-		[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
-	}
 
 	[_delegate showMainViewController];
 }
@@ -469,7 +308,97 @@
 	[_actiSigningIn stopAnimating];
 	[_actiSigningIn setHidden:YES];
 	[_lbSigningInStatus setHidden:YES];
-	[_btnSignIn setHidden:NO];
+	[_btnLogin setHidden:NO];
+}
+
+- (IBAction)onBtnAccount:(id)sender
+{
+    [_btnServerList setBackgroundColor:[UIColor grayColor]];
+    [_btnAccount setBackgroundColor:[UIColor blueColor]];
+    [_vLoginView bringSubviewToFront:_vAccountView];
+}
+
+- (IBAction)onBtnServerList:(id)sender
+{
+    [_btnServerList setBackgroundColor:[UIColor blueColor]];
+    [_btnAccount setBackgroundColor:[UIColor grayColor]];    
+    [_vLoginView bringSubviewToFront:_vServerListView];    
+    [_tbvlServerList reloadData];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
+{
+	return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+	return YES;
+}
+
+#pragma UITableView Delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{	
+    return [_arrServerList count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 44;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil) 
+    {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (indexPath.row == _intSelectedServer) 
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    
+    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(2, 5, 150, 30)];
+    lbServerName.text = tmpServerObj._strServerName;
+    lbServerName.textColor = [UIColor brownColor];
+    [cell addSubview:lbServerName];
+    [lbServerName release];
+    
+    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 120, 30)];
+    lbServerUrl.text = tmpServerObj._strServerUrl;
+    [cell addSubview:lbServerUrl];
+    [lbServerUrl release];
+    
+	return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    _strHost = [tmpServerObj._strServerUrl retain];
+    _intSelectedServer = indexPath.row;
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
+	[userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+    [_tbvlServerList reloadData];
 }
 
 @end
