@@ -10,9 +10,11 @@
 
 static NSString *ServerObjCellIdentifier = @"ServerObj";
 
-@interface iPadServerAddingViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface iPadServerAddingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
     id                                  _delegate;
+    
+    IBOutlet UITableView*               _tblvServerInfo;
     
     UITextField*                        _txtfServerName;
     UITextField*                        _txtfServerUrl;  
@@ -20,6 +22,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     NSString*                           _strServerName;
     NSString*                           _strServerUrl; 
     UIBarButtonItem*                    _bbtnDone;
+    NSDictionary*                       _dictLocalize;
 }
 
 @property (nonatomic, retain) UITextField* _txtfServerName;
@@ -29,5 +32,8 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;
-
+- (void)setDelegate:(id)delegate;
+- (IBAction)onBtnBack:(id)sender;
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end

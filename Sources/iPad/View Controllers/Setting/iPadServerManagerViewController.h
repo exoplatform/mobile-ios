@@ -8,18 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
-@class ServerAddingViewController;
-@class ServerEditingViewController;
+@class iPadServerAddingViewController;
+@class iPadServerEditingViewController;
 
 @interface iPadServerManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
+    id                              _delegate;
     IBOutlet UITableView*           _tbvlServerList;
     NSMutableArray*                 _arrServerList;
-    ServerAddingViewController*     _serverAddingViewController;
-    ServerEditingViewController*    _serverEditingViewController;
+    iPadServerAddingViewController*     _iPadServerAddingViewController;
+    iPadServerEditingViewController*    _iPadServerEditingViewController;
+
+    UIButton*                       _btnAdd;
+    NSDictionary*                   _dictLocalize;
 }
 
 - (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
 - (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
 - (void)deleteServerObjAtIndex:(int)index;
+- (void)setDelegate:(id)delegate;
+- (IBAction)onBtnBack:(id)sender;
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end

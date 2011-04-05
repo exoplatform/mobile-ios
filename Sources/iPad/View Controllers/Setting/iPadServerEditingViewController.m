@@ -7,10 +7,12 @@
 //
 
 #import "iPadServerEditingViewController.h"
-#import "ServerAddingViewController.h"
-#import "ServerManagerViewController.h"
+#import "iPadServerAddingViewController.h"
+#import "iPadServerManagerViewController.h"
 #import "Configuration.h"
 #import "ContainerCell.h"
+#import "defines.h"
+#import "LoginViewController.h"
 
 @implementation iPadServerEditingViewController
 
@@ -23,11 +25,12 @@
     if (self) {
         // Custom initialization
         _serverObj = [[ServerObj alloc] init];
-        _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+        _txtfServerName = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
         _txtfServerName.delegate = self;
-        _txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+        _txtfServerUrl = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
         _txtfServerUrl.delegate = self;
         _intIndex = -1;
+        _dictLocalize = [[NSDictionary alloc] init];
     }
     return self;
 }
@@ -39,6 +42,7 @@
     [_txtfServerName release];
     [_txtfServerUrl release];
     [_serverObj release];
+    [_dictLocalize release];
     [super dealloc];
 }
 
@@ -82,12 +86,37 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
+
 
 - (void)setDelegate:(id)delegate
 {
     _delegate = delegate;
+    _dictLocalize = [_delegate getLocalization];
+}
+
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    [self changeOrientation:interfaceOrientation];
+}
+
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
+	}
+    
+    if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{	
+        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+	}
+}
+
+- (IBAction)onBtnBack:(id)sender
+{
+    [_delegate onBackDelegate];
 }
 
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index
@@ -117,7 +146,7 @@
         [btnDelete setBackgroundColor:[UIColor redColor]];
         [btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
-        [self.tableView addSubview:btnDelete];
+        [_tblvServerInfo addSubview:btnDelete];
         [btnDelete release];                        
     }
     else
@@ -141,7 +170,7 @@
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view 
 {
     NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    ContainerCell *cell = (ContainerCell*)[_tblvServerInfo dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) 
     {
         cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
@@ -157,7 +186,7 @@
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label 
 {
     NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    ContainerCell *cell = (ContainerCell*)[_tblvServerInfo dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) 
     {
         cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];

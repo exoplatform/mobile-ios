@@ -10,9 +10,11 @@
 
 @class ServerObj;
 
-@interface iPadServerEditingViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface iPadServerEditingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
     id                                  _delegate;
+    
+    IBOutlet UITableView*               _tblvServerInfo;
     
     ServerObj*                          _serverObj;
     
@@ -24,6 +26,7 @@
     UIBarButtonItem*                    _bbtnEdit;
     BOOL                                _bEdit;
     int                                 _intIndex;
+    NSDictionary*                       _dictLocalize;
 }
 
 @property (nonatomic, retain) UITextField* _txtfServerName;
@@ -33,6 +36,9 @@
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;
-
+- (void)setDelegate:(id)delegate;
+- (IBAction)onBtnBack:(id)sender;
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end
 

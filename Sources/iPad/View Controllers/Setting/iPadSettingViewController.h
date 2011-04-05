@@ -10,9 +10,12 @@
 #import <UIKit/UIKit.h>
 
 @class eXoApplicationsViewController;
-@class ServerManagerViewController;
+@class iPadServerManagerViewController;
 
-@interface iPadSettingViewController : UITableViewController <UITextFieldDelegate> {
+@interface iPadSettingViewController : UIViewController <UITextFieldDelegate> {
+    
+    id              _delegate;
+    
 	BOOL bRememberMe;
 	BOOL bAutoLogin;
 	NSString *languageStr;
@@ -26,13 +29,18 @@
 	NSDictionary*	_dictLocalize;
 	BOOL edit;
 	
-    NSMutableArray*                 _arrServerList;
-    int                             _intSelectedServer;
-    ServerManagerViewController*    _serverManagerViewController;
+    IBOutlet UITableView* tblView;
+    
+    NSMutableArray*                     _arrServerList;
+    int                                 _intSelectedServer;
+    iPadServerManagerViewController*    _iPadServerManagerViewController;
 }
 
 @property(nonatomic, retain) NSDictionary*	_dictLocalize;
 
-
+- (void)setDelegate:(id)delegate;
+- (IBAction)onBtnBack:(id)sender;
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end
 

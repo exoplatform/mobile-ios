@@ -12,7 +12,7 @@
 #import "Connection.h"
 #import "LoginViewController.h"
 #import "Configuration.h"
-#import "ServerManagerViewController.h"
+#import "iPadServerManagerViewController.h"
 
 static NSString *CellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
@@ -51,7 +51,13 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)viewWillAppear:(BOOL)animated
 {
 	self.title = [_dictLocalize objectForKey:@"Settings"];
-	[self.tableView reloadData];
+	[tblView reloadData];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:YES];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -75,6 +81,41 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [super dealloc];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return YES;
+}
+
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    [self changeOrientation:interfaceOrientation];
+}
+
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
+	}
+    
+    if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{	
+        [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+	}
+}
+
+- (void)setDelegate:(id)delegate
+{
+    _delegate = delegate;
+    _dictLocalize = [_delegate getLocalization];
+}
+
+- (IBAction)onBtnBack:(id)sender
+{
+    [_delegate onBackDelegate];
+}
+
 - (void)save 
 {
 	edit = !edit;
@@ -93,7 +134,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 		[userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedLanguage] forKey:EXO_PREFERENCE_LANGUAGE];		
 	}
-	[self.tableView reloadData];
+	[tblView reloadData];
 }
 
 
@@ -236,22 +277,22 @@ static NSString *CellIdentifier = @"MyIdentifier";
             UILabel* titleLabel;
             if(indexPath.row == 0)
             {
-                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(55.0, 14.0, 27, 17)];
                 imgV.image = [UIImage imageNamed:@"EN.gif"];
                 [cell addSubview:imgV];
                 
-                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 13.0, 250.0, 20.0)];
                 titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                 titleLabel.text = [_dictLocalize objectForKey:@"English"];
                 [cell addSubview:titleLabel];
             }
             else
             {
-                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(55.0, 14.0, 27, 17)];
                 imgV.image = [UIImage imageNamed:@"FR.gif"];
                 [cell addSubview:imgV];	
                 
-                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 13.0, 250.0, 20.0)];
                 titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                 titleLabel.text = [_dictLocalize objectForKey:@"French"];
                 [cell addSubview:titleLabel];	
@@ -276,13 +317,13 @@ static NSString *CellIdentifier = @"MyIdentifier";
             {
                 ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
                 
-                UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
+                UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(55, 5, 150, 30)];
                 lbServerName.text = tmpServerObj._strServerName;
                 lbServerName.textColor = [UIColor brownColor];
                 [cell addSubview:lbServerName];
                 [lbServerName release];
                 
-                UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 100, 30)];
+                UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 280, 30)];
                 lbServerUrl.text = tmpServerObj._strServerUrl;
                 [cell addSubview:lbServerUrl];
                 [lbServerUrl release];
@@ -298,7 +339,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
             }
             else
             {
-                UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
+                UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(55, 5, 280, 30)];
                 [lbModify setTextAlignment:UITextAlignmentCenter];
                 lbModify.textColor = [UIColor redColor];
                 [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];
@@ -352,18 +393,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
         }
         else
         {
-            if (_serverManagerViewController == nil) 
-            {
-                _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
-            }
-            if([self.navigationController.viewControllers containsObject: _serverManagerViewController])
-            {
-                [self.navigationController popToViewController:_serverManagerViewController animated:YES];
-            }
-            else
-            {
-                [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
-            }
+            [_delegate showiPadServerManagerViewController];
         }
 	}
 	else if(indexPath.section == 3)

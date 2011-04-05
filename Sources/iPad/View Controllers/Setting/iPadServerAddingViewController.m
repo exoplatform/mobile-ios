@@ -9,6 +9,8 @@
 #import "iPadServerAddingViewController.h"
 #import "ServerManagerViewController.h"
 #import "ContainerCell.h"
+#import "defines.h"
+#import "LoginViewController.h"
 
 @implementation iPadServerAddingViewController
 
@@ -20,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _dictLocalize = [[NSDictionary alloc] init];
     }
     return self;
 }
@@ -30,6 +33,7 @@
     [_strServerUrl release];
     [_txtfServerName release];
     [_txtfServerUrl release];
+    [_dictLocalize release];
     [super dealloc];
 }
 
@@ -39,6 +43,36 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+
+- (void)setDelegate:(id)delegate
+{
+    _delegate = delegate;
+    _dictLocalize = [_delegate getLocalization];
+}
+
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    [self changeOrientation:interfaceOrientation];
+}
+
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
+	}
+    
+    if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{	
+        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+	}
+}
+
+- (IBAction)onBtnBack:(id)sender
+{
+    [_delegate onBackDelegate];
 }
 
 #pragma mark - View lifecycle
@@ -68,12 +102,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)setDelegate:(id)delegate
-{
-    _delegate = delegate;
+    return YES;
 }
 
 - (void)onBbtnDone
@@ -83,7 +112,7 @@
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
 {
-    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 170, 22)];
+    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(340, 12, 280, 22)];
     textField.placeholder = @"Required";
     textField.secureTextEntry = secure;
     textField.keyboardType = UIKeyboardTypeASCIICapable;
@@ -97,7 +126,7 @@
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view 
 {
     NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    ContainerCell *cell = (ContainerCell*)[_tblvServerInfo dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) 
     {
         cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
@@ -113,7 +142,7 @@
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label 
 {
     NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    ContainerCell *cell = (ContainerCell*)[_tblvServerInfo dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) 
     {
         cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
