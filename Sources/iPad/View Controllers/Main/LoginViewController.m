@@ -14,10 +14,15 @@
 #import "SupportViewController.h"
 #import "Configuration.h"
 #import "iPadSettingViewController.h"
+#import "iPadServerManagerViewController.h"
+#import "iPadServerAddingViewController.h"
+#import "iPadServerEditingViewController.h"
 
 static NSString *CellIdentifier = @"MyIdentifier";
 
 @implementation LoginViewController
+
+@synthesize _dictLocalize;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -29,6 +34,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
         _intSelectedServer = -1;
         _arrServerList = [[NSMutableArray alloc] init];
 		isFirstTimeLogin = YES;
+        
+        _arrViewOfViewControllers = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -38,6 +45,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
 	[super loadView];
 }
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
@@ -67,7 +75,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
     
 	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-	
+    if (_strHost == nil) 
+    {
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
+        _strHost = tmpServerObj._strServerUrl;
+    }
+    
 	if(bRememberMe || bAutoLogin)
 	{
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
@@ -88,8 +101,18 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		[_txtfPassword setText:@""];
 	}
     
+    [_arrViewOfViewControllers addObject:_vLoginView];
+    
 	[super viewDidLoad];
 }
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationItem setLeftBarButtonItem:nil];
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
 
 - (void)didReceiveMemoryWarning 
 {
@@ -104,14 +127,35 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	// e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-   
-}
 
 - (void)dealloc 
 {
+    if (_iPadSettingViewController) 
+    {
+        [_iPadSettingViewController release];
+    }
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController release];
+    }
+    if (_iPadServerAddingViewController) 
+    {
+        [_iPadServerAddingViewController release];
+    }
+    if (_iPadServerEditingViewController) 
+    {
+        [_iPadServerEditingViewController release];
+    }
+    [_arrServerList release];
+    [_arrViewOfViewControllers release];
     [super dealloc];
+}
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    _interfaceOrientation = interfaceOrientation;
+    return YES;
 }
 
 - (void)setDelegate:(id)delegate
@@ -173,40 +217,32 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+     _interfaceOrientation = interfaceOrientation;
+    
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
-
 	}
 	
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
 	}
-	
-    [_vLoginView setFrame:CGRectMake(20, 65, 500, 500)];
+    
+    [self moveView];
 }
 
 
 
 - (IBAction)onSettingBtn:(id)sender
 {
-//	eXoApplicationsViewController *apps = [[eXoApplicationsViewController alloc] init];
-//	apps._dictLocalize = _dictLocalize;
-//	eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:apps];
-//    
-//	[self.navigationController pushViewController:setting animated:YES];
 	if(_iPadSettingViewController == nil)
     {
         _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
+        [_iPadSettingViewController setDelegate:self];
+        [_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
+        [self.view addSubview:_iPadSettingViewController.view];
     }
     
-    if ([self.navigationController.viewControllers containsObject:_iPadSettingViewController]) 
-    {
-        [self.navigationController popToViewController:_iPadSettingViewController animated:YES];
-    }
-    else
-    {
-        [self.navigationController pushViewController:_iPadSettingViewController animated:YES];
-    }
+    [self pushViewIn:_iPadSettingViewController.view];
 }
 
 - (IBAction)onSignInBtn:(id)sender
@@ -335,6 +371,126 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
     [textField resignFirstResponder];
 	return YES;
+}
+
+- (void)pushViewIn:(UIView*)view
+{
+    [_arrViewOfViewControllers addObject:view];
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        [view setFrame:CGRectMake(SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+	}
+	
+	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{	
+        [view setFrame:CGRectMake(SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+	}
+    
+    [UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.75];
+	[UIView setAnimationDelegate:self];
+    [self moveView];
+    [UIView commitAnimations];
+}
+
+- (void)pullViewOut:(UIView*)viewController
+{
+    [_arrViewOfViewControllers removeLastObject];
+    [UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.75];
+	[UIView setAnimationDelegate:self];
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        [viewController setFrame:CGRectMake(SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+	}
+	
+	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{	
+        [viewController setFrame:CGRectMake(SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+	}
+    [self moveView];
+    [UIView commitAnimations];
+}
+
+- (void)moveView
+{
+    for (int i = 0; i < [_arrViewOfViewControllers count]; i++) 
+    {
+        UIView* tmpView = [_arrViewOfViewControllers objectAtIndex:i];
+        [tmpView removeFromSuperview];
+        
+        int p = i - [_arrViewOfViewControllers count] + 1;
+        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+        {
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+        }
+        
+        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+        {	
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+        }
+        [self.view addSubview:tmpView];
+    }
+    if (_iPadSettingViewController) 
+    {
+        [_iPadSettingViewController changeOrientation:_interfaceOrientation];
+    }
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController changeOrientation:_interfaceOrientation];
+    }
+    if (_iPadServerAddingViewController) 
+    {
+        [_iPadServerAddingViewController changeOrientation:_interfaceOrientation];
+    }
+    if (_iPadServerEditingViewController) 
+    {
+        [_iPadServerEditingViewController changeOrientation:_interfaceOrientation];
+    }
+}
+
+- (void)onBackDelegate
+{
+    [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+}
+
+
+- (void)showiPadServerManagerViewController
+{
+    if (_iPadServerManagerViewController == nil) 
+    {
+        _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
+        [_iPadServerManagerViewController setDelegate:self];
+        [_iPadServerManagerViewController setInterfaceOrientation:_interfaceOrientation];
+        [self.view addSubview:_iPadServerManagerViewController.view];
+    }
+    [self pushViewIn:_iPadServerManagerViewController.view];
+}
+
+
+- (void)showiPadServerAddingViewController
+{
+    if (_iPadServerAddingViewController == nil) 
+    {
+        _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
+        [_iPadServerAddingViewController setDelegate:self];
+        [_iPadServerAddingViewController setInterfaceOrientation:_interfaceOrientation];
+        [self.view addSubview:_iPadServerAddingViewController.view];
+    }
+    [self pushViewIn:_iPadServerAddingViewController.view];
+}
+
+- (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index
+{
+    if (_iPadServerEditingViewController == nil) 
+    {
+        _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
+        [_iPadServerEditingViewController setDelegate:self];
+        [_iPadServerEditingViewController setInterfaceOrientation:_interfaceOrientation];
+        [self.view addSubview:_iPadServerEditingViewController.view];
+    }
+    [_iPadServerEditingViewController setServerObj:serverObj andIndex:index];
+    [self pushViewIn:_iPadServerEditingViewController.view];
 }
 
 #pragma UITableView Delegate

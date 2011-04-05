@@ -11,6 +11,10 @@
 @class Checkbox;
 @class SupportViewController;
 @class iPadSettingViewController;
+@class iPadServerManagerViewController;
+@class iPadServerAddingViewController;
+@class iPadServerEditingViewController;
+@class ServerObj;
 
 //Login page
 @interface LoginViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
@@ -53,9 +57,17 @@
     NSString*                   _strHost;
     int                         _intSelectedServer;
     
-    iPadSettingViewController*  _iPadSettingViewController;
+    iPadSettingViewController*          _iPadSettingViewController;
+    iPadServerManagerViewController*    _iPadServerManagerViewController;
+    iPadServerAddingViewController*     _iPadServerAddingViewController;
+    iPadServerEditingViewController*    _iPadServerEditingViewController;
+    
+    NSMutableArray*             _arrViewOfViewControllers;
+    UIInterfaceOrientation      _interfaceOrientation;
+    
 }
 
+@property (nonatomic, retain) NSDictionary* _dictLocalize;
 
 - (void)setDelegate:(id)delegate;	//Set delegate
 - (void)setPreferenceValues;	//Set prefrrences
@@ -73,7 +85,14 @@
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action
 - (IBAction)onSettingBtn:(id)sender;	//Setting action
-- (void)login;	//Login progress
 - (IBAction)onBtnAccount:(id)sender;
 - (IBAction)onBtnServerList:(id)sender;
+
+- (void)pushViewIn:(UIView*)view;
+- (void)pullViewOut:(UIView*)viewController;
+- (void)moveView;
+- (void)onBackDelegate;
+- (void)showiPadServerManagerViewController;
+- (void)showiPadServerAddingViewController;
+- (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index;
 @end

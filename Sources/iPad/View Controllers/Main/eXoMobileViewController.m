@@ -22,7 +22,6 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
 	{
         // Custom initialization
-		
     }
     return self;
 }
@@ -52,12 +51,8 @@
 	}
 	[self setSelectedLanguage:_intSelectedLanguage];
 	
-	//[[self view] addSubview:[_loginViewController view]];
-    //[self.navigationController pushViewController:_loginViewController animated:YES];
+	[[self view] addSubview:[_loginViewController view]];
     
-    UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:_loginViewController];
-    [self.view addSubview:[navigationController view]];
-	
     [super viewDidLoad];
 }
 
@@ -68,16 +63,15 @@
 
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
-		rect = CGRectMake(0, 0, 768, 1024);
+		rect = CGRectMake(0, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_LSCP_IPAD);
 	}
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{			
-		rect = CGRectMake(0, 0, 1024, 768);
+		rect = CGRectMake(0, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD);
 	}
 	
 	[[_loginViewController view] setFrame:rect];
 	[_loginViewController changeOrientation:interfaceOrientation];
-	[_loginViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 	
 	[[_mainViewController view] setFrame:rect];
 	[_mainViewController changeOrientation:interfaceOrientation];
