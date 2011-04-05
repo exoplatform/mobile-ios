@@ -21,7 +21,10 @@
     
     // Override point for customization after application launch.
     
+    //UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    //[window addSubview:navigationController.view];
 	[window addSubview:viewController.view];
+    
     [window makeKeyAndVisible];
     
     return YES;

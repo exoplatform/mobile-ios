@@ -21,5 +21,10 @@
 #define EXO_AUTO_LOGIN						@"auto_sigin"
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 
+#define SCR_WIDTH_LSCP_IPAD                 1024
+#define SCR_HEIGHT_LSCP_IPAD                748
+
+#define SCR_WIDTH_PRTR_IPAD                 768
+#define SCR_HEIGHT_PRTR_IPAD                1004
 
 

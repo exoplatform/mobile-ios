@@ -74,6 +74,11 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 
 	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+    if (_strHost == nil) 
+    {
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
+        _strHost = tmpServerObj._strServerUrl;
+    }
 	
 	if(bRememberMe || bAutoLogin)
 	{
