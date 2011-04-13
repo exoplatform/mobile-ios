@@ -47,5 +47,5 @@
 - (void)login;	//Login progress
 - (IBAction)onBtnAccount:(id)sender;
 - (IBAction)onBtnServerList:(id)sender;
-
+- (void)hitAtView:(UIView*)view;
 @end

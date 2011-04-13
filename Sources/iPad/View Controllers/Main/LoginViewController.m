@@ -369,8 +369,25 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    if (textField == _txtfUsername) 
+    {
+        [_txtfPassword becomeFirstResponder];
+    }
+    else
+    {    
+        [_txtfPassword resignFirstResponder];
+        [self onSignInBtn:nil];
+    }    
 	return YES;
+}
+
+- (void)hitAtView:(UIView*) view
+{
+	if([view class] != [UITextField class])
+	{
+		[_txtfUsername resignFirstResponder];
+		[_txtfPassword resignFirstResponder];
+	}
 }
 
 - (void)pushViewIn:(UIView*)view
@@ -395,22 +412,52 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (void)pullViewOut:(UIView*)viewController
 {
+    [self jumpToViewController:[_arrViewOfViewControllers count] - 2]; 
     [_arrViewOfViewControllers removeLastObject];
+//    [UIView beginAnimations:nil context:nil];
+//	[UIView setAnimationDuration:0.75];
+//	[UIView setAnimationDelegate:self];
+//    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+//	{
+//        [viewController setFrame:CGRectMake(SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+//	}
+//	
+//	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+//	{	
+//        [viewController setFrame:CGRectMake(SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+//	}
+//    [self moveView];
+//    [UIView commitAnimations];
+}
+
+- (void)jumpToViewController:(int)index
+{
     [UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.75];
 	[UIView setAnimationDelegate:self];
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        [viewController setFrame:CGRectMake(SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
-	}
-	
-	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{	
-        [viewController setFrame:CGRectMake(SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
-	}
-    [self moveView];
+    for (int i = 0; i < [_arrViewOfViewControllers count]; i++) 
+    {
+        UIView* tmpView = [_arrViewOfViewControllers objectAtIndex:i];
+        int p = i - index;
+//        if (p == 0) 
+//        {
+//            _intCurrentViewId = i;
+//        }
+//        [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+        {
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+        }
+        
+        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+        {	
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+        }
+    }
     [UIView commitAnimations];
 }
+
+
 
 - (void)moveView
 {
@@ -493,6 +540,31 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [self pushViewIn:_iPadServerEditingViewController.view];
 }
 
+- (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController editServerObjAtIndex:intIndex withSeverName:strServerName andServerUrl:strServerUrl];
+        [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+    }
+}
+
+- (void)deleteServerObjAtIndex:(int)intIndex
+{
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController deleteServerObjAtIndex:intIndex];
+    }
+}
+
+- (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    if(_iPadServerManagerViewController)
+    {
+        [_iPadServerManagerViewController addServerObjWithServerName:strServerName andServerUrl:strServerUrl]; 
+        [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+    }    
+}
 #pragma UITableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

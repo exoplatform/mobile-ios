@@ -62,11 +62,13 @@
     if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
         [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
+        [_btnDone setFrame:CGRectMake(690, 5, 60, 37)];
 	}
     
     if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
         [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+        [_btnDone setFrame:CGRectMake(946, 5, 60, 37)];
 	}
 }
 
@@ -84,9 +86,12 @@
 	_txtfServerUrl = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
 	_txtfServerUrl.delegate = self;
 
-    _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
-    [_bbtnDone setEnabled:NO];
-    [self.navigationItem setRightBarButtonItem:_bbtnDone];
+    _btnDone = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_btnDone setFrame:CGRectMake(100, 10, 60, 37)];
+    [_btnDone.titleLabel setTextColor:[UIColor redColor]];
+    [_btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    [_btnDone addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnDone];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -105,8 +110,10 @@
     return YES;
 }
 
-- (void)onBbtnDone
+- (void)onBtnDone
 {
+    _strServerName = [_txtfServerName text];
+    _strServerUrl = [_txtfServerUrl text];
     [_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];
 }
 
@@ -164,7 +171,7 @@
     _strServerUrl = [[_txtfServerUrl text] retain];
     if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
     {
-        [_bbtnDone setEnabled:YES];
+        [_btnDone setEnabled:YES];
     }
     return YES;
 }

@@ -27,6 +27,9 @@
     BOOL                                _bEdit;
     int                                 _intIndex;
     NSDictionary*                       _dictLocalize;
+    
+    UIButton*                           _btnEdit;
+    int                                 _interfaceOrientation;
 }
 
 @property (nonatomic, retain) UITextField* _txtfServerName;

@@ -58,9 +58,12 @@
 
 - (void)viewDidLoad
 {
-    //_bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
-    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnEdit)]; //It will be localized later
-    [self.navigationItem setRightBarButtonItem:_bbtnEdit];
+    _btnEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_btnEdit setFrame:CGRectMake(100, 10, 60, 37)];
+    [_btnEdit.titleLabel setTextColor:[UIColor redColor]];
+    [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
+    [_btnEdit addTarget:self action:@selector(onBtnEdit) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnEdit];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -106,12 +109,15 @@
     if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
         [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
+        [_btnEdit setFrame:CGRectMake(690, 5, 60, 37)];
 	}
     
     if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
         [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+        [_btnEdit setFrame:CGRectMake(946, 5, 60, 37)];
 	}
+    _interfaceOrientation = interfaceOrientation;
 }
 
 - (IBAction)onBtnBack:(id)sender
@@ -130,7 +136,7 @@
     _intIndex = index;
 }
 
-- (void)onBbtnEdit
+- (void)onBtnEdit
 {
     _bEdit = !_bEdit;
     [_txtfServerName setEnabled:_bEdit];
@@ -138,11 +144,20 @@
 
     if (_bEdit) 
     {
-        [_bbtnEdit setTitle:@"Done"];
+        [_btnEdit setTitle:@"Done" forState:UIControlStateNormal];
         [_txtfServerName setTextColor:[UIColor blackColor]];
         [_txtfServerUrl setTextColor:[UIColor blackColor]];
         
-        UIButton* btnDelete = [[UIButton alloc] initWithFrame:CGRectMake(10, 110, 300, 40)];
+        UIButton* btnDelete = [[UIButton alloc] init];
+        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+        {
+            [btnDelete setFrame:CGRectMake(40, 150, 688, 37)];
+        }
+        
+        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+        {
+            [btnDelete setFrame:CGRectMake(40, 150, 944, 37)];
+        }
         [btnDelete setBackgroundColor:[UIColor redColor]];
         [btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
@@ -151,7 +166,7 @@
     }
     else
     {
-        [_bbtnEdit setTitle:@"Edit"];
+        [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
         [_txtfServerName resignFirstResponder];
         [_txtfServerUrl resignFirstResponder];
         [_txtfServerName setTextColor:[UIColor grayColor]];

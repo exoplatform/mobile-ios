@@ -21,8 +21,9 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     
     NSString*                           _strServerName;
     NSString*                           _strServerUrl; 
-    UIBarButtonItem*                    _bbtnDone;
+
     NSDictionary*                       _dictLocalize;
+    UIButton*                           _btnDone;
 }
 
 @property (nonatomic, retain) UITextField* _txtfServerName;

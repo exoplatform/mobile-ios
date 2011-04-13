@@ -92,7 +92,10 @@
 - (void)pullViewOut:(UIView*)viewController;
 - (void)moveView;
 - (void)onBackDelegate;
+- (void)jumpToViewController:(int)index;
 - (void)showiPadServerManagerViewController;
 - (void)showiPadServerAddingViewController;
 - (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index;
+- (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (void)deleteServerObjAtIndex:(int)intIndex;
 @end

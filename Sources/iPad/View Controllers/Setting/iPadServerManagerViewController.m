@@ -93,11 +93,13 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
         [_tbvlServerList setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
+        [_btnAdd setFrame:CGRectMake(690, 5, 60, 37)];
 	}
     
     if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
         [_tbvlServerList setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+        [_btnAdd setFrame:CGRectMake(946, 5, 60, 37)];
 	}
 }
 
@@ -242,7 +244,7 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     [_arrServerList removeAllObjects];
     _arrServerList = [configuration getServerList];
     [_tbvlServerList reloadData];
-    [self.navigationController popToViewController:self animated:YES];
+    [_delegate pullViewOut:self.view];
 }
 
 #pragma mark Table view methods

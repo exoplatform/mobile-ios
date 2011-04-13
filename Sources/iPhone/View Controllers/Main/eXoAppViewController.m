@@ -161,8 +161,25 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    if (textField == _txtfUsername) 
+    {
+        [_txtfPassword becomeFirstResponder];
+    }
+    else
+    {    
+        [_txtfPassword resignFirstResponder];
+        [self onSignInBtn:nil];
+    }    
 	return YES;
+}
+
+- (void)hitAtView:(UIView*) view
+{
+	if([view class] != [UITextField class])
+	{
+		[_txtfUsername resignFirstResponder];
+		[_txtfPassword resignFirstResponder];
+	}
 }
 
 #pragma UITableView Delegate
