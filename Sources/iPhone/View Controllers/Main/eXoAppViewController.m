@@ -309,6 +309,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[appDelegate changeToActivityStreamsViewController:_dictLocalize];
 	
 	endThread = nil;
+    [_indicator stopAnimating];
 	[endThread release];
 }
 
@@ -316,6 +317,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
 	endThread = nil;
 	[endThread release];
+    [_indicator stopAnimating];
 	[self view].userInteractionEnabled = YES;
 }
 
@@ -348,7 +350,6 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 	else if(_strBSuccessful == @"NO")
 	{
-		//[_indicator stopAnimating];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
 														 message:[_dictLocalize objectForKey:@"WrongUserNamePassword"]
 														delegate:self 
@@ -361,7 +362,6 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 	else if(_strBSuccessful == @"ERROR")
 	{
-		//[_indicator stopAnimating];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
 														 message:[_dictLocalize objectForKey:@"NetworkConnectionFailed"]
 														delegate:self 

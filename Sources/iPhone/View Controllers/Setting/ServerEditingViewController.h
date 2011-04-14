@@ -24,6 +24,7 @@
     UIBarButtonItem*                    _bbtnEdit;
     BOOL                                _bEdit;
     int                                 _intIndex;
+    UIButton*                           _btnDelete;
 }
 
 @property (nonatomic, retain) UITextField* _txtfServerName;

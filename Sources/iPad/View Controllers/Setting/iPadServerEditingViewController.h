@@ -29,6 +29,8 @@
     NSDictionary*                       _dictLocalize;
     
     UIButton*                           _btnEdit;
+    IBOutlet UIButton*                  _btnBack;
+    UIButton*                           _btnDelete;
     int                                 _interfaceOrientation;
 }
 

@@ -31,6 +31,7 @@
         _txtfServerUrl.delegate = self;
         _intIndex = -1;
         _dictLocalize = [[NSDictionary alloc] init];
+        
     }
     return self;
 }
@@ -43,6 +44,7 @@
     [_txtfServerUrl release];
     [_serverObj release];
     [_dictLocalize release];
+    [_btnDelete release];
     [super dealloc];
 }
 
@@ -64,6 +66,12 @@
     [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
     [_btnEdit addTarget:self action:@selector(onBtnEdit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnEdit];
+    
+    _btnDelete = [[UIButton alloc] init];
+    [_btnDelete setBackgroundColor:[UIColor redColor]];
+    [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
+    [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
+    [_tblvServerInfo addSubview:_btnDelete];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -122,6 +130,9 @@
 
 - (IBAction)onBtnBack:(id)sender
 {
+    _bEdit = NO;
+    [_btnDelete setHidden:YES];
+    [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
     [_delegate onBackDelegate];
 }
 
@@ -139,6 +150,7 @@
 - (void)onBtnEdit
 {
     _bEdit = !_bEdit;
+    
     [_txtfServerName setEnabled:_bEdit];
     [_txtfServerUrl setEnabled:_bEdit];
 
@@ -148,21 +160,18 @@
         [_txtfServerName setTextColor:[UIColor blackColor]];
         [_txtfServerUrl setTextColor:[UIColor blackColor]];
         
-        UIButton* btnDelete = [[UIButton alloc] init];
+        
         if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
         {
-            [btnDelete setFrame:CGRectMake(40, 150, 688, 37)];
+            [_btnDelete setFrame:CGRectMake(40, 150, 688, 37)];
         }
         
         if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
         {
-            [btnDelete setFrame:CGRectMake(40, 150, 944, 37)];
+            [_btnDelete setFrame:CGRectMake(40, 150, 944, 37)];
         }
-        [btnDelete setBackgroundColor:[UIColor redColor]];
-        [btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
-        [btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
-        [_tblvServerInfo addSubview:btnDelete];
-        [btnDelete release];                        
+        
+        [_btnDelete setHidden:NO];                        
     }
     else
     {
@@ -174,11 +183,16 @@
         _strServerName = [_txtfServerName text];
         _strServerUrl = [_txtfServerUrl text];
         [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
+        [_btnDelete setHidden:YES];                                
     }
 }
 
 - (void)onBtnDelete
 {
+    _bEdit = !_bEdit;
+    [_btnDelete setHidden:YES];    
+    [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
+
     [_delegate deleteServerObjAtIndex:_intIndex];
 }
 

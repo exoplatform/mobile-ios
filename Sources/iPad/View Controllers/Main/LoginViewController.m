@@ -102,6 +102,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
     
     [_arrViewOfViewControllers addObject:_vLoginView];
+    [_actiSigningIn setHidden:YES];
+    [_lbSigningInStatus setHidden:YES];
     
 	[super viewDidLoad];
 }
@@ -198,6 +200,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 						   
 	[_settingViewController localize];
     */ 
+    [_lbSigningInStatus setText:[_dictLocalize objectForKey:@"SigningIn"]];
 }
 
 - (void)setSelectedLanguage:(int)languageId
@@ -358,7 +361,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
     [_btnServerList setBackgroundColor:[UIColor blueColor]];
     [_btnAccount setBackgroundColor:[UIColor grayColor]];    
-    [_vLoginView bringSubviewToFront:_vServerListView];    
+    [_vLoginView bringSubviewToFront:_vServerListView];   
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     [_tbvlServerList reloadData];
 }
 
@@ -414,20 +419,6 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
     [self jumpToViewController:[_arrViewOfViewControllers count] - 2]; 
     [_arrViewOfViewControllers removeLastObject];
-//    [UIView beginAnimations:nil context:nil];
-//	[UIView setAnimationDuration:0.75];
-//	[UIView setAnimationDelegate:self];
-//    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-//	{
-//        [viewController setFrame:CGRectMake(SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
-//	}
-//	
-//	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-//	{	
-//        [viewController setFrame:CGRectMake(SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
-//	}
-//    [self moveView];
-//    [UIView commitAnimations];
 }
 
 - (void)jumpToViewController:(int)index
@@ -524,6 +515,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
         [_iPadServerAddingViewController setInterfaceOrientation:_interfaceOrientation];
         [self.view addSubview:_iPadServerAddingViewController.view];
     }
+    [_iPadServerAddingViewController._txtfServerName setText:@""];
+    [_iPadServerAddingViewController._txtfServerUrl setText:@""];    
     [self pushViewIn:_iPadServerAddingViewController.view];
 }
 

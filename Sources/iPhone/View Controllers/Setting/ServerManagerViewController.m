@@ -285,6 +285,7 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     {
         [self.navigationController pushViewController:_serverEditingViewController animated:YES];
     }
+    [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

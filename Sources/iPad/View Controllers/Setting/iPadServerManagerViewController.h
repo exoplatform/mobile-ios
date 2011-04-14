@@ -13,15 +13,18 @@
 
 @interface iPadServerManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
-    id                              _delegate;
-    IBOutlet UITableView*           _tbvlServerList;
-    NSMutableArray*                 _arrServerList;
+    id                                  _delegate;
+    IBOutlet UITableView*               _tbvlServerList;
+    NSMutableArray*                     _arrServerList;
     iPadServerAddingViewController*     _iPadServerAddingViewController;
     iPadServerEditingViewController*    _iPadServerEditingViewController;
 
-    UIButton*                       _btnAdd;
-    NSDictionary*                   _dictLocalize;
+    UIButton*                           _btnAdd;
+    NSDictionary*                       _dictLocalize;
+    int                                 _intCurrentIndex;
 }
+
+@property (nonatomic, retain) UITableView* _tbvlServerList;
 
 - (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
 - (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;

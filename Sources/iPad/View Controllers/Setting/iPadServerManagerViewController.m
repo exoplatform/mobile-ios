@@ -19,6 +19,8 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
 
 @implementation iPadServerManagerViewController
 
+@synthesize _tbvlServerList;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -247,6 +249,7 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     [_delegate pullViewOut:self.view];
 }
 
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -300,6 +303,8 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
 {
     ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
     [_delegate showiPadServerEditingViewControllerWithServerObj:tmpServerObj andIndex:indexPath.row];
+    _intCurrentIndex = indexPath.row;
+    [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

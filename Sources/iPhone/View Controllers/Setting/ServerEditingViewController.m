@@ -39,6 +39,7 @@
     [_txtfServerName release];
     [_txtfServerUrl release];
     [_serverObj release];
+    [_btnDelete release];
     [super dealloc];
 }
 
@@ -57,6 +58,13 @@
     //_bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
     _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnEdit)]; //It will be localized later
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
+    
+    _btnDelete = [[UIButton alloc] init];
+    [_btnDelete setFrame:CGRectMake(10, 110, 300, 40)];
+    [_btnDelete setBackgroundColor:[UIColor redColor]];
+    [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
+    [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableView addSubview:_btnDelete]; 
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -77,6 +85,15 @@
     [_txtfServerName setTextColor:[UIColor grayColor]];
     [_txtfServerUrl setTextColor:[UIColor grayColor]];
     [super viewWillAppear:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    _bEdit = NO;
+    [_btnDelete setHidden:YES];
+    [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+    
+    [super viewWillDisappear:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -112,13 +129,8 @@
         [_bbtnEdit setTitle:@"Done"];
         [_txtfServerName setTextColor:[UIColor blackColor]];
         [_txtfServerUrl setTextColor:[UIColor blackColor]];
-        
-        UIButton* btnDelete = [[UIButton alloc] initWithFrame:CGRectMake(10, 110, 300, 40)];
-        [btnDelete setBackgroundColor:[UIColor redColor]];
-        [btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
-        [btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
-        [self.tableView addSubview:btnDelete];
-        [btnDelete release];                        
+
+        [_btnDelete setHidden:NO];                    
     }
     else
     {
@@ -130,11 +142,15 @@
         _strServerName = [_txtfServerName text];
         _strServerUrl = [_txtfServerUrl text];
         [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
+        [_btnDelete setHidden:YES];
     }
 }
 
 - (void)onBtnDelete
 {
+    _bEdit = !_bEdit;
+    [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+    [_btnDelete setHidden:YES];
     [_delegate deleteServerObjAtIndex:_intIndex];
 }
 

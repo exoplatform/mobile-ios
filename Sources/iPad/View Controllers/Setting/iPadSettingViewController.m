@@ -171,6 +171,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[userDefaults setObject:str forKey:EXO_AUTO_LOGIN];
 }
 
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -394,6 +395,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
         else
         {
             [_delegate showiPadServerManagerViewController];
+            [tblView deselectRowAtIndexPath:indexPath animated:YES];
         }
 	}
 	else if(indexPath.section == 3)
