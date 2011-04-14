@@ -12,6 +12,8 @@
 #import "ServerEditingViewController.h"
 
 static NSString *ServerCellIdentifier = @"ServerIdentifier";
+#define kTagForCellSubviewServerNameLabel 444
+#define kTagForCellSubviewServerUrlLabel 555
 
 @implementation ServerManagerViewController
 
@@ -245,22 +247,28 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     if(cell == nil) 
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerCellIdentifier] autorelease];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
+        lbServerName.tag = kTagForCellSubviewServerNameLabel;
+        lbServerName.textColor = [UIColor brownColor];
+        [cell addSubview:lbServerName];
+        [lbServerName release];
+        
+        UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 80, 30)];
+        lbServerUrl.tag = kTagForCellSubviewServerUrlLabel;
+        [cell addSubview:lbServerUrl];
+        [lbServerUrl release];
     }
-	
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
     
-    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-    lbServerName.text = tmpServerObj._strServerName;
-    lbServerName.textColor = [UIColor brownColor];
-    [cell addSubview:lbServerName];
-    [lbServerName release];
+    UILabel* lbServer = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerNameLabel];
+    lbServer.text = tmpServerObj._strServerName;
     
-    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 80, 30)];
-    lbServerUrl.text = tmpServerObj._strServerUrl;
-    [cell addSubview:lbServerUrl];
-    [lbServerUrl release];
+    lbServer = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerUrlLabel];
+    lbServer.text = tmpServerObj._strServerUrl;
     
     return cell;
 }

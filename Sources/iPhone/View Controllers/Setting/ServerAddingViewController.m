@@ -182,26 +182,23 @@
     if(cell == nil) 
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
-    }
-    
-    switch (indexPath.row)
-    {
-        case 0:
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if(indexPath.row == 0)
         {
-            UILabel* lbServerName = [[UILabel alloc] init];
-            lbServerName.text = @"Server Name"; //it will be localized later
-            return [self containerCellWithLabel:lbServerName view:_txtfServerName];
-            break;
-        }	
-        case 1:
+            cell.textLabel.text = @"Server Name";
+            [cell addSubview:_txtfServerName];
+        }
+        else
         {
-            UILabel* lbServerUrl = [[UILabel alloc] init];
-            lbServerUrl.text = @"Server Url"; //it will be localized later
-            return [self containerCellWithLabel:lbServerUrl view:_txtfServerUrl];
-            break;
+            cell.textLabel.text = @"Server Url";
+            [cell addSubview:_txtfServerUrl];
         }
     }
+    
     return cell;
+
 }
 
 @end

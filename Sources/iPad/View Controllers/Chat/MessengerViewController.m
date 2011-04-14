@@ -481,10 +481,12 @@ NSString* imageStr(NSString* fileName, NSString* type)
         titleLabel.tag = kTagForCellSubviewTitleLabel;
         titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
         [cell addSubview:titleLabel];
+        [titleLabel release];
         
         UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 10.0, 24, 24)];
         imgView.tag = kTagForCellSubviewImageView;
         [cell addSubview:imgView];
+        [imgView release];
         
     }
 
