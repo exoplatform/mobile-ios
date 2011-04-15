@@ -103,6 +103,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	{	
         [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
 	}
+    _interfaceOrientation = interfaceOrientation;
+    [tblView reloadData];
 }
 
 - (void)setDelegate:(id)delegate
@@ -240,12 +242,37 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	return numofRows;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float fWidth = 0;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        fWidth = 450;
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        fWidth = 700;
+    }
+    float fHeight = 44.0;
+    if(indexPath.section == 2)
+	{
+        if (indexPath.row < [_arrServerList count]) 
+        {
+            ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+            NSString* text = tmpServerObj._strServerUrl; 
+            CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+            fHeight = 44*((int)theSize.height/44 + 1);
+        }
+    }
+    return fHeight;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil) 
+    //if(cell == nil) 
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
@@ -257,6 +284,18 @@ static NSString *CellIdentifier = @"MyIdentifier";
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];  
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryNone;
+            if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+            {
+                [rememberMe setFrame:CGRectMake(614, 10, 94, 27)];
+                [autoLogin setFrame:CGRectMake(614, 10, 94, 27)];
+            }
+            
+            if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+            {	
+                [rememberMe setFrame:CGRectMake(870, 10, 94, 27)];
+                [autoLogin setFrame:CGRectMake(870, 10, 94, 27)];
+            }
+            
             if(indexPath.row == 0)
             {
                 cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
@@ -324,7 +363,23 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 [cell addSubview:lbServerName];
                 [lbServerName release];
                 
-                UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 280, 30)];
+                float fWidth = 0;
+                if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+                {
+                    fWidth = 450;
+                }
+                
+                if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+                {
+                    fWidth = 700;
+                }
+                
+                UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 400, 30)];
+                NSString* text = tmpServerObj._strServerUrl; 
+                CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+                [lbServerUrl setFrame:CGRectMake(220, 5, fWidth, 44*((int)theSize.height/44 + 1) - 10)];
+                [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
+                
                 lbServerUrl.text = tmpServerObj._strServerUrl;
                 [cell addSubview:lbServerUrl];
                 [lbServerUrl release];
@@ -339,8 +394,18 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 }
             }
             else
-            {
-                UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(55, 5, 280, 30)];
+            {                                
+                UILabel* lbModify = [[UILabel alloc] init];
+                if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+                {
+                    [lbModify setFrame:CGRectMake(55, 5, 650, 30)];
+                }
+                
+                if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+                {	
+                    [lbModify setFrame:CGRectMake(55, 5, 900, 30)];
+                }
+                
                 [lbModify setTextAlignment:UITextAlignmentCenter];
                 lbModify.textColor = [UIColor redColor];
                 [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];

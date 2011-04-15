@@ -196,14 +196,20 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 44;
+    float fWidth = 150;
+    float fHeight = 44.0;
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    fHeight = 44*((int)theSize.height/44 + 1);
+    return fHeight;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil) 
+    //if(cell == nil) 
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
@@ -216,7 +222,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     else
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
-                }
+    }
                 
 	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
 
@@ -226,13 +232,23 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [cell addSubview:lbServerName];
     [lbServerName release];
 
-    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 120, 30)];
+//    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 120, 30)];
+//    lbServerUrl.text = tmpServerObj._strServerUrl;
+//    [cell addSubview:lbServerUrl];
+//    [lbServerUrl release];
+    float fWidth = 150;
+    UILabel* lbServerUrl = [[UILabel alloc] init];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    float fHeight = 44*((int)theSize.height/44 + 1) - 10;
+    [lbServerUrl setFrame:CGRectMake(140, 5, fWidth, fHeight)];
+    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
     lbServerUrl.text = tmpServerObj._strServerUrl;
     [cell addSubview:lbServerUrl];
     [lbServerUrl release];
 
 	return cell;
-            }
+}
                 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

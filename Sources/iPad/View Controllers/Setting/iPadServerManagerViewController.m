@@ -103,6 +103,8 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
         [_tbvlServerList setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
         [_btnAdd setFrame:CGRectMake(946, 5, 60, 37)];
 	}
+    _interfaceOrientation = interfaceOrientation;
+    [_tbvlServerList reloadData];
 }
 
 - (void)setDelegate:(id)delegate
@@ -263,6 +265,26 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
 	return tmpStr;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //temporary code. It will be updated as soon as BD team provide us UI design
+    float fWidth = 0;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        fWidth = 450;
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        fWidth = 450;
+    }
+    float fHeight = 44.0;
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    fHeight = 44*((int)theSize.height/44 + 1);
+    return fHeight;
+}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
@@ -290,7 +312,26 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     [cell addSubview:lbServerName];
     [lbServerName release];
     
-    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 280, 30)];
+//    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 280, 30)];
+//    lbServerUrl.text = tmpServerObj._strServerUrl;
+//    [cell addSubview:lbServerUrl];
+//    [lbServerUrl release];
+    float fWidth = 0;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        fWidth = 450;
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        fWidth = 450;
+    }
+    
+    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 400, 30)];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    [lbServerUrl setFrame:CGRectMake(220, 5, fWidth, 44*((int)theSize.height/44 + 1) - 10)];
+    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
     lbServerUrl.text = tmpServerObj._strServerUrl;
     [cell addSubview:lbServerUrl];
     [lbServerUrl release];

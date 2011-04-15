@@ -64,6 +64,7 @@
     [_btnDelete setBackgroundColor:[UIColor redColor]];
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
+    [_btnDelete setHidden:YES];
     [self.tableView addSubview:_btnDelete]; 
     
     [super viewDidLoad];

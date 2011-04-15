@@ -572,7 +572,23 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 44;
+    //temporary code. It will be updated as soon as BD team provide us UI design
+    float fWidth = 0;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        fWidth = 450;
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        fWidth = 450;
+    }
+    float fHeight = 44.0;
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    fHeight = 44*((int)theSize.height/44 + 1);
+    return fHeight;
 }
 
 
@@ -602,7 +618,26 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [cell addSubview:lbServerName];
     [lbServerName release];
     
-    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 120, 30)];
+//    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 400, 30)];
+//    lbServerUrl.text = tmpServerObj._strServerUrl;
+//    [cell addSubview:lbServerUrl];
+//    [lbServerUrl release];
+    float fWidth = 0;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        fWidth = 450;
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        fWidth = 450;
+    }
+    
+    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 400, 30)];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    [lbServerUrl setFrame:CGRectMake(220, 5, fWidth, 44*((int)theSize.height/44 + 1) - 10)];
+    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
     lbServerUrl.text = tmpServerObj._strServerUrl;
     [cell addSubview:lbServerUrl];
     [lbServerUrl release];

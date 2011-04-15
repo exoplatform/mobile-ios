@@ -119,7 +119,7 @@
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
 {
-    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(340, 12, 280, 22)];
+    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(220, 12, 400, 22)];
     textField.placeholder = @"Required";
     textField.secureTextEntry = secure;
     textField.keyboardType = UIKeyboardTypeASCIICapable;

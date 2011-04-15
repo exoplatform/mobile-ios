@@ -17,9 +17,6 @@
 static NSString *CellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
-#define kTagForCellSubviewServerNameLabel 444
-#define kTagForCellSubviewServerUrlLabel 555
-#define kTagForCellSubviewTitleLabel111 666
 
 
 @implementation eXoSettingViewController
@@ -201,148 +198,88 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	{	
 		numofRows = 1;
 	}
-
+    
 	return numofRows;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float fHeight = 44.0;
+    if(indexPath.section == 2)
+	{
+        if (indexPath.row < [_arrServerList count]) 
+        {
+            float fWidth = 150;
+            float fHeight = 44.0;
+            ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+            NSString* text = tmpServerObj._strServerUrl; 
+            CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+            fHeight = 44*((int)theSize.height/44 + 1);
+            return fHeight;
+        }
+    }
+    return fHeight;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    int section = indexPath.section;
-    int row = indexPath.row;
-    
-    if(cell == nil) 
+    //if(cell == nil) 
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        
-        
-        switch (section) 
-        {
-            case 0:
-            {
-                UILabel* lbTitleName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-                lbTitleName.tag = kTagForCellSubviewTitleLabel;
-                lbTitleName.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                [cell addSubview:lbTitleName];
-                [lbTitleName release];
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                
-                if(row == 0)
-                {
-                    [cell addSubview:rememberMe];
-                    [rememberMe release];
-                }
-                else 
-                {
-                    [cell addSubview:autoLogin];
-                    [autoLogin release];
-                }
-                break;
-            }
-                
-            case 1: 
-            {
-                UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
-                imgV.tag = kTagForCellSubviewImageView;
-                [cell addSubview:imgV];
-                
-                UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-                titleLabel.tag = kTagForCellSubviewTitleLabel;
-                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                [cell addSubview:titleLabel];
-                
-                [imgV release];
-                [titleLabel release];
-                
-                
-                break;
-            }
-                
-            case 2:
-            {
-                if (row < [_arrServerList count]) 
-                {   
-                    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-                    lbServerName.tag = kTagForCellSubviewServerNameLabel;
-                    lbServerName.textColor = [UIColor brownColor];
-                    [cell addSubview:lbServerName];
-                    [lbServerName release];
-                    
-                    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 100, 30)];
-                    lbServerUrl.tag = kTagForCellSubviewServerUrlLabel;
-                    [cell addSubview:lbServerUrl];
-                    [lbServerUrl release];
-                }
-                else
-                {
-                    UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
-                    lbModify.tag = kTagForCellSubviewTitleLabel;
-                    [lbModify setTextAlignment:UITextAlignmentCenter];
-                    lbModify.textColor = [UIColor redColor];
-                    [cell addSubview:lbModify];
-                    [lbModify release];
-                }
-                break;
-            }
-                
-            case 3:
-            {
-                UILabel* lbTitleName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-                lbTitleName.tag = kTagForCellSubviewTitleLabel111;
-                lbTitleName.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                [cell addSubview:lbTitleName];
-                [lbTitleName release];
-                
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                
-                break;
-            }
-                
-            default:
-                break;
-        }
     }
     
     switch (indexPath.section) 
     {
         case 0:
         {
-            UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];  
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryNone;
-            if(row == 0)
+            if(indexPath.row == 0)
             {
-                titleLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
-                rememberMe.hidden = NO;
+                cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
                 rememberMe.on = bRememberMe;
+                [cell addSubview:rememberMe];
             }
             else 
             {
-                titleLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
-                autoLogin.hidden = NO;
+                cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
                 autoLogin.on = bAutoLogin;
+                [cell addSubview:autoLogin];
             }
             break;
         }
             
         case 1: 
         {
-            UIImageView* imgV = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
-            UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
-            if(row == 0)
+            UIImageView* imgV;
+            UILabel* titleLabel;
+            if(indexPath.row == 0)
             {
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
                 imgV.image = [UIImage imageNamed:@"EN.gif"];
+                [cell addSubview:imgV];
+                
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                 titleLabel.text = [_dictLocalize objectForKey:@"English"];
+                [cell addSubview:titleLabel];
             }
             else
             {
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
                 imgV.image = [UIImage imageNamed:@"FR.gif"];
+                [cell addSubview:imgV];	
+                
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
                 titleLabel.text = [_dictLocalize objectForKey:@"French"];
+                [cell addSubview:titleLabel];	
             }
+            [imgV release];
+            [titleLabel release];
             
             if(indexPath.row == _selectedLanguage)
             {
@@ -357,15 +294,26 @@ static NSString *CellIdentifier = @"MyIdentifier";
             
         case 2:
         {
-            if (row < [_arrServerList count]) 
+            if (indexPath.row < [_arrServerList count]) 
             {
                 ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
                 
-                UILabel* lbServerName = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerNameLabel];
+                UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
                 lbServerName.text = tmpServerObj._strServerName;
+                lbServerName.textColor = [UIColor brownColor];
+                [cell addSubview:lbServerName];
+                [lbServerName release];
                 
-                UILabel* lbServerUrl = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerUrlLabel];
+                float fWidth = 150;
+                UILabel* lbServerUrl = [[UILabel alloc] init];
+                NSString* text = tmpServerObj._strServerUrl; 
+                CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+                float fHeight = 44*((int)theSize.height/44 + 1) - 10;
+                [lbServerUrl setFrame:CGRectMake(140, 5, fWidth, fHeight)];
+                [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
                 lbServerUrl.text = tmpServerObj._strServerUrl;
+                [cell addSubview:lbServerUrl];
+                [lbServerUrl release];
                 
                 if (indexPath.row == _intSelectedServer) 
                 {
@@ -378,38 +326,21 @@ static NSString *CellIdentifier = @"MyIdentifier";
             }
             else
             {
-                UILabel* lbModify = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
+                UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
+                [lbModify setTextAlignment:UITextAlignmentCenter];
+                lbModify.textColor = [UIColor redColor];
                 [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];
+                [cell addSubview:lbModify];
+                [lbModify release];
             }
             break;
         }
             
         case 3:
         {
-            
-            NSArray *arr = [cell subviews];
-            for (int i = 0; i < [arr count]; i++) {
-                if([[arr objectAtIndex:i] isEqual:rememberMe] || [[arr objectAtIndex:i] isEqual:autoLogin])
-                {
-                    [[arr objectAtIndex:i] setHidden:YES];
-                    break;
-                }
-            }
-            
-            UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel111];
-            if(titleLabel == nil)
-            {
-                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-                titleLabel.tag = kTagForCellSubviewTitleLabel111;
-                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                [cell addSubview:titleLabel];
-                [titleLabel release];
-            }
-            
-            
+            cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            titleLabel.text = [_dictLocalize objectForKey:@"UserGuide"];	
-			
             break;
         }
             
@@ -429,7 +360,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		[_delegate setSelectedLanguage:_selectedLanguage];
 		_dictLocalize = _delegate._dictLocalize;
 		[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] 
-		setTitle:[_dictLocalize objectForKey:@"ApplicationsTitle"]];
+         setTitle:[_dictLocalize objectForKey:@"ApplicationsTitle"]];
 		
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 		[userDefaults setObject:[NSString stringWithFormat:@"%d", rememberMe.on] forKey:EXO_REMEMBER_ME];

@@ -72,6 +72,7 @@
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     [_tblvServerInfo addSubview:_btnDelete];
+    [_btnDelete setHidden:YES];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

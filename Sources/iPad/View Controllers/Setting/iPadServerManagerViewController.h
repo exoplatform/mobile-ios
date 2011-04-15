@@ -22,6 +22,7 @@
     UIButton*                           _btnAdd;
     NSDictionary*                       _dictLocalize;
     int                                 _intCurrentIndex;
+    int                                 _interfaceOrientation;
 }
 
 @property (nonatomic, retain) UITableView* _tbvlServerList;

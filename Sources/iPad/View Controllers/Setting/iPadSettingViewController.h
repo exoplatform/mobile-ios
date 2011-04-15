@@ -12,7 +12,7 @@
 @class eXoApplicationsViewController;
 @class iPadServerManagerViewController;
 
-@interface iPadSettingViewController : UIViewController <UITextFieldDelegate> {
+@interface iPadSettingViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
     id              _delegate;
     
@@ -34,6 +34,7 @@
     NSMutableArray*                     _arrServerList;
     int                                 _intSelectedServer;
     iPadServerManagerViewController*    _iPadServerManagerViewController;
+    int                                 _interfaceOrientation;
 }
 
 @property(nonatomic, retain) NSDictionary*	_dictLocalize;

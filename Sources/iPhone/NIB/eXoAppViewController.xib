@@ -269,7 +269,7 @@
 										<reference key="IBUINormalTitleShadowColor" ref="564120801"/>
 									</object>
 								</object>
-								<string key="NSFrame">{{0, 104}, {320, 250}}</string>
+								<string key="NSFrame">{{0, 104}, {320, 252}}</string>
 								<reference key="NSSuperview" ref="8348948"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="538100379"/>

@@ -239,6 +239,16 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     return [_arrServerList count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float fWidth = 150;
+    float fHeight = 44.0;
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    fHeight = 44*((int)theSize.height/44 + 1);
+    return fHeight;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -249,27 +259,32 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerCellIdentifier] autorelease];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-        UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-        lbServerName.tag = kTagForCellSubviewServerNameLabel;
-        lbServerName.textColor = [UIColor brownColor];
-        [cell addSubview:lbServerName];
-        [lbServerName release];
-        
-        UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(170, 5, 80, 30)];
-        lbServerUrl.tag = kTagForCellSubviewServerUrlLabel;
-        [cell addSubview:lbServerUrl];
-        [lbServerUrl release];
     }
     
     ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
     
-    UILabel* lbServer = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerNameLabel];
-    lbServer.text = tmpServerObj._strServerName;
+    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
+    lbServerName.tag = kTagForCellSubviewServerNameLabel;
+    lbServerName.textColor = [UIColor brownColor];
+    lbServerName.text = tmpServerObj._strServerName;
+    [cell addSubview:lbServerName];
+    [lbServerName release];
     
-    lbServer = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerUrlLabel];
-    lbServer.text = tmpServerObj._strServerUrl;
+    float fWidth = 150;
+    UILabel* lbServerUrl = [[UILabel alloc] init];
+    NSString* text = tmpServerObj._strServerUrl; 
+    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    float fHeight = 44*((int)theSize.height/44 + 1) - 10;
+    [lbServerUrl setFrame:CGRectMake(140, 5, fWidth, fHeight)];
+    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
+    lbServerUrl.text = tmpServerObj._strServerUrl;
+    [cell addSubview:lbServerUrl];
+    [lbServerUrl release];
     
+//    UILabel* lbServer = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerNameLabel];
+//    lbServer.text = tmpServerObj._strServerName;
+//    lbServer = (UILabel *)[cell viewWithTag:kTagForCellSubviewServerUrlLabel];
+//    lbServer.text = tmpServerObj._strServerUrl;
     return cell;
 }
 
