@@ -178,7 +178,7 @@ static NSString* _strDomain;
 	}
 	
 	_strFirstLoginContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
-	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
+	NSRange rgCheck = [_strFirstLoginContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
 		[loginRequest release];
@@ -552,12 +552,14 @@ static NSString* _strDomain;
 	if(rgCheck.length > 0)
 	{
 		[loginRequest release];
+        [urlContent release];
 		return @"NO";
 	}
 	else
 	{
 		[loginRequest release];
 		_strFirstLoginContent = urlContent;
+        [urlContent release];
 		return @"YES";
 	}
 }
