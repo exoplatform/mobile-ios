@@ -10,22 +10,22 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		46EB96D3135C98FC0094134D /* HitTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EB96D2135C98FC0094134D /* HitTestView.m */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
 		7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962913419B8D007F26BB /* ServerAddingViewController.m */; };
 		7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */; };
 		7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C07D7501340466B0075BF76 /* ServerManagerViewController.m */; };
+		7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */; };
 		7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C61BB133B3BAE005A365A /* Configuration.m */; };
 		7CE839A2134468A000FF5B7A /* iPadServerAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399D1344689F00FF5B7A /* iPadServerAddingViewController.m */; };
 		7CE839A3134468A000FF5B7A /* iPadServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */; };
-		7CE839A4134468A000FF5B7A /* iPadServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE839A1134468A000FF5B7A /* iPadServerManagerViewController.m */; };
 		7CE839A613446D9500FF5B7A /* iPadServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */; };
 		7CE839A913446DAB00FF5B7A /* iPadServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE839A713446DAB00FF5B7A /* iPadServerEditingViewController.xib */; };
 		7CE839AA13446DAB00FF5B7A /* iPadServerManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE839A813446DAB00FF5B7A /* iPadServerManagerViewController.xib */; };
 		7CE839AD1344848100FF5B7A /* ContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE839AC1344848100FF5B7A /* ContainerCell.m */; };
 		7CE839AF1344873500FF5B7A /* iPadSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE839AE1344873500FF5B7A /* iPadSettingViewController.xib */; };
+		7CF562A1135590350008DD21 /* HitTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF562A0135590350008DD21 /* HitTestView.m */; };
 		8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937A32913387F1D00D8B474 /* NSString+HTML.m */; };
 		8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */; };
 		8937A33F1338993900D8B474 /* AppContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32E1338993900D8B474 /* AppContainerViewController.xib */; };
@@ -240,8 +240,6 @@
 		1D6058910D05DD3D006BFB54 /* eXo Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		46EB96D1135C98FC0094134D /* HitTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HitTestView.h; sourceTree = "<group>"; };
-		46EB96D2135C98FC0094134D /* HitTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HitTestView.m; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerEditingViewController.h; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditingViewController.m; sourceTree = "<group>"; };
@@ -251,6 +249,7 @@
 		7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerManagerViewController.xib; sourceTree = "<group>"; };
 		7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerViewController.h; sourceTree = "<group>"; };
 		7C07D7501340466B0075BF76 /* ServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerViewController.m; sourceTree = "<group>"; };
+		7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerManagerViewController.m; sourceTree = "<group>"; };
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
@@ -259,13 +258,14 @@
 		7CE8399E134468A000FF5B7A /* iPadServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerEditingViewController.h; sourceTree = "<group>"; };
 		7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerEditingViewController.m; sourceTree = "<group>"; };
 		7CE839A0134468A000FF5B7A /* iPadServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerManagerViewController.h; sourceTree = "<group>"; };
-		7CE839A1134468A000FF5B7A /* iPadServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerManagerViewController.m; sourceTree = "<group>"; };
 		7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadServerAddingViewController.xib; sourceTree = "<group>"; };
 		7CE839A713446DAB00FF5B7A /* iPadServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadServerEditingViewController.xib; sourceTree = "<group>"; };
 		7CE839A813446DAB00FF5B7A /* iPadServerManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadServerManagerViewController.xib; sourceTree = "<group>"; };
 		7CE839AB1344848100FF5B7A /* ContainerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerCell.h; sourceTree = "<group>"; };
 		7CE839AC1344848100FF5B7A /* ContainerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerCell.m; sourceTree = "<group>"; };
 		7CE839AE1344873500FF5B7A /* iPadSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadSettingViewController.xib; sourceTree = "<group>"; };
+		7CF5629F135590350008DD21 /* HitTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HitTestView.h; sourceTree = "<group>"; };
+		7CF562A0135590350008DD21 /* HitTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HitTestView.m; sourceTree = "<group>"; };
 		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
 		8937A32E1338993900D8B474 /* AppContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppContainerViewController.xib; sourceTree = "<group>"; };
@@ -824,7 +824,7 @@
 				7CE8399E134468A000FF5B7A /* iPadServerEditingViewController.h */,
 				7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */,
 				7CE839A0134468A000FF5B7A /* iPadServerManagerViewController.h */,
-				7CE839A1134468A000FF5B7A /* iPadServerManagerViewController.m */,
+				7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1303,8 +1303,8 @@
 		894734E81337139800B0AD11 /* eXoUtils */ = {
 			isa = PBXGroup;
 			children = (
-				46EB96D1135C98FC0094134D /* HitTestView.h */,
-				46EB96D2135C98FC0094134D /* HitTestView.m */,
+				7CF5629F135590350008DD21 /* HitTestView.h */,
+				7CF562A0135590350008DD21 /* HitTestView.m */,
 				894735031337142200B0AD11 /* Checkbox.h */,
 				894735041337142200B0AD11 /* Checkbox.m */,
 				894735051337142200B0AD11 /* Connection.h */,
@@ -1662,9 +1662,9 @@
 				7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */,
 				7CE839A2134468A000FF5B7A /* iPadServerAddingViewController.m in Sources */,
 				7CE839A3134468A000FF5B7A /* iPadServerEditingViewController.m in Sources */,
-				7CE839A4134468A000FF5B7A /* iPadServerManagerViewController.m in Sources */,
 				7CE839AD1344848100FF5B7A /* ContainerCell.m in Sources */,
-				46EB96D3135C98FC0094134D /* HitTestView.m in Sources */,
+				7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */,
+				7CF562A1135590350008DD21 /* HitTestView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
