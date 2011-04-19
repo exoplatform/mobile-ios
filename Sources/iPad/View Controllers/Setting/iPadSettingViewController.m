@@ -98,12 +98,16 @@ static NSString *CellIdentifier = @"MyIdentifier";
     if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
         [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
+        [tblView setContentSize:CGSizeMake(SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
 	}
     
     if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
-        [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];    
+        [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+        [tblView setContentSize:CGSizeMake(SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
 	}
+    [self.view addSubview:tblView];
+    [self.view bringSubviewToFront:tblView];
     _interfaceOrientation = interfaceOrientation;
     [tblView reloadData];
 }

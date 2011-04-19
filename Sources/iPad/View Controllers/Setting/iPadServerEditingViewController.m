@@ -66,8 +66,8 @@
     _btnEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_btnEdit setFrame:CGRectMake(100, 10, 60, 37)];
     [_btnEdit.titleLabel setTextColor:[UIColor redColor]];
-    [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
-    [_btnEdit addTarget:self action:@selector(onBtnEdit) forControlEvents:UIControlEventTouchUpInside];
+    [_btnEdit setTitle:@"Done" forState:UIControlStateNormal];
+    [_btnEdit addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnEdit];
     
     _btnDelete = [[UIButton alloc] init];
@@ -75,7 +75,6 @@
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     [_tblvServerInfo addSubview:_btnDelete];
-    [_btnDelete setHidden:YES];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -90,7 +89,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _bEdit = NO;
     [_txtfServerName setEnabled:NO];
     [_txtfServerUrl setEnabled:NO];
     [_txtfServerName setTextColor:[UIColor grayColor]];
@@ -130,14 +128,21 @@
         [_btnEdit setFrame:CGRectMake(946, 5, 60, 37)];
 	}
     _interfaceOrientation = interfaceOrientation;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        [_btnDelete setFrame:CGRectMake(40, 150, 688, 37)];
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        [_btnDelete setFrame:CGRectMake(40, 150, 944, 37)];
+    }
     [_tblvServerInfo reloadData];
 }
 
 - (IBAction)onBtnBack:(id)sender
 {
-    _bEdit = NO;
     [_btnDelete setHidden:YES];
-    [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
     [_delegate onBackDelegate];
 }
 
@@ -152,42 +157,6 @@
     _intIndex = index;
 }
 
-- (void)onBtnEdit
-{
-    _bEdit = !_bEdit;
-    
-    [_txtfServerName setEnabled:_bEdit];
-    [_txtfServerUrl setEnabled:_bEdit];
-
-    if (_bEdit) 
-    {
-        [_btnEdit setTitle:@"Done" forState:UIControlStateNormal];
-        [_txtfServerName setTextColor:[UIColor blackColor]];
-        [_txtfServerUrl setTextColor:[UIColor blackColor]];
-        
-        
-        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-        {
-            [_btnDelete setFrame:CGRectMake(40, 150, 688, 37)];
-        }
-        
-        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-        {
-            [_btnDelete setFrame:CGRectMake(40, 150, 944, 37)];
-        }
-        
-        [_btnDelete setHidden:NO];                        
-    }
-    else
-    {
-        [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
-        [_txtfServerName resignFirstResponder];
-        [_txtfServerUrl resignFirstResponder];
-        [_txtfServerName setTextColor:[UIColor grayColor]];
-        [_txtfServerUrl setTextColor:[UIColor grayColor]];         
-        [self onBtnDone];
-    }
-}
 
 - (void)onBtnDone
 {
@@ -205,17 +174,12 @@
         [alert show];
         [alert release];
     }
-    [_btnDelete setHidden:YES];  
 }
 
 - (void)onBtnDelete
 {
     [_txtfServerName resignFirstResponder];
-    [_txtfServerUrl resignFirstResponder];
-    _bEdit = !_bEdit;
-    [_btnDelete setHidden:YES];    
-    [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
-
+    [_txtfServerUrl resignFirstResponder]; 
     [_delegate deleteServerObjAtIndex:_intIndex];
 }
 

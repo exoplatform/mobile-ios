@@ -24,7 +24,6 @@
     NSString*                           _strServerName;
     NSString*                           _strServerUrl; 
     UIBarButtonItem*                    _bbtnEdit;
-    BOOL                                _bEdit;
     int                                 _intIndex;
     NSDictionary*                       _dictLocalize;
     
