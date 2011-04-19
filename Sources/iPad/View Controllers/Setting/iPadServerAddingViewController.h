@@ -24,10 +24,13 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
     NSDictionary*                       _dictLocalize;
     UIButton*                           _btnDone;
+    
+    int                                 _interfaceOrientation;
 }
 
 @property (nonatomic, retain) UITextField* _txtfServerName;
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
+@property (nonatomic, retain) UITableView* _tblvServerInfo;
 
 - (void)setDelegate:(id)delegate;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;

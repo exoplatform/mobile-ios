@@ -22,6 +22,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 @implementation iPadSettingViewController
 
 @synthesize _dictLocalize;
+@synthesize tblView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -101,7 +102,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     
     if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
-        [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
+        [tblView setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];    
 	}
     _interfaceOrientation = interfaceOrientation;
     [tblView reloadData];
@@ -254,6 +255,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     {
         fWidth = 700;
     }
+    
     float fHeight = 44.0;
     if(indexPath.section == 2)
 	{

@@ -18,6 +18,7 @@
 
 @synthesize _txtfServerName;
 @synthesize _txtfServerUrl;
+@synthesize _tblvServerInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +27,10 @@
         // Custom initialization
         _serverObj = [[ServerObj alloc] init];
         _txtfServerName = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
+        [_txtfServerName setReturnKeyType:UIReturnKeyNext];
         _txtfServerName.delegate = self;
         _txtfServerUrl = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
+        [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
         _txtfServerUrl.delegate = self;
         _intIndex = -1;
         _dictLocalize = [[NSDictionary alloc] init];
@@ -127,6 +130,7 @@
         [_btnEdit setFrame:CGRectMake(946, 5, 60, 37)];
 	}
     _interfaceOrientation = interfaceOrientation;
+    [_tblvServerInfo reloadData];
 }
 
 - (IBAction)onBtnBack:(id)sender
@@ -180,16 +184,34 @@
         [_txtfServerName resignFirstResponder];
         [_txtfServerUrl resignFirstResponder];
         [_txtfServerName setTextColor:[UIColor grayColor]];
-        [_txtfServerUrl setTextColor:[UIColor grayColor]];
-        _strServerName = [_txtfServerName text];
-        _strServerUrl = [_txtfServerUrl text];
-        [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
-        [_btnDelete setHidden:YES];                                
+        [_txtfServerUrl setTextColor:[UIColor grayColor]];         
+        [self onBtnDone];
     }
+}
+
+- (void)onBtnDone
+{
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder];
+    _strServerName = [_txtfServerName text];
+    _strServerUrl = [_txtfServerUrl text];
+    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
+    {
+        [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add an empty username or password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+    [_btnDelete setHidden:YES];  
 }
 
 - (void)onBtnDelete
 {
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder];
     _bEdit = !_bEdit;
     [_btnDelete setHidden:YES];    
     [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
@@ -229,11 +251,20 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
     // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
-    {
-        [theTextField resignFirstResponder];
-    }
+//    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
+//    {
+//        [theTextField resignFirstResponder];
+//    }
     
+    if (theTextField == _txtfServerName) 
+    {
+        [_txtfServerUrl becomeFirstResponder];
+    }
+    else
+    {    
+        [_txtfServerUrl resignFirstResponder];
+        [self onBtnDone];
+    } 
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
 
@@ -274,6 +305,18 @@
     if(cell == nil) 
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        [_txtfServerName setFrame:CGRectMake(220, 12, 500, 22)];
+        [_txtfServerUrl setFrame:CGRectMake(220, 12, 500, 22)];
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {	
+        [_txtfServerName setFrame:CGRectMake(220, 12, 750, 22)];
+        [_txtfServerUrl setFrame:CGRectMake(220, 12, 750, 22)];
     }
     
     switch (indexPath.row)

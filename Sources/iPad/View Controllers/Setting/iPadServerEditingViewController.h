@@ -36,6 +36,7 @@
 
 @property (nonatomic, retain) UITextField* _txtfServerName;
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
+@property (nonatomic, retain) UITableView* _tblvServerInfo;
 
 - (void)setDelegate:(id)delegate;
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index;
@@ -43,6 +44,7 @@
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;
 - (void)setDelegate:(id)delegate;
 - (IBAction)onBtnBack:(id)sender;
+- (void)onBtnDone;
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end

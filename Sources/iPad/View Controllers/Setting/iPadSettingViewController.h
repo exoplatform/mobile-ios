@@ -38,6 +38,7 @@
 }
 
 @property(nonatomic, retain) NSDictionary*	_dictLocalize;
+@property(nonatomic, retain) UITableView*	tblView;
 
 - (void)setDelegate:(id)delegate;
 - (IBAction)onBtnBack:(id)sender;

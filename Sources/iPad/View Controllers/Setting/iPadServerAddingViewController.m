@@ -16,6 +16,7 @@
 
 @synthesize _txtfServerName;
 @synthesize _txtfServerUrl;
+@synthesize _tblvServerInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,6 +71,8 @@
         [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
         [_btnDone setFrame:CGRectMake(946, 5, 60, 37)];
 	}
+    _interfaceOrientation = interfaceOrientation;
+    [_tblvServerInfo reloadData];
 }
 
 - (IBAction)onBtnBack:(id)sender
@@ -82,8 +85,10 @@
 - (void)viewDidLoad
 {
     _txtfServerName = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
+    [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
 	_txtfServerUrl = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
+    [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
 	_txtfServerUrl.delegate = self;
 
     _btnDone = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -112,9 +117,21 @@
 
 - (void)onBtnDone
 {
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder];
     _strServerName = [_txtfServerName text];
     _strServerUrl = [_txtfServerUrl text];
-    [_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];
+    
+    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
+    {
+        [_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add an empty username or password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
@@ -162,10 +179,20 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
     // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
+//    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
+//    {
+//        [theTextField resignFirstResponder];
+//    }
+    
+    if (theTextField == _txtfServerName) 
     {
-        [theTextField resignFirstResponder];
+        [_txtfServerUrl becomeFirstResponder];
     }
+    else
+    {    
+        [_txtfServerUrl resignFirstResponder];
+        [self onBtnDone];
+    }    
     
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
@@ -210,6 +237,18 @@
     if(cell == nil) 
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        [_txtfServerName setFrame:CGRectMake(220, 12, 500, 22)];
+        [_txtfServerUrl setFrame:CGRectMake(220, 12, 500, 22)];
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {	
+        [_txtfServerName setFrame:CGRectMake(220, 12, 750, 22)];
+        [_txtfServerUrl setFrame:CGRectMake(220, 12, 750, 22)];
     }
     
     switch (indexPath.row)

@@ -490,6 +490,22 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)onBackDelegate
 {
     [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+    if (_iPadSettingViewController) 
+    {
+        [_iPadSettingViewController.tblView reloadData];
+    }
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController._tbvlServerList reloadData];
+    }
+    if (_iPadServerAddingViewController) 
+    {
+        [_iPadServerAddingViewController._tblvServerInfo reloadData];
+    }
+    if (_iPadServerEditingViewController) 
+    {
+        [_iPadServerEditingViewController._tblvServerInfo reloadData];
+    }
 }
 
 
