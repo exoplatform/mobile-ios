@@ -24,8 +24,10 @@
         // Custom initialization
         _serverObj = [[ServerObj alloc] init];
         _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+        [_txtfServerName setReturnKeyType:UIReturnKeyNext];
         _txtfServerName.delegate = self;
         _txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+        [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
         _txtfServerUrl.delegate = self;
         _intIndex = -1;
     }
@@ -56,7 +58,7 @@
 - (void)viewDidLoad
 {
     //_bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
-    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnEdit)]; //It will be localized later
+    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnDone)]; //It will be localized later
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
     
     _btnDelete = [[UIButton alloc] init];
@@ -64,7 +66,6 @@
     [_btnDelete setBackgroundColor:[UIColor redColor]];
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
-    [_btnDelete setHidden:YES];
     [self.tableView addSubview:_btnDelete]; 
     
     [super viewDidLoad];
@@ -80,20 +81,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _bEdit = NO;
-    [_txtfServerName setEnabled:NO];
-    [_txtfServerUrl setEnabled:NO];
     [_txtfServerName setTextColor:[UIColor grayColor]];
     [_txtfServerUrl setTextColor:[UIColor grayColor]];
     [super viewWillAppear:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
-{
-    _bEdit = NO;
-    [_btnDelete setHidden:YES];
-    [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
-    
+{    
     [super viewWillDisappear:YES];
 }
 
@@ -119,39 +113,28 @@
     _intIndex = index;
 }
 
-- (void)onBbtnEdit
+- (void)onBbtnDone
 {
-    _bEdit = !_bEdit;
-    [_txtfServerName setEnabled:_bEdit];
-    [_txtfServerUrl setEnabled:_bEdit];
-
-    if (_bEdit) 
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder];
+    _strServerName = [_txtfServerName text];
+    _strServerUrl = [_txtfServerUrl text];
+    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
     {
-        [_bbtnEdit setTitle:@"Done"];
-        [_txtfServerName setTextColor:[UIColor blackColor]];
-        [_txtfServerUrl setTextColor:[UIColor blackColor]];
-
-        [_btnDelete setHidden:NO];                    
+        [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
     }
     else
     {
-        [_bbtnEdit setTitle:@"Edit"];
-        [_txtfServerName resignFirstResponder];
-        [_txtfServerUrl resignFirstResponder];
-        [_txtfServerName setTextColor:[UIColor grayColor]];
-        [_txtfServerUrl setTextColor:[UIColor grayColor]];
-        _strServerName = [_txtfServerName text];
-        _strServerUrl = [_txtfServerUrl text];
-        [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
-        [_btnDelete setHidden:YES];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add an empty username or password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
     }
 }
 
 - (void)onBtnDelete
 {
-    _bEdit = !_bEdit;
-    [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
-    [_btnDelete setHidden:YES];
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder]; 
     [_delegate deleteServerObjAtIndex:_intIndex];
 }
 
@@ -187,14 +170,25 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
     // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
+//    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
+//    {
+//        [theTextField resignFirstResponder];
+//    }
+//    
+//    _strServerName = [[_txtfServerName text] retain];
+//    _strServerUrl = [[_txtfServerUrl text] retain];
+    if (theTextField == _txtfServerName) 
     {
-        [theTextField resignFirstResponder];
+        [_txtfServerUrl becomeFirstResponder];
     }
-    
+    else
+    {    
+        [_txtfServerUrl resignFirstResponder];
+        [self onBbtnDone];
+    } 
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
-
+    
     return YES;
 }
 

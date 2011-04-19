@@ -191,15 +191,17 @@
     else
     {    
         [_txtfServerUrl resignFirstResponder];
+        _strServerName = [[_txtfServerName text] retain];
+        _strServerUrl = [[_txtfServerUrl text] retain];
         [self onBtnDone];
     }    
     
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
-    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
-    {
-        [_btnDone setEnabled:YES];
-    }
+//    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
+//    {
+//        [_btnDone setEnabled:YES];
+//    }
     return YES;
 }
 

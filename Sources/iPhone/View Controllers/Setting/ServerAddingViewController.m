@@ -47,12 +47,14 @@
 - (void)viewDidLoad
 {
     _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+    [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
 	_txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+    [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
 	_txtfServerUrl.delegate = self;
 
     _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
-    [_bbtnDone setEnabled:NO];
+    //[_bbtnDone setEnabled:NO];
     [self.navigationItem setRightBarButtonItem:_bbtnDone];
     
     [super viewDidLoad];
@@ -86,7 +88,21 @@
 
 - (void)onBbtnDone
 {
-    [_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder];
+    _strServerName = [_txtfServerName text];
+    _strServerUrl = [_txtfServerUrl text];
+    
+    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
+    {
+        [_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add a server with an empty name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
@@ -134,18 +150,31 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
     // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
+    
+    if (theTextField == _txtfServerName) 
     {
-        [theTextField resignFirstResponder];
+        [_txtfServerUrl becomeFirstResponder];
     }
+    else
+    {    
+        [_txtfServerUrl resignFirstResponder];
+        _strServerName = [[_txtfServerName text] retain];
+        _strServerUrl = [[_txtfServerUrl text] retain];
+        [self onBbtnDone];
+    }    
     
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
-    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
-    {
-        [_bbtnDone setEnabled:YES];
-    }
     return YES;
+//    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
+//    {
+//        [_bbtnDone setEnabled:YES];
+//    }
+//    else
+//    {
+//        [_bbtnDone setEnabled:NO];
+//    }
+//    return YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
