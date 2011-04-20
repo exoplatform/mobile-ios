@@ -53,6 +53,12 @@
     _dictLocalize = [_delegate getLocalization];
 }
 
+- (void)localize
+{
+    _dictLocalize = [_delegate getLocalization];
+    [_tblvServerInfo reloadData];
+}
+
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self changeOrientation:interfaceOrientation];
@@ -121,6 +127,12 @@
     [_txtfServerUrl resignFirstResponder];
     _strServerName = [_txtfServerName text];
     _strServerUrl = [_txtfServerUrl text];
+    
+    NSRange range = [_strServerUrl rangeOfString:@"http://"];
+    if(range.length == 0)
+    {
+        _strServerUrl = [NSString stringWithFormat:@"http://%@", _strServerUrl];
+    }
     
     if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
     {

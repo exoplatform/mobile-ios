@@ -93,6 +93,12 @@
     _strServerName = [_txtfServerName text];
     _strServerUrl = [_txtfServerUrl text];
     
+    NSRange range = [_strServerUrl rangeOfString:@"http://"];
+    if(range.length == 0)
+    {
+        _strServerUrl = [NSString stringWithFormat:@"http://%@", _strServerUrl];
+    }
+    
     if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
     {
         [_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];

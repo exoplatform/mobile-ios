@@ -38,6 +38,7 @@
 @property (nonatomic, retain) UITableView* _tblvServerInfo;
 
 - (void)setDelegate:(id)delegate;
+- (void)localize;
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;

@@ -17,6 +17,7 @@
 		7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */; };
 		7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C07D7501340466B0075BF76 /* ServerManagerViewController.m */; };
 		7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */; };
+		7C2F4D41135E78EC00DF1FA9 /* eXoPlatform.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */; };
 		7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C61BB133B3BAE005A365A /* Configuration.m */; };
 		7CE839A2134468A000FF5B7A /* iPadServerAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399D1344689F00FF5B7A /* iPadServerAddingViewController.m */; };
 		7CE839A3134468A000FF5B7A /* iPadServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */; };
@@ -250,6 +251,7 @@
 		7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerViewController.h; sourceTree = "<group>"; };
 		7C07D7501340466B0075BF76 /* ServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerViewController.m; sourceTree = "<group>"; };
 		7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerManagerViewController.m; sourceTree = "<group>"; };
+		7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = eXoPlatform.plist; sourceTree = SOURCE_ROOT; };
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
@@ -901,6 +903,7 @@
 		894733BB13370D7C00B0AD11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */,
 				894733BC13370D7C00B0AD11 /* HowToUse */,
 				894733BD13370D7C00B0AD11 /* Images */,
 				894733BE13370D7C00B0AD11 /* Localized files */,
@@ -1578,6 +1581,7 @@
 				7CE839A913446DAB00FF5B7A /* iPadServerEditingViewController.xib in Resources */,
 				7CE839AA13446DAB00FF5B7A /* iPadServerManagerViewController.xib in Resources */,
 				7CE839AF1344873500FF5B7A /* iPadSettingViewController.xib in Resources */,
+				7C2F4D41135E78EC00DF1FA9 /* eXoPlatform.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1675,7 +1679,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1694,6 +1700,8 @@
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/Mac\"",
 				);
 				PRODUCT_NAME = "eXo Platform";
+				PROVISIONING_PROFILE = "8F094653-6EC7-4BF2-8BE9-C7CB84034377";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F094653-6EC7-4BF2-8BE9-C7CB84034377";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1702,7 +1710,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -1724,6 +1734,8 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "eXo Platform";
+				PROVISIONING_PROFILE = "8F094653-6EC7-4BF2-8BE9-C7CB84034377";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F094653-6EC7-4BF2-8BE9-C7CB84034377";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1733,6 +1745,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Hoai Son (LP5GLK4W5H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1740,7 +1754,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8A39A736-7EF6-4980-B31F-AC976A4EC92E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "454F6663-6E53-4A55-B28C-DF1656D341DB";
 				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1750,7 +1764,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/eXo/01-Products/01-Mobile/00_SRC/mobile/trunk/exo-mobile-ios/Shared/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -1772,6 +1788,8 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "eXo Platform";
+				PROVISIONING_PROFILE = "8F094653-6EC7-4BF2-8BE9-C7CB84034377";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F094653-6EC7-4BF2-8BE9-C7CB84034377";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1781,7 +1799,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Hoai Son (LP5GLK4W5H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1798,14 +1818,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Hoai Son (LP5GLK4W5H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tran Hoai Son (ZPTWLE2E5E)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "454F6663-6E53-4A55-B28C-DF1656D341DB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F094653-6EC7-4BF2-8BE9-C7CB84034377";
 				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

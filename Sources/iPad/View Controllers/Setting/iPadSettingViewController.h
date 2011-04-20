@@ -41,6 +41,7 @@
 @property(nonatomic, retain) UITableView*	tblView;
 
 - (void)setDelegate:(id)delegate;
+- (void)localize;
 - (IBAction)onBtnBack:(id)sender;
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;

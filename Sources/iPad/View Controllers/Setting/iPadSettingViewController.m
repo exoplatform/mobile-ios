@@ -38,8 +38,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 		_selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-		bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] intValue];
-		bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] intValue];
+        bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+		bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 		
 		serverNameStr = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN]; 
         
@@ -118,6 +118,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
     _dictLocalize = [_delegate getLocalization];
 }
 
+- (void)localize
+{
+    _dictLocalize = [_delegate getLocalization];
+    [tblView reloadData];
+}
+
 - (IBAction)onBtnBack:(id)sender
 {
     [_delegate onBackDelegate];
@@ -162,10 +168,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
 	NSString *str = @"NO";
 	bRememberMe = rememberMe.on;
-	if(bAutoLogin)
+	if(bRememberMe)
+    {
 		str = @"YES";
+    }
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
+	[userDefaults setObject:str forKey:EXO_REMEMBER_ME];
 }
 
 - (void)autoLoginAction 
@@ -173,7 +181,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	NSString *str = @"NO";
 	bAutoLogin = autoLogin.on;
 	if(bAutoLogin)
+    {
 		str = @"YES";
+    }
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:str forKey:EXO_AUTO_LOGIN];
 }
@@ -450,7 +460,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		[userDefaults setObject:[NSString stringWithFormat:@"%d", autoLogin.on] forKey:EXO_AUTO_LOGIN];
 		[userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedLanguage] forKey:EXO_PREFERENCE_LANGUAGE];
 		
-		[self viewWillAppear:YES];
+		[_delegate setSelectedLanguage:_selectedLanguage];
 	}
 	else if(indexPath.section == 2)
 	{

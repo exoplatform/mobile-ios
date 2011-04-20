@@ -113,6 +113,12 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     _dictLocalize = [_delegate getLocalization];
 }
 
+- (void)localize
+{
+    _dictLocalize = [_delegate getLocalization];
+    [_tbvlServerList reloadData];
+}
+
 - (IBAction)onBtnBack:(id)sender
 {
     [_delegate onBackDelegate];

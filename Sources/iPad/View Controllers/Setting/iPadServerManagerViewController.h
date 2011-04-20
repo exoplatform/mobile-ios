@@ -31,6 +31,7 @@
 - (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
 - (void)deleteServerObjAtIndex:(int)index;
 - (void)setDelegate:(id)delegate;
+- (void)localize;
 - (IBAction)onBtnBack:(id)sender;
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;

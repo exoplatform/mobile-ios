@@ -201,6 +201,22 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[_settingViewController localize];
     */ 
     [_lbSigningInStatus setText:[_dictLocalize objectForKey:@"SigningIn"]];
+    if (_iPadSettingViewController) 
+    {
+        [_iPadSettingViewController localize];
+    }
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController localize];
+    }
+    if (_iPadServerAddingViewController) 
+    {
+        [_iPadServerAddingViewController localize];
+    }
+    if (_iPadServerEditingViewController) 
+    {
+        [_iPadServerEditingViewController localize];
+    }
 }
 
 - (void)setSelectedLanguage:(int)languageId
@@ -217,6 +233,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
 	return _dictLocalize;
 }
+
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

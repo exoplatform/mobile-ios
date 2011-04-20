@@ -33,6 +33,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 @property (nonatomic, retain) UITableView* _tblvServerInfo;
 
 - (void)setDelegate:(id)delegate;
+- (void)localize;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;

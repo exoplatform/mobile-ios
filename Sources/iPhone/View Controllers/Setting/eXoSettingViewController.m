@@ -38,8 +38,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 		_selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-		bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] intValue];
-		bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] intValue];
+		bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+		bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 		
 		serverNameStr = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN]; 
 		
@@ -118,10 +118,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
 	NSString *str = @"NO";
 	bRememberMe = rememberMe.on;
-	if(bAutoLogin)
+	if(bRememberMe)
+    {
 		str = @"YES";
+    }
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:@"NO" forKey:EXO_REMEMBER_ME];
+	[userDefaults setObject:str forKey:EXO_REMEMBER_ME];
 }
 
 - (void)autoLoginAction 
@@ -129,7 +131,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	NSString *str = @"NO";
 	bAutoLogin = autoLogin.on;
 	if(bAutoLogin)
+    {
 		str = @"YES";
+    }
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:str forKey:EXO_AUTO_LOGIN];
 }

@@ -119,6 +119,13 @@
     [_txtfServerUrl resignFirstResponder];
     _strServerName = [_txtfServerName text];
     _strServerUrl = [_txtfServerUrl text];
+    
+    NSRange range = [_strServerUrl rangeOfString:@"http://"];
+    if(range.length == 0)
+    {
+        _strServerUrl = [NSString stringWithFormat:@"http://%@", _strServerUrl];
+    }
+    
     if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
     {
         [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
