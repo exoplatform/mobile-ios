@@ -282,13 +282,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>38</integer>
-									<integer>35</integer>
-									<integer>0</integer>
+									<integer>66</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {343, 664}}</string>
+							<string>{{0, 526}, {343, 664}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -325,7 +323,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DataProcess.m</string>
+								<string>eXoApplicationsViewController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -333,11 +331,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DataProcess.m</string>
+										<string>eXoApplicationsViewController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>89DFD80D1327765E00D056C0</string>
+										<string>89DFD812132797D600D056C0</string>
 										<key>history</key>
 										<array>
 											<string>89C9ED6D12DEF29800910C9C</string>
@@ -468,13 +466,13 @@
 											<string>89DFD8031327765E00D056C0</string>
 											<string>89DFD8041327765E00D056C0</string>
 											<string>89DFD8051327765E00D056C0</string>
-											<string>89DFD8061327765E00D056C0</string>
 											<string>89DFD8071327765E00D056C0</string>
 											<string>89DFD8081327765E00D056C0</string>
 											<string>89DFD8091327765E00D056C0</string>
 											<string>89DFD80A1327765E00D056C0</string>
 											<string>89DFD80B1327765E00D056C0</string>
-											<string>89DFD80C1327765E00D056C0</string>
+											<string>89DFD810132797D600D056C0</string>
+											<string>89DFD811132797D600D056C0</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
