@@ -99,6 +99,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		[_txtfUsername setText:@""];
 		[_txtfPassword setText:@""];
 	}
+    [_tbvlServerList reloadData];
 }
 	
 
@@ -322,7 +323,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)loginSuccess
 {
 	AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
-	[appDelegate changeToActivityStreamsViewController:_dictLocalize];
+	//[appDelegate changeToActivityStreamsViewController:_dictLocalize];
+    [appDelegate showHomeViewController];
 	
 	endThread = nil;
     [_indicator stopAnimating];

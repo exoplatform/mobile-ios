@@ -525,6 +525,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     {
         [_iPadServerEditingViewController._tblvServerInfo reloadData];
     }
+    [_tbvlServerList reloadData];
 }
 
 

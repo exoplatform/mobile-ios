@@ -16,6 +16,8 @@
 @class eXoSplashViewController;
 @class eXoSettingViewController;
 
+@class HomeViewController_iPhone;
+
 //App delegate
 @interface AppDelegate_iPhone : eXoMobileAppDelegate <UIAlertViewDelegate> {
     IBOutlet UIWindow*					window;
@@ -29,6 +31,8 @@
 	eXoWebViewController*				webViewController;	//Display help or file content
 	eXoSplashViewController*			_splash;	//Splash view
 	
+    HomeViewController_iPhone*          _homeViewController;
+    
 	
 	int									_selectedLanguage;	//Language index
 	NSDictionary*						_dictLocalize;	//Language dictionary
@@ -46,6 +50,7 @@
 -(void)login;	//Login action
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic;	//Show main view of application
 - (void)changeToGadgetsViewController;	//Display gadget view controller
+- (void)showHomeViewController;
 
 @end
 

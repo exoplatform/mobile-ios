@@ -23,6 +23,17 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 @synthesize _dictLocalize;
 
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) 
+	{
+        int a = 1;
+    }
+    return self;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style delegate:(eXoApplicationsViewController *)delegate
 {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -48,6 +59,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
         
         _arrServerList = [[NSMutableArray alloc] init];
         _intSelectedServer = -1;
+        
+        self.title = @"Settings";
     }
     return self;
 }

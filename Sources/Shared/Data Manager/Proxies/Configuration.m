@@ -53,7 +53,6 @@
 
 - (NSMutableArray*)getServerList
 {
-    NSData* data;
     NSError* error;
     NSMutableArray* arrSystemServerList;
     NSMutableArray* arrUserServerList;

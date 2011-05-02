@@ -16,6 +16,8 @@
 #import "defines.h"
 #import "Connection.h"
 
+#import "HomeViewController_iPhone.h"
+
 @implementation AppDelegate_iPhone
 
 @synthesize window;
@@ -170,6 +172,35 @@
 	
 }
 
+- (void)showHomeViewController
+{
+    HomeViewController_iPhone* homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *applicationView = [[UINavigationController alloc] 
+											   initWithRootViewController:homeViewController_iPhone];
+	applicationView.navigationBar.tintColor = [UIColor blackColor];
+
+    [window addSubview:applicationView.view];
+    
+//    TTNavigator* navigator = [TTNavigator navigator];
+//    navigator.supportsShakeToReload = YES;
+//    navigator.persistenceMode = TTNavigatorPersistenceModeAll;
+//    
+//    TTURLMap* map = navigator.URLMap;
+//    [map from:@"*" toViewController:[HomeViewController_iPhone class]];
+//    
+//    [map from: @"tt://homeview" toSharedViewController: [HomeViewController_iPhone class]];
+//    [map from: @"tt://homeview" 
+//       parent: @"tt://homeview"
+//toViewController: [HomeViewController_iPhone class]
+//     selector: nil
+//   transition: 0];
+//
+//    if (![navigator restoreViewControllers]) 
+//    {
+//        [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://homeview"]];
+//    }
+}
+
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -220,7 +251,7 @@
 - (void)changeToGadgetsViewController
 {
 	// view for loading gadgets
-	[navigationController pushViewController:gadgetsViewController animated:NO];	
+	//[navigationController pushViewController:gadgetsViewController animated:NO];	
 }
 
 
