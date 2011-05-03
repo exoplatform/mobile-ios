@@ -47,7 +47,7 @@
 @property (nonatomic, retain) IBOutlet eXoSettingViewController*	settingViewController;
 @property (nonatomic, retain) eXoWebViewController* webViewController;
 
--(void)login;	//Login action
+- (void)login;	//Login action
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic;	//Show main view of application
 - (void)changeToGadgetsViewController;	//Display gadget view controller
 - (void)showHomeViewController;
