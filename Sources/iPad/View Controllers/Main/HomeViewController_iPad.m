@@ -105,10 +105,12 @@
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
         [_launcherView setFrame:CGRectMake(0, 0, 768, 960)];
+        _launcherView.columnCount = 4;
 	}
 	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{
         [_launcherView setFrame:CGRectMake(0, 0, 1024, 704)];
+        _launcherView.columnCount = 5;
 	}
 }
 
