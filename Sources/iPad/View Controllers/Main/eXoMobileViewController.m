@@ -11,6 +11,7 @@
 #import "MainViewController.h"
 #import "defines.h"
 #import "Connection.h"
+#import "HomeViewController_iPad.h"
 
 @implementation eXoMobileViewController
 
@@ -59,11 +60,12 @@
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
+	_interfaceOrientation = interfaceOrientation;
 	CGRect rect;
 
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
-		rect = CGRectMake(0, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_LSCP_IPAD);
+		rect = CGRectMake(0, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD);
 	}
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{			
@@ -73,8 +75,17 @@
 	[[_loginViewController view] setFrame:rect];
 	[_loginViewController changeOrientation:interfaceOrientation];
 	
-	[[_mainViewController view] setFrame:rect];
-	[_mainViewController changeOrientation:interfaceOrientation];
+//	[[_mainViewController view] setFrame:rect];
+//	[_mainViewController changeOrientation:interfaceOrientation];
+    
+    if (_homeViewController_iPad) 
+    {
+        //[_homeViewController_iPad.navigationController.view setFrame:rect];
+        [[_homeViewController_iPad view] setFrame:rect];
+        [_homeViewController_iPad changeOrientation:interfaceOrientation];
+    }
+
+    
     return YES;
 }
 
@@ -93,6 +104,10 @@
 
 - (void)dealloc 
 {
+    if (_homeViewController_iPad) 
+    {
+        [_homeViewController_iPad release];
+    }
     [super dealloc];
 }
 
@@ -150,6 +165,48 @@
 	[_mainViewController loadGadgets];
 	[_mainViewController onHomeBtn:nil];
 	[[self view] addSubview:[_mainViewController view]];
+}
+
+- (void)showHomeViewController
+{
+    CGRect rect;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+		rect = CGRectMake(0, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD);
+	}
+	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{			
+		rect = CGRectMake(0, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD);
+	}
+    
+    if (_homeViewController_iPad == nil) 
+    {
+        _homeViewController_iPad = [[HomeViewController_iPad alloc] initWithNibName:nil bundle:nil];
+        [_homeViewController_iPad changeOrientation:_interfaceOrientation];
+        [_homeViewController_iPad setDelegate:self];
+    }
+    
+    if (_navigationController == nil) 
+    {
+        _navigationController = [[UINavigationController alloc] 
+                                                   initWithRootViewController:_homeViewController_iPad];
+        _navigationController.navigationBar.tintColor = [UIColor blackColor];
+        
+        [_navigationController.view setFrame:rect];
+    }
+    [[self view] addSubview:_navigationController.view];    
+    
+//    UINavigationController *applicationView = [[UINavigationController alloc] 
+//											   initWithRootViewController:_homeViewController_iPad];
+//	applicationView.navigationBar.tintColor = [UIColor blackColor];
+//    
+//    [applicationView.view setFrame:rect];
+//    [[self view] addSubview:applicationView.view];
+}
+
+- (void)onBtnSigtOutDelegate
+{
+    [_navigationController.view removeFromSuperview];
 }
 
 @end

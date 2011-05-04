@@ -12,6 +12,8 @@
 @class MainViewController;
 @class Connection;
 
+@class HomeViewController_iPad;
+
 //Control login page
 @interface eXoMobileViewController : UIViewController {
 
@@ -20,6 +22,10 @@
 	MainViewController*					_mainViewController;	//Detain view of splitview
 	int									_intSelectedLanguage;	//Language index
 	NSDictionary*						_dictLocalize;	//Language dictionary
+    
+    HomeViewController_iPad*            _homeViewController_iPad;
+    UINavigationController*             _navigationController;
+    int                                 _interfaceOrientation;
 }
 
 @property (nonatomic, retain) Connection* _connection;
@@ -31,5 +37,7 @@
 - (Connection*)getConnection;	//Get connection
 - (void)showLoginViewController;	//Show login page
 - (void)showMainViewController; //Show main view
+- (void)showHomeViewController;
+- (void)onBtnSigtOutDelegate;
 @end
 

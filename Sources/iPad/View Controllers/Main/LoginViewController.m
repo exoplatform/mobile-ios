@@ -356,7 +356,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
 
-	[_delegate showMainViewController];
+	//[_delegate showMainViewController];
+    [_delegate showHomeViewController];
 }
 
 - (void)signInFailed
