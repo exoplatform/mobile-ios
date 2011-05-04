@@ -10,7 +10,9 @@
 #import <Three20/Three20.h>
 
 @interface HomeViewController_iPhone : TTViewController <TTLauncherViewDelegate> {
-    TTLauncherView* _launcherView;
+    id                  _delegate;
+    TTLauncherView*     _launcherView;
 }
 
+- (void)setDelegate:(id)delegate;
 @end

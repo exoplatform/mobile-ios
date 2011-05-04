@@ -72,6 +72,10 @@
                                                                                        URL:@"tt://setting" canDelete:YES] autorelease],nil], nil];
     [self.view addSubview:_launcherView];
     
+    UIBarButtonItem* bbtnSignOut = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnSignOut)];
+    self.navigationItem.leftBarButtonItem = bbtnSignOut;
+    [bbtnSignOut release];
+    
 //    TTLauncherItem* item = [_launcherView itemWithURL:@"fb://item3"];
 //    item.badgeNumber = 4;
 //    
@@ -88,6 +92,10 @@
 //    item.badgeNumber = 300;
 }
 
+- (void)setDelegate:(id)delegate
+{
+    _delegate = delegate;
+}
 
 // TTLauncherViewDelegate
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item 
@@ -159,5 +167,10 @@
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher 
 {
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
+}
+
+- (void)onBbtnSignOut
+{
+    [_delegate onBtnSigtOutDelegate];
 }
 @end
