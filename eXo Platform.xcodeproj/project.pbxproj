@@ -27,6 +27,11 @@
 		7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C07D7501340466B0075BF76 /* ServerManagerViewController.m */; };
 		7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */; };
 		7C2F4D41135E78EC00DF1FA9 /* eXoPlatform.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */; };
+		7C3BD1A01370FE1700380828 /* ActivityStreamsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */; };
+		7C3BD1A11370FE1700380828 /* ChatViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1991370FE1700380828 /* ChatViewController_iPad.m */; };
+		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; };
+		7C3BD1A31370FE1700380828 /* FilesViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */; };
+		7C3BD1A41370FE1700380828 /* HomeViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */; };
 		7C4C80FC1366863A001A3B39 /* FilesViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4C80FB1366863A001A3B39 /* FilesViewController_iPhone.m */; };
 		7C50D4C7136F187B0011280D /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C1136F187B0011280D /* DDXMLDocument.m */; };
 		7C50D4C8136F187B0011280D /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C3136F187B0011280D /* DDXMLElement.m */; };
@@ -425,6 +430,16 @@
 		7C07D7501340466B0075BF76 /* ServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerViewController.m; sourceTree = "<group>"; };
 		7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerManagerViewController.m; sourceTree = "<group>"; };
 		7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = eXoPlatform.plist; sourceTree = SOURCE_ROOT; };
+		7C3BD1961370FE1700380828 /* ActivityStreamsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamsViewController_iPad.h; sourceTree = "<group>"; };
+		7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamsViewController_iPad.m; sourceTree = "<group>"; };
+		7C3BD1981370FE1700380828 /* ChatViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController_iPad.h; sourceTree = "<group>"; };
+		7C3BD1991370FE1700380828 /* ChatViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController_iPad.m; sourceTree = "<group>"; };
+		7C3BD19A1370FE1700380828 /* DashboardViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController_iPad.h; sourceTree = "<group>"; };
+		7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController_iPad.m; sourceTree = "<group>"; };
+		7C3BD19C1370FE1700380828 /* FilesViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController_iPad.h; sourceTree = "<group>"; };
+		7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController_iPad.m; sourceTree = "<group>"; };
+		7C3BD19E1370FE1700380828 /* HomeViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController_iPad.h; sourceTree = "<group>"; };
+		7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController_iPad.m; sourceTree = "<group>"; };
 		7C4C80FA1366863A001A3B39 /* FilesViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController_iPhone.h; sourceTree = "<group>"; };
 		7C4C80FB1366863A001A3B39 /* FilesViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController_iPhone.m; sourceTree = "<group>"; };
 		7C50D4BF136F187B0011280D /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXML.h; path = "Sources/Shared/Components/3-part/KissXML/DDXML.h"; sourceTree = SOURCE_ROOT; };
@@ -1092,6 +1107,16 @@
 				8947336313370B1900B0AD11 /* OptionsViewController.m */,
 				8947336413370B1900B0AD11 /* SupportViewController.h */,
 				8947336513370B1900B0AD11 /* SupportViewController.m */,
+				7C3BD1961370FE1700380828 /* ActivityStreamsViewController_iPad.h */,
+				7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */,
+				7C3BD1981370FE1700380828 /* ChatViewController_iPad.h */,
+				7C3BD1991370FE1700380828 /* ChatViewController_iPad.m */,
+				7C3BD19A1370FE1700380828 /* DashboardViewController_iPad.h */,
+				7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */,
+				7C3BD19C1370FE1700380828 /* FilesViewController_iPad.h */,
+				7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */,
+				7C3BD19E1370FE1700380828 /* HomeViewController_iPad.h */,
+				7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2087,6 +2112,11 @@
 				7C50D4C8136F187B0011280D /* DDXMLElement.m in Sources */,
 				7C50D4C9136F187B0011280D /* DDXMLNode.m in Sources */,
 				7C50D4CC136F19000011280D /* NSStringAdditions.m in Sources */,
+				7C3BD1A01370FE1700380828 /* ActivityStreamsViewController_iPad.m in Sources */,
+				7C3BD1A11370FE1700380828 /* ChatViewController_iPad.m in Sources */,
+				7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */,
+				7C3BD1A31370FE1700380828 /* FilesViewController_iPad.m in Sources */,
+				7C3BD1A41370FE1700380828 /* HomeViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
