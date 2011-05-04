@@ -110,7 +110,8 @@
 	[_splash.view addSubview:_splash.label];
 	[_splash.view addSubview:_splash.autoLoginImg];
 }
--(void)login 
+
+- (void)login 
 {
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
@@ -174,31 +175,26 @@
 
 - (void)showHomeViewController
 {
-    HomeViewController_iPhone* homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
-    UINavigationController *applicationView = [[UINavigationController alloc] 
-											   initWithRootViewController:homeViewController_iPhone];
-	applicationView.navigationBar.tintColor = [UIColor blackColor];
-
-    [window addSubview:applicationView.view];
+//    _homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
+//    UINavigationController* applicationView = [[UINavigationController alloc] 
+//											   initWithRootViewController:_homeViewController_iPhone];
+//	applicationView.navigationBar.tintColor = [UIColor blackColor];
+//    
+//    [window addSubview:applicationView.view];
     
-//    TTNavigator* navigator = [TTNavigator navigator];
-//    navigator.supportsShakeToReload = YES;
-//    navigator.persistenceMode = TTNavigatorPersistenceModeAll;
-//    
-//    TTURLMap* map = navigator.URLMap;
-//    [map from:@"*" toViewController:[HomeViewController_iPhone class]];
-//    
-//    [map from: @"tt://homeview" toSharedViewController: [HomeViewController_iPhone class]];
-//    [map from: @"tt://homeview" 
-//       parent: @"tt://homeview"
-//toViewController: [HomeViewController_iPhone class]
-//     selector: nil
-//   transition: 0];
-//
-//    if (![navigator restoreViewControllers]) 
-//    {
-//        [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://homeview"]];
-//    }
+    if (_homeViewController_iPhone == nil) 
+    {
+        _homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
+        [_homeViewController_iPhone setDelegate:self];
+    }
+    
+    if (_navigationController == nil) 
+    {
+        _navigationController = [[UINavigationController alloc] 
+                                 initWithRootViewController:_homeViewController_iPhone];
+        _navigationController.navigationBar.tintColor = [UIColor blackColor];
+    }
+    [navigationController.view addSubview:_navigationController.view];
 }
 
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic
@@ -287,10 +283,25 @@
 	[gadgetsViewController release];
     gadgetsViewController = nil;
     
+    if (_homeViewController_iPhone)
+    {
+        [_homeViewController_iPhone release];
+    }
+    
+    if (_navigationController)
+    {
+        [_navigationController release];
+    }
+    
     [window release];
     window = nil;
     
     [super dealloc];
+}
+
+- (void)onBtnSigtOutDelegate
+{
+    [_navigationController.view removeFromSuperview];
 }
 
 @end

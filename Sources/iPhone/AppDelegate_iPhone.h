@@ -31,8 +31,8 @@
 	eXoWebViewController*				webViewController;	//Display help or file content
 	eXoSplashViewController*			_splash;	//Splash view
 	
-    HomeViewController_iPhone*          _homeViewController;
-    
+    HomeViewController_iPhone*          _homeViewController_iPhone;
+    UINavigationController*             _navigationController;
 	
 	int									_selectedLanguage;	//Language index
 	NSDictionary*						_dictLocalize;	//Language dictionary
@@ -51,6 +51,6 @@
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic;	//Show main view of application
 - (void)changeToGadgetsViewController;	//Display gadget view controller
 - (void)showHomeViewController;
-
+- (void)onBtnSigtOutDelegate;
 @end
 
