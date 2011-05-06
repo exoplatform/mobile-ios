@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Three20/Three20.h>
+#import "FilesViewController.h"
 
 @interface FilesViewController_iPad : TTViewController {
-
+    FilesViewController*					_filesViewController;
 }
 
 @end

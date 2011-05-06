@@ -309,7 +309,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	UIAlertView* alert;
 	
 	NSString* strResult = [[_delegate _connection] sendAuthenticateRequest:_strHost username:_strUsername password:_strPassword];
-	
+	//NSString* strResult = @"YES";
 	if(strResult == @"YES")
 	{
 		[self performSelectorOnMainThread:@selector(signInSuccesfully) withObject:nil waitUntilDone:NO];  

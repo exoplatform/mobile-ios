@@ -201,8 +201,9 @@ NSString* imageStr(NSString* fileName, NSString* type)
 		_tblvUsers = [[UITableView alloc] init];
 		[_tblvUsers setDelegate:self];
 		[_tblvUsers setDataSource:self];
+        [_tblvUsers setFrame:CGRectMake(0, 0, 768, 960)];
 		[[self view] addSubview:_tblvUsers];	
-	}
+    }
 	return self;
 }
 
@@ -557,8 +558,8 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	
 	if([_xmppClient isAuthenticated])
 	{
-		AppContainerViewController *appVcl = [_delegate getAppContainerViewController];
-		[[appVcl getTableViewAppList] reloadData];
+		//AppContainerViewController *appVcl = [_delegate getAppContainerViewController];
+		//[[appVcl getTableViewAppList] reloadData];
 	}
 	
 	NSArray *arrTmp = [_xmppClient sortedUsersByAvailabilityName];

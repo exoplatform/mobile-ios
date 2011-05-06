@@ -202,12 +202,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	_arrDicts = [[NSMutableArray alloc] init];
 	[_arrDicts removeAllObjects];
 	_arrDicts = arrDriveContent;
-	_delegate = delegate;
-	_delegate.navigationItem.title = [_delegate._fileNameStackStr lastPathComponent];
+	//_delegate = delegate;
+	//_delegate.navigationItem.title = [_delegate._fileNameStackStr lastPathComponent];
 	[_tblvFilesGrp setEditing:NO];
 	[_tblvFilesGrp reloadData];
 
-	_delegate.navigationItem.rightBarButtonItem = _delegate._btnFileAcion;
+	//_delegate.navigationItem.rightBarButtonItem = _delegate._btnFileAcion;
 	
 	if([_arrDicts count] > 0)
 		imgViewEmptyPage.hidden = YES;

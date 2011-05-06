@@ -324,9 +324,9 @@ NSString* fileType(NSString *fileName)
 
 - (void)localize
 {
-	_dictLocalize = [_delegate getLocalization];
-	_intSelectedLanguage = [_delegate getSelectedLanguage];
-	[_fileActionsViewController localize];
+//	_dictLocalize = [_delegate getLocalization];
+//	_intSelectedLanguage = [_delegate getSelectedLanguage];
+//	[_fileActionsViewController localize];
 }
 
 - (void)setFileContentDisplayView:(GadgetDisplayController*)fileContentDisplayView
@@ -399,8 +399,10 @@ NSString* fileType(NSString *fileName)
 
 - (NSMutableArray*)getPersonalDriveContent:(eXoFile *)file
 {
-	
-	NSData* dataReply = [[_delegate getConnection] sendRequestWithAuthorization:file._urlStr];
+	Connection* con = [[Connection alloc] init];
+    
+    NSData* dataReply = [con sendRequestWithAuthorization:file._urlStr];
+	//NSData* dataReply = [[_delegate getConnection] sendRequestWithAuthorization:file._urlStr];
 	NSString* strData = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
 	
 	NSMutableArray* arrDicts = [[NSMutableArray alloc] init];

@@ -42,6 +42,28 @@
 - (void)loadView 
 {
     [super loadView];
+//    [super loadView];
+//    _filesViewController = [[FilesViewController alloc] initWithNibName:@"FilesViewController" bundle:nil];
+//    [_filesViewController setDelegate:self];
+//    [_filesViewController initWithRootDirectory];
+//	[_filesViewController getPersonalDriveContent:_filesViewController._currenteXoFile];
+//    [self.view addSubview:_filesViewController.view];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        [self.view setFrame:CGRectMake(0, 0, 768, 960)];
+	}
+	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{
+        [self.view setFrame:CGRectMake(0, 0, 1024, 704)];
+	}
+    
+    [self didRotateFromInterfaceOrientation:interfaceOrientation];
+    return YES;
 }
 
 @end

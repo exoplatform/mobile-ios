@@ -28,6 +28,8 @@
 #import "eXoSettingViewController.h"
 
 #import "eXoMobileViewController.h"
+#import "FilesViewController.h"
+#import "XMPPUser.h"
 
 @implementation HomeViewController_iPad
 
@@ -77,21 +79,6 @@
     [self.navigationItem setLeftBarButtonItem:_bbtnSignOut];
     
     [self changeOrientation:_interfaceOrientation];
-    
-//    TTLauncherItem* item = [_launcherView itemWithURL:@"fb://item3"];
-//    item.badgeNumber = 4;
-//    
-//    item = [_launcherView itemWithURL:@"fb://item4"];
-//    item.badgeNumber = 0;
-//    
-//    item = [_launcherView itemWithURL:@"fb://item5"];
-//    item.badgeValue = @"100!";
-//    
-//    item = [_launcherView itemWithURL:@"fb://item6"];
-//    item.badgeValue = @"Off";
-//    
-//    item = [_launcherView itemWithURL:@"fb://item7"];
-//    item.badgeNumber = 300;
 }
 
 - (void)setDelegate:(id)delegate
@@ -106,12 +93,17 @@
 	{
         [_launcherView setFrame:CGRectMake(0, 0, 768, 960)];
         _launcherView.columnCount = 4;
+        [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 768, 960)];
+        [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 768, 960)];
 	}
 	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{
         [_launcherView setFrame:CGRectMake(0, 0, 1024, 704)];
         _launcherView.columnCount = 5;
+        [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 1024, 704)];
+        [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 1024, 704)];
 	}
+    
 }
 
 
@@ -137,20 +129,51 @@
     
     if ([item.title isEqualToString:@"Chat"]) 
     {
-        [map from: item.URL
-           parent: @"tt://homeview"
- toViewController: [ChatViewController_iPad class]
-         selector: nil
-       transition: 0];
+        if (_messengerViewController == nil) 
+        {
+            _messengerViewController = [[MessengerViewController alloc] initWithNibName:@"MessengerViewController" bundle:nil];
+            [_messengerViewController setDelegate:self];
+            
+        }
+        
+        if (_nvMessengerViewController == nil) 
+        {
+            _nvMessengerViewController = [[UINavigationController alloc] initWithRootViewController:_messengerViewController];
+        }
+        
+        [_messengerViewController initMessengerParameters];
+        [_messengerViewController._tblvUsers reloadData];
+        //[self.navigationController.view addSubview:_nvMessengerViewController.view];
+        
+        if ([self.navigationController.viewControllers containsObject:_messengerViewController])
+        {
+            [self.navigationController popToViewController:_messengerViewController animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:_messengerViewController animated:YES];
+        }
+    
     }
     
     if ([item.title isEqualToString:@"Documents"]) 
     {
-        [map from: item.URL
-           parent: @"tt://homeview"
- toViewController: [FilesViewController_iPhone class]
-         selector: nil
-       transition: 0];
+        if (_filesViewController == nil) 
+        {
+            _filesViewController = [[FilesViewController alloc] initWithNibName:@"FilesViewController" bundle:nil];
+            [_filesViewController setDelegate:self];
+            [_filesViewController initWithRootDirectory];
+            [_filesViewController getPersonalDriveContent:_filesViewController._currenteXoFile];
+        }
+        
+        if ([self.navigationController.viewControllers containsObject:_filesViewController])
+        {
+            [self.navigationController popToViewController:_filesViewController animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:_filesViewController animated:YES];
+        }
     }
     
     if ([item.title isEqualToString:@"Dashboard"]) 
@@ -172,7 +195,7 @@
        transition: 0];
     }
     
-    TTOpenURLFromView(item.URL, self.view);
+    //TTOpenURLFromView(item.URL, self.view);
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher 
@@ -191,4 +214,204 @@
 {
     [_delegate onBtnSigtOutDelegate];
 }
+
+- (void)setCurrentViewIndex:(short)index
+{
+	_currentViewIndex = index;
+}
+
+- (short)getCurrentViewIndex
+{
+	return _currentViewIndex;
+}
+
+- (int)getCurrentChatUserIndex
+{
+	return [_messengerViewController getCurrentChatUserIndex];
+}
+
+- (void)setCurrentChatUserIndex:(int)index
+{
+	[_messengerViewController setCurrentChatUserIndex:index];
+}
+
+- (void)setLeftBarButtonForNavigationBar;
+{
+	if(_currentViewIndex != 3)
+	{
+		[self.view addSubview:_imgViewNewMessage];
+		return;
+	}
+    
+	NSArray *arrChatUsers = [_messengerViewController getArrChatUsers];
+	MessengerUser* messengerUser;
+	
+	for(int i = 0; i < [arrChatUsers count]; i++)
+	{
+		messengerUser = [arrChatUsers objectAtIndex:i];
+		if(messengerUser._intMessageCount > 0)
+		{
+			[self.view addSubview:_imgViewNewMessage];
+			return;
+		}
+	}
+    
+	[_imgViewNewMessage removeFromSuperview];
+}
+
+- (void)showChatWindowWithUser:(MessengerUser*)messengerUser andXMPPClient:(XMPPClient*)xmppClient
+{
+    if (_chatWindowViewController == nil) 
+    {
+        _chatWindowViewController = [[ChatWindowViewController alloc] initWithNibName:@"ChatWindowViewController" bundle:nil];
+        [_chatWindowViewController setDelegate:self];
+    }
+    
+	[_chatWindowViewController initChatWindowWithUser:messengerUser andXMPPClient:xmppClient];
+	
+	if([_nvMessengerViewController.viewControllers containsObject:_chatWindowViewController])
+	{
+		[_nvMessengerViewController popToViewController:_chatWindowViewController animated:YES];
+	}
+	else 
+	{
+		[_nvMessengerViewController pushViewController:_chatWindowViewController animated:YES];
+		//[self showChatToolBar:NO];
+	}
+}
+
+- (MessengerViewController*)getMessengerViewController
+{
+	return _messengerViewController;
+}
+
+- (void)addChatButton:(XMPPUser *)user userIndex:(int)index
+{
+    /*
+	BOOL add = YES;
+	for(int i = 1; i < [_liveChatArr count]; i++)
+	{
+		UIBarButtonItem *tmp = [_liveChatArr objectAtIndex:i];
+		if(tmp.tag == index)
+		{
+			add = NO;
+			break;
+		}
+        
+	}
+	if(add)
+	{
+		UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(2, 5, 120, 35)];
+		[btn addTarget:self action:@selector(chatWindows:) forControlEvents:UIControlEventTouchUpInside];
+		NSString* tmpStr = [user address];
+		NSRange r = [tmpStr rangeOfString:@"@"];
+		if (r.length > 0) 
+		{
+			tmpStr = [tmpStr substringToIndex:r.location];
+		}
+		[btn setTitle:tmpStr forState:UIControlStateNormal];
+		[btn setBackgroundImage:[UIImage imageNamed:@"ChatMinimize.png"] forState:UIControlStateNormal];
+		[btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+		[btn setTag:index];
+		
+		UIBarButtonItem *infoButton2 = [[UIBarButtonItem alloc] initWithCustomView:btn];
+		infoButton2.tag = index;
+		btn.tag = index;
+		
+		BOOL bExist = NO;
+		for (int i = 0; i < [_liveChatArr count]; i++) 
+		{
+			UIBarButtonItem* tmp  = [_liveChatArr objectAtIndex:i];
+			if (tmp.tag == index) 
+			{
+				bExist = YES;
+				break;
+			}
+		}
+		if (!bExist) 
+		{
+			[_liveChatArr addObject:infoButton2];
+		}
+        
+		if([_liveChatArr count] < 6)
+		{
+			[_toolBarChatsLive setItems:(NSArray *)_liveChatArr];
+		}
+		else
+		{
+			UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithCustomView:_btnMoreChat];
+			[_liveChatArr insertObject:barBtn atIndex:0];
+			[_toolBarChatsLive setItems:_liveChatArr];
+		}
+	}	
+    */ 
+}
+
+- (void)removeChatButton:(int)index
+{
+    /*
+	for(int i = 0; i < [_liveChatArr count]; i++)
+	{
+		UIBarButtonItem *tmp = [_liveChatArr objectAtIndex:i];
+		if(tmp.tag == index)
+		{
+			[_liveChatArr removeObjectAtIndex:i];
+			break;
+		}
+	}
+	[_toolBarChatsLive setItems:(NSArray *)_liveChatArr];
+    */ 
+}
+
+-(void)showLiveChat:(UIButton *)sender
+{
+    /*
+	NSMutableArray *tmpArr = [[NSMutableArray alloc] init];
+	int count = [_liveChatArr count];
+	if(count >= 3)
+	{
+        
+		for(int i = 2; i < count; i++)
+		{
+			UIBarButtonItem *barButtonUser = [_liveChatArr objectAtIndex:i];
+			[tmpArr addObject:[NSString stringWithFormat:@"%d", barButtonUser.tag]];
+		}
+        
+	}
+	MoreLiveChatViewController *moreLiveChat = [[MoreLiveChatViewController alloc] initWithNibName:@"MoreLiveChatViewController" bundle:nil liveChat: tmpArr delegate:self];
+	UIPopoverController *popoverCtr = [[UIPopoverController alloc] initWithContentViewController:moreLiveChat];
+	[popoverCtr setPopoverContentSize:CGSizeMake(260, 300) animated:YES];
+	moreLiveChat._popViewController = popoverCtr;
+	[popoverCtr presentPopoverFromRect:sender.frame inView:_toolBarChatsLive permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];	
+    */ 
+}
+
+- (void)openChatWindows:(int)index
+{
+	[self setCurrentViewIndex:3];
+	MessengerUser* messengerUser = [[_messengerViewController getArrChatUsers] objectAtIndex:index]; 
+	messengerUser._intMessageCount = 0;
+	[self setLeftBarButtonForNavigationBar];
+	_messengerViewController.currentChatUserIndex = index;	
+	[self showChatWindowWithUser:messengerUser andXMPPClient:[MessengerViewController getXmppClient]];
+	[_messengerViewController._tblvUsers reloadData];
+}
+
+-(void)chatWindows:(UIButton *)sender
+{
+	//[_liveChatArr removeObjectAtIndex:[sender tag]];
+	[self openChatWindows:sender.tag];
+}
+
+- (void)showChatToolBar:(BOOL)show
+{
+    /*
+	[_toolBarChatsLive setHidden:!show];
+	if(show)
+	{
+		[[self view] bringSubviewToFront:_toolBarChatsLive];
+	}
+     */
+}
+
 @end
