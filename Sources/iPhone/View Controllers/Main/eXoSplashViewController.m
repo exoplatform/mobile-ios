@@ -67,6 +67,7 @@
 	lDomain.text = [_dictLocalize objectForKey:@"DomainCellTitle"];
 	lUserName.text = [_dictLocalize objectForKey:@"UserNameCellTitle"];
 	label.text = [_dictLocalize objectForKey:@"AutoLogin"];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -19,6 +19,11 @@
 
 static NSString *CellIdentifier = @"MyIdentifier";
 
+#define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85;
+#define kHeigthNeededToGoUpSubviewsWhenEditingPassword -150;
+
+
+
 @implementation eXoAppViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -39,13 +44,54 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)loadView 
 {
 	[super loadView];
-	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 }
 
 - (void)viewDidLoad 
 {
-    _strBSuccessful = @"NO";
     [super viewDidLoad];
+    
+    _tbvlServerList.hidden = YES;
+
+    _vLoginView.backgroundColor = [UIColor clearColor];
+    _vAccountView.backgroundColor = [UIColor clearColor];
+    _vServerListView.backgroundColor = [UIColor clearColor];
+    _btnServerList.backgroundColor = [UIColor clearColor];
+    _btnAccount.backgroundColor = [UIColor clearColor];
+    
+    //Add the background image as background of the view
+    UIColor *backgroundAuthenticateView = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Default.png"]];
+    self.view.backgroundColor = backgroundAuthenticateView;
+    [backgroundAuthenticateView release];
+    
+    
+    [_btnAccount setSelected:YES];
+
+    
+    
+    //Add the background image to the AccountView
+    
+   // UIColor *backgroundPanelView = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"AuthenticatePanelBgIphone.png"]];
+   // _vAccountView.backgroundColor = backgroundPanelView;
+   // [backgroundPanelView release];
+    
+   // _vAccountView.backgroundColor = [UIColor clearColor];
+
+    
+
+    //Add the background image for the settings button
+    [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateIphoneButtonBgStrechable.png"]
+                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
+                          forState:UIControlStateNormal];
+    
+    
+    
+    [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateIphoneButtonBgStrechable.png"]
+                                      stretchableImageWithLeftCapWidth:10 topCapHeight:10]
+                            forState:UIControlStateNormal];
+    
+    
+    _strBSuccessful = @"NO";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -100,6 +146,16 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		[_txtfPassword setText:@""];
 	}
     [_tbvlServerList reloadData];
+    
+    
+    //Start the animation to display the loginView
+    [UIView animateWithDuration:1.0 
+                     animations:^{
+                         _vLoginView.alpha = 1;
+                     }
+     ];
+    
+    
 }
 	
 
@@ -142,23 +198,55 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (IBAction)onBtnAccount:(id)sender
 {
-    [_btnServerList setBackgroundColor:[UIColor grayColor]];
-    [_btnAccount setBackgroundColor:[UIColor blueColor]];
-    [_vLoginView bringSubviewToFront:_vAccountView];
+    //[_btnServerList setBackgroundColor:[UIColor grayColor]];
+    //[_btnAccount setBackgroundColor:[UIColor blueColor]];
+    //[_vLoginView bringSubviewToFront:_vAccountView];
+    
+    [_btnAccount setSelected:YES];
+    [_btnServerList setSelected:NO];
+    _vServerListView.hidden = YES;
+    _vAccountView.hidden = NO;
+
+    
 }
 
 - (IBAction)onBtnServerList:(id)sender
 {
-    [_btnServerList setBackgroundColor:[UIColor blueColor]];
-    [_btnAccount setBackgroundColor:[UIColor grayColor]];    
-    [_vLoginView bringSubviewToFront:_vServerListView];    
+   
+    [_btnAccount setSelected:NO];
+    [_btnServerList setSelected:YES];
+    //[self.view addSubview:_vServerListView];    
+    _vServerListView.hidden = NO;
+    _vAccountView.hidden = YES;
     [_tbvlServerList reloadData];
+    
+    //[_btnServerList setBackgroundColor:[UIColor blueColor]];
+    //[_btnAccount setBackgroundColor:[UIColor grayColor]];    
+    //[_vLoginView bringSubviewToFront:_vServerListView];    
+    //[_tbvlServerList reloadData];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
 {
+    //Check the textfield to go up the content of the view
+    CGRect frameToGo = self.view.frame;
+    
+    if (textField == _txtfUsername) {
+        frameToGo.origin.y = kHeigthNeededToGoUpSubviewsWhenEditingUsername;
+    } else {
+        frameToGo.origin.y = kHeigthNeededToGoUpSubviewsWhenEditingPassword;
+    }
+    
+    [UIView animateWithDuration:0.5 
+                     animations:^{
+                         self.view.frame = frameToGo;
+                     }
+     ];
+     
+    
 	return YES;
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -169,6 +257,17 @@ static NSString *CellIdentifier = @"MyIdentifier";
     else
     {    
         [_txtfPassword resignFirstResponder];
+        
+        //Replace the frame at the good position
+        CGRect frameToGo = self.view.frame;
+        frameToGo.origin.y =0;
+        
+        [UIView animateWithDuration:0.5 
+                         animations:^{
+                             self.view.frame = frameToGo;
+                         }
+         ];
+        
         [self onSignInBtn:nil];
     }    
 	return YES;
@@ -180,6 +279,16 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	{
 		[_txtfUsername resignFirstResponder];
 		[_txtfPassword resignFirstResponder];
+        
+        //Replace the frame at the good position
+        CGRect frameToGo = self.view.frame;
+        frameToGo.origin.y =20;
+        
+        [UIView animateWithDuration:0.5 
+                         animations:^{
+                             self.view.frame = frameToGo;
+                         }
+         ];
 	}
 }
 
@@ -269,6 +378,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[[self navigationItem] setRightBarButtonItem:nil];
 	[self view].userInteractionEnabled = NO;
 	_indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
+    [self.view addSubview: _indicator];
 	[_indicator startAnimating];
 	_indicator.hidesWhenStopped = YES;
 

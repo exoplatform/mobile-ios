@@ -19,6 +19,24 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		469597F71377017300ADC826 /* AuthenticateCredentialsIconOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F01377017300ADC826 /* AuthenticateCredentialsIconOn.png */; };
+		469597F81377017300ADC826 /* AuthenticatePanelBgIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F11377017300ADC826 /* AuthenticatePanelBgIphone.png */; };
+		469597F91377017300ADC826 /* AuthenticatePanelButtonBgIphoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F21377017300ADC826 /* AuthenticatePanelButtonBgIphoneOff.png */; };
+		469597FA1377017300ADC826 /* AuthenticatePanelButtonBgIphoneOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F31377017300ADC826 /* AuthenticatePanelButtonBgIphoneOn.png */; };
+		469597FB1377017300ADC826 /* AuthenticateServersIconOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F41377017300ADC826 /* AuthenticateServersIconOff.png */; };
+		469597FC1377017300ADC826 /* AuthenticateTextfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F51377017300ADC826 /* AuthenticateTextfield.png */; };
+		469597FD1377017300ADC826 /* SettingsIconIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F61377017300ADC826 /* SettingsIconIphone.png */; };
+		469598051377018100ADC826 /* AuthenticateCredentialsIconOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597FE1377018100ADC826 /* AuthenticateCredentialsIconOn@2x.png */; };
+		469598061377018100ADC826 /* AuthenticatePanelBgIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597FF1377018100ADC826 /* AuthenticatePanelBgIphone@2x.png */; };
+		469598071377018100ADC826 /* AuthenticatePanelButtonBgIphoneOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598001377018100ADC826 /* AuthenticatePanelButtonBgIphoneOff@2x.png */; };
+		469598081377018100ADC826 /* AuthenticatePanelButtonBgIphoneOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598011377018100ADC826 /* AuthenticatePanelButtonBgIphoneOn@2x.png */; };
+		469598091377018100ADC826 /* AuthenticateServersIconOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598021377018100ADC826 /* AuthenticateServersIconOff@2x.png */; };
+		4695980A1377018100ADC826 /* AuthenticateTextfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598031377018100ADC826 /* AuthenticateTextfield@2x.png */; };
+		4695980B1377018100ADC826 /* SettingsIconIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598041377018100ADC826 /* SettingsIconIphone@2x.png */; };
+		46D97B3013742B7F00F71E82 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B2F13742B7F00F71E82 /* Default.png */; };
+		46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B3113742B8B00F71E82 /* Default@2x.png */; };
+		46D97B7F13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B7E13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png */; };
+		46D97B8113743CC600F71E82 /* AuthenticateIphoneButtonBgStrechable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B8013743CC600F71E82 /* AuthenticateIphoneButtonBgStrechable@2x.png */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
@@ -419,6 +437,24 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		469597F01377017300ADC826 /* AuthenticateCredentialsIconOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCredentialsIconOn.png; path = "Authenticate/@1x/AuthenticateCredentialsIconOn.png"; sourceTree = "<group>"; };
+		469597F11377017300ADC826 /* AuthenticatePanelBgIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticatePanelBgIphone.png; path = "Authenticate/@1x/AuthenticatePanelBgIphone.png"; sourceTree = "<group>"; };
+		469597F21377017300ADC826 /* AuthenticatePanelButtonBgIphoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticatePanelButtonBgIphoneOff.png; path = "Authenticate/@1x/AuthenticatePanelButtonBgIphoneOff.png"; sourceTree = "<group>"; };
+		469597F31377017300ADC826 /* AuthenticatePanelButtonBgIphoneOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticatePanelButtonBgIphoneOn.png; path = "Authenticate/@1x/AuthenticatePanelButtonBgIphoneOn.png"; sourceTree = "<group>"; };
+		469597F41377017300ADC826 /* AuthenticateServersIconOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateServersIconOff.png; path = "Authenticate/@1x/AuthenticateServersIconOff.png"; sourceTree = "<group>"; };
+		469597F51377017300ADC826 /* AuthenticateTextfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateTextfield.png; path = "Authenticate/@1x/AuthenticateTextfield.png"; sourceTree = "<group>"; };
+		469597F61377017300ADC826 /* SettingsIconIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIconIphone.png; path = "Authenticate/@1x/SettingsIconIphone.png"; sourceTree = "<group>"; };
+		469597FE1377018100ADC826 /* AuthenticateCredentialsIconOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCredentialsIconOn@2x.png"; path = "Authenticate/@2x/AuthenticateCredentialsIconOn@2x.png"; sourceTree = "<group>"; };
+		469597FF1377018100ADC826 /* AuthenticatePanelBgIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticatePanelBgIphone@2x.png"; path = "Authenticate/@2x/AuthenticatePanelBgIphone@2x.png"; sourceTree = "<group>"; };
+		469598001377018100ADC826 /* AuthenticatePanelButtonBgIphoneOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticatePanelButtonBgIphoneOff@2x.png"; path = "Authenticate/@2x/AuthenticatePanelButtonBgIphoneOff@2x.png"; sourceTree = "<group>"; };
+		469598011377018100ADC826 /* AuthenticatePanelButtonBgIphoneOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticatePanelButtonBgIphoneOn@2x.png"; path = "Authenticate/@2x/AuthenticatePanelButtonBgIphoneOn@2x.png"; sourceTree = "<group>"; };
+		469598021377018100ADC826 /* AuthenticateServersIconOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateServersIconOff@2x.png"; path = "Authenticate/@2x/AuthenticateServersIconOff@2x.png"; sourceTree = "<group>"; };
+		469598031377018100ADC826 /* AuthenticateTextfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateTextfield@2x.png"; path = "Authenticate/@2x/AuthenticateTextfield@2x.png"; sourceTree = "<group>"; };
+		469598041377018100ADC826 /* SettingsIconIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SettingsIconIphone@2x.png"; path = "Authenticate/@2x/SettingsIconIphone@2x.png"; sourceTree = "<group>"; };
+		46D97B2F13742B7F00F71E82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Splashscreen/@1x/Default.png"; sourceTree = "<group>"; };
+		46D97B3113742B8B00F71E82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Splashscreen/@2x/Default@2x.png"; sourceTree = "<group>"; };
+		46D97B7E13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateIphoneButtonBgStrechable.png; path = "Authenticate/@1x/AuthenticateIphoneButtonBgStrechable.png"; sourceTree = "<group>"; };
+		46D97B8013743CC600F71E82 /* AuthenticateIphoneButtonBgStrechable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateIphoneButtonBgStrechable@2x.png"; path = "Authenticate/@2x/AuthenticateIphoneButtonBgStrechable@2x.png"; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerEditingViewController.h; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditingViewController.m; sourceTree = "<group>"; };
@@ -880,6 +916,70 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		464AD04413742613003A4083 /* @1x */ = {
+			isa = PBXGroup;
+			children = (
+				46D97B2F13742B7F00F71E82 /* Default.png */,
+			);
+			name = "@1x";
+			sourceTree = "<group>";
+		};
+		464AD0481374263C003A4083 /* @2x */ = {
+			isa = PBXGroup;
+			children = (
+				46D97B3113742B8B00F71E82 /* Default@2x.png */,
+			);
+			name = "@2x";
+			sourceTree = "<group>";
+		};
+		46D97B2E13742B2A00F71E82 /* Splashscreen */ = {
+			isa = PBXGroup;
+			children = (
+				464AD04413742613003A4083 /* @1x */,
+				464AD0481374263C003A4083 /* @2x */,
+			);
+			name = Splashscreen;
+			sourceTree = "<group>";
+		};
+		46D97B7B13743C7C00F71E82 /* Authenticate */ = {
+			isa = PBXGroup;
+			children = (
+				46D97B7C13743C8700F71E82 /* @1x */,
+				46D97B7D13743C9000F71E82 /* @2x */,
+			);
+			name = Authenticate;
+			sourceTree = "<group>";
+		};
+		46D97B7C13743C8700F71E82 /* @1x */ = {
+			isa = PBXGroup;
+			children = (
+				469597F01377017300ADC826 /* AuthenticateCredentialsIconOn.png */,
+				469597F11377017300ADC826 /* AuthenticatePanelBgIphone.png */,
+				469597F21377017300ADC826 /* AuthenticatePanelButtonBgIphoneOff.png */,
+				469597F31377017300ADC826 /* AuthenticatePanelButtonBgIphoneOn.png */,
+				469597F41377017300ADC826 /* AuthenticateServersIconOff.png */,
+				469597F51377017300ADC826 /* AuthenticateTextfield.png */,
+				469597F61377017300ADC826 /* SettingsIconIphone.png */,
+				46D97B7E13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png */,
+			);
+			name = "@1x";
+			sourceTree = "<group>";
+		};
+		46D97B7D13743C9000F71E82 /* @2x */ = {
+			isa = PBXGroup;
+			children = (
+				469597FE1377018100ADC826 /* AuthenticateCredentialsIconOn@2x.png */,
+				469597FF1377018100ADC826 /* AuthenticatePanelBgIphone@2x.png */,
+				469598001377018100ADC826 /* AuthenticatePanelButtonBgIphoneOff@2x.png */,
+				469598011377018100ADC826 /* AuthenticatePanelButtonBgIphoneOn@2x.png */,
+				469598021377018100ADC826 /* AuthenticateServersIconOff@2x.png */,
+				469598031377018100ADC826 /* AuthenticateTextfield@2x.png */,
+				469598041377018100ADC826 /* SettingsIconIphone@2x.png */,
+				46D97B8013743CC600F71E82 /* AuthenticateIphoneButtonBgStrechable@2x.png */,
+			);
+			name = "@2x";
+			sourceTree = "<group>";
+		};
 		7CFD41061361367D00DD86E8 /* KissXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -1321,6 +1421,8 @@
 		894733F513370F4F00B0AD11 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				46D97B7B13743C7C00F71E82 /* Authenticate */,
+				46D97B2E13742B2A00F71E82 /* Splashscreen */,
 				894733F613370F4F00B0AD11 /* 320x480v1.jpg */,
 				894733F713370F4F00B0AD11 /* application.png */,
 				894733F813370F4F00B0AD11 /* setting.png */,
@@ -2020,6 +2122,24 @@
 				7CE839AA13446DAB00FF5B7A /* iPadServerManagerViewController.xib in Resources */,
 				7CE839AF1344873500FF5B7A /* iPadSettingViewController.xib in Resources */,
 				7C2F4D41135E78EC00DF1FA9 /* eXoPlatform.plist in Resources */,
+				46D97B3013742B7F00F71E82 /* Default.png in Resources */,
+				46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */,
+				46D97B7F13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png in Resources */,
+				46D97B8113743CC600F71E82 /* AuthenticateIphoneButtonBgStrechable@2x.png in Resources */,
+				469597F71377017300ADC826 /* AuthenticateCredentialsIconOn.png in Resources */,
+				469597F81377017300ADC826 /* AuthenticatePanelBgIphone.png in Resources */,
+				469597F91377017300ADC826 /* AuthenticatePanelButtonBgIphoneOff.png in Resources */,
+				469597FA1377017300ADC826 /* AuthenticatePanelButtonBgIphoneOn.png in Resources */,
+				469597FB1377017300ADC826 /* AuthenticateServersIconOff.png in Resources */,
+				469597FC1377017300ADC826 /* AuthenticateTextfield.png in Resources */,
+				469597FD1377017300ADC826 /* SettingsIconIphone.png in Resources */,
+				469598051377018100ADC826 /* AuthenticateCredentialsIconOn@2x.png in Resources */,
+				469598061377018100ADC826 /* AuthenticatePanelBgIphone@2x.png in Resources */,
+				469598071377018100ADC826 /* AuthenticatePanelButtonBgIphoneOff@2x.png in Resources */,
+				469598081377018100ADC826 /* AuthenticatePanelButtonBgIphoneOn@2x.png in Resources */,
+				469598091377018100ADC826 /* AuthenticateServersIconOff@2x.png in Resources */,
+				4695980A1377018100ADC826 /* AuthenticateTextfield@2x.png in Resources */,
+				4695980B1377018100ADC826 /* SettingsIconIphone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
