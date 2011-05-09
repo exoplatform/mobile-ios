@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "eXoMobileAppDelegate.h"
 
-@class eXoAppViewController;
+@class AuthenticateViewController;
 @class eXoApplicationsViewController;
 @class eXoGadgetsViewController;
 @class eXoWebViewController;
@@ -24,7 +24,7 @@
 	IBOutlet UINavigationController*	navigationController;
 	IBOutlet UITabBarController*		tabBarController;
 	
-	eXoAppViewController*				viewController;	//Login page
+	AuthenticateViewController*         authenticateViewController;	//Login page
 	eXoApplicationsViewController*		applicationsViewController;	//Main app page
 	eXoGadgetsViewController*			gadgetsViewController;	//Gadgeta page
 	eXoSettingViewController*			settingViewController;	//Setting page
@@ -41,11 +41,14 @@
 @property (nonatomic, retain) IBOutlet UIWindow* window;
 @property (nonatomic, retain) UINavigationController* navigationController;
 @property (nonatomic, retain) UITabBarController* tabBarController;
-@property (nonatomic, retain) eXoAppViewController *viewController;
+@property (nonatomic, retain) IBOutlet AuthenticateViewController *authenticateViewController;
 @property (nonatomic, retain) IBOutlet eXoApplicationsViewController* applicationsViewController;
 @property (nonatomic, retain) IBOutlet eXoGadgetsViewController* gadgetsViewController;
 @property (nonatomic, retain) IBOutlet eXoSettingViewController*	settingViewController;
+@property (nonatomic, retain) IBOutlet HomeViewController_iPhone* homeViewController_iPhone;
+
 @property (nonatomic, retain) eXoWebViewController* webViewController;
+
 
 - (void)login;	//Login action
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic;	//Show main view of application

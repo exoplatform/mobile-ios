@@ -33,6 +33,8 @@
 		469598091377018100ADC826 /* AuthenticateServersIconOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598021377018100ADC826 /* AuthenticateServersIconOff@2x.png */; };
 		4695980A1377018100ADC826 /* AuthenticateTextfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598031377018100ADC826 /* AuthenticateTextfield@2x.png */; };
 		4695980B1377018100ADC826 /* SettingsIconIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598041377018100ADC826 /* SettingsIconIphone@2x.png */; };
+		4695981D13780D3400ADC826 /* AuthenticateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695981C13780D3100ADC826 /* AuthenticateViewController.xib */; };
+		469598881378497C00ADC826 /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469598871378497B00ADC826 /* AuthenticateServerCell.xib */; };
 		46D97B3013742B7F00F71E82 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B2F13742B7F00F71E82 /* Default.png */; };
 		46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B3113742B8B00F71E82 /* Default@2x.png */; };
 		46D97B7F13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B7E13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png */; };
@@ -86,7 +88,6 @@
 		8937A34D1338993900D8B474 /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33C1338993900D8B474 /* OptionsViewController.xib */; };
 		8937A34F1338993900D8B474 /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33E1338993900D8B474 /* SupportViewController.xib */; };
 		8937A35B1338994400D8B474 /* eXoApplicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */; };
-		8937A35C1338994400D8B474 /* eXoAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3521338994400D8B474 /* eXoAppViewController.xib */; };
 		8937A35D1338994400D8B474 /* eXoFileActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3531338994400D8B474 /* eXoFileActionViewController.xib */; };
 		8937A35E1338994400D8B474 /* eXoGadgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */; };
 		8937A35F1338994400D8B474 /* eXoSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3551338994400D8B474 /* eXoSplashViewController.xib */; };
@@ -127,7 +128,7 @@
 		894733AB13370B4500B0AD11 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339313370B4500B0AD11 /* GadgetDisplayViewController.m */; };
 		894733AC13370B4500B0AD11 /* Gadget_iPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339513370B4500B0AD11 /* Gadget_iPhoneViewController.m */; };
 		894733AD13370B4500B0AD11 /* eXoApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339813370B4500B0AD11 /* eXoApplicationsViewController.m */; };
-		894733AE13370B4500B0AD11 /* eXoAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339A13370B4500B0AD11 /* eXoAppViewController.m */; };
+		894733AE13370B4500B0AD11 /* AuthenticateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339A13370B4500B0AD11 /* AuthenticateViewController.m */; };
 		894733AF13370B4500B0AD11 /* eXoSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339C13370B4500B0AD11 /* eXoSplashViewController.m */; };
 		894733B013370B4500B0AD11 /* eXoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339E13370B4500B0AD11 /* eXoWebViewController.m */; };
 		894733B113370B4500B0AD11 /* eXoSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894733A113370B4500B0AD11 /* eXoSettingViewController.m */; };
@@ -451,6 +452,8 @@
 		469598021377018100ADC826 /* AuthenticateServersIconOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateServersIconOff@2x.png"; path = "Authenticate/@2x/AuthenticateServersIconOff@2x.png"; sourceTree = "<group>"; };
 		469598031377018100ADC826 /* AuthenticateTextfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateTextfield@2x.png"; path = "Authenticate/@2x/AuthenticateTextfield@2x.png"; sourceTree = "<group>"; };
 		469598041377018100ADC826 /* SettingsIconIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SettingsIconIphone@2x.png"; path = "Authenticate/@2x/SettingsIconIphone@2x.png"; sourceTree = "<group>"; };
+		4695981C13780D3100ADC826 /* AuthenticateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateViewController.xib; sourceTree = "<group>"; };
+		469598871378497B00ADC826 /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		46D97B2F13742B7F00F71E82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Splashscreen/@1x/Default.png"; sourceTree = "<group>"; };
 		46D97B3113742B8B00F71E82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Splashscreen/@2x/Default@2x.png"; sourceTree = "<group>"; };
 		46D97B7E13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateIphoneButtonBgStrechable.png; path = "Authenticate/@1x/AuthenticateIphoneButtonBgStrechable.png"; sourceTree = "<group>"; };
@@ -530,7 +533,6 @@
 		8937A33C1338993900D8B474 /* OptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsViewController.xib; sourceTree = "<group>"; };
 		8937A33E1338993900D8B474 /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoApplicationsViewController.xib; sourceTree = "<group>"; };
-		8937A3521338994400D8B474 /* eXoAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoAppViewController.xib; sourceTree = "<group>"; };
 		8937A3531338994400D8B474 /* eXoFileActionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoFileActionViewController.xib; sourceTree = "<group>"; };
 		8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoGadgetsViewController.xib; sourceTree = "<group>"; };
 		8937A3551338994400D8B474 /* eXoSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoSplashViewController.xib; sourceTree = "<group>"; };
@@ -601,8 +603,8 @@
 		8947339513370B4500B0AD11 /* Gadget_iPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget_iPhoneViewController.m; sourceTree = "<group>"; };
 		8947339713370B4500B0AD11 /* eXoApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoApplicationsViewController.h; sourceTree = "<group>"; };
 		8947339813370B4500B0AD11 /* eXoApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoApplicationsViewController.m; sourceTree = "<group>"; };
-		8947339913370B4500B0AD11 /* eXoAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoAppViewController.h; sourceTree = "<group>"; };
-		8947339A13370B4500B0AD11 /* eXoAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoAppViewController.m; sourceTree = "<group>"; };
+		8947339913370B4500B0AD11 /* AuthenticateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateViewController.h; sourceTree = "<group>"; };
+		8947339A13370B4500B0AD11 /* AuthenticateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateViewController.m; sourceTree = "<group>"; };
 		8947339B13370B4500B0AD11 /* eXoSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoSplashViewController.h; sourceTree = "<group>"; };
 		8947339C13370B4500B0AD11 /* eXoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoSplashViewController.m; sourceTree = "<group>"; };
 		8947339D13370B4500B0AD11 /* eXoWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoWebViewController.h; sourceTree = "<group>"; };
@@ -1043,7 +1045,8 @@
 				7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */,
 				7C06962613419B6C007F26BB /* ServerAddingViewController.xib */,
 				7C06961F1341953B007F26BB /* ServerEditingViewController.xib */,
-				8937A3521338994400D8B474 /* eXoAppViewController.xib */,
+				4695981C13780D3100ADC826 /* AuthenticateViewController.xib */,
+				469598871378497B00ADC826 /* AuthenticateServerCell.xib */,
 				8937A3531338994400D8B474 /* eXoFileActionViewController.xib */,
 				8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */,
 				8937A3551338994400D8B474 /* eXoSplashViewController.xib */,
@@ -1280,8 +1283,8 @@
 			children = (
 				8947339713370B4500B0AD11 /* eXoApplicationsViewController.h */,
 				8947339813370B4500B0AD11 /* eXoApplicationsViewController.m */,
-				8947339913370B4500B0AD11 /* eXoAppViewController.h */,
-				8947339A13370B4500B0AD11 /* eXoAppViewController.m */,
+				8947339913370B4500B0AD11 /* AuthenticateViewController.h */,
+				8947339A13370B4500B0AD11 /* AuthenticateViewController.m */,
 				7CFD41871361644B00DD86E8 /* HomeViewController_iPhone.h */,
 				7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */,
 				7C4C80FA1366863A001A3B39 /* FilesViewController_iPhone.h */,
@@ -2105,7 +2108,6 @@
 				8937A34D1338993900D8B474 /* OptionsViewController.xib in Resources */,
 				8937A34F1338993900D8B474 /* SupportViewController.xib in Resources */,
 				8937A35B1338994400D8B474 /* eXoApplicationsViewController.xib in Resources */,
-				8937A35C1338994400D8B474 /* eXoAppViewController.xib in Resources */,
 				8937A35D1338994400D8B474 /* eXoFileActionViewController.xib in Resources */,
 				8937A35E1338994400D8B474 /* eXoGadgetsViewController.xib in Resources */,
 				8937A35F1338994400D8B474 /* eXoSplashViewController.xib in Resources */,
@@ -2140,6 +2142,8 @@
 				469598091377018100ADC826 /* AuthenticateServersIconOff@2x.png in Resources */,
 				4695980A1377018100ADC826 /* AuthenticateTextfield@2x.png in Resources */,
 				4695980B1377018100ADC826 /* SettingsIconIphone@2x.png in Resources */,
+				4695981D13780D3400ADC826 /* AuthenticateViewController.xib in Resources */,
+				469598881378497C00ADC826 /* AuthenticateServerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2180,7 +2184,7 @@
 				894733AB13370B4500B0AD11 /* GadgetDisplayViewController.m in Sources */,
 				894733AC13370B4500B0AD11 /* Gadget_iPhoneViewController.m in Sources */,
 				894733AD13370B4500B0AD11 /* eXoApplicationsViewController.m in Sources */,
-				894733AE13370B4500B0AD11 /* eXoAppViewController.m in Sources */,
+				894733AE13370B4500B0AD11 /* AuthenticateViewController.m in Sources */,
 				894733AF13370B4500B0AD11 /* eXoSplashViewController.m in Sources */,
 				894733B013370B4500B0AD11 /* eXoWebViewController.m in Sources */,
 				894733B113370B4500B0AD11 /* eXoSettingViewController.m in Sources */,

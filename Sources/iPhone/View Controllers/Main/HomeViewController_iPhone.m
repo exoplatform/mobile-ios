@@ -45,9 +45,22 @@
     [super dealloc];
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+
+    self.navigationController.navigationBarHidden = NO;
+    
+    [super viewWillAppear:animated];
+}
+
+
 - (void)loadView 
 {
     [super loadView];
+    
+    self.statusBarStyle = UIStatusBarStyleBlackOpaque;
+    self.navigationController.navigationBarHidden = NO;
     
     _launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
     _launcherView.backgroundColor = [UIColor blackColor];
@@ -171,6 +184,8 @@
 
 - (void)onBbtnSignOut
 {
+    //Back to Login with a PopViewController
+    [self.navigationController popViewControllerAnimated:YES];
     [_delegate onBtnSigtOutDelegate];
 }
 @end

@@ -1,6 +1,6 @@
 //
-//  eXoAppViewController.h
-//  eXoApp
+//  AuthenticateViewController.h
+//  Authenticate Screen
 //
 //  Created by Tran Hoai Son on 5/8/09.
 //  Copyright home 2009. All rights reserved.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 //Login page
-@interface eXoAppViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
+@interface AuthenticateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
 	NSString*                   _strBSuccessful;	//Login status
 	UIActivityIndicatorView*    _indicator;	//Loding indicator
@@ -26,16 +26,14 @@
     
     IBOutlet UIButton*          _btnAccount;
     IBOutlet UIButton*          _btnServerList;
-    IBOutlet UILabel*           _lbUsername;
-    IBOutlet UILabel*           _lbPassword;
     IBOutlet UITextField*       _txtfUsername;
     IBOutlet UITextField*       _txtfPassword;
     IBOutlet UIButton*          _btnLogin;
     IBOutlet UIButton*          _btnSettings;
-    IBOutlet UIView*            _vLoginView;
     IBOutlet UIView*            _vAccountView;
     IBOutlet UIView*            _vServerListView;
     IBOutlet UITableView*       _tbvlServerList;
+    IBOutlet UIView*            _contentView;
     
     NSMutableArray*             _arrServerList;
     NSString*                   _strHost;

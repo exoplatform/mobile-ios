@@ -61,6 +61,17 @@ static NSString *CellIdentifier = @"MyIdentifier";
         _intSelectedServer = -1;
         
         self.title = @"Settings";
+        
+        // set up the navigation item and done button
+        UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                       target:self action:@selector(done)];
+        UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"done"];
+        navigationItem.rightBarButtonItem = buttonItem;
+        [self.navigationController.navigationBar pushNavigationItem:navigationItem animated:NO];
+        [navigationItem release];
+        [buttonItem release];
+        
     }
     return self;
 }
@@ -69,6 +80,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
 	self.title = [_dictLocalize objectForKey:@"Settings"];
 	[self.tableView reloadData];
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -84,11 +97,25 @@ static NSString *CellIdentifier = @"MyIdentifier";
     _arrServerList = [[Configuration sharedInstance] getServerList];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
+    
+    //Add the Done button for exit Settings
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                   target:self action:@selector(dismissSettings)];
+    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"done"];
+    self.navigationItem.rightBarButtonItem = buttonItem;
+    //[self.navigationController.navigationBar. pushNavigationItem:navigationItem animated:NO];
+    [navigationItem release];
+    [buttonItem release];
+}
+
+//Method to dismiss settings
+- (void)dismissSettings {
+    [self. navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dealloc 
 {
-    [_arrServerList release];
     [super dealloc];
 }
 

@@ -8,7 +8,6 @@
 
 #import "HitTestView.h"
 #import "LoginViewController.h"
-#import "eXoAppViewController.h"
 
 
 @implementation HitTestView

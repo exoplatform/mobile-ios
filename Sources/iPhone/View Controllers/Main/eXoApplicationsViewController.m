@@ -13,11 +13,10 @@
 #import "DataProcess.h"
 #import "eXoFilesView.h"
 #import "Connection.h"
-#import "eXoAppViewController.h"
+#import "AuthenticateViewController.h"
 #import "eXoFilesView.h"
 #import "eXoChatView.h"
 #import "eXoChatWindow.h"
-#import "eXoAppViewController.h"
 #import "XMPPStream.h"
 #import "XMPPClient.h"
 #import "XMPPUser.h"
@@ -217,7 +216,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone*)[[UIApplication sharedApplication] delegate];
 	[appDelegate.tabBarController.view removeFromSuperview];
-	[appDelegate.viewController loadView];
+	[appDelegate.authenticateViewController loadView];
 
 }
 

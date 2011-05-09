@@ -1,12 +1,12 @@
 //
-//  eXoAppViewController.m
-//  eXoApp
+//  AuthenticateViewController.m
+//  Authenticate Screen
 //
 //  Created by Tran Hoai Son on 5/8/09.
 //  Copyright EXO-Platform 2009. All rights reserved.
 //
 
-#import "eXoAppViewController.h"
+#import "AuthenticateViewController.h"
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "CXMLDocument.h"
@@ -17,14 +17,19 @@
 #import "NSString+HTML.h"
 #import "Configuration.h"
 
-static NSString *CellIdentifier = @"MyIdentifier";
 
-#define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85;
-#define kHeigthNeededToGoUpSubviewsWhenEditingPassword -150;
-
+#define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
+#define kHeigthNeededToGoUpSubviewsWhenEditingPassword -150
 
 
-@implementation eXoAppViewController
+//Define for cells of the Server Selection Panel
+#define kHeightForServerCell 44
+#define kTagInCellForServerNameLabel 10
+#define kTagInCellForServerURLLabel 20
+
+
+
+@implementation AuthenticateViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -44,40 +49,27 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)loadView 
 {
 	[super loadView];
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 }
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
     
+    _contentView.backgroundColor = [UIColor clearColor];
+    
+    //Set Alpha for all subviews to make a small animation
+    _contentView.alpha = 0;
+    
     _tbvlServerList.hidden = YES;
 
-    _vLoginView.backgroundColor = [UIColor clearColor];
     _vAccountView.backgroundColor = [UIColor clearColor];
     _vServerListView.backgroundColor = [UIColor clearColor];
     _btnServerList.backgroundColor = [UIColor clearColor];
     _btnAccount.backgroundColor = [UIColor clearColor];
     
-    //Add the background image as background of the view
-    UIColor *backgroundAuthenticateView = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Default.png"]];
-    self.view.backgroundColor = backgroundAuthenticateView;
-    [backgroundAuthenticateView release];
-    
-    
+
+    //Set the state of the first selected tab
     [_btnAccount setSelected:YES];
-
-    
-    
-    //Add the background image to the AccountView
-    
-   // UIColor *backgroundPanelView = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"AuthenticatePanelBgIphone.png"]];
-   // _vAccountView.backgroundColor = backgroundPanelView;
-   // [backgroundPanelView release];
-    
-   // _vAccountView.backgroundColor = [UIColor clearColor];
-
-    
 
     //Add the background image for the settings button
     [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateIphoneButtonBgStrechable.png"]
@@ -85,7 +77,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
                           forState:UIControlStateNormal];
     
     
-    
+    //Add the background image for the login button
     [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateIphoneButtonBgStrechable.png"]
                                       stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
@@ -96,6 +88,11 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    //Hide the Navigation Bar
+    self.navigationController.navigationBarHidden = YES;
+
+    
+    
     Configuration* configuration = [Configuration sharedInstance];
     _arrServerList = [configuration getServerList];
     
@@ -151,7 +148,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     //Start the animation to display the loginView
     [UIView animateWithDuration:1.0 
                      animations:^{
-                         _vLoginView.alpha = 1;
+                         _contentView.alpha = 1;
                      }
      ];
     
@@ -198,16 +195,10 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (IBAction)onBtnAccount:(id)sender
 {
-    //[_btnServerList setBackgroundColor:[UIColor grayColor]];
-    //[_btnAccount setBackgroundColor:[UIColor blueColor]];
-    //[_vLoginView bringSubviewToFront:_vAccountView];
-    
     [_btnAccount setSelected:YES];
     [_btnServerList setSelected:NO];
     _vServerListView.hidden = YES;
     _vAccountView.hidden = NO;
-
-    
 }
 
 - (IBAction)onBtnServerList:(id)sender
@@ -215,15 +206,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
    
     [_btnAccount setSelected:NO];
     [_btnServerList setSelected:YES];
-    //[self.view addSubview:_vServerListView];    
     _vServerListView.hidden = NO;
     _vAccountView.hidden = YES;
     [_tbvlServerList reloadData];
-    
-    //[_btnServerList setBackgroundColor:[UIColor blueColor]];
-    //[_btnAccount setBackgroundColor:[UIColor grayColor]];    
-    //[_vLoginView bringSubviewToFront:_vServerListView];    
-    //[_tbvlServerList reloadData];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
@@ -260,7 +245,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
         
         //Replace the frame at the good position
         CGRect frameToGo = self.view.frame;
-        frameToGo.origin.y =0;
+        frameToGo.origin.y = 0;
         
         [UIView animateWithDuration:0.5 
                          animations:^{
@@ -282,7 +267,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
         
         //Replace the frame at the good position
         CGRect frameToGo = self.view.frame;
-        frameToGo.origin.y =20;
+        frameToGo.origin.y = 0;
         
         [UIView animateWithDuration:0.5 
                          animations:^{
@@ -291,6 +276,21 @@ static NSString *CellIdentifier = @"MyIdentifier";
          ];
 	}
 }
+
+
+#pragma UITableView Utils
+-(UIImageView *) makeCheckmarkOffAccessoryView
+{
+    return [[[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"checkmarkAuthenticateiPhoneOff.png"]] autorelease];
+}
+
+-(UIImageView *) makeCheckmarkOnAccessoryView
+{
+    return [[[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"checkmarkAuthenticateiPhoneOn.png"]] autorelease];
+}
+
 
 #pragma UITableView Delegate
 
@@ -306,56 +306,66 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float fWidth = 150;
+    /*float fWidth = 150;
     float fHeight = 44.0;
     ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
     NSString* text = tmpServerObj._strServerUrl; 
     CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     fHeight = 44*((int)theSize.height/44 + 1);
-    return fHeight;
+    return fHeight;*/
+    
+    return kHeightForServerCell;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    static NSString *CellIdentifier = @"AuthenticateServerCellIdentifier";
+    static NSString *CellNib = @"AuthenticateServerCell";
+    
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNib owner:self options:nil];
+        cell = (UITableViewCell *)[nib objectAtIndex:0];
     }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     if (indexPath.row == _intSelectedServer) 
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.accessoryView = [self makeCheckmarkOnAccessoryView];
     }
     else
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryView = [self makeCheckmarkOffAccessoryView];
     }
-                
+               
 	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
 
-    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(2, 5, 150, 30)];
+    UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
+    
+    //[[UILabel alloc] initWithFrame:CGRectMake(2, 5, 150, 30)];
     lbServerName.text = tmpServerObj._strServerName;
-    lbServerName.textColor = [UIColor brownColor];
-    [cell addSubview:lbServerName];
-    [lbServerName release];
+    //lbServerName.textColor = [UIColor brownColor];
+    //[cell addSubview:lbServerName];
+    //[lbServerName release];
 
 //    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 120, 30)];
 //    lbServerUrl.text = tmpServerObj._strServerUrl;
 //    [cell addSubview:lbServerUrl];
 //    [lbServerUrl release];
-    float fWidth = 150;
-    UILabel* lbServerUrl = [[UILabel alloc] init];
-    NSString* text = tmpServerObj._strServerUrl; 
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+//    float fWidth = 150;
+    
+    
+    UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+    //NSString* text = tmpServerObj._strServerUrl; 
+    /*CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     float fHeight = 44*((int)theSize.height/44 + 1) - 10;
     [lbServerUrl setFrame:CGRectMake(140, 5, fWidth, fHeight)];
-    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
+    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];*/
     lbServerUrl.text = tmpServerObj._strServerUrl;
-    [cell addSubview:lbServerUrl];
-    [lbServerUrl release];
+    //[cell addSubview:lbServerUrl];
+    //[lbServerUrl release];
 
 	return cell;
 }
@@ -399,11 +409,23 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (IBAction)onSettingBtn
 {
 	eXoApplicationsViewController *apps = [[eXoApplicationsViewController alloc] init];
-	apps._dictLocalize = _dictLocalize;
-	eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:apps];
-
-	[self.navigationController pushViewController:setting animated:YES];
-	
+    apps._dictLocalize = _dictLocalize;
+    
+    eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:apps];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
+    [setting release];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self.navigationController presentModalViewController:navController animated:YES];
+    [navController release];
+    
+    
+    
+    //SettingsViewController_iPhone *setting = [[SettingsViewController_iPhone alloc] initWithNibName:@"SettingsViewController_iPhone"
+                                                                                      //     delegate:apps];
+    //[setting initWithStyle:UITableViewStyleGrouped delegate:apps];
+    
+	//[self.navigationController presentModalViewController:setting animated:YES];
 }
 
 - (IBAction)onSignInBtn:(id)sender
@@ -471,6 +493,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[userDefaults setObject:password forKey:EXO_PREFERENCE_PASSWORD];	
 	
 	_strBSuccessful = [conn sendAuthenticateRequest:_strHost username:username password:password];
+    
+    //SLM : Remake the screen interactions enabled
+    self.view.userInteractionEnabled = YES;
 	
 	if(_strBSuccessful == @"YES")
 	{

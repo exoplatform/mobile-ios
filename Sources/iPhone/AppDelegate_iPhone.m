@@ -8,7 +8,7 @@
 
 #import "AppDelegate_iPhone.h"
 
-#import "eXoAppViewController.h"
+#import "AuthenticateViewController.h"
 #import "eXoApplicationsViewController.h"
 #import "eXoSettingViewController.h"
 #import "eXoWebViewController.h"
@@ -21,7 +21,7 @@
 @implementation AppDelegate_iPhone
 
 @synthesize window;
-@synthesize viewController;
+@synthesize authenticateViewController;
 @synthesize applicationsViewController;
 @synthesize gadgetsViewController;
 @synthesize navigationController;
@@ -60,18 +60,11 @@
 	
     //FilePath not needed any more, so release it
     [filePath release];
+
     
-    
-	viewController = nil;
-	applicationsViewController = nil;
-	settingViewController = nil;
-	webViewController = nil;
-	
-	_splash = [[eXoSplashViewController alloc] initWithNibName:@"eXoSplashViewController" bundle:nil];
-	_splash._dictLocalize = _dictLocalize;
+    window.rootViewController = navigationController;
 	[window makeKeyAndVisible];
-	[window addSubview:_splash.view];
-	[NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(splashScreen) userInfo:nil repeats:NO];
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption {
@@ -79,6 +72,7 @@
     return YES;
 }
 
+/*
 -(void)splashScreen {
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -93,12 +87,13 @@
 	}
 	else 
 	{
-		viewController = [[eXoAppViewController alloc] initWithNibName:@"eXoAppViewController" bundle:nil];
-		navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+		authenticateViewController = [[AuthenticateViewController alloc] initWithNibName:@"AuthenticateViewController" bundle:nil];
+		navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateViewController];
 		[window addSubview:[navigationController view]];
 	}
 }
-
+ */
+/*
 -(void)startLogin
 {
 	
@@ -110,7 +105,9 @@
 	[_splash.view addSubview:_splash.label];
 	[_splash.view addSubview:_splash.autoLoginImg];
 }
+ */
 
+/*
 - (void)login 
 {
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -127,8 +124,8 @@
 	if(_bSuccessful == @"YES")
 	{
 		[_splash.view removeFromSuperview];
-		viewController = [[eXoAppViewController alloc] initWithNibName:@"eXoAppViewController" bundle:nil];
-		navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+		authenticateViewController = [[AuthenticateViewController alloc] initWithNibName:@"AuthenticateViewController" bundle:nil];
+		navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateViewController];
 		[window addSubview:[navigationController view]];
 		
 		
@@ -164,23 +161,21 @@
     
     [_bSuccessful release];
 }
+ */
+
+/*
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	viewController = [[eXoAppViewController alloc] initWithNibName:@"eXoAppViewController" bundle:nil];
-	navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	authenticateViewController = [[AuthenticateViewController alloc] initWithNibName:@"AuthenticateViewController" bundle:nil];
+	navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateViewController];
 	[window addSubview:[navigationController view]];
 	
 }
+ */
 
 - (void)showHomeViewController
 {
-//    _homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
-//    UINavigationController* applicationView = [[UINavigationController alloc] 
-//											   initWithRootViewController:_homeViewController_iPhone];
-//	applicationView.navigationBar.tintColor = [UIColor blackColor];
-//    
-//    [window addSubview:applicationView.view];
     
     if (_homeViewController_iPhone == nil) 
     {
@@ -188,15 +183,11 @@
         [_homeViewController_iPhone setDelegate:self];
     }
     
-    if (_navigationController == nil) 
-    {
-        _navigationController = [[UINavigationController alloc] 
-                                 initWithRootViewController:_homeViewController_iPhone];
-        _navigationController.navigationBar.tintColor = [UIColor blackColor];
-    }
-    [navigationController.view addSubview:_navigationController.view];
+    [self.navigationController pushViewController:_homeViewController_iPhone animated:YES];
+    
 }
 
+/*
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -243,12 +234,14 @@
 	
 	[pool release];
 }
+*/
 
+/*
 - (void)changeToGadgetsViewController
 {
 	// view for loading gadgets
 	//[navigationController pushViewController:gadgetsViewController animated:NO];	
-}
+}*/
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -274,8 +267,8 @@
 	[_dictLocalize release];
     _dictLocalize = nil;
     
-    [viewController release];
-    viewController = nil;
+    [authenticateViewController release];
+    authenticateViewController = nil;
     
 	[applicationsViewController release];
     applicationsViewController = nil;
@@ -301,7 +294,8 @@
 
 - (void)onBtnSigtOutDelegate
 {
-    [_navigationController.view removeFromSuperview];
+    //Ask the controller Login to do some things if needed
+    window.rootViewController = authenticateViewController;
 }
 
 @end
