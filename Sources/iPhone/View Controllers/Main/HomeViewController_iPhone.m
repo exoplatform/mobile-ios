@@ -59,36 +59,83 @@
 {
     [super loadView];
     
-    self.statusBarStyle = UIStatusBarStyleBlackOpaque;
-    self.navigationController.navigationBarHidden = NO;
+    //Set the background Color of the view
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
-    _launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
-    _launcherView.backgroundColor = [UIColor blackColor];
+    //Force the status bar to be black opaque since TTViewController reset it
+    self.statusBarStyle = UIStatusBarStyleBlackOpaque;
+    
+    //Add the eXo logo to the Navigation Bar
+    UIImageView* img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eXoLogoNavigationBariPhone.png"]];
+    self.navigationItem.titleView = img;
+    [img release];
+    
+    // Create a custom logout button
+    UIButton* logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *logoutImg = [UIImage imageNamed:@"HomeLogoutiPhone.png"];
+
+    [logoutButton setImage:logoutImg forState:UIControlStateNormal];
+    logoutButton.frame = CGRectMake(0, 0, logoutImg.size.width, logoutImg.size.height);
+    
+    [logoutButton addTarget:self action:@selector(onBbtnSignOut) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:logoutButton] autorelease];
+
+    
+    //Add the shadow at the bottom of the navigationBar
+    UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
+    navigationBarShadowImgV.frame = CGRectMake(0,0,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
+    [self.view addSubview:navigationBarShadowImgV];
+    [navigationBarShadowImgV release];
+
+    
+    //Add the Notification Panel
+    UIImageView *footerImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeNotificationPanelBgIphone.png"]];
+    footerImgV.frame = CGRectMake(0,self.view.bounds.size.height-footerImgV.frame.size.height,footerImgV.frame.size.width,footerImgV.frame.size.height);
+    [self.view addSubview:footerImgV];
+    [footerImgV release];
+    
+    
+    //Add the Global Grid behind the Launcher
+    UIImage *imgGrid = [UIImage imageNamed:@"HomeBackgroundGridiPhone.png"];
+    UIImageView *gridImgV = [[UIImageView alloc] initWithImage:imgGrid];
+    gridImgV.frame = CGRectMake(0, 5, imgGrid.size.width, imgGrid.size.height);
+    
+    [self.view addSubview:gridImgV];
+    
+    _launcherView = [[TTLauncherView alloc] initWithFrame:CGRectMake(0,5,imgGrid.size.width, imgGrid.size.height+20)];
+    
+    //Now release the grid Image view
+    [gridImgV release];
+
+    
+    _launcherView.backgroundColor = [UIColor clearColor];
     _launcherView.delegate = self;
-    _launcherView.columnCount = 4;
+    _launcherView.columnCount = 3;
+    _launcherView.pager.hidesForSinglePage = YES;
     
     _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Activity Streams"
-                                                                                     image:@"bundle://onlineicon.png"
+                                                                                     image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                                        URL:@"tt://activityStream" canDelete:YES] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Chat"
-                                                                                     image:@"bundle://offlineicon.png"
+                                                                                     image:@"bundle://HomeChatIconiPhone.png"
                                                                                        URL:@"tt://chat" canDelete:YES] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Documents"
-                                                                                     image:@"bundle://filesApp.png"
+                                                                                     image:@"bundle://HomeDocumentsIconiPhone.png"
                                                                                        URL:@"tt://documents" canDelete:YES] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Dashboard"
-                                                                                     image:@"bundle://Dashboard.png"
+                                                                                     image:@"bundle://HomeDashboardIconiPhone.png"
                                                                                        URL:@"tt://dashboard" canDelete:YES] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Settings"
-                                                                                     image:@"bundle://setting.png"
+                                                                                     image:@"bundle://HomeSettingsIconiPhone.png"
                                                                                        URL:@"tt://setting" canDelete:YES] autorelease],nil], nil];
     [self.view addSubview:_launcherView];
     
-    UIBarButtonItem* bbtnSignOut = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnSignOut)];
-    self.navigationItem.leftBarButtonItem = bbtnSignOut;
-    [bbtnSignOut release];
     
+    
+    
+
 //    TTLauncherItem* item = [_launcherView itemWithURL:@"fb://item3"];
 //    item.badgeNumber = 4;
 //    
@@ -188,4 +235,8 @@
     [self.navigationController popViewControllerAnimated:YES];
     [_delegate onBtnSigtOutDelegate];
 }
+
+
+
+
 @end

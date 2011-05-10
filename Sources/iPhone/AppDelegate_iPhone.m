@@ -60,6 +60,12 @@
 	
     //FilePath not needed any more, so release it
     [filePath release];
+    
+    
+    UIImageView* imageView = [[[UIImageView alloc] initWithFrame:navigationController.navigationBar.frame] autorelease];
+    imageView.contentMode = UIViewContentModeLeft;
+    imageView.image = [UIImage imageNamed:@"NavBariPhone.png"];
+    [navigationController.navigationBar insertSubview:imageView atIndex:0];
 
     
     window.rootViewController = navigationController;

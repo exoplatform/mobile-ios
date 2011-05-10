@@ -47,6 +47,31 @@
 		46BF6E3213793DC900D1E1A5 /* AuthenticateServersIconOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E3013793DC900D1E1A5 /* AuthenticateServersIconOn.png */; };
 		46BF6E3513793DD600D1E1A5 /* AuthenticateCredentialsIconOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E3313793DD600D1E1A5 /* AuthenticateCredentialsIconOff@2x.png */; };
 		46BF6E3613793DD600D1E1A5 /* AuthenticateServersIconOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E3413793DD600D1E1A5 /* AuthenticateServersIconOn@2x.png */; };
+		46BF6E43137963B100D1E1A5 /* NavBarIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E42137963B100D1E1A5 /* NavBarIphone.png */; };
+		46BF6E45137963BE00D1E1A5 /* NavBarIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E44137963BE00D1E1A5 /* NavBarIphone@2x.png */; };
+		46CAF6B813797B590017C959 /* eXoLogoNavigationBariPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6B613797B590017C959 /* eXoLogoNavigationBariPhone.png */; };
+		46CAF6B913797B590017C959 /* HomeLogoutiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6B713797B590017C959 /* HomeLogoutiPhone.png */; };
+		46CAF6BC13797D320017C959 /* eXoLogoNavigationBariPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6BA13797D320017C959 /* eXoLogoNavigationBariPhone@2x.png */; };
+		46CAF6BD13797D320017C959 /* HomeLogoutiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */; };
+		46CAF6C7137985E70017C959 /* bgGlobal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6C6137985E70017C959 /* bgGlobal.png */; };
+		46CAF6C9137985F50017C959 /* bgGlobal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6C8137985F50017C959 /* bgGlobal@2x.png */; };
+		46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CAF73D13798D230017C959 /* HomeStyleSheet.m */; };
+		46CAF74F1379907B0017C959 /* HomeActivityStreamsIconiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF7491379907B0017C959 /* HomeActivityStreamsIconiPhone.png */; };
+		46CAF7501379907B0017C959 /* HomeBackgroundGridiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF74A1379907B0017C959 /* HomeBackgroundGridiPhone.png */; };
+		46CAF7511379907B0017C959 /* HomeChatIconiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF74B1379907B0017C959 /* HomeChatIconiPhone.png */; };
+		46CAF7521379907B0017C959 /* HomeDashboardIconiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF74C1379907B0017C959 /* HomeDashboardIconiPhone.png */; };
+		46CAF7531379907B0017C959 /* HomeDocumentsIconiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF74D1379907B0017C959 /* HomeDocumentsIconiPhone.png */; };
+		46CAF7541379907B0017C959 /* HomeSettingsIconiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF74E1379907B0017C959 /* HomeSettingsIconiPhone.png */; };
+		46CAF75B137990880017C959 /* HomeActivityStreamsIconiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF755137990880017C959 /* HomeActivityStreamsIconiPhone@2x.png */; };
+		46CAF75C137990880017C959 /* HomeBackgroundGridiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF756137990880017C959 /* HomeBackgroundGridiPhone@2x.png */; };
+		46CAF75D137990880017C959 /* HomeChatIconiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF757137990880017C959 /* HomeChatIconiPhone@2x.png */; };
+		46CAF75E137990880017C959 /* HomeDashboardIconiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF758137990880017C959 /* HomeDashboardIconiPhone@2x.png */; };
+		46CAF75F137990880017C959 /* HomeDocumentsIconiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF759137990880017C959 /* HomeDocumentsIconiPhone@2x.png */; };
+		46CAF760137990880017C959 /* HomeSettingsIconiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF75A137990880017C959 /* HomeSettingsIconiPhone@2x.png */; };
+		46CAF76213799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76113799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png */; };
+		46CAF76413799D680017C959 /* HomeNotificationPanelBgIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */; };
+		46CAF76613799D790017C959 /* GlobalNavigationBarShadowIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76513799D790017C959 /* GlobalNavigationBarShadowIphone.png */; };
+		46CAF76813799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */; };
 		46D97B3013742B7F00F71E82 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B2F13742B7F00F71E82 /* Default.png */; };
 		46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B3113742B8B00F71E82 /* Default@2x.png */; };
 		46D97B7F13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B7E13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png */; };
@@ -478,6 +503,32 @@
 		46BF6E3013793DC900D1E1A5 /* AuthenticateServersIconOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateServersIconOn.png; path = "Authenticate/@1x/AuthenticateServersIconOn.png"; sourceTree = "<group>"; };
 		46BF6E3313793DD600D1E1A5 /* AuthenticateCredentialsIconOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCredentialsIconOff@2x.png"; path = "Authenticate/@2x/AuthenticateCredentialsIconOff@2x.png"; sourceTree = "<group>"; };
 		46BF6E3413793DD600D1E1A5 /* AuthenticateServersIconOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateServersIconOn@2x.png"; path = "Authenticate/@2x/AuthenticateServersIconOn@2x.png"; sourceTree = "<group>"; };
+		46BF6E42137963B100D1E1A5 /* NavBarIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NavBarIphone.png; path = "Global/@1x/NavBarIphone.png"; sourceTree = "<group>"; };
+		46BF6E44137963BE00D1E1A5 /* NavBarIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NavBarIphone@2x.png"; path = "Global/@2x/NavBarIphone@2x.png"; sourceTree = "<group>"; };
+		46CAF6B613797B590017C959 /* eXoLogoNavigationBariPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eXoLogoNavigationBariPhone.png; path = "Home/@1x/eXoLogoNavigationBariPhone.png"; sourceTree = "<group>"; };
+		46CAF6B713797B590017C959 /* HomeLogoutiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeLogoutiPhone.png; path = "Home/@1x/HomeLogoutiPhone.png"; sourceTree = "<group>"; };
+		46CAF6BA13797D320017C959 /* eXoLogoNavigationBariPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eXoLogoNavigationBariPhone@2x.png"; path = "Home/@2x/eXoLogoNavigationBariPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeLogoutiPhone@2x.png"; path = "Home/@2x/HomeLogoutiPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF6C6137985E70017C959 /* bgGlobal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bgGlobal.png; path = "Global/@1x/bgGlobal.png"; sourceTree = "<group>"; };
+		46CAF6C8137985F50017C959 /* bgGlobal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bgGlobal@2x.png"; path = "Global/@2x/bgGlobal@2x.png"; sourceTree = "<group>"; };
+		46CAF73C13798D230017C959 /* HomeStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStyleSheet.h; sourceTree = "<group>"; };
+		46CAF73D13798D230017C959 /* HomeStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeStyleSheet.m; sourceTree = "<group>"; };
+		46CAF7491379907B0017C959 /* HomeActivityStreamsIconiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeActivityStreamsIconiPhone.png; path = "Home/@1x/HomeActivityStreamsIconiPhone.png"; sourceTree = "<group>"; };
+		46CAF74A1379907B0017C959 /* HomeBackgroundGridiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeBackgroundGridiPhone.png; path = "Home/@1x/HomeBackgroundGridiPhone.png"; sourceTree = "<group>"; };
+		46CAF74B1379907B0017C959 /* HomeChatIconiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeChatIconiPhone.png; path = "Home/@1x/HomeChatIconiPhone.png"; sourceTree = "<group>"; };
+		46CAF74C1379907B0017C959 /* HomeDashboardIconiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeDashboardIconiPhone.png; path = "Home/@1x/HomeDashboardIconiPhone.png"; sourceTree = "<group>"; };
+		46CAF74D1379907B0017C959 /* HomeDocumentsIconiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeDocumentsIconiPhone.png; path = "Home/@1x/HomeDocumentsIconiPhone.png"; sourceTree = "<group>"; };
+		46CAF74E1379907B0017C959 /* HomeSettingsIconiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeSettingsIconiPhone.png; path = "Home/@1x/HomeSettingsIconiPhone.png"; sourceTree = "<group>"; };
+		46CAF755137990880017C959 /* HomeActivityStreamsIconiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeActivityStreamsIconiPhone@2x.png"; path = "Home/@2x/HomeActivityStreamsIconiPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF756137990880017C959 /* HomeBackgroundGridiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeBackgroundGridiPhone@2x.png"; path = "Home/@2x/HomeBackgroundGridiPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF757137990880017C959 /* HomeChatIconiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeChatIconiPhone@2x.png"; path = "Home/@2x/HomeChatIconiPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF758137990880017C959 /* HomeDashboardIconiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeDashboardIconiPhone@2x.png"; path = "Home/@2x/HomeDashboardIconiPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF759137990880017C959 /* HomeDocumentsIconiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeDocumentsIconiPhone@2x.png"; path = "Home/@2x/HomeDocumentsIconiPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF75A137990880017C959 /* HomeSettingsIconiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeSettingsIconiPhone@2x.png"; path = "Home/@2x/HomeSettingsIconiPhone@2x.png"; sourceTree = "<group>"; };
+		46CAF76113799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeNotificationPanelBgIphone@2x.png"; path = "Home/@2x/HomeNotificationPanelBgIphone@2x.png"; sourceTree = "<group>"; };
+		46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeNotificationPanelBgIphone.png; path = "Home/@1x/HomeNotificationPanelBgIphone.png"; sourceTree = "<group>"; };
+		46CAF76513799D790017C959 /* GlobalNavigationBarShadowIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GlobalNavigationBarShadowIphone.png; path = "Global/@1x/GlobalNavigationBarShadowIphone.png"; sourceTree = "<group>"; };
+		46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GlobalNavigationBarShadowIphone@2x.png"; path = "Global/@2x/GlobalNavigationBarShadowIphone@2x.png"; sourceTree = "<group>"; };
 		46D97B2F13742B7F00F71E82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Splashscreen/@1x/Default.png"; sourceTree = "<group>"; };
 		46D97B3113742B8B00F71E82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Splashscreen/@2x/Default@2x.png"; sourceTree = "<group>"; };
 		46D97B7E13743CBC00F71E82 /* AuthenticateIphoneButtonBgStrechable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateIphoneButtonBgStrechable.png; path = "Authenticate/@1x/AuthenticateIphoneButtonBgStrechable.png"; sourceTree = "<group>"; };
@@ -958,6 +1009,76 @@
 			name = "@2x";
 			sourceTree = "<group>";
 		};
+		46BF6E3F137960E200D1E1A5 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				46BF6E411379639800D1E1A5 /* @1x */,
+				46BF6E401379639300D1E1A5 /* @2x */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		46BF6E401379639300D1E1A5 /* @2x */ = {
+			isa = PBXGroup;
+			children = (
+				46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */,
+				46CAF6C8137985F50017C959 /* bgGlobal@2x.png */,
+				46BF6E44137963BE00D1E1A5 /* NavBarIphone@2x.png */,
+			);
+			name = "@2x";
+			sourceTree = "<group>";
+		};
+		46BF6E411379639800D1E1A5 /* @1x */ = {
+			isa = PBXGroup;
+			children = (
+				46CAF76513799D790017C959 /* GlobalNavigationBarShadowIphone.png */,
+				46CAF6C6137985E70017C959 /* bgGlobal.png */,
+				46BF6E42137963B100D1E1A5 /* NavBarIphone.png */,
+			);
+			name = "@1x";
+			sourceTree = "<group>";
+		};
+		46BF6E46137963F500D1E1A5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				46BF6E471379640600D1E1A5 /* @1x */,
+				46BF6E481379641000D1E1A5 /* @2x */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		46BF6E471379640600D1E1A5 /* @1x */ = {
+			isa = PBXGroup;
+			children = (
+				46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */,
+				46CAF7491379907B0017C959 /* HomeActivityStreamsIconiPhone.png */,
+				46CAF74A1379907B0017C959 /* HomeBackgroundGridiPhone.png */,
+				46CAF74B1379907B0017C959 /* HomeChatIconiPhone.png */,
+				46CAF74C1379907B0017C959 /* HomeDashboardIconiPhone.png */,
+				46CAF74D1379907B0017C959 /* HomeDocumentsIconiPhone.png */,
+				46CAF74E1379907B0017C959 /* HomeSettingsIconiPhone.png */,
+				46CAF6B613797B590017C959 /* eXoLogoNavigationBariPhone.png */,
+				46CAF6B713797B590017C959 /* HomeLogoutiPhone.png */,
+			);
+			name = "@1x";
+			sourceTree = "<group>";
+		};
+		46BF6E481379641000D1E1A5 /* @2x */ = {
+			isa = PBXGroup;
+			children = (
+				46CAF76113799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png */,
+				46CAF755137990880017C959 /* HomeActivityStreamsIconiPhone@2x.png */,
+				46CAF756137990880017C959 /* HomeBackgroundGridiPhone@2x.png */,
+				46CAF757137990880017C959 /* HomeChatIconiPhone@2x.png */,
+				46CAF758137990880017C959 /* HomeDashboardIconiPhone@2x.png */,
+				46CAF759137990880017C959 /* HomeDocumentsIconiPhone@2x.png */,
+				46CAF75A137990880017C959 /* HomeSettingsIconiPhone@2x.png */,
+				46CAF6BA13797D320017C959 /* eXoLogoNavigationBariPhone@2x.png */,
+				46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */,
+			);
+			name = "@2x";
+			sourceTree = "<group>";
+		};
 		46D97B2E13742B2A00F71E82 /* Splashscreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -1335,6 +1456,8 @@
 				8947339C13370B4500B0AD11 /* eXoSplashViewController.m */,
 				8947339D13370B4500B0AD11 /* eXoWebViewController.h */,
 				8947339E13370B4500B0AD11 /* eXoWebViewController.m */,
+				46CAF73C13798D230017C959 /* HomeStyleSheet.h */,
+				46CAF73D13798D230017C959 /* HomeStyleSheet.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1460,6 +1583,8 @@
 		894733F513370F4F00B0AD11 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				46BF6E3F137960E200D1E1A5 /* Global */,
+				46BF6E46137963F500D1E1A5 /* Home */,
 				46D97B7B13743C7C00F71E82 /* Authenticate */,
 				46D97B2E13742B2A00F71E82 /* Splashscreen */,
 				894733F613370F4F00B0AD11 /* 320x480v1.jpg */,
@@ -2192,6 +2317,30 @@
 				46BF6E3213793DC900D1E1A5 /* AuthenticateServersIconOn.png in Resources */,
 				46BF6E3513793DD600D1E1A5 /* AuthenticateCredentialsIconOff@2x.png in Resources */,
 				46BF6E3613793DD600D1E1A5 /* AuthenticateServersIconOn@2x.png in Resources */,
+				46BF6E43137963B100D1E1A5 /* NavBarIphone.png in Resources */,
+				46BF6E45137963BE00D1E1A5 /* NavBarIphone@2x.png in Resources */,
+				46CAF6B813797B590017C959 /* eXoLogoNavigationBariPhone.png in Resources */,
+				46CAF6B913797B590017C959 /* HomeLogoutiPhone.png in Resources */,
+				46CAF6BC13797D320017C959 /* eXoLogoNavigationBariPhone@2x.png in Resources */,
+				46CAF6BD13797D320017C959 /* HomeLogoutiPhone@2x.png in Resources */,
+				46CAF6C7137985E70017C959 /* bgGlobal.png in Resources */,
+				46CAF6C9137985F50017C959 /* bgGlobal@2x.png in Resources */,
+				46CAF74F1379907B0017C959 /* HomeActivityStreamsIconiPhone.png in Resources */,
+				46CAF7501379907B0017C959 /* HomeBackgroundGridiPhone.png in Resources */,
+				46CAF7511379907B0017C959 /* HomeChatIconiPhone.png in Resources */,
+				46CAF7521379907B0017C959 /* HomeDashboardIconiPhone.png in Resources */,
+				46CAF7531379907B0017C959 /* HomeDocumentsIconiPhone.png in Resources */,
+				46CAF7541379907B0017C959 /* HomeSettingsIconiPhone.png in Resources */,
+				46CAF75B137990880017C959 /* HomeActivityStreamsIconiPhone@2x.png in Resources */,
+				46CAF75C137990880017C959 /* HomeBackgroundGridiPhone@2x.png in Resources */,
+				46CAF75D137990880017C959 /* HomeChatIconiPhone@2x.png in Resources */,
+				46CAF75E137990880017C959 /* HomeDashboardIconiPhone@2x.png in Resources */,
+				46CAF75F137990880017C959 /* HomeDocumentsIconiPhone@2x.png in Resources */,
+				46CAF760137990880017C959 /* HomeSettingsIconiPhone@2x.png in Resources */,
+				46CAF76213799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png in Resources */,
+				46CAF76413799D680017C959 /* HomeNotificationPanelBgIphone.png in Resources */,
+				46CAF76613799D790017C959 /* GlobalNavigationBarShadowIphone.png in Resources */,
+				46CAF76813799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2289,6 +2438,7 @@
 				7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */,
 				7C3BD1A31370FE1700380828 /* FilesViewController_iPad.m in Sources */,
 				7C3BD1A41370FE1700380828 /* HomeViewController_iPad.m in Sources */,
+				46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
