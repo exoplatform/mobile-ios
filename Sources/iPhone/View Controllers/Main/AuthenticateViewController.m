@@ -327,10 +327,33 @@
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNib owner:self options:nil];
         cell = (UITableViewCell *)[nib objectAtIndex:0];
+        
+        //Some customize of the cell background :-)
+        [cell setBackgroundColor:[UIColor clearColor]];
+        
+        //Create two streachables images for background states
+        UIImage *imgBgNormal = [[UIImage imageNamed:@"AuthenticateServerCellBgIPhoneNormal.png"]
+                                 stretchableImageWithLeftCapWidth:7 topCapHeight:0];
+        
+        UIImage *imgBgSelected = [[UIImage imageNamed:@"AuthenticateServerCellBgIPhoneSelected.png"]
+                                 stretchableImageWithLeftCapWidth:7 topCapHeight:0];
+        
+        //Add images to imageView for the backgroundview of the cell
+        UIImageView *ImgVCellBGNormal = [[UIImageView alloc] initWithImage:imgBgNormal];
+        
+        UIImageView *ImgVBGSelected = [[UIImageView alloc] initWithImage:imgBgSelected];
+        
+        //Define the ImageView as background of the cell
+        [cell setBackgroundView:ImgVCellBGNormal];
+        [ImgVCellBGNormal release];
+         
+        //Define the ImageView as background of the cell
+        [cell setSelectedBackgroundView:ImgVBGSelected];
+        [ImgVBGSelected release];
+        
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+            
     if (indexPath.row == _intSelectedServer) 
     {
         cell.accessoryView = [self makeCheckmarkOnAccessoryView];

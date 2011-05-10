@@ -39,7 +39,7 @@
 			</object>
 			<object class="IBUITableViewCell" id="3839714">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">294</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="257413864">
@@ -50,7 +50,7 @@
 							<object class="IBUILabel" id="873377469">
 								<reference key="NSNextResponder" ref="257413864"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{3, 11}, {119, 21}}</string>
+								<string key="NSFrame">{{7, 11}, {119, 21}}</string>
 								<reference key="NSSuperview" ref="257413864"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="528177566"/>
@@ -87,7 +87,6 @@
 								<string key="NSFrame">{{112, 11}, {111, 21}}</string>
 								<reference key="NSSuperview" ref="257413864"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yMjc0NTA5ODE3IDAuMzA1ODgyMzY0NSAwLjQ5NDExNzY0NzQgMAA</bytes>
