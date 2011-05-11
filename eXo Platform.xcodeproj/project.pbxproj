@@ -98,6 +98,7 @@
 		7C5764891368032800C5F028 /* ChatViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764851368032500C5F028 /* ChatViewController_iPhone.m */; };
 		7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */; };
 		7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C61BB133B3BAE005A365A /* Configuration.m */; };
+		7CB8F466137A66D200149B65 /* DashboardViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */; };
 		7CE839A2134468A000FF5B7A /* iPadServerAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399D1344689F00FF5B7A /* iPadServerAddingViewController.m */; };
 		7CE839A3134468A000FF5B7A /* iPadServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */; };
 		7CE839A613446D9500FF5B7A /* iPadServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */; };
@@ -575,6 +576,7 @@
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
+		7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPad.xib; sourceTree = "<group>"; };
 		7CE8399C1344689F00FF5B7A /* iPadServerAddingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerAddingViewController.h; sourceTree = "<group>"; };
 		7CE8399D1344689F00FF5B7A /* iPadServerAddingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerAddingViewController.m; sourceTree = "<group>"; };
 		7CE8399E134468A000FF5B7A /* iPadServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerEditingViewController.h; sourceTree = "<group>"; };
@@ -1176,6 +1178,7 @@
 				7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */,
 				7CE839A713446DAB00FF5B7A /* iPadServerEditingViewController.xib */,
 				7CE839A813446DAB00FF5B7A /* iPadServerManagerViewController.xib */,
+				7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */,
 				8937A32E1338993900D8B474 /* AppContainerViewController.xib */,
 				8937A32F1338993900D8B474 /* ChatWindowViewController.xib */,
 				8937A3301338993900D8B474 /* eXoMobileViewController.xib */,
@@ -2341,6 +2344,7 @@
 				46CAF76413799D680017C959 /* HomeNotificationPanelBgIphone.png in Resources */,
 				46CAF76613799D790017C959 /* GlobalNavigationBarShadowIphone.png in Resources */,
 				46CAF76813799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png in Resources */,
+				7CB8F466137A66D200149B65 /* DashboardViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
