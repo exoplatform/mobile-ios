@@ -310,6 +310,7 @@
 		8947351B13372CD900B0AD11 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351A13372CD900B0AD11 /* libidn.a */; };
 		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
+		89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -865,6 +866,7 @@
 		8947351A13372CD900B0AD11 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1201,6 +1203,7 @@
 		8937A3501338994400D8B474 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */,
 				8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */,
 				7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */,
 				7C06962613419B6C007F26BB /* ServerAddingViewController.xib */,
@@ -2345,6 +2348,7 @@
 				46CAF76613799D790017C959 /* GlobalNavigationBarShadowIphone.png in Resources */,
 				46CAF76813799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png in Resources */,
 				7CB8F466137A66D200149B65 /* DashboardViewController_iPad.xib in Resources */,
+				89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

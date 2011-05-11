@@ -26,7 +26,8 @@
 #import "ChatViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
 #import "eXoSettingViewController.h"
-
+#import "Connection.h"
+#import "Gadget_iPhoneViewController.h"
 
 @implementation HomeViewController_iPhone
 
@@ -37,6 +38,7 @@
     {
         self.title = @"Home";
     }
+    
     return self;
 }
 
@@ -50,14 +52,33 @@
 {
 
     self.navigationController.navigationBarHidden = NO;
-    
     [super viewWillAppear:animated];
+
+    // Create a custom logout button
+    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
+    if(logoutButton == nil)
+    {
+        logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *logoutImg = [UIImage imageNamed:@"HomeLogoutiPhone.png"];
+        
+        [logoutButton setImage:logoutImg forState:UIControlStateNormal];
+        logoutButton.frame = CGRectMake(5, 6, logoutImg.size.width, logoutImg.size.height);
+        
+        [logoutButton addTarget:self action:@selector(onBbtnSignOut) forControlEvents:UIControlEventTouchUpInside];
+        logoutButton.tag = 111;
+        [self.navigationController.navigationBar addSubview:logoutButton];    
+    }
+    
+    logoutButton.hidden = NO;
+    
 }
 
 
 - (void)loadView 
 {
     [super loadView];
+    
+    _conn = [[Connection alloc] init];
     
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
@@ -70,16 +91,9 @@
     self.navigationItem.titleView = img;
     [img release];
     
-    // Create a custom logout button
-    UIButton* logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *logoutImg = [UIImage imageNamed:@"HomeLogoutiPhone.png"];
-
-    [logoutButton setImage:logoutImg forState:UIControlStateNormal];
-    logoutButton.frame = CGRectMake(0, 0, logoutImg.size.width, logoutImg.size.height);
+    self.navigationItem.hidesBackButton = YES;
     
-    [logoutButton addTarget:self action:@selector(onBbtnSignOut) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:logoutButton] autorelease];
+//    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:logoutButton] autorelease];
 
     
     //Add the shadow at the bottom of the navigationBar
@@ -160,6 +174,9 @@
 // TTLauncherViewDelegate
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item 
 {
+    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
+    logoutButton.hidden = YES;
+    
     TTNavigator* navigator = [TTNavigator navigator];
     navigator.supportsShakeToReload = YES;
     navigator.persistenceMode = TTNavigatorPersistenceModeAll;
@@ -184,6 +201,8 @@
  toViewController: [ChatViewController_iPhone class]
          selector: nil
        transition: 0];
+        
+        TTOpenURLFromView(item.URL, self.view);
     }
     
     if ([item.title isEqualToString:@"Documents"]) 
@@ -193,15 +212,25 @@
  toViewController: [FilesViewController_iPhone class]
          selector: nil
        transition: 0];
+        
+        TTOpenURLFromView(item.URL, self.view);
     }
     
     if ([item.title isEqualToString:@"Dashboard"]) 
     {
-        [map from: item.URL
-           parent: @"tt://homeview"
- toViewController: [DashboardViewController_iPhone class]
-         selector: nil
-       transition: 0];
+        
+        DashboardViewController_iPhone *dashboardController = [[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil];
+        
+//        [dashboardController._arrGadgets removeAllObjects];
+//        dashboardController._arrGadgets = [[_conn getItemsInDashboard] retain];	
+        [self.navigationController pushViewController:dashboardController animated:YES];
+        
+        
+//        [map from: @"tt://dashboard"
+//           parent: @"tt://homeview"
+// toViewController: dashboardController
+//         selector: nil
+//       transition: 0];
     }
     
     if([item.title isEqualToString:@"Settings"]) 
@@ -212,9 +241,11 @@
  toViewController: setting
          selector: nil
        transition: 0];
+        
+        TTOpenURLFromView(item.URL, self.view);
     }
     
-    TTOpenURLFromView(item.URL, self.view);
+    //TTOpenURLFromView(item.URL, self.view);
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher 

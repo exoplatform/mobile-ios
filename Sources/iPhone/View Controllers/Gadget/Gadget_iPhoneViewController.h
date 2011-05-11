@@ -28,6 +28,8 @@
 	IBOutlet UILabel*						_lbTitleItemInDb;	//Gadget tab title
 }
 
+@property(nonatomic, retain) NSMutableArray* _arrGadgets;
+
 - (void)setDelegate:(id)delegate;	//Set delegate
 - (void)localize;	//Get current language
 - (int)getSelectedLanguage;	//Get current language index

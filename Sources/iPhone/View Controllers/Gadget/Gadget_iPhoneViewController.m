@@ -18,6 +18,8 @@
 
 @implementation Gadget_iPhoneViewController
 
+@synthesize _arrGadgets;
+
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -285,8 +287,6 @@
 	
 	return cell;
 }
-
-
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 

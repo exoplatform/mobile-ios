@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <Three20/Three20.h>
 
-@interface DashboardViewController_iPhone : TTViewController {
+@class GadgetDisplayViewController;
 
+@interface DashboardViewController_iPhone : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+
+    NSMutableArray*		_arrTabs;	//Gadget array 
+    
+    IBOutlet UITableView*   _tblGadgets;
+    GadgetDisplayViewController* _gadgetDisplayViewController;	//Display gadget
 }
+
+@property(nonatomic, retain) NSMutableArray* _arrTabs;
 
 @end
