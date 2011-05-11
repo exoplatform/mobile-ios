@@ -282,13 +282,13 @@
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"checkmarkAuthenticateiPhoneOff.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
 }
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
 {
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"checkmarkAuthenticateiPhoneOn.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
 }
 
 
