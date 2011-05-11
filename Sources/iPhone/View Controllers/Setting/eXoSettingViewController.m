@@ -13,10 +13,27 @@
 #import "Configuration.h"
 #import "ServerManagerViewController.h"
 #import "ContainerCell.h"
+#import "CustomBackgroundForCell_iPhone.h"
 
-static NSString *CellIdentifier = @"MyIdentifier";
+static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
+static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
+static NSString *CellIdentifierGuide = @"CellIdentifierGuide";
+static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
+static NSString *CellNibServer = @"AuthenticateServerCell";
+
+//Define tags for Language cells
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
+
+
+//Define tag for UISwitch in Login cells
+#define kTagForSwitchRememberMe 87
+#define kTagForSwitchAutologin 78
+
+
+//Define tags for Server cells
+#define kTagInCellForServerNameLabel 10
+#define kTagInCellForServerURLLabel 20
 
 
 @implementation eXoSettingViewController
@@ -44,8 +61,11 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		
 		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
 		[rememberMe addTarget:self action:@selector(rememberMeAction) forControlEvents:UIControlEventValueChanged];
+        rememberMe.tag = kTagForSwitchRememberMe;
+        
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
 		[autoLogin addTarget:self action:@selector(autoLoginAction) forControlEvents:UIControlEventValueChanged];
+        autoLogin.tag = kTagForSwitchAutologin;
 		
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 		_selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
@@ -81,6 +101,17 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	self.title = [_dictLocalize objectForKey:@"Settings"];
 	[self.tableView reloadData];
     
+    //Add the Done button for exit Settings
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                   target:self action:@selector(dismissSettings)];
+    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"done"];
+    self.navigationItem.rightBarButtonItem = buttonItem;
+    //[self.navigationController.navigationBar. pushNavigationItem:navigationItem animated:NO];
+    [navigationItem release];
+    [buttonItem release];
+    
+    
     [super viewWillAppear:animated];
 }
 
@@ -94,19 +125,31 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    //Set the background Color of the view
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    
+    //Customize the Navigation Bar appaerance
+    CGRect frameForCustomNavBar = self.navigationController.navigationBar.frame;
+    frameForCustomNavBar.origin.y -= 20;
+    UIImageView* imageView = [[[UIImageView alloc] initWithFrame:frameForCustomNavBar] autorelease];
+    imageView.contentMode = UIViewContentModeLeft;
+    imageView.image = [UIImage imageNamed:@"NavBariPhone.png"];
+    [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
+    
+    //Add the shadow at the bottom of the navigationBar
+    UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
+    navigationBarShadowImgV.frame = CGRectMake(0,self.navigationController.navigationBar.frame.size.height,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
+    [self.navigationController.navigationBar addSubview:navigationBarShadowImgV];
+    [navigationBarShadowImgV release];
+    
+     
     _arrServerList = [[Configuration sharedInstance] getServerList];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     
-    //Add the Done button for exit Settings
-    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                   target:self action:@selector(dismissSettings)];
-    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"done"];
-    self.navigationItem.rightBarButtonItem = buttonItem;
-    //[self.navigationController.navigationBar. pushNavigationItem:navigationItem animated:NO];
-    [navigationItem release];
-    [buttonItem release];
+    
 }
 
 //Method to dismiss settings
@@ -178,12 +221,92 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	[userDefaults setObject:str forKey:EXO_AUTO_LOGIN];
 }
 
+
+
+-(UIImageView *) makeCheckmarkOffAccessoryView
+{
+    return [[[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+}
+
+-(UIImageView *) makeCheckmarkOnAccessoryView
+{
+    return [[[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+}
+
+
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
     return 4;
 }
+
+
+#pragma Header methods
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 44.0;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	// create the parent view that will hold header Label
+	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 0.0, 300.0, 44.0)];
+	
+	// create the button object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.opaque = NO;
+	headerLabel.textColor = [UIColor colorWithRed:54./255 green:54./255 blue:54./255 alpha:1.];
+	headerLabel.shadowColor = [UIColor whiteColor];
+    headerLabel.shadowOffset = CGSizeMake(1, 1);
+	headerLabel.font = [UIFont boldSystemFontOfSize:17];
+	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
+    
+	// If you want to align the header text as centered
+	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
+    
+    switch (section) 
+	{
+		case 0:
+		{
+			headerLabel.text = [_dictLocalize objectForKey:@"SignInButton"];
+			break;
+		}
+			
+		case 1:
+		{
+			headerLabel.text = [_dictLocalize objectForKey:@"Language"];
+			break;
+		}
+			
+		case 2:
+		{
+			headerLabel.text = [_dictLocalize objectForKey:@"ServerList"];
+			break;
+		}
+            
+		case 3:
+		{
+			headerLabel.text = [_dictLocalize objectForKey:@"UserGuide"];
+			break;
+		}
+			
+		default:
+			break;
+	}
+	    
+	[customView addSubview:headerLabel];
+    [headerLabel release];
+    
+	return customView;
+}
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -246,10 +369,15 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	return numofRows;
 }
 
+
+
+
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float fHeight = 44.0;
-    if(indexPath.section == 2)
+    /*if(indexPath.section == 2)
 	{
         if (indexPath.row < [_arrServerList count]) 
         {
@@ -261,26 +389,42 @@ static NSString *CellIdentifier = @"MyIdentifier";
             fHeight = 44*((int)theSize.height/44 + 1);
             return fHeight;
         }
-    }
+    }*/
     return fHeight;
 }
+
+
+
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+    
+    CustomBackgroundForCell_iPhone *cell;
+    
     
     switch (indexPath.section) 
     {
         case 0:
         {
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];  
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLogin] autorelease];
+                
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+            
+            //Remove previous UISwith
+            [[cell viewWithTag:kTagForSwitchRememberMe] removeFromSuperview];
+            [[cell viewWithTag:kTagForSwitchRememberMe] removeFromSuperview];
+            
+            
             if(indexPath.row == 0)
             {
                 cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
@@ -294,105 +438,151 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 [cell addSubview:autoLogin];
             }
             break;
+            
         }
             
         case 1: 
         {
-            UIImageView* imgV;
-            UILabel* titleLabel;
+            
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLanguage];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLanguage] autorelease];
+                
+                UIImageView* imgV;
+                UILabel* titleLabel;
+                
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                imgV.tag = kTagForCellSubviewImageView;
+                [cell addSubview:imgV];
+                [imgV release];
+                
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
+                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                titleLabel.textColor = [UIColor darkGrayColor];
+                titleLabel.backgroundColor = [UIColor clearColor];
+                titleLabel.tag = kTagForCellSubviewTitleLabel;
+                [cell addSubview:titleLabel];
+                [titleLabel release];
+                
+            }
+            
             if(indexPath.row == 0)
             {
-                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                UIImageView *imgV = (UIImageView *) [cell viewWithTag:kTagForCellSubviewImageView];
                 imgV.image = [UIImage imageNamed:@"EN.gif"];
-                [cell addSubview:imgV];
                 
-                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                UILabel *titleLabel = (UILabel *) [cell viewWithTag:kTagForCellSubviewTitleLabel];
                 titleLabel.text = [_dictLocalize objectForKey:@"English"];
-                [cell addSubview:titleLabel];
             }
             else
             {
-                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(17.0, 14.0, 27, 17)];
+                UIImageView *imgV = (UIImageView *) [cell viewWithTag:kTagForCellSubviewImageView];
                 imgV.image = [UIImage imageNamed:@"FR.gif"];
-                [cell addSubview:imgV];	
                 
-                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 250.0, 20.0)];
-                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                UILabel *titleLabel = (UILabel *) [cell viewWithTag:kTagForCellSubviewTitleLabel];
                 titleLabel.text = [_dictLocalize objectForKey:@"French"];
-                [cell addSubview:titleLabel];	
             }
-            [imgV release];
-            [titleLabel release];
             
-            if(indexPath.row == _selectedLanguage)
+            //Put the checkmark
+            
+            if (indexPath.row == _selectedLanguage) 
             {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            } 
+                cell.accessoryView = [self makeCheckmarkOnAccessoryView];
+            }
             else
-            {            
-                cell.accessoryType = UITableViewCellAccessoryNone;
+            {
+                cell.accessoryView = [self makeCheckmarkOffAccessoryView];
             }
             break;
         }
             
         case 2:
         {
+            
+            
+            
+            cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNibServer owner:self options:nil];
+                cell = (CustomBackgroundForCell_iPhone *)[nib objectAtIndex:0];
+                
+                UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
+                lbServerName.textColor = [UIColor darkGrayColor];
+                
+                UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+                lbServerUrl.textColor = [UIColor darkGrayColor];
+                
+            }
+            
             if (indexPath.row < [_arrServerList count]) 
             {
-                ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-                
-                UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 150, 30)];
-                lbServerName.text = tmpServerObj._strServerName;
-                lbServerName.textColor = [UIColor brownColor];
-                [cell addSubview:lbServerName];
-                [lbServerName release];
-                
-                float fWidth = 150;
-                UILabel* lbServerUrl = [[UILabel alloc] init];
-                NSString* text = tmpServerObj._strServerUrl; 
-                CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-                float fHeight = 44*((int)theSize.height/44 + 1) - 10;
-                [lbServerUrl setFrame:CGRectMake(140, 5, fWidth, fHeight)];
-                [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
-                lbServerUrl.text = tmpServerObj._strServerUrl;
-                [cell addSubview:lbServerUrl];
-                [lbServerUrl release];
-                
                 if (indexPath.row == _intSelectedServer) 
                 {
-                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    cell.accessoryView = [self makeCheckmarkOnAccessoryView];
                 }
                 else
                 {
-                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    cell.accessoryView = [self makeCheckmarkOffAccessoryView];
                 }
+                
+                ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+                
+                UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
+                lbServerName.text = tmpServerObj._strServerName;
+                
+                UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+                lbServerUrl.text = tmpServerObj._strServerUrl;
+                
+                
             }
             else
             {
+                
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"] autorelease];
                 UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
                 [lbModify setTextAlignment:UITextAlignmentCenter];
-                lbModify.textColor = [UIColor redColor];
+                lbModify.textColor = [UIColor darkGrayColor];
+                lbModify.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];
+                lbModify.backgroundColor = [UIColor clearColor];
                 [cell addSubview:lbModify];
                 [lbModify release];
             }
             break;
+            
+            
+            
         }
             
         case 3:
         {
-            cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];				
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];			
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierGuide];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
+             
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textColor = [UIColor darkGrayColor];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+             
+            cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];
             break;
         }
             
         default:
             break;
     }
+    
+    
+    //Customize the cell background
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    
+    
 	
     return cell;
+    
 }
 
 

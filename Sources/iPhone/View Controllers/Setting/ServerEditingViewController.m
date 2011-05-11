@@ -68,6 +68,10 @@
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:_btnDelete]; 
     
+    //Set the background Color of the view
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
