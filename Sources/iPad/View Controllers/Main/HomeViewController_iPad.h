@@ -11,6 +11,11 @@
 #import "FilesViewController.h"
 #import "MessengerViewController.h"
 #import "ChatWindowViewController.h"
+#import "Gadget_iPad.h"
+
+@class Connection;
+@class DashboardViewController_iPad;
+@class GadgetDisplayController;
 
 @interface HomeViewController_iPad : TTViewController <TTLauncherViewDelegate> {
     id                              _delegate;
@@ -19,15 +24,24 @@
     
     FilesViewController*            _filesViewController;
     MessengerViewController*        _messengerViewController;
+    
+    DashboardViewController_iPad*   _dashboardViewController_iPad;
+    GadgetDisplayController*        _gadgetDisplayController;
+    
+    
     UINavigationController*         _nvMessengerViewController;
     ChatWindowViewController*       _chatWindowViewController;
     short							_currentViewIndex;
     UIImageView*					_imgViewNewMessage;
     NSMutableArray*					_liveChatArr;
     UIToolbar*						_toolBarChatsLive;
+    
+    Connection*                     _conn;
 }
 
 - (void)setDelegate:(id)delegate;
+- (void)onGadget:(Gadget_iPad*)gadget;
+
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 - (void)setCurrentViewIndex:(short)index;

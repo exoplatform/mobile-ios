@@ -30,6 +30,8 @@
 #import "eXoMobileViewController.h"
 #import "FilesViewController.h"
 #import "XMPPUser.h"
+#import "Connection.h"
+#import "GadgetDisplayController.h"
 
 @implementation HomeViewController_iPad
 
@@ -45,12 +47,22 @@
 
 - (void)dealloc 
 {
+    [_conn release];
+    if (_dashboardViewController_iPad) 
+    {
+        [_dashboardViewController_iPad release];
+    }
+    if (_gadgetDisplayController) 
+    {
+        [_gadgetDisplayController release];
+    }
     [super dealloc];
 }
 
 - (void)loadView 
 {
     [super loadView];
+    _conn = [[Connection alloc] init];
     
     _launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
     _launcherView.backgroundColor = [UIColor blackColor];
@@ -178,11 +190,22 @@
     
     if ([item.title isEqualToString:@"Dashboard"]) 
     {
-        [map from: item.URL
-           parent: @"tt://homeview"
- toViewController: [DashboardViewController_iPad class]
-         selector: nil
-       transition: 0];
+        //[map from: item.URL parent: @"tt://homeview" toViewController: [DashboardViewController_iPad class] selector: nil transition: 0];
+        if (_dashboardViewController_iPad == nil) 
+        {
+            _dashboardViewController_iPad = [[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil];
+            [_dashboardViewController_iPad setDelegate:self];
+            _dashboardViewController_iPad._arrTabs = [_conn getItemsInDashboard];
+        }
+        
+        if ([self.navigationController.viewControllers containsObject:_dashboardViewController_iPad]) 
+        {
+            [self.navigationController popToViewController:_dashboardViewController_iPad animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:_dashboardViewController_iPad animated:YES];
+        }
     }
     
     if([item.title isEqualToString:@"Settings"]) 
@@ -214,6 +237,28 @@
 {
     [_delegate onBtnSigtOutDelegate];
 }
+
+- (void)onGadget:(Gadget_iPad*)gadget
+{
+    if (_gadgetDisplayController == nil) 
+    {
+        _gadgetDisplayController = [[GadgetDisplayController alloc] initWithNibName:@"GadgetDisplayController" bundle:nil];
+        [_gadgetDisplayController setDelegate:self];
+
+    }
+    
+    if ([self.navigationController.viewControllers containsObject:_gadgetDisplayController]) 
+    {
+        [self.navigationController popToViewController:_gadgetDisplayController animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:_gadgetDisplayController animated:YES];
+    }
+	[_gadgetDisplayController startGadget:gadget];
+}
+
+
 
 - (void)setCurrentViewIndex:(short)index
 {
