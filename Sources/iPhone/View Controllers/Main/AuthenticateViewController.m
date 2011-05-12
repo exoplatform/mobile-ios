@@ -16,6 +16,7 @@
 #import "DataProcess.h"
 #import "NSString+HTML.h"
 #import "Configuration.h"
+#import "SSHUDView.h"
 
 
 #define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
@@ -42,6 +43,9 @@
         _intSelectedServer = -1;
         _arrServerList = [[NSMutableArray alloc] init];
 		isFirstTimeLogin = YES;
+
+        
+        
     }
     return self;
 }
@@ -154,6 +158,12 @@
     
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [_hud dismiss];
+    [_hud release];
+}
+
 	
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
@@ -408,12 +418,12 @@
 
 - (void)login
 {
+    //TODO: Localize the label
+    _hud = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+    [_hud show];
+    
 	[[self navigationItem] setRightBarButtonItem:nil];
 	[self view].userInteractionEnabled = NO;
-	_indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
-    [self.view addSubview: _indicator];
-	[_indicator startAnimating];
-	_indicator.hidesWhenStopped = YES;
 
 	[_txtfUsername resignFirstResponder];
 	[_txtfPassword resignFirstResponder];
@@ -478,7 +488,8 @@
 {
 	AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
 	//[appDelegate changeToActivityStreamsViewController:_dictLocalize];
-    [appDelegate showHomeViewController];
+    [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+    //[appDelegate showHomeViewController];
 	
 	endThread = nil;
     [_indicator stopAnimating];
@@ -495,10 +506,13 @@
 
 - (void)startInProgress 
 {	 
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+
+	/*NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	UIBarButtonItem* progressBtn = [[UIBarButtonItem alloc] initWithCustomView:_indicator];
 	[[self navigationItem] setRightBarButtonItem:progressBtn];
 	[pool release];
+     */
 }
 
 - (void)signInProgress
@@ -521,10 +535,13 @@
 	
 	if(_strBSuccessful == @"YES")
 	{
+        //Todo need to be localized
+        [_hud completeAndDismissWithTitle:@"Success..."];
 		[self performSelectorOnMainThread:@selector(loginSuccess) withObject:nil waitUntilDone:NO];
 	}
 	else if(_strBSuccessful == @"NO")
 	{
+        [_hud dismiss];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
 														 message:[_dictLocalize objectForKey:@"WrongUserNamePassword"]
 														delegate:self 
@@ -537,6 +554,7 @@
 	}
 	else if(_strBSuccessful == @"ERROR")
 	{
+        [_hud dismiss];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
 														 message:[_dictLocalize objectForKey:@"NetworkConnectionFailed"]
 														delegate:self 

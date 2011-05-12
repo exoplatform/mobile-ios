@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SSHUDView.h"
 
 //Login page
 @interface AuthenticateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
@@ -38,6 +39,11 @@
     NSMutableArray*             _arrServerList;
     NSString*                   _strHost;
     int                         _intSelectedServer;
+
+    
+    
+    SSHUDView *_hud;//Heads up display
+
 }
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action

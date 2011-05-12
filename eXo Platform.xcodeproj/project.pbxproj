@@ -47,6 +47,14 @@
 		464FCA0A137B13DA00B32A58 /* CustomBackgroundForCellMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA06137B13D900B32A58 /* CustomBackgroundForCellMiddle@2x.png */; };
 		464FCA0B137B13DA00B32A58 /* CustomBackgroundForCellSingle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA07137B13D900B32A58 /* CustomBackgroundForCellSingle@2x.png */; };
 		464FCA0C137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA08137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png */; };
+		46616C7A137C729400D53D3D /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C74137C729400D53D3D /* SSHUDView.m */; };
+		46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C76137C729400D53D3D /* SSHUDWindow.m */; };
+		46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C77137C729400D53D3D /* SSVignetteiPad.png */; };
+		46616C7D137C729400D53D3D /* SSVignetteiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C78137C729400D53D3D /* SSVignetteiPhone.png */; };
+		46616C7E137C729400D53D3D /* SSVignetteiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C79137C729400D53D3D /* SSVignetteiPhone@2x.png */; };
+		46616C83137C750500D53D3D /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C80137C750500D53D3D /* SSDrawingUtilities.m */; };
+		46616C84137C750500D53D3D /* UIView+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C82137C750500D53D3D /* UIView+SSToolkitAdditions.m */; };
+		46616C87137C754900D53D3D /* UIImage+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C86137C754900D53D3D /* UIImage+SSToolkitAdditions.m */; };
 		469597F71377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F01377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png */; };
 		469597FB1377017300ADC826 /* AuthenticateServersIconIphoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F41377017300ADC826 /* AuthenticateServersIconIphoneOff.png */; };
 		469597FD1377017300ADC826 /* AuthenticateSettingsIconIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F61377017300ADC826 /* AuthenticateSettingsIconIphone.png */; };
@@ -517,6 +525,19 @@
 		464FCA06137B13D900B32A58 /* CustomBackgroundForCellMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellMiddle@2x.png"; path = "Global/@2x/CustomBackgroundForCellMiddle@2x.png"; sourceTree = "<group>"; };
 		464FCA07137B13D900B32A58 /* CustomBackgroundForCellSingle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellSingle@2x.png"; path = "Global/@2x/CustomBackgroundForCellSingle@2x.png"; sourceTree = "<group>"; };
 		464FCA08137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellTop@2x.png"; path = "Global/@2x/CustomBackgroundForCellTop@2x.png"; sourceTree = "<group>"; };
+		46616C73137C729400D53D3D /* SSHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDView.h; sourceTree = "<group>"; };
+		46616C74137C729400D53D3D /* SSHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDView.m; sourceTree = "<group>"; };
+		46616C75137C729400D53D3D /* SSHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDWindow.h; sourceTree = "<group>"; };
+		46616C76137C729400D53D3D /* SSHUDWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDWindow.m; sourceTree = "<group>"; };
+		46616C77137C729400D53D3D /* SSVignetteiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSVignetteiPad.png; sourceTree = "<group>"; };
+		46616C78137C729400D53D3D /* SSVignetteiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSVignetteiPhone.png; sourceTree = "<group>"; };
+		46616C79137C729400D53D3D /* SSVignetteiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SSVignetteiPhone@2x.png"; sourceTree = "<group>"; };
+		46616C7F137C750500D53D3D /* SSDrawingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDrawingUtilities.h; sourceTree = "<group>"; };
+		46616C80137C750500D53D3D /* SSDrawingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDrawingUtilities.m; sourceTree = "<group>"; };
+		46616C81137C750500D53D3D /* UIView+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSToolkitAdditions.h"; sourceTree = "<group>"; };
+		46616C82137C750500D53D3D /* UIView+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSToolkitAdditions.m"; sourceTree = "<group>"; };
+		46616C85137C754900D53D3D /* UIImage+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SSToolkitAdditions.h"; sourceTree = "<group>"; };
+		46616C86137C754900D53D3D /* UIImage+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SSToolkitAdditions.m"; sourceTree = "<group>"; };
 		469597F01377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCredentialsIconIphoneOn.png; path = "Authenticate/@1x/AuthenticateCredentialsIconIphoneOn.png"; sourceTree = "<group>"; };
 		469597F41377017300ADC826 /* AuthenticateServersIconIphoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateServersIconIphoneOff.png; path = "Authenticate/@1x/AuthenticateServersIconIphoneOff.png"; sourceTree = "<group>"; };
 		469597F61377017300ADC826 /* AuthenticateSettingsIconIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateSettingsIconIphone.png; path = "Authenticate/@1x/AuthenticateSettingsIconIphone.png"; sourceTree = "<group>"; };
@@ -1072,6 +1093,42 @@
 			name = "@2x";
 			sourceTree = "<group>";
 		};
+		46616C70137C729400D53D3D /* ThirdPart */ = {
+			isa = PBXGroup;
+			children = (
+				46616C71137C729400D53D3D /* SSToolKit */,
+			);
+			path = ThirdPart;
+			sourceTree = "<group>";
+		};
+		46616C71137C729400D53D3D /* SSToolKit */ = {
+			isa = PBXGroup;
+			children = (
+				46616C72137C729400D53D3D /* HUD */,
+			);
+			path = SSToolKit;
+			sourceTree = "<group>";
+		};
+		46616C72137C729400D53D3D /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				46616C73137C729400D53D3D /* SSHUDView.h */,
+				46616C74137C729400D53D3D /* SSHUDView.m */,
+				46616C75137C729400D53D3D /* SSHUDWindow.h */,
+				46616C76137C729400D53D3D /* SSHUDWindow.m */,
+				46616C7F137C750500D53D3D /* SSDrawingUtilities.h */,
+				46616C80137C750500D53D3D /* SSDrawingUtilities.m */,
+				46616C81137C750500D53D3D /* UIView+SSToolkitAdditions.h */,
+				46616C82137C750500D53D3D /* UIView+SSToolkitAdditions.m */,
+				46616C85137C754900D53D3D /* UIImage+SSToolkitAdditions.h */,
+				46616C86137C754900D53D3D /* UIImage+SSToolkitAdditions.m */,
+				46616C77137C729400D53D3D /* SSVignetteiPad.png */,
+				46616C78137C729400D53D3D /* SSVignetteiPhone.png */,
+				46616C79137C729400D53D3D /* SSVignetteiPhone@2x.png */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
 		46BF6E3F137960E200D1E1A5 /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1602,7 @@
 			children = (
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */,
+				46616C70137C729400D53D3D /* ThirdPart */,
 				894733BC13370D7C00B0AD11 /* HowToUse */,
 				894733BD13370D7C00B0AD11 /* Images */,
 				894733BE13370D7C00B0AD11 /* Localized files */,
@@ -2415,6 +2473,9 @@
 				460736EF137C2F1C00D77DB9 /* AuthenticateServerCellBgNormal@2x.png in Resources */,
 				460736F0137C2F1C00D77DB9 /* AuthenticateServerCellBgSelected@2x.png in Resources */,
 				460736F1137C2F1C00D77DB9 /* AuthenticateTextfield@2x.png in Resources */,
+				46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */,
+				46616C7D137C729400D53D3D /* SSVignetteiPhone.png in Resources */,
+				46616C7E137C729400D53D3D /* SSVignetteiPhone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2515,6 +2576,11 @@
 				46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */,
 				464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */,
 				46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */,
+				46616C7A137C729400D53D3D /* SSHUDView.m in Sources */,
+				46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */,
+				46616C83137C750500D53D3D /* SSDrawingUtilities.m in Sources */,
+				46616C84137C750500D53D3D /* UIView+SSToolkitAdditions.m in Sources */,
+				46616C87137C754900D53D3D /* UIImage+SSToolkitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
