@@ -129,15 +129,19 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0./255 
+                                                                          green:106./255 
+                                                                           blue:175./255 
+                                                                          alpha:1.]];
     
-    //Customize the Navigation Bar appaerance
+   /* //Customize the Navigation Bar appaerance
     CGRect frameForCustomNavBar = self.navigationController.navigationBar.frame;
     frameForCustomNavBar.origin.y -= 20;
     UIImageView* imageView = [[[UIImageView alloc] initWithFrame:frameForCustomNavBar] autorelease];
     imageView.contentMode = UIViewContentModeLeft;
     imageView.image = [UIImage imageNamed:@"NavBariPhone.png"];
     [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
-    
+    */
     //Add the shadow at the bottom of the navigationBar
     UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
     navigationBarShadowImgV.frame = CGRectMake(0,self.navigationController.navigationBar.frame.size.height,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
@@ -620,14 +624,14 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
             {
                 _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
             }
-            if([self.navigationController.viewControllers containsObject: _serverManagerViewController])
+            /*if([self.navigationController.viewControllers containsObject: _serverManagerViewController])
             {
                 [self.navigationController popToViewController:_serverManagerViewController animated:YES];
             }
             else
-            {
+            {*/
                 [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
-            }
+            //}
         }
 	}
 	else if(indexPath.section == 3)

@@ -440,7 +440,6 @@
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self.navigationController presentModalViewController:navController animated:YES];
-    [navController release];
     
     
     

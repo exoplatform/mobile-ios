@@ -33,6 +33,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     {
         // Custom initialization
         _arrServerList = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -65,6 +66,9 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 {
     [super viewDidLoad];
 
+    //TODO localize this title
+	self.title = @"Server List";
+    
     
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
@@ -72,6 +76,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     _arrServerList = [[Configuration sharedInstance] getServerList];
     UIBarButtonItem* bbtnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onBbtnAdd)];
     [self.navigationItem setRightBarButtonItem:bbtnAdd];
+        
 }
 
 
@@ -255,12 +260,12 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float fWidth = 150;
+    //float fWidth = 150;
     float fHeight = 44.0;
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    /*ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
     NSString* text = tmpServerObj._strServerUrl; 
     CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    fHeight = 44*((int)theSize.height/44 + 1);
+    fHeight = 44*((int)theSize.height/44 + 1);*/
     return fHeight;
 }
 
@@ -276,6 +281,10 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
         lbServerName.textColor = [UIColor darkGrayColor];
         
         UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+        CGRect tmpFrame = lbServerUrl.frame;
+        tmpFrame.size.width += 55;
+        lbServerUrl.frame = tmpFrame; 
+        
         lbServerUrl.textColor = [UIColor darkGrayColor];
         
         //cell.accessoryView = nil;

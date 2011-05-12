@@ -19,6 +19,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */; };
 		464FC9DB137AC66E00B32A58 /* eXoLogoNavigationBariPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */; };
 		464FC9DD137AC67800B32A58 /* eXoLogoNavigationBariPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */; };
 		464FC9DF137AC77400B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DE137AC77300B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png */; };
@@ -486,6 +487,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		4607365E137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+eXoCustomIphone.h"; sourceTree = "<group>"; };
+		4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+eXoCustomIphone.m"; sourceTree = "<group>"; };
 		464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eXoLogoNavigationBariPhone@2x.png"; path = "Global/@2x/eXoLogoNavigationBariPhone@2x.png"; sourceTree = "<group>"; };
 		464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eXoLogoNavigationBariPhone.png; path = "Global/@1x/eXoLogoNavigationBariPhone.png"; sourceTree = "<group>"; };
 		464FC9DE137AC77300B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCheckmarkiPhoneOn@2x.png"; path = "Authenticate/@2x/AuthenticateCheckmarkiPhoneOn@2x.png"; sourceTree = "<group>"; };
@@ -1321,6 +1324,8 @@
 			children = (
 				464FC9EA137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.h */,
 				464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */,
+				4607365E137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.h */,
+				4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -2485,6 +2490,7 @@
 				7C3BD1A41370FE1700380828 /* HomeViewController_iPad.m in Sources */,
 				46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */,
 				464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */,
+				46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@
 #import "ServerAddingViewController.h"
 #import "ServerManagerViewController.h"
 #import "Configuration.h"
-#import "ContainerCell.h"
+#import "CustomBackgroundForCell_iPhone.h"
 
 @implementation ServerEditingViewController
 
@@ -57,6 +57,9 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    
     //_bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
     _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnDone)]; //It will be localized later
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
@@ -71,9 +74,6 @@
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
-    
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -149,34 +149,7 @@
     [_delegate deleteServerObjAtIndex:_intIndex];
 }
 
-- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view 
-{
-    NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    if (cell == nil) 
-    {
-        cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
-    }
-    cell.textLabel.text = label.text;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell attachContainer:view];
-    
-    return cell;
-}
 
-- (UITableViewCell*)textCellWithLabel:(UILabel*)label 
-{
-    NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    if (cell == nil) 
-    {
-        cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
-    }
-    cell.textLabel.text = label.text;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
@@ -233,10 +206,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
-    if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+    
+    
+    CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
         
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -244,14 +216,19 @@
         if(indexPath.row == 0)
         {
             cell.textLabel.text = @"Server Name";
+            cell.textLabel.textColor = [UIColor darkGrayColor];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
             [cell addSubview:_txtfServerName];
         }
         else
         {
             cell.textLabel.text = @"Server Url";
+            cell.textLabel.textColor = [UIColor darkGrayColor];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
             [cell addSubview:_txtfServerUrl];
         }
-    }
+    
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
     return cell;
 }

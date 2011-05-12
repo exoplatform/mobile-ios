@@ -8,7 +8,7 @@
 
 #import "ServerAddingViewController.h"
 #import "ServerManagerViewController.h"
-#import "ContainerCell.h"
+#import "CustomBackgroundForCell_iPhone.h"
 
 
 @implementation ServerAddingViewController
@@ -46,19 +46,27 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    
     _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
+    
+    
 	_txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
     [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
+    //Customize the style of the texfield
+    _txtfServerUrl.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    _txtfServerUrl.adjustsFontSizeToFitWidth = YES;
 	_txtfServerUrl.delegate = self;
-
+    
     _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
     //[_bbtnDone setEnabled:NO];
     [self.navigationItem setRightBarButtonItem:_bbtnDone];
     
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    //Set the background Color of the view
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
 }
 
 - (void)viewDidUnload
@@ -113,7 +121,7 @@
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
 {
-    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 170, 22)];
+    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(140, 15, 170, 22)];
     textField.placeholder = @"Required";
     textField.secureTextEntry = secure;
     textField.keyboardType = UIKeyboardTypeASCIICapable;
@@ -121,37 +129,14 @@
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    //Customize the style of the texfield
+    textField.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    textField.adjustsFontSizeToFitWidth = YES;
+    textField.textColor = [UIColor grayColor];
+    
     return textField;
 }
 
-- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view 
-{
-    NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    if (cell == nil) 
-    {
-        cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
-    }
-    cell.textLabel.text = label.text;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell attachContainer:view];
-    
-    return cell;
-}
-
-- (UITableViewCell*)textCellWithLabel:(UILabel*)label 
-{
-    NSString *MyIdentifier = label.text;
-    ContainerCell *cell = (ContainerCell*)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    if (cell == nil) 
-    {
-        cell = [[ContainerCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
-    }
-    cell.textLabel.text = label.text;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
@@ -213,24 +198,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
-    if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+   
+        CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if(indexPath.row == 0)
         {
+            //TODO localize the label
             cell.textLabel.text = @"Server Name";
+            cell.textLabel.textColor = [UIColor darkGrayColor];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+
             [cell addSubview:_txtfServerName];
         }
         else
         {
+            //TODO localize this label
             cell.textLabel.text = @"Server Url";
+            cell.textLabel.textColor = [UIColor darkGrayColor];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+            
             [cell addSubview:_txtfServerUrl];
         }
-    }
+    
+
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+
     
     return cell;
 
