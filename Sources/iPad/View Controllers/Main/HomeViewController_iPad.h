@@ -16,6 +16,11 @@
 @class Connection;
 @class DashboardViewController_iPad;
 @class GadgetDisplayController;
+@class iPadSettingViewController;
+@class iPadServerManagerViewController;
+@class iPadServerAddingViewController;
+@class iPadServerEditingViewController;
+@class ServerObj;
 
 @interface HomeViewController_iPad : TTViewController <TTLauncherViewDelegate> {
     id                              _delegate;
@@ -37,6 +42,16 @@
     UIToolbar*						_toolBarChatsLive;
     
     Connection*                     _conn;
+    
+    NSDictionary*						_dictLocalize;
+	int									_intSelectedLanguage;
+    iPadSettingViewController*          _iPadSettingViewController;
+    iPadServerManagerViewController*    _iPadServerManagerViewController;
+    iPadServerAddingViewController*     _iPadServerAddingViewController;
+    iPadServerEditingViewController*    _iPadServerEditingViewController;
+    
+    NSMutableArray*                     _arrViewOfViewControllers;
+    
 }
 
 - (void)setDelegate:(id)delegate;
@@ -51,4 +66,20 @@
 - (void)showChatWindowWithUser:(MessengerUser*)messengerUser andXMPPClient:(XMPPClient*)xmppClient;
 - (MessengerViewController*)getMessengerViewController;
 - (void)showChatToolBar:(BOOL)show;
+
+
+- (int)getSelectedLanguage;
+- (NSDictionary*)getLocalization;
+
+- (void)pushViewIn:(UIView*)view;
+- (void)pullViewOut:(UIView*)viewController;
+- (void)moveView;
+- (void)onBackDelegate;
+- (void)jumpToViewController:(int)index;
+- (void)showiPadServerManagerViewController;
+- (void)showiPadServerAddingViewController;
+- (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index;
+- (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (void)deleteServerObjAtIndex:(int)intIndex;
+
 @end

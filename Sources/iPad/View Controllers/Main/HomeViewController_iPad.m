@@ -25,13 +25,19 @@
 #import "ActivityStreamsViewController_iPad.h"
 #import "ChatViewController_iPad.h"
 #import "DashboardViewController_iPad.h"
-#import "eXoSettingViewController.h"
+#import "iPadSettingViewController.h"
 
 #import "eXoMobileViewController.h"
 #import "FilesViewController.h"
 #import "XMPPUser.h"
 #import "Connection.h"
 #import "GadgetDisplayController.h"
+#import "Configuration.h"
+#import "iPadSettingViewController.h"
+#import "iPadServerManagerViewController.h"
+#import "iPadServerAddingViewController.h"
+#import "iPadServerEditingViewController.h"
+#import "defines.h"
 
 @implementation HomeViewController_iPad
 
@@ -41,6 +47,7 @@
     if (self) 
     {
         self.title = @"Home";
+        _arrViewOfViewControllers = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -56,12 +63,46 @@
     {
         [_gadgetDisplayController release];
     }
+    if (_iPadSettingViewController) 
+    {
+        [_iPadSettingViewController release];
+    }
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController release];
+    }
+    if (_iPadServerAddingViewController) 
+    {
+        [_iPadServerAddingViewController release];
+    }
+    if (_iPadServerEditingViewController) 
+    {
+        [_iPadServerEditingViewController release];
+    }
+    [_arrViewOfViewControllers release];
     [super dealloc];
 }
 
 - (void)loadView 
 {
     [super loadView];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	_intSelectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
+	NSString* filePath;
+	if(_intSelectedLanguage == 0)
+	{
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
+	}	
+	else
+	{	
+		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
+	}	
+	
+	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
+    
+    
     _conn = [[Connection alloc] init];
     
     _launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
@@ -115,7 +156,7 @@
         [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 1024, 704)];
         [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 1024, 704)];
 	}
-    
+    [self moveView];
 }
 
 
@@ -210,12 +251,26 @@
     
     if([item.title isEqualToString:@"Settings"]) 
     {
-        eXoSettingViewController* setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [map from: @"tt://setting"
-           parent: @"tt://homeview"
- toViewController: setting
-         selector: nil
-       transition: 0];
+        if (_iPadSettingViewController == nil) 
+        {
+            _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
+            [_iPadSettingViewController setDelegate:self];
+            [self.view addSubview:_iPadSettingViewController.view];
+        }
+        [self pushViewIn:_iPadSettingViewController.view];
+        
+        /*
+        if ([self.navigationController.viewControllers containsObject:_iPadSettingViewController]) 
+        {
+            [self.navigationController popToViewController:_iPadSettingViewController animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:_iPadSettingViewController animated:YES];
+        }
+         */
+        
+        
     }
     
     //TTOpenURLFromView(item.URL, self.view);
@@ -257,6 +312,197 @@
     }
 	[_gadgetDisplayController startGadget:gadget];
 }
+
+//===============================
+- (int)getSelectedLanguage
+{
+	return _intSelectedLanguage;
+}
+
+- (NSDictionary*)getLocalization
+{
+	return _dictLocalize;
+}
+
+- (void)pushViewIn:(UIView*)view
+{
+    [_arrViewOfViewControllers addObject:view];
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        [view setFrame:CGRectMake(SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+        [self.view setFrame:CGRectMake(0, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+	}
+	
+	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{	
+        [view setFrame:CGRectMake(SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+        [self.view setFrame:CGRectMake(0, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+	}
+    
+    [UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.75];
+	[UIView setAnimationDelegate:self];
+    [self moveView];
+    [UIView commitAnimations];
+}
+
+- (void)pullViewOut:(UIView*)viewController
+{
+    [self jumpToViewController:[_arrViewOfViewControllers count] - 2]; 
+    [_arrViewOfViewControllers removeLastObject];
+}
+
+- (void)jumpToViewController:(int)index
+{
+    [UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.75];
+	[UIView setAnimationDelegate:self];
+    for (int i = 0; i < [_arrViewOfViewControllers count]; i++) 
+    {
+        UIView* tmpView = [_arrViewOfViewControllers objectAtIndex:i];
+        int p = i - index;
+
+        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+        {
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+        }
+        
+        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+        {	
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+        }
+    }
+    [UIView commitAnimations];
+}
+
+
+
+- (void)moveView
+{
+    for (int i = 0; i < [_arrViewOfViewControllers count]; i++) 
+    {
+        UIView* tmpView = [_arrViewOfViewControllers objectAtIndex:i];
+        [tmpView removeFromSuperview];
+        
+        int p = i - [_arrViewOfViewControllers count] + 1;
+        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+        {
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+        }
+        
+        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+        {	
+            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
+        }
+        [self.view addSubview:tmpView];
+    }
+    if (_iPadSettingViewController) 
+    {
+        [_iPadSettingViewController changeOrientation:_interfaceOrientation];
+    }
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController changeOrientation:_interfaceOrientation];
+    }
+    if (_iPadServerAddingViewController) 
+    {
+        [_iPadServerAddingViewController changeOrientation:_interfaceOrientation];
+    }
+    if (_iPadServerEditingViewController) 
+    {
+        [_iPadServerEditingViewController changeOrientation:_interfaceOrientation];
+    }
+}
+
+- (void)onBackDelegate
+{
+    [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+    if (_iPadSettingViewController) 
+    {
+        [_iPadSettingViewController.tblView reloadData];
+    }
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController._tbvlServerList reloadData];
+    }
+    if (_iPadServerAddingViewController) 
+    {
+        [_iPadServerAddingViewController._tblvServerInfo reloadData];
+    }
+    if (_iPadServerEditingViewController) 
+    {
+        [_iPadServerEditingViewController._tblvServerInfo reloadData];
+    }
+}
+
+
+- (void)showiPadServerManagerViewController
+{
+    if (_iPadServerManagerViewController == nil) 
+    {
+        _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
+        [_iPadServerManagerViewController setDelegate:self];
+        [_iPadServerManagerViewController setInterfaceOrientation:_interfaceOrientation];
+        [self.view addSubview:_iPadServerManagerViewController.view];
+    }
+    [self pushViewIn:_iPadServerManagerViewController.view];
+}
+
+
+- (void)showiPadServerAddingViewController
+{
+    if (_iPadServerAddingViewController == nil) 
+    {
+        _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
+        [_iPadServerAddingViewController setDelegate:self];
+        [_iPadServerAddingViewController setInterfaceOrientation:_interfaceOrientation];
+        [self.view addSubview:_iPadServerAddingViewController.view];
+    }
+    [_iPadServerAddingViewController._txtfServerName setText:@""];
+    [_iPadServerAddingViewController._txtfServerUrl setText:@""];    
+    [self pushViewIn:_iPadServerAddingViewController.view];
+}
+
+- (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index
+{
+    if (_iPadServerEditingViewController == nil) 
+    {
+        _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
+        [_iPadServerEditingViewController setDelegate:self];
+        [_iPadServerEditingViewController setInterfaceOrientation:_interfaceOrientation];
+        [self.view addSubview:_iPadServerEditingViewController.view];
+    }
+    [_iPadServerEditingViewController setServerObj:serverObj andIndex:index];
+    [self pushViewIn:_iPadServerEditingViewController.view];
+}
+
+- (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController editServerObjAtIndex:intIndex withSeverName:strServerName andServerUrl:strServerUrl];
+        [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+    }
+}
+
+- (void)deleteServerObjAtIndex:(int)intIndex
+{
+    if (_iPadServerManagerViewController) 
+    {
+        [_iPadServerManagerViewController deleteServerObjAtIndex:intIndex];
+    }
+}
+
+- (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    if(_iPadServerManagerViewController)
+    {
+        [_iPadServerManagerViewController addServerObjWithServerName:strServerName andServerUrl:strServerUrl]; 
+        [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+    }    
+}
+
+//======================
 
 
 
@@ -332,103 +578,17 @@
 
 - (void)addChatButton:(XMPPUser *)user userIndex:(int)index
 {
-    /*
-	BOOL add = YES;
-	for(int i = 1; i < [_liveChatArr count]; i++)
-	{
-		UIBarButtonItem *tmp = [_liveChatArr objectAtIndex:i];
-		if(tmp.tag == index)
-		{
-			add = NO;
-			break;
-		}
-        
-	}
-	if(add)
-	{
-		UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(2, 5, 120, 35)];
-		[btn addTarget:self action:@selector(chatWindows:) forControlEvents:UIControlEventTouchUpInside];
-		NSString* tmpStr = [user address];
-		NSRange r = [tmpStr rangeOfString:@"@"];
-		if (r.length > 0) 
-		{
-			tmpStr = [tmpStr substringToIndex:r.location];
-		}
-		[btn setTitle:tmpStr forState:UIControlStateNormal];
-		[btn setBackgroundImage:[UIImage imageNamed:@"ChatMinimize.png"] forState:UIControlStateNormal];
-		[btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-		[btn setTag:index];
-		
-		UIBarButtonItem *infoButton2 = [[UIBarButtonItem alloc] initWithCustomView:btn];
-		infoButton2.tag = index;
-		btn.tag = index;
-		
-		BOOL bExist = NO;
-		for (int i = 0; i < [_liveChatArr count]; i++) 
-		{
-			UIBarButtonItem* tmp  = [_liveChatArr objectAtIndex:i];
-			if (tmp.tag == index) 
-			{
-				bExist = YES;
-				break;
-			}
-		}
-		if (!bExist) 
-		{
-			[_liveChatArr addObject:infoButton2];
-		}
-        
-		if([_liveChatArr count] < 6)
-		{
-			[_toolBarChatsLive setItems:(NSArray *)_liveChatArr];
-		}
-		else
-		{
-			UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithCustomView:_btnMoreChat];
-			[_liveChatArr insertObject:barBtn atIndex:0];
-			[_toolBarChatsLive setItems:_liveChatArr];
-		}
-	}	
-    */ 
+ 
 }
 
 - (void)removeChatButton:(int)index
 {
-    /*
-	for(int i = 0; i < [_liveChatArr count]; i++)
-	{
-		UIBarButtonItem *tmp = [_liveChatArr objectAtIndex:i];
-		if(tmp.tag == index)
-		{
-			[_liveChatArr removeObjectAtIndex:i];
-			break;
-		}
-	}
-	[_toolBarChatsLive setItems:(NSArray *)_liveChatArr];
-    */ 
+
 }
 
 -(void)showLiveChat:(UIButton *)sender
 {
-    /*
-	NSMutableArray *tmpArr = [[NSMutableArray alloc] init];
-	int count = [_liveChatArr count];
-	if(count >= 3)
-	{
-        
-		for(int i = 2; i < count; i++)
-		{
-			UIBarButtonItem *barButtonUser = [_liveChatArr objectAtIndex:i];
-			[tmpArr addObject:[NSString stringWithFormat:@"%d", barButtonUser.tag]];
-		}
-        
-	}
-	MoreLiveChatViewController *moreLiveChat = [[MoreLiveChatViewController alloc] initWithNibName:@"MoreLiveChatViewController" bundle:nil liveChat: tmpArr delegate:self];
-	UIPopoverController *popoverCtr = [[UIPopoverController alloc] initWithContentViewController:moreLiveChat];
-	[popoverCtr setPopoverContentSize:CGSizeMake(260, 300) animated:YES];
-	moreLiveChat._popViewController = popoverCtr;
-	[popoverCtr presentPopoverFromRect:sender.frame inView:_toolBarChatsLive permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];	
-    */ 
+ 
 }
 
 - (void)openChatWindows:(int)index
@@ -450,13 +610,7 @@
 
 - (void)showChatToolBar:(BOOL)show
 {
-    /*
-	[_toolBarChatsLive setHidden:!show];
-	if(show)
-	{
-		[[self view] bringSubviewToFront:_toolBarChatsLive];
-	}
-     */
+
 }
 
 @end
