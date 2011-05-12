@@ -72,13 +72,13 @@
     [_btnAccount setSelected:YES];
 
     //Add the background image for the settings button
-    [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateIphoneButtonBgStrechable.png"]
+    [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                     stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                           forState:UIControlStateNormal];
     
     
     //Add the background image for the login button
-    [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateIphoneButtonBgStrechable.png"]
+    [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                       stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
     
@@ -332,10 +332,10 @@
         [cell setBackgroundColor:[UIColor clearColor]];
         
         //Create two streachables images for background states
-        UIImage *imgBgNormal = [[UIImage imageNamed:@"AuthenticateServerCellBgIPhoneNormal.png"]
+        UIImage *imgBgNormal = [[UIImage imageNamed:@"AuthenticateServerCellBgNormal.png"]
                                  stretchableImageWithLeftCapWidth:7 topCapHeight:0];
         
-        UIImage *imgBgSelected = [[UIImage imageNamed:@"AuthenticateServerCellBgIPhoneSelected.png"]
+        UIImage *imgBgSelected = [[UIImage imageNamed:@"AuthenticateServerCellBgSelected.png"]
                                  stretchableImageWithLeftCapWidth:7 topCapHeight:0];
         
         //Add images to imageView for the backgroundview of the cell

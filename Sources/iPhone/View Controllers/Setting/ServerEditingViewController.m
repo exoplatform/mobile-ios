@@ -5,6 +5,7 @@
 //  Created by Tran Hoai Son on 3/29/11.
 //  Copyright 2011 home. All rights reserved.
 //
+#import <Three20/Three20.h>
 
 #import "ServerEditingViewController.h"
 #import "ServerAddingViewController.h"
@@ -64,6 +65,7 @@
     _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnDone)]; //It will be localized later
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
     
+        
     _btnDelete = [[UIButton alloc] init];
     [_btnDelete setFrame:CGRectMake(10, 110, 300, 40)];
     [_btnDelete setBackgroundColor:[UIColor redColor]];

@@ -75,7 +75,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">AuthenticatePanelBgIphone.png</string>
+									<string key="NSResourceName">AuthenticatePanelBg.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="619938619">
@@ -116,19 +116,19 @@
 								</object>
 								<object class="NSCustomResource" key="IBUISelectedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">AuthenticateCredentialsIconOn.png</string>
+									<string key="NSResourceName">AuthenticateCredentialsIconIphoneOn.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">AuthenticateCredentialsIconOff.png</string>
+									<string key="NSResourceName">AuthenticateCredentialsIconIphoneOff.png</string>
 								</object>
-								<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="600594054">
+								<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="337365143">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">AuthenticatePanelButtonBgIphoneOn.png</string>
+									<string key="NSResourceName">AuthenticatePanelButtonBgOn.png</string>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="376742630">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="391374123">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">AuthenticatePanelButtonBgIphoneOff.png</string>
+									<string key="NSResourceName">AuthenticatePanelButtonBgOff.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="373218100">
@@ -159,14 +159,14 @@
 								<reference key="IBUINormalTitleShadowColor" ref="564120801"/>
 								<object class="NSCustomResource" key="IBUISelectedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">AuthenticateServersIconOn.png</string>
+									<string key="NSResourceName">AuthenticateServersIconIphoneOn.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">AuthenticateServersIconOff.png</string>
+									<string key="NSResourceName">AuthenticateServersIconIphoneOff.png</string>
 								</object>
-								<reference key="IBUISelectedBackgroundImage" ref="600594054"/>
-								<reference key="IBUINormalBackgroundImage" ref="376742630"/>
+								<reference key="IBUISelectedBackgroundImage" ref="337365143"/>
+								<reference key="IBUINormalBackgroundImage" ref="391374123"/>
 							</object>
 							<object class="IBUIButton" id="405667486">
 								<reference key="NSNextResponder" ref="774585933"/>
@@ -876,13 +876,13 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>AuthenticateCredentialsIconOff.png</string>
-				<string>AuthenticateCredentialsIconOn.png</string>
-				<string>AuthenticatePanelBgIphone.png</string>
-				<string>AuthenticatePanelButtonBgIphoneOff.png</string>
-				<string>AuthenticatePanelButtonBgIphoneOn.png</string>
-				<string>AuthenticateServersIconOff.png</string>
-				<string>AuthenticateServersIconOn.png</string>
+				<string>AuthenticateCredentialsIconIphoneOff.png</string>
+				<string>AuthenticateCredentialsIconIphoneOn.png</string>
+				<string>AuthenticatePanelBg.png</string>
+				<string>AuthenticatePanelButtonBgOff.png</string>
+				<string>AuthenticatePanelButtonBgOn.png</string>
+				<string>AuthenticateServersIconIphoneOff.png</string>
+				<string>AuthenticateServersIconIphoneOn.png</string>
 				<string>AuthenticateSettingsIconIphone.png</string>
 				<string>AuthenticateTextfield.png</string>
 				<string>Default.png</string>
