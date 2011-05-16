@@ -14,8 +14,18 @@
 #import "defines.h"
 #import "LoginViewController.h"
 #import "iPadSettingViewController.h"
+#import "CustomBackgroundForCell_iPhone.h"
 
 static NSString *ServerCellIdentifier = @"ServerIdentifier";
+#define kTagForCellSubviewServerNameLabel 444
+#define kTagForCellSubviewServerUrlLabel 555
+
+
+static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
+static NSString *CellNibServer = @"AuthenticateServerCell";
+//Define tags for Server cells
+#define kTagInCellForServerNameLabel 10
+#define kTagInCellForServerURLLabel 20
 
 @implementation iPadServerManagerViewController
 
@@ -60,6 +70,12 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    UIView* bg = [[UIView alloc] initWithFrame:[_tbvlServerList frame]];
+	[bg setBackgroundColor:[UIColor clearColor]];
+	[_tbvlServerList setBackgroundView:bg];
+    [bg release];
+    
     _arrServerList = [[Configuration sharedInstance] getServerList];
     _btnAdd = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_btnAdd setFrame:CGRectMake(100, 10, 60, 37)];
@@ -300,8 +316,45 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNibServer owner:self options:nil];
+        cell = (CustomBackgroundForCell_iPhone *)[nib objectAtIndex:0];
+        
+        UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
+        lbServerName.textColor = [UIColor darkGrayColor];
+        
+        UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+        CGRect tmpFrame = lbServerUrl.frame;
+        tmpFrame.size.width += 55;
+        lbServerUrl.frame = tmpFrame; 
+        
+        lbServerUrl.textColor = [UIColor darkGrayColor];
+        
+        //cell.accessoryView = nil;
+        
+        
+    }
     
+    if (indexPath.row < [_arrServerList count]) 
+    {
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+        
+        UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
+        lbServerName.text = tmpServerObj._strServerName;
+        
+        UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+        lbServerUrl.text = tmpServerObj._strServerUrl;
+    }
+    
+    //Customize the cell background
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    
+    return cell;
+    
+    /*
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ServerCellIdentifier];
     if(cell == nil) 
     {
@@ -318,10 +371,6 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     [cell addSubview:lbServerName];
     [lbServerName release];
     
-//    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 280, 30)];
-//    lbServerUrl.text = tmpServerObj._strServerUrl;
-//    [cell addSubview:lbServerUrl];
-//    [lbServerUrl release];
     float fWidth = 0;
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {
@@ -343,6 +392,7 @@ static NSString *ServerCellIdentifier = @"ServerIdentifier";
     [lbServerUrl release];
     
     return cell;
+    */ 
 }
 
 

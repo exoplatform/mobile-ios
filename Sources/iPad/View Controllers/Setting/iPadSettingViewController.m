@@ -14,10 +14,21 @@
 #import "Configuration.h"
 #import "iPadServerManagerViewController.h"
 
+#import "CustomBackgroundForCell_iPhone.h"
+
+static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
+static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
+static NSString *CellIdentifierGuide = @"CellIdentifierGuide";
+static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
+static NSString *CellNibServer = @"AuthenticateServerCell";
+
 static NSString *CellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
+//Define tags for Server cells
+#define kTagInCellForServerNameLabel 10
+#define kTagInCellForServerURLLabel 20
 
 @implementation iPadSettingViewController
 
@@ -71,6 +82,13 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    UIView* bg = [[UIView alloc] initWithFrame:[tblView frame]];
+	[bg setBackgroundColor:[UIColor clearColor]];
+	[tblView setBackgroundView:bg];
+    [bg release];
+    
     _arrServerList = [[Configuration sharedInstance] getServerList];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
@@ -189,6 +207,19 @@ static NSString *CellIdentifier = @"MyIdentifier";
 }
 
 
+-(UIImageView *) makeCheckmarkOffAccessoryView
+{
+    return [[[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+}
+
+-(UIImageView *) makeCheckmarkOnAccessoryView
+{
+    return [[[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+}
+
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -287,6 +318,258 @@ static NSString *CellIdentifier = @"MyIdentifier";
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    CustomBackgroundForCell_iPhone *cell;
+    
+    switch (indexPath.section) 
+    {
+        case 0:
+        {
+            
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLogin] autorelease];
+            }
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];  
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.textColor = [UIColor darkGrayColor];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+            {
+                [rememberMe setFrame:CGRectMake(614, 10, 94, 27)];
+                [autoLogin setFrame:CGRectMake(614, 10, 94, 27)];
+            }
+            
+            if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+            {	
+                [rememberMe setFrame:CGRectMake(870, 10, 94, 27)];
+                [autoLogin setFrame:CGRectMake(870, 10, 94, 27)];
+            }
+            
+            if(indexPath.row == 0)
+            {
+                cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
+                rememberMe.on = bRememberMe;
+                [cell addSubview:rememberMe];
+            }
+            else 
+            {
+                cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
+                autoLogin.on = bAutoLogin;
+                [cell addSubview:autoLogin];
+            }
+            break;
+        }
+            
+        case 1:
+        {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLanguage];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLanguage] autorelease];
+            }
+            
+            UIImageView* imgV;
+            UILabel* titleLabel;
+            if(indexPath.row == 0)
+            {
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(55.0, 14.0, 27, 17)];
+                imgV.image = [UIImage imageNamed:@"EN.gif"];
+                [cell addSubview:imgV];
+                
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 13.0, 250.0, 20.0)];
+                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                titleLabel.backgroundColor = [UIColor clearColor];
+                titleLabel.text = [_dictLocalize objectForKey:@"English"];
+                [cell addSubview:titleLabel];
+            }
+            else
+            {
+                imgV = [[UIImageView alloc] initWithFrame:CGRectMake(55.0, 14.0, 27, 17)];
+                imgV.image = [UIImage imageNamed:@"FR.gif"];
+                [cell addSubview:imgV];	
+                
+                titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 13.0, 250.0, 20.0)];
+                titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                titleLabel.backgroundColor = [UIColor clearColor];
+                titleLabel.text = [_dictLocalize objectForKey:@"French"];
+                [cell addSubview:titleLabel];	
+            }
+            [imgV release];
+            [titleLabel release];
+            
+            if(indexPath.row == _selectedLanguage)
+            {
+                //cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                cell.accessoryView = [self makeCheckmarkOnAccessoryView];
+            } 
+            else
+            {            
+                //cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.accessoryView = [self makeCheckmarkOffAccessoryView];
+            }
+            break;
+        }
+
+        case 2:
+        {
+            cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNibServer owner:self options:nil];
+                cell = (CustomBackgroundForCell_iPhone *)[nib objectAtIndex:0];
+                UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
+                lbServerName.textColor = [UIColor darkGrayColor];
+                
+                UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+                lbServerUrl.textColor = [UIColor darkGrayColor];
+            }
+            
+            if (indexPath.row < [_arrServerList count]) 
+            {
+                if (indexPath.row == _intSelectedServer) 
+                {
+                    cell.accessoryView = [self makeCheckmarkOnAccessoryView];
+                }
+                else
+                {
+                    cell.accessoryView = [self makeCheckmarkOffAccessoryView];
+                }
+                
+                ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+                
+                UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
+                lbServerName.text = tmpServerObj._strServerName;
+                
+                UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+                lbServerUrl.text = tmpServerObj._strServerUrl;
+                
+                /*
+                float fWidth = 0;
+                if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+                {
+                    fWidth = 450;
+                }
+                
+                if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+                {
+                    fWidth = 700;
+                }
+                
+                NSString* text = tmpServerObj._strServerUrl; 
+                CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+                [lbServerUrl setFrame:CGRectMake(220, 5, fWidth, 44*((int)theSize.height/44 + 1) - 10)];
+                [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
+                */
+                
+                /*
+                UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(55, 5, 150, 30)];
+                lbServerName.text = tmpServerObj._strServerName;
+                lbServerName.textColor = [UIColor brownColor];
+                lbServerName.backgroundColor = [UIColor clearColor];
+                //[cell addSubview:lbServerName];
+                [lbServerName release];
+                
+                float fWidth = 0;
+                if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+                {
+                    fWidth = 450;
+                }
+                
+                if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+                {
+                    fWidth = 700;
+                }
+                
+                UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 400, 30)];
+                NSString* text = tmpServerObj._strServerUrl; 
+                CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+                [lbServerUrl setFrame:CGRectMake(220, 5, fWidth, 44*((int)theSize.height/44 + 1) - 10)];
+                [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
+                
+                lbServerUrl.text = tmpServerObj._strServerUrl;
+                lbServerUrl.backgroundColor = [UIColor clearColor];
+                //[cell addSubview:lbServerUrl];
+                [lbServerUrl release];
+                */
+                if (indexPath.row == _intSelectedServer) 
+                {
+                    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    cell.accessoryView = [self makeCheckmarkOnAccessoryView];
+                }
+                else
+                {
+                    //cell.accessoryType = UITableViewCellAccessoryNone;
+                    cell.accessoryView = [self makeCheckmarkOffAccessoryView];
+                }
+            }
+            else
+            {   
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"] autorelease];
+                //UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
+                UILabel* lbModify = [[UILabel alloc] init];
+                if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+                {
+                    [lbModify setFrame:CGRectMake(55, 5, 650, 30)];
+                }
+                
+                if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+                {	
+                    [lbModify setFrame:CGRectMake(55, 5, 900, 30)];
+                }
+                
+                [lbModify setTextAlignment:UITextAlignmentCenter];
+                lbModify.textColor = [UIColor darkGrayColor];
+                lbModify.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];
+                lbModify.backgroundColor = [UIColor clearColor];
+                [cell addSubview:lbModify];
+                [lbModify release];
+                
+//                UILabel* lbModify = [[UILabel alloc] init];
+//                if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+//                {
+//                    [lbModify setFrame:CGRectMake(55, 5, 650, 30)];
+//                }
+//                
+//                if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+//                {	
+//                    [lbModify setFrame:CGRectMake(55, 5, 900, 30)];
+//                }
+//                
+//                [lbModify setTextAlignment:UITextAlignmentCenter];
+//                lbModify.textColor = [UIColor redColor];
+//                [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];
+//                lbModify.backgroundColor = [UIColor clearColor];
+//                [cell addSubview:lbModify];
+//                [lbModify release];
+            }
+            break;
+        }
+
+        case 3:
+        {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierGuide];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
+                
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            
+            cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];
+            
+            break;
+        }
+
+        default:
+            break;
+    }
+    
+    /*
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     //if(cell == nil) 
     {
@@ -442,7 +725,10 @@ static NSString *CellIdentifier = @"MyIdentifier";
         default:
             break;
     }
-	
+	*/
+    
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    
     return cell;
 }
 

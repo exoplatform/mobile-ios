@@ -39,14 +39,6 @@
 		464FC9DF137AC77400B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DE137AC77300B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png */; };
 		464FC9E1137AC78700B32A58 /* AuthenticateCheckmarkiPhoneOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9E0137AC78700B32A58 /* AuthenticateCheckmarkiPhoneOn.png */; };
 		464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */; };
-		464FCA01137B13C400B32A58 /* CustomBackgroundForCellBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9FD137B13C300B32A58 /* CustomBackgroundForCellBottom.png */; };
-		464FCA02137B13C400B32A58 /* CustomBackgroundForCellMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9FE137B13C300B32A58 /* CustomBackgroundForCellMiddle.png */; };
-		464FCA03137B13C400B32A58 /* CustomBackgroundForCellSingle.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9FF137B13C400B32A58 /* CustomBackgroundForCellSingle.png */; };
-		464FCA04137B13C400B32A58 /* CustomBackgroundForCellTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA00137B13C400B32A58 /* CustomBackgroundForCellTop.png */; };
-		464FCA09137B13DA00B32A58 /* CustomBackgroundForCellBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA05137B13D900B32A58 /* CustomBackgroundForCellBottom@2x.png */; };
-		464FCA0A137B13DA00B32A58 /* CustomBackgroundForCellMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA06137B13D900B32A58 /* CustomBackgroundForCellMiddle@2x.png */; };
-		464FCA0B137B13DA00B32A58 /* CustomBackgroundForCellSingle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA07137B13D900B32A58 /* CustomBackgroundForCellSingle@2x.png */; };
-		464FCA0C137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FCA08137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png */; };
 		46616C7A137C729400D53D3D /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C74137C729400D53D3D /* SSHUDView.m */; };
 		46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C76137C729400D53D3D /* SSHUDWindow.m */; };
 		46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C77137C729400D53D3D /* SSVignetteiPad.png */; };
@@ -101,6 +93,14 @@
 		7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */; };
 		7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C07D7501340466B0075BF76 /* ServerManagerViewController.m */; };
 		7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */; };
+		7C2234B513810DFD006F847E /* CustomBackgroundForCellBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */; };
+		7C2234B613810DFD006F847E /* CustomBackgroundForCellMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */; };
+		7C2234B713810DFD006F847E /* CustomBackgroundForCellSingle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */; };
+		7C2234B813810DFD006F847E /* CustomBackgroundForCellTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B413810DFD006F847E /* CustomBackgroundForCellTop.png */; };
+		7C2234BD13810E07006F847E /* CustomBackgroundForCellBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B913810E06006F847E /* CustomBackgroundForCellBottom@2x.png */; };
+		7C2234BE13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */; };
+		7C2234BF13810E07006F847E /* CustomBackgroundForCellSingle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */; };
+		7C2234C013810E07006F847E /* CustomBackgroundForCellTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */; };
 		7C2F4D41135E78EC00DF1FA9 /* eXoPlatform.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */; };
 		7C3BD1A01370FE1700380828 /* ActivityStreamsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */; };
 		7C3BD1A11370FE1700380828 /* ChatViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1991370FE1700380828 /* ChatViewController_iPad.m */; };
@@ -517,14 +517,6 @@
 		464FC9E0137AC78700B32A58 /* AuthenticateCheckmarkiPhoneOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCheckmarkiPhoneOn.png; path = "Authenticate/@1x/AuthenticateCheckmarkiPhoneOn.png"; sourceTree = "<group>"; };
 		464FC9EA137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBackgroundForCell_iPhone.h; sourceTree = "<group>"; };
 		464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBackgroundForCell_iPhone.m; sourceTree = "<group>"; };
-		464FC9FD137B13C300B32A58 /* CustomBackgroundForCellBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellBottom.png; path = "Global/@1x/CustomBackgroundForCellBottom.png"; sourceTree = "<group>"; };
-		464FC9FE137B13C300B32A58 /* CustomBackgroundForCellMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellMiddle.png; path = "Global/@1x/CustomBackgroundForCellMiddle.png"; sourceTree = "<group>"; };
-		464FC9FF137B13C400B32A58 /* CustomBackgroundForCellSingle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellSingle.png; path = "Global/@1x/CustomBackgroundForCellSingle.png"; sourceTree = "<group>"; };
-		464FCA00137B13C400B32A58 /* CustomBackgroundForCellTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellTop.png; path = "Global/@1x/CustomBackgroundForCellTop.png"; sourceTree = "<group>"; };
-		464FCA05137B13D900B32A58 /* CustomBackgroundForCellBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellBottom@2x.png"; path = "Global/@2x/CustomBackgroundForCellBottom@2x.png"; sourceTree = "<group>"; };
-		464FCA06137B13D900B32A58 /* CustomBackgroundForCellMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellMiddle@2x.png"; path = "Global/@2x/CustomBackgroundForCellMiddle@2x.png"; sourceTree = "<group>"; };
-		464FCA07137B13D900B32A58 /* CustomBackgroundForCellSingle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellSingle@2x.png"; path = "Global/@2x/CustomBackgroundForCellSingle@2x.png"; sourceTree = "<group>"; };
-		464FCA08137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellTop@2x.png"; path = "Global/@2x/CustomBackgroundForCellTop@2x.png"; sourceTree = "<group>"; };
 		46616C73137C729400D53D3D /* SSHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDView.h; sourceTree = "<group>"; };
 		46616C74137C729400D53D3D /* SSHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDView.m; sourceTree = "<group>"; };
 		46616C75137C729400D53D3D /* SSHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDWindow.h; sourceTree = "<group>"; };
@@ -588,6 +580,14 @@
 		7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerViewController.h; sourceTree = "<group>"; };
 		7C07D7501340466B0075BF76 /* ServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerViewController.m; sourceTree = "<group>"; };
 		7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerManagerViewController.m; sourceTree = "<group>"; };
+		7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellBottom.png; path = "Global/@1x/CustomBackgroundForCellBottom.png"; sourceTree = "<group>"; };
+		7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellMiddle.png; path = "Global/@1x/CustomBackgroundForCellMiddle.png"; sourceTree = "<group>"; };
+		7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellSingle.png; path = "Global/@1x/CustomBackgroundForCellSingle.png"; sourceTree = "<group>"; };
+		7C2234B413810DFD006F847E /* CustomBackgroundForCellTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellTop.png; path = "Global/@1x/CustomBackgroundForCellTop.png"; sourceTree = "<group>"; };
+		7C2234B913810E06006F847E /* CustomBackgroundForCellBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellBottom@2x.png"; path = "Global/@2x/CustomBackgroundForCellBottom@2x.png"; sourceTree = "<group>"; };
+		7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellMiddle@2x.png"; path = "Global/@2x/CustomBackgroundForCellMiddle@2x.png"; sourceTree = "<group>"; };
+		7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellSingle@2x.png"; path = "Global/@2x/CustomBackgroundForCellSingle@2x.png"; sourceTree = "<group>"; };
+		7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellTop@2x.png"; path = "Global/@2x/CustomBackgroundForCellTop@2x.png"; sourceTree = "<group>"; };
 		7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = eXoPlatform.plist; sourceTree = SOURCE_ROOT; };
 		7C3BD1961370FE1700380828 /* ActivityStreamsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamsViewController_iPad.h; sourceTree = "<group>"; };
 		7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamsViewController_iPad.m; sourceTree = "<group>"; };
@@ -1141,10 +1141,10 @@
 		46BF6E401379639300D1E1A5 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
-				464FCA05137B13D900B32A58 /* CustomBackgroundForCellBottom@2x.png */,
-				464FCA06137B13D900B32A58 /* CustomBackgroundForCellMiddle@2x.png */,
-				464FCA07137B13D900B32A58 /* CustomBackgroundForCellSingle@2x.png */,
-				464FCA08137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png */,
+				7C2234B913810E06006F847E /* CustomBackgroundForCellBottom@2x.png */,
+				7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */,
+				7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */,
+				7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */,
 				46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */,
 				464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */,
 				46CAF6C8137985F50017C959 /* bgGlobal@2x.png */,
@@ -1160,10 +1160,10 @@
 				464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */,
 				46CAF6C6137985E70017C959 /* bgGlobal.png */,
 				46BF6E42137963B100D1E1A5 /* NavBarIphone.png */,
-				464FC9FD137B13C300B32A58 /* CustomBackgroundForCellBottom.png */,
-				464FC9FE137B13C300B32A58 /* CustomBackgroundForCellMiddle.png */,
-				464FC9FF137B13C400B32A58 /* CustomBackgroundForCellSingle.png */,
-				464FCA00137B13C400B32A58 /* CustomBackgroundForCellTop.png */,
+				7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */,
+				7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */,
+				7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */,
+				7C2234B413810DFD006F847E /* CustomBackgroundForCellTop.png */,
 			);
 			name = "@1x";
 			sourceTree = "<group>";
@@ -2451,14 +2451,6 @@
 				464FC9DD137AC67800B32A58 /* eXoLogoNavigationBariPhone.png in Resources */,
 				464FC9DF137AC77400B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png in Resources */,
 				464FC9E1137AC78700B32A58 /* AuthenticateCheckmarkiPhoneOn.png in Resources */,
-				464FCA01137B13C400B32A58 /* CustomBackgroundForCellBottom.png in Resources */,
-				464FCA02137B13C400B32A58 /* CustomBackgroundForCellMiddle.png in Resources */,
-				464FCA03137B13C400B32A58 /* CustomBackgroundForCellSingle.png in Resources */,
-				464FCA04137B13C400B32A58 /* CustomBackgroundForCellTop.png in Resources */,
-				464FCA09137B13DA00B32A58 /* CustomBackgroundForCellBottom@2x.png in Resources */,
-				464FCA0A137B13DA00B32A58 /* CustomBackgroundForCellMiddle@2x.png in Resources */,
-				464FCA0B137B13DA00B32A58 /* CustomBackgroundForCellSingle@2x.png in Resources */,
-				464FCA0C137B13DA00B32A58 /* CustomBackgroundForCellTop@2x.png in Resources */,
 				460736E4137C2F1C00D77DB9 /* AuthenticateButtonBgStrechable.png in Resources */,
 				460736E5137C2F1C00D77DB9 /* AuthenticatePanelBg.png in Resources */,
 				460736E6137C2F1C00D77DB9 /* AuthenticatePanelButtonBgOff.png in Resources */,
@@ -2476,6 +2468,14 @@
 				46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */,
 				46616C7D137C729400D53D3D /* SSVignetteiPhone.png in Resources */,
 				46616C7E137C729400D53D3D /* SSVignetteiPhone@2x.png in Resources */,
+				7C2234B513810DFD006F847E /* CustomBackgroundForCellBottom.png in Resources */,
+				7C2234B613810DFD006F847E /* CustomBackgroundForCellMiddle.png in Resources */,
+				7C2234B713810DFD006F847E /* CustomBackgroundForCellSingle.png in Resources */,
+				7C2234B813810DFD006F847E /* CustomBackgroundForCellTop.png in Resources */,
+				7C2234BD13810E07006F847E /* CustomBackgroundForCellBottom@2x.png in Resources */,
+				7C2234BE13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png in Resources */,
+				7C2234BF13810E07006F847E /* CustomBackgroundForCellSingle@2x.png in Resources */,
+				7C2234C013810E07006F847E /* CustomBackgroundForCellTop@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

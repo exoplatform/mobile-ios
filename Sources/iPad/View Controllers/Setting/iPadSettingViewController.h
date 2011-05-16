@@ -12,7 +12,7 @@
 @class eXoApplicationsViewController;
 @class iPadServerManagerViewController;
 
-@interface iPadSettingViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface iPadSettingViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     id              _delegate;
     
@@ -45,5 +45,7 @@
 - (IBAction)onBtnBack:(id)sender;
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
+-(UIImageView *) makeCheckmarkOffAccessoryView;
+-(UIImageView *) makeCheckmarkOnAccessoryView;
 @end
 

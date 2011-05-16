@@ -11,6 +11,7 @@
 #import "ContainerCell.h"
 #import "defines.h"
 #import "LoginViewController.h"
+#import "CustomBackgroundForCell_iPhone.h"
 
 @implementation iPadServerAddingViewController
 
@@ -90,6 +91,12 @@
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    UIView* bg = [[UIView alloc] initWithFrame:[_tblvServerInfo frame]];
+	[bg setBackgroundColor:[UIColor clearColor]];
+	[_tblvServerInfo setBackgroundView:bg];
+    [bg release];
+    
     _txtfServerName = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
@@ -247,6 +254,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if(indexPath.row == 0)
+    {
+        //TODO localize the label
+        cell.textLabel.text = @"Server Name";
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        
+        [cell addSubview:_txtfServerName];
+    }
+    else
+    {
+        //TODO localize this label
+        cell.textLabel.text = @"Server Url";
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        
+        [cell addSubview:_txtfServerUrl];
+    }
+    
+    
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    
+    
+    return cell;
+    
+    /*
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
     if(cell == nil) 
     {
@@ -283,6 +320,7 @@
         }
     }
     return cell;
+     */
 }
 
 @end

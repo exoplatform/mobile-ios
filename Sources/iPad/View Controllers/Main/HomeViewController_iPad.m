@@ -196,16 +196,16 @@
         
         [_messengerViewController initMessengerParameters];
         [_messengerViewController._tblvUsers reloadData];
-        //[self.navigationController.view addSubview:_nvMessengerViewController.view];
+        [self.navigationController.view addSubview:_nvMessengerViewController.view];
         
-        if ([self.navigationController.viewControllers containsObject:_messengerViewController])
-        {
-            [self.navigationController popToViewController:_messengerViewController animated:YES];
-        }
-        else
-        {
-            [self.navigationController pushViewController:_messengerViewController animated:YES];
-        }
+//        if ([self.navigationController.viewControllers containsObject:_messengerViewController])
+//        {
+//            [self.navigationController popToViewController:_messengerViewController animated:YES];
+//        }
+//        else
+//        {
+//            [self.navigationController pushViewController:_messengerViewController animated:YES];
+//        }
     
     }
     
