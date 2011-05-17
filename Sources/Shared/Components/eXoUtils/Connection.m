@@ -177,7 +177,8 @@ static NSString* _strDomain;
 		return @"ERROR";
 	}
 	
-	_strFirstLoginContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
+	_strFirstLoginContent = [[[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding] retain];
+    
 	NSRange rgCheck = [_strFirstLoginContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
