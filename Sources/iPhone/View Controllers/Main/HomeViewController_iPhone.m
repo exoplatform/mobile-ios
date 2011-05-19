@@ -94,6 +94,13 @@
     self.navigationItem.hidesBackButton = YES;
     
 //    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:logoutButton] autorelease];
+    
+    //Add the bubble background
+    UIImageView* imgBubble = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeBubbleBackground.png"]];
+    imgBubble.frame = CGRectMake(0, self.view.frame.size.height-imgBubble.frame.size.height, imgBubble.frame.size.width, imgBubble.frame.size.height);
+    [self.view addSubview:imgBubble];
+    [imgBubble release];
+    
 
     
     //Add the shadow at the bottom of the navigationBar
@@ -103,25 +110,9 @@
     [navigationBarShadowImgV release];
 
     
-    //Add the Notification Panel
-    UIImageView *footerImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeNotificationPanelBgIphone.png"]];
-    footerImgV.frame = CGRectMake(0,self.view.bounds.size.height-footerImgV.frame.size.height,footerImgV.frame.size.width,footerImgV.frame.size.height);
-    [self.view addSubview:footerImgV];
-    [footerImgV release];
+   
     
-    
-    //Add the Global Grid behind the Launcher
-    UIImage *imgGrid = [UIImage imageNamed:@"HomeBackgroundGridiPhone.png"];
-    UIImageView *gridImgV = [[UIImageView alloc] initWithImage:imgGrid];
-    gridImgV.frame = CGRectMake(0, 5, imgGrid.size.width, imgGrid.size.height);
-    
-    [self.view addSubview:gridImgV];
-    
-    _launcherView = [[TTLauncherView alloc] initWithFrame:CGRectMake(0,5,imgGrid.size.width, imgGrid.size.height+20)];
-    
-    //Now release the grid Image view
-    [gridImgV release];
-
+    _launcherView = [[TTLauncherView alloc] initWithFrame:CGRectMake(0,5,self.view.frame.size.width, self.view.frame.size.height-120)];
     
     _launcherView.backgroundColor = [UIColor clearColor];
     _launcherView.delegate = self;

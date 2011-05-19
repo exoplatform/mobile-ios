@@ -127,7 +127,12 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     [super viewDidLoad];
     
     //Set the background Color of the view
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    self.tableView.backgroundView = backgroundView;
+    
+    
     
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0./255 
                                                                           green:106./255 
@@ -266,8 +271,8 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	headerLabel.backgroundColor = [UIColor clearColor];
 	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor colorWithRed:54./255 green:54./255 blue:54./255 alpha:1.];
-	headerLabel.shadowColor = [UIColor whiteColor];
+	headerLabel.textColor = [UIColor whiteColor];
+	headerLabel.shadowColor = [UIColor blackColor];
     headerLabel.shadowOffset = CGSizeMake(1, 1);
 	headerLabel.font = [UIFont boldSystemFontOfSize:17];
 	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
