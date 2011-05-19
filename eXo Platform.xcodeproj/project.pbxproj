@@ -111,6 +111,8 @@
 		7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */; };
 		7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C07D7501340466B0075BF76 /* ServerManagerViewController.m */; };
 		7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */; };
+		7C17D7431384FA3B00501185 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C17D7411384FA3B00501185 /* Default-Landscape~ipad.png */; };
+		7C17D7441384FA3B00501185 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C17D7421384FA3B00501185 /* Default-Portrait~ipad.png */; };
 		7C2234B513810DFD006F847E /* CustomBackgroundForCellBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */; };
 		7C2234B613810DFD006F847E /* CustomBackgroundForCellMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */; };
 		7C2234B713810DFD006F847E /* CustomBackgroundForCellSingle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */; };
@@ -601,6 +603,8 @@
 		7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerViewController.h; sourceTree = "<group>"; };
 		7C07D7501340466B0075BF76 /* ServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerViewController.m; sourceTree = "<group>"; };
 		7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerManagerViewController.m; sourceTree = "<group>"; };
+		7C17D7411384FA3B00501185 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		7C17D7421384FA3B00501185 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellBottom.png; path = "Global/@1x/CustomBackgroundForCellBottom.png"; sourceTree = "<group>"; };
 		7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellMiddle.png; path = "Global/@1x/CustomBackgroundForCellMiddle.png"; sourceTree = "<group>"; };
 		7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellSingle.png; path = "Global/@1x/CustomBackgroundForCellSingle.png"; sourceTree = "<group>"; };
@@ -1338,6 +1342,8 @@
 		7CFA8B0B1382526800BBA1A3 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				7C17D7411384FA3B00501185 /* Default-Landscape~ipad.png */,
+				7C17D7421384FA3B00501185 /* Default-Portrait~ipad.png */,
 			);
 			path = "@1x";
 			sourceTree = "<group>";
@@ -2525,6 +2531,8 @@
 				7CFA8B101382526800BBA1A3 /* AuthenticateServersIconIpadOff.png in Resources */,
 				7CFA8B111382526800BBA1A3 /* AuthenticateServersIconIpadOn.png in Resources */,
 				7CFA8B121382526800BBA1A3 /* AuthenticateSettingsIconIpad.png in Resources */,
+				7C17D7431384FA3B00501185 /* Default-Landscape~ipad.png in Resources */,
+				7C17D7441384FA3B00501185 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

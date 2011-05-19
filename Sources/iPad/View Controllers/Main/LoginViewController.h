@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SSHUDView.h"
 
 @class Checkbox;
 @class SupportViewController;
@@ -65,7 +66,7 @@
     
     NSMutableArray*             _arrViewOfViewControllers;
     UIInterfaceOrientation      _interfaceOrientation;
-    
+    SSHUDView*                  _hud;
 }
 
 @property (nonatomic, retain) NSDictionary* _dictLocalize;

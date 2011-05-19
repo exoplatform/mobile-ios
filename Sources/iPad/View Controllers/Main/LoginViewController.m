@@ -17,6 +17,7 @@
 #import "iPadServerManagerViewController.h"
 #import "iPadServerAddingViewController.h"
 #import "iPadServerEditingViewController.h"
+#import "SSHUDView.h"
 
 static NSString *CellIdentifier = @"MyIdentifier";
 #define kHeightForServerCell 44
@@ -153,6 +154,10 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [self.navigationController.navigationBar setHidden:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [_hud dismiss];
+    [_hud release];
+}
 
 - (void)didReceiveMemoryWarning 
 {
@@ -280,13 +285,14 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
         //[_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
+        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
         [_vContainer setFrame:CGRectMake(80, 200, 609, 591)];        
 	}
 	
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
         //[_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
-
+        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
         [_vContainer setFrame:CGRectMake(207, 114, 609, 591)];
 	}
     
@@ -336,6 +342,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (void)doSignIn
 {
+    _hud = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+    [_hud show];
+    
 	[_btnLogin setHidden:YES];
 	[_actiSigningIn setHidden:NO];
 	[_lbSigningInStatus setHidden:NO];
@@ -355,10 +364,13 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	//NSString* strResult = @"YES";
 	if(strResult == @"YES")
 	{
+        [_hud completeAndDismissWithTitle:@"Success..."];
+        [_hud dismiss];
 		[self performSelectorOnMainThread:@selector(signInSuccesfully) withObject:nil waitUntilDone:NO];  
 	}
 	else if(strResult == @"NO")
 	{
+        [_hud dismiss];
 		alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
 														message:[_dictLocalize objectForKey:@"WrongUserNamePassword"]
 													   delegate:self 
@@ -372,6 +384,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	}
 	else if(strResult == @"ERROR")
 	{
+        [_hud dismiss];
 		alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
 														message:[_dictLocalize objectForKey:@"NetworkConnectionFailed"]
 													   delegate:self 
