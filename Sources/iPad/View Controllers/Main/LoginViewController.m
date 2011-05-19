@@ -109,12 +109,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [_lbSigningInStatus setHidden:YES];
     [_tbvlServerList setHidden:YES];
     [_vAccountView setHidden:NO];
-    UIView* bg = [[UIView alloc] initWithFrame:[_tbvlServerList frame]];
-	[bg setBackgroundColor:[UIColor clearColor]];
-	[_tbvlServerList setBackgroundView:bg];
-    [bg release];
-    
-    
+
     _vAccountView.backgroundColor = [UIColor clearColor];
     _vServerListView.backgroundColor = [UIColor clearColor];
     _btnServerList.backgroundColor = [UIColor clearColor];
@@ -134,9 +129,23 @@ static NSString *CellIdentifier = @"MyIdentifier";
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                          forState:UIControlStateNormal];
     
+    [_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
 	[super viewDidLoad];
 }
 
+- (void)keyboardWillShow:(NSNotification *)notification 
+{
+    [self moveUp:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    [self moveUp:NO];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -270,12 +279,15 @@ static NSString *CellIdentifier = @"MyIdentifier";
     
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
-        [_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
+        //[_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
+        [_vContainer setFrame:CGRectMake(80, 200, 609, 591)];        
 	}
 	
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
-        [_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
+        //[_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
+
+        [_vContainer setFrame:CGRectMake(207, 114, 609, 591)];
 	}
     
     [self moveView];
@@ -430,6 +442,36 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [_tbvlServerList reloadData];
 }
 
+- (void)moveUp:(BOOL)bUp
+{
+    CGRect frameToGo = _vContainer.frame;
+    int distance = 0;
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        distance = 50;
+    }
+    
+    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {	
+        distance = 100;
+    }
+    
+    if (bUp) 
+    {
+        frameToGo.origin.y -= distance;
+    }
+    else
+    {
+        frameToGo.origin.y += distance; 
+    }
+    [UIView animateWithDuration:0.5 
+                     animations:^{
+                         _vContainer.frame = frameToGo;
+                     }
+     ];
+}
+
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
 {
 	return YES;
@@ -446,6 +488,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
         [_txtfPassword resignFirstResponder];
         [self onSignInBtn:nil];
     }    
+    
 	return YES;
 }
 

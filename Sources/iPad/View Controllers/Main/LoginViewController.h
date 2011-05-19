@@ -32,10 +32,10 @@
 	int										_intSelectedLanguage;	//Language index
     
     
-    BOOL                        bRememberMe;        //Remember
-	BOOL                        bAutoLogin;         //Autologin
-    BOOL                        isFirstTimeLogin;	//Is first time login
-    NSString*                   _strBSuccessful;	//Login status
+    BOOL                                    bRememberMe;        //Remember
+	BOOL                                    bAutoLogin;         //Autologin
+    BOOL                                    isFirstTimeLogin;	//Is first time login
+    NSString*                               _strBSuccessful;	//Login status
     
     IBOutlet UILabel*						_lbSigningInStatus;	//Loading label
     IBOutlet UIActivityIndicatorView*		_actiSigningIn;	//Loading indicator
@@ -52,6 +52,7 @@
     IBOutlet UIView*            _vAccountView;
     IBOutlet UIView*            _vServerListView;
     IBOutlet UITableView*       _tbvlServerList;
+    IBOutlet UIView*            _vContainer;
     
     NSMutableArray*             _arrServerList;
     NSString*                   _strHost;
@@ -77,7 +78,7 @@
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
 
 - (void)moveUIControls:(int)intOffset;
-
+- (void)moveUp:(BOOL)bUp;
 - (void)doSignIn;
 - (void)startSignInProgress;
 - (void)signInSuccesfully;
