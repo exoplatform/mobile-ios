@@ -19,7 +19,8 @@
 #import "iPadServerEditingViewController.h"
 #import "SSHUDView.h"
 
-static NSString *CellIdentifier = @"MyIdentifier";
+#import "eXoSettingViewController.h"
+
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
@@ -54,6 +55,12 @@ static NSString *CellIdentifier = @"MyIdentifier";
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
+    _vContainer.alpha = 0;
+    [UIView beginAnimations:nil context:nil];  
+    [UIView setAnimationDuration:1.0];  
+    _vContainer.alpha = 100;
+    [UIView commitAnimations];   
+    
     _strBSuccessful = @"NO";
     Configuration* configuration = [Configuration sharedInstance];
     _arrServerList = [configuration getServerList];
@@ -300,18 +307,26 @@ static NSString *CellIdentifier = @"MyIdentifier";
 }
 
 
-
 - (IBAction)onSettingBtn:(id)sender
 {
 	if(_iPadSettingViewController == nil)
     {
         _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
         [_iPadSettingViewController setDelegate:self];
-        [_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
-        [self.view addSubview:_iPadSettingViewController.view];
+        //[_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
+        //[self.view addSubview:_iPadSettingViewController.view];
     }
     
-    [self pushViewIn:_iPadSettingViewController.view];
+    if (_modalNavigationSettingViewController == nil) 
+    {
+        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+        _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+    }
+    [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
+    
+    //[self pushViewIn:_iPadSettingViewController.view];
 }
 
 - (IBAction)onSignInBtn:(id)sender
@@ -597,19 +612,19 @@ static NSString *CellIdentifier = @"MyIdentifier";
     }
     if (_iPadSettingViewController) 
     {
-        [_iPadSettingViewController changeOrientation:_interfaceOrientation];
+        //[_iPadSettingViewController changeOrientation:_interfaceOrientation];
     }
     if (_iPadServerManagerViewController) 
     {
-        [_iPadServerManagerViewController changeOrientation:_interfaceOrientation];
+        //[_iPadServerManagerViewController changeOrientation:_interfaceOrientation];
     }
     if (_iPadServerAddingViewController) 
     {
-        [_iPadServerAddingViewController changeOrientation:_interfaceOrientation];
+        //[_iPadServerAddingViewController changeOrientation:_interfaceOrientation];
     }
     if (_iPadServerEditingViewController) 
     {
-        [_iPadServerEditingViewController changeOrientation:_interfaceOrientation];
+        //[_iPadServerEditingViewController changeOrientation:_interfaceOrientation];
     }
 }
 
@@ -638,6 +653,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (void)showiPadServerManagerViewController
 {
+    /*
     if (_iPadServerManagerViewController == nil) 
     {
         _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
@@ -646,11 +662,27 @@ static NSString *CellIdentifier = @"MyIdentifier";
         [self.view addSubview:_iPadServerManagerViewController.view];
     }
     [self pushViewIn:_iPadServerManagerViewController.view];
+     */
+    if (_iPadServerManagerViewController == nil) 
+    {
+        _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
+        [_iPadServerManagerViewController setDelegate:self];
+    }
+    
+    if ([_modalNavigationSettingViewController.viewControllers containsObject:_iPadServerManagerViewController]) 
+    {
+        [_modalNavigationSettingViewController popToViewController:_iPadServerManagerViewController animated:YES];
+    }
+    else
+    {
+        [_modalNavigationSettingViewController pushViewController:_iPadServerManagerViewController animated:YES];
+    }
 }
 
 
 - (void)showiPadServerAddingViewController
 {
+    /*
     if (_iPadServerAddingViewController == nil) 
     {
         _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
@@ -661,10 +693,27 @@ static NSString *CellIdentifier = @"MyIdentifier";
     [_iPadServerAddingViewController._txtfServerName setText:@""];
     [_iPadServerAddingViewController._txtfServerUrl setText:@""];    
     [self pushViewIn:_iPadServerAddingViewController.view];
+    */
+    
+    if (_iPadServerAddingViewController == nil) 
+    {
+        _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
+        [_iPadServerAddingViewController setDelegate:self];
+    }
+    
+    if ([_modalNavigationSettingViewController.viewControllers containsObject:_iPadServerAddingViewController]) 
+    {
+        [_modalNavigationSettingViewController popToViewController:_iPadServerAddingViewController animated:YES];
+    }
+    else
+    {
+        [_modalNavigationSettingViewController pushViewController:_iPadServerAddingViewController animated:YES];
+    }
 }
 
 - (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index
 {
+    /*
     if (_iPadServerEditingViewController == nil) 
     {
         _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
@@ -674,6 +723,24 @@ static NSString *CellIdentifier = @"MyIdentifier";
     }
     [_iPadServerEditingViewController setServerObj:serverObj andIndex:index];
     [self pushViewIn:_iPadServerEditingViewController.view];
+    */
+    
+    if (_iPadServerEditingViewController == nil) 
+    {
+        _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
+        [_iPadServerEditingViewController setDelegate:self];
+    }
+    
+    [_iPadServerEditingViewController setServerObj:serverObj andIndex:index];
+    
+    if ([_modalNavigationSettingViewController.viewControllers containsObject:_iPadServerEditingViewController]) 
+    {
+        [_modalNavigationSettingViewController popToViewController:_iPadServerEditingViewController animated:YES];
+    }
+    else
+    {
+        [_modalNavigationSettingViewController pushViewController:_iPadServerEditingViewController animated:YES];
+    }
 }
 
 - (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
@@ -681,7 +748,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     if (_iPadServerManagerViewController) 
     {
         [_iPadServerManagerViewController editServerObjAtIndex:intIndex withSeverName:strServerName andServerUrl:strServerUrl];
-        [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+        //[self pullViewOut:[_arrViewOfViewControllers lastObject]];
     }
 }
 
@@ -698,7 +765,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
     if(_iPadServerManagerViewController)
     {
         [_iPadServerManagerViewController addServerObjWithServerName:strServerName andServerUrl:strServerUrl]; 
-        [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+        //[self pullViewOut:[_arrViewOfViewControllers lastObject]];
     }    
 }
 

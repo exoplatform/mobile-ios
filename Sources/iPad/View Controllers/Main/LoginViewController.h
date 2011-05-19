@@ -59,6 +59,7 @@
     NSString*                   _strHost;
     int                         _intSelectedServer;
     
+    UINavigationController*             _modalNavigationSettingViewController;
     iPadSettingViewController*          _iPadSettingViewController;
     iPadServerManagerViewController*    _iPadServerManagerViewController;
     iPadServerAddingViewController*     _iPadServerAddingViewController;

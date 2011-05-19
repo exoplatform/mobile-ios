@@ -56,6 +56,10 @@ static NSString *CellIdentifier = @"MyIdentifier";
         
         _arrServerList = [[NSMutableArray alloc] init];
         _intSelectedServer = -1;
+        
+        UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBtnDone)];
+        self.navigationItem.rightBarButtonItem = done;
+
     }
     return self;
 }
@@ -69,7 +73,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.navigationController.navigationBar setHidden:YES];    
+    //[self.navigationController.navigationBar setHidden:YES];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -83,11 +87,11 @@ static NSString *CellIdentifier = @"MyIdentifier";
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    UIView* bg = [[UIView alloc] initWithFrame:[tblView frame]];
-	[bg setBackgroundColor:[UIColor clearColor]];
-	[tblView setBackgroundView:bg];
-    [bg release];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+//    UIView* bg = [[UIView alloc] initWithFrame:[tblView frame]];
+//	[bg setBackgroundColor:[UIColor clearColor]];
+//	[tblView setBackgroundView:bg];
+//    [bg release];
     
     _arrServerList = [[Configuration sharedInstance] getServerList];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -106,6 +110,14 @@ static NSString *CellIdentifier = @"MyIdentifier";
     return YES;
 }
 
+
+- (void)onBtnDone
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+/*
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self changeOrientation:interfaceOrientation];
@@ -129,7 +141,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
     _interfaceOrientation = interfaceOrientation;
     [tblView reloadData];
 }
-
+*/
+ 
 - (void)setDelegate:(id)delegate
 {
     _delegate = delegate;
@@ -290,7 +303,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /* 
     float fWidth = 0;
+
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {
         fWidth = 450;
@@ -312,7 +327,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
             fHeight = 44*((int)theSize.height/44 + 1);
         }
     }
-    return fHeight;
+     */
+    return 44;
 }
 
 // Customize the appearance of table view cells.
@@ -335,6 +351,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            /*
             if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
             {
                 [rememberMe setFrame:CGRectMake(614, 10, 94, 27)];
@@ -346,7 +364,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 [rememberMe setFrame:CGRectMake(870, 10, 94, 27)];
                 [autoLogin setFrame:CGRectMake(870, 10, 94, 27)];
             }
-            
+            */
             if(indexPath.row == 0)
             {
                 cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
@@ -509,6 +527,8 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"] autorelease];
                 //UILabel* lbModify = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
                 UILabel* lbModify = [[UILabel alloc] init];
+                
+                /*
                 if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
                 {
                     [lbModify setFrame:CGRectMake(55, 5, 650, 30)];
@@ -518,7 +538,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 {	
                     [lbModify setFrame:CGRectMake(55, 5, 900, 30)];
                 }
-                
+                */
                 [lbModify setTextAlignment:UITextAlignmentCenter];
                 lbModify.textColor = [UIColor darkGrayColor];
                 lbModify.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
