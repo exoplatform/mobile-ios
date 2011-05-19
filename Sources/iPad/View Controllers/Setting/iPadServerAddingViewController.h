@@ -23,8 +23,8 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     NSString*                           _strServerUrl; 
 
     NSDictionary*                       _dictLocalize;
-    UIButton*                           _btnDone;
-    
+    //UIButton*                           _btnDone;
+    UIBarButtonItem*                    _bbtnDone; 
     int                                 _interfaceOrientation;
 }
 

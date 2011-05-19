@@ -70,16 +70,21 @@
 	[_tblvServerInfo setBackgroundView:bg];
     [bg release];
     
-    _btnEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_btnEdit setFrame:CGRectMake(100, 10, 60, 37)];
-    [_btnEdit.titleLabel setTextColor:[UIColor redColor]];
-    [_btnEdit setTitle:@"Done" forState:UIControlStateNormal];
-    [_btnEdit addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btnEdit];
+//    _btnEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [_btnEdit setFrame:CGRectMake(100, 10, 60, 37)];
+//    [_btnEdit.titleLabel setTextColor:[UIColor redColor]];
+//    [_btnEdit setTitle:@"Done" forState:UIControlStateNormal];
+//    [_btnEdit addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_btnEdit];
+    
+    _bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBtnDone)];
+    self.navigationItem.rightBarButtonItem = _bbtnEdit;
+
     
     _btnDelete = [[UIButton alloc] init];
     [_btnDelete setBackgroundColor:[UIColor redColor]];
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
+    [_btnDelete setFrame:CGRectMake(30, 150, 480, 37)];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     [_tblvServerInfo addSubview:_btnDelete];
     
@@ -123,6 +128,7 @@
     [_tblvServerInfo reloadData];
 }
 
+/*
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self changeOrientation:interfaceOrientation];
@@ -153,6 +159,7 @@
     }
     [_tblvServerInfo reloadData];
 }
+*/
 
 - (IBAction)onBtnBack:(id)sender
 {

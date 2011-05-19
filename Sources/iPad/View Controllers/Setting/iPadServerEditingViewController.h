@@ -27,7 +27,7 @@
     int                                 _intIndex;
     NSDictionary*                       _dictLocalize;
     
-    UIButton*                           _btnEdit;
+    //UIButton*                           _btnEdit;
     IBOutlet UIButton*                  _btnBack;
     UIButton*                           _btnDelete;
     int                                 _interfaceOrientation;

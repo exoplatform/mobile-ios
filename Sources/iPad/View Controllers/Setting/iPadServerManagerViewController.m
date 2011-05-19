@@ -70,19 +70,22 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    UIView* bg = [[UIView alloc] initWithFrame:[_tbvlServerList frame]];
-	[bg setBackgroundColor:[UIColor clearColor]];
-	[_tbvlServerList setBackgroundView:bg];
-    [bg release];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+//    UIView* bg = [[UIView alloc] initWithFrame:[_tbvlServerList frame]];
+//	[bg setBackgroundColor:[UIColor clearColor]];
+//	[_tbvlServerList setBackgroundView:bg];
+//    [bg release];
     
     _arrServerList = [[Configuration sharedInstance] getServerList];
-    _btnAdd = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_btnAdd setFrame:CGRectMake(100, 10, 60, 37)];
-    [_btnAdd.titleLabel setTextColor:[UIColor redColor]];
-    [_btnAdd setTitle:@"Add" forState:UIControlStateNormal];
-    [_btnAdd addTarget:self action:@selector(onBtnAdd) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btnAdd];
+//    _btnAdd = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [_btnAdd setFrame:CGRectMake(100, 10, 60, 37)];
+//    [_btnAdd.titleLabel setTextColor:[UIColor redColor]];
+//    [_btnAdd setTitle:@"Add" forState:UIControlStateNormal];
+//    [_btnAdd addTarget:self action:@selector(onBtnAdd) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_btnAdd];
+    
+    _bbtnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onBtnAdd)];
+    self.navigationItem.rightBarButtonItem = _bbtnAdd;
     
     [super viewDidLoad];
 }
@@ -101,6 +104,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     return YES;
 }
 
+/*
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self changeOrientation:interfaceOrientation];
@@ -122,6 +126,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     _interfaceOrientation = interfaceOrientation;
     [_tbvlServerList reloadData];
 }
+*/ 
 
 - (void)setDelegate:(id)delegate
 {
@@ -270,7 +275,8 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     [_arrServerList removeAllObjects];
     _arrServerList = [configuration getServerList];
     [_tbvlServerList reloadData];
-    [_delegate pullViewOut:self.view];
+    //[_delegate pullViewOut:self.view];
+    [_delegate showiPadServerManagerViewController];
 }
 
 
@@ -290,6 +296,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //temporary code. It will be updated as soon as BD team provide us UI design
+    /*
     float fWidth = 0;
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {
@@ -306,6 +313,8 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     fHeight = 44*((int)theSize.height/44 + 1);
     return fHeight;
+    */
+    return 44;
 }
 
 // Customize the number of rows in the table view.

@@ -60,6 +60,7 @@
     [_tblvServerInfo reloadData];
 }
 
+/*
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self changeOrientation:interfaceOrientation];
@@ -81,6 +82,7 @@
     _interfaceOrientation = interfaceOrientation;
     [_tblvServerInfo reloadData];
 }
+*/
 
 - (IBAction)onBtnBack:(id)sender
 {
@@ -91,11 +93,11 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    UIView* bg = [[UIView alloc] initWithFrame:[_tblvServerInfo frame]];
-	[bg setBackgroundColor:[UIColor clearColor]];
-	[_tblvServerInfo setBackgroundView:bg];
-    [bg release];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+//    UIView* bg = [[UIView alloc] initWithFrame:[_tblvServerInfo frame]];
+//	[bg setBackgroundColor:[UIColor clearColor]];
+//	[_tblvServerInfo setBackgroundView:bg];
+//    [bg release];
     
     _txtfServerName = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
@@ -104,12 +106,16 @@
     [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
 	_txtfServerUrl.delegate = self;
 
-    _btnDone = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_btnDone setFrame:CGRectMake(100, 10, 60, 37)];
-    [_btnDone.titleLabel setTextColor:[UIColor redColor]];
-    [_btnDone setTitle:@"Done" forState:UIControlStateNormal];
-    [_btnDone addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btnDone];
+//    _btnDone = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [_btnDone setFrame:CGRectMake(100, 10, 60, 37)];
+//    [_btnDone.titleLabel setTextColor:[UIColor redColor]];
+//    [_btnDone setTitle:@"Done" forState:UIControlStateNormal];
+//    [_btnDone addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_btnDone];
+
+    _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBtnDone)];
+    self.navigationItem.rightBarButtonItem = _bbtnDone;
+
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

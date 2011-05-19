@@ -19,7 +19,8 @@
     iPadServerAddingViewController*     _iPadServerAddingViewController;
     iPadServerEditingViewController*    _iPadServerEditingViewController;
 
-    UIButton*                           _btnAdd;
+    //UIButton*                           _btnAdd;
+    UIBarButtonItem*                    _bbtnAdd;
     NSDictionary*                       _dictLocalize;
     int                                 _intCurrentIndex;
     int                                 _interfaceOrientation;
