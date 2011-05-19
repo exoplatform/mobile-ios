@@ -458,25 +458,30 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)moveUp:(BOOL)bUp
 {
     CGRect frameToGo = _vContainer.frame;
-    int distance = 0;
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {
-        distance = 50;
+        if (bUp) 
+        {
+            frameToGo.origin.y = 150;
+        }
+        else
+        {
+            frameToGo.origin.y = 200;
+        }
     }
     
     if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
     {	
-        distance = 100;
+        if (bUp) 
+        {
+            frameToGo.origin.y = 0;
+        }
+        else
+        {
+            frameToGo.origin.y = 114;
+        }
     }
-    
-    if (bUp) 
-    {
-        frameToGo.origin.y -= distance;
-    }
-    else
-    {
-        frameToGo.origin.y += distance; 
-    }
+
     [UIView animateWithDuration:0.5 
                      animations:^{
                          _vContainer.frame = frameToGo;
