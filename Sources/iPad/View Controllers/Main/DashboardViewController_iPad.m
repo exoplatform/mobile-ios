@@ -24,6 +24,11 @@
 #import "Gadget_iPad.h"
 #import "HomeViewController_iPad.h"
 
+#import "AppDelegate_iPad.h"
+
+#import "GadgetDisplayController.h"
+#import "RootViewController.h"
+
 //Constants Definitions
 #define kTagForCellSubviewTitleLabel 22
 #define kTagForCellSubviewDescriptionLabel 33
@@ -133,6 +138,7 @@ static NSString* CellIdentifier = @"CellIdentifier";
         titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
         //define the tag for the titleLabel
         titleLabel.tag = kTagForCellSubviewTitleLabel; 
+        titleLabel.backgroundColor = [UIColor clearColor];
         [cell addSubview:titleLabel];
         //release the titleLabel because cell retain it now
         [titleLabel release];
@@ -142,6 +148,8 @@ static NSString* CellIdentifier = @"CellIdentifier";
         descriptionLabel.numberOfLines = 2;
         descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
         descriptionLabel.tag = kTagForCellSubviewDescriptionLabel;
+        descriptionLabel.backgroundColor = [UIColor clearColor];
+
         [cell addSubview:descriptionLabel];
         [descriptionLabel release];
         
@@ -173,7 +181,15 @@ static NSString* CellIdentifier = @"CellIdentifier";
 {
     GateInDbItem* tab = [_arrTabs objectAtIndex:indexPath.section];
     Gadget_iPad* gadget = [tab._arrGadgetsInItem objectAtIndex:indexPath.row];
-    [_delegate onGadget:gadget];
+    GadgetDisplayController * _gadgetDisplayController = [[GadgetDisplayController alloc] initWithNibName:@"GadgetDisplayController" bundle:nil];
+    [_gadgetDisplayController setDelegate:self];
+    
+    
+    [_gadgetDisplayController startGadget:gadget];
+    // push the gadgets
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_gadgetDisplayController invokeByController:self isStackStartView:FALSE];
+    
+    
 }
 
 @end

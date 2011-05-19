@@ -8,10 +8,17 @@
 
 #import "AppDelegate_iPad.h"
 #import "eXoMobileViewController.h"
+#import "RootViewController.h"
 
 @implementation AppDelegate_iPad
 
-@synthesize window, viewController;
+@synthesize window, viewController, rootViewController;
+
++ (AppDelegate_iPad *) instance {
+    return (AppDelegate_iPad *) [[UIApplication sharedApplication] delegate];
+
+}
+
 
 
 #pragma mark -
@@ -28,6 +35,19 @@
     [window makeKeyAndVisible];
     
     return YES;
+}
+
+
+
+-(void)showHome {
+    
+    [viewController.view removeFromSuperview];
+
+    
+    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+	[self.window addSubview:rootViewController.view];
+	[self.window setBackgroundColor:[UIColor clearColor]];
+    
 }
 
 

@@ -9,15 +9,27 @@
 #import <UIKit/UIKit.h>
 #import "eXoMobileAppDelegate.h"
 
+
+
 @class eXoMobileViewController;
+@class RootViewController;
 
 @interface AppDelegate_iPad : eXoMobileAppDelegate {
     UIWindow *window;
     eXoMobileViewController *viewController;
+    
+    
+    RootViewController *rootViewController;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet eXoMobileViewController *viewController;
+@property (nonatomic, retain) RootViewController *rootViewController;
+
+-(void)showHome;
+
++(AppDelegate_iPad*)instance;
 
 @end
 

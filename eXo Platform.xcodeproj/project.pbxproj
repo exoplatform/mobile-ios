@@ -86,6 +86,24 @@
 		46CAF76813799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */; };
 		46D97B3013742B7F00F71E82 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B2F13742B7F00F71E82 /* Default.png */; };
 		46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B3113742B8B00F71E82 /* Default@2x.png */; };
+		46E96E53138370A30085DCB6 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E31138370A30085DCB6 /* 06-magnify.png */; };
+		46E96E54138370A30085DCB6 /* 08-chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E32138370A30085DCB6 /* 08-chat.png */; };
+		46E96E55138370A30085DCB6 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E33138370A30085DCB6 /* 111-user.png */; };
+		46E96E56138370A30085DCB6 /* 179-notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E34138370A30085DCB6 /* 179-notepad.png */; };
+		46E96E57138370A30085DCB6 /* 18-envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E35138370A30085DCB6 /* 18-envelope.png */; };
+		46E96E58138370A30085DCB6 /* 22-skull-n-bones.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E36138370A30085DCB6 /* 22-skull-n-bones.png */; };
+		46E96E59138370A30085DCB6 /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E37138370A30085DCB6 /* 83-calendar.png */; };
+		46E96E5A138370A30085DCB6 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E38138370A30085DCB6 /* avatar.png */; };
+		46E96E5C138370A30085DCB6 /* glow.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E3B138370A30085DCB6 /* glow.png */; };
+		46E96E5D138370A30085DCB6 /* MenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E3D138370A30085DCB6 /* MenuHeaderView.m */; };
+		46E96E5E138370A30085DCB6 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E3F138370A30085DCB6 /* MenuTableViewCell.m */; };
+		46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E41138370A30085DCB6 /* MenuViewController.m */; };
+		46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E43138370A30085DCB6 /* MenuWatermarkFooter.m */; };
+		46E96E61138370A30085DCB6 /* NSDate+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E45138370A30085DCB6 /* NSDate+Formatting.m */; };
+		46E96E62138370A30085DCB6 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E47138370A30085DCB6 /* RootViewController.m */; };
+		46E96E63138370A30085DCB6 /* RoundedUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E49138370A30085DCB6 /* RoundedUITableView.m */; };
+		46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E4D138370A30085DCB6 /* StackScrollViewController.m */; };
+		46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E51138370A30085DCB6 /* UIViewWithShadow.m */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
@@ -546,6 +564,33 @@
 		46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GlobalNavigationBarShadowIphone@2x.png"; path = "Global/@2x/GlobalNavigationBarShadowIphone@2x.png"; sourceTree = "<group>"; };
 		46D97B2F13742B7F00F71E82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Splashscreen/@1x/Default.png"; sourceTree = "<group>"; };
 		46D97B3113742B8B00F71E82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Splashscreen/@2x/Default@2x.png"; sourceTree = "<group>"; };
+		46E96E31138370A30085DCB6 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
+		46E96E32138370A30085DCB6 /* 08-chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-chat.png"; sourceTree = "<group>"; };
+		46E96E33138370A30085DCB6 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
+		46E96E34138370A30085DCB6 /* 179-notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "179-notepad.png"; sourceTree = "<group>"; };
+		46E96E35138370A30085DCB6 /* 18-envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "18-envelope.png"; sourceTree = "<group>"; };
+		46E96E36138370A30085DCB6 /* 22-skull-n-bones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "22-skull-n-bones.png"; sourceTree = "<group>"; };
+		46E96E37138370A30085DCB6 /* 83-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "83-calendar.png"; sourceTree = "<group>"; };
+		46E96E38138370A30085DCB6 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		46E96E3B138370A30085DCB6 /* glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glow.png; sourceTree = "<group>"; };
+		46E96E3C138370A30085DCB6 /* MenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuHeaderView.h; sourceTree = "<group>"; };
+		46E96E3D138370A30085DCB6 /* MenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuHeaderView.m; sourceTree = "<group>"; };
+		46E96E3E138370A30085DCB6 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		46E96E3F138370A30085DCB6 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		46E96E40138370A30085DCB6 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		46E96E41138370A30085DCB6 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		46E96E42138370A30085DCB6 /* MenuWatermarkFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuWatermarkFooter.h; sourceTree = "<group>"; };
+		46E96E43138370A30085DCB6 /* MenuWatermarkFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuWatermarkFooter.m; sourceTree = "<group>"; };
+		46E96E44138370A30085DCB6 /* NSDate+Formatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Formatting.h"; sourceTree = "<group>"; };
+		46E96E45138370A30085DCB6 /* NSDate+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatting.m"; sourceTree = "<group>"; };
+		46E96E46138370A30085DCB6 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		46E96E47138370A30085DCB6 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		46E96E48138370A30085DCB6 /* RoundedUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedUITableView.h; sourceTree = "<group>"; };
+		46E96E49138370A30085DCB6 /* RoundedUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedUITableView.m; sourceTree = "<group>"; };
+		46E96E4C138370A30085DCB6 /* StackScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackScrollViewController.h; sourceTree = "<group>"; };
+		46E96E4D138370A30085DCB6 /* StackScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackScrollViewController.m; sourceTree = "<group>"; };
+		46E96E50138370A30085DCB6 /* UIViewWithShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewWithShadow.h; sourceTree = "<group>"; };
+		46E96E51138370A30085DCB6 /* UIViewWithShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewWithShadow.m; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerEditingViewController.h; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditingViewController.m; sourceTree = "<group>"; };
@@ -1205,6 +1250,40 @@
 			name = "@2x";
 			sourceTree = "<group>";
 		};
+		46E96E30138370A30085DCB6 /* CascadeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				46E96E31138370A30085DCB6 /* 06-magnify.png */,
+				46E96E32138370A30085DCB6 /* 08-chat.png */,
+				46E96E33138370A30085DCB6 /* 111-user.png */,
+				46E96E34138370A30085DCB6 /* 179-notepad.png */,
+				46E96E35138370A30085DCB6 /* 18-envelope.png */,
+				46E96E36138370A30085DCB6 /* 22-skull-n-bones.png */,
+				46E96E37138370A30085DCB6 /* 83-calendar.png */,
+				46E96E38138370A30085DCB6 /* avatar.png */,
+				46E96E3B138370A30085DCB6 /* glow.png */,
+				46E96E3C138370A30085DCB6 /* MenuHeaderView.h */,
+				46E96E3D138370A30085DCB6 /* MenuHeaderView.m */,
+				46E96E3E138370A30085DCB6 /* MenuTableViewCell.h */,
+				46E96E3F138370A30085DCB6 /* MenuTableViewCell.m */,
+				46E96E40138370A30085DCB6 /* MenuViewController.h */,
+				46E96E41138370A30085DCB6 /* MenuViewController.m */,
+				46E96E42138370A30085DCB6 /* MenuWatermarkFooter.h */,
+				46E96E43138370A30085DCB6 /* MenuWatermarkFooter.m */,
+				46E96E44138370A30085DCB6 /* NSDate+Formatting.h */,
+				46E96E45138370A30085DCB6 /* NSDate+Formatting.m */,
+				46E96E46138370A30085DCB6 /* RootViewController.h */,
+				46E96E47138370A30085DCB6 /* RootViewController.m */,
+				46E96E48138370A30085DCB6 /* RoundedUITableView.h */,
+				46E96E49138370A30085DCB6 /* RoundedUITableView.m */,
+				46E96E4C138370A30085DCB6 /* StackScrollViewController.h */,
+				46E96E4D138370A30085DCB6 /* StackScrollViewController.m */,
+				46E96E50138370A30085DCB6 /* UIViewWithShadow.h */,
+				46E96E51138370A30085DCB6 /* UIViewWithShadow.m */,
+			);
+			path = CascadeViewController;
+			sourceTree = "<group>";
+		};
 		7CFA8AFE1382526800BBA1A3 /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,6 +1479,7 @@
 		894732381336FFD400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				46E96E30138370A30085DCB6 /* CascadeViewController */,
 				8947333D13370B1900B0AD11 /* Chat */,
 				8947334713370B1900B0AD11 /* File */,
 				8947334E13370B1900B0AD11 /* Gadget */,
@@ -2429,6 +2509,15 @@
 				7C2234BE13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png in Resources */,
 				7C2234BF13810E07006F847E /* CustomBackgroundForCellSingle@2x.png in Resources */,
 				7C2234C013810E07006F847E /* CustomBackgroundForCellTop@2x.png in Resources */,
+				46E96E53138370A30085DCB6 /* 06-magnify.png in Resources */,
+				46E96E54138370A30085DCB6 /* 08-chat.png in Resources */,
+				46E96E55138370A30085DCB6 /* 111-user.png in Resources */,
+				46E96E56138370A30085DCB6 /* 179-notepad.png in Resources */,
+				46E96E57138370A30085DCB6 /* 18-envelope.png in Resources */,
+				46E96E58138370A30085DCB6 /* 22-skull-n-bones.png in Resources */,
+				46E96E59138370A30085DCB6 /* 83-calendar.png in Resources */,
+				46E96E5A138370A30085DCB6 /* avatar.png in Resources */,
+				46E96E5C138370A30085DCB6 /* glow.png in Resources */,
 				7CFA8B0C1382526800BBA1A3 /* AuthenticateCheckmarkiPadOff.png in Resources */,
 				7CFA8B0D1382526800BBA1A3 /* AuthenticateCheckmarkiPhoneOn.png in Resources */,
 				7CFA8B0E1382526800BBA1A3 /* AuthenticateCredentialsIconIpadOff.png in Resources */,
@@ -2541,6 +2630,15 @@
 				46616C83137C750500D53D3D /* SSDrawingUtilities.m in Sources */,
 				46616C84137C750500D53D3D /* UIView+SSToolkitAdditions.m in Sources */,
 				46616C87137C754900D53D3D /* UIImage+SSToolkitAdditions.m in Sources */,
+				46E96E5D138370A30085DCB6 /* MenuHeaderView.m in Sources */,
+				46E96E5E138370A30085DCB6 /* MenuTableViewCell.m in Sources */,
+				46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */,
+				46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */,
+				46E96E61138370A30085DCB6 /* NSDate+Formatting.m in Sources */,
+				46E96E62138370A30085DCB6 /* RootViewController.m in Sources */,
+				46E96E63138370A30085DCB6 /* RoundedUITableView.m in Sources */,
+				46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */,
+				46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
