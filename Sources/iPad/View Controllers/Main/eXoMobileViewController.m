@@ -12,6 +12,7 @@
 #import "defines.h"
 #import "Connection.h"
 #import "HomeViewController_iPad.h"
+#import "MenuViewController.h"
 
 @implementation eXoMobileViewController
 
@@ -169,6 +170,7 @@
 
 - (void)showHomeViewController
 {
+    [_loginViewController.view setHidden:YES];
     CGRect rect;
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
@@ -186,10 +188,15 @@
         [_homeViewController_iPad setDelegate:self];
     }
     
+    if (_menuViewController == nil) 
+    {
+        _menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
+    }
+    
     if (_navigationController == nil) 
     {
         _navigationController = [[UINavigationController alloc] 
-                                                   initWithRootViewController:_homeViewController_iPad];
+                                                   initWithRootViewController:_menuViewController];
         _navigationController.navigationBar.tintColor = [UIColor blackColor];
         
         [_navigationController.view setFrame:rect];

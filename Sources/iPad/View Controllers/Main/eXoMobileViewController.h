@@ -13,6 +13,7 @@
 @class Connection;
 
 @class HomeViewController_iPad;
+@class MenuViewController;
 
 //Control login page
 @interface eXoMobileViewController : UIViewController {
@@ -24,6 +25,7 @@
 	NSDictionary*						_dictLocalize;	//Language dictionary
     
     HomeViewController_iPad*            _homeViewController_iPad;
+    MenuViewController*                 _menuViewController;
     UINavigationController*             _navigationController;
     int                                 _interfaceOrientation;
 }
