@@ -337,14 +337,13 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
         
         UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
         CGRect tmpFrame = lbServerUrl.frame;
-        tmpFrame.size.width += 55;
+        //tmpFrame.size.width += 155;
+        tmpFrame.size.width = 330;
         lbServerUrl.frame = tmpFrame; 
         
         lbServerUrl.textColor = [UIColor darkGrayColor];
         
         //cell.accessoryView = nil;
-        
-        
     }
     
     if (indexPath.row < [_arrServerList count]) 
