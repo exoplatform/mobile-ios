@@ -69,6 +69,9 @@
     _btnDelete = [[UIButton alloc] init];
     [_btnDelete setFrame:CGRectMake(10, 110, 300, 40)];
     [_btnDelete setBackgroundColor:[UIColor redColor]];
+    [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton.png"]
+                                    stretchableImageWithLeftCapWidth:5 topCapHeight:5]
+                          forState:UIControlStateNormal];
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:_btnDelete]; 
