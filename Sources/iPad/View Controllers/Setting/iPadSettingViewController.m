@@ -42,9 +42,9 @@ static NSString *CellIdentifier = @"MyIdentifier";
 	{
 		edit = NO;
 		
-		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
+		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(400, 10, 100, 20)];
 		[rememberMe addTarget:self action:@selector(rememberMeAction) forControlEvents:UIControlEventValueChanged];
-		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
+		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(400, 10, 100, 20)];
 		[autoLogin addTarget:self action:@selector(autoLoginAction) forControlEvents:UIControlEventValueChanged];
 		
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -461,6 +461,10 @@ static NSString *CellIdentifier = @"MyIdentifier";
                 lbServerName.text = tmpServerObj._strServerName;
                 
                 UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
+                CGRect fr = lbServerUrl.frame;
+                fr.size.width = 330;
+                lbServerUrl.frame = fr;
+                
                 lbServerUrl.text = tmpServerObj._strServerUrl;
                 
                 /*
@@ -539,6 +543,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
                     [lbModify setFrame:CGRectMake(55, 5, 900, 30)];
                 }
                 */
+                [lbModify setFrame:CGRectMake(30, 5, 460, 30)];
                 [lbModify setTextAlignment:UITextAlignmentCenter];
                 lbModify.textColor = [UIColor darkGrayColor];
                 lbModify.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
