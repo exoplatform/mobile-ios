@@ -12,10 +12,14 @@
 #import "Connection.h"
 #import "ChatWindowViewController.h"
 #import "MessengerViewController.h"
+#import "iPadSettingViewController.h"
 
 @class MenuHeaderView;
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	
+    id                              _delegate;
+    
 	UITableView*  _tableView;
 	NSMutableArray* _cellContents;
 	MenuHeaderView* _menuHeader;
@@ -30,16 +34,25 @@
     MessengerViewController*        _messengerViewController;
     UINavigationController*         _nvMessengerViewController;
     ChatWindowViewController*       _chatWindowViewController;
+    iPadSettingViewController*      _iPadSettingViewController;
+    
+    UINavigationController*         _modalNavigationSettingViewController;
+    
+    NSDictionary*						_dictLocalize;
+	int									_intSelectedLanguage;
+
     short							_currentViewIndex;
     UIImageView*					_imgViewNewMessage;
     NSMutableArray*					_liveChatArr;
     UIToolbar*						_toolBarChatsLive;
 
-
+    int                             _intIndex;
     
 }
 - (id)initWithFrame:(CGRect)frame;
 
 @property(nonatomic, retain)UITableView* tableView;
+
+- (void)setDelegate:(id)delegate;
 
 @end

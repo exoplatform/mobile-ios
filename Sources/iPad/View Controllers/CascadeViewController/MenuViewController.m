@@ -24,18 +24,29 @@
 #pragma mark View lifecycle
 
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
 		[self.view setFrame:frame];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bgPatternIPad.png"]]];
 		
 		_menuHeader = [[MenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 70)];
 		_menuHeader.imageView.image = [UIImage imageNamed:@"eXoLogoNavigationBariPhone@2x.png"];
-		_menuHeader.textLabel.text = @"Mobile !";
+		_menuHeader.textLabel.text = @"";
 		
 		_cellContents = [[NSMutableArray alloc] init];
+        
+        /*
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"08-chat.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"83-calendar.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"179-notepad.png"], kCellImage, NSLocalizedString(@"Files",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"18-envelope.png"], kCellImage, NSLocalizedString(@"Social",@""), kCellText, nil]];
+         */
+        
+        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, NSLocalizedString(@"Activities Stream",@""), kCellText, nil]];
+		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
+		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, NSLocalizedString(@"Documents",@""), kCellText, nil]];
+		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
+		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"SettingsIpadIcon.png"], kCellImage, NSLocalizedString(@"Settings",@""), kCellText, nil]];
 		
 		_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
 		_tableView.delegate = self;
@@ -44,6 +55,8 @@
 		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 		_tableView.tableFooterView = [[[MenuWatermarkFooter alloc] initWithFrame:CGRectMake(0, 0, 200, 80)] autorelease];
 		[self.view addSubview:_tableView];
+        
+        _intIndex = -1;
 	}
     return self;
 }
@@ -100,11 +113,34 @@
 	cell.textLabel.text = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
 	cell.imageView.image = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellImage];
 	
-	cell.glowView.hidden = indexPath.row != 3;
+	//cell.glowView.hidden = indexPath.row != 3;
+    
+    if (indexPath.row == _intIndex) 
+    {
+        cell.glowView.hidden = NO;
+    }
+    else
+    {
+        cell.glowView.hidden = YES;
+    }
 
     return cell;
 }
 
+- (void)setDelegate:(id)delegate
+{
+    
+}
+
+- (int)getSelectedLanguage
+{
+	return _intSelectedLanguage;
+}
+
+- (NSDictionary*)getLocalization
+{
+	return _dictLocalize;
+}
 
 #pragma mark -
 #pragma mark Table view delegate
@@ -121,6 +157,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    _intIndex = indexPath.row;
+
+    [tableView reloadData];
     
     switch (indexPath.row) {
         case 0:
@@ -143,10 +182,6 @@
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_messengerViewController 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];
-            
-
-            
-            
             break;
         case 1:
             // dashboard
@@ -161,10 +196,6 @@
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_dashboardViewController_iPad 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];
-            
-            
-            
-            
             break;
         case 2:
             // files
@@ -175,7 +206,27 @@
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_filesViewController 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];
-
+            break;
+        
+        case 3:
+           break;
+            
+        case 4:
+            // files
+            if (_iPadSettingViewController == nil)
+            {
+                _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
+                //[_iPadSettingViewController setDelegate:self];
+            }    
+            
+            if (_modalNavigationSettingViewController == nil) 
+            {
+                _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+                _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+                
+            }
+            [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
             
             break;
             
