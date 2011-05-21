@@ -13,6 +13,7 @@
 #import "Connection.h"
 #import "HomeViewController_iPad.h"
 #import "MenuViewController.h"
+#import "AppDelegate_iPad.h"
 
 @implementation eXoMobileViewController
 
@@ -170,6 +171,11 @@
 
 - (void)showHomeViewController
 {
+    
+    
+    [[AppDelegate_iPad instance] showHome:self];
+    
+    /*
     [_loginViewController.view setHidden:YES];
     CGRect rect;
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
@@ -209,6 +215,7 @@
 //    
 //    [applicationView.view setFrame:rect];
 //    [[self view] addSubview:applicationView.view];
+     */
 }
 
 - (void)onBtnSigtOutDelegate

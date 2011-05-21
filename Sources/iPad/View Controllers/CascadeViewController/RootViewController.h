@@ -21,11 +21,15 @@
 	
 	MenuViewController* menuViewController;
 	StackScrollViewController* stackScrollViewController;
+    
+    
+    id _delegate;
 	
 }
 
 @property (nonatomic, retain) MenuViewController* menuViewController;
 @property (nonatomic, retain) StackScrollViewController* stackScrollViewController;
+@property (nonatomic, retain) id delegate;
 
 
 @end

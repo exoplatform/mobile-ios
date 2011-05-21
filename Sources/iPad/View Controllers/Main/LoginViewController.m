@@ -429,6 +429,8 @@
 
 	//[_delegate showMainViewController];
     [_delegate showHomeViewController];
+    //[_delegate showHome];
+
 }
 
 - (void)signInFailed

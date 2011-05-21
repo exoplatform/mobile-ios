@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Three20/Three20.h>
 
 @interface DashboardViewController_iPad : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {

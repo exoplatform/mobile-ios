@@ -27,7 +27,9 @@
 @property (nonatomic, retain) IBOutlet eXoMobileViewController *viewController;
 @property (nonatomic, retain) RootViewController *rootViewController;
 
--(void)showHome;
+-(void)showHome:(id)delegateForViewControllers;
+
+- (void)dismissKeyboard;
 
 +(AppDelegate_iPad*)instance;
 

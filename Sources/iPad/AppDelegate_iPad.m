@@ -39,16 +39,18 @@
 
 
 
--(void)showHome {
+-(void)showHome:(id)delegateForViewControllers {
     
     [viewController.view removeFromSuperview];
 
     
     rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+    rootViewController.delegate = delegateForViewControllers;
 	[self.window addSubview:rootViewController.view];
 	[self.window setBackgroundColor:[UIColor clearColor]];
     
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

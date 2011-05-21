@@ -33,6 +33,7 @@
 - (void)deleteServerObjAtIndex:(int)index;
 - (void)setDelegate:(id)delegate;
 - (void)localize;
+- (NSDictionary*)getLocalization;
 - (IBAction)onBtnBack:(id)sender;
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Three20/Three20.h>
 #import "FilesViewController.h"
 #import "MessengerViewController.h"
 #import "ChatWindowViewController.h"
@@ -22,9 +21,9 @@
 @class iPadServerEditingViewController;
 @class ServerObj;
 
-@interface HomeViewController_iPad : TTViewController <TTLauncherViewDelegate> {
+@interface HomeViewController_iPad : UIViewController {
     id                              _delegate;
-    TTLauncherView*                 _launcherView;
+    //TTLauncherView*                 _launcherView;
     int                             _interfaceOrientation;
     
     FilesViewController*            _filesViewController;

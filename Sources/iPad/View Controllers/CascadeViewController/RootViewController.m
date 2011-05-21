@@ -57,7 +57,7 @@
 @end
 
 @implementation RootViewController
-@synthesize menuViewController, stackScrollViewController;
+@synthesize menuViewController, stackScrollViewController, delegate=_delegate;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
@@ -80,6 +80,10 @@
 	leftMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
 	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height)];
+    
+    //Add the eXo Delegate for the menu
+    [menuViewController setDelegate:_delegate];
+    
 	[menuViewController.view setBackgroundColor:[UIColor clearColor]];
 	[menuViewController viewWillAppear:FALSE];
 	[menuViewController viewDidAppear:FALSE];
@@ -96,7 +100,7 @@
 	
 	[rootView addSubview:leftMenuView];
 	[rootView addSubview:rightSlideView];
-	self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bgPatternIPad.png"]]];
 	[self.view addSubview:rootView];
 }
 

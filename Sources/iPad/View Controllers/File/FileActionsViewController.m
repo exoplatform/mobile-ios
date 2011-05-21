@@ -294,7 +294,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	NSString *tmpStr = _delegate._currenteXoFile._fileName;
 	if([tmpStr isEqualToString:@"Private"])
 	{
-		[_delegate._navigationBar setTitle:@"Files Application"];
+		[_delegate._navigationBar setTitle:@"Documents Application"];
 		[_delegate._navigationBar setLeftBarButtonItem:nil];
 		//[_navigationBar setRightBarButtonItem:_bbtnActions];
 	}

@@ -12,6 +12,7 @@
 #import "defines.h"
 #import "LoginViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
+#import "AppDelegate_iPad.h"
 
 @implementation iPadServerAddingViewController
 
@@ -59,6 +60,12 @@
     _dictLocalize = [_delegate getLocalization];
     [_tblvServerInfo reloadData];
 }
+
+- (NSDictionary*)getLocalization
+{
+	return _dictLocalize;
+}
+
 
 /*
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -136,6 +143,8 @@
 
 - (void)onBtnDone
 {
+    
+    
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder];
     _strServerName = [_txtfServerName text];
@@ -211,13 +220,17 @@
     
     if (theTextField == _txtfServerName) 
     {
+        
         [_txtfServerUrl becomeFirstResponder];
     }
     else
     {    
         [_txtfServerUrl resignFirstResponder];
+        [_txtfServerName resignFirstResponder];
         _strServerName = [[_txtfServerName text] retain];
         _strServerUrl = [[_txtfServerUrl text] retain];
+        
+        
         [self onBtnDone];
     }    
     

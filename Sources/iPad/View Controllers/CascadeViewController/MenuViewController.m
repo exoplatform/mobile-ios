@@ -27,7 +27,6 @@
     self = [super init];
     if (self) {
 		[self.view setFrame:frame];
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bgPatternIPad.png"]]];
 		
 		_menuHeader = [[MenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 70)];
 		_menuHeader.imageView.image = [UIImage imageNamed:@"eXoLogoNavigationBariPhone@2x.png"];
@@ -35,12 +34,12 @@
 		
 		_cellContents = [[NSMutableArray alloc] init];
         
+        
+		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
+		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
+		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, NSLocalizedString(@"Documents",@""), kCellText, nil]];
+        
         /*
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"08-chat.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"83-calendar.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"179-notepad.png"], kCellImage, NSLocalizedString(@"Files",@""), kCellText, nil]];
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"18-envelope.png"], kCellImage, NSLocalizedString(@"Social",@""), kCellText, nil]];
-         */
         
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, NSLocalizedString(@"Activities Stream",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
@@ -48,12 +47,20 @@
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"SettingsIpadIcon.png"], kCellImage, NSLocalizedString(@"Settings",@""), kCellText, nil]];
 		
+         */
+        
+        
 		_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
 		_tableView.delegate = self;
 		_tableView.dataSource = self;
 		_tableView.backgroundColor = [UIColor clearColor];
 		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-		_tableView.tableFooterView = [[[MenuWatermarkFooter alloc] initWithFrame:CGRectMake(0, 0, 200, 80)] autorelease];
+        
+        MenuWatermarkFooter *footerView = [[[MenuWatermarkFooter alloc] initWithFrame:CGRectMake(0, 0, 200, 80)] autorelease];
+        [footerView.buttonForSettings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+        
+		_tableView.tableFooterView = footerView;
+        
 		[self.view addSubview:_tableView];
         
         _intIndex = -1;
@@ -84,6 +91,34 @@
     // Override to allow orientations other than the default portrait orientation.
     return YES;
 }
+
+
+#pragma mark -
+#pragma mark MenuManagement methods
+
+
+-(void)showSettings {
+
+    // files
+    if (_iPadSettingViewController == nil)
+    {
+        _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
+        [_iPadSettingViewController setDelegate:_delegate];
+    }    
+    
+    if (_modalNavigationSettingViewController == nil) 
+    {
+        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+        _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+    }
+    [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
+
+}
+
+
+
 
 
 #pragma mark -
@@ -129,6 +164,7 @@
 
 - (void)setDelegate:(id)delegate
 {
+    _delegate = delegate;
     
 }
 
@@ -144,6 +180,11 @@
 
 #pragma mark -
 #pragma mark Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 50;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -200,7 +241,7 @@
         case 2:
             // files
             _filesViewController = [[FilesViewController alloc] initWithNibName:@"FilesViewController" bundle:nil];
-            //[_filesViewController setDelegate:self];
+            [_filesViewController setDelegate:_delegate];
             [_filesViewController initWithRootDirectory];
             [_filesViewController getPersonalDriveContent:_filesViewController._currenteXoFile];
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_filesViewController 
@@ -208,25 +249,9 @@
                                                                                      isStackStartView:TRUE];
             break;
         
-        case 3:
-           break;
-            
-        case 4:
-            // files
-            if (_iPadSettingViewController == nil)
-            {
-                _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
-                //[_iPadSettingViewController setDelegate:self];
-            }    
-            
-            if (_modalNavigationSettingViewController == nil) 
-            {
-                _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
-                _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
                 
-            }
-            [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
+        case 3:
+            
             
             break;
             

@@ -105,6 +105,7 @@
     
     _conn = [[Connection alloc] init];
     
+    /*
     _launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
     _launcherView.backgroundColor = [UIColor blackColor];
     _launcherView.delegate = self;
@@ -127,6 +128,8 @@
                                                                                      image:@"bundle://setting.png"
                                                                                        URL:@"tt://setting" canDelete:YES] autorelease],nil], nil];
     [self.view addSubview:_launcherView];
+     */
+    
     
     UIBarButtonItem* _bbtnSignOut = [[UIBarButtonItem alloc] initWithTitle:@"Sign out" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnSigtOut)];
     [self.navigationItem setLeftBarButtonItem:_bbtnSignOut];
@@ -144,15 +147,15 @@
     _interfaceOrientation = interfaceOrientation;
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
 	{
-        [_launcherView setFrame:CGRectMake(0, 0, 768, 960)];
-        _launcherView.columnCount = 4;
+        //[_launcherView setFrame:CGRectMake(0, 0, 768, 960)];
+        //_launcherView.columnCount = 4;
         [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 768, 960)];
         [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 768, 960)];
 	}
 	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{
-        [_launcherView setFrame:CGRectMake(0, 0, 1024, 704)];
-        _launcherView.columnCount = 5;
+        //[_launcherView setFrame:CGRectMake(0, 0, 1024, 704)];
+        //_launcherView.columnCount = 5;
         [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 1024, 704)];
         [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 1024, 704)];
 	}
@@ -276,12 +279,14 @@
     //TTOpenURLFromView(item.URL, self.view);
 }
 
+/*
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher 
 {
     [self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc]
                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                  target:_launcherView action:@selector(endEditing)] autorelease] animated:YES];
 }
+ */
 
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher 
 {
@@ -498,7 +503,7 @@
     if(_iPadServerManagerViewController)
     {
         [_iPadServerManagerViewController addServerObjWithServerName:strServerName andServerUrl:strServerUrl]; 
-        [self pullViewOut:[_arrViewOfViewControllers lastObject]];
+        [self.navigationController popViewControllerAnimated:YES];
     }    
 }
 

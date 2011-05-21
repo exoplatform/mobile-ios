@@ -35,7 +35,6 @@
 		textLabel.backgroundColor = [UIColor clearColor];
 		[self addSubview:textLabel];
         
-        self.backgroundColor = [UIColor blueColor];
 	}
 	return self;
 }

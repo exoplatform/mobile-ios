@@ -15,6 +15,9 @@
 #import "OptionsViewController.h"
 #import "NSString+HTML.h"
 #import "DataProcess.h"
+#import "AppDelegate_iPad.h"
+#import "RootViewController.h"
+
 
 static NSString* kCellIdentifier = @"Cell";
 #define kTagForCellSubviewTitleLabel 222
@@ -324,9 +327,9 @@ NSString* fileType(NSString *fileName)
 
 - (void)localize
 {
-//	_dictLocalize = [_delegate getLocalization];
-//	_intSelectedLanguage = [_delegate getSelectedLanguage];
-//	[_fileActionsViewController localize];
+	_dictLocalize = [_delegate getLocalization];
+	_intSelectedLanguage = [_delegate getSelectedLanguage];
+	[_fileActionsViewController localize];
 }
 
 - (void)setFileContentDisplayView:(GadgetDisplayController*)fileContentDisplayView
@@ -371,7 +374,7 @@ NSString* fileType(NSString *fileName)
 	if([tmpStr isEqualToString:[domainStr stringByAppendingFormat:@"/rest/private/jcr/repository/collaboration/Users/%@",
 								[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME]]]	)
 	{
-		[_navigationBar setTitle:@"Files Application"];
+		[_navigationBar setTitle:@"Documents Application"];
 		[_navigationBar setLeftBarButtonItem:nil];
 	}
 	else
@@ -656,15 +659,17 @@ NSString* fileType(NSString *fileName)
 	}
 	else
 	{	
-		[_navigationBar setRightBarButtonItem:nil];
-		[[_fileContentDisplayController view] setFrame:[_tbvFiles frame]];
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_fileContentDisplayController invokeByController:self isStackStartView:FALSE];
+        
+		//[_navigationBar setRightBarButtonItem:nil];
+		//[[_fileContentDisplayController view] setFrame:[_tbvFiles frame]];
 
 		NSURL *url = [NSURL URLWithString:[file._urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 		[_fileContentDisplayController startDisplayFileContent:url];
-		[[self view] addSubview:[_fileContentDisplayController view]];
+		//[[self view] addSubview:[_fileContentDisplayController view]];
 		
-		[_navigationBar setTitle:_currenteXoFile._fileName];
-		[_navigationBar setLeftBarButtonItem:_bbtnBack];
+		//[_navigationBar setTitle:_currenteXoFile._fileName];
+		//[_navigationBar setLeftBarButtonItem:_bbtnBack];
 	}
 
 }

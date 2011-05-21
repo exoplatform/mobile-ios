@@ -140,6 +140,11 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     [_tbvlServerList reloadData];
 }
 
+- (NSDictionary*)getLocalization 
+{
+    return _dictLocalize;
+}
+
 - (IBAction)onBtnBack:(id)sender
 {
     [_delegate onBackDelegate];
@@ -147,7 +152,20 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 - (void)onBtnAdd
 {
-    [_delegate showiPadServerAddingViewController];
+    if (_iPadServerAddingViewController == nil) 
+    {
+        _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
+        [_iPadServerAddingViewController setDelegate:self];
+        [_iPadServerAddingViewController setInterfaceOrientation:_interfaceOrientation];
+    }
+    [_iPadServerAddingViewController._txtfServerName setText:@""];
+    [_iPadServerAddingViewController._txtfServerUrl setText:@""];    
+
+  
+    [self.navigationController pushViewController:_iPadServerAddingViewController animated:YES];
+    
+    
+    //[_delegate showiPadServerAddingViewController];
 }
 
 - (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
@@ -407,7 +425,17 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    [_delegate showiPadServerEditingViewControllerWithServerObj:tmpServerObj andIndex:indexPath.row];
+    
+    if (_iPadServerEditingViewController == nil) 
+    {
+        _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
+        [_iPadServerEditingViewController setDelegate:_delegate];
+        [_iPadServerEditingViewController setInterfaceOrientation:_interfaceOrientation];
+    }
+    [_iPadServerEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+
+    [self.navigationController pushViewController:_iPadServerEditingViewController animated:YES];
+    
     _intCurrentIndex = indexPath.row;
     [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
 }

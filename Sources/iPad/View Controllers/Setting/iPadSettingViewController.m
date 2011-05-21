@@ -786,7 +786,16 @@ static NSString *CellIdentifier = @"MyIdentifier";
         }
         else
         {
-            [_delegate showiPadServerManagerViewController];
+            //Show _iPadServerManagerViewController
+            if (_iPadServerManagerViewController == nil) 
+            {
+                _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
+                [_iPadServerManagerViewController setDelegate:_delegate];
+                [_iPadServerManagerViewController setInterfaceOrientation:_interfaceOrientation];
+            }
+            
+            [self.navigationController pushViewController:_iPadServerManagerViewController animated:YES];
+            
             [tblView deselectRowAtIndexPath:indexPath animated:YES];
         }
 	}

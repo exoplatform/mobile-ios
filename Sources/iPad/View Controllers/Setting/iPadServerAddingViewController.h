@@ -34,6 +34,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (void)setDelegate:(id)delegate;
 - (void)localize;
+- (NSDictionary*)getLocalization;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;
