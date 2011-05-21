@@ -49,6 +49,8 @@
 
 @property (nonatomic, retain) eXoWebViewController* webViewController;
 
++(AppDelegate_iPhone*)instance;
+
 
 - (void)login;	//Login action
 - (void)changeToActivityStreamsViewController:(NSDictionary *)dic;	//Show main view of application

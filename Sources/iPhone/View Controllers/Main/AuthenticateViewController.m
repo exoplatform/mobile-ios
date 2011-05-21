@@ -113,6 +113,10 @@
 	}	
 	
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    
+    [AppDelegate_iPhone instance].applicationsViewController._dictLocalize = _dictLocalize;
+    
+    
 	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
 	
 	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
@@ -441,10 +445,10 @@
 
 - (IBAction)onSettingBtn
 {
-	eXoApplicationsViewController *apps = [[eXoApplicationsViewController alloc] init];
-    apps._dictLocalize = _dictLocalize;
+    //apps._dictLocalize = _dictLocalize;
     
-    eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped delegate:apps];
+    eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped 
+                                                                               delegate:[AppDelegate_iPhone instance].applicationsViewController];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
     [setting release];
     

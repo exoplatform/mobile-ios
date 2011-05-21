@@ -91,7 +91,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
         [self.navigationController.navigationBar pushNavigationItem:navigationItem animated:NO];
         [navigationItem release];
         [buttonItem release];
-        
     }
     return self;
 }
@@ -131,15 +130,13 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     self.tableView.backgroundView = backgroundView;
-    
-    
-    
+        
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0./255 
                                                                           green:106./255 
                                                                            blue:175./255 
                                                                           alpha:1.]];
     
-   /* //Customize the Navigation Bar appaerance
+    /* //Customize the Navigation Bar appaerance
     CGRect frameForCustomNavBar = self.navigationController.navigationBar.frame;
     frameForCustomNavBar.origin.y -= 20;
     UIImageView* imageView = [[[UIImageView alloc] initWithFrame:frameForCustomNavBar] autorelease];
@@ -148,10 +145,10 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
     */
     //Add the shadow at the bottom of the navigationBar
+    
     UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
     navigationBarShadowImgV.frame = CGRectMake(0,self.navigationController.navigationBar.frame.size.height,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
     [self.navigationController.navigationBar addSubview:navigationBarShadowImgV];
-    [navigationBarShadowImgV release];
     
      
     _arrServerList = [[Configuration sharedInstance] getServerList];
@@ -163,7 +160,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 //Method to dismiss settings
 - (void)dismissSettings {
-    [self. navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dealloc 
@@ -587,10 +584,10 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     
     //Customize the cell background
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+        
     
-    
-	
     return cell;
+    
     
 }
 

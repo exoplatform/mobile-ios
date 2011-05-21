@@ -30,6 +30,14 @@
 @synthesize webViewController;
 
 
+
++ (AppDelegate_iPhone *) instance {
+    return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];
+    
+}
+
+
+
 - (id)init
 {
 	self = [super init];
@@ -43,6 +51,9 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {    
 	//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
+    
+    applicationsViewController = [[eXoApplicationsViewController alloc] init];
+
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	int selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
@@ -294,7 +305,7 @@
 - (void)onBtnSigtOutDelegate
 {
     //Ask the controller Login to do some things if needed
-    window.rootViewController = authenticateViewController;
+    //window.rootViewController = authenticateViewController;
 }
 
 @end

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Three20/Three20.h>
 
-@interface FilesViewController_iPhone : TTViewController {
+@interface FilesViewController_iPhone : UIViewController {
 
 }
 

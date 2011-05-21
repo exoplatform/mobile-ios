@@ -7,19 +7,8 @@
 //
 
 #import "FilesViewController_iPhone.h"
-
-#import "Three20UI/UINSStringAdditions.h"
-
-// Core
-#import "Three20Core/TTCorePreprocessorMacros.h"
-
-// UI
-#import "Three20UI/TTNavigator.h"
-
-// UINavigator
-#import "Three20UINavigator/TTURLAction.h"
-#import "Three20UINavigator/TTURLMap.h"
-#import "Three20UINavigator/TTURLObject.h"
+#import "AppDelegate_iPhone.h"
+#import "eXoApplicationsViewController.h"
 
 
 @implementation FilesViewController_iPhone
@@ -30,6 +19,10 @@
     if (self) 
     {
         self.title = @"Documents";
+        
+        //HACK
+        self.view = [AppDelegate_iPhone instance].applicationsViewController._filesView;
+        
     }
     return self;
 }

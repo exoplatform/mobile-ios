@@ -29,6 +29,9 @@
 #import "Connection.h"
 #import "Gadget_iPhoneViewController.h"
 
+
+#import "AppDelegate_iPhone.h"
+
 @implementation HomeViewController_iPhone
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -101,7 +104,7 @@
     [self.view addSubview:imgBubble];
     [imgBubble release];
     
-
+/*
     
     //Add the shadow at the bottom of the navigationBar
     UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
@@ -109,6 +112,7 @@
     [self.view addSubview:navigationBarShadowImgV];
     [navigationBarShadowImgV release];
 
+ */
     
    
     
@@ -122,19 +126,19 @@
     _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Activity Streams"
                                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
-                                                                                       URL:@"tt://activityStream" canDelete:YES] autorelease],
+                                                                                       URL:@"tt://activityStream" canDelete:NO] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Chat"
                                                                                      image:@"bundle://HomeChatIconiPhone.png"
-                                                                                       URL:@"tt://chat" canDelete:YES] autorelease],
+                                                                                       URL:@"tt://chat" canDelete:NO] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Documents"
                                                                                      image:@"bundle://HomeDocumentsIconiPhone.png"
-                                                                                       URL:@"tt://documents" canDelete:YES] autorelease],
+                                                                                       URL:@"tt://documents" canDelete:NO] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Dashboard"
                                                                                      image:@"bundle://HomeDashboardIconiPhone.png"
-                                                                                       URL:@"tt://dashboard" canDelete:YES] autorelease],
+                                                                                       URL:@"tt://dashboard" canDelete:NO] autorelease],
                                                     [[[TTLauncherItem alloc] initWithTitle:@"Settings"
                                                                                      image:@"bundle://HomeSettingsIconiPhone.png"
-                                                                                       URL:@"tt://setting" canDelete:YES] autorelease],nil], nil];
+                                                                                       URL:@"tt://setting" canDelete:NO] autorelease],nil], nil];
     [self.view addSubview:_launcherView];
     
     
@@ -166,49 +170,31 @@
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item 
 {
     UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
-    logoutButton.hidden = YES;
     
-    TTNavigator* navigator = [TTNavigator navigator];
-    navigator.supportsShakeToReload = YES;
-    navigator.persistenceMode = TTNavigatorPersistenceModeAll;
     
-    TTURLMap* map = navigator.URLMap;
-    [map from:@"*" toViewController:[HomeViewController_iPhone class]];
-    [map from: @"tt://homeview" toSharedViewController: [HomeViewController_iPhone class]];
     
     if ([item.title isEqualToString:@"Activity Streams"]) 
     {
-        [map from: item.URL
-           parent: @"tt://homeview"
- toViewController: [ActivityStreamsViewController_iPhone class]
-         selector: nil
-       transition: 0];
+        
     }
     
     if ([item.title isEqualToString:@"Chat"]) 
     {
-        [map from: item.URL
-           parent: @"tt://homeview"
- toViewController: [ChatViewController_iPhone class]
-         selector: nil
-       transition: 0];
-        
-        TTOpenURLFromView(item.URL, self.view);
+        //Start the Chat
     }
     
     if ([item.title isEqualToString:@"Documents"]) 
     {
-        [map from: item.URL
-           parent: @"tt://homeview"
- toViewController: [FilesViewController_iPhone class]
-         selector: nil
-       transition: 0];
+        //Start Documents
         
-        TTOpenURLFromView(item.URL, self.view);
+        FilesViewController_iPhone *filesViewController = [[FilesViewController_iPhone alloc] initWithNibName:@"FilesViewController_iPhone" bundle:nil];
+        [self.navigationController pushViewController:filesViewController animated:YES];
     }
     
     if ([item.title isEqualToString:@"Dashboard"]) 
     {
+        
+        //Start Dashboard
         
         DashboardViewController_iPhone *dashboardController = [[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil];
         
@@ -226,17 +212,15 @@
     
     if([item.title isEqualToString:@"Settings"]) 
     {
-        eXoSettingViewController* setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [map from: @"tt://setting"
-           parent: @"tt://homeview"
- toViewController: setting
-         selector: nil
-       transition: 0];
+        eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped 
+                                                                                   delegate:[AppDelegate_iPhone instance].applicationsViewController];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
+        [setting release];
         
-        TTOpenURLFromView(item.URL, self.view);
+        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self.navigationController presentModalViewController:navController animated:YES];
     }
     
-    //TTOpenURLFromView(item.URL, self.view);
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher 
