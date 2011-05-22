@@ -165,7 +165,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [_hud dismiss];
-    [_hud release];
 }
 
 	
