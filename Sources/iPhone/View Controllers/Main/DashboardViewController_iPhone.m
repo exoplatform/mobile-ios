@@ -218,16 +218,7 @@
 
 	[_gadgetDisplayViewController setUrl:tmpURL];
 
-	if ([self.navigationController.viewControllers containsObject:_gadgetDisplayViewController]) 
-	{
-		[self.navigationController popToViewController:_gadgetDisplayViewController animated:YES];
-	}
-	else 
-	{
-		[self.navigationController pushViewController:_gadgetDisplayViewController animated:YES];
-	}
-
-
+    [self.navigationController pushViewController:_gadgetDisplayViewController animated:YES];
 }
 
 
