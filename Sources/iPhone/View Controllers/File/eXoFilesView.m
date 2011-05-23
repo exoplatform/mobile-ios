@@ -179,6 +179,15 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 @synthesize _tblvFilesGrp, _arrDicts, _fileActionViewShape, labelEmptyPage;
 
 
+- (id)init {
+    if ((self = [super init])) {
+        _tblvFilesGrp = [[UITableView alloc] initWithFrame:self.frame style:UITableViewStylePlain];
+        [self addSubview:_tblvFilesGrp];
+        self.backgroundColor = [UIColor blueColor];
+    }
+    return self;
+}
+
 - (void) dealloc {
     [_tblvFilesGrp release];	//Files, folders list view
 	_tblvFilesGrp = nil;

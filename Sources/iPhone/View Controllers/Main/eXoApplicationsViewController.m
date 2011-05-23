@@ -109,7 +109,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		_bFilesChatEnterred = NO;
 		_isNewMsg = FALSE;
 		
-		_filesView = [[eXoFilesView alloc] init];
+		//_filesView = [[eXoFilesView alloc] init];
 		
 		_btnSignOut = [[UIBarButtonItem alloc] initWithTitle:@"Sign out" style:UIBarButtonItemStylePlain
 													 target:self action:@selector(onSignOutBtn)];
@@ -731,6 +731,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 -(void)createFileView
 {
+    
 	if(_currenteXoFile == nil)
 	{
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -749,7 +750,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		_filesView = [[eXoFilesView alloc] init];
 	}
 	
-	[[self view] addSubview:_filesView];
+	//[[self view] addSubview:_filesView];
 	_tempView = _filesView;
 	
 	[self onFilesBtn];
