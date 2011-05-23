@@ -57,22 +57,14 @@
     self.navigationController.navigationBarHidden = NO;
     [super viewWillAppear:animated];
 
-    // Create a custom logout button
-    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
-    if(logoutButton == nil)
-    {
-        logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *logoutImg = [UIImage imageNamed:@"HomeLogoutiPhone.png"];
-        
-        [logoutButton setImage:logoutImg forState:UIControlStateNormal];
-        logoutButton.frame = CGRectMake(5, 6, logoutImg.size.width, logoutImg.size.height);
-        
-        [logoutButton addTarget:self action:@selector(onBbtnSignOut) forControlEvents:UIControlEventTouchUpInside];
-        logoutButton.tag = 111;
-        [self.navigationController.navigationBar addSubview:logoutButton];    
-    }
-    
-    logoutButton.hidden = NO;
+    // Create a custom logout button    
+    UIButton *barButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *barButtonImage = [UIImage imageNamed:@"HomeLogoutiPhone.png"];
+    barButton.frame = CGRectMake(0, 0, barButtonImage.size.width, barButtonImage.size.height);
+    [barButton setImage:[UIImage imageNamed:@"HomeLogoutiPhone.png"] forState:UIControlStateNormal];
+    [barButton addTarget:self action:@selector(onBbtnSignOut) forControlEvents: UIControlEventTouchUpInside];
+    UIBarButtonItem *customItem = [[UIBarButtonItem alloc] initWithCustomView:barButton];
+    [self.navigationItem setLeftBarButtonItem:customItem];
     
 }
 
@@ -96,8 +88,10 @@
     
     self.navigationItem.hidesBackButton = YES;
     
-//    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:logoutButton] autorelease];
-    
+    //Set the title of the controller
+    //TODO Localize that
+    self.title = @"Home";
+        
     //Add the bubble background
     UIImageView* imgBubble = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeBubbleBackground.png"]];
     imgBubble.frame = CGRectMake(0, self.view.frame.size.height-imgBubble.frame.size.height, imgBubble.frame.size.width, imgBubble.frame.size.height);
@@ -140,25 +134,6 @@
                                                                                      image:@"bundle://HomeSettingsIconiPhone.png"
                                                                                        URL:@"tt://setting" canDelete:NO] autorelease],nil], nil];
     [self.view addSubview:_launcherView];
-    
-    
-    
-    
-
-//    TTLauncherItem* item = [_launcherView itemWithURL:@"fb://item3"];
-//    item.badgeNumber = 4;
-//    
-//    item = [_launcherView itemWithURL:@"fb://item4"];
-//    item.badgeNumber = 0;
-//    
-//    item = [_launcherView itemWithURL:@"fb://item5"];
-//    item.badgeValue = @"100!";
-//    
-//    item = [_launcherView itemWithURL:@"fb://item6"];
-//    item.badgeValue = @"Off";
-//    
-//    item = [_launcherView itemWithURL:@"fb://item7"];
-//    item.badgeNumber = 300;
 }
 
 - (void)setDelegate:(id)delegate
