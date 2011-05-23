@@ -57,6 +57,11 @@
 		4695980B1377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */; };
 		4695981D13780D3400ADC826 /* AuthenticateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695981C13780D3100ADC826 /* AuthenticateViewController.xib */; };
 		469598881378497C00ADC826 /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469598871378497B00ADC826 /* AuthenticateServerCell.xib */; };
+		46ABBE8713890BD10077809B /* FilesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8613890BD10077809B /* FilesProxy.m */; };
+		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
+		46ABBE91138910C80077809B /* AuthenticateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE90138910C80077809B /* AuthenticateProxy.m */; };
+		46ABBE95138914200077809B /* FilesViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE931389141F0077809B /* FilesViewController_iPhone.m */; };
+		46ABBE96138914200077809B /* FilesViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ABBE941389141F0077809B /* FilesViewController_iPhone.xib */; };
 		46BF6E25137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E22137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png */; };
 		46BF6E2D137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E29137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png */; };
 		46BF6E3113793DC900D1E1A5 /* AuthenticateCredentialsIconIphoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E2F13793DC900D1E1A5 /* AuthenticateCredentialsIconIphoneOff.png */; };
@@ -145,7 +150,6 @@
 		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; };
 		7C3BD1A31370FE1700380828 /* FilesViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */; };
 		7C3BD1A41370FE1700380828 /* HomeViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */; };
-		7C4C80FC1366863A001A3B39 /* FilesViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4C80FB1366863A001A3B39 /* FilesViewController_iPhone.m */; };
 		7C50D4C7136F187B0011280D /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C1136F187B0011280D /* DDXMLDocument.m */; };
 		7C50D4C8136F187B0011280D /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C3136F187B0011280D /* DDXMLElement.m */; };
 		7C50D4C9136F187B0011280D /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C5136F187B0011280D /* DDXMLNode.m */; };
@@ -546,6 +550,16 @@
 		469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateSettingsIconIphone@2x.png"; path = "Authenticate/@2x/AuthenticateSettingsIconIphone@2x.png"; sourceTree = "<group>"; };
 		4695981C13780D3100ADC826 /* AuthenticateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateViewController.xib; sourceTree = "<group>"; };
 		469598871378497B00ADC826 /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
+		46ABBE8513890BD10077809B /* FilesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesProxy.h; sourceTree = "<group>"; };
+		46ABBE8613890BD10077809B /* FilesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxy.m; sourceTree = "<group>"; };
+		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
+		46ABBE8913890C260077809B /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
+		46ABBE8C13890D0C0077809B /* eXo_Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eXo_Constants.h; path = Constant/eXo_Constants.h; sourceTree = "<group>"; };
+		46ABBE8F138910C80077809B /* AuthenticateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateProxy.h; sourceTree = "<group>"; };
+		46ABBE90138910C80077809B /* AuthenticateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateProxy.m; sourceTree = "<group>"; };
+		46ABBE921389141E0077809B /* FilesViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController_iPhone.h; sourceTree = "<group>"; };
+		46ABBE931389141F0077809B /* FilesViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController_iPhone.m; sourceTree = "<group>"; };
+		46ABBE941389141F0077809B /* FilesViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilesViewController_iPhone.xib; path = "../View Controllers/Main/FilesViewController_iPhone.xib"; sourceTree = "<group>"; };
 		46BF6E22137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCheckmarkiPhoneOff.png; path = "Authenticate/@1x/AuthenticateCheckmarkiPhoneOff.png"; sourceTree = "<group>"; };
 		46BF6E29137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCheckmarkiPhoneOff@2x.png"; path = "Authenticate/@2x/AuthenticateCheckmarkiPhoneOff@2x.png"; sourceTree = "<group>"; };
 		46BF6E2F13793DC900D1E1A5 /* AuthenticateCredentialsIconIphoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCredentialsIconIphoneOff.png; path = "Authenticate/@1x/AuthenticateCredentialsIconIphoneOff.png"; sourceTree = "<group>"; };
@@ -652,8 +666,6 @@
 		7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController_iPad.m; sourceTree = "<group>"; };
 		7C3BD19E1370FE1700380828 /* HomeViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController_iPad.h; sourceTree = "<group>"; };
 		7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController_iPad.m; sourceTree = "<group>"; };
-		7C4C80FA1366863A001A3B39 /* FilesViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController_iPhone.h; sourceTree = "<group>"; };
-		7C4C80FB1366863A001A3B39 /* FilesViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController_iPhone.m; sourceTree = "<group>"; };
 		7C50D4BF136F187B0011280D /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXML.h; path = "Sources/Shared/Components/3-part/KissXML/DDXML.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4C0136F187B0011280D /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLDocument.h; path = "Sources/Shared/Components/3-part/KissXML/DDXMLDocument.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4C1136F187B0011280D /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDXMLDocument.m; path = "Sources/Shared/Components/3-part/KissXML/DDXMLDocument.m"; sourceTree = SOURCE_ROOT; };
@@ -1150,6 +1162,14 @@
 			path = HUD;
 			sourceTree = "<group>";
 		};
+		46ABBE8B13890CD00077809B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				46ABBE8C13890D0C0077809B /* eXo_Constants.h */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		46BF6E3F137960E200D1E1A5 /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,6 +1479,7 @@
 		8937A3501338994400D8B474 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				46ABBE941389141F0077809B /* FilesViewController_iPhone.xib */,
 				89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */,
 				8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */,
 				7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */,
@@ -1559,6 +1580,7 @@
 		8947323A1336FFE400B0AD11 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				46ABBE8B13890CD00077809B /* Constants */,
 				8947352213375EE000B0AD11 /* Model */,
 				8947352313375EE000B0AD11 /* Proxies */,
 			);
@@ -1710,8 +1732,6 @@
 				8947339A13370B4500B0AD11 /* AuthenticateViewController.m */,
 				7CFD41871361644B00DD86E8 /* HomeViewController_iPhone.h */,
 				7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */,
-				7C4C80FA1366863A001A3B39 /* FilesViewController_iPhone.h */,
-				7C4C80FB1366863A001A3B39 /* FilesViewController_iPhone.m */,
 				7C5764821368032000C5F028 /* ActivityStreamsViewController_iPhone.h */,
 				7C5764831368032200C5F028 /* ActivityStreamsViewController_iPhone.m */,
 				7C5764841368032300C5F028 /* ChatViewController_iPhone.h */,
@@ -1724,6 +1744,8 @@
 				8947339E13370B4500B0AD11 /* eXoWebViewController.m */,
 				46CAF73C13798D230017C959 /* HomeStyleSheet.h */,
 				46CAF73D13798D230017C959 /* HomeStyleSheet.m */,
+				46ABBE921389141E0077809B /* FilesViewController_iPhone.h */,
+				46ABBE931389141F0077809B /* FilesViewController_iPhone.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2149,6 +2171,8 @@
 			children = (
 				8947339013370B4500B0AD11 /* Gadget_iPhone.h */,
 				8947339113370B4500B0AD11 /* Gadget_iPhone.m */,
+				46ABBE8813890C260077809B /* File.h */,
+				46ABBE8913890C260077809B /* File.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2156,6 +2180,10 @@
 		8947352313375EE000B0AD11 /* Proxies */ = {
 			isa = PBXGroup;
 			children = (
+				46ABBE8513890BD10077809B /* FilesProxy.h */,
+				46ABBE8613890BD10077809B /* FilesProxy.m */,
+				46ABBE8F138910C80077809B /* AuthenticateProxy.h */,
+				46ABBE90138910C80077809B /* AuthenticateProxy.m */,
 			);
 			path = Proxies;
 			sourceTree = "<group>";
@@ -2581,6 +2609,7 @@
 				46DA10B41386CE98008DA976 /* SettingsIpadIcon.png in Resources */,
 				46DA10B51386CE98008DA976 /* Default-Landscape~ipad.png in Resources */,
 				46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */,
+				46ABBE96138914200077809B /* FilesViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2665,7 +2694,6 @@
 				7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */,
 				7CF562A1135590350008DD21 /* HitTestView.m in Sources */,
 				7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */,
-				7C4C80FC1366863A001A3B39 /* FilesViewController_iPhone.m in Sources */,
 				7C5764881368032800C5F028 /* ActivityStreamsViewController_iPhone.m in Sources */,
 				7C5764891368032800C5F028 /* ChatViewController_iPhone.m in Sources */,
 				7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */,
@@ -2695,6 +2723,10 @@
 				46E96E63138370A30085DCB6 /* RoundedUITableView.m in Sources */,
 				46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */,
 				46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */,
+				46ABBE8713890BD10077809B /* FilesProxy.m in Sources */,
+				46ABBE8A13890C260077809B /* File.m in Sources */,
+				46ABBE91138910C80077809B /* AuthenticateProxy.m in Sources */,
+				46ABBE95138914200077809B /* FilesViewController_iPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
