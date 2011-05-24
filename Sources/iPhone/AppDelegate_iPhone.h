@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "eXoMobileAppDelegate.h"
 
+
 @class AuthenticateViewController;
 @class eXoApplicationsViewController;
 @class eXoGadgetsViewController;
@@ -46,6 +47,7 @@
 @property (nonatomic, retain) IBOutlet eXoGadgetsViewController* gadgetsViewController;
 @property (nonatomic, retain) IBOutlet eXoSettingViewController*	settingViewController;
 @property (nonatomic, retain) IBOutlet HomeViewController_iPhone* homeViewController_iPhone;
+@property (nonatomic, retain) NSDictionary *dictLocalize;
 
 @property (nonatomic, retain) eXoWebViewController* webViewController;
 

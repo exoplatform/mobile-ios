@@ -30,6 +30,9 @@
 @synthesize webViewController;
 
 
+@synthesize dictLocalize = _dictLocalize;
+
+
 
 + (AppDelegate_iPhone *) instance {
     return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];
