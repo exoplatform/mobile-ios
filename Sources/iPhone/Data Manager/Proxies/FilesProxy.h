@@ -11,6 +11,16 @@
 #import "File.h"
 
 
+//--------------------------------------
+//-        Actions Definition          -
+//--------------------------------------
+
+#define kFileProtocolForDelete @"DELETE"
+#define kFileProtocolForUpload @"UPLOAD"
+#define kFileProtocolForCopy @"COPY"
+#define kFileProtocolForMove @"MOVE"
+
+
 @interface FilesProxy : NSObject {
     
     AuthenticateProxy *_authenticateProxy;
@@ -27,6 +37,8 @@
 //Use this method to retrieve the content of a virtual drive
 - (NSMutableArray*)getPersonalDriveContent:(File *)file;
 
+//Use this method to do some actions over files (DELETE, PUT, COPY, PASTE...)
+-(void)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data;
 
 
 @end

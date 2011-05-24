@@ -9,6 +9,7 @@
 #import "FilesProxy.h"
 #import "NSString+HTML.h"
 #import "eXo_Constants.h"
+#import "DataProcess.h"
 
 @implementation FilesProxy
 
@@ -140,6 +141,90 @@
 	
     
 	return (NSArray *)arrDicts;
+}
+
+
+
+-(void)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
+{	
+	source = [DataProcess encodeUrl:source];
+	destination = [DataProcess encodeUrl:destination];
+	
+	NSRange range;
+	range = [source rangeOfString:@"http://"];
+	if(range.length == 0)
+		source = [source stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	range = [destination rangeOfString:@"http://"];
+	if(range.length == 0)
+		destination = [destination stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+	
+	NSHTTPURLResponse* response;
+	NSError* error;
+	
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
+	[request setURL:[NSURL URLWithString:source]]; 
+	
+	if([protocol isEqualToString:kFileProtocolForDelete])
+	{
+		[request setHTTPMethod:@"DELETE"];
+		
+	}else if([protocol isEqualToString:kFileProtocolForUpload])
+	{
+		[request setHTTPMethod:@"PUT"];
+		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
+		[request setHTTPBody:data];
+		
+	}
+	else if([protocol isEqualToString:kFileProtocolForCopy])
+	{
+		[request setHTTPMethod:@"COPY"];
+		[request setValue:destination forHTTPHeaderField:@"Destination"];
+		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
+        
+	}else
+	{
+		[request setHTTPMethod:kFileProtocolForMove];
+		[request setValue:destination forHTTPHeaderField:@"Destination"];
+		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
+		
+		if([source isEqualToString:destination]) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cut file" message:@"Can not move file to its location" delegate:self 
+												  cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+			[alert show];
+			[alert release];
+			
+            [request release];
+            
+			return;
+		}
+	}
+	
+	NSString *s = @"Basic ";
+    NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
+	[request setValue:author forHTTPHeaderField:@"Authorization"];
+	
+	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [request release];
+    
+	NSUInteger statusCode = [response statusCode];
+	if(!(statusCode >= 200 && statusCode < 300))
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error %d!", statusCode] message:@"Can not transfer file" delegate:self 
+											  cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+		[alert show];
+		[alert release];
+	}
+    
+    
+	/*
+	_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
+	[_filesView setDriverContent:_arrDicts withDelegate:self];
+    
+    */
 }
 
 
