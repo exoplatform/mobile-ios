@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class eXoFilesView;
+//@class eXoFilesView;
 @class eXoChatView;
 @class eXoChatWindow;
 @class XMPPUser;
@@ -48,7 +48,7 @@
 	id						_delegate;	//The delegate
 	IBOutlet UITableView*	_tblvGadgetsGrp;	//Apps list view
 	
-	eXoFilesView*		_filesView;	//Files view
+	//eXoFilesView*		_filesView;	//Files view
 	UIView*				_newsView;	
 	eXoChatView*		_chatView;	//Chats view
 	eXoChatWindow*		_chatWindow;	//Chat windows
@@ -70,7 +70,7 @@
 	
 	
 	NSMutableArray*		_arrDicts;		//File array
-	eXoFile_iPhone*		_currenteXoFile;	//Current file
+	//eXoFile_iPhone*		_currenteXoFile;	//Current file
 	NSString*			_fileNameStackStr;	//File name tree
 	//Chat, file socket
 	XMPPClient*			_xmppClient;	
@@ -119,7 +119,7 @@
 @property (nonatomic, retain) NSMutableArray* _arrDicts;
 @property (nonatomic, retain) NSMutableArray* _arrChatUsers;
 @property (nonatomic, retain) NSMutableArray* _arrGadgets;
-@property (nonatomic, retain) eXoFile_iPhone* _currenteXoFile;
+//@property (nonatomic, retain) eXoFile_iPhone* _currenteXoFile;
 @property (nonatomic, retain) NSString* _fileNameStackStr;
 @property int				_selectedLanguage;
 @property (nonatomic, retain) NSDictionary*		_dictLocalize;

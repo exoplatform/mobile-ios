@@ -1,5 +1,5 @@
 //
-//  eXoFileActionView.h
+//  FileActionsBackgroundView.h
 //  eXoMobile
 //
 //  Created by Mai Thanh Xuyen on 8/27/10.
@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 
 //Display backgournd for file, folder action view
-@interface eXoFileActionView : UIView {
+@interface FileActionsBackgroundView : UIView {
 
-	UITableView *tblFileAction;	//Action list
 }
 
 @end

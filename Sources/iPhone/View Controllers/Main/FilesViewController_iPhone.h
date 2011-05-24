@@ -8,15 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "FilesProxy.h"
+#import "FileActionsViewController_iPhone.h"
 
 
-@interface FilesViewController_iPhone : UITableViewController {
+@interface FilesViewController_iPhone : UITableViewController <FileActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     
     File *_rootFile;
     
     NSArray *_arrayContentOfRootFile;
     
     FilesProxy *_filesProxy;
+    
+    FileActionsViewController_iPhone *_actionsViewController;
+    
+    UIView *_maskingViewForActions;
     
 }
 

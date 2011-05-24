@@ -14,7 +14,6 @@
 #import "eXoFilesView.h"
 #import "Connection.h"
 #import "AuthenticateViewController.h"
-#import "eXoFilesView.h"
 #import "eXoChatView.h"
 #import "eXoChatWindow.h"
 #import "XMPPStream.h"
@@ -85,10 +84,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 //--------------------------------------------
 @implementation eXoApplicationsViewController
 
-@synthesize _filesView, _newsView, _chatView, _chatWindow, _fileAction;
+@synthesize _newsView, _chatView, _chatWindow, _fileAction;
+//@synthesize _filesView, _newsView, _chatView, _chatWindow, _fileAction;
 @synthesize _xmppStream, _currentChatUser, _isNewMsg;
 @synthesize _arrDicts, _arrChatUsers, _arrGadgets;
-@synthesize _currenteXoFile, _fileNameStackStr;
+//@synthesize _currenteXoFile, _fileNameStackStr;
+@synthesize _fileNameStackStr;
 @synthesize _btnSignOut, _btnBack, _btnFileAcion, _btnChatViewBack, _btnChatSend, _btnClearMsg, _bBackFromGadgets;
 @synthesize _indicator;
 @synthesize _dictLocalize;
@@ -162,9 +163,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	if(_currenteXoFile != nil)
-	{
-	}
+	//if(_currenteXoFile != nil)
+	
 	
 	[_btnBack setTitle:[_dictLocalize objectForKey:@"BackButton"]];
 	[_btnFileAcion setTitle:[_dictLocalize objectForKey:@"ActionButton"]];
@@ -173,7 +173,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	[_btnClearMsg setTitle:[_dictLocalize objectForKey:@"Clear"]];
 	[_btnSignOut setTitle:[_dictLocalize objectForKey:@"SignOutButton"]];
 	
-	_filesView.labelEmptyPage.text = [_dictLocalize objectForKey:@"EmptyPage"];
+	//_filesView.labelEmptyPage.text = [_dictLocalize objectForKey:@"EmptyPage"];
 	
 	if(!_bFilesChatEnterred)
 	{
@@ -259,9 +259,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[_fileAction.view removeFromSuperview];
-	[_filesView._fileActionViewShape removeFromSuperview];
-	_filesView._tblvFilesGrp.userInteractionEnabled = YES;
+	//[_fileAction.view removeFromSuperview];
+	//[_filesView._fileActionViewShape removeFromSuperview];
+	//_filesView._tblvFilesGrp.userInteractionEnabled = YES;
 
 }
 
@@ -288,8 +288,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 -(void)onCancelCopy
 {
-	[self._currenteXoFile release];
-	self._currenteXoFile = nil;
+	//[self._currenteXoFile release];
+	//self._currenteXoFile = nil;
 	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -308,9 +308,9 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 	[self addCloseBtn];
 	//process to get info from personal_drive
-	[_arrDicts removeAllObjects];
-	_arrDicts = [self getPersonalDriveContent:self._currenteXoFile];
-	[_filesView setDriverContent:_arrDicts withDelegate:self];
+	//[_arrDicts removeAllObjects];
+	//_arrDicts = [self getPersonalDriveContent:self._currenteXoFile];
+	//[_filesView setDriverContent:_arrDicts withDelegate:self];
 }
 
 //- (IBAction)onNewsBtn
@@ -346,7 +346,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 - (void)onFileActionBtn
 {
-	[_filesView onFileActionbtn];
+	//[_filesView onFileActionbtn];
 }
 
 -(void)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
@@ -423,8 +423,8 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		[alert release];
 	}
 	
-	_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
-	[_filesView setDriverContent:_arrDicts withDelegate:self];
+	//_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
+	//[_filesView setDriverContent:_arrDicts withDelegate:self];
 }
 
 - (void)setChatClient:(XMPPClient*)xmppClient
@@ -508,6 +508,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	[_chatWindow onBtnSendMsg];
 }
 
+/*
 - (NSMutableArray*)getPersonalDriveContent:(eXoFile_iPhone *)file
 {
 	
@@ -548,7 +549,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
     
 	return arrDicts;
 }
-
+*/
 - (IBAction)onBackBtn
 {
 
@@ -557,13 +558,13 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	
 	_fileNameStackStr = [[_fileNameStackStr stringByDeletingLastPathComponent] retain];
 	
-	_currenteXoFile._fileName = [_fileNameStackStr lastPathComponent];
-	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByDeletingLastPathComponent];
-	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	//_currenteXoFile._fileName = [_fileNameStackStr lastPathComponent];
+	//_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByDeletingLastPathComponent];
+	//_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
 	
-	_arrDicts = [self getPersonalDriveContent:self._currenteXoFile];
+	//_arrDicts = [self getPersonalDriveContent:self._currenteXoFile];
 	
-	[_filesView setDriverContent:_arrDicts withDelegate:self];
+	//[_filesView setDriverContent:_arrDicts withDelegate:self];
 	
 	[startThread release];
 	
@@ -587,7 +588,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 -(void)endProgress
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	/*NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	NSString *tmpStr = _currenteXoFile._urlStr;
 	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
@@ -608,6 +609,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		self.navigationItem.rightBarButtonItem = _btnSignOut;
 
 	[pool release];
+     */
 }
 
 -(void)endProgressForChat
@@ -730,7 +732,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 
 -(void)createFileView
 {
-    
+    /*
 	if(_currenteXoFile == nil)
 	{
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -743,14 +745,15 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 		
 		_currenteXoFile = [[eXoFile_iPhone alloc] initWithUrlStr:urlStr fileName:username];
 	}
-	
+	*/
+    /*
 	if(!_filesView)
 	{
 		_filesView = [[eXoFilesView alloc] init];
 	}
-	
+	*/
 	//[[self view] addSubview:_filesView];
-	_tempView = _filesView;
+	//_tempView = _filesView;
 	
 	[self onFilesBtn];
 	

@@ -102,6 +102,8 @@
     [_arrayContentOfRootFile release];
     _arrayContentOfRootFile = nil;
     
+    [_actionsViewController release];
+    _actionsViewController = nil;
     
     [super dealloc];
 }
@@ -132,6 +134,9 @@
     
     //Start the request to load file content
     [self startRetrieveDirectoryContent];
+    
+    
+    
 }
 
 - (void)viewDidUnload
@@ -204,13 +209,15 @@
             [cell addSubview:titleLabel];
             [titleLabel release];
             
-            UIButton *btnFileAction = [[UIButton alloc] initWithFrame:CGRectMake(285.0, 9, 30, 30)];
+            /*UIButton *btnFileAction = [[UIButton alloc] initWithFrame:CGRectMake(285.0, 9, 30, 30)];
             [btnFileAction setBackgroundImage:[UIImage imageNamed:@"action.png"] forState:UIControlStateNormal];
             [btnFileAction addTarget:self action:@selector(fileAction:) forControlEvents:UIControlEventTouchUpInside];
             btnFileAction.tag = indexPath.row;
             [cell addSubview:btnFileAction];
             [btnFileAction release];
+            */
             
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
         
         File *file = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
@@ -326,7 +333,6 @@
 	}
 	else
 	{
-		
 		NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByReplacingOccurrencesOfString:@" " 
                                                                                                         withString:@"%20"]];
 		eXoWebViewController* fileWebViewController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController"
@@ -338,9 +344,156 @@
 	//[startThread release];
 	//[self performSelectorOnMainThread:@selector(endProgress) withObject:nil waitUntilDone:NO];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];    
 }
+
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
+    //Check if the _actionsViewController is already created or not
+    if (_actionsViewController == nil) {
+        
+        _actionsViewController = [[FileActionsViewController_iPhone alloc] initWithNibName:@"FileActionsViewController_iPhone" 
+                                                                                    bundle:nil 
+                                                                                      file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
+                                                                    enableDeleteThisFolder:YES
+                                                                                  delegate:self];
+        if (_maskingViewForActions ==nil) {
+            _maskingViewForActions = [[UIView alloc] initWithFrame:self.view.frame];
+            _maskingViewForActions.backgroundColor = [UIColor blackColor];
+            _maskingViewForActions.alpha = 0.45;
+            
+            //Add a Gesture Recognizer to remove the FileActionsPanel 
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideActionsPanel)];
+            [_maskingViewForActions addGestureRecognizer:tapGesture];
+            [tapGesture release];
+        }
+        
+    }
+    
+    _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
+    
+    [self.view addSubview:_maskingViewForActions];
+	[self.view addSubview:_actionsViewController.view];
+    self.tableView.scrollEnabled = NO;
+
+
+}
+
+
+#pragma mark - Gesture Recognizer trigger
+
+-(void) hideActionsPanel {
+    [_actionsViewController.view removeFromSuperview];
+    [_maskingViewForActions removeFromSuperview];
+    self.tableView.scrollEnabled = YES;
+}
+
+
+#pragma mark - FileAction delegate Methods
+
+//Method needed to retrieve the delete action
+-(void)deleteFile:(NSString *)urlFileToDelete {
+    [_filesProxy fileAction:kFileProtocolForDelete source:urlFileToDelete destination:nil data:nil];
+    [self hideActionsPanel];
+    
+    //Need to reload the content of the folder
+    [self startRetrieveDirectoryContent];
+}
+
+-(void)moveOrCopyActionIsSelected {
+    [self hideActionsPanel];
+}
+
+
+//Method needed to retrieve the action to move a file
+- (void)moveFileSource:urlSource
+         toDestination:urlDestination {
+    [_filesProxy fileAction:kFileProtocolForMove source:urlSource destination:urlDestination data:nil];
+    [self hideActionsPanel];
+    
+    //Need to reload the content of the folder
+    [self startRetrieveDirectoryContent];
+}
+
+//Method needed to retrieve the action to copy a file
+- (void)copyFileSource:urlSource
+         toDestination:urlDestination {
+    [_filesProxy fileAction:kFileProtocolForCopy source:urlSource destination:urlDestination data:nil];
+    [self hideActionsPanel];
+    
+    //Need to reload the content of the folder
+    [self startRetrieveDirectoryContent];
+}
+
+
+- (void)askToAddAPicture {
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+	{  
+        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+		thePicker.delegate = self;
+		thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+		thePicker.allowsEditing = YES;
+		[self.navigationController presentModalViewController:thePicker animated:YES];
+		[thePicker release];
+    }
+	else
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take Picture" message:@"Camera are not available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+		[alert show];
+		[alert release];
+	}
+    
+    [self hideActionsPanel];
+    
+    //Need to reload the content of the folder
+    [self startRetrieveDirectoryContent];
+}
+
+
+
+
+#pragma mark - Pictures Management
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo  
+{
+	UIImage* selectedImage = image;
+	NSData* imageData = UIImagePNGRepresentation(selectedImage);
+	
+	
+	if ([imageData length] > 0) 
+	{
+		[picker dismissModalViewControllerAnimated:YES];
+		
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"dd-MM-yyy-HH-mm-ss"];
+		NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
+        
+        //release the date formatter because, not needed after that piece of code
+        [dateFormatter release];
+		tmp = [tmp stringByAppendingFormat:@".png"];
+		
+		NSString* _savedFileDirectory = [_rootFile.urlStr stringByAppendingFormat:@"/%@/", _rootFile.fileName];
+		/*if(_file != _delegate._currenteXoFile)
+			_savedFileDirectory = [_savedFileDirectory stringByAppendingFormat:@"%@/", [_file._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+		*/
+		_savedFileDirectory = [_savedFileDirectory stringByAppendingString:tmp];
+		
+		[_filesProxy fileAction:kFileProtocolForUpload source:_savedFileDirectory destination:nil data:imageData];
+	}
+	else
+	{	
+		[picker dismissModalViewControllerAnimated:YES];
+	}
+}  
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
+{  
+    [picker dismissModalViewControllerAnimated:YES];    
+}  
+
+
 
 @end
