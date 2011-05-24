@@ -31,10 +31,10 @@
 }
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+/*- (void)loadView 
 {
 	[super loadView];
-}
+}*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 

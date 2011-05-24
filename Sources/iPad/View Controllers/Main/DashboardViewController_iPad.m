@@ -185,9 +185,13 @@ static NSString* CellIdentifier = @"CellIdentifier";
     [_gadgetDisplayController setDelegate:self];
     
     
-    [_gadgetDisplayController startGadget:gadget];
+    
     // push the gadgets
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_gadgetDisplayController invokeByController:self isStackStartView:FALSE];
+    
+
+    [_gadgetDisplayController startGadget:gadget];
+
     
     
 }

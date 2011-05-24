@@ -37,6 +37,7 @@
 		461931541385529D00EEB664 /* HomeBubbleBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */; };
 		46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 46193155138552A600EEB664 /* HomeBubbleBackground.png */; };
 		4642A042138A278E00AA786D /* FilesViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */; };
+		464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 464C14A8138AB80B0001CBC8 /* Entitlements.plist */; };
 		464FC9DB137AC66E00B32A58 /* eXoLogoNavigationBariPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */; };
 		464FC9DD137AC67800B32A58 /* eXoLogoNavigationBariPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */; };
 		464FC9DF137AC77400B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DE137AC77300B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png */; };
@@ -524,6 +525,7 @@
 		461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeBubbleBackground@2x.png"; path = "Home/@2x/HomeBubbleBackground@2x.png"; sourceTree = "<group>"; };
 		46193155138552A600EEB664 /* HomeBubbleBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeBubbleBackground.png; path = "Home/@1x/HomeBubbleBackground.png"; sourceTree = "<group>"; };
 		4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController_iPhone.xib; sourceTree = "<group>"; };
+		464C14A8138AB80B0001CBC8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eXoLogoNavigationBariPhone@2x.png"; path = "Global/@2x/eXoLogoNavigationBariPhone@2x.png"; sourceTree = "<group>"; };
 		464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eXoLogoNavigationBariPhone.png; path = "Global/@1x/eXoLogoNavigationBariPhone.png"; sourceTree = "<group>"; };
 		464FC9DE137AC77300B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCheckmarkiPhoneOn@2x.png"; path = "Authenticate/@2x/AuthenticateCheckmarkiPhoneOn@2x.png"; sourceTree = "<group>"; };
@@ -1768,6 +1770,7 @@
 		894733BB13370D7C00B0AD11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				464C14A8138AB80B0001CBC8 /* Entitlements.plist */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */,
 				46616C70137C729400D53D3D /* ThirdPart */,
@@ -2610,6 +2613,7 @@
 				46DA10B51386CE98008DA976 /* Default-Landscape~ipad.png in Resources */,
 				46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */,
 				4642A042138A278E00AA786D /* FilesViewController_iPhone.xib in Resources */,
+				464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2775,7 +2779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				COPY_PHASE_STRIP = NO;
@@ -2784,9 +2788,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/../three20",
-					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					Three20/Build/Products/three20,
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
@@ -2816,17 +2819,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/../three20",
-					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					Three20/Build/Products/three20,
-					"/usr/include/libxml2/**",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -2855,11 +2857,11 @@
 			};
 			name = Release;
 		};
-		46BC64021316F05B0034E7E3 /* Distribution AppStore */ = {
+		464C14AA138AB8890001CBC8 /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
@@ -2867,9 +2869,79 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/../three20",
-					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					Three20/Build/Products/three20,
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				"PROVISIONING_PROFILE[sdk=*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				SDKROOT = iphoneos4.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Distribution AdHoc";
+		};
+		464C14AB138AB8890001CBC8 /* Distribution AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "eXo_Platform-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
+					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"",
+					"\"$(SRCROOT)/Shared/Classes/libidn/Mac\"",
+					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphoneos\"",
+					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphonesimulator\"",
+					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphoneos\"",
+					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphonesimulator\"",
+					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/Mac\"",
+					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphoneos\"",
+					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphonesimulator\"",
+					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/Mac\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lxml2",
+				);
+				PRODUCT_NAME = "eXo Platform";
+				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				SDKROOT = iphoneos4.3;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Distribution AdHoc";
+		};
+		46BC64021316F05B0034E7E3 /* Distribution AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -2887,17 +2959,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
-					Three20/Build/Products/three20,
-					"$(BUILT_PRODUCTS_DIR)/../three20",
-					"$(BUILT_PRODUCTS_DIR)/../../three20",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -2930,13 +3001,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
@@ -2951,13 +3026,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = eXoPlatform.plist;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
@@ -2978,6 +3057,7 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				46BC64031316F05B0034E7E3 /* Distribution AppStore */,
+				464C14AB138AB8890001CBC8 /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2988,6 +3068,7 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				46BC64021316F05B0034E7E3 /* Distribution AppStore */,
+				464C14AA138AB8890001CBC8 /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

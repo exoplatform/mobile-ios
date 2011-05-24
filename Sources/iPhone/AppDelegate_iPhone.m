@@ -52,7 +52,8 @@
 {    
 	//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
     
-    applicationsViewController = [[eXoApplicationsViewController alloc] init];
+    applicationsViewController = [[eXoApplicationsViewController alloc] initWithNibName:@"eXoApplicationsViewController" bundle:nil];
+
 
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

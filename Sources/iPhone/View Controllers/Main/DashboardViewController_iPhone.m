@@ -8,18 +8,7 @@
 
 #import "DashboardViewController_iPhone.h"
 
-#import "Three20UI/UINSStringAdditions.h"
-
-// Core
-#import "Three20Core/TTCorePreprocessorMacros.h"
-
-// UI
-#import "Three20UI/TTNavigator.h"
-
-// UINavigator
-#import "Three20UINavigator/TTURLAction.h"
-#import "Three20UINavigator/TTURLMap.h"
-#import "Three20UINavigator/TTURLObject.h"
+#import "Three20/Three20.h"
 #import "Connection.h"
 #import "Gadget_iPad.h"
 #import "Gadget_iPhone.h"
