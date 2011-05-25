@@ -33,15 +33,16 @@
 		[self.textLabel.superview addSubview:topLine];
 		[topLine release];
 		
-		UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 200, 1)];
+		UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, kMenuTableViewCellHeight, 200, 1)];
 		bottomLine.backgroundColor = [UIColor colorWithWhite:0 alpha:0.25];
 		[self.textLabel.superview addSubview:bottomLine];
 		[bottomLine release];
 		
-		glowView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 43)];
+		glowView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, kMenuTableViewCellHeight)];
 		glowView.image = [UIImage imageNamed:@"glow.png"];
 		glowView.hidden = YES;
 		[self addSubview:glowView];
+        
 	}
 	return self;
 }
@@ -50,8 +51,8 @@
 {
 	[super layoutSubviews];
 	
-	self.textLabel.frame = CGRectMake(75, 0, 125, 43);
-	self.imageView.frame = CGRectMake(0, 0, 70, 43);
+	self.textLabel.frame = CGRectMake(75, 0, 125, kMenuTableViewCellHeight);
+	self.imageView.frame = CGRectMake(0, 0, 70, kMenuTableViewCellHeight);
 }
 
 - (void)setSelected:(BOOL)sel animated:(BOOL)animated

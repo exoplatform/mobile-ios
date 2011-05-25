@@ -29,10 +29,22 @@
     // Override point for customization after application launch.
     
     //UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    //navigationController.navigationBarHidden = YES;
     //[window addSubview:navigationController.view];
+    
+    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+    
+    [window addSubview:rootViewController.view];
+    
+    
 	[window addSubview:viewController.view];
     
+  
+    
+    
     [window makeKeyAndVisible];
+    
+    [rootViewController.view removeFromSuperview];
     
     return YES;
 }
@@ -40,14 +52,25 @@
 
 
 -(void)showHome:(id)delegateForViewControllers {
-    
-    [viewController.view removeFromSuperview];
+    rootViewController.delegate = delegateForViewControllers;
+
+   
+    [UIView transitionWithView:self.window
+                      duration:1
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    animations:^{ [viewController.view removeFromSuperview]; [self.window addSubview:rootViewController.view]; }
+                    completion:NULL];
+}
+
+
+-(void)backToAuthenticate{
 
     
-    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-    rootViewController.delegate = delegateForViewControllers;
-	[self.window addSubview:rootViewController.view];
-	[self.window setBackgroundColor:[UIColor clearColor]];
+    [UIView transitionWithView:self.window
+                      duration:1
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^{ [rootViewController.view removeFromSuperview]; [self.window addSubview:viewController.view]; }
+                    completion:NULL];
     
 }
 

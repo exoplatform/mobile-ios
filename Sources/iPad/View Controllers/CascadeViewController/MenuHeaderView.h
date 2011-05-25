@@ -13,6 +13,10 @@
 	UIImageView *imageView;
 	UILabel *textLabel;
 }
+
+-(id)initWithFrame:(CGRect)frame andTitleImage:(UIImage *)image;
+
+
 @property(nonatomic,retain) UIImageView *imageView;
 @property(nonatomic,retain) UILabel *textLabel;
 @end

@@ -28,6 +28,7 @@
 @property (nonatomic, retain) RootViewController *rootViewController;
 
 -(void)showHome:(id)delegateForViewControllers;
+-(void)backToAuthenticate;
 
 - (void)dismissKeyboard;
 

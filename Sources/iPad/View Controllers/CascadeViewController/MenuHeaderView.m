@@ -12,12 +12,12 @@
 @implementation MenuHeaderView
 @synthesize imageView, textLabel;
 
-- (id)initWithFrame:(CGRect)aFrame
+-(id)initWithFrame:(CGRect)frame andTitleImage:(UIImage *)image;
 {
-	if ((self = [super initWithFrame:aFrame]))
+	if ((self = [super initWithFrame:frame]))
 	{
-		imageView = [[UIImageView alloc] initWithFrame:CGRectMake(11, 11, 48, 48)];
-		imageView.contentMode = UIViewContentModeScaleAspectFit;
+		imageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 18, image.size.width, image.size.height)];
+		//imageView.contentMode = UIViewContentModeScaleAspectFit;
 		imageView.layer.cornerRadius = 3.f;
 		imageView.layer.masksToBounds = NO;
 		imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -27,9 +27,10 @@
 		imageView.layer.shouldRasterize = YES;
 		[self addSubview:imageView];
 		
-		textLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 11, 119, 48)];
+		textLabel = [[UILabel alloc] initWithFrame:CGRectMake(79, 11, 110, 48)];
 		textLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
-		textLabel.textColor = [UIColor colorWithRed:(188.f/255.f) green:(188.f/255.f) blue:(188.f/255.f) alpha:1.f];
+        textLabel.adjustsFontSizeToFitWidth = YES;
+		textLabel.textColor = [UIColor colorWithRed:(255.f/255.f) green:(255.f/255.f) blue:(255.f/255.f) alpha:1.f];
 		textLabel.shadowOffset = CGSizeMake(0, 2);
 		textLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
 		textLabel.backgroundColor = [UIColor clearColor];
@@ -38,6 +39,7 @@
 	}
 	return self;
 }
+
 
 - (void)dealloc
 {

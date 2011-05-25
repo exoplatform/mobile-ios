@@ -48,11 +48,15 @@
 
     int                             _intIndex;
     
+    UIView*                         _footer; 
+    
 }
 - (id)initWithFrame:(CGRect)frame;
 
 @property(nonatomic, retain)UITableView* tableView;
 
 - (void)setDelegate:(id)delegate;
+
+- (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 @end

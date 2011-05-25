@@ -97,6 +97,24 @@
 	[stackScrollViewController viewWillAppear:FALSE];
 	[stackScrollViewController viewDidAppear:FALSE];
 	[rightSlideView addSubview:stackScrollViewController.view];
+    
+    //Add the background image when no content
+    UIImage *imageBg;
+    CGRect frameForBgImage;
+    
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) { 
+        imageBg = [UIImage imageNamed:@"Bubble_Horizontal.png"];
+        frameForBgImage = CGRectMake(250, 0, imageBg.size.width, imageBg.size.height);
+    } else {
+        imageBg = [UIImage imageNamed:@"Bubble_Vertical.png"];
+        frameForBgImage = CGRectMake(250, 0, imageBg.size.width, imageBg.size.height);
+    }
+    
+    imageForBackground = [[UIImageView alloc] initWithImage:imageBg];
+    imageForBackground.frame = frameForBgImage;
+    
+    [self.view addSubview:imageForBackground];
+    [self.view sendSubviewToBack:imageForBackground];
 	
 	[rootView addSubview:leftMenuView];
 	[rootView addSubview:rightSlideView];
@@ -117,6 +135,22 @@
 }
 
 -(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    [menuViewController setPositionsForOrientation:toInterfaceOrientation];
+    //Add the background image when no content
+    UIImage *imageBg;
+    CGRect frameForBgImage;
+    
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) { 
+        imageBg = [UIImage imageNamed:@"Bubble_Horizontal.png"];
+        frameForBgImage = CGRectMake(250, 0, imageBg.size.width, imageBg.size.height);
+    } else {
+        imageBg = [UIImage imageNamed:@"Bubble_Vertical.png"];
+        frameForBgImage = CGRectMake(250, 0, imageBg.size.width, imageBg.size.height);
+    }
+    
+    [imageForBackground setImage:imageBg];
+    imageForBackground.frame = frameForBgImage;
+    
 	[menuViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	[stackScrollViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }	

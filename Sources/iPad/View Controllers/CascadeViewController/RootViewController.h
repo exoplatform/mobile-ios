@@ -22,6 +22,7 @@
 	MenuViewController* menuViewController;
 	StackScrollViewController* stackScrollViewController;
     
+    UIImageView *imageForBackground;
     
     id _delegate;
 	

@@ -17,6 +17,9 @@
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
 
+#define kHeightForFooter 60
+
+
 @implementation MenuViewController
 @synthesize tableView = _tableView;
 
@@ -27,10 +30,12 @@
     self = [super init];
     if (self) {
 		[self.view setFrame:frame];
+        
+        self.view.backgroundColor = [UIColor clearColor]; 
 		
-		_menuHeader = [[MenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 70)];
+		_menuHeader = [[MenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 70) andTitleImage:[UIImage imageNamed:@"eXoLogoNavigationBariPhone.png"]];
 		_menuHeader.imageView.image = [UIImage imageNamed:@"eXoLogoNavigationBariPhone@2x.png"];
-		_menuHeader.textLabel.text = @"";
+		_menuHeader.textLabel.text = @"everywhere, anytime";
 		
 		_cellContents = [[NSMutableArray alloc] init];
         
@@ -56,12 +61,78 @@
 		_tableView.backgroundColor = [UIColor clearColor];
 		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
+        
         MenuWatermarkFooter *footerView = [[[MenuWatermarkFooter alloc] initWithFrame:CGRectMake(0, 0, 200, 80)] autorelease];
-        [footerView.buttonForSettings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
         
 		_tableView.tableFooterView = footerView;
         
-		[self.view addSubview:_tableView];
+        [self.view addSubview:_tableView];
+        
+        
+        
+        //Add the footer of the View
+        //For Settings and Logout
+        _footer = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-kHeightForFooter,self.view.frame.size.width,kHeightForFooter)];
+        [self.view addSubview:_footer];
+        
+        // Create the button
+        UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
+        buttonLogout.frame = CGRectMake(10, 10, 39, 42);
+        buttonLogout.showsTouchWhenHighlighted = YES;
+        
+        // Now load the image and create the image view
+        UIImage *image = [UIImage imageNamed:@"Ipad_logout.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
+        [imageView setImage:image];
+        
+        //// Create the label and set its text
+        //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(2,3,39,42)];
+        //[label setText:@"Settings"];
+        
+        // Put it all together
+        //[button addSubview:label];
+        
+        [buttonLogout addTarget:[AppDelegate_iPad instance] action:@selector(backToAuthenticate) forControlEvents:UIControlEventTouchUpInside];
+
+        
+        [buttonLogout addSubview:imageView];
+        
+        [_footer addSubview:buttonLogout];
+        
+        
+        // Create the button
+        UIButton *buttonSettings = [UIButton buttonWithType:UIButtonTypeCustom];
+        buttonSettings.frame = CGRectMake(152, 12, 39, 42);
+        buttonSettings.showsTouchWhenHighlighted = YES;
+        
+        // Now load the image and create the image view
+        UIImage *imageSettings = [UIImage imageNamed:@"Ipad_setting.png"];
+        UIImageView *imageViewSettings = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
+        [imageViewSettings setImage:imageSettings];
+        
+        [buttonSettings addSubview:imageViewSettings];
+        [buttonSettings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+
+        
+        [_footer addSubview:buttonSettings];
+        
+        
+        UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 1)];
+		topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
+		[_footer addSubview:topLine];
+		[topLine release];
+        
+        
+        //Button for settings 
+        //UIButton *roundedButtonType = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        //[roundedButtonType setImageEdgeInsets:UIEdgeInsetsMake(-10.00, 5.00, -5.00, 0.00)];
+        //[roundedButtonType setImage:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Ipad_logout.png"]] forState:UIControlStateNormal] ;
+        //roundedButtonType.frame = CGRectMake(6, 10, roundedButtonType.frame.size.width,  roundedButtonType.frame.size.height);
+        
+        //[_footer addSubview:roundedButtonType];
+        
+        
+        
         
         _intIndex = -1;
 	}
@@ -81,6 +152,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    _footer.frame = CGRectMake(0,self.view.frame.size.height-kHeightForFooter,self.view.frame.size.width,kHeightForFooter);
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
@@ -183,7 +258,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 50;
+	return kMenuTableViewCellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

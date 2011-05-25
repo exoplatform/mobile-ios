@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kMenuTableViewCellHeight 60
+
 @interface MenuTableViewCell : UITableViewCell
 {
 	UIImageView *glowView;

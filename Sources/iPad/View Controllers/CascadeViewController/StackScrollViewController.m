@@ -23,19 +23,20 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	if(self= [super init]) {
 		
 		viewControllersStack = [[NSMutableArray alloc] init]; 
-		borderViews = [[UIView alloc] initWithFrame:CGRectMake(SLIDE_VIEWS_MINUS_X_POSITION - 2, -2, 2, self.view.frame.size.height)];
+		borderViews = [[UIView alloc] initWithFrame:CGRectMake(0 - 2, -2, 2, self.view.frame.size.height)];
 		[borderViews setBackgroundColor:[UIColor clearColor]];
 		UIView* verticalLineView1 = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, borderViews.frame.size.height)] autorelease];
 		[verticalLineView1 setBackgroundColor:[UIColor whiteColor]];
 		[verticalLineView1 setTag:1];
-		[verticalLineView1 setHidden:TRUE];
+		[verticalLineView1 setHidden:FALSE];
 		[borderViews addSubview:verticalLineView1];
 		
 		UIView* verticalLineView2 = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, borderViews.frame.size.height)] autorelease];
 		[verticalLineView2 setBackgroundColor:[UIColor grayColor]];
 		[verticalLineView2 setTag:2];
-		[verticalLineView2 setHidden:TRUE];		
+		[verticalLineView2 setHidden:FALSE];		
 		[borderViews addSubview:verticalLineView2];
+        
 		
 		[self.view addSubview:borderViews];
 		
@@ -663,9 +664,9 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 		for (UIView* subview in [slideViews subviews]) {
 			[subview removeFromSuperview];
 		}		[viewControllersStack removeAllObjects];
-		[[borderViews viewWithTag:3] setHidden:TRUE];
-		[[borderViews viewWithTag:2] setHidden:TRUE];
-		[[borderViews viewWithTag:1] setHidden:TRUE];
+		[[borderViews viewWithTag:3] setHidden:FALSE];
+		[[borderViews viewWithTag:2] setHidden:FALSE];
+		[[borderViews viewWithTag:1] setHidden:FALSE];
 	}
 		
 	if ([slideViews.subviews count] != 0) {
