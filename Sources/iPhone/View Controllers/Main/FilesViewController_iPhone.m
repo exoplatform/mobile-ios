@@ -392,10 +392,27 @@
 
 #pragma mark - FileAction delegate Methods
 
+
+- (void)showErrorForFileAction:(NSString *)errorMessage {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File error" message:errorMessage delegate:self 
+                                          cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+}
+
+
 //Method needed to retrieve the delete action
 -(void)deleteFile:(NSString *)urlFileToDelete {
-    [_filesProxy fileAction:kFileProtocolForDelete source:urlFileToDelete destination:nil data:nil];
+ 
+    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForDelete source:urlFileToDelete destination:nil data:nil];
+    
+    //Hide the action Panel
     [self hideActionsPanel];
+    
+    //check the status of the operation
+    if (errorMessage) {
+        [self showErrorForFileAction:errorMessage];
+    }
     
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
@@ -409,8 +426,16 @@
 //Method needed to retrieve the action to move a file
 - (void)moveFileSource:urlSource
          toDestination:urlDestination {
-    [_filesProxy fileAction:kFileProtocolForMove source:urlSource destination:urlDestination data:nil];
+    
+    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForMove source:urlSource destination:urlDestination data:nil];
+    
+    //Hide the action Panel
     [self hideActionsPanel];
+    
+    //check the status of the operation
+    if (errorMessage) {
+        [self showErrorForFileAction:errorMessage];
+    }
     
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
@@ -419,8 +444,15 @@
 //Method needed to retrieve the action to copy a file
 - (void)copyFileSource:urlSource
          toDestination:urlDestination {
-    [_filesProxy fileAction:kFileProtocolForCopy source:urlSource destination:urlDestination data:nil];
+    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForCopy source:urlSource destination:urlDestination data:nil];
+    
+    //Hide the action Panel
     [self hideActionsPanel];
+    
+    //check the status of the operation
+    if (errorMessage) {
+        [self showErrorForFileAction:errorMessage];
+    }
     
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];

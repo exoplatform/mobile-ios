@@ -145,7 +145,7 @@
 
 
 
--(void)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
+-(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
 {	
 	source = [DataProcess encodeUrl:source];
 	destination = [DataProcess encodeUrl:destination];
@@ -164,6 +164,10 @@
 	
 	NSHTTPURLResponse* response;
 	NSError* error;
+    
+    //Message for error
+    NSString *errorMessage;
+    
 	
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 	[request setURL:[NSURL URLWithString:source]]; 
@@ -192,14 +196,14 @@
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
 		
 		if([source isEqualToString:destination]) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cut file" message:@"Can not move file to its location" delegate:self 
-												  cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-			[alert show];
-			[alert release];
 			
+            //Put the label into the error
+            // TODO Localize this label
+            errorMessage = [NSString stringWithFormat:@"Can not move file to its location"];
+             
             [request release];
             
-			return;
+			return errorMessage;
 		}
 	}
 	
@@ -213,18 +217,14 @@
 	NSUInteger statusCode = [response statusCode];
 	if(!(statusCode >= 200 && statusCode < 300))
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error %d!", statusCode] message:@"Can not transfer file" delegate:self 
-											  cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-		[alert show];
-		[alert release];
-	}
+        //Put the label into the error
+        // TODO Localize this label
+        errorMessage = [NSString stringWithFormat:@"Can not transfer file"];
+		        
+    }
     
     
-	/*
-	_arrDicts = [self getPersonalDriveContent:_currenteXoFile];
-	[_filesView setDriverContent:_arrDicts withDelegate:self];
-    
-    */
+	return nil;
 }
 
 

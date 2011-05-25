@@ -38,7 +38,8 @@
 - (NSMutableArray*)getPersonalDriveContent:(File *)file;
 
 //Use this method to do some actions over files (DELETE, PUT, COPY, PASTE...)
--(void)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data;
+//Return en error Message
+-(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data;
 
 
 @end

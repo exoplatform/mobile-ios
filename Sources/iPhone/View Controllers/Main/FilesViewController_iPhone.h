@@ -11,7 +11,7 @@
 #import "FileActionsViewController_iPhone.h"
 
 
-@interface FilesViewController_iPhone : UITableViewController <FileActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface FilesViewController_iPhone : UITableViewController <FileActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate> {
     
     File *_rootFile;
     
