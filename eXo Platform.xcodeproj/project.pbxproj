@@ -74,6 +74,16 @@
 		46BF6E45137963BE00D1E1A5 /* NavBarIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E44137963BE00D1E1A5 /* NavBarIphone@2x.png */; };
 		46C6B4D6138BBEC20079C514 /* eXoMobileAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6B4D5138BBEC10079C514 /* eXoMobileAppDelegate.m */; };
 		46C6B4E8138C12350079C514 /* FileActionsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */; };
+		46C6B51C138CA87F0079C514 /* 11-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C6B50C138CA87F0079C514 /* 11-x.png */; };
+		46C6B51D138CA87F0079C514 /* 19-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C6B50D138CA87F0079C514 /* 19-check.png */; };
+		46C6B51E138CA87F0079C514 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6B50F138CA87F0079C514 /* ATMHud.m */; };
+		46C6B51F138CA87F0079C514 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6B512138CA87F0079C514 /* ATMHudQueueItem.m */; };
+		46C6B520138CA87F0079C514 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6B514138CA87F0079C514 /* ATMHudView.m */; };
+		46C6B521138CA87F0079C514 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6B516138CA87F0079C514 /* ATMProgressLayer.m */; };
+		46C6B522138CA87F0079C514 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6B518138CA87F0079C514 /* ATMSoundFX.m */; };
+		46C6B523138CA87F0079C514 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6B51A138CA87F0079C514 /* ATMTextLayer.m */; };
+		46C6B524138CA87F0079C514 /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46C6B51B138CA87F0079C514 /* pop.wav */; };
+		46C6B526138CAC2C0079C514 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C6B525138CAC2B0079C514 /* AudioToolbox.framework */; };
 		46CAF6B913797B590017C959 /* HomeLogoutiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6B713797B590017C959 /* HomeLogoutiPhone.png */; };
 		46CAF6BD13797D320017C959 /* HomeLogoutiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */; };
 		46CAF6C7137985E70017C959 /* bgGlobal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6C6137985E70017C959 /* bgGlobal.png */; };
@@ -574,6 +584,23 @@
 		46C6B4D4138BBEC00079C514 /* eXoMobileAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileAppDelegate.h; sourceTree = "<group>"; };
 		46C6B4D5138BBEC10079C514 /* eXoMobileAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoMobileAppDelegate.m; sourceTree = "<group>"; };
 		46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileActionsViewController_iPhone.xib; sourceTree = "<group>"; };
+		46C6B50C138CA87F0079C514 /* 11-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x.png"; sourceTree = "<group>"; };
+		46C6B50D138CA87F0079C514 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check.png"; sourceTree = "<group>"; };
+		46C6B50E138CA87F0079C514 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
+		46C6B50F138CA87F0079C514 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
+		46C6B510138CA87F0079C514 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
+		46C6B511138CA87F0079C514 /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
+		46C6B512138CA87F0079C514 /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
+		46C6B513138CA87F0079C514 /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
+		46C6B514138CA87F0079C514 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		46C6B515138CA87F0079C514 /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
+		46C6B516138CA87F0079C514 /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
+		46C6B517138CA87F0079C514 /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
+		46C6B518138CA87F0079C514 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
+		46C6B519138CA87F0079C514 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
+		46C6B51A138CA87F0079C514 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
+		46C6B51B138CA87F0079C514 /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
+		46C6B525138CAC2B0079C514 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		46CAF6B713797B590017C959 /* HomeLogoutiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeLogoutiPhone.png; path = "Home/@1x/HomeLogoutiPhone.png"; sourceTree = "<group>"; };
 		46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeLogoutiPhone@2x.png"; path = "Home/@2x/HomeLogoutiPhone@2x.png"; sourceTree = "<group>"; };
 		46CAF6C6137985E70017C959 /* bgGlobal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bgGlobal.png; path = "Global/@1x/bgGlobal.png"; sourceTree = "<group>"; };
@@ -949,6 +976,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46C6B526138CAC2C0079C514 /* AudioToolbox.framework in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
 				320A737074758E53BA54BE95 /* libThree20UINavigator.a in Frameworks */,
@@ -981,6 +1009,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				46C6B525138CAC2B0079C514 /* AudioToolbox.framework */,
 				8947351C13375E1800B0AD11 /* Other Sources */,
 				89300A6C1336EF6200804D3B /* Sources */,
 				894733BB13370D7C00B0AD11 /* Resources */,
@@ -1128,6 +1157,7 @@
 		46616C70137C729400D53D3D /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				46C6B50B138CA87F0079C514 /* ATMHud */,
 				46616C71137C729400D53D3D /* SSToolKit */,
 			);
 			path = ThirdPart;
@@ -1245,6 +1275,29 @@
 				46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */,
 			);
 			name = "@2x";
+			sourceTree = "<group>";
+		};
+		46C6B50B138CA87F0079C514 /* ATMHud */ = {
+			isa = PBXGroup;
+			children = (
+				46C6B50C138CA87F0079C514 /* 11-x.png */,
+				46C6B50D138CA87F0079C514 /* 19-check.png */,
+				46C6B50E138CA87F0079C514 /* ATMHud.h */,
+				46C6B50F138CA87F0079C514 /* ATMHud.m */,
+				46C6B510138CA87F0079C514 /* ATMHudDelegate.h */,
+				46C6B511138CA87F0079C514 /* ATMHudQueueItem.h */,
+				46C6B512138CA87F0079C514 /* ATMHudQueueItem.m */,
+				46C6B513138CA87F0079C514 /* ATMHudView.h */,
+				46C6B514138CA87F0079C514 /* ATMHudView.m */,
+				46C6B515138CA87F0079C514 /* ATMProgressLayer.h */,
+				46C6B516138CA87F0079C514 /* ATMProgressLayer.m */,
+				46C6B517138CA87F0079C514 /* ATMSoundFX.h */,
+				46C6B518138CA87F0079C514 /* ATMSoundFX.m */,
+				46C6B519138CA87F0079C514 /* ATMTextLayer.h */,
+				46C6B51A138CA87F0079C514 /* ATMTextLayer.m */,
+				46C6B51B138CA87F0079C514 /* pop.wav */,
+			);
+			path = ATMHud;
 			sourceTree = "<group>";
 		};
 		46D97B2E13742B2A00F71E82 /* Splashscreen */ = {
@@ -2609,6 +2662,9 @@
 				4642A042138A278E00AA786D /* FilesViewController_iPhone.xib in Resources */,
 				464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */,
 				46C6B4E8138C12350079C514 /* FileActionsViewController_iPhone.xib in Resources */,
+				46C6B51C138CA87F0079C514 /* 11-x.png in Resources */,
+				46C6B51D138CA87F0079C514 /* 19-check.png in Resources */,
+				46C6B524138CA87F0079C514 /* pop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2725,6 +2781,12 @@
 				46ABBE95138914200077809B /* FilesViewController_iPhone.m in Sources */,
 				464C14B7138B85A00001CBC8 /* FileActionsViewController_iPhone.m in Sources */,
 				46C6B4D6138BBEC20079C514 /* eXoMobileAppDelegate.m in Sources */,
+				46C6B51E138CA87F0079C514 /* ATMHud.m in Sources */,
+				46C6B51F138CA87F0079C514 /* ATMHudQueueItem.m in Sources */,
+				46C6B520138CA87F0079C514 /* ATMHudView.m in Sources */,
+				46C6B521138CA87F0079C514 /* ATMProgressLayer.m in Sources */,
+				46C6B522138CA87F0079C514 /* ATMSoundFX.m in Sources */,
+				46C6B523138CA87F0079C514 /* ATMTextLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

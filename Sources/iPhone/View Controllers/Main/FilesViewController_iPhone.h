@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "FilesProxy.h"
 #import "FileActionsViewController_iPhone.h"
+#import "ATMHud.h"
+#import "ATMHudDelegate.h"
 
 
-@interface FilesViewController_iPhone : UITableViewController <FileActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate> {
+
+@interface FilesViewController_iPhone : UITableViewController <FileActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate> {
     
     File *_rootFile;
     
@@ -22,6 +25,8 @@
     FileActionsViewController_iPhone *_actionsViewController;
     
     UIView *_maskingViewForActions;
+    
+    ATMHud *_hudFolder;//Heads up display
     
 }
 

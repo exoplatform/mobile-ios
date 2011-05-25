@@ -211,7 +211,7 @@
     NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
 	[request setValue:author forHTTPHeaderField:@"Authorization"];
 	
-	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
     [request release];
     
 	NSUInteger statusCode = [response statusCode];
@@ -220,6 +220,8 @@
         //Put the label into the error
         // TODO Localize this label
         errorMessage = [NSString stringWithFormat:@"Can not transfer file"];
+        
+        return errorMessage;
 		        
     }
     

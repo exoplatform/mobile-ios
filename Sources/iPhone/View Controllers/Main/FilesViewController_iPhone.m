@@ -23,6 +23,7 @@
 
 - (void)startRetrieveDirectoryContent;
 - (void)setTitleForFilesViewController;
+- (void)contentDirectoryIsRetrieved;
 
 @end
 
@@ -41,9 +42,23 @@
     
     _arrayContentOfRootFile = [_filesProxy getPersonalDriveContent:_rootFile];
     
-    [self.tableView reloadData];
-    
+    //Call in the main thread update method
+    [self performSelectorOnMainThread:@selector(contentDirectoryIsRetrieved) withObject:nil waitUntilDone:NO];
 }
+
+- (void)contentDirectoryIsRetrieved {
+    //Now update the HUD
+    //TODO Localize this string
+    [_hudFolder setCaption:@"Folder content updated"];
+    [_hudFolder setActivity:NO];
+    [_hudFolder setImage:[UIImage imageNamed:@"19-check"]];
+    [_hudFolder update];
+    [_hudFolder hideAfter:1.0];
+    
+    //And finally reload the content of the tableView
+    [self.tableView reloadData];
+}
+
 
 
 - (void)setTitleForFilesViewController {
@@ -105,6 +120,11 @@
     [_actionsViewController release];
     _actionsViewController = nil;
     
+    
+    //Release the loader
+    [_hudFolder release];
+    _hudFolder = nil;
+    
     [super dealloc];
 }
 
@@ -121,6 +141,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _hudFolder = [[ATMHud alloc] initWithDelegate:self];
+    [_hudFolder setAllowSuperviewInteraction:YES];
+	[self.view addSubview:_hudFolder.view];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -132,9 +157,7 @@
     [self setTitleForFilesViewController];
         
     
-    //Start the request to load file content
-    [self startRetrieveDirectoryContent];
-    
+       
     
     
 }
@@ -149,11 +172,23 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (_arrayContentOfRootFile == nil) {
+        //TODO Localize this string
+        [_hudFolder setCaption:[NSString stringWithFormat:@"Loading the content of the folder : %@",self.title]];
+        [_hudFolder setActivity:YES];
+        [_hudFolder show];
+        
+        //Start the request to load file content
+        [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -314,6 +349,8 @@
         
         FilesViewController_iPhone *newViewControllerForFilesBrowsing = [[FilesViewController_iPhone alloc] initWithRootFile:fileToBrowse];
         
+        
+        
         [self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
         
         
@@ -400,22 +437,33 @@
     [alert release];
 }
 
-
-//Method needed to retrieve the delete action
--(void)deleteFile:(NSString *)urlFileToDelete {
- 
-    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForDelete source:urlFileToDelete destination:nil data:nil];
+//Use this method to do the delete action in a background thread
+-(void)deleteFileInBackground:(NSString *)urlFileToDelete {
     
-    //Hide the action Panel
-    [self hideActionsPanel];
+    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForDelete source:urlFileToDelete destination:nil data:nil];
     
     //check the status of the operation
     if (errorMessage) {
-        [self showErrorForFileAction:errorMessage];
+        //On main thread, as to send the AlertView
+        [self performSelectorOnMainThread:@selector(showErrorForFileAction:) withObject:errorMessage waitUntilDone:NO];
     }
     
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
+}
+
+//Method needed to retrieve the delete action
+-(void)deleteFile:(NSString *)urlFileToDelete {
+    
+    //Hide the action Panel
+    [self hideActionsPanel];
+    
+    //TODO Localize this string
+    [_hudFolder setCaption:@"Delete file..."];
+    [_hudFolder setActivity:YES];
+    [_hudFolder show];
+    
+    [self performSelectorInBackground:@selector(deleteFileInBackground:) withObject:urlFileToDelete];
 }
 
 -(void)moveOrCopyActionIsSelected {
@@ -423,27 +471,52 @@
 }
 
 
+//Use this method to do the move action in a background thread
+- (void)moveFileInBackgroundSource:urlSource
+                     toDestination:urlDestination {
+    
+     
+     NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForMove source:urlSource destination:urlDestination data:nil];
+     
+     //Hide the action Panel
+     [self hideActionsPanel];
+     
+     //check the status of the operation
+     if (errorMessage) {
+         [self performSelectorOnMainThread:@selector(showErrorForFileAction:) withObject:errorMessage waitUntilDone:NO];
+     }
+     
+     //Need to reload the content of the folder
+     [self startRetrieveDirectoryContent];
+     
+}
+
+
 //Method needed to retrieve the action to move a file
 - (void)moveFileSource:urlSource
          toDestination:urlDestination {
     
-    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForMove source:urlSource destination:urlDestination data:nil];
-    
     //Hide the action Panel
     [self hideActionsPanel];
     
-    //check the status of the operation
-    if (errorMessage) {
-        [self showErrorForFileAction:errorMessage];
-    }
+    //TODO Localize this string
+    [_hudFolder setCaption:@"Move file to wanted folder..."];
+    [_hudFolder setActivity:YES];
+    [_hudFolder show];
     
-    //Need to reload the content of the folder
-    [self startRetrieveDirectoryContent];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                [self methodSignatureForSelector:@selector(moveFileInBackgroundSource:toDestination:)]];
+    [invocation setTarget:self];
+    [invocation setSelector:@selector(moveFileInBackgroundSource:toDestination:)];
+    [invocation setArgument:&urlSource atIndex:2];
+    [invocation setArgument:&urlDestination atIndex:3];
+    [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
 }
 
-//Method needed to retrieve the action to copy a file
-- (void)copyFileSource:urlSource
+//Use this method to do the copy action in a background thread
+- (void)copyFileInBackgroundSource:urlSource
          toDestination:urlDestination {
+    
     NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForCopy source:urlSource destination:urlDestination data:nil];
     
     //Hide the action Panel
@@ -451,11 +524,35 @@
     
     //check the status of the operation
     if (errorMessage) {
-        [self showErrorForFileAction:errorMessage];
+        [self performSelectorOnMainThread:@selector(showErrorForFileAction:) withObject:errorMessage waitUntilDone:NO];
     }
     
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
+
+}
+
+
+//Method needed to retrieve the action to copy a file
+- (void)copyFileSource:urlSource
+         toDestination:urlDestination {
+    
+    //TODO Localize this string
+    [_hudFolder setCaption:@"Copy file to wanted folder..."];
+    [_hudFolder setActivity:YES];
+    [_hudFolder show];
+    
+    //Hide the action Panel
+    [self hideActionsPanel];
+        
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                [self methodSignatureForSelector:@selector(copyFileInBackgroundSource:toDestination:)]];
+    [invocation setTarget:self];
+    [invocation setSelector:@selector(copyFileInBackgroundSource:toDestination:)];
+    [invocation setArgument:&urlSource atIndex:2];
+    [invocation setArgument:&urlDestination atIndex:3];
+    [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO]; 
+        
 }
 
 
@@ -489,6 +586,14 @@
 #pragma mark - Pictures Management
 
 
+- (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
+{
+    [_filesProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
+    //Need to reload the content of the folder
+    [self startRetrieveDirectoryContent];
+}
+
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo  
 {
 	UIImage* selectedImage = image;
@@ -513,7 +618,20 @@
 		*/
 		_savedFileDirectory = [_savedFileDirectory stringByAppendingString:tmp];
 		
-		[_filesProxy fileAction:kFileProtocolForUpload source:_savedFileDirectory destination:nil data:imageData];
+        //TODO Localize this string
+        [_hudFolder setCaption:@"Sending image to wanted folder..."];
+        [_hudFolder setActivity:YES];
+        [_hudFolder show];
+        
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
+        [invocation setTarget:self];
+        [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
+        [invocation setArgument:&_savedFileDirectory atIndex:2];
+        [invocation setArgument:&imageData atIndex:3];
+        [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
+        
+		//[_filesProxy fileAction:kFileProtocolForUpload source:_savedFileDirectory destination:nil data:imageData];
 	}
 	else
 	{	
@@ -524,7 +642,27 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
     [picker dismissModalViewControllerAnimated:YES];    
-}  
+} 
+
+
+
+#pragma mark - ATMHud Delegate
+#pragma mark -
+#pragma mark ATMHudDelegate
+- (void)userDidTapHud:(ATMHud *)_hud {
+	[_hud hide];
+}
+
+#pragma mark -
+#pragma mark More examples
+/*
+// Uncomment this method to see a demonstration of playing a sound everytime a HUD appears.
+- (void)hudDidAppear:(ATMHud *)_hud {
+     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"pop"
+                                                               ofType: @"wav"];
+     [_hud playSound:soundFilePath];
+}*/
+
 
 
 
