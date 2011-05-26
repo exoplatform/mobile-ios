@@ -143,8 +143,6 @@
 
 - (void)onBtnDone
 {
-    
-    
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder];
     _strServerName = [_txtfServerName text];
