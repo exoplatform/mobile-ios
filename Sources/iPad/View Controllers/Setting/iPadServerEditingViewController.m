@@ -64,11 +64,11 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    UIView* bg = [[UIView alloc] initWithFrame:[_tblvServerInfo frame]];
-	[bg setBackgroundColor:[UIColor clearColor]];
-	[_tblvServerInfo setBackgroundView:bg];
-    [bg release];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+//    UIView* bg = [[UIView alloc] initWithFrame:[_tblvServerInfo frame]];
+//	[bg setBackgroundColor:[UIColor clearColor]];
+//	[_tblvServerInfo setBackgroundView:bg];
+//    [bg release];
     
 //    _btnEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 //    [_btnEdit setFrame:CGRectMake(100, 10, 60, 37)];
