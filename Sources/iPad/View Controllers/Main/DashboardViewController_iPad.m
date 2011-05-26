@@ -142,7 +142,7 @@ static NSString* CellIdentifier = @"CellIdentifier";
         [cell addSubview:titleLabel];
         //release the titleLabel because cell retain it now
         [titleLabel release];
-        
+    
         //Create the descriptionLabel
         UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(120.0, 23.0, 320.0, 33.0)];
         descriptionLabel.numberOfLines = 2;
