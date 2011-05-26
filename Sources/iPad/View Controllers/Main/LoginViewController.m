@@ -771,6 +771,10 @@
     }    
 }
 
+- (void)reloadData
+{
+    [_tbvlServerList reloadData];
+}
 
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {

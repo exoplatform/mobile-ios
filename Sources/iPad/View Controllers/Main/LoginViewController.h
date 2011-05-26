@@ -101,4 +101,5 @@
 - (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index;
 - (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
 - (void)deleteServerObjAtIndex:(int)intIndex;
+- (void)reloadData;
 @end
