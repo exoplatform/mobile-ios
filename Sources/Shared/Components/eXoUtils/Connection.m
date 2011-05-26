@@ -42,7 +42,8 @@ static NSString* _strDomain;
 
 - (void)dealloc 
 {
-	[localDashboardGadgetsString_ release];localDashboardGadgetsString_ = nil;
+	[localDashboardGadgetsString_ release];
+    localDashboardGadgetsString_ = nil;
 	
 	[super dealloc];
 }
@@ -204,6 +205,13 @@ static NSString* _strDomain;
 	NSData* dataResponse;
 	NSData* bodyData;
 	
+    NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	NSArray *tmpArr = [store cookies];
+	for(int i = 0; i < [tmpArr count]; i++)
+    {
+		[store deleteCookie:[tmpArr objectAtIndex:i]];
+    }
+    
 	NSURL* redirectURL = [NSURL URLWithString:urlStr];
 	NSString* checkUrlStr = [NSString stringWithContentsOfURL:redirectURL encoding:NSUTF8StringEncoding error:nil];
 	if(checkUrlStr == nil) 
@@ -213,7 +221,7 @@ static NSString* _strDomain;
 		return nil;
 	}
 	
-	NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	//NSHTTPCookieStorage *store = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 	
 	NSRange rangeOfPrivate = [urlStr rangeOfString:@"/classic"];
 	
@@ -222,13 +230,16 @@ static NSString* _strDomain;
     // --> probably cause a problem to retrieve gadgets...
 	NSString* loginStr;
 	if(rangeOfPrivate.length > 0)
+    {
 		loginStr = [[urlStr substringToIndex:rangeOfPrivate.location] stringByAppendingString:@"/j_security_check"];
+    }
 	else
 	{
 		rangeOfPrivate = [urlStr rangeOfString:@"/intranet"];
 		if(rangeOfPrivate.length > 0)
+        {
 			loginStr = [[urlStr substringToIndex:rangeOfPrivate.location + rangeOfPrivate.length] stringByAppendingString:@"/j_security_check"];
-		
+		}
 	}
 	
 	NSURL* loginURL = [NSURL URLWithString:loginStr];
@@ -402,7 +413,7 @@ static NSString* _strDomain;
 	NSData *data = [self sendRequestToGetGadget:url];
 	//NSData *data = [self sendRequest:url];
 	strContent = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
+    
 	localDashboardGadgetsString_ = [strContent copy];
 	
 	NSRange range1;
@@ -410,8 +421,10 @@ static NSString* _strDomain;
 	
 	range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
 	if(range1.length <= 0)
+    {
 		return nil;
-	
+	}
+    
     NSMutableArray* arrTmpGadgets = [[NSMutableArray alloc] init];
 
     
@@ -486,7 +499,11 @@ static NSString* _strDomain;
 			
 			strContent = (NSMutableString *)[strContent substringFromIndex:range2.location + range2.length];
 			range1 = [strContent rangeOfString:@"eXo.gadget.UIGadget.createGadget"];
-		}	
+		}
+        else
+        {
+            break;
+        }
 		
 	} while (range1.length > 0);
 	

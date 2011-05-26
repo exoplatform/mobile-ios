@@ -134,7 +134,7 @@ static NSString* CellIdentifier = @"CellIdentifier";
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
         //Add subviews only one time, and use the propertie 'Tag' of UIView to retrieve them
-        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(120.0, 5.0, 550.0, 20.0)];
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(120.0, 5.0, 320.0, 20.0)];
         titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
         //define the tag for the titleLabel
         titleLabel.tag = kTagForCellSubviewTitleLabel; 
@@ -144,7 +144,7 @@ static NSString* CellIdentifier = @"CellIdentifier";
         [titleLabel release];
         
         //Create the descriptionLabel
-        UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(120.0, 23.0, 550.0, 33.0)];
+        UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(120.0, 23.0, 320.0, 33.0)];
         descriptionLabel.numberOfLines = 2;
         descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
         descriptionLabel.tag = kTagForCellSubviewDescriptionLabel;
