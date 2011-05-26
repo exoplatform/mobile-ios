@@ -160,10 +160,15 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     }
     [_iPadServerAddingViewController._txtfServerName setText:@""];
     [_iPadServerAddingViewController._txtfServerUrl setText:@""];    
-
-  
-    [self.navigationController pushViewController:_iPadServerAddingViewController animated:YES];
     
+    if ([self.navigationController.viewControllers containsObject:_iPadServerAddingViewController]) 
+    {
+        [self.navigationController popToViewController:_iPadServerAddingViewController animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:_iPadServerAddingViewController animated:YES];
+    }     
     
     //[_delegate showiPadServerAddingViewController];
 }
@@ -203,6 +208,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
         [_arrServerList removeAllObjects];
         _arrServerList = [configuration getServerList];
         [_tbvlServerList reloadData];
+        [_delegate reloadData];
         [self.navigationController popToViewController:self animated:YES];
     }    
 }
@@ -293,8 +299,8 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     [_arrServerList removeAllObjects];
     _arrServerList = [configuration getServerList];
     [_tbvlServerList reloadData];
-    //[_delegate pullViewOut:self.view];
-    [_delegate showiPadServerManagerViewController];
+    [_delegate reloadData];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 
@@ -429,12 +435,19 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     if (_iPadServerEditingViewController == nil) 
     {
         _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
-        [_iPadServerEditingViewController setDelegate:_delegate];
+        [_iPadServerEditingViewController setDelegate:self];
         [_iPadServerEditingViewController setInterfaceOrientation:_interfaceOrientation];
     }
     [_iPadServerEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
 
-    [self.navigationController pushViewController:_iPadServerEditingViewController animated:YES];
+    if ([self.navigationController.viewControllers containsObject:_iPadServerEditingViewController]) 
+    {
+        [self.navigationController popToViewController:_iPadServerEditingViewController animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:_iPadServerEditingViewController animated:YES];
+    } 
     
     _intCurrentIndex = indexPath.row;
     [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
