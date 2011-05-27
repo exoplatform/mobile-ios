@@ -51,10 +51,51 @@
 	[super loadView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+
+    
+    [self.navigationController.navigationItem setLeftBarButtonItem:nil];
+    [self.navigationController.navigationBar setHidden:YES];
+
+}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
+    
+    //Stevan UI fixes
+    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]; 
+    
+    
+    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] stretchableImageWithLeftCapWidth:10 
+                                                                                               topCapHeight:10] 
+                 forState:UIControlStateNormal];
+    
+    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] stretchableImageWithLeftCapWidth:10 
+                                                                                               topCapHeight:10] 
+                 forState:UIControlStateSelected];
+
+    
+    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] stretchableImageWithLeftCapWidth:10 
+                                                                                                                  topCapHeight:10] 
+                           forState:UIControlStateNormal];
+    
+    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] stretchableImageWithLeftCapWidth:10 
+                                                                                                                 topCapHeight:10] 
+                           forState:UIControlStateSelected];
+    
+    [_txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] stretchableImageWithLeftCapWidth:10 
+                                                                                                             topCapHeight:10]];
+    
+    [_txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] stretchableImageWithLeftCapWidth:10 
+                                                                                                             topCapHeight:10]];
+
+    
+    
     _vContainer.alpha = 0;
     [UIView beginAnimations:nil context:nil];  
     [UIView setAnimationDuration:1.0];  
@@ -142,6 +183,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
+    
 	[super viewDidLoad];
 }
 
@@ -155,11 +197,44 @@
     [self moveUp:NO];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [self.navigationController.navigationItem setLeftBarButtonItem:nil];
-    [self.navigationController.navigationBar setHidden:YES];
+    _interfaceOrientation = interfaceOrientation;
+    
+	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+	{
+        //[_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
+        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
+        [_vContainer setFrame:CGRectMake(80, 200, 609, 591)];        
+	}
+	
+	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+	{	
+        //[_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
+        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
+        [_vContainer setFrame:CGRectMake(207, 114, 609, 591)];
+	}
+    
+    //[self moveView];
 }
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    _interfaceOrientation = interfaceOrientation;
+    return YES;
+}
+
+/*
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	[menuViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	[stackScrollViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+}
+*/
+-(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    [self changeOrientation:toInterfaceOrientation];
+}	
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [_hud dismiss];
@@ -204,11 +279,7 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    _interfaceOrientation = interfaceOrientation;
-    return YES;
-}
+
 
 - (void)setDelegate:(id)delegate
 {
@@ -285,26 +356,7 @@
 }
 
 
-- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-     _interfaceOrientation = interfaceOrientation;
-    
-	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        //[_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
-        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
-        [_vContainer setFrame:CGRectMake(80, 200, 609, 591)];        
-	}
-	
-	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{	
-        //[_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
-        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
-        [_vContainer setFrame:CGRectMake(207, 114, 609, 591)];
-	}
-    
-    [self moveView];
-}
+
 
 
 - (IBAction)onSettingBtn:(id)sender

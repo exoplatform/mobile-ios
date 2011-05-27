@@ -68,6 +68,8 @@
     NSMutableArray*             _arrViewOfViewControllers;
     UIInterfaceOrientation      _interfaceOrientation;
     SSHUDView*                  _hud;
+    
+    IBOutlet UIImageView*       _panelBackground;
 }
 
 @property (nonatomic, retain) NSDictionary* _dictLocalize;
