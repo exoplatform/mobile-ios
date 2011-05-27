@@ -68,7 +68,7 @@
 {
     
     //Stevan UI fixes
-    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]; 
+    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
     
     
     [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] stretchableImageWithLeftCapWidth:10 
@@ -178,7 +178,7 @@
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                          forState:UIControlStateNormal];
     
-    [_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
+    //[_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -205,14 +205,14 @@
 	{
         //[_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
         [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
-        [_vContainer setFrame:CGRectMake(80, 200, 609, 591)];        
+        [_vContainer setFrame:CGRectMake(80, 275, 609, 591)];        
 	}
 	
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
         //[_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
         [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
-        [_vContainer setFrame:CGRectMake(207, 114, 609, 591)];
+        [_vContainer setFrame:CGRectMake(210, 140, 609, 591)];
 	}
     
     //[self moveView];
@@ -412,7 +412,6 @@
     _hud = [[SSHUDView alloc] initWithTitle:@"Loading..."];
     [_hud show];
     
-	[_btnLogin setHidden:YES];
 	[_actiSigningIn setHidden:NO];
 	[_lbSigningInStatus setHidden:NO];
 	[_actiSigningIn startAnimating];

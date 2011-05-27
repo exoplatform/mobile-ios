@@ -32,19 +32,20 @@
     //navigationController.navigationBarHidden = YES;
     //[window addSubview:navigationController.view];
     
+    //[window makeKeyAndVisible];
+
+    
     rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     
-    [window addSubview:rootViewController.view];
+    //[window addSubview:rootViewController.view];
     
     
 	[window addSubview:viewController.view];
     
   
-    
-    
     [window makeKeyAndVisible];
-    
-    [rootViewController.view removeFromSuperview];
+            
+    //[rootViewController.view removeFromSuperview];
     
     return YES;
 }
@@ -58,7 +59,10 @@
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromLeft
-                    animations:^{ [viewController.view removeFromSuperview]; [self.window addSubview:rootViewController.view]; }
+                    animations:^{ 
+                        [viewController.view removeFromSuperview]; 
+                        [self.window addSubview:rootViewController.view]; 
+                    }
                     completion:NULL];
 }
 

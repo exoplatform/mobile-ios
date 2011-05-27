@@ -314,6 +314,12 @@
 	[_appContainerViewController loadGadgets];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
