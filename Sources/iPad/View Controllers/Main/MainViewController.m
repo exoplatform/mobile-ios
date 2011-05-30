@@ -39,10 +39,11 @@
 		_filesViewController = [[FilesViewController alloc] initWithNibName:@"FilesViewController" bundle:nil];
 		[_filesViewController setDelegate:self];
 		
-		_messengerViewController = [[MessengerViewController alloc] initWithNibName:@"MessengerViewController" bundle:nil];
-		[_messengerViewController setDelegate:self];
-		
-		_nvMessengerViewController = [[UINavigationController alloc] initWithRootViewController:_messengerViewController];
+//		_messengerViewController = [[MessengerViewController alloc] initWithNibName:@"MessengerViewController" bundle:nil];
+//		[_messengerViewController setDelegate:self];
+//		
+//		_nvMessengerViewController = [[UINavigationController alloc] initWithRootViewController:_messengerViewController];
+        
 		_btnLeftEdgeNavigation = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 8, 9)];
 		[_btnLeftEdgeNavigation setUserInteractionEnabled:NO];
 		[_btnLeftEdgeNavigation setBackgroundImage:[UIImage imageNamed:@"LeftEdgeNavigation.png"] forState:UIControlStateNormal];
@@ -79,40 +80,40 @@
 	return _currentViewIndex;
 }
 
-- (int)getCurrentChatUserIndex
-{
-	return [_messengerViewController getCurrentChatUserIndex];
-}
-
-- (void)setCurrentChatUserIndex:(int)index
-{
-	[_messengerViewController setCurrentChatUserIndex:index];
-}
-
-- (void)setLeftBarButtonForNavigationBar;
-{
-	if(_currentViewIndex != 3)
-	{
-		[self.view addSubview:_imgViewNewMessage];
-		return;
-	}
-		
-	NSArray *arrChatUsers = [_messengerViewController getArrChatUsers];
-	MessengerUser* messengerUser;
-	
-	for(int i = 0; i < [arrChatUsers count]; i++)
-	{
-		messengerUser = [arrChatUsers objectAtIndex:i];
-		if(messengerUser._intMessageCount > 0)
-		{
-			[self.view addSubview:_imgViewNewMessage];
-			return;
-		}
-	}
-		
-	[_imgViewNewMessage removeFromSuperview];
-	
-}
+//- (int)getCurrentChatUserIndex
+//{
+//	return [_messengerViewController getCurrentChatUserIndex];
+//}
+//
+//- (void)setCurrentChatUserIndex:(int)index
+//{
+//	[_messengerViewController setCurrentChatUserIndex:index];
+//}
+//
+//- (void)setLeftBarButtonForNavigationBar;
+//{
+//	if(_currentViewIndex != 3)
+//	{
+//		[self.view addSubview:_imgViewNewMessage];
+//		return;
+//	}
+//		
+//	NSArray *arrChatUsers = [_messengerViewController getArrChatUsers];
+//	MessengerUser* messengerUser;
+//	
+//	for(int i = 0; i < [arrChatUsers count]; i++)
+//	{
+//		messengerUser = [arrChatUsers objectAtIndex:i];
+//		if(messengerUser._intMessageCount > 0)
+//		{
+//			[self.view addSubview:_imgViewNewMessage];
+//			return;
+//		}
+//	}
+//		
+//	[_imgViewNewMessage removeFromSuperview];
+//	
+//}
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView 
@@ -230,16 +231,16 @@
 	[popoverCtr presentPopoverFromRect:sender.frame inView:_toolBarChatsLive permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];	
 }
 
-- (void)openChatWindows:(int)index
-{
-	[self setCurrentViewIndex:3];
-	MessengerUser* messengerUser = [[_messengerViewController getArrChatUsers] objectAtIndex:index]; 
-	messengerUser._intMessageCount = 0;
-	[self setLeftBarButtonForNavigationBar];
-	_messengerViewController.currentChatUserIndex = index;	
-	[self showChatWindowWithUser:messengerUser andXMPPClient:[MessengerViewController getXmppClient]];
-	[_messengerViewController._tblvUsers reloadData];
-}
+//- (void)openChatWindows:(int)index
+//{
+//	[self setCurrentViewIndex:3];
+//	MessengerUser* messengerUser = [[_messengerViewController getArrChatUsers] objectAtIndex:index]; 
+//	messengerUser._intMessageCount = 0;
+//	[self setLeftBarButtonForNavigationBar];
+//	_messengerViewController.currentChatUserIndex = index;	
+//	[self showChatWindowWithUser:messengerUser andXMPPClient:[MessengerViewController getXmppClient]];
+//	[_messengerViewController._tblvUsers reloadData];
+//}
 
 -(void)chatWindows:(UIButton *)sender
 {
@@ -347,10 +348,10 @@
 		[_filesViewController._btnLeftEdgeNavigation setFrame:CGRectMake(0, 0, 8, 9)];
 		[_filesViewController._btnRightEdgeNavigation setFrame:CGRectMake(761, 0, 8, 9)];
 		
-		[[_nvMessengerViewController view] setFrame:CGRectMake(0, 43, 768, 961)];
-		[_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 768, 873)];
-		[_btnRightEdgeNavigation setFrame:CGRectMake(761, 0, 8, 9)];
-		[[_chatWindowViewController view] setFrame:CGRectMake(0, 44, 768, 939)];
+//		[[_nvMessengerViewController view] setFrame:CGRectMake(0, 43, 768, 961)];
+//		[_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 768, 873)];
+//		[_btnRightEdgeNavigation setFrame:CGRectMake(761, 0, 8, 9)];
+//		[[_chatWindowViewController view] setFrame:CGRectMake(0, 44, 768, 939)];
 
 		[_chatWindowViewController._wvChatContentDisplay setFrame:CGRectMake(0, 0, 768, 827)];
 		[_chatWindowViewController._vTextInputArea setFrame:CGRectMake(0, 827, 768, 90)];
@@ -391,15 +392,15 @@
 		[_filesViewController._btnRightEdgeNavigation setFrame:CGRectMake(696, 0, 8, 9)];
 
 		
-		[[_nvMessengerViewController view] setFrame:CGRectMake(321, 43, 703, 705)];
-		[_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 703, 600)];
-		[_btnRightEdgeNavigation setFrame:CGRectMake(696, 0, 8, 9)];
-		[[_chatWindowViewController view] setFrame:CGRectMake(321, 44, 703, 661)];
-		[_chatWindowViewController._wvChatContentDisplay setFrame:CGRectMake(0, 0, 703, 560)];
-		[_chatWindowViewController._vTextInputArea setFrame:CGRectMake(0, 570, 703, 90)];
-		[_chatWindowViewController._tvTextInput setFrame:CGRectMake(8, 8, 580, 73)];
-		[_chatWindowViewController._imgvNewMsgArea setFrame:CGRectMake(631, 4, 31, 31)];
-		[_chatWindowViewController._btnSend setFrame:CGRectMake(596, 40, 100, 40)];
+//		[[_nvMessengerViewController view] setFrame:CGRectMake(321, 43, 703, 705)];
+//		[_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 703, 600)];
+//		[_btnRightEdgeNavigation setFrame:CGRectMake(696, 0, 8, 9)];
+//		[[_chatWindowViewController view] setFrame:CGRectMake(321, 44, 703, 661)];
+//		[_chatWindowViewController._wvChatContentDisplay setFrame:CGRectMake(0, 0, 703, 560)];
+//		[_chatWindowViewController._vTextInputArea setFrame:CGRectMake(0, 570, 703, 90)];
+//		[_chatWindowViewController._tvTextInput setFrame:CGRectMake(8, 8, 580, 73)];
+//		[_chatWindowViewController._imgvNewMsgArea setFrame:CGRectMake(631, 4, 31, 31)];
+//		[_chatWindowViewController._btnSend setFrame:CGRectMake(596, 40, 100, 40)];
 		
 		[_toolBarChatsLive setFrame:CGRectMake(321, 704, 703, 44)];
 		[_btnMoreChat setFrame:CGRectMake(665, 5, 35, 35)];
@@ -408,14 +409,14 @@
 	
 	[[_filesViewController._fileContentDisplayController view] setFrame:[_filesViewController._tbvFiles frame]];
 	[_filesViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-	[_messengerViewController._tblvUsers reloadData];
-	[_chatWindowViewController changeOrientation:interfaceOrientation];
+//	[_messengerViewController._tblvUsers reloadData];
+//	[_chatWindowViewController changeOrientation:interfaceOrientation];
 	[[self view] addSubview:_btnSignOut];			
 	
-	if ([_nvMessengerViewController topViewController] != _messengerViewController) 
-	{
-		[self showChatToolBar:NO];
-	}
+//	if ([_nvMessengerViewController topViewController] != _messengerViewController) 
+//	{
+//		[self showChatToolBar:NO];
+//	}
 	_interfaceOrientation = interfaceOrientation;
 }
 
@@ -448,41 +449,41 @@
 
 - (void)startMessengerApplication
 {
-	if(_currentViewIndex == 3)
-		[self setLeftBarButtonForNavigationBar];
-	else
-		_currentViewIndex = 2;
-	
-	[_messengerViewController initMessengerParameters];
-	[_vPrevious removeFromSuperview];
-	[[self view] addSubview:[_nvMessengerViewController view]];
-	_vPrevious = [_nvMessengerViewController view];
-	[_messengerViewController._tblvUsers reloadData];
-
-	if ([_nvMessengerViewController topViewController] == _chatWindowViewController) 
-	{
-		[self showChatToolBar:NO];
-	}
-	else 
-	{
-		if ([_nvMessengerViewController topViewController] == _messengerViewController) 
-		{
-			[self showChatToolBar:YES];
-		}
-	}
-
-	[popoverController dismissPopoverAnimated:YES];
+//	if(_currentViewIndex == 3)
+//		[self setLeftBarButtonForNavigationBar];
+//	else
+//		_currentViewIndex = 2;
+//	
+//	[_messengerViewController initMessengerParameters];
+//	[_vPrevious removeFromSuperview];
+//	[[self view] addSubview:[_nvMessengerViewController view]];
+//	_vPrevious = [_nvMessengerViewController view];
+//	[_messengerViewController._tblvUsers reloadData];
+//
+//	if ([_nvMessengerViewController topViewController] == _chatWindowViewController) 
+//	{
+//		[self showChatToolBar:NO];
+//	}
+//	else 
+//	{
+//		if ([_nvMessengerViewController topViewController] == _messengerViewController) 
+//		{
+//			[self showChatToolBar:YES];
+//		}
+//	}
+//
+//	[popoverController dismissPopoverAnimated:YES];
 }
 
-- (MessengerViewController*)getMessengerViewController
-{
-	return _messengerViewController;
-}
-
-- (AppContainerViewController*)getAppContainerViewController
-{
-	return _appContainerViewController;
-}
+//- (MessengerViewController*)getMessengerViewController
+//{
+//	return _messengerViewController;
+//}
+//
+//- (AppContainerViewController*)getAppContainerViewController
+//{
+//	return _appContainerViewController;
+//}
 
 - (void)showChatWindowWithUser:(MessengerUser*)messengerUser andXMPPClient:(XMPPClient*)xmppClient
 {
