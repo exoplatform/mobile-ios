@@ -28,6 +28,9 @@
 	UIWebView*								_wvChatContentDisplay;	//Display chat content
 	UIWebView*								_wvChatContentDisplayUp;
 	
+    IBOutlet UIWebView*                     _wvTest;
+    IBOutlet UIView*                        _vNvBar;
+    IBOutlet UINavigationBar*               _nvBar;
 	IBOutlet UIView*						_vTextInputArea;
 	IBOutlet UIImageView*					_imgvNewMsgArea;	//New message image
 	IBOutlet UITextView*					_tvTextInput;	//Chat typing area
@@ -60,5 +63,5 @@
 - (void)createChatContent:(NSString *)content;	//Create html chat content
 - (void)receivedChatMsg;	//Receive chat message
 - (void)moveFrameUp:(BOOL)bUp;	//Change UI when keyboard is shown or not
-
+- (IBAction)clearChatContent:(id)sender;
 @end

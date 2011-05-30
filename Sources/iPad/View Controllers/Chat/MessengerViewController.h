@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ChatWindowViewController.h"
 
 //========================================================================================
 
@@ -41,17 +41,19 @@
 //========================================================================================
 
 //List of chat users
-@interface MessengerViewController : UIViewController <UINavigationControllerDelegate, 
+@interface MessengerViewController : UIViewController <UITableViewDelegate, 
+UITableViewDataSource> /*<UINavigationControllerDelegate, 
 														UITableViewDelegate, 
 														UITableViewDataSource, 
-														UIPopoverControllerDelegate>
+														UIPopoverControllerDelegate>*/
 {
-	MainViewController*						_delegate; // Point to MainViewController
+	//MainViewController*						_delegate; // Point to MainViewController
+    id                                      _delegate;
 	NSDictionary*							_dictLocalize;	//Language dictionary
 	int										_intSelectedLanguage;	//index of language
 	
-	//IBOutlet UITableView*					_tblvUsers;
-	UITableView*							_tblvUsers;	//show contact list
+	IBOutlet UITableView*					_tblvUsers;
+	//UITableView*							_tblvUsers;	//show contact list
 	
 	NSMutableArray*							arrChatUsers;	//list of contacr
 	int										currentChatUserIndex;	//index of current chat user
@@ -67,10 +69,14 @@
 	NSString*								bottomRightStr;
 	NSString *								topHorizontalStr;
 	NSString *								bottomHorizontalStr;
+    
+    ChatWindowViewController*               _chatWindowViewController;
 }
 
 @property int currentChatUserIndex;
 @property(nonatomic, retain)UITableView* _tblvUsers;
+
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 - (int)getCurrentChatUserIndex;	//Get current chat user index in the list
 - (void)setCurrentChatUserIndex:(int)index;	//Set current chat user index in the list
@@ -82,6 +88,6 @@
 - (void)initMessengerParameters;	//Creat parametters for new chat 
 - (NSString *)createChatContentFor:(NSString *)chatName content:(NSString *)content isMe:(BOOL)isMe portrait:(BOOL)portrait;	//Format the chat content
 - (void)updateAccountInfo; //Get contact info
-
+- (void)receivedChatMsg;
 + (XMPPClient *)getXmppClient;	//Get chat socket
 @end
