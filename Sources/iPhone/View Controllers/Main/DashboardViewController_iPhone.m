@@ -13,6 +13,7 @@
 #import "Gadget_iPad.h"
 #import "Gadget_iPhone.h"
 #import "GadgetDisplayViewController.h"
+#import "CustomBackgroundForCell_iPhone.h"
 
 
 //Constants Definitions
@@ -75,6 +76,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //Set the background Color of the view
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    _tblGadgets.backgroundView = backgroundView;
     
     Connection *conn = [[Connection alloc] init];
     
@@ -140,20 +147,21 @@
 	static NSString* kCellIdentifier = @"Cell";
 	
     //We dequeue a cell
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+	CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     //Check if we found a cell
     if (cell==nil) 
     {
          
         //Not found, so create a new one
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
         
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
         //Add subviews only one time, and use the propertie 'Tag' of UIView to retrieve them
         UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 180.0, 20.0)];
         titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+        titleLabel.backgroundColor = [UIColor clearColor];
         //define the tag for the titleLabel
         titleLabel.tag = kTagForCellSubviewTitleLabel; 
         [cell addSubview:titleLabel];
@@ -164,6 +172,7 @@
         UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 180.0, 33.0)];
         descriptionLabel.numberOfLines = 2;
         descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+        descriptionLabel.backgroundColor = [UIColor clearColor];
         descriptionLabel.tag = kTagForCellSubviewDescriptionLabel;
         [cell addSubview:descriptionLabel];
         [descriptionLabel release];
@@ -189,6 +198,8 @@
     //Configuration of the ImageView
     UIImageView *imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
     imgView.image = [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] imageIcon];
+    
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
 	return cell;
 }
