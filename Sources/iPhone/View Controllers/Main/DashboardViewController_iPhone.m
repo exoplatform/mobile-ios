@@ -49,6 +49,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        //TODO localize that
+        self.title = @"Dashboard";
     }
     return self;
 }
