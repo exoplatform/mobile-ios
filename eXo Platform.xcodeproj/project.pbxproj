@@ -132,6 +132,14 @@
 		46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */; };
 		46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D861393DB1B00A35D5A /* DeleteButton.png */; };
 		46E91D891393DB2500A35D5A /* DeleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D881393DB2500A35D5A /* DeleteButton@2x.png */; };
+		46E91D8E1393E30500A35D5A /* CustomBackgroundForCellBottomSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D8A1393E30300A35D5A /* CustomBackgroundForCellBottomSelected.png */; };
+		46E91D8F1393E30500A35D5A /* CustomBackgroundForCellMiddleSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D8B1393E30300A35D5A /* CustomBackgroundForCellMiddleSelected.png */; };
+		46E91D901393E30500A35D5A /* CustomBackgroundForCellSingleSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D8C1393E30400A35D5A /* CustomBackgroundForCellSingleSelected.png */; };
+		46E91D911393E30500A35D5A /* CustomBackgroundForCellTopSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D8D1393E30500A35D5A /* CustomBackgroundForCellTopSelected.png */; };
+		46E91D961393E31900A35D5A /* CustomBackgroundForCellBottomSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D921393E31900A35D5A /* CustomBackgroundForCellBottomSelected@2x.png */; };
+		46E91D971393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D931393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png */; };
+		46E91D981393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D941393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png */; };
+		46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D951393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png */; };
 		46E96E53138370A30085DCB6 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E31138370A30085DCB6 /* 06-magnify.png */; };
 		46E96E54138370A30085DCB6 /* 08-chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E32138370A30085DCB6 /* 08-chat.png */; };
 		46E96E55138370A30085DCB6 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E33138370A30085DCB6 /* 111-user.png */; };
@@ -656,6 +664,14 @@
 		46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		46E91D861393DB1B00A35D5A /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteButton.png; path = "Settings/@1x/DeleteButton.png"; sourceTree = "<group>"; };
 		46E91D881393DB2500A35D5A /* DeleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DeleteButton@2x.png"; path = "Settings/@2x/DeleteButton@2x.png"; sourceTree = "<group>"; };
+		46E91D8A1393E30300A35D5A /* CustomBackgroundForCellBottomSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellBottomSelected.png; path = "Global/@1x/CustomBackgroundForCellBottomSelected.png"; sourceTree = "<group>"; };
+		46E91D8B1393E30300A35D5A /* CustomBackgroundForCellMiddleSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellMiddleSelected.png; path = "Global/@1x/CustomBackgroundForCellMiddleSelected.png"; sourceTree = "<group>"; };
+		46E91D8C1393E30400A35D5A /* CustomBackgroundForCellSingleSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellSingleSelected.png; path = "Global/@1x/CustomBackgroundForCellSingleSelected.png"; sourceTree = "<group>"; };
+		46E91D8D1393E30500A35D5A /* CustomBackgroundForCellTopSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellTopSelected.png; path = "Global/@1x/CustomBackgroundForCellTopSelected.png"; sourceTree = "<group>"; };
+		46E91D921393E31900A35D5A /* CustomBackgroundForCellBottomSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellBottomSelected@2x.png"; path = "Global/@2x/CustomBackgroundForCellBottomSelected@2x.png"; sourceTree = "<group>"; };
+		46E91D931393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellMiddleSelected@2x.png"; path = "Global/@2x/CustomBackgroundForCellMiddleSelected@2x.png"; sourceTree = "<group>"; };
+		46E91D941393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellSingleSelected@2x.png"; path = "Global/@2x/CustomBackgroundForCellSingleSelected@2x.png"; sourceTree = "<group>"; };
+		46E91D951393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellTopSelected@2x.png"; path = "Global/@2x/CustomBackgroundForCellTopSelected@2x.png"; sourceTree = "<group>"; };
 		46E96E31138370A30085DCB6 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
 		46E96E32138370A30085DCB6 /* 08-chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-chat.png"; sourceTree = "<group>"; };
 		46E96E33138370A30085DCB6 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
@@ -1227,6 +1243,10 @@
 				7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */,
 				7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */,
 				7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */,
+				46E91D921393E31900A35D5A /* CustomBackgroundForCellBottomSelected@2x.png */,
+				46E91D931393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png */,
+				46E91D941393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png */,
+				46E91D951393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png */,
 				46193155138552A600EEB664 /* HomeBubbleBackground.png */,
 				46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */,
 				464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */,
@@ -1247,6 +1267,10 @@
 				7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */,
 				7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */,
 				7C2234B413810DFD006F847E /* CustomBackgroundForCellTop.png */,
+				46E91D8A1393E30300A35D5A /* CustomBackgroundForCellBottomSelected.png */,
+				46E91D8B1393E30300A35D5A /* CustomBackgroundForCellMiddleSelected.png */,
+				46E91D8C1393E30400A35D5A /* CustomBackgroundForCellSingleSelected.png */,
+				46E91D8D1393E30500A35D5A /* CustomBackgroundForCellTopSelected.png */,
 			);
 			name = "@1x";
 			sourceTree = "<group>";
@@ -2713,6 +2737,14 @@
 				46C6B552138D108D0079C514 /* Ipad_setting.png in Resources */,
 				46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */,
 				46E91D891393DB2500A35D5A /* DeleteButton@2x.png in Resources */,
+				46E91D8E1393E30500A35D5A /* CustomBackgroundForCellBottomSelected.png in Resources */,
+				46E91D8F1393E30500A35D5A /* CustomBackgroundForCellMiddleSelected.png in Resources */,
+				46E91D901393E30500A35D5A /* CustomBackgroundForCellSingleSelected.png in Resources */,
+				46E91D911393E30500A35D5A /* CustomBackgroundForCellTopSelected.png in Resources */,
+				46E91D961393E31900A35D5A /* CustomBackgroundForCellBottomSelected@2x.png in Resources */,
+				46E91D971393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png in Resources */,
+				46E91D981393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png in Resources */,
+				46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
