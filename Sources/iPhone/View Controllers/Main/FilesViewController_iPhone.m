@@ -36,11 +36,15 @@
 
 -(void)startRetrieveDirectoryContent {
     
+    NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
+    
     if (_filesProxy == nil) _filesProxy = [[FilesProxy alloc] init];
     
     if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory];
     
     _arrayContentOfRootFile = [_filesProxy getPersonalDriveContent:_rootFile];
+    
+    [pool release];
     
     //Call in the main thread update method
     [self performSelectorOnMainThread:@selector(contentDirectoryIsRetrieved) withObject:nil waitUntilDone:NO];
