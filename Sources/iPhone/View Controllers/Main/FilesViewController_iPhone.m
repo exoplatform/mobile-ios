@@ -378,7 +378,8 @@
                                                                                                         withString:@"%20"]];
 		eXoWebViewController* fileWebViewController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController"
                                                                                                bundle:nil 
-                                                                                                  url:urlOfTheFileToOpen];
+                                                                                                  url:urlOfTheFileToOpen
+                                                                                             fileName:fileToBrowse.fileName];
 		[self.navigationController pushViewController:fileWebViewController animated:YES];     
 	}
 	

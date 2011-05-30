@@ -15,6 +15,7 @@
 	UILabel*	_statusLabel;	//Loding label
 	UIActivityIndicatorView* _progressIndicator;	//Loading indicator
 	NSURL* _url;	//File, gadget URL
+    NSString* _fileName; //Name of the file to display
 	int			_selectedLanguage;	//Current language index
 	NSDictionary*	_dictLocalize;	//Language dictionary
 	eXoApplicationsViewController *_delegate;	//Main app view controller
@@ -26,8 +27,10 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView* _progressIndicator;
 @property (nonatomic, retain) eXoApplicationsViewController *_delegate;
 
-//Constructor
+//Constructors
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;
+- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName;
+
 
 @end
 

@@ -22,12 +22,24 @@
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL 
 {
 	[super initWithNibName:nibName bundle:nibBundle];
-	_url = defaultURL;
+	_url = [defaultURL copy];
 
 	return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated 
+// custom init method to allow URL to be passed
+- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName
+{
+	[self initWithNibAndUrl:nibName bundle:nibBundle url:defaultURL]; 
+
+	_fileName = [fileName copy];
+    self.title = _fileName;
+
+    
+	return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated 
 {
 	NSURLRequest* request;
 	if(_url == nil)
@@ -46,7 +58,6 @@
 	else
 	{
 		request = [[NSURLRequest alloc] initWithURL:_url];
-		self.title = [_delegate._dictLocalize objectForKey:@"FileViewer"];
 		NSHTTPURLResponse* response;
 		NSError* error;
 		
@@ -96,6 +107,8 @@
 	[_webView release];
 	[_statusLabel release];
 	[_progressIndicator release];
+    [_url release];
+    [_fileName release];
 	
     [super dealloc];
 }
