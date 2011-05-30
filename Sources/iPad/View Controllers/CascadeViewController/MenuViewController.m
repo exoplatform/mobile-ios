@@ -156,6 +156,10 @@
 
 - (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation {
     _footer.frame = CGRectMake(0,self.view.frame.size.height-kHeightForFooter,self.view.frame.size.width,kHeightForFooter);
+    if (_messengerViewController) 
+    {
+        [_messengerViewController changeOrientation:interfaceOrientation];
+    }
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
@@ -279,21 +283,15 @@
     
     switch (indexPath.row) {
         case 0:
-            // chat
+            // dashboard
             if (_messengerViewController == nil) 
             {
                 _messengerViewController = [[MessengerViewController alloc] initWithNibName:@"MessengerViewController" bundle:nil];
-                //[_messengerViewController setDelegate:self];
-                
-            }
-            
-            if (_nvMessengerViewController == nil) 
-            {
-                _nvMessengerViewController = [[UINavigationController alloc] initWithRootViewController:_messengerViewController];
+                [_messengerViewController setDelegate:self];
             }
             
             [_messengerViewController initMessengerParameters];
-            [_messengerViewController._tblvUsers reloadData];
+            //[_messengerViewController._tblvUsers reloadData];
             
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_messengerViewController 
                                                                                    invokeByController:self 
