@@ -8,6 +8,7 @@
 
 #import "FilesViewController_iPhone.h"
 #import "eXoWebViewController.h"
+#import "CustomBackgroundForCell_iPhone.h"
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -150,6 +151,12 @@
     [_hudFolder setAllowSuperviewInteraction:YES];
 	[self.view addSubview:_hudFolder.view];
     
+    //Set the background Color of the view
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    self.tableView.backgroundView = backgroundView;
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -233,9 +240,9 @@
 {
     
     static NSString *kCellIdentifier = @"CellIdentifierForFiles";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+        CustomBackgroundForCell_iPhone *cell =  (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
         if(cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+            cell = [[[CustomBackgroundForCell_iPhone alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
             
             UIImageView* imgViewFile = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 40, 40)];
             cell.tag = kTagForCellSubviewImageView;
@@ -244,6 +251,7 @@
             
             UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 200.0, 20.0)];
             titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+            titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.tag = kTagForCellSubviewTitleLabel;
             [cell addSubview:titleLabel];
             [titleLabel release];
@@ -291,6 +299,9 @@
         }
       */  
         
+    //Customize the cell background
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    
         return cell;
     
 
