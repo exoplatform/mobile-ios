@@ -130,6 +130,8 @@
 		46DA10B41386CE98008DA976 /* SettingsIpadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */; };
 		46DA10B51386CE98008DA976 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */; };
 		46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */; };
+		46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D861393DB1B00A35D5A /* DeleteButton.png */; };
+		46E91D891393DB2500A35D5A /* DeleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D881393DB2500A35D5A /* DeleteButton@2x.png */; };
 		46E96E53138370A30085DCB6 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E31138370A30085DCB6 /* 06-magnify.png */; };
 		46E96E54138370A30085DCB6 /* 08-chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E32138370A30085DCB6 /* 08-chat.png */; };
 		46E96E55138370A30085DCB6 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E33138370A30085DCB6 /* 111-user.png */; };
@@ -163,7 +165,6 @@
 		7C2234BE13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */; };
 		7C2234BF13810E07006F847E /* CustomBackgroundForCellSingle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */; };
 		7C2234C013810E07006F847E /* CustomBackgroundForCellTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */; };
-		7C2F4D41135E78EC00DF1FA9 /* eXoPlatform.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */; };
 		7C3BD1A01370FE1700380828 /* ActivityStreamsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */; };
 		7C3BD1A11370FE1700380828 /* ChatViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1991370FE1700380828 /* ChatViewController_iPad.m */; };
 		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; };
@@ -653,6 +654,8 @@
 		46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIpadIcon.png; sourceTree = "<group>"; };
 		46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		46E91D861393DB1B00A35D5A /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteButton.png; path = "Settings/@1x/DeleteButton.png"; sourceTree = "<group>"; };
+		46E91D881393DB2500A35D5A /* DeleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DeleteButton@2x.png"; path = "Settings/@2x/DeleteButton@2x.png"; sourceTree = "<group>"; };
 		46E96E31138370A30085DCB6 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
 		46E96E32138370A30085DCB6 /* 08-chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-chat.png"; sourceTree = "<group>"; };
 		46E96E33138370A30085DCB6 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
@@ -698,7 +701,6 @@
 		7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellMiddle@2x.png"; path = "Global/@2x/CustomBackgroundForCellMiddle@2x.png"; sourceTree = "<group>"; };
 		7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellSingle@2x.png"; path = "Global/@2x/CustomBackgroundForCellSingle@2x.png"; sourceTree = "<group>"; };
 		7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellTop@2x.png"; path = "Global/@2x/CustomBackgroundForCellTop@2x.png"; sourceTree = "<group>"; };
-		7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = eXoPlatform.plist; sourceTree = SOURCE_ROOT; };
 		7C3BD1961370FE1700380828 /* ActivityStreamsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamsViewController_iPad.h; sourceTree = "<group>"; };
 		7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamsViewController_iPad.m; sourceTree = "<group>"; };
 		7C3BD1981370FE1700380828 /* ChatViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController_iPad.h; sourceTree = "<group>"; };
@@ -1019,7 +1021,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				46C6B525138CAC2B0079C514 /* AudioToolbox.framework */,
 				8947351C13375E1800B0AD11 /* Other Sources */,
 				89300A6C1336EF6200804D3B /* Sources */,
 				894733BB13370D7C00B0AD11 /* Resources */,
@@ -1044,6 +1045,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */,
+				46C6B525138CAC2B0079C514 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1452,6 +1454,31 @@
 			path = "@1x";
 			sourceTree = "<group>";
 		};
+		46E91D831393DAC100A35D5A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				46E91D841393DACC00A35D5A /* @1x */,
+				46E91D851393DAD500A35D5A /* @2x */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		46E91D841393DACC00A35D5A /* @1x */ = {
+			isa = PBXGroup;
+			children = (
+				46E91D861393DB1B00A35D5A /* DeleteButton.png */,
+			);
+			name = "@1x";
+			sourceTree = "<group>";
+		};
+		46E91D851393DAD500A35D5A /* @2x */ = {
+			isa = PBXGroup;
+			children = (
+				46E91D881393DB2500A35D5A /* DeleteButton@2x.png */,
+			);
+			name = "@2x";
+			sourceTree = "<group>";
+		};
 		46E96E30138370A30085DCB6 /* CascadeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1835,7 +1862,6 @@
 			children = (
 				464C14A8138AB80B0001CBC8 /* Entitlements.plist */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
-				7C2F4D40135E78EC00DF1FA9 /* eXoPlatform.plist */,
 				46616C70137C729400D53D3D /* ThirdPart */,
 				894733BC13370D7C00B0AD11 /* HowToUse */,
 				894733BD13370D7C00B0AD11 /* Images */,
@@ -1914,6 +1940,7 @@
 		894733F913370F4F00B0AD11 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				46E91D831393DAC100A35D5A /* Settings */,
 				460736D3137C2F1C00D77DB9 /* Authenticate */,
 				894733FA13370F4F00B0AD11 /* Chat */,
 				8947341013370F5000B0AD11 /* Dashboard.png */,
@@ -2497,6 +2524,13 @@
 				8947346A13370F5000B0AD11 /* RightVertical.png in Resources */,
 				8947346B13370F5000B0AD11 /* Send.png in Resources */,
 				8947346C13370F5000B0AD11 /* SendBtn.png in Resources */,
+				46DA10A31386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png in Resources */,
+				46DA10A41386CE98008DA976 /* AuthenticateCheckmarkiPhoneOn.png in Resources */,
+				46DA10A51386CE98008DA976 /* AuthenticateCredentialsIconIpadOff.png in Resources */,
+				46DA10A61386CE98008DA976 /* AuthenticateCredentialsIconIpadOn.png in Resources */,
+				46DA10A71386CE98008DA976 /* AuthenticateServersIconIpadOff.png in Resources */,
+				46DA10A81386CE98008DA976 /* AuthenticateServersIconIpadOn.png in Resources */,
+				46DA10A91386CE98008DA976 /* AuthenticateSettingsIconIpad.png in Resources */,
 				8947346D13370F5000B0AD11 /* TextInput.png in Resources */,
 				8947346E13370F5000B0AD11 /* tl.png in Resources */,
 				8947346F13370F5000B0AD11 /* TopHorizontal.png in Resources */,
@@ -2575,7 +2609,6 @@
 				7CE839A913446DAB00FF5B7A /* iPadServerEditingViewController.xib in Resources */,
 				7CE839AA13446DAB00FF5B7A /* iPadServerManagerViewController.xib in Resources */,
 				7CE839AF1344873500FF5B7A /* iPadSettingViewController.xib in Resources */,
-				7C2F4D41135E78EC00DF1FA9 /* eXoPlatform.plist in Resources */,
 				46D97B3013742B7F00F71E82 /* Default.png in Resources */,
 				46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */,
 				469597F71377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png in Resources */,
@@ -2654,13 +2687,6 @@
 				46E96E5C138370A30085DCB6 /* glow.png in Resources */,
 				461931541385529D00EEB664 /* HomeBubbleBackground@2x.png in Resources */,
 				46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */,
-				46DA10A31386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png in Resources */,
-				46DA10A41386CE98008DA976 /* AuthenticateCheckmarkiPhoneOn.png in Resources */,
-				46DA10A51386CE98008DA976 /* AuthenticateCredentialsIconIpadOff.png in Resources */,
-				46DA10A61386CE98008DA976 /* AuthenticateCredentialsIconIpadOn.png in Resources */,
-				46DA10A71386CE98008DA976 /* AuthenticateServersIconIpadOff.png in Resources */,
-				46DA10A81386CE98008DA976 /* AuthenticateServersIconIpadOn.png in Resources */,
-				46DA10A91386CE98008DA976 /* AuthenticateSettingsIconIpad.png in Resources */,
 				46DA10AA1386CE98008DA976 /* ActivityStreamIpadIcon.png in Resources */,
 				46DA10AB1386CE98008DA976 /* ActivityStreamIpadIconActive.png in Resources */,
 				46DA10AC1386CE98008DA976 /* bgPatternIPad.png in Resources */,
@@ -2685,6 +2711,8 @@
 				46C6B550138D108D0079C514 /* Ipad_exo_black.png in Resources */,
 				46C6B551138D108D0079C514 /* Ipad_logout.png in Resources */,
 				46C6B552138D108D0079C514 /* Ipad_setting.png in Resources */,
+				46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */,
+				46E91D891393DB2500A35D5A /* DeleteButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
