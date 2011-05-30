@@ -149,22 +149,22 @@
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    _interfaceOrientation = interfaceOrientation;
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        //[_launcherView setFrame:CGRectMake(0, 0, 768, 960)];
-        //_launcherView.columnCount = 4;
-        [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 768, 960)];
-        [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 768, 960)];
-	}
-	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{
-        //[_launcherView setFrame:CGRectMake(0, 0, 1024, 704)];
-        //_launcherView.columnCount = 5;
-        [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 1024, 704)];
-        [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 1024, 704)];
-	}
-    [self moveView];
+//    _interfaceOrientation = interfaceOrientation;
+//    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+//	{
+//        //[_launcherView setFrame:CGRectMake(0, 0, 768, 960)];
+//        //_launcherView.columnCount = 4;
+//        [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 768, 960)];
+//        [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 768, 960)];
+//	}
+//	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+//	{
+//        //[_launcherView setFrame:CGRectMake(0, 0, 1024, 704)];
+//        //_launcherView.columnCount = 5;
+//        [_nvMessengerViewController.view setFrame:CGRectMake(0, 0, 1024, 704)];
+//        [_messengerViewController._tblvUsers setFrame:CGRectMake(0, 0, 1024, 704)];
+//	}
+//    [self moveView];
 }
 
 
@@ -206,14 +206,14 @@
         [_messengerViewController._tblvUsers reloadData];
         [self.navigationController.view addSubview:_nvMessengerViewController.view];
         
-//        if ([self.navigationController.viewControllers containsObject:_messengerViewController])
-//        {
-//            [self.navigationController popToViewController:_messengerViewController animated:YES];
-//        }
-//        else
-//        {
-//            [self.navigationController pushViewController:_messengerViewController animated:YES];
-//        }
+        if ([self.navigationController.viewControllers containsObject:_messengerViewController])
+        {
+            [self.navigationController popToViewController:_messengerViewController animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:_messengerViewController animated:YES];
+        }
     
     }
     
