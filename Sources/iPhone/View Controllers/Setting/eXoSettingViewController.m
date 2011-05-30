@@ -131,9 +131,9 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     
     self.tableView.backgroundView = backgroundView;
         
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0./255 
-                                                                          green:106./255 
-                                                                           blue:175./255 
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:122./255 
+                                                                          green:122./255 
+                                                                           blue:122./255 
                                                                           alpha:1.]];
     
     /* //Customize the Navigation Bar appaerance
