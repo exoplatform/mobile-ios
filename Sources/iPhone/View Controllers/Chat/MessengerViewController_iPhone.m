@@ -255,6 +255,9 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 
 - (void)setChatUsers:(NSArray*)arrUsers
 {
+    
+    [_arrChatUsers removeAllObjects];
+    
 	for(int i = 0; i < [arrUsers count]; i++)
 	{
 		eXoChatUser* chatUser = [[eXoChatUser alloc] init];
@@ -322,13 +325,15 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
         [imgView release];
     }
 
-	XMPPUser *user = [_arrUsers objectAtIndex:indexPath.row];
+	eXoChatUser* exochatuser = [_arrChatUsers objectAtIndex:indexPath.row];
+    XMPPUser* xmppUser = [exochatuser getXmppUser];
+	
 	
 	UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
-	titleLabel.text = [user nickname];
+	titleLabel.text = [xmppUser nickname];
 
     UIImageView* imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
-	if([user isOnline])
+	if([xmppUser isOnline])
 	{	
 		titleLabel.textColor = [UIColor blueColor];
 		imgView.image = [UIImage imageNamed:@"onlineuser.png"];
@@ -366,7 +371,7 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
     
 	//if(_delegate && [_delegate respondsToSelector:@selector(showChatWindowWithXMPPUser: listMsg:)])
 	{
-		XMPPUser* xmppUser = [_arrUsers objectAtIndex:indexPath.row];
+//		XMPPUser* xmppUser = [_arrUsers objectAtIndex:indexPath.row];
 		//_delegate._currentChatUser = [xmppUser address];
 		[_msgCount replaceObjectAtIndex:indexPath.row withObject:@"0"];
 		[_tblvUsersList reloadData];
@@ -389,6 +394,7 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
         else
         {
             [self.navigationController pushViewController:_chatWindowViewController_iPhone animated:YES];
+            [_chatWindowViewController_iPhone setTitle:[[exochatuser getXmppUser] nickname]];
         }
 	}
 }
