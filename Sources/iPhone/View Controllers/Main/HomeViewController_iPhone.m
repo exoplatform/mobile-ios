@@ -28,6 +28,7 @@
 #import "eXoSettingViewController.h"
 #import "Connection.h"
 #import "Gadget_iPhoneViewController.h"
+#import "MessengerViewController_iPhone.h"
 
 
 #import "AppDelegate_iPhone.h"
@@ -144,9 +145,7 @@
 // TTLauncherViewDelegate
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item 
 {
-    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
-    
-    
+//    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
     
     if ([item.title isEqualToString:@"Activity Streams"]) 
     {
@@ -156,6 +155,9 @@
     if ([item.title isEqualToString:@"Chat"]) 
     {
         //Start the Chat
+        MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil delegate:self];
+//        [messengerViewController_iPhone initMessengerParametersWithDelegate:self]; 
+        [self.navigationController pushViewController:messengerViewController_iPhone animated:YES];
     }
     
     if ([item.title isEqualToString:@"Documents"]) 
@@ -172,17 +174,7 @@
         //Start Dashboard
         
         DashboardViewController_iPhone *dashboardController = [[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil];
-        
-//        [dashboardController._arrGadgets removeAllObjects];
-//        dashboardController._arrGadgets = [[_conn getItemsInDashboard] retain];	
         [self.navigationController pushViewController:dashboardController animated:YES];
-        
-        
-//        [map from: @"tt://dashboard"
-//           parent: @"tt://homeview"
-// toViewController: dashboardController
-//         selector: nil
-//       transition: 0];
     }
     
     if([item.title isEqualToString:@"Settings"]) 

@@ -1,12 +1,12 @@
 //
-//  eXoChatWindow.m
+//  ChatWindowViewController_iPhone.m
 //  eXoApp
 //
 //  Created by exo on 9/8/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "eXoChatWindow.h"
+#import "ChatWindowViewController_iPhone.h"
 #import "eXoApplicationsViewController.h"
 #import "DDXML.h"
 #import "XMPPUser.h"
@@ -14,13 +14,14 @@
 #import "XMPPClient.h"
 #import "XMPPElement.h"
 #import "defines.h"
+#import "MessengerViewController_iPhone.h"
 
 #define BACKGROUNDCOLOR @"#E9E9E9"
 #define CHATBOX @"#F7F7F7"
 
 
 // UTILS Methods
-/*
+
 NSString* processMsg_iPhone(NSString* message)
 {
 	NSMutableString *returnStr = [[NSMutableString alloc] initWithString:@""];
@@ -128,20 +129,34 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	
 	return tempStr;
 }
-*/
+
 
 // Implementation
 
 
-@implementation eXoChatWindow
+@implementation ChatWindowViewController_iPhone
 
 
 @synthesize _xmppUser, _arrChatUsers;
 
-- (void)initChatWindowWithDelegate:(eXoApplicationsViewController *)delegate andXMPPClient:(XMPPClient*)xmppClient 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+{
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
+	{
+		// Custom initialization
+        
+	}
+	return self;
+}
+
+
+//- (void)initChatWindowWithDelegate:(eXoApplicationsViewController *)delegate andXMPPClient:(XMPPClient*)xmppClient andExoChatUser:(eXoChatUser*)exoChatUser listMsg:(NSMutableDictionary *)listMsg
+- (void)initChatWindowWithDelegate:(MessengerViewController_iPhone *)delegate andXMPPClient:(XMPPClient*)xmppClient 
 					andExoChatUser:(eXoChatUser*)exoChatUser listMsg:(NSMutableDictionary *)listMsg
 {
 
+    _delegate = delegate;
+    
 	if(iconChatMe == nil)
 	{
 		iconChatMe = imageStr_iPhone(@"me", @"png");
@@ -154,29 +169,34 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 		bottomHorizontalStr = imageStr_iPhone(@"BottomHorizontal", @"png");	
 	}
 	
+    /*
 	_delegate = delegate;
 	[self addSubview:_delegate._btnChatSend];
 	[self bringSubviewToFront:_delegate._btnChatSend];
-	
+	*/
+    
 	if(!_arrMessages)
+    {
 		_arrMessages = [[NSMutableArray alloc] init];
-	
+	}
 	_xmppClient = xmppClient;
 	_xmppUser = [exoChatUser getXmppUser];
 	_strMessage = @"";
 	
-	_arrMessages = [[NSMutableArray alloc] init];
-	_arrMessages = [exoChatUser getArrMessages];
+	//_arrMessages = [[NSMutableArray alloc] init];
+	//_arrMessages = [exoChatUser getArrMessages];
 	
+    /*
 	if(_delegate._isNewMsg)
 		_newMsgImg.hidden = FALSE;
 	else
 		_newMsgImg.hidden = TRUE;
-	
+	*/
 	_bShowInputMsgKeyboard = NO;
 
+    /*
 	[[[self delegate] navigationItem] setRightBarButtonItem:_delegate._btnClearMsg];
-	
+	*/
 	
 	UIFont *font = [UIFont systemFontOfSize:14];
 	_txtViewMsg.font = font;
@@ -294,7 +314,8 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	
 }
 
-- (void)onBtnSendMsg
+//- (void)onBtnSendMsg
+- (IBAction)onBtnSendMsg:(id)sender
 {
 
 	if([_txtViewMsg.text isEqualToString:@""])
@@ -329,8 +350,6 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	[_txtViewMsg setText:@""];
 	
 	[_delegate updateForEachExoChatUser:_xmppUser withArrMsg:_arrMessages withHtmlStr:_chatHtmlStr];
-	
-	
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -353,7 +372,9 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	NSRange range = [from rangeOfString:@"/"];
 	if(range.length > 0)
 		from = [from substringToIndex:range.location];
-	if(![from isEqualToString:[[_xmppUser jid] full]])
+	
+    /*
+    if(![from isEqualToString:[[_xmppUser jid] full]])
 	{
 		if(_delegate._isNewMsg)
 			_newMsgImg.hidden = FALSE;
@@ -362,7 +383,7 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 		
 		return;
 	}
-		
+	*/	
 	
 	NSString *msg = [listMsg objectForKey: from];
 	[listMsg setObject:@"" forKey:from];
@@ -411,18 +432,27 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 		
 }
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [self moveFrameUp:YES];
+    return YES;
+}
+
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-	NSLog(@"test");
+	[self moveFrameUp:NO];
 	return YES;
 }
 
 -(void)backToChatList
 {
+    /*
 	_delegate._currentChatUser = @"";
 	_delegate.navigationItem.title = @"Chat";
+    */ 
 	[_txtViewMsg resignFirstResponder];
-	self.frame = CGRectMake(0, 0, 320, 460);
+	//self.frame = CGRectMake(0, 0, 320, 460);
+    self.view.frame = CGRectMake(0, 0, 320, 460);
 }
 
 - (void)moveFrameUp:(BOOL)bUp
@@ -432,7 +462,8 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 	
     // Make changes to the view's frame inside the animation block. They will be animated instead
     // of taking place immediately.
-    CGRect rect = self.frame;
+    //CGRect rect = self.frame;
+    CGRect rect = self.view.frame;
 	
     if (bUp)
 	{
@@ -455,7 +486,8 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 		rect.size.height -= kOFFSET_FOR_KEYBOARD;
     }
 	
-    self.frame = rect;
+    //self.frame = rect;
+    self.view.frame = rect;
 	[_chatWebView loadHTMLString:_chatHtmlStr baseURL:nil];
 	[UIView commitAnimations];	
 }

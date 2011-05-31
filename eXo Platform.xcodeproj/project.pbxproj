@@ -187,6 +187,10 @@
 		7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */; };
 		7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C61BB133B3BAE005A365A /* Configuration.m */; };
 		7CB8F466137A66D200149B65 /* DashboardViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */; };
+		7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */; };
+		7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */; };
+		7CE656BA1394D2D200F088A1 /* ChatWindowViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */; };
+		7CE656BB1394D2D200F088A1 /* MessengerViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */; };
 		7CE839A2134468A000FF5B7A /* iPadServerAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399D1344689F00FF5B7A /* iPadServerAddingViewController.m */; };
 		7CE839A3134468A000FF5B7A /* iPadServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */; };
 		7CE839A613446D9500FF5B7A /* iPadServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */; };
@@ -747,6 +751,12 @@
 		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
 		7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPad.xib; sourceTree = "<group>"; };
+		7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatWindowViewController_iPhone.xib; sourceTree = "<group>"; };
+		7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessengerViewController_iPhone.xib; sourceTree = "<group>"; };
+		7CE656B61394D2D200F088A1 /* ChatWindowViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController_iPhone.h; sourceTree = "<group>"; };
+		7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController_iPhone.m; sourceTree = "<group>"; };
+		7CE656B81394D2D200F088A1 /* MessengerViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController_iPhone.h; sourceTree = "<group>"; };
+		7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController_iPhone.m; sourceTree = "<group>"; };
 		7CE8399C1344689F00FF5B7A /* iPadServerAddingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerAddingViewController.h; sourceTree = "<group>"; };
 		7CE8399D1344689F00FF5B7A /* iPadServerAddingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerAddingViewController.m; sourceTree = "<group>"; };
 		7CE8399E134468A000FF5B7A /* iPadServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerEditingViewController.h; sourceTree = "<group>"; };
@@ -1599,6 +1609,8 @@
 			children = (
 				46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */,
 				4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */,
+				7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */,
+				7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */,
 				89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */,
 				8937A3511338994400D8B474 /* eXoApplicationsViewController.xib */,
 				7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */,
@@ -1805,6 +1817,10 @@
 		8947337C13370B4500B0AD11 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				7CE656B61394D2D200F088A1 /* ChatWindowViewController_iPhone.h */,
+				7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */,
+				7CE656B81394D2D200F088A1 /* MessengerViewController_iPhone.h */,
+				7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */,
 				8947337D13370B4500B0AD11 /* eXoChatView.h */,
 				8947337E13370B4500B0AD11 /* eXoChatView.m */,
 				8947337F13370B4500B0AD11 /* eXoChatWindow.h */,
@@ -2745,6 +2761,8 @@
 				46E91D971393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png in Resources */,
 				46E91D981393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png in Resources */,
 				46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */,
+				7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */,
+				7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2867,6 +2885,8 @@
 				46C6B521138CA87F0079C514 /* ATMProgressLayer.m in Sources */,
 				46C6B522138CA87F0079C514 /* ATMSoundFX.m in Sources */,
 				46C6B523138CA87F0079C514 /* ATMTextLayer.m in Sources */,
+				7CE656BA1394D2D200F088A1 /* ChatWindowViewController_iPhone.m in Sources */,
+				7CE656BB1394D2D200F088A1 /* MessengerViewController_iPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

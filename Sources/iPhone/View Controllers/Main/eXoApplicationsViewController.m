@@ -11,7 +11,7 @@
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "DataProcess.h"
-#import "eXoFilesView.h"
+//#import "eXoFilesView.h"
 #import "Connection.h"
 #import "AuthenticateViewController.h"
 #import "eXoChatView.h"
@@ -31,7 +31,7 @@
 #import "DDXML.h"
 #import "Gadget_iPhone.h"
 #import "eXoGadgetViewController.h"
-#import "eXoFileActionViewController.h"
+//#import "eXoFileActionViewController.h"
 
 
 
