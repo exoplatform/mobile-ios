@@ -289,6 +289,11 @@ NSString* createChatContent(NSString *chatIcon, NSString *chatName, NSString *co
 }
 
 
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self backToChatList];
+}
+
 - (eXoApplicationsViewController *)delegate
 {
 	return _delegate;
