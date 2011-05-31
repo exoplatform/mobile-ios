@@ -25,6 +25,7 @@
 - (void)startRetrieveDirectoryContent;
 - (void)setTitleForFilesViewController;
 - (void)contentDirectoryIsRetrieved;
+- (void)showActionsPanelFromNavigationBarButton;
 
 @end
 
@@ -167,8 +168,11 @@
     //Set the title of the view controller
     [self setTitleForFilesViewController];
         
+    //Add the "Actions" button
+    //TODO localize this button
+    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithTitle:@"Actions" style:UIBarButtonItemStylePlain target:self action:@selector(showActionsPanelFromNavigationBarButton)];
     
-       
+    [self.navigationItem setRightBarButtonItem:actionButton];
     
     
 }
@@ -434,7 +438,40 @@
 }
 
 
-#pragma mark - Gesture Recognizer trigger
+#pragma mark - Panel Actions
+
+-(void) showActionsPanelFromNavigationBarButton {
+
+    //Check if the _actionsViewController is already created or not
+    if (_actionsViewController == nil) {
+        
+        _actionsViewController = [[FileActionsViewController_iPhone alloc] initWithNibName:@"FileActionsViewController_iPhone" 
+                                                                                    bundle:nil 
+                                                                                      file:_rootFile 
+                                                                    enableDeleteThisFolder:YES
+                                                                                  delegate:self];
+        if (_maskingViewForActions ==nil) {
+            _maskingViewForActions = [[UIView alloc] initWithFrame:self.view.frame];
+            _maskingViewForActions.backgroundColor = [UIColor blackColor];
+            _maskingViewForActions.alpha = 0.45;
+            
+            //Add a Gesture Recognizer to remove the FileActionsPanel 
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideActionsPanel)];
+            [_maskingViewForActions addGestureRecognizer:tapGesture];
+            [tapGesture release];
+        }
+        
+    }
+    
+    _actionsViewController.fileToApplyAction = _rootFile ;
+    
+    [self.view addSubview:_maskingViewForActions];
+	[self.view addSubview:_actionsViewController.view];
+    self.tableView.scrollEnabled = NO;
+
+}
+
+
 
 -(void) hideActionsPanel {
     [_actionsViewController.view removeFromSuperview];
