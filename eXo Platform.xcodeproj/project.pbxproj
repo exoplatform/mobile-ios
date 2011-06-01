@@ -2936,8 +2936,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2965,8 +2965,8 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
 				SDKROOT = iphoneos4.3;
 			};
 			name = Debug;
@@ -2976,8 +2976,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -3006,8 +3006,8 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
 				SDKROOT = iphoneos4.3;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3046,8 +3046,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -3076,8 +3077,9 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
+				"PROVISIONING_PROFILE[sdk=*]" = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
 				SDKROOT = iphoneos4.3;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3116,8 +3118,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -3146,8 +3149,9 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
+				"PROVISIONING_PROFILE[sdk=*]" = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40EEFC3A-54DA-41B2-AA66-35A6D6A64BE3";
 				SDKROOT = iphoneos4.3;
 				VALIDATE_PRODUCT = YES;
 			};

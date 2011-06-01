@@ -61,7 +61,7 @@
 										<string key="NSFrame">{{24, 184}, {569, 225}}</string>
 										<reference key="NSSuperview" ref="963642831"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="586175362"/>
+										<reference key="NSNextKeyView" ref="1055870661"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 										<object class="NSCustomResource" key="IBUIImage">
@@ -225,14 +225,17 @@
 										<reference key="IBUIBackgroundColor" ref="426176812"/>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 									</object>
-									<object class="IBUIButton" id="586175362">
+									<object class="IBUIButton" id="424109607">
 										<reference key="NSNextResponder" ref="963642831"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{72, 110}, {109, 77}}</string>
+										<string key="NSFrame">{{190, 110}, {109, 77}}</string>
 										<reference key="NSSuperview" ref="963642831"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="424109607"/>
-										<reference key="IBUIBackgroundColor" ref="426176812"/>
+										<reference key="NSNextKeyView" ref="933514235"/>
+										<object class="NSColor" key="IBUIBackgroundColor">
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC40OTgwMzkyMTU4IDAuNDk4MDM5MjE1OCAwLjQ5ODAzOTIxNTgAA</bytes>
+										</object>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
@@ -254,28 +257,28 @@
 										<reference key="IBUINormalTitleShadowColor" ref="851842597"/>
 										<object class="NSCustomResource" key="IBUISelectedImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">AuthenticateCredentialsIconIPadOn.png</string>
+											<string key="NSResourceName">AuthenticateServersIconIpadOn.png</string>
 										</object>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">AuthenticateCredentialsIconIpadOff.png</string>
+											<string key="NSResourceName">AuthenticateServersIconIpadOff.png</string>
 										</object>
-										<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="823242219">
+										<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="927726793">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">AuthenticatePanelButtonBgOn.png</string>
 										</object>
-										<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="544670715">
+										<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">AuthenticatePanelButtonBgOff.png</string>
 										</object>
 									</object>
-									<object class="IBUIButton" id="424109607">
+									<object class="IBUIButton" id="1055870661">
 										<reference key="NSNextResponder" ref="963642831"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{190, 110}, {109, 77}}</string>
+										<string key="NSFrame">{{73, 110}, {109, 77}}</string>
 										<reference key="NSSuperview" ref="963642831"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="933514235"/>
+										<reference key="NSNextKeyView" ref="424109607"/>
 										<object class="NSColor" key="IBUIBackgroundColor">
 											<int key="NSColorSpace">1</int>
 											<bytes key="NSRGB">MC40OTgwMzkyMTU4IDAuNDk4MDM5MjE1OCAwLjQ5ODAzOTIxNTgAA</bytes>
@@ -295,16 +298,13 @@
 											<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="851842597"/>
-										<object class="NSCustomResource" key="IBUISelectedImage">
+										<object class="NSCustomResource" key="IBUISelectedImage" id="261876148">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">AuthenticateServersIconIpadOn.png</string>
+											<string key="NSResourceName">AuthenticateCredentialsIconIpadOn.png</string>
 										</object>
-										<object class="NSCustomResource" key="IBUINormalImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">AuthenticateServersIconIpadOff.png</string>
-										</object>
-										<reference key="IBUISelectedBackgroundImage" ref="823242219"/>
-										<reference key="IBUINormalBackgroundImage" ref="544670715"/>
+										<reference key="IBUINormalImage" ref="261876148"/>
+										<reference key="IBUISelectedBackgroundImage" ref="927726793"/>
+										<reference key="IBUINormalBackgroundImage" ref="927726793"/>
 									</object>
 								</object>
 								<string key="NSFrame">{{93, 157}, {609, 591}}</string>
@@ -469,15 +469,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">onBtnAccount:</string>
-						<reference key="source" ref="586175362"/>
-						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">230</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onBtnServerList:</string>
 						<reference key="source" ref="424109607"/>
 						<reference key="destination" ref="841351856"/>
@@ -495,19 +486,37 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_btnAccount</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="586175362"/>
-					</object>
-					<int key="connectionID">233</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_panelBackground</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="205846755"/>
 					</object>
 					<int key="connectionID">234</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onBtnServerList:</string>
+						<reference key="source" ref="1055870661"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">236</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_btnAccount</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="1055870661"/>
+					</object>
+					<int key="connectionID">237</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onBtnAccount:</string>
+						<reference key="source" ref="1055870661"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">238</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -557,7 +566,7 @@
 							<reference ref="370615931"/>
 							<reference ref="115461162"/>
 							<reference ref="205846755"/>
-							<reference ref="586175362"/>
+							<reference ref="1055870661"/>
 							<reference ref="424109607"/>
 						</object>
 						<reference key="parent" ref="883226068"/>
@@ -608,14 +617,14 @@
 						<reference key="parent" ref="933514235"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">228</int>
-						<reference key="object" ref="586175362"/>
-						<reference key="parent" ref="963642831"/>
-						<string key="objectName">Button - Panel - Crendentials</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">229</int>
 						<reference key="object" ref="424109607"/>
+						<reference key="parent" ref="963642831"/>
+						<string key="objectName">Button - Panel - Servers</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">235</int>
+						<reference key="object" ref="1055870661"/>
 						<reference key="parent" ref="963642831"/>
 						<string key="objectName">Button - Panel - Servers</string>
 					</object>
@@ -639,10 +648,10 @@
 					<string>195.IBPluginDependency</string>
 					<string>196.IBPluginDependency</string>
 					<string>224.IBPluginDependency</string>
-					<string>228.IBPluginDependency</string>
-					<string>228.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>229.IBPluginDependency</string>
 					<string>229.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
+					<string>235.IBPluginDependency</string>
+					<string>235.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>46.IBEditorWindowLastContentRect</string>
 					<string>46.IBPluginDependency</string>
 					<string>46.IBViewEditorWindowController.showingBoundsRectangles</string>
@@ -666,7 +675,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="2"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="0.0"/>
+					<real value="2"/>
 					<string>{{27, 28}, {902, 728}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<boolean value="YES"/>
@@ -684,7 +693,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">234</int>
+			<int key="maxID">238</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -910,8 +919,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>AuthenticateCredentialsIconIPadOn.png</string>
-				<string>AuthenticateCredentialsIconIpadOff.png</string>
+				<string>AuthenticateCredentialsIconIpadOn.png</string>
 				<string>AuthenticatePanelBg.png</string>
 				<string>AuthenticatePanelButtonBgOff.png</string>
 				<string>AuthenticatePanelButtonBgOn.png</string>
@@ -922,8 +930,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{16, 16}</string>
-				<string>{52, 60}</string>
+				<string>{48, 56}</string>
 				<string>{286, 122}</string>
 				<string>{63, 40}</string>
 				<string>{63, 40}</string>

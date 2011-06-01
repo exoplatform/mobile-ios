@@ -117,6 +117,8 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 
 -(void)startRetrieveUserList
 {
+    self.view.userInteractionEnabled = NO;
+    
     [_hudFolder setCaption:[NSString stringWithFormat:@"Loading user list of: %@",self.title]];
     [_hudFolder setActivity:YES];
     [_hudFolder show];
@@ -130,6 +132,8 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
     [_hudFolder setImage:[UIImage imageNamed:@"19-check"]];
     [_hudFolder update];
     [_hudFolder hideAfter:1.0];
+    
+    self.view.userInteractionEnabled = YES;
 }
 
 
