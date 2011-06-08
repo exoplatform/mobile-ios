@@ -48,7 +48,7 @@
 
 @implementation Activity
 
-@synthesize userID,title,body,lastUpdateDate,postedTime,likes,comments;
+@synthesize userID,title,body,lastUpdateDate,postedTime,nbLikes,nbComments;
 
 
 
@@ -279,6 +279,35 @@
                                            numberOfComments:1];
         
         
+        arrayOfActivities = [[NSMutableArray alloc] initWithObjects:act_01,
+                             act_02,
+                             act_03,
+                             act_04,
+                             act_05,
+                             act_06,
+                             act_07,
+                             act_08,
+                             act_09,
+                             act_10,
+                             act_11,
+                             act_12,
+                             act_13,
+                             act_14,
+                             act_15,
+                             act_16,
+                             act_17,
+                             act_18,
+                             act_19,
+                             act_20,
+                             act_21,
+                             act_22,
+                             act_23,
+                             act_24,
+                             act_24,
+                             act_25,
+                             act_26,
+                             act_27,                        
+                             nil];
         
         
         
