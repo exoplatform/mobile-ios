@@ -13,6 +13,7 @@
 #import "ChatWindowViewController.h"
 #import "MessengerViewController.h"
 #import "iPadSettingViewController.h"
+#import "ActivityStreamBrowseViewController_iPad.h"
 
 @class MenuHeaderView;
 
@@ -28,6 +29,8 @@
     
     
     DashboardViewController_iPad*   _dashboardViewController_iPad;
+    
+    ActivityStreamBrowseViewController_iPad* _activityViewController;
     
     Connection*                     _conn;
     

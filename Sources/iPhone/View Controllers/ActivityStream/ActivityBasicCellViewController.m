@@ -13,19 +13,10 @@
 
 @implementation ActivityBasicCellViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        _activity = [[Activity alloc] init];
-    }
-    return self;
-}
+
 
 - (void)dealloc
 {
-    [_activity release];
     [super dealloc];
 }
 
@@ -75,13 +66,12 @@
 
 - (void)setActivity:(Activity*)activity
 {
-    _activity = activity;
-    _imgvAvatar.imageURL = [NSURL URLWithString:_activity.avatarUrl];
+    _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];
     [[_imgvAvatar layer] setCornerRadius:10.0];
     [[_imgvAvatar layer] setMasksToBounds:YES];
     [[_imgvAvatar layer] setBorderColor:[UIColor whiteColor].CGColor];
     [[_imgvAvatar layer] setBorderWidth:2.0];
     
-    _lbMessage.text = _activity.title;
+    _lbMessage.text = [activity.title copy];
 }
 @end

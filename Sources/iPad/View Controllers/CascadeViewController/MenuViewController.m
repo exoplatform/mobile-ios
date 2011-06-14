@@ -39,10 +39,11 @@
 		
 		_cellContents = [[NSMutableArray alloc] init];
         
-        
+        //TODO Localize this strings
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, NSLocalizedString(@"Documents",@""), kCellText, nil]];
+        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, NSLocalizedString(@"Activity Stream",@""), kCellText, nil]];
         
         /*
         
@@ -77,7 +78,7 @@
         
         // Create the button
         UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
-        buttonLogout.frame = CGRectMake(10, 10, 39, 42);
+        buttonLogout.frame = CGRectMake(15, 10, 39, 42);
         buttonLogout.showsTouchWhenHighlighted = YES;
         
         // Now load the image and create the image view
@@ -283,7 +284,7 @@
     
     switch (indexPath.row) {
         case 0:
-            // dashboard
+            // messenger
             if (_messengerViewController == nil) 
             {
                 _messengerViewController = [[MessengerViewController alloc] initWithNibName:@"MessengerViewController" bundle:nil];
@@ -324,6 +325,12 @@
         
                 
         case 3:
+            //Activity Stream
+            _activityViewController = [[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil];
+
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityViewController 
+                                                                                   invokeByController:self 
+                                                                                     isStackStartView:TRUE];
             
             
             break;

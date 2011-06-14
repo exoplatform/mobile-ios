@@ -25,7 +25,7 @@
     if ((self =[super init])) {
         self.userID = _userID;
         self.avatarUrl = _avatarUrl;
-        self.title = [_title retain];
+        self.title = [_title copy];
         self.postedTime = _postedTime;
         self.body = _body;
         self.nbLikes = _numberOfLikes;

@@ -22,7 +22,7 @@
 #import "Three20UINavigator/TTURLObject.h"
 
 #import "FilesViewController_iPhone.h"
-#import "ActivityStreamViewController_iPhone.h"
+#import "ActivityStreamBrowseViewController_iPhone.h"
 #import "ChatViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
 #import "eXoSettingViewController.h"
@@ -149,8 +149,8 @@
     
     if ([item.title isEqualToString:@"Activity Streams"]) 
     {
-        ActivityStreamViewController_iPhone* _activityStreamViewController_iPhone = [[ActivityStreamViewController_iPhone alloc] initWithNibName:@"ActivityStreamViewController_iPhone" bundle:nil];
-        [self.navigationController pushViewController:_activityStreamViewController_iPhone animated:YES];
+        ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
+        [self.navigationController pushViewController:_activityStreamBrowseViewController_iPhone animated:YES];
     }
     
     if ([item.title isEqualToString:@"Chat"]) 

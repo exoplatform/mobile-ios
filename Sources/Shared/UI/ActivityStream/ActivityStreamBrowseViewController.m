@@ -1,31 +1,42 @@
 //
-//  ActivityStreamViewController_iPhone.m
+//  ActivityStreamBrowseViewController.m
 //  eXo Platform
 //
-//  Created by Tran Hoai Son on 4/22/11.
-//  Copyright 2011 home. All rights reserved.
+//  Created by Stévan Le Meur on 14/06/11.
+//  Copyright 2011 eXo. All rights reserved.
 //
 
-#import "ActivityStreamViewController_iPhone.h"
-#import "ActivityBasicTableViewCell.h"
-#import "ActivityBasicCellViewController.h"
+#import "ActivityStreamBrowseViewController.h"
 #import "MockSocial_Activity.h"
+#import "ActivityBasicCellViewController.h"
 
-@implementation ActivityStreamViewController_iPhone
+#define TEST_ON_MOCK 1
 
+
+@implementation ActivityStreamBrowseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _mockSocial_Activity = [[MockSocial_Activity alloc] init];
+        
+        
+
+        
+        
     }
     return self;
 }
 
 - (void)dealloc
 {
+    
+#if TEST_ON_MOCK        
+    [_mockSocial_Activity release];
+    _mockSocial_Activity = nil;
+#endif
+
     [super dealloc];
 }
 
@@ -40,19 +51,25 @@
 #pragma mark - View lifecycle
 
 /*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView
- {
- }
- */
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
+- (void)loadView
+{
+}
+*/
 
-/*
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad
- {
- [super viewDidLoad];
- }
- */
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    //Load Activities
+#if TEST_ON_MOCK        
+    _mockSocial_Activity = [[MockSocial_Activity alloc] init];
+#endif
+    
+}
+
 
 - (void)viewDidUnload
 {
@@ -67,39 +84,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+#pragma mark - Helpers methods
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
 {
-    CGRect rectTableView = tableView.frame;
-    float fWidth = 0;
-    float fHeight = 0;
-    
-    if (rectTableView.size.width > 320) 
-    {
-        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
-    }
-    else
-    {
-        fWidth = rectTableView.size.width - 100;
-    }
-    
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    if (theSize.height < 100) 
-    {
-        fHeight = 160;
-    }
-    else
-    {
-        fHeight = 50 + theSize.height;
-    }
-    
-    if (fHeight > 200) {
-        fHeight = 200;
-    }
-    return fHeight;
+    //Default value is 0, to force the developper to implement this method
+    return 0.0;
 }
 
 
-#pragma mark Table view methods
+#pragma mark - Table view Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
@@ -108,11 +102,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+    
+#if TEST_ON_MOCK        
     Activity* activity = [_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row];
     NSString* text = activity.title;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
     
     return  fHeight;
+#endif
+    
+    return 44.;
 }
 
 
@@ -140,10 +139,13 @@
     }
     
     ActivityBasicCellViewController* activityBasicCellViewController = [[ActivityBasicCellViewController alloc] initWithNibName:@"ActivityBasicCellViewController" bundle:nil];
+    
+#if TEST_ON_MOCK        
     Activity* activity = [_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row];
+#endif
     NSLog([NSString stringWithFormat:@"%d",indexPath.row],nil);
     NSString* text = activity.title;
-     
+    
     float fWidth = tableView.frame.size.width;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
     [activityBasicCellViewController.view setFrame:CGRectMake(0, 0, fWidth, fHeight)];
@@ -161,6 +163,7 @@
 {
     
 }
+
 
 
 @end

@@ -11,7 +11,7 @@
 @class Activity;
 @class EGOImageView;
 
-@interface ActivityBasicCellViewController : UIViewController {
+@interface ActivityBasicCellViewController : UITableViewCell {
 
     IBOutlet UILabel*               _lbUsername;
     IBOutlet UILabel*               _lbMessage;
@@ -23,8 +23,6 @@
     
     IBOutlet UIView*                _vMessageBg;
     IBOutlet UIImageView*           _imgvMessageBg;
-    
-    Activity*                       _activity;
 }
 
 - (void)setActivity:(Activity*)activity;
