@@ -183,10 +183,21 @@
 		7C50D4C8136F187B0011280D /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C3136F187B0011280D /* DDXMLElement.m */; };
 		7C50D4C9136F187B0011280D /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C5136F187B0011280D /* DDXMLNode.m */; };
 		7C50D4CC136F19000011280D /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4CB136F19000011280D /* NSStringAdditions.m */; };
-		7C5764881368032800C5F028 /* ActivityStreamsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764831368032200C5F028 /* ActivityStreamsViewController_iPhone.m */; };
 		7C5764891368032800C5F028 /* ChatViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764851368032500C5F028 /* ChatViewController_iPhone.m */; };
 		7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */; };
 		7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C61BB133B3BAE005A365A /* Configuration.m */; };
+		7CAB42DB13A7689F00CED7A3 /* ActivityBasicCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB42D613A7689F00CED7A3 /* ActivityBasicCellViewController.m */; };
+		7CAB42DC13A7689F00CED7A3 /* ActivityBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB42D813A7689F00CED7A3 /* ActivityBasicTableViewCell.m */; };
+		7CAB42DD13A7689F00CED7A3 /* ActivityStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB42DA13A7689F00CED7A3 /* ActivityStreamViewController.m */; };
+		7CAB42E113A768B400CED7A3 /* ActivityBasicCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42DE13A768B400CED7A3 /* ActivityBasicCellViewController.xib */; };
+		7CAB42E213A768B400CED7A3 /* ActivityBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42DF13A768B400CED7A3 /* ActivityBasicTableViewCell.xib */; };
+		7CAB42E313A768B400CED7A3 /* ActivityStreamViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42E013A768B400CED7A3 /* ActivityStreamViewController_iPhone.xib */; };
+		7CAB435813A769D200CED7A3 /* ActivityStreamViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435713A769D200CED7A3 /* ActivityStreamViewController_iPhone.m */; };
+		7CAB436813A76A7800CED7A3 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435C13A76A7800CED7A3 /* EGOCache.m */; };
+		7CAB436913A76A7800CED7A3 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435F13A76A7800CED7A3 /* EGOImageButton.m */; };
+		7CAB436A13A76A7800CED7A3 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB436213A76A7800CED7A3 /* EGOImageLoadConnection.m */; };
+		7CAB436B13A76A7800CED7A3 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB436413A76A7800CED7A3 /* EGOImageLoader.m */; };
+		7CAB436C13A76A7800CED7A3 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB436713A76A7800CED7A3 /* EGOImageView.m */; };
 		7CB8F466137A66D200149B65 /* DashboardViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */; };
 		7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */; };
 		7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */; };
@@ -744,8 +755,6 @@
 		7C50D4C6136F187B0011280D /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLPrivate.h; path = "Sources/Shared/Components/3-part/KissXML/DDXMLPrivate.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4CA136F19000011280D /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = "Sources/Shared/Components/3-part/KissXML/NSStringAdditions.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4CB136F19000011280D /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringAdditions.m; path = "Sources/Shared/Components/3-part/KissXML/NSStringAdditions.m"; sourceTree = SOURCE_ROOT; };
-		7C5764821368032000C5F028 /* ActivityStreamsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamsViewController_iPhone.h; sourceTree = "<group>"; };
-		7C5764831368032200C5F028 /* ActivityStreamsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamsViewController_iPhone.m; sourceTree = "<group>"; };
 		7C5764841368032300C5F028 /* ChatViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController_iPhone.h; sourceTree = "<group>"; };
 		7C5764851368032500C5F028 /* ChatViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController_iPhone.m; sourceTree = "<group>"; };
 		7C5764861368032700C5F028 /* DashboardViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController_iPhone.h; sourceTree = "<group>"; };
@@ -753,6 +762,27 @@
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
+		7CAB42D513A7689F00CED7A3 /* ActivityBasicCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityBasicCellViewController.h; sourceTree = "<group>"; };
+		7CAB42D613A7689F00CED7A3 /* ActivityBasicCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityBasicCellViewController.m; sourceTree = "<group>"; };
+		7CAB42D713A7689F00CED7A3 /* ActivityBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityBasicTableViewCell.h; sourceTree = "<group>"; };
+		7CAB42D813A7689F00CED7A3 /* ActivityBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityBasicTableViewCell.m; sourceTree = "<group>"; };
+		7CAB42D913A7689F00CED7A3 /* ActivityStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamViewController.h; sourceTree = "<group>"; };
+		7CAB42DA13A7689F00CED7A3 /* ActivityStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamViewController.m; sourceTree = "<group>"; };
+		7CAB42DE13A768B400CED7A3 /* ActivityBasicCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityBasicCellViewController.xib; sourceTree = "<group>"; };
+		7CAB42DF13A768B400CED7A3 /* ActivityBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityBasicTableViewCell.xib; sourceTree = "<group>"; };
+		7CAB42E013A768B400CED7A3 /* ActivityStreamViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamViewController_iPhone.xib; sourceTree = "<group>"; };
+		7CAB435613A769D200CED7A3 /* ActivityStreamViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamViewController_iPhone.h; sourceTree = "<group>"; };
+		7CAB435713A769D200CED7A3 /* ActivityStreamViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamViewController_iPhone.m; sourceTree = "<group>"; };
+		7CAB435B13A76A7800CED7A3 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		7CAB435C13A76A7800CED7A3 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
+		7CAB435E13A76A7800CED7A3 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
+		7CAB435F13A76A7800CED7A3 /* EGOImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageButton.m; sourceTree = "<group>"; };
+		7CAB436113A76A7800CED7A3 /* EGOImageLoadConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoadConnection.h; sourceTree = "<group>"; };
+		7CAB436213A76A7800CED7A3 /* EGOImageLoadConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoadConnection.m; sourceTree = "<group>"; };
+		7CAB436313A76A7800CED7A3 /* EGOImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoader.h; sourceTree = "<group>"; };
+		7CAB436413A76A7800CED7A3 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
+		7CAB436613A76A7800CED7A3 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
+		7CAB436713A76A7800CED7A3 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
 		7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPad.xib; sourceTree = "<group>"; };
 		7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatWindowViewController_iPhone.xib; sourceTree = "<group>"; };
 		7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessengerViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -1559,6 +1589,68 @@
 			path = CascadeViewController;
 			sourceTree = "<group>";
 		};
+		7CAB42D413A7689F00CED7A3 /* ActivityStream */ = {
+			isa = PBXGroup;
+			children = (
+				7CAB42D513A7689F00CED7A3 /* ActivityBasicCellViewController.h */,
+				7CAB42D613A7689F00CED7A3 /* ActivityBasicCellViewController.m */,
+				7CAB42D713A7689F00CED7A3 /* ActivityBasicTableViewCell.h */,
+				7CAB42D813A7689F00CED7A3 /* ActivityBasicTableViewCell.m */,
+				7CAB42D913A7689F00CED7A3 /* ActivityStreamViewController.h */,
+				7CAB42DA13A7689F00CED7A3 /* ActivityStreamViewController.m */,
+			);
+			path = ActivityStream;
+			sourceTree = "<group>";
+		};
+		7CAB435913A76A7800CED7A3 /* EGOImageLoading */ = {
+			isa = PBXGroup;
+			children = (
+				7CAB435A13A76A7800CED7A3 /* EGOCache */,
+				7CAB435D13A76A7800CED7A3 /* EGOImageButton */,
+				7CAB436013A76A7800CED7A3 /* EGOImageLoader */,
+				7CAB436513A76A7800CED7A3 /* EGOImageView */,
+			);
+			path = EGOImageLoading;
+			sourceTree = "<group>";
+		};
+		7CAB435A13A76A7800CED7A3 /* EGOCache */ = {
+			isa = PBXGroup;
+			children = (
+				7CAB435B13A76A7800CED7A3 /* EGOCache.h */,
+				7CAB435C13A76A7800CED7A3 /* EGOCache.m */,
+			);
+			path = EGOCache;
+			sourceTree = "<group>";
+		};
+		7CAB435D13A76A7800CED7A3 /* EGOImageButton */ = {
+			isa = PBXGroup;
+			children = (
+				7CAB435E13A76A7800CED7A3 /* EGOImageButton.h */,
+				7CAB435F13A76A7800CED7A3 /* EGOImageButton.m */,
+			);
+			path = EGOImageButton;
+			sourceTree = "<group>";
+		};
+		7CAB436013A76A7800CED7A3 /* EGOImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				7CAB436113A76A7800CED7A3 /* EGOImageLoadConnection.h */,
+				7CAB436213A76A7800CED7A3 /* EGOImageLoadConnection.m */,
+				7CAB436313A76A7800CED7A3 /* EGOImageLoader.h */,
+				7CAB436413A76A7800CED7A3 /* EGOImageLoader.m */,
+			);
+			path = EGOImageLoader;
+			sourceTree = "<group>";
+		};
+		7CAB436513A76A7800CED7A3 /* EGOImageView */ = {
+			isa = PBXGroup;
+			children = (
+				7CAB436613A76A7800CED7A3 /* EGOImageView.h */,
+				7CAB436713A76A7800CED7A3 /* EGOImageView.m */,
+			);
+			path = EGOImageView;
+			sourceTree = "<group>";
+		};
 		7CFD41061361367D00DD86E8 /* KissXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -1619,6 +1711,9 @@
 		8937A3501338994400D8B474 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				7CAB42DE13A768B400CED7A3 /* ActivityBasicCellViewController.xib */,
+				7CAB42DF13A768B400CED7A3 /* ActivityBasicTableViewCell.xib */,
+				7CAB42E013A768B400CED7A3 /* ActivityStreamViewController_iPhone.xib */,
 				46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */,
 				4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */,
 				7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */,
@@ -1732,6 +1827,7 @@
 		8947323B1336FFE400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CAB42D413A7689F00CED7A3 /* ActivityStream */,
 				8947337C13370B4500B0AD11 /* Chat */,
 				8947338613370B4500B0AD11 /* File */,
 				8947338D13370B4500B0AD11 /* Gadget */,
@@ -1876,8 +1972,8 @@
 				8947339A13370B4500B0AD11 /* AuthenticateViewController.m */,
 				7CFD41871361644B00DD86E8 /* HomeViewController_iPhone.h */,
 				7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */,
-				7C5764821368032000C5F028 /* ActivityStreamsViewController_iPhone.h */,
-				7C5764831368032200C5F028 /* ActivityStreamsViewController_iPhone.m */,
+				7CAB435613A769D200CED7A3 /* ActivityStreamViewController_iPhone.h */,
+				7CAB435713A769D200CED7A3 /* ActivityStreamViewController_iPhone.m */,
 				7C5764841368032300C5F028 /* ChatViewController_iPhone.h */,
 				7C5764851368032500C5F028 /* ChatViewController_iPhone.m */,
 				7C5764861368032700C5F028 /* DashboardViewController_iPhone.h */,
@@ -2128,6 +2224,7 @@
 		894734A01337139800B0AD11 /* 3-part */ = {
 			isa = PBXGroup;
 			children = (
+				7CAB435913A76A7800CED7A3 /* EGOImageLoading */,
 				7CFD41061361367D00DD86E8 /* KissXML */,
 				894734AC1337139800B0AD11 /* libidn */,
 				894734B21337139800B0AD11 /* TCP */,
@@ -2776,6 +2873,9 @@
 				46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */,
 				7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */,
 				7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */,
+				7CAB42E113A768B400CED7A3 /* ActivityBasicCellViewController.xib in Resources */,
+				7CAB42E213A768B400CED7A3 /* ActivityBasicTableViewCell.xib in Resources */,
+				7CAB42E313A768B400CED7A3 /* ActivityStreamViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2857,7 +2957,6 @@
 				7C0A5926134B1C140053C538 /* iPadServerManagerViewController.m in Sources */,
 				7CF562A1135590350008DD21 /* HitTestView.m in Sources */,
 				7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */,
-				7C5764881368032800C5F028 /* ActivityStreamsViewController_iPhone.m in Sources */,
 				7C5764891368032800C5F028 /* ChatViewController_iPhone.m in Sources */,
 				7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */,
 				7C50D4C7136F187B0011280D /* DDXMLDocument.m in Sources */,
@@ -2901,6 +3000,15 @@
 				7CE656BA1394D2D200F088A1 /* ChatWindowViewController_iPhone.m in Sources */,
 				7CE656BB1394D2D200F088A1 /* MessengerViewController_iPhone.m in Sources */,
 				468035DE139D0C0500B1DAE4 /* MockSocial_Activity.m in Sources */,
+				7CAB42DB13A7689F00CED7A3 /* ActivityBasicCellViewController.m in Sources */,
+				7CAB42DC13A7689F00CED7A3 /* ActivityBasicTableViewCell.m in Sources */,
+				7CAB42DD13A7689F00CED7A3 /* ActivityStreamViewController.m in Sources */,
+				7CAB435813A769D200CED7A3 /* ActivityStreamViewController_iPhone.m in Sources */,
+				7CAB436813A76A7800CED7A3 /* EGOCache.m in Sources */,
+				7CAB436913A76A7800CED7A3 /* EGOImageButton.m in Sources */,
+				7CAB436A13A76A7800CED7A3 /* EGOImageLoadConnection.m in Sources */,
+				7CAB436B13A76A7800CED7A3 /* EGOImageLoader.m in Sources */,
+				7CAB436C13A76A7800CED7A3 /* EGOImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

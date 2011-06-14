@@ -142,17 +142,8 @@
     ActivityBasicCellViewController* activityBasicCellViewController = [[ActivityBasicCellViewController alloc] initWithNibName:@"ActivityBasicCellViewController" bundle:nil];
     Activity* activity = [_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row];
     NSLog([NSString stringWithFormat:@"%d",indexPath.row],nil);
-    NSString* text;
-    if (activity.title != nil) 
-    {
-        text = activity.title;
-    }
-    else
-    {
-        text = @"";
-    }
+    NSString* text = activity.title;
      
-    
     float fWidth = tableView.frame.size.width;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
     [activityBasicCellViewController.view setFrame:CGRectMake(0, 0, fWidth, fHeight)];
