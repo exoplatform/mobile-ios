@@ -22,7 +22,7 @@
 #import "Three20UINavigator/TTURLObject.h"
 
 #import "FilesViewController_iPhone.h"
-#import "ActivityStreamsViewController_iPhone.h"
+#import "ActivityStreamViewController_iPhone.h"
 #import "ChatViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
 #import "eXoSettingViewController.h"
@@ -149,14 +149,14 @@
     
     if ([item.title isEqualToString:@"Activity Streams"]) 
     {
-        
+        ActivityStreamViewController_iPhone* _activityStreamViewController_iPhone = [[ActivityStreamViewController_iPhone alloc] initWithNibName:@"ActivityStreamViewController_iPhone" bundle:nil];
+        [self.navigationController pushViewController:_activityStreamViewController_iPhone animated:YES];
     }
     
     if ([item.title isEqualToString:@"Chat"]) 
     {
         //Start the Chat
         MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil delegate:self];
-//        [messengerViewController_iPhone initMessengerParametersWithDelegate:self]; 
         [self.navigationController pushViewController:messengerViewController_iPhone animated:YES];
     }
     
