@@ -61,9 +61,11 @@
 		4695980B1377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */; };
 		4695981D13780D3400ADC826 /* AuthenticateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695981C13780D3100ADC826 /* AuthenticateViewController.xib */; };
 		469598881378497C00ADC826 /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469598871378497B00ADC826 /* AuthenticateServerCell.xib */; };
-		46A03A1C13A79F6D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A1B13A79F6D00E71AF9 /* ActivityStreamBrowseViewController.m */; };
 		46A03A1F13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A1E13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m */; };
 		46A03A2113A7A39000E71AF9 /* ActivityStreamBrowseViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */; };
+		46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */; };
+		46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */; };
+		46A03A2E13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */; };
 		46ABBE8713890BD10077809B /* FilesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8613890BD10077809B /* FilesProxy.m */; };
 		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
 		46ABBE91138910C80077809B /* AuthenticateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE90138910C80077809B /* AuthenticateProxy.m */; };
@@ -189,11 +191,6 @@
 		7C5764891368032800C5F028 /* ChatViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764851368032500C5F028 /* ChatViewController_iPhone.m */; };
 		7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */; };
 		7C9C61BC133B3BAE005A365A /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C61BB133B3BAE005A365A /* Configuration.m */; };
-		7CAB42DB13A7689F00CED7A3 /* ActivityBasicCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB42D613A7689F00CED7A3 /* ActivityBasicCellViewController.m */; };
-		7CAB42DC13A7689F00CED7A3 /* ActivityBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB42D813A7689F00CED7A3 /* ActivityBasicTableViewCell.m */; };
-		7CAB42DD13A7689F00CED7A3 /* ActivityStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB42DA13A7689F00CED7A3 /* ActivityStreamViewController.m */; };
-		7CAB42E113A768B400CED7A3 /* ActivityBasicCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42DE13A768B400CED7A3 /* ActivityBasicCellViewController.xib */; };
-		7CAB42E213A768B400CED7A3 /* ActivityBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42DF13A768B400CED7A3 /* ActivityBasicTableViewCell.xib */; };
 		7CAB42E313A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */; };
 		7CAB435813A769D200CED7A3 /* ActivityStreamBrowseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435713A769D200CED7A3 /* ActivityStreamBrowseViewController_iPhone.m */; };
 		7CAB436813A76A7800CED7A3 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435C13A76A7800CED7A3 /* EGOCache.m */; };
@@ -599,11 +596,14 @@
 		469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateSettingsIconIphone@2x.png"; path = "Authenticate/@2x/AuthenticateSettingsIconIphone@2x.png"; sourceTree = "<group>"; };
 		4695981C13780D3100ADC826 /* AuthenticateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateViewController.xib; sourceTree = "<group>"; };
 		469598871378497B00ADC826 /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
-		46A03A1A13A79F6D00E71AF9 /* ActivityStreamBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController.h; path = ActivityStream/ActivityStreamBrowseViewController.h; sourceTree = "<group>"; };
-		46A03A1B13A79F6D00E71AF9 /* ActivityStreamBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController.m; path = ActivityStream/ActivityStreamBrowseViewController.m; sourceTree = "<group>"; };
 		46A03A1D13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController_iPad.h; path = Social/ActivityStreamBrowseViewController_iPad.h; sourceTree = "<group>"; };
 		46A03A1E13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController_iPad.m; path = Social/ActivityStreamBrowseViewController_iPad.m; sourceTree = "<group>"; };
 		46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamBrowseViewController_iPad.xib; sourceTree = "<group>"; };
+		46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityBasicTableViewCell.h; path = Social/ActivityBasicTableViewCell.h; sourceTree = "<group>"; };
+		46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityBasicTableViewCell.m; path = Social/ActivityBasicTableViewCell.m; sourceTree = "<group>"; };
+		46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityBasicTableViewCell.xib; path = Social/ActivityBasicTableViewCell.xib; sourceTree = "<group>"; };
+		46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController.h; path = Social/ActivityStreamBrowseViewController.h; sourceTree = "<group>"; };
+		46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController.m; path = Social/ActivityStreamBrowseViewController.m; sourceTree = "<group>"; };
 		46ABBE8513890BD10077809B /* FilesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesProxy.h; sourceTree = "<group>"; };
 		46ABBE8613890BD10077809B /* FilesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxy.m; sourceTree = "<group>"; };
 		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
@@ -770,14 +770,6 @@
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
-		7CAB42D513A7689F00CED7A3 /* ActivityBasicCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityBasicCellViewController.h; sourceTree = "<group>"; };
-		7CAB42D613A7689F00CED7A3 /* ActivityBasicCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityBasicCellViewController.m; sourceTree = "<group>"; };
-		7CAB42D713A7689F00CED7A3 /* ActivityBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityBasicTableViewCell.h; sourceTree = "<group>"; };
-		7CAB42D813A7689F00CED7A3 /* ActivityBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityBasicTableViewCell.m; sourceTree = "<group>"; };
-		7CAB42D913A7689F00CED7A3 /* ActivityStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamViewController.h; sourceTree = "<group>"; };
-		7CAB42DA13A7689F00CED7A3 /* ActivityStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamViewController.m; sourceTree = "<group>"; };
-		7CAB42DE13A768B400CED7A3 /* ActivityBasicCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityBasicCellViewController.xib; sourceTree = "<group>"; };
-		7CAB42DF13A768B400CED7A3 /* ActivityBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityBasicTableViewCell.xib; sourceTree = "<group>"; };
 		7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamBrowseViewController_iPhone.xib; sourceTree = "<group>"; };
 		7CAB435613A769D200CED7A3 /* ActivityStreamBrowseViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamBrowseViewController_iPhone.h; sourceTree = "<group>"; };
 		7CAB435713A769D200CED7A3 /* ActivityStreamBrowseViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamBrowseViewController_iPhone.m; sourceTree = "<group>"; };
@@ -1279,22 +1271,25 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		46A03A1813A7952400E71AF9 /* ActivityStream */ = {
+		46A03A1813A7952400E71AF9 /* Social */ = {
 			isa = PBXGroup;
 			children = (
 				46A03A1D13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.h */,
 				46A03A1E13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m */,
 			);
-			name = ActivityStream;
+			name = Social;
 			sourceTree = "<group>";
 		};
-		46A03A1913A79F0C00E71AF9 /* ActivityStream */ = {
+		46A03A1913A79F0C00E71AF9 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				46A03A1A13A79F6D00E71AF9 /* ActivityStreamBrowseViewController.h */,
-				46A03A1B13A79F6D00E71AF9 /* ActivityStreamBrowseViewController.m */,
+				46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */,
+				46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */,
+				46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */,
+				46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */,
+				46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */,
 			);
-			name = ActivityStream;
+			name = Social;
 			sourceTree = "<group>";
 		};
 		46ABBE8B13890CD00077809B /* Constants */ = {
@@ -1615,16 +1610,11 @@
 			path = CascadeViewController;
 			sourceTree = "<group>";
 		};
-		7CAB42D413A7689F00CED7A3 /* ActivityStream */ = {
+		7CAB42D413A7689F00CED7A3 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				7CAB42D513A7689F00CED7A3 /* ActivityBasicCellViewController.h */,
-				7CAB42D613A7689F00CED7A3 /* ActivityBasicCellViewController.m */,
-				7CAB42D713A7689F00CED7A3 /* ActivityBasicTableViewCell.h */,
-				7CAB42D813A7689F00CED7A3 /* ActivityBasicTableViewCell.m */,
-				7CAB42D913A7689F00CED7A3 /* ActivityStreamViewController.h */,
-				7CAB42DA13A7689F00CED7A3 /* ActivityStreamViewController.m */,
 			);
+			name = Social;
 			path = ActivityStream;
 			sourceTree = "<group>";
 		};
@@ -1738,8 +1728,6 @@
 		8937A3501338994400D8B474 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
-				7CAB42DE13A768B400CED7A3 /* ActivityBasicCellViewController.xib */,
-				7CAB42DF13A768B400CED7A3 /* ActivityBasicTableViewCell.xib */,
 				7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */,
 				46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */,
 				4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */,
@@ -1820,7 +1808,7 @@
 		894732381336FFD400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				46A03A1813A7952400E71AF9 /* ActivityStream */,
+				46A03A1813A7952400E71AF9 /* Social */,
 				46E96E30138370A30085DCB6 /* CascadeViewController */,
 				8947333D13370B1900B0AD11 /* Chat */,
 				8947334713370B1900B0AD11 /* File */,
@@ -1855,7 +1843,7 @@
 		8947323B1336FFE400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7CAB42D413A7689F00CED7A3 /* ActivityStream */,
+				7CAB42D413A7689F00CED7A3 /* Social */,
 				8947337C13370B4500B0AD11 /* Chat */,
 				8947338613370B4500B0AD11 /* File */,
 				8947338D13370B4500B0AD11 /* Gadget */,
@@ -2245,7 +2233,7 @@
 		8947349F1337125D00B0AD11 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				46A03A1913A79F0C00E71AF9 /* ActivityStream */,
+				46A03A1913A79F0C00E71AF9 /* Social */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2902,10 +2890,9 @@
 				46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */,
 				7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */,
 				7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */,
-				7CAB42E113A768B400CED7A3 /* ActivityBasicCellViewController.xib in Resources */,
-				7CAB42E213A768B400CED7A3 /* ActivityBasicTableViewCell.xib in Resources */,
 				7CAB42E313A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */,
 				46A03A2113A7A39000E71AF9 /* ActivityStreamBrowseViewController_iPad.xib in Resources */,
+				46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3030,17 +3017,15 @@
 				7CE656BA1394D2D200F088A1 /* ChatWindowViewController_iPhone.m in Sources */,
 				7CE656BB1394D2D200F088A1 /* MessengerViewController_iPhone.m in Sources */,
 				468035DE139D0C0500B1DAE4 /* MockSocial_Activity.m in Sources */,
-				7CAB42DB13A7689F00CED7A3 /* ActivityBasicCellViewController.m in Sources */,
-				7CAB42DC13A7689F00CED7A3 /* ActivityBasicTableViewCell.m in Sources */,
-				7CAB42DD13A7689F00CED7A3 /* ActivityStreamViewController.m in Sources */,
 				7CAB435813A769D200CED7A3 /* ActivityStreamBrowseViewController_iPhone.m in Sources */,
 				7CAB436813A76A7800CED7A3 /* EGOCache.m in Sources */,
 				7CAB436913A76A7800CED7A3 /* EGOImageButton.m in Sources */,
 				7CAB436A13A76A7800CED7A3 /* EGOImageLoadConnection.m in Sources */,
 				7CAB436B13A76A7800CED7A3 /* EGOImageLoader.m in Sources */,
 				7CAB436C13A76A7800CED7A3 /* EGOImageView.m in Sources */,
-				46A03A1C13A79F6D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */,
 				46A03A1F13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m in Sources */,
+				46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */,
+				46A03A2E13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
