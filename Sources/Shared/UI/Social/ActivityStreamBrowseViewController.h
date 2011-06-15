@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
+
 @class MockSocial_Activity;
 
 @interface ActivityStreamBrowseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
     IBOutlet UITableView*           _tblvActivityStream;
     MockSocial_Activity*            _mockSocial_Activity;
+    
+    NSMutableArray*                 _arrayOfSectionsTitle;
+    NSMutableDictionary*            _sortedActivities;
 }
 
 @end

@@ -22,6 +22,7 @@
     long postedTime;
     int nbLikes;
     int nbComments;
+    NSString *postedTimeInWords;
 }
 
 @property (nonatomic, retain) NSString *userID;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *body;
 @property (nonatomic, retain) NSDate *lastUpdateDate;
+@property (nonatomic, retain) NSString *postedTimeInWords;
 @property long postedTime;
 @property int nbLikes;
 @property int nbComments;

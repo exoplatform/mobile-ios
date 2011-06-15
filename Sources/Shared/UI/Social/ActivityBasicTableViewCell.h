@@ -32,6 +32,11 @@
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 
+//Use this method after create the cell to customize the appearance of the Avatar
+- (void)customizeAvatarDecorations;
+- (void)configureCell;
+
+
 
 - (void)setActivity:(Activity*)activity;
 

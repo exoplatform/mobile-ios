@@ -41,15 +41,76 @@
 
 #pragma mark - Activity Cell methods 
 
+- (void)customizeAvatarDecorations {
+    //Add the CornerRadius
+    [[_imgvAvatar layer] setCornerRadius:6.0];
+    [[_imgvAvatar layer] setMasksToBounds:YES];
+    
+    //Add the border
+    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
+    CGFloat borderWidth = 2.0;
+    [[_imgvAvatar layer] setBorderWidth:borderWidth];
+    
+    //Add the inner shadow
+    CALayer *innerShadowLayer = [CALayer layer];
+    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
+    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
+    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
+    [_imgvAvatar.layer addSublayer:innerShadowLayer];
+}
+
+
+- (void)configureFonts {
+    
+}
+
+
+- (void)configureCell {
+    
+    [self customizeAvatarDecorations];
+    
+    //Add images for Background Message
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityBrowserActivityBgSelected.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    _imgvMessageBg.image = strechBg;
+    _imgvMessageBg.highlightedImage = strechBgSelected;
+    
+    
+    //Add images for Comment button
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"] 
+                                     stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                           forState:UIControlStateNormal];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"] 
+                                     stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                           forState:UIControlStateSelected];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"] 
+                                     stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                           forState:UIControlStateHighlighted];
+    
+    
+    //Add images for Like button
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"] 
+                                     stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                           forState:UIControlStateNormal];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"] 
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                        forState:UIControlStateSelected];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"] 
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                        forState:UIControlStateHighlighted];
+    
+}
+
+
 - (void)setActivity:(Activity*)activity
 {
-    _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];
-    [[_imgvAvatar layer] setCornerRadius:10.0];
-    [[_imgvAvatar layer] setMasksToBounds:YES];
-    [[_imgvAvatar layer] setBorderColor:[UIColor whiteColor].CGColor];
-    [[_imgvAvatar layer] setBorderWidth:2.0];
-    
+    _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
     _lbMessage.text = [activity.title copy];
+    _lbDate.text = [activity.postedTimeInWords copy];
+    _btnLike.titleLabel.text = @"111";//[NSString stringWithFormat:@"%d",activity.nbLikes];
+    
 }
 
 

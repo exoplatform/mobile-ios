@@ -27,7 +27,8 @@
         fWidth = rectTableView.size.width - 100;
     }
     
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                          lineBreakMode:UILineBreakModeWordWrap];
     if (theSize.height < 100) 
     {
         fHeight = 160;

@@ -29,14 +29,15 @@
         fWidth = rectTableView.size.width - 100;
     }
     
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    if (theSize.height < 100) 
+    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    
+    if (theSize.height < 60) 
     {
-        fHeight = 160;
+        fHeight = 90;
     }
     else
     {
-        fHeight = 50 + theSize.height;
+        fHeight = 55 + theSize.height;
     }
     
     if (fHeight > 200) {

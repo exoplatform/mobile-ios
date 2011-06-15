@@ -7,10 +7,11 @@
 //
 
 #import "MockSocial_Activity.h"
+#import "NSDate+Formatting.h"
 
 @implementation Activity
 
-@synthesize userID,avatarUrl,title,body,lastUpdateDate,postedTime,nbLikes,nbComments;
+@synthesize userID,avatarUrl,title,body,lastUpdateDate,postedTime,nbLikes,nbComments,postedTimeInWords;
 
 
 
@@ -30,6 +31,7 @@
         self.body = _body;
         self.nbLikes = _numberOfLikes;
         self.nbComments = _numberOfComments;
+        self.postedTimeInWords = [[NSDate date] distanceOfTimeInWords:[[NSDate date] dateByAddingTimeInterval:postedTime]];
     }
     return self;
 }
