@@ -8,7 +8,7 @@
 
 #import "ActivityStreamBrowseViewController.h"
 #import "MockSocial_Activity.h"
-#import "ActivityBasicCellViewController.h"
+#import "ActivityBasicTableViewCell.h"
 
 #define TEST_ON_MOCK 1
 
@@ -127,18 +127,19 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-	static NSString* kCellIdentifier = @"Cell";
+	static NSString* kCellIdentifier = @"ActivityCell";
 	
     //We dequeue a cell
-	UITableViewCell* cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+	ActivityBasicTableViewCell* cell = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     //Check if we found a cell
     if (cell == nil) 
     {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityBasicTableViewCell" owner:self options:nil];
+        cell = (ActivityBasicTableViewCell *)[nib objectAtIndex:0];        
     }
     
-    ActivityBasicCellViewController* activityBasicCellViewController = [[ActivityBasicCellViewController alloc] initWithNibName:@"ActivityBasicCellViewController" bundle:nil];
+    //ActivityBasicCellViewController* activityBasicCellViewController = [[ActivityBasicCellViewController alloc] initWithNibName:@"ActivityBasicCellViewController" bundle:nil];
     
 #if TEST_ON_MOCK        
     Activity* activity = [_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row];
@@ -148,12 +149,13 @@
     
     float fWidth = tableView.frame.size.width;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
-    [activityBasicCellViewController.view setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-    [cell addSubview:activityBasicCellViewController.view];
-    [activityBasicCellViewController setActivity:[_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row]];
-    [activityBasicCellViewController release];
+    [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+    //[activityBasicCellViewController.view setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+    //[cell addSubview:activityBasicCellViewController.view];
+    [cell setActivity:[_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row]];
+    //[activityBasicCellViewController release];
     
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
 	return cell;
 }
