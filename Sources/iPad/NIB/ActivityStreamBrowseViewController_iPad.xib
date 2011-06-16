@@ -87,10 +87,7 @@
 				<reference key="NSNextKeyView" ref="295762342"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
+					<bytes key="NSWhite">MCAwAA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
@@ -179,6 +176,7 @@
 						<int key="objectID">13</int>
 						<reference key="object" ref="360699126"/>
 						<reference key="parent" ref="901135153"/>
+						<string key="objectName">Table View</string>
 					</object>
 				</object>
 			</object>

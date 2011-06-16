@@ -264,7 +264,7 @@
         
         //Create a cell, need to do some configurations
         [cell configureCell];
-
+        
     }
     
     //ActivityBasicCellViewController* activityBasicCellViewController = [[ActivityBasicCellViewController alloc] initWithNibName:@"ActivityBasicCellViewController" bundle:nil];
@@ -287,12 +287,13 @@
 	return cell;
 }
 
-
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+    [su
     
 }
-
+*/
 
 
 @end

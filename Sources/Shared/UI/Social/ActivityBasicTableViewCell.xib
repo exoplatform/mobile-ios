@@ -84,7 +84,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont" id="780097706">
+								<object class="NSFont" key="IBUIFont" id="519558081">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">10</double>
 									<int key="NSfFlags">16</int>
@@ -118,7 +118,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="780097706"/>
+								<reference key="IBUIFont" ref="519558081"/>
 								<int key="IBUIButtonType">1</int>
 								<double key="IBUITitleEdgeInsets.top">3</double>
 								<double key="IBUITitleEdgeInsets.bottom">0.0</double>
@@ -209,6 +209,7 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="818041569"/>
 				<reference key="IBUISelectedTextColor" ref="516075941"/>
 				<string key="IBUIReuseIdentifier">ActivityCell</string>

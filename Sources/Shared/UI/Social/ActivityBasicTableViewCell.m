@@ -26,11 +26,25 @@
     return self;
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    
+    [super setHighlighted:highlighted animated:animated];
+
+    [_imgvMessageBg setHighlighted:highlighted]; 
+    
+    [_btnComment setHighlighted:highlighted];
+    [_btnLike setHighlighted:highlighted];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    
+    [_imgvMessageBg setHighlighted:selected];
+    [_btnComment setSelected:selected];
+    [_btnLike setSelected:selected];
 }
 
 - (void)dealloc

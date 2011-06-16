@@ -146,6 +146,7 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="51756137"/>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Table View</string>
 					</object>
 				</object>
 			</object>
