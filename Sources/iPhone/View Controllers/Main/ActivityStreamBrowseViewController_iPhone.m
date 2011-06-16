@@ -29,9 +29,9 @@
     
     CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                           lineBreakMode:UILineBreakModeWordWrap];
-    if (theSize.height < 100) 
+    if (theSize.height < 30) 
     {
-        fHeight = 160;
+        fHeight = 75;
     }
     else
     {
