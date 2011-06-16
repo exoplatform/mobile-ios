@@ -90,6 +90,7 @@
                            forState:UIControlStateHighlighted];
     
     
+    
     //Add images for Like button
     [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"] 
                                      stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
@@ -101,6 +102,11 @@
                                   stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
                         forState:UIControlStateHighlighted];
     
+    
+
+
+    
+   
 }
 
 
@@ -109,7 +115,38 @@
     _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
     _lbMessage.text = [activity.title copy];
     _lbDate.text = [activity.postedTimeInWords copy];
-    _btnLike.titleLabel.text = @"111";//[NSString stringWithFormat:@"%d",activity.nbLikes];
+    
+    //display the like number '+' if 0
+    NSString *stringForLikes;
+    if (activity.nbLikes == 0) {
+        stringForLikes = @"+";
+    } else {
+        stringForLikes = [NSString stringWithFormat:@"%d",activity.nbLikes];
+    }
+    [_btnLike setTitle:stringForLikes forState:UIControlStateNormal];
+    
+    //Set the size of the font in the button (to fit the width)
+    if (activity.nbLikes >= 100) {
+        _btnLike.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:7];
+    } else {
+        _btnLike.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
+    }
+    
+    //display the comment number '+' if 0
+    NSString *stringForComments;
+    if (activity.nbComments == 0) {
+        stringForComments = @"+";
+    } else {
+        stringForComments = [NSString stringWithFormat:@"%d",activity.nbComments];
+    }
+    [_btnComment setTitle:stringForComments forState:UIControlStateNormal];
+
+    //Set the size of the font in the button (to fit the width)
+    if (activity.nbComments >= 100) {
+        _btnComment.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:7];
+    } else {
+        _btnComment.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
+    }
     
 }
 
