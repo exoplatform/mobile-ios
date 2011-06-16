@@ -49,6 +49,16 @@
 
 - (void)dealloc
 {
+    
+    self.lbMessage = nil;
+    self.lbDate = nil;
+    
+    self.imgvAvatar = nil;
+    self.btnLike = nil;
+    self.btnComment = nil;
+    
+    self.imgvMessageBg = nil;
+    
     [super dealloc];
 }
 

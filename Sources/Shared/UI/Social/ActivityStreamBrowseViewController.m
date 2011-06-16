@@ -35,6 +35,15 @@
 - (void)dealloc
 {
     
+    _tblvActivityStream = nil ;
+    MockSocial_Activity*            _mockSocial_Activity;
+    
+    [_arrayOfSectionsTitle release];
+    _arrayOfSectionsTitle = nil;
+
+    [_sortedActivities release];
+    _sortedActivities=nil;
+    
 #if TEST_ON_MOCK        
     [_mockSocial_Activity release];
     _mockSocial_Activity = nil;
