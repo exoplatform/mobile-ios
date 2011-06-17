@@ -14,6 +14,7 @@
 
 @interface Activity : NSObject {
     
+    NSString *activityID;
     NSString *userID;
     NSString *title;
     NSString *body;
@@ -25,6 +26,7 @@
     NSString *postedTimeInWords;
 }
 
+@property (nonatomic, retain) NSString *activityID;
 @property (nonatomic, retain) NSString *userID;
 @property (nonatomic, retain) NSString *avatarUrl;
 @property (nonatomic, retain) NSString *title;
@@ -35,8 +37,8 @@
 @property int nbLikes;
 @property int nbComments;
 
-
 -(id)initWithUserID:(NSString *)_userID
+         activityID:(NSString *)_activityID
           avatarUrl:(NSString *)_avatarUrl
               title:(NSString *)_title
                body:(NSString *)_body
@@ -44,12 +46,46 @@
       numberOfLikes:(int)_numberOfLikes
    numberOfComments:(int)_numberOfComments;
 
--(NSString*)datePrepared; // Method to calcul the date information (ie : 2minutes ago, 2 days ago...)
+@end
 
+//================================================================
+
+@interface ActivityDetail : NSObject 
+{
+    
+    NSString *activityID;
+    NSMutableArray *arrLikes;
+    NSMutableArray *arrComments;
+}
+
+@property (nonatomic, retain) NSString *activityID;
+@property (nonatomic, retain) NSMutableArray *arrLikes;
+@property (nonatomic, retain) NSMutableArray *arrComments;
+
+- (id)initWithUserID:(NSString *)_activityID
+            arrLikes:(NSMutableArray *)_arrLikes
+         arrComments:(NSMutableArray *)_arrComments;
+@end
+
+//================================================================
+
+@interface Comment : NSObject 
+{
+    NSString *activityID;
+    NSString *userID;
+    NSMutableArray *arrTxtComments;
+}
+@property (nonatomic, retain) NSString *activityID;
+@property (nonatomic, retain) NSString *userID;
+@property (nonatomic, retain) NSMutableArray *arrTxtComments;
+
+- (id)initWithUserID:(NSString *)_activityID
+              userID:(NSString *)_userID
+      arrTxtComments:(NSMutableArray *)_arrTxtComments;
 @end
 
 
-
+//================================================================
 
 @interface MockSocial_Activity : NSObject {
     
