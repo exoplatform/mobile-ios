@@ -10,6 +10,7 @@
 #import "MockSocial_Activity.h"
 #import "ActivityBasicTableViewCell.h"
 #import "NSDate+Formatting.h"
+#import "ActivityDetailViewController.h"
 
 
 
@@ -71,12 +72,12 @@
 
 
 
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Activity Stream";
     
     //Load Activities
 #if TEST_ON_MOCK        
@@ -119,7 +120,6 @@
 
 - (void)sortActivities 
 {
-    
     _arrayOfSectionsTitle = [[NSMutableArray alloc] init];
     
     _sortedActivities =[[NSMutableDictionary alloc] init];
@@ -296,13 +296,25 @@
 	return cell;
 }
 
-/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    [su
+    Activity* activity = [self getActivityForIndexPath:indexPath];
+    if (_activityDetailViewController == nil) 
+    {
+        _activityDetailViewController = [[ActivityDetailViewController alloc] initWithNibName:@"ActivityDetailViewController" bundle:nil];
+    }
     
+    [_activityDetailViewController setActivity:activity];
+    
+    if ([self.navigationController.viewControllers containsObject:_activityDetailViewController]) 
+    {
+        [self.navigationController popToViewController:_activityDetailViewController animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:_activityDetailViewController animated:YES];
+    }
 }
-*/
 
 
 @end

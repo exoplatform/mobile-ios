@@ -11,6 +11,7 @@
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 @class MockSocial_Activity;
+@class ActivityDetailViewController;
 
 @interface ActivityStreamBrowseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
@@ -19,6 +20,7 @@
     
     NSMutableArray*                 _arrayOfSectionsTitle;
     NSMutableDictionary*            _sortedActivities;
+    ActivityDetailViewController*   _activityDetailViewController;
 }
 
 @end
