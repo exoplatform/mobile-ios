@@ -10,10 +10,20 @@
 
 @class Activity;
 
+@class ActivityDetailMessageTableViewCell;
+@class ActivityDetailLikeTableViewCell;
+
 @interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
     
-    IBOutlet UITableView*           _tblvActivityDetail;
-    Activity*                       _activity;
+    IBOutlet UITableView*                   _tblvActivityDetail;
+    Activity*                               _activity;
+    
+    //Cell for the content of the message
+    ActivityDetailMessageTableViewCell*     _cellForMessage;
+    
+    //Cell for the like part of the screen
+    ActivityDetailLikeTableViewCell*        _cellForLikes;
+    
 }
 
 - (void)setActivity:(Activity*)activity;

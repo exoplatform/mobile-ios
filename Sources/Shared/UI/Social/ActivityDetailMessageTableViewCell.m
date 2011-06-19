@@ -1,18 +1,18 @@
 //
-//  ActivityDetailOwnerTableViewCell.m
+//  ActivityDetailMessageTableViewCell.m
 //  eXo Platform
 //
 //  Created by Tran Hoai Son on 6/7/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ActivityDetailOwnerTableViewCell.h"
+#import "ActivityDetailMessageTableViewCell.h"
 #import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 
 
-@implementation ActivityDetailOwnerTableViewCell
+@implementation ActivityDetailMessageTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate , imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;

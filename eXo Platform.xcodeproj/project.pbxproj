@@ -53,6 +53,14 @@
 		46616C83137C750500D53D3D /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C80137C750500D53D3D /* SSDrawingUtilities.m */; };
 		46616C84137C750500D53D3D /* UIView+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C82137C750500D53D3D /* UIView+SSToolkitAdditions.m */; };
 		46616C87137C754900D53D3D /* UIImage+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C86137C754900D53D3D /* UIImage+SSToolkitAdditions.m */; };
+		467F4EF913AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EEE13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m */; };
+		467F4EFA13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EEF13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib */; };
+		467F4EFB13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF113AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m */; };
+		467F4EFC13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EF213AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib */; };
+		467F4EFD13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF413AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m */; };
+		467F4EFE13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EF513AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib */; };
+		467F4EFF13AB6F1300B2DCFA /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF713AB6F1300B2DCFA /* ActivityDetailViewController.m */; };
+		467F4F0013AB6F1300B2DCFA /* ActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EF813AB6F1300B2DCFA /* ActivityDetailViewController.xib */; };
 		468035DE139D0C0500B1DAE4 /* MockSocial_Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 468035DD139D0C0500B1DAE4 /* MockSocial_Activity.m */; };
 		469597F71377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F01377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png */; };
 		469597FB1377017300ADC826 /* AuthenticateServersIconIphoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F41377017300ADC826 /* AuthenticateServersIconIphoneOff.png */; };
@@ -607,6 +615,18 @@
 		46616C82137C750500D53D3D /* UIView+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSToolkitAdditions.m"; sourceTree = "<group>"; };
 		46616C85137C754900D53D3D /* UIImage+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SSToolkitAdditions.h"; sourceTree = "<group>"; };
 		46616C86137C754900D53D3D /* UIImage+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SSToolkitAdditions.m"; sourceTree = "<group>"; };
+		467F4EED13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailMessageTableViewCell.h; path = Social/ActivityDetailMessageTableViewCell.h; sourceTree = "<group>"; };
+		467F4EEE13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailMessageTableViewCell.m; path = Social/ActivityDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		467F4EEF13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailMessageTableViewCell.xib; path = Social/ActivityDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
+		467F4EF013AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailLikeTableViewCell.h; path = Social/ActivityDetailLikeTableViewCell.h; sourceTree = "<group>"; };
+		467F4EF113AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailLikeTableViewCell.m; path = Social/ActivityDetailLikeTableViewCell.m; sourceTree = "<group>"; };
+		467F4EF213AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailLikeTableViewCell.xib; path = Social/ActivityDetailLikeTableViewCell.xib; sourceTree = "<group>"; };
+		467F4EF313AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailCommentTableViewCell.h; path = Social/ActivityDetailCommentTableViewCell.h; sourceTree = "<group>"; };
+		467F4EF413AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailCommentTableViewCell.m; path = Social/ActivityDetailCommentTableViewCell.m; sourceTree = "<group>"; };
+		467F4EF513AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailCommentTableViewCell.xib; path = Social/ActivityDetailCommentTableViewCell.xib; sourceTree = "<group>"; };
+		467F4EF613AB6F1300B2DCFA /* ActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailViewController.h; path = Social/ActivityDetailViewController.h; sourceTree = "<group>"; };
+		467F4EF713AB6F1300B2DCFA /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController.m; path = Social/ActivityDetailViewController.m; sourceTree = "<group>"; };
+		467F4EF813AB6F1300B2DCFA /* ActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailViewController.xib; path = Social/ActivityDetailViewController.xib; sourceTree = "<group>"; };
 		468035DC139D0C0500B1DAE4 /* MockSocial_Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockSocial_Activity.h; sourceTree = "<group>"; };
 		468035DD139D0C0500B1DAE4 /* MockSocial_Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockSocial_Activity.m; sourceTree = "<group>"; };
 		469597F01377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCredentialsIconIphoneOn.png; path = "Authenticate/@1x/AuthenticateCredentialsIconIphoneOn.png"; sourceTree = "<group>"; };
@@ -1301,6 +1321,25 @@
 			path = HUD;
 			sourceTree = "<group>";
 		};
+		467F4F0113AB9B3400B2DCFA /* ActivityDetail */ = {
+			isa = PBXGroup;
+			children = (
+				467F4EF613AB6F1300B2DCFA /* ActivityDetailViewController.h */,
+				467F4EF713AB6F1300B2DCFA /* ActivityDetailViewController.m */,
+				467F4EF813AB6F1300B2DCFA /* ActivityDetailViewController.xib */,
+				467F4EED13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.h */,
+				467F4EEE13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m */,
+				467F4EEF13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib */,
+				467F4EF013AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.h */,
+				467F4EF113AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m */,
+				467F4EF213AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib */,
+				467F4EF313AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.h */,
+				467F4EF413AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m */,
+				467F4EF513AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib */,
+			);
+			name = ActivityDetail;
+			sourceTree = "<group>";
+		};
 		468035DB139D0BC900B1DAE4 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1322,6 +1361,7 @@
 		46A03A1913A79F0C00E71AF9 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				467F4F0113AB9B3400B2DCFA /* ActivityDetail */,
 				46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */,
 				46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */,
 				46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */,
@@ -2994,6 +3034,10 @@
 				46A03AC513A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png in Resources */,
 				46A03AC613A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png in Resources */,
 				46A03AC713A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png in Resources */,
+				467F4EFA13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib in Resources */,
+				467F4EFC13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib in Resources */,
+				467F4EFE13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib in Resources */,
+				467F4F0013AB6F1300B2DCFA /* ActivityDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3128,6 +3172,10 @@
 				46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */,
 				46A03A2E13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */,
 				46144BCF13A94044009B7ECD /* NSDate+Formatting.m in Sources */,
+				467F4EF913AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m in Sources */,
+				467F4EFB13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m in Sources */,
+				467F4EFD13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m in Sources */,
+				467F4EFF13AB6F1300B2DCFA /* ActivityDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

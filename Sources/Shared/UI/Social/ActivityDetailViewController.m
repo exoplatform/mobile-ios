@@ -9,6 +9,11 @@
 #import "ActivityDetailViewController.h"
 #import "MockSocial_Activity.h"
 
+#import "ActivityDetailCommentTableViewCell.h"
+#import "ActivityDetailMessageTableViewCell.h"
+#import "ActivityDetailLikeTableViewCell.h"
+
+
 @implementation ActivityDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -113,7 +118,7 @@
     int n = 0;
     if (indexPath.section == 0) 
     {
-        
+        return 44;
     }
     if (indexPath.section == 1) 
     {
@@ -123,13 +128,21 @@
     {
         n = _activity.nbComments;
     }
+    return n*30;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-	static NSString* kCellIdentifier = @"ActivityCell";
+	
+    //If section for messages
+    if (indexPath.section == 0) {
+        
+    }
+    
+    
+    static NSString* kCellIdentifier = @"ActivityCell";
 	
     //We dequeue a cell
 	UITableViewCell* cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];

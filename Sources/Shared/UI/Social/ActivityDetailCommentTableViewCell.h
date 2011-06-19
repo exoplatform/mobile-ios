@@ -1,5 +1,5 @@
 //
-//  ActivityDetailOwnerTableViewCell.h
+//  ActivityDetailCommentTableViewCell.h
 //  eXo Platform
 //
 //  Created by Tran Hoai Son on 6/7/11.
@@ -12,7 +12,7 @@
 @class EGOImageView;
 
 
-@interface ActivityDetailOwnerTableViewCell : UITableViewCell {
+@interface ActivityDetailCommentTableViewCell : UITableViewCell {
     
     UILabel*               _lbMessage;
     UILabel*               _lbDate;
@@ -20,6 +20,7 @@
     EGOImageView*          _imgvAvatar;
 
     UIImageView*           _imgvMessageBg;
+    
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
