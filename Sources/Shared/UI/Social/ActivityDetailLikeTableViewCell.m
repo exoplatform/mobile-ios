@@ -86,9 +86,9 @@
     [self customizeAvatarDecorations];
     
     //Add images for Background Message
-    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailLikeBg.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:10];
     
-    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityBrowserActivityBgSelected.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityDetailLikeBgSelected.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:10];
     
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
