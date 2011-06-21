@@ -12,6 +12,7 @@
 #import "ActivityDetailCommentTableViewCell.h"
 #import "ActivityDetailMessageTableViewCell.h"
 #import "ActivityDetailLikeTableViewCell.h"
+#import "ActivityStreamBrowseViewController.h"
 
 
 @implementation ActivityDetailViewController
@@ -73,8 +74,40 @@
 - (void)setActivity:(Activity*)activity
 {
     _activity =  activity;
+    [_tblvActivityDetail reloadData];
 }
 
+- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
+{
+    CGRect rectTableView = tableView.frame;
+    float fWidth = 0;
+    float fHeight = 0;
+    
+    if (rectTableView.size.width > 320) 
+    {
+        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
+    }
+    else
+    {
+        fWidth = rectTableView.size.width - 100;
+    }
+    
+    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    
+    if (theSize.height < 30) 
+    {
+        fHeight = 50;
+    }
+    else
+    {
+        fHeight = 35 + theSize.height;
+    }
+    
+    if (fHeight > 200) {
+        fHeight = 200;
+    }
+    return fHeight;
+}
 
 #pragma mark - Table view Methods
 
@@ -105,9 +138,10 @@
     {
         n = 1;
     }
-    if (section == 1) 
+    if (section == 2) 
     {
-        n = _activity.nbComments;
+        //n = _activity.nbComments;
+        n = 3;
     }
     return n;
 }
@@ -118,42 +152,76 @@
     int n = 0;
     if (indexPath.section == 0) 
     {
-        return 44;
+        n = [self getHeighSizeForTableView:tableView andText:_activity.title];
     }
     if (indexPath.section == 1) 
     {
-        n = 1;
+        n = [self getHeighSizeForTableView:tableView andText:@"John, Mary, Jack like"];
     }
-    if (indexPath.section == 1) 
+    if (indexPath.section == 2) 
     {
-        n = _activity.nbComments;
+        //n = _activity.nbComments;
+        n = 71;
     }
-    return n*30;
+    return n;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-	
-    //If section for messages
-    if (indexPath.section == 0) {
-        
-    }
-    
-    
     static NSString* kCellIdentifier = @"ActivityCell";
 	
-    //We dequeue a cell
-	UITableViewCell* cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    //If section for messages
+    if (indexPath.section == 0) 
+    {
+        ActivityDetailMessageTableViewCell* cell = (ActivityDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+        
+        //Check if we found a cell
+        if (cell == nil) 
+        {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
+            cell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
+            
+            //Create a cell, need to do some configurations
+            [cell configureCell];
+            [cell setActivity:_activity];
+        }
+        
+        return cell;
+    }
+    else if (indexPath.section == 1) 
+    {
+        ActivityDetailLikeTableViewCell* cell = (ActivityDetailLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+        
+        //Check if we found a cell
+        if (cell == nil) 
+        {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailLikeTableViewCell" owner:self options:nil];
+            cell = (ActivityDetailLikeTableViewCell *)[nib objectAtIndex:0];
+            
+            //Create a cell, need to do some configurations
+            [cell configureCell];
+    }
+    
+        return cell;
+    }
+    else
+    {
+        ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     //Check if we found a cell
     if (cell == nil) 
     {
-        
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
+            cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
+            
+            //Create a cell, need to do some configurations
+            [cell configureCell];
     }
     
 	return cell;
+    }
 }
 
 

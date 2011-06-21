@@ -103,7 +103,7 @@
     _lbMessage.text = [activity.title copy];
     _lbDate.text = [activity.postedTimeInWords copy];
     
-    //display the like number '+' if 0
+    /*
     NSString *stringForLikes;
     if (activity.nbLikes == 0) 
     {
@@ -125,6 +125,7 @@
     {
         stringForComments = [NSString stringWithFormat:@"%d",activity.nbComments];
     }
+     */
 }
 
 
