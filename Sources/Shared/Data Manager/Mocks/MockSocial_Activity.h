@@ -90,8 +90,13 @@
 @interface MockSocial_Activity : NSObject {
     
     NSMutableArray *arrayOfActivities;
+    
+    NSMutableArray* arrLikes;
+    NSMutableArray* arrComments;
 }
 
 @property (nonatomic, retain) NSMutableArray* arrayOfActivities;
+@property (nonatomic, retain) NSMutableArray* arrLikes;
+@property (nonatomic, retain) NSMutableArray* arrComments;
 
 @end

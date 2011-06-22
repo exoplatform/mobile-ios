@@ -95,6 +95,8 @@
 @implementation MockSocial_Activity
 
 @synthesize arrayOfActivities;
+@synthesize arrLikes;
+@synthesize arrComments;
 
 -(id)init{
     if ((self = [super init])) {
@@ -375,9 +377,8 @@
                              act_27,                        
                              nil];
         
-        
-        
-        
+        arrLikes = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects:act_01,act_02,act_03, nil]];
+        arrComments = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects:act_04,act_05,act_06, nil]];
     }    
     return self;
 }
