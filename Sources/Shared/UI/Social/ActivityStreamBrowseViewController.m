@@ -11,8 +11,8 @@
 #import "ActivityBasicTableViewCell.h"
 #import "NSDate+Formatting.h"
 #import "ActivityDetailViewController.h"
-
-
+#import "AppDelegate_iPad.h"
+#import "RootViewController.h"
 
 #define TEST_ON_MOCK 1
 
@@ -304,16 +304,29 @@
         _activityDetailViewController = [[ActivityDetailViewController alloc] initWithNibName:@"ActivityDetailViewController" bundle:nil];
     }
     
-    [_activityDetailViewController setActivity:activity];
+    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:activity.userID arrLikes:_mockSocial_Activity.arrLikes arrComments:_mockSocial_Activity.arrComments];
     
-    if ([self.navigationController.viewControllers containsObject:_activityDetailViewController]) 
+    [_activityDetailViewController setActivity:activity andActivityDetail:activityDetail];
+    
+    CGRect rectTableView = tableView.frame;
+
+    if (rectTableView.size.width > 320)
     {
-        [self.navigationController popToViewController:_activityDetailViewController animated:YES];
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
     }
     else
     {
-        [self.navigationController pushViewController:_activityDetailViewController animated:YES];
-    }
+        if ([self.navigationController.viewControllers containsObject:_activityDetailViewController]) 
+        {
+            [self.navigationController popToViewController:_activityDetailViewController animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:_activityDetailViewController animated:YES];
+        }
+    }    
+    
+    
 }
 
 

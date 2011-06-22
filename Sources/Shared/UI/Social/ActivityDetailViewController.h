@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Activity;
-
+@class ActivityDetail;
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
 
@@ -24,7 +24,9 @@
     //Cell for the like part of the screen
     ActivityDetailLikeTableViewCell*        _cellForLikes;
     
+    ActivityDetail*                         _activityDetail;
+    
 }
 
-- (void)setActivity:(Activity*)activity;
+- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
 @end

@@ -16,6 +16,7 @@
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate , imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;
+@synthesize imgvCellBg = _imgvCellBg;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -51,6 +52,7 @@
     self.imgvAvatar = nil;
     
     self.imgvMessageBg = nil;
+    self.imgvCellBg = nil;
     
     [super dealloc];
 }
@@ -93,7 +95,9 @@
     
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
-
+    
+    UIImage *strechCellBg = [[UIImage imageNamed:@"SocialActivityDetailCommentBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    _imgvCellBg.image = strechCellBg;
 }
 
 

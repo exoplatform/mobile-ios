@@ -20,13 +20,14 @@
     EGOImageView*          _imgvAvatar;
 
     UIImageView*           _imgvMessageBg;
-    
+    UIImageView*           _imgvCellBg;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
+@property (retain, nonatomic) IBOutlet UIImageView* imgvCellBg;
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;

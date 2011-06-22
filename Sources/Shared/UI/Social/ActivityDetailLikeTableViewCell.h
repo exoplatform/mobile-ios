@@ -33,4 +33,5 @@
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
 - (void)setActivity:(Activity*)activity;
+- (void)setContent:(NSString*)strLikes;
 @end

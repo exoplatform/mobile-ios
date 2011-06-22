@@ -71,9 +71,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)setActivity:(Activity*)activity
+- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail
 {
-    _activity =  activity;
+    _activity = activity;
+    _activityDetail = activityDetail;
     [_tblvActivityDetail reloadData];
 }
 
@@ -85,18 +86,18 @@
     
     if (rectTableView.size.width > 320) 
     {
-        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
+        fWidth = rectTableView.size.width - 100; //fmargin = 85 will be defined as a constant.
     }
     else
     {
-        fWidth = rectTableView.size.width - 100;
+        fWidth = rectTableView.size.width - 150;
     }
     
     CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     
     if (theSize.height < 30) 
     {
-        fHeight = 50;
+        fHeight = 60;
     }
     else
     {
@@ -140,8 +141,7 @@
     }
     if (section == 2) 
     {
-        //n = _activity.nbComments;
-        n = 3;
+        n = [_activityDetail.arrComments count];
     }
     return n;
 }
@@ -156,12 +156,27 @@
     }
     if (indexPath.section == 1) 
     {
-        n = [self getHeighSizeForTableView:tableView andText:@"John, Mary, Jack like"];
+        NSString* strLikes = @"";
+        for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
+        {
+            Activity* activity = [_activityDetail.arrLikes objectAtIndex:i];
+            if (i < [_activityDetail.arrLikes count] - 1) 
+            {
+                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", activity.userID]];
+            }
+            else
+            {
+                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", activity.userID]];
+            }
+        }
+        strLikes = [strLikes stringByAppendingString:@" like"];
+        n = [self getHeighSizeForTableView:tableView andText:strLikes];
     }
     if (indexPath.section == 2) 
     {
         //n = _activity.nbComments;
-        n = 71;
+        Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
+        n = [self getHeighSizeForTableView:tableView andText:activity.title];
     }
     return n;
 }
@@ -182,11 +197,11 @@
         {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
             cell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
-            
             //Create a cell, need to do some configurations
             [cell configureCell];
-            [cell setActivity:_activity];
         }
+        
+        [cell setActivity:_activity];
         
         return cell;
     }
@@ -198,29 +213,47 @@
         if (cell == nil) 
         {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailLikeTableViewCell" owner:self options:nil];
-            cell = (ActivityDetailLikeTableViewCell *)[nib objectAtIndex:0];
-            
+            cell = (ActivityDetailLikeTableViewCell *)[nib objectAtIndex:0];    
             //Create a cell, need to do some configurations
             [cell configureCell];
-    }
+        }
     
+        NSString* strLikes = @"";
+        for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
+        {
+            Activity* activity = [_activityDetail.arrLikes objectAtIndex:i];
+            if (i < [_activityDetail.arrLikes count] - 1) 
+            {
+                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", activity.userID]];
+            }
+            else
+            {
+                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", activity.userID]];
+            }     
+        }
+        strLikes = [strLikes stringByAppendingString:@" like"];
+        [cell setContent:strLikes];
+        
         return cell;
     }
     else
     {
         ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
-    //Check if we found a cell
-    if (cell == nil) 
-    {
+        //Check if we found a cell
+        if (cell == nil) 
+        {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
             cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
             
             //Create a cell, need to do some configurations
             [cell configureCell];
-    }
+        }
+        
+        Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
+        [cell setActivity:activity];
     
-	return cell;
+        return cell;
     }
 }
 
