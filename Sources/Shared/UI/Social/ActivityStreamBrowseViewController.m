@@ -301,7 +301,16 @@
     Activity* activity = [self getActivityForIndexPath:indexPath];
     if (_activityDetailViewController == nil) 
     {
-        _activityDetailViewController = [[ActivityDetailViewController alloc] initWithNibName:@"ActivityDetailViewController" bundle:nil];
+        CGRect rectTableView = tableView.frame;
+        if (rectTableView.size.width > 320) 
+        {
+            _activityDetailViewController = [[ActivityDetailViewController alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
+        }
+        else
+        {
+            _activityDetailViewController = [[ActivityDetailViewController alloc] initWithNibName:@"ActivityDetailViewController" bundle:nil];
+        }
+        
     }
     
     ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:activity.userID arrLikes:_mockSocial_Activity.arrLikes arrComments:_mockSocial_Activity.arrComments];
