@@ -14,7 +14,7 @@
 
 @implementation ActivityDetailCommentTableViewCell
 
-@synthesize lbMessage=_lbMessage, lbDate=_lbDate , imgvAvatar=_imgvAvatar;
+@synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;
 @synthesize imgvCellBg = _imgvCellBg;
 
@@ -48,7 +48,7 @@
     
     self.lbMessage = nil;
     self.lbDate = nil;
-    
+    self.lbName = nil;
     self.imgvAvatar = nil;
     
     self.imgvMessageBg = nil;
@@ -105,7 +105,9 @@
 {
     _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
     _lbMessage.text = [activity.title copy];
+    _lbName.text = [activity.userID copy];
     _lbDate.text = [activity.postedTimeInWords copy];
+    _lbDate.hidden = YES;
     
     //display the like number '+' if 0
     NSString *stringForLikes;

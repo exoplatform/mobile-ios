@@ -14,7 +14,7 @@
 
 @implementation ActivityBasicTableViewCell
 
-@synthesize lbMessage=_lbMessage, lbDate=_lbDate , imgvAvatar=_imgvAvatar;
+@synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -52,6 +52,7 @@
     
     self.lbMessage = nil;
     self.lbDate = nil;
+    self.lbName = nil;
     
     self.imgvAvatar = nil;
     self.btnLike = nil;
@@ -139,6 +140,7 @@
     _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
     _lbMessage.text = [activity.title copy];
     _lbDate.text = [activity.postedTimeInWords copy];
+    _lbName.text = [activity.userID copy];
     
     //display the like number '+' if 0
     NSString *stringForLikes;

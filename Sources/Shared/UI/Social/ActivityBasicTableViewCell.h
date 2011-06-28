@@ -16,6 +16,7 @@
     
     UILabel*               _lbMessage;
     UILabel*               _lbDate;
+    UILabel*               _lbName;
     
     EGOImageView*          _imgvAvatar;
     UIButton*              _btnLike;
@@ -27,6 +28,7 @@
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
+@property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
