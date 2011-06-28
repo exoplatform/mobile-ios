@@ -24,18 +24,18 @@
     }
     else
     {
-        fWidth = rectTableView.size.width - 100;
+        fWidth = rectTableView.size.width - 70;
     }
     
     CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                           lineBreakMode:UILineBreakModeWordWrap];
     if (theSize.height < 30) 
     {
-        fHeight = 75;
+        fHeight = 100;
     }
     else
     {
-        fHeight = 50 + theSize.height;
+        fHeight = 75 + theSize.height;
     }
     
     if (fHeight > 200) {

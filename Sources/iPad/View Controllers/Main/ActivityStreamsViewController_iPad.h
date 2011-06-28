@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Three20/Three20.h>
 
+#import "ActivityStreamBrowseViewController.h"
+
 @interface ActivityStreamsViewController_iPad : TTViewController {
 
 }
