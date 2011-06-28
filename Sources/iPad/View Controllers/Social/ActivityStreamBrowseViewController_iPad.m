@@ -33,11 +33,11 @@
     
     if (theSize.height < 30) 
     {
-        fHeight = 75;
+        fHeight = 100;
     }
     else
     {
-        fHeight = 60 + theSize.height;
+        fHeight = 75 + theSize.height;
     }
     
     if (fHeight > 200) {
