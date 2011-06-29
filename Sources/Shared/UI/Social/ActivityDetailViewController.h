@@ -16,6 +16,13 @@
 @interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
+    IBOutlet UITextView*                    _txtvEditor;
+    IBOutlet UINavigationBar*               _navigationBar;
+    
+    UIBarButtonItem*                        _bbtnDone;
+    
+    CGRect                                  _sizeOrigin;
+    
     Activity*                               _activity;
     
     //Cell for the content of the message

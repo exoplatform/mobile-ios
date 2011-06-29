@@ -8,7 +8,7 @@
 
 #import "ActivityDetailViewController.h"
 #import "MockSocial_Activity.h"
-
+#import <QuartzCore/QuartzCore.h>
 #import "ActivityDetailCommentTableViewCell.h"
 #import "ActivityDetailMessageTableViewCell.h"
 #import "ActivityDetailLikeTableViewCell.h"
@@ -23,6 +23,7 @@
     if (self) {
         // Custom initialization
         _activity = [[Activity alloc] init];
+        _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
     }
     return self;
 }
@@ -50,13 +51,28 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+	[_txtvEditor setBackgroundColor:[UIColor whiteColor]];
+	[_txtvEditor setFont:[UIFont boldSystemFontOfSize:16.0]];
+	[_txtvEditor setTextAlignment:UITextAlignmentLeft];
+	[_txtvEditor setEditable:YES];
+	
+	[[_txtvEditor layer] setBorderColor:[[UIColor blackColor] CGColor]];
+	[[_txtvEditor layer] setBorderWidth:1];
+	[[_txtvEditor layer] setCornerRadius:15];
+	[_txtvEditor setClipsToBounds: YES];
+	[_txtvEditor setText:@""];
+    
+    self.navigationItem.rightBarButtonItem = nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-*/
 
 - (void)viewDidUnload
 {
@@ -69,6 +85,93 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)removeNotification
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+    CGRect rectTableView = _tblvActivityDetail.frame;
+    if (rectTableView.size.width > 320) 
+    {
+        _navigationBar.topItem.rightBarButtonItem = _bbtnDone;
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = _bbtnDone;
+    }
+    
+    
+    /*
+     Reduce the size of the text view so that it's not obscured by the keyboard.
+     Animate the resize so that it's in sync with the appearance of the keyboard.
+     */
+	_sizeOrigin = _txtvEditor.frame;
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the origin of the keyboard when it's displayed.
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+	
+    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
+    CGRect keyboardRect = [aValue CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    
+    CGFloat keyboardTop = keyboardRect.origin.y;
+    CGRect newTextViewFrame = self.view.bounds;
+    newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
+    
+    // Get the duration of the animation.
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    
+    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:animationDuration];
+    
+    _txtvEditor.frame = newTextViewFrame;
+	
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+    CGRect rectTableView = _tblvActivityDetail.frame;
+    if (rectTableView.size.width > 320) 
+    {
+        _navigationBar.topItem.rightBarButtonItem = nil;
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
+    NSDictionary* userInfo = [notification userInfo];
+    
+    /*
+     Restore the size of the text view (fill self's view).
+     Animate the resize so that it's in sync with the disappearance of the keyboard.
+     */
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+	
+	//18-5
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:animationDuration];
+    
+    _txtvEditor.frame = _sizeOrigin;
+    [UIView commitAnimations];
+}
+
+- (void)onBbtnDone
+{
+    [_txtvEditor resignFirstResponder];	
 }
 
 - (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail
