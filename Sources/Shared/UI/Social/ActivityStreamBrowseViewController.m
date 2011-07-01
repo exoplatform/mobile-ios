@@ -13,6 +13,8 @@
 #import "ActivityDetailViewController.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "MessageComposerViewController.h"
 
 #define TEST_ON_MOCK 1
 
@@ -24,11 +26,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        //_bbtnPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnPost)];
+        _bbtnPost = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnPost)];
+        self.navigationItem.rightBarButtonItem = _bbtnPost;
+        _txtvEditor = [[UITextView alloc] init];
+        [_txtvEditor setFrame:CGRectMake(0, -100, 1, 1)];
+        [self.view addSubview:_txtvEditor];
         
-        
-
-        
-        
+        _bIsPostClicked = NO;
+        _bIsIPad = NO;
     }
     return self;
 }
@@ -50,6 +56,7 @@
     _mockSocial_Activity = nil;
 #endif
 
+    [_bbtnPost release];
     [super dealloc];
 }
 
@@ -93,8 +100,35 @@
     
     [self sortActivities];
     
+    [_txtvEditor setBackgroundColor:[UIColor whiteColor]];
+	[_txtvEditor setFont:[UIFont boldSystemFontOfSize:13.0]];
+	[_txtvEditor setTextAlignment:UITextAlignmentLeft];
+	[_txtvEditor setEditable:YES];
+	
+	[[_txtvEditor layer] setBorderColor:[[UIColor blackColor] CGColor]];
+	[[_txtvEditor layer] setBorderWidth:1];
+	[[_txtvEditor layer] setCornerRadius:8];
+	[_txtvEditor setClipsToBounds: YES];
+	[_txtvEditor setText:@""];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    CGRect rect = _tblvActivityStream.frame;
+    if (rect.size.width > 320) 
+    {
+        _bIsIPad = YES;
+    }
+    else
+    {
+        _bIsIPad = NO;
+    }
+}
 
 - (void)viewDidUnload
 {
@@ -179,6 +213,141 @@
     
 }
 
+- (void)onBbtnPost
+{
+    MessageComposerViewController*  messageComposerViewController;
+    
+    if (_bIsIPad) 
+    {
+        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+    }
+    else
+    {
+        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
+    }
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    [messageComposerViewController release];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    if (_bIsIPad) 
+    {
+        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [[AppDelegate_iPad instance].rootViewController presentModalViewController:navController animated:YES];
+    }
+    else
+    {
+        [self.navigationController presentModalViewController:navController animated:YES];
+    }
+    
+    /*
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post a message" message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Post", nil];
+    
+    if (_txtvMsgComposer ==  nil) 
+    {
+        _txtvMsgComposer = [[UITextView alloc] initWithFrame:CGRectMake(15, 50, 255, 100)];
+        [_txtvMsgComposer setDelegate:self];
+    }
+    [_txtvMsgComposer becomeFirstResponder];
+    [[_txtvMsgComposer layer] setCornerRadius:6.0];
+    [[_txtvMsgComposer layer] setMasksToBounds:YES];
+    [alert addSubview:_txtvMsgComposer];
+	[alert show];
+	[alert release];
+    */
+    
+    /*
+    if (_bIsPostClicked) 
+    {
+        [_txtvEditor resignFirstResponder];
+        _bIsPostClicked = NO;
+    }
+    else
+    {
+        [_txtvEditor becomeFirstResponder];
+        _bIsPostClicked = YES;
+    }
+     */
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+//    CGRect rectTableView = _tblvActivityDetail.frame;
+//    if (rectTableView.size.width > 320) 
+//    {
+//        _navigationBar.topItem.rightBarButtonItem = _bbtnDone;
+//    }
+//    else
+//    {
+//        self.navigationItem.rightBarButtonItem = _bbtnDone;
+//    }
+    
+    self.navigationItem.rightBarButtonItem = _bbtnPost;
+    
+    /*
+     Reduce the size of the text view so that it's not obscured by the keyboard.
+     Animate the resize so that it's in sync with the appearance of the keyboard.
+     */
+	_sizeOrigin = _txtvEditor.frame;
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the origin of the keyboard when it's displayed.
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+	
+    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
+    CGRect keyboardRect = [aValue CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    
+    CGFloat keyboardTop = keyboardRect.origin.y;
+    CGRect newTextViewFrame = self.view.bounds;
+    CGRect rectTableView = _tblvActivityStream.frame;
+    if (rectTableView.size.width > 320) 
+    {
+        newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y - 44;
+        newTextViewFrame.origin.y = 44;
+    }
+    else
+    {
+        newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
+    }
+    //newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
+    
+    // Get the duration of the animation.
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    
+    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:animationDuration];
+    
+    _txtvEditor.frame = newTextViewFrame;
+	
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification 
+{        
+    NSDictionary* userInfo = [notification userInfo];
+    
+    /*
+     Restore the size of the text view (fill self's view).
+     Animate the resize so that it's in sync with the disappearance of the keyboard.
+     */
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+	
+	//18-5
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:animationDuration];
+    
+    _txtvEditor.frame = _sizeOrigin;
+    [UIView commitAnimations];
+}
 
 
 #pragma mark - Table view Methods
@@ -334,8 +503,6 @@
             [self.navigationController pushViewController:_activityDetailViewController animated:YES];
         }
     }    
-    
-    
 }
 
 

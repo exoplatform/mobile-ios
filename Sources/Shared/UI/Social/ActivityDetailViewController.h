@@ -13,7 +13,7 @@
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
 
-@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UITextView*                    _txtvEditor;
@@ -32,8 +32,11 @@
     ActivityDetailLikeTableViewCell*        _cellForLikes;
     
     ActivityDetail*                         _activityDetail;
-    
+    UITextView*                             _txtvMsgComposer;
+    IBOutlet UIButton*                      _btnMsgComposer;    
+    BOOL                                    _bIsIPad;
 }
 
 - (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
+- (IBAction)onBtnMessageComposer:(id)sender;
 @end

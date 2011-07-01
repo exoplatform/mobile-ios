@@ -13,7 +13,9 @@
 #import "ActivityDetailMessageTableViewCell.h"
 #import "ActivityDetailLikeTableViewCell.h"
 #import "ActivityStreamBrowseViewController.h"
-
+#import "MessageComposerViewController.h"
+#import "AppDelegate_iPad.h"
+#import "RootViewController.h"
 
 @implementation ActivityDetailViewController
 
@@ -24,6 +26,7 @@
         // Custom initialization
         _activity = [[Activity alloc] init];
         _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
+        _bIsIPad = NO;
     }
     return self;
 }
@@ -31,6 +34,7 @@
 - (void)dealloc
 {
     [_activity release];
+
     [super dealloc];
 }
 
@@ -58,20 +62,37 @@
     [super viewDidLoad];
     
 	[_txtvEditor setBackgroundColor:[UIColor whiteColor]];
-	[_txtvEditor setFont:[UIFont boldSystemFontOfSize:16.0]];
+	[_txtvEditor setFont:[UIFont boldSystemFontOfSize:13.0]];
 	[_txtvEditor setTextAlignment:UITextAlignmentLeft];
 	[_txtvEditor setEditable:YES];
 	
 	[[_txtvEditor layer] setBorderColor:[[UIColor blackColor] CGColor]];
 	[[_txtvEditor layer] setBorderWidth:1];
-	[[_txtvEditor layer] setCornerRadius:15];
+	[[_txtvEditor layer] setCornerRadius:8];
 	[_txtvEditor setClipsToBounds: YES];
 	[_txtvEditor setText:@""];
     
     self.navigationItem.rightBarButtonItem = nil;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    UIImage *strechBg = [[UIImage imageNamed:@"MessageComposerButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:10];
+    
+    [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    CGRect rect = _tblvActivityDetail.frame;
+    if (rect.size.width > 320) 
+    {
+        _bIsIPad = YES;
+    }
+    else
+    {
+        _bIsIPad = NO;
+    }
 }
 
 - (void)viewDidUnload
@@ -213,6 +234,53 @@
     return fHeight;
 }
 
+- (IBAction)onBtnMessageComposer:(id)sender
+{
+    MessageComposerViewController*  messageComposerViewController;
+    
+    if (_bIsIPad) 
+    {
+        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+    }
+    else
+    {
+        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
+    }
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    [messageComposerViewController release];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    if (_bIsIPad) 
+    {
+        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    }
+    else
+    {
+        [self.navigationController presentModalViewController:navController animated:YES];
+    }
+    
+    /*
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Comment the activity" message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
+    
+    if (_txtvMsgComposer ==  nil) 
+    {
+        _txtvMsgComposer = [[UITextView alloc] initWithFrame:CGRectMake(15, 50, 255, 100)];
+        [_txtvMsgComposer setDelegate:self];
+    }
+    [_txtvMsgComposer becomeFirstResponder];
+    [[_txtvMsgComposer layer] setCornerRadius:6.0];
+    [[_txtvMsgComposer layer] setMasksToBounds:YES];
+    [alert addSubview:_txtvMsgComposer];
+	[alert show];
+	[alert release];
+    */ 
+}
+
+
 #pragma mark - Table view Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -322,6 +390,7 @@
         }
     
         NSString* strLikes = @"";
+        /*
         for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
         {
             Activity* activity = [_activityDetail.arrLikes objectAtIndex:i];
@@ -335,6 +404,7 @@
             }     
         }
         strLikes = [strLikes stringByAppendingString:@" like"];
+         */
         [cell setContent:strLikes];
         
         return cell;
