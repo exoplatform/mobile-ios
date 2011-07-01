@@ -12,6 +12,13 @@
 @implementation ActivityStreamBrowseViewController_iPad
 
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [_navigation.topItem setTitle:@"Activity Stream 111"];
+    [_navigation.topItem setRightBarButtonItem:_bbtnPost];
+}
+
 // Specific method to retrieve the height of the cell
 // This method override the inherited one.
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
