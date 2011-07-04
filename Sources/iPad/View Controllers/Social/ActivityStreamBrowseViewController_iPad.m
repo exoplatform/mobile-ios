@@ -7,7 +7,9 @@
 //
 
 #import "ActivityStreamBrowseViewController_iPad.h"
-
+#import "MessageComposerViewController.h"
+#import "AppDelegate_iPad.h"
+#import "RootViewController.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
 
@@ -53,5 +55,19 @@
     return fHeight;
 }
 
+
+- (void)onBbtnPost
+{
+    MessageComposerViewController*  messageComposerViewController;
+    messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+        
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    [messageComposerViewController release];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+}
 
 @end
