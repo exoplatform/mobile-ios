@@ -390,21 +390,28 @@
         }
     
         NSString* strLikes = @"";
-        /*
-        for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
-        {
-            Activity* activity = [_activityDetail.arrLikes objectAtIndex:i];
-            if (i < [_activityDetail.arrLikes count] - 1) 
+        
+        if ([_activityDetail.arrLikes count] > 0)
+        {   
+            for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
             {
-                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", activity.userID]];
+                Activity* activity = [_activityDetail.arrLikes objectAtIndex:i];
+                if (i < [_activityDetail.arrLikes count] - 1) 
+                {
+                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", activity.userID]];
+                }
+                else
+                {
+                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", activity.userID]];
+                }     
             }
-            else
-            {
-                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", activity.userID]];
-            }     
+            strLikes = [strLikes stringByAppendingString:@" like"];
         }
-        strLikes = [strLikes stringByAppendingString:@" like"];
-         */
+        else
+        {
+            strLikes = @"No like for the moment";
+        }
+        
         [cell setContent:strLikes];
         
         return cell;
