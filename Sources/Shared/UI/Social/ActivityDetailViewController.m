@@ -72,6 +72,8 @@
 	[_txtvEditor setClipsToBounds: YES];
 	[_txtvEditor setText:@""];
     
+    [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
+    
     self.navigationItem.rightBarButtonItem = nil;
     
     UIImage *strechBg = [[UIImage imageNamed:@"MessageComposerButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:10];
@@ -234,50 +236,10 @@
     return fHeight;
 }
 
-- (IBAction)onBtnMessageComposer:(id)sender
+- (void)onBtnMessageComposer
+//- (IBAction)onBtnMessageComposer:(id)sender
 {
-    MessageComposerViewController*  messageComposerViewController;
-    
-    if (_bIsIPad) 
-    {
-        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-    }
-    else
-    {
-        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
-    }
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
-    
-    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    
-    if (_bIsIPad) 
-    {
-        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        navController.modalPresentationStyle = UIModalPresentationFormSheet;
-        [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
-    }
-    else
-    {
-        [self.navigationController presentModalViewController:navController animated:YES];
-    }
-    
-    /*
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Comment the activity" message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
-    
-    if (_txtvMsgComposer ==  nil) 
-    {
-        _txtvMsgComposer = [[UITextView alloc] initWithFrame:CGRectMake(15, 50, 255, 100)];
-        [_txtvMsgComposer setDelegate:self];
-    }
-    [_txtvMsgComposer becomeFirstResponder];
-    [[_txtvMsgComposer layer] setCornerRadius:6.0];
-    [[_txtvMsgComposer layer] setMasksToBounds:YES];
-    [alert addSubview:_txtvMsgComposer];
-	[alert show];
-	[alert release];
-    */ 
+    [self onBtnMessageComposer];
 }
 
 

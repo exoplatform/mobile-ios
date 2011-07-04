@@ -38,5 +38,4 @@
 }
 
 - (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
-- (IBAction)onBtnMessageComposer:(id)sender;
 @end

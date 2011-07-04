@@ -15,6 +15,8 @@
 #import "RootViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MessageComposerViewController.h"
+#import "ActivityDetailViewController_iPad.h"
+#import "ActivityDetailViewController_iPhone.h"
 
 #define TEST_ON_MOCK 1
 
@@ -215,33 +217,34 @@
 
 - (void)onBbtnPost
 {
-    MessageComposerViewController*  messageComposerViewController;
-    
-    if (_bIsIPad) 
-    {
-        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-    }
-    else
-    {
-        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
-    }
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
-    
-    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    
-    if (_bIsIPad) 
-    {
-        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        navController.modalPresentationStyle = UIModalPresentationFormSheet;
-        [[AppDelegate_iPad instance].rootViewController presentModalViewController:navController animated:YES];
-    }
-    else
-    {
-        [self.navigationController presentModalViewController:navController animated:YES];
-    }
-    
+    [self onBbtnPost];
+//    MessageComposerViewController*  messageComposerViewController;
+//    
+//    if (_bIsIPad) 
+//    {
+//        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+//    }
+//    else
+//    {
+//        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
+//    }
+//    
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+//    [messageComposerViewController release];
+//    
+//    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    
+//    if (_bIsIPad) 
+//    {
+//        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+//        [[AppDelegate_iPad instance].rootViewController presentModalViewController:navController animated:YES];
+//    }
+//    else
+//    {
+//        [self.navigationController presentModalViewController:navController animated:YES];
+//    }
+//    
     /*
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post a message" message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Post", nil];
     
@@ -473,11 +476,11 @@
         CGRect rectTableView = tableView.frame;
         if (rectTableView.size.width > 320) 
         {
-            _activityDetailViewController = [[ActivityDetailViewController alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
+            _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
         }
         else
         {
-            _activityDetailViewController = [[ActivityDetailViewController alloc] initWithNibName:@"ActivityDetailViewController" bundle:nil];
+            _activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
         }
         
     }
