@@ -14,6 +14,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>IBUITextView</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUIView</string>
 			<string>IBProxyObject</string>
 		</object>
@@ -43,14 +44,34 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="873275145">
+						<reference key="NSNextResponder" ref="307757626"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{540, 654}</string>
+						<reference key="NSSuperview" ref="307757626"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="821013062"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
+					<object class="IBUIImageView" id="821013062">
+						<reference key="NSNextResponder" ref="307757626"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{5, 5}, {530, 213}}</string>
+						<reference key="NSSuperview" ref="307757626"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="499177849"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
 					<object class="IBUITextView" id="499177849">
 						<reference key="NSNextResponder" ref="307757626"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{540, 224}</string>
+						<string key="NSFrame">{{12, 12}, {516, 198}}</string>
 						<reference key="NSSuperview" ref="307757626"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="930502395"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
+						<object class="NSColor" key="IBUIBackgroundColor" id="1039594615">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
@@ -79,16 +100,12 @@
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Cancel</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="536818611">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="1039594615"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="1065024029">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
@@ -106,20 +123,16 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="81862509"/>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Send</string>
 						<reference key="IBUIHighlightedTitleColor" ref="536818611"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="1039594615"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1065024029"/>
 					</object>
 				</object>
-				<string key="NSFrameSize">{540, 328}</string>
+				<string key="NSFrameSize">{540, 654}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="499177849"/>
+				<reference key="NSNextKeyView" ref="873275145"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuODAwMDAwMDExOSAwLjgwMDAwMDAxMTkAA</bytes>
@@ -188,6 +201,22 @@
 					</object>
 					<int key="connectionID">13</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_imgvBackground</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="873275145"/>
+					</object>
+					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_imgvTextViewBg</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="821013062"/>
+					</object>
+					<int key="connectionID">17</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -217,6 +246,8 @@
 							<reference ref="499177849"/>
 							<reference ref="930502395"/>
 							<reference ref="662684648"/>
+							<reference ref="873275145"/>
+							<reference ref="821013062"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -235,6 +266,16 @@
 						<reference key="object" ref="662684648"/>
 						<reference key="parent" ref="307757626"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">14</int>
+						<reference key="object" ref="873275145"/>
+						<reference key="parent" ref="307757626"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">16</int>
+						<reference key="object" ref="821013062"/>
+						<reference key="parent" ref="307757626"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -243,6 +284,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
+					<string>14.IBPluginDependency</string>
+					<string>16.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
@@ -252,6 +295,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>MessageComposerViewController_iPad</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -270,7 +315,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">13</int>
+			<int key="maxID">17</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -316,12 +361,16 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>_btnCancel</string>
 							<string>_btnSend</string>
+							<string>_imgvBackground</string>
+							<string>_imgvTextViewBg</string>
 							<string>_txtvMessageComposer</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UIImageView</string>
+							<string>UIImageView</string>
 							<string>UITextView</string>
 						</object>
 					</object>
@@ -331,6 +380,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>_btnCancel</string>
 							<string>_btnSend</string>
+							<string>_imgvBackground</string>
+							<string>_imgvTextViewBg</string>
 							<string>_txtvMessageComposer</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -342,6 +393,14 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">_btnSend</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_imgvBackground</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_imgvTextViewBg</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_txtvMessageComposer</string>

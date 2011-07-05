@@ -14,6 +14,8 @@
     IBOutlet UIButton*              _btnCancel;
     IBOutlet UIButton*              _btnSend;
     IBOutlet UITextView*            _txtvMessageComposer;
+    IBOutlet UIImageView*           _imgvBackground;
+    IBOutlet UIImageView*           _imgvTextViewBg;
 }
 
 - (IBAction)onBtnSend:(id)sender;

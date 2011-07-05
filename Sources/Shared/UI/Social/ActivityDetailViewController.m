@@ -335,7 +335,7 @@
             //Create a cell, need to do some configurations
             [cell configureCell];
         }
-        
+        cell.userInteractionEnabled = NO;
         [cell setActivity:_activity];
         
         return cell;
@@ -376,6 +376,7 @@
             strLikes = @"No like for the moment";
         }
         
+        cell.userInteractionEnabled = NO;
         [cell setContent:strLikes];
         
         return cell;
@@ -395,6 +396,7 @@
         }
         
         Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
+        cell.userInteractionEnabled = NO;
         [cell setActivity:activity];
     
         return cell;

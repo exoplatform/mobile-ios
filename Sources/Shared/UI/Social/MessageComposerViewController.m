@@ -49,9 +49,35 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Message Composer";
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailCommentBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
+    [_imgvBackground setImage:strechBg];
+    
+    UIImage *strechTextViewBg = [[UIImage imageNamed:@"MessageComposerTextfieldBackground.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:50];
+    [_imgvTextViewBg setImage:strechTextViewBg];
+    
+    UIImage *strechSendBg = [[UIImage imageNamed:@"MessageComposerButtonSendBackground.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
+    
+    UIImage *strechSendBgSelected = [[UIImage imageNamed:@"MessageComposerButtonSendBackgroundSelected.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
+    
+    [_btnSend setBackgroundImage:strechSendBg forState:UIControlStateNormal];
+    [_btnSend setBackgroundImage:strechSendBgSelected forState:UIControlStateHighlighted];
+    
+    
+    UIImage *strechCancelBg = [[UIImage imageNamed:@"MessageComposerButtonCancelBackground.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
+    
+    UIImage *strechCancelBgSelected = [[UIImage imageNamed:@"MessageComposerButtonCancelBackgroundSelected.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
+    
+    [_btnCancel setBackgroundImage:strechCancelBg forState:UIControlStateNormal];
+    [_btnCancel setBackgroundImage:strechCancelBgSelected forState:UIControlStateHighlighted];
+    
+    
     
     [_txtvMessageComposer becomeFirstResponder];
+    [_txtvMessageComposer setBackgroundColor:[UIColor clearColor]];
+    [_txtvMessageComposer setText:@""];
     
+    
+    /*
     [_txtvMessageComposer setBackgroundColor:[UIColor whiteColor]];
 	[_txtvMessageComposer setFont:[UIFont boldSystemFontOfSize:13.0]];
 	[_txtvMessageComposer setTextAlignment:UITextAlignmentLeft];
@@ -62,6 +88,7 @@
 	[[_txtvMessageComposer layer] setCornerRadius:8];
 	[_txtvMessageComposer setClipsToBounds: YES];
 	[_txtvMessageComposer setText:@""];
+     */
 }
 
 - (void)viewDidUnload
