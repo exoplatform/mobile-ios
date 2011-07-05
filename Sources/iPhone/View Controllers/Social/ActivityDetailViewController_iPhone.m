@@ -7,7 +7,7 @@
 //
 
 #import "ActivityDetailViewController_iPhone.h"
-#import "MessageComposerViewController.h"
+#import "MessageComposerViewController_iPhone.h"
 #import "ActivityDetailViewController.h"
 
 @implementation ActivityDetailViewController_iPhone
@@ -15,9 +15,9 @@
 
 - (void)onBtnMessageComposer
 {
-    MessageComposerViewController*  messageComposerViewController;
+    MessageComposerViewController_iPhone*  messageComposerViewController;
     
-    messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
+    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     [messageComposerViewController release];

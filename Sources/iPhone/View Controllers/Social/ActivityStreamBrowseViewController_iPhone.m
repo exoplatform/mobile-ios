@@ -7,7 +7,7 @@
 //
 
 #import "ActivityStreamBrowseViewController_iPhone.h"
-#import "MessageComposerViewController.h"
+#import "MessageComposerViewController_iPhone.h"
 
 @implementation ActivityStreamBrowseViewController_iPhone
 
@@ -47,9 +47,9 @@
 
 - (void)onBbtnPost
 {
-    MessageComposerViewController*  messageComposerViewController;
+    MessageComposerViewController_iPhone*  messageComposerViewController;
     
-    messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
+    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     [messageComposerViewController release];
