@@ -3303,8 +3303,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3333,8 +3333,8 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "eXo Platform";
-				PROVISIONING_PROFILE = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.3;
 			};
 			name = Debug;
@@ -3533,8 +3533,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3546,8 +3546,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
