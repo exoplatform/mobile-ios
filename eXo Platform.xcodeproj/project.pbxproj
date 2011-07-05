@@ -69,7 +69,6 @@
 		4695980B1377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */; };
 		4695981D13780D3400ADC826 /* AuthenticateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695981C13780D3100ADC826 /* AuthenticateViewController.xib */; };
 		469598881378497C00ADC826 /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469598871378497B00ADC826 /* AuthenticateServerCell.xib */; };
-		46A03A1F13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A1E13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m */; };
 		46A03A2113A7A39000E71AF9 /* ActivityStreamBrowseViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */; };
 		46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */; };
 		46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */; };
@@ -206,11 +205,16 @@
 		7C2234BE13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */; };
 		7C2234BF13810E07006F847E /* CustomBackgroundForCellSingle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */; };
 		7C2234C013810E07006F847E /* CustomBackgroundForCellTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */; };
-		7C2D6D1C13C1D025000B4471 /* ActivityDetailViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D6D1A13C1D025000B4471 /* ActivityDetailViewController_iPad.m */; };
-		7C2D6D1D13C1D025000B4471 /* ActivityDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2D6D1B13C1D025000B4471 /* ActivityDetailViewController_iPad.xib */; };
-		7C2D6D2313C1D037000B4471 /* ActivityDetailViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D6D1F13C1D037000B4471 /* ActivityDetailViewController_iPhone.m */; };
-		7C2D6D2413C1D037000B4471 /* ActivityDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2D6D2013C1D037000B4471 /* ActivityDetailViewController_iPhone.xib */; };
-		7C2D6D2513C1D037000B4471 /* ActivityStreamBrowseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D6D2213C1D037000B4471 /* ActivityStreamBrowseViewController_iPhone.m */; };
+		7C34683613C2DB4C0030DC23 /* ActivityDetailViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34682F13C2DB4C0030DC23 /* ActivityDetailViewController_iPad.m */; };
+		7C34683713C2DB4C0030DC23 /* ActivityDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C34683013C2DB4C0030DC23 /* ActivityDetailViewController_iPad.xib */; };
+		7C34683813C2DB4C0030DC23 /* ActivityStreamBrowseViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34683213C2DB4C0030DC23 /* ActivityStreamBrowseViewController_iPad.m */; };
+		7C34683913C2DB4C0030DC23 /* MessageComposerViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34683413C2DB4C0030DC23 /* MessageComposerViewController_iPad.m */; };
+		7C34683A13C2DB4C0030DC23 /* MessageComposerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C34683513C2DB4C0030DC23 /* MessageComposerViewController_iPad.xib */; };
+		7C34684313C2DB770030DC23 /* ActivityDetailViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34683C13C2DB770030DC23 /* ActivityDetailViewController_iPhone.m */; };
+		7C34684413C2DB770030DC23 /* ActivityDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C34683D13C2DB770030DC23 /* ActivityDetailViewController_iPhone.xib */; };
+		7C34684513C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34683F13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m */; };
+		7C34684613C2DB770030DC23 /* MessageComposerViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34684113C2DB770030DC23 /* MessageComposerViewController_iPhone.m */; };
+		7C34684713C2DB770030DC23 /* MessageComposerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C34684213C2DB770030DC23 /* MessageComposerViewController_iPhone.xib */; };
 		7C3BD1A01370FE1700380828 /* ActivityStreamsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */; };
 		7C3BD1A11370FE1700380828 /* ChatViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD1991370FE1700380828 /* ChatViewController_iPad.m */; };
 		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; };
@@ -236,8 +240,6 @@
 		7CBB39AA13B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CBB39A813B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png */; };
 		7CD4E5E613BD8C8000F5015D /* MessageComposerButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4E5E513BD8C8000F5015D /* MessageComposerButtonBg.png */; };
 		7CD4E5E913BDA92500F5015D /* MessageComposerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */; };
-		7CD4E5EB13BDA94400F5015D /* MessageComposerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4E5EA13BDA94300F5015D /* MessageComposerViewController.xib */; };
-		7CD4E5ED13BDB84500F5015D /* MessageComposerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4E5EC13BDB84200F5015D /* MessageComposerViewController_iPad.xib */; };
 		7CE0131F13B1917700F16971 /* SocialActivityDetailMessageBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0131E13B1917700F16971 /* SocialActivityDetailMessageBg.png */; };
 		7CE0132113B1918400F16971 /* SocialActivityDetailMessageBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132013B1918400F16971 /* SocialActivityDetailMessageBg@2x.png */; };
 		7CE0132313B1A62000F16971 /* SocialActivityDetailLikeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132213B1A61F00F16971 /* SocialActivityDetailLikeButton@2x.png */; };
@@ -654,8 +656,6 @@
 		469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateSettingsIconIphone@2x.png"; path = "Authenticate/@2x/AuthenticateSettingsIconIphone@2x.png"; sourceTree = "<group>"; };
 		4695981C13780D3100ADC826 /* AuthenticateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateViewController.xib; sourceTree = "<group>"; };
 		469598871378497B00ADC826 /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
-		46A03A1D13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController_iPad.h; path = Social/ActivityStreamBrowseViewController_iPad.h; sourceTree = "<group>"; };
-		46A03A1E13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController_iPad.m; path = Social/ActivityStreamBrowseViewController_iPad.m; sourceTree = "<group>"; };
 		46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamBrowseViewController_iPad.xib; sourceTree = "<group>"; };
 		46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityBasicTableViewCell.h; path = Social/ActivityBasicTableViewCell.h; sourceTree = "<group>"; };
 		46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityBasicTableViewCell.m; path = Social/ActivityBasicTableViewCell.m; sourceTree = "<group>"; };
@@ -820,14 +820,22 @@
 		7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellMiddle@2x.png"; path = "Global/@2x/CustomBackgroundForCellMiddle@2x.png"; sourceTree = "<group>"; };
 		7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellSingle@2x.png"; path = "Global/@2x/CustomBackgroundForCellSingle@2x.png"; sourceTree = "<group>"; };
 		7C2234BC13810E07006F847E /* CustomBackgroundForCellTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellTop@2x.png"; path = "Global/@2x/CustomBackgroundForCellTop@2x.png"; sourceTree = "<group>"; };
-		7C2D6D1913C1D025000B4471 /* ActivityDetailViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailViewController_iPad.h; path = Social/ActivityDetailViewController_iPad.h; sourceTree = "<group>"; };
-		7C2D6D1A13C1D025000B4471 /* ActivityDetailViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController_iPad.m; path = Social/ActivityDetailViewController_iPad.m; sourceTree = "<group>"; };
-		7C2D6D1B13C1D025000B4471 /* ActivityDetailViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailViewController_iPad.xib; path = Social/ActivityDetailViewController_iPad.xib; sourceTree = "<group>"; };
-		7C2D6D1E13C1D037000B4471 /* ActivityDetailViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailViewController_iPhone.h; path = "Sources/iPhone/View Controllers/Social/ActivityDetailViewController_iPhone.h"; sourceTree = SOURCE_ROOT; };
-		7C2D6D1F13C1D037000B4471 /* ActivityDetailViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController_iPhone.m; path = "Sources/iPhone/View Controllers/Social/ActivityDetailViewController_iPhone.m"; sourceTree = SOURCE_ROOT; };
-		7C2D6D2013C1D037000B4471 /* ActivityDetailViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailViewController_iPhone.xib; path = "Sources/iPhone/View Controllers/Social/ActivityDetailViewController_iPhone.xib"; sourceTree = SOURCE_ROOT; };
-		7C2D6D2113C1D037000B4471 /* ActivityStreamBrowseViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController_iPhone.h; path = "Sources/iPhone/View Controllers/Social/ActivityStreamBrowseViewController_iPhone.h"; sourceTree = SOURCE_ROOT; };
-		7C2D6D2213C1D037000B4471 /* ActivityStreamBrowseViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController_iPhone.m; path = "Sources/iPhone/View Controllers/Social/ActivityStreamBrowseViewController_iPhone.m"; sourceTree = SOURCE_ROOT; };
+		7C34682E13C2DB4C0030DC23 /* ActivityDetailViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailViewController_iPad.h; path = Social/ActivityDetailViewController_iPad.h; sourceTree = "<group>"; };
+		7C34682F13C2DB4C0030DC23 /* ActivityDetailViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController_iPad.m; path = Social/ActivityDetailViewController_iPad.m; sourceTree = "<group>"; };
+		7C34683013C2DB4C0030DC23 /* ActivityDetailViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailViewController_iPad.xib; path = Social/ActivityDetailViewController_iPad.xib; sourceTree = "<group>"; };
+		7C34683113C2DB4C0030DC23 /* ActivityStreamBrowseViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController_iPad.h; path = Social/ActivityStreamBrowseViewController_iPad.h; sourceTree = "<group>"; };
+		7C34683213C2DB4C0030DC23 /* ActivityStreamBrowseViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController_iPad.m; path = Social/ActivityStreamBrowseViewController_iPad.m; sourceTree = "<group>"; };
+		7C34683313C2DB4C0030DC23 /* MessageComposerViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposerViewController_iPad.h; path = Social/MessageComposerViewController_iPad.h; sourceTree = "<group>"; };
+		7C34683413C2DB4C0030DC23 /* MessageComposerViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposerViewController_iPad.m; path = Social/MessageComposerViewController_iPad.m; sourceTree = "<group>"; };
+		7C34683513C2DB4C0030DC23 /* MessageComposerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageComposerViewController_iPad.xib; path = Social/MessageComposerViewController_iPad.xib; sourceTree = "<group>"; };
+		7C34683B13C2DB770030DC23 /* ActivityDetailViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailViewController_iPhone.h; path = "Sources/iPhone/View Controllers/Social/ActivityDetailViewController_iPhone.h"; sourceTree = SOURCE_ROOT; };
+		7C34683C13C2DB770030DC23 /* ActivityDetailViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController_iPhone.m; path = "Sources/iPhone/View Controllers/Social/ActivityDetailViewController_iPhone.m"; sourceTree = SOURCE_ROOT; };
+		7C34683D13C2DB770030DC23 /* ActivityDetailViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailViewController_iPhone.xib; path = "Sources/iPhone/View Controllers/Social/ActivityDetailViewController_iPhone.xib"; sourceTree = SOURCE_ROOT; };
+		7C34683E13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController_iPhone.h; path = "Sources/iPhone/View Controllers/Social/ActivityStreamBrowseViewController_iPhone.h"; sourceTree = SOURCE_ROOT; };
+		7C34683F13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController_iPhone.m; path = "Sources/iPhone/View Controllers/Social/ActivityStreamBrowseViewController_iPhone.m"; sourceTree = SOURCE_ROOT; };
+		7C34684013C2DB770030DC23 /* MessageComposerViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposerViewController_iPhone.h; path = "Sources/iPhone/View Controllers/Social/MessageComposerViewController_iPhone.h"; sourceTree = SOURCE_ROOT; };
+		7C34684113C2DB770030DC23 /* MessageComposerViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposerViewController_iPhone.m; path = "Sources/iPhone/View Controllers/Social/MessageComposerViewController_iPhone.m"; sourceTree = SOURCE_ROOT; };
+		7C34684213C2DB770030DC23 /* MessageComposerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageComposerViewController_iPhone.xib; path = "Sources/iPhone/View Controllers/Social/MessageComposerViewController_iPhone.xib"; sourceTree = SOURCE_ROOT; };
 		7C3BD1961370FE1700380828 /* ActivityStreamsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStreamsViewController_iPad.h; sourceTree = "<group>"; };
 		7C3BD1971370FE1700380828 /* ActivityStreamsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStreamsViewController_iPad.m; sourceTree = "<group>"; };
 		7C3BD1981370FE1700380828 /* ChatViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController_iPad.h; sourceTree = "<group>"; };
@@ -874,8 +882,6 @@
 		7CD4E5E513BD8C8000F5015D /* MessageComposerButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonBg.png; sourceTree = "<group>"; };
 		7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposerViewController.h; path = Social/MessageComposerViewController.h; sourceTree = "<group>"; };
 		7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposerViewController.m; path = Social/MessageComposerViewController.m; sourceTree = "<group>"; };
-		7CD4E5EA13BDA94300F5015D /* MessageComposerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageComposerViewController.xib; path = Social/MessageComposerViewController.xib; sourceTree = "<group>"; };
-		7CD4E5EC13BDB84200F5015D /* MessageComposerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageComposerViewController_iPad.xib; path = Social/MessageComposerViewController_iPad.xib; sourceTree = "<group>"; };
 		7CE0131E13B1917700F16971 /* SocialActivityDetailMessageBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailMessageBg.png; sourceTree = "<group>"; };
 		7CE0132013B1918400F16971 /* SocialActivityDetailMessageBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailMessageBg@2x.png"; sourceTree = "<group>"; };
 		7CE0132213B1A61F00F16971 /* SocialActivityDetailLikeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailLikeButton@2x.png"; sourceTree = "<group>"; };
@@ -1392,11 +1398,14 @@
 		46A03A1813A7952400E71AF9 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				46A03A1D13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.h */,
-				46A03A1E13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m */,
-				7C2D6D1913C1D025000B4471 /* ActivityDetailViewController_iPad.h */,
-				7C2D6D1A13C1D025000B4471 /* ActivityDetailViewController_iPad.m */,
-				7C2D6D1B13C1D025000B4471 /* ActivityDetailViewController_iPad.xib */,
+				7C34682E13C2DB4C0030DC23 /* ActivityDetailViewController_iPad.h */,
+				7C34682F13C2DB4C0030DC23 /* ActivityDetailViewController_iPad.m */,
+				7C34683013C2DB4C0030DC23 /* ActivityDetailViewController_iPad.xib */,
+				7C34683113C2DB4C0030DC23 /* ActivityStreamBrowseViewController_iPad.h */,
+				7C34683213C2DB4C0030DC23 /* ActivityStreamBrowseViewController_iPad.m */,
+				7C34683313C2DB4C0030DC23 /* MessageComposerViewController_iPad.h */,
+				7C34683413C2DB4C0030DC23 /* MessageComposerViewController_iPad.m */,
+				7C34683513C2DB4C0030DC23 /* MessageComposerViewController_iPad.xib */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -1410,8 +1419,6 @@
 				46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */,
 				46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */,
 				46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */,
-				7CD4E5EA13BDA94300F5015D /* MessageComposerViewController.xib */,
-				7CD4E5EC13BDB84200F5015D /* MessageComposerViewController_iPad.xib */,
 				7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */,
 				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
 			);
@@ -1791,11 +1798,14 @@
 		7CAB42D413A7689F00CED7A3 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				7C2D6D1E13C1D037000B4471 /* ActivityDetailViewController_iPhone.h */,
-				7C2D6D1F13C1D037000B4471 /* ActivityDetailViewController_iPhone.m */,
-				7C2D6D2013C1D037000B4471 /* ActivityDetailViewController_iPhone.xib */,
-				7C2D6D2113C1D037000B4471 /* ActivityStreamBrowseViewController_iPhone.h */,
-				7C2D6D2213C1D037000B4471 /* ActivityStreamBrowseViewController_iPhone.m */,
+				7C34683B13C2DB770030DC23 /* ActivityDetailViewController_iPhone.h */,
+				7C34683C13C2DB770030DC23 /* ActivityDetailViewController_iPhone.m */,
+				7C34683D13C2DB770030DC23 /* ActivityDetailViewController_iPhone.xib */,
+				7C34683E13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.h */,
+				7C34683F13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m */,
+				7C34684013C2DB770030DC23 /* MessageComposerViewController_iPhone.h */,
+				7C34684113C2DB770030DC23 /* MessageComposerViewController_iPhone.m */,
+				7C34684213C2DB770030DC23 /* MessageComposerViewController_iPhone.xib */,
 			);
 			name = Social;
 			path = ActivityStream;
@@ -3109,10 +3119,10 @@
 				7CE0132713B1A9EA00F16971 /* SocialActivityDetailCommentBg.png in Resources */,
 				7CE0132913B1AA3300F16971 /* SocialActivityDetailCommentBg@2x.png in Resources */,
 				7CD4E5E613BD8C8000F5015D /* MessageComposerButtonBg.png in Resources */,
-				7CD4E5EB13BDA94400F5015D /* MessageComposerViewController.xib in Resources */,
-				7CD4E5ED13BDB84500F5015D /* MessageComposerViewController_iPad.xib in Resources */,
-				7C2D6D1D13C1D025000B4471 /* ActivityDetailViewController_iPad.xib in Resources */,
-				7C2D6D2413C1D037000B4471 /* ActivityDetailViewController_iPhone.xib in Resources */,
+				7C34683713C2DB4C0030DC23 /* ActivityDetailViewController_iPad.xib in Resources */,
+				7C34683A13C2DB4C0030DC23 /* MessageComposerViewController_iPad.xib in Resources */,
+				7C34684413C2DB770030DC23 /* ActivityDetailViewController_iPhone.xib in Resources */,
+				7C34684713C2DB770030DC23 /* MessageComposerViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3242,7 +3252,6 @@
 				7CAB436A13A76A7800CED7A3 /* EGOImageLoadConnection.m in Sources */,
 				7CAB436B13A76A7800CED7A3 /* EGOImageLoader.m in Sources */,
 				7CAB436C13A76A7800CED7A3 /* EGOImageView.m in Sources */,
-				46A03A1F13A7A2D400E71AF9 /* ActivityStreamBrowseViewController_iPad.m in Sources */,
 				46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */,
 				46A03A2E13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */,
 				46144BCF13A94044009B7ECD /* NSDate+Formatting.m in Sources */,
@@ -3251,9 +3260,12 @@
 				467F4EFD13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m in Sources */,
 				467F4EFF13AB6F1300B2DCFA /* ActivityDetailViewController.m in Sources */,
 				7CD4E5E913BDA92500F5015D /* MessageComposerViewController.m in Sources */,
-				7C2D6D1C13C1D025000B4471 /* ActivityDetailViewController_iPad.m in Sources */,
-				7C2D6D2313C1D037000B4471 /* ActivityDetailViewController_iPhone.m in Sources */,
-				7C2D6D2513C1D037000B4471 /* ActivityStreamBrowseViewController_iPhone.m in Sources */,
+				7C34683613C2DB4C0030DC23 /* ActivityDetailViewController_iPad.m in Sources */,
+				7C34683813C2DB4C0030DC23 /* ActivityStreamBrowseViewController_iPad.m in Sources */,
+				7C34683913C2DB4C0030DC23 /* MessageComposerViewController_iPad.m in Sources */,
+				7C34684313C2DB770030DC23 /* ActivityDetailViewController_iPhone.m in Sources */,
+				7C34684513C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m in Sources */,
+				7C34684613C2DB770030DC23 /* MessageComposerViewController_iPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
