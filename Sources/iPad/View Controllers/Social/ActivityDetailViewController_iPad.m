@@ -7,7 +7,7 @@
 //
 
 #import "ActivityDetailViewController_iPad.h"
-#import "MessageComposerViewController.h"
+#import "MessageComposerViewController_iPad.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 
@@ -17,7 +17,7 @@
 {
     MessageComposerViewController*  messageComposerViewController;
     
-    messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
+    messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     [messageComposerViewController release];
