@@ -227,6 +227,16 @@
 		7CA74B1413C30C330006306D /* ActivityStreamBrowseViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA74B0E13C30C330006306D /* ActivityStreamBrowseViewController_iPad.m */; };
 		7CA74B1513C30C330006306D /* MessageComposerViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA74B1013C30C330006306D /* MessageComposerViewController_iPad.m */; };
 		7CA74B1613C30C330006306D /* MessageComposerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B1113C30C330006306D /* MessageComposerViewController_iPad.xib */; };
+		7CA74B9013C31AB50006306D /* MessageComposerButtonCancelBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B8B13C31AB50006306D /* MessageComposerButtonCancelBackground@2x.png */; };
+		7CA74B9113C31AB50006306D /* MessageComposerButtonCancelBackgroundSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B8C13C31AB50006306D /* MessageComposerButtonCancelBackgroundSelected@2x.png */; };
+		7CA74B9213C31AB50006306D /* MessageComposerButtonSendBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B8D13C31AB50006306D /* MessageComposerButtonSendBackground@2x.png */; };
+		7CA74B9313C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B8E13C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png */; };
+		7CA74B9413C31AB50006306D /* MessageComposerTextfieldBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B8F13C31AB50006306D /* MessageComposerTextfieldBackground@2x.png */; };
+		7CA74B9A13C31AD20006306D /* MessageComposerButtonCancelBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9513C31ACA0006306D /* MessageComposerButtonCancelBackground.png */; };
+		7CA74B9B13C31AD20006306D /* MessageComposerButtonCancelBackgroundSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9613C31ACB0006306D /* MessageComposerButtonCancelBackgroundSelected.png */; };
+		7CA74B9C13C31AD20006306D /* MessageComposerButtonSendBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9713C31ACD0006306D /* MessageComposerButtonSendBackground.png */; };
+		7CA74B9D13C31AD20006306D /* MessageComposerButtonSendBackgroundSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9813C31ACF0006306D /* MessageComposerButtonSendBackgroundSelected.png */; };
+		7CA74B9E13C31AD20006306D /* MessageComposerTextfieldBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9913C31AD10006306D /* MessageComposerTextfieldBackground.png */; };
 		7CAB42E313A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */; };
 		7CAB436813A76A7800CED7A3 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435C13A76A7800CED7A3 /* EGOCache.m */; };
 		7CAB436913A76A7800CED7A3 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435F13A76A7800CED7A3 /* EGOImageButton.m */; };
@@ -863,6 +873,16 @@
 		7CA74B0F13C30C330006306D /* MessageComposerViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposerViewController_iPad.h; path = Social/MessageComposerViewController_iPad.h; sourceTree = "<group>"; };
 		7CA74B1013C30C330006306D /* MessageComposerViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposerViewController_iPad.m; path = Social/MessageComposerViewController_iPad.m; sourceTree = "<group>"; };
 		7CA74B1113C30C330006306D /* MessageComposerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageComposerViewController_iPad.xib; path = Social/MessageComposerViewController_iPad.xib; sourceTree = "<group>"; };
+		7CA74B8B13C31AB50006306D /* MessageComposerButtonCancelBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageComposerButtonCancelBackground@2x.png"; sourceTree = "<group>"; };
+		7CA74B8C13C31AB50006306D /* MessageComposerButtonCancelBackgroundSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageComposerButtonCancelBackgroundSelected@2x.png"; sourceTree = "<group>"; };
+		7CA74B8D13C31AB50006306D /* MessageComposerButtonSendBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageComposerButtonSendBackground@2x.png"; sourceTree = "<group>"; };
+		7CA74B8E13C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageComposerButtonSendBackgroundSelected@2x.png"; sourceTree = "<group>"; };
+		7CA74B8F13C31AB50006306D /* MessageComposerTextfieldBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageComposerTextfieldBackground@2x.png"; sourceTree = "<group>"; };
+		7CA74B9513C31ACA0006306D /* MessageComposerButtonCancelBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonCancelBackground.png; sourceTree = "<group>"; };
+		7CA74B9613C31ACB0006306D /* MessageComposerButtonCancelBackgroundSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonCancelBackgroundSelected.png; sourceTree = "<group>"; };
+		7CA74B9713C31ACD0006306D /* MessageComposerButtonSendBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonSendBackground.png; sourceTree = "<group>"; };
+		7CA74B9813C31ACF0006306D /* MessageComposerButtonSendBackgroundSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonSendBackgroundSelected.png; sourceTree = "<group>"; };
+		7CA74B9913C31AD10006306D /* MessageComposerTextfieldBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerTextfieldBackground.png; sourceTree = "<group>"; };
 		7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamBrowseViewController_iPhone.xib; sourceTree = "<group>"; };
 		7CAB435B13A76A7800CED7A3 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		7CAB435C13A76A7800CED7A3 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
@@ -1452,6 +1472,11 @@
 				7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */,
 				7CE0131E13B1917700F16971 /* SocialActivityDetailMessageBg.png */,
 				7CD4E5E513BD8C8000F5015D /* MessageComposerButtonBg.png */,
+				7CA74B9513C31ACA0006306D /* MessageComposerButtonCancelBackground.png */,
+				7CA74B9613C31ACB0006306D /* MessageComposerButtonCancelBackgroundSelected.png */,
+				7CA74B9713C31ACD0006306D /* MessageComposerButtonSendBackground.png */,
+				7CA74B9813C31ACF0006306D /* MessageComposerButtonSendBackgroundSelected.png */,
+				7CA74B9913C31AD10006306D /* MessageComposerTextfieldBackground.png */,
 			);
 			path = "@1x";
 			sourceTree = "<group>";
@@ -1473,6 +1498,11 @@
 				7CBB39A813B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png */,
 				7CE0132213B1A61F00F16971 /* SocialActivityDetailLikeButton@2x.png */,
 				7CE0132013B1918400F16971 /* SocialActivityDetailMessageBg@2x.png */,
+				7CA74B8B13C31AB50006306D /* MessageComposerButtonCancelBackground@2x.png */,
+				7CA74B8C13C31AB50006306D /* MessageComposerButtonCancelBackgroundSelected@2x.png */,
+				7CA74B8D13C31AB50006306D /* MessageComposerButtonSendBackground@2x.png */,
+				7CA74B8E13C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png */,
+				7CA74B8F13C31AB50006306D /* MessageComposerTextfieldBackground@2x.png */,
 			);
 			path = "@2x";
 			sourceTree = "<group>";
@@ -3123,6 +3153,16 @@
 				7C34684713C2DB770030DC23 /* MessageComposerViewController_iPhone.xib in Resources */,
 				7CA74B1313C30C330006306D /* ActivityDetailViewController_iPad.xib in Resources */,
 				7CA74B1613C30C330006306D /* MessageComposerViewController_iPad.xib in Resources */,
+				7CA74B9013C31AB50006306D /* MessageComposerButtonCancelBackground@2x.png in Resources */,
+				7CA74B9113C31AB50006306D /* MessageComposerButtonCancelBackgroundSelected@2x.png in Resources */,
+				7CA74B9213C31AB50006306D /* MessageComposerButtonSendBackground@2x.png in Resources */,
+				7CA74B9313C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png in Resources */,
+				7CA74B9413C31AB50006306D /* MessageComposerTextfieldBackground@2x.png in Resources */,
+				7CA74B9A13C31AD20006306D /* MessageComposerButtonCancelBackground.png in Resources */,
+				7CA74B9B13C31AD20006306D /* MessageComposerButtonCancelBackgroundSelected.png in Resources */,
+				7CA74B9C13C31AD20006306D /* MessageComposerButtonSendBackground.png in Resources */,
+				7CA74B9D13C31AD20006306D /* MessageComposerButtonSendBackgroundSelected.png in Resources */,
+				7CA74B9E13C31AD20006306D /* MessageComposerTextfieldBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
