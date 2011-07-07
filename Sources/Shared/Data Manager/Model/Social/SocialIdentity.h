@@ -1,5 +1,5 @@
 //
-//  RKSocialIdentity.h
+//  SocialIdentity.h
 //  eXo Platform
 //
 //  Created by Stévan Le Meur on 06/07/11.
@@ -10,7 +10,7 @@
 #import <RestKit/RestKit.h>
 
 
-@interface RKSocialIdentity : RKObject {
+@interface SocialIdentity : RKObject {
     NSString* _identity;
 }
 

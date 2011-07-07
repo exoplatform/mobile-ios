@@ -519,9 +519,7 @@
 - (void)loadActivityStream {
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
     
-    [identityProxy initRK];
-    
-    [identityProxy loadIdentity];
+    [identityProxy getIdentityFromUser];
 }
 
 

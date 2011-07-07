@@ -8,18 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
-#import "RKSocialIdentity.h"
+#import "SocialIdentity.h"
+
 
 
 @interface SocialIdentityProxy : NSObject<RKObjectLoaderDelegate> {
  
-    //RKSocialIdentity* _socialIdentity;
+    SocialIdentity* _socialIdentity;
     
 }
 
-- (void)initRK;
-- (void)loadIdentity;
-
-
+- (void)getIdentityFromUser;
 
 @end

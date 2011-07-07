@@ -7,28 +7,54 @@
 //
 
 #import "SocialIdentityProxy.h"
+#import "SocialRestConfiguration.h"
 
 @implementation SocialIdentityProxy
 
+#pragma mark - Object Management
 
-- (void) initRK {
-    RKClient* client = [RKClient clientWithBaseURL:@"http://localhost:8080/rest/portal/social"];  
-
+- (id)init {
+    if ((self = [super init])) {
+        
+    } 
+    return self;
 }
 
-- (void) loadIdentity {
+- (void)dealloc {
+    [_socialIdentity release]; _socialIdentity = nil;
+    [super dealloc];
+}
+
+
+#pragma mark - helper methods
+
+//Helper to create the base URL
+- (NSString *)createBaseURL {
+    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
+    return [NSString stringWithFormat:@"%@/%@/%@/social/identity/",socialConfig.domainName,socialConfig.restContextName,socialConfig.portalContainerName]; 
+}
+
+
+//Helper to create the path to get the ressources
+- (NSString *)createPath {
+    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
+    return [NSString stringWithFormat:@"%@/id/show.json",socialConfig.username]; 
+}
+
+
+
+
+#pragma mark - Call methods
+
+- (void) getIdentityFromUser {
     // Load the object model via RestKit
-	[[RKClient sharedClient] get:@"/identity/john/id/show.json" delegate:self];
-    
-    //RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:@"http://localhost:8080/rest/portal/social/identity/john/id/show.json"];  
-    //[manager loadObjectsAtResourcePath:@"identity/john/id/show.json" objectClass:[RKSocialIdentity class] delegate:self];  
-
-    
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
+    [manager loadObjectsAtResourcePath:[self createPath] objectClass:[SocialIdentity class] delegate:self];      
 }
 
 
 
-#pragma mark RKObjectLoaderDelegate methods
+#pragma mark - RKObjectLoaderDelegate methods
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
     NSLog(@"Loaded payload: %@", [response bodyAsString]);
@@ -36,9 +62,10 @@
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+    NSLog(@"tot");
 	NSLog(@"Loaded statuses: %@", objects);    
-	//[_socialIdentity release];
-	//_socialIdentity = [objects retain];
+	[_socialIdentity release];
+	_socialIdentity = [objects retain];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {

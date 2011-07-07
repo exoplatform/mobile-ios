@@ -37,8 +37,10 @@
 		46144BCF13A94044009B7ECD /* NSDate+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 46144BCE13A94044009B7ECD /* NSDate+Formatting.m */; };
 		461931541385529D00EEB664 /* HomeBubbleBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */; };
 		46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 46193155138552A600EEB664 /* HomeBubbleBackground.png */; };
-		46371C8C13C5972000CD2035 /* RKSocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371C8B13C5972000CD2035 /* RKSocialIdentity.m */; };
+		46371C8C13C5972000CD2035 /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371C8B13C5972000CD2035 /* SocialIdentity.m */; };
 		46371C9013C5973000CD2035 /* SocialIdentityProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */; };
+		46371CA713C5BABA00CD2035 /* SocialActivityStreamProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371CA613C5BABA00CD2035 /* SocialActivityStreamProxy.m */; };
+		46371CAA13C60F6300CD2035 /* SocialRestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */; };
 		4642A042138A278E00AA786D /* FilesViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */; };
 		464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 464C14A8138AB80B0001CBC8 /* Entitlements.plist */; };
 		464C14B7138B85A00001CBC8 /* FileActionsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 464C14B5138B85A00001CBC8 /* FileActionsViewController_iPhone.m */; };
@@ -710,10 +712,14 @@
 		46144BCE13A94044009B7ECD /* NSDate+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatting.m"; sourceTree = "<group>"; };
 		461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeBubbleBackground@2x.png"; path = "Home/@2x/HomeBubbleBackground@2x.png"; sourceTree = "<group>"; };
 		46193155138552A600EEB664 /* HomeBubbleBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeBubbleBackground.png; path = "Home/@1x/HomeBubbleBackground.png"; sourceTree = "<group>"; };
-		46371C8A13C5972000CD2035 /* RKSocialIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSocialIdentity.h; sourceTree = "<group>"; };
-		46371C8B13C5972000CD2035 /* RKSocialIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKSocialIdentity.m; sourceTree = "<group>"; };
+		46371C8A13C5972000CD2035 /* SocialIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SocialIdentity.h; sourceTree = "<group>"; };
+		46371C8B13C5972000CD2035 /* SocialIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentity.m; sourceTree = "<group>"; };
 		46371C8E13C5973000CD2035 /* SocialIdentityProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIdentityProxy.h; sourceTree = "<group>"; };
 		46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentityProxy.m; sourceTree = "<group>"; };
+		46371CA513C5BABA00CD2035 /* SocialActivityStreamProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityStreamProxy.h; sourceTree = "<group>"; };
+		46371CA613C5BABA00CD2035 /* SocialActivityStreamProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStreamProxy.m; sourceTree = "<group>"; };
+		46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SocialRestConfiguration.h; sourceTree = "<group>"; };
+		46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialRestConfiguration.m; sourceTree = "<group>"; };
 		4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController_iPhone.xib; sourceTree = "<group>"; };
 		464C14A8138AB80B0001CBC8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		464C14B4138B85A00001CBC8 /* FileActionsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileActionsViewController_iPhone.h; sourceTree = "<group>"; };
@@ -1459,8 +1465,8 @@
 		46371C8913C5972000CD2035 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				46371C8A13C5972000CD2035 /* RKSocialIdentity.h */,
-				46371C8B13C5972000CD2035 /* RKSocialIdentity.m */,
+				46371C8A13C5972000CD2035 /* SocialIdentity.h */,
+				46371C8B13C5972000CD2035 /* SocialIdentity.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -1468,8 +1474,12 @@
 		46371C8D13C5973000CD2035 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */,
+				46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */,
 				46371C8E13C5973000CD2035 /* SocialIdentityProxy.h */,
 				46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */,
+				46371CA513C5BABA00CD2035 /* SocialActivityStreamProxy.h */,
+				46371CA613C5BABA00CD2035 /* SocialActivityStreamProxy.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -3539,8 +3549,10 @@
 				7CA74B1213C30C330006306D /* ActivityDetailViewController_iPad.m in Sources */,
 				7CA74B1413C30C330006306D /* ActivityStreamBrowseViewController_iPad.m in Sources */,
 				7CA74B1513C30C330006306D /* MessageComposerViewController_iPad.m in Sources */,
-				46371C8C13C5972000CD2035 /* RKSocialIdentity.m in Sources */,
+				46371C8C13C5972000CD2035 /* SocialIdentity.m in Sources */,
 				46371C9013C5973000CD2035 /* SocialIdentityProxy.m in Sources */,
+				46371CA713C5BABA00CD2035 /* SocialActivityStreamProxy.m in Sources */,
+				46371CAA13C60F6300CD2035 /* SocialRestConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
