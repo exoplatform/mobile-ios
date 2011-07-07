@@ -17,6 +17,7 @@
 #import "MessageComposerViewController.h"
 #import "ActivityDetailViewController_iPad.h"
 #import "ActivityDetailViewController_iPhone.h"
+#import "SocialIdentityProxy.h"
 
 #define TEST_ON_MOCK 1
 
@@ -49,7 +50,7 @@
     
     [_arrayOfSectionsTitle release];
     _arrayOfSectionsTitle = nil;
-
+    
     [_sortedActivities release];
     _sortedActivities=nil;
     
@@ -57,7 +58,7 @@
     [_mockSocial_Activity release];
     _mockSocial_Activity = nil;
 #endif
-
+    
     [_bbtnPost release];
     [super dealloc];
 }
@@ -73,11 +74,11 @@
 #pragma mark - View lifecycle
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView
+ {
+ }
+ */
 
 
 
@@ -113,8 +114,12 @@
 	[_txtvEditor setClipsToBounds: YES];
 	[_txtvEditor setText:@""];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    
+    //Download datas
+    [self loadActivityStream];
     
 }
 
@@ -218,74 +223,74 @@
 - (void)onBbtnPost
 {
     [self onBbtnPost];
-//    MessageComposerViewController*  messageComposerViewController;
-//    
-//    if (_bIsIPad) 
-//    {
-//        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-//    }
-//    else
-//    {
-//        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
-//    }
-//    
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-//    [messageComposerViewController release];
-//    
-//    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    
-//    if (_bIsIPad) 
-//    {
-//        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        navController.modalPresentationStyle = UIModalPresentationFormSheet;
-//        [[AppDelegate_iPad instance].rootViewController presentModalViewController:navController animated:YES];
-//    }
-//    else
-//    {
-//        [self.navigationController presentModalViewController:navController animated:YES];
-//    }
-//    
+    //    MessageComposerViewController*  messageComposerViewController;
+    //    
+    //    if (_bIsIPad) 
+    //    {
+    //        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+    //    }
+    //    else
+    //    {
+    //        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
+    //    }
+    //    
+    //    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    //    [messageComposerViewController release];
+    //    
+    //    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //    
+    //    if (_bIsIPad) 
+    //    {
+    //        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    //        [[AppDelegate_iPad instance].rootViewController presentModalViewController:navController animated:YES];
+    //    }
+    //    else
+    //    {
+    //        [self.navigationController presentModalViewController:navController animated:YES];
+    //    }
+    //    
     /*
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post a message" message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Post", nil];
-    
-    if (_txtvMsgComposer ==  nil) 
-    {
-        _txtvMsgComposer = [[UITextView alloc] initWithFrame:CGRectMake(15, 50, 255, 100)];
-        [_txtvMsgComposer setDelegate:self];
-    }
-    [_txtvMsgComposer becomeFirstResponder];
-    [[_txtvMsgComposer layer] setCornerRadius:6.0];
-    [[_txtvMsgComposer layer] setMasksToBounds:YES];
-    [alert addSubview:_txtvMsgComposer];
-	[alert show];
-	[alert release];
-    */
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post a message" message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Post", nil];
+     
+     if (_txtvMsgComposer ==  nil) 
+     {
+     _txtvMsgComposer = [[UITextView alloc] initWithFrame:CGRectMake(15, 50, 255, 100)];
+     [_txtvMsgComposer setDelegate:self];
+     }
+     [_txtvMsgComposer becomeFirstResponder];
+     [[_txtvMsgComposer layer] setCornerRadius:6.0];
+     [[_txtvMsgComposer layer] setMasksToBounds:YES];
+     [alert addSubview:_txtvMsgComposer];
+     [alert show];
+     [alert release];
+     */
     
     /*
-    if (_bIsPostClicked) 
-    {
-        [_txtvEditor resignFirstResponder];
-        _bIsPostClicked = NO;
-    }
-    else
-    {
-        [_txtvEditor becomeFirstResponder];
-        _bIsPostClicked = YES;
-    }
+     if (_bIsPostClicked) 
+     {
+     [_txtvEditor resignFirstResponder];
+     _bIsPostClicked = NO;
+     }
+     else
+     {
+     [_txtvEditor becomeFirstResponder];
+     _bIsPostClicked = YES;
+     }
      */
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     
-//    CGRect rectTableView = _tblvActivityDetail.frame;
-//    if (rectTableView.size.width > 320) 
-//    {
-//        _navigationBar.topItem.rightBarButtonItem = _bbtnDone;
-//    }
-//    else
-//    {
-//        self.navigationItem.rightBarButtonItem = _bbtnDone;
-//    }
+    //    CGRect rectTableView = _tblvActivityDetail.frame;
+    //    if (rectTableView.size.width > 320) 
+    //    {
+    //        _navigationBar.topItem.rightBarButtonItem = _bbtnDone;
+    //    }
+    //    else
+    //    {
+    //        self.navigationItem.rightBarButtonItem = _bbtnDone;
+    //    }
     
     self.navigationItem.rightBarButtonItem = _bbtnPost;
     
@@ -390,7 +395,7 @@
     headerLabel.text = [_arrayOfSectionsTitle objectAtIndex:section];
     
     CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblvActivityStream.frame.size.width-5, CGFLOAT_MAX) 
-                          lineBreakMode:UILineBreakModeWordWrap];
+                                      lineBreakMode:UILineBreakModeWordWrap];
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderNormalBg.png"];
@@ -400,12 +405,12 @@
     
     UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:5 topCapHeight:7]];
     imgVBackground.frame = CGRectMake(_tblvActivityStream.frame.size.width-5 - theSize.width-10, 2, theSize.width+20, kHeightForSectionHeader-4);
-                                   
+    
     
 	[customView addSubview:imgVBackground];
     
     [customView addSubview:headerLabel];
-
+    
     
     [headerLabel release];
     
@@ -490,7 +495,7 @@
     [_activityDetailViewController setActivity:activity andActivityDetail:activityDetail];
     
     CGRect rectTableView = tableView.frame;
-
+    
     if (rectTableView.size.width > 320)
     {
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
@@ -506,6 +511,17 @@
             [self.navigationController pushViewController:_activityDetailViewController animated:YES];
         }
     }    
+}
+
+
+
+#pragma Social WS Management
+- (void)loadActivityStream {
+    SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
+    
+    [identityProxy initRK];
+    
+    [identityProxy loadIdentity];
 }
 
 
