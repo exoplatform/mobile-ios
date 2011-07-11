@@ -98,7 +98,8 @@ static NSString* _strDomain;
 
 - (NSString*)getExtend:(NSString*)domain
 {
-	return @"/portal/private/intranet";
+	//return @"/portal/private/intranet";
+    return @"/private/classic";
 }
 
 - (NSString*)sendAuthenticateRequest:(NSString*)domain username:(NSString*)username password:(NSString*)password
