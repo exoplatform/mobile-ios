@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
 
+@class SocialIdentityProxy;
 
-@interface SocialActivityStreamProxy : NSObject {
+@interface SocialActivityStreamProxy : NSObject <RKObjectLoaderDelegate>{
     
-    
-    
-    
+    SocialIdentityProxy*        _socialIdentityProxy;
 }
 
+@property (nonatomic, retain) SocialIdentityProxy* _socialIdentityProxy;
 
+- (id)initWithSocialIdentityProxy:(SocialIdentityProxy*)socialIdentityProxy;
+- (void)getActivityStreams;
 
 @end

@@ -11,12 +11,13 @@
 #import "SocialIdentity.h"
 
 
-
-@interface SocialIdentityProxy : NSObject<RKObjectLoaderDelegate> {
+@interface SocialIdentityProxy : NSObject <RKObjectLoaderDelegate> {
  
     SocialIdentity* _socialIdentity;
     
 }
+
+@property (nonatomic, retain) SocialIdentity* _socialIdentity;
 
 - (void)getIdentityFromUser;
 
