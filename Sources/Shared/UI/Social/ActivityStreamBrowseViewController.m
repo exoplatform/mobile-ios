@@ -18,6 +18,7 @@
 #import "ActivityDetailViewController_iPad.h"
 #import "ActivityDetailViewController_iPhone.h"
 #import "SocialIdentityProxy.h"
+#import "SocialActivityStreamProxy.h"
 
 #define TEST_ON_MOCK 1
 
@@ -518,8 +519,17 @@
 #pragma Social WS Management
 - (void)loadActivityStream {
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
-    
     [identityProxy getIdentityFromUser];
+    
+
+    while ((CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.002, YES) != kCFRunLoopRunFinished) 
+           && !([identityProxy._socialIdentity.identity length] > 0))
+    {
+    }
+    
+    SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialIdentityProxy:identityProxy];
+    [socialActivityStreamProxy getActivityStreams];
+
 }
 
 
