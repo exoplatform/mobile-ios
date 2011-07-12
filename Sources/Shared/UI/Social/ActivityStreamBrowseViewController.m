@@ -521,7 +521,6 @@
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
     [identityProxy getIdentityFromUser];
     
-
     while ((CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.002, YES) != kCFRunLoopRunFinished) 
            && !([identityProxy._socialIdentity.identity length] > 0))
     {
