@@ -519,16 +519,23 @@
 #pragma Social WS Management
 - (void)loadActivityStream {
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
+    identityProxy.delegate = self;
     [identityProxy getIdentityFromUser];
-    
-    while ((CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.002, YES) != kCFRunLoopRunFinished) 
-           && !([identityProxy._socialIdentity.identity length] > 0))
-    {
+}
+
+
+#pragma mark - Social Proxy Delegate
+
+- (void)proxyDidFinishLoading:(SocialProxy *)proxy {
+    //If proxy is king of class SocialIdentityProxy, then we can start the request for retrieve SocialActivityStream
+    if ([proxy isKindOfClass:[SocialIdentityProxy class]]) {
+        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialIdentityProxy:proxy];
+        socialActivityStreamProxy.delegate = self;
+        [socialActivityStreamProxy getActivityStreams];
+        
+        
     }
     
-    SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialIdentityProxy:identityProxy];
-    [socialActivityStreamProxy getActivityStreams];
-
 }
 
 

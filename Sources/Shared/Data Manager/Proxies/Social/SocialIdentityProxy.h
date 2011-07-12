@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 #import "SocialIdentity.h"
+#import "SocialProxy.h"
 
 
-@interface SocialIdentityProxy : NSObject <RKObjectLoaderDelegate> {
+@interface SocialIdentityProxy : SocialProxy <RKObjectLoaderDelegate> {
  
     SocialIdentity* _socialIdentity;
     

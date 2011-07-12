@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
+#import "SocialProxy.h"
 
 @class SocialIdentityProxy;
 
-@interface SocialActivityStreamProxy : NSObject <RKObjectLoaderDelegate>{
+@interface SocialActivityStreamProxy : SocialProxy <RKObjectLoaderDelegate>{
     
     SocialIdentityProxy*        _socialIdentityProxy;
 }

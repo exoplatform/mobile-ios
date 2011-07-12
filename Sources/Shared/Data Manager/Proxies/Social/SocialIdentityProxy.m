@@ -33,9 +33,9 @@
 
 //Helper to create the base URL
 - (NSString *)createBaseURL {
-    //SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    //return [NSString stringWithFormat:@"%@/%@/%@/social/identity/",socialConfig.domainName,socialConfig.restContextName,socialConfig.portalContainerName]; 
-    return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/socialdemo/social/identity/"]; 
+    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
+    return [NSString stringWithFormat:@"%@/%@/%@/social/identity/",socialConfig.domainName,socialConfig.restContextName,socialConfig.portalContainerName]; 
+    //return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/socialdemo/social/identity/"]; 
 }
 
 
@@ -66,11 +66,16 @@
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    NSLog(@"tot");
 	NSLog(@"Loaded statuses: %@", objects);    
 	//[_socialIdentity release];
 	//_socialIdentity = [objects retain];
     _socialIdentity = [[objects objectAtIndex:0] retain];
+    
+    //We receive the response from the server
+    //We need to prevent the caller.
+    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
+        [delegate proxyDidFinishLoading:self];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {

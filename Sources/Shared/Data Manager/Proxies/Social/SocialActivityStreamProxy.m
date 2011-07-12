@@ -74,7 +74,7 @@
 {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     //return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.restVersion]; 
-    return [NSString stringWithFormat:@"http://john:gtn@localhost:8080/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.restVersion];
+    return [NSString stringWithFormat:@"http://demo:gtn@localhost:8080/rest/private/api/social/v1-alpha1/portal/activity_stream/",socialConfig.restVersion];
 }
 
 
@@ -91,7 +91,8 @@
 
 - (void) getActivityStreams 
 {
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
+    [RKObjectManager setSharedManager:manager];
     [manager loadObjectsAtResourcePath:[self createPath] objectClass:[SocialActivityStream class] delegate:self];      
 }
 
@@ -102,6 +103,9 @@
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
     NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    
+    
+    
 }
 
 

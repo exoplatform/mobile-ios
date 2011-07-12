@@ -18,10 +18,13 @@
 @synthesize _title;
 @synthesize _createdAt;
 
+
 + (NSDictionary*)elementToPropertyMappings {
     //for test
-	return [NSDictionary dictionaryWithObjectsAndKeys:@"_identityId",@"identityId",nil];
+	return [NSDictionary dictionaryWithObjectsAndKeys:nil];
+            //@"_identityId",@"identityId",nil];
 }
+
 
 - (void)dealloc {
     [_identityId release];

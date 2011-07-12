@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SocialProxy.h"
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 @class MockSocial_Activity;
 @class ActivityDetailViewController;
 
-@interface ActivityStreamBrowseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface ActivityStreamBrowseViewController : UIViewController <SocialProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 {
     IBOutlet UITableView*                   _tblvActivityStream;
     MockSocial_Activity*                    _mockSocial_Activity;
