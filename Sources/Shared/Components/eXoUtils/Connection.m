@@ -99,6 +99,9 @@ static NSString* _strDomain;
 - (NSString*)getExtend:(NSString*)domain
 {
 	//return @"/portal/private/intranet";
+    if([domain isEqualToString:@"http://localhost:8080"])
+        return @"/socialdemo/private/classic/";
+    
     return @"/private/classic";
 }
 
@@ -107,7 +110,7 @@ static NSString* _strDomain;
 	NSURLResponse* response;
 	NSError* error;
 	NSData* dataResponse;
-	NSString* urlContent = [[NSString alloc] init];
+//	NSString* urlContent = [[NSString alloc] init];
 	NSData* bodyData;
 	
 	NSURL* tmpURL = [NSURL URLWithString:domain];
