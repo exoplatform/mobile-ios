@@ -1,17 +1,18 @@
 //
-//  SocialIdentityProxy.m
+//  SocialUserProfileProxy.m
 //  eXo Platform
 //
-//  Created by Stévan Le Meur on 06/07/11.
+//  Created by Stévan Le Meur on 13/07/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SocialIdentityProxy.h"
+#import "SocialUserProfileProxy.h"
 #import "SocialRestConfiguration.h"
 
-@implementation SocialIdentityProxy
 
-@synthesize _socialIdentity;
+@implementation SocialUserProfileProxy
+
+@synthesize userProfile=_userProfile;
 
 
 #pragma mark - Object Management
@@ -24,37 +25,37 @@
 }
 
 - (void)dealloc {
-    [_socialIdentity release]; _socialIdentity = nil;
+    [_userProfile release]; _userProfile = nil;
     [super dealloc];
 }
-
 
 #pragma mark - helper methods
 
 //Helper to create the base URL
 - (NSString *)createBaseURL {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    return [NSString stringWithFormat:@"%@/%@/%@/social/identity/",socialConfig.domainName,socialConfig.restContextName,socialConfig.portalContainerName]; 
-    //return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/socialdemo/social/identity/"]; 
+    
+    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/identity/",
+            socialConfig.domainNameWithCredentials,
+            socialConfig.restContextName,
+            socialConfig.restVersion,
+            socialConfig.portalContainerName]; 
+
 }
 
 
 //Helper to create the path to get the ressources
-- (NSString *)createPath {
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    return [NSString stringWithFormat:@"%@/id/show.json",socialConfig.username]; 
+- (NSString *)createPath:(NSString *)userIdentity {
+    return [NSString stringWithFormat:@"%@.json",userIdentity]; 
 }
-
-
-
 
 #pragma mark - Call methods
 
-- (void) getIdentityFromUser {
+- (void) getUserProfileFromIdentity:(NSString *)identity {
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
-    [manager loadObjectsAtResourcePath:[self createPath] objectClass:[SocialIdentity class] delegate:self];      
+    [manager loadObjectsAtResourcePath:[self createPath:identity] objectClass:[SocialUserProfile class] delegate:self];      
 }
 
 
@@ -67,10 +68,8 @@
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-	NSLog(@"Loaded statuses: %@", objects);    
-	//[_socialIdentity release];
-	//_socialIdentity = [objects retain];
-    _socialIdentity = [[objects objectAtIndex:0] retain];
+	NSLog(@"Loaded statuses: %@", objects); 
+    _userProfile = [[objects objectAtIndex:0] retain];
     
     //We receive the response from the server
     //We need to prevent the caller.
@@ -84,6 +83,7 @@
 	[alert show];
 	NSLog(@"Hit error: %@", error);
 }
+
 
 
 @end

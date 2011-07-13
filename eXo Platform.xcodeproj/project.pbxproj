@@ -49,6 +49,9 @@
 		464FC9E1137AC78700B32A58 /* AuthenticateCheckmarkiPhoneOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9E0137AC78700B32A58 /* AuthenticateCheckmarkiPhoneOn.png */; };
 		464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */; };
 		4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3213CCA25D00328E41 /* SocialProxy.m */; };
+		4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */; };
+		4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3813CDC54D00328E41 /* SocialUserProfile.m */; };
+		4656FD3C13CDEE3300328E41 /* SocialActivityDetailProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3B13CDEE3200328E41 /* SocialActivityDetailProxy.m */; };
 		46616C7A137C729400D53D3D /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C74137C729400D53D3D /* SSHUDView.m */; };
 		46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C76137C729400D53D3D /* SSHUDWindow.m */; };
 		46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C77137C729400D53D3D /* SSVignetteiPad.png */; };
@@ -730,8 +733,14 @@
 		464FC9E0137AC78700B32A58 /* AuthenticateCheckmarkiPhoneOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCheckmarkiPhoneOn.png; path = "Authenticate/@1x/AuthenticateCheckmarkiPhoneOn.png"; sourceTree = "<group>"; };
 		464FC9EA137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBackgroundForCell_iPhone.h; sourceTree = "<group>"; };
 		464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBackgroundForCell_iPhone.m; sourceTree = "<group>"; };
-		4656FD3113CCA25C00328E41 /* SocialProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SocialProxy.h; sourceTree = "<group>"; };
+		4656FD3113CCA25C00328E41 /* SocialProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialProxy.h; sourceTree = "<group>"; };
 		4656FD3213CCA25D00328E41 /* SocialProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialProxy.m; sourceTree = "<group>"; };
+		4656FD3413CDC50200328E41 /* SocialUserProfileProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfileProxy.h; sourceTree = "<group>"; };
+		4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileProxy.m; sourceTree = "<group>"; };
+		4656FD3713CDC54D00328E41 /* SocialUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfile.h; sourceTree = "<group>"; };
+		4656FD3813CDC54D00328E41 /* SocialUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfile.m; sourceTree = "<group>"; };
+		4656FD3A13CDEE2D00328E41 /* SocialActivityDetailProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityDetailProxy.h; sourceTree = "<group>"; };
+		4656FD3B13CDEE3200328E41 /* SocialActivityDetailProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityDetailProxy.m; sourceTree = "<group>"; };
 		46616C73137C729400D53D3D /* SSHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDView.h; sourceTree = "<group>"; };
 		46616C74137C729400D53D3D /* SSHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDView.m; sourceTree = "<group>"; };
 		46616C75137C729400D53D3D /* SSHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDWindow.h; sourceTree = "<group>"; };
@@ -1473,6 +1482,8 @@
 			children = (
 				7CFEB08613CA95B400D7C9FF /* SocialIdentity.h */,
 				7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */,
+				4656FD3713CDC54D00328E41 /* SocialUserProfile.h */,
+				4656FD3813CDC54D00328E41 /* SocialUserProfile.m */,
 				7CFEB09113CAFEA700D7C9FF /* SocialActivityStream.h */,
 				7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */,
 			);
@@ -1490,6 +1501,10 @@
 				46371CA613C5BABA00CD2035 /* SocialActivityStreamProxy.m */,
 				4656FD3113CCA25C00328E41 /* SocialProxy.h */,
 				4656FD3213CCA25D00328E41 /* SocialProxy.m */,
+				4656FD3413CDC50200328E41 /* SocialUserProfileProxy.h */,
+				4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */,
+				4656FD3A13CDEE2D00328E41 /* SocialActivityDetailProxy.h */,
+				4656FD3B13CDEE3200328E41 /* SocialActivityDetailProxy.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -3565,6 +3580,9 @@
 				7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */,
 				7CFEB09313CAFEA700D7C9FF /* SocialActivityStream.m in Sources */,
 				4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */,
+				4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */,
+				4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */,
+				4656FD3C13CDEE3300328E41 /* SocialActivityDetailProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

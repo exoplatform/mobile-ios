@@ -10,11 +10,10 @@
 #import "defines.h"
 
 
-
-
 @implementation SocialRestConfiguration
 
 @synthesize domainName = _domainName;
+@synthesize domainNameWithCredentials = _domainNameWithCredentials;
 @synthesize restVersion =  _restVersion;
 @synthesize restContextName = _restContextName;
 @synthesize portalContainerName = _portalContainerName;
@@ -42,16 +41,29 @@
 
 - (id) init
 {
-	self = [super init];
-    if (self) 
+    if ((self = [super init])) 
     {
-        _domainName = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
-        _restContextName = kRestContextName;
-        _restVersion = kRestVersion;
-        _portalContainerName = kPortalContainerName;
-        _username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
-        _password = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD];
-
+        _domainName = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] copy];
+        _restContextName = [kRestContextName copy];
+        _restVersion = [kRestVersion copy];
+        _portalContainerName = [kPortalContainerName copy];
+        _username = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME] copy];
+        _password = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD] copy];
+        
+        //TODO SLM
+        //REmove this line and provide a true Server URL analyzer
+        NSString *domainWithoutHttp = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] stringByReplacingOccurrencesOfString:@"http://" 
+                                                                                                                                            withString:@""];
+        
+        //TODO SLM
+        //REmove this line and provide a true Server URL analyzer
+        domainWithoutHttp = [domainWithoutHttp stringByReplacingOccurrencesOfString:@"/portal" withString:@""];
+        _domainNameWithCredentials = [[NSString alloc] initWithFormat:@"http://%@:%@%@%@",
+                                      (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME],
+                                      (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD],
+                                      @"@",
+                                      domainWithoutHttp];
+        
     }	
 	return self;
 }
@@ -59,6 +71,7 @@
 - (void) dealloc
 {
 	[_domainName release];
+    [_domainNameWithCredentials release];
     [_portalContainerName release];
     [_restContextName release];
     [_restVersion release];
