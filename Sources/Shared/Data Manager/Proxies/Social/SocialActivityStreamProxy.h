@@ -11,15 +11,21 @@
 #import "SocialProxy.h"
 
 @class SocialIdentityProxy;
+@class SocialUserProfileProxy;
 
 @interface SocialActivityStreamProxy : SocialProxy <RKObjectLoaderDelegate>{
     
     SocialIdentityProxy*        _socialIdentityProxy;
+    SocialUserProfileProxy*     _socialUserProfileProxy;
 }
 
 @property (nonatomic, retain) SocialIdentityProxy* _socialIdentityProxy;
+@property (nonatomic, retain) SocialUserProfileProxy* _socialUserProfileProxy;
 
 - (id)initWithSocialIdentityProxy:(SocialIdentityProxy*)socialIdentityProxy;
+- (id)initWithSocialUserProfileProxy:(SocialUserProfileProxy*)socialUserProfileProxy;
 - (void)getActivityStreams;
 
 @end
+
+

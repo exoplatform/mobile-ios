@@ -529,27 +529,18 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     //If proxy is king of class SocialIdentityProxy, then we can start the request for retrieve SocialActivityStream
-    if ([proxy isKindOfClass:[SocialIdentityProxy class]]) {
-        /*SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialIdentityProxy:proxy];
+    if ([proxy isKindOfClass:[SocialIdentityProxy class]]) 
+    {
+        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+        socialUserProfile.delegate = self;
+        [socialUserProfile getUserProfileFromIdentity:[(SocialIdentityProxy *)proxy _socialIdentity].identity];        
+    } 
+    else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
+    {
+        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfileProxy:(SocialUserProfileProxy *)proxy];
         socialActivityStreamProxy.delegate = self;
         [socialActivityStreamProxy getActivityStreams];
-        */
-        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-        socialUserProfile.delegate = self;
-        [socialUserProfile getUserProfileFromIdentity:@"e4f574dec0a80126368b5c3e4cc727b4"];
-        
-        /*
-        SocialUserProfileProxy* socialUserProfile2 = [[SocialUserProfileProxy alloc] init];
-        socialUserProfile2.delegate = self;
-        [socialUserProfile2 getUserProfileFromIdentity:@"e4f574dec0a80126368b5c3e4cc727b4"];
-         */
-        
-    } else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) {
-        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-        socialUserProfile.delegate = self;
-        [socialUserProfile getUserProfileFromIdentity:@"e4f574dec0a80126368b5c3e4cc727b4"];
-    }
-    
+    }    
 }
 
 
