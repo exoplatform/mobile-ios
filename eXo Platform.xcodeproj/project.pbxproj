@@ -38,7 +38,6 @@
 		461931541385529D00EEB664 /* HomeBubbleBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */; };
 		46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 46193155138552A600EEB664 /* HomeBubbleBackground.png */; };
 		46371C9013C5973000CD2035 /* SocialIdentityProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */; };
-		46371CA713C5BABA00CD2035 /* SocialActivityStreamProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371CA613C5BABA00CD2035 /* SocialActivityStreamProxy.m */; };
 		46371CAA13C60F6300CD2035 /* SocialRestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */; };
 		4642A042138A278E00AA786D /* FilesViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */; };
 		464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 464C14A8138AB80B0001CBC8 /* Entitlements.plist */; };
@@ -51,7 +50,6 @@
 		4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3213CCA25D00328E41 /* SocialProxy.m */; };
 		4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */; };
 		4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3813CDC54D00328E41 /* SocialUserProfile.m */; };
-		4656FD3C13CDEE3300328E41 /* SocialActivityDetailProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3B13CDEE3200328E41 /* SocialActivityDetailProxy.m */; };
 		46616C7A137C729400D53D3D /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C74137C729400D53D3D /* SSHUDView.m */; };
 		46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C76137C729400D53D3D /* SSHUDWindow.m */; };
 		46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C77137C729400D53D3D /* SSVignetteiPad.png */; };
@@ -277,6 +275,7 @@
 		7CE85B0713C46D0C00A219EB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0413C46D0C00A219EB /* MobileCoreServices.framework */; };
 		7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0513C46D0C00A219EB /* CoreData.framework */; };
 		7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */; };
+		7CEA47B013CE883800F00726 /* SocialActivityStreamProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA47AF13CE883800F00726 /* SocialActivityStreamProxy.m */; };
 		7CEA55BA13C54D4E00FCB43A /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55B113C54D4E00FCB43A /* libRestKitCoreData.a */; };
 		7CEA55BB13C54D4E00FCB43A /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55B213C54D4E00FCB43A /* libRestKitJSONParserJSONKit.a */; };
 		7CEA55BE13C54D4F00FCB43A /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55B513C54D4E00FCB43A /* libRestKitNetwork.a */; };
@@ -719,8 +718,6 @@
 		46193155138552A600EEB664 /* HomeBubbleBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeBubbleBackground.png; path = "Home/@1x/HomeBubbleBackground.png"; sourceTree = "<group>"; };
 		46371C8E13C5973000CD2035 /* SocialIdentityProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIdentityProxy.h; sourceTree = "<group>"; };
 		46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentityProxy.m; sourceTree = "<group>"; };
-		46371CA513C5BABA00CD2035 /* SocialActivityStreamProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityStreamProxy.h; sourceTree = "<group>"; };
-		46371CA613C5BABA00CD2035 /* SocialActivityStreamProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStreamProxy.m; sourceTree = "<group>"; };
 		46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialRestConfiguration.h; sourceTree = "<group>"; };
 		46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialRestConfiguration.m; sourceTree = "<group>"; };
 		4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -739,8 +736,6 @@
 		4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileProxy.m; sourceTree = "<group>"; };
 		4656FD3713CDC54D00328E41 /* SocialUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfile.h; sourceTree = "<group>"; };
 		4656FD3813CDC54D00328E41 /* SocialUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfile.m; sourceTree = "<group>"; };
-		4656FD3A13CDEE2D00328E41 /* SocialActivityDetailProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityDetailProxy.h; sourceTree = "<group>"; };
-		4656FD3B13CDEE3200328E41 /* SocialActivityDetailProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityDetailProxy.m; sourceTree = "<group>"; };
 		46616C73137C729400D53D3D /* SSHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDView.h; sourceTree = "<group>"; };
 		46616C74137C729400D53D3D /* SSHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDView.m; sourceTree = "<group>"; };
 		46616C75137C729400D53D3D /* SSHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDWindow.h; sourceTree = "<group>"; };
@@ -1037,6 +1032,8 @@
 		7CE85B0413C46D0C00A219EB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7CE85B0513C46D0C00A219EB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7CEA47AE13CE883800F00726 /* SocialActivityStreamProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityStreamProxy.h; sourceTree = "<group>"; };
+		7CEA47AF13CE883800F00726 /* SocialActivityStreamProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStreamProxy.m; sourceTree = "<group>"; };
 		7CEA558713C54CAF00FCB43A /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		7CEA55B113C54D4E00FCB43A /* libRestKitCoreData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitCoreData.a; sourceTree = SOURCE_ROOT; };
 		7CEA55B213C54D4E00FCB43A /* libRestKitJSONParserJSONKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitJSONParserJSONKit.a; sourceTree = SOURCE_ROOT; };
@@ -1497,14 +1494,12 @@
 				46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */,
 				46371C8E13C5973000CD2035 /* SocialIdentityProxy.h */,
 				46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */,
-				46371CA513C5BABA00CD2035 /* SocialActivityStreamProxy.h */,
-				46371CA613C5BABA00CD2035 /* SocialActivityStreamProxy.m */,
 				4656FD3113CCA25C00328E41 /* SocialProxy.h */,
 				4656FD3213CCA25D00328E41 /* SocialProxy.m */,
 				4656FD3413CDC50200328E41 /* SocialUserProfileProxy.h */,
 				4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */,
-				4656FD3A13CDEE2D00328E41 /* SocialActivityDetailProxy.h */,
-				4656FD3B13CDEE3200328E41 /* SocialActivityDetailProxy.m */,
+				7CEA47AE13CE883800F00726 /* SocialActivityStreamProxy.h */,
+				7CEA47AF13CE883800F00726 /* SocialActivityStreamProxy.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -3575,14 +3570,13 @@
 				7CA74B1413C30C330006306D /* ActivityStreamBrowseViewController_iPad.m in Sources */,
 				7CA74B1513C30C330006306D /* MessageComposerViewController_iPad.m in Sources */,
 				46371C9013C5973000CD2035 /* SocialIdentityProxy.m in Sources */,
-				46371CA713C5BABA00CD2035 /* SocialActivityStreamProxy.m in Sources */,
 				46371CAA13C60F6300CD2035 /* SocialRestConfiguration.m in Sources */,
 				7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */,
 				7CFEB09313CAFEA700D7C9FF /* SocialActivityStream.m in Sources */,
 				4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */,
 				4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */,
 				4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */,
-				4656FD3C13CDEE3300328E41 /* SocialActivityDetailProxy.m in Sources */,
+				7CEA47B013CE883800F00726 /* SocialActivityStreamProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
