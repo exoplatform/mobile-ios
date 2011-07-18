@@ -26,4 +26,9 @@
     [super dealloc];
 }
 
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@",_identity];
+}
+
 @end
