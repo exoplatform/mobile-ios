@@ -34,9 +34,8 @@
 //Helper to create the base URL
 - (NSString *)createBaseURL {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    //return [NSString stringWithFormat:@"%@/%@/%@/social/identity/",socialConfig.domainName,socialConfig.restContextName,socialConfig.portalContainerName]; 
-    return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/socialdemo/social/identity/"]; 
-    //return [NSString stringWithFormat:@"%@/rest-socialdemo/socialdemo/social/identity/",socialConfig.domainName]; 
+    return [NSString stringWithFormat:@"%@/%@/%@/social/identity/",socialConfig.domainName,socialConfig.restContextName,socialConfig.portalContainerName]; 
+    //return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/socialdemo/social/identity/"]; 
 }
 
 
