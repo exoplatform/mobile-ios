@@ -33,11 +33,19 @@
 
 //Helper to create the base URL
 - (NSString *)createBaseURL {
-    //SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
+    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
     //return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/identity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
+//    NSString* strFullDomain = socialConfig.domainName;
+//    NSRange range = [strFullDomain rangeOfString:@"http://"];
+//    NSString* strBaseURL = @"";
+//    if (range.length > 0) 
+//    {
+//        NSString* strShortDomain = [strFullDomain substringFromIndex:range.location + range.length];
+//        strBaseURL = [NSString stringWithFormat:@"http://%@:%@@%@/rest-socialdemo/private/api/social/%@/socialdemo/identity/",socialConfig.username, socialConfig.password, strShortDomain,socialConfig.restVersion];
+//    }
     return @"http://john:gtn@localhost:8080/rest-socialdemo/private/api/social/v1-alpha1/socialdemo/identity/";
-
+//    return strBaseURL;
 }
 
 

@@ -27,38 +27,36 @@
 @synthesize comments = _comments;
 
 
-+ (NSDictionary*)relationshipToPrimaryKeyPropertyMappings {
-    //for test
++ (NSDictionary*)elementToPropertyMappings {
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"identityId",@"identityId",
-//            @"totalNumberOfComments",@"activities.totalNumberOfComments",
-//            @"liked",@"activities.liked",
-//            @"postedTime",@"activities.postedTime",            
-//            @"type",@"activities.type",
-//            @"posterIdentity",@"activities.posterIdentity",
-//            @"activityStream",@"activities.activityStream",
-//            @"identify",@"activities.id",
-//            @"title",@"activities.title",
-//            @"priority",@"activities.priority",
-//            @"createdAt",@"activities.createdAt",
-//            @"likedByIdentities",@"activities.likedByIdentities",
-//            @"titleId",@"activities.titleId",
-//            @"comments",@"activities.comments",
-			nil];
+            @"liked",@"liked",
+            @"postedTime",@"postedTime",            
+            @"type",@"type",
+            @"posterIdentity",@"posterIdentity",
+            @"activityStream",@"activityStream",
+            @"identify",@"id",
+            @"title",@"title",
+            @"priority",@"priority",
+            @"createdAt",@"createdAt",
+            @"likedByIdentities",@"likedByIdentities",
+            @"titleId",@"titleId",
+            @"comments",@"comments", 
+            nil];
 }
-
-//+ (NSArray*)relationshipsToSerialize
-//{
-//    return [NSArray array];
-//}
 
 - (void)dealloc {
     [_identityId release];
-    [_totalNumberOfComments release];
-    [_liked release];
-    [_postedTime release];
+    [_type release];
+    [_posterIdentity release];
+    [_activityStream release];
+    [_identify release];
     [_title release];
+    [_priority release];
     [_createdAt release];
+    [_likedByIdentities release];
+    [_titleId release];
+    [_comments release];
     [super dealloc];
 }
 

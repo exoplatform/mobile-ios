@@ -12,9 +12,9 @@
 
 @interface SocialActivityStream : RKObject {
     NSString*               _identityId;
-    NSString*               _totalNumberOfComments;
-    NSString*               _liked;
-    NSString*               _postedTime;
+    int                     _totalNumberOfComments;
+    BOOL                    _liked;
+    long                    _postedTime;
     NSString*               _type;
     NSString*               _posterIdentity;
     NSString*               _activityStream;
@@ -22,15 +22,16 @@
     NSString*               _title;
     NSString*               _priority;
     NSString*               _createdAt;
-    NSString*               _likedByIdentities;
+    NSArray*                _likedByIdentities;
     NSString*               _titleId;
-    NSString*               _comments;
+    //NSString*               _comments;
+    NSArray*               _comments;
 }
 
 @property (nonatomic, retain) NSString* identityId;
-@property (nonatomic, retain) NSString* totalNumberOfComments;
-@property (nonatomic, retain) NSString* liked;
-@property (nonatomic, retain) NSString* postedTime;
+@property int totalNumberOfComments;
+@property BOOL liked;
+@property long postedTime;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* posterIdentity;
 @property (nonatomic, retain) NSString* activityStream;
@@ -38,8 +39,9 @@
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* priority;
 @property (nonatomic, retain) NSString* createdAt;
-@property (nonatomic, retain) NSString* likedByIdentities;
+@property (nonatomic, retain) NSArray* likedByIdentities;
 @property (nonatomic, retain) NSString* titleId;
-@property (nonatomic, retain) NSString* comments;
+//@property (nonatomic, retain) NSString* comments;
+@property (nonatomic, retain) NSArray* comments;
 
 @end
