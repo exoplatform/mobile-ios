@@ -20,6 +20,9 @@
 
 @property (nonatomic, assign) id<SocialProxyDelegate> delegate;
 
+
+- (NSString*)URLEncodedString:(NSDictionary *)dictForParam;
+
 @end
 
 
