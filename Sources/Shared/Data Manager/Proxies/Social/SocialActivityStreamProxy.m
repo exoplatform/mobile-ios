@@ -18,6 +18,7 @@
 
 @synthesize _socialIdentityProxy;
 @synthesize _socialUserProfileProxy;
+@synthesize _arrActivityStreams;
 
 //http://localhost:8080/rest/private/api/social/v1-alpha1/portal/activity_stream/f956c224c0a801261dbd7ead12838051/feed/default.json
 
@@ -54,6 +55,16 @@
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     //return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.restVersion]; 
     return [NSString stringWithFormat:@"http://john:gtn@localhost:8080/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.restVersion];
+    
+//    NSString* strFullDomain = socialConfig.domainName;
+//    NSRange range = [strFullDomain rangeOfString:@"http://"];
+//    NSString* strBaseURL = @"";
+//    if (range.length > 0) 
+//    {
+//        NSString* strShortDomain = [strFullDomain substringFromIndex:range.location + range.length];
+//        strBaseURL = [NSString stringWithFormat:@"http://%@:%@@%@/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.username,socialConfig.password,strShortDomain,socialConfig.restVersion];
+//    }
+//    return strBaseURL;
 }
 
 
@@ -64,22 +75,14 @@
 }
 
 
-
-
 #pragma mark - Call methods
 
 - (void) getActivityStreams 
 {
-    RKObjectMapper* mapper = [[RKObjectMapper alloc] init];
-    [mapper mapFromString:@"activities"];
-    
-    //RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    RKDynamicRouter* router = [[RKDynamicRouter new] autorelease];  
-    [router routeClass:[SocialActivityStream class] toResourcePath:[self createPath] forMethod:RKRequestMethodGET]; 
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL] objectMapper:mapper router:router];
-
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
-    [manager loadObjectsAtResourcePath:[self createPath] objectClass:[SocialActivityStream class] delegate:self];      
+    [manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
+    [manager loadObjectsAtResourcePath:[self createPath] delegate:self];   
 }
 
 
@@ -95,10 +98,10 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
 	NSLog(@"Loaded statuses: %@", objects);    
-	//[_socialIdentity release];
-	//_socialIdentity = [objects retain];
-    
-    //_socialIdentity = [objects objectAtIndex:0];
+    _arrActivityStreams = [objects retain];
+    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
+        [delegate proxyDidFinishLoading:self];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error 

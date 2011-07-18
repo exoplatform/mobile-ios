@@ -26,6 +26,8 @@
     UITextView*                             _txtvEditor;
     CGRect                                  _sizeOrigin;
     
+    NSMutableArray*                         _arrActivityStreams;
+    
     BOOL                                    _bIsPostClicked;
     BOOL                                    _bIsIPad;
     UITextView*                             _txtvMsgComposer;

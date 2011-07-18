@@ -20,6 +20,7 @@
 #import "SocialIdentityProxy.h"
 #import "SocialActivityStreamProxy.h"
 #import "SocialUserProfileProxy.h"
+#import "SocialActivityStream.h"
 
 #define TEST_ON_MOCK 1
 
@@ -40,6 +41,8 @@
         
         _bIsPostClicked = NO;
         _bIsIPad = NO;
+        
+        _arrActivityStreams = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -55,6 +58,8 @@
     
     [_sortedActivities release];
     _sortedActivities=nil;
+    
+    [_arrActivityStreams release];
     
 #if TEST_ON_MOCK        
     [_mockSocial_Activity release];
@@ -93,7 +98,7 @@
     
     //Load Activities
 #if TEST_ON_MOCK        
-    _mockSocial_Activity = [[MockSocial_Activity alloc] init];
+    //_mockSocial_Activity = [[MockSocial_Activity alloc] init];
 #endif
     
     //Set the background Color of the view
@@ -103,7 +108,7 @@
     
     _tblvActivityStream.backgroundView = backgroundView;
     
-    [self sortActivities];
+    //[self sortActivities];
     
     [_txtvEditor setBackgroundColor:[UIColor whiteColor]];
 	[_txtvEditor setFont:[UIFont boldSystemFontOfSize:13.0]];
@@ -168,7 +173,8 @@
     _sortedActivities =[[NSMutableDictionary alloc] init];
     
     //Browse each activities
-    for (Activity *a in _mockSocial_Activity.arrayOfActivities) {
+    //for (Activity *a in _mockSocial_Activity.arrayOfActivities) {
+    for (Activity *a in _arrActivityStreams) {
         
         //Check activities of today
         if (a.postedTime < 86400) {
@@ -540,7 +546,25 @@
         SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfileProxy:(SocialUserProfileProxy *)proxy];
         socialActivityStreamProxy.delegate = self;
         [socialActivityStreamProxy getActivityStreams];
-    }    
+    }
+    else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) 
+    {
+        SocialActivityStreamProxy* socialActivityStreamProxy = (SocialActivityStreamProxy *)proxy;
+        for (int i = 0; i < [socialActivityStreamProxy._arrActivityStreams count]; i++) 
+        {
+            SocialActivityStream* socialActivityStream = [socialActivityStreamProxy._arrActivityStreams objectAtIndex:i];
+    
+            NSDate* now = [NSDate date];
+            long timestamp = ([now timeIntervalSince1970] - socialActivityStream.postedTime)/1000;
+            
+            //Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:timestamp numberOfLikes:[socialActivityStream.likedByIdentities count] numberOfComments:socialActivityStream.totalNumberOfComments];
+            Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:timestamp likes:socialActivityStream.likedByIdentities comments:socialActivityStream.comments];            
+            [_arrActivityStreams addObject:activity];
+            [activity release];
+        }
+        [self sortActivities];
+        [_tblvActivityStream reloadData];
+    } 
 }
 
 

@@ -17,10 +17,13 @@
     
     SocialIdentityProxy*        _socialIdentityProxy;
     SocialUserProfileProxy*     _socialUserProfileProxy;
+    
+    NSArray*                    _arrActivityStreams;
 }
 
 @property (nonatomic, retain) SocialIdentityProxy* _socialIdentityProxy;
 @property (nonatomic, retain) SocialUserProfileProxy* _socialUserProfileProxy;
+@property (nonatomic, retain) NSArray* _arrActivityStreams;
 
 - (id)initWithSocialIdentityProxy:(SocialIdentityProxy*)socialIdentityProxy;
 - (id)initWithSocialUserProfileProxy:(SocialUserProfileProxy*)socialUserProfileProxy;

@@ -24,6 +24,8 @@
     int nbLikes;
     int nbComments;
     NSString *postedTimeInWords;
+    NSArray* arrComments;
+    NSArray* arrLikes;
 }
 
 @property (nonatomic, retain) NSString *activityID;
@@ -33,6 +35,8 @@
 @property (nonatomic, retain) NSString *body;
 @property (nonatomic, retain) NSDate *lastUpdateDate;
 @property (nonatomic, retain) NSString *postedTimeInWords;
+@property (nonatomic, retain) NSArray *arrComments;
+@property (nonatomic, retain) NSArray *arrLikes;
 @property long postedTime;
 @property int nbLikes;
 @property int nbComments;
@@ -43,8 +47,8 @@
               title:(NSString *)_title
                body:(NSString *)_body
          postedTime:(long)_postedTime
-      numberOfLikes:(int)_numberOfLikes
-   numberOfComments:(int)_numberOfComments;
+              likes:(NSArray*)_arrLikes
+           comments:(NSArray*)_arrComments;
 
 @end
 
