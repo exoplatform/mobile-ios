@@ -102,7 +102,7 @@
 {
     _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
     _lbMessage.text = [activity.title copy];
-    _lbName.text = [activity.userID copy];
+    _lbName.text = [activity.userFullName copy];
     _lbDate.text = [activity.postedTimeInWords copy];
     
     /*

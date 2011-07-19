@@ -11,7 +11,7 @@
 
 @implementation Activity
 
-@synthesize userID,activityID,avatarUrl,title,body,lastUpdateDate,postedTime,nbLikes,nbComments,postedTimeInWords,arrLikes,arrComments;
+@synthesize userID, userFullName,activityID,avatarUrl,title,body,lastUpdateDate,postedTime,nbLikes,nbComments,postedTimeInWords;
 
 -(id)initWithUserID:(NSString *)_userID
          activityID:(NSString *)_activityID
@@ -19,8 +19,8 @@
               title:(NSString *)_title
                body:(NSString *)_body
          postedTime:(long)_postedTime
-              likes:(NSArray*)_arrLikes
-           comments:(NSArray*)_arrComments
+      numberOfLikes:(int)_numberOfLikes
+   numberOfComments:(int)_numberOfComments 
 {
     if ((self =[super init])) {
         self.userID = _userID;
@@ -29,12 +29,12 @@
         self.title = [_title copy];
         self.postedTime = _postedTime;
         self.body = _body;
-        self.arrLikes = [_arrLikes copy];
-        self.arrComments = [_arrComments copy];
-        self.nbLikes = [_arrLikes count];
-        self.nbComments = [_arrComments count];
-        self.postedTimeInWords = [[NSDate date] distanceOfTimeInWords:[[NSDate date] dateByAddingTimeInterval:postedTime]];
-        
+        self.nbLikes = _numberOfLikes;
+        self.nbComments = _numberOfComments;
+//        self.postedTimeInWords = [[NSDate date] distanceOfTimeInWords:[[NSDate date] dateByAddingTimeInterval:postedTime]];
+
+        self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:postedTime];
+
     }
     return self;
 }
@@ -53,6 +53,7 @@
 @implementation ActivityDetail
     
 @synthesize activityID;
+@synthesize userFullName;
 @synthesize arrLikes;
 @synthesize arrComments;
 - (id)initWithUserID:(NSString *)_activityID
@@ -76,6 +77,7 @@
 
 @synthesize activityID;
 @synthesize userID;
+@synthesize userFullName;
 @synthesize arrTxtComments;
 
 - (id)initWithUserID:(NSString *)_activityID
@@ -105,7 +107,7 @@
     if ((self = [super init])) {
    
         //Create a list of activities
-        
+        /*
         Activity *act_01 = [[Activity alloc] initWithUserID:@"32D52" 
                                                  activityID:@"ABC001"
                                                   avatarUrl:@"http://assets0.ordienetworks.com/images/user_photos/1121804/jessica_alba-houri_square_medium.jpg?037a0d17"
@@ -382,6 +384,7 @@
         
         arrLikes = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects:act_01,act_02,act_03, nil]];
         arrComments = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects:act_04,act_05,act_06, nil]];
+         */
     }    
     return self;
 }

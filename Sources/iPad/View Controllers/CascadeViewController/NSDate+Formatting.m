@@ -49,6 +49,54 @@
 	return [self distanceOfTimeInWords:[NSDate date]];
 }
 
+
+- (NSString *)distanceOfTimeInWordsWithTimeInterval:(long)postedTime {
+    
+    //    long dateTime = [[NSDate date] timeIntervalSince1970];
+    long time = ([[NSDate date] timeIntervalSince1970] - postedTime) / 1000;
+    
+    NSString *value;
+    
+    if (time < 60) {
+        value = @"LessThanAMinute";
+    } else {
+        if (time < 120) {
+            value = @"AboutAMinuteAgo";
+        } else {
+            if (time < 3600) {
+                value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_MINUTE), @"MinutesAgo"]; 
+            } else {
+                if (time < 7200) {
+                    value = @"AboutAnHourAgo";
+                } else {
+                    if (time < 86400) {
+                        value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_HOUR), @"HoursAgo"]; 
+                        
+                    } else {
+                        if (time < 172800) {
+                            value = @"AboutADayAgo";
+                        } else {
+                            if (time < 2592000) {
+                                value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_DAY), @"DaysAgo"]; 
+                            } else {
+                                if (time < 5184000) {
+                                    value = @"AboutAMonthAgo";
+                                } else {
+                                    value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_MONTH), @"MonthsAgo"]; 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return value;
+}
+
+
+
 - (NSString *)distanceOfTimeInWords:(NSDate *)date {
 	NSString *Ago      = NSLocalizedString(@"ago", @"Denotes past dates");
 	NSString *FromNow  = NSLocalizedString(@"from now", @"Denotes future dates");

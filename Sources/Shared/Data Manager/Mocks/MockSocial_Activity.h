@@ -16,6 +16,7 @@
     
     NSString *activityID;
     NSString *userID;
+    NSString *userFullName;
     NSString *title;
     NSString *body;
     NSString *avatarUrl;
@@ -30,6 +31,7 @@
 
 @property (nonatomic, retain) NSString *activityID;
 @property (nonatomic, retain) NSString *userID;
+@property (nonatomic, retain) NSString *userFullName;
 @property (nonatomic, retain) NSString *avatarUrl;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *body;
@@ -58,11 +60,13 @@
 {
     
     NSString *activityID;
+    NSString *userFullName;
     NSMutableArray *arrLikes;
     NSMutableArray *arrComments;
 }
 
 @property (nonatomic, retain) NSString *activityID;
+@property (nonatomic, retain) NSString *userFullName;
 @property (nonatomic, retain) NSMutableArray *arrLikes;
 @property (nonatomic, retain) NSMutableArray *arrComments;
 
@@ -77,10 +81,12 @@
 {
     NSString *activityID;
     NSString *userID;
+    NSString *userFullName;
     NSMutableArray *arrTxtComments;
 }
 @property (nonatomic, retain) NSString *activityID;
 @property (nonatomic, retain) NSString *userID;
+@property (nonatomic, retain) NSString *userFullName;
 @property (nonatomic, retain) NSMutableArray *arrTxtComments;
 
 - (id)initWithUserID:(NSString *)_activityID

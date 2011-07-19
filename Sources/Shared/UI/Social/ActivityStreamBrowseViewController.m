@@ -553,12 +553,9 @@
         for (int i = 0; i < [socialActivityStreamProxy._arrActivityStreams count]; i++) 
         {
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy._arrActivityStreams objectAtIndex:i];
-    
-            NSDate* now = [NSDate date];
-            long timestamp = ([now timeIntervalSince1970] - socialActivityStream.postedTime)/1000;
+            Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:socialActivityStream.postedTime numberOfLikes:[socialActivityStream.likedByIdentities count] numberOfComments:socialActivityStream.totalNumberOfComments];
+            activity.userFullName = socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName;
             
-            //Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:timestamp numberOfLikes:[socialActivityStream.likedByIdentities count] numberOfComments:socialActivityStream.totalNumberOfComments];
-            Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:timestamp likes:socialActivityStream.likedByIdentities comments:socialActivityStream.comments];            
             [_arrActivityStreams addObject:activity];
             [activity release];
         }
