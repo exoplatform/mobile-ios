@@ -58,7 +58,7 @@
 //Helper to create the path to get the ressources
 - (NSString *)createPath 
 {    
-    return [NSString stringWithFormat:@"%@/feed/default.json",_socialUserProfileProxy.userProfile.identity]; 
+    return [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfileProxy.userProfile.identity]; 
 }
 
 
