@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define kRestVersion [NSString stringWithFormat:@"v1-alpha1"]
-#define kRestContextName [NSString stringWithFormat:@"rest-socialdemo"]
-#define kPortalContainerName [NSString stringWithFormat:@"socialdemo"]
+#define kRestContextName [NSString stringWithFormat:@"rest"]
+#define kPortalContainerName [NSString stringWithFormat:@"portal"]
 
 
 @interface SocialRestConfiguration : NSObject {

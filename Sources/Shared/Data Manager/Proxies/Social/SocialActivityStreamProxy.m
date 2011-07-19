@@ -20,8 +20,6 @@
 @synthesize _socialUserProfileProxy;
 @synthesize _arrActivityStreams;
 
-//http://localhost:8080/rest/private/api/social/v1-alpha1/portal/activity_stream/f956c224c0a801261dbd7ead12838051/feed/default.json
-
 - (id)initWithSocialIdentityProxy:(SocialIdentityProxy*)socialIdentityProxy
 {
     if ((self = [super init])) 
@@ -53,18 +51,7 @@
 - (NSString *)createBaseURL 
 {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    //return [NSString stringWithFormat:@"http://localhost:8080/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.restVersion]; 
-    return [NSString stringWithFormat:@"http://john:gtn@localhost:8080/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.restVersion];
-    
-//    NSString* strFullDomain = socialConfig.domainName;
-//    NSRange range = [strFullDomain rangeOfString:@"http://"];
-//    NSString* strBaseURL = @"";
-//    if (range.length > 0) 
-//    {
-//        NSString* strShortDomain = [strFullDomain substringFromIndex:range.location + range.length];
-//        strBaseURL = [NSString stringWithFormat:@"http://%@:%@@%@/rest-socialdemo/private/api/social/%@/socialdemo/activity_stream/",socialConfig.username,socialConfig.password,strShortDomain,socialConfig.restVersion];
-//    }
-//    return strBaseURL;
+    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainNameWithCredentials,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
 }
 
 

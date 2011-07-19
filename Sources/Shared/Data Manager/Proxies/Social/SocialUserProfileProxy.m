@@ -36,8 +36,6 @@
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
     return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/identity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
-    //return @"http://john:gtn@localhost:8080/rest-socialdemo/private/api/social/v1-alpha1/socialdemo/identity/";
-//    return strBaseURL;
 }
 
 
