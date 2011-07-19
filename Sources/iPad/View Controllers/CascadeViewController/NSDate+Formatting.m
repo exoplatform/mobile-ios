@@ -50,10 +50,14 @@
 }
 
 
-- (NSString *)distanceOfTimeInWordsWithTimeInterval:(long)postedTime {
+- (NSString *)distanceOfTimeInWordsWithTimeInterval:(double)postedTime {
     
-    //    long dateTime = [[NSDate date] timeIntervalSince1970];
-    long time = ([[NSDate date] timeIntervalSince1970] - postedTime) / 1000;
+    long postedTimeInSecond = round(postedTime/1000);
+    long timeIntervalNow = [[NSDate date] timeIntervalSince1970];
+    
+    int time = (timeIntervalNow - postedTimeInSecond);
+    
+    NSLog(@"%d", time);
     
     NSString *value;
     
@@ -64,25 +68,25 @@
             value = @"AboutAMinuteAgo";
         } else {
             if (time < 3600) {
-                value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_MINUTE), @"MinutesAgo"]; 
+                value = [NSString stringWithFormat:@"About %d %@", (int)round(time / SECONDS_PER_MINUTE), @"MinutesAgo"]; 
             } else {
                 if (time < 7200) {
                     value = @"AboutAnHourAgo";
                 } else {
                     if (time < 86400) {
-                        value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_HOUR), @"HoursAgo"]; 
+                        value = [NSString stringWithFormat:@"About %d %@", (int)round(time / SECONDS_PER_HOUR), @"HoursAgo"]; 
                         
                     } else {
                         if (time < 172800) {
                             value = @"AboutADayAgo";
                         } else {
                             if (time < 2592000) {
-                                value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_DAY), @"DaysAgo"]; 
+                                value = [NSString stringWithFormat:@"About %d %@", (int)round(time / SECONDS_PER_DAY), @"DaysAgo"]; 
                             } else {
                                 if (time < 5184000) {
                                     value = @"AboutAMonthAgo";
                                 } else {
-                                    value = [NSString stringWithFormat:@"%d ", (int)round(time / SECONDS_PER_MONTH), @"MonthsAgo"]; 
+                                    value = [NSString stringWithFormat:@"About %d %@", (int)round(time / SECONDS_PER_MONTH), @"MonthsAgo"]; 
                                 }
                             }
                         }

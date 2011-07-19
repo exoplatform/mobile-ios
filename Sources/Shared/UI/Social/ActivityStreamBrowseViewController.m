@@ -172,13 +172,18 @@
     
     _sortedActivities =[[NSMutableDictionary alloc] init];
     
+    
     //Browse each activities
     //for (Activity *a in _mockSocial_Activity.arrayOfActivities) {
     for (Activity *a in _arrActivityStreams) {
         
-        //Check activities of today
-        if (a.postedTime < 86400) {
-            
+        NSRange rangeMinute = [a.postedTimeInWords rangeOfString:@"minute"];
+        NSRange rangeMinute2 = [a.postedTimeInWords rangeOfString:@"Minute"];
+        NSRange rangeHour = [a.postedTimeInWords rangeOfString:@"hour"];
+        NSRange rangeHour2 = [a.postedTimeInWords rangeOfString:@"Hour"];
+        
+        if(rangeMinute.length > 0 || rangeMinute2.length > 0 || rangeHour.length > 0 || rangeHour2.length > 0)
+        {
             //Search the current array of activities for today
             NSMutableArray *arrayOfToday = [_sortedActivities objectForKey:@"Today"];
             
@@ -195,9 +200,9 @@
             
             //finally add the object to the array
             [arrayOfToday addObject:a];
-            
-        } else {
-            
+        }
+        else
+        {
             //Search the current array of activities for current key
             NSMutableArray *arrayOfCurrentKeys = [_sortedActivities objectForKey:a.postedTimeInWords];
             
@@ -214,8 +219,8 @@
             
             //finally add the object to the array
             [arrayOfCurrentKeys addObject:a];
-            
         }
+        
         
     }
 }

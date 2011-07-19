@@ -11,14 +11,14 @@
 
 @implementation Activity
 
-@synthesize userID, userFullName,activityID,avatarUrl,title,body,lastUpdateDate,postedTime,nbLikes,nbComments,postedTimeInWords;
+@synthesize userID, userFullName,activityID,avatarUrl,title,body,lastUpdateDate,postedTime,nbLikes,nbComments,postedTimeInWords, arrComments, arrLikes;
 
 -(id)initWithUserID:(NSString *)_userID
          activityID:(NSString *)_activityID
           avatarUrl:(NSString *)_avatarUrl
               title:(NSString *)_title
                body:(NSString *)_body
-         postedTime:(long)_postedTime
+         postedTime:(double)_postedTime
       numberOfLikes:(int)_numberOfLikes
    numberOfComments:(int)_numberOfComments 
 {
@@ -36,6 +36,18 @@
         self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:postedTime];
 
     }
+    return self;
+}
+
+-(id)initWithUserID:(NSString *)_userID
+         activityID:(NSString *)_activityID
+          avatarUrl:(NSString *)_avatarUrl
+              title:(NSString *)_title
+               body:(NSString *)_body
+         postedTime:(double)_postedTime
+              likes:(NSArray*)_arrLikes
+           comments:(NSArray*)_arrComments
+{
     return self;
 }
 

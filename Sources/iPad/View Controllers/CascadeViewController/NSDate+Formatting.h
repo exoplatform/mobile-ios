@@ -26,7 +26,7 @@
 - (NSString *)formatWithString:(NSString *)format;
 - (NSString *)formatWithStyle:(NSDateFormatterStyle)style;
 - (NSString *)distanceOfTimeInWords;
-- (NSString *)distanceOfTimeInWordsWithTimeInterval:(long)postedTime;
+- (NSString *)distanceOfTimeInWordsWithTimeInterval:(double)postedTime;
 - (NSString *)distanceOfTimeInWords:(NSDate *)date;
 
 @end

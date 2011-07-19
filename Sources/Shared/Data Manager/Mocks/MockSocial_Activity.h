@@ -21,7 +21,7 @@
     NSString *body;
     NSString *avatarUrl;
     NSDate *lastUpdateDate;
-    long postedTime;
+    double postedTime;
     int nbLikes;
     int nbComments;
     NSString *postedTimeInWords;
@@ -39,16 +39,26 @@
 @property (nonatomic, retain) NSString *postedTimeInWords;
 @property (nonatomic, retain) NSArray *arrComments;
 @property (nonatomic, retain) NSArray *arrLikes;
-@property long postedTime;
+@property double postedTime;
 @property int nbLikes;
 @property int nbComments;
+
 
 -(id)initWithUserID:(NSString *)_userID
          activityID:(NSString *)_activityID
           avatarUrl:(NSString *)_avatarUrl
               title:(NSString *)_title
                body:(NSString *)_body
-         postedTime:(long)_postedTime
+         postedTime:(double)_postedTime
+      numberOfLikes:(int)_numberOfLikes
+   numberOfComments:(int)_numberOfComments; 
+
+-(id)initWithUserID:(NSString *)_userID
+         activityID:(NSString *)_activityID
+          avatarUrl:(NSString *)_avatarUrl
+              title:(NSString *)_title
+               body:(NSString *)_body
+         postedTime:(double)_postedTime
               likes:(NSArray*)_arrLikes
            comments:(NSArray*)_arrComments;
 

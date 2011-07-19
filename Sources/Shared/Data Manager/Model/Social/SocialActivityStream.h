@@ -14,7 +14,7 @@
     NSString*               _identityId;
     int                     _totalNumberOfComments;
     BOOL                    _liked;
-    long                    _postedTime;
+    double                  _postedTime;
     NSString*               _type;
     NSString*               _posterIdentity;
     NSString*               _activityStream;
@@ -31,7 +31,7 @@
 @property (nonatomic, retain) NSString* identityId;
 @property int totalNumberOfComments;
 @property BOOL liked;
-@property long postedTime;
+@property double postedTime;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* posterIdentity;
 @property (nonatomic, retain) NSString* activityStream;
