@@ -25,7 +25,7 @@
     NSArray*                _likedByIdentities;
     NSString*               _titleId;
     //NSString*               _comments;
-    NSArray*               _comments;
+    NSArray*                _comments;
 }
 
 @property (nonatomic, retain) NSString* identityId;

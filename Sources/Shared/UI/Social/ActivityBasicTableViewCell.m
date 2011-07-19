@@ -127,11 +127,6 @@
                                   stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
                         forState:UIControlStateHighlighted];
     
-    
-
-
-    
-   
 }
 
 
