@@ -99,10 +99,6 @@ static NSString* _strDomain;
 - (NSString*)getExtend:(NSString*)domain
 {
 	return @"/portal/private/intranet";
-//    if([domain isEqualToString:@"http://localhost:8080"])
-//        return @"/socialdemo/private/classic/";
-//    
-//    return @"/private/classic";
 }
 
 - (NSString*)sendAuthenticateRequest:(NSString*)domain username:(NSString*)username password:(NSString*)password
