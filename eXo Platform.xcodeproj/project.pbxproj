@@ -282,6 +282,7 @@
 		7CEA55BF13C54D4F00FCB43A /* libRestKitObjectMapping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55B613C54D4E00FCB43A /* libRestKitObjectMapping.a */; };
 		7CEA55C013C54D4F00FCB43A /* libRestKitSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55B713C54D4E00FCB43A /* libRestKitSupport.a */; };
 		7CEA55C213C54D4F00FCB43A /* libRestKitXMLParserLibxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55B913C54D4E00FCB43A /* libRestKitXMLParserLibxml.a */; };
+		7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */; };
 		7CF562A1135590350008DD21 /* HitTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF562A0135590350008DD21 /* HitTestView.m */; };
 		7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */; };
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
@@ -1041,6 +1042,8 @@
 		7CEA55B613C54D4E00FCB43A /* libRestKitObjectMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitObjectMapping.a; sourceTree = SOURCE_ROOT; };
 		7CEA55B713C54D4E00FCB43A /* libRestKitSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitSupport.a; sourceTree = SOURCE_ROOT; };
 		7CEA55B913C54D4E00FCB43A /* libRestKitXMLParserLibxml.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitXMLParserLibxml.a; sourceTree = SOURCE_ROOT; };
+		7CF3646813D6C8300056E509 /* SocialPostCommentProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPostCommentProxy.h; sourceTree = "<group>"; };
+		7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPostCommentProxy.m; sourceTree = "<group>"; };
 		7CF5629F135590350008DD21 /* HitTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HitTestView.h; sourceTree = "<group>"; };
 		7CF562A0135590350008DD21 /* HitTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HitTestView.m; sourceTree = "<group>"; };
 		7CFD41871361644B00DD86E8 /* HomeViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController_iPhone.h; sourceTree = "<group>"; };
@@ -1500,6 +1503,8 @@
 				4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */,
 				7CEA47AE13CE883800F00726 /* SocialActivityStreamProxy.h */,
 				7CEA47AF13CE883800F00726 /* SocialActivityStreamProxy.m */,
+				7CF3646813D6C8300056E509 /* SocialPostCommentProxy.h */,
+				7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -3577,6 +3582,7 @@
 				4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */,
 				4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */,
 				7CEA47B013CE883800F00726 /* SocialActivityStreamProxy.m in Sources */,
+				7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
