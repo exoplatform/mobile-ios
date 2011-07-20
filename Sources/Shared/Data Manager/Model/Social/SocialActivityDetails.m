@@ -35,7 +35,7 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@",_comments];
+    return [NSString stringWithFormat:@"%@ %@ %@",_title,_identityId,_comments];
 }
 
 @end

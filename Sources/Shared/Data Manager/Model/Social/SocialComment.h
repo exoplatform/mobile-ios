@@ -22,14 +22,14 @@
 @interface SocialComment : NSObject{
     
     NSString*           _text;
-    SocialIdentity*     _identityId;
+    NSString*           _identityId;
     NSString*           _createdAt;
     NSNumber*           _postedTime;
     
 }
 
 @property (nonatomic, retain) NSString* text;
-@property (nonatomic, retain) SocialIdentity* identityId;
+@property (nonatomic, retain) NSString* identityId;
 @property (nonatomic, retain) NSString* createdAt;
 @property (nonatomic, retain) NSNumber* postedTime;
 
