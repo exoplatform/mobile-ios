@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
 
-
-@interface SocialActivityStream : RKObject {
+@interface SocialActivityStream : NSObject {
     NSString*               _identityId;
     int                     _totalNumberOfComments;
     BOOL                    _liked;

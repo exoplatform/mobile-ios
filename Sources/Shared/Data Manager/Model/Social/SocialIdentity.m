@@ -13,13 +13,6 @@
 
 @synthesize identity = _identity;
 
-#pragma mark RKObjectMappable methods
-
-+ (NSDictionary*)elementToPropertyMappings {
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"identity",@"id",
-			nil];
-}
 
 - (void)dealloc {
     [_identity release];

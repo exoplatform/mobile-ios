@@ -28,27 +28,6 @@
 @synthesize userFullName = _userFullName;
 @synthesize postedTimeInWords = _postedTimeInWords;
 
-
-
-
-+ (NSDictionary*)elementToPropertyMappings {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"identityId",@"identityId",
-            @"liked",@"liked",
-            @"postedTime",@"postedTime",            
-            @"type",@"type",
-            @"posterIdentity",@"posterIdentity",
-            @"activityStream",@"activityStream",
-            @"identify",@"id",
-            @"title",@"title",
-            @"priority",@"priority",
-            @"createdAt",@"createdAt",
-            @"likedByIdentities",@"likedByIdentities",
-            @"titleId",@"titleId",
-            @"comments",@"comments", 
-            nil];
-}
-
  
 - (void)dealloc {
     [_identityId release];

@@ -7,40 +7,39 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
 #import "SocialUserProfile.h"
 #import "SocialIdentity.h"
 #import "SocialComment.h"
 
 /*
-{
-    "appId": null,
-    "identityId": "e4f574dec0a80126368b5c3e4cc727b4",
-    "totalNumberOfComments": 1,
-    "liked": false,
-    "templateParams": {},
-    "postedTime": 1310716061540,
-    "type": "DEFAULT_ACTIVITY",
-    "posterIdentity": null,
-    "activityStream": null,
-    "id": "2cc3e76dc0a80126036313166ead0ad2",
-    "title": "youhou",
-    "priority": null,
-    "createdAt": "Fri Jul 15 09:47:41 +0200 2011",
-    "likedByIdentities": null,
-    "titleId": null,
-    "comments": [
-                 {
-                     "text": "ouais un comment",
-                     "identityId": "e4f574dec0a80126368b5c3e4cc727b4",
-                     "createdAt": "Fri Jul 15 14:48:18 +0200 2011",
-                     "postedTime": 1310734098154
-                 }
-                 ]
-}*/
+ {
+ "appId": null,
+ "identityId": "e4f574dec0a80126368b5c3e4cc727b4",
+ "totalNumberOfComments": 1,
+ "liked": false,
+ "templateParams": {},
+ "postedTime": 1310716061540,
+ "type": "DEFAULT_ACTIVITY",
+ "posterIdentity": null,
+ "activityStream": null,
+ "id": "2cc3e76dc0a80126036313166ead0ad2",
+ "title": "youhou",
+ "priority": null,
+ "createdAt": "Fri Jul 15 09:47:41 +0200 2011",
+ "likedByIdentities": null,
+ "titleId": null,
+ "comments": [
+ {
+ "text": "ouais un comment",
+ "identityId": "e4f574dec0a80126368b5c3e4cc727b4",
+ "createdAt": "Fri Jul 15 14:48:18 +0200 2011",
+ "postedTime": 1310734098154
+ }
+ ]
+ }*/
 
 
-@interface SocialActivityDetails : RKObject {
+@interface SocialActivityDetails : NSObject {
     SocialIdentity*         _identityId;
     NSNumber*               _totalNumberOfComments;
     NSString*               _liked;

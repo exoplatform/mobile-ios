@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
 
 //{"id":"e4f574dec0a80126368b5c3e4cc727b4","remoteId":"demo","providerId":"organization","profile":{"avatarUrl":null,"fullName":"Jack Miller"}}
-@interface SocialUserProfile : RKObject {
+@interface SocialUserProfile : NSObject {
     
     NSString* _identity;
     NSString* _remoteId;

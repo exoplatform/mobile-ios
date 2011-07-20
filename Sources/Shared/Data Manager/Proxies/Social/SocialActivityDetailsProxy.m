@@ -110,15 +110,72 @@
 #pragma - Request Methods
 
 - (void)getActivityDetail:(NSString *)activityId{
-
+    
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
-    [manager registerClass:[SocialIdentity class] forElementNamed:@"identityId"];
-    [manager registerClass:[SocialComment class] forElementNamed:@"comments"];
+    
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityDetails class]];
+    [mapping mapKeyPathsToAttributes:
+     @"totalNumberOfComments",@"totalNumberOfComments",
+     @"postedTime",@"postedTime",
+     @"type",@"type",
+     @"activityStream",@"activityStream",
+     @"title",@"title",
+     @"priority",@"priority",
+     @"identifyId",@"identifyId",
+     @"createdAt",@"createdAt",
+     @"titleId",@"titleId",
+     @"posterIdentity",@"posterIdentity",
+     nil];
+    
+    // Create our new SocialIdentity mapping
+    
+    //RKObjectAttributeMapping socialIdentityMapping = [RKObjectAttributeMapping mappingFromKeyPath:@"identityId" toKeyPath:@"identityId"];
+    
+    //[manager registerClass:[SocialIdentity class] forElementNamed:@"identityId"];
+    
+    RKObjectMapping* socialIdentityMapping = [RKObjectMapping mappingForClass:[SocialIdentity class]];
+    /*[socialIdentityMapping mapKeyPathsToAttributes:
+     @"identityId",@"identity", 
+     nil];*/
+    [manager.mappingProvider setObjectMapping:socialIdentityMapping forKeyPath:@"identityId"];
+    
+    //[socialIdentityMapping ]
+    /*[socialIdentityMapping mapKeyPathsToAttributes:
+     @"identityId",@"identity", 
+     nil];
+     [mapping addAttributeMapping:socialIdentityMapping];
+     */
+    //[mapping mapKeyPath:@"identityId" toRelationship:@"identityId" withObjectMapping:socialIdentityMapping];
+    
+    // Configure relationship mappings
+    //RKObjectMapping* socialIdentityMapping = [RKObjectMapping mappingForClass:[SocialIdentity class]];
+    // Direct configuration of instances
+    /*RKObjectRelationshipMapping* activityIdentityMapping = [RKObjectRelationshipMapping mappingFromKeyPath:@"identityId" 
+     toKeyPath:@"identityId" 
+     objectMapping:socialIdentityMapping];
+     [mapping addRelationshipMapping:activityIdentityMapping];
+     */
+    //[mapping mapRelationship:@"identityId" withObjectMapping:socialIdentityMapping];
+    
+    
+    /* 
+     // Create our new SocialIdentity mapping
+     RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
+     [socialCommentMapping mapKeyPathsToAttributes:
+     @"createdAt",@"createdAt",
+     @"text",@"text",
+     @"postedTime",@"postedTime",
+     nil];
+     [socialCommentMapping mapKeyPath:@"identityId" toRelationship:@"identityId" withObjectMapping:socialIdentityMapping];
+     [mapping mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
+     */
+    
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] 
-                           objectClass:[SocialActivityDetails class] delegate:self];
+                         objectMapping:mapping delegate:self];
     
 }
+
 
 
 #pragma mark - RKObjectLoaderDelegate methods

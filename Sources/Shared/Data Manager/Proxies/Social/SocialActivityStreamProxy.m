@@ -68,7 +68,27 @@
 {
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
-    [manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
+    
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityStream class]];
+    [mapping mapKeyPathsToAttributes:
+     @"identityId",@"identityId",
+     @"liked",@"liked",
+     @"postedTime",@"postedTime",            
+     @"type",@"type",
+     @"posterIdentity",@"posterIdentity",
+     @"activityStream",@"activityStream",
+     @"identify",@"id",
+     @"title",@"title",
+     @"priority",@"priority",
+     @"createdAt",@"createdAt",
+     @"likedByIdentities",@"likedByIdentities",
+     @"titleId",@"titleId",
+     @"comments",@"comments", 
+    nil];
+    
+    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
+    
+    //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
     [manager loadObjectsAtResourcePath:[self createPath] delegate:self];   
 }
 

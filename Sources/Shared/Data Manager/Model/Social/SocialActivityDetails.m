@@ -27,29 +27,7 @@
 @synthesize comments = _comments;
 
 
-+ (NSDictionary*)elementToPropertyMappings {
-    //for test
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"identifyId",@"identifyId",
-            @"totalNumberOfComments",@"totalNumberOfComments",
-            @"postedTime",@"postedTime",
-            @"type",@"type",
-            @"activityStream",@"activityStream",
-            @"title",@"title",
-            @"priority",@"priority",
-            @"identifyId",@"identifyId",
-            @"createdAt",@"createdAt",
-            @"titleId",@"titleId",
-            @"posterIdentity",@"posterIdentity",
-            nil];
-}
 
-
-+ (NSDictionary*)elementToRelationshipMappings {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"comments", @"comments",
-            nil];
-}
 
 - (void)dealloc {
     [super dealloc];

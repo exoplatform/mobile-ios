@@ -16,21 +16,6 @@
 @synthesize createdAt = _createdAt;
 @synthesize postedTime = _postedTime;
 
-+ (NSDictionary*)elementToPropertyMappings {
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"createdAt",@"createdAt",
-            @"text",@"text",
-            @"postedTime",@"postedTime",
-            nil];
-}
-
-
-+ (NSDictionary*)elementToRelationshipMappings {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"identityId", @"identityId",
-            nil];
-}
-
 
 - (NSString *)description
 {

@@ -50,7 +50,17 @@
     // Load the object model via RestKit
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
-    [manager loadObjectsAtResourcePath:[self createPath:identity] objectClass:[SocialUserProfile class] delegate:self];      
+    
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [mapping mapKeyPathsToAttributes:
+     @"id",@"identity",
+     @"remoteId",@"remoteId",
+     @"providerId",@"providerId",
+     @"profile.avatarUrl",@"avatarUrl",
+     @"profile.fullName",@"fullName",
+     nil];
+    
+    [manager loadObjectsAtResourcePath:[self createPath:identity] objectMapping:mapping delegate:self];      
 }
 
 

@@ -19,16 +19,6 @@
 @synthesize fullName=_fullName;
 
 
-+ (NSDictionary*)elementToPropertyMappings {
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"identity",@"id",
-            @"remoteId",@"remoteId",
-            @"providerId",@"providerId",
-            @"avatarUrl",@"profile.avatarUrl",
-            @"fullName",@"profile.fullName",
-			nil];
-}
-
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"Social User Profile : %@, %@, %@, %@, %@",_identity,_remoteId,_providerId,_avatarUrl,_fullName];

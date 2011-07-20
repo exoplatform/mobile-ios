@@ -19,8 +19,8 @@
  }
  */
 
-@interface SocialComment : RKObject {
-   
+@interface SocialComment : NSObject{
+    
     NSString*           _text;
     SocialIdentity*     _identityId;
     NSString*           _createdAt;

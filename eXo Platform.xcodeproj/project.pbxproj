@@ -172,6 +172,7 @@
 		46DA10B41386CE98008DA976 /* SettingsIpadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */; };
 		46DA10B51386CE98008DA976 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */; };
 		46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */; };
+		46DDC50D13D72D680026D036 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC50C13D72D680026D036 /* NSString+MD5.m */; };
 		46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D861393DB1B00A35D5A /* DeleteButton.png */; };
 		46E91D891393DB2500A35D5A /* DeleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D881393DB2500A35D5A /* DeleteButton@2x.png */; };
 		46E91D8E1393E30500A35D5A /* CustomBackgroundForCellBottomSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D8A1393E30300A35D5A /* CustomBackgroundForCellBottomSelected.png */; };
@@ -896,6 +897,8 @@
 		46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIpadIcon.png; sourceTree = "<group>"; };
 		46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		46DDC50B13D72D680026D036 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "../../../../../../../eXo/01-Products/01-Mobile/exo-mobile-ios-test/Sources/Shared/Data Manager/Proxies/Social/NSString+MD5.h"; sourceTree = "<group>"; };
+		46DDC50C13D72D680026D036 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "../../../../../../../eXo/01-Products/01-Mobile/exo-mobile-ios-test/Sources/Shared/Data Manager/Proxies/Social/NSString+MD5.m"; sourceTree = "<group>"; };
 		46E91D861393DB1B00A35D5A /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteButton.png; path = "Settings/@1x/DeleteButton.png"; sourceTree = "<group>"; };
 		46E91D881393DB2500A35D5A /* DeleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DeleteButton@2x.png"; path = "Settings/@2x/DeleteButton@2x.png"; sourceTree = "<group>"; };
 		46E91D8A1393E30300A35D5A /* CustomBackgroundForCellBottomSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellBottomSelected.png; path = "Global/@1x/CustomBackgroundForCellBottomSelected.png"; sourceTree = "<group>"; };
@@ -1553,6 +1556,8 @@
 		4660597B13D72217009C6353 /* Needed Import for RestKit */ = {
 			isa = PBXGroup;
 			children = (
+				46DDC50B13D72D680026D036 /* NSString+MD5.h */,
+				46DDC50C13D72D680026D036 /* NSString+MD5.m */,
 				46BE69E713D5C3C900F62614 /* NSDictionary+RKRequestSerialization.h */,
 				46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */,
 				46BE69EA13D5C44400F62614 /* RKRequestSerializable.h */,
@@ -3623,6 +3628,7 @@
 				46BE69E313D5B38300F62614 /* SocialActivityDetailsProxy.m in Sources */,
 				46BE69E913D5C3CA00F62614 /* NSDictionary+RKRequestSerialization.m in Sources */,
 				7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */,
+				46DDC50D13D72D680026D036 /* NSString+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

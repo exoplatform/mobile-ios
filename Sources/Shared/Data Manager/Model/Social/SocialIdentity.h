@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
 
 
-@interface SocialIdentity : RKObject {
+@interface SocialIdentity : NSObject {
     NSString* _identity;
 }
 
