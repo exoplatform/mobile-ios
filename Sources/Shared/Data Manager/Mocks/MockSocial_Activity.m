@@ -69,8 +69,8 @@
 @synthesize arrLikes;
 @synthesize arrComments;
 - (id)initWithUserID:(NSString *)_activityID
-            arrLikes:(NSMutableArray *)_arrLikes
-         arrComments:(NSMutableArray *)_arrComments
+            arrLikes:(NSArray *)_arrLikes
+         arrComments:(NSArray *)_arrComments
 {
     if ((self =[super init])) 
     {

@@ -71,18 +71,18 @@
     
     NSString *activityID;
     NSString *userFullName;
-    NSMutableArray *arrLikes;
-    NSMutableArray *arrComments;
+    NSArray *arrLikes;
+    NSArray *arrComments;
 }
 
 @property (nonatomic, retain) NSString *activityID;
 @property (nonatomic, retain) NSString *userFullName;
-@property (nonatomic, retain) NSMutableArray *arrLikes;
-@property (nonatomic, retain) NSMutableArray *arrComments;
+@property (nonatomic, retain) NSArray *arrLikes;
+@property (nonatomic, retain) NSArray *arrComments;
 
 - (id)initWithUserID:(NSString *)_activityID
-            arrLikes:(NSMutableArray *)_arrLikes
-         arrComments:(NSMutableArray *)_arrComments;
+            arrLikes:(NSArray *)_arrLikes
+         arrComments:(NSArray *)_arrComments;
 @end
 
 //================================================================

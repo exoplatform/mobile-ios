@@ -26,6 +26,9 @@
     NSString*               _titleId;
     //NSString*               _comments;
     NSArray*                _comments;
+    
+    NSString*               _userFullName;
+    NSString*               _postedTimeInWords;
 }
 
 @property (nonatomic, retain) NSString* identityId;
@@ -43,5 +46,9 @@
 @property (nonatomic, retain) NSString* titleId;
 //@property (nonatomic, retain) NSString* comments;
 @property (nonatomic, retain) NSArray* comments;
+@property (nonatomic, retain) NSString* userFullName;
+@property (nonatomic, retain) NSString* postedTimeInWords;
 
+- (void)convertToPostedTimeInWords;
+- (void)setFullName:(NSString*)strFullName;
 @end

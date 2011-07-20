@@ -7,7 +7,7 @@
 //
 
 #import "SocialActivityStream.h"
-
+#import "NSDate+Formatting.h"
 
 @implementation SocialActivityStream
 
@@ -25,7 +25,8 @@
 @synthesize likedByIdentities = _likedByIdentities;
 @synthesize titleId = _titleId;
 @synthesize comments = _comments;
-
+@synthesize userFullName = _userFullName;
+@synthesize postedTimeInWords = _postedTimeInWords;
 
 + (NSDictionary*)elementToPropertyMappings {
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -57,7 +58,19 @@
     [_likedByIdentities release];
     [_titleId release];
     [_comments release];
+    [_userFullName release];
+    [_postedTimeInWords release];
     [super dealloc];
+}
+
+- (void)convertToPostedTimeInWords
+{
+    self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
+}
+
+- (void)setFullName:(NSString*)strFullName
+{
+    self.userFullName = [strFullName copy];
 }
 
 @end

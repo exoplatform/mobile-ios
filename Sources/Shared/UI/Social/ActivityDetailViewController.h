@@ -12,6 +12,7 @@
 @class ActivityDetail;
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
+@class SocialActivityStream;
 
 @interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>{
     
@@ -24,6 +25,7 @@
     CGRect                                  _sizeOrigin;
     
     Activity*                               _activity;
+    SocialActivityStream*                   _socialActivityStream;
     
     //Cell for the content of the message
     ActivityDetailMessageTableViewCell*     _cellForMessage;
@@ -37,5 +39,6 @@
     BOOL                                    _bIsIPad;
 }
 
-- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
+//- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail;
 @end

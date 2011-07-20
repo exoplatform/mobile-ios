@@ -175,8 +175,8 @@
     
     //Browse each activities
     //for (Activity *a in _mockSocial_Activity.arrayOfActivities) {
-    for (Activity *a in _arrActivityStreams) {
-        
+    //for (Activity *a in _arrActivityStreams) {
+    for (SocialActivityStream *a in _arrActivityStreams) {    
         NSRange rangeMinute = [a.postedTimeInWords rangeOfString:@"minute"];
         NSRange rangeMinute2 = [a.postedTimeInWords rangeOfString:@"Minute"];
         NSRange rangeHour = [a.postedTimeInWords rangeOfString:@"hour"];
@@ -226,12 +226,19 @@
 }
 
 
-- (Activity *)getActivityForIndexPath:(NSIndexPath *)indexPath
+//- (Activity *)getActivityForIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:indexPath.section]];
+//    return [arrayForSection objectAtIndex:indexPath.row];
+//}
+
+
+- (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:indexPath.section]];
     return [arrayForSection objectAtIndex:indexPath.row];
-    
 }
+
 
 - (void)onBbtnPost
 {
@@ -468,17 +475,20 @@
     
     //ActivityBasicCellViewController* activityBasicCellViewController = [[ActivityBasicCellViewController alloc] initWithNibName:@"ActivityBasicCellViewController" bundle:nil];
     
-#if TEST_ON_MOCK        
-    Activity* activity = [self getActivityForIndexPath:indexPath];
-#endif
-    NSString* text = activity.title;
+//#if TEST_ON_MOCK        
+//    Activity* activity = [self getActivityForIndexPath:indexPath];
+//#endif
+    
+    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    
+    NSString* text = socialActivityStream.title;
     
     float fWidth = tableView.frame.size.width;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
     [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
     //[activityBasicCellViewController.view setFrame:CGRectMake(0, 0, fWidth, fHeight)];
     //[cell addSubview:activityBasicCellViewController.view];
-    [cell setActivity:activity];
+    [cell setSocialActivityStream:socialActivityStream];
     //[activityBasicCellViewController release];
     
     //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -488,7 +498,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    Activity* activity = [self getActivityForIndexPath:indexPath];
+    //Activity* activity = [self getActivityForIndexPath:indexPath];
+    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    
     if (_activityDetailViewController == nil) 
     {
         CGRect rectTableView = tableView.frame;
@@ -503,9 +515,13 @@
         
     }
     
-    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:activity.userID arrLikes:_mockSocial_Activity.arrLikes arrComments:_mockSocial_Activity.arrComments];
+//    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:activity.userID arrLikes:_mockSocial_Activity.arrLikes arrComments:_mockSocial_Activity.arrComments];
+//    
+//    [_activityDetailViewController setActivity:activity andActivityDetail:activityDetail];
+
+    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
     
-    [_activityDetailViewController setActivity:activity andActivityDetail:activityDetail];
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail];
     
     CGRect rectTableView = tableView.frame;
     
@@ -558,11 +574,16 @@
         for (int i = 0; i < [socialActivityStreamProxy._arrActivityStreams count]; i++) 
         {
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy._arrActivityStreams objectAtIndex:i];
+            [socialActivityStream convertToPostedTimeInWords];
+            [socialActivityStream setFullName:socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName];
+            [_arrActivityStreams addObject:socialActivityStream];
+            /*
             Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:socialActivityStream.postedTime numberOfLikes:[socialActivityStream.likedByIdentities count] numberOfComments:socialActivityStream.totalNumberOfComments];
             activity.userFullName = socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName;
             
             [_arrActivityStreams addObject:activity];
             [activity release];
+            */ 
         }
         [self sortActivities];
         [_tblvActivityStream reloadData];

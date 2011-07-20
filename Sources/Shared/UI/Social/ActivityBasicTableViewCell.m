@@ -10,7 +10,7 @@
 #import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "SocialActivityStream.h"
 
 @implementation ActivityBasicTableViewCell
 
@@ -130,24 +130,26 @@
 }
 
 
-- (void)setActivity:(Activity*)activity
+//- (void)setActivity:(Activity*)activity
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 {
-    _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
-    _lbMessage.text = [activity.title copy];
-    _lbDate.text = [activity.postedTimeInWords copy];
-    _lbName.text = [activity.userFullName copy];
+    //SonTH commented out
+    //_imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
+    _lbMessage.text = [socialActivityStream.title copy];
+    _lbDate.text = [socialActivityStream.postedTimeInWords copy];
+    _lbName.text = [socialActivityStream.userFullName copy];
     
     //display the like number '+' if 0
     NSString *stringForLikes;
-    if (activity.nbLikes == 0) {
+    if ([socialActivityStream.likedByIdentities count] == 0) {
         stringForLikes = @"+";
     } else {
-        stringForLikes = [NSString stringWithFormat:@"%d",activity.nbLikes];
+        stringForLikes = [NSString stringWithFormat:@"%d",[socialActivityStream.likedByIdentities count]];
     }
     [_btnLike setTitle:stringForLikes forState:UIControlStateNormal];
     
     //Set the size of the font in the button (to fit the width)
-    if (activity.nbLikes >= 100) {
+    if ([socialActivityStream.likedByIdentities count] >= 100) {
         _btnLike.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:7];
     } else {
         _btnLike.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
@@ -155,15 +157,15 @@
     
     //display the comment number '+' if 0
     NSString *stringForComments;
-    if (activity.nbComments == 0) {
+    if (socialActivityStream.totalNumberOfComments == 0) {
         stringForComments = @"+";
     } else {
-        stringForComments = [NSString stringWithFormat:@"%d",activity.nbComments];
+        stringForComments = [NSString stringWithFormat:@"%d",socialActivityStream.totalNumberOfComments];
     }
     [_btnComment setTitle:stringForComments forState:UIControlStateNormal];
 
     //Set the size of the font in the button (to fit the width)
-    if (activity.nbComments >= 100) {
+    if (socialActivityStream.totalNumberOfComments >= 100) {
         _btnComment.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:7];
     } else {
         _btnComment.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];

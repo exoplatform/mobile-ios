@@ -10,7 +10,7 @@
 
 @class Activity;
 @class EGOImageView;
-
+@class SocialActivityStream;
 
 @interface ActivityDetailMessageTableViewCell : UITableViewCell {
     
@@ -35,7 +35,7 @@
 
 
 
-- (void)setActivity:(Activity*)activity;
-
+//- (void)setActivity:(Activity*)activity;
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream;
 
 @end

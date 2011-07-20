@@ -16,6 +16,7 @@
 #import "MessageComposerViewController.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import "SocialActivityStream.h"
 
 @implementation ActivityDetailViewController
 
@@ -197,9 +198,16 @@
     [_txtvEditor resignFirstResponder];	
 }
 
-- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail
+//- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail
+//{
+//    _activity = activity;
+//    _activityDetail = activityDetail;
+//    [_tblvActivityDetail reloadData];
+//}
+
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail
 {
-    _activity = activity;
+    _socialActivityStream = socialActivityStream;
     _activityDetail = activityDetail;
     [_tblvActivityDetail reloadData];
 }
@@ -248,11 +256,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
     int n = 3;
-    if (_activity.nbLikes == 0) 
+    if ([_socialActivityStream.likedByIdentities count] == 0) 
     {
         n --;
     }
-    if (_activity.nbComments == 0) 
+    if (_socialActivityStream.totalNumberOfComments == 0) 
     {
         n--;
     }
@@ -285,21 +293,21 @@
     int n = 0;
     if (indexPath.section == 0) 
     {
-        n = [self getHeighSizeForTableView:tableView andText:_activity.title];
+        n = [self getHeighSizeForTableView:tableView andText:_socialActivityStream.title];
     }
     if (indexPath.section == 1) 
     {
         NSString* strLikes = @"";
         for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
         {
-            Activity* activity = [_activityDetail.arrLikes objectAtIndex:i];
+            NSString* identify = [_activityDetail.arrLikes objectAtIndex:i];
             if (i < [_activityDetail.arrLikes count] - 1) 
             {
-                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", activity.userID]];
+                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", identify]];
             }
             else
             {
-                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", activity.userID]];
+                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", identify]];
             }
         }
         strLikes = [strLikes stringByAppendingString:@" like"];
@@ -307,9 +315,12 @@
     }
     if (indexPath.section == 2) 
     {
-        //n = _activity.nbComments;
-        Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
-        n = [self getHeighSizeForTableView:tableView andText:activity.title];
+        //Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
+        //n = [self getHeighSizeForTableView:tableView andText:activity.title];
+        
+        NSString* comment = [_activityDetail.arrComments objectAtIndex:indexPath.row];
+        n = [self getHeighSizeForTableView:tableView andText:comment];
+
     }
     return n;
 }
@@ -336,7 +347,8 @@
             [cell configureCell];
         }
         cell.userInteractionEnabled = NO;
-        [cell setActivity:_activity];
+        //[cell setActivity:_activity];
+        [cell setSocialActivityStream:_socialActivityStream];
         
         return cell;
     }
@@ -359,14 +371,14 @@
         {   
             for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
             {
-                Activity* activity = [_activityDetail.arrLikes objectAtIndex:i];
+                NSString* identify = [_activityDetail.arrLikes objectAtIndex:i];
                 if (i < [_activityDetail.arrLikes count] - 1) 
                 {
-                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", activity.userID]];
+                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", identify]];
                 }
                 else
                 {
-                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", activity.userID]];
+                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", identify]];
                 }     
             }
             strLikes = [strLikes stringByAppendingString:@" like"];
@@ -395,9 +407,9 @@
             [cell configureCell];
         }
         
-        Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
+        //Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
         cell.userInteractionEnabled = NO;
-        [cell setActivity:activity];
+        //[cell setActivity:activity];
     
         return cell;
     }
