@@ -61,36 +61,67 @@
         _text = message;
     }
     
-    /*
+    
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
     manager.serializationMIMEType = RKMIMETypeJSON;
 
-    RKDynamicRouter* router = [[RKDynamicRouter new] autorelease];
+    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
     manager.router = router;
     
     // Send POST requests for instances of SocialActivityDetails to '/activity.json'
     [router routeClass:[SocialActivityDetails class] toResourcePath:@"activity.json" forMethod:RKRequestMethodPOST];
     
     // Let's create an SocialActivityDetails
-    SocialActivityDetails* activity = [SocialActivityDetails object];
-    activity.title = @"Posting from iOS";
+    SocialActivityDetails* activity = [[SocialActivityDetails alloc] init];
+    activity.title = _text;
+    
+    //Register our mappings with the provider FOR SERIALIZATION
+    RKObjectMapping *activitySimpleMapping = [RKObjectMapping mappingForClass: 
+                                       [SocialActivityDetails class]]; 
+    [activitySimpleMapping mapKeyPath:@"title" toAttribute:@"title"]; 
+    
+    //Configure a serialization mapping for our Product class 
+    RKObjectMapping *activitySimpleSerializationMapping = [activitySimpleMapping 
+                                                    inverseMapping]; 
+    
+    //serialization mapping 
+    [manager.mappingProvider 
+     setSerializationMapping:activitySimpleSerializationMapping forClass:[SocialActivityDetails 
+                                                                   class]]; 
+    
+    
+    
+    //Now create the mapping for the response
+    RKObjectMapping* mappingForResponse = [RKObjectMapping mappingForClass:[SocialActivityDetails class]];
+    [mappingForResponse mapKeyPathsToAttributes:
+     @"identityId",@"identityId",
+     @"totalNumberOfComments",@"totalNumberOfComments",
+     @"postedTime",@"postedTime",
+     @"type",@"type",
+     @"activityStream",@"activityStream",
+     @"title",@"title",
+     @"priority",@"priority",
+     @"identifyId",@"identifyId",
+     @"createdAt",@"createdAt",
+     @"titleId",@"titleId",
+     @"posterIdentity",@"posterIdentity",
+     nil];
+    
+    // Create our new SocialCommentIdentity mapping
+    RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
+    [socialCommentMapping mapKeyPathsToAttributes:
+     @"createdAt",@"createdAt",
+     @"text",@"text",
+     @"postedTime",@"postedTime",
+     @"identityId",@"identityId",
+     nil];
+    [mappingForResponse mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
+    
+    //[manager.mappingProvider addObjectMapping:mappingForResponse]; 
     
     // Send a POST to /articles to create the remote instance
-    [[RKObjectManager sharedManager] postObject:activity delegate:self];
-
-     /*
-    RKObjectManager *objectManager = [RKObjectManager sharedManager];
-
-    
-    RKObjectLoader *objectLoader = [manager objectLoaderWithResourcePath:@"activity.json" delegate:self];
-    objectLoader.method = RKRequestMethodPOST;
-    objectLoader.params = [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"title", @"username",
-                           nil];
-    [objectLoader send];    
-    */
-    
+    [manager postObject:activity mapResponseWith:mappingForResponse delegate:self];    
     
 }
 
