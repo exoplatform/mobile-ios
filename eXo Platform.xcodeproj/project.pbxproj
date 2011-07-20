@@ -100,6 +100,12 @@
 		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
 		46ABBE91138910C80077809B /* AuthenticateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE90138910C80077809B /* AuthenticateProxy.m */; };
 		46ABBE95138914200077809B /* FilesViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE931389141F0077809B /* FilesViewController_iPhone.m */; };
+		46BE69D913D5B30E00F62614 /* SocialActivityDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */; };
+		46BE69DB13D5B30E00F62614 /* SocialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D413D5B30E00F62614 /* SocialComment.m */; };
+		46BE69E013D5B33E00F62614 /* SocialPostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */; };
+		46BE69E313D5B38300F62614 /* SocialActivityDetailsProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69E213D5B38300F62614 /* SocialActivityDetailsProxy.m */; };
+		46BE69E613D5B59A00F62614 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BE69E513D5B59A00F62614 /* libidn.a */; };
+		46BE69E913D5C3CA00F62614 /* NSDictionary+RKRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */; };
 		46BF6E25137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E22137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png */; };
 		46BF6E2D137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E29137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png */; };
 		46BF6E3113793DC900D1E1A5 /* AuthenticateCredentialsIconIphoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E2F13793DC900D1E1A5 /* AuthenticateCredentialsIconIphoneOff.png */; };
@@ -450,7 +456,6 @@
 		8947351513372BF900B0AD11 /* eXo_Platform-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */; };
 		8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351613372CC200B0AD11 /* libidn-iPhone.a */; };
 		8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351813372CD100B0AD11 /* libidn-simulator.a */; };
-		8947351B13372CD900B0AD11 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351A13372CD900B0AD11 /* libidn.a */; };
 		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 		89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */; };
@@ -804,6 +809,18 @@
 		46ABBE90138910C80077809B /* AuthenticateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateProxy.m; sourceTree = "<group>"; };
 		46ABBE921389141E0077809B /* FilesViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilesViewController_iPhone.h; path = ../Main/FilesViewController_iPhone.h; sourceTree = "<group>"; };
 		46ABBE931389141F0077809B /* FilesViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesViewController_iPhone.m; path = ../Main/FilesViewController_iPhone.m; sourceTree = "<group>"; };
+		46BE69CF13D5B30E00F62614 /* SocialActivityDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityDetails.h; sourceTree = "<group>"; };
+		46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityDetails.m; sourceTree = "<group>"; };
+		46BE69D313D5B30E00F62614 /* SocialComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialComment.h; sourceTree = "<group>"; };
+		46BE69D413D5B30E00F62614 /* SocialComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialComment.m; sourceTree = "<group>"; };
+		46BE69DE13D5B33E00F62614 /* SocialPostActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPostActivity.h; sourceTree = "<group>"; };
+		46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPostActivity.m; sourceTree = "<group>"; };
+		46BE69E113D5B38300F62614 /* SocialActivityDetailsProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityDetailsProxy.h; sourceTree = "<group>"; };
+		46BE69E213D5B38300F62614 /* SocialActivityDetailsProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityDetailsProxy.m; sourceTree = "<group>"; };
+		46BE69E513D5B59A00F62614 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libidn.a; path = Mac/libidn.a; sourceTree = "<group>"; };
+		46BE69E713D5C3C900F62614 /* NSDictionary+RKRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RKRequestSerialization.h"; sourceTree = "<group>"; };
+		46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RKRequestSerialization.m"; sourceTree = "<group>"; };
+		46BE69EA13D5C44400F62614 /* RKRequestSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKRequestSerializable.h; sourceTree = "<group>"; };
 		46BF6E22137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCheckmarkiPhoneOff.png; path = "Authenticate/@1x/AuthenticateCheckmarkiPhoneOff.png"; sourceTree = "<group>"; };
 		46BF6E29137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCheckmarkiPhoneOff@2x.png"; path = "Authenticate/@2x/AuthenticateCheckmarkiPhoneOff@2x.png"; sourceTree = "<group>"; };
 		46BF6E2F13793DC900D1E1A5 /* AuthenticateCredentialsIconIphoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCredentialsIconIphoneOff.png; path = "Authenticate/@1x/AuthenticateCredentialsIconIphoneOff.png"; sourceTree = "<group>"; };
@@ -1283,7 +1300,6 @@
 		8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eXo_Platform-Info.plist"; sourceTree = "<group>"; };
 		8947351613372CC200B0AD11 /* libidn-iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-iPhone.a"; sourceTree = "<group>"; };
 		8947351813372CD100B0AD11 /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-simulator.a"; sourceTree = "<group>"; };
-		8947351A13372CD900B0AD11 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -1315,11 +1331,11 @@
 				89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */,
 				8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */,
 				8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */,
-				8947351B13372CD900B0AD11 /* libidn.a in Frameworks */,
 				7C160E6713BAD86A00F6B48E /* QuartzCore.framework in Frameworks */,
 				7CE85B0713C46D0C00A219EB /* MobileCoreServices.framework in Frameworks */,
 				7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */,
 				7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */,
+				46BE69E613D5B59A00F62614 /* libidn.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1486,6 +1502,10 @@
 				4656FD3813CDC54D00328E41 /* SocialUserProfile.m */,
 				7CFEB09113CAFEA700D7C9FF /* SocialActivityStream.h */,
 				7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */,
+				46BE69CF13D5B30E00F62614 /* SocialActivityDetails.h */,
+				46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */,
+				46BE69D313D5B30E00F62614 /* SocialComment.h */,
+				46BE69D413D5B30E00F62614 /* SocialComment.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -1493,16 +1513,21 @@
 		46371C8D13C5973000CD2035 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */,
-				46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */,
-				46371C8E13C5973000CD2035 /* SocialIdentityProxy.h */,
-				46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */,
+				4660597B13D72217009C6353 /* Needed Import for RestKit */,
 				4656FD3113CCA25C00328E41 /* SocialProxy.h */,
 				4656FD3213CCA25D00328E41 /* SocialProxy.m */,
-				4656FD3413CDC50200328E41 /* SocialUserProfileProxy.h */,
-				4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */,
+				46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */,
+				46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */,
 				7CEA47AE13CE883800F00726 /* SocialActivityStreamProxy.h */,
 				7CEA47AF13CE883800F00726 /* SocialActivityStreamProxy.m */,
+				46BE69E113D5B38300F62614 /* SocialActivityDetailsProxy.h */,
+				46BE69E213D5B38300F62614 /* SocialActivityDetailsProxy.m */,
+				46371C8E13C5973000CD2035 /* SocialIdentityProxy.h */,
+				46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */,
+				4656FD3413CDC50200328E41 /* SocialUserProfileProxy.h */,
+				4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */,
+				46BE69DE13D5B33E00F62614 /* SocialPostActivity.h */,
+				46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */,
 				7CF3646813D6C8300056E509 /* SocialPostCommentProxy.h */,
 				7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */,
 			);
@@ -1523,6 +1548,16 @@
 				46D97B3113742B8B00F71E82 /* Default@2x.png */,
 			);
 			name = "@2x";
+			sourceTree = "<group>";
+		};
+		4660597B13D72217009C6353 /* Needed Import for RestKit */ = {
+			isa = PBXGroup;
+			children = (
+				46BE69E713D5C3C900F62614 /* NSDictionary+RKRequestSerialization.h */,
+				46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */,
+				46BE69EA13D5C44400F62614 /* RKRequestSerializable.h */,
+			);
+			name = "Needed Import for RestKit";
 			sourceTree = "<group>";
 		};
 		46616C70137C729400D53D3D /* ThirdPart */ = {
@@ -1687,6 +1722,14 @@
 				46ABBE8C13890D0C0077809B /* eXo_Constants.h */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		46BE69E413D5B57E00F62614 /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				46BE69E513D5B59A00F62614 /* libidn.a */,
+			);
+			name = mac;
 			sourceTree = "<group>";
 		};
 		46BF6E3F137960E200D1E1A5 /* Global */ = {
@@ -2670,7 +2713,7 @@
 				894734AD1337139800B0AD11 /* idn-int.h */,
 				894734AE1337139800B0AD11 /* iphoneos */,
 				894734AF1337139800B0AD11 /* iphonesimulator */,
-				894734B01337139800B0AD11 /* Mac */,
+				46BE69E413D5B57E00F62614 /* mac */,
 				894734B11337139800B0AD11 /* stringprep.h */,
 			);
 			path = libidn;
@@ -2690,14 +2733,6 @@
 				8947351813372CD100B0AD11 /* libidn-simulator.a */,
 			);
 			path = iphonesimulator;
-			sourceTree = "<group>";
-		};
-		894734B01337139800B0AD11 /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				8947351A13372CD900B0AD11 /* libidn.a */,
-			);
-			path = Mac;
 			sourceTree = "<group>";
 		};
 		894734B21337139800B0AD11 /* TCP */ = {
@@ -3582,6 +3617,11 @@
 				4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */,
 				4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */,
 				7CEA47B013CE883800F00726 /* SocialActivityStreamProxy.m in Sources */,
+				46BE69D913D5B30E00F62614 /* SocialActivityDetails.m in Sources */,
+				46BE69DB13D5B30E00F62614 /* SocialComment.m in Sources */,
+				46BE69E013D5B33E00F62614 /* SocialPostActivity.m in Sources */,
+				46BE69E313D5B38300F62614 /* SocialActivityDetailsProxy.m in Sources */,
+				46BE69E913D5C3CA00F62614 /* NSDictionary+RKRequestSerialization.m in Sources */,
 				7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3654,8 +3694,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"/**",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"/**",
 					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphoneos\"",
 					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphonesimulator\"",
 					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/Mac\"",

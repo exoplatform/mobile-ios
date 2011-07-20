@@ -1,14 +1,12 @@
 //
-//  SocialProxy.m
-//  eXo Platform
+//  NSDictionary+RKRequestSerialization.m
+//  RestKit
 //
-//  Created by Stévan Le Meur on 12/07/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Blake Watters on 7/28/09.
+//  Copyright 2009 Two Toasters. All rights reserved.
 //
 
-#import "SocialProxy.h"
-
-
+#import "NSDictionary+RKRequestSerialization.h"
 
 /**
  * private helper function to convert any object to its string representation
@@ -33,16 +31,12 @@ static NSString *urlEncode(id object) {
 }
 
 
-@implementation SocialProxy
+@implementation NSDictionary (RKRequestSerialization)
 
-@synthesize delegate;
-
-
-
-- (NSString*)URLEncodedString:(NSDictionary *)dictForParam {
+- (NSString*)URLEncodedString {
 	NSMutableArray *parts = [NSMutableArray array];
-	for (id key in dictForParam) {
-		id value = [dictForParam objectForKey:key];
+	for (id key in self) {
+		id value = [self objectForKey:key];
 		if ([value isKindOfClass:[NSArray class]]) {
 			for (id item in value) {
                 if ([item isKindOfClass:[NSDictionary class]]) {
@@ -66,8 +60,12 @@ static NSString *urlEncode(id object) {
 			[parts addObject:part];
 		}
 	}
-    
+
 	return [parts componentsJoinedByString: @"&"];
+}
+
+- (NSString*)HTTPHeaderValueForContentType {
+	return @"application/x-www-form-urlencoded";
 }
 
 - (NSData*)HTTPBody {

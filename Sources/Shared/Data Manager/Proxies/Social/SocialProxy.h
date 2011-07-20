@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSDictionary+RKRequestSerialization.h"
 
 
 @protocol SocialProxyDelegate;

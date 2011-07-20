@@ -28,6 +28,9 @@
 @synthesize userFullName = _userFullName;
 @synthesize postedTimeInWords = _postedTimeInWords;
 
+
+
+
 + (NSDictionary*)elementToPropertyMappings {
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"identityId",@"identityId",
@@ -46,6 +49,7 @@
             nil];
 }
 
+ 
 - (void)dealloc {
     [_identityId release];
     [_type release];
