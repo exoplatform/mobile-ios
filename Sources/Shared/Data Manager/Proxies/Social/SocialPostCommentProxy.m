@@ -8,15 +8,18 @@
 
 #import "SocialPostCommentProxy.h"
 #import "SocialRestConfiguration.h"
+#import "SocialComment.h"
 
 
 @implementation SocialPostCommentProxy
+
+@synthesize comment=_comment;
 
 - (id)init 
 {
     if ((self = [super init])) 
     {
-        
+        _comment=@"";
     } 
     return self;
 }
@@ -32,23 +35,62 @@
 - (NSString *)createBaseURL {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/identity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
+    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
 }
 
-
-//Helper to create the path to get the ressources
-- (NSString *)createPath:(NSString *)userIdentity andMessage:(NSString*)message {
-    return [NSString stringWithFormat:@"%@/{\"text\": \"%@\"}.json",userIdentity,message]; 
-}
 
 #pragma mark - Call methods
 
-- (void)postCommentWith:(NSString *)identity
+-(void)postComment:(NSString *)commentValue forActivity:(NSString *)activityIdentity
 {
-    // Load the object model via RestKit
+    if (commentValue != nil) {
+        _comment = commentValue;
+    }
+    
+    
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
-    //[manager loadObjectsAtResourcePath:[self createPath:identity] objectClass:[SocialUserProfile class] delegate:self];      
+    manager.serializationMIMEType = RKMIMETypeJSON;
+    
+    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
+    manager.router = router;
+    
+    // Send POST requests for instances of SocialActivityDetails to '/activity.json'
+    [router routeClass:[SocialComment class] toResourcePath:[NSString stringWithFormat:@"%@/comment.json",activityIdentity] forMethod:RKRequestMethodPOST];
+    
+    // Let's create an SocialActivityDetails
+    SocialComment* commentToPost = [[SocialComment alloc] init];
+    commentToPost.text = _comment;
+    
+    //Register our mappings with the provider FOR SERIALIZATION
+    RKObjectMapping *commentSimpleMapping = [RKObjectMapping mappingForClass: 
+                                              [SocialComment class]]; 
+    [commentSimpleMapping mapKeyPath:@"text" toAttribute:@"text"]; 
+    
+    //Configure a serialization mapping for our SocialComment class 
+    RKObjectMapping *commentSimpleSerializationMapping = [commentSimpleMapping 
+                                                           inverseMapping]; 
+    
+    //serialization mapping 
+    [manager.mappingProvider 
+     setSerializationMapping:commentSimpleSerializationMapping forClass:[SocialComment 
+                                                                          class]]; 
+    
+    
+    
+   
+    
+    // Create our new SocialComment mapping
+    RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
+    [socialCommentMapping mapKeyPathsToAttributes:
+     @"createdAt",@"createdAt",
+     @"text",@"text",
+     @"postedTime",@"postedTime",
+     @"identityId",@"identityId",
+     nil];
+        
+    // Send a POST to /articles to create the remote instance
+    [manager postObject:commentToPost mapResponseWith:socialCommentMapping delegate:self];  
 }
 
 
@@ -64,9 +106,7 @@
 {
 	NSLog(@"Loaded statuses: %@", objects);    
     //_arrActivityStreams = [objects retain];
-    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
-        [delegate proxyDidFinishLoading:self];
-    }
+    
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error 

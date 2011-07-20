@@ -12,6 +12,15 @@
 
 @interface SocialPostCommentProxy : SocialProxy <RKObjectLoaderDelegate> {
     
+    NSString* _comment;
+    NSString* _userIdentity;
+    
 }
+
+@property (nonatomic, retain) NSString* comment;
+@property (nonatomic, retain) NSString* userIdentity;
+
+
+-(void)postComment:(NSString *)commentValue forActivity:(NSString *)activityIdentity;
 
 @end
