@@ -510,7 +510,9 @@
         }
         else
         {
-            _activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
+            ActivityDetailViewController_iPhone *activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
+            activityDetailViewController._delegate = self;
+            _activityDetailViewController = activityDetailViewController;
         }
         
     }

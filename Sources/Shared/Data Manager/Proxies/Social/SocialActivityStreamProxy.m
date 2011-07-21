@@ -77,7 +77,7 @@
      @"type",@"type",
      @"posterIdentity",@"posterIdentity",
      @"activityStream",@"activityStream",
-     @"identify",@"id",
+     @"id",@"identify",
      @"title",@"title",
      @"priority",@"priority",
      @"createdAt",@"createdAt",

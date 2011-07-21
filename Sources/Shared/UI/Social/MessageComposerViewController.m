@@ -8,8 +8,13 @@
 
 #import "MessageComposerViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SocialPostActivity.h"
+#import "SocialPostCommentProxy.h"
+#import "ActivityStreamBrowseViewController.h"
 
 @implementation MessageComposerViewController
+
+@synthesize _isPostMessage, _strActivityID, _delegate, _tblvActivityDetail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -100,7 +105,44 @@
 
 - (IBAction)onBtnSend:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    if([_txtvMessageComposer.text length] > 0)
+    {
+        if(_isPostMessage)
+        {
+            SocialPostActivity* actPost = [[SocialPostActivity alloc] init];
+            
+            [actPost postActivity:_txtvMessageComposer.text];
+            
+//            [actPost release];
+        }
+        else
+        {
+            SocialPostCommentProxy *actComment = [[SocialPostCommentProxy alloc] init];
+            [actComment postComment:_txtvMessageComposer.text forActivity:_strActivityID];
+            
+//            [actComment release];
+        }
+        
+        [_delegate loadActivityStream];
+        
+        [_tblvActivityDetail reloadData];
+        
+        
+        [self dismissModalViewControllerAnimated:YES];    
+        
+
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Composer" message:@"There is no message for comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        if(_isPostMessage)
+            alert.message = @"There is no message for possing";
+        
+        [alert release];
+    }
+    
 }
 
 - (IBAction)onBtnCancel:(id)sender

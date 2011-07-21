@@ -50,6 +50,8 @@
     MessageComposerViewController_iPhone*  messageComposerViewController;
     
     messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
+    messageComposerViewController._delegate = self;
+    messageComposerViewController._isPostMessage = YES;
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     [messageComposerViewController release];

@@ -33,6 +33,7 @@
     UITextView*                             _txtvMsgComposer;
 }
 
+- (void)loadActivityStream;
 - (void)sortActivities;
 
 @end

@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "ActivityDetailViewController.h"
 
+@class ActivityStreamBrowseViewController;
+
 @interface ActivityDetailViewController_iPhone : ActivityDetailViewController {
-    
+
+    ActivityStreamBrowseViewController* _delegate;
 }
+
+@property(nonatomic, retain) ActivityStreamBrowseViewController* _delegate;
 
 //- (IBAction)onBtnMessageComposer:(id)sender;
 
