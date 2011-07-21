@@ -26,6 +26,7 @@
 @synthesize titleId = _titleId;
 @synthesize comments = _comments;
 @synthesize userFullName = _userFullName;
+@synthesize userImageAvatar = _userImageAvatar;
 @synthesize postedTimeInWords = _postedTimeInWords;
 
  

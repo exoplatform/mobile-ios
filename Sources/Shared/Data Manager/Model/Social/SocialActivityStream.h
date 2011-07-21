@@ -26,6 +26,7 @@
     NSArray*                _comments;
     
     NSString*               _userFullName;
+    NSString*               _userImageAvatar;
     NSString*               _postedTimeInWords;
 }
 
@@ -45,6 +46,7 @@
 //@property (nonatomic, retain) NSString* comments;
 @property (nonatomic, retain) NSArray* comments;
 @property (nonatomic, retain) NSString* userFullName;
+@property (nonatomic, retain) NSString* userImageAvatar;
 @property (nonatomic, retain) NSString* postedTimeInWords;
 
 - (void)convertToPostedTimeInWords;

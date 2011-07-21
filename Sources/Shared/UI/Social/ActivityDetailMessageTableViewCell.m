@@ -102,7 +102,7 @@
 //- (void)setActivity:(Activity*)activity
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 {
-    //_imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
+    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.userImageAvatar];    
     _lbMessage.text = [socialActivityStream.title copy];
     _lbName.text = [socialActivityStream.userFullName copy];
     _lbDate.text = [socialActivityStream.postedTimeInWords copy];

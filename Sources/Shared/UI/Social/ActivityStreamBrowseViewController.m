@@ -21,6 +21,7 @@
 #import "SocialActivityStreamProxy.h"
 #import "SocialUserProfileProxy.h"
 #import "SocialActivityStream.h"
+#import "defines.h"
 
 #define TEST_ON_MOCK 1
 
@@ -578,6 +579,10 @@
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy._arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream setFullName:socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName];
+            
+            NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], socialActivityStreamProxy._socialUserProfileProxy.userProfile.avatarUrl];
+            
+            [socialActivityStream setUserImageAvatar:userImageAvatar];
             [_arrActivityStreams addObject:socialActivityStream];
             /*
             Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:socialActivityStream.postedTime numberOfLikes:[socialActivityStream.likedByIdentities count] numberOfComments:socialActivityStream.totalNumberOfComments];
