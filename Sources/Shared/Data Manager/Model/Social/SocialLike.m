@@ -11,7 +11,7 @@
 
 @implementation SocialLike
 
-@synthesize liked=_liked;
+@synthesize like=_like;
 
 
 -(void)dealloc {

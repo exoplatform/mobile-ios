@@ -11,10 +11,10 @@
 
 @interface SocialLike : NSObject {
     
-    BOOL _liked;
+    BOOL _like;
     
 }
 
-@property BOOL liked;
+@property BOOL like;
 
 @end

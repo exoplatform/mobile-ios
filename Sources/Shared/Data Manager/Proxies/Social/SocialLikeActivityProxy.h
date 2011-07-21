@@ -15,6 +15,7 @@
 }
 
 -(void)likeActivity:(NSString *)activity;
+-(void)dislikeActivity:(NSString *)activity;
 
 
 @end
