@@ -96,6 +96,7 @@
 		46A03AC513A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB313A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png */; };
 		46A03AC613A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */; };
 		46A03AC713A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */; };
+		46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2739613D7FBAE00A5C29D /* NSString+MD5.m */; };
 		46ABBE8713890BD10077809B /* FilesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8613890BD10077809B /* FilesProxy.m */; };
 		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
 		46ABBE91138910C80077809B /* AuthenticateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE90138910C80077809B /* AuthenticateProxy.m */; };
@@ -172,7 +173,8 @@
 		46DA10B41386CE98008DA976 /* SettingsIpadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */; };
 		46DA10B51386CE98008DA976 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */; };
 		46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */; };
-		46DDC50D13D72D680026D036 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC50C13D72D680026D036 /* NSString+MD5.m */; };
+		46DDC5AA13D763690026D036 /* SocialLikeActivityProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC5A913D763660026D036 /* SocialLikeActivityProxy.m */; };
+		46DDC5AD13D764470026D036 /* SocialLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC5AC13D764460026D036 /* SocialLike.m */; };
 		46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D861393DB1B00A35D5A /* DeleteButton.png */; };
 		46E91D891393DB2500A35D5A /* DeleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D881393DB2500A35D5A /* DeleteButton@2x.png */; };
 		46E91D8E1393E30500A35D5A /* CustomBackgroundForCellBottomSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D8A1393E30300A35D5A /* CustomBackgroundForCellBottomSelected.png */; };
@@ -801,6 +803,8 @@
 		46A03AB313A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserCommentButtonSelected@2x.png"; sourceTree = "<group>"; };
 		46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserLikeButton@2x.png"; sourceTree = "<group>"; };
 		46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserLikeButtonSelected@2x.png"; sourceTree = "<group>"; };
+		46A2739513D7FBAE00A5C29D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		46A2739613D7FBAE00A5C29D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		46ABBE8513890BD10077809B /* FilesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesProxy.h; sourceTree = "<group>"; };
 		46ABBE8613890BD10077809B /* FilesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxy.m; sourceTree = "<group>"; };
 		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
@@ -897,8 +901,10 @@
 		46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIpadIcon.png; sourceTree = "<group>"; };
 		46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		46DDC50B13D72D680026D036 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "../../../../../../../eXo/01-Products/01-Mobile/exo-mobile-ios-test/Sources/Shared/Data Manager/Proxies/Social/NSString+MD5.h"; sourceTree = "<group>"; };
-		46DDC50C13D72D680026D036 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "../../../../../../../eXo/01-Products/01-Mobile/exo-mobile-ios-test/Sources/Shared/Data Manager/Proxies/Social/NSString+MD5.m"; sourceTree = "<group>"; };
+		46DDC5A813D763630026D036 /* SocialLikeActivityProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialLikeActivityProxy.h; sourceTree = "<group>"; };
+		46DDC5A913D763660026D036 /* SocialLikeActivityProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialLikeActivityProxy.m; sourceTree = "<group>"; };
+		46DDC5AB13D764440026D036 /* SocialLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialLike.h; sourceTree = "<group>"; };
+		46DDC5AC13D764460026D036 /* SocialLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialLike.m; sourceTree = "<group>"; };
 		46E91D861393DB1B00A35D5A /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteButton.png; path = "Settings/@1x/DeleteButton.png"; sourceTree = "<group>"; };
 		46E91D881393DB2500A35D5A /* DeleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DeleteButton@2x.png"; path = "Settings/@2x/DeleteButton@2x.png"; sourceTree = "<group>"; };
 		46E91D8A1393E30300A35D5A /* CustomBackgroundForCellBottomSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellBottomSelected.png; path = "Global/@1x/CustomBackgroundForCellBottomSelected.png"; sourceTree = "<group>"; };
@@ -1509,6 +1515,8 @@
 				46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */,
 				46BE69D313D5B30E00F62614 /* SocialComment.h */,
 				46BE69D413D5B30E00F62614 /* SocialComment.m */,
+				46DDC5AB13D764440026D036 /* SocialLike.h */,
+				46DDC5AC13D764460026D036 /* SocialLike.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -1533,6 +1541,8 @@
 				46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */,
 				7CF3646813D6C8300056E509 /* SocialPostCommentProxy.h */,
 				7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */,
+				46DDC5A813D763630026D036 /* SocialLikeActivityProxy.h */,
+				46DDC5A913D763660026D036 /* SocialLikeActivityProxy.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -1556,8 +1566,8 @@
 		4660597B13D72217009C6353 /* Needed Import for RestKit */ = {
 			isa = PBXGroup;
 			children = (
-				46DDC50B13D72D680026D036 /* NSString+MD5.h */,
-				46DDC50C13D72D680026D036 /* NSString+MD5.m */,
+				46A2739513D7FBAE00A5C29D /* NSString+MD5.h */,
+				46A2739613D7FBAE00A5C29D /* NSString+MD5.m */,
 				46BE69E713D5C3C900F62614 /* NSDictionary+RKRequestSerialization.h */,
 				46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */,
 				46BE69EA13D5C44400F62614 /* RKRequestSerializable.h */,
@@ -3628,7 +3638,9 @@
 				46BE69E313D5B38300F62614 /* SocialActivityDetailsProxy.m in Sources */,
 				46BE69E913D5C3CA00F62614 /* NSDictionary+RKRequestSerialization.m in Sources */,
 				7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */,
-				46DDC50D13D72D680026D036 /* NSString+MD5.m in Sources */,
+				46DDC5AA13D763690026D036 /* SocialLikeActivityProxy.m in Sources */,
+				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
+				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
