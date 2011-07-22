@@ -20,7 +20,7 @@
 @synthesize numberOfComments = _numberOfComments;
 @synthesize posterIdentity = _posterIdentity;
 @synthesize activityStream = _activityStream;
-
+@synthesize socialActivityDetails = _socialActivityDetails;
 
 
 #pragma - Object Management
