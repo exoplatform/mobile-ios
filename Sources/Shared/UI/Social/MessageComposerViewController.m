@@ -123,10 +123,9 @@
 //            [actComment release];
         }
         
+        [_delegate clearActivityData];        
         [_delegate loadActivityStream];
-        
-        [_tblvActivityDetail reloadData];
-        
+
         
         [self dismissModalViewControllerAnimated:YES];    
         

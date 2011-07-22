@@ -11,6 +11,7 @@
 @class Activity;
 @class EGOImageView;
 @class SocialActivityStream;
+@class ActivityStreamBrowseViewController;
 
 @interface ActivityBasicTableViewCell : UITableViewCell {
     
@@ -24,6 +25,8 @@
     
     UIImageView*           _imgvMessageBg;
     
+    SocialActivityStream*  _socialActivytyStream;
+    ActivityStreamBrowseViewController* _delegate;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
@@ -33,6 +36,9 @@
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
+
+@property (retain, nonatomic) SocialActivityStream*  socialActivytyStream;
+@property (retain, nonatomic) ActivityStreamBrowseViewController* delegate;
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;

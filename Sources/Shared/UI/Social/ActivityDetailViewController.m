@@ -18,6 +18,7 @@
 #import "RootViewController.h"
 #import "SocialActivityStream.h"
 #import "SocialActivityDetailsProxy.h"
+#import "SocialUserProfileProxy.h"
 
 @implementation ActivityDetailViewController
 
@@ -370,27 +371,42 @@
             [cell configureCell];
         }
     
-        NSString* strLikes = @"";
+        NSMutableString* strLikes = [NSMutableString stringWithString:@""];
         
         if ([_activityDetail.arrLikes count] > 0)
-        {   
+        { 
+            
             for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
             {
-                NSString* identify = [_activityDetail.arrLikes objectAtIndex:i];
-                if (i < [_activityDetail.arrLikes count] - 1) 
+                NSDictionary *dicActivity = [_activityDetail.arrLikes objectAtIndex:i];
+                //                NSString* identify = [dicActivity objectForKey:@"id"];
+                
+                if (i < [_activityDetail.arrLikes count] - 2) 
                 {
-                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", identify]];
+                    [strLikes appendFormat:@"%@, ", [dicActivity objectForKey:@"remoteId"]];
                 }
+                else if (i < [_activityDetail.arrLikes count] - 1) 
+                {
+                    [strLikes appendFormat:@"%@ ", [dicActivity objectForKey:@"remoteId"]];
+                } 
+                
                 else
                 {
-                    strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", identify]];
+                    [strLikes appendFormat:@"and %@", [dicActivity objectForKey:@"remoteId"]];
                 }     
             }
-            strLikes = [strLikes stringByAppendingString:@" like"];
+            if([_activityDetail.arrLikes count] > 1)
+                [strLikes appendString:@" like this"];
+            else
+            {
+                [strLikes appendString:@"likes this"];
+                strLikes = (NSMutableString *)[strLikes stringByReplacingOccurrencesOfString:@"," withString:@""];
+            }
+            
         }
         else
         {
-            strLikes = @"No like for the moment";
+            [strLikes appendString:@"No like for the moment"];
         }
         
         cell.userInteractionEnabled = NO;
@@ -435,4 +451,6 @@
         
     }
 }
+
+
 @end

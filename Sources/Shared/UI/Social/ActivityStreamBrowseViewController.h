@@ -34,6 +34,8 @@
 }
 
 - (void)loadActivityStream;
+- (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
 - (void)sortActivities;
+- (void)clearActivityData;
 
 @end

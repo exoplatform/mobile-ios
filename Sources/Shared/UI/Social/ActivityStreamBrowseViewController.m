@@ -21,6 +21,7 @@
 #import "SocialActivityStreamProxy.h"
 #import "SocialUserProfileProxy.h"
 #import "SocialActivityStream.h"
+#import "SocialLikeActivityProxy.h"
 #import "defines.h"
 
 #define TEST_ON_MOCK 1
@@ -46,6 +47,12 @@
         _arrActivityStreams = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+- (void)clearActivityData
+{
+    [_arrActivityStreams removeAllObjects];
+    [_arrayOfSectionsTitle removeAllObjects];
 }
 
 - (void)dealloc
@@ -482,6 +489,9 @@
     
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     
+    cell.delegate = self;
+    cell.socialActivytyStream = socialActivityStream;
+    
     NSString* text = socialActivityStream.title;
     
     float fWidth = tableView.frame.size.width;
@@ -545,7 +555,20 @@
     }    
 }
 
-
+- (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
+{
+    SocialLikeActivityProxy *likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
+    
+    if(isLike)
+        [likeDislikeActProxy likeActivity:activity];
+    else
+        [likeDislikeActProxy dislikeActivity:activity];
+    
+    
+    [self clearActivityData];
+    
+    [self loadActivityStream];
+}
 
 #pragma Social WS Management
 - (void)loadActivityStream {

@@ -11,11 +11,12 @@
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivityStream.h"
+#import "ActivityStreamBrowseViewController.h"
 
 @implementation ActivityBasicTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
-@synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg;
+@synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -46,6 +47,24 @@
     [_btnComment setSelected:selected];
     [_btnLike setSelected:selected];
 }
+
+-(void)btnLikeAction:(UIButton *)sender
+{
+    BOOL isLike = YES;
+    
+    NSArray *arrLike = _socialActivytyStream.likedByIdentities;
+    for(NSDictionary* dic in arrLike)
+    {
+        if([_socialActivytyStream.identityId isEqualToString:[dic objectForKey:@"id"]])
+        {
+            isLike = NO;
+            break;
+        }     
+    }
+    
+    [_delegate likeDislikeActivity:_socialActivytyStream.identify like:isLike];
+}
+
 
 - (void)dealloc
 {
@@ -170,7 +189,8 @@
     } else {
         _btnComment.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
     }
-    
+ 
+     [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
