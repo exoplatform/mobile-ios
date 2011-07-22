@@ -17,6 +17,7 @@
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 #import "SocialActivityStream.h"
+#import "SocialActivityDetailsProxy.h"
 
 @implementation ActivityDetailViewController
 
@@ -209,7 +210,11 @@
 {
     _socialActivityStream = socialActivityStream;
     _activityDetail = activityDetail;
-    [_tblvActivityDetail reloadData];
+    //[_tblvActivityDetail reloadData];
+    
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] init];
+    socialActivityDetailsProxy.delegate = self;
+    [socialActivityDetailsProxy getActivityDetail:socialActivityStream.identify];
 }
 
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
@@ -421,4 +426,13 @@
     
 }
 
+#pragma mark - Social Proxy Delegate
+
+- (void)proxyDidFinishLoading:(SocialProxy *)proxy 
+{
+    if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) 
+    {
+        
+    }
+}
 @end

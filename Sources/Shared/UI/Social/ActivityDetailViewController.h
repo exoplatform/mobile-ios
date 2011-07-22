@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SocialProxy.h"
 
 @class Activity;
 @class ActivityDetail;
@@ -14,7 +15,7 @@
 @class ActivityDetailLikeTableViewCell;
 @class SocialActivityStream;
 
-@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>{
+@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UITextView*                    _txtvEditor;
