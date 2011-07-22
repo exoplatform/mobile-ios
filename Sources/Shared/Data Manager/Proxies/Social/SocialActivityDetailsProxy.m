@@ -23,8 +23,6 @@
 
 
 
-
-
 #pragma - Object Management
 
 -(id)init {
@@ -115,6 +113,7 @@
     [RKObjectManager setSharedManager:manager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityDetails class]];
+    mapping.forceCollectionMapping = YES;
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"totalNumberOfComments",@"totalNumberOfComments",
@@ -132,6 +131,7 @@
     // Create our new SocialCommentIdentity mapping
     
     RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
+    socialCommentMapping.forceCollectionMapping = YES;
     [socialCommentMapping mapKeyPathsToAttributes:
      @"createdAt",@"createdAt",
      @"text",@"text",
@@ -159,10 +159,10 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
 	NSLog(@"Loaded statuses: %@", objects);    
-	//[_socialIdentity release];
-	//_socialIdentity = [objects retain];
-    
-    //_socialIdentity = [objects objectAtIndex:0];
+
+    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
+        [delegate proxyDidFinishLoading:self];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error 

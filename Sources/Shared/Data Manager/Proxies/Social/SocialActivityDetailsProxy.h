@@ -10,6 +10,7 @@
 #import <RestKit/RestKit.h>
 #import "SocialProxy.h"
 
+@class SocialActivityDetails;
 
 @interface SocialActivityDetailsProxy : SocialProxy <RKObjectLoaderDelegate> {
     
@@ -18,12 +19,14 @@
     BOOL        _posterIdentity;
     BOOL        _activityStream;
     
+    SocialActivityDetails*      _socialActivityDetails;
 }
 
 @property (nonatomic, retain) NSString* activityIdentity;
 @property int numberOfComments;
 @property BOOL posterIdentity;
 @property BOOL activityStream;
+@property (nonatomic, retain) SocialActivityDetails* socialActivityDetails;
 
 
 //Use this constructor when you want to set a particular value for the number of comment wanted
