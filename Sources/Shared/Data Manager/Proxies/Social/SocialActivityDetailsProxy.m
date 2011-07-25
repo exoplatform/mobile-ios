@@ -113,7 +113,6 @@
     [RKObjectManager setSharedManager:manager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityDetails class]];
-    mapping.forceCollectionMapping = YES;
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"totalNumberOfComments",@"totalNumberOfComments",
@@ -131,7 +130,6 @@
     // Create our new SocialCommentIdentity mapping
     
     RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
-    socialCommentMapping.forceCollectionMapping = YES;
     [socialCommentMapping mapKeyPathsToAttributes:
      @"createdAt",@"createdAt",
      @"text",@"text",
