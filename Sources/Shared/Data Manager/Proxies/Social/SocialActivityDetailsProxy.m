@@ -156,7 +156,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-	NSLog(@"Loaded statuses: %@", objects);    
+//	NSLog(@"Loaded statuses: %@", objects);    
 
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];

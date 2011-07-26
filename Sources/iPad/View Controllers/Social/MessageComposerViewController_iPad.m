@@ -7,14 +7,16 @@
 //
 
 #import "MessageComposerViewController_iPad.h"
-
+#import "ActivityStreamBrowseViewController.h"
 
 @implementation MessageComposerViewController_iPad
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return YES;
 }
+
 
 @end

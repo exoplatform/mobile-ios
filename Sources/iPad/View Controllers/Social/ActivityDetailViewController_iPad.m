@@ -8,13 +8,17 @@
 
 #import "ActivityDetailViewController_iPad.h"
 #import "MessageComposerViewController_iPad.h"
+#import "SocialActivityStream.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 
 @implementation ActivityDetailViewController_iPad
 
+@synthesize _delegate;
+
 - (void)onBtnMessageComposer
 {
+    /*
     MessageComposerViewController*  messageComposerViewController;
     
     messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
@@ -26,6 +30,27 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    
+    */
+    
+    MessageComposerViewController_iPad*  messageComposerViewController;
+    
+    messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+    
+    messageComposerViewController._delegate = _delegate;
+    messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
+    messageComposerViewController._isPostMessage = NO;
+    messageComposerViewController._strActivityID = _socialActivityStream.identify;
+    
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    [messageComposerViewController release];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    
 }
 
 @end

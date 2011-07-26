@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "ActivityDetailViewController.h"
 
+@class ActivityStreamBrowseViewController;
 
 @interface ActivityDetailViewController_iPad : ActivityDetailViewController {
     
+    ActivityStreamBrowseViewController* _delegate;
 }
+
+@property(nonatomic, retain) ActivityStreamBrowseViewController* _delegate;
 
 @end

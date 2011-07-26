@@ -73,7 +73,7 @@
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-	NSLog(@"Loaded statuses: %@", objects); 
+//	NSLog(@"Loaded statuses: %@", objects); 
     _userProfile = [[objects objectAtIndex:0] retain];
     
     //We receive the response from the server

@@ -586,7 +586,7 @@
     {
         SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
         socialUserProfile.delegate = self;
-        [socialUserProfile getUserProfileFromIdentity:[(SocialIdentityProxy *)proxy _socialIdentity].identity];        
+        [socialUserProfile getUserProfileFromIdentity:[(SocialIdentityProxy *)proxy _socialIdentity].identity]; 
     } 
     else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
     {
@@ -602,6 +602,8 @@
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy._arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream setFullName:socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName];
+            
+            NSLog(@"%@", socialActivityStream.identityId);
             
             NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], socialActivityStreamProxy._socialUserProfileProxy.userProfile.avatarUrl];
             

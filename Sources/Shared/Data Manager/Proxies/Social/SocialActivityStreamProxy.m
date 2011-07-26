@@ -51,13 +51,22 @@
 - (NSString *)createBaseURL 
 {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainNameWithCredentials,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
+    
+//    NSLog(@"%@", [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
+    
+//    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainNameWithCredentials,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
+    
+    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
+
 }
+
 
 
 //Helper to create the path to get the ressources
 - (NSString *)createPath 
 {    
+    NSLog(@"%@", [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfileProxy.userProfile.identity]);
+    
     return [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfileProxy.userProfile.identity]; 
 }
 
@@ -104,7 +113,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-	NSLog(@"Loaded statuses: %@", objects);    
+//	NSLog(@"Loaded statuses: %@", objects);    
     _arrActivityStreams = [objects retain];
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];
