@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SSHUDView.h"
+#import "PlatformVersionProxy.h"
 
 //Login page
-@interface AuthenticateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
+@interface AuthenticateViewController : UIViewController <PlatformVersionProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
 	NSString*                   _strBSuccessful;	//Login status
 	UIActivityIndicatorView*    _indicator;	//Loding indicator

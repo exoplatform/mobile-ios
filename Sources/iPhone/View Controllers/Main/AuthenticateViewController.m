@@ -489,15 +489,38 @@
 
 - (void)loginSuccess
 {
-	AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
+    //The login has successed we need to check the version of Platform
+    PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
+    [plfVersionProxy retrievePlatformInformations];
+    
+	//AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
 	//[appDelegate changeToActivityStreamsViewController:_dictLocalize];
-    [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+    
     //[appDelegate showHomeViewController];
 	
-	endThread = nil;
+	
+}
+
+
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial {
+    
+    [_hud completeAndDismissWithTitle:@"Success..."];
+
+    AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
+    
+    if (compatibleWithSocial) {
+        //Ask to display the home with the Activity Stream Feature
+        [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+    } else {
+        //Ask to display the home without the Activity Stream Feature
+        [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+    }
+    
+    endThread = nil;
     [_indicator stopAnimating];
 	[endThread release];
 }
+
 
 - (void)loginFailed
 {
@@ -539,7 +562,6 @@
 	if(_strBSuccessful == @"YES")
 	{
         //Todo need to be localized
-        [_hud completeAndDismissWithTitle:@"Success..."];
 		[self performSelectorOnMainThread:@selector(loginSuccess) withObject:nil waitUntilDone:NO];
 	}
 	else if(_strBSuccessful == @"NO")

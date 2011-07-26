@@ -37,6 +37,8 @@
 		46144BCF13A94044009B7ECD /* NSDate+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 46144BCE13A94044009B7ECD /* NSDate+Formatting.m */; };
 		461931541385529D00EEB664 /* HomeBubbleBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */; };
 		46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 46193155138552A600EEB664 /* HomeBubbleBackground.png */; };
+		462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A613DEF7970050FCBC /* PlatformServerVersion.m */; };
+		462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */; };
 		46371C9013C5973000CD2035 /* SocialIdentityProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */; };
 		46371CAA13C60F6300CD2035 /* SocialRestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */; };
 		4642A042138A278E00AA786D /* FilesViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */; };
@@ -725,6 +727,10 @@
 		46144BCE13A94044009B7ECD /* NSDate+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatting.m"; sourceTree = "<group>"; };
 		461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeBubbleBackground@2x.png"; path = "Home/@2x/HomeBubbleBackground@2x.png"; sourceTree = "<group>"; };
 		46193155138552A600EEB664 /* HomeBubbleBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeBubbleBackground.png; path = "Home/@1x/HomeBubbleBackground.png"; sourceTree = "<group>"; };
+		462B62A513DEF7970050FCBC /* PlatformServerVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformServerVersion.h; sourceTree = "<group>"; };
+		462B62A613DEF7970050FCBC /* PlatformServerVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformServerVersion.m; sourceTree = "<group>"; };
+		462B62A813DEF9B20050FCBC /* PlatformVersionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformVersionProxy.h; sourceTree = "<group>"; };
+		462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformVersionProxy.m; sourceTree = "<group>"; };
 		46371C8E13C5973000CD2035 /* SocialIdentityProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIdentityProxy.h; sourceTree = "<group>"; };
 		46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentityProxy.m; sourceTree = "<group>"; };
 		46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialRestConfiguration.h; sourceTree = "<group>"; };
@@ -1500,6 +1506,24 @@
 				460736E3137C2F1C00D77DB9 /* AuthenticateTextfield@2x.png */,
 			);
 			path = "@2x";
+			sourceTree = "<group>";
+		};
+		462B62A313DEF7600050FCBC /* ServerConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				462B62A513DEF7970050FCBC /* PlatformServerVersion.h */,
+				462B62A613DEF7970050FCBC /* PlatformServerVersion.m */,
+			);
+			path = ServerConfiguration;
+			sourceTree = "<group>";
+		};
+		462B62A413DEF76C0050FCBC /* ServerConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				462B62A813DEF9B20050FCBC /* PlatformVersionProxy.h */,
+				462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */,
+			);
+			path = ServerConfiguration;
 			sourceTree = "<group>";
 		};
 		46371C8913C5972000CD2035 /* Social */ = {
@@ -2916,6 +2940,7 @@
 		8947352413375EF200B0AD11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				462B62A313DEF7600050FCBC /* ServerConfiguration */,
 				46371C8913C5972000CD2035 /* Social */,
 			);
 			path = Model;
@@ -2924,6 +2949,7 @@
 		8947352513375EF200B0AD11 /* Proxies */ = {
 			isa = PBXGroup;
 			children = (
+				462B62A413DEF76C0050FCBC /* ServerConfiguration */,
 				46371C8D13C5973000CD2035 /* Social */,
 				7C9C61BA133B3BAE005A365A /* Configuration.h */,
 				7C9C61BB133B3BAE005A365A /* Configuration.m */,
@@ -3641,6 +3667,8 @@
 				46DDC5AA13D763690026D036 /* SocialLikeActivityProxy.m in Sources */,
 				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
+				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
+				462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
