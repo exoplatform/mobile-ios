@@ -43,7 +43,7 @@
     NSString*               _identityId;
     NSNumber*               _totalNumberOfComments;
     NSString*               _liked;
-    NSNumber*               _postedTime;
+    double                  _postedTime;
     NSString*               _type;
     NSString*               _activityStream;
     NSString*               _identifyId;
@@ -54,12 +54,14 @@
     NSString*               _titleId;
     SocialUserProfile*      _posterIdentity;
     NSArray*                _comments;
+    
+    NSString*               _postedTimeInWords;
 }
 
 @property (nonatomic, retain) NSString* identityId;
 @property (nonatomic, retain) NSNumber* totalNumberOfComments;
 @property (nonatomic, retain) NSString* liked;
-@property (nonatomic, retain) NSNumber* postedTime;
+@property double postedTime;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* activityStream;
 @property (nonatomic, retain) NSString* identifyId;
@@ -70,5 +72,9 @@
 @property (nonatomic, retain) NSString* titleId;
 @property (nonatomic, retain) SocialUserProfile* posterIdentity;
 @property (nonatomic, retain) NSArray* comments;
+
+@property (nonatomic, retain) NSString* postedTimeInWords;
+
+- (void)convertToPostedTimeInWords;
 
 @end

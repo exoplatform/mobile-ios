@@ -7,7 +7,7 @@
 //
 
 #import "SocialActivityDetails.h"
-
+#import "NSDate+Formatting.h"
 
 @implementation SocialActivityDetails
 
@@ -26,13 +26,17 @@
 @synthesize posterIdentity = _posterIdentity;
 @synthesize comments = _comments;
 
-
+@synthesize postedTimeInWords = _postedTimeInWords;
 
 
 - (void)dealloc {
     [super dealloc];
 }
 
+- (void)convertToPostedTimeInWords
+{
+    self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
+}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ %@ %@",_title,_identityId,_comments];

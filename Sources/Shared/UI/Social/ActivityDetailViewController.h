@@ -14,6 +14,7 @@
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
 @class SocialActivityStream;
+@class SocialActivityDetails;
 
 @interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate>{
     
@@ -35,6 +36,9 @@
     ActivityDetailLikeTableViewCell*        _cellForLikes;
     
     ActivityDetail*                         _activityDetail;
+    
+    SocialActivityDetails*                  _socialActivityDetails;
+    
     UITextView*                             _txtvMsgComposer;
     IBOutlet UIButton*                      _btnMsgComposer;    
     BOOL                                    _bIsIPad;

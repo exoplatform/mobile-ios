@@ -67,7 +67,7 @@
 {    
     NSLog(@"%@", [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfileProxy.userProfile.identity]);
     
-    return [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfileProxy.userProfile.identity]; 
+    return [NSString stringWithFormat:@"%@/feed/default.json",_socialUserProfileProxy.userProfile.identity]; 
 }
 
 

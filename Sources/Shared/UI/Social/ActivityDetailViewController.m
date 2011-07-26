@@ -19,6 +19,7 @@
 #import "SocialActivityStream.h"
 #import "SocialActivityDetailsProxy.h"
 #import "SocialUserProfileProxy.h"
+#import "SocialActivityDetails.h"
 
 @implementation ActivityDetailViewController
 
@@ -30,6 +31,8 @@
         _activity = [[Activity alloc] init];
         _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
         _bIsIPad = NO;
+        
+        _socialActivityDetails = [[SocialActivityDetails alloc] init];
     }
     return self;
 }
@@ -354,7 +357,8 @@
         }
         cell.userInteractionEnabled = NO;
         //[cell setActivity:_activity];
-        [cell setSocialActivityStream:_socialActivityStream];
+        //[cell setSocialActivityStream:_socialActivityStream];
+        [cell setSocialActivityDetail:_socialActivityDetails];
         
         return cell;
     }
@@ -373,13 +377,16 @@
     
         NSMutableString* strLikes = [NSMutableString stringWithString:@""];
         
-        if ([_activityDetail.arrLikes count] > 0)
+        //if ([_activityDetail.arrLikes count] > 0)
+        if ([_socialActivityDetails.likedByIdentities count] > 0)
         { 
             
-            for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
+            //for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
+            for (int i = 0; i < [_socialActivityDetails.likedByIdentities count]; i++) 
             {
-                NSDictionary *dicActivity = [_activityDetail.arrLikes objectAtIndex:i];
+                //NSDictionary *dicActivity = [_activityDetail.arrLikes objectAtIndex:i];
                 //                NSString* identify = [dicActivity objectForKey:@"id"];
+                NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
                 
                 if (i < [_activityDetail.arrLikes count] - 2) 
                 {
@@ -431,7 +438,6 @@
         //Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
         cell.userInteractionEnabled = NO;
         //[cell setActivity:activity];
-    
         return cell;
     }
 }
@@ -448,7 +454,9 @@
 {
     if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) 
     {
-        
+        _socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
+        [_socialActivityDetails convertToPostedTimeInWords];
+        [_tblvActivityDetail reloadData];
     }
 }
 

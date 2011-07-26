@@ -11,7 +11,7 @@
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivityStream.h"
-
+#import "SocialActivityDetails.h"
 
 @implementation ActivityDetailMessageTableViewCell
 
@@ -100,12 +100,13 @@
 
 
 //- (void)setActivity:(Activity*)activity
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
+//- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
+- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
-    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.userImageAvatar];    
-    _lbMessage.text = [socialActivityStream.title copy];
-    _lbName.text = [socialActivityStream.userFullName copy];
-    _lbDate.text = [socialActivityStream.postedTimeInWords copy];
+    _imgvAvatar.imageURL = [NSURL URLWithString:@""];    
+    _lbMessage.text = [socialActivityDetail.title copy];
+    _lbName.text = @"";
+    _lbDate.text = [socialActivityDetail.postedTimeInWords copy];
     
     /*
     NSString *stringForLikes;

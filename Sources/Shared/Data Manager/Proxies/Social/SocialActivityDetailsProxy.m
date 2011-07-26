@@ -122,6 +122,7 @@
      @"title",@"title",
      @"priority",@"priority",
      @"identifyId",@"identifyId",
+     @"likedByIdentities",@"likedByIdentities",
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
      @"posterIdentity",@"posterIdentity",
@@ -157,7 +158,9 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
 //	NSLog(@"Loaded statuses: %@", objects);    
-
+    
+    _socialActivityDetails = [[objects objectAtIndex:0] retain];
+    
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];
     }
