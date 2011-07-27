@@ -76,12 +76,11 @@
         _isPlatformCompatibleWithSocialFeatures = YES;
     }
     
-//    //We need to prevent the caller.
-//    if (_delegate && [_delegate respondsToSelector:@selector(plateformVersionCompatibleWithSocialFeatures:)]) {
-//        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
-//    }
-    
-    [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
+    //We need to prevent the caller.
+    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:)]) {
+        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
+    }
+
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
@@ -89,11 +88,10 @@
     _isPlatformCompatibleWithSocialFeatures = NO;
     
     //We need to prevent the caller
-//    if (_delegate && [_delegate respondsToSelector:@selector(plateformVersionCompatibleWithSocialFeatures:)]) {
-//        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
-//    }
-    
-    [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
+    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:)]) {
+        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
+    }
+
 }
 
 
