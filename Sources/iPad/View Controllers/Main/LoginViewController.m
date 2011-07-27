@@ -479,10 +479,20 @@
 	[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
 
 	//[_delegate showMainViewController];
-    [_delegate showHomeViewController];
+    
+    PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
+    [plfVersionProxy retrievePlatformInformations];
+    
+//    [_delegate showHomeViewController];
     //[_delegate showHome];
 
 }
+
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)isCompatibleWithSocial {
+    
+    [_delegate showHomeViewController:isCompatibleWithSocial];
+}
+
 
 - (void)signInFailed
 {

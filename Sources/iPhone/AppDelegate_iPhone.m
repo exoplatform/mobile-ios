@@ -190,12 +190,11 @@
 
 - (void)showHomeViewController
 {
+    [_homeViewController_iPhone release];
+    _homeViewController_iPhone = nil;   
     
-    if (_homeViewController_iPhone == nil) 
-    {
-        _homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
-        [_homeViewController_iPhone setDelegate:self];
-    }
+    _homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
+    [_homeViewController_iPhone setDelegate:self];
     
     _homeViewController_iPhone._isCompatibleWithSocial = _isCompatibleWithSocial;
     

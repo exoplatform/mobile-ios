@@ -57,13 +57,14 @@
 @end
 
 @implementation RootViewController
-@synthesize menuViewController, stackScrollViewController, delegate=_delegate;
+@synthesize menuViewController, stackScrollViewController, delegate=_delegate, isCompatibleWithSocial = _isCompatibleWithSocial;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+ 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isCompatibleWithSocial:(BOOL)compatipleWithSocial {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {		
+        self.isCompatibleWithSocial = compatipleWithSocial;
     }
     return self;
 }
@@ -79,8 +80,7 @@
 	
 	leftMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
-	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height)];
-    
+	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height) isCompatibleWithSocial: _isCompatibleWithSocial];
     //Add the eXo Delegate for the menu
     [menuViewController setDelegate:_delegate];
     

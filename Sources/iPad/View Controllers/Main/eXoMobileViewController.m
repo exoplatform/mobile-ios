@@ -169,11 +169,11 @@
 	[[self view] addSubview:[_mainViewController view]];
 }
 
-- (void)showHomeViewController
+- (void)showHomeViewController:(BOOL)isCompatibleWithSocial
 {
     
     
-    [[AppDelegate_iPad instance] showHome:self];
+    [[AppDelegate_iPad instance] showHome:self isCompatibleWithSocial:isCompatibleWithSocial];
     
     /*
     [_loginViewController.view setHidden:YES];

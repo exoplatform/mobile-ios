@@ -27,7 +27,7 @@
 @property (nonatomic, retain) IBOutlet eXoMobileViewController *viewController;
 @property (nonatomic, retain) RootViewController *rootViewController;
 
--(void)showHome:(id)delegateForViewControllers;
+-(void)showHome:(id)delegateForViewControllers isCompatibleWithSocial:(BOOL)isCompatibleWithSocial;
 -(void)backToAuthenticate;
 
 - (void)dismissKeyboard;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SSHUDView.h"
+#import "PlatformVersionProxy.h"
 
 @class Checkbox;
 @class SupportViewController;
@@ -18,7 +19,7 @@
 @class ServerObj;
 
 //Login page
-@interface LoginViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface LoginViewController : UIViewController <PlatformVersionProxyDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
 	
 	id										_delegate;
 

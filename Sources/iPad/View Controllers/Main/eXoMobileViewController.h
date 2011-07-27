@@ -39,7 +39,7 @@
 - (Connection*)getConnection;	//Get connection
 - (void)showLoginViewController;	//Show login page
 - (void)showMainViewController; //Show main view
-- (void)showHomeViewController;
+- (void)showHomeViewController:(BOOL)isCompatibleWithSocial;
 - (void)onBtnSigtOutDelegate;
 @end
 

@@ -9,6 +9,7 @@
 #import "AppDelegate_iPad.h"
 #import "eXoMobileViewController.h"
 #import "RootViewController.h"
+#import "MenuViewController.h"
 
 @implementation AppDelegate_iPad
 
@@ -35,7 +36,7 @@
     //[window makeKeyAndVisible];
 
     
-    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+//    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     
     //[window addSubview:rootViewController.view];
     
@@ -52,9 +53,10 @@
 
 
 
--(void)showHome:(id)delegateForViewControllers {
+-(void)showHome:(id)delegateForViewControllers isCompatibleWithSocial:(BOOL)isCompatibleWithSocial
+{
+    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:isCompatibleWithSocial];
     rootViewController.delegate = delegateForViewControllers;
-
    
     [UIView transitionWithView:self.window
                       duration:1

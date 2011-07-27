@@ -24,13 +24,18 @@
     
     UIImageView *imageForBackground;
     
+    BOOL _isCompatibleWithSocial;
+    
     id _delegate;
 	
 }
 
 @property (nonatomic, retain) MenuViewController* menuViewController;
 @property (nonatomic, retain) StackScrollViewController* stackScrollViewController;
+@property BOOL isCompatibleWithSocial;
 @property (nonatomic, retain) id delegate;
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isCompatibleWithSocial:(BOOL)compatipleWithSocial;
 
 @end

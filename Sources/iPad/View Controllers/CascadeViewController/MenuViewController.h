@@ -56,6 +56,9 @@
     
 }
 
++ (void)setCompatibleWithSocial:(BOOL)compatible;
+- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)isCompatibleWithSocial;
+
 @property(nonatomic, retain)UITableView* tableView;
 @property BOOL isCompatibleWithSocial;
 
