@@ -20,6 +20,7 @@
 #import "SocialActivityDetailsProxy.h"
 #import "SocialUserProfileProxy.h"
 #import "SocialActivityDetails.h"
+#import "SocialComment.h"
 
 @implementation ActivityDetailViewController
 
@@ -33,6 +34,7 @@
         _bIsIPad = NO;
         
         _socialActivityDetails = [[SocialActivityDetails alloc] init];
+        _socialActivityDetails.comments = [[NSArray alloc] init];
     }
     return self;
 }
@@ -216,7 +218,7 @@
     _activityDetail = activityDetail;
     //[_tblvActivityDetail reloadData];
     
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] init];
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
     socialActivityDetailsProxy.delegate = self;
     [socialActivityDetailsProxy getActivityDetail:socialActivityStream.identify];
 }
@@ -265,11 +267,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
     int n = 3;
-    if ([_socialActivityStream.likedByIdentities count] == 0) 
+    if ([_socialActivityDetails.likedByIdentities count] == 0) 
     {
         n --;
     }
-    if (_socialActivityStream.totalNumberOfComments == 0) 
+    if ([_socialActivityDetails.comments count] == 0) 
     {
         n--;
     }
@@ -291,7 +293,7 @@
     }
     if (section == 2) 
     {
-        n = [_activityDetail.arrComments count];
+        n = [_socialActivityDetails.comments count];
     }
     return n;
 }
@@ -306,20 +308,46 @@
     }
     if (indexPath.section == 1) 
     {
-        NSString* strLikes = @"";
-        for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
-        {
-            NSString* identify = [_activityDetail.arrLikes objectAtIndex:i];
-            if (i < [_activityDetail.arrLikes count] - 1) 
+        NSMutableString* strLikes = [NSMutableString stringWithString:@""];
+        
+        //if ([_activityDetail.arrLikes count] > 0)
+        if ([_socialActivityDetails.likedByIdentities count] > 0)
+        { 
+            
+            //for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
+            for (int i = 0; i < [_socialActivityDetails.likedByIdentities count]; i++) 
             {
-                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"%@, ", identify]];
+                //NSDictionary *dicActivity = [_activityDetail.arrLikes objectAtIndex:i];
+                //                NSString* identify = [dicActivity objectForKey:@"id"];
+                NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
+                
+                if (i < [_activityDetail.arrLikes count] - 2) 
+                {
+                    [strLikes appendFormat:@"%@, ", [dicActivity objectForKey:@"remoteId"]];
+                }
+                else if (i < [_activityDetail.arrLikes count] - 1) 
+                {
+                    [strLikes appendFormat:@"%@ ", [dicActivity objectForKey:@"remoteId"]];
+                } 
+                
+                else
+                {
+                    [strLikes appendFormat:@"and %@", [dicActivity objectForKey:@"remoteId"]];
+                }     
             }
+            if([_activityDetail.arrLikes count] > 1)
+                [strLikes appendString:@" like this"];
             else
             {
-                strLikes = [strLikes stringByAppendingString:[NSString stringWithFormat:@"and %@", identify]];
+                [strLikes appendString:@"likes this"];
+                strLikes = (NSMutableString *)[strLikes stringByReplacingOccurrencesOfString:@"," withString:@""];
             }
+            
         }
-        strLikes = [strLikes stringByAppendingString:@" like"];
+        else
+        {
+            [strLikes appendString:@"No like for the moment"];
+        }
         n = [self getHeighSizeForTableView:tableView andText:strLikes];
     }
     if (indexPath.section == 2) 
@@ -436,8 +464,11 @@
         }
         
         //Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
+        SocialComment* socialComment = [_socialActivityDetails.comments objectAtIndex:indexPath.row];
+        [socialComment convertToPostedTimeInWords];
+        [cell setSocialComment:socialComment];
+        
         cell.userInteractionEnabled = NO;
-        //[cell setActivity:activity];
         return cell;
     }
 }

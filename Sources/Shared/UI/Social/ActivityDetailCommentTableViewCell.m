@@ -10,6 +10,7 @@
 #import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SocialComment.h"
 
 
 @implementation ActivityDetailCommentTableViewCell
@@ -101,6 +102,16 @@
 }
 
 
+- (void)setSocialComment:(SocialComment*)socialComment
+{
+    //_imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
+    _lbMessage.text = [socialComment.text copy];
+    _lbName.text = [socialComment.identityId copy];
+    _lbDate.text = [socialComment.postedTimeInWords copy];
+    _lbDate.hidden = YES;
+}
+
+/*
 - (void)setActivity:(Activity*)activity
 {
     _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
@@ -132,7 +143,7 @@
         stringForComments = [NSString stringWithFormat:@"%d",activity.nbComments];
     }
 }
-
+*/
 
 @end
  

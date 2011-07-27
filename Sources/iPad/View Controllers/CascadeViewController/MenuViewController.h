@@ -52,11 +52,14 @@
     int                             _intIndex;
     
     UIView*                         _footer; 
+    BOOL                            _isCompatibleWithSocial;
     
 }
-- (id)initWithFrame:(CGRect)frame;
 
 @property(nonatomic, retain)UITableView* tableView;
+@property BOOL isCompatibleWithSocial;
+
+- (id)initWithFrame:(CGRect)frame;
 
 - (void)setDelegate:(id)delegate;
 

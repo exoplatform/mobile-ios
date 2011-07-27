@@ -7,7 +7,7 @@
 //
 
 #import "SocialComment.h"
-
+#import "NSDate+Formatting.h"
 
 @implementation SocialComment
 
@@ -16,11 +16,16 @@
 @synthesize createdAt = _createdAt;
 @synthesize postedTime = _postedTime;
 
+@synthesize postedTimeInWords = _postedTimeInWords;
 
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"-%@, %@, %@, %@-",_text,_identityId,_createdAt,_postedTime];
 }
 
+- (void)convertToPostedTimeInWords
+{
+    self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
+}
 
 @end

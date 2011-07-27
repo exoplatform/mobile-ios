@@ -10,7 +10,7 @@
 
 @class Activity;
 @class EGOImageView;
-
+@class SocialComment;
 
 @interface ActivityDetailCommentTableViewCell : UITableViewCell {
     
@@ -37,7 +37,8 @@
 
 
 
-- (void)setActivity:(Activity*)activity;
+//- (void)setActivity:(Activity*)activity;
+- (void)setSocialComment:(SocialComment*)socialComment;
 
 
 @end

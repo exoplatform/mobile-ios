@@ -24,13 +24,16 @@
     NSString*           _text;
     NSString*           _identityId;
     NSString*           _createdAt;
-    NSNumber*           _postedTime;
-    
+    double              _postedTime;
+    NSString*               _postedTimeInWords;
 }
 
 @property (nonatomic, retain) NSString* text;
 @property (nonatomic, retain) NSString* identityId;
 @property (nonatomic, retain) NSString* createdAt;
-@property (nonatomic, retain) NSNumber* postedTime;
+@property double postedTime;
+@property (nonatomic, retain) NSString* postedTimeInWords;
+
+- (void)convertToPostedTimeInWords;
 
 @end
