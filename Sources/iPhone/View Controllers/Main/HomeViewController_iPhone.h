@@ -16,7 +16,11 @@
     TTLauncherView*     _launcherView;
     
     Connection*			_conn;
+    
+    BOOL                _isCompatibleWithSocial;
 }
+
+@property BOOL _isCompatibleWithSocial;
 
 - (void)setDelegate:(id)delegate;
 @end

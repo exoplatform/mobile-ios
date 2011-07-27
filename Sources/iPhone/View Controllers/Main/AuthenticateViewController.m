@@ -508,13 +508,10 @@
 
     AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
     
-    if (compatibleWithSocial) {
-        //Ask to display the home with the Activity Stream Feature
-        [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
-    } else {
-        //Ask to display the home without the Activity Stream Feature
-        [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
-    }
+
+    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+    
+    [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
     
     endThread = nil;
     [_indicator stopAnimating];

@@ -22,6 +22,7 @@
 
 @implementation MenuViewController
 @synthesize tableView = _tableView;
+@synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -40,10 +41,10 @@
 		_cellContents = [[NSMutableArray alloc] init];
         
         //TODO Localize this strings
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, NSLocalizedString(@"Documents",@""), kCellText, nil]];
-        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, NSLocalizedString(@"Activity Stream",@""), kCellText, nil]];
+//		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
+//		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
+//		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, NSLocalizedString(@"Documents",@""), kCellText, nil]];
+//        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, NSLocalizedString(@"Activity Stream",@""), kCellText, nil]];
         
         /*
         
@@ -142,6 +143,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
+    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
+    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, NSLocalizedString(@"Documents",@""), kCellText, nil]];
+    if(_isCompatibleWithSocial)
+        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, NSLocalizedString(@"Activity Stream",@""), kCellText, nil]];
+
 }
 
 

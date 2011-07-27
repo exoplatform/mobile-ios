@@ -35,6 +35,8 @@
 
 @implementation HomeViewController_iPhone
 
+@synthesize _isCompatibleWithSocial;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -118,22 +120,32 @@
     _launcherView.columnCount = 3;
     _launcherView.pager.hidesForSinglePage = YES;
     
+    TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:@"Activity Streams"
+                                                                     image:@"bundle://HomeActivityStreamsIconiPhone.png"
+                                                                       URL:@"tt://activityStream" canDelete:NO] autorelease];
+    
+    TTLauncherItem *chatItem = [[[TTLauncherItem alloc] initWithTitle:@"Chat"
+                                                                image:@"bundle://HomeChatIconiPhone.png"
+                                                                  URL:@"tt://chat" canDelete:NO] autorelease];
+    
+    TTLauncherItem *documentItem = [[[TTLauncherItem alloc] initWithTitle:@"Documents"
+                                                                    image:@"bundle://HomeDocumentsIconiPhone.png"
+                                                                      URL:@"tt://documents" canDelete:NO] autorelease];
+    
+    TTLauncherItem *dashboardItem = [[[TTLauncherItem alloc] initWithTitle:@"Dashboard"
+                                                                     image:@"bundle://HomeDashboardIconiPhone.png"
+                                                                       URL:@"tt://dashboard" canDelete:NO] autorelease];
+    
+    TTLauncherItem *settingItem = [[[TTLauncherItem alloc] initWithTitle:@"Settings"
+                                                                   image:@"bundle://HomeSettingsIconiPhone.png"
+                                                                     URL:@"tt://setting" canDelete:NO] autorelease];
+    if(_isCompatibleWithSocial)
     _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
-                                                    [[[TTLauncherItem alloc] initWithTitle:@"Activity Streams"
-                                                                                     image:@"bundle://HomeActivityStreamsIconiPhone.png"
-                                                                                       URL:@"tt://activityStream" canDelete:NO] autorelease],
-                                                    [[[TTLauncherItem alloc] initWithTitle:@"Chat"
-                                                                                     image:@"bundle://HomeChatIconiPhone.png"
-                                                                                       URL:@"tt://chat" canDelete:NO] autorelease],
-                                                    [[[TTLauncherItem alloc] initWithTitle:@"Documents"
-                                                                                     image:@"bundle://HomeDocumentsIconiPhone.png"
-                                                                                       URL:@"tt://documents" canDelete:NO] autorelease],
-                                                    [[[TTLauncherItem alloc] initWithTitle:@"Dashboard"
-                                                                                     image:@"bundle://HomeDashboardIconiPhone.png"
-                                                                                       URL:@"tt://dashboard" canDelete:NO] autorelease],
-                                                    [[[TTLauncherItem alloc] initWithTitle:@"Settings"
-                                                                                     image:@"bundle://HomeSettingsIconiPhone.png"
-                                                                                       URL:@"tt://setting" canDelete:NO] autorelease],nil], nil];
+                                                    actStreamItem, chatItem, documentItem, dashboardItem, settingItem, nil], nil];
+    else
+        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
+                                                         chatItem, documentItem, dashboardItem, settingItem, nil], nil];
+    
     [self.view addSubview:_launcherView];
 }
 

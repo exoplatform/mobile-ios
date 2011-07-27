@@ -33,6 +33,7 @@
 	eXoSplashViewController*			_splash;	//Splash view
 	
     HomeViewController_iPhone*          _homeViewController_iPhone;
+    BOOL                                _isCompatibleWithSocial;
     UINavigationController*             _navigationController;
 	
 	int									_selectedLanguage;	//Language index
@@ -47,6 +48,7 @@
 @property (nonatomic, retain) IBOutlet eXoGadgetsViewController* gadgetsViewController;
 @property (nonatomic, retain) IBOutlet eXoSettingViewController*	settingViewController;
 @property (nonatomic, retain) IBOutlet HomeViewController_iPhone* homeViewController_iPhone;
+@property BOOL isCompatibleWithSocial;
 @property (nonatomic, retain) NSDictionary *dictLocalize;
 
 @property (nonatomic, retain) eXoWebViewController* webViewController;

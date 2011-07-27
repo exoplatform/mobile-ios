@@ -137,7 +137,7 @@
         [alert show];
         
         if(_isPostMessage)
-            alert.message = @"There is no message for possing";
+            alert.message = @"There is no message for posting";
         
         [alert release];
     }
