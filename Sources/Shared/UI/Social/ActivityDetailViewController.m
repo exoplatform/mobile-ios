@@ -21,6 +21,7 @@
 #import "SocialUserProfileProxy.h"
 #import "SocialActivityDetails.h"
 #import "SocialComment.h"
+#import "SocialLikeActivityProxy.h"
 
 @implementation ActivityDetailViewController
 
@@ -402,7 +403,8 @@
             //Create a cell, need to do some configurations
             [cell configureCell];
         }
-    
+        cell.delegate = self;
+        
         NSMutableString* strLikes = [NSMutableString stringWithString:@""];
         
         //if ([_activityDetail.arrLikes count] > 0)
@@ -416,11 +418,11 @@
                 //                NSString* identify = [dicActivity objectForKey:@"id"];
                 NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
                 
-                if (i < [_activityDetail.arrLikes count] - 2) 
+                if (i < [_socialActivityDetails.likedByIdentities count] - 2) 
                 {
                     [strLikes appendFormat:@"%@, ", [dicActivity objectForKey:@"remoteId"]];
                 }
-                else if (i < [_activityDetail.arrLikes count] - 1) 
+                else if (i < [_socialActivityDetails.likedByIdentities count] - 1) 
                 {
                     [strLikes appendFormat:@"%@ ", [dicActivity objectForKey:@"remoteId"]];
                 } 
@@ -430,7 +432,7 @@
                     [strLikes appendFormat:@"and %@", [dicActivity objectForKey:@"remoteId"]];
                 }     
             }
-            if([_activityDetail.arrLikes count] > 1)
+            if([_socialActivityDetails.likedByIdentities count] > 1)
                 [strLikes appendString:@" like this"];
             else
             {
@@ -444,9 +446,10 @@
             [strLikes appendString:@"No like for the moment"];
         }
         
-        cell.userInteractionEnabled = NO;
+        //cell.userInteractionEnabled = NO;
+        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setContent:strLikes];
-        
+        [cell setSocialActivityDetails:_socialActivityDetails];
         return cell;
     }
     else
@@ -491,5 +494,23 @@
     }
 }
 
+
+- (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
+{
+    SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
+    
+    if(isLike)
+    {
+        [likeDislikeActProxy likeActivity:activity];
+    }
+    else
+    {
+        [likeDislikeActProxy dislikeActivity:activity];
+    }
+    
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
+    socialActivityDetailsProxy.delegate = self;
+    [socialActivityDetailsProxy getActivityDetail:_socialActivityDetails.identityId];
+}
 
 @end

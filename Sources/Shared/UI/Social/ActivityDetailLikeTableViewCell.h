@@ -10,7 +10,7 @@
 
 @class Activity;
 @class EGOImageView;
-
+@class SocialActivityDetails;
 
 @interface ActivityDetailLikeTableViewCell : UITableViewCell {
     
@@ -21,8 +21,12 @@
 
     UIImageView*           _imgvMessageBg;
     UIButton*              _btnLike;
+    
+    SocialActivityDetails*  _socialActivityDetails;
+    id                      _delegate;
 }
 
+@property (retain, nonatomic) id delegate;
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
@@ -34,4 +38,6 @@
 - (void)configureCell;
 - (void)setActivity:(Activity*)activity;
 - (void)setContent:(NSString*)strLikes;
+- (void)setSocialActivityDetails:(SocialActivityDetails*)socialActivityDetails;
+- (IBAction)btnLikeAction:(id)sender;
 @end

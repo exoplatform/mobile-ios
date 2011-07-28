@@ -46,4 +46,5 @@
 
 //- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail;
+- (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
 @end

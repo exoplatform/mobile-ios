@@ -10,12 +10,13 @@
 #import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "SocialActivityDetails.h"
+#import "ActivityDetailViewController.h"
 
 @implementation ActivityDetailLikeTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate , imgvAvatar=_imgvAvatar;
-@synthesize imgvMessageBg=_imgvMessageBg,btnLike=_btnLike;
+@synthesize imgvMessageBg=_imgvMessageBg,btnLike=_btnLike, delegate=_delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -129,6 +130,29 @@
 - (void)setContent:(NSString*)strLikes
 {
     _lbMessage.text = strLikes;
+}
+
+- (void)setSocialActivityDetails:(SocialActivityDetails*)socialActivityDetails
+{
+    _socialActivityDetails = [socialActivityDetails retain];
+    [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (IBAction)btnLikeAction:(id)sender
+{
+    BOOL isLike = YES;
+    
+    NSArray *arrLike = _socialActivityDetails.likedByIdentities;
+    for(NSDictionary* dic in arrLike)
+    {
+        if([_socialActivityDetails.identityId isEqualToString:[dic objectForKey:@"id"]])
+        {
+            isLike = NO;
+            break;
+        }     
+    }
+    
+    [self.delegate likeDislikeActivity:_socialActivityDetails.identityId like:isLike];
 }
 
 @end

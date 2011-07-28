@@ -48,7 +48,7 @@
     [_btnLike setSelected:selected];
 }
 
--(void)btnLikeAction:(UIButton *)sender
+- (void)btnLikeAction:(UIButton *)sender
 {
     BOOL isLike = YES;
     
