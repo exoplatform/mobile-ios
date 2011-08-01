@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
+#import "SocialActivityStream.h"
+#import "MockSocial_Activity.h"
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
-@class MockSocial_Activity;
 @class ActivityDetailViewController;
 @class SocialUserProfile;
 
@@ -37,5 +38,6 @@
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
 - (void)sortActivities;
 - (void)clearActivityData;
+- (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
 
 @end

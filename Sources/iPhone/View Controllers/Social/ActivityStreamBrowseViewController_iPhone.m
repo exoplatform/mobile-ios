@@ -8,6 +8,7 @@
 
 #import "ActivityStreamBrowseViewController_iPhone.h"
 #import "MessageComposerViewController_iPhone.h"
+#import "ActivityDetailViewController_iPhone.h"
 
 @implementation ActivityStreamBrowseViewController_iPhone
 
@@ -57,6 +58,28 @@
     [messageComposerViewController release];
     
     [self.navigationController presentModalViewController:navController animated:YES];
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    
+    if (_activityDetailViewController == nil) 
+    {
+        
+        ActivityDetailViewController_iPhone *activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
+        activityDetailViewController._delegate = self;
+        _activityDetailViewController = activityDetailViewController;
+        
+    }
+    
+    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
+    
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail andUserProfile:_socialUserProfile];
+    
+    [self.navigationController pushViewController:_activityDetailViewController animated:YES];
+
 }
 
 

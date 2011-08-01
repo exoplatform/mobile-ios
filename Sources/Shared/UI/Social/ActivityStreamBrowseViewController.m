@@ -15,12 +15,10 @@
 #import "RootViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MessageComposerViewController.h"
-#import "ActivityDetailViewController_iPad.h"
 #import "ActivityDetailViewController_iPhone.h"
 #import "SocialIdentityProxy.h"
 #import "SocialActivityStreamProxy.h"
 #import "SocialUserProfileProxy.h"
-#import "SocialActivityStream.h"
 #import "SocialLikeActivityProxy.h"
 #import "defines.h"
 
@@ -97,20 +95,6 @@
     //Load all activities of the user
     [self startLoadingActivityStream];
     
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    CGRect rect = _tblvActivityStream.frame;
-    if (rect.size.width > 320) 
-    {
-        _bIsIPad = YES;
-    }
-    else
-    {
-        _bIsIPad = NO;
-    }
 }
 
 - (void)viewDidUnload
@@ -199,12 +183,6 @@
 {
     NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:indexPath.section]];
     return [arrayForSection objectAtIndex:indexPath.row];
-}
-
-
-- (void)onBbtnPost
-{
-    [self onBbtnPost];
 }
 
 
@@ -314,48 +292,7 @@
 	return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-    
-    if (_activityDetailViewController == nil) 
-    {
-        CGRect rectTableView = tableView.frame;
-        if (rectTableView.size.width > 320) 
-        {
-            _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
-        }
-        else
-        {
-            ActivityDetailViewController_iPhone *activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
-            activityDetailViewController._delegate = self;
-            _activityDetailViewController = activityDetailViewController;
-        }
-        
-    }
 
-    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
-    
-    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail andUserProfile:_socialUserProfile];
-    
-    CGRect rectTableView = tableView.frame;
-    
-    if (rectTableView.size.width > 320)
-    {
-        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
-    }
-    else
-    {
-        if ([self.navigationController.viewControllers containsObject:_activityDetailViewController]) 
-        {
-            [self.navigationController popToViewController:_activityDetailViewController animated:YES];
-        }
-        else
-        {
-            [self.navigationController pushViewController:_activityDetailViewController animated:YES];
-        }
-    }    
-}
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {

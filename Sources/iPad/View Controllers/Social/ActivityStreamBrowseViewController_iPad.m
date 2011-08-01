@@ -8,6 +8,7 @@
 
 #import "ActivityStreamBrowseViewController_iPad.h"
 #import "MessageComposerViewController_iPad.h"
+#import "ActivityDetailViewController_iPad.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 
@@ -71,5 +72,24 @@
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
 }
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    SocialActivityStream* socialActivityStream = [super getSocialActivityStreamForIndexPath:indexPath];
+    
+    if (_activityDetailViewController == nil) 
+    {
+        _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
+    }
+    
+    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
+    
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail andUserProfile:_socialUserProfile];
+        
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
+}
+
 
 @end
