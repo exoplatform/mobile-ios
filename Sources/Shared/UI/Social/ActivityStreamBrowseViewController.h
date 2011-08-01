@@ -24,8 +24,6 @@
     NSMutableDictionary*                    _sortedActivities;
     ActivityDetailViewController*           _activityDetailViewController;
     UIBarButtonItem*                        _bbtnPost;
-    UITextView*                             _txtvEditor;
-    CGRect                                  _sizeOrigin;
     
     NSMutableArray*                         _arrActivityStreams;
     
@@ -35,7 +33,7 @@
     SocialUserProfile*                      _socialUserProfile;
 }
 
-- (void)loadActivityStream;
+- (void)startLoadingActivityStream;
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
 - (void)sortActivities;
 - (void)clearActivityData;

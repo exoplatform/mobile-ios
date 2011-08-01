@@ -24,8 +24,6 @@
 #import "SocialLikeActivityProxy.h"
 #import "defines.h"
 
-#define TEST_ON_MOCK 1
-
 
 @implementation ActivityStreamBrowseViewController
 
@@ -37,10 +35,7 @@
         //_bbtnPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnPost)];
         _bbtnPost = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnPost)];
         self.navigationItem.rightBarButtonItem = _bbtnPost;
-        _txtvEditor = [[UITextView alloc] init];
-        [_txtvEditor setFrame:CGRectMake(0, -100, 1, 1)];
-        [self.view addSubview:_txtvEditor];
-        
+                
         _bIsPostClicked = NO;
         _bIsIPad = NO;
         
@@ -59,7 +54,8 @@
 {
     
     _tblvActivityStream = nil ;
-    MockSocial_Activity*            _mockSocial_Activity;
+    [_mockSocial_Activity release];
+    _mockSocial_Activity = nil;
     
     [_arrayOfSectionsTitle release];
     _arrayOfSectionsTitle = nil;
@@ -68,11 +64,6 @@
     _sortedActivities=nil;
     
     [_arrActivityStreams release];
-    
-#if TEST_ON_MOCK        
-    [_mockSocial_Activity release];
-    _mockSocial_Activity = nil;
-#endif
     
     [_bbtnPost release];
     [super dealloc];
@@ -88,13 +79,6 @@
 
 #pragma mark - View lifecycle
 
-/*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView
- {
- }
- */
-
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -103,38 +87,15 @@
     [super viewDidLoad];
     
     self.title = @"Activity Stream";
-    
-    //Load Activities
-#if TEST_ON_MOCK        
-    //_mockSocial_Activity = [[MockSocial_Activity alloc] init];
-#endif
-    
+        
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
     backgroundView.frame = self.view.frame;
-    
     _tblvActivityStream.backgroundView = backgroundView;
-    
-    //[self sortActivities];
-    
-    [_txtvEditor setBackgroundColor:[UIColor whiteColor]];
-	[_txtvEditor setFont:[UIFont boldSystemFontOfSize:13.0]];
-	[_txtvEditor setTextAlignment:UITextAlignmentLeft];
-	[_txtvEditor setEditable:YES];
-	
-	[[_txtvEditor layer] setBorderColor:[[UIColor blackColor] CGColor]];
-	[[_txtvEditor layer] setBorderWidth:1];
-	[[_txtvEditor layer] setCornerRadius:8];
-	[_txtvEditor setClipsToBounds: YES];
-	[_txtvEditor setText:@""];
-    
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-    
-    //Download datas
-    [self loadActivityStream];
+
+    //Load all activities of the user
+    [self startLoadingActivityStream];
     
 }
 
@@ -234,13 +195,6 @@
 }
 
 
-//- (Activity *)getActivityForIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:indexPath.section]];
-//    return [arrayForSection objectAtIndex:indexPath.row];
-//}
-
-
 - (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:indexPath.section]];
@@ -251,138 +205,6 @@
 - (void)onBbtnPost
 {
     [self onBbtnPost];
-    //    MessageComposerViewController*  messageComposerViewController;
-    //    
-    //    if (_bIsIPad) 
-    //    {
-    //        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-    //    }
-    //    else
-    //    {
-    //        messageComposerViewController = [[MessageComposerViewController alloc] initWithNibName:@"MessageComposerViewController" bundle:nil];
-    //    }
-    //    
-    //    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    //    [messageComposerViewController release];
-    //    
-    //    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    //    
-    //    if (_bIsIPad) 
-    //    {
-    //        navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    //        navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    //        [[AppDelegate_iPad instance].rootViewController presentModalViewController:navController animated:YES];
-    //    }
-    //    else
-    //    {
-    //        [self.navigationController presentModalViewController:navController animated:YES];
-    //    }
-    //    
-    /*
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post a message" message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Post", nil];
-     
-     if (_txtvMsgComposer ==  nil) 
-     {
-     _txtvMsgComposer = [[UITextView alloc] initWithFrame:CGRectMake(15, 50, 255, 100)];
-     [_txtvMsgComposer setDelegate:self];
-     }
-     [_txtvMsgComposer becomeFirstResponder];
-     [[_txtvMsgComposer layer] setCornerRadius:6.0];
-     [[_txtvMsgComposer layer] setMasksToBounds:YES];
-     [alert addSubview:_txtvMsgComposer];
-     [alert show];
-     [alert release];
-     */
-    
-    /*
-     if (_bIsPostClicked) 
-     {
-     [_txtvEditor resignFirstResponder];
-     _bIsPostClicked = NO;
-     }
-     else
-     {
-     [_txtvEditor becomeFirstResponder];
-     _bIsPostClicked = YES;
-     }
-     */
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-    
-    //    CGRect rectTableView = _tblvActivityDetail.frame;
-    //    if (rectTableView.size.width > 320) 
-    //    {
-    //        _navigationBar.topItem.rightBarButtonItem = _bbtnDone;
-    //    }
-    //    else
-    //    {
-    //        self.navigationItem.rightBarButtonItem = _bbtnDone;
-    //    }
-    
-    self.navigationItem.rightBarButtonItem = _bbtnPost;
-    
-    /*
-     Reduce the size of the text view so that it's not obscured by the keyboard.
-     Animate the resize so that it's in sync with the appearance of the keyboard.
-     */
-	_sizeOrigin = _txtvEditor.frame;
-    NSDictionary *userInfo = [notification userInfo];
-    
-    // Get the origin of the keyboard when it's displayed.
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-	
-    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
-    CGRect keyboardRect = [aValue CGRectValue];
-    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
-    
-    CGFloat keyboardTop = keyboardRect.origin.y;
-    CGRect newTextViewFrame = self.view.bounds;
-    CGRect rectTableView = _tblvActivityStream.frame;
-    if (rectTableView.size.width > 320) 
-    {
-        newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y - 44;
-        newTextViewFrame.origin.y = 44;
-    }
-    else
-    {
-        newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
-    }
-    //newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
-    
-    // Get the duration of the animation.
-    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-    
-    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:animationDuration];
-    
-    _txtvEditor.frame = newTextViewFrame;
-	
-    [UIView commitAnimations];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification 
-{        
-    NSDictionary* userInfo = [notification userInfo];
-    
-    /*
-     Restore the size of the text view (fill self's view).
-     Animate the resize so that it's in sync with the disappearance of the keyboard.
-     */
-    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-	
-	//18-5
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:animationDuration];
-    
-    _txtvEditor.frame = _sizeOrigin;
-    [UIView commitAnimations];
 }
 
 
@@ -434,13 +256,12 @@
     UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:5 topCapHeight:7]];
     imgVBackground.frame = CGRectMake(_tblvActivityStream.frame.size.width-5 - theSize.width-10, 2, theSize.width+20, kHeightForSectionHeader-4);
     
-    
 	[customView addSubview:imgVBackground];
+    [imgVBackground release];
     
     [customView addSubview:headerLabel];
-    
-    
     [headerLabel release];
+
     
 	return customView;
 }
@@ -448,16 +269,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    
-#if TEST_ON_MOCK        
     Activity* activity = [_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row];
     NSString* text = activity.title;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
     
     return  fHeight;
-#endif
-    
-    return 44.;
 }
 
 
@@ -478,14 +294,7 @@
         
         //Create a cell, need to do some configurations
         [cell configureCell];
-        
     }
-    
-    //ActivityBasicCellViewController* activityBasicCellViewController = [[ActivityBasicCellViewController alloc] initWithNibName:@"ActivityBasicCellViewController" bundle:nil];
-    
-//#if TEST_ON_MOCK        
-//    Activity* activity = [self getActivityForIndexPath:indexPath];
-//#endif
     
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     
@@ -494,22 +303,19 @@
     
     NSString* text = socialActivityStream.title;
     
+    //Set the size of the cell
     float fWidth = tableView.frame.size.width;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
     [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-    //[activityBasicCellViewController.view setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-    //[cell addSubview:activityBasicCellViewController.view];
-    [cell setSocialActivityStream:socialActivityStream];
-    //[activityBasicCellViewController release];
     
-    //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    //Set the cell content
+    [cell setSocialActivityStream:socialActivityStream];
     
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    //Activity* activity = [self getActivityForIndexPath:indexPath];
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     
     if (_activityDetailViewController == nil) 
@@ -527,10 +333,6 @@
         }
         
     }
-    
-//    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:activity.userID arrLikes:_mockSocial_Activity.arrLikes arrComments:_mockSocial_Activity.arrComments];
-//    
-//    [_activityDetailViewController setActivity:activity andActivityDetail:activityDetail];
 
     ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
     
@@ -567,18 +369,21 @@
     
     [self clearActivityData];
     
-    [self loadActivityStream];
+    [self startLoadingActivityStream];
 }
 
-#pragma Social WS Management
-- (void)loadActivityStream {
+
+#pragma mark - Social Proxy 
+#pragma mark Management
+
+- (void)startLoadingActivityStream {
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
     identityProxy.delegate = self;
     [identityProxy getIdentityFromUser];
 }
 
 
-#pragma mark - Social Proxy Delegate
+#pragma mark Delegate
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     //If proxy is king of class SocialIdentityProxy, then we can start the request for retrieve SocialActivityStream
@@ -603,20 +408,11 @@
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy._arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream setFullName:socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName];
-            
-            NSLog(@"%@", socialActivityStream.identityId);
-            
+                        
             NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], socialActivityStreamProxy._socialUserProfileProxy.userProfile.avatarUrl];
             
             [socialActivityStream setUserImageAvatar:userImageAvatar];
             [_arrActivityStreams addObject:socialActivityStream];
-            /*
-            Activity* activity = [[Activity alloc] initWithUserID:socialActivityStream.identityId activityID:socialActivityStream.identify  avatarUrl:nil title:socialActivityStream.title body:nil postedTime:socialActivityStream.postedTime numberOfLikes:[socialActivityStream.likedByIdentities count] numberOfComments:socialActivityStream.totalNumberOfComments];
-            activity.userFullName = socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName;
-            
-            [_arrActivityStreams addObject:activity];
-            [activity release];
-            */ 
         }
         [self sortActivities];
         [_tblvActivityStream reloadData];
