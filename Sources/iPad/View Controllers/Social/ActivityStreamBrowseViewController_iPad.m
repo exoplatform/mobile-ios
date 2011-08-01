@@ -17,7 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_navigation.topItem setTitle:@"Activity Stream"];
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
 }
 
