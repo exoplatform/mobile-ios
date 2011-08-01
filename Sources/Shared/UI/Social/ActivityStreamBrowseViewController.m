@@ -534,7 +534,7 @@
 
     ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
     
-    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail];
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail andUserProfile:_socialUserProfile];
     
     CGRect rectTableView = tableView.frame;
     
@@ -590,6 +590,7 @@
     } 
     else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
     {
+        _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
         SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfileProxy:(SocialUserProfileProxy *)proxy];
         socialActivityStreamProxy.delegate = self;
         [socialActivityStreamProxy getActivityStreams];

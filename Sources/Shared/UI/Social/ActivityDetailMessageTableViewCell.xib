@@ -54,6 +54,7 @@
 								<string key="NSFrameSize">{320, 100}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="785649985"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -63,6 +64,7 @@
 								<string key="NSFrame">{{70, 10}, {237, 23}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="480406158"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -86,12 +88,16 @@
 							<object class="IBUIImageView" id="785649985">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{5, 6}, {45, 45}}</string>
+								<string key="NSFrame">{{5, 10}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="480406158"/>
+								<reference key="NSNextKeyView" ref="800775345"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">default-avatar.png</string>
+								</object>
 							</object>
 							<object class="IBUILabel" id="480406158">
 								<reference key="NSNextResponder" ref="818041569"/>
@@ -99,6 +105,7 @@
 								<string key="NSFrame">{{70, 41}, {237, 35}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="789010297"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -121,6 +128,7 @@
 								<string key="NSFrame">{{70, 77}, {237, 21}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -140,7 +148,7 @@
 						<string key="NSFrameSize">{320, 100}</string>
 						<reference key="NSSuperview" ref="679851206"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="785649985"/>
+						<reference key="NSNextKeyView" ref="180318526"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -239,9 +247,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="480406158"/>
 							<reference ref="180318526"/>
-							<reference ref="785649985"/>
 							<reference ref="789010297"/>
 							<reference ref="800775345"/>
+							<reference ref="785649985"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -397,6 +405,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">default-avatar.png</string>
+			<string key="NS.object.0">{64, 64}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>

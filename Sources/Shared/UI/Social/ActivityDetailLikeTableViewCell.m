@@ -11,7 +11,7 @@
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivityDetails.h"
-#import "ActivityDetailViewController.h"
+
 
 @implementation ActivityDetailLikeTableViewCell
 
@@ -67,6 +67,7 @@
     [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
     CGFloat borderWidth = 2.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
+    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
     
     //Add the inner shadow
     CALayer *innerShadowLayer = [CALayer layer];
@@ -138,21 +139,28 @@
     [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (IBAction)btnLikeAction:(id)sender
+- (void)setUserProfile:(SocialUserProfile*)socialUserProfile
+{
+    _socialUserProfile = [socialUserProfile retain];
+}
+
+-(void)btnLikeAction:(UIButton *)sender
 {
     BOOL isLike = YES;
     
     NSArray *arrLike = _socialActivityDetails.likedByIdentities;
     for(NSDictionary* dic in arrLike)
     {
-        if([_socialActivityDetails.identityId isEqualToString:[dic objectForKey:@"id"]])
+        if([_socialUserProfile.identity isEqualToString:[dic objectForKey:@"id"]])
         {
             isLike = NO;
             break;
         }     
     }
     
-    [self.delegate likeDislikeActivity:_socialActivityDetails.identityId like:isLike];
+    [_delegate likeDislikeActivity:_socialActivityDetails.identifyId like:isLike];
+    
+     
 }
 
 @end

@@ -69,6 +69,7 @@
     [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
     CGFloat borderWidth = 2.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
+    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
     
     //Add the inner shadow
     CALayer *innerShadowLayer = [CALayer layer];
@@ -103,7 +104,7 @@
 //- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
-    _imgvAvatar.imageURL = [NSURL URLWithString:@""];    
+//    _imgvAvatar.imageURL = [NSURL URLWithString:@""];    
     _lbMessage.text = [socialActivityDetail.title copy];
     _lbName.text = @"";
     _lbDate.text = [socialActivityDetail.postedTimeInWords copy];

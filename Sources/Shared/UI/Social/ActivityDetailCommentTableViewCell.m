@@ -70,6 +70,7 @@
     [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
     CGFloat borderWidth = 2.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
+    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
     
     //Add the inner shadow
     CALayer *innerShadowLayer = [CALayer layer];

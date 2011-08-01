@@ -121,7 +121,7 @@
      @"activityStream",@"activityStream",
      @"title",@"title",
      @"priority",@"priority",
-     @"identifyId",@"identifyId",
+     @"id",@"identifyId",
      @"likedByIdentities",@"likedByIdentities",
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",

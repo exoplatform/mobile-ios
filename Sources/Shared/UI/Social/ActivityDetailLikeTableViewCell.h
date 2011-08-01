@@ -11,7 +11,7 @@
 @class Activity;
 @class EGOImageView;
 @class SocialActivityDetails;
-
+@class SocialUserProfile;
 @interface ActivityDetailLikeTableViewCell : UITableViewCell {
     
     UILabel*               _lbMessage;
@@ -23,6 +23,7 @@
     UIButton*              _btnLike;
     
     SocialActivityDetails*  _socialActivityDetails;
+    SocialUserProfile*      _socialUserProfile;
     id                      _delegate;
 }
 
@@ -36,8 +37,8 @@
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
+- (void)setUserProfile:(SocialUserProfile*)socialUserProfile;
 - (void)setActivity:(Activity*)activity;
 - (void)setContent:(NSString*)strLikes;
 - (void)setSocialActivityDetails:(SocialActivityDetails*)socialActivityDetails;
-- (IBAction)btnLikeAction:(id)sender;
 @end

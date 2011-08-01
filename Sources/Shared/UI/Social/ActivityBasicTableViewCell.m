@@ -48,7 +48,7 @@
     [_btnLike setSelected:selected];
 }
 
-- (void)btnLikeAction:(UIButton *)sender
+-(void)btnLikeAction:(UIButton *)sender
 {
     BOOL isLike = YES;
     
@@ -101,6 +101,7 @@
     innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
     innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
     [_imgvAvatar.layer addSublayer:innerShadowLayer];
+    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
 }
 
 

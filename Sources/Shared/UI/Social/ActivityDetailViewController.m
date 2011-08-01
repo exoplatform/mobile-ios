@@ -22,6 +22,7 @@
 #import "SocialActivityDetails.h"
 #import "SocialComment.h"
 #import "SocialLikeActivityProxy.h"
+#import "ActivityDetailLikeTableViewCell.h"
 
 @implementation ActivityDetailViewController
 
@@ -213,10 +214,12 @@
 //    [_tblvActivityDetail reloadData];
 //}
 
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andUserProfile:(SocialUserProfile*)socialUserProfile
 {
     _socialActivityStream = socialActivityStream;
     _activityDetail = activityDetail;
+    _socialUserProfile = socialUserProfile;
+    _activityDetail.activityID = socialActivityStream.identify;
     //[_tblvActivityDetail reloadData];
     
     SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
@@ -270,7 +273,7 @@
     int n = 3;
     if ([_socialActivityDetails.likedByIdentities count] == 0) 
     {
-        n --;
+        //n --;
     }
     if ([_socialActivityDetails.comments count] == 0) 
     {
@@ -396,6 +399,7 @@
         ActivityDetailLikeTableViewCell* cell = (ActivityDetailLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikeTableViewCell];
         
         //Check if we found a cell
+        
         if (cell == nil) 
         {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailLikeTableViewCell" owner:self options:nil];
@@ -403,7 +407,9 @@
             //Create a cell, need to do some configurations
             [cell configureCell];
         }
+    
         cell.delegate = self;
+        [cell setContent:@""];
         
         NSMutableString* strLikes = [NSMutableString stringWithString:@""];
         
@@ -448,8 +454,11 @@
         
         //cell.userInteractionEnabled = NO;
         //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setUserProfile:_socialUserProfile];
         [cell setContent:strLikes];
+        //_socialActivityDetails.identifyId = _socialActivityStream.identify;
         [cell setSocialActivityDetails:_socialActivityDetails];
+        
         return cell;
     }
     else
@@ -488,16 +497,29 @@
 {
     if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) 
     {
+        [_socialActivityDetails release];
         _socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         [_socialActivityDetails convertToPostedTimeInWords];
         [_tblvActivityDetail reloadData];
     }
+    else
+    {
+        SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
+        socialActivityDetailsProxy.delegate = self;
+        [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.identify];
+    }
 }
 
+-(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
+{
+    
+}
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
+    [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
+    likeDislikeActProxy.delegate = self;
     
     if(isLike)
     {
@@ -507,10 +529,7 @@
     {
         [likeDislikeActProxy dislikeActivity:activity];
     }
-    
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
-    socialActivityDetailsProxy.delegate = self;
-    [socialActivityDetailsProxy getActivityDetail:_socialActivityDetails.identityId];
 }
+
 
 @end

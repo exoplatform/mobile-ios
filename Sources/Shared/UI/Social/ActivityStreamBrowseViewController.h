@@ -13,6 +13,7 @@
 
 @class MockSocial_Activity;
 @class ActivityDetailViewController;
+@class SocialUserProfile;
 
 @interface ActivityStreamBrowseViewController : UIViewController <SocialProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 {
@@ -31,6 +32,7 @@
     BOOL                                    _bIsPostClicked;
     BOOL                                    _bIsIPad;
     UITextView*                             _txtvMsgComposer;
+    SocialUserProfile*                      _socialUserProfile;
 }
 
 - (void)loadActivityStream;

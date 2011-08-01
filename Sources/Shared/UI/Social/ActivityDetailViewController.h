@@ -15,6 +15,7 @@
 @class ActivityDetailLikeTableViewCell;
 @class SocialActivityStream;
 @class SocialActivityDetails;
+@class SocialUserProfile;
 
 @interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate>{
     
@@ -38,6 +39,7 @@
     ActivityDetail*                         _activityDetail;
     
     SocialActivityDetails*                  _socialActivityDetails;
+    SocialUserProfile*                      _socialUserProfile;
     
     UITextView*                             _txtvMsgComposer;
     IBOutlet UIButton*                      _btnMsgComposer;    
@@ -45,6 +47,6 @@
 }
 
 //- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail;
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andUserProfile:(SocialUserProfile*)socialUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
 @end

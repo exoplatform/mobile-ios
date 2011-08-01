@@ -231,6 +231,8 @@
 		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; };
 		7C3BD1A31370FE1700380828 /* FilesViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */; };
 		7C3BD1A41370FE1700380828 /* HomeViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */; };
+		7C5053EC13E2AF3600FA73CD /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5053EA13E2AF3600FA73CD /* default-avatar.png */; };
+		7C5053ED13E2AF3600FA73CD /* default-avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */; };
 		7C50D4C7136F187B0011280D /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C1136F187B0011280D /* DDXMLDocument.m */; };
 		7C50D4C8136F187B0011280D /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C3136F187B0011280D /* DDXMLElement.m */; };
 		7C50D4C9136F187B0011280D /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C5136F187B0011280D /* DDXMLNode.m */; };
@@ -985,6 +987,8 @@
 		7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController_iPad.m; sourceTree = "<group>"; };
 		7C3BD19E1370FE1700380828 /* HomeViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController_iPad.h; sourceTree = "<group>"; };
 		7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController_iPad.m; sourceTree = "<group>"; };
+		7C5053EA13E2AF3600FA73CD /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
+		7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar@2x.png"; sourceTree = "<group>"; };
 		7C50D4BF136F187B0011280D /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXML.h; path = "Sources/Shared/Components/3-part/KissXML/DDXML.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4C0136F187B0011280D /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLDocument.h; path = "Sources/Shared/Components/3-part/KissXML/DDXMLDocument.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4C1136F187B0011280D /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDXMLDocument.m; path = "Sources/Shared/Components/3-part/KissXML/DDXMLDocument.m"; sourceTree = SOURCE_ROOT; };
@@ -2081,6 +2085,15 @@
 			path = CascadeViewController;
 			sourceTree = "<group>";
 		};
+		7C5053E913E2AF3600FA73CD /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				7C5053EA13E2AF3600FA73CD /* default-avatar.png */,
+				7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
 		7CAB42D413A7689F00CED7A3 /* Social */ = {
 			isa = PBXGroup;
 			children = (
@@ -2607,6 +2620,7 @@
 				8947342B13370F5000B0AD11 /* Flags */,
 				8947342E13370F5000B0AD11 /* iCon */,
 				8947343713370F5000B0AD11 /* iTunesArtwork */,
+				7C5053E913E2AF3600FA73CD /* Social */,
 				8947343813370F5000B0AD11 /* Portlets */,
 			);
 			path = Shared;
@@ -3507,6 +3521,8 @@
 				7CA74B9C13C31AD20006306D /* MessageComposerButtonSendBackground.png in Resources */,
 				7CA74B9D13C31AD20006306D /* MessageComposerButtonSendBackgroundSelected.png in Resources */,
 				7CA74B9E13C31AD20006306D /* MessageComposerTextfieldBackground.png in Resources */,
+				7C5053EC13E2AF3600FA73CD /* default-avatar.png in Resources */,
+				7C5053ED13E2AF3600FA73CD /* default-avatar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
