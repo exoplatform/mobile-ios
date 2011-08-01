@@ -76,6 +76,15 @@
 		4695980B1377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */; };
 		4695981D13780D3400ADC826 /* AuthenticateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695981C13780D3100ADC826 /* AuthenticateViewController.xib */; };
 		469598881378497C00ADC826 /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469598871378497B00ADC826 /* AuthenticateServerCell.xib */; };
+		46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46982F3113E701900063CF62 /* EGORefreshTableHeaderView.m */; };
+		46982F3C13E701900063CF62 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3313E701900063CF62 /* blackArrow.png */; };
+		46982F3D13E701900063CF62 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3413E701900063CF62 /* blackArrow@2x.png */; };
+		46982F3E13E701900063CF62 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3513E701900063CF62 /* blueArrow.png */; };
+		46982F3F13E701900063CF62 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3613E701900063CF62 /* blueArrow@2x.png */; };
+		46982F4013E701900063CF62 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3713E701900063CF62 /* grayArrow.png */; };
+		46982F4113E701900063CF62 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3813E701900063CF62 /* grayArrow@2x.png */; };
+		46982F4213E701900063CF62 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3913E701900063CF62 /* whiteArrow.png */; };
+		46982F4313E701900063CF62 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46982F3A13E701900063CF62 /* whiteArrow@2x.png */; };
 		46A03A2113A7A39000E71AF9 /* ActivityStreamBrowseViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */; };
 		46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */; };
 		46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */; };
@@ -787,6 +796,16 @@
 		469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateSettingsIconIphone@2x.png"; path = "Authenticate/@2x/AuthenticateSettingsIconIphone@2x.png"; sourceTree = "<group>"; };
 		4695981C13780D3100ADC826 /* AuthenticateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateViewController.xib; sourceTree = "<group>"; };
 		469598871378497B00ADC826 /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
+		46982F3013E701900063CF62 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		46982F3113E701900063CF62 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		46982F3313E701900063CF62 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		46982F3413E701900063CF62 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		46982F3513E701900063CF62 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		46982F3613E701900063CF62 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		46982F3713E701900063CF62 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		46982F3813E701900063CF62 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		46982F3913E701900063CF62 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		46982F3A13E701900063CF62 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamBrowseViewController_iPad.xib; sourceTree = "<group>"; };
 		46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityBasicTableViewCell.h; path = Social/ActivityBasicTableViewCell.h; sourceTree = "<group>"; };
 		46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityBasicTableViewCell.m; path = Social/ActivityBasicTableViewCell.m; sourceTree = "<group>"; };
@@ -1665,6 +1684,31 @@
 				468035DD139D0C0500B1DAE4 /* MockSocial_Activity.m */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		46982F2F13E701900063CF62 /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				46982F3013E701900063CF62 /* EGORefreshTableHeaderView.h */,
+				46982F3113E701900063CF62 /* EGORefreshTableHeaderView.m */,
+				46982F3213E701900063CF62 /* Resources */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		46982F3213E701900063CF62 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				46982F3313E701900063CF62 /* blackArrow.png */,
+				46982F3413E701900063CF62 /* blackArrow@2x.png */,
+				46982F3513E701900063CF62 /* blueArrow.png */,
+				46982F3613E701900063CF62 /* blueArrow@2x.png */,
+				46982F3713E701900063CF62 /* grayArrow.png */,
+				46982F3813E701900063CF62 /* grayArrow@2x.png */,
+				46982F3913E701900063CF62 /* whiteArrow.png */,
+				46982F3A13E701900063CF62 /* whiteArrow@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		46A03A1813A7952400E71AF9 /* Social */ = {
@@ -2750,6 +2794,7 @@
 		894734A01337139800B0AD11 /* 3-part */ = {
 			isa = PBXGroup;
 			children = (
+				46982F2F13E701900063CF62 /* EGOTableViewPullRefresh */,
 				7CAB435913A76A7800CED7A3 /* EGOImageLoading */,
 				7CFD41061361367D00DD86E8 /* KissXML */,
 				894734AC1337139800B0AD11 /* libidn */,
@@ -3523,6 +3568,14 @@
 				7CA74B9E13C31AD20006306D /* MessageComposerTextfieldBackground.png in Resources */,
 				7C5053EC13E2AF3600FA73CD /* default-avatar.png in Resources */,
 				7C5053ED13E2AF3600FA73CD /* default-avatar@2x.png in Resources */,
+				46982F3C13E701900063CF62 /* blackArrow.png in Resources */,
+				46982F3D13E701900063CF62 /* blackArrow@2x.png in Resources */,
+				46982F3E13E701900063CF62 /* blueArrow.png in Resources */,
+				46982F3F13E701900063CF62 /* blueArrow@2x.png in Resources */,
+				46982F4013E701900063CF62 /* grayArrow.png in Resources */,
+				46982F4113E701900063CF62 /* grayArrow@2x.png in Resources */,
+				46982F4213E701900063CF62 /* whiteArrow.png in Resources */,
+				46982F4313E701900063CF62 /* whiteArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3685,6 +3738,7 @@
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
 				462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */,
+				46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

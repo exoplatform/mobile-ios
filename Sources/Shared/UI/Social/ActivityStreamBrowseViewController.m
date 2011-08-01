@@ -64,6 +64,10 @@
     [_arrActivityStreams release];
     
     [_bbtnPost release];
+    
+    [_refreshHeaderView release];
+    _refreshHeaderView = nil;
+    
     [super dealloc];
 }
 
@@ -92,13 +96,28 @@
     backgroundView.frame = self.view.frame;
     _tblvActivityStream.backgroundView = backgroundView;
 
+    //Add the pull to refresh header
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityStream.bounds.size.height, self.view.frame.size.width, _tblvActivityStream.bounds.size.height)];
+		view.delegate = self;
+		[_tblvActivityStream addSubview:view];
+		_refreshHeaderView = view;
+		[view release];
+        _reloading = FALSE;
+
+	}
+    
     //Load all activities of the user
     [self startLoadingActivityStream];
     
+    
+
 }
 
 - (void)viewDidUnload
 {
+    [_refreshHeaderView release]; _refreshHeaderView =nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -355,6 +374,43 @@
         [_tblvActivityStream reloadData];
     } 
 }
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+	//[self reloadTableViewDataSource];
+	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
+}
+
 
 
 @end
