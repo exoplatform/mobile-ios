@@ -352,20 +352,20 @@
     else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
     {
         _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
-        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfileProxy:(SocialUserProfileProxy *)proxy];
+        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
         socialActivityStreamProxy.delegate = self;
         [socialActivityStreamProxy getActivityStreams];
     }
     else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) 
     {
         SocialActivityStreamProxy* socialActivityStreamProxy = (SocialActivityStreamProxy *)proxy;
-        for (int i = 0; i < [socialActivityStreamProxy._arrActivityStreams count]; i++) 
+        for (int i = 0; i < [socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
-            SocialActivityStream* socialActivityStream = [socialActivityStreamProxy._arrActivityStreams objectAtIndex:i];
+            SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
-            [socialActivityStream setFullName:socialActivityStreamProxy._socialUserProfileProxy.userProfile.fullName];
+            [socialActivityStream setFullName:socialActivityStreamProxy.socialUserProfile.fullName];
                         
-            NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], socialActivityStreamProxy._socialUserProfileProxy.userProfile.avatarUrl];
+            NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], socialActivityStreamProxy.socialUserProfile.avatarUrl];
             
             [socialActivityStream setUserImageAvatar:userImageAvatar];
             [_arrActivityStreams addObject:socialActivityStream];

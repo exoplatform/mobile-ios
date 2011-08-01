@@ -16,31 +16,24 @@
 
 @implementation SocialActivityStreamProxy
 
-@synthesize _socialIdentityProxy;
-@synthesize _socialUserProfileProxy;
-@synthesize _arrActivityStreams;
+@synthesize socialUserProfile = _socialUserProfile;
+@synthesize arrActivityStreams = _arrActivityStreams;
 
-- (id)initWithSocialIdentityProxy:(SocialIdentityProxy*)socialIdentityProxy
+
+- (id)initWithSocialUserProfile:(SocialUserProfile*)aSocialUserProfile
 {
     if ((self = [super init])) 
     { 
-        _socialIdentityProxy = [socialIdentityProxy retain];
-    } 
-    return self;
-}
-
-- (id)initWithSocialUserProfileProxy:(SocialUserProfileProxy*)socialUserProfileProxy
-{
-    if ((self = [super init])) 
-    { 
-        _socialUserProfileProxy = [socialUserProfileProxy retain];
+        _socialUserProfile = [aSocialUserProfile retain];
     } 
     return self;
 }
 
 - (void)dealloc 
 {
-    [_socialIdentityProxy release];
+    
+    [_socialUserProfile release]; _socialUserProfile = nil;
+    [_arrActivityStreams release]; _arrActivityStreams = nil;
     [super dealloc];
 }
 
@@ -52,9 +45,6 @@
 {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
-//    NSLog(@"%@", [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
-    
-//    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainNameWithCredentials,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
     
     return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
 
@@ -65,9 +55,9 @@
 //Helper to create the path to get the ressources
 - (NSString *)createPath 
 {    
-    NSLog(@"%@", [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfileProxy.userProfile.identity]);
+    NSLog(@"%@", [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfile.identity]);
     
-    return [NSString stringWithFormat:@"%@/feed/default.json",_socialUserProfileProxy.userProfile.identity]; 
+    return [NSString stringWithFormat:@"%@/feed/default.json",_socialUserProfile.identity]; 
 }
 
 
