@@ -16,7 +16,7 @@
     NSString*               _type;
     NSString*               _posterIdentity;
     NSString*               _activityStream;
-    NSString*               _identify;
+    NSString*               _activityId;
     NSString*               _title;
     NSString*               _priority;
     NSString*               _createdAt;
@@ -37,7 +37,7 @@
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* posterIdentity;
 @property (nonatomic, retain) NSString* activityStream;
-@property (nonatomic, retain) NSString* identify;
+@property (nonatomic, retain) NSString* activityId;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* priority;
 @property (nonatomic, retain) NSString* createdAt;

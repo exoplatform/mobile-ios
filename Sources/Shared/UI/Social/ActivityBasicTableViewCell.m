@@ -62,7 +62,7 @@
         }     
     }
     
-    [_delegate likeDislikeActivity:_socialActivytyStream.identify like:isLike];
+    [_delegate likeDislikeActivity:_socialActivytyStream.activityId like:isLike];
 }
 
 

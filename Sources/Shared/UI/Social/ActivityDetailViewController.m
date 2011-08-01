@@ -219,12 +219,12 @@
     _socialActivityStream = socialActivityStream;
     _activityDetail = activityDetail;
     _socialUserProfile = socialUserProfile;
-    _activityDetail.activityID = socialActivityStream.identify;
+    _activityDetail.activityID = socialActivityStream.activityId;
     //[_tblvActivityDetail reloadData];
     
     SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
     socialActivityDetailsProxy.delegate = self;
-    [socialActivityDetailsProxy getActivityDetail:socialActivityStream.identify];
+    [socialActivityDetailsProxy getActivityDetail:socialActivityStream.activityId];
 }
 
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
@@ -506,7 +506,7 @@
     {
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
         socialActivityDetailsProxy.delegate = self;
-        [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.identify];
+        [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
     }
 }
 

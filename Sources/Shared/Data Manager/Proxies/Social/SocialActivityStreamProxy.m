@@ -7,7 +7,6 @@
 //
 
 #import "SocialActivityStreamProxy.h"
-#import "SocialIdentityProxy.h"
 #import "SocialIdentity.h"
 #import "SocialRestConfiguration.h"
 #import "SocialActivityStream.h"
@@ -18,6 +17,7 @@
 
 @synthesize socialUserProfile = _socialUserProfile;
 @synthesize arrActivityStreams = _arrActivityStreams;
+@synthesize isUpdateRequest = _isUpdateRequest;
 
 
 - (id)initWithSocialUserProfile:(SocialUserProfile*)aSocialUserProfile
@@ -25,6 +25,7 @@
     if ((self = [super init])) 
     { 
         _socialUserProfile = [aSocialUserProfile retain];
+        _isUpdateRequest = NO;
     } 
     return self;
 }
@@ -76,7 +77,7 @@
      @"type",@"type",
      @"posterIdentity",@"posterIdentity",
      @"activityStream",@"activityStream",
-     @"id",@"identify",
+     @"id",@"activityId",
      @"title",@"title",
      @"priority",@"priority",
      @"createdAt",@"createdAt",
@@ -89,6 +90,37 @@
     
     //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
     [manager loadObjectsAtResourcePath:[self createPath] delegate:self];   
+}
+
+- (void)updateActivityStreamSinceActivity:(SocialActivityStream*)activity {
+
+    _isUpdateRequest = YES;
+    
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
+    [RKObjectManager setSharedManager:manager];
+    
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityStream class]];
+    [mapping mapKeyPathsToAttributes:
+     @"identityId",@"identityId",
+     @"liked",@"liked",
+     @"postedTime",@"postedTime",            
+     @"type",@"type",
+     @"posterIdentity",@"posterIdentity",
+     @"activityStream",@"activityStream",
+     @"id",@"activityId",
+     @"title",@"title",
+     @"priority",@"priority",
+     @"createdAt",@"createdAt",
+     @"likedByIdentities",@"likedByIdentities",
+     @"titleId",@"titleId",
+     @"comments",@"comments", 
+     nil];
+    
+    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
+    
+    //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
+    [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@/feed/newer/%@.json",_socialUserProfile.identity,activity.activityId] delegate:self]; 
+    
 }
 
 

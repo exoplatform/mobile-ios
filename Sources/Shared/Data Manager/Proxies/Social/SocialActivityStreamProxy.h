@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 #import "SocialProxy.h"
-#import "SocialIdentity.h"
 #import "SocialUserProfile.h"
+#import "SocialActivityStream.h"
 
-@class SocialIdentityProxy;
 @class SocialUserProfileProxy;
 
 @interface SocialActivityStreamProxy : SocialProxy <RKObjectLoaderDelegate>{
@@ -20,13 +19,17 @@
     SocialUserProfile*          _socialUserProfile;
     
     NSArray*                    _arrActivityStreams;
+    
+    BOOL                        _isUpdateRequest;
 }
 
 @property (nonatomic, retain) SocialUserProfile* socialUserProfile;
 @property (nonatomic, retain) NSArray* arrActivityStreams;
+@property (readonly) BOOL isUpdateRequest;
 
 - (id)initWithSocialUserProfile:(SocialUserProfile*)aSocialUserProfile;
 - (void)getActivityStreams;
+- (void)updateActivityStreamSinceActivity:(SocialActivityStream*)activity;
 
 @end
 

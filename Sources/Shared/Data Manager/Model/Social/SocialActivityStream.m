@@ -18,7 +18,7 @@
 @synthesize type = _type;
 @synthesize posterIdentity = _posterIdentity;
 @synthesize activityStream = _activityStream;
-@synthesize identify = _identify;
+@synthesize activityId = _activityId;
 @synthesize title = _title;
 @synthesize priority = _priority;
 @synthesize createdAt = _createdAt;
@@ -35,7 +35,7 @@
     [_type release];
     [_posterIdentity release];
     [_activityStream release];
-    [_identify release];
+    [_activityId release];
     [_title release];
     [_priority release];
     [_createdAt release];

@@ -38,7 +38,7 @@
     //Refresh Management
     EGORefreshTableHeaderView*              _refreshHeaderView;
     BOOL                                    _reloading;
-
+    NSDate*                                 _dateOfLastUpdate;
 }
 
 - (void)startLoadingActivityStream;

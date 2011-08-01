@@ -68,6 +68,9 @@
     [_refreshHeaderView release];
     _refreshHeaderView = nil;
     
+    [_dateOfLastUpdate release];
+    _dateOfLastUpdate = nil;
+    
     [super dealloc];
 }
 
@@ -107,6 +110,9 @@
         _reloading = FALSE;
 
 	}
+    
+    //Set the last update date at now 
+    _dateOfLastUpdate = [[NSDate date]retain];
     
     //Load all activities of the user
     [self startLoadingActivityStream];
@@ -192,8 +198,6 @@
             //finally add the object to the array
             [arrayOfCurrentKeys addObject:a];
         }
-        
-        
     }
 }
 
@@ -339,6 +343,14 @@
 }
 
 
+- (void)updateActivityStream {
+    _reloading = YES;
+    SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
+    socialActivityStreamProxy.delegate = self;
+    [socialActivityStreamProxy updateActivityStreamSinceActivity:[_arrActivityStreams objectAtIndex:0]];
+}
+
+
 #pragma mark Delegate
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
@@ -359,6 +371,14 @@
     else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) 
     {
         SocialActivityStreamProxy* socialActivityStreamProxy = (SocialActivityStreamProxy *)proxy;
+        
+        //We have to check if the request for ActivityStream was an update request or not
+        if (socialActivityStreamProxy.isUpdateRequest) {                
+            _reloading = NO;
+            [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
+        }
+        
+        
         for (int i = 0; i < [socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
@@ -370,7 +390,14 @@
             [socialActivityStream setUserImageAvatar:userImageAvatar];
             [_arrActivityStreams addObject:socialActivityStream];
         }
+        
+        //We have retreive new datas from API
+        //Set the last update date at now 
+        _dateOfLastUpdate = [[NSDate date] retain];
+        
+        //Ask the controller to sort activities
         [self sortActivities];
+        
         [_tblvActivityStream reloadData];
     } 
 }
@@ -396,8 +423,7 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	
-	//[self reloadTableViewDataSource];
-	
+    [self updateActivityStream];	
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
@@ -407,7 +433,7 @@
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
 	
-	return [NSDate date]; // should return date data source was last changed
+	return _dateOfLastUpdate; // should return date data source was last changed
 	
 }
 

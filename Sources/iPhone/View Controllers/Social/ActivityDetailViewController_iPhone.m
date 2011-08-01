@@ -25,7 +25,7 @@
     messageComposerViewController._delegate = _delegate;
     messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
     messageComposerViewController._isPostMessage = NO;
-    messageComposerViewController._strActivityID = _socialActivityStream.identify;
+    messageComposerViewController._strActivityID = _socialActivityStream.activityId;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     [messageComposerViewController release];
