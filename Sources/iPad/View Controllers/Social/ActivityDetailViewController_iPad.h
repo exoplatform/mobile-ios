@@ -10,10 +10,12 @@
 #import "ActivityDetailViewController.h"
 
 @class ActivityStreamBrowseViewController;
+@class MessageComposerViewController_iPad;
 
 @interface ActivityDetailViewController_iPad : ActivityDetailViewController {
     
     ActivityStreamBrowseViewController* _delegate;
+    MessageComposerViewController_iPad*  _messageComposerViewController;
 }
 
 @property(nonatomic, retain) ActivityStreamBrowseViewController* _delegate;

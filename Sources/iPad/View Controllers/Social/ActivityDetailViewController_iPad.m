@@ -18,39 +18,42 @@
 
 - (void)onBtnMessageComposer
 {
-    /*
-    MessageComposerViewController*  messageComposerViewController;
+    if(_messageComposerViewController == nil)
+    {
+        _messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+        
+        _messageComposerViewController._delegate = _delegate;
+    } 
     
-    messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
-    
-    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
-    
-    */
-    
-    MessageComposerViewController_iPad*  messageComposerViewController;
-    
-    messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-    
-    messageComposerViewController._delegate = _delegate;
-    messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
-    messageComposerViewController._isPostMessage = NO;
-    messageComposerViewController._strActivityID = _socialActivityStream.activityId;
+    _messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
+    _messageComposerViewController._isPostMessage = NO;
+    _messageComposerViewController._strActivityID = _socialActivityStream.activityId;
     
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
     [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
     
+    int x, y;
+    
+    if( [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || 
+       [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown )
+    {
+        x = 114;
+        y = 300;
+    }
+    else 
+    {
+        x = 242;
+        y = 70;
+    }
+    
+    navController.view.superview.autoresizingMask = UIViewAutoresizingNone;
+    navController.view.superview.frame = CGRectMake(x,y, 540.0f, 265.0f);
 }
 
 @end
