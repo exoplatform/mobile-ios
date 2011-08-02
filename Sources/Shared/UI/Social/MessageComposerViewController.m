@@ -67,7 +67,6 @@
     [_btnSend setBackgroundImage:strechSendBg forState:UIControlStateNormal];
     [_btnSend setBackgroundImage:strechSendBgSelected forState:UIControlStateHighlighted];
     
-    
     UIImage *strechCancelBg = [[UIImage imageNamed:@"MessageComposerButtonCancelBackground.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
     
     UIImage *strechCancelBgSelected = [[UIImage imageNamed:@"MessageComposerButtonCancelBackgroundSelected.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
@@ -75,11 +74,19 @@
     [_btnCancel setBackgroundImage:strechCancelBg forState:UIControlStateNormal];
     [_btnCancel setBackgroundImage:strechCancelBgSelected forState:UIControlStateHighlighted];
     
+    UIBarButtonItem* bbtnSend = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnSend:)];
+    [bbtnSend setCustomView:_btnSend];
+     self.navigationItem.rightBarButtonItem = bbtnSend;
     
-    
-    [_txtvMessageComposer becomeFirstResponder];
+    UIBarButtonItem* bbtnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)];
+    [bbtnCancel setCustomView:_btnCancel];
+    self.navigationItem.leftBarButtonItem = bbtnCancel;
+     
+    //[_txtvMessageComposer becomeFirstResponder];
     [_txtvMessageComposer setBackgroundColor:[UIColor clearColor]];
     [_txtvMessageComposer setText:@""];
+    
+    
     
     
     /*

@@ -11,6 +11,7 @@
 #import "ActivityDetailViewController_iPad.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import "MessageComposerViewController.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
 
@@ -58,19 +59,39 @@
 
 - (void)onBbtnPost
 {
-    MessageComposerViewController_iPad*  messageComposerViewController;
-    messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+    if(_messageComposerViewController == nil)
+    {
+        _messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
         
-    messageComposerViewController._delegate = self;
-    messageComposerViewController._isPostMessage = YES;
+        _messageComposerViewController._delegate = self;
+    } 
+    
+    _messageComposerViewController._isPostMessage = YES;
 
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
     [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+        
+    int x, y;
+    
+    if( [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || 
+       [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown )
+    {
+        x = 114;
+        y = 300;
+    }
+    else 
+    {
+        x = 242;
+        y = 70;
+    }
+
+    navController.view.superview.autoresizingMask = UIViewAutoresizingNone;
+    navController.view.superview.frame = CGRectMake(x,y, 540.0f, 265.0f);
 }
 
 

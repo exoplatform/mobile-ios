@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityStreamBrowseViewController.h"
-
+@class MessageComposerViewController_iPad;
 
 @interface ActivityStreamBrowseViewController_iPad : ActivityStreamBrowseViewController {
     
     IBOutlet UINavigationBar*           _navigation;
+    MessageComposerViewController_iPad*  _messageComposerViewController;
 }
 
 @end
