@@ -87,6 +87,14 @@
     [_txtvMessageComposer setText:@""];
     
     
+    if ([self._delegate isKindOfClass:[ActivityStreamBrowseViewController class]]) 
+    {
+        [self setTitle:@"Post a new status"];
+    }
+    else
+    {
+        [self setTitle:@"Post a new comment"];
+    }
     
     
     /*
