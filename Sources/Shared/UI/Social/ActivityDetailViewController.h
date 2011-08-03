@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
+#import "EGORefreshTableHeaderView.h"
 
 @class Activity;
 @class ActivityDetail;
@@ -17,7 +18,8 @@
 @class SocialActivityDetails;
 @class SocialUserProfile;
 
-@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate>{
+
+@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UITextView*                    _txtvEditor;
@@ -44,6 +46,11 @@
     UITextView*                             _txtvMsgComposer;
     IBOutlet UIButton*                      _btnMsgComposer;    
     BOOL                                    _bIsIPad;
+    
+    //Refresh Management
+    EGORefreshTableHeaderView*              _refreshHeaderView;
+    BOOL                                    _reloading;
+    NSDate*                                 _dateOfLastUpdate;
 }
 
 //- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;

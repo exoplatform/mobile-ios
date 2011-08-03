@@ -65,6 +65,14 @@
 }
 */
 
+- (void)startLoadingActivityDetail
+{
+    _reloading = YES;
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
+    socialActivityDetailsProxy.delegate = self;
+    [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
+
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -92,6 +100,19 @@
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    //Add the pull to refresh header
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityDetail.bounds.size.height, self.view.frame.size.width, _tblvActivityDetail.bounds.size.height)];
+		view.delegate = self;
+		[_tblvActivityDetail addSubview:view];
+		_refreshHeaderView = view;
+		[view release];
+        _reloading = FALSE;
+        
+	}
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -222,9 +243,7 @@
     _activityDetail.activityID = socialActivityStream.activityId;
     //[_tblvActivityDetail reloadData];
     
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
-    socialActivityDetailsProxy.delegate = self;
-    [socialActivityDetailsProxy getActivityDetail:socialActivityStream.activityId];
+    [self startLoadingActivityDetail];
 }
 
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
@@ -501,9 +520,17 @@
         _socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         [_socialActivityDetails convertToPostedTimeInWords];
         [_tblvActivityDetail reloadData];
+        
+        
+        //Set the last update date at now 
+        _dateOfLastUpdate = [[NSDate date]retain];
+        
+        _reloading = NO;
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
     }
     else
     {
+        
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
         socialActivityDetailsProxy.delegate = self;
         [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
@@ -529,6 +556,41 @@
     {
         [likeDislikeActProxy dislikeActivity:activity];
     }
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+    [self startLoadingActivityDetail];	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return _dateOfLastUpdate; // should return date data source was last changed
+	
 }
 
 

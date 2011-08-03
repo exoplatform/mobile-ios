@@ -402,6 +402,11 @@
     } 
 }
 
+-(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
+{
+    
+}
+
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 

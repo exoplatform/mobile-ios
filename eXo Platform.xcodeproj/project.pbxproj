@@ -1699,6 +1699,7 @@
 		46982F3213E701900063CF62 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				46982F3313E701900063CF62 /* blackArrow.png */,
 				46982F3413E701900063CF62 /* blackArrow@2x.png */,
 				46982F3513E701900063CF62 /* blueArrow.png */,
@@ -3801,6 +3802,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
+					Three20/Build/Products/three20,
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
@@ -3826,7 +3828,7 @@
 				PRODUCT_NAME = "eXo Platform";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -3841,6 +3843,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
+					Three20/Build/Products/three20,
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
@@ -3871,7 +3874,7 @@
 				PRODUCT_NAME = "eXo Platform";
 				PROVISIONING_PROFILE = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -3888,6 +3891,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					Three20/Build/Products/three20,
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
@@ -3945,7 +3949,7 @@
 				PROVISIONING_PROFILE = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
 				"PROVISIONING_PROFILE[sdk=*]" = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Distribution AdHoc";
@@ -3962,6 +3966,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					Three20/Build/Products/three20,
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
@@ -4019,7 +4024,7 @@
 				PROVISIONING_PROFILE = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
 				"PROVISIONING_PROFILE[sdk=*]" = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38D761FF-6063-465E-AD01-2F6DEA94CCB1";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Distribution AppStore";
