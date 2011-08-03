@@ -11,6 +11,7 @@
 #import "ActivityDetailViewController.h"
 #import "SocialActivityStream.h"
 #import "ActivityStreamBrowseViewController.h"
+#import "MessageComposerViewController.h"
 
 @implementation ActivityDetailViewController_iPhone
 
@@ -18,19 +19,32 @@
 
 - (void)onBtnMessageComposer
 {
-    MessageComposerViewController_iPhone*  messageComposerViewController;
+//    MessageComposerViewController_iPhone*  messageComposerViewController;
+//    
+//    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
+//    
+//    messageComposerViewController._delegate = _delegate;
+//    messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
+//    messageComposerViewController._isPostMessage = NO;
+//    messageComposerViewController._strActivityID = _socialActivityStream.activityId;
+//    
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+//    [messageComposerViewController release];
+
+    if(_messageComposerViewController == nil)
+    {
+        _messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
+    } 
+    _messageComposerViewController._delegate = _delegate;
+    _messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
+    _messageComposerViewController._isPostMessage = NO;
+    _messageComposerViewController._strActivityID = _socialActivityStream.activityId;
     
-    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
-    
-    messageComposerViewController._delegate = _delegate;
-    messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
-    messageComposerViewController._isPostMessage = NO;
-    messageComposerViewController._strActivityID = _socialActivityStream.activityId;
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
     
     [self.navigationController presentModalViewController:navController animated:YES];
+    
+    [_messageComposerViewController release];
 }
 
 @end

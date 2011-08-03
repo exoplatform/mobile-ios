@@ -48,16 +48,30 @@
 
 - (void)onBbtnPost
 {
-    MessageComposerViewController_iPhone*  messageComposerViewController;
-    
-    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
-    messageComposerViewController._delegate = self;
-    messageComposerViewController._isPostMessage = YES;
+//    MessageComposerViewController_iPhone*  messageComposerViewController;
+//    
+//    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
+//    messageComposerViewController._delegate = self;
+//    messageComposerViewController._isPostMessage = YES;
+//
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+//    [messageComposerViewController release];
 
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
+    if(_messageComposerViewController == nil)
+    {
+        _messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
+    } 
+    _messageComposerViewController._delegate = self;
+    _messageComposerViewController._isPostMessage = YES;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
     [self.navigationController presentModalViewController:navController animated:YES];
+    [_messageComposerViewController release];
 }
 
 
@@ -79,7 +93,6 @@
     [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail andUserProfile:_socialUserProfile];
     
     [self.navigationController pushViewController:_activityDetailViewController animated:YES];
-
 }
 
 

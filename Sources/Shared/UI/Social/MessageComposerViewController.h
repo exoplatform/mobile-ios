@@ -21,13 +21,13 @@
     BOOL                            _isPostMessage;
     NSString*                       _strActivityID;
     
-    ActivityStreamBrowseViewController* _delegate;
+    id                             _delegate;
     UITableView*                    _tblvActivityDetail;
 }
 
 @property BOOL _isPostMessage;
 @property(nonatomic, retain) NSString* _strActivityID;
-@property(nonatomic, retain) ActivityStreamBrowseViewController* _delegate;
+@property(nonatomic, retain) id _delegate;
 @property(nonatomic, retain) UITableView* _tblvActivityDetail;
 
 - (IBAction)onBtnSend:(id)sender;

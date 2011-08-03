@@ -10,13 +10,16 @@
 #import "ActivityDetailViewController.h"
 
 @class ActivityStreamBrowseViewController;
+@class MessageComposerViewController_iPhone;
 
 @interface ActivityDetailViewController_iPhone : ActivityDetailViewController {
 
-    ActivityStreamBrowseViewController* _delegate;
+    id                                     _delegate;
+
+    MessageComposerViewController_iPhone*  _messageComposerViewController;
 }
 
-@property(nonatomic, retain) ActivityStreamBrowseViewController* _delegate;
+@property(nonatomic, retain) id _delegate;
 
 //- (IBAction)onBtnMessageComposer:(id)sender;
 

@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ActivityStreamBrowseViewController.h"
 
+@class MessageComposerViewController_iPhone;
+
 @interface ActivityStreamBrowseViewController_iPhone : ActivityStreamBrowseViewController
 {
-    
+    MessageComposerViewController_iPhone*  _messageComposerViewController;
 }
 
 @end

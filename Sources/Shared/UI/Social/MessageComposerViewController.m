@@ -87,13 +87,13 @@
     [_txtvMessageComposer setText:@""];
     
     
-    if ([self._delegate isKindOfClass:[ActivityStreamBrowseViewController class]]) 
+    if (self._isPostMessage) 
     {
-        [self setTitle:@"Post a new status"];
+        [self setTitle:@"Post status"];
     }
     else
     {
-        [self setTitle:@"Post a new comment"];
+        [self setTitle:@"Post comment"];
     }
     
     
@@ -139,7 +139,7 @@
         }
         
         [_delegate clearActivityData];        
-        [_delegate loadActivityStream];
+        //[_delegate loadActivityStream];
 
         
         [self dismissModalViewControllerAnimated:YES];    
