@@ -21,10 +21,8 @@
     if(_messageComposerViewController == nil)
     {
         _messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-        
-        _messageComposerViewController._delegate = _delegate;
     } 
-    
+    _messageComposerViewController._delegate = _delegate;    
     _messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
     _messageComposerViewController._isPostMessage = NO;
     _messageComposerViewController._strActivityID = _socialActivityStream.activityId;
@@ -54,6 +52,8 @@
     
     navController.view.superview.autoresizingMask = UIViewAutoresizingNone;
     navController.view.superview.frame = CGRectMake(x,y, 540.0f, 265.0f);
+    
+    [_messageComposerViewController release];
 }
 
 @end

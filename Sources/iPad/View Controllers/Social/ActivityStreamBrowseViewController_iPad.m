@@ -62,10 +62,9 @@
     if(_messageComposerViewController == nil)
     {
         _messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-        
-        _messageComposerViewController._delegate = self;
     } 
     
+    _messageComposerViewController._delegate = self;
     _messageComposerViewController._isPostMessage = YES;
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
@@ -92,6 +91,8 @@
 
     navController.view.superview.autoresizingMask = UIViewAutoresizingNone;
     navController.view.superview.frame = CGRectMake(x,y, 540.0f, 265.0f);
+    
+    [_messageComposerViewController release];
 }
 
 

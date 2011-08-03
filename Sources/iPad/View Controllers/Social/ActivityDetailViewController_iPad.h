@@ -14,10 +14,10 @@
 
 @interface ActivityDetailViewController_iPad : ActivityDetailViewController {
     
-    ActivityStreamBrowseViewController* _delegate;
+    id                                   _delegate;
     MessageComposerViewController_iPad*  _messageComposerViewController;
 }
 
-@property(nonatomic, retain) ActivityStreamBrowseViewController* _delegate;
+@property(nonatomic, retain) id _delegate;
 
 @end
