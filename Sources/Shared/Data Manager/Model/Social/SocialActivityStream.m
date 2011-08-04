@@ -48,7 +48,7 @@
 }
 
 - (void)convertToPostedTimeInWords
-{
+{    
     self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
 }
 

@@ -62,7 +62,7 @@
     NSString *value;
     
     if (time < 60) {
-        value = @"Less than a ninute";
+        value = @"Less than a minute";
     } else {
         if (time < 120) {
             value = @"About a minute ago";

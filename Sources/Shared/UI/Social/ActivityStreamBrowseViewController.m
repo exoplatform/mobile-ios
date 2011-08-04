@@ -144,24 +144,40 @@
 }
 
 
+- (void)addTimeToActivities:(NSDate*)dateOfLastUpdate 
+{
+    int intervalBetweenNowAndLastUpdate = [dateOfLastUpdate timeIntervalSinceNow];
+    //Browse each activities
+    for (SocialActivityStream *a in _arrActivityStreams) {
+        a.postedTime += intervalBetweenNowAndLastUpdate;
+        
+        //Change the value of the label displayed
+        [a convertToPostedTimeInWords];
+    }
+}
+
+
 - (void)sortActivities 
 {
     _arrayOfSectionsTitle = [[NSMutableArray alloc] init];
     
     _sortedActivities =[[NSMutableDictionary alloc] init];
     
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"postedTime"
+                                                  ascending:NO] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    _arrActivityStreams = [[NSMutableArray alloc] initWithArray:[_arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]];
     
     //Browse each activities
-    //for (Activity *a in _mockSocial_Activity.arrayOfActivities) {
-    //for (Activity *a in _arrActivityStreams) {
-    for (SocialActivityStream *a in _arrActivityStreams) {    
-        NSRange rangeMinute = [a.postedTimeInWords rangeOfString:@"minute"];
-        NSRange rangeMinute2 = [a.postedTimeInWords rangeOfString:@"Minute"];
-        NSRange rangeHour = [a.postedTimeInWords rangeOfString:@"hour"];
-        NSRange rangeHour2 = [a.postedTimeInWords rangeOfString:@"Hour"];
+    for (SocialActivityStream *a in _arrActivityStreams) {
         
-        if(rangeMinute.length > 0 || rangeMinute2.length > 0 || rangeHour.length > 0 || rangeHour2.length > 0)
-        {
+        //Check activities of today
+        long postedTimeInSecond = round(a.postedTime/1000);
+        long timeIntervalNow = [[NSDate date] timeIntervalSince1970];
+        
+        int time = (timeIntervalNow - postedTimeInSecond);
+        
+        if (time < 86400) {
             //Search the current array of activities for today
             NSMutableArray *arrayOfToday = [_sortedActivities objectForKey:@"Today"];
             
@@ -376,6 +392,9 @@
         if (socialActivityStreamProxy.isUpdateRequest) {                
             _reloading = NO;
             [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
+            
+            //We need to update the postedTime of all previous activities
+            [self addTimeToActivities:_dateOfLastUpdate];
         }
         
         
