@@ -22,11 +22,8 @@
 @interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
-    IBOutlet UITextView*                    _txtvEditor;
     IBOutlet UINavigationBar*               _navigationBar;
-    
-    UIBarButtonItem*                        _bbtnDone;
-    
+        
     CGRect                                  _sizeOrigin;
     
     Activity*                               _activity;
@@ -45,7 +42,6 @@
     
     UITextView*                             _txtvMsgComposer;
     IBOutlet UIButton*                      _btnMsgComposer;    
-    BOOL                                    _bIsIPad;
     
     //Refresh Management
     EGORefreshTableHeaderView*              _refreshHeaderView;

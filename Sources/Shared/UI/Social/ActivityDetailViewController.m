@@ -31,10 +31,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _activity = [[Activity alloc] init];
-        _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
-        _bIsIPad = NO;
-        
+        _activity = [[Activity alloc] init];        
         _socialActivityDetails = [[SocialActivityDetails alloc] init];
         _socialActivityDetails.comments = [[NSArray alloc] init];
     }
@@ -79,27 +76,9 @@
 {
     [super viewDidLoad];
     
-	[_txtvEditor setBackgroundColor:[UIColor whiteColor]];
-	[_txtvEditor setFont:[UIFont boldSystemFontOfSize:13.0]];
-	[_txtvEditor setTextAlignment:UITextAlignmentLeft];
-	[_txtvEditor setEditable:YES];
-	
-	[[_txtvEditor layer] setBorderColor:[[UIColor blackColor] CGColor]];
-	[[_txtvEditor layer] setBorderWidth:1];
-	[[_txtvEditor layer] setCornerRadius:8];
-	[_txtvEditor setClipsToBounds: YES];
-	[_txtvEditor setText:@""];
-    
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem = nil;
-    
     UIImage *strechBg = [[UIImage imageNamed:@"MessageComposerButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:10];
-    
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
@@ -115,18 +94,11 @@
     
 }
 
+/*
 - (void)viewWillAppear:(BOOL)animated
 {
-    CGRect rect = _tblvActivityDetail.frame;
-    if (rect.size.width > 320) 
-    {
-        _bIsIPad = YES;
-    }
-    else
-    {
-        _bIsIPad = NO;
-    }
 }
+*/
 
 - (void)viewDidUnload
 {
@@ -141,99 +113,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)removeNotification
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-    
-    CGRect rectTableView = _tblvActivityDetail.frame;
-    if (rectTableView.size.width > 320) 
-    {
-        _navigationBar.topItem.rightBarButtonItem = _bbtnDone;
-    }
-    else
-    {
-        self.navigationItem.rightBarButtonItem = _bbtnDone;
-    }
-    
-    
-    /*
-     Reduce the size of the text view so that it's not obscured by the keyboard.
-     Animate the resize so that it's in sync with the appearance of the keyboard.
-     */
-	_sizeOrigin = _txtvEditor.frame;
-    NSDictionary *userInfo = [notification userInfo];
-    
-    // Get the origin of the keyboard when it's displayed.
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-	
-    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
-    CGRect keyboardRect = [aValue CGRectValue];
-    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
-    
-    CGFloat keyboardTop = keyboardRect.origin.y;
-    CGRect newTextViewFrame = self.view.bounds;
-    newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
-    
-    // Get the duration of the animation.
-    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-    
-    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:animationDuration];
-    
-    _txtvEditor.frame = newTextViewFrame;
-	
-    [UIView commitAnimations];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    
-    CGRect rectTableView = _tblvActivityDetail.frame;
-    if (rectTableView.size.width > 320) 
-    {
-        _navigationBar.topItem.rightBarButtonItem = nil;
-    }
-    else
-    {
-        self.navigationItem.rightBarButtonItem = nil;
-    }
-    
-    NSDictionary* userInfo = [notification userInfo];
-    
-    /*
-     Restore the size of the text view (fill self's view).
-     Animate the resize so that it's in sync with the disappearance of the keyboard.
-     */
-    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-	
-	//18-5
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:animationDuration];
-    
-    _txtvEditor.frame = _sizeOrigin;
-    [UIView commitAnimations];
-}
-
-- (void)onBbtnDone
-{
-    [_txtvEditor resignFirstResponder];	
-}
-
-//- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail
-//{
-//    _activity = activity;
-//    _activityDetail = activityDetail;
-//    [_tblvActivityDetail reloadData];
-//}
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andUserProfile:(SocialUserProfile*)socialUserProfile
 {
@@ -241,7 +120,6 @@
     _activityDetail = activityDetail;
     _socialUserProfile = socialUserProfile;
     _activityDetail.activityID = socialActivityStream.activityId;
-    //[_tblvActivityDetail reloadData];
     
     [self startLoadingActivityDetail];
 }
@@ -279,7 +157,6 @@
 }
 
 - (void)onBtnMessageComposer
-//- (IBAction)onBtnMessageComposer:(id)sender
 {
     [self onBtnMessageComposer];
 }
@@ -333,15 +210,11 @@
     {
         NSMutableString* strLikes = [NSMutableString stringWithString:@""];
         
-        //if ([_activityDetail.arrLikes count] > 0)
         if ([_socialActivityDetails.likedByIdentities count] > 0)
         { 
             
-            //for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
             for (int i = 0; i < [_socialActivityDetails.likedByIdentities count]; i++) 
             {
-                //NSDictionary *dicActivity = [_activityDetail.arrLikes objectAtIndex:i];
-                //                NSString* identify = [dicActivity objectForKey:@"id"];
                 NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
                 
                 if (i < [_activityDetail.arrLikes count] - 2) 
@@ -375,9 +248,6 @@
     }
     if (indexPath.section == 2) 
     {
-        //Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
-        //n = [self getHeighSizeForTableView:tableView andText:activity.title];
-        
         NSString* comment = [_activityDetail.arrComments objectAtIndex:indexPath.row];
         n = [self getHeighSizeForTableView:tableView andText:comment];
 
@@ -407,8 +277,6 @@
             [cell configureCell];
         }
         cell.userInteractionEnabled = NO;
-        //[cell setActivity:_activity];
-        //[cell setSocialActivityStream:_socialActivityStream];
         [cell setSocialActivityDetail:_socialActivityDetails];
         
         return cell;
@@ -432,15 +300,10 @@
         
         NSMutableString* strLikes = [NSMutableString stringWithString:@""];
         
-        //if ([_activityDetail.arrLikes count] > 0)
         if ([_socialActivityDetails.likedByIdentities count] > 0)
         { 
-            
-            //for (int i = 0; i < [_activityDetail.arrLikes count]; i++) 
             for (int i = 0; i < [_socialActivityDetails.likedByIdentities count]; i++) 
             {
-                //NSDictionary *dicActivity = [_activityDetail.arrLikes objectAtIndex:i];
-                //                NSString* identify = [dicActivity objectForKey:@"id"];
                 NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
                 
                 if (i < [_socialActivityDetails.likedByIdentities count] - 2) 
@@ -470,12 +333,8 @@
         {
             [strLikes appendString:@"No like for the moment"];
         }
-        
-        //cell.userInteractionEnabled = NO;
-        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setUserProfile:_socialUserProfile];
         [cell setContent:strLikes];
-        //_socialActivityDetails.identifyId = _socialActivityStream.identify;
         [cell setSocialActivityDetails:_socialActivityDetails];
         
         return cell;
@@ -494,7 +353,6 @@
             [cell configureCell];
         }
         
-        //Activity* activity = [_activityDetail.arrComments objectAtIndex:indexPath.row];
         SocialComment* socialComment = [_socialActivityDetails.comments objectAtIndex:indexPath.row];
         [socialComment convertToPostedTimeInWords];
         [cell setSocialComment:socialComment];
