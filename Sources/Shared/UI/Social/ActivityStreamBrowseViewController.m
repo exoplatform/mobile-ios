@@ -258,6 +258,8 @@
 	headerLabel.opaque = NO;
 	headerLabel.textColor = [UIColor darkGrayColor];
 	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
+    headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
+    headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = UITextAlignmentRight;
 	headerLabel.frame = CGRectMake(0.0, 0.0, _tblvActivityStream.frame.size.width-5, kHeightForSectionHeader);
     headerLabel.text = [_arrayOfSectionsTitle objectAtIndex:section];

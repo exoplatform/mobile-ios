@@ -107,12 +107,22 @@
 
 - (void)configureFonts {
     
+    _lbName.shadowOffset = CGSizeMake(0,1);
+    _lbName.shadowColor = [UIColor whiteColor];
+    
+    _lbMessage.shadowOffset = CGSizeMake(0,1);
+    _lbMessage.shadowColor = [UIColor whiteColor];
+ 
+    _lbDate.shadowOffset = CGSizeMake(0,1);
+    _lbDate.shadowColor = [UIColor whiteColor];
 }
 
 
 - (void)configureCell {
     
     [self customizeAvatarDecorations];
+    
+    [self configureFonts];
     
     //Add images for Background Message
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
