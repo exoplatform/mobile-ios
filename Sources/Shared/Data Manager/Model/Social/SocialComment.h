@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 #import "SocialIdentity.h"
+#import "SocialUserProfile.h"
 
 /*
  {
@@ -25,7 +26,9 @@
     NSString*           _identityId;
     NSString*           _createdAt;
     double              _postedTime;
-    NSString*               _postedTimeInWords;
+    NSString*           _postedTimeInWords;
+    
+    SocialUserProfile*  _userProfile;
 }
 
 @property (nonatomic, retain) NSString* text;
@@ -33,6 +36,7 @@
 @property (nonatomic, retain) NSString* createdAt;
 @property double postedTime;
 @property (nonatomic, retain) NSString* postedTimeInWords;
+@property (nonatomic, retain) SocialUserProfile* userProfile;
 
 - (void)convertToPostedTimeInWords;
 

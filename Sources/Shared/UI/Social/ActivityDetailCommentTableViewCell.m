@@ -13,6 +13,7 @@
 #import "SocialComment.h"
 
 
+
 @implementation ActivityDetailCommentTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
@@ -105,9 +106,8 @@
 {
     //_imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
     _lbMessage.text = [socialComment.text copy];
-    _lbName.text = [socialComment.identityId copy];
+    _lbName.text = [socialComment.userProfile.fullName copy];
     _lbDate.text = [socialComment.postedTimeInWords copy];
-    _lbDate.hidden = YES;
 }
 
 

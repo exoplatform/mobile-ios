@@ -9,6 +9,7 @@
 #import "ActivityStreamBrowseViewController_iPhone.h"
 #import "MessageComposerViewController_iPhone.h"
 #import "ActivityDetailViewController_iPhone.h"
+#import "SocialUserProfileCache.h"
 
 @implementation ActivityStreamBrowseViewController_iPhone
 
@@ -80,7 +81,9 @@
     
     ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
     
-    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail andUserProfile:_socialUserProfile];
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream 
+                                         andActivityDetail:activityDetail 
+                                            andUserProfile:[[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId]];
     
     [self.navigationController pushViewController:_activityDetailViewController animated:YES];
 }

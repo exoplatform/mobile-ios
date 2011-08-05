@@ -23,6 +23,7 @@
 #import "SocialComment.h"
 #import "SocialLikeActivityProxy.h"
 #import "ActivityDetailLikeTableViewCell.h"
+#import "SocialUserProfileCache.h"
 
 @implementation ActivityDetailViewController
 
@@ -378,7 +379,6 @@
         }
         
         SocialComment* socialComment = [_socialActivityDetails.comments objectAtIndex:indexPath.row];
-        [socialComment convertToPostedTimeInWords];
         [cell setSocialComment:socialComment];
         
         cell.userInteractionEnabled = NO;
@@ -387,22 +387,52 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
-{
+
+- (void)finishLoadingAllDataForActivityDetails {
+    
+    //Prevent any reloading status
+    _reloading = NO;
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
+    
+    //Prepare data to be displayed
+    for (SocialComment* comment in _socialActivityDetails.comments) 
+    {
+        comment.userProfile = [[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:comment.identityId];
+        [comment convertToPostedTimeInWords];
+    }
+    
+    //We have retreive new datas from API
+    //Set the last update date at now 
+    _dateOfLastUpdate = [[NSDate date] retain];
+    
+    [_tblvActivityDetail reloadData];
+    
     
 }
+
 
 #pragma mark - Social Proxy Delegate
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy 
 {
-    if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) 
-    {
+    if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) {
         [_socialActivityDetails release];
         _socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         [_socialActivityDetails convertToPostedTimeInWords];
         [_tblvActivityDetail reloadData];
         
+        
+        NSMutableSet* setOfIdentities = [[NSMutableSet alloc] init];
+        
+        //Retrieve all identities of comments
+        for (SocialComment* comment in _socialActivityDetails.comments) {
+            [setOfIdentities addObject:comment.identityId];
+        }
+        
+        //Retrieve all identities informations
+        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+        socialUserProfile.delegate = self;
+        [socialUserProfile retrieveIdentitiesSet:setOfIdentities];
         
         //Set the last update date at now 
         _dateOfLastUpdate = [[NSDate date]retain];
@@ -410,9 +440,9 @@
         _reloading = NO;
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
     }
-    else
-    {
-        
+    else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) {
+        [self finishLoadingAllDataForActivityDetails];
+    }else{
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
         socialActivityDetailsProxy.delegate = self;
         [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];

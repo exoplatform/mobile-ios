@@ -21,6 +21,7 @@
 #import "SocialUserProfileProxy.h"
 #import "SocialLikeActivityProxy.h"
 #import "defines.h"
+#import "SocialUserProfileCache.h"
 
 
 @implementation ActivityStreamBrowseViewController
@@ -366,6 +367,36 @@
     [socialActivityStreamProxy updateActivityStreamSinceActivity:[_arrActivityStreams objectAtIndex:0]];
 }
 
+- (void)finishLoadingAllDataForActivityStream {
+    
+    //Prevent any reloading status
+    _reloading = NO;
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
+    
+    //Prepare data to be displayed
+    for (int i = 0; i < [_arrActivityStreams count]; i++) 
+    {
+        SocialActivityStream* socialActivityStream = [_arrActivityStreams objectAtIndex:i];
+        SocialUserProfile *userProfile = [[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId];
+        [socialActivityStream setFullName:userProfile.fullName];
+        
+        NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], userProfile.avatarUrl];
+        
+        [socialActivityStream setUserImageAvatar:userImageAvatar];
+    }
+    
+    //We have retreive new datas from API
+    //Set the last update date at now 
+    _dateOfLastUpdate = [[NSDate date] retain];
+    
+    //Ask the controller to sort activities
+    [self sortActivities];
+    
+    [_tblvActivityStream reloadData];
+
+    
+}
+
 
 #pragma mark Delegate
 
@@ -379,10 +410,15 @@
     } 
     else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
     {
-        _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
-        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
-        socialActivityStreamProxy.delegate = self;
-        [socialActivityStreamProxy getActivityStreams];
+        //Check if the proxy is loading multiple activites
+        if ([(SocialUserProfileProxy *)proxy isLoadingMultipleActivities]) {
+            [self finishLoadingAllDataForActivityStream];
+        } else {
+            _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
+            SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
+            socialActivityStreamProxy.delegate = self;
+            [socialActivityStreamProxy getActivityStreams];
+        }
     }
     else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) 
     {
@@ -390,34 +426,32 @@
         
         //We have to check if the request for ActivityStream was an update request or not
         if (socialActivityStreamProxy.isUpdateRequest) {                
-            _reloading = NO;
-            [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
-            
             //We need to update the postedTime of all previous activities
             [self addTimeToActivities:_dateOfLastUpdate];
         }
         
         
+        
+        //Retrieve all activities
+        //Start preparing data
+        //retrieve all distinct identities
+        NSMutableSet *setOfIdentities = [[NSMutableSet alloc] init];
+        
         for (int i = 0; i < [socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
-            [socialActivityStream setFullName:socialActivityStreamProxy.socialUserProfile.fullName];
-                        
-            NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], socialActivityStreamProxy.socialUserProfile.avatarUrl];
             
-            [socialActivityStream setUserImageAvatar:userImageAvatar];
+            [setOfIdentities addObject:[socialActivityStream.identityId copy]];
+
             [_arrActivityStreams addObject:socialActivityStream];
+            
         }
         
-        //We have retreive new datas from API
-        //Set the last update date at now 
-        _dateOfLastUpdate = [[NSDate date] retain];
-        
-        //Ask the controller to sort activities
-        [self sortActivities];
-        
-        [_tblvActivityStream reloadData];
+        //Retrieve all identities informations
+        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+        socialUserProfile.delegate = self;
+        [socialUserProfile retrieveIdentitiesSet:setOfIdentities];
     } 
 }
 

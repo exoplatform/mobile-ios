@@ -12,6 +12,7 @@
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 #import "MessageComposerViewController.h"
+#import "SocialUserProfileCache.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
 
@@ -108,7 +109,9 @@
     
     ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
     
-    [_activityDetailViewController setSocialActivityStream:socialActivityStream andActivityDetail:activityDetail andUserProfile:_socialUserProfile];
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream 
+                                         andActivityDetail:activityDetail 
+                                            andUserProfile:[[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId]];
         
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
 }

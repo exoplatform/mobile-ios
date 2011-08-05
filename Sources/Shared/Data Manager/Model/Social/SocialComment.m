@@ -15,6 +15,7 @@
 @synthesize identityId = _identityId; 
 @synthesize createdAt = _createdAt;
 @synthesize postedTime = _postedTime;
+@synthesize userProfile = _userProfile;
 
 @synthesize postedTimeInWords = _postedTimeInWords;
 

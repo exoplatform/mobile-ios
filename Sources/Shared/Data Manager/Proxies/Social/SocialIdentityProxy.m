@@ -51,7 +51,7 @@
 
 - (void) getIdentityFromUser {
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialIdentity class]];
