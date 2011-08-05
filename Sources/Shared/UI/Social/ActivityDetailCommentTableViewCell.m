@@ -98,8 +98,6 @@
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
     
-    UIImage *strechCellBg = [[UIImage imageNamed:@"SocialActivityDetailCommentBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
-    _imgvCellBg.image = strechCellBg;
 }
 
 
@@ -112,39 +110,6 @@
     _lbDate.hidden = YES;
 }
 
-/*
-- (void)setActivity:(Activity*)activity
-{
-    _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
-    _lbMessage.text = [activity.title copy];
-    _lbName.text = [activity.userID copy];
-    _lbDate.text = [activity.postedTimeInWords copy];
-    _lbDate.hidden = YES;
-    
-    //display the like number '+' if 0
-    NSString *stringForLikes;
-    if (activity.nbLikes == 0) 
-    {
-        stringForLikes = @"+";
-    } 
-    else 
-    {
-        stringForLikes = [NSString stringWithFormat:@"%d",activity.nbLikes];
-    }
-    
-    
-    //display the comment number '+' if 0
-    NSString *stringForComments;
-    if (activity.nbComments == 0) 
-    {
-        stringForComments = @"+";
-    } 
-    else 
-    {
-        stringForComments = [NSString stringWithFormat:@"%d",activity.nbComments];
-    }
-}
-*/
 
 @end
  

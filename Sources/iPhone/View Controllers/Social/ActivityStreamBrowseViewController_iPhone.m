@@ -48,15 +48,6 @@
 
 - (void)onBbtnPost
 {
-//    MessageComposerViewController_iPhone*  messageComposerViewController;
-//    
-//    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
-//    messageComposerViewController._delegate = self;
-//    messageComposerViewController._isPostMessage = YES;
-//
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-//    [messageComposerViewController release];
-
     if(_messageComposerViewController == nil)
     {
         _messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
@@ -71,7 +62,6 @@
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
     [self.navigationController presentModalViewController:navController animated:YES];
-    [_messageComposerViewController release];
 }
 
 

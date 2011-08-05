@@ -36,8 +36,6 @@
 
 
 
-//- (void)setActivity:(Activity*)activity;
-//- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream;
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail;
+- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail andUserName:(NSString *)username;
 
 @end

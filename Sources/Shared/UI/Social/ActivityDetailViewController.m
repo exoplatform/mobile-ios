@@ -40,8 +40,24 @@
 
 - (void)dealloc
 {
+    [_tblvActivityDetail release];
+    [_navigationBar release];
     [_activity release];
+    [_socialActivityStream release];
+    
+    [_cellForMessage release];
+    [_cellForLikes release];
 
+    [_activityDetail release];
+    [_socialActivityDetails release];
+    [_socialUserProfile release];
+    
+    [_txtvMsgComposer release];
+    [_btnMsgComposer release];    
+    
+    [_refreshHeaderView release];
+    [_dateOfLastUpdate release];
+    
     [super dealloc];
 }
 
@@ -75,6 +91,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Set the title of the screen
+    //TODO Localize
+    self.title = @"Activity Details";
+    
+    //Set the background Color of the view
+    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    backgroundView.frame = self.view.frame;
+    _tblvActivityDetail.backgroundView = backgroundView;
     
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
     UIImage *strechBg = [[UIImage imageNamed:@"MessageComposerButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:10];
@@ -124,6 +150,8 @@
     [self startLoadingActivityDetail];
 }
 
+// Specific method to retrieve the height of the cell
+// This method override the inherited one.
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
 {
     CGRect rectTableView = tableView.frame;
@@ -132,11 +160,11 @@
     
     if (rectTableView.size.width > 320) 
     {
-        fWidth = rectTableView.size.width - 100; //fmargin = 85 will be defined as a constant.
+        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
     }
     else
     {
-        fWidth = rectTableView.size.width - 150;
+        fWidth = rectTableView.size.width - 100;
     }
     
     CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
@@ -156,10 +184,6 @@
     return fHeight;
 }
 
-- (void)onBtnMessageComposer
-{
-    [self onBtnMessageComposer];
-}
 
 
 #pragma mark - Table view Methods
@@ -277,7 +301,7 @@
             [cell configureCell];
         }
         cell.userInteractionEnabled = NO;
-        [cell setSocialActivityDetail:_socialActivityDetails];
+        [cell setSocialActivityDetail:_socialActivityDetails andUserName:_socialUserProfile.fullName];
         
         return cell;
     }

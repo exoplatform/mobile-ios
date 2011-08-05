@@ -18,14 +18,13 @@
 @class SocialActivityDetails;
 @class SocialUserProfile;
 
+#define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 @interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UINavigationBar*               _navigationBar;
-        
-    CGRect                                  _sizeOrigin;
-    
+            
     Activity*                               _activity;
     SocialActivityStream*                   _socialActivityStream;
     

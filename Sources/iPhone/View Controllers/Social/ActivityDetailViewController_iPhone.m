@@ -17,19 +17,9 @@
 
 @synthesize _delegate;
 
+
 - (void)onBtnMessageComposer
 {
-//    MessageComposerViewController_iPhone*  messageComposerViewController;
-//    
-//    messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
-//    
-//    messageComposerViewController._delegate = _delegate;
-//    messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
-//    messageComposerViewController._isPostMessage = NO;
-//    messageComposerViewController._strActivityID = _socialActivityStream.activityId;
-//    
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-//    [messageComposerViewController release];
 
     if(_messageComposerViewController == nil)
     {

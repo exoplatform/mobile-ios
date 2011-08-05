@@ -69,6 +69,7 @@
 						<string key="NSFrame">{{0, 416}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -80,10 +81,7 @@
 						</object>
 						<string key="IBUINormalTitle">Your comment</string>
 						<reference key="IBUIHighlightedTitleColor" ref="97040625"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="97040625"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
@@ -242,14 +240,12 @@
 							<string>_btnMsgComposer</string>
 							<string>_navigationBar</string>
 							<string>_tblvActivityDetail</string>
-							<string>_txtvEditor</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UINavigationBar</string>
 							<string>UITableView</string>
-							<string>UITextView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -259,7 +255,6 @@
 							<string>_btnMsgComposer</string>
 							<string>_navigationBar</string>
 							<string>_tblvActivityDetail</string>
-							<string>_txtvEditor</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -274,10 +269,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">_tblvActivityDetail</string>
 								<string key="candidateClassName">UITableView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_txtvEditor</string>
-								<string key="candidateClassName">UITextView</string>
 							</object>
 						</object>
 					</object>

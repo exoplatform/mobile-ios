@@ -81,10 +81,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<reference key="IBUIHighlightedTitleColor" ref="321597164"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="321597164"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
@@ -284,14 +281,12 @@
 							<string>_btnMsgComposer</string>
 							<string>_navigationBar</string>
 							<string>_tblvActivityDetail</string>
-							<string>_txtvEditor</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UINavigationBar</string>
 							<string>UITableView</string>
-							<string>UITextView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -301,7 +296,6 @@
 							<string>_btnMsgComposer</string>
 							<string>_navigationBar</string>
 							<string>_tblvActivityDetail</string>
-							<string>_txtvEditor</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -316,10 +310,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">_tblvActivityDetail</string>
 								<string key="candidateClassName">UITableView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_txtvEditor</string>
-								<string key="candidateClassName">UITextView</string>
 							</object>
 						</object>
 					</object>
