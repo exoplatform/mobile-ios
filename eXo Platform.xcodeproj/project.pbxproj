@@ -42,6 +42,7 @@
 		46371C9013C5973000CD2035 /* SocialIdentityProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */; };
 		46371CAA13C60F6300CD2035 /* SocialRestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */; };
 		4642A042138A278E00AA786D /* FilesViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */; };
+		464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 464636DE13EC228700092723 /* SocialUserProfileCache.m */; };
 		464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 464C14A8138AB80B0001CBC8 /* Entitlements.plist */; };
 		464C14B7138B85A00001CBC8 /* FileActionsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 464C14B5138B85A00001CBC8 /* FileActionsViewController_iPhone.m */; };
 		464FC9DB137AC66E00B32A58 /* eXoLogoNavigationBariPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */; };
@@ -747,6 +748,8 @@
 		46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialRestConfiguration.h; sourceTree = "<group>"; };
 		46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialRestConfiguration.m; sourceTree = "<group>"; };
 		4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController_iPhone.xib; sourceTree = "<group>"; };
+		464636DD13EC228600092723 /* SocialUserProfileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfileCache.h; sourceTree = "<group>"; };
+		464636DE13EC228700092723 /* SocialUserProfileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileCache.m; sourceTree = "<group>"; };
 		464C14A8138AB80B0001CBC8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		464C14B4138B85A00001CBC8 /* FileActionsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileActionsViewController_iPhone.h; sourceTree = "<group>"; };
 		464C14B5138B85A00001CBC8 /* FileActionsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileActionsViewController_iPhone.m; sourceTree = "<group>"; };
@@ -1590,6 +1593,8 @@
 				7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */,
 				46DDC5A813D763630026D036 /* SocialLikeActivityProxy.h */,
 				46DDC5A913D763660026D036 /* SocialLikeActivityProxy.m */,
+				464636DD13EC228600092723 /* SocialUserProfileCache.h */,
+				464636DE13EC228700092723 /* SocialUserProfileCache.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -3740,6 +3745,7 @@
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
 				462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */,
 				46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */,
+				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
