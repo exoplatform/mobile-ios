@@ -80,6 +80,7 @@
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
+						<string key="IBUINormalTitle">Your Comment</string>
 						<reference key="IBUIHighlightedTitleColor" ref="321597164"/>
 						<reference key="IBUINormalTitleColor" ref="321597164"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
