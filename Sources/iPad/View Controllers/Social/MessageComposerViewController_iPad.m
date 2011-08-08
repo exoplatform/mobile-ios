@@ -18,5 +18,9 @@
     return YES;
 }
 
+- (IBAction)showPhotoAttachment
+{
+    [super showPhotoAttachment];    
+}
 
 @end

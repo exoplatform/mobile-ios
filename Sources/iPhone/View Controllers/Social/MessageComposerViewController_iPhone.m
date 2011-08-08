@@ -17,4 +17,9 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (IBAction)showPhotoAttachment
+{
+    [super showPhotoAttachment];
+}
 @end

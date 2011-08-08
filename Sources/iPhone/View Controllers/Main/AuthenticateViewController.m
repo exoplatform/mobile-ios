@@ -488,7 +488,7 @@
 }
 
 - (void)loginSuccess
-{
+{    
     //The login has successed we need to check the version of Platform
     PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
     [plfVersionProxy retrievePlatformInformations];

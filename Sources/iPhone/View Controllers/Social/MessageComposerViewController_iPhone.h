@@ -14,4 +14,6 @@
 
 }
 
+- (IBAction)showPhotoAttachment;
+
 @end

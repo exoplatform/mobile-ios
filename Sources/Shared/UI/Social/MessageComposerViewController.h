@@ -10,7 +10,7 @@
 
 @class ActivityStreamBrowseViewController;
 
-@interface MessageComposerViewController : UIViewController <UITextViewDelegate>
+@interface MessageComposerViewController : UIViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     IBOutlet UIButton*              _btnCancel;
     IBOutlet UIButton*              _btnSend;
@@ -32,5 +32,7 @@
 
 - (IBAction)onBtnSend:(id)sender;
 - (IBAction)onBtnCancel:(id)sender;
+
+- (void)showPhotoAttachment;
 
 @end
