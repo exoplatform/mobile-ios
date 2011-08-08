@@ -7,7 +7,6 @@
 //
 
 #import "ActivityStreamBrowseViewController.h"
-#import "MockSocial_Activity.h"
 #import "ActivityBasicTableViewCell.h"
 #import "NSDate+Formatting.h"
 #import "ActivityDetailViewController.h"
@@ -47,8 +46,6 @@
 {
     
     _tblvActivityStream = nil ;
-    [_mockSocial_Activity release];
-    _mockSocial_Activity = nil;
     
     [_arrayOfSectionsTitle release];
     _arrayOfSectionsTitle = nil;
@@ -283,10 +280,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    Activity* activity = [_mockSocial_Activity.arrayOfActivities objectAtIndex:indexPath.row];
-    NSString* text = activity.title;
+    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    NSString* text = socialActivityStream.title;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
-    
+        
     return  fHeight;
 }
 
@@ -320,6 +317,7 @@
     //Set the size of the cell
     float fWidth = tableView.frame.size.width;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
+    NSLog(@"fHeight %2f",fHeight);
     [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
     
     //Set the cell content

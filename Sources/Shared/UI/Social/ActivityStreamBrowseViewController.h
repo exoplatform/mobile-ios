@@ -22,7 +22,6 @@
 @interface ActivityStreamBrowseViewController : UIViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 {
     IBOutlet UITableView*                   _tblvActivityStream;
-    MockSocial_Activity*                    _mockSocial_Activity;
     
     NSMutableArray*                         _arrayOfSectionsTitle;
     NSMutableDictionary*                    _sortedActivities;
