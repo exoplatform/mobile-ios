@@ -138,11 +138,9 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-//	NSLog(@"Loaded statuses: %@", objects);    
-	//[_socialIdentity release];
-	//_socialIdentity = [objects retain];
-    
-    //_socialIdentity = [objects objectAtIndex:0];
+    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
+        [delegate proxyDidFinishLoading:self];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error 

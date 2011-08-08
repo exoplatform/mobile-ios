@@ -14,21 +14,19 @@
 
 @implementation ActivityDetailViewController_iPad
 
-@synthesize _delegate;
-
 - (void)onBtnMessageComposer
 {
-    if(_messageComposerViewController == nil)
-    {
-        _messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-    } 
-    _messageComposerViewController._delegate = _delegate;    
-    _messageComposerViewController._tblvActivityDetail = _tblvActivityDetail;
-    _messageComposerViewController._isPostMessage = NO;
-    _messageComposerViewController._strActivityID = _socialActivityStream.activityId;
+    
+    MessageComposerViewController_iPad* messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+     
+    messageComposerViewController.delegate = self;    
+    messageComposerViewController.tblvActivityDetail = _tblvActivityDetail;
+    messageComposerViewController.isPostMessage = NO;
+    messageComposerViewController.strActivityID = _socialActivityStream.activityId;
     
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    [messageComposerViewController release];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

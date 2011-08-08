@@ -14,7 +14,7 @@
 
 @implementation MessageComposerViewController
 
-@synthesize _isPostMessage, _strActivityID, _delegate, _tblvActivityDetail;
+@synthesize isPostMessage=_isPostMessage, strActivityID=_strActivityID, delegate, tblvActivityDetail=_tblvActivityDetail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,7 +87,7 @@
     [_txtvMessageComposer setText:@""];
     
     
-    if (self._isPostMessage) 
+    if (_isPostMessage) 
     {
         [self setTitle:@"Post status"];
     }
@@ -96,19 +96,7 @@
         [self setTitle:@"Post comment"];
     }
     
-    
-    /*
-    [_txtvMessageComposer setBackgroundColor:[UIColor whiteColor]];
-	[_txtvMessageComposer setFont:[UIFont boldSystemFontOfSize:13.0]];
-	[_txtvMessageComposer setTextAlignment:UITextAlignmentLeft];
-	[_txtvMessageComposer setEditable:YES];
-	
-	[[_txtvMessageComposer layer] setBorderColor:[[UIColor blackColor] CGColor]];
-	[[_txtvMessageComposer layer] setBorderWidth:1];
-	[[_txtvMessageComposer layer] setCornerRadius:8];
-	[_txtvMessageComposer setClipsToBounds: YES];
-	[_txtvMessageComposer setText:@""];
-     */
+
 }
 
 - (void)viewDidUnload
@@ -125,25 +113,15 @@
         if(_isPostMessage)
         {
             SocialPostActivity* actPost = [[SocialPostActivity alloc] init];
-            
+            actPost.delegate = self;
             [actPost postActivity:_txtvMessageComposer.text];
-            
-//            [actPost release];
         }
         else
         {
             SocialPostCommentProxy *actComment = [[SocialPostCommentProxy alloc] init];
             [actComment postComment:_txtvMessageComposer.text forActivity:_strActivityID];
-            
-//            [actComment release];
+            actComment.delegate = self;
         }
-        
-        [_delegate clearActivityData];        
-        //[_delegate loadActivityStream];
-
-        
-        [self dismissModalViewControllerAnimated:YES];    
-        
 
     }
     else
@@ -173,6 +151,27 @@
     [actionSheet release];
 
 }
+
+
+
+#pragma -
+#pragma mark Proxies Delegate Methods
+
+- (void)proxyDidFinishLoading:(SocialProxy *)proxy {
+
+    if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
+        [delegate messageComposerDidSendData];
+        [self dismissModalViewControllerAnimated:YES];    
+    }
+    
+}
+
+-(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
+{
+    
+}
+
+
 
 #pragma mark - ActionSheet Delegate
 

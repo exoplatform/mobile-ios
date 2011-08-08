@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
 #import "EGORefreshTableHeaderView.h"
+#import "MessageComposerViewController.h"
 
 @class Activity;
 @class ActivityDetail;
@@ -20,7 +21,7 @@
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
-@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate>{
+@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UINavigationBar*               _navigationBar;

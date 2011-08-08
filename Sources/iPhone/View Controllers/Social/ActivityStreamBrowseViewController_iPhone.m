@@ -13,6 +13,17 @@
 
 @implementation ActivityStreamBrowseViewController_iPhone
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // Unselect the selected row if any
+    NSIndexPath*	selection = [_tblvActivityStream indexPathForSelectedRow];
+    if (selection)
+        [_tblvActivityStream deselectRowAtIndexPath:selection animated:YES];
+}
+
+
 // Specific method to retrieve the height of the cell
 // This method override the inherited one.
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
@@ -49,18 +60,14 @@
 
 - (void)onBbtnPost
 {
-    if(_messageComposerViewController == nil)
-    {
-        _messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
-    } 
-    _messageComposerViewController._delegate = self;
-    _messageComposerViewController._isPostMessage = YES;
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
+    MessageComposerViewController_iPhone* messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
     
-    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    messageComposerViewController.delegate = self;
+    messageComposerViewController.isPostMessage = YES;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    [messageComposerViewController release];
     
     [self.navigationController presentModalViewController:navController animated:YES];
 }
@@ -74,7 +81,6 @@
     {
         
         ActivityDetailViewController_iPhone *activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
-        activityDetailViewController._delegate = self;
         _activityDetailViewController = activityDetailViewController;
         
     }

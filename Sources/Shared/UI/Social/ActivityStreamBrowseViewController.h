@@ -11,6 +11,7 @@
 #import "SocialActivityStream.h"
 #import "MockSocial_Activity.h"
 #import "EGORefreshTableHeaderView.h"
+#import "MessageComposerViewController.h"
 
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
@@ -18,7 +19,7 @@
 @class ActivityDetailViewController;
 @class SocialUserProfile;
 
-@interface ActivityStreamBrowseViewController : UIViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface ActivityStreamBrowseViewController : UIViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 {
     IBOutlet UITableView*                   _tblvActivityStream;
     MockSocial_Activity*                    _mockSocial_Activity;

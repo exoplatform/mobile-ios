@@ -43,12 +43,6 @@
     return self;
 }
 
-- (void)clearActivityData
-{
-    [_arrActivityStreams removeAllObjects];
-    [_arrayOfSectionsTitle removeAllObjects];
-}
-
 - (void)dealloc
 {
     
@@ -399,8 +393,8 @@
     
 }
 
-
-#pragma mark Delegate
+#pragma -
+#pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     //If proxy is king of class SocialIdentityProxy, then we can start the request for retrieve SocialActivityStream
@@ -461,6 +455,13 @@
 {
     
 }
+
+#pragma mark -
+#pragma mark MessageComposer Methods
+- (void)messageComposerDidSendData {
+    [self updateActivityStream];
+}
+
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods

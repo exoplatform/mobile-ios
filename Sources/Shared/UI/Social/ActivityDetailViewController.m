@@ -489,6 +489,13 @@
 }
 
 #pragma mark -
+#pragma mark MessageComposer Methods
+- (void)messageComposerDidSendData {
+    [self startLoadingActivityDetail];
+}
+
+
+#pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	

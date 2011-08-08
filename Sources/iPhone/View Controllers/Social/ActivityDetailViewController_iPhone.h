@@ -14,13 +14,7 @@
 
 @interface ActivityDetailViewController_iPhone : ActivityDetailViewController {
 
-    id                                     _delegate;
-
-    MessageComposerViewController_iPhone*  _messageComposerViewController;
 }
 
-@property(nonatomic, retain) id _delegate;
-
-//- (IBAction)onBtnMessageComposer:(id)sender;
 
 @end

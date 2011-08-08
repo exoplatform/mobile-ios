@@ -60,21 +60,19 @@
 
 - (void)onBbtnPost
 {
-    if(_messageComposerViewController == nil)
-    {
-        _messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
-    } 
+    MessageComposerViewController_iPad* messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
     
-    _messageComposerViewController._delegate = self;
-    _messageComposerViewController._isPostMessage = YES;
+    messageComposerViewController.delegate = self;
+    messageComposerViewController.isPostMessage = YES;
 
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_messageComposerViewController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
     [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [messageComposerViewController release];
         
     int x, y;
     
@@ -93,7 +91,6 @@
     navController.view.superview.autoresizingMask = UIViewAutoresizingNone;
     navController.view.superview.frame = CGRectMake(x,y, 540.0f, 265.0f);
     
-    [_messageComposerViewController release];
 }
 
 
