@@ -15,11 +15,7 @@
 @interface ActivityDetailLikeTableViewCell : UITableViewCell {
     
     UILabel*               _lbMessage;
-    UILabel*               _lbDate;
     
-    EGOImageView*          _imgvAvatar;
-
-    UIImageView*           _imgvMessageBg;
     UIButton*              _btnLike;
     
     SocialActivityDetails*  _socialActivityDetails;
@@ -29,16 +25,12 @@
 
 @property (retain, nonatomic) id delegate;
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
-@property (retain, nonatomic) IBOutlet UILabel* lbDate;
-@property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
-@property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 
 //Use this method after create the cell to customize the appearance of the Avatar
-- (void)customizeAvatarDecorations;
 - (void)configureCell;
 - (void)setUserProfile:(SocialUserProfile*)socialUserProfile;
-- (void)setActivity:(Activity*)activity;
+- (void)setUserLikeThisActivity:(BOOL)userLikeThisActivity;
 - (void)setContent:(NSString*)strLikes;
 - (void)setSocialActivityDetails:(SocialActivityDetails*)socialActivityDetails;
 @end

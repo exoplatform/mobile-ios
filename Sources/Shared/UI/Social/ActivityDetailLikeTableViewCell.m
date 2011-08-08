@@ -15,8 +15,8 @@
 
 @implementation ActivityDetailLikeTableViewCell
 
-@synthesize lbMessage=_lbMessage, lbDate=_lbDate , imgvAvatar=_imgvAvatar;
-@synthesize imgvMessageBg=_imgvMessageBg,btnLike=_btnLike, delegate=_delegate;
+@synthesize lbMessage=_lbMessage;
+@synthesize btnLike=_btnLike, delegate=_delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -31,7 +31,6 @@
     
     [super setHighlighted:highlighted animated:animated];
 
-    [_imgvMessageBg setHighlighted:highlighted]; 
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -40,92 +39,38 @@
 
     // Configure the view for the selected state
     
-    [_imgvMessageBg setHighlighted:selected];
 }
 
 - (void)dealloc
 {
     self.lbMessage = nil;
-    self.lbDate = nil;
-    
-    self.imgvAvatar = nil;
-    
-    self.imgvMessageBg = nil;
-    
     [super dealloc];
 }
 
 
 #pragma mark - Activity Cell methods 
 
-- (void)customizeAvatarDecorations {
-    //Add the CornerRadius
-    [[_imgvAvatar layer] setCornerRadius:6.0];
-    [[_imgvAvatar layer] setMasksToBounds:YES];
-    
-    //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
-    CGFloat borderWidth = 2.0;
-    [[_imgvAvatar layer] setBorderWidth:borderWidth];
-    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
-    
-    //Add the inner shadow
-    CALayer *innerShadowLayer = [CALayer layer];
-    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
-    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
-    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
-    [_imgvAvatar.layer addSublayer:innerShadowLayer];
-}
 
-
-- (void)configureFonts {
-    
-}
-
+#define kSeparatorLineLeftMarging 20
 
 - (void)configureCell {
-    
-    [self customizeAvatarDecorations];
-    
-    //Add images for Background Message
-    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailLikeBg.png"] stretchableImageWithLeftCapWidth:70 topCapHeight:30];
-    
-    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityDetailLikeBgSelected.png"] stretchableImageWithLeftCapWidth:70 topCapHeight:30];
-    
-    _imgvMessageBg.image = strechBg;
-    _imgvMessageBg.highlightedImage = strechBgSelected;
-
+        
+    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(kSeparatorLineLeftMarging, self.frame.size.height-6, self.frame.size.width - (2*kSeparatorLineLeftMarging), 1)];
+    separatorLine.backgroundColor = [UIColor colorWithRed:100./255 green:139./255 blue:169./255 alpha:1.];
+    separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self addSubview:separatorLine];
+    [separatorLine release];
 }
 
 
-- (void)setActivity:(Activity*)activity
+- (void)setUserLikeThisActivity:(BOOL)userLikeThisActivity
 {
-    _imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
-    _lbMessage.text = [activity.title copy];
-    _lbDate.text = [activity.postedTimeInWords copy];
-    
-    //display the like number '+' if 0
-    NSString *stringForLikes;
-    if (activity.nbLikes == 0) 
-    {
-        stringForLikes = @"+";
-    } 
-    else 
-    {
-        stringForLikes = [NSString stringWithFormat:@"%d",activity.nbLikes];
+    if(userLikeThisActivity) {
+        [_btnLike setImage:[UIImage imageNamed:@"SocialActivityDetailDislikeButton.png"] forState:UIControlStateNormal];
+    }else {
+        [_btnLike setImage:[UIImage imageNamed:@"SocialActivityDetailLikeButton.png"] forState:UIControlStateNormal];
     }
     
-    
-    //display the comment number '+' if 0
-    NSString *stringForComments;
-    if (activity.nbComments == 0) 
-    {
-        stringForComments = @"+";
-    } 
-    else 
-    {
-        stringForComments = [NSString stringWithFormat:@"%d",activity.nbComments];
-    }
 }
 
 - (void)setContent:(NSString*)strLikes
@@ -158,7 +103,7 @@
         }     
     }
     
-    [_delegate likeDislikeActivity:_socialActivityDetails.identifyId like:isLike];
+    [_delegate likeDislikeActivity:_socialActivityDetails.identifyId];
     
      
 }

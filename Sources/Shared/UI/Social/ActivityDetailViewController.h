@@ -38,6 +38,9 @@
     
     SocialActivityDetails*                  _socialActivityDetails;
     SocialUserProfile*                      _socialUserProfile;
+    SocialUserProfile*                      _currentUserProfile;
+    
+    BOOL                                    _currentUserLikeThisActivity;
     
     UITextView*                             _txtvMsgComposer;
     IBOutlet UIButton*                      _btnMsgComposer;    
@@ -49,6 +52,6 @@
 }
 
 //- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andUserProfile:(SocialUserProfile*)socialUserProfile;
-- (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andActivityUserProfile:(SocialUserProfile*)socialUserProfile andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
+- (void)likeDislikeActivity:(NSString *)activity;
 @end

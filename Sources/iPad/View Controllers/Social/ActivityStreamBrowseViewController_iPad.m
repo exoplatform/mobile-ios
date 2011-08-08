@@ -111,7 +111,8 @@
     
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                          andActivityDetail:activityDetail 
-                                            andUserProfile:[[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId]];
+                                    andActivityUserProfile:[[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId]
+                                     andCurrentUserProfile:_socialUserProfile];
         
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
 }

@@ -109,6 +109,10 @@
 		46A03AC613A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */; };
 		46A03AC713A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */; };
 		46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2739613D7FBAE00A5C29D /* NSString+MD5.m */; };
+		46A3E5DD13F01AB900F606B4 /* SocialYourCommentButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */; };
+		46A3E5DF13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */; };
+		46A9375213F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A9375113F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png */; };
+		46A9375413F03656009D41DA /* SocialActivityDetailDislikeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A9375313F03656009D41DA /* SocialActivityDetailDislikeButton.png */; };
 		46ABBE8713890BD10077809B /* FilesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8613890BD10077809B /* FilesProxy.m */; };
 		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
 		46ABBE91138910C80077809B /* AuthenticateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE90138910C80077809B /* AuthenticateProxy.m */; };
@@ -835,6 +839,10 @@
 		46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserLikeButtonSelected@2x.png"; sourceTree = "<group>"; };
 		46A2739513D7FBAE00A5C29D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		46A2739613D7FBAE00A5C29D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialYourCommentButtonBg.png; sourceTree = "<group>"; };
+		46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialYourCommentButtonBg@2x.png"; sourceTree = "<group>"; };
+		46A9375113F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailDislikeButton@2x.png"; sourceTree = "<group>"; };
+		46A9375313F03656009D41DA /* SocialActivityDetailDislikeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailDislikeButton.png; sourceTree = "<group>"; };
 		46ABBE8513890BD10077809B /* FilesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesProxy.h; sourceTree = "<group>"; };
 		46ABBE8613890BD10077809B /* FilesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxy.m; sourceTree = "<group>"; };
 		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
@@ -1759,6 +1767,7 @@
 		46A03AA213A8E0EF00E71AF9 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */,
 				46A03AA313A8E0EF00E71AF9 /* ActivityAvatarShadow.png */,
 				46A03AA413A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png */,
 				46A03AA513A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png */,
@@ -1772,6 +1781,7 @@
 				7CBB39A313B09F840011A63C /* SocialActivityDetailLikeBg.png */,
 				7CBB39A413B09F840011A63C /* SocialActivityDetailLikeBgSelected.png */,
 				7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */,
+				46A9375313F03656009D41DA /* SocialActivityDetailDislikeButton.png */,
 				7CE0131E13B1917700F16971 /* SocialActivityDetailMessageBg.png */,
 				7CD4E5E513BD8C8000F5015D /* MessageComposerButtonBg.png */,
 				7CA74B9513C31ACA0006306D /* MessageComposerButtonCancelBackground.png */,
@@ -1786,6 +1796,7 @@
 		46A03AAC13A8E0EF00E71AF9 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */,
 				46A03AAD13A8E0EF00E71AF9 /* ActivityAvatarShadow@2x.png */,
 				46A03AAE13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png */,
 				46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */,
@@ -1799,6 +1810,7 @@
 				7CBB39A713B09FA00011A63C /* SocialActivityDetailLikeBg@2x.png */,
 				7CBB39A813B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png */,
 				7CE0132213B1A61F00F16971 /* SocialActivityDetailLikeButton@2x.png */,
+				46A9375113F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png */,
 				7CE0132013B1918400F16971 /* SocialActivityDetailMessageBg@2x.png */,
 				7CA74B8B13C31AB50006306D /* MessageComposerButtonCancelBackground@2x.png */,
 				7CA74B8C13C31AB50006306D /* MessageComposerButtonCancelBackgroundSelected@2x.png */,
@@ -3582,6 +3594,10 @@
 				46982F4113E701900063CF62 /* grayArrow@2x.png in Resources */,
 				46982F4213E701900063CF62 /* whiteArrow.png in Resources */,
 				46982F4313E701900063CF62 /* whiteArrow@2x.png in Resources */,
+				46A3E5DD13F01AB900F606B4 /* SocialYourCommentButtonBg.png in Resources */,
+				46A3E5DF13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png in Resources */,
+				46A9375213F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png in Resources */,
+				46A9375413F03656009D41DA /* SocialActivityDetailDislikeButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

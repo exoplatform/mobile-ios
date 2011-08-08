@@ -91,9 +91,9 @@
     
     //Add images for Background Message
     
-    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailMessageBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailMessageBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:60];
     
-    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityDetailMessageBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
+    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityDetailMessageBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:60];
     
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;

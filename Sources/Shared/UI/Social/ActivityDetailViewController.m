@@ -104,7 +104,7 @@
     _tblvActivityDetail.backgroundView = backgroundView;
     
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *strechBg = [[UIImage imageNamed:@"MessageComposerButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:10];
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
     
     //Add the pull to refresh header
@@ -141,12 +141,13 @@
 }
 
 
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andUserProfile:(SocialUserProfile*)socialUserProfile
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andActivityUserProfile:(SocialUserProfile*)socialUserProfile andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
 {
     _socialActivityStream = socialActivityStream;
     _activityDetail = activityDetail;
     _socialUserProfile = socialUserProfile;
     _activityDetail.activityID = socialActivityStream.activityId;
+    _currentUserProfile = currentUserProfile;
     
     [self startLoadingActivityDetail];
 }
@@ -242,18 +243,23 @@
             {
                 NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
                 
+                NSString *username = [dicActivity objectForKey:@"remoteId"];
+                
+                if ([_currentUserProfile.identity isEqualToString:[dicActivity objectForKey:@"id"]]) {
+                    username = @"You";
+                }
+                
                 if (i < [_activityDetail.arrLikes count] - 2) 
                 {
-                    [strLikes appendFormat:@"%@, ", [dicActivity objectForKey:@"remoteId"]];
+                    [strLikes appendFormat:@"%@, ", username];
                 }
                 else if (i < [_activityDetail.arrLikes count] - 1) 
                 {
-                    [strLikes appendFormat:@"%@ ", [dicActivity objectForKey:@"remoteId"]];
+                    [strLikes appendFormat:@"%@ ", username];
                 } 
-                
                 else
                 {
-                    [strLikes appendFormat:@"and %@", [dicActivity objectForKey:@"remoteId"]];
+                    [strLikes appendFormat:@"and %@", username];
                 }     
             }
             if([_activityDetail.arrLikes count] > 1)
@@ -269,7 +275,8 @@
         {
             [strLikes appendString:@"No like for the moment"];
         }
-        n = [self getHeighSizeForTableView:tableView andText:strLikes];
+        //n = [self getHeighSizeForTableView:tableView andText:strLikes];
+        n = 55;
     }
     if (indexPath.section == 2) 
     {
@@ -324,6 +331,7 @@
         [cell setContent:@""];
         
         NSMutableString* strLikes = [NSMutableString stringWithString:@""];
+        _currentUserLikeThisActivity = NO;
         
         if ([_socialActivityDetails.likedByIdentities count] > 0)
         { 
@@ -331,24 +339,33 @@
             {
                 NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
                 
-                if (i < [_socialActivityDetails.likedByIdentities count] - 2) 
-                {
-                    [strLikes appendFormat:@"%@, ", [dicActivity objectForKey:@"remoteId"]];
-                }
-                else if (i < [_socialActivityDetails.likedByIdentities count] - 1) 
-                {
-                    [strLikes appendFormat:@"%@ ", [dicActivity objectForKey:@"remoteId"]];
-                } 
+                NSString *username = [dicActivity objectForKey:@"remoteId"];
                 
+                if ([_currentUserProfile.identity isEqualToString:[dicActivity objectForKey:@"id"]]) {
+                    username = @"You";
+                    _currentUserLikeThisActivity = YES;
+                }
+                
+                if (i < [_activityDetail.arrLikes count] - 2) 
+                {
+                    [strLikes appendFormat:@"%@, ", username];
+                }
+                else if (i < [_activityDetail.arrLikes count] - 1) 
+                {
+                    [strLikes appendFormat:@"%@ ", username];
+                } 
                 else
                 {
-                    [strLikes appendFormat:@"and %@", [dicActivity objectForKey:@"remoteId"]];
-                }     
+                    [strLikes appendFormat:@"and %@", username];
+                }       
             }
-            if([_socialActivityDetails.likedByIdentities count] > 1)
-                [strLikes appendString:@" like this"];
-            else
-            {
+            if (_currentUserLikeThisActivity) {
+                [strLikes appendString:@"like this"];
+                strLikes = (NSMutableString *)[strLikes stringByReplacingOccurrencesOfString:@"," withString:@""];
+            }
+            else if([_socialActivityDetails.likedByIdentities count] > 1) {
+                [strLikes appendString:@"like this"];
+            } else {
                 [strLikes appendString:@"likes this"];
                 strLikes = (NSMutableString *)[strLikes stringByReplacingOccurrencesOfString:@"," withString:@""];
             }
@@ -360,6 +377,7 @@
         }
         [cell setUserProfile:_socialUserProfile];
         [cell setContent:strLikes];
+        [cell setUserLikeThisActivity:_currentUserLikeThisActivity];
         [cell setSocialActivityDetails:_socialActivityDetails];
         
         return cell;
@@ -454,19 +472,19 @@
     
 }
 
-- (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
+- (void)likeDislikeActivity:(NSString *)activity
 {
     [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
     
-    if(isLike)
+    if(_currentUserLikeThisActivity)
     {
-        [likeDislikeActProxy likeActivity:activity];
+        [likeDislikeActProxy dislikeActivity:activity];
     }
     else
     {
-        [likeDislikeActProxy dislikeActivity:activity];
+        [likeDislikeActProxy likeActivity:activity];
     }
 }
 

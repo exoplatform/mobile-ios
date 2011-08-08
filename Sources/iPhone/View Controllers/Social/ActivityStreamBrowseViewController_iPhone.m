@@ -83,7 +83,8 @@
     
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                          andActivityDetail:activityDetail 
-                                            andUserProfile:[[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId]];
+                                    andActivityUserProfile:[[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId]
+                                     andCurrentUserProfile:_socialUserProfile];
     
     [self.navigationController pushViewController:_activityDetailViewController animated:YES];
 }
