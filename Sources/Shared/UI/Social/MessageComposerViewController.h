@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
+#import "ATMHud.h"
+#import "ATMHudDelegate.h"
 
 @class ActivityStreamBrowseViewController;
 
@@ -28,6 +30,9 @@
     
     id<SocialMessageComposerDelegate>   delegate;
     UITableView*                        _tblvActivityDetail;
+    
+    //Loader
+    ATMHud*                                 _hudMessageComposer;//Heads up display
 }
 
 @property BOOL isPostMessage;

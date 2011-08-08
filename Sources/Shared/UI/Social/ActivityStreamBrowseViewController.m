@@ -63,6 +63,10 @@
     [_dateOfLastUpdate release];
     _dateOfLastUpdate = nil;
     
+    //Release the loader
+    [_hudActivityStream release];
+    _hudActivityStream = nil;
+    
     [super dealloc];
 }
 
@@ -82,6 +86,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Add the loader
+    _hudActivityStream = [[ATMHud alloc] initWithDelegate:self];
+    [_hudActivityStream setAllowSuperviewInteraction:NO];
+	[self.view addSubview:_hudActivityStream.view];
+    
     
     self.title = @"Activity Stream";
         
@@ -343,11 +353,31 @@
     [self startLoadingActivityStream];
 }
 
+#pragma mark - Loader Management
+- (void)showLoaderForUpdating {
+    [_hudActivityStream setCaption:@"Updating Activity stream"];
+    [_hudActivityStream setActivity:YES];
+    [_hudActivityStream show];
+}
+
+
+- (void)hideLoader {
+    //Now update the HUD
+    //TODO Localize this string
+    [_hudActivityStream setCaption:@"Activity Stream updated"];
+    [_hudActivityStream setActivity:NO];
+    [_hudActivityStream setImage:[UIImage imageNamed:@"19-check"]];
+    [_hudActivityStream update];
+    [_hudActivityStream hideAfter:0.5];
+}
 
 #pragma mark - Social Proxy 
 #pragma mark Management
 
 - (void)startLoadingActivityStream {
+    
+    [self showLoaderForUpdating];
+    
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
     identityProxy.delegate = self;
     [identityProxy getIdentityFromUser];
@@ -355,6 +385,9 @@
 
 
 - (void)updateActivityStream {
+    
+    [self showLoaderForUpdating];
+    
     _reloading = YES;
     SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
     socialActivityStreamProxy.delegate = self;
@@ -386,10 +419,15 @@
     //Ask the controller to sort activities
     [self sortActivities];
     
+    //Remove the loader
+    [self hideLoader];
+    
     [_tblvActivityStream reloadData];
-
+    
     
 }
+
+
 
 #pragma -
 #pragma mark Proxies Delegate Methods

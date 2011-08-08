@@ -27,6 +27,9 @@
 
 - (void)dealloc
 {
+    [_hudMessageComposer release];
+    _hudMessageComposer = nil;
+    
     [super dealloc];
 }
 
@@ -52,6 +55,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Add the loader
+    _hudMessageComposer = [[ATMHud alloc] initWithDelegate:self];
+    [_hudMessageComposer setAllowSuperviewInteraction:NO];
+	[self.view addSubview:_hudMessageComposer.view];
+    
     
     self.navigationItem.title = @"Message Composer";
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailCommentBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
@@ -106,18 +115,50 @@
     // e.g. self.myOutlet = nil;
 }
 
+
+#pragma mark - Loader Management
+- (void)showLoaderForSendingStatus {
+    [_hudMessageComposer setCaption:@"Posting the new status"];
+    [_hudMessageComposer setActivity:YES];
+    [_hudMessageComposer show];
+}
+
+- (void)showLoaderForSendingComment {
+    [_hudMessageComposer setCaption:@"Posting the new comment"];
+    [_hudMessageComposer setActivity:YES];
+    [_hudMessageComposer show];
+}
+
+
+
+- (void)hideLoader {
+    //Now update the HUD
+    //TODO Localize this string
+    [_hudMessageComposer setCaption:@"Posted !"];
+    [_hudMessageComposer setActivity:NO];
+    [_hudMessageComposer setImage:[UIImage imageNamed:@"19-check"]];
+    [_hudMessageComposer update];
+    [_hudMessageComposer hideAfter:0.5];
+}
+
+
+
 - (IBAction)onBtnSend:(id)sender
 {
     if([_txtvMessageComposer.text length] > 0)
     {
         if(_isPostMessage)
         {
+            [self showLoaderForSendingStatus];
+            
             SocialPostActivity* actPost = [[SocialPostActivity alloc] init];
             actPost.delegate = self;
             [actPost postActivity:_txtvMessageComposer.text];
         }
         else
         {
+            [self showLoaderForSendingComment];
+            
             SocialPostCommentProxy *actComment = [[SocialPostCommentProxy alloc] init];
             [actComment postComment:_txtvMessageComposer.text forActivity:_strActivityID];
             actComment.delegate = self;
@@ -159,6 +200,8 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
 
+    [self hideLoader];
+    
     if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
         [delegate messageComposerDidSendData];
         [self dismissModalViewControllerAnimated:YES];    

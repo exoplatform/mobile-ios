@@ -12,6 +12,8 @@
 #import "MockSocial_Activity.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MessageComposerViewController.h"
+#import "ATMHud.h"
+#import "ATMHudDelegate.h"
 
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
@@ -39,6 +41,10 @@
     EGORefreshTableHeaderView*              _refreshHeaderView;
     BOOL                                    _reloading;
     NSDate*                                 _dateOfLastUpdate;
+    
+    //Loader
+    ATMHud*                                 _hudActivityStream;//Heads up display
+
 }
 
 - (void)startLoadingActivityStream;

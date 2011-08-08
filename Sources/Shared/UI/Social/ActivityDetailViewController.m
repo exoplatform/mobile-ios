@@ -59,6 +59,9 @@
     [_refreshHeaderView release];
     [_dateOfLastUpdate release];
     
+    [_hudActivityDetails release];
+    _hudActivityDetails = nil;
+    
     [super dealloc];
 }
 
@@ -79,19 +82,15 @@
 }
 */
 
-- (void)startLoadingActivityDetail
-{
-    _reloading = YES;
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
-    socialActivityDetailsProxy.delegate = self;
-    [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
-
-}
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Add the loader
+    _hudActivityDetails = [[ATMHud alloc] initWithDelegate:self];
+    [_hudActivityDetails setAllowSuperviewInteraction:NO];
+	[self.view addSubview:_hudActivityDetails.view];
     
     //Set the title of the screen
     //TODO Localize
@@ -140,17 +139,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andActivityUserProfile:(SocialUserProfile*)socialUserProfile andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
-{
-    _socialActivityStream = socialActivityStream;
-    _activityDetail = activityDetail;
-    _socialUserProfile = socialUserProfile;
-    _activityDetail.activityID = socialActivityStream.activityId;
-    _currentUserProfile = currentUserProfile;
-    
-    [self startLoadingActivityDetail];
-}
 
 // Specific method to retrieve the height of the cell
 // This method override the inherited one.
@@ -405,6 +393,27 @@
 }
 
 
+#pragma mark - Loader Management
+- (void)showLoaderForUpdating {
+    [_hudActivityDetails setCaption:@"Updating Details"];
+    [_hudActivityDetails setActivity:YES];
+    [_hudActivityDetails show];
+}
+
+
+
+- (void)hideLoader {
+    //Now update the HUD
+    //TODO Localize this string
+    [_hudActivityDetails setCaption:@"Details loaded"];
+    [_hudActivityDetails setActivity:NO];
+    [_hudActivityDetails setImage:[UIImage imageNamed:@"19-check"]];
+    [_hudActivityDetails update];
+    [_hudActivityDetails hideAfter:0.5];
+}
+
+
+#pragma mark - Data Management
 
 - (void)finishLoadingAllDataForActivityDetails {
     
@@ -423,9 +432,33 @@
     //Set the last update date at now 
     _dateOfLastUpdate = [[NSDate date] retain];
     
+    //Hide the loader
+    [self hideLoader];
+    
     [_tblvActivityDetail reloadData];
+}
+
+#pragma - Proxy Management
+- (void)startLoadingActivityDetail
+{
+    [self showLoaderForUpdating];
     
+    _reloading = YES;
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
+    socialActivityDetailsProxy.delegate = self;
+    [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
     
+}
+
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andActivityUserProfile:(SocialUserProfile*)socialUserProfile andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
+{
+    _socialActivityStream = socialActivityStream;
+    _activityDetail = activityDetail;
+    _socialUserProfile = socialUserProfile;
+    _activityDetail.activityID = socialActivityStream.activityId;
+    _currentUserProfile = currentUserProfile;
+    
+    [self startLoadingActivityDetail];
 }
 
 
@@ -474,6 +507,9 @@
 
 - (void)likeDislikeActivity:(NSString *)activity
 {
+    
+    [self showLoaderForUpdating];
+    
     [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;

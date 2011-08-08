@@ -10,6 +10,8 @@
 #import "SocialProxy.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MessageComposerViewController.h"
+#import "ATMHud.h"
+#import "ATMHudDelegate.h"
 
 @class Activity;
 @class ActivityDetail;
@@ -50,6 +52,9 @@
     EGORefreshTableHeaderView*              _refreshHeaderView;
     BOOL                                    _reloading;
     NSDate*                                 _dateOfLastUpdate;
+    
+    //Loader
+    ATMHud*                                 _hudActivityDetails;//Heads up display
 }
 
 //- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
