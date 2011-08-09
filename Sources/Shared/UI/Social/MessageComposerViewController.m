@@ -15,6 +15,7 @@
 @implementation MessageComposerViewController
 
 @synthesize isPostMessage=_isPostMessage, strActivityID=_strActivityID, delegate, tblvActivityDetail=_tblvActivityDetail;
+@synthesize _popoverPhotoLibraryController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -183,17 +184,21 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)showPhotoAttachment
+//- (void)showPhotoAttachment
+- (IBAction)onBtnAttachment:(id)sender
 {
-    [_txtvMessageComposer resignFirstResponder];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add a photo?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Take a picture" otherButtonTitles:@"Photo library", nil, nil];
-    [actionSheet showInView:self.view];
-    
-    [actionSheet release];
-
+    [self showPhotoAttachment];
 }
 
+- (void)showPhotoAttachment
+{
+    
+}
 
+- (void)showPhotoLibrary
+{
+    
+}
 
 #pragma -
 #pragma mark Proxies Delegate Methods
@@ -243,14 +248,14 @@
         }
         else
         {
+            /*
             thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             thePicker.allowsEditing = YES;
             [self presentModalViewController:thePicker animated:YES];
-            
+             */
+            [self showPhotoLibrary];
         }
-        
         [thePicker release];
-        
     }
     
 }
@@ -258,9 +263,11 @@
 #pragma mark - ActionSheet Delegate
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	
     [self dismissModalViewControllerAnimated:YES];
-    
+    if (_popoverPhotoLibraryController) 
+    {
+        [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    }
 }
 
 

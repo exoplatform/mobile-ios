@@ -18,8 +18,22 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)showPhotoAttachment
+- (void)showPhotoAttachment
 {
-    [super showPhotoAttachment];
+    [_txtvMessageComposer resignFirstResponder];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add a photo?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Take a picture" otherButtonTitles:@"Photo library", nil, nil];
+    [actionSheet showInView:self.view];
+    
+    [actionSheet release];
 }
+
+- (void)showPhotoLibrary
+{
+    UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+    thePicker.delegate = self;
+    thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    thePicker.allowsEditing = YES;
+    [self presentModalViewController:thePicker animated:YES];
+}
+
 @end

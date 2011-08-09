@@ -245,6 +245,8 @@
 		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; };
 		7C3BD1A31370FE1700380828 /* FilesViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */; };
 		7C3BD1A41370FE1700380828 /* HomeViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */; };
+		7C3DF00613F1212700640BDB /* PhotoActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF00513F1212700640BDB /* PhotoActionViewController.xib */; };
+		7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3DF00813F1217100640BDB /* PhotoActionViewController.m */; };
 		7C5053EC13E2AF3600FA73CD /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5053EA13E2AF3600FA73CD /* default-avatar.png */; };
 		7C5053ED13E2AF3600FA73CD /* default-avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */; };
 		7C50D4C7136F187B0011280D /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50D4C1136F187B0011280D /* DDXMLDocument.m */; };
@@ -1017,6 +1019,9 @@
 		7C3BD19D1370FE1700380828 /* FilesViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController_iPad.m; sourceTree = "<group>"; };
 		7C3BD19E1370FE1700380828 /* HomeViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController_iPad.h; sourceTree = "<group>"; };
 		7C3BD19F1370FE1700380828 /* HomeViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController_iPad.m; sourceTree = "<group>"; };
+		7C3DF00513F1212700640BDB /* PhotoActionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoActionViewController.xib; path = Social/PhotoActionViewController.xib; sourceTree = "<group>"; };
+		7C3DF00713F1217100640BDB /* PhotoActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoActionViewController.h; path = Social/PhotoActionViewController.h; sourceTree = "<group>"; };
+		7C3DF00813F1217100640BDB /* PhotoActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoActionViewController.m; path = Social/PhotoActionViewController.m; sourceTree = "<group>"; };
 		7C5053EA13E2AF3600FA73CD /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
 		7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar@2x.png"; sourceTree = "<group>"; };
 		7C50D4BF136F187B0011280D /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXML.h; path = "Sources/Shared/Components/3-part/KissXML/DDXML.h"; sourceTree = SOURCE_ROOT; };
@@ -1736,6 +1741,9 @@
 				7CA74B0F13C30C330006306D /* MessageComposerViewController_iPad.h */,
 				7CA74B1013C30C330006306D /* MessageComposerViewController_iPad.m */,
 				7CA74B1113C30C330006306D /* MessageComposerViewController_iPad.xib */,
+				7C3DF00713F1217100640BDB /* PhotoActionViewController.h */,
+				7C3DF00813F1217100640BDB /* PhotoActionViewController.m */,
+				7C3DF00513F1212700640BDB /* PhotoActionViewController.xib */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -3598,6 +3606,7 @@
 				46A3E5DF13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png in Resources */,
 				46A9375213F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png in Resources */,
 				46A9375413F03656009D41DA /* SocialActivityDetailDislikeButton.png in Resources */,
+				7C3DF00613F1212700640BDB /* PhotoActionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3762,6 +3771,7 @@
 				462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */,
 				46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
+				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

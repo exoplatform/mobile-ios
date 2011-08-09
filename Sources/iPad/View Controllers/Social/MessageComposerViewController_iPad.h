@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MessageComposerViewController.h"
-
+#import "PhotoActionViewController.h"
 
 @interface MessageComposerViewController_iPad : MessageComposerViewController {
  
+    PhotoActionViewController*      _photoActionViewController;
 }
 
-- (IBAction)showPhotoAttachment;
-
+- (void)showPhotoAttachment;
+- (void)showPhotoLibrary;
 @end

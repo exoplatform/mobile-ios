@@ -14,6 +14,6 @@
 
 }
 
-- (IBAction)showPhotoAttachment;
-
+- (void)showPhotoAttachment;
+- (void)showPhotoLibrary;
 @end

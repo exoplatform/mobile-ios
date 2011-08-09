@@ -21,6 +21,7 @@
 {
     IBOutlet UIButton*                  _btnCancel;
     IBOutlet UIButton*                  _btnSend;
+    IBOutlet UIButton*                  _btnAttach;
     IBOutlet UITextView*                _txtvMessageComposer;
     IBOutlet UIImageView*               _imgvBackground;
     IBOutlet UIImageView*               _imgvTextViewBg;
@@ -31,20 +32,23 @@
     id<SocialMessageComposerDelegate>   delegate;
     UITableView*                        _tblvActivityDetail;
     
+    UIPopoverController*                _popoverPhotoLibraryController;
     //Loader
-    ATMHud*                                 _hudMessageComposer;//Heads up display
+    ATMHud*                             _hudMessageComposer;//Heads up display
 }
 
 @property BOOL isPostMessage;
 @property(nonatomic, retain) NSString* strActivityID;
 @property(nonatomic, retain) id<SocialMessageComposerDelegate> delegate;
 @property(nonatomic, retain) UITableView* tblvActivityDetail;
+@property(nonatomic, retain) UIPopoverController* _popoverPhotoLibraryController;
 
 - (IBAction)onBtnSend:(id)sender;
 - (IBAction)onBtnCancel:(id)sender;
 
+- (IBAction)onBtnAttachment:(id)sender;
 - (void)showPhotoAttachment;
-
+- (void)showPhotoLibrary;
 @end
 
 
