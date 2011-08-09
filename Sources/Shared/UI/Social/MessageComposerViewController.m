@@ -12,6 +12,7 @@
 #import "SocialPostCommentProxy.h"
 #import "ActivityStreamBrowseViewController.h"
 
+
 @implementation MessageComposerViewController
 
 @synthesize isPostMessage=_isPostMessage, strActivityID=_strActivityID, delegate, tblvActivityDetail=_tblvActivityDetail;
@@ -60,6 +61,10 @@
     //Add the loader
     _hudMessageComposer = [[ATMHud alloc] initWithDelegate:self];
     [_hudMessageComposer setAllowSuperviewInteraction:NO];
+    
+    //Set the position of the loader 
+    [self setHudPosition];
+    
 	[self.view addSubview:_hudMessageComposer.view];
     
     
@@ -118,6 +123,11 @@
 
 
 #pragma mark - Loader Management
+- (void)setHudPosition {
+    //Default implementation
+    //Nothing keep the default position of the HUD
+}
+
 - (void)showLoaderForSendingStatus {
     [_hudMessageComposer setCaption:@"Posting the new status"];
     [_hudMessageComposer setActivity:YES];

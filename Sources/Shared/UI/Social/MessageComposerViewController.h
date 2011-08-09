@@ -48,6 +48,7 @@
 
 - (IBAction)onBtnAttachment:(id)sender;
 - (void)showPhotoAttachment;
+- (void)setHudPosition;
 - (void)showPhotoLibrary;
 @end
 

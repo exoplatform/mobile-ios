@@ -52,5 +52,6 @@
 - (void)sortActivities;
 - (void)clearActivityData;
 - (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
+- (void)setHudPosition;
 
 @end

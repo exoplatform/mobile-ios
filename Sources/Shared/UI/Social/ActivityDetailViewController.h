@@ -60,4 +60,6 @@
 //- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andActivityUserProfile:(SocialUserProfile*)socialUserProfile andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
+
+- (void)setHudPosition;
 @end

@@ -25,6 +25,10 @@
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
 }
 
+- (void)setHudPosition {
+    _hudMessageComposer.center = CGPointMake(self.view.center.x, self.view.center.y-70);
+}
+
 - (void)showPhotoAttachment
 {
     if (_photoActionViewController == nil) 

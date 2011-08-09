@@ -90,6 +90,7 @@
     //Add the loader
     _hudActivityDetails = [[ATMHud alloc] initWithDelegate:self];
     [_hudActivityDetails setAllowSuperviewInteraction:NO];
+    [self setHudPosition];
 	[self.view addSubview:_hudActivityDetails.view];
     
     //Set the title of the screen
@@ -394,7 +395,13 @@
 
 
 #pragma mark - Loader Management
+- (void)setHudPosition {
+    //Default implementation
+    //Nothing keep the default position of the HUD
+}
+
 - (void)showLoaderForUpdating {
+    [self setHudPosition];
     [_hudActivityDetails setCaption:@"Updating Details"];
     [_hudActivityDetails setActivity:YES];
     [_hudActivityDetails show];
@@ -405,6 +412,7 @@
 - (void)hideLoader {
     //Now update the HUD
     //TODO Localize this string
+    [self setHudPosition];
     [_hudActivityDetails setCaption:@"Details loaded"];
     [_hudActivityDetails setActivity:NO];
     [_hudActivityDetails setImage:[UIImage imageNamed:@"19-check"]];

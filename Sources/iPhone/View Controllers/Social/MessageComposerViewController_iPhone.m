@@ -27,6 +27,10 @@
     [actionSheet release];
 }
 
+- (void)setHudPosition {
+    _hudMessageComposer.center = CGPointMake(self.view.center.x, self.view.center.y-70);
+}
+
 - (void)showPhotoLibrary
 {
     UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];

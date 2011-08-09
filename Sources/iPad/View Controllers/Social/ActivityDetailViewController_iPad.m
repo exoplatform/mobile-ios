@@ -52,4 +52,9 @@
     navController.view.superview.frame = CGRectMake(x,y, 540.0f, 265.0f);    
 }
 
+
+- (void)setHudPosition {
+    _hudActivityDetails.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
+}
+
 @end

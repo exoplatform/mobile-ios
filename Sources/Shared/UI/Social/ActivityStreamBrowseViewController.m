@@ -90,6 +90,7 @@
     //Add the loader
     _hudActivityStream = [[ATMHud alloc] initWithDelegate:self];
     [_hudActivityStream setAllowSuperviewInteraction:NO];
+    [self setHudPosition];
 	[self.view addSubview:_hudActivityStream.view];
     
     
@@ -354,7 +355,13 @@
 }
 
 #pragma mark - Loader Management
+- (void)setHudPosition {
+    //Default implementation
+    //Nothing keep the default position of the HUD
+}
+
 - (void)showLoaderForUpdating {
+    [self setHudPosition];
     [_hudActivityStream setCaption:@"Updating Activity stream"];
     [_hudActivityStream setActivity:YES];
     [_hudActivityStream show];
@@ -364,6 +371,7 @@
 - (void)hideLoader {
     //Now update the HUD
     //TODO Localize this string
+    [self setHudPosition];
     [_hudActivityStream setCaption:@"Activity Stream updated"];
     [_hudActivityStream setActivity:NO];
     [_hudActivityStream setImage:[UIImage imageNamed:@"19-check"]];
@@ -396,6 +404,9 @@
 
 - (void)finishLoadingAllDataForActivityStream {
     
+    //Remove the loader
+    [self hideLoader];
+    
     //Prevent any reloading status
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
@@ -418,9 +429,6 @@
     
     //Ask the controller to sort activities
     [self sortActivities];
-    
-    //Remove the loader
-    [self hideLoader];
     
     [_tblvActivityStream reloadData];
     
