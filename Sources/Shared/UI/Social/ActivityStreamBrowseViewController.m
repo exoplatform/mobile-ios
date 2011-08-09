@@ -31,8 +31,19 @@
     if (self) {
         // Custom initialization
         //_bbtnPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnPost)];
-        _bbtnPost = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnPost)];
-        self.navigationItem.rightBarButtonItem = _bbtnPost;
+        
+        
+        // Create a custom logout button    
+        UIButton *tmpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *barButtonImage = [UIImage imageNamed:@"SocialPostActivityButton.png"];
+        tmpButton.frame = CGRectMake(0, 0, barButtonImage.size.width, barButtonImage.size.height);
+        [tmpButton setImage:[UIImage imageNamed:@"SocialPostActivityButton.png"] forState:UIControlStateNormal];
+        [tmpButton addTarget:self action:@selector(onBbtnPost) forControlEvents: UIControlEventTouchUpInside];
+        _bbtnPost = [[UIBarButtonItem alloc] initWithCustomView:tmpButton];
+        [self.navigationItem setRightBarButtonItem:_bbtnPost];
+        
+        //_bbtnPost = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnPost)];
+        //self.navigationItem.rightBarButtonItem = _bbtnPost;
                 
         _bIsPostClicked = NO;
         _bIsIPad = NO;
