@@ -15,6 +15,8 @@
     PhotoActionViewController*      _photoActionViewController;
 }
 
-- (void)showPhotoAttachment;
+- (void)showActionSheetForPhotoAttachment;
 - (void)showPhotoLibrary;
+- (void)addPhotoToView:(UIImage *)image;
+
 @end

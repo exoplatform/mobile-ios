@@ -28,6 +28,7 @@
     
     BOOL                                _isPostMessage;
     NSString*                           _strActivityID;
+    NSString*                           _strTitle;
     
     id<SocialMessageComposerDelegate>   delegate;
     UITableView*                        _tblvActivityDetail;
@@ -38,6 +39,8 @@
 }
 
 @property BOOL isPostMessage;
+@property(nonatomic, retain) UIButton* _btnCancel;
+@property(nonatomic, retain) UIButton* _btnSend;
 @property(nonatomic, retain) NSString* strActivityID;
 @property(nonatomic, retain) id<SocialMessageComposerDelegate> delegate;
 @property(nonatomic, retain) UITableView* tblvActivityDetail;
@@ -47,9 +50,14 @@
 - (IBAction)onBtnCancel:(id)sender;
 
 - (IBAction)onBtnAttachment:(id)sender;
-- (void)showPhotoAttachment;
+- (void)showActionSheetForPhotoAttachment;
 - (void)setHudPosition;
 - (void)showPhotoLibrary;
+- (void)addPhotoToView:(UIImage *)image;
+
+- (void)cancelDisplayAttachedPhoto;
+- (void)deleteAttachedPhoto;
+
 @end
 
 

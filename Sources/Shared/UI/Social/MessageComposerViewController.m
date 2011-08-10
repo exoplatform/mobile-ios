@@ -16,7 +16,7 @@
 @implementation MessageComposerViewController
 
 @synthesize isPostMessage=_isPostMessage, strActivityID=_strActivityID, delegate, tblvActivityDetail=_tblvActivityDetail;
-@synthesize _popoverPhotoLibraryController;
+@synthesize _popoverPhotoLibraryController, _btnSend, _btnCancel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,8 +67,6 @@
     
 	[self.view addSubview:_hudMessageComposer.view];
     
-    
-    self.navigationItem.title = @"Message Composer";
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailCommentBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
     [_imgvBackground setImage:strechBg];
     
@@ -96,7 +94,7 @@
     UIBarButtonItem* bbtnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)];
     [bbtnCancel setCustomView:_btnCancel];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
-     
+    
     //[_txtvMessageComposer becomeFirstResponder];
     [_txtvMessageComposer setBackgroundColor:[UIColor clearColor]];
     [_txtvMessageComposer setText:@""];
@@ -104,14 +102,15 @@
     
     if (_isPostMessage) 
     {
-        [self setTitle:@"Post status"];
+        _strTitle = @"Post status";
     }
     else
     {
-        [self setTitle:@"Post comment"];
+        _strTitle = @"Post comment";
     }
     
-
+    [self setTitle:_strTitle];
+    
 }
 
 - (void)viewDidUnload
@@ -156,6 +155,15 @@
 
 - (IBAction)onBtnSend:(id)sender
 {
+    
+    if([self.navigationItem.title isEqualToString:@"Attached photo"])
+    {
+        [self deleteAttachedPhoto];
+        [self.navigationItem setTitle:_strTitle];
+        
+        return;
+    }
+    
     if([_txtvMessageComposer.text length] > 0)
     {
         if(_isPostMessage)
@@ -191,21 +199,36 @@
 
 - (IBAction)onBtnCancel:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    
+    if([self.navigationItem.title isEqualToString:@"Attached photo"])
+    {
+        [self cancelDisplayAttachedPhoto];
+        [self.navigationItem setTitle:_strTitle];
+    }
+    else
+    {
+        [self dismissModalViewControllerAnimated:YES];    
+    }
+    
 }
 
 //- (void)showPhotoAttachment
 - (IBAction)onBtnAttachment:(id)sender
 {
-    [self showPhotoAttachment];
+    [self showActionSheetForPhotoAttachment];
 }
 
-- (void)showPhotoAttachment
+- (void)showActionSheetForPhotoAttachment
 {
     
 }
 
 - (void)showPhotoLibrary
+{
+    
+}
+
+- (void)addPhotoToView:(UIImage *)image
 {
     
 }
@@ -273,11 +296,15 @@
 #pragma mark - ActionSheet Delegate
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self dismissModalViewControllerAnimated:YES];
-    if (_popoverPhotoLibraryController) 
-    {
-        [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    }
+    [picker dismissModalViewControllerAnimated:YES];
+    
+    [self addPhotoToView:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+    
+//    if (_popoverPhotoLibraryController) 
+//    {
+//        [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+//    }
+    
 }
 
 
@@ -287,5 +314,6 @@
 {
     
 }
+
 
 @end

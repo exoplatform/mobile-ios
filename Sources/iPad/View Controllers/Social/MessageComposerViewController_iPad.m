@@ -29,7 +29,7 @@
     _hudMessageComposer.center = CGPointMake(self.view.center.x, self.view.center.y-70);
 }
 
-- (void)showPhotoAttachment
+- (void)showActionSheetForPhotoAttachment
 {
     if (_photoActionViewController == nil) 
     {
@@ -97,6 +97,11 @@
 }
 
 - (void)onBtnCancel
+{
+    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+}
+
+- (void)addPhotoToView:(UIImage *)image
 {
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
 }
