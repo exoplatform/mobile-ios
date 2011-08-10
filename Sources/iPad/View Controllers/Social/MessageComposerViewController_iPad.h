@@ -19,4 +19,7 @@
 - (void)showPhotoLibrary;
 - (void)addPhotoToView:(UIImage *)image;
 
+- (void)cancelDisplayAttachedPhoto;
+- (void)deleteAttachedPhoto;
+
 @end

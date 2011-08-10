@@ -99,6 +99,8 @@
 
 - (void)cancelDisplayAttachedPhoto
 {
+ 
+    [self._btnSend setTitle:@"Send" forState:UIControlStateNormal];
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
     CGRect rect = [(UIButton *)[self.view viewWithTag:2] frame];
@@ -110,16 +112,6 @@
     imgView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     
     [UIView commitAnimations];
-    
-    //    [imgView removeFromSuperview];
-    
-    UIBarButtonItem* bbtnSend = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnSend:)];
-    [bbtnSend setCustomView:_btnSend];
-    self.navigationItem.rightBarButtonItem = bbtnSend;
-    
-    UIBarButtonItem* bbtnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)];
-    [bbtnCancel setCustomView:_btnCancel];
-    self.navigationItem.leftBarButtonItem = bbtnCancel;
     
 }
 
