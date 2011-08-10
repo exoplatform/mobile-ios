@@ -12,6 +12,7 @@
 @class EGOImageView;
 @class SocialActivityStream;
 @class SocialActivityDetails;
+@class ActivityDetail;
 
 @interface ActivityDetailMessageTableViewCell : UITableViewCell {
     
@@ -37,5 +38,5 @@
 
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail andUserName:(NSString *)username;
-
+- (void)setActivityDetail:(ActivityDetail*)activityDetail;
 @end

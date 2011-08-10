@@ -68,6 +68,8 @@
 @synthesize userFullName;
 @synthesize arrLikes;
 @synthesize arrComments;
+@synthesize userImageAvatar;
+
 - (id)initWithUserID:(NSString *)_activityID
             arrLikes:(NSArray *)_arrLikes
          arrComments:(NSArray *)_arrComments

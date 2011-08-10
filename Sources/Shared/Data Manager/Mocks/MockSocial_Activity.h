@@ -79,6 +79,7 @@
 @property (nonatomic, retain) NSString *userFullName;
 @property (nonatomic, retain) NSArray *arrLikes;
 @property (nonatomic, retain) NSArray *arrComments;
+@property (nonatomic, retain) NSString* userImageAvatar;
 
 - (id)initWithUserID:(NSString *)_activityID
             arrLikes:(NSArray *)_arrLikes

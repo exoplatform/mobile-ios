@@ -11,7 +11,7 @@
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialComment.h"
-
+#import "defines.h"
 
 
 @implementation ActivityDetailCommentTableViewCell
@@ -104,7 +104,15 @@
 
 - (void)setSocialComment:(SocialComment*)socialComment
 {
-    //_imgvAvatar.imageURL = [NSURL URLWithString:activity.avatarUrl];    
+    NSString* tmp = socialComment.userProfile.avatarUrl;
+    NSString* domainName = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] copy];
+    NSRange rang = [tmp rangeOfString:domainName];
+    if (rang.length == 0) 
+    {
+        tmp = [NSString stringWithFormat:@"%@%@",domainName,tmp];
+    }
+    
+    _imgvAvatar.imageURL = [NSURL URLWithString:tmp];    
     _lbMessage.text = [socialComment.text copy];
     _lbName.text = [socialComment.userProfile.fullName copy];
     _lbDate.text = [socialComment.postedTimeInWords copy];

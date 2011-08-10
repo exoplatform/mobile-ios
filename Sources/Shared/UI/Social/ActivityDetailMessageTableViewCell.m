@@ -107,5 +107,9 @@
     _lbDate.text = [socialActivityDetail.postedTimeInWords copy];
 }
 
+- (void)setActivityDetail:(ActivityDetail*)activityDetail
+{
+    _imgvAvatar.imageURL = [NSURL URLWithString:activityDetail.userImageAvatar];
+}
 
 @end

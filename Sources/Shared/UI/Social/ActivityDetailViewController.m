@@ -299,7 +299,7 @@
         }
         cell.userInteractionEnabled = NO;
         [cell setSocialActivityDetail:_socialActivityDetails andUserName:_socialUserProfile.fullName];
-        
+        [cell setActivityDetail:_activityDetail];
         return cell;
     }
     else if (indexPath.section == 1) 
