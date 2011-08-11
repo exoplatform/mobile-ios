@@ -106,13 +106,32 @@
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
     
     [[self.view viewWithTag:1] removeFromSuperview];
+    [[self.view viewWithTag:2] removeFromSuperview];
     
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 150, 50, 50)];
+    CGSize size = [image size];
+    BOOL bCheck = NO;
+    if (size.width > size.height) 
+    {
+        bCheck = YES;
+    }
+    
+    CGRect rect;
+    if (bCheck) 
+    {
+        rect = CGRectMake(10, self.view.frame.size.height - (50 + 10), 50*size.width/size.height, 50);
+    }
+    else
+    {
+        rect = CGRectMake(10, self.view.frame.size.height - (50*size.height/size.width + 10), 50, 50*size.height/size.width);
+    }
+    
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:rect];
     imgView.tag = 1;
     imgView.image = image;
     [self.view addSubview:imgView];
     
-    UIButton *btnPhotoActivity = [[UIButton alloc] initWithFrame:CGRectMake(10, 150, 50, 50)];
+    UIButton *btnPhotoActivity = [[UIButton alloc] initWithFrame:rect];
     btnPhotoActivity.tag = 2;
     [btnPhotoActivity addTarget:self action:@selector(showPhotoActivity:) forControlEvents:UIControlEventTouchUpInside];
     [btnPhotoActivity setBackgroundImage:image forState:UIControlStateNormal];
@@ -130,15 +149,22 @@
     [self.view sendSubviewToBack:sender];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0f];
+    [UIView setAnimationDuration:0.5f];
     [UIView setAnimationDelegate:self];
     
-    imgView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 400);
+    CGSize size = imgView.frame.size;
+    CGRect rect = CGRectMake(0, 0, 540, 540*size.height/size.width);
+    
+    //imgView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 400);
+    imgView.frame = rect;
     self.navigationController.view.frame = imgView.frame;
     self.view.frame = imgView.frame;
     
     [UIView commitAnimations];
     
+    [self.view bringSubviewToFront:imgView];
+    [_txtvMessageComposer resignFirstResponder];
+    [_txtvMessageComposer setUserInteractionEnabled:NO];    
 }
 
 
@@ -149,13 +175,13 @@
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
     
     CGRect frame = imgView.frame;
-    frame.size.height -= 400;
+    frame.size.height = 265;
     
     CGRect rect = [(UIButton *)[self.view viewWithTag:2] frame];
     [[self.view viewWithTag:2] removeFromSuperview];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0f];
+    [UIView setAnimationDuration:0.5f];
     [UIView setAnimationDelegate:self];
     
     imgView.frame = CGRectMake(rect.origin.x, rect.origin.y, 0, 0);
@@ -163,29 +189,30 @@
     self.view.frame = frame;
     
     [UIView commitAnimations];
-    
+    [_txtvMessageComposer setUserInteractionEnabled:YES];
 }
 
 - (void)cancelDisplayAttachedPhoto
 {
     [self._btnSend setTitle:@"Send" forState:UIControlStateNormal];
     CGRect frame = self.navigationController.view.frame;
-    frame.size.height -= 400;
+    frame.size.height = 265;
     
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
-    CGRect rect = [(UIButton *)[self.view viewWithTag:2] frame];
+    UIButton* btnPhotoActivity = (UIButton *)[self.view viewWithTag:2];
+    CGRect rect = [btnPhotoActivity frame];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0f];
+    [UIView setAnimationDuration:0.5f];
     [UIView setAnimationDelegate:self];
-    
     imgView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     self.navigationController.view.frame = frame;
     self.view.frame = frame;
-    
     [UIView commitAnimations];
     
+    [self.view bringSubviewToFront:btnPhotoActivity];
+    [_txtvMessageComposer setUserInteractionEnabled:YES];    
 }
 
 @end
