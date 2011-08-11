@@ -385,7 +385,7 @@ NSString* fileType(NSString *fileName)
 	[pool release];
 }
 
-- (void)initWithRootDirectory
+- (void)initWithRootDirectory:(BOOL)isCompatibleWithSocial
 {
 	if([_strRootDirectory length] == 0)
 	{

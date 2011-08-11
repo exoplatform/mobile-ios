@@ -42,7 +42,7 @@
     
     if (_filesProxy == nil) _filesProxy = [[FilesProxy alloc] init];
     
-    if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory];
+    if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory:_isCompatibleWithSocial];
     
     _arrayContentOfRootFile = [_filesProxy getPersonalDriveContent:_rootFile];
     
@@ -65,8 +65,6 @@
     [self.tableView reloadData];
 }
 
-
-
 - (void)setTitleForFilesViewController {
     if (_rootFile) {
         self.title = _rootFile.fileName;
@@ -74,7 +72,6 @@
         self.title = @"Documents";
     }
 }
-
 
 @end
 
@@ -88,6 +85,7 @@
 // ================================
 @implementation FilesViewController_iPhone
 
+@synthesize _isCompatibleWithSocial;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

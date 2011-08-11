@@ -20,18 +20,21 @@
 #define kHeightForFooter 60
 
 @implementation MenuViewController
-@synthesize tableView = _tableView;
+
+@synthesize tableView = _tableView, isCompatibleWithSocial = _isCompatibleWithSocial;
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)isCompatibleWithSocial {
+- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial {
     self = [super init];
     if (self) {
 		[self.view setFrame:frame];
         
         self.view.backgroundColor = [UIColor clearColor]; 
+        
+        _isCompatibleWithSocial = compatibleWithSocial;
 		
 		_menuHeader = [[MenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 70) andTitleImage:[UIImage imageNamed:@"eXoLogoNavigationBariPhone.png"]];
 		_menuHeader.imageView.image = [UIImage imageNamed:@"eXoLogoNavigationBariPhone@2x.png"];
@@ -43,7 +46,7 @@
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, NSLocalizedString(@"Chat",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, NSLocalizedString(@"Dashboard",@""), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, NSLocalizedString(@"Documents",@""), kCellText, nil]];
-        if(isCompatibleWithSocial)
+        if(_isCompatibleWithSocial)
             [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, NSLocalizedString(@"Activity Stream",@""), kCellText, nil]];
         
         
@@ -316,7 +319,7 @@
             // files
             _filesViewController = [[FilesViewController alloc] initWithNibName:@"FilesViewController" bundle:nil];
             [_filesViewController setDelegate:_delegate];
-            [_filesViewController initWithRootDirectory];
+            [_filesViewController initWithRootDirectory:_isCompatibleWithSocial];
             [_filesViewController getPersonalDriveContent:_filesViewController._currenteXoFile];
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_filesViewController 
                                                                                    invokeByController:self 

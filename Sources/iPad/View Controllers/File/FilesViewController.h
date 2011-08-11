@@ -95,7 +95,7 @@
 - (void)localize;	//Language dictionary
 - (int)getSelectedLanguage;	//Get current language index
 - (NSDictionary*)getLocalization;	//Get current language dictionary
-- (void)initWithRootDirectory;	//Constructor
+- (void)initWithRootDirectory:(BOOL)isCompatibleWithSocial;	//Constructor
 - (NSMutableArray*)getPersonalDriveContent:(eXoFile *)file;	//Get file list
 //File action
 - (void)onAction:(NSString*)strAction;

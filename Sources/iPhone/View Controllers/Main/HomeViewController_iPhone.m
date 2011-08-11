@@ -177,6 +177,9 @@
         //Start Documents
         
         FilesViewController_iPhone *filesViewController = [[FilesViewController_iPhone alloc] initWithNibName:@"FilesViewController_iPhone" bundle:nil];
+        
+        filesViewController._isCompatibleWithSocial = _isCompatibleWithSocial;
+        
         [self.navigationController pushViewController:filesViewController animated:YES];
     }
     

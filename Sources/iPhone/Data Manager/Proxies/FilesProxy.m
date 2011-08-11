@@ -92,13 +92,33 @@
 #pragma mark Files retrieving methods
 
 
-- (File *)initialFileForRootDirectory
+- (File *)initialFileForRootDirectory:(BOOL)isCompatibleWithPlatform35
 {
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-    NSString* urlStr = [domain stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users/"];
-    urlStr = [urlStr stringByAppendingString:username];
+    
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithFormat:@"%@/rest/private/jcr/repository/collaboration/Users", domain];
+    
+    if(isCompatibleWithPlatform35)
+    {
+        int length = [username length];
+        for(int i = 1; i < length; i++)
+        {
+            NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
+            for(int j = 1; j < length; j++)
+            {
+                [userNameLevel appendString:@"_"];
+            }
+
+            [urlStr appendFormat:@"/%@", userNameLevel];
+            
+            [userNameLevel release];
+        }
+        
+    }
+    
+    [urlStr appendFormat:@"/%@", username];
     
     return [[File alloc] initWithUrlStr:urlStr fileName:username];
 }

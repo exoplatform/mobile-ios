@@ -28,7 +28,11 @@
     
     ATMHud *_hudFolder;//Heads up display
     
+    BOOL                _isCompatibleWithSocial;
+    
 }
+
+@property BOOL _isCompatibleWithSocial;
 
 //Use this method to init the Controller with a root file
 - (id) initWithRootFile:(File *)rootFile; 

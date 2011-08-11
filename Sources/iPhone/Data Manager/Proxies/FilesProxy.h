@@ -32,7 +32,7 @@
 
 
 // Use this method to create the first initial file
-- (File *)initialFileForRootDirectory;
+- (File *)initialFileForRootDirectory:(BOOL)isCompatibleWithPlatform35;
 
 //Use this method to retrieve the content of a virtual drive
 - (NSMutableArray*)getPersonalDriveContent:(File *)file;
