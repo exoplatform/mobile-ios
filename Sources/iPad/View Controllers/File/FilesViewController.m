@@ -367,12 +367,8 @@ NSString* fileType(NSString *fileName)
 -(void)endProgress
 {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSString *tmpStr = _currenteXoFile._urlStr;
-	NSString *domainStr = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
 	
-	
-	if([tmpStr isEqualToString:[domainStr stringByAppendingFormat:@"/rest/private/jcr/repository/collaboration/Users/%@",
-								[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME]]]	)
+	if([_currenteXoFile._urlStr isEqualToString:_strRootDirectory])
 	{
 		[_navigationBar setTitle:@"Documents Application"];
 		[_navigationBar setLeftBarButtonItem:nil];
@@ -382,19 +378,42 @@ NSString* fileType(NSString *fileName)
 		[_navigationBar setTitle:_currenteXoFile._fileName];
 		[_navigationBar setLeftBarButtonItem:_bbtnBack];
 	}	
+    
 	[pool release];
 }
 
-- (void)initWithRootDirectory:(BOOL)isCompatibleWithSocial
+- (void)initWithRootDirectory:(BOOL)isCompatibleWithPlatform35
 {
 	if([_strRootDirectory length] == 0)
 	{
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-		NSString* strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-		NSString* urlStr = [strHost stringByAppendingString:@"/rest/private/jcr/repository/collaboration/Users/"];
+		NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+        
+        NSMutableString *urlStr = [[NSMutableString alloc] initWithFormat:@"%@/rest/private/jcr/repository/collaboration/Users", domain];
+        
+        if(isCompatibleWithPlatform35)
+        {
+            int length = [username length];
+            for(int i = 1; i < length; i++)
+            {
+                NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
+                for(int j = 1; j < length; j++)
+                {
+                    [userNameLevel appendString:@"_"];
+                }
+                
+                [urlStr appendFormat:@"/%@", userNameLevel];
+                
+                [userNameLevel release];
+            }
+            
+        }
+        
+        [urlStr appendFormat:@"/%@", username];
+
 		_fileNameStackStr = username;
-		urlStr = [urlStr stringByAppendingString:username];
+
 		_strRootDirectory = [urlStr retain];
 		_currenteXoFile = [[eXoFile alloc] initWithUrlStr:_strRootDirectory fileName:username];
 	}
@@ -636,10 +655,12 @@ NSString* fileType(NSString *fileName)
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	eXoFile *file = [_arrDicts objectAtIndex:indexPath.row];
-	_currenteXoFile = file;
+	
 	
 	if(file._isFolder)
 	{
+        _currenteXoFile = file;
+        
 		NSThread* startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 		[startThread start];
 	
