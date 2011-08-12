@@ -238,6 +238,10 @@
     return [arrayForSection objectAtIndex:indexPath.row];
 }
 
+- (void)clearActivityData
+{
+    [_arrActivityStreams removeAllObjects];
+}
 
 #pragma mark - Table view Methods
 
@@ -343,6 +347,7 @@
     [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
     
     //Set the cell content
+    [cell setSocialUserProfile:_socialUserProfile];
     [cell setSocialActivityStream:socialActivityStream];
     
 	return cell;

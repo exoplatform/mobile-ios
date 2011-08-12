@@ -12,11 +12,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivityStream.h"
 #import "ActivityStreamBrowseViewController.h"
+#import "SocialUserProfile.h"
 
 @implementation ActivityBasicTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
-@synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
+@synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate, _socialUserProfile;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -55,7 +56,8 @@
     NSArray *arrLike = _socialActivytyStream.likedByIdentities;
     for(NSDictionary* dic in arrLike)
     {
-        if([_socialActivytyStream.identityId isEqualToString:[dic objectForKey:@"id"]])
+        //if([_socialActivytyStream.identityId isEqualToString:[dic objectForKey:@"id"]])
+        if([_socialUserProfile.identity isEqualToString:[dic objectForKey:@"id"]])
         {
             isLike = NO;
             break;
@@ -204,5 +206,9 @@
      [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)setSocialUserProfile:(SocialUserProfile*)socialUserProfile
+{
+    _socialUserProfile = socialUserProfile;
+}
 
 @end
