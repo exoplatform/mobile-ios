@@ -17,6 +17,7 @@
 #import "NSString+HTML.h"
 #import "Configuration.h"
 #import "SSHUDView.h"
+#import "FilesProxy.h"
 
 
 #define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
@@ -58,7 +59,7 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
+      
     _contentView.backgroundColor = [UIColor clearColor];
     
     //Set Alpha for all subviews to make a small animation

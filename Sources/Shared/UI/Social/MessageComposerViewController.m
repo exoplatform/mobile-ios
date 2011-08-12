@@ -11,7 +11,7 @@
 #import "SocialPostActivity.h"
 #import "SocialPostCommentProxy.h"
 #import "ActivityStreamBrowseViewController.h"
-
+#import "FilesProxy.h"
 
 @implementation MessageComposerViewController
 
@@ -166,6 +166,10 @@
     
     if([_txtvMessageComposer.text length] > 0)
     {
+
+        FilesProxy *fileProxy = [[FilesProxy alloc] init];
+        [fileProxy createNewFolderWithURL:@"http://localhost:8080/rest/private/jcr/repository/collaboration/Users/r___/ro___/roo___/root/Private" folderName:@"Alo"];
+        
         if(_isPostMessage)
         {
             [self showLoaderForSendingStatus];

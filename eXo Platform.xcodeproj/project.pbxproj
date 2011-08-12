@@ -482,6 +482,7 @@
 		8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351613372CC200B0AD11 /* libidn-iPhone.a */; };
 		8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351813372CD100B0AD11 /* libidn-simulator.a */; };
 		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
+		8997843D13F53568002E7E1C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997843C13F53568002E7E1C /* Reachability.m */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 		89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */; };
 /* End PBXBuildFile section */
@@ -1359,6 +1360,8 @@
 		8947351613372CC200B0AD11 /* libidn-iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-iPhone.a"; sourceTree = "<group>"; };
 		8947351813372CD100B0AD11 /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-simulator.a"; sourceTree = "<group>"; };
 		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8997843B13F53568002E7E1C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		8997843C13F53568002E7E1C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2826,6 +2829,7 @@
 		894734A01337139800B0AD11 /* 3-part */ = {
 			isa = PBXGroup;
 			children = (
+				8997843A13F53568002E7E1C /* InternetReachability */,
 				46982F2F13E701900063CF62 /* EGOTableViewPullRefresh */,
 				7CAB435913A76A7800CED7A3 /* EGOImageLoading */,
 				7CFD41061361367D00DD86E8 /* KissXML */,
@@ -3055,6 +3059,15 @@
 			children = (
 			);
 			path = "Settings Management";
+			sourceTree = "<group>";
+		};
+		8997843A13F53568002E7E1C /* InternetReachability */ = {
+			isa = PBXGroup;
+			children = (
+				8997843B13F53568002E7E1C /* Reachability.h */,
+				8997843C13F53568002E7E1C /* Reachability.m */,
+			);
+			path = InternetReachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3780,6 +3793,7 @@
 				46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
+				8997843D13F53568002E7E1C /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

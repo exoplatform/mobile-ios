@@ -10,6 +10,7 @@
 #import "NSString+HTML.h"
 #import "eXo_Constants.h"
 #import "DataProcess.h"
+#import "Reachability.h"
 
 @implementation FilesProxy
 
@@ -119,6 +120,8 @@
     }
     
     [urlStr appendFormat:@"/%@", username];
+    
+    _strUserRepository = [NSString stringWithString:urlStr];
     
     return [[File alloc] initWithUrlStr:urlStr fileName:username];
 }
@@ -249,5 +252,87 @@
 	return nil;
 }
 
+-(BOOL)createNewFolderWithURL:(NSString *)strUrl folderName:(NSString *)name
+{
+
+    BOOL returnValue = NO;
+    
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+	
+	NSHTTPURLResponse* response;
+	NSError* error;
+    
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
+    
+    NSURL *url = nil;
+    
+    if(strUrl)
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", strUrl, name]];
+    else
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", _strUserRepository, name]];
+    
+    
+    [request setURL:url];
+    
+    BOOL test = [self isExistedUrl:[NSString stringWithFormat:@"%@/%@", strUrl, name]];
+    
+    [request setHTTPMethod:@"MKCOL"];
+    
+    NSString *s = @"Basic ";
+    NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
+    [request setValue:author forHTTPHeaderField:@"Authorization"];
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
+    [request release];
+    
+    NSUInteger statusCode = [response statusCode];
+    if(statusCode >= 200 && statusCode < 300)
+    {
+        // TODO Localize this label
+        returnValue = YES;
+        
+    }  
+    
+	return returnValue;
+}
+
+-(BOOL)isExistedUrl:(NSString *)strUrl
+{
+    BOOL returnValue = NO;
+	
+    Reachability *hostReach = [[Reachability reachabilityWithHostName: strUrl] retain];
+	[hostReach startNotifier];
+    
+    NetworkStatus netStatus = [hostReach currentReachabilityStatus];
+    
+    NSString* statusString= @"";
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            statusString = @"Access Not Available";
+            returnValue= NO;  
+            break;
+        }
+            
+        case ReachableViaWWAN:
+        {
+            statusString = @"Reachable WWAN";
+            returnValue = YES;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            statusString= @"Reachable WiFi";
+            returnValue = YES;
+            break;
+        }
+    }
+    
+    return returnValue;
+    
+}
 
 @end

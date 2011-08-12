@@ -24,7 +24,7 @@
 @interface FilesProxy : NSObject {
     
     AuthenticateProxy *_authenticateProxy;
-    
+    NSString *_strUserRepository;
 }
 
 + (NSString*)stringEncodedWithBase64:(NSString*)str;
@@ -41,5 +41,7 @@
 //Return en error Message
 -(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data;
 
+-(BOOL)createNewFolderWithURL:(NSString *)strUrl folderName:(NSString *)name;
+-(BOOL)isExistedUrl:(NSString *)strUrl;
 
 @end
