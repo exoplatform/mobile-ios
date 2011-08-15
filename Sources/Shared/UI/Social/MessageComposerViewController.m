@@ -166,9 +166,39 @@
     
     if([_txtvMessageComposer.text length] > 0)
     {
-
-        FilesProxy *fileProxy = [[FilesProxy alloc] init];
-        [fileProxy createNewFolderWithURL:@"http://localhost:8080/rest/private/jcr/repository/collaboration/Users/r___/ro___/roo___/root/Private" folderName:@"Alo"];
+        UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
+        if(imgView)
+        {
+            FilesProxy *fileProxy = [FilesProxy sharedInstance];
+            
+            BOOL storageFolder = [fileProxy createNewFolderWithURL:[NSString stringWithFormat:@"%@/Public", fileProxy._strUserRepository] folderName:@"Mobile"];
+            
+            if(storageFolder)
+            {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"dd-MM-yyy-HH-mm-ss"];
+                NSString* fileName = [dateFormatter stringFromDate:[NSDate date]];
+                
+                //release the date formatter because, not needed after that piece of code
+                [dateFormatter release];
+                fileName = [fileName stringByAppendingFormat:@".png"];
+                
+                NSString *directory = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileName];
+                
+                NSData *imageData = UIImagePNGRepresentation(imgView.image);
+                
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                            [fileProxy methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
+                [invocation setTarget:fileProxy];
+                [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
+                [invocation setArgument:&directory atIndex:2];
+                [invocation setArgument:&imageData atIndex:3];
+                [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
+                
+//                [fileProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
+            }
+        }
+        
         
         if(_isPostMessage)
         {

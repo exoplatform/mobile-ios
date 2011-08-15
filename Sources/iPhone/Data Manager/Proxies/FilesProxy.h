@@ -27,9 +27,14 @@
     NSString *_strUserRepository;
 }
 
+@property(nonatomic, retain) NSString *_strUserRepository;
+
++ (FilesProxy *)sharedInstance;
 + (NSString*)stringEncodedWithBase64:(NSString*)str;
 + (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password;	//Athentication encoding
 
+//Create user's repository home url
+- (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35;
 
 // Use this method to create the first initial file
 - (File *)initialFileForRootDirectory:(BOOL)isCompatibleWithPlatform35;

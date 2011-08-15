@@ -17,7 +17,6 @@
 #import "NSString+HTML.h"
 #import "Configuration.h"
 #import "SSHUDView.h"
-#import "FilesProxy.h"
 
 
 #define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
@@ -95,8 +94,6 @@
 {
     //Hide the Navigation Bar
     self.navigationController.navigationBarHidden = YES;
-
-    
     
     Configuration* configuration = [Configuration sharedInstance];
     _arrServerList = [configuration getServerList];

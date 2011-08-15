@@ -11,9 +11,11 @@
 #import "eXo_Constants.h"
 #import "DataProcess.h"
 #import "Reachability.h"
+#import "Connection.h"
 
 @implementation FilesProxy
 
+@synthesize _strUserRepository;
 
 #pragma mark -
 #pragma mark Utils method for files
@@ -70,6 +72,20 @@
 #pragma mark -
 #pragma NSObject Methods
 
++ (FilesProxy *)sharedInstance
+{
+	static FilesProxy *sharedInstance;
+	@synchronized(self)
+	{
+		if(!sharedInstance)
+		{
+			sharedInstance = [[FilesProxy alloc] init];
+		}
+		return sharedInstance;
+	}
+	return sharedInstance;
+}
+
 - (id)init{
     if ((self = [super init])) { 
         _authenticateProxy = [[AuthenticateProxy alloc] init];
@@ -92,10 +108,12 @@
 #pragma mark -
 #pragma mark Files retrieving methods
 
-
-- (File *)initialFileForRootDirectory:(BOOL)isCompatibleWithPlatform35
+- (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35
 {
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    if(_strUserRepository != nil)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
     
@@ -111,7 +129,7 @@
             {
                 [userNameLevel appendString:@"_"];
             }
-
+            
             [urlStr appendFormat:@"/%@", userNameLevel];
             
             [userNameLevel release];
@@ -121,9 +139,15 @@
     
     [urlStr appendFormat:@"/%@", username];
     
-    _strUserRepository = [NSString stringWithString:urlStr];
+    self._strUserRepository = [NSString stringWithString:urlStr];
     
-    return [[File alloc] initWithUrlStr:urlStr fileName:username];
+}
+
+- (File *)initialFileForRootDirectory:(BOOL)isCompatibleWithPlatform35
+{
+    NSString* username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
+    
+    return [[File alloc] initWithUrlStr:self._strUserRepository fileName:username];
 }
 
 - (NSArray*)getPersonalDriveContent:(File *)file
@@ -166,7 +190,10 @@
 	return (NSArray *)arrDicts;
 }
 
-
+- (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
+{
+    [self fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
+}
 
 -(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
 {	
@@ -254,17 +281,7 @@
 
 -(BOOL)createNewFolderWithURL:(NSString *)strUrl folderName:(NSString *)name
 {
-
     BOOL returnValue = NO;
-    
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-	
-	NSHTTPURLResponse* response;
-	NSError* error;
-    
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
     
     NSURL *url = nil;
     
@@ -273,27 +290,42 @@
     else
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", _strUserRepository, name]];
     
+    BOOL isExistedUrl = [self isExistedUrl:[NSString stringWithFormat:@"%@/%@", strUrl, name]];
     
-    [request setURL:url];
-    
-    BOOL test = [self isExistedUrl:[NSString stringWithFormat:@"%@/%@", strUrl, name]];
-    
-    [request setHTTPMethod:@"MKCOL"];
-    
-    NSString *s = @"Basic ";
-    NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
-    [request setValue:author forHTTPHeaderField:@"Authorization"];
-    
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
-    [request release];
-    
-    NSUInteger statusCode = [response statusCode];
-    if(statusCode >= 200 && statusCode < 300)
+    if(isExistedUrl)
     {
-        // TODO Localize this label
-        returnValue = YES;
+        returnValue = YES; 
+    }
+    else
+    {
+        NSHTTPURLResponse* response;
+        NSError* error;
         
-    }  
+        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
+        [request setURL:url];
+        
+        [request setHTTPMethod:@"MKCOL"];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+        NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+        
+        NSString *s = @"Basic ";
+        NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
+        [request setValue:author forHTTPHeaderField:@"Authorization"];
+        
+        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
+        [request release];
+        
+        NSUInteger statusCode = [response statusCode];
+        if(statusCode >= 200 && statusCode < 300)
+        {
+            // TODO Localize this label
+            returnValue = YES;
+            
+        }  
+        
+    }
     
 	return returnValue;
 }
@@ -302,34 +334,19 @@
 {
     BOOL returnValue = NO;
 	
-    Reachability *hostReach = [[Reachability reachabilityWithHostName: strUrl] retain];
-	[hostReach startNotifier];
+    Connection *cnn = [[Connection alloc] init];
+    NSData *data = [cnn sendRequest:strUrl];
     
-    NetworkStatus netStatus = [hostReach currentReachabilityStatus];
+    NSString *strResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    NSString* statusString= @"";
-    switch (netStatus)
-    {
-        case NotReachable:
-        {
-            statusString = @"Access Not Available";
-            returnValue= NO;  
-            break;
-        }
-            
-        case ReachableViaWWAN:
-        {
-            statusString = @"Reachable WWAN";
-            returnValue = YES;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            statusString= @"Reachable WiFi";
-            returnValue = YES;
-            break;
-        }
-    }
+    NSRange rangeOfWebdavBrowser = [strResponse rangeOfString:@"WEBDAV Browser"];
+    
+    if(rangeOfWebdavBrowser.length > 0)
+        returnValue = YES;
+    
+//    [strResponse release];
+//    [data release];
+//    [cnn release];
     
     return returnValue;
     

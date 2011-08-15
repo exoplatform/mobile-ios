@@ -29,6 +29,7 @@
 #import "Connection.h"
 #import "Gadget_iPhoneViewController.h"
 #import "MessengerViewController_iPhone.h"
+#import "FilesProxy.h"
 
 
 #import "AppDelegate_iPhone.h"
@@ -145,6 +146,8 @@
     else
         _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
                                                          chatItem, documentItem, dashboardItem, settingItem, nil], nil];
+    
+    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:_isCompatibleWithSocial];
     
     [self.view addSubview:_launcherView];
 }

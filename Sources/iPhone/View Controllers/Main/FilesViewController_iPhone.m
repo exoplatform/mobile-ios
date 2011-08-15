@@ -40,7 +40,7 @@
     
     NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
     
-    if (_filesProxy == nil) _filesProxy = [[FilesProxy alloc] init];
+    if (_filesProxy == nil) _filesProxy = [FilesProxy sharedInstance];
     
     if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory:_isCompatibleWithSocial];
     
