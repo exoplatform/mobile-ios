@@ -223,7 +223,7 @@
         {
             _filesViewController = [[FilesViewController alloc] initWithNibName:@"FilesViewController" bundle:nil];
             [_filesViewController setDelegate:self];
-            [_filesViewController initWithRootDirectory];
+            [_filesViewController initWithRootDirectory:NO];
             [_filesViewController getPersonalDriveContent:_filesViewController._currenteXoFile];
         }
         

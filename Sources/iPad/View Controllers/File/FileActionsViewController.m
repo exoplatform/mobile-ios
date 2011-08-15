@@ -291,7 +291,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 {	
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSString *tmpStr = _delegate._currenteXoFile._fileName;
+	NSString *tmpStr = _delegate._currenteXoFile.fileName;
 	if([tmpStr isEqualToString:@"Private"])
 	{
 		[_delegate._navigationBar setTitle:@"Documents Application"];

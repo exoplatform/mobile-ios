@@ -17,150 +17,16 @@
 #import "DataProcess.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import "FilesProxy.h"
 
 
 static NSString* kCellIdentifier = @"Cell";
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
-NSString* fileType(NSString *fileName)
-{	
-	if([fileName length] < 5)
-	{
-		return @"unknownFileIcon.png";
-	}	
-	else
-	{
-		NSRange range = NSMakeRange([fileName length] - 4, 4);
-		NSString *tmp = [fileName substringWithRange:range];
-		tmp = [tmp lowercaseString];
-		
-		if([tmp isEqualToString:@".png"] || [tmp isEqualToString:@".jpg"] || [tmp isEqualToString:@".jpeg"] || 
-		   [tmp isEqualToString:@".gif"] || [tmp isEqualToString:@".psd"] || [tmp isEqualToString:@".tiff"] ||
-		   [tmp isEqualToString:@".bmp"] || [tmp isEqualToString:@".pict"])
-		{	
-			return @"image.png";
-		}	
-		if([tmp isEqualToString:@".rtf"] || [tmp isEqualToString:@".txt"])
-		{	
-			return @"txt.png";
-		}	
-		if([tmp isEqualToString:@".pdf"])
-		{	
-			return @"pdf.png";
-		}
-		if([tmp isEqualToString:@".doc"])
-		{	
-			return @"word.png";
-		}
-		if([tmp isEqualToString:@".ppt"])
-		{	
-			return @"ppt.png";
-		}
-		if([tmp isEqualToString:@".xls"])
-		{	
-			return @"xls.png";
-		}
-		if([tmp isEqualToString:@".swf"])
-		{	
-			return @"swf.png";
-		}
-		if([tmp isEqualToString:@".mp3"] || [tmp isEqualToString:@".aac"] || [tmp isEqualToString:@".wav"])
-		{	
-			return @"music.png";
-		}	
-		if([tmp isEqualToString:@".mov"])
-		{	
-			return @"video.png";
-		}
-		return @"unknownFileIcon.png";
-	}
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation eXoFile
-
-@synthesize _fileName, _urlStr, _contentType, _isFolder;
-
-- (BOOL)isFolder:(NSString *)urlStr
-{
-	Connection *cnn = [[Connection alloc] init];
-	
-	_contentType = [[NSString alloc] initWithString:@""];
-	
-	urlStr = [urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	
-	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-	
-	BOOL returnValue = FALSE;
-	
-	NSURL* url = [NSURL URLWithString:urlStr];
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-	[request setURL:url];
-	[request setTimeoutInterval:60.0];
-	[request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-	
-	[request setHTTPMethod:@"PROPFIND"];
-	
-	[request setHTTPBody: [[NSString stringWithString: @"<?xml version=\"1.0\" encoding=\"utf-8\" ?><D:propfind xmlns:D=\"DAV:\">"
-							"<D:prop><D:getcontenttype/></D:prop></D:propfind>"] dataUsingEncoding:NSUTF8StringEncoding]]; 
-	
-	[request setValue:[cnn stringOfAuthorizationHeaderWithUsername:username password:password] forHTTPHeaderField:@"Authorization"];
-	
-	NSData *dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSString *responseStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
-	
-	NSRange dirRange = [responseStr rangeOfString:@"<D:getcontenttype/></D:prop>"];
-	
-	if(dirRange.length > 0)
-	{	
-		returnValue = TRUE;
-		
-	}
-	else
-	{
-		NSRange contentTypeRange1 = [responseStr rangeOfString:@"<D:getcontenttype>"];
-		NSRange contentTypeRange2 = [responseStr rangeOfString:@"</D:getcontenttype>"];
-		if(contentTypeRange1.length > 0 && contentTypeRange2.length > 0)
-			_contentType = [responseStr substringWithRange:
-							NSMakeRange(contentTypeRange1.location + contentTypeRange1.length, 
-										contentTypeRange2.location - contentTypeRange1.location - contentTypeRange1.length)];
-	}
-	
-	[cnn release];
-	
-	return returnValue;
-}
-
--(NSString *)convertPathToUrlStr:(NSString *)path
-{
-	return [path stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
-}
-
--(id)initWithUrlStr:(NSString *)urlStr fileName:(NSString *)fileName
-{
-	if(self = [super init])
-	{
-		_fileName = [[NSString alloc] initWithString:fileName];
-		_urlStr = [[NSString alloc] initWithString:urlStr];
-		_isFolder = [self isFolder:urlStr];
-	}
-	
-	return self;
-}
-
-@end
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 @implementation FilesViewController
 
-@synthesize _strRootDirectory;
 @synthesize _fileContentDisplayController;
 @synthesize _fileActionsViewController;
 @synthesize _optionsViewController;
@@ -253,9 +119,6 @@ NSString* fileType(NSString *fileName)
     [_btnRightEdgeNavigation release];
     _btnRightEdgeNavigation = nil;
     
-    [_strRootDirectory release];
-    _strRootDirectory = nil;
-    
     [_tbvFiles release];
     _tbvFiles = nil;
     
@@ -297,9 +160,6 @@ NSString* fileType(NSString *fileName)
     
     [_fileForCopyMove release];
     _fileForCopyMove = nil;
-    
-    [_fileNameStackStr release];
-    _fileNameStackStr = nil;
     
     [imgViewEmptyPage release];
     imgViewEmptyPage = nil;
@@ -368,14 +228,16 @@ NSString* fileType(NSString *fileName)
 {	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	if([_currenteXoFile._urlStr isEqualToString:_strRootDirectory])
+    FilesProxy *fileProxy = [FilesProxy sharedInstance];
+    
+	if([_currenteXoFile.urlStr isEqualToString:fileProxy._strUserRepository])
 	{
 		[_navigationBar setTitle:@"Documents Application"];
 		[_navigationBar setLeftBarButtonItem:nil];
 	}
 	else
 	{
-		[_navigationBar setTitle:_currenteXoFile._fileName];
+		[_navigationBar setTitle:_currenteXoFile.fileName];
 		[_navigationBar setLeftBarButtonItem:_bbtnBack];
 	}	
     
@@ -384,46 +246,16 @@ NSString* fileType(NSString *fileName)
 
 - (void)initWithRootDirectory:(BOOL)isCompatibleWithPlatform35
 {
-	if([_strRootDirectory length] == 0)
-	{
-		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-		NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-        
-        NSMutableString *urlStr = [[NSMutableString alloc] initWithFormat:@"%@/rest/private/jcr/repository/collaboration/Users", domain];
-        
-        if(isCompatibleWithPlatform35)
-        {
-            int length = [username length];
-            for(int i = 1; i < length; i++)
-            {
-                NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
-                for(int j = 1; j < length; j++)
-                {
-                    [userNameLevel appendString:@"_"];
-                }
-                
-                [urlStr appendFormat:@"/%@", userNameLevel];
-                
-                [userNameLevel release];
-            }
-            
-        }
-        
-        [urlStr appendFormat:@"/%@", username];
-
-		_fileNameStackStr = username;
-
-		_strRootDirectory = [urlStr retain];
-		_currenteXoFile = [[eXoFile alloc] initWithUrlStr:_strRootDirectory fileName:username];
-	}
+    FilesProxy *fileProxy = [FilesProxy sharedInstance];
+    _currenteXoFile = [fileProxy initialFileForRootDirectory];
+    
 }
 
-- (NSMutableArray*)getPersonalDriveContent:(eXoFile *)file
+- (NSMutableArray*)getPersonalDriveContent:(File *)file
 {
 	Connection* con = [[Connection alloc] init];
     
-    NSData* dataReply = [con sendRequestWithAuthorization:file._urlStr];
+    NSData* dataReply = [con sendRequestWithAuthorization:file.urlStr];
 	//NSData* dataReply = [[_delegate getConnection] sendRequestWithAuthorization:file._urlStr];
 	NSString* strData = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
 	
@@ -448,7 +280,7 @@ NSString* fileType(NSString *fileName)
 				NSString *urlStr = [strData substringWithRange:NSMakeRange(range3.length + range3.location, 
 																		   range4.location - range3.location - range3.length)];
 				
-				eXoFile *fileTmp = [[eXoFile alloc] initWithUrlStr:urlStr fileName:fileName];
+				File *fileTmp = [[File alloc] initWithUrlStr:urlStr fileName:fileName];
 				[arrDicts addObject:fileTmp];
 			}
 			
@@ -470,17 +302,15 @@ NSString* fileType(NSString *fileName)
 	[startThread start];
 	
 	imgViewEmptyPage.hidden = YES;
-	
-	_fileNameStackStr = [[_fileNameStackStr stringByDeletingLastPathComponent] retain];
-	
-	_currenteXoFile._fileName = [_fileNameStackStr lastPathComponent];
-	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByDeletingLastPathComponent];
-	_currenteXoFile._urlStr = [_currenteXoFile._urlStr stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
-	
+	    
+	_currenteXoFile.urlStr = [_currenteXoFile.urlStr stringByDeletingLastPathComponent];
+	_currenteXoFile.urlStr = [_currenteXoFile.urlStr stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	_currenteXoFile.fileName = [_currenteXoFile.urlStr lastPathComponent];
+    
 	[self getPersonalDriveContent:_currenteXoFile];
 	[_tbvFiles reloadData];
 	
-	if(_currenteXoFile._isFolder)
+	if(_currenteXoFile.isFolder)
 	{
 		[_navigationBar setRightBarButtonItem:_bbtnActions];
 	}
@@ -589,17 +419,17 @@ NSString* fileType(NSString *fileName)
 	UILabel* titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
     UIImageView* imgView = (UIImageView* )[cell viewWithTag:kTagForCellSubviewImageView];
     
-	eXoFile *file = [_arrDicts objectAtIndex:indexPath.row];
+	File *file = [_arrDicts objectAtIndex:indexPath.row];
 	
-	titleLabel.text = [file._fileName stringByDecodingHTMLEntities];
+	titleLabel.text = [file.fileName stringByDecodingHTMLEntities];
 	
-	if(file._isFolder)
+	if(file.isFolder)
 	{
 		imgView.image = [UIImage imageNamed:@"folder.png"];
 	}
 	else
 	{		
-		imgView.image = [UIImage imageNamed:fileType(file._fileName)];
+		imgView.image = [UIImage imageNamed:[File fileType:file.fileName]];
 	}
 	
 	if (imgViewEmptyPage == nil) {
@@ -627,7 +457,7 @@ NSString* fileType(NSString *fileName)
 	[_fileActionsViewController enableRenameAction:YES];
 	[_fileActionsViewController enableCopyAction:NO];
 	[_fileActionsViewController enableMoveAction:NO];
-	if(!_fileForDeleteRename._isFolder)
+	if(!_fileForDeleteRename.isFolder)
 	{
 		[_fileActionsViewController enableCopyAction:YES];
 		[_fileActionsViewController enableMoveAction:YES];
@@ -654,17 +484,15 @@ NSString* fileType(NSString *fileName)
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	eXoFile *file = [_arrDicts objectAtIndex:indexPath.row];
+	File *file = [_arrDicts objectAtIndex:indexPath.row];
 	
-	
-	if(file._isFolder)
+	if(file.isFolder)
 	{
         _currenteXoFile = file;
         
 		NSThread* startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 		[startThread start];
 	
-		_fileNameStackStr = [[_fileNameStackStr stringByAppendingPathComponent:file._fileName] retain];
 		[self getPersonalDriveContent:file];
 		[_navigationBar setLeftBarButtonItem:_bbtnBack];
 		[_tbvFiles reloadData];
@@ -685,7 +513,7 @@ NSString* fileType(NSString *fileName)
 		//[_navigationBar setRightBarButtonItem:nil];
 		//[[_fileContentDisplayController view] setFrame:[_tbvFiles frame]];
 
-		NSURL *url = [NSURL URLWithString:[file._urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+		NSURL *url = [NSURL URLWithString:[file.urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 		[_fileContentDisplayController startDisplayFileContent:url];
 		//[[self view] addSubview:[_fileContentDisplayController view]];
 		
@@ -705,7 +533,7 @@ NSString* fileType(NSString *fileName)
 	
 	if([strAction isEqualToString:@"DELETE"] == YES)
 	{
-		[self doAction:@"DELETE" source:[self urlForFileAction:_fileForDeleteRename._urlStr] destination:nil];
+		[self doAction:@"DELETE" source:[self urlForFileAction:_fileForDeleteRename.urlStr] destination:nil];
 	}
 	else if([strAction isEqualToString:@"NEWFOLDER"] == YES)
 	{
@@ -728,7 +556,7 @@ NSString* fileType(NSString *fileName)
 		CGRect rect;
 		[popoverController dismissPopoverAnimated:NO];
 		[_optionsViewController setIsNewFolder:NO];
-		[_optionsViewController setNameInputStr:_fileForDeleteRename._fileName];
+		[_optionsViewController setNameInputStr:_fileForDeleteRename.fileName];
 		optionsPopoverController = [[UIPopoverController alloc] initWithContentViewController:_optionsViewController];
 		[optionsPopoverController setPopoverContentSize:CGSizeMake(320, 140) animated:YES];
 		if(offset < 150)
@@ -753,8 +581,8 @@ NSString* fileType(NSString *fileName)
 	}
 	else if([strAction isEqualToString:@"PASTE"] == YES)
 	{
-		strSource = [self urlForFileAction:_fileForCopyMove._urlStr];
-		strDestination = [self urlForFileAction:[_fileForDeleteRename._urlStr stringByAppendingPathComponent:[_fileForCopyMove._urlStr lastPathComponent]]];
+		strSource = [self urlForFileAction:_fileForCopyMove.urlStr];
+		strDestination = [self urlForFileAction:[_fileForDeleteRename.urlStr stringByAppendingPathComponent:[_fileForCopyMove.urlStr lastPathComponent]]];
 		
 		if(_bCopy)
 		{
@@ -848,8 +676,8 @@ NSString* fileType(NSString *fileName)
 		{
 			for (int i = 0; i < [_arrDicts count]; i++)
 			{
-				eXoFile *file = [[_arrDicts objectAtIndex:i] retain];
-				if([strName isEqualToString:file._fileName])
+				File *file = [[_arrDicts objectAtIndex:i] retain];
+				if([strName isEqualToString:file.fileName])
 				{
 					bExist = YES;
 					
@@ -875,12 +703,12 @@ NSString* fileType(NSString *fileName)
 			
 			if (!bExist) 
 			{
-				if(!_currenteXoFile._isFolder) {
+				if(!_currenteXoFile.isFolder) {
 					strName = [strName stringByEncodingHTMLEntities];
 					strName = [DataProcess encodeUrl:strName];
 				}
 
-				NSString* strNewFolderPath = [self urlForFileAction:[_currenteXoFile._urlStr stringByAppendingPathComponent:strName]];
+				NSString* strNewFolderPath = [self urlForFileAction:[_currenteXoFile.urlStr stringByAppendingPathComponent:strName]];
 				
 				[self doAction:@"MKCOL" source: strNewFolderPath destination:@""];				
 			}
@@ -912,8 +740,8 @@ NSString* fileType(NSString *fileName)
 		{
 			for (int i = 0; i < [_arrDicts count]; i++)
 			{
-				eXoFile *file = [[_arrDicts objectAtIndex:i] retain];
-				if([strName isEqualToString:file._fileName])
+				File *file = [[_arrDicts objectAtIndex:i] retain];
+				if([strName isEqualToString:file.fileName])
 				{
 					bExist = YES;
 					if(_intSelectedLanguage == 0)
@@ -937,13 +765,13 @@ NSString* fileType(NSString *fileName)
 			}
 			if (!bExist) 
 			{
-				if(!_currenteXoFile._isFolder) {
+				if(!_currenteXoFile.isFolder) {
 					strName = [strName stringByEncodingHTMLEntities];
 					strName = [DataProcess encodeUrl:strName];
 				}
 				
-				NSString* strRenamePath = [self urlForFileAction:[_currenteXoFile._urlStr stringByAppendingPathComponent:strName]];
-				NSString *strSource = [self urlForFileAction: _fileForDeleteRename._urlStr];
+				NSString* strRenamePath = [self urlForFileAction:[_currenteXoFile.urlStr stringByAppendingPathComponent:strName]];
+				NSString *strSource = [self urlForFileAction: _fileForDeleteRename.urlStr];
 				
 				[self doAction:@"MOVE" source:strSource destination:strRenamePath];
 			}

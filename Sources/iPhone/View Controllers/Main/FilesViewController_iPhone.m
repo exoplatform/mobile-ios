@@ -42,7 +42,7 @@
     
     if (_filesProxy == nil) _filesProxy = [FilesProxy sharedInstance];
     
-    if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory:_isCompatibleWithSocial];
+    if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory];
     
     _arrayContentOfRootFile = [_filesProxy getPersonalDriveContent:_rootFile];
     

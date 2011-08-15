@@ -550,7 +550,6 @@
 	[_imgViewNewMessage removeFromSuperview];
 	
 	//file app
-	_filesViewController._strRootDirectory = @"";
 	[_filesViewController._navigationBar setTitle:@"Files Application"];
 	[_filesViewController._navigationBar setLeftBarButtonItem:nil];
 	

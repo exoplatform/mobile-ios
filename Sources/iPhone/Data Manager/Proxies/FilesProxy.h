@@ -37,7 +37,7 @@
 - (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35;
 
 // Use this method to create the first initial file
-- (File *)initialFileForRootDirectory:(BOOL)isCompatibleWithPlatform35;
+- (File *)initialFileForRootDirectory;
 
 //Use this method to retrieve the content of a virtual drive
 - (NSMutableArray*)getPersonalDriveContent:(File *)file;

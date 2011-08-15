@@ -14,6 +14,7 @@
 #import "HomeViewController_iPad.h"
 #import "MenuViewController.h"
 #import "AppDelegate_iPad.h"
+#import "FilesProxy.h"
 
 @implementation eXoMobileViewController
 
@@ -171,7 +172,7 @@
 
 - (void)showHomeViewController:(BOOL)isCompatibleWithSocial
 {
-    
+    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:isCompatibleWithSocial];
     
     [[AppDelegate_iPad instance] showHome:self isCompatibleWithSocial:isCompatibleWithSocial];
     

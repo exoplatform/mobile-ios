@@ -7,30 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "File.h"
 
 @class FileContentDisplayController;
 @class FileActionsViewController;
 @class OptionsViewController;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//File information
-@interface eXoFile: NSObject
-{
-	NSString *_fileName;	//File name
-	NSString *_urlStr;	//File URL
-	NSString *_contentType;	//File content type
-	BOOL _isFolder;		//Is folder
-}
-
-@property(nonatomic, retain) NSString *_fileName;
-@property(nonatomic, retain) NSString *_urlStr;
-@property(nonatomic, retain) NSString *_contentType;
-@property BOOL _isFolder;
-
-- (BOOL)isFolder:(NSString *)urlStr; //Check if given URL is folder or not
--(id)initWithUrlStr:(NSString *)urlStr fileName:(NSString *)fileName; //Constructor
-
-@end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Display file list
@@ -46,7 +28,6 @@
 	IBOutlet UIButton*						_btnLeftEdgeNavigation;
 	IBOutlet UIButton*						_btnRightEdgeNavigation;
 	
-	NSString*								_strRootDirectory;	//Root directory URL
 	IBOutlet UITableView*					_tbvFiles;	//show file list
 	NSMutableArray*							_arrDicts;	//File list
 	
@@ -67,9 +48,9 @@
 	BOOL									_bMove;	 //Is cut file
 	BOOL									_bNewFolder;	//Is create new folder
 	
-	eXoFile*								_currenteXoFile;	//Current file
-	eXoFile*								_fileForDeleteRename;	//File will be deleted
-	eXoFile*								_fileForCopyMove;	//File will be copied, cut
+	File*                                   _currenteXoFile;	//Current file
+	File*                                   _fileForDeleteRename;	//File will be deleted
+	File*                                   _fileForCopyMove;	//File will be copied, cut
 	
 	NSString*								_fileNameStackStr;	//File name tree
 	
@@ -77,7 +58,6 @@
 	UILabel *labelEmptyPage;	//Empty text
 }
 
-@property (nonatomic, retain) NSString* _strRootDirectory;
 @property (nonatomic, retain) FileContentDisplayController* _fileContentDisplayController;
 @property (nonatomic, retain) FileActionsViewController* _fileActionsViewController;
 @property (nonatomic, retain) OptionsViewController* _optionsViewController;
@@ -87,16 +67,16 @@
 @property (nonatomic, retain) UINavigationItem* _navigationBar;
 @property (nonatomic, retain) UIActivityIndicatorView* _actiLoading;
 @property (nonatomic, retain) UIBarButtonItem* _bbtnBack;
-@property (nonatomic, retain) eXoFile* _currenteXoFile;
-@property (nonatomic, retain) eXoFile* _fileForDeleteRename;
-@property (nonatomic, retain) eXoFile* _fileForCopyMove;
+@property (nonatomic, retain) File* _currenteXoFile;
+@property (nonatomic, retain) File* _fileForDeleteRename;
+@property (nonatomic, retain) File* _fileForCopyMove;
 
 - (void)setDelegate:(id)delegate;	//Set the delegate
 - (void)localize;	//Language dictionary
 - (int)getSelectedLanguage;	//Get current language index
 - (NSDictionary*)getLocalization;	//Get current language dictionary
 - (void)initWithRootDirectory:(BOOL)isCompatibleWithPlatform35;	//Constructor
-- (NSMutableArray*)getPersonalDriveContent:(eXoFile *)file;	//Get file list
+- (NSMutableArray*)getPersonalDriveContent:(File *)file;	//Get file list
 //File action
 - (void)onAction:(NSString*)strAction;
 - (void)doAction:(NSString *)strAction source:(NSString *)strSource destination:(NSString *)strDes;

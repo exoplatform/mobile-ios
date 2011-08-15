@@ -143,7 +143,7 @@
     
 }
 
-- (File *)initialFileForRootDirectory:(BOOL)isCompatibleWithPlatform35
+- (File *)initialFileForRootDirectory
 {
     NSString* username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
     
