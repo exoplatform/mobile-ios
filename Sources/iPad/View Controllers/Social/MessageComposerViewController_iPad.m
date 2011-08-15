@@ -153,10 +153,26 @@
     [UIView setAnimationDelegate:self];
     
     CGSize size = imgView.frame.size;
-    CGRect rect = CGRectMake(0, 0, 540, 540*size.height/size.width);
+    
+    CGRect screenRect = self.navigationController.view.superview.superview.frame;
+    CGRect selfRect = self.navigationController.view.superview.frame;
+    
+    CGRect rect;
+    
+    float tmpHeight = screenRect.size.height - selfRect.origin.y;
+    if (540*size.height/size.width > tmpHeight) 
+    {
+        rect = CGRectMake((540 - size.width*tmpHeight/size.height)/2, 0, size.width*tmpHeight/size.height, tmpHeight);
+        imgView.frame = CGRectMake(0, 0, 540, tmpHeight);
+    }
+    else
+    {
+        rect = CGRectMake(0, 0, 540, 540*size.height/size.width );
+        imgView.frame = rect;
+    }
     
     //imgView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 400);
-    imgView.frame = rect;
+    //imgView.frame = rect;
     self.navigationController.view.frame = imgView.frame;
     self.view.frame = imgView.frame;
     
