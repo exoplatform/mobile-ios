@@ -332,20 +332,37 @@ static NSString* _strDomain;
 	strContent = [strContent substringToIndex:range1.location];
 	
 	do 
-	{
-		range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
-		range2 = [strContent rangeOfString:@"\" >"];
-		
-		if (range1.length > 0 && range2.length > 0) 
-		{
-			NSString *gadgetTabUrlStr = [strContent substringWithRange:NSMakeRange(range1.location + range1.length, range2.location - range1.location - range1.length)];
+	{ 
+        //Search for each '<a class="ItemIcon DefaultPageIcon"' in the HTML
+		range1 = [strContent rangeOfString:@"<a class=\"ItemIcon DefaultPageIcon\" href=\""];
+        
+        if (range1.length > 0) {
+        
+            //SLM Patch for gadgetParsing
+            //Remove the ***...<a class="ItemIcon DefaultPageIcon" from the string
+            NSString *stringCutted = [strContent substringFromIndex:range1.location + range1.length];
+            
+            //Search for the next '"' in the string
+            NSRange rangeForComma = [stringCutted rangeOfString:@"\""];
+            
+            //Get the URL string
+            NSString* gadgetTabUrlStr = [stringCutted substringToIndex:rangeForComma.location];
+            
+            //Search for the next '>' in the string
+            NSRange rangeForSup = [stringCutted rangeOfString:@">"];
+            
+            //Remove the '>' from stringCutted
+            stringCutted = [stringCutted substringFromIndex:rangeForSup.location+rangeForSup.length];
+            
+            //Search for the '</a>'
+            NSRange rangeForDashboardNameEnd = [stringCutted rangeOfString:@"</a>"];
+            
+            //Get the TabName
+            NSString *gadgetTabName = [stringCutted substringToIndex:rangeForDashboardNameEnd.location];
+        
+            
 			NSURL *gadgetTabUrl = [NSURL URLWithString:gadgetTabUrlStr];
-			
-			strContent = [strContent substringFromIndex:range2.location + range2.length];
-			range3 = [strContent rangeOfString:@"</a>"];
-			
-			NSString *gadgetTabName = [strContent substringToIndex:range3.location]; 
-			
+						
 			//Getting informations about a gadget from not standalone gadgets
 			//NSArray* arrTmpGadgetsInItem = [[NSArray alloc] init];
 			NSArray* arrTmpGadgetsInItem = [self listOfGadgetsWithURL:[domain stringByAppendingFormat:@"%@", gadgetTabUrlStr]];
@@ -366,8 +383,10 @@ static NSString* _strDomain;
 			[tmpGateInDbItem setObjectWithName:gadgetTabName andURL:gadgetTabUrl andGadgets:arrTmpGadgetsInItem];
 			[arrDbItems addObject:tmpGateInDbItem];
 			
-			strContent = [strContent substringFromIndex:range3.location];
-			range1 = [strContent rangeOfString:@"ItemIcon DefaultPageIcon\" href=\""];
+            //Prepare for the next iteration
+            range3 = [strContent rangeOfString:[NSString stringWithFormat:@"%@</a>",gadgetTabName]];
+			strContent = [strContent substringFromIndex:range3.location+range3.length];
+            range1 = [strContent rangeOfString:@"<a class=\"ItemIcon DefaultPageIcon\" href=\""];
 		}	
 	} 
 	while (range1.length > 0);
