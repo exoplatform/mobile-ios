@@ -129,6 +129,9 @@
     [_hudFolder release];
     _hudFolder = nil;
     
+    [_stringForUploadPhoto release];
+    _stringForUploadPhoto = nil;
+    
     [super dealloc];
 }
 
@@ -607,7 +610,9 @@
 }
 
 
-- (void)askToAddAPicture {
+- (void)askToAddAPicture:(NSString *)urlDestination {
+    
+    _stringForUploadPhoto = urlDestination;
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
 	{  
@@ -663,11 +668,11 @@
         [dateFormatter release];
 		tmp = [tmp stringByAppendingFormat:@".png"];
 		
-		NSString* _savedFileDirectory = [_rootFile.urlStr stringByAppendingFormat:@"/%@/", _rootFile.fileName];
+		//NSString* _savedFileDirectory = [_rootFile.urlStr stringByAppendingFormat:@"/%@/", _rootFile.fileName];
 		/*if(_file != _delegate._currenteXoFile)
 			_savedFileDirectory = [_savedFileDirectory stringByAppendingFormat:@"%@/", [_file._fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 		*/
-		_savedFileDirectory = [_savedFileDirectory stringByAppendingString:tmp];
+		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@",tmp];
 		
         //TODO Localize this string
         [_hudFolder setCaption:@"Sending image to wanted folder..."];
@@ -678,7 +683,7 @@
                                     [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
         [invocation setTarget:self];
         [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
-        [invocation setArgument:&_savedFileDirectory atIndex:2];
+        [invocation setArgument:&_stringForUploadPhoto atIndex:2];
         [invocation setArgument:&imageData atIndex:3];
         [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
         

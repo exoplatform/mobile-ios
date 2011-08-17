@@ -26,7 +26,7 @@
          toDestination:urlDestination;
 
 //Method needed to retrieve the action when the user ask an image
-- (void)askToAddAPicture;
+- (void)askToAddAPicture:(NSString *)urlDestination;
 
 @end
 

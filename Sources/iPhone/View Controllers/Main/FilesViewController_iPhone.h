@@ -30,6 +30,8 @@
     
     BOOL                _isCompatibleWithSocial;
     
+    NSString *_stringForUploadPhoto;
+    
 }
 
 @property BOOL _isCompatibleWithSocial;

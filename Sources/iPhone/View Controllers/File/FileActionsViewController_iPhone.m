@@ -269,7 +269,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		
 		if(row == 0)
 		{
-			[fileActionsDelegate askToAddAPicture];
+			[fileActionsDelegate askToAddAPicture:_file.urlStr];
 		}
 		else if(row == 1)
 		{
