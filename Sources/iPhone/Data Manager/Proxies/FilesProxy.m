@@ -122,10 +122,16 @@
     if(isCompatibleWithPlatform35)
     {
         int length = [username length];
-        for(int i = 1; i < length; i++)
+        
+        int numberOfUserLevel = 2;
+        if(length >= 4)
+            numberOfUserLevel = 3;
+        
+        for(int i = 1; i <= numberOfUserLevel; i++)
         {
             NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
-            for(int j = 1; j < length; j++)
+            
+            for(int j = 1; j <= numberOfUserLevel; j++)
             {
                 [userNameLevel appendString:@"_"];
             }
