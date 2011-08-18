@@ -131,7 +131,7 @@
         {
             NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
             
-            for(int j = 1; j <= numberOfUserLevel; j++)
+            for(int j = 1; j <= 3; j++)
             {
                 [userNameLevel appendString:@"_"];
             }
