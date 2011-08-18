@@ -12,6 +12,7 @@
 #import "Gadget_iPhone.h"
 #import "Gadget_iPad.h"
 
+
 static NSString* _strUsername;
 static NSString* _strPassword;
 static NSString* _strFirstLoginContent;
@@ -24,8 +25,6 @@ static NSString* _strDomain;
 - (BOOL)isAGadgetIDString:(NSString *)potentialIDString;
 
 @end
-
-
 
 
 @implementation Connection
@@ -94,6 +93,36 @@ static NSString* _strDomain;
     NSString* s = @"Basic ";
     NSString* author = [s stringByAppendingString:[self stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];	
 	return author;
+}
+
+- (BOOL)isReachabilityURL:(NSString *)urlStr userName:(NSString *)userName password:(NSString *)password
+{
+    BOOL returnValue = NO;
+    
+    NSHTTPURLResponse* response;
+    NSError* error;
+    
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
+    [request setURL:[NSURL URLWithString:urlStr]];
+    
+    [request setHTTPMethod:@"HEAD"];
+    
+    NSString *s = @"Basic ";
+    NSString *author = [s stringByAppendingString: [self stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@",userName, password]]];
+    [request setValue:author forHTTPHeaderField:@"Authorization"];
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
+    [request release];
+    
+    NSUInteger statusCode = [response statusCode];
+    if(statusCode >= 200 && statusCode < 300)
+    {
+        // TODO Localize this label
+        returnValue = YES;
+        
+    }  
+
+    return returnValue;
 }
 
 - (NSString*)getExtend:(NSString*)domain

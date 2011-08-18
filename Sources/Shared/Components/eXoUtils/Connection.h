@@ -14,6 +14,7 @@
 	NSString *localDashboardGadgetsString_;
 }
 
+- (BOOL)isReachabilityURL:(NSString *)urlStr userName:(NSString *)userName password:(NSString *)password;
 - (NSString*)stringEncodedWithBase64:(NSString*)str;	//Convert NSString to String64 
 - (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password;	//Athentication encoding
 - (NSString*)getExtend:(NSString*)domain;	//Get sub URL path

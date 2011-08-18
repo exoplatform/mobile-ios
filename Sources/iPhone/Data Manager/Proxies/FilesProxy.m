@@ -338,8 +338,13 @@
 
 -(BOOL)isExistedUrl:(NSString *)strUrl
 {
+    
     BOOL returnValue = NO;
-	
+    
+    Connection *cnn = [[Connection alloc] init];
+    returnValue = [cnn isReachabilityURL:strUrl userName:@"" password:@""];
+    
+	/*
     Connection *cnn = [[Connection alloc] init];
     NSData *data = [cnn sendRequest:strUrl];
     
@@ -353,6 +358,8 @@
 //    [strResponse release];
 //    [data release];
 //    [cnn release];
+     
+     */
     
     return returnValue;
     
