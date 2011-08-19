@@ -44,8 +44,6 @@
         _arrServerList = [[NSMutableArray alloc] init];
 		isFirstTimeLogin = YES;
 
-        
-        
     }
     return self;
 }
@@ -150,21 +148,26 @@
 	}
     [_tbvlServerList reloadData];
     
-    
-    //Start the animation to display the loginView
-    [UIView animateWithDuration:1.0 
-                     animations:^{
-                         _contentView.alpha = 1;
-                     }
-     ];
-    
+    if(bAutoLogin)
+    {
+        _contentView.alpha = 1;
+        [self onSignInBtn:nil];
+    }
+    else
+    {
+        //Start the animation to display the loginView
+        [UIView animateWithDuration:1.0 
+                         animations:^{
+                             _contentView.alpha = 1;
+                         }
+         ];
+    }    
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [_hud dismiss];
+//    [_hud dismiss];
 }
-
 	
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
@@ -495,7 +498,6 @@
 	//[appDelegate changeToActivityStreamsViewController:_dictLocalize];
     
     //[appDelegate showHomeViewController];
-	
 	
 }
 

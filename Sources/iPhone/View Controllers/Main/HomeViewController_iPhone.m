@@ -222,9 +222,11 @@
 
 - (void)onBbtnSignOut
 {
+    [_delegate onBtnSigtOutDelegate];
+    
     //Back to Login with a PopViewController
     [self.navigationController popViewControllerAnimated:YES];
-    [_delegate onBtnSigtOutDelegate];
+
 }
 
 
