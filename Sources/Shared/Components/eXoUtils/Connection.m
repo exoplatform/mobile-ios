@@ -107,9 +107,12 @@ static NSString* _strDomain;
     
     [request setHTTPMethod:@"HEAD"];
     
-    NSString *s = @"Basic ";
-    NSString *author = [s stringByAppendingString: [self stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@",userName, password]]];
-    [request setValue:author forHTTPHeaderField:@"Authorization"];
+    if(userName != nil)
+    {
+        NSString *s = @"Basic ";
+        NSString *author = [s stringByAppendingString: [self stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@",userName, password]]];
+        [request setValue:author forHTTPHeaderField:@"Authorization"];    
+    }
     
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
     [request release];

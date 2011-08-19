@@ -342,7 +342,7 @@
     BOOL returnValue = NO;
     
     Connection *cnn = [[Connection alloc] init];
-    returnValue = [cnn isReachabilityURL:strUrl userName:@"" password:@""];
+    returnValue = [cnn isReachabilityURL:strUrl userName:nil password:nil];
     
 	/*
     Connection *cnn = [[Connection alloc] init];

@@ -179,7 +179,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     for (int i = 0; i < [_arrServerList count]; i++) 
     {
         ServerObj* tmpServerObj = [_arrServerList objectAtIndex:i];
-        if ([tmpServerObj._strServerName isEqualToString:strServerName] && [tmpServerObj._strServerUrl isEqualToString:strServerUrl]) 
+        if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
         {
             bExist = YES;
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This Server has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -216,14 +216,20 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 - (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
     BOOL bExist = NO;
+    
+    ServerObj* serverObjEdited = [_arrServerList objectAtIndex:index];
+    
     ServerObj* tmpServerObj;
     for (int i = 0; i < [_arrServerList count]; i++) 
     {
+        if(index == i)
+            continue;
+        
         tmpServerObj = [_arrServerList objectAtIndex:i];
-        if ([tmpServerObj._strServerName isEqualToString:strServerName] && [tmpServerObj._strServerUrl isEqualToString:strServerUrl]) 
+        if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
         {
             bExist = YES;
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This Url has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This server has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
             break;
@@ -232,7 +238,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
    
     if (!bExist) 
     {
-        ServerObj* serverObjEdited = [_arrServerList objectAtIndex:index];
         serverObjEdited._strServerName = strServerName;
         serverObjEdited._strServerUrl = strServerUrl;
         

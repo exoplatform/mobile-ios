@@ -190,7 +190,7 @@
     _strServerUrl = [_txtfServerUrl text];
     
     NSRange range = [_strServerUrl rangeOfString:@"http://"];
-    if(range.length == 0)
+    if(range.length == 0 && [_strServerUrl length] > 0)
     {
         _strServerUrl = [NSString stringWithFormat:@"http://%@", _strServerUrl];
     }
@@ -201,7 +201,7 @@
     }
     else
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add an empty username or password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add an empty server name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
     }
