@@ -64,19 +64,6 @@
 
 - (void)viewDidLoad
 {
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-//    UIView* bg = [[UIView alloc] initWithFrame:[_tblvServerInfo frame]];
-//	[bg setBackgroundColor:[UIColor clearColor]];
-//	[_tblvServerInfo setBackgroundView:bg];
-//    [bg release];
-    
-//    _btnEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [_btnEdit setFrame:CGRectMake(100, 10, 60, 37)];
-//    [_btnEdit.titleLabel setTextColor:[UIColor redColor]];
-//    [_btnEdit setTitle:@"Done" forState:UIControlStateNormal];
-//    [_btnEdit addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_btnEdit];
-    
     _bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBtnDone)];
     self.navigationItem.rightBarButtonItem = _bbtnEdit;
 
@@ -107,6 +94,7 @@
     //[_txtfServerUrl setEnabled:NO];
     [_txtfServerName setTextColor:[UIColor grayColor]];
     [_txtfServerUrl setTextColor:[UIColor grayColor]];
+    [_bbtnEdit setEnabled:NO];
     [super viewWillAppear:YES];
 }
 
@@ -130,40 +118,6 @@
     [_tblvServerInfo reloadData];
 }
 
-
-
-/*
-- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    [self changeOrientation:interfaceOrientation];
-}
-
-- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
-        [_btnEdit setFrame:CGRectMake(690, 5, 60, 37)];
-	}
-    
-    if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{	
-        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
-        [_btnEdit setFrame:CGRectMake(946, 5, 60, 37)];
-	}
-    _interfaceOrientation = interfaceOrientation;
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        [_btnDelete setFrame:CGRectMake(40, 150, 688, 37)];
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {
-        [_btnDelete setFrame:CGRectMake(40, 150, 944, 37)];
-    }
-    [_tblvServerInfo reloadData];
-}
-*/
 
 - (IBAction)onBtnBack:(id)sender
 {
@@ -243,14 +197,14 @@
     return cell;
 }
 
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [_bbtnEdit setEnabled:YES];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-//    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
-//    {
-//        [theTextField resignFirstResponder];
-//    }
-    
     if (theTextField == _txtfServerName) 
     {
         [_txtfServerUrl becomeFirstResponder];

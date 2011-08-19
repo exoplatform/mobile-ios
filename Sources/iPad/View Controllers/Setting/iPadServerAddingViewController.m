@@ -67,30 +67,6 @@
 }
 
 
-/*
-- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    [self changeOrientation:interfaceOrientation];
-}
-
-- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
-        [_btnDone setFrame:CGRectMake(690, 5, 60, 37)];
-	}
-    
-    if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{	
-        [_tblvServerInfo setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
-        [_btnDone setFrame:CGRectMake(946, 5, 60, 37)];
-	}
-    _interfaceOrientation = interfaceOrientation;
-    [_tblvServerInfo reloadData];
-}
-*/
-
 - (IBAction)onBtnBack:(id)sender
 {
     [_delegate onBackDelegate];
@@ -100,12 +76,6 @@
 
 - (void)viewDidLoad
 {
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-//    UIView* bg = [[UIView alloc] initWithFrame:[_tblvServerInfo frame]];
-//	[bg setBackgroundColor:[UIColor clearColor]];
-//	[_tblvServerInfo setBackgroundView:bg];
-//    [bg release];
-    
     _txtfServerName = [iPadServerAddingViewController textInputFieldForCellWithSecure:NO];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
@@ -113,12 +83,6 @@
     [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
 	_txtfServerUrl.delegate = self;
 
-//    _btnDone = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [_btnDone setFrame:CGRectMake(100, 10, 60, 37)];
-//    [_btnDone.titleLabel setTextColor:[UIColor redColor]];
-//    [_btnDone setTitle:@"Done" forState:UIControlStateNormal];
-//    [_btnDone addTarget:self action:@selector(onBtnDone) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_btnDone];
 
     _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBtnDone)];
     self.navigationItem.rightBarButtonItem = _bbtnDone;
@@ -126,6 +90,14 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [_txtfServerName setTextColor:[UIColor grayColor]];
+    [_txtfServerUrl setTextColor:[UIColor grayColor]];
+    [_bbtnDone setEnabled:NO];
+    [super viewWillAppear:YES];
 }
 
 - (void)viewDidUnload
@@ -208,14 +180,13 @@
     return cell;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [_bbtnDone setEnabled:YES];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-//    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
-//    {
-//        [theTextField resignFirstResponder];
-//    }
-    
     if (theTextField == _txtfServerName) 
     {
         
@@ -234,10 +205,7 @@
     
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
-//    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
-//    {
-//        [_btnDone setEnabled:YES];
-//    }
+
     return YES;
 }
 

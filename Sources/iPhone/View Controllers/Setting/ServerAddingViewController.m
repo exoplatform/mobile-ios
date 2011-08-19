@@ -80,6 +80,7 @@
 {
     [_txtfServerName setText:@""];
     [_txtfServerUrl setText:@""];
+    [_bbtnDone setEnabled:NO];
     [super viewWillAppear:YES];
 }
 
@@ -138,6 +139,12 @@
 }
 
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [_bbtnDone setEnabled:YES];
+}
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
     // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
@@ -157,15 +164,6 @@
     _strServerName = [[_txtfServerName text] retain];
     _strServerUrl = [[_txtfServerUrl text] retain];
     return YES;
-//    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
-//    {
-//        [_bbtnDone setEnabled:YES];
-//    }
-//    else
-//    {
-//        [_bbtnDone setEnabled:NO];
-//    }
-//    return YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -92,6 +92,7 @@
 {
     [_txtfServerName setTextColor:[UIColor grayColor]];
     [_txtfServerUrl setTextColor:[UIColor grayColor]];
+    [_bbtnEdit setEnabled:NO];
     [super viewWillAppear:YES];
 }
 
@@ -155,17 +156,13 @@
 }
 
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [_bbtnEdit setEnabled:YES];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-//    if ((theTextField == _txtfServerName) || (theTextField == _txtfServerUrl))
-//    {
-//        [theTextField resignFirstResponder];
-//    }
-//    
-//    _strServerName = [[_txtfServerName text] retain];
-//    _strServerUrl = [[_txtfServerUrl text] retain];
     if (theTextField == _txtfServerName) 
     {
         [_txtfServerUrl becomeFirstResponder];
