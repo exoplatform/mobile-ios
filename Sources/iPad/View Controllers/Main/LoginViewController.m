@@ -55,52 +55,66 @@
     
     [super viewWillAppear:animated];
     
-
-    
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
 
 }
 
-
+- (void)signInAnimation:(int)animationMode
+{
+    _vContainer.alpha = 0;
+    
+    if(animationMode == 1)//Auto signIn
+    {
+        _vContainer.alpha = 1;
+        [self onSignInBtn:nil];
+    }
+    else if(animationMode == 0)//Normal signIn
+    {
+        [UIView beginAnimations:nil context:nil];  
+        [UIView setAnimationDuration:1.0];  
+        _vContainer.alpha = 1;
+        [UIView commitAnimations];   
+    }
+    else//just show signIn screen
+    {
+        _vContainer.alpha = 1;
+    }
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
     
     //Stevan UI fixes
-    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
+    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] 
+                              stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
     
     
-    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] stretchableImageWithLeftCapWidth:10 
-                                                                                               topCapHeight:10] 
-                 forState:UIControlStateNormal];
+    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
+                                     stretchableImageWithLeftCapWidth:10 
+                                     topCapHeight:10] forState:UIControlStateNormal];
     
-    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] stretchableImageWithLeftCapWidth:10 
-                                                                                               topCapHeight:10] 
-                 forState:UIControlStateSelected];
+    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
+                                     stretchableImageWithLeftCapWidth:10 
+                                     topCapHeight:10] forState:UIControlStateSelected];
 
     
-    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] stretchableImageWithLeftCapWidth:10 
-                                                                                                                  topCapHeight:10] 
-                           forState:UIControlStateNormal];
+    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
+                                        stretchableImageWithLeftCapWidth:10 
+                                        topCapHeight:10] forState:UIControlStateNormal];
     
-    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] stretchableImageWithLeftCapWidth:10 
-                                                                                                                 topCapHeight:10] 
-                           forState:UIControlStateSelected];
+    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
+                                        stretchableImageWithLeftCapWidth:10 
+                                        topCapHeight:10] forState:UIControlStateSelected];
     
-    [_txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] stretchableImageWithLeftCapWidth:10 
-                                                                                                             topCapHeight:10]];
+    [_txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
+                                  stretchableImageWithLeftCapWidth:10 
+                                  topCapHeight:10]];
     
-    [_txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] stretchableImageWithLeftCapWidth:10 
-                                                                                                             topCapHeight:10]];
+    [_txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
+                                  stretchableImageWithLeftCapWidth:10 
+                                  topCapHeight:10]];
 
-    
-    
-    _vContainer.alpha = 0;
-    [UIView beginAnimations:nil context:nil];  
-    [UIView setAnimationDuration:1.0];  
-    _vContainer.alpha = 100;
-    [UIView commitAnimations];   
     
     _strBSuccessful = @"NO";
     Configuration* configuration = [Configuration sharedInstance];
@@ -182,9 +196,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
     
-	[super viewDidLoad];
+    [self signInAnimation:bAutoLogin];
+
+    [super viewDidLoad];
+    
+    
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification 
@@ -356,9 +373,6 @@
 }
 
 
-
-
-
 - (IBAction)onSettingBtn:(id)sender
 {
 	if(_iPadSettingViewController == nil)
@@ -368,6 +382,9 @@
         //[_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
         //[self.view addSubview:_iPadSettingViewController.view];
     }
+    
+    [_iPadSettingViewController viewWillAppear:YES];
+    
     
     if (_modalNavigationSettingViewController == nil) 
     {

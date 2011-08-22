@@ -88,6 +88,7 @@
 - (void)startSignInProgress;
 - (void)signInSuccesfully;
 - (void)signInFailed;
+- (void)signInAnimation:(int)animationMode;
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action
 - (IBAction)onSettingBtn:(id)sender;	//Setting action

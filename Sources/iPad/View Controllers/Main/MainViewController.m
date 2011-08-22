@@ -530,7 +530,7 @@
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
-	
+    
 	_currentViewIndex = 0;
 	
 	NSHTTPCookieStorage* store = [NSHTTPCookieStorage sharedHTTPCookieStorage];

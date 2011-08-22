@@ -22,7 +22,6 @@ static NSString *CellIdentifierGuide = @"CellIdentifierGuide";
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 static NSString *CellNibServer = @"AuthenticateServerCell";
 
-static NSString *CellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
@@ -47,13 +46,7 @@ static NSString *CellIdentifier = @"MyIdentifier";
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(400, 10, 100, 20)];
 		[autoLogin addTarget:self action:@selector(autoLoginAction) forControlEvents:UIControlEventValueChanged];
 		
-		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-		_selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-        bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-		bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 		
-		serverNameStr = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN]; 
-        
         _arrServerList = [[NSMutableArray alloc] init];
         _intSelectedServer = -1;
         
@@ -67,6 +60,14 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)viewWillAppear:(BOOL)animated
 {
 	self.title = [_dictLocalize objectForKey:@"Settings"];
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    _selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
+    bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+    bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+    
+    serverNameStr = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN]; 
+    
 	[tblView reloadData];
 
 }
@@ -114,6 +115,15 @@ static NSString *CellIdentifier = @"MyIdentifier";
 - (void)onBtnDone
 {
     [self dismissModalViewControllerAnimated:YES];
+    
+	if(_delegate && [_delegate respondsToSelector:@selector(signInAnimation:)])
+    {
+        if(bAutoLogin)
+            [_delegate signInAnimation:1];
+        else
+            [_delegate signInAnimation:2];
+    }
+    
 }
 
 

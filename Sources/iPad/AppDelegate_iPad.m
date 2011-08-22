@@ -10,6 +10,7 @@
 #import "eXoMobileViewController.h"
 #import "RootViewController.h"
 #import "MenuViewController.h"
+#import "defines.h"
 
 @implementation AppDelegate_iPad
 
@@ -71,6 +72,8 @@
 
 -(void)backToAuthenticate{
 
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     
     [UIView transitionWithView:self.window
                       duration:1
