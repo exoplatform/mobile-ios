@@ -11,7 +11,7 @@
 #import "eXo_Constants.h"
 #import "DataProcess.h"
 #import "Reachability.h"
-#import "Connection.h"
+#import "AuthenticateProxy.h"
 
 @implementation FilesProxy
 
@@ -61,13 +61,6 @@
 	return ret;
 }
 
-+ (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password
-{
-    NSString* s = @"Basic ";
-    NSString* author = [s stringByAppendingString:[self stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];	
-	return author;
-}
-
 
 #pragma mark -
 #pragma NSObject Methods
@@ -88,17 +81,12 @@
 
 - (id)init{
     if ((self = [super init])) { 
-        _authenticateProxy = [[AuthenticateProxy alloc] init];
     }
     return self;
 }
 
 
 - (void)dealloc {
-
-    [_authenticateProxy release];
-    _authenticateProxy = nil;
-    
     [super dealloc];
 }
 
@@ -159,7 +147,7 @@
 - (NSArray*)getPersonalDriveContent:(File *)file
 {
 	
-	NSData* dataReply = [_authenticateProxy sendRequestWithAuthorization:file.urlStr];
+	NSData* dataReply = [[AuthenticateProxy sharedInstance] sendRequestWithAuthorization:file.urlStr];
 	NSString* strData = [[[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding] autorelease];
 	
 	NSMutableArray* arrDicts = [[NSMutableArray alloc] init];
@@ -341,25 +329,7 @@
     
     BOOL returnValue = NO;
     
-    Connection *cnn = [[Connection alloc] init];
-    returnValue = [cnn isReachabilityURL:strUrl userName:nil password:nil];
-    
-	/*
-    Connection *cnn = [[Connection alloc] init];
-    NSData *data = [cnn sendRequest:strUrl];
-    
-    NSString *strResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSRange rangeOfWebdavBrowser = [strResponse rangeOfString:@"WEBDAV Browser"];
-    
-    if(rangeOfWebdavBrowser.length > 0)
-        returnValue = YES;
-    
-//    [strResponse release];
-//    [data release];
-//    [cnn release];
-     
-     */
+    returnValue = [[AuthenticateProxy sharedInstance] isReachabilityURL:strUrl userName:nil password:nil];
     
     return returnValue;
     

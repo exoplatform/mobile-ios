@@ -43,16 +43,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) 
-	{
-        int a = 1;
-    }
-    return self;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style delegate:(eXoApplicationsViewController *)delegate
-{
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
     if (self) 
@@ -74,8 +64,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 		
 		serverNameStr = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN]; 
 		
-		_delegate = delegate;
-		_dictLocalize = delegate._dictLocalize;
         
         _arrServerList = [[NSMutableArray alloc] init];
         _intSelectedServer = -1;
@@ -597,8 +585,8 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 	if(indexPath.section == 1)
 	{
 		_selectedLanguage = indexPath.row;
-		[_delegate setSelectedLanguage:_selectedLanguage];
-		_dictLocalize = _delegate._dictLocalize;
+        //TODO Set Selected Language
+		//[_delegate setSelectedLanguage:_selectedLanguage];
 		[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] 
          setTitle:[_dictLocalize objectForKey:@"ApplicationsTitle"]];
 		
@@ -639,7 +627,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 	else if(indexPath.section == 3)
     {
 		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
-		userGuideController._delegate = _delegate;
 		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
 }

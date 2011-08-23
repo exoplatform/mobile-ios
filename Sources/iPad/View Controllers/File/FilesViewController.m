@@ -7,8 +7,8 @@
 //
 
 #import "FilesViewController.h"
-#import "MainViewController.h"
-#import "Connection.h"
+#import "GadgetDisplayController.h"
+#import "AuthenticateProxy.h"
 #import "defines.h"
 #import "FileContentDisplayController.h"
 #import "FileActionsViewController.h"
@@ -253,9 +253,8 @@ static NSString* kCellIdentifier = @"Cell";
 
 - (NSMutableArray*)getPersonalDriveContent:(File *)file
 {
-	Connection* con = [[Connection alloc] init];
     
-    NSData* dataReply = [con sendRequestWithAuthorization:file.urlStr];
+    NSData* dataReply = [[AuthenticateProxy sharedInstance] sendRequestWithAuthorization:file.urlStr];
 	//NSData* dataReply = [[_delegate getConnection] sendRequestWithAuthorization:file._urlStr];
 	NSString* strData = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
 	

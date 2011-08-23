@@ -51,7 +51,7 @@
 		else
 			request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"HowtoUse_FR_iPhone" ofType:@"htm"]]];
 		
-		self.title = [_delegate._dictLocalize objectForKey:@"UserGuide"];
+		self.title = @"UserGuide"; //[_delegate._dictLocalize objectForKey:@"UserGuide"];
 		[_webView setScalesPageToFit:YES];
 		[_webView loadRequest:request];
 	}
@@ -70,8 +70,11 @@
 		}
 		else
 		{
+            [_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
+									  @"ConnectionTimedOut"] baseURL:nil];
+            /*
 			[_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
-									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
+									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];*/
 		}
         [request release];
 	}

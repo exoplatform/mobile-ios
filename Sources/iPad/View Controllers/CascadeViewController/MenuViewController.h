@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h> 
 #import "FilesViewController.h"
 #import "DashboardViewController_iPad.h"
-#import "Connection.h"
+#import "DashboardProxy.h"
 #import "ChatWindowViewController.h"
 #import "MessengerViewController.h"
 #import "iPadSettingViewController.h"
@@ -31,9 +31,7 @@
     DashboardViewController_iPad*   _dashboardViewController_iPad;
     
     ActivityStreamBrowseViewController_iPad* _activityViewController;
-    
-    Connection*                     _conn;
-    
+        
     MessengerViewController*        _messengerViewController;
     UINavigationController*         _nvMessengerViewController;
     ChatWindowViewController*       _chatWindowViewController;

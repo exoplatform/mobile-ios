@@ -9,14 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 
-@class Connection;
-
 @interface HomeViewController_iPhone : TTViewController <TTLauncherViewDelegate> {
     id                  _delegate;
     TTLauncherView*     _launcherView;
-    
-    Connection*			_conn;
-    
+        
     BOOL                _isCompatibleWithSocial;
 }
 

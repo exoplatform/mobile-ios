@@ -9,7 +9,7 @@
 #import "GadgetDisplayController.h"
 #import "MainViewController.h"
 #import "Gadget_iPad.h"
-#import "Connection.h"
+#import "AuthenticateProxy.h"
 
 @implementation GadgetDisplayController
 
@@ -139,7 +139,7 @@
 	NSRange rang = [[[gadget urlContent] absoluteString] rangeOfString:@"standalone"];
 	if (rang.length > 0) 
 	{
-		_strBConnectStatus = [[_delegate getConnection] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
+		_strBConnectStatus = [[AuthenticateProxy sharedInstance] loginForStandaloneGadget:[[gadget urlContent] absoluteString]];
 	}
 	
 	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];

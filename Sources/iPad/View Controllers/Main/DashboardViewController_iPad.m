@@ -22,8 +22,6 @@
 #import "Three20UINavigator/TTURLObject.h"
 
 #import "Gadget_iPad.h"
-#import "HomeViewController_iPad.h"
-
 #import "AppDelegate_iPad.h"
 
 #import "GadgetDisplayController.h"

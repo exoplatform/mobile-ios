@@ -8,6 +8,7 @@
 
 #import "File.h"
 #import "FilesProxy.h"
+#import "AuthenticateProxy.h"
 #import "eXo_Constants.h"
 
 @implementation File
@@ -95,7 +96,7 @@
 							"<D:prop><D:getcontenttype/></D:prop></D:propfind>"] dataUsingEncoding:NSUTF8StringEncoding]]; 
     
     
-	[request setValue:[FilesProxy stringOfAuthorizationHeaderWithUsername:username password:password] forHTTPHeaderField:@"Authorization"];
+	[request setValue:[[AuthenticateProxy sharedInstance] stringOfAuthorizationHeaderWithUsername:username password:password] forHTTPHeaderField:@"Authorization"];
 	
 	NSData *dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString *responseStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];

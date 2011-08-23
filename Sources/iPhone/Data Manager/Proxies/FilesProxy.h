@@ -21,9 +21,7 @@
 #define kFileProtocolForMove @"MOVE"
 
 
-@interface FilesProxy : NSObject {
-    
-    AuthenticateProxy *_authenticateProxy;
+@interface FilesProxy : NSObject {    
     NSString *_strUserRepository;
 }
 
@@ -31,7 +29,6 @@
 
 + (FilesProxy *)sharedInstance;
 + (NSString*)stringEncodedWithBase64:(NSString*)str;
-+ (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password;	//Athentication encoding
 
 //Create user's repository home url
 - (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35;

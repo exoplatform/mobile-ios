@@ -23,10 +23,8 @@
 
 #import "FilesViewController_iPhone.h"
 #import "ActivityStreamBrowseViewController_iPhone.h"
-#import "ChatViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
 #import "eXoSettingViewController.h"
-#import "Connection.h"
 #import "Gadget_iPhoneViewController.h"
 #import "MessengerViewController_iPhone.h"
 #import "FilesProxy.h"
@@ -76,9 +74,7 @@
 - (void)loadView 
 {
     [super loadView];
-    
-    _conn = [[Connection alloc] init];
-    
+        
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
@@ -121,6 +117,7 @@
     _launcherView.columnCount = 3;
     _launcherView.pager.hidesForSinglePage = YES;
     
+    //TODO Localize
     TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:@"Activity Streams"
                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                        URL:@"tt://activityStream" canDelete:NO] autorelease];
@@ -197,8 +194,7 @@
     
     if([item.title isEqualToString:@"Settings"]) 
     {
-        eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped 
-                                                                                   delegate:[AppDelegate_iPhone instance].applicationsViewController];
+        eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
         [setting release];
         

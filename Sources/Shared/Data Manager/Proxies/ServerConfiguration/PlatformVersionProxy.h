@@ -24,7 +24,7 @@
 }
 
 @property (nonatomic) BOOL isPlatformCompatibleWithSocialFeatures;
-@property (nonatomic) id<PlatformVersionProxyDelegate> delegate;
+@property (nonatomic, retain) id<PlatformVersionProxyDelegate> delegate;
 
 -(id)initWithDelegate:(id<PlatformVersionProxyDelegate>)delegate;
 - (void)retrievePlatformInformations;

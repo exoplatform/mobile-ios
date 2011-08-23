@@ -11,12 +11,11 @@
 #import "defines.h"
 #import "CXMLDocument.h"
 #import "eXoSettingViewController.h"
-#import "eXoApplicationsViewController.h"
-#import "Connection.h"
 #import "DataProcess.h"
 #import "NSString+HTML.h"
 #import "Configuration.h"
 #import "SSHUDView.h"
+#import "AuthenticateProxy.h"
 
 
 #define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
@@ -110,7 +109,8 @@
 	
 	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     
-    [AppDelegate_iPhone instance].applicationsViewController._dictLocalize = _dictLocalize;
+    //TODO
+    //[AppDelegate_iPhone instance].applicationsViewController._dictLocalize = _dictLocalize;
     
     
 	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
@@ -447,8 +447,7 @@
 {
     //apps._dictLocalize = _dictLocalize;
     
-    eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped 
-                                                                               delegate:[AppDelegate_iPhone instance].applicationsViewController];
+    eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
     [setting release];
     
@@ -541,9 +540,7 @@
 - (void)signInProgress
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	Connection* conn = [[Connection alloc] init];
-	
+		
 	NSString* username = [_txtfUsername text];
 	NSString* password = [_txtfPassword text];
 		
@@ -551,7 +548,7 @@
 	[userDefaults setObject:username forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:password forKey:EXO_PREFERENCE_PASSWORD];	
 	
-	_strBSuccessful = [conn sendAuthenticateRequest:_strHost username:username password:password];
+	_strBSuccessful = [[AuthenticateProxy sharedInstance] sendAuthenticateRequest:_strHost username:username password:password];
     
     //SLM : Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;

@@ -25,7 +25,6 @@
 	NSDictionary*	_dictLocalize;
 	BOOL edit;
 	
-	eXoApplicationsViewController*  _delegate;
     NSMutableArray*                 _arrServerList;
     int                             _intSelectedServer;
     ServerManagerViewController*    _serverManagerViewController;

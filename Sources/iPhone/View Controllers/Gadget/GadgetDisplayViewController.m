@@ -11,7 +11,7 @@
 #import "defines.h"
 #import "eXoApplicationsViewController.h"
 #import "Gadget_iPhone.h"
-#import "Connection.h"
+#import "AuthenticateProxy.h"
 
 @implementation GadgetDisplayViewController
 
@@ -42,13 +42,10 @@
 		
 
 		
-		Connection* connection;
 		NSRange rang = [[_url absoluteString] rangeOfString:@"standalone"];
 		if (rang.length > 0) 
 		{
-			connection = [[Connection alloc] init];
-			_strBConnectStatus = [connection loginForStandaloneGadget:[_url absoluteString]];
-            [connection release];
+			_strBConnectStatus = [[AuthenticateProxy sharedInstance] loginForStandaloneGadget:[_url absoluteString]];
 		}
 
 		[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -60,9 +57,13 @@
 		}
 		else
 		{
-			[_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
+            //TODO Localize
+			/*[_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
 									  [_delegate._dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
+             */
+            [_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", @"ConnectionTimedOut"] baseURL:nil];
 		}
+		
         
         [request release];
 

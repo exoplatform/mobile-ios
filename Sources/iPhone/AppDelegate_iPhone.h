@@ -14,7 +14,6 @@
 @class eXoApplicationsViewController;
 @class eXoGadgetsViewController;
 @class eXoWebViewController;
-@class eXoSplashViewController;
 @class eXoSettingViewController;
 
 @class HomeViewController_iPhone;
@@ -26,11 +25,9 @@
 	IBOutlet UITabBarController*		tabBarController;
 	
 	AuthenticateViewController*         authenticateViewController;	//Login page
-	eXoApplicationsViewController*		applicationsViewController;	//Main app page
 	eXoGadgetsViewController*			gadgetsViewController;	//Gadgeta page
 	eXoSettingViewController*			settingViewController;	//Setting page
 	eXoWebViewController*				webViewController;	//Display help or file content
-	eXoSplashViewController*			_splash;	//Splash view
 	
     HomeViewController_iPhone*          _homeViewController_iPhone;
     BOOL                                _isCompatibleWithSocial;
@@ -44,7 +41,6 @@
 @property (nonatomic, retain) UINavigationController* navigationController;
 @property (nonatomic, retain) UITabBarController* tabBarController;
 @property (nonatomic, retain) IBOutlet AuthenticateViewController *authenticateViewController;
-@property (nonatomic, retain) IBOutlet eXoApplicationsViewController* applicationsViewController;
 @property (nonatomic, retain) IBOutlet eXoGadgetsViewController* gadgetsViewController;
 @property (nonatomic, retain) IBOutlet eXoSettingViewController*	settingViewController;
 @property (nonatomic, retain) IBOutlet HomeViewController_iPhone* homeViewController_iPhone;

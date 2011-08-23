@@ -10,7 +10,7 @@
 #import "eXoMobileViewController.h"
 #import "Checkbox.h"
 #import "defines.h"
-#import "Connection.h"
+#import "AuthenticateProxy.h"
 #import "SupportViewController.h"
 #import "Configuration.h"
 #import "iPadSettingViewController.h"
@@ -443,7 +443,7 @@
 	
 	UIAlertView* alert;
 	
-	NSString* strResult = [[_delegate _connection] sendAuthenticateRequest:_strHost username:_strUsername password:_strPassword];
+	NSString* strResult = [[AuthenticateProxy sharedInstance] sendAuthenticateRequest:_strHost username:_strUsername password:_strPassword];
 	//NSString* strResult = @"YES";
 	if(strResult == @"YES")
 	{
@@ -494,14 +494,9 @@
 	[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
 	[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
-
-	//[_delegate showMainViewController];
     
     PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
     [plfVersionProxy retrievePlatformInformations];
-    
-//    [_delegate showHomeViewController];
-    //[_delegate showHome];
 
 }
 
@@ -525,8 +520,6 @@
     [_btnServerList setImage:[UIImage imageNamed:@"AuthenticateServersIconIpadOff.png"] forState:UIControlStateNormal];
     [_btnAccount setSelected:YES];
     [_btnServerList setSelected:NO];
-    //[_btnServerList setBackgroundColor:[UIColor grayColor]];
-    //[_btnAccount setBackgroundColor:[UIColor blueColor]];
     [_vLoginView bringSubviewToFront:_vAccountView];
     [_tbvlServerList setHidden:YES];
     [_vAccountView setHidden:NO];
@@ -539,11 +532,7 @@
     [_btnAccount setSelected:NO];
     [_btnServerList setSelected:YES];
     [_tbvlServerList setHidden:NO];
-    [_vAccountView setHidden:YES];
-    
-    //[_btnServerList setBackgroundColor:[UIColor blueColor]];
-    //[_btnAccount setBackgroundColor:[UIColor grayColor]];    
-    //[_vLoginView bringSubviewToFront:_vServerListView];   
+    [_vAccountView setHidden:YES];  
     [_vLoginView bringSubviewToFront:_tbvlServerList];   
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
@@ -651,11 +640,6 @@
     {
         UIView* tmpView = [_arrViewOfViewControllers objectAtIndex:i];
         int p = i - index;
-//        if (p == 0) 
-//        {
-//            _intCurrentViewId = i;
-//        }
-//        [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
         if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
         {
             [tmpView setFrame:CGRectMake(p*SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
@@ -733,16 +717,7 @@
 
 - (void)showiPadServerManagerViewController
 {
-    /*
-    if (_iPadServerManagerViewController == nil) 
-    {
-        _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
-        [_iPadServerManagerViewController setDelegate:self];
-        [_iPadServerManagerViewController setInterfaceOrientation:_interfaceOrientation];
-        [self.view addSubview:_iPadServerManagerViewController.view];
-    }
-    [self pushViewIn:_iPadServerManagerViewController.view];
-     */
+    
     if (_iPadServerManagerViewController == nil) 
     {
         _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
@@ -762,19 +737,7 @@
 
 - (void)showiPadServerAddingViewController
 {
-    /*
-    if (_iPadServerAddingViewController == nil) 
-    {
-        _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
-        [_iPadServerAddingViewController setDelegate:self];
-        [_iPadServerAddingViewController setInterfaceOrientation:_interfaceOrientation];
-        [self.view addSubview:_iPadServerAddingViewController.view];
-    }
-    [_iPadServerAddingViewController._txtfServerName setText:@""];
-    [_iPadServerAddingViewController._txtfServerUrl setText:@""];    
-    [self pushViewIn:_iPadServerAddingViewController.view];
-    */
-    
+       
     if (_iPadServerAddingViewController == nil) 
     {
         _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
@@ -793,17 +756,7 @@
 
 - (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index
 {
-    /*
-    if (_iPadServerEditingViewController == nil) 
-    {
-        _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
-        [_iPadServerEditingViewController setDelegate:self];
-        [_iPadServerEditingViewController setInterfaceOrientation:_interfaceOrientation];
-        [self.view addSubview:_iPadServerEditingViewController.view];
-    }
-    [_iPadServerEditingViewController setServerObj:serverObj andIndex:index];
-    [self pushViewIn:_iPadServerEditingViewController.view];
-    */
+    
     
     if (_iPadServerEditingViewController == nil) 
     {
@@ -828,7 +781,6 @@
     if (_iPadServerManagerViewController) 
     {
         [_iPadServerManagerViewController editServerObjAtIndex:intIndex withSeverName:strServerName andServerUrl:strServerUrl];
-        //[self pullViewOut:[_arrViewOfViewControllers lastObject]];
     }
 }
 
@@ -845,7 +797,6 @@
     if(_iPadServerManagerViewController)
     {
         [_iPadServerManagerViewController addServerObjWithServerName:strServerName andServerUrl:strServerUrl]; 
-        //[self pullViewOut:[_arrViewOfViewControllers lastObject]];
     }    
 }
 
@@ -857,13 +808,13 @@
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOff.png"]] autorelease];
 }
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
 {
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOn.png"]] autorelease];
 }
 
 
@@ -879,28 +830,7 @@
     return [_arrServerList count];
 }
 
-/*
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //temporary code. It will be updated as soon as BD team provide us UI design
-    float fWidth = 0;
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        fWidth = 450;
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {
-        fWidth = 450;
-    }
-    float fHeight = 44.0;
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    NSString* text = tmpServerObj._strServerUrl; 
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    fHeight = 44*((int)theSize.height/44 + 1);
-    return fHeight;
-}
-*/
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -977,72 +907,4 @@
 }
 
 
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    if (indexPath.row == _intSelectedServer) 
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    
-	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    
-    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(2, 5, 150, 30)];
-    lbServerName.text = tmpServerObj._strServerName;
-    lbServerName.textColor = [UIColor brownColor];
-    [cell addSubview:lbServerName];
-    [lbServerName release];
-    
-//    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 400, 30)];
-//    lbServerUrl.text = tmpServerObj._strServerUrl;
-//    [cell addSubview:lbServerUrl];
-//    [lbServerUrl release];
-    float fWidth = 0;
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        fWidth = 450;
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {
-        fWidth = 450;
-    }
-    
-    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 400, 30)];
-    NSString* text = tmpServerObj._strServerUrl; 
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    [lbServerUrl setFrame:CGRectMake(220, 5, fWidth, 44*((int)theSize.height/44 + 1) - 10)];
-    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
-    lbServerUrl.text = tmpServerObj._strServerUrl;
-    [cell addSubview:lbServerUrl];
-    [lbServerUrl release];
-    
-	return cell;
-}
-*/
-
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    _strHost = [tmpServerObj._strServerUrl retain];
-    _intSelectedServer = indexPath.row;
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-	[userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
-    [_tbvlServerList reloadData];
-}
-*/
 @end

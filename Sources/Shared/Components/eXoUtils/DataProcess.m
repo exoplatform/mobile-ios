@@ -68,7 +68,7 @@ static DataProcess *_instance;
 	NSEnumerator* e = [allKeys objectEnumerator];
 	
 	NSString* dictKey;
-	while(dictKey = [e nextObject])
+	while((dictKey = [e nextObject]))
 	{	
 		NSString* encodedKey = [self escapeString: dictKey withEncoding:encoding];
 		//NSString* encodedValue = [self escapeString:dictKey withEncoding:encoding];   
@@ -99,7 +99,7 @@ static DataProcess *_instance;
 	NSMutableArray* arrDicts = [[NSMutableArray alloc] init];
 	[arrDicts removeAllObjects];
 	
-	while (tmpNode = [e nextObject]) 
+	while ((tmpNode = [e nextObject])) 
 	{
 		tmpNodeDescription = [tmpNode description];
 		tmpNodeValue = [tmpNode stringValue];

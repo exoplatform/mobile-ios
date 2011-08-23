@@ -8,8 +8,7 @@
 
 #import "DashboardViewController_iPhone.h"
 
-#import "Three20/Three20.h"
-#import "Connection.h"
+#import "DashboardProxy.h"
 #import "Gadget_iPad.h"
 #import "Gadget_iPhone.h"
 #import "GadgetDisplayViewController.h"
@@ -83,14 +82,12 @@
     
     _tblGadgets.backgroundView = backgroundView;
     
-    Connection *conn = [[Connection alloc] init];
     
     [_arrTabs removeLastObject];
-    _arrTabs = [conn getItemsInDashboard];
+    _arrTabs = [[DashboardProxy sharedInstance] getItemsInDashboard];
     
     [_tblGadgets reloadData];
     
-    [conn release];
 }
 
 - (void)viewDidUnload

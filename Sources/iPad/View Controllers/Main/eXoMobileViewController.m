@@ -8,17 +8,13 @@
 
 #import "eXoMobileViewController.h"
 #import "LoginViewController.h"
-#import "MainViewController.h"
 #import "defines.h"
-#import "Connection.h"
-#import "HomeViewController_iPad.h"
 #import "MenuViewController.h"
 #import "AppDelegate_iPad.h"
 #import "FilesProxy.h"
 
 @implementation eXoMobileViewController
 
-@synthesize _connection;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -34,12 +30,9 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView 
 {
-	_connection = [[Connection alloc] init];
 	_intSelectedLanguage = 0;
 	_loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];	
 	[_loginViewController setDelegate:self];
-	_mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-	[_mainViewController setDelegate:self];
 	[super loadView];
 }
 
@@ -77,17 +70,6 @@
 	
 	[[_loginViewController view] setFrame:rect];
 	[_loginViewController changeOrientation:interfaceOrientation];
-	
-//	[[_mainViewController view] setFrame:rect];
-//	[_mainViewController changeOrientation:interfaceOrientation];
-    
-    if (_homeViewController_iPad) 
-    {
-        //[_homeViewController_iPad.navigationController.view setFrame:rect];
-        [[_homeViewController_iPad view] setFrame:rect];
-        [_homeViewController_iPad changeOrientation:interfaceOrientation];
-    }
-
     
     return YES;
 }
@@ -107,11 +89,7 @@
 
 - (void)dealloc 
 {
-    if (_homeViewController_iPad) 
-    {
-        [_homeViewController_iPad release];
-    }
-    [super dealloc];
+        [super dealloc];
 }
 
 - (void)setSelectedLanguage:(int)languageId
@@ -139,7 +117,6 @@
 - (void)localize
 {
 	[_loginViewController localize];
-	[_mainViewController localize];
 }
 
 - (NSDictionary*)getLocalization
@@ -152,10 +129,6 @@
 	return _intSelectedLanguage;
 }
 
-- (Connection*)getConnection
-{
-	return _connection;
-}
 
 - (void)showLoginViewController
 {
@@ -165,9 +138,6 @@
 - (void)showMainViewController
 {
 	[[_loginViewController view] removeFromSuperview];
-	[_mainViewController loadGadgets];
-	[_mainViewController onHomeBtn:nil];
-	[[self view] addSubview:[_mainViewController view]];
 }
 
 - (void)showHomeViewController:(BOOL)isCompatibleWithSocial
@@ -175,48 +145,6 @@
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:isCompatibleWithSocial];
     
     [[AppDelegate_iPad instance] showHome:self isCompatibleWithSocial:isCompatibleWithSocial];
-    
-    /*
-    [_loginViewController.view setHidden:YES];
-    CGRect rect;
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-		rect = CGRectMake(0, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD);
-	}
-	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{			
-		rect = CGRectMake(0, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD);
-	}
-    
-    if (_homeViewController_iPad == nil) 
-    {
-        _homeViewController_iPad = [[HomeViewController_iPad alloc] initWithNibName:nil bundle:nil];
-        [_homeViewController_iPad changeOrientation:_interfaceOrientation];
-        [_homeViewController_iPad setDelegate:self];
-    }
-    
-    if (_menuViewController == nil) 
-    {
-        _menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
-    }
-    
-    if (_navigationController == nil) 
-    {
-        _navigationController = [[UINavigationController alloc] 
-                                                   initWithRootViewController:_menuViewController];
-        _navigationController.navigationBar.tintColor = [UIColor blackColor];
-        
-        [_navigationController.view setFrame:rect];
-    }
-    [[self view] addSubview:_navigationController.view];    
-    
-//    UINavigationController *applicationView = [[UINavigationController alloc] 
-//											   initWithRootViewController:_homeViewController_iPad];
-//	applicationView.navigationBar.tintColor = [UIColor blackColor];
-//    
-//    [applicationView.view setFrame:rect];
-//    [[self view] addSubview:applicationView.view];
-     */
 }
 
 - (void)onBtnSigtOutDelegate

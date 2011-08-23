@@ -9,7 +9,6 @@
 #import "iPadSettingViewController.h"
 #import "eXoMobileViewController.h"
 #import "defines.h"
-#import "Connection.h"
 #import "LoginViewController.h"
 #import "Configuration.h"
 #import "iPadServerManagerViewController.h"
@@ -233,13 +232,13 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOff.png"]] autorelease];
 }
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
 {
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOn.png"]] autorelease];
 }
 
 
