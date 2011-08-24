@@ -9,7 +9,6 @@
 #import "eXoSettingViewController.h"
 #import "defines.h"
 #import "eXoWebViewController.h"
-#import "eXoApplicationsViewController.h"
 #import "Configuration.h"
 #import "ServerManagerViewController.h"
 #import "ContainerCell.h"

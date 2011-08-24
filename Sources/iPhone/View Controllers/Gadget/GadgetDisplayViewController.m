@@ -9,7 +9,6 @@
 #import "GadgetDisplayViewController.h"
 #import "CXMLDocument.h"
 #import "defines.h"
-#import "eXoApplicationsViewController.h"
 #import "Gadget_iPhone.h"
 #import "AuthenticateProxy.h"
 

@@ -8,7 +8,6 @@
 
 #import "eXoGadgetViewController.h"
 #import "Gadget_iPhone.h"
-#import "eXoApplicationsViewController.h"
 #import "eXoWebViewController.h"
 #import "GadgetDisplayViewController.h"
 

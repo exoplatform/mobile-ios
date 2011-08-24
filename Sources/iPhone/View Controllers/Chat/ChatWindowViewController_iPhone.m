@@ -7,7 +7,6 @@
 //
 
 #import "ChatWindowViewController_iPhone.h"
-#import "eXoApplicationsViewController.h"
 #import "DDXML.h"
 #import "XMPPUser.h"
 #import "XMPPJID.h"

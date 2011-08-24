@@ -9,7 +9,6 @@
 #import "eXoWebViewController.h"
 #import "CXMLDocument.h"
 #import "defines.h"
-#import "eXoApplicationsViewController.h"
 
 @implementation eXoWebViewController
 
