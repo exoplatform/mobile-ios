@@ -8,7 +8,6 @@
 
 #import "MoreLiveChatViewController.h"
 #import "MessengerViewController.h"
-#import "MainViewController.h"
 #import "XMPPUser.h"
 
 static NSString* kCellIdentifier = @"MyIdentifier";

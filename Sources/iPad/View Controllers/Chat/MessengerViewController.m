@@ -7,13 +7,11 @@
 //
 
 #import "MessengerViewController.h"
-#import "MainViewController.h"
 #import "XMPPClient.h"
 #import "XMPPUser.h"
 #import "XMPPJID.h"
 #import "XMPPElement.h"
 #import "defines.h"
-#import "AppContainerViewController.h"
 #import "XMPPResource.h"
 #import "XMPPPresence.h"
 #import "AppDelegate_iPad.h"

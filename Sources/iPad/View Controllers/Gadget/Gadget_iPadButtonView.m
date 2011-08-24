@@ -7,7 +7,6 @@
 //
 
 #import "Gadget_iPadButtonView.h"
-#import "GadgetViewController.h"
 #import "Gadget_iPad.h"
 
 @implementation Gadget_iPadButtonView

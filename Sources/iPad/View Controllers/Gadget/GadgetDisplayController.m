@@ -7,7 +7,6 @@
 //
 
 #import "GadgetDisplayController.h"
-#import "MainViewController.h"
 #import "Gadget_iPad.h"
 #import "AuthenticateProxy.h"
 

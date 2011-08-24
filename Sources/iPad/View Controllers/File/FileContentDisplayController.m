@@ -7,7 +7,6 @@
 //
 
 #import "FileContentDisplayController.h"
-#import "MainViewController.h"
 
 @implementation FileContentDisplayController
 

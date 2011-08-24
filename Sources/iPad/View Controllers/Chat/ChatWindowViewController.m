@@ -9,7 +9,6 @@
 #import "ChatWindowViewController.h"
 #import "defines.h"
 #import "MessengerViewController.h"
-#import "MainViewController.h"
 #import "DDXML.h"
 #import "XMPPUser.h"
 #import "XMPPJID.h"
