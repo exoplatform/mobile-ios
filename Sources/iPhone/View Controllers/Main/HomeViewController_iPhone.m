@@ -25,7 +25,6 @@
 #import "ActivityStreamBrowseViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
 #import "eXoSettingViewController.h"
-#import "Gadget_iPhoneViewController.h"
 #import "MessengerViewController_iPhone.h"
 #import "FilesProxy.h"
 

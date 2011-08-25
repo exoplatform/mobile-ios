@@ -6,13 +6,12 @@
 //  Copyright 2010 home. All rights reserved.
 //
 
-#import "Gadget_iPad.h"
+#import "Gadget.h"
 
 
-@implementation GateInDbItem 
-@synthesize _strDbItemName;
-@synthesize _urlDbItem;
-@synthesize _arrGadgetsInItem;
+@implementation GateInDbItem
+
+@synthesize _strDbItemName, _urlDbItem, _arrGadgetsInItem;
 
 - (id)init
 {
@@ -36,12 +35,27 @@
 	[_arrGadgetsInItem retain];
 }
 
+
+- (void)dealloc {
+    [_strDbItemName release];
+    _strDbItemName = nil;
+    
+    [_urlDbItem release];
+    _urlDbItem = nil;
+    
+    [_arrGadgetsInItem release];
+    _arrGadgetsInItem = nil;
+    
+    [super dealloc];
+}
+
+
 @end
 //============================================================================================================
 
 
 
-@implementation Gadget_iPad
+@implementation Gadget
 
 @synthesize _strName;
 @synthesize _strDescription;
@@ -61,8 +75,31 @@
 		_urlContent = [[NSURL alloc] init];
 		_urlIcon = [[NSURL alloc] init];
 		_imgIcon = [[UIImage alloc] init];
+        _strID = [[NSString alloc] init];
 	}
 	return self;
+}
+
+- (void)dealloc {
+    [_strName release];
+    _strName = nil;
+    
+    [_strDescription release];
+    _strDescription = nil;
+    
+    [_urlContent release];
+    _urlContent = nil;
+    
+    [_urlIcon release];
+    _urlIcon = nil;
+    
+    [_imgIcon release];
+    _imgIcon = nil;
+    
+    [_strID release];
+    _strID = nil;
+    
+    [super dealloc];
 }
 
 - (void)setObjectWithName:(NSString*)name 
@@ -127,11 +164,3 @@
 }
 
 @end
-
-
-
-@implementation StandaloneGadget
-@synthesize _strName;
-@synthesize _urlContent;
-@end
-

@@ -10,7 +10,7 @@
 #import "defines.h"
 #import "AuthenticateProxy.h"
 #import "DataProcess.h"
-#import "Gadget_iPad.h"
+#import "Gadget.h"
 
 
 @interface DashboardProxy (PrivateMethods)
@@ -244,7 +244,7 @@
 			
 			urlGadgetContent = [NSURL URLWithString:gadgetUrl];
 			
-			Gadget_iPad* gadget = [[Gadget_iPad alloc] init];
+			Gadget* gadget = [[Gadget alloc] init];
 			
 			[gadget setObjectWithName:strGadgetName description:strGadgetDescription urlContent:urlGadgetContent urlIcon:nil imageIcon:imgGadgetIcon];
 			gadget._strID = [idString copy];
@@ -408,7 +408,7 @@
 			
 			for (int i = 0; i < [arrTmpGadgetsInItem count]; i++) 
 			{
-				Gadget_iPad* tmpGadget = [arrTmpGadgetsInItem objectAtIndex:i];
+				Gadget* tmpGadget = [arrTmpGadgetsInItem objectAtIndex:i];
 				
 				NSString *urlStandalone = [dictionaryStandaloneURL objectForKey:tmpGadget._strID];
 				// If the url is not find, we maintain the iframe url

@@ -294,11 +294,12 @@
             break;
         case 1:
             // dashboard
+            
             if (_dashboardViewController_iPad == nil) 
             {
             _dashboardViewController_iPad = [[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil];
             }
-            //[_dashboardViewController_iPad setDelegate:self];
+            
             _dashboardViewController_iPad._arrTabs = [[DashboardProxy sharedInstance] getItemsInDashboard];
 
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_dashboardViewController_iPad 

@@ -6,19 +6,11 @@
 //  Copyright 2011 home. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Three20/Three20.h"
+#import "DashboardViewController.h"
 
-@class GadgetDisplayViewController;
 
-@interface DashboardViewController_iPhone : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+@interface DashboardViewController_iPhone : DashboardViewController {
 
-    NSMutableArray*		_arrTabs;	//Gadget array 
-    
-    IBOutlet UITableView*   _tblGadgets;
-    GadgetDisplayViewController* _gadgetDisplayViewController;	//Display gadget
 }
-
-@property(nonatomic, retain) NSMutableArray* _arrTabs;
 
 @end

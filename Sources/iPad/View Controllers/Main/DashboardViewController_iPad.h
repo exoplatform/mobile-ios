@@ -6,16 +6,12 @@
 //  Copyright 2011 home. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DashboardViewController.h"
 
-@interface DashboardViewController_iPad : UIViewController <UITableViewDelegate, UITableViewDataSource>
-{
-    id                      _delegate;
-    IBOutlet UITableView*   _tblvDashboard;
-    NSMutableArray*         _arrTabs;
+@interface DashboardViewController_iPad : DashboardViewController {
+    
+    IBOutlet UINavigationBar*           _navigation;
+
 }
 
-@property(nonatomic, retain) NSMutableArray* _arrTabs;
-
-- (void)setDelegate:(id)delegate;
 @end
