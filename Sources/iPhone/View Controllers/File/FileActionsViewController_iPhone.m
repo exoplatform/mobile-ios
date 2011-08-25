@@ -10,7 +10,7 @@
 #import "FileActionsBackgroundView.h"
 #import "File.h"
 
-#import "AppDelegate_iPhone.h"
+#import "LanguageHelper.h"
 
 
 
@@ -47,12 +47,12 @@ static short fileActionMode = 0;//1:copy, 2:move
 		_file = [fileForActions retain];
 		_deleteFolderEnable = enable;
         
-        _strTakePicture = [NSString stringWithString:[[AppDelegate_iPhone instance].dictLocalize objectForKey:@"TakePicture"]];
-		_strDelete = [NSString stringWithString:[[AppDelegate_iPhone instance].dictLocalize objectForKey:@"Delete"]];
-		_strCopy = [NSString stringWithString:[[AppDelegate_iPhone instance].dictLocalize objectForKey:@"Copy"]];
-		_strMove = [NSString stringWithString:[[AppDelegate_iPhone instance].dictLocalize objectForKey:@"Move"]];
-		_strPaste = [NSString stringWithString:[[AppDelegate_iPhone instance].dictLocalize objectForKey:@"Paste"]];
-		_strCancel = [NSString stringWithString:[[AppDelegate_iPhone instance].dictLocalize objectForKey:@"Cancel"]]; 
+        _strTakePicture = [Localize(@"TakePicture") copy];
+		_strDelete = [Localize(@"Delete") copy];
+		_strCopy = [Localize(@"Copy") copy];
+		_strMove = [Localize(@"Move") copy];
+		_strPaste = [Localize(@"Paste") copy];
+		_strCancel = [Localize(@"Cancel") copy]; 
         
         
         FileActionsBackgroundView *bgView = [[FileActionsBackgroundView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];

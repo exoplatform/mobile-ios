@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
  
-@class eXoApplicationsViewController;
 @class ServerManagerViewController;
 
 @interface eXoSettingViewController : UITableViewController <UITextFieldDelegate> {
@@ -21,8 +20,6 @@
 	UISwitch *autoLogin;
 	UITextField *txtfDomainName;
 	NSString*	_localizeStr;
-	int			_selectedLanguage;
-	NSDictionary*	_dictLocalize;
 	BOOL edit;
 	
     NSMutableArray*                 _arrServerList;
@@ -30,8 +27,7 @@
     ServerManagerViewController*    _serverManagerViewController;
 }
 
-@property(nonatomic, retain) NSDictionary*	_dictLocalize;
 
-- (id)initWithStyle:(UITableViewStyle)style delegate:(eXoApplicationsViewController *)delegate;
+- (id)initWithStyle:(UITableViewStyle)style;
 
 @end

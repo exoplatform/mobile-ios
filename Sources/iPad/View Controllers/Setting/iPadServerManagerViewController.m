@@ -16,7 +16,6 @@
 #import "iPadSettingViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 
-static NSString *ServerCellIdentifier = @"ServerIdentifier";
 #define kTagForCellSubviewServerNameLabel 444
 #define kTagForCellSubviewServerUrlLabel 555
 
@@ -38,14 +37,12 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     {
         // Custom initialization
         _arrServerList = [[NSMutableArray alloc] init];
-        _dictLocalize = [[NSDictionary alloc] init];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_dictLocalize release];
     [_arrServerList release];
     [super dealloc];
 }
@@ -69,21 +66,8 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
-{
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-//    UIView* bg = [[UIView alloc] initWithFrame:[_tbvlServerList frame]];
-//	[bg setBackgroundColor:[UIColor clearColor]];
-//	[_tbvlServerList setBackgroundView:bg];
-//    [bg release];
-    
+{    
     _arrServerList = [[Configuration sharedInstance] getServerList];
-//    _btnAdd = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [_btnAdd setFrame:CGRectMake(100, 10, 60, 37)];
-//    [_btnAdd.titleLabel setTextColor:[UIColor redColor]];
-//    [_btnAdd setTitle:@"Add" forState:UIControlStateNormal];
-//    [_btnAdd addTarget:self action:@selector(onBtnAdd) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_btnAdd];
-    
     _bbtnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onBtnAdd)];
     self.navigationItem.rightBarButtonItem = _bbtnAdd;
     
@@ -104,45 +88,15 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     return YES;
 }
 
-/*
-- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    [self changeOrientation:interfaceOrientation];
-}
-
-- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        [_tbvlServerList setFrame:CGRectMake(0, 44, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD - 44)];
-        [_btnAdd setFrame:CGRectMake(690, 5, 60, 37)];
-	}
-    
-    if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{	
-        [_tbvlServerList setFrame:CGRectMake(0, 44, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD - 44)];
-        [_btnAdd setFrame:CGRectMake(946, 5, 60, 37)];
-	}
-    _interfaceOrientation = interfaceOrientation;
-    [_tbvlServerList reloadData];
-}
-*/ 
 
 - (void)setDelegate:(id)delegate
 {
     _delegate = delegate;
-    _dictLocalize = [_delegate getLocalization];
 }
 
 - (void)localize
 {
-    _dictLocalize = [_delegate getLocalization];
     [_tbvlServerList reloadData];
-}
-
-- (NSDictionary*)getLocalization 
-{
-    return _dictLocalize;
 }
 
 - (IBAction)onBtnBack:(id)sender
@@ -169,8 +123,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     {
         [self.navigationController pushViewController:_iPadServerAddingViewController animated:YES];
     }     
-    
-    //[_delegate showiPadServerAddingViewController];
 }
 
 - (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
@@ -324,25 +276,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //temporary code. It will be updated as soon as BD team provide us UI design
-    /*
-    float fWidth = 0;
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        fWidth = 450;
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {
-        fWidth = 450;
-    }
-    float fHeight = 44.0;
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    NSString* text = tmpServerObj._strServerUrl; 
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    fHeight = 44*((int)theSize.height/44 + 1);
-    return fHeight;
-    */
     return 44;
 }
 
@@ -366,13 +299,11 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
         
         UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
         CGRect tmpFrame = lbServerUrl.frame;
-        //tmpFrame.size.width += 155;
         tmpFrame.size.width = 330;
         lbServerUrl.frame = tmpFrame; 
         
         lbServerUrl.textColor = [UIColor darkGrayColor];
         
-        //cell.accessoryView = nil;
     }
     
     if (indexPath.row < [_arrServerList count]) 
@@ -390,46 +321,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
     return cell;
-    
-    /*
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ServerCellIdentifier];
-    if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerCellIdentifier] autorelease];
-    }
-	
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    
-    UILabel* lbServerName = [[UILabel alloc] initWithFrame:CGRectMake(55, 5, 150, 30)];
-    lbServerName.text = tmpServerObj._strServerName;
-    lbServerName.textColor = [UIColor brownColor];
-    [cell addSubview:lbServerName];
-    [lbServerName release];
-    
-    float fWidth = 0;
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        fWidth = 450;
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {
-        fWidth = 450;
-    }
-    
-    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 400, 30)];
-    NSString* text = tmpServerObj._strServerUrl; 
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    [lbServerUrl setFrame:CGRectMake(220, 5, fWidth, 44*((int)theSize.height/44 + 1) - 10)];
-    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];
-    lbServerUrl.text = tmpServerObj._strServerUrl;
-    [cell addSubview:lbServerUrl];
-    [lbServerUrl release];
-    
-    return cell;
-    */ 
 }
 
 

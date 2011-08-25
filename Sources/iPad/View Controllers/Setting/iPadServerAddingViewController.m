@@ -14,6 +14,9 @@
 #import "CustomBackgroundForCell_iPhone.h"
 #import "AppDelegate_iPad.h"
 
+static NSString *ServerObjCellIdentifier = @"ServerObj";
+
+
 @implementation iPadServerAddingViewController
 
 @synthesize _txtfServerName;
@@ -25,7 +28,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _dictLocalize = [[NSDictionary alloc] init];
     }
     return self;
 }
@@ -36,7 +38,6 @@
     [_strServerUrl release];
     [_txtfServerName release];
     [_txtfServerUrl release];
-    [_dictLocalize release];
     [super dealloc];
 }
 
@@ -52,18 +53,11 @@
 - (void)setDelegate:(id)delegate
 {
     _delegate = delegate;
-    _dictLocalize = [_delegate getLocalization];
 }
 
 - (void)localize
 {
-    _dictLocalize = [_delegate getLocalization];
     [_tblvServerInfo reloadData];
-}
-
-- (NSDictionary*)getLocalization
-{
-	return _dictLocalize;
 }
 
 
@@ -267,45 +261,6 @@
     
     
     return cell;
-    
-    /*
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
-    if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        [_txtfServerName setFrame:CGRectMake(220, 12, 500, 22)];
-        [_txtfServerUrl setFrame:CGRectMake(220, 12, 500, 22)];
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {	
-        [_txtfServerName setFrame:CGRectMake(220, 12, 750, 22)];
-        [_txtfServerUrl setFrame:CGRectMake(220, 12, 750, 22)];
-    }
-    
-    switch (indexPath.row)
-    {
-        case 0:
-        {
-            UILabel* lbServerName = [[UILabel alloc] init];
-            lbServerName.text = @"Server Name"; //it will be localized later
-            return [self containerCellWithLabel:lbServerName view:_txtfServerName];
-            break;
-        }	
-        case 1:
-        {
-            UILabel* lbServerUrl = [[UILabel alloc] init];
-            lbServerUrl.text = @"Server Url"; //it will be localized later
-            return [self containerCellWithLabel:lbServerUrl view:_txtfServerUrl];
-            break;
-        }
-    }
-    return cell;
-     */
 }
 
 @end

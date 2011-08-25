@@ -9,6 +9,7 @@
 #import "MoreLiveChatViewController.h"
 #import "MessengerViewController.h"
 #import "XMPPUser.h"
+#import "LanguageHelper.h"
 
 static NSString* kCellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
@@ -33,8 +34,7 @@ static NSString* kCellIdentifier = @"MyIdentifier";
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	_dictLocalize = [_delegate getLocalization];
-	[_btnCloseAllLiveChat setTitle:[_dictLocalize objectForKey:@"Close"] forState:UIControlStateNormal];
+	[_btnCloseAllLiveChat setTitle:Localize(@"Close") forState:UIControlStateNormal];
     [super viewDidLoad];
 }
 
@@ -127,9 +127,6 @@ static NSString* kCellIdentifier = @"MyIdentifier";
     
     [_popViewController release];
     _popViewController = nil;
-    
-    [_dictLocalize release];
-    _dictLocalize = nil;
     
     [super dealloc];
 }

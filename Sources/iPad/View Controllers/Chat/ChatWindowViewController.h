@@ -16,8 +16,6 @@
 //Chat windows
 @interface ChatWindowViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {
 	id										_delegate;	//The delegate, point to MainViewController
-	NSDictionary*							_dictLocalize;	//dictionary
-	int										_intSelectedLanguage;	//index of current language: 0-English, 1-French
 	
 	XMPPClient*								_xmppClient;	//Chat socket
 	MessengerUser*							_messengerUser;	//Chat user
@@ -52,7 +50,6 @@
 @property (nonatomic, retain) MessengerUser* _messengerUser;
 
 - (void)setDelegate:(id)delegate;	//Set the delegate
-- (void)localize;	//Set language dictionary
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change orientation
 - (void)initChatWindowWithUser:(MessengerUser*)messengerUser andXMPPClient:(XMPPClient*)xmppClient;	//Create new instane of the Class
 - (void)setHiddenForNewMessageImage:(BOOL)isHidden;	//show new message alert

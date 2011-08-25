@@ -13,6 +13,9 @@
 #import "Configuration.h"
 #import "CustomBackgroundForCell_iPhone.h"
 
+static NSString *ServerObjCellIdentifier = @"ServerObj";
+
+
 @implementation ServerEditingViewController
 
 @synthesize _txtfServerName;

@@ -10,7 +10,6 @@
 
 #import "AuthenticateViewController.h"
 #import "eXoSettingViewController.h"
-#import "eXoWebViewController.h"
 #import "defines.h"
 
 #import "HomeViewController_iPhone.h"
@@ -19,54 +18,22 @@
 
 @synthesize window;
 @synthesize authenticateViewController;
-@synthesize gadgetsViewController;
 @synthesize navigationController;
-@synthesize tabBarController;
-@synthesize settingViewController;
-@synthesize webViewController;
+@synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
-
-@synthesize dictLocalize = _dictLocalize;
-
 
 
 + (AppDelegate_iPhone *) instance {
-    return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];
-    
+    return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];    
 }
 
-
-
-- (id)init
-{
-	self = [super init];
-	if(self)
-	{
-		_selectedLanguage = 0;
+- (id)init {
+	if ((self = [super init])) {
 	}
 	return self;
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application 
-{    
-	
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	int selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-	NSString* filePath;
-	if(selectedLanguage == 0)
-	{
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"] retain];
-	}	
-	else
-	{	
-		filePath = [[[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"] retain];
-	}
-	
-	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-	
-    //FilePath not needed any more, so release it
-    [filePath release];
-    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {    
     window.rootViewController = navigationController;
 	[window makeKeyAndVisible];
     
@@ -78,8 +45,7 @@
 }
 
 
-- (void)showHomeViewController
-{
+- (void)showHomeViewController {
     [_homeViewController_iPhone release];
     _homeViewController_iPhone = nil;   
     
@@ -101,23 +67,9 @@
 	[navigationController release];
     navigationController = nil;
     
-	[tabBarController release];
-	tabBarController = nil;
-    
-	[settingViewController release];	//Setting page
-    settingViewController = nil;
-    
-	[webViewController release];	//Display help or file content
-    webViewController = nil;
-	
-	[_dictLocalize release];
-    _dictLocalize = nil;
-    
     [authenticateViewController release];
     authenticateViewController = nil;
     
-	[gadgetsViewController release];
-    gadgetsViewController = nil;
     
     if (_homeViewController_iPhone)
     {
@@ -135,8 +87,7 @@
     [super dealloc];
 }
 
-- (void)onBtnSigtOutDelegate
-{
+- (void)onBtnSigtOutDelegate {
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

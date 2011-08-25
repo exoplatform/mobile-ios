@@ -25,8 +25,6 @@
 	UISwitch *autoLogin;
 	UITextField *txtfDomainName;
 	NSString*	_localizeStr;
-	int			_selectedLanguage;
-	NSDictionary*	_dictLocalize;
 	BOOL edit;
 	
     IBOutlet UITableView* tblView;
@@ -37,7 +35,6 @@
     int                                 _interfaceOrientation;
 }
 
-@property(nonatomic, retain) NSDictionary*	_dictLocalize;
 @property(nonatomic, retain) UITableView*	tblView;
 
 - (void)setDelegate:(id)delegate;

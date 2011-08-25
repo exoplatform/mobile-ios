@@ -19,9 +19,7 @@
     iPadServerAddingViewController*     _iPadServerAddingViewController;
     iPadServerEditingViewController*    _iPadServerEditingViewController;
 
-    //UIButton*                           _btnAdd;
     UIBarButtonItem*                    _bbtnAdd;
-    NSDictionary*                       _dictLocalize;
     int                                 _intCurrentIndex;
     int                                 _interfaceOrientation;
 }
@@ -32,9 +30,5 @@
 - (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
 - (void)deleteServerObjAtIndex:(int)index;
 - (void)setDelegate:(id)delegate;
-- (void)localize;
-- (NSDictionary*)getLocalization;
 - (IBAction)onBtnBack:(id)sender;
-- (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
-- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end

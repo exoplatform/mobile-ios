@@ -14,8 +14,6 @@
 {	
 	FilesViewController*					_delegate; //Point to FilesViewController
 	IBOutlet UITableView*					_tblvActions;	//Display list of action
-	NSDictionary*							_dictLocalize;	//Language dictionary 
-	int										_intSelectedLanguage;	//Language index
 	
 	BOOL									_bDelete;	//Is deleting file
 	BOOL									_bNewFolder;	//Is creating a new folder
@@ -28,7 +26,6 @@
 @property (nonatomic, retain) UITableView* _tblvActions;
 
 - (void)setDelegate:(id)delegate;	//Set the delegate
-- (void)localize;	//Get current language
 //Enable file actions
 - (void)enableDeleteAction:(BOOL)bEnable;	
 - (void)enableNewFolderAction:(BOOL)bEnable;

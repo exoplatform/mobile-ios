@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 @interface ServerAddingViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
@@ -26,8 +25,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
 
 - (void)setDelegate:(id)delegate;
-- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
-- (UITableViewCell*)textCellWithLabel:(UILabel*)label;
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;
 
 @end

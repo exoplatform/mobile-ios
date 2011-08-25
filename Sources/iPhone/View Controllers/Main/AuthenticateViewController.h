@@ -21,8 +21,6 @@
 	BOOL                        bRememberMe;	//Remember
 	BOOL                        bAutoLogin;	//Autologin
 	BOOL                        isFirstTimeLogin;	//Is first time login
-	int                         _selectedLanguage;	//Current language index
-	NSDictionary*               _dictLocalize;	//Language dictionary
 	NSThread*                   endThread;	//Get data thread
     
     
@@ -41,10 +39,7 @@
     NSString*                   _strHost;
     int                         _intSelectedServer;
 
-    
-    
-    SSHUDView *_hud;//Heads up display
-
+    SSHUDView*                  _hud;//Heads up display
 }
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action

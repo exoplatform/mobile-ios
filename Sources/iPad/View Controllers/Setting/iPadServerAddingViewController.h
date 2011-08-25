@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 @interface iPadServerAddingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
@@ -22,8 +21,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     NSString*                           _strServerName;
     NSString*                           _strServerUrl; 
 
-    NSDictionary*                       _dictLocalize;
-    //UIButton*                           _btnDone;
     UIBarButtonItem*                    _bbtnDone; 
     int                                 _interfaceOrientation;
 }
@@ -34,7 +31,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (void)setDelegate:(id)delegate;
 - (void)localize;
-- (NSDictionary*)getLocalization;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;

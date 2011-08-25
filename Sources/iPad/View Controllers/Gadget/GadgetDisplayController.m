@@ -9,6 +9,7 @@
 #import "GadgetDisplayController.h"
 #import "Gadget_iPad.h"
 #import "AuthenticateProxy.h"
+#import "LanguageHelper.h"
 
 @implementation GadgetDisplayController
 
@@ -40,7 +41,6 @@
 {
 	_wvGadgetDisplay.userInteractionEnabled = YES;
 	_wvGadgetDisplay.scalesPageToFit = YES;
-	[self localize];
 	[super viewDidLoad];
 }
 
@@ -60,9 +60,6 @@
 - (void)dealloc 
 {
     _delegate = nil;
-    
-    [_dictLocalize release];
-    _dictLocalize = nil;
     
     [_nvTitle release];
     _nvTitle = nil;
@@ -94,10 +91,6 @@
 	_delegate = delegate;
 }
 
-- (void)localize
-{
-	
-}
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
@@ -150,7 +143,7 @@
 	else
 	{
 		[_wvGadgetDisplay loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", 
-										  [_dictLocalize objectForKey:@"ConnectionTimedOut"]] baseURL:nil];
+										  Localize(@"ConnectionTimedOut")] baseURL:nil];
 		 
 	}	
     

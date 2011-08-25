@@ -62,9 +62,6 @@
                                enableDeleteThisFolder:(BOOL)enable
              delegate:(id<FileActionsProtocol>)actionsDelegate;
 
-- (void)takePicture;	//Take a picture
-
-
 
 
 @end

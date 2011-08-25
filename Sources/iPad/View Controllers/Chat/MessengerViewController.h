@@ -49,8 +49,6 @@ UITableViewDataSource> /*<UINavigationControllerDelegate,
 {
 	//MainViewController*						_delegate; // Point to MainViewController
     id                                      _delegate;
-	NSDictionary*							_dictLocalize;	//Language dictionary
-	int										_intSelectedLanguage;	//index of language
 	
 	IBOutlet UITableView*					_tblvUsers;
 	//UITableView*							_tblvUsers;	//show contact list
@@ -82,9 +80,6 @@ UITableViewDataSource> /*<UINavigationControllerDelegate,
 - (void)setCurrentChatUserIndex:(int)index;	//Set current chat user index in the list
 - (NSArray *)getArrChatUsers;	//Get chat user list
 - (void)setDelegate:(id)delegate;	//Set the delegate
-- (int)getSelectedLanguage;	//Get current language index
-- (NSDictionary*)getLocalization;	//Get current language dictionary
-//- (void)localize;
 - (void)initMessengerParameters;	//Creat parametters for new chat 
 - (NSString *)createChatContentFor:(NSString *)chatName content:(NSString *)content isMe:(BOOL)isMe portrait:(BOOL)portrait;	//Format the chat content
 - (void)updateAccountInfo; //Get contact info

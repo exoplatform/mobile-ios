@@ -16,6 +16,7 @@
 #import "Configuration.h"
 #import "SSHUDView.h"
 #import "AuthenticateProxy.h"
+#import "LanguageHelper.h"
 
 
 #define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
@@ -38,7 +39,6 @@
 	{
 		//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
         _strBSuccessful = [[NSString alloc] init];
-		_selectedLanguage = 0;
         _intSelectedServer = -1;
         _arrServerList = [[NSMutableArray alloc] init];
 		isFirstTimeLogin = YES;
@@ -95,26 +95,9 @@
     Configuration* configuration = [Configuration sharedInstance];
     _arrServerList = [configuration getServerList];
     
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-	NSString* filePath;
-	if(_selectedLanguage == 0)
-	{
-		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
-	}	
-	else
-	{	
-		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
-	}	
+	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
 	
-	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-    
-    //TODO
-    //[AppDelegate_iPhone instance].applicationsViewController._dictLocalize = _dictLocalize;
-    
-    
-	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
-	
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
 
 	bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
@@ -166,7 +149,6 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-//    [_hud dismiss];
 }
 	
 
@@ -319,15 +301,7 @@
 }
 	
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /*float fWidth = 150;
-    float fHeight = 44.0;
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    NSString* text = tmpServerObj._strServerUrl; 
-    CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    fHeight = 44*((int)theSize.height/44 + 1);
-    return fHeight;*/
-    
+{    
     return kHeightForServerCell;
 }
 
@@ -380,30 +354,11 @@
 	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
 
     UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
-    
-    //[[UILabel alloc] initWithFrame:CGRectMake(2, 5, 150, 30)];
     lbServerName.text = tmpServerObj._strServerName;
-    //lbServerName.textColor = [UIColor brownColor];
-    //[cell addSubview:lbServerName];
-    //[lbServerName release];
-
-//    UILabel* lbServerUrl = [[UILabel alloc] initWithFrame:CGRectMake(155, 5, 120, 30)];
-//    lbServerUrl.text = tmpServerObj._strServerUrl;
-//    [cell addSubview:lbServerUrl];
-//    [lbServerUrl release];
-//    float fWidth = 150;
-    
     
     UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
-    //NSString* text = tmpServerObj._strServerUrl; 
-    /*CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    float fHeight = 44*((int)theSize.height/44 + 1) - 10;
-    [lbServerUrl setFrame:CGRectMake(140, 5, fWidth, fHeight)];
-    [lbServerUrl setNumberOfLines:(int)theSize.height/44 + 1];*/
     lbServerUrl.text = tmpServerObj._strServerUrl;
-    //[cell addSubview:lbServerUrl];
-    //[lbServerUrl release];
-
+    
 	return cell;
 }
                 
@@ -433,42 +388,32 @@
 	[_txtfPassword resignFirstResponder];
 	
 	
-	NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
-	[startThread start];
+	//NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
+	//[startThread start];
 	
 	endThread = [[NSThread alloc] initWithTarget:self selector:@selector(signInProgress) object:nil];
 	[endThread start];
 	
-	[startThread release];
+	//[startThread release];
 	
 }
 
 - (IBAction)onSettingBtn
 {
-    //apps._dictLocalize = _dictLocalize;
-    
     eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
     [setting release];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self.navigationController presentModalViewController:navController animated:YES];
-    
-    
-    
-    //SettingsViewController_iPhone *setting = [[SettingsViewController_iPhone alloc] initWithNibName:@"SettingsViewController_iPhone"
-                                                                                      //     delegate:apps];
-    //[setting initWithStyle:UITableViewStyleGrouped delegate:apps];
-    
-	//[self.navigationController presentModalViewController:setting animated:YES];
 }
 
 - (IBAction)onSignInBtn:(id)sender
 {
 	if([_txtfUsername.text isEqualToString:@""])
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
-														message:[_dictLocalize objectForKey:@"UserNameEmpty"]
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+														message:Localize(@"UserNameEmpty")
 													   delegate:self 
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles: nil];
@@ -492,12 +437,6 @@
     //The login has successed we need to check the version of Platform
     PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
     [plfVersionProxy retrievePlatformInformations];
-    
-	//AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
-	//[appDelegate changeToActivityStreamsViewController:_dictLocalize];
-    
-    //[appDelegate showHomeViewController];
-	
 }
 
 
@@ -506,10 +445,7 @@
     [_hud completeAndDismissWithTitle:@"Success..."];
 
     AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
-    
-
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    
     [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
     
     endThread = nil;
@@ -526,16 +462,6 @@
 	[self view].userInteractionEnabled = YES;
 }
 
-- (void)startInProgress 
-{	 
-    
-
-	/*NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	UIBarButtonItem* progressBtn = [[UIBarButtonItem alloc] initWithCustomView:_indicator];
-	[[self navigationItem] setRightBarButtonItem:progressBtn];
-	[pool release];
-     */
-}
 
 - (void)signInProgress
 {
@@ -561,8 +487,8 @@
 	else if(_strBSuccessful == @"NO")
 	{
         [_hud dismiss];
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
-														 message:[_dictLocalize objectForKey:@"WrongUserNamePassword"]
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+														 message:Localize(@"WrongUserNamePassword")
 														delegate:self 
 											   cancelButtonTitle:@"OK"
 											   otherButtonTitles: nil];
@@ -574,8 +500,8 @@
 	else if(_strBSuccessful == @"ERROR")
 	{
         [_hud dismiss];
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
-														 message:[_dictLocalize objectForKey:@"NetworkConnectionFailed"]
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"NetworkConnection")
+														 message:Localize(@"NetworkConnectionFailed")
 														delegate:self 
 											   cancelButtonTitle:@"OK"
 											   otherButtonTitles: nil];
@@ -583,7 +509,6 @@
 		[alert release];
 		
 		[self performSelectorOnMainThread:@selector(loginFailed) withObject:nil waitUntilDone:NO];
-		//[[self navigationItem] setRightBarButtonItem:signInBtn];				
 	}
 	
 	[pool release];

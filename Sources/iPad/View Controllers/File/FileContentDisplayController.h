@@ -12,8 +12,6 @@
 @interface FileContentDisplayController : UIViewController <UIWebViewDelegate>
 {
 	id										_delegate; //The delegate
-	NSDictionary*							_dictLocalize;	//Language dictionary
-	int										_intSelectedLanguage;	//Index of language
 	
 	IBOutlet UIWebView*						_wvFileContentDisplay;	//File content is displayed on a web view
 	IBOutlet UIActivityIndicatorView*		_actiLoading;	//Loading file content
@@ -24,6 +22,5 @@
 @property (nonatomic, retain) UILabel* _lbStatus;
 
 - (void)setDelegate:(id)delegate;	//Set the delegate
-- (void)localize;	//Get current language
 - (void)startDisplayFileContent:(NSURL*)url;	//View file with its url
 @end

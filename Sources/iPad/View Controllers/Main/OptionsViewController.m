@@ -8,6 +8,7 @@
 
 #import "OptionsViewController.h"
 #import "FilesViewController.h"
+#import "LanguageHelper.h"
 
 @implementation OptionsViewController
 
@@ -79,31 +80,19 @@
 }
 
 - (void)localize
-{
-	_dictLocalize = [_delegate getLocalization];
-	_intSelectedLanguage = [_delegate getSelectedLanguage];
-	
+{	
 	if(_isNewFolder) {
-		[_lbInstruction setText:[_dictLocalize objectForKey:@"NewFolderTitle"]];
+		[_lbInstruction setText:Localize(@"NewFolderTitle")];
 	}
 	else {
-		[_lbInstruction setText:[_dictLocalize objectForKey:@"RenameTitle"]];
+		[_lbInstruction setText:Localize(@"RenameTitle")];
 		
 	}
 		
 	[_txtfNameInput setText:_nameInputStr];
-	[_btnCancel setTitle:[_dictLocalize objectForKey:@"CancelCopyButton"] forState:UIControlStateNormal];
+	[_btnCancel setTitle:Localize(@"CancelCopyButton") forState:UIControlStateNormal];
 }
 
-- (int)getSelectedLanguage
-{
-	return _intSelectedLanguage;
-}
-
-- (NSDictionary*)getLocalization
-{
-	return _dictLocalize;
-}
 
 - (IBAction)onOKBtn:(id)sender
 {

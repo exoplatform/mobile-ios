@@ -38,7 +38,6 @@
 - (void)viewDidLoad 
 {
 	[super viewDidLoad];
-	[self localize];
 	
 }
 
@@ -59,9 +58,6 @@
 {
     _delegate = nil;
     
-    [_dictLocalize release];
-    _dictLocalize = nil;
-    
     [_wvFileContentDisplay release];
     _wvFileContentDisplay = nil;
     
@@ -74,11 +70,6 @@
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;
-}
-
-- (void)localize
-{
-	
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 

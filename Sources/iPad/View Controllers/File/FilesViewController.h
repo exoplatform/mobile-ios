@@ -22,8 +22,7 @@
 													UIPopoverControllerDelegate>
 {
 	id										_delegate;	//The delagete
-	NSDictionary*							_dictLocalize;	//Language dictionary
-	int										_intSelectedLanguage;	//language index
+	
 	//Left and right image for the navigation
 	IBOutlet UIButton*						_btnLeftEdgeNavigation;
 	IBOutlet UIButton*						_btnRightEdgeNavigation;
@@ -72,9 +71,6 @@
 @property (nonatomic, retain) File* _fileForCopyMove;
 
 - (void)setDelegate:(id)delegate;	//Set the delegate
-- (void)localize;	//Language dictionary
-- (int)getSelectedLanguage;	//Get current language index
-- (NSDictionary*)getLocalization;	//Get current language dictionary
 - (void)initWithRootDirectory:(BOOL)isCompatibleWithPlatform35;	//Constructor
 - (NSMutableArray*)getPersonalDriveContent:(File *)file;	//Get file list
 //File action

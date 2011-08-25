@@ -13,6 +13,7 @@
 #import "ServerManagerViewController.h"
 #import "ContainerCell.h"
 #import "CustomBackgroundForCell_iPhone.h"
+#import "LanguageHelper.h"
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
@@ -37,8 +38,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 @implementation eXoSettingViewController
 
-@synthesize _dictLocalize;
-
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -57,7 +56,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
         autoLogin.tag = kTagForSwitchAutologin;
 		
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-		_selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
 		bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
 		bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 		
@@ -84,7 +82,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	self.title = [_dictLocalize objectForKey:@"Settings"];
+	self.title = Localize(@"Settings");
 	[self.tableView reloadData];
     
     //Add the Done button for exit Settings
@@ -162,16 +160,13 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 	{
 		rememberMe.enabled = YES;
 		autoLogin.enabled = YES;
-		self.navigationItem.rightBarButtonItem.title = [_dictLocalize objectForKey:@"Save"];
+		self.navigationItem.rightBarButtonItem.title = Localize(@"Save");
 	}
 	else
 	{
 		rememberMe.enabled = NO;
 		autoLogin.enabled = NO;
-		self.navigationItem.rightBarButtonItem.title = [_dictLocalize objectForKey:@"Edit"];
-		
-		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-		[userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedLanguage] forKey:EXO_PREFERENCE_LANGUAGE];		
+		self.navigationItem.rightBarButtonItem.title = Localize(@"Edit");
 	}
 	[self.tableView reloadData];
 }
@@ -268,25 +263,25 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 	{
 		case 0:
 		{
-			headerLabel.text = [_dictLocalize objectForKey:@"SignInButton"];
+			headerLabel.text = Localize(@"SignInButton");
 			break;
 		}
 			
 		case 1:
 		{
-			headerLabel.text = [_dictLocalize objectForKey:@"Language"];
+			headerLabel.text = Localize(@"Language");
 			break;
 		}
 			
 		case 2:
 		{
-			headerLabel.text = [_dictLocalize objectForKey:@"ServerList"];
+			headerLabel.text = Localize(@"ServerList");
 			break;
 		}
             
 		case 3:
 		{
-			headerLabel.text = [_dictLocalize objectForKey:@"UserGuide"];
+			headerLabel.text = Localize(@"UserGuide");
 			break;
 		}
 			
@@ -308,25 +303,25 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 	{
 		case 0:
 		{
-			tmpStr = [_dictLocalize objectForKey:@"SignInButton"];
+			tmpStr = Localize(@"SignInButton");
 			break;
 		}
 			
 		case 1:
 		{
-			tmpStr = [_dictLocalize objectForKey:@"Language"];
+			tmpStr = Localize(@"Language");
 			break;
 		}
 			
 		case 2:
 		{
-			tmpStr = [_dictLocalize objectForKey:@"ServerList"];
+			tmpStr = Localize(@"ServerList");
 			break;
 		}
             
 		case 3:
 		{
-			tmpStr = [_dictLocalize objectForKey:@"UserGuide"];
+			tmpStr = Localize(@"UserGuide");
 			break;
 		}
 			
@@ -370,19 +365,6 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float fHeight = 44.0;
-    /*if(indexPath.section == 2)
-	{
-        if (indexPath.row < [_arrServerList count]) 
-        {
-            float fWidth = 150;
-            float fHeight = 44.0;
-            ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-            NSString* text = tmpServerObj._strServerUrl; 
-            CGSize theSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:18.0f] constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-            fHeight = 44*((int)theSize.height/44 + 1);
-            return fHeight;
-        }
-    }*/
     return fHeight;
 }
 
@@ -420,13 +402,13 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
             
             if(indexPath.row == 0)
             {
-                cell.textLabel.text = [_dictLocalize objectForKey:@"RememberMe"];
+                cell.textLabel.text = Localize(@"RememberMe");
                 rememberMe.on = bRememberMe;
                 [cell addSubview:rememberMe];
             }
             else 
             {
-                cell.textLabel.text = [_dictLocalize objectForKey:@"AutoLogin"];
+                cell.textLabel.text = Localize(@"AutoLogin");
                 autoLogin.on = bAutoLogin;
                 [cell addSubview:autoLogin];
             }
@@ -466,7 +448,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
                 imgV.image = [UIImage imageNamed:@"EN.gif"];
                 
                 UILabel *titleLabel = (UILabel *) [cell viewWithTag:kTagForCellSubviewTitleLabel];
-                titleLabel.text = [_dictLocalize objectForKey:@"English"];
+                titleLabel.text = Localize(@"English");
             }
             else
             {
@@ -474,12 +456,12 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
                 imgV.image = [UIImage imageNamed:@"FR.gif"];
                 
                 UILabel *titleLabel = (UILabel *) [cell viewWithTag:kTagForCellSubviewTitleLabel];
-                titleLabel.text = [_dictLocalize objectForKey:@"French"];
+                titleLabel.text = Localize(@"French");
             }
             
             //Put the checkmark
-            
-            if (indexPath.row == _selectedLanguage) 
+            int selectedLanguage = [[LanguageHelper sharedInstance] getSelectedLanguage];
+            if (indexPath.row == selectedLanguage) 
             {
                 cell.accessoryView = [self makeCheckmarkOnAccessoryView];
             }
@@ -537,15 +519,12 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
                 [lbModify setTextAlignment:UITextAlignmentCenter];
                 lbModify.textColor = [UIColor darkGrayColor];
                 lbModify.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-                [lbModify setText:[_dictLocalize objectForKey:@"ServerModify"]];
+                [lbModify setText:Localize(@"ServerModify")];
                 lbModify.backgroundColor = [UIColor clearColor];
                 [cell addSubview:lbModify];
                 [lbModify release];
             }
             break;
-            
-            
-            
         }
             
         case 3:
@@ -556,11 +535,11 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
                 cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
              
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-                cell.textColor = [UIColor darkGrayColor];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
              
-            cell.textLabel.text = [_dictLocalize objectForKey:@"UserGuide"];
+            cell.textLabel.text = Localize(@"UserGuide");
             break;
         }
             
@@ -583,16 +562,12 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 {
 	if(indexPath.section == 1)
 	{
-		_selectedLanguage = indexPath.row;
-        //TODO Set Selected Language
-		//[_delegate setSelectedLanguage:_selectedLanguage];
-		[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] 
-         setTitle:[_dictLocalize objectForKey:@"ApplicationsTitle"]];
+		int selectedLanguage = indexPath.row;
 		
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 		[userDefaults setObject:[NSString stringWithFormat:@"%d", rememberMe.on] forKey:EXO_REMEMBER_ME];
 		[userDefaults setObject:[NSString stringWithFormat:@"%d", autoLogin.on] forKey:EXO_AUTO_LOGIN];
-		[userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedLanguage] forKey:EXO_PREFERENCE_LANGUAGE];
+        [[LanguageHelper sharedInstance] changeToLanguage:selectedLanguage];
 		
 		[self viewWillAppear:YES];
 	}
@@ -613,14 +588,14 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
             {
                 _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
             }
-            /*if([self.navigationController.viewControllers containsObject: _serverManagerViewController])
+            if([self.navigationController.viewControllers containsObject: _serverManagerViewController])
             {
                 [self.navigationController popToViewController:_serverManagerViewController animated:YES];
             }
             else
-            {*/
+            {
                 [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
-            //}
+            }
         }
 	}
 	else if(indexPath.section == 3)

@@ -10,6 +10,8 @@
 #import "ServerManagerViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 
+static NSString *ServerObjCellIdentifier = @"ServerObj";
+
 
 @implementation ServerAddingViewController
 

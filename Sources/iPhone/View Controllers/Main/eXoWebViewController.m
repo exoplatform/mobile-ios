@@ -9,13 +9,14 @@
 #import "eXoWebViewController.h"
 #import "CXMLDocument.h"
 #import "defines.h"
+#import "LanguageHelper.h"
 
 @implementation eXoWebViewController
 
 @synthesize _url;
 @synthesize _webView;
 @synthesize _statusLabel;
-@synthesize _progressIndicator, _delegate;
+@synthesize _progressIndicator;
 
 // custom init method to allow URL to be passed
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL 
@@ -50,7 +51,7 @@
 		else
 			request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"HowtoUse_FR_iPhone" ofType:@"htm"]]];
 		
-		self.title = @"UserGuide"; //[_delegate._dictLocalize objectForKey:@"UserGuide"];
+		self.title = Localize(@"UserGuide");
 		[_webView setScalesPageToFit:YES];
 		[_webView loadRequest:request];
 	}
@@ -81,7 +82,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
-	_statusLabel.text = @"";
+	_statusLabel.text = Localize(@"ErrorLoadingWebView");
 	[_progressIndicator stopAnimating];
 }
 
@@ -95,7 +96,7 @@
 // Start loading animation
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
-	_statusLabel.text = @"Loading...";
+	_statusLabel.text = Localize(@"Loading");
 	[_progressIndicator startAnimating];
 }
 

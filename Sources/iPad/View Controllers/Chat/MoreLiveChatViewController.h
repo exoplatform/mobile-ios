@@ -18,7 +18,6 @@
 	NSArray *arrLiveChat;	//List of current chat
 	MainViewController* _delegate;	//The delegate
 	UIPopoverController *_popViewController;	//View for show current chat list
-	NSDictionary*		_dictLocalize;	//Language dictionary
 }
 
 @property(nonatomic, retain) NSArray *arrLiveChat;

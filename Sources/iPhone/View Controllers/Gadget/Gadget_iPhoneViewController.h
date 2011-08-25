@@ -13,8 +13,6 @@
 {
 	id										_delegate;	//Main app controller view
 	IBOutlet UITableView*					_tblGadgetList; //Gadget list view
-	NSDictionary*							_dictLocalize;	//Language dictionary
-	int										_intSelectedLanguage;	//Language index
 
 	NSMutableArray*							_arrGadgets;	//List of gadgets
 	NSMutableArray*							_arrGateInDbItems;	//List of gadget tabs
@@ -32,8 +30,6 @@
 
 - (void)setDelegate:(id)delegate;	//Set delegate
 - (void)localize;	//Get current language
-- (int)getSelectedLanguage;	//Get current language index
-- (NSDictionary*)getLocalization;	//Get cuurent language dictionary
 - (void)loadGateInDbItems:(NSMutableArray*)arrGateInDbItems;	//Get dashboar tab list
 - (void)loadScrollViewWithPage:(int)page;	//
 - (IBAction)onPageViewController:(id)sender;	//Scroll gadget page

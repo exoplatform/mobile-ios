@@ -25,7 +25,6 @@
     NSString*                           _strServerUrl; 
     UIBarButtonItem*                    _bbtnEdit;
     int                                 _intIndex;
-    NSDictionary*                       _dictLocalize;
     
     //UIButton*                           _btnEdit;
     IBOutlet UIButton*                  _btnBack;

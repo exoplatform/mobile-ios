@@ -16,6 +16,7 @@
 #import "XMPPPresence.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import "LanguageHelper.h"
 
 static NSString* kCellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
@@ -188,8 +189,8 @@ NSString* imageStr(NSString* fileName, NSString* type)
 
 @implementation MessengerViewController
 
-//@synthesize _tblvUsers;
-//@synthesize currentChatUserIndex;
+@synthesize _tblvUsers;
+@synthesize currentChatUserIndex;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -232,9 +233,6 @@ NSString* imageStr(NSString* fileName, NSString* type)
 {
     _delegate = nil;
     
-    [_dictLocalize release];
-    _dictLocalize = nil;
-    
     [_tblvUsers release];
     _tblvUsers = nil;
     
@@ -276,16 +274,6 @@ NSString* imageStr(NSString* fileName, NSString* type)
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;
-}
-
-- (int)getSelectedLanguage
-{
-	return _intSelectedLanguage;
-}
-
-- (NSDictionary*)getLocalization
-{
-	return _dictLocalize;
 }
 
 - (void)initMessengerParameters
@@ -359,12 +347,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	color = @"#F7F7F7";
 	
 	int width = 485, horizontalWidth = 465, wordMaxLength = 100;
-//	if(!portrait)
-//	{
-//		width = 690;
-//		horizontalWidth = 670;
-//		wordMaxLength = 90;
-//	}
+
 	
 	NSString *tempStr = [NSString stringWithFormat:@"<table boder=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=%d>"
 						 "<tr>"
@@ -560,14 +543,8 @@ NSString* imageStr(NSString* fileName, NSString* type)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//[_delegate setCurrentViewIndex:3];
 	MessengerUser* messengerUser = [arrChatUsers objectAtIndex:indexPath.row]; 
 	messengerUser._intMessageCount = 0;
-	//[_delegate setLeftBarButtonForNavigationBar];
-	//currentChatUserIndex = indexPath.row;	
-	//[_delegate showChatWindowWithUser:messengerUser andXMPPClient:_xmppClient];
-    //[self showChatWindowWithUser:messengerUser andXMPPClient:_xmppClient];
-	//[_tblvUsers reloadData];
     
     if (_chatWindowViewController == nil) 
     {
@@ -577,12 +554,6 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	[_chatWindowViewController initChatWindowWithUser:messengerUser andXMPPClient:_xmppClient];
     
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_chatWindowViewController invokeByController:self isStackStartView:FALSE];
-        
-
-    //[[self view] addSubview:[_fileContentDisplayController view]];
-    
-    //[_navigationBar setTitle:_currenteXoFile._fileName];
-    //[_navigationBar setLeftBarButtonItem:_bbtnBack];
 }
 
 
@@ -657,17 +628,12 @@ NSString* imageStr(NSString* fileName, NSString* type)
 			if(currentChatUserIndex == i)
 			{
 				messengerUser._intMessageCount = 0;
-				//[_delegate setCurrentViewIndex:3];
 			}	
 			else
 			{
 				messengerUser._intMessageCount ++;
-				//[_delegate setHiddenForNewMessageImage:NO];
-				//[_delegate setCurrentViewIndex:4];
-				//[_delegate addChatButton:messengerUser._xmppUser userIndex:i];
 			}
 			
-			//[_delegate receivedChatMsg];
             [self receivedChatMsg];
 			
 			break;
@@ -677,7 +643,6 @@ NSString* imageStr(NSString* fileName, NSString* type)
 	
 	[_tblvUsers reloadData];
 	
-	//[_delegate setLeftBarButtonForNavigationBar];	
 }
 
 @end

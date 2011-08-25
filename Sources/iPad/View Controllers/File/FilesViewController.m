@@ -18,6 +18,7 @@
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 #import "FilesProxy.h"
+#import "LanguageHelper.h"
 
 
 static NSString* kCellIdentifier = @"Cell";
@@ -82,7 +83,6 @@ static NSString* kCellIdentifier = @"Cell";
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	[self localize];
 	[_navigationBar setRightBarButtonItem:_bbtnActions];
 	[super viewDidLoad];
 	
@@ -90,7 +90,7 @@ static NSString* kCellIdentifier = @"Cell";
 	labelEmptyPage.backgroundColor = [UIColor clearColor];
 	labelEmptyPage.textAlignment = UITextAlignmentCenter;
 	labelEmptyPage.font = [UIFont systemFontOfSize:24];
-	labelEmptyPage.text = [_dictLocalize objectForKey:@"EmptyPage"];
+	labelEmptyPage.text = Localize(@"EmptyPage");
 }
 
 - (void)didReceiveMemoryWarning 
@@ -109,9 +109,6 @@ static NSString* kCellIdentifier = @"Cell";
 - (void)dealloc 
 {
     _delegate = nil;
-    
-    [_dictLocalize release];
-    _dictLocalize = nil;
     
     [_btnLeftEdgeNavigation release];
     _btnLeftEdgeNavigation = nil;
@@ -173,23 +170,6 @@ static NSString* kCellIdentifier = @"Cell";
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;
-}
-
-- (int)getSelectedLanguage
-{
-	return _intSelectedLanguage;
-}
-
-- (NSDictionary*)getLocalization
-{
-	return _dictLocalize;
-}
-
-- (void)localize
-{
-	_dictLocalize = [_delegate getLocalization];
-	_intSelectedLanguage = [_delegate getSelectedLanguage];
-	[_fileActionsViewController localize];
 }
 
 - (void)setFileContentDisplayView:(GadgetDisplayController*)fileContentDisplayView
@@ -680,7 +660,7 @@ static NSString* kCellIdentifier = @"Cell";
 				{
 					bExist = YES;
 					
-					if(_intSelectedLanguage == 0)
+					if([[LanguageHelper sharedInstance] getSelectedLanguage] == 0)
 					{
 						tmpStr = [NSString stringWithFormat:@"This name \"%@\" is already taken! Please choose a different name", strName];
 					}
@@ -690,7 +670,7 @@ static NSString* kCellIdentifier = @"Cell";
 					}
 
 					alert = [[UIAlertView alloc] 
-							 initWithTitle:[_dictLocalize objectForKey:@"Info Message"] 
+							 initWithTitle:Localize(@"Info Message") 
 							 message: tmpStr
 							 delegate:self 
 							 cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -714,7 +694,7 @@ static NSString* kCellIdentifier = @"Cell";
 		}
 		else 
 		{
-			if(_intSelectedLanguage == 0)
+			if([[LanguageHelper sharedInstance] getSelectedLanguage] == 0)
 			{
 				tmpStr = @"The new name is empty! Please input a valid name";
 			}
@@ -724,7 +704,7 @@ static NSString* kCellIdentifier = @"Cell";
 			}
 			
 			alert = [[UIAlertView alloc] 
-					 initWithTitle:[_dictLocalize objectForKey:@"Info Message"] 
+					 initWithTitle:Localize(@"Info Message")
 					 message:tmpStr 
 					 delegate:self 
 					 cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -743,7 +723,7 @@ static NSString* kCellIdentifier = @"Cell";
 				if([strName isEqualToString:file.fileName])
 				{
 					bExist = YES;
-					if(_intSelectedLanguage == 0)
+					if([[LanguageHelper sharedInstance] getSelectedLanguage] == 0)
 					{
 						tmpStr = [NSString stringWithFormat:@"This name \"%@\" is already taken! Please choose a different name", strName];
 					}
@@ -753,7 +733,7 @@ static NSString* kCellIdentifier = @"Cell";
 					}
 					
 					alert = [[UIAlertView alloc] 
-							 initWithTitle:[_dictLocalize objectForKey:@"Info Message"] 
+							 initWithTitle:Localize(@"Info Message") 
 							 message:tmpStr 
 							 delegate:self 
 							 cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -777,7 +757,7 @@ static NSString* kCellIdentifier = @"Cell";
 		}
 		else 
 		{
-			if(_intSelectedLanguage == 0)
+			if([[LanguageHelper sharedInstance] getSelectedLanguage] == 0)
 			{
 				tmpStr = @"The new name is empty! Please input a valid name";
 		}
@@ -787,7 +767,7 @@ static NSString* kCellIdentifier = @"Cell";
 			}
 			
 			UIAlertView *alert = [[UIAlertView alloc] 
-								  initWithTitle:[_dictLocalize objectForKey:@"Info Message"] 
+								  initWithTitle:Localize(@"Info Message")
 								  message:tmpStr delegate:self 
 								  cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 			[alert show];

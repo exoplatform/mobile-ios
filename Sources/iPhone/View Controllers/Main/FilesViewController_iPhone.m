@@ -373,19 +373,6 @@
         
         [self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
         
-        
-        /*
-		_delegate._currenteXoFile = file;
-		_delegate._fileNameStackStr = [_delegate._fileNameStackStr stringByAppendingPathComponent:file._fileName];
-		_arrDicts = [_delegate getPersonalDriveContent:file];
-		
-		[self setDriverContent:_arrDicts withDelegate:_delegate];
-		_delegate.navigationItem.leftBarButtonItem = _delegate._btnBack;
-		
-		if([_arrDicts count] == 0) {
-			imgViewEmptyPage.hidden = NO;
-		}
-         */
 		
 	}
 	else

@@ -15,6 +15,9 @@
 #import "LoginViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 
+static NSString *ServerObjCellIdentifier = @"ServerObj";
+
+
 @implementation iPadServerEditingViewController
 
 @synthesize _txtfServerName;
@@ -34,7 +37,6 @@
         [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
         _txtfServerUrl.delegate = self;
         _intIndex = -1;
-        _dictLocalize = [[NSDictionary alloc] init];
         
     }
     return self;
@@ -47,7 +49,6 @@
     [_txtfServerName release];
     [_txtfServerUrl release];
     [_serverObj release];
-    [_dictLocalize release];
     [_btnDelete release];
     [super dealloc];
 }
@@ -90,8 +91,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //[_txtfServerName setEnabled:NO];
-    //[_txtfServerUrl setEnabled:NO];
     [_txtfServerName setTextColor:[UIColor grayColor]];
     [_txtfServerUrl setTextColor:[UIColor grayColor]];
     [_bbtnEdit setEnabled:NO];
@@ -108,13 +107,11 @@
 - (void)setDelegate:(id)delegate
 {
     _delegate = delegate;
-    _dictLocalize = [_delegate getLocalization];
 }
 
 
 - (void)localize
 {
-    _dictLocalize = [_delegate getLocalization];
     [_tblvServerInfo reloadData];
 }
 
@@ -273,45 +270,6 @@
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
     return cell;
-    
-    /*
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
-    if(cell == nil) 
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        [_txtfServerName setFrame:CGRectMake(220, 12, 500, 22)];
-        [_txtfServerUrl setFrame:CGRectMake(220, 12, 500, 22)];
-    }
-    
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {	
-        [_txtfServerName setFrame:CGRectMake(220, 12, 750, 22)];
-        [_txtfServerUrl setFrame:CGRectMake(220, 12, 750, 22)];
-    }
-    
-    switch (indexPath.row)
-    {
-        case 0:
-        {
-            UILabel* lbServerName = [[UILabel alloc] init];
-            lbServerName.text = @"Server Name"; //it will be localized later
-            return [self containerCellWithLabel:lbServerName view:_txtfServerName];
-            break;
-        }	
-        case 1:
-        {
-            UILabel* lbServerUrl = [[UILabel alloc] init];
-            lbServerUrl.text = @"Server Url"; //it will be localized later
-            return [self containerCellWithLabel:lbServerUrl view:_txtfServerUrl];
-            break;
-        }
-    }
-    return cell;
-     */
 }
 
 @end

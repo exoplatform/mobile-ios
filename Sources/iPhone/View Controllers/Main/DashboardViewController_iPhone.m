@@ -13,6 +13,7 @@
 #import "Gadget_iPhone.h"
 #import "GadgetDisplayViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
+#import "LanguageHelper.h"
 
 
 //Constants Definitions
@@ -51,7 +52,7 @@
         // Custom initialization
         
         //TODO localize that
-        self.title = @"Dashboard";
+        self.title = Localize(@"Dashboard");
     }
     return self;
 }

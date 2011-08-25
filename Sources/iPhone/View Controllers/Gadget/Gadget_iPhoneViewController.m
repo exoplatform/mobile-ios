@@ -8,6 +8,7 @@
 
 #import "Gadget_iPhoneViewController.h"
 #import "Gadget_iPhone.h"
+#import "LanguageHelper.h"
 
 
 //Constants Definitions
@@ -78,9 +79,7 @@
     
 	[_tblGadgetList release]; //Gadget list view
     _tblGadgetList = nil;
-    
-	[_dictLocalize release];	//Language dictionary
-	    
+    	    
 	[_arrGadgets release];	//List of gadgets
     _arrGadgets = nil;
     
@@ -109,27 +108,16 @@
 
 - (void)localize
 {
-	_dictLocalize = [_delegate getLocalization];
-
 	if(!_bGrid)
 	{
-		[_btnGrid setTitle:[_dictLocalize objectForKey:@"GridButton"] forState:UIControlStateNormal];
+		[_btnGrid setTitle:Localize(@"GridButton") forState:UIControlStateNormal];
 	}
 	else 
 	{
-		[_btnGrid setTitle:[_dictLocalize objectForKey:@"ListButton"]forState:UIControlStateNormal];		
+		[_btnGrid setTitle:Localize(@"ListButton")forState:UIControlStateNormal];		
 	}
 }
 
-- (int)getSelectedLanguage
-{
-	return _intSelectedLanguage;
-}
-
-- (NSDictionary*)getLocalization
-{
-	return _dictLocalize;
-}
 
 - (void)loadGateInDbItems:(NSMutableArray*)arrGateInDbItems
 {

@@ -121,6 +121,7 @@
 		46ADAC691402809A005ABA79 /* AuthenticateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAC681402809A005ABA79 /* AuthenticateProxy.m */; };
 		46ADAD101403B4D5005ABA79 /* eXoChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAD0F1403B4D4005ABA79 /* eXoChatUser.m */; };
 		46ADAD141403E419005ABA79 /* DashboardProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAD131403E419005ABA79 /* DashboardProxy.m */; };
+		46ADAED314052599005ABA79 /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAED214052599005ABA79 /* LanguageHelper.m */; };
 		46BE69D913D5B30E00F62614 /* SocialActivityDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */; };
 		46BE69DB13D5B30E00F62614 /* SocialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D413D5B30E00F62614 /* SocialComment.m */; };
 		46BE69E013D5B33E00F62614 /* SocialPostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */; };
@@ -847,6 +848,8 @@
 		46ADAD0F1403B4D4005ABA79 /* eXoChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoChatUser.m; sourceTree = "<group>"; };
 		46ADAD121403E419005ABA79 /* DashboardProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardProxy.h; path = Dashboard/DashboardProxy.h; sourceTree = "<group>"; };
 		46ADAD131403E419005ABA79 /* DashboardProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardProxy.m; path = Dashboard/DashboardProxy.m; sourceTree = "<group>"; };
+		46ADAED114052599005ABA79 /* LanguageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
+		46ADAED214052599005ABA79 /* LanguageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelper.m; sourceTree = "<group>"; };
 		46BE69CF13D5B30E00F62614 /* SocialActivityDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityDetails.h; sourceTree = "<group>"; };
 		46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityDetails.m; sourceTree = "<group>"; };
 		46BE69D313D5B30E00F62614 /* SocialComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialComment.h; sourceTree = "<group>"; };
@@ -3001,6 +3004,8 @@
 		8947352613375EF200B0AD11 /* Settings Management */ = {
 			isa = PBXGroup;
 			children = (
+				46ADAED114052599005ABA79 /* LanguageHelper.h */,
+				46ADAED214052599005ABA79 /* LanguageHelper.m */,
 			);
 			path = "Settings Management";
 			sourceTree = "<group>";
@@ -3722,6 +3727,7 @@
 				46ADAC691402809A005ABA79 /* AuthenticateProxy.m in Sources */,
 				46ADAD101403B4D5005ABA79 /* eXoChatUser.m in Sources */,
 				46ADAD141403E419005ABA79 /* DashboardProxy.m in Sources */,
+				46ADAED314052599005ABA79 /* LanguageHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

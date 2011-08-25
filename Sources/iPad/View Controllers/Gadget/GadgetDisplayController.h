@@ -14,8 +14,6 @@
 @interface GadgetDisplayController : UIViewController <UIWebViewDelegate>
 {
 	id										_delegate;	//The delegate
-	NSDictionary*							_dictLocalize;	//Language dictionary
-	int										_intSelectedLanguage;	//language index
 	IBOutlet UINavigationBar*				_nvTitle;	//Navigation bar
 	IBOutlet UIWebView*						_wvGadgetDisplay;	//display gaget on webview
 	IBOutlet UIActivityIndicatorView*		_actiLoading;	//Loading indicator
@@ -32,6 +30,5 @@
 
 
 - (void)setDelegate:(id)delegate; //Set delegate
-- (void)localize;	//Get current language
 - (void)startGadget:(Gadget_iPad*)gadget; //Display gadget
 @end

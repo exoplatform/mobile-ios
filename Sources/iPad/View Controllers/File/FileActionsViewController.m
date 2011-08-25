@@ -8,6 +8,7 @@
 
 #import "FileActionsViewController.h"
 #import "FilesViewController.h"
+#import "LanguageHelper.h"
 
 static NSString *kCellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
@@ -65,21 +66,12 @@ static NSString *kCellIdentifier = @"MyIdentifier";
     [_tblvActions release];
     _tblvActions = nil;
     
-    [_dictLocalize release];
-    _dictLocalize = nil;
-    
     [super dealloc];
 }
 
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;
-}
-
-- (void)localize
-{
-	_dictLocalize = [_delegate getLocalization];
-	_intSelectedLanguage = [_delegate getSelectedLanguage];
 }
 
 - (void)enableDeleteAction:(BOOL)bDelete
@@ -171,37 +163,37 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 	if(indexPath.row == 0)
 	{
 		imgView.image = [UIImage imageNamed:@"delete.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"DeleteButton"];
+		titleLabel.text = Localize(@"DeleteButton");
 		bOption = _bDelete;
 	}
 	else if(indexPath.row == 1)
 	{
 		imgView.image = [UIImage imageNamed:@"addfolder.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"NewFolderTitle"];
+		titleLabel.text = Localize(@"NewFolderTitle");
 		bOption = _bNewFolder;
 	}
 	else if(indexPath.row == 2)
 	{
 		imgView.image = [UIImage imageNamed:@"rename.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"RenameTitle"];
+		titleLabel.text = Localize(@"RenameTitle");
 		bOption = _bRename;
 	}
 	else if(indexPath.row == 3)
 	{
 		imgView.image = [UIImage imageNamed:@"copy.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"Copy"];
+		titleLabel.text = Localize(@"Copy");
 		bOption = _bCopy;
 	}
 	else if(indexPath.row == 4)
 	{
 		imgView.image = [UIImage imageNamed:@"move.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"Move"];				
+		titleLabel.text = Localize(@"Move");				
 		bOption = _bMove;
 	}
 	else if(indexPath.row == 5)
 	{
 		imgView.image = [UIImage imageNamed:@"paste.png"];
-		titleLabel.text = [_dictLocalize objectForKey:@"Paste"];				
+		titleLabel.text = Localize(@"Paste");				
 		bOption = _bPaste;
 	}
 	
