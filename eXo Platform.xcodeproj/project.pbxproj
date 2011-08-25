@@ -122,6 +122,7 @@
 		46ADAD101403B4D5005ABA79 /* eXoChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAD0F1403B4D4005ABA79 /* eXoChatUser.m */; };
 		46ADAD141403E419005ABA79 /* DashboardProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAD131403E419005ABA79 /* DashboardProxy.m */; };
 		46ADAED314052599005ABA79 /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAED214052599005ABA79 /* LanguageHelper.m */; };
+		46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */; };
 		46BE69D913D5B30E00F62614 /* SocialActivityDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */; };
 		46BE69DB13D5B30E00F62614 /* SocialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D413D5B30E00F62614 /* SocialComment.m */; };
 		46BE69E013D5B33E00F62614 /* SocialPostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */; };
@@ -271,7 +272,6 @@
 		7CA74B9C13C31AD20006306D /* MessageComposerButtonSendBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9713C31ACD0006306D /* MessageComposerButtonSendBackground.png */; };
 		7CA74B9D13C31AD20006306D /* MessageComposerButtonSendBackgroundSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9813C31ACF0006306D /* MessageComposerButtonSendBackgroundSelected.png */; };
 		7CA74B9E13C31AD20006306D /* MessageComposerTextfieldBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B9913C31AD10006306D /* MessageComposerTextfieldBackground.png */; };
-		7CAB42E313A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */; };
 		7CAB436813A76A7800CED7A3 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435C13A76A7800CED7A3 /* EGOCache.m */; };
 		7CAB436913A76A7800CED7A3 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB435F13A76A7800CED7A3 /* EGOImageButton.m */; };
 		7CAB436A13A76A7800CED7A3 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB436213A76A7800CED7A3 /* EGOImageLoadConnection.m */; };
@@ -331,11 +331,9 @@
 		8937A34D1338993900D8B474 /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33C1338993900D8B474 /* OptionsViewController.xib */; };
 		8937A34F1338993900D8B474 /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33E1338993900D8B474 /* SupportViewController.xib */; };
 		8937A35E1338994400D8B474 /* eXoGadgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */; };
-		8937A35F1338994400D8B474 /* eXoSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3551338994400D8B474 /* eXoSplashViewController.xib */; };
 		8937A3601338994400D8B474 /* eXoWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3561338994400D8B474 /* eXoWebViewController.xib */; };
 		8937A3611338994400D8B474 /* Gadget_iPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */; };
 		8937A3621338994400D8B474 /* GadgetDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */; };
-		8937A3631338994400D8B474 /* GadgetViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3591338994400D8B474 /* GadgetViewController_iPhone.xib */; };
 		8937A3641338994400D8B474 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */; };
 		894731EB1336FBC000B0AD11 /* Configuration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 894731191336FBC000B0AD11 /* Configuration.xml */; };
 		8947336913370B1900B0AD11 /* ChatWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947333F13370B1900B0AD11 /* ChatWindowViewController.m */; };
@@ -345,7 +343,6 @@
 		8947336E13370B1900B0AD11 /* FileContentDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334B13370B1900B0AD11 /* FileContentDisplayController.m */; };
 		8947336F13370B1900B0AD11 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334D13370B1900B0AD11 /* FilesViewController.m */; };
 		8947337013370B1900B0AD11 /* Gadget_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335013370B1900B0AD11 /* Gadget_iPad.m */; };
-		8947337113370B1900B0AD11 /* Gadget_iPadButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335213370B1900B0AD11 /* Gadget_iPadButtonView.m */; };
 		8947337213370B1900B0AD11 /* GadgetDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335413370B1900B0AD11 /* GadgetDisplayController.m */; };
 		8947337513370B1900B0AD11 /* eXoMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335B13370B1900B0AD11 /* eXoMobileViewController.m */; };
 		8947337713370B1900B0AD11 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335F13370B1900B0AD11 /* LoginViewController.m */; };
@@ -743,7 +740,7 @@
 		46371C8F13C5973000CD2035 /* SocialIdentityProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentityProxy.m; sourceTree = "<group>"; };
 		46371CA813C60F6200CD2035 /* SocialRestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialRestConfiguration.h; sourceTree = "<group>"; };
 		46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialRestConfiguration.m; sourceTree = "<group>"; };
-		4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController_iPhone.xib; sourceTree = "<group>"; };
+		4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilesViewController_iPhone.xib; path = ../../NIB/FilesViewController_iPhone.xib; sourceTree = "<group>"; };
 		464636DD13EC228600092723 /* SocialUserProfileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfileCache.h; sourceTree = "<group>"; };
 		464636DE13EC228700092723 /* SocialUserProfileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileCache.m; sourceTree = "<group>"; };
 		464C14A8138AB80B0001CBC8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
@@ -793,7 +790,7 @@
 		469597FE1377018100ADC826 /* AuthenticateCredentialsIconIphoneOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCredentialsIconIphoneOn@2x.png"; path = "Authenticate/@2x/AuthenticateCredentialsIconIphoneOn@2x.png"; sourceTree = "<group>"; };
 		469598021377018100ADC826 /* AuthenticateServersIconIphoneOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateServersIconIphoneOff@2x.png"; path = "Authenticate/@2x/AuthenticateServersIconIphoneOff@2x.png"; sourceTree = "<group>"; };
 		469598041377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateSettingsIconIphone@2x.png"; path = "Authenticate/@2x/AuthenticateSettingsIconIphone@2x.png"; sourceTree = "<group>"; };
-		4695981C13780D3100ADC826 /* AuthenticateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateViewController.xib; sourceTree = "<group>"; };
+		4695981C13780D3100ADC826 /* AuthenticateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AuthenticateViewController.xib; path = ../../NIB/AuthenticateViewController.xib; sourceTree = "<group>"; };
 		469598871378497B00ADC826 /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		46982F3013E701900063CF62 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		46982F3113E701900063CF62 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
@@ -805,7 +802,7 @@
 		46982F3813E701900063CF62 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		46982F3913E701900063CF62 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		46982F3A13E701900063CF62 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
-		46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamBrowseViewController_iPad.xib; sourceTree = "<group>"; };
+		46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityStreamBrowseViewController_iPad.xib; path = ../NIB/ActivityStreamBrowseViewController_iPad.xib; sourceTree = "<group>"; };
 		46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityBasicTableViewCell.h; path = Social/ActivityBasicTableViewCell.h; sourceTree = "<group>"; };
 		46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityBasicTableViewCell.m; path = Social/ActivityBasicTableViewCell.m; sourceTree = "<group>"; };
 		46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityBasicTableViewCell.xib; path = Social/ActivityBasicTableViewCell.xib; sourceTree = "<group>"; };
@@ -850,6 +847,7 @@
 		46ADAD131403E419005ABA79 /* DashboardProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardProxy.m; path = Dashboard/DashboardProxy.m; sourceTree = "<group>"; };
 		46ADAED114052599005ABA79 /* LanguageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
 		46ADAED214052599005ABA79 /* LanguageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelper.m; sourceTree = "<group>"; };
+		46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityStreamBrowseViewController_iPhone.xib; path = Sources/iPhone/NIB/ActivityStreamBrowseViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		46BE69CF13D5B30E00F62614 /* SocialActivityDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityDetails.h; sourceTree = "<group>"; };
 		46BE69D013D5B30E00F62614 /* SocialActivityDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityDetails.m; sourceTree = "<group>"; };
 		46BE69D313D5B30E00F62614 /* SocialComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialComment.h; sourceTree = "<group>"; };
@@ -872,7 +870,7 @@
 		46BF6E44137963BE00D1E1A5 /* NavBarIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NavBarIphone@2x.png"; path = "Global/@2x/NavBarIphone@2x.png"; sourceTree = "<group>"; };
 		46C6B4D4138BBEC00079C514 /* eXoMobileAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileAppDelegate.h; sourceTree = "<group>"; };
 		46C6B4D5138BBEC10079C514 /* eXoMobileAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoMobileAppDelegate.m; sourceTree = "<group>"; };
-		46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileActionsViewController_iPhone.xib; sourceTree = "<group>"; };
+		46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileActionsViewController_iPhone.xib; path = ../../NIB/FileActionsViewController_iPhone.xib; sourceTree = "<group>"; };
 		46C6B50C138CA87F0079C514 /* 11-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x.png"; sourceTree = "<group>"; };
 		46C6B50D138CA87F0079C514 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check.png"; sourceTree = "<group>"; };
 		46C6B50E138CA87F0079C514 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
@@ -978,13 +976,13 @@
 		46E96E4D138370A30085DCB6 /* StackScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackScrollViewController.m; sourceTree = "<group>"; };
 		46E96E50138370A30085DCB6 /* UIViewWithShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewWithShadow.h; sourceTree = "<group>"; };
 		46E96E51138370A30085DCB6 /* UIViewWithShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewWithShadow.m; sourceTree = "<group>"; };
-		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerEditingViewController.xib; sourceTree = "<group>"; };
+		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerEditingViewController.xib; path = ../../NIB/ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerEditingViewController.h; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditingViewController.m; sourceTree = "<group>"; };
-		7C06962613419B6C007F26BB /* ServerAddingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerAddingViewController.xib; sourceTree = "<group>"; };
+		7C06962613419B6C007F26BB /* ServerAddingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerAddingViewController.xib; path = ../../NIB/ServerAddingViewController.xib; sourceTree = "<group>"; };
 		7C06962813419B78007F26BB /* ServerAddingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAddingViewController.h; sourceTree = "<group>"; };
 		7C06962913419B8D007F26BB /* ServerAddingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAddingViewController.m; sourceTree = "<group>"; };
-		7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerManagerViewController.xib; sourceTree = "<group>"; };
+		7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerManagerViewController.xib; path = ../../NIB/ServerManagerViewController.xib; sourceTree = "<group>"; };
 		7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerViewController.h; sourceTree = "<group>"; };
 		7C07D7501340466B0075BF76 /* ServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerViewController.m; sourceTree = "<group>"; };
 		7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerManagerViewController.m; sourceTree = "<group>"; };
@@ -1022,8 +1020,8 @@
 		7C50D4C6136F187B0011280D /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLPrivate.h; path = "Sources/Shared/Components/3-part/KissXML/DDXMLPrivate.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4CA136F19000011280D /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = "Sources/Shared/Components/3-part/KissXML/NSStringAdditions.h"; sourceTree = SOURCE_ROOT; };
 		7C50D4CB136F19000011280D /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringAdditions.m; path = "Sources/Shared/Components/3-part/KissXML/NSStringAdditions.m"; sourceTree = SOURCE_ROOT; };
-		7C5764861368032700C5F028 /* DashboardViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController_iPhone.h; sourceTree = "<group>"; };
-		7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController_iPhone.m; sourceTree = "<group>"; };
+		7C5764861368032700C5F028 /* DashboardViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardViewController_iPhone.h; path = ../Main/DashboardViewController_iPhone.h; sourceTree = "<group>"; };
+		7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardViewController_iPhone.m; path = ../Main/DashboardViewController_iPhone.m; sourceTree = "<group>"; };
 		7C6C9837133843530058462B /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		7C9C61BA133B3BAE005A365A /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		7C9C61BB133B3BAE005A365A /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
@@ -1045,7 +1043,6 @@
 		7CA74B9713C31ACD0006306D /* MessageComposerButtonSendBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonSendBackground.png; sourceTree = "<group>"; };
 		7CA74B9813C31ACF0006306D /* MessageComposerButtonSendBackgroundSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonSendBackgroundSelected.png; sourceTree = "<group>"; };
 		7CA74B9913C31AD10006306D /* MessageComposerTextfieldBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerTextfieldBackground.png; sourceTree = "<group>"; };
-		7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityStreamBrowseViewController_iPhone.xib; sourceTree = "<group>"; };
 		7CAB435B13A76A7800CED7A3 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		7CAB435C13A76A7800CED7A3 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		7CAB435E13A76A7800CED7A3 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
@@ -1056,7 +1053,7 @@
 		7CAB436413A76A7800CED7A3 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		7CAB436613A76A7800CED7A3 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
 		7CAB436713A76A7800CED7A3 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
-		7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPad.xib; sourceTree = "<group>"; };
+		7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController_iPad.xib; path = ../../NIB/DashboardViewController_iPad.xib; sourceTree = "<group>"; };
 		7CBB39A313B09F840011A63C /* SocialActivityDetailLikeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailLikeBg.png; sourceTree = "<group>"; };
 		7CBB39A413B09F840011A63C /* SocialActivityDetailLikeBgSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailLikeBgSelected.png; sourceTree = "<group>"; };
 		7CBB39A713B09FA00011A63C /* SocialActivityDetailLikeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailLikeBg@2x.png"; sourceTree = "<group>"; };
@@ -1070,8 +1067,8 @@
 		7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailLikeButton.png; sourceTree = "<group>"; };
 		7CE0132613B1A9E800F16971 /* SocialActivityDetailCommentBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailCommentBg.png; sourceTree = "<group>"; };
 		7CE0132813B1AA3300F16971 /* SocialActivityDetailCommentBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailCommentBg@2x.png"; sourceTree = "<group>"; };
-		7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatWindowViewController_iPhone.xib; sourceTree = "<group>"; };
-		7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessengerViewController_iPhone.xib; sourceTree = "<group>"; };
+		7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatWindowViewController_iPhone.xib; path = ../../NIB/ChatWindowViewController_iPhone.xib; sourceTree = "<group>"; };
+		7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessengerViewController_iPhone.xib; path = ../../NIB/MessengerViewController_iPhone.xib; sourceTree = "<group>"; };
 		7CE656B61394D2D200F088A1 /* ChatWindowViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController_iPhone.h; sourceTree = "<group>"; };
 		7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController_iPhone.m; sourceTree = "<group>"; };
 		7CE656B81394D2D200F088A1 /* MessengerViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController_iPhone.h; sourceTree = "<group>"; };
@@ -1081,12 +1078,12 @@
 		7CE8399E134468A000FF5B7A /* iPadServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerEditingViewController.h; sourceTree = "<group>"; };
 		7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadServerEditingViewController.m; sourceTree = "<group>"; };
 		7CE839A0134468A000FF5B7A /* iPadServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadServerManagerViewController.h; sourceTree = "<group>"; };
-		7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadServerAddingViewController.xib; sourceTree = "<group>"; };
-		7CE839A713446DAB00FF5B7A /* iPadServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadServerEditingViewController.xib; sourceTree = "<group>"; };
-		7CE839A813446DAB00FF5B7A /* iPadServerManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadServerManagerViewController.xib; sourceTree = "<group>"; };
+		7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iPadServerAddingViewController.xib; path = ../../NIB/iPadServerAddingViewController.xib; sourceTree = "<group>"; };
+		7CE839A713446DAB00FF5B7A /* iPadServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iPadServerEditingViewController.xib; path = ../../NIB/iPadServerEditingViewController.xib; sourceTree = "<group>"; };
+		7CE839A813446DAB00FF5B7A /* iPadServerManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iPadServerManagerViewController.xib; path = ../../NIB/iPadServerManagerViewController.xib; sourceTree = "<group>"; };
 		7CE839AB1344848100FF5B7A /* ContainerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerCell.h; sourceTree = "<group>"; };
 		7CE839AC1344848100FF5B7A /* ContainerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerCell.m; sourceTree = "<group>"; };
-		7CE839AE1344873500FF5B7A /* iPadSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadSettingViewController.xib; sourceTree = "<group>"; };
+		7CE839AE1344873500FF5B7A /* iPadSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iPadSettingViewController.xib; path = ../../NIB/iPadSettingViewController.xib; sourceTree = "<group>"; };
 		7CE85B0413C46D0C00A219EB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7CE85B0513C46D0C00A219EB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1111,24 +1108,22 @@
 		7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStream.m; sourceTree = "<group>"; };
 		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
-		8937A32F1338993900D8B474 /* ChatWindowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatWindowViewController.xib; sourceTree = "<group>"; };
-		8937A3301338993900D8B474 /* eXoMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoMobileViewController.xib; sourceTree = "<group>"; };
-		8937A3311338993900D8B474 /* FileActionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileActionsViewController.xib; sourceTree = "<group>"; };
-		8937A3321338993900D8B474 /* FileContentDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileContentDisplayController.xib; sourceTree = "<group>"; };
-		8937A3331338993900D8B474 /* FilesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesViewController.xib; sourceTree = "<group>"; };
-		8937A3341338993900D8B474 /* GadgetDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetDisplayController.xib; sourceTree = "<group>"; };
-		8937A3371338993900D8B474 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		8937A32F1338993900D8B474 /* ChatWindowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatWindowViewController.xib; path = ../../NIB/ChatWindowViewController.xib; sourceTree = "<group>"; };
+		8937A3301338993900D8B474 /* eXoMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = eXoMobileViewController.xib; path = ../../NIB/eXoMobileViewController.xib; sourceTree = "<group>"; };
+		8937A3311338993900D8B474 /* FileActionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileActionsViewController.xib; path = ../../NIB/FileActionsViewController.xib; sourceTree = "<group>"; };
+		8937A3321338993900D8B474 /* FileContentDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileContentDisplayController.xib; path = ../../NIB/FileContentDisplayController.xib; sourceTree = "<group>"; };
+		8937A3331338993900D8B474 /* FilesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilesViewController.xib; path = ../../NIB/FilesViewController.xib; sourceTree = "<group>"; };
+		8937A3341338993900D8B474 /* GadgetDisplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GadgetDisplayController.xib; path = ../../NIB/GadgetDisplayController.xib; sourceTree = "<group>"; };
+		8937A3371338993900D8B474 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = ../../NIB/LoginViewController.xib; sourceTree = "<group>"; };
 		8937A3391338993900D8B474 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
-		8937A33A1338993900D8B474 /* MessengerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessengerViewController.xib; sourceTree = "<group>"; };
-		8937A33B1338993900D8B474 /* MoreLiveChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreLiveChatViewController.xib; sourceTree = "<group>"; };
-		8937A33C1338993900D8B474 /* OptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsViewController.xib; sourceTree = "<group>"; };
-		8937A33E1338993900D8B474 /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
-		8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoGadgetsViewController.xib; sourceTree = "<group>"; };
-		8937A3551338994400D8B474 /* eXoSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoSplashViewController.xib; sourceTree = "<group>"; };
-		8937A3561338994400D8B474 /* eXoWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = eXoWebViewController.xib; sourceTree = "<group>"; };
-		8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Gadget_iPhoneViewController.xib; sourceTree = "<group>"; };
-		8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetDisplayViewController.xib; sourceTree = "<group>"; };
-		8937A3591338994400D8B474 /* GadgetViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GadgetViewController_iPhone.xib; sourceTree = "<group>"; };
+		8937A33A1338993900D8B474 /* MessengerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessengerViewController.xib; path = ../../NIB/MessengerViewController.xib; sourceTree = "<group>"; };
+		8937A33B1338993900D8B474 /* MoreLiveChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoreLiveChatViewController.xib; path = ../../NIB/MoreLiveChatViewController.xib; sourceTree = "<group>"; };
+		8937A33C1338993900D8B474 /* OptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsViewController.xib; path = ../../NIB/OptionsViewController.xib; sourceTree = "<group>"; };
+		8937A33E1338993900D8B474 /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SupportViewController.xib; path = ../../NIB/SupportViewController.xib; sourceTree = "<group>"; };
+		8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = eXoGadgetsViewController.xib; path = ../../NIB/eXoGadgetsViewController.xib; sourceTree = "<group>"; };
+		8937A3561338994400D8B474 /* eXoWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = eXoWebViewController.xib; path = ../../NIB/eXoWebViewController.xib; sourceTree = "<group>"; };
+		8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Gadget_iPhoneViewController.xib; path = ../../NIB/Gadget_iPhoneViewController.xib; sourceTree = "<group>"; };
+		8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GadgetDisplayViewController.xib; path = ../../NIB/GadgetDisplayViewController.xib; sourceTree = "<group>"; };
 		8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		894731191336FBC000B0AD11 /* Configuration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Configuration.xml; sourceTree = "<group>"; };
 		8947333E13370B1900B0AD11 /* ChatWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController.h; sourceTree = "<group>"; };
@@ -1145,8 +1140,6 @@
 		8947334D13370B1900B0AD11 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		8947334F13370B1900B0AD11 /* Gadget_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gadget_iPad.h; path = "../../View Controllers/Gadget/Gadget_iPad.h"; sourceTree = "<group>"; };
 		8947335013370B1900B0AD11 /* Gadget_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gadget_iPad.m; path = "../../View Controllers/Gadget/Gadget_iPad.m"; sourceTree = "<group>"; };
-		8947335113370B1900B0AD11 /* Gadget_iPadButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gadget_iPadButtonView.h; sourceTree = "<group>"; };
-		8947335213370B1900B0AD11 /* Gadget_iPadButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gadget_iPadButtonView.m; sourceTree = "<group>"; };
 		8947335313370B1900B0AD11 /* GadgetDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayController.h; sourceTree = "<group>"; };
 		8947335413370B1900B0AD11 /* GadgetDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayController.m; sourceTree = "<group>"; };
 		8947335A13370B1900B0AD11 /* eXoMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileViewController.h; sourceTree = "<group>"; };
@@ -1322,7 +1315,7 @@
 		8997843B13F53568002E7E1C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8997843C13F53568002E7E1C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
+		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController_iPhone.xib; path = ../../NIB/DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1704,6 +1697,7 @@
 				7CA74B0C13C30C330006306D /* ActivityDetailViewController_iPad.xib */,
 				7CA74B0D13C30C330006306D /* ActivityStreamBrowseViewController_iPad.h */,
 				7CA74B0E13C30C330006306D /* ActivityStreamBrowseViewController_iPad.m */,
+				46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */,
 				7CA74B0F13C30C330006306D /* MessageComposerViewController_iPad.h */,
 				7CA74B1013C30C330006306D /* MessageComposerViewController_iPad.m */,
 				7CA74B1113C30C330006306D /* MessageComposerViewController_iPad.xib */,
@@ -2158,6 +2152,7 @@
 				7C34683D13C2DB770030DC23 /* ActivityDetailViewController_iPhone.xib */,
 				7C34683E13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.h */,
 				7C34683F13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m */,
+				46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */,
 				7C34684013C2DB770030DC23 /* MessageComposerViewController_iPhone.h */,
 				7C34684113C2DB770030DC23 /* MessageComposerViewController_iPhone.m */,
 				7C34684213C2DB770030DC23 /* MessageComposerViewController_iPhone.xib */,
@@ -2265,24 +2260,7 @@
 		8937A32D1338993800D8B474 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
-				7CE839AE1344873500FF5B7A /* iPadSettingViewController.xib */,
-				7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */,
-				7CE839A713446DAB00FF5B7A /* iPadServerEditingViewController.xib */,
-				7CE839A813446DAB00FF5B7A /* iPadServerManagerViewController.xib */,
-				7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */,
-				8937A32F1338993900D8B474 /* ChatWindowViewController.xib */,
-				8937A3301338993900D8B474 /* eXoMobileViewController.xib */,
-				8937A3311338993900D8B474 /* FileActionsViewController.xib */,
-				8937A3321338993900D8B474 /* FileContentDisplayController.xib */,
-				8937A3331338993900D8B474 /* FilesViewController.xib */,
-				8937A3341338993900D8B474 /* GadgetDisplayController.xib */,
-				8937A3371338993900D8B474 /* LoginViewController.xib */,
 				8937A3391338993900D8B474 /* MainWindow_iPad.xib */,
-				8937A33A1338993900D8B474 /* MessengerViewController.xib */,
-				8937A33B1338993900D8B474 /* MoreLiveChatViewController.xib */,
-				8937A33C1338993900D8B474 /* OptionsViewController.xib */,
-				8937A33E1338993900D8B474 /* SupportViewController.xib */,
-				46A03A2013A7A38F00E71AF9 /* ActivityStreamBrowseViewController_iPad.xib */,
 			);
 			path = NIB;
 			sourceTree = "<group>";
@@ -2290,23 +2268,7 @@
 		8937A3501338994400D8B474 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
-				7CAB42E013A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib */,
-				46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */,
-				4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */,
-				7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */,
-				7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */,
-				89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */,
-				7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */,
-				7C06962613419B6C007F26BB /* ServerAddingViewController.xib */,
-				7C06961F1341953B007F26BB /* ServerEditingViewController.xib */,
-				4695981C13780D3100ADC826 /* AuthenticateViewController.xib */,
 				469598871378497B00ADC826 /* AuthenticateServerCell.xib */,
-				8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */,
-				8937A3551338994400D8B474 /* eXoSplashViewController.xib */,
-				8937A3561338994400D8B474 /* eXoWebViewController.xib */,
-				8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */,
-				8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */,
-				8937A3591338994400D8B474 /* GadgetViewController_iPhone.xib */,
 				8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */,
 			);
 			path = NIB;
@@ -2419,10 +2381,13 @@
 			children = (
 				8947333E13370B1900B0AD11 /* ChatWindowViewController.h */,
 				8947333F13370B1900B0AD11 /* ChatWindowViewController.m */,
+				8937A32F1338993900D8B474 /* ChatWindowViewController.xib */,
 				8947334013370B1900B0AD11 /* MessengerViewController.h */,
 				8947334113370B1900B0AD11 /* MessengerViewController.m */,
+				8937A33A1338993900D8B474 /* MessengerViewController.xib */,
 				8947334213370B1900B0AD11 /* MoreLiveChatViewController.h */,
 				8947334313370B1900B0AD11 /* MoreLiveChatViewController.m */,
+				8937A33B1338993900D8B474 /* MoreLiveChatViewController.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2432,12 +2397,16 @@
 			children = (
 				8947334813370B1900B0AD11 /* FileActionsViewController.h */,
 				8947334913370B1900B0AD11 /* FileActionsViewController.m */,
+				8937A3311338993900D8B474 /* FileActionsViewController.xib */,
 				8947334A13370B1900B0AD11 /* FileContentDisplayController.h */,
 				8947334B13370B1900B0AD11 /* FileContentDisplayController.m */,
+				8937A3321338993900D8B474 /* FileContentDisplayController.xib */,
 				8947334C13370B1900B0AD11 /* FilesViewController.h */,
 				8947334D13370B1900B0AD11 /* FilesViewController.m */,
+				8937A3331338993900D8B474 /* FilesViewController.xib */,
 				8947336213370B1900B0AD11 /* OptionsViewController.h */,
 				8947336313370B1900B0AD11 /* OptionsViewController.m */,
+				8937A33C1338993900D8B474 /* OptionsViewController.xib */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -2447,10 +2416,10 @@
 			children = (
 				7C3BD19A1370FE1700380828 /* DashboardViewController_iPad.h */,
 				7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */,
-				8947335113370B1900B0AD11 /* Gadget_iPadButtonView.h */,
-				8947335213370B1900B0AD11 /* Gadget_iPadButtonView.m */,
+				7CB8F465137A66D200149B65 /* DashboardViewController_iPad.xib */,
 				8947335313370B1900B0AD11 /* GadgetDisplayController.h */,
 				8947335413370B1900B0AD11 /* GadgetDisplayController.m */,
+				8937A3341338993900D8B474 /* GadgetDisplayController.xib */,
 			);
 			path = Gadget;
 			sourceTree = "<group>";
@@ -2460,10 +2429,13 @@
 			children = (
 				8947335A13370B1900B0AD11 /* eXoMobileViewController.h */,
 				8947335B13370B1900B0AD11 /* eXoMobileViewController.m */,
+				8937A3301338993900D8B474 /* eXoMobileViewController.xib */,
 				8947335E13370B1900B0AD11 /* LoginViewController.h */,
 				8947335F13370B1900B0AD11 /* LoginViewController.m */,
+				8937A3371338993900D8B474 /* LoginViewController.xib */,
 				8947336413370B1900B0AD11 /* SupportViewController.h */,
 				8947336513370B1900B0AD11 /* SupportViewController.m */,
+				8937A33E1338993900D8B474 /* SupportViewController.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2473,12 +2445,16 @@
 			children = (
 				8947336713370B1900B0AD11 /* iPadSettingViewController.h */,
 				8947336813370B1900B0AD11 /* iPadSettingViewController.m */,
+				7CE839AE1344873500FF5B7A /* iPadSettingViewController.xib */,
 				7CE8399C1344689F00FF5B7A /* iPadServerAddingViewController.h */,
 				7CE8399D1344689F00FF5B7A /* iPadServerAddingViewController.m */,
+				7CE839A513446D9500FF5B7A /* iPadServerAddingViewController.xib */,
 				7CE8399E134468A000FF5B7A /* iPadServerEditingViewController.h */,
 				7CE8399F134468A000FF5B7A /* iPadServerEditingViewController.m */,
+				7CE839A713446DAB00FF5B7A /* iPadServerEditingViewController.xib */,
 				7CE839A0134468A000FF5B7A /* iPadServerManagerViewController.h */,
 				7C0A5925134B1C140053C538 /* iPadServerManagerViewController.m */,
+				7CE839A813446DAB00FF5B7A /* iPadServerManagerViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2488,8 +2464,10 @@
 			children = (
 				7CE656B61394D2D200F088A1 /* ChatWindowViewController_iPhone.h */,
 				7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */,
+				7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */,
 				7CE656B81394D2D200F088A1 /* MessengerViewController_iPhone.h */,
 				7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */,
+				7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */,
 				8947338113370B4500B0AD11 /* eXoMessage.h */,
 				8947338213370B4500B0AD11 /* eXoMessage.m */,
 				46ADAD0E1403B4D3005ABA79 /* eXoChatUser.h */,
@@ -2503,10 +2481,12 @@
 			children = (
 				46ABBE921389141E0077809B /* FilesViewController_iPhone.h */,
 				46ABBE931389141F0077809B /* FilesViewController_iPhone.m */,
+				4642A041138A278E00AA786D /* FilesViewController_iPhone.xib */,
 				8947338713370B4500B0AD11 /* FileActionsBackgroundView.h */,
 				8947338813370B4500B0AD11 /* FileActionsBackgroundView.m */,
 				464C14B4138B85A00001CBC8 /* FileActionsViewController_iPhone.h */,
 				464C14B5138B85A00001CBC8 /* FileActionsViewController_iPhone.m */,
+				46C6B4E7138C12350079C514 /* FileActionsViewController_iPhone.xib */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -2514,12 +2494,18 @@
 		8947338D13370B4500B0AD11 /* Gadget */ = {
 			isa = PBXGroup;
 			children = (
+				7C5764861368032700C5F028 /* DashboardViewController_iPhone.h */,
+				7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */,
+				89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */,
 				8947338E13370B4500B0AD11 /* eXoGadgetViewController.h */,
 				8947338F13370B4500B0AD11 /* eXoGadgetViewController.m */,
+				8937A3541338994400D8B474 /* eXoGadgetsViewController.xib */,
 				8947339213370B4500B0AD11 /* GadgetDisplayViewController.h */,
 				8947339313370B4500B0AD11 /* GadgetDisplayViewController.m */,
+				8937A3581338994400D8B474 /* GadgetDisplayViewController.xib */,
 				8947339413370B4500B0AD11 /* Gadget_iPhoneViewController.h */,
 				8947339513370B4500B0AD11 /* Gadget_iPhoneViewController.m */,
+				8937A3571338994400D8B474 /* Gadget_iPhoneViewController.xib */,
 			);
 			path = Gadget;
 			sourceTree = "<group>";
@@ -2529,12 +2515,12 @@
 			children = (
 				8947339913370B4500B0AD11 /* AuthenticateViewController.h */,
 				8947339A13370B4500B0AD11 /* AuthenticateViewController.m */,
+				4695981C13780D3100ADC826 /* AuthenticateViewController.xib */,
 				7CFD41871361644B00DD86E8 /* HomeViewController_iPhone.h */,
 				7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */,
-				7C5764861368032700C5F028 /* DashboardViewController_iPhone.h */,
-				7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */,
 				8947339D13370B4500B0AD11 /* eXoWebViewController.h */,
 				8947339E13370B4500B0AD11 /* eXoWebViewController.m */,
+				8937A3561338994400D8B474 /* eXoWebViewController.xib */,
 				46CAF73C13798D230017C959 /* HomeStyleSheet.h */,
 				46CAF73D13798D230017C959 /* HomeStyleSheet.m */,
 			);
@@ -2548,10 +2534,13 @@
 				894733A113370B4500B0AD11 /* eXoSettingViewController.m */,
 				7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */,
 				7C07D7501340466B0075BF76 /* ServerManagerViewController.m */,
+				7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */,
 				7C06962813419B78007F26BB /* ServerAddingViewController.h */,
 				7C06962913419B8D007F26BB /* ServerAddingViewController.m */,
+				7C06962613419B6C007F26BB /* ServerAddingViewController.xib */,
 				7C06962313419582007F26BB /* ServerEditingViewController.h */,
 				7C06962413419583007F26BB /* ServerEditingViewController.m */,
+				7C06961F1341953B007F26BB /* ServerEditingViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -3380,11 +3369,9 @@
 				8937A34D1338993900D8B474 /* OptionsViewController.xib in Resources */,
 				8937A34F1338993900D8B474 /* SupportViewController.xib in Resources */,
 				8937A35E1338994400D8B474 /* eXoGadgetsViewController.xib in Resources */,
-				8937A35F1338994400D8B474 /* eXoSplashViewController.xib in Resources */,
 				8937A3601338994400D8B474 /* eXoWebViewController.xib in Resources */,
 				8937A3611338994400D8B474 /* Gadget_iPhoneViewController.xib in Resources */,
 				8937A3621338994400D8B474 /* GadgetDisplayViewController.xib in Resources */,
-				8937A3631338994400D8B474 /* GadgetViewController_iPhone.xib in Resources */,
 				8937A3641338994400D8B474 /* MainWindow_iPhone.xib in Resources */,
 				7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */,
 				7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */,
@@ -3507,7 +3494,6 @@
 				46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */,
 				7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */,
 				7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */,
-				7CAB42E313A768B400CED7A3 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */,
 				46A03A2113A7A39000E71AF9 /* ActivityStreamBrowseViewController_iPad.xib in Resources */,
 				46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */,
 				46A03AB613A8E0EF00E71AF9 /* ActivityAvatarShadow.png in Resources */,
@@ -3573,6 +3559,7 @@
 				7C3DF00613F1212700640BDB /* PhotoActionViewController.xib in Resources */,
 				462E95B013F150D00027E093 /* SocialPostActivityButton@2x.png in Resources */,
 				462E95B213F150DB0027E093 /* SocialPostActivityButton.png in Resources */,
+				46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3590,7 +3577,6 @@
 				8947336E13370B1900B0AD11 /* FileContentDisplayController.m in Sources */,
 				8947336F13370B1900B0AD11 /* FilesViewController.m in Sources */,
 				8947337013370B1900B0AD11 /* Gadget_iPad.m in Sources */,
-				8947337113370B1900B0AD11 /* Gadget_iPadButtonView.m in Sources */,
 				8947337213370B1900B0AD11 /* GadgetDisplayController.m in Sources */,
 				8947337513370B1900B0AD11 /* eXoMobileViewController.m in Sources */,
 				8947337713370B1900B0AD11 /* LoginViewController.m in Sources */,
