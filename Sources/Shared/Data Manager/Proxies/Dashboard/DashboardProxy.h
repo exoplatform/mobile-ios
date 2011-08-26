@@ -9,12 +9,26 @@
 #import <Foundation/Foundation.h>
 #import "defines.h"
 
+@protocol DashboardProxyDelegate;
+
+
 @interface DashboardProxy : NSObject {
     NSString *_localDashboardGadgetsString;
+    NSObject<DashboardProxyDelegate> *proxyDelegate;
 }
 
+@property (nonatomic, retain) id<DashboardProxyDelegate> proxyDelegate;
+
+
 + (DashboardProxy*)sharedInstance;
-- (NSMutableArray*)getItemsInDashboard;	//Get dashboard
+- (void)startRetrievingGadgets;	//Get dashboard
+
+@end
 
 
+@protocol DashboardProxyDelegate<NSObject>
+//Method called when gadgets has been retrieved
+-(void)didFinishLoadingGadgets:(NSMutableArray *)arrGadgets;
+//Method called when no gadgets has been found or error
+-(void)didFailLoadingGadgetsWithError:(NSError *)error;
 @end

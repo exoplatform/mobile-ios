@@ -26,6 +26,8 @@
 
 @implementation DashboardProxy
 
+@synthesize proxyDelegate = proxyDelegate;
+
 #pragma mark - Object Management
 //Singleton Accessor/Creator
 + (DashboardProxy*)sharedInstance
@@ -58,6 +60,8 @@
 - (void)dealloc {
 	[_localDashboardGadgetsString release];
     _localDashboardGadgetsString = nil;
+    
+    proxyDelegate = nil;
 	
 	[super dealloc];
 }
@@ -339,12 +343,11 @@
 }
 
 
-#pragma mark - Requests
-
-
-- (NSMutableArray*)getItemsInDashboard
-{
-	
+- (void)retrievingGadgetsOperation
+{    
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];	
 	
@@ -354,14 +357,12 @@
 	NSRange range3;
 	range1 = [strContent rangeOfString:@"DashboardIcon TBIcon"];
 	
-	if(range1.length <= 0)
-		return nil;
+	if(range1.length <= 0) return;
 	
 	strContent = [strContent substringFromIndex:range1.location + range1.length];
 	range1 = [strContent rangeOfString:@"TBIcon"];
 	
-	if(range1.length <= 0)
-		return nil;
+	if(range1.length <= 0) return;
 	
     NSMutableArray* arrDbItems = [[NSMutableArray alloc] init];
     
@@ -427,8 +428,24 @@
 	} 
 	while (range1.length > 0);
 	
-	return arrDbItems;
+    if (proxyDelegate && [proxyDelegate respondsToSelector:@selector(didFinishLoadingGadgets:)]) {
+        [proxyDelegate performSelectorOnMainThread:@selector(didFinishLoadingGadgets:) withObject:arrDbItems waitUntilDone:NO];
+    }
+    
+    [pool release];
 }
+
+
+
+
+#pragma mark - Requests
+
+
+- (void)startRetrievingGadgets
+{	
+    [self performSelectorInBackground:@selector(retrievingGadgetsOperation) withObject:nil];
+}
+    
 
 
 

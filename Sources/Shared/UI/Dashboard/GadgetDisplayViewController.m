@@ -27,8 +27,7 @@
 	return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated 
-{
+- (void)viewDidAppear:(BOOL)animated {
 	if(_url != nil)
 	{
 		NSHTTPURLResponse* response;

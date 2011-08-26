@@ -64,10 +64,11 @@
     _tblGadgets.backgroundView = backgroundView;
     
     [_arrTabs removeLastObject];
-    _arrTabs = [[DashboardProxy sharedInstance] getItemsInDashboard];
     
-    [_tblGadgets reloadData];
-    
+    //Set the controlle as delegate of the DashboardProxy
+    [DashboardProxy sharedInstance];
+    [DashboardProxy sharedInstance].proxyDelegate = self;
+    [[DashboardProxy sharedInstance] startRetrievingGadgets];
 }
 
 - (void)viewDidUnload
@@ -182,6 +183,22 @@
     
 	return cell;
 }
+
+
+#pragma mark - DashboardProxy delegates methods 
+
+//Method called when gadgets has been retrieved
+-(void)didFinishLoadingGadgets:(NSMutableArray *)arrGadgets {
+    _arrTabs = arrGadgets;
+    [_tblGadgets reloadData];
+}
+
+
+//Method called when no gadgets has been found or error
+-(void)didFailLoadingGadgetsWithError:(NSError *)error {
+    //TODO Management error
+}
+
 
 
 

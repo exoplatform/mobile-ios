@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DashboardProxy.h"
 
-
-@interface DashboardViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+@interface DashboardViewController : UIViewController <DashboardProxyDelegate, UITableViewDataSource, UITableViewDelegate>{
     
     NSMutableArray*         _arrTabs;	//Gadget array 
     IBOutlet UITableView*   _tblGadgets;
