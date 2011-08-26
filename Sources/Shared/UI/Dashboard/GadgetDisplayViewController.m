@@ -10,12 +10,18 @@
 #import "Gadget.h"
 #import "AuthenticateProxy.h"
 
+
+@interface GadgetDisplayViewController (PrivateMethods)
+- (void)showLoader;
+- (void)hideLoader;
+@end
+
+
+
 @implementation GadgetDisplayViewController
 
 @synthesize _url;
 @synthesize _webView;
-@synthesize _statusLabel;
-@synthesize _progressIndicator;
 
 // custom init method to allow URL to be passed
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL 
@@ -26,6 +32,23 @@
 	[_webView setDelegate:self];
 	return self;
 }
+
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    //Add the loader
+    _hudGadget = [[ATMHud alloc] initWithDelegate:self];
+    [_hudGadget setAllowSuperviewInteraction:NO];
+    [self setHudPosition];
+	[self.view addSubview:_hudGadget.view];
+    
+    [self showLoader];
+
+    
+}
+
 
 - (void)viewDidAppear:(BOOL)animated {
 	if(_url != nil)
@@ -69,22 +92,19 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
-	_statusLabel.text = @"";
-	[_progressIndicator stopAnimating];
+    [self hideLoader];
 }
 
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
-	_statusLabel.text = @"";
-	[_progressIndicator stopAnimating];
+    [self hideLoader];
+
 }
 
 // Start loading animation
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
-	_statusLabel.text = @"Loading...";
-	[_progressIndicator startAnimating];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -103,13 +123,33 @@
 	[_webView release];
     _webView = nil;
     
-	[_statusLabel release];
-    _statusLabel = nil;
-    
-	[_progressIndicator release];
-    _progressIndicator = nil;
+	[_hudGadget release];
+    _hudGadget = nil;
 	
     [super dealloc];
+}
+
+
+
+#pragma mark - Loader Management
+- (void)setHudPosition {
+    //Default implementation
+    //Nothing keep the default position of the HUD
+}
+
+- (void)showLoader {
+    [self setHudPosition];
+    [_hudGadget setCaption:@"Loading Gadget"];
+    [_hudGadget setActivity:YES];
+    [_hudGadget show];
+}
+
+
+- (void)hideLoader {
+    //Now update the HUD
+    //TODO Localize this string
+    [self setHudPosition];
+    [_hudGadget hide];
 }
 
 @end

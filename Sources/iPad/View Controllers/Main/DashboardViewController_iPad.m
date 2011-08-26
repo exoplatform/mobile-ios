@@ -28,10 +28,16 @@
     
     // push the gadgets
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:gadgetDisplayViewController invokeByController:self isStackStartView:FALSE];
-    
-    
 
-    
 }
+
+
+
+- (void)setHudPosition {
+    _hudDashboard.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
+}
+
+
+
 
 @end

@@ -18,6 +18,12 @@
 #define kTagForCellSubviewDescriptionLabel 33
 #define kTagForCellSubviewImageView 44
 
+@interface DashboardViewController (PrivateMethods)
+- (void)showLoader;
+- (void)hideLoader;
+@end
+
+
 @implementation DashboardViewController
 
 
@@ -38,6 +44,16 @@
 
 - (void)dealloc
 {
+    [_arrTabs release];
+	_arrTabs = nil;
+    
+    [_tblGadgets release];
+    _tblGadgets = nil;
+    
+    //Loader
+    [_hudDashboard release];
+    _hudDashboard = nil;
+    
     [super dealloc];
 }
 
@@ -57,6 +73,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    //Add the loader
+    _hudDashboard = [[ATMHud alloc] initWithDelegate:self];
+    [_hudDashboard setAllowSuperviewInteraction:NO];
+    [self setHudPosition];
+	[self.view addSubview:_hudDashboard.view];
+    
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
@@ -64,6 +86,9 @@
     _tblGadgets.backgroundView = backgroundView;
     
     [_arrTabs removeLastObject];
+    
+    //Start the loader
+    [self showLoader];
     
     //Set the controlle as delegate of the DashboardProxy
     [DashboardProxy sharedInstance];
@@ -189,6 +214,8 @@
 
 //Method called when gadgets has been retrieved
 -(void)didFinishLoadingGadgets:(NSMutableArray *)arrGadgets {
+    //Start the loader
+    [self hideLoader];
     _arrTabs = arrGadgets;
     [_tblGadgets reloadData];
 }
@@ -199,6 +226,32 @@
     //TODO Management error
 }
 
+
+
+#pragma mark - Loader Management
+- (void)setHudPosition {
+    //Default implementation
+    //Nothing keep the default position of the HUD
+}
+
+- (void)showLoader {
+    [self setHudPosition];
+    [_hudDashboard setCaption:@"Loading your Dashboards"];
+    [_hudDashboard setActivity:YES];
+    [_hudDashboard show];
+}
+
+
+- (void)hideLoader {
+    //Now update the HUD
+    //TODO Localize this string
+    [self setHudPosition];
+    [_hudDashboard setCaption:@"Dashboards loaded"];
+    [_hudDashboard setActivity:NO];
+    [_hudDashboard setImage:[UIImage imageNamed:@"19-check"]];
+    [_hudDashboard update];
+    [_hudDashboard hideAfter:0.5];
+}
 
 
 

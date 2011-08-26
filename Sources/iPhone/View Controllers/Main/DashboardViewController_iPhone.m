@@ -9,7 +9,7 @@
 #import "DashboardViewController_iPhone.h"
 #import "DashboardProxy.h"
 #import "Gadget.h"
-#import "GadgetDisplayViewController.h"
+#import "GadgetDisplayViewController_iPhone.h"
 
 
 
@@ -24,7 +24,7 @@
 	Gadget *gadget = [gadgetTab._arrGadgetsInItem objectAtIndex:indexPath.row];
 	NSURL *tmpURL = gadget._urlContent;
 	
-	GadgetDisplayViewController* gadgetDisplayViewController = [[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController" 
+	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone" 
                                                                                                               bundle:nil 
                                                                                                                  url:tmpURL];
 
@@ -33,6 +33,5 @@
 
     [self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
 }
-
 
 @end

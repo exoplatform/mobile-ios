@@ -7,24 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ATMHud.h"
+#import "ATMHudDelegate.h"
 @class Gadget;
 
 //Display gadget content
 @interface GadgetDisplayViewController : UIViewController <UIWebViewDelegate> {
 	UIWebView*	_webView;	//Display gadget on webview
-	UILabel*	_statusLabel;	//Loading label
-	UIActivityIndicatorView* _progressIndicator;	//Loading indicator
 	NSURL* _url;	//Gadget URL
 	NSString*	_strBConnectStatus;	//Network connection status
+    
+    //Loader
+    ATMHud*                 _hudGadget;//Heads up display
 }
 
 @property (nonatomic, retain) IBOutlet NSURL* _url;
 @property (nonatomic, retain) IBOutlet UIWebView* _webView;
-@property (nonatomic, retain) IBOutlet UILabel* _statusLabel;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView* _progressIndicator;
 
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;	//Constructor
 - (void)setUrl:(NSURL*)url;	//Set gadget URL
+
+- (void)setHudPosition;
 
 @end
 
