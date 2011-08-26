@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "AppDelegate_iPad.h"
+#import "URLAnalyzer.h"
 
 static NSString *ServerObjCellIdentifier = @"ServerObj";
 
@@ -112,13 +113,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder];
     _strServerName = [_txtfServerName text];
-    _strServerUrl = [_txtfServerUrl text];
-    
-    NSRange range = [_strServerUrl rangeOfString:@"http://"];
-    if(range.length == 0 && [_strServerUrl length] > 0)
-    {
-        _strServerUrl = [NSString stringWithFormat:@"http://%@", _strServerUrl];
-    }
+    _strServerUrl = [URLAnalyzer parserURL:[_txtfServerUrl text]];
     
     if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
     {
