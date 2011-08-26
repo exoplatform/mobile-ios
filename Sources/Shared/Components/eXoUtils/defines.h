@@ -20,6 +20,8 @@
 #define EXO_REMEMBER_ME						@"remember_me"
 #define EXO_AUTO_LOGIN						@"auto_sigin"
 #define EXO_PREFERENCE_LANGUAGE				@"language"
+#define HTTP_PROTOCOL                       @"http://"
+#define HTTPS_PROTOCOL                       @"https://"
 
 #define SCR_WIDTH_LSCP_IPAD                 1024
 #define SCR_HEIGHT_LSCP_IPAD                748

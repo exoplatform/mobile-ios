@@ -7,7 +7,6 @@
 //
 
 #import "FilesViewController.h"
-#import "GadgetDisplayController.h"
 #import "AuthenticateProxy.h"
 #import "defines.h"
 #import "FileContentDisplayController.h"
@@ -170,10 +169,6 @@ static NSString* kCellIdentifier = @"Cell";
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;
-}
-
-- (void)setFileContentDisplayView:(GadgetDisplayController*)fileContentDisplayView
-{
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 

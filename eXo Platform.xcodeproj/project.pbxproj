@@ -461,6 +461,7 @@
 		8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351613372CC200B0AD11 /* libidn-iPhone.a */; };
 		8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351813372CD100B0AD11 /* libidn-simulator.a */; };
 		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
+		89967CBA14074C5E00FF700D /* URLAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967CB914074C5E00FF700D /* URLAnalyzer.m */; };
 		8997843D13F53568002E7E1C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997843C13F53568002E7E1C /* Reachability.m */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 		89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */; };
@@ -1137,7 +1138,7 @@
 		8947334B13370B1900B0AD11 /* FileContentDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileContentDisplayController.m; sourceTree = "<group>"; };
 		8947334C13370B1900B0AD11 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
 		8947334D13370B1900B0AD11 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
-		8947335313370B1900B0AD11 /* GadgetDisplayViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GadgetDisplayViewController_iPad.h; sourceTree = "<group>"; };
+		8947335313370B1900B0AD11 /* GadgetDisplayViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayViewController_iPad.h; sourceTree = "<group>"; };
 		8947335413370B1900B0AD11 /* GadgetDisplayViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayViewController_iPad.m; sourceTree = "<group>"; };
 		8947335A13370B1900B0AD11 /* eXoMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileViewController.h; sourceTree = "<group>"; };
 		8947335B13370B1900B0AD11 /* eXoMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoMobileViewController.m; sourceTree = "<group>"; };
@@ -1155,7 +1156,7 @@
 		8947338813370B4500B0AD11 /* FileActionsBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileActionsBackgroundView.m; sourceTree = "<group>"; };
 		8947339013370B4500B0AD11 /* Gadget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gadget.h; path = "../../../iPhone/View Controllers/Gadget/Gadget.h"; sourceTree = "<group>"; };
 		8947339113370B4500B0AD11 /* Gadget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gadget.m; path = "../../../iPhone/View Controllers/Gadget/Gadget.m"; sourceTree = "<group>"; };
-		8947339213370B4500B0AD11 /* GadgetDisplayViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GadgetDisplayViewController_iPhone.h; sourceTree = "<group>"; };
+		8947339213370B4500B0AD11 /* GadgetDisplayViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayViewController_iPhone.h; sourceTree = "<group>"; };
 		8947339313370B4500B0AD11 /* GadgetDisplayViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayViewController_iPhone.m; sourceTree = "<group>"; };
 		8947339913370B4500B0AD11 /* AuthenticateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateViewController.h; sourceTree = "<group>"; };
 		8947339A13370B4500B0AD11 /* AuthenticateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateViewController.m; sourceTree = "<group>"; };
@@ -1305,6 +1306,8 @@
 		8947351613372CC200B0AD11 /* libidn-iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-iPhone.a"; sourceTree = "<group>"; };
 		8947351813372CD100B0AD11 /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-simulator.a"; sourceTree = "<group>"; };
 		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		89967CB814074C5E00FF700D /* URLAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLAnalyzer.h; sourceTree = "<group>"; };
+		89967CB914074C5E00FF700D /* URLAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzer.m; sourceTree = "<group>"; };
 		8997843B13F53568002E7E1C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8997843C13F53568002E7E1C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -2925,6 +2928,8 @@
 				8937A32913387F1D00D8B474 /* NSString+HTML.m */,
 				46144BCD13A94044009B7ECD /* NSDate+Formatting.h */,
 				46144BCE13A94044009B7ECD /* NSDate+Formatting.m */,
+				89967CB814074C5E00FF700D /* URLAnalyzer.h */,
+				89967CB914074C5E00FF700D /* URLAnalyzer.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -3716,6 +3721,7 @@
 				46ADAED314052599005ABA79 /* LanguageHelper.m in Sources */,
 				46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */,
 				46ADAEE914069FCE005ABA79 /* GadgetDisplayViewController.m in Sources */,
+				89967CBA14074C5E00FF700D /* URLAnalyzer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

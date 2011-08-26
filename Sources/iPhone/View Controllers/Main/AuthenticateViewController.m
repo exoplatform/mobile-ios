@@ -17,6 +17,7 @@
 #import "SSHUDView.h"
 #import "AuthenticateProxy.h"
 #import "LanguageHelper.h"
+#import "URLAnalyzer.h"
 
 
 #define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
