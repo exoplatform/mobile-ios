@@ -7,28 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FileActionsViewController.h"
 
 @class File;
-
-@protocol FileActionsProtocol 
-//Method needed to retrieve the delete action
--(void)deleteFile:(NSString *)urlFileToDelete;
-
-//Method needed to ctach when an move/copy action is requested over one file
--(void)moveOrCopyActionIsSelected;
-
-//Method needed to retrieve the action to move a file
-- (void)moveFileSource:urlSource
-         toDestination:urlDestination;
-
-//Method needed to retrieve the action to copy a file
-- (void)copyFileSource:urlSource
-         toDestination:urlDestination;
-
-//Method needed to retrieve the action when the user ask an image
-- (void)askToAddAPicture:(NSString *)urlDestination;
-
-@end
 
 
 @interface FileActionsViewController_iPhone : UIViewController <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {

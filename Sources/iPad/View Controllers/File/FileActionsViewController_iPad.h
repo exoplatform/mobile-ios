@@ -1,5 +1,5 @@
 //
-//  FileActionsViewController.h
+//  FileActionsViewController_iPad.h
 //  eXoMobile
 //
 //  Created by Tran Hoai Son on 6/25/10.
@@ -10,7 +10,7 @@
 @class FilesViewController;
 
 //File action view controller
-@interface FileActionsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface FileActionsViewController_iPad : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {	
 	FilesViewController*					_delegate; //Point to FilesViewController
 	IBOutlet UITableView*					_tblvActions;	//Display list of action

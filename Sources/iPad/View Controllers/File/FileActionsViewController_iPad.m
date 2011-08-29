@@ -1,12 +1,12 @@
 //
-//  FileActionsViewController.m
+//  FileActionsViewController_iPad.m
 //  eXoMobile
 //
 //  Created by Tran Hoai Son on 6/25/10.
 //  Copyright 2010 home. All rights reserved.
 //
 
-#import "FileActionsViewController.h"
+#import "FileActionsViewController_iPad.h"
 #import "FilesViewController.h"
 #import "LanguageHelper.h"
 
@@ -14,7 +14,7 @@ static NSString *kCellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
-@implementation FileActionsViewController
+@implementation FileActionsViewController_iPad
 
 @synthesize _tblvActions;
 

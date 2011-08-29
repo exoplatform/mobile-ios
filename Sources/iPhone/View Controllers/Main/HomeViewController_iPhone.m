@@ -21,7 +21,7 @@
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTURLObject.h"
 
-#import "FilesViewController_iPhone.h"
+#import "DocumentsViewController_iPhone.h"
 #import "ActivityStreamBrowseViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
 #import "eXoSettingViewController.h"
@@ -174,12 +174,8 @@
     if ([item.title isEqualToString:@"Documents"]) 
     {
         //Start Documents
-        
-        FilesViewController_iPhone *filesViewController = [[FilesViewController_iPhone alloc] initWithNibName:@"FilesViewController_iPhone" bundle:nil];
-        
-        filesViewController._isCompatibleWithSocial = _isCompatibleWithSocial;
-        
-        [self.navigationController pushViewController:filesViewController animated:YES];
+        DocumentsViewController_iPhone *documentsViewController = [[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil];
+        [self.navigationController pushViewController:documentsViewController animated:YES];
     }
     
     if ([item.title isEqualToString:@"Dashboard"]) 

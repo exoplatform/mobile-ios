@@ -10,7 +10,7 @@
 #import "File.h"
 
 @class FileContentDisplayController;
-@class FileActionsViewController;
+@class FileActionsViewController_iPad;
 @class OptionsViewController;
 
 
@@ -36,7 +36,7 @@
 	UIActivityIndicatorView*				_actiLoading;	//Loading indecator
 	
 	FileContentDisplayController*			_fileContentDisplayController; //Display file content
-	FileActionsViewController*				_fileActionsViewController;	//Display file actions
+	FileActionsViewController_iPad*			_fileActionsViewController;	//Display file actions
 	OptionsViewController*					_optionsViewController;	//Add or rename file
 	//Add, rename file pop up windows
 	UIPopoverController*					popoverController;
@@ -58,7 +58,7 @@
 }
 
 @property (nonatomic, retain) FileContentDisplayController* _fileContentDisplayController;
-@property (nonatomic, retain) FileActionsViewController* _fileActionsViewController;
+@property (nonatomic, retain) FileActionsViewController_iPad* _fileActionsViewController;
 @property (nonatomic, retain) OptionsViewController* _optionsViewController;
 @property (nonatomic, retain) UITableView* _tbvFiles;
 @property (nonatomic, retain) UIButton* _btnLeftEdgeNavigation;

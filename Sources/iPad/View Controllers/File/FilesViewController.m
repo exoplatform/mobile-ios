@@ -10,7 +10,7 @@
 #import "AuthenticateProxy.h"
 #import "defines.h"
 #import "FileContentDisplayController.h"
-#import "FileActionsViewController.h"
+#import "FileActionsViewController_iPad.h"
 #import "OptionsViewController.h"
 #import "NSString+HTML.h"
 #import "DataProcess.h"
@@ -56,7 +56,7 @@ static NSString* kCellIdentifier = @"Cell";
 		_fileContentDisplayController = [[FileContentDisplayController alloc] initWithNibName:@"FileContentDisplayController" bundle:nil];
 		[_fileContentDisplayController setDelegate:self];
 
-		_fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" bundle:nil];
+		_fileActionsViewController = [[FileActionsViewController_iPad alloc] initWithNibName:@"FileActionsViewController_iPad" bundle:nil];
 		[_fileActionsViewController setDelegate:self];
 
 		_optionsViewController = [[OptionsViewController alloc] initWithNibName:@"OptionsViewController" bundle:nil];
