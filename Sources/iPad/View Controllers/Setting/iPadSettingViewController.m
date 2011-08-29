@@ -448,6 +448,15 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
                 [cell addSubview:lbModify];
                 [lbModify release];
             }
+            
+            if ([_delegate isKindOfClass:[LoginViewController class]]) 
+            {
+                [cell setUserInteractionEnabled:YES];
+            }
+            else
+            {
+                [cell setUserInteractionEnabled:NO];
+            }
             break;
         }
 

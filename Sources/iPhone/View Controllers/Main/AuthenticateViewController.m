@@ -402,6 +402,7 @@
 - (IBAction)onSettingBtn
 {
     eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [setting setDelegate:self];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
     [setting release];
     

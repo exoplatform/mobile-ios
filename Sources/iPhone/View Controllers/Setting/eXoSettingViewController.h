@@ -11,7 +11,10 @@
 @class ServerManagerViewController;
 
 @interface eXoSettingViewController : UITableViewController <UITextFieldDelegate> {
-	BOOL bRememberMe;
+	
+    id   _delegate;
+    
+    BOOL bRememberMe;
 	BOOL bAutoLogin;
 	NSString *languageStr;
 	NSString *serverNameStr;
@@ -29,5 +32,6 @@
 
 
 - (id)initWithStyle:(UITableViewStyle)style;
+- (void)setDelegate:(id)delegate;
 
 @end

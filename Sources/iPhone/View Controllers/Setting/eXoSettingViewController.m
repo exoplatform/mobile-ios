@@ -14,6 +14,7 @@
 #import "ContainerCell.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
+#import "AuthenticateViewController.h"
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
@@ -151,6 +152,11 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 - (void)dealloc 
 {
     [super dealloc];
+}
+
+- (void)setDelegate:(id)delegate
+{
+    _delegate = delegate;
 }
 
 - (void)save 
@@ -524,6 +530,16 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
                 [cell addSubview:lbModify];
                 [lbModify release];
             }
+        
+            if ([_delegate isKindOfClass:[AuthenticateViewController class]]) 
+            {
+                [cell setUserInteractionEnabled:YES];
+            }
+            else
+            {
+                [cell setUserInteractionEnabled:NO];
+            }
+            
             break;
         }
             
