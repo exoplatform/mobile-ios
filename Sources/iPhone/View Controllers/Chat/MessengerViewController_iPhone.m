@@ -14,6 +14,7 @@
 #import "XMPPElement.h"
 #import "defines.h"
 #import "ChatWindowViewController_iPhone.h"
+#import "eXoChatUser.h"
 
 static NSString *kCellIdentifier = @"MyIdentifier";
 #define kTagForCellSubviewTitleLabel 222
@@ -39,40 +40,6 @@ static BOOL didUpdateRosterForTheFirstTime = NO;
 	}
 	return self;
 }
-
-
-/*
-- (void)initForChatWithDelegate:(eXoApplicationsViewController *)delegate
-{	
-	if(!_msgDict)
-		_msgDict = [[NSMutableDictionary alloc] init];
-	if(_delegate == nil)
-	{
-		
-		_delegate = delegate;
-		_xmppClient = [[XMPPClient alloc] init];
-		[_xmppClient addDelegate:self];
-		[_xmppClient setAutoLogin:NO];
-		[_xmppClient setAutoRoster:YES];
-		[_xmppClient setAutoPresence:YES];
-		[self updateAccountInfo];
-		if(![_xmppClient isConnected])
-		{
-			[_xmppClient connect];
-		}
-		else
-		{
-			[_xmppClient authenticateUser];	
-		}
-		
-		while (!didUpdateRosterForTheFirstTime && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
-		{
-			
-		}
-	}	
-}
- */
-
 
 - (void)initMessengerParametersWithDelegate:(id)delegate
 {	
