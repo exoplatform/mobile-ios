@@ -8,7 +8,7 @@
 
 #import "ChatWindowViewController.h"
 #import "defines.h"
-#import "MessengerViewController.h"
+#import "MessengerViewController_iPad.h"
 #import "DDXML.h"
 #import "XMPPUser.h"
 #import "XMPPJID.h"

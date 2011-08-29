@@ -7,7 +7,7 @@
 //
 
 #import "MoreLiveChatViewController.h"
-#import "MessengerViewController.h"
+#import "MessengerViewController_iPad.h"
 #import "XMPPUser.h"
 #import "LanguageHelper.h"
 

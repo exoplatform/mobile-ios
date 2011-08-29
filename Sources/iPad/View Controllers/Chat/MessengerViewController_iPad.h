@@ -41,7 +41,7 @@
 //========================================================================================
 
 //List of chat users
-@interface MessengerViewController : UIViewController <UITableViewDelegate, 
+@interface MessengerViewController_iPad : UIViewController <UITableViewDelegate, 
 UITableViewDataSource> /*<UINavigationControllerDelegate, 
 														UITableViewDelegate, 
 														UITableViewDataSource, 

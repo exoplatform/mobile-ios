@@ -6,7 +6,7 @@
 //  Copyright 2010 home. All rights reserved.
 //
 
-#import "MessengerViewController.h"
+#import "MessengerViewController_iPad.h"
 #import "XMPPClient.h"
 #import "XMPPUser.h"
 #import "XMPPJID.h"
@@ -187,7 +187,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
 @end
 
 
-@implementation MessengerViewController
+@implementation MessengerViewController_iPad
 
 @synthesize _tblvUsers;
 @synthesize currentChatUserIndex;
