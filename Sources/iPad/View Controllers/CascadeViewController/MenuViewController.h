@@ -11,7 +11,7 @@
 #import "DashboardViewController_iPad.h"
 #import "DashboardProxy.h"
 #import "ChatWindowViewController.h"
-#import "MessengerViewController.h"
+#import "MessengerViewController_iPad.h"
 #import "iPadSettingViewController.h"
 #import "ActivityStreamBrowseViewController_iPad.h"
 
@@ -32,7 +32,7 @@
     
     ActivityStreamBrowseViewController_iPad* _activityViewController;
         
-    MessengerViewController*        _messengerViewController;
+    MessengerViewController_iPad*        _messengerViewController;
     UINavigationController*         _nvMessengerViewController;
     ChatWindowViewController*       _chatWindowViewController;
     iPadSettingViewController*      _iPadSettingViewController;

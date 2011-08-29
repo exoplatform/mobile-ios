@@ -281,7 +281,7 @@
             // messenger
             if (_messengerViewController == nil) 
             {
-                _messengerViewController = [[MessengerViewController alloc] initWithNibName:@"MessengerViewController" bundle:nil];
+                _messengerViewController = [[MessengerViewController_iPad alloc] initWithNibName:@"MessengerViewController" bundle:nil];
                 [_messengerViewController setDelegate:self];
             }
             
