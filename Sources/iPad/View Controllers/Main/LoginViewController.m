@@ -222,14 +222,14 @@
 	{
         //[_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
         [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
-        [_vContainer setFrame:CGRectMake(80, 275, 609, 591)];        
+        [_vContainer setFrame:CGRectMake(100, 400, 569, 460)];        
 	}
 	
 	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
 	{	
         //[_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
         [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
-        [_vContainer setFrame:CGRectMake(210, 140, 609, 591)];
+        [_vContainer setFrame:CGRectMake(227, 230, 569, 460)];
 	}
     
     //[self moveView];
@@ -546,11 +546,11 @@
     {
         if (bUp) 
         {
-            frameToGo.origin.y = 150;
+            frameToGo.origin.y = 330;
         }
         else
         {
-            frameToGo.origin.y = 200;
+            frameToGo.origin.y = 400;
         }
     }
     
@@ -562,7 +562,7 @@
         }
         else
         {
-            frameToGo.origin.y = 114;
+            frameToGo.origin.y = 230;
         }
     }
 
