@@ -37,7 +37,7 @@
 	[self.view addSubview:_hudChat.view];
     
     self.title = @"Chat";
-    
+    self.view.userInteractionEnabled = NO;
     //Load all activities of the user
     [self startLoadingChat];
 }
@@ -79,6 +79,8 @@
     //Now update the HUD
     //TODO Localize this string
 
+    self.view.userInteractionEnabled = YES;
+    
     [_hudChat setCaption:@"Chat updated"];
     [_hudChat setActivity:NO];
     [_hudChat setImage:[UIImage imageNamed:@"19-check"]];

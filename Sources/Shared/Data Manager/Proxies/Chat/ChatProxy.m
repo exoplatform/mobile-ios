@@ -31,7 +31,7 @@
 -(void)connectToChatServer:(NSString *)host port:(int)port userName:(NSString *)userName password:(NSString *)password
 {
    
-    if(!_xmppClient)
+//    if(!_xmppClient)
     {
 		_xmppClient = [[XMPPClient alloc] init];
 		[_xmppClient addDelegate:self];

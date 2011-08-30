@@ -167,7 +167,7 @@
     if ([item.title isEqualToString:@"Chat"]) 
     {
         //Start the Chat
-        MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil delegate:self];
+        MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:messengerViewController_iPhone animated:YES];
     }
     
