@@ -227,7 +227,7 @@
 		46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E4D138370A30085DCB6 /* StackScrollViewController.m */; };
 		46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E51138370A30085DCB6 /* UIViewWithShadow.m */; };
 		46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F83140BD7A60077BE15 /* DocumentsViewController.m */; };
-		46F87F87140BD8AA0077BE15 /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F86140BD8AA0077BE15 /* FileActionsViewController.m */; };
+		46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F89140CC4C20077BE15 /* FileActionsViewController.m */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
@@ -842,7 +842,7 @@
 		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
 		46ABBE8913890C260077809B /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
 		46ABBE8C13890D0C0077809B /* eXo_Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eXo_Constants.h; path = Constant/eXo_Constants.h; sourceTree = "<group>"; };
-		46ABBE921389141E0077809B /* DocumentsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; name = DocumentsViewController_iPhone.h; path = ../Main/DocumentsViewController_iPhone.h; sourceTree = "<group>"; };
+		46ABBE921389141E0077809B /* DocumentsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController_iPhone.h; path = ../Main/DocumentsViewController_iPhone.h; sourceTree = "<group>"; };
 		46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController_iPhone.m; path = ../Main/DocumentsViewController_iPhone.m; sourceTree = "<group>"; };
 		46ADAC671402809A005ABA79 /* AuthenticateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticateProxy.h; path = Authenticate/AuthenticateProxy.h; sourceTree = "<group>"; };
 		46ADAC681402809A005ABA79 /* AuthenticateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticateProxy.m; path = Authenticate/AuthenticateProxy.m; sourceTree = "<group>"; };
@@ -985,8 +985,8 @@
 		46E96E51138370A30085DCB6 /* UIViewWithShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewWithShadow.m; sourceTree = "<group>"; };
 		46F87F82140BD7A60077BE15 /* DocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController.h; path = Documents/DocumentsViewController.h; sourceTree = "<group>"; };
 		46F87F83140BD7A60077BE15 /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController.m; path = Documents/DocumentsViewController.m; sourceTree = "<group>"; };
-		46F87F85140BD8AA0077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
-		46F87F86140BD8AA0077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
+		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
+		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerEditingViewController.xib; path = ../../NIB/ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerEditingViewController.h; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditingViewController.m; sourceTree = "<group>"; };
@@ -1154,7 +1154,7 @@
 		8947334113370B1900B0AD11 /* MessengerViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController_iPad.m; sourceTree = "<group>"; };
 		8947334213370B1900B0AD11 /* MoreLiveChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreLiveChatViewController.h; sourceTree = "<group>"; };
 		8947334313370B1900B0AD11 /* MoreLiveChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreLiveChatViewController.m; sourceTree = "<group>"; };
-		8947334813370B1900B0AD11 /* FileActionsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FileActionsViewController_iPad.h; sourceTree = "<group>"; };
+		8947334813370B1900B0AD11 /* FileActionsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileActionsViewController_iPad.h; sourceTree = "<group>"; };
 		8947334913370B1900B0AD11 /* FileActionsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileActionsViewController_iPad.m; sourceTree = "<group>"; };
 		8947334A13370B1900B0AD11 /* FileContentDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileContentDisplayController.h; sourceTree = "<group>"; };
 		8947334B13370B1900B0AD11 /* FileContentDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileContentDisplayController.m; sourceTree = "<group>"; };
@@ -2176,8 +2176,8 @@
 			children = (
 				46F87F82140BD7A60077BE15 /* DocumentsViewController.h */,
 				46F87F83140BD7A60077BE15 /* DocumentsViewController.m */,
-				46F87F85140BD8AA0077BE15 /* FileActionsViewController.h */,
-				46F87F86140BD8AA0077BE15 /* FileActionsViewController.m */,
+				46F87F88140CC4C20077BE15 /* FileActionsViewController.h */,
+				46F87F89140CC4C20077BE15 /* FileActionsViewController.m */,
 			);
 			name = Documents;
 			sourceTree = "<group>";
@@ -3793,7 +3793,7 @@
 				89112724140B913600A8851C /* ChatUser.m in Sources */,
 				89112728140B9A8E00A8851C /* ChatProxy.m in Sources */,
 				46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */,
-				46F87F87140BD8AA0077BE15 /* FileActionsViewController.m in Sources */,
+				46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
