@@ -99,16 +99,15 @@
     [_txtvMessageComposer setBackgroundColor:[UIColor clearColor]];
     [_txtvMessageComposer setText:@""];
     
-    
     if (_isPostMessage) 
     {
         _strTitle = @"Post status";
-        [_btnAttach setHidden:YES];
+        [_btnAttach setHidden:NO];
     }
     else
     {
         _strTitle = @"Post comment";
-        [_btnAttach setHidden:NO];        
+        [_btnAttach setHidden:YES];        
     }
     
     [self setTitle:_strTitle];
