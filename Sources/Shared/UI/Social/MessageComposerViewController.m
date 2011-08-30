@@ -103,10 +103,12 @@
     if (_isPostMessage) 
     {
         _strTitle = @"Post status";
+        [_btnAttach setHidden:YES];
     }
     else
     {
         _strTitle = @"Post comment";
+        [_btnAttach setHidden:NO];        
     }
     
     [self setTitle:_strTitle];
