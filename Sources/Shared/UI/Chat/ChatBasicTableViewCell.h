@@ -7,20 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class Activity;
-@class EGOImageView;
-@class SocialActivityStream;
-@class ActivityStreamBrowseViewController;
-@class SocialUserProfile;
+#import "XMPPUser.h"
 
 @interface ChatBasicTableViewCell : UITableViewCell {
     
     UILabel*               _lbName;
-    EGOImageView*          _imgvAvatar;
+    UIImageView*          _imgvAvatar;
 }
 
-@property (retain, nonatomic) IBOutlet UILabel* lbName;
-@property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+//Use this method after create the cell to customize the appearance of the Avatar
+- (void)customizeAvatarDecorations;
+- (void)configureCell;
+
+//set user for cell
+- (void)setChatUser:(XMPPUser *)chatUser;
 
 @end

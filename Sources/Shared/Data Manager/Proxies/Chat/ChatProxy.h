@@ -21,6 +21,7 @@
 + (ChatProxy *)sharedInstance;
 
 - (void)connectToChatServer:(NSString *)host port:(int)port userName:(NSString *)userName password:(NSString *)password;
+- (void)disconnect;
 
 - (NSArray *)getUserList;
 

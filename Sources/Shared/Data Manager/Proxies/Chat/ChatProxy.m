@@ -34,40 +34,48 @@
     if(!_xmppClient)
     {
 		_xmppClient = [[XMPPClient alloc] init];
-		[_xmppClient addDelegate:_delegate];
+		[_xmppClient addDelegate:self];
 		[_xmppClient setAutoLogin:NO];
 		[_xmppClient setAutoRoster:YES];
 		[_xmppClient setAutoPresence:YES];
+        
+        NSString *strHost = [[NSURL URLWithString:host] host];
+        [_xmppClient setDomain:strHost];	
+        [_xmppClient setPort:port]; //maybe port number is not neccessary for this App
+        
+        BOOL usesSSL = NO;
+        BOOL allowsSelfSignedCertificates = NO;
+        BOOL allowsSSLHostNameMismatch = NO;
+        
+        [_xmppClient setUsesOldStyleSSL:usesSSL];
+        [_xmppClient setAllowsSelfSignedCertificates:allowsSelfSignedCertificates];
+        [_xmppClient setAllowsSSLHostNameMismatch:allowsSSLHostNameMismatch];
+        
+        NSString* resource = @"";
+        NSString* userLocation = @"@";
+        userLocation = [userLocation stringByAppendingString:host];
+        
+        NSString* jid_name = [userName stringByAppendingString:userLocation];
+        XMPPJID* jid = [XMPPJID jidWithString:jid_name resource:resource];
+        [_xmppClient setMyJID:jid];
+        [_xmppClient setPassword:password];
+        
+        if(![_xmppClient isConnected])
+        {
+            [_xmppClient connect];
+        }
+        else
+        {
+            [_xmppClient authenticateUser];	    
+        }
 
     }
     
-	[_xmppClient setDomain:host];	
-	[_xmppClient setPort:port]; //maybe port number is not neccessary for this App
-	
-	BOOL usesSSL = NO;
-	BOOL allowsSelfSignedCertificates = NO;
-	BOOL allowsSSLHostNameMismatch = NO;
-	
-	[_xmppClient setUsesOldStyleSSL:usesSSL];
-	[_xmppClient setAllowsSelfSignedCertificates:allowsSelfSignedCertificates];
-	[_xmppClient setAllowsSSLHostNameMismatch:allowsSSLHostNameMismatch];
-    
-	NSString* resource = @"";
-	NSString* userLocation = @"@";
-	userLocation = [userLocation stringByAppendingString:host];
-	
-	NSString* jid_name = [userName stringByAppendingString:userLocation];
-	XMPPJID* jid = [XMPPJID jidWithString:jid_name resource:resource];
-	[_xmppClient setMyJID:jid];
-	[_xmppClient setPassword:password];
-    
-    if(![_xmppClient isConnected])
-    {
-        [_xmppClient connect];
-    }
-    
-//    [_xmppClient authenticateUser];	
-    
+}
+
+- (void)disconnect
+{
+    [_xmppClient disconnect];    
 }
 
 - (NSArray *)getUserList
@@ -77,6 +85,14 @@
 
 #pragma mark XMPPClient Delegate Methods:
 
+- (void)xmppClientDidNotConnect:(XMPPClient *)sender
+{
+    if([_delegate respondsToSelector:@selector(cannotConnectToChatServer)])
+    {
+        [_delegate cannotConnectToChatServer];
+    }
+}
+
 - (void)xmppClientDidConnect:(XMPPClient *)sender
 {
 	[_xmppClient authenticateUser];
@@ -84,9 +100,9 @@
 
 - (void)xmppClientDidUpdateRoster:(XMPPClient *)sender
 {
-    if(_delegate && [_delegate respondsToSelector:@selector(updateChatClient:)])
+    if([_delegate respondsToSelector:@selector(updateChatClient:)])
     {
-        [_delegate updateChatClient:_xmppClient];
+        [_delegate updateChatClient:[self getUserList]];
     }
 }
 

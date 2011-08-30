@@ -9,20 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
-
-@class eXoApplicationsViewController;
-@class XMPPJID;
-@class XMPPClient;
-@class XMPPUser;
-@class ChatWindowViewController_iPhone;
-
+#import "ChatProxy.h"
 
 //Chat list view
 @interface MessengerViewController : UIViewController <ATMHudDelegate>
 {
     id                              _delegate;
+    ChatProxy*                      _chatProxy;
+    
 	IBOutlet UITableView*           _tblvUsersList;	//Chat list
-	XMPPClient*                     _xmppClient;        //Chat socket
+
 	
     NSMutableArray*                 _arrChatUsers;	//Contact array
 
@@ -31,18 +27,13 @@
 	NSMutableArray*                 _msgCount;	//count for each of chat
 	NSMutableDictionary*            _msgDict;	//Chat content of each chat
 
-    ATMHud *_hudFolder;//Heads up display
+    ATMHud *_hudChat; //Heads up display
 
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil delegate:(id)delegate;
+- (void)startLoadingChat;
+- (void)showChatLoader;
+- (void)cannotConnectToChatServer;
+- (void)updateChatClient:(NSArray *)arr;
 
-- (void)initMessengerParametersWithDelegate:(id)delegate;	//Constructor
-- (void)updateAccountInfo;	//Get user infor to chat with
-- (void) checkMsg;	//Check if it has new message
-
-+ (BOOL)isFirstTimeLogIn;	//Check if it is the first time login
-- (void)setChatClient:(XMPPClient*)xmppClient;
-- (void)setChatUsers:(NSArray*)arrUsers;
-- (void)updateForEachExoChatUser:(XMPPUser*)xmppUser withArrMsg:(NSMutableArray*)arrMsg  withHtmlStr:(NSString*)htmlStr;
 @end

@@ -7,16 +7,10 @@
 //
 
 #import "ChatBasicTableViewCell.h"
-#import "EGOImageView.h"
-#import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SocialActivityStream.h"
-#import "ActivityStreamBrowseViewController.h"
-#import "SocialUserProfile.h"
+
 
 @implementation ChatBasicTableViewCell
-
-@synthesize lbName=_lbName, imgvAvatar=_imgvAvatar;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -42,8 +36,8 @@
 
 - (void)dealloc
 {
-    self.lbName = nil;    
-    self.imgvAvatar = nil;
+    [_lbName release];    
+    [_imgvAvatar release];
     
     [super dealloc];
 }
@@ -61,13 +55,15 @@
     CGFloat borderWidth = 2.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
     
+    /*
     //Add the inner shadow
     CALayer *innerShadowLayer = [CALayer layer];
     innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
     innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
     innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
     [_imgvAvatar.layer addSublayer:innerShadowLayer];
-    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
+//    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
+     */
 }
 
 
@@ -85,6 +81,22 @@
     
     [self configureFonts];
     
+}
+
+- (void)setChatUser:(XMPPUser *)chatUser
+{
+    _lbName.text = [chatUser nickname];
+    
+    if([chatUser isOnline])
+	{	
+		_lbName.textColor = [UIColor blueColor];
+		_imgvAvatar.image = [UIImage imageNamed:@"onlineuser.png"];
+	}
+	else
+	{
+		_lbName.textColor = [UIColor blackColor];
+		_imgvAvatar.image = [UIImage imageNamed:@"offlineuser.png"];
+	}
 }
 
 @end
