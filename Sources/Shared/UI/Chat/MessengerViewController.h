@@ -36,4 +36,7 @@
 - (void)cannotConnectToChatServer;
 - (void)updateChatClient:(NSArray *)arr;
 
+- (void)sendChatMessage:(NSString *)msg;
+- (void)receivedChatMessage:(XMPPMessage *)xmppMsg;
+
 @end

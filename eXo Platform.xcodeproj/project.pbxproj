@@ -326,6 +326,9 @@
 		89112721140B8BF000A8851C /* eXoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911271F140B8BF000A8851C /* eXoMessage.m */; };
 		89112724140B913600A8851C /* ChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112723140B913600A8851C /* ChatUser.m */; };
 		89112728140B9A8E00A8851C /* ChatProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112727140B9A8E00A8851C /* ChatProxy.m */; };
+		8921D6A9140DE1B400885EF8 /* MessageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8921D6A7140DE1B400885EF8 /* MessageContentViewController.m */; };
+		8921D6AA140DE1B400885EF8 /* MessageContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8921D6A8140DE1B400885EF8 /* MessageContentViewController.xib */; };
+		8921D6AD140DF57000885EF8 /* MessengerWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8921D6AC140DF56F00885EF8 /* MessengerWindowViewController.m */; };
 		8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937A32913387F1D00D8B474 /* NSString+HTML.m */; };
 		8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */; };
 		8937A3401338993900D8B474 /* ChatWindowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32F1338993900D8B474 /* ChatWindowViewController.xib */; };
@@ -1130,6 +1133,11 @@
 		89112723140B913600A8851C /* ChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
 		89112726140B9A8E00A8851C /* ChatProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProxy.h; sourceTree = "<group>"; };
 		89112727140B9A8E00A8851C /* ChatProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProxy.m; sourceTree = "<group>"; };
+		8921D6A6140DE1B400885EF8 /* MessageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageContentViewController.h; sourceTree = "<group>"; };
+		8921D6A7140DE1B400885EF8 /* MessageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageContentViewController.m; sourceTree = "<group>"; };
+		8921D6A8140DE1B400885EF8 /* MessageContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageContentViewController.xib; sourceTree = "<group>"; };
+		8921D6AB140DF56F00885EF8 /* MessengerWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerWindowViewController.h; sourceTree = "<group>"; };
+		8921D6AC140DF56F00885EF8 /* MessengerWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerWindowViewController.m; sourceTree = "<group>"; };
 		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
 		8937A32F1338993900D8B474 /* ChatWindowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatWindowViewController.xib; path = ../../NIB/ChatWindowViewController.xib; sourceTree = "<group>"; };
@@ -2295,6 +2303,7 @@
 		89112712140B7DC800A8851C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				8921D6A5140DE02E00885EF8 /* ChatWindows */,
 				89112718140B7F2A00A8851C /* MessengerViewController.h */,
 				89112719140B7F2A00A8851C /* MessengerViewController.m */,
 				89112713140B7DC800A8851C /* ChatBasicTableViewCell.h */,
@@ -2324,6 +2333,18 @@
 				89112727140B9A8E00A8851C /* ChatProxy.m */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		8921D6A5140DE02E00885EF8 /* ChatWindows */ = {
+			isa = PBXGroup;
+			children = (
+				8921D6AB140DF56F00885EF8 /* MessengerWindowViewController.h */,
+				8921D6AC140DF56F00885EF8 /* MessengerWindowViewController.m */,
+				8921D6A6140DE1B400885EF8 /* MessageContentViewController.h */,
+				8921D6A7140DE1B400885EF8 /* MessageContentViewController.m */,
+				8921D6A8140DE1B400885EF8 /* MessageContentViewController.xib */,
+			);
+			path = ChatWindows;
 			sourceTree = "<group>";
 		};
 		89300A6C1336EF6200804D3B /* Sources */ = {
@@ -3634,6 +3655,7 @@
 				462E95B213F150DB0027E093 /* SocialPostActivityButton.png in Resources */,
 				46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */,
 				89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */,
+				8921D6AA140DE1B400885EF8 /* MessageContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3794,6 +3816,8 @@
 				89112728140B9A8E00A8851C /* ChatProxy.m in Sources */,
 				46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */,
 				46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */,
+				8921D6A9140DE1B400885EF8 /* MessageContentViewController.m in Sources */,
+				8921D6AD140DF57000885EF8 /* MessengerWindowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

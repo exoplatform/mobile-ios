@@ -7,24 +7,11 @@
 //
 
 #import "MessengerViewController.h"
-#import "DataProcess.h"
-#import "defines.h"
 #import "ChatBasicTableViewCell.h"
-#import "ChatUser.h"
+#import "defines.h"
+
 
 @implementation MessengerViewController
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil delegate:(id)delegate
-{
-	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
-	{
-		// Custom initialization
-        _arrChatUsers = [[NSMutableArray alloc] init];
-        _delegate = delegate;
-	}
-	return self;
-}
 
 
 - (void)viewDidLoad
@@ -107,6 +94,16 @@
  
 }
 
+- (void)sendChatMessage:(NSString *)msg
+{
+    [_chatProxy sendChatMessage:msg];
+}
+
+- (void)receivedChatMessage:(XMPPMessage *)xmppMsg
+{
+    NSLog(@"%@", @"123");
+}
+
 #pragma mark - AlertView call back
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -158,38 +155,7 @@
 // the table's selection has changed, switch to that item's UIViewController
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    /*
-	//if(_delegate && [_delegate respondsToSelector:@selector(showChatWindowWithXMPPUser: listMsg:)])
-	{
-//		XMPPUser* xmppUser = [_arrUsers objectAtIndex:indexPath.row];
-		//_delegate._currentChatUser = [xmppUser address];
-		[_msgCount replaceObjectAtIndex:indexPath.row withObject:@"0"];
-		[_tblvUsersList reloadData];
-		[self checkMsg];
-		//[_delegate showChatWindowWithXMPPUser:xmppUser listMsg:_msgDict];
-        if (_chatWindowViewController_iPhone == nil) 
-        {
-            _chatWindowViewController_iPhone = [[ChatWindowViewController_iPhone alloc] initWithNibName:@"ChatWindowViewController_iPhone" bundle:nil];
-            
-        }
-        
-        eXoChatUser* exochatuser = [_arrChatUsers objectAtIndex:indexPath.row];
-        
-        [_chatWindowViewController_iPhone initChatWindowWithDelegate:self andXMPPClient:_xmppClient andExoChatUser:exochatuser listMsg:_msgDict];
-        
-        if ([self.navigationController.viewControllers containsObject:_chatWindowViewController_iPhone]) 
-        {
-            [self.navigationController popToViewController:_chatWindowViewController_iPhone animated:YES];
-        }
-        else
-        {
-            [self.navigationController pushViewController:_chatWindowViewController_iPhone animated:YES];
-            [_chatWindowViewController_iPhone setTitle:[[exochatuser getXmppUser] nickname]];
-        }
-	}
-     */
 }
 
 //Dealloc method.

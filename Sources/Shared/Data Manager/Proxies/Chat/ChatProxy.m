@@ -8,6 +8,11 @@
 
 #import "ChatProxy.h"
 #import "XMPPJID.h"
+#import "DDXML.h"
+#import "XMPPUser.h"
+#import "XMPPClient.h"
+#import "XMPPElement.h"
+
 
 @implementation ChatProxy
 
@@ -31,7 +36,7 @@
 -(void)connectToChatServer:(NSString *)host port:(int)port userName:(NSString *)userName password:(NSString *)password
 {
    
-//    if(!_xmppClient)
+    if(!_xmppClient)
     {
 		_xmppClient = [[XMPPClient alloc] init];
 		[_xmppClient addDelegate:self];
@@ -59,7 +64,7 @@
         XMPPJID* jid = [XMPPJID jidWithString:jid_name resource:resource];
         [_xmppClient setMyJID:jid];
         [_xmppClient setPassword:password];
-        
+    
         if(![_xmppClient isConnected])
         {
             [_xmppClient connect];
@@ -68,7 +73,6 @@
         {
             [_xmppClient authenticateUser];	    
         }
-
     }
     
 }
@@ -78,9 +82,28 @@
     [_xmppClient disconnect];    
 }
 
+- (XMPPUser *)getXMPPUser
+{
+    return [_xmppClient myUser];
+}
+
 - (NSArray *)getUserList
 {
     return [_xmppClient sortedUsersByAvailabilityName];	
+}
+
+- (void)sendChatMessage:(NSString *)msg
+{
+    XMPPUser *xmppUser = [_xmppClient myUser];
+    
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+	[body setStringValue:msg];
+	NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+	[message addAttribute:[NSXMLNode attributeWithName:@"type" stringValue:@"chat"]];
+	[message addAttribute:[NSXMLNode attributeWithName:@"to" stringValue:[[xmppUser jid] full]]];
+	[message addChild:body];
+    
+	[_xmppClient sendElement:message];
 }
 
 #pragma mark XMPPClient Delegate Methods:

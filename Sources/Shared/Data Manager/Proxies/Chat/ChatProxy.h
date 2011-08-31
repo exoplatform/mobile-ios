@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPPClient.h"
+#import "XMPPUser.h"
 
 @interface ChatProxy : NSObject {
     
@@ -23,7 +24,10 @@
 - (void)connectToChatServer:(NSString *)host port:(int)port userName:(NSString *)userName password:(NSString *)password;
 - (void)disconnect;
 
+- (XMPPUser *)getXMPPUser;
 - (NSArray *)getUserList;
+
+- (void)sendChatMessage:(NSString *)msg;
 
 
 @end

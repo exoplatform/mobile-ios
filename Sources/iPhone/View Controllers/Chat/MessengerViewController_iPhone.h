@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "MessengerViewController.h"
+#import "ChatWindowViewController_iPhone.h"
 
 //Chat list view
 @interface MessengerViewController_iPhone : MessengerViewController
 {
-    
+    ChatWindowViewController_iPhone *chatWindow;   
 
 }
 
