@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChatWindowViewController.h"
+#import "ChatWindowViewController_iPad.h"
 
 //========================================================================================
 
@@ -68,7 +68,7 @@ UITableViewDataSource> /*<UINavigationControllerDelegate,
 	NSString *								topHorizontalStr;
 	NSString *								bottomHorizontalStr;
     
-    ChatWindowViewController*               _chatWindowViewController;
+    ChatWindowViewController_iPad*          _chatWindowViewController;
 }
 
 @property int currentChatUserIndex;

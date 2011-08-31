@@ -440,7 +440,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
 {
     if (_chatWindowViewController == nil) 
     {
-        _chatWindowViewController = [[ChatWindowViewController alloc] initWithNibName:@"ChatWindowViewController" bundle:nil];
+        _chatWindowViewController = [[ChatWindowViewController_iPad alloc] initWithNibName:@"ChatWindowViewController_iPad" bundle:nil];
         [_chatWindowViewController setDelegate:self];
     }
 	[_chatWindowViewController initChatWindowWithUser:messengerUser andXMPPClient:xmppClient];
@@ -548,7 +548,7 @@ NSString* imageStr(NSString* fileName, NSString* type)
     
     if (_chatWindowViewController == nil) 
     {
-        _chatWindowViewController = [[ChatWindowViewController alloc] initWithNibName:@"ChatWindowViewController" bundle:nil];
+        _chatWindowViewController = [[ChatWindowViewController_iPad alloc] initWithNibName:@"ChatWindowViewController_iPad" bundle:nil];
         [_chatWindowViewController setDelegate:self];
     }
 	[_chatWindowViewController initChatWindowWithUser:messengerUser andXMPPClient:_xmppClient];

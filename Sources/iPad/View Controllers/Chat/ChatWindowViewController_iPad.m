@@ -6,7 +6,7 @@
 //  Copyright 2010 home. All rights reserved.
 //
 
-#import "ChatWindowViewController.h"
+#import "ChatWindowViewController_iPad.h"
 #import "defines.h"
 #import "MessengerViewController_iPad.h"
 #import "DDXML.h"
@@ -15,7 +15,7 @@
 #import "XMPPClient.h"
 #import "XMPPElement.h"
 
-@implementation ChatWindowViewController
+@implementation ChatWindowViewController_iPad
 
 @synthesize _wvChatContentDisplay;
 @synthesize _intBShowKeyboard;

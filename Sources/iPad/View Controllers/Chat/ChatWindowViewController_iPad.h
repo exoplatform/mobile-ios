@@ -14,7 +14,7 @@
 @class XMPPMessage;
 
 //Chat windows
-@interface ChatWindowViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {
+@interface ChatWindowViewController_iPad : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {
 	id										_delegate;	//The delegate, point to MainViewController
 	
 	XMPPClient*								_xmppClient;	//Chat socket
