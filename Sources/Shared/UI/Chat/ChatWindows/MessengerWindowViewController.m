@@ -68,7 +68,8 @@
 - (void)receivedChatMessage:(XMPPMessage *)xmppMsg
 {
     MessageContentViewController *msgContentView = [[MessageContentViewController alloc] initWithNibName:@"MessageContentViewController" bundle:nil];
-    [msgContentView setContentView:self.view.frame avatar:[UIImage imageNamed:@"default-avatar"] message:[xmppMsg stringValue] left:YES];
+    
+    [msgContentView setContentView:self.view.frame.size.width avatar:[UIImage imageNamed:@"default-avatar"] message:[xmppMsg stringValue] left:YES];
     
     CGSize scrollContentSize = _scrMessageContent.contentSize;
     CGRect frame = msgContentView.view.frame;
@@ -87,8 +88,6 @@
         [_scrMessageContent setContentOffset:CGPointMake(_scrMessageContent.contentOffset.x, csz.height - bsz.height) 
                     animated:YES];
     }
-
-
 }
 
 - (void)onBtnClearMessage

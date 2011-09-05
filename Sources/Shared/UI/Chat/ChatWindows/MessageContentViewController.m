@@ -21,11 +21,12 @@
     return self;
 }
 
-- (CGSize)getSizeForMessageContentView:(float)parentsViewWidth andText:(NSString*)text
+- (CGSize)getSizeForMessageContentView:(int)parentsViewWidth andText:(NSString*)text
 {
+    
     float fWidth = parentsViewWidth - 50;
     
-    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, 500) 
                           lineBreakMode:UILineBreakModeWordWrap];
     
     theSize.width = fWidth;
@@ -33,13 +34,14 @@
     return theSize;
 }
 
-- (void)setContentView:(CGRect)rect avatar:(UIImage *)img message:(NSString *)msg left:(BOOL)left
+- (void)setContentView:(int)width avatar:(UIImage *)img message:(NSString *)msg left:(BOOL)left
 {
-    self.view.frame = rect;
     imgAvatar.image = img;
     lbMessageContent.text = msg;
-    
-    CGSize msgContentSize = [self getSizeForMessageContentView:rect.size.width andText:msg];
+    lbMessageContent.numberOfLines = 0;
+
+    width -= 10;
+    CGSize msgContentSize = [self getSizeForMessageContentView:width andText:msg];
     
     if(msgContentSize.height < 50)
         msgContentSize.height = 50;

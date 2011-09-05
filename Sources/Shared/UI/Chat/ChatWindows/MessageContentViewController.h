@@ -16,6 +16,6 @@
     
 }
 
-- (void)setContentView:(CGRect)rect avatar:(UIImage *)img message:(NSString *)msg left:(BOOL)left;
+- (void)setContentView:(int)width avatar:(UIImage *)img message:(NSString *)msg left:(BOOL)left;
 
 @end
