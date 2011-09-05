@@ -42,7 +42,7 @@
     NSString* msgContentStr = [_txtViewMsg text];
     
     MessageContentViewController *msgContentView = [[MessageContentViewController alloc] initWithNibName:@"MessageContentViewController" bundle:nil];
-    [msgContentView setContentView:self.view.frame avatar:[UIImage imageNamed:@""] message:msgContentStr left:YES];
+    [msgContentView setContentView:self.view.frame.size.width avatar:[UIImage imageNamed:@""] message:msgContentStr left:YES];
     
     CGSize scrollContentSize = _scrMessageContent.contentSize;
     CGRect frame = msgContentView.view.frame;
