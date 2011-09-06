@@ -18,6 +18,7 @@
     
     chatWindow = [[ChatWindowViewController_iPhone alloc] initWithNibName:@"ChatWindowViewController_iPhone" bundle:nil];
     chatWindow.delegate = self;
+    chatWindow.user = [_arrUsers objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:chatWindow animated:YES];
     

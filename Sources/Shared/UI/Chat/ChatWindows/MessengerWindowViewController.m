@@ -9,11 +9,11 @@
 #import "MessengerWindowViewController.h"
 #import "MessageContentViewController.h"
 #import "XMPPMessage.h"
-
+#import "XMPPJID.h"
 
 @implementation MessengerWindowViewController
 
-@synthesize delegate = _delegate;
+@synthesize delegate = _delegate, user = _user, heightOfKeyboard = _heightOfKeyboard;
 
 - (void)viewDidLoad
 {
@@ -22,7 +22,16 @@
     
     _scrMessageContent.contentSize = CGSizeZero;
     
-    _txtViewMsg.delegate = self;
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillShow:) 
+                                                 name:UIKeyboardWillShowNotification 
+                                               object:self.view.window];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillHide:) 
+                                                 name:UIKeyboardWillHideNotification 
+                                               object:self.view.window];
 }
 
 
@@ -32,6 +41,71 @@
      {
 //         [_xmppClient disconnect];
 	}	
+    
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillShowNotification 
+                                                  object:nil]; 
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillHideNotification 
+                                                  object:nil]; 
+}
+
+- (void)moveViewAnimation:(int)offset
+{
+    // resize the scrollview
+    CGRect scrViewFrame = _scrMessageContent.frame;
+    scrViewFrame.size.height += offset;
+    
+    //Move typing message area
+    CGRect imgViewBackgroundFrame = _imgViewMessengerBackground.frame;
+    imgViewBackgroundFrame.origin.y += offset;
+    
+    CGRect imgViewNewMsgFrame = _imgViewNewMessage.frame;
+    imgViewNewMsgFrame.origin.y += offset;
+    
+    CGRect txtViewMsgFrame = _txtViewMsg.frame;
+    txtViewMsgFrame.origin.y += offset;
+    
+    CGRect btnSendMsgFrame = _btnSendMessage.frame;
+    btnSendMsgFrame.origin.y += offset;
+    
+    //    Animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    
+    [_scrMessageContent setFrame:scrViewFrame];
+    [_imgViewMessengerBackground setFrame:imgViewBackgroundFrame];
+    [_imgViewNewMessage setFrame:imgViewNewMsgFrame];
+    [_txtViewMsg setFrame:txtViewMsgFrame];
+    [_btnSendMessage setFrame:btnSendMsgFrame];
+    
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+//    Move view down
+    [self moveViewAnimation:_heightOfKeyboard];
+    
+//    Set ketboard flag
+    _keyboardIsShown = NO;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    
+    if (_keyboardIsShown) {
+        return;
+    }
+    
+//    Move view up
+    [self moveViewAnimation:-_heightOfKeyboard];
+
+//    Set ketboard flag
+    _keyboardIsShown = YES;
 }
 
 - (IBAction)onBtnSendMessage
@@ -42,7 +116,10 @@
     NSString* msgContentStr = [_txtViewMsg text];
     
     MessageContentViewController *msgContentView = [[MessageContentViewController alloc] initWithNibName:@"MessageContentViewController" bundle:nil];
-    [msgContentView setContentView:self.view.frame.size.width avatar:[UIImage imageNamed:@""] message:msgContentStr left:YES];
+    
+    [_scrMessageContent addSubview:msgContentView.view];
+    
+    [msgContentView setContentView:self.view.frame.size.width avatar:[UIImage imageNamed:@"default-avatar"] message:msgContentStr left:NO];
     
     CGSize scrollContentSize = _scrMessageContent.contentSize;
     CGRect frame = msgContentView.view.frame;
@@ -51,16 +128,16 @@
     
     scrollContentSize.height += msgContentView.view.frame.size.height;
     _scrMessageContent.contentSize = scrollContentSize;
-    [_scrMessageContent addSubview:msgContentView.view];
+
     
     [msgContentView release];
     
     [_txtViewMsg setText:@""];
 
     
-    if([_delegate respondsToSelector:@selector(sendChatMessage:)])
+    if([_delegate respondsToSelector:@selector(sendChatMessage: to:)])
     {
-        [_delegate sendChatMessage:msgContentStr];
+        [_delegate sendChatMessage:msgContentStr to:[[_user jid] full]];
     }
 	
 }
@@ -68,6 +145,8 @@
 - (void)receivedChatMessage:(XMPPMessage *)xmppMsg
 {
     MessageContentViewController *msgContentView = [[MessageContentViewController alloc] initWithNibName:@"MessageContentViewController" bundle:nil];
+    
+    [_scrMessageContent addSubview:msgContentView.view];
     
     [msgContentView setContentView:self.view.frame.size.width avatar:[UIImage imageNamed:@"default-avatar"] message:[xmppMsg stringValue] left:YES];
     
@@ -78,7 +157,7 @@
     
     scrollContentSize.height += msgContentView.view.frame.size.height;
     _scrMessageContent.contentSize = scrollContentSize;
-    [_scrMessageContent addSubview:msgContentView.view];
+    
     
     [msgContentView release];
     
@@ -95,6 +174,15 @@
     
 }
 
-
+//TextViewDelegate Method
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
 
 @end

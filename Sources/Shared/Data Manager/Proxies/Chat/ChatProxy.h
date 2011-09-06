@@ -27,7 +27,7 @@
 - (XMPPUser *)getXMPPUser;
 - (NSArray *)getUserList;
 
-- (void)sendChatMessage:(NSString *)msg;
+- (void)sendChatMessage:(NSString *)msg to:(NSString *)toUser;
 
 
 @end

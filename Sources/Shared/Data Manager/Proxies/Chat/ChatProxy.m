@@ -9,9 +9,9 @@
 #import "ChatProxy.h"
 #import "XMPPJID.h"
 #import "DDXML.h"
-#import "XMPPUser.h"
 #import "XMPPClient.h"
 #import "XMPPElement.h"
+#import "XMPPMessage.h"
 
 
 @implementation ChatProxy
@@ -92,15 +92,15 @@
     return [_xmppClient sortedUsersByAvailabilityName];	
 }
 
-- (void)sendChatMessage:(NSString *)msg
+- (void)sendChatMessage:(NSString *)msg to:(NSString *)toUser
 {
-    XMPPUser *xmppUser = [_xmppClient myUser];
+//    XMPPUser *xmppUser = [_xmppClient myUser];
     
     NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
 	[body setStringValue:msg];
 	NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
 	[message addAttribute:[NSXMLNode attributeWithName:@"type" stringValue:@"chat"]];
-	[message addAttribute:[NSXMLNode attributeWithName:@"to" stringValue:[[xmppUser jid] full]]];
+	[message addAttribute:[NSXMLNode attributeWithName:@"to" stringValue:toUser]];
 	[message addChild:body];
     
 	[_xmppClient sendElement:message];
@@ -131,6 +131,9 @@
 
 - (void)xmppClient:(XMPPClient *)sender didReceiveMessage:(XMPPMessage *)message
 {
+    if(![message isChatMessageWithBody])
+        return;
+    
     if([_delegate respondsToSelector:@selector(receivedChatMessage:)])
     {
         [_delegate receivedChatMessage:message];

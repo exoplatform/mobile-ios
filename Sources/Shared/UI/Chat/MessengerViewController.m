@@ -94,14 +94,9 @@
  
 }
 
-- (void)sendChatMessage:(NSString *)msg
+- (void)sendChatMessage:(NSString *)msg to:(NSString *)toUser
 {
-    [_chatProxy sendChatMessage:msg];
-}
-
-- (void)receivedChatMessage:(XMPPMessage *)xmppMsg
-{
-    NSLog(@"%@", @"123");
+    [_chatProxy sendChatMessage:msg  to:toUser];
 }
 
 #pragma mark - AlertView call back

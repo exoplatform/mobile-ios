@@ -37,10 +37,12 @@
     if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {
         self.view.frame = CGRectMake(0, 0, 600, 1004);
+        _heightOfKeyboard = HEIGHT_OF_KEYBOARD_IPAD_PORTRAIT;
     }
     else
     {
         self.view.frame = CGRectMake(500, 0, 600, 748);
+        _heightOfKeyboard = HEIGHT_OF_KEYBOARD_IPHONE_LANDSCAPE;
     }
     
 }

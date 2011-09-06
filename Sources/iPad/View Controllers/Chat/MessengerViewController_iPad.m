@@ -65,27 +65,6 @@
     }
 }
 
-- (void)showChatWindow:(XMPPClient*)xmppClient
-{
-    /*
-    if (_chatWindowViewController == nil) 
-    {
-        _chatWindowViewController = [[ChatWindowViewController_iPad alloc] initWithNibName:@"ChatWindowViewController_iPad" bundle:nil];
-        [_chatWindowViewController setDelegate:self];
-    }
-	[_chatWindowViewController initChatWindowWithUser:messengerUser andXMPPClient:xmppClient];
-	
-	if([self.navigationController.viewControllers containsObject:_chatWindowViewController])
-	{
-		[self.navigationController popToViewController:_chatWindowViewController animated:YES];
-	}
-	else 
-	{
-		[self.navigationController pushViewController:_chatWindowViewController animated:YES];
-	}
-     */
-}
-
 - (void)receivedChatMessage:(XMPPMessage *)xmppMsg
 {
     if([_chatWindowViewController respondsToSelector:@selector(receivedChatMessage:)])
@@ -104,6 +83,7 @@
 
     _chatWindowViewController = [[ChatWindowViewController_iPad alloc] initWithNibName:@"ChatWindowViewController_iPad" bundle:nil];
     _chatWindowViewController.delegate = self;
+    _chatWindowViewController.user = [_arrUsers objectAtIndex:indexPath.row];
     
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_chatWindowViewController invokeByController:self isStackStartView:FALSE];
     
