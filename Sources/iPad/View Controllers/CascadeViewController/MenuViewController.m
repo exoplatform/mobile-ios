@@ -276,19 +276,17 @@
 
     [tableView reloadData];
     
+    [_messengerViewController disconnect];
+    
     switch (indexPath.row) {
         case 0:
             // messenger
             if (_messengerViewController == nil) 
             {
                 _messengerViewController = [[MessengerViewController_iPad alloc] initWithNibName:@"MessengerViewController_iPad" bundle:nil];
-//                [_messengerViewController setDelegate:self];
             }
             
-//            [_messengerViewController initMessengerParameters];
-            //[_messengerViewController._tblvUsers reloadData];
-            
-            CGRect rect = _messengerViewController.view.frame;
+
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_messengerViewController 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];

@@ -153,6 +153,11 @@
     
 }
 
+- (void)disconnect
+{
+    [_chatProxy disconnect];
+}
+
 //Dealloc method.
 - (void) dealloc
 {

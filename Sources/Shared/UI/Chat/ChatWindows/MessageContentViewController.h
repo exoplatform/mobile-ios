@@ -13,6 +13,7 @@
     
     IBOutlet UIImageView* imgAvatar;
     IBOutlet UILabel* lbMessageContent;
+    IBOutlet UIImageView* imgBackground;
     
 }
 

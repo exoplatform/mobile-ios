@@ -326,6 +326,7 @@
 		89112721140B8BF000A8851C /* eXoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911271F140B8BF000A8851C /* eXoMessage.m */; };
 		89112724140B913600A8851C /* ChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112723140B913600A8851C /* ChatUser.m */; };
 		89112728140B9A8E00A8851C /* ChatProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112727140B9A8E00A8851C /* ChatProxy.m */; };
+		891DE83414170C2A0023D127 /* SocialActivityBrowserActivityBg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 891DE83314170C2A0023D127 /* SocialActivityBrowserActivityBg2.png */; };
 		8921D6A9140DE1B400885EF8 /* MessageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8921D6A7140DE1B400885EF8 /* MessageContentViewController.m */; };
 		8921D6AA140DE1B400885EF8 /* MessageContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8921D6A8140DE1B400885EF8 /* MessageContentViewController.xib */; };
 		8921D6AD140DF57000885EF8 /* MessengerWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8921D6AC140DF56F00885EF8 /* MessengerWindowViewController.m */; };
@@ -1131,6 +1132,7 @@
 		89112723140B913600A8851C /* ChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
 		89112726140B9A8E00A8851C /* ChatProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProxy.h; sourceTree = "<group>"; };
 		89112727140B9A8E00A8851C /* ChatProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProxy.m; sourceTree = "<group>"; };
+		891DE83314170C2A0023D127 /* SocialActivityBrowserActivityBg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowserActivityBg2.png; sourceTree = "<group>"; };
 		8921D6A6140DE1B400885EF8 /* MessageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageContentViewController.h; sourceTree = "<group>"; };
 		8921D6A7140DE1B400885EF8 /* MessageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageContentViewController.m; sourceTree = "<group>"; };
 		8921D6A8140DE1B400885EF8 /* MessageContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageContentViewController.xib; sourceTree = "<group>"; };
@@ -1754,6 +1756,7 @@
 		46A03AA213A8E0EF00E71AF9 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				891DE83314170C2A0023D127 /* SocialActivityBrowserActivityBg2.png */,
 				462E95B113F150DB0027E093 /* SocialPostActivityButton.png */,
 				46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */,
 				46A03AA313A8E0EF00E71AF9 /* ActivityAvatarShadow.png */,
@@ -3647,6 +3650,7 @@
 				46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */,
 				89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */,
 				8921D6AA140DE1B400885EF8 /* MessageContentViewController.xib in Resources */,
+				891DE83414170C2A0023D127 /* SocialActivityBrowserActivityBg2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

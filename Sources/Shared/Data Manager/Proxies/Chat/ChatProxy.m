@@ -79,7 +79,9 @@
 
 - (void)disconnect
 {
-    [_xmppClient disconnect];    
+    [_xmppClient disconnect];  
+    [_xmppClient release];
+    _xmppClient = nil;
 }
 
 - (XMPPUser *)getXMPPUser

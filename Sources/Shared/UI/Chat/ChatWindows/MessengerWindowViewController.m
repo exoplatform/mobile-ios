@@ -54,6 +54,7 @@
 
 - (void)moveViewAnimation:(int)offset
 {
+    
     // resize the scrollview
     CGRect scrViewFrame = _scrMessageContent.frame;
     scrViewFrame.size.height += offset;

@@ -42,7 +42,7 @@
     else
     {
         self.view.frame = CGRectMake(500, 0, 600, 748);
-        _heightOfKeyboard = HEIGHT_OF_KEYBOARD_IPHONE_LANDSCAPE;
+        _heightOfKeyboard = HEIGHT_OF_KEYBOARD_IPAD_LANDSCAPE;
     }
     
 }

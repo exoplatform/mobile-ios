@@ -72,6 +72,8 @@
 
 -(void)backToAuthenticate{
 
+    [[ChatProxy sharedInstance] disconnect];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     

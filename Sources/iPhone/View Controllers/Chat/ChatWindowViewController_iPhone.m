@@ -40,10 +40,9 @@
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    CGRect rect = _txtViewMsg.frame;    
-    rect.origin.y -= 44;
-    _txtViewMsg.frame = rect;
-
+//    CGRect rect = _txtViewMsg.frame;    
+//    rect.origin.y -= 44;
+//    _txtViewMsg.frame = rect;
     
     if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {

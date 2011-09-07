@@ -11,6 +11,7 @@
 #import "AuthenticateViewController.h"
 #import "eXoSettingViewController.h"
 #import "defines.h"
+#import "ChatProxy.h"
 
 #import "HomeViewController_iPhone.h"
 
@@ -88,6 +89,9 @@
 }
 
 - (void)onBtnSigtOutDelegate {
+    
+    [[ChatProxy sharedInstance] disconnect];
+    
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

@@ -33,4 +33,6 @@
 - (IBAction)onBtnSendMessage;
 - (void)onBtnClearMessage;
 
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
+
 @end
