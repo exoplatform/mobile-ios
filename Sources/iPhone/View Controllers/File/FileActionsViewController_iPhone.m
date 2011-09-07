@@ -40,7 +40,7 @@ static short fileActionMode = 0;//1:copy, 2:move
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
         
-        self.view.frame = CGRectMake(50, 60, 230, 270);
+        self.view.frame = CGRectMake(30, 60, 230, 335);
 		
         fileActionsDelegate = actionsDelegate;
         
@@ -52,7 +52,9 @@ static short fileActionMode = 0;//1:copy, 2:move
 		_strCopy = [Localize(@"Copy") copy];
 		_strMove = [Localize(@"Move") copy];
 		_strPaste = [Localize(@"Paste") copy];
-		_strCancel = [Localize(@"Cancel") copy]; 
+		_strCancel = [Localize(@"Cancel") copy];
+        _strNewFolder = [Localize(@"NewFolderTitle") copy];
+        _strRenameFolder = [Localize(@"RenameTitle") copy];
         
         
         FileActionsBackgroundView *bgView = [[FileActionsBackgroundView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -161,7 +163,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if(section == 0)
-		return 5;
+		return 7;
 	return 1;
 }
 
@@ -242,7 +244,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 				cell.userInteractionEnabled = NO;
 			}
 		}
-		else
+		else if (row ==4)
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"paste.png"];
 			titleLabel.text = _strPaste;
@@ -252,6 +254,26 @@ static short fileActionMode = 0;//1:copy, 2:move
 				cell.userInteractionEnabled = NO;
 			}
 		}
+        else if (row == 5)
+        {
+            imgViewFileAction.image = [UIImage imageNamed:@"addfolder.png"];
+            titleLabel.text = _strNewFolder;
+			if(!_file.isFolder)
+			{
+				titleLabel.textColor = [UIColor grayColor];
+				cell.userInteractionEnabled = NO;
+			}
+        }
+        else 
+        {
+            imgViewFileAction.image = [UIImage imageNamed:@"rename.png"];
+            titleLabel.text = _strRenameFolder;
+			if(!_file.isFolder)
+			{
+				titleLabel.textColor = [UIColor grayColor];
+				cell.userInteractionEnabled = NO;
+			}
+        }
 	}
 	
 	return cell;
@@ -288,7 +310,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 			copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
-		else
+		else if (row == 4)
 		{
 			if(fileActionMode == 1)
 			{
@@ -303,6 +325,15 @@ static short fileActionMode = 0;//1:copy, 2:move
 				fileActionMode = 0;
 			}
 		}
+        else if (row == 5)
+        {
+            //Create a new folder
+            [fileActionsDelegate askToMakeFolderActions:YES];
+                    }
+        else if (row == 6)
+        {
+            NSLog(@"row 6");
+        }
 	}
 }
 

@@ -27,6 +27,11 @@
 //Method needed to retrieve the action when the user ask an image
 - (void)askToAddAPicture:(NSString *)urlDestination;
 
+
+//Method needed to ask to display the folder actions controller 
+//(panel to renanme or create a new folder)
+-(void)askToMakeFolderActions:(BOOL)createNewFolder;
+
 @end
 
 

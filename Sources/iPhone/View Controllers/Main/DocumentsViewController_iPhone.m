@@ -9,6 +9,7 @@
 #import "DocumentsViewController_iPhone.h"
 #import "eXoWebViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
+#import "FileFolderActionsViewController_iPhone.h"
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -104,10 +105,69 @@
     _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
     
     [self.view addSubview:_maskingViewForActions];
-	[self.view addSubview:_actionsViewController.view];
+    
+    _containerView = [[UIView alloc] initWithFrame:self.view.frame];
+    _containerView.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:_containerView];
+	[_containerView addSubview:_actionsViewController.view];
     self.tableView.scrollEnabled = NO;
 
 
+}
+
+
+
+//SLM Temporary
+-(void)askToMakeFolderActions:(BOOL)createNewFolder {
+    
+    
+    _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
+    //[_optionsViewController setDelegate:self];
+    [_fileFolderActionsController setIsNewFolder:createNewFolder];
+    [_fileFolderActionsController setNameInputStr:@""];
+    [_fileFolderActionsController setFocusOnTextFieldName];
+    _fileFolderActionsController.delegate = self;
+    
+    //_optionsViewController.view.hidden = YES;
+    [self.view addSubview:_fileFolderActionsController.view];
+    [_actionsViewController.view removeFromSuperview];
+    
+    /*
+
+    [UIView animateWithDuration:1.5 
+                          delay:0 
+                        options:UIViewAnimationOptionTransitionFlipFromLeft 
+                     animations:^(void) { 
+                         [_actionsViewController.view removeFromSuperview];
+                         _optionsViewController.view.hidden = NO;
+                     } 
+                     completion:NULL
+     ];
+    [UIView transitionFromView:_actionsViewController.view 
+                        toView:_optionsViewController.view 
+                      duration:1 
+                       options:UIViewAnimationOptionTransitionFlipFromLeft 
+                    completion:^(BOOL finished) {
+        
+    }];
+    */
+    /*
+    
+    [UIView transitionWithView:_containerView duration:1.0
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    animations:^ { 
+                        [_actionsViewController.view removeFromSuperview];
+                        _optionsViewController.view.hidden = NO;
+                        //[_containerView addSubview:_optionsViewController.view];
+                    }
+                    completion:nil];
+ 
+    */ 
+
+    
+    
+    
 }
 
 
@@ -152,6 +212,12 @@
     self.tableView.scrollEnabled = YES;
 }
 
+
+- (void)hideFileFolderActionsController {
+    [_maskingViewForActions removeFromSuperview];
+    self.tableView.scrollEnabled = YES;
+    [super hideFileFolderActionsController];
+}
 
 
 

@@ -11,7 +11,7 @@
 #import "defines.h"
 #import "FileContentDisplayController.h"
 #import "FileActionsViewController_iPad.h"
-#import "OptionsViewController.h"
+#import "FileFolderActionsViewController_iPad.h"
 #import "NSString+HTML.h"
 #import "DataProcess.h"
 #import "AppDelegate_iPad.h"
@@ -59,7 +59,7 @@ static NSString* kCellIdentifier = @"Cell";
 		_fileActionsViewController = [[FileActionsViewController_iPad alloc] initWithNibName:@"FileActionsViewController_iPad" bundle:nil];
 		[_fileActionsViewController setDelegate:self];
 
-		_optionsViewController = [[OptionsViewController alloc] initWithNibName:@"OptionsViewController" bundle:nil];
+		_optionsViewController = [[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil];
 		[_optionsViewController setDelegate:self];
 		[_optionsViewController setIsNewFolder:YES];
 		[_optionsViewController setNameInputStr:@""];

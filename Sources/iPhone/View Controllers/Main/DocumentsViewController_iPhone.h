@@ -17,6 +17,8 @@
     
     UIView *_maskingViewForActions;
     
+    UIView *_containerView;
+    
 }
 
 

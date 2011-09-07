@@ -9,6 +9,10 @@
 #import "DocumentsViewController.h"
 #import "eXoWebViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
+#import "FileFolderActionsViewController_iPhone.h"
+#import "LanguageHelper.h"
+#import "NSString+HTML.h"
+#import "DataProcess.h"
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -26,6 +30,7 @@
 - (void)setTitleForFilesViewController;
 - (void)contentDirectoryIsRetrieved;
 - (void)hideActionsPanel;
+- (void)hideFileFolderActionsController;
 
 @end
 
@@ -71,6 +76,12 @@
     } else {
         self.title = @"Documents";
     }
+}
+
+
+- (void)hideFileFolderActionsController {
+    [_fileFolderActionsController.view removeFromSuperview];
+    [_fileFolderActionsController release]; _fileFolderActionsController = nil;
 }
 
 @end
@@ -311,8 +322,8 @@
 
 
 //Use this method to do the move action in a background thread
-- (void)moveFileInBackgroundSource:urlSource
-                     toDestination:urlDestination {
+- (void)moveFileInBackgroundSource:(NSString *)urlSource
+                     toDestination:(NSString *)urlDestination {
     
     
     NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForMove source:urlSource destination:urlDestination data:nil];
@@ -332,8 +343,8 @@
 
 
 //Method needed to retrieve the action to move a file
-- (void)moveFileSource:urlSource
-         toDestination:urlDestination {
+- (void)moveFileSource:(NSString *)urlSource
+         toDestination:(NSString *)urlDestination {
     
     //Hide the action Panel
     [self hideActionsPanel];
@@ -353,8 +364,8 @@
 }
 
 //Use this method to do the copy action in a background thread
-- (void)copyFileInBackgroundSource:urlSource
-                     toDestination:urlDestination {
+- (void)copyFileInBackgroundSource:(NSString *)urlSource
+                     toDestination:(NSString *)urlDestination {
     
     NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForCopy source:urlSource destination:urlDestination data:nil];
     
@@ -373,8 +384,8 @@
 
 
 //Method needed to retrieve the action to copy a file
-- (void)copyFileSource:urlSource
-         toDestination:urlDestination {
+- (void)copyFileSource:(NSString *)urlSource
+         toDestination:(NSString *)urlDestination {
     
     //TODO Localize this string
     [_hudFolder setCaption:@"Copy file to wanted folder..."];
@@ -420,6 +431,113 @@
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
 }
+
+
+
+#pragma mark - FileFolderAction delegate Methods
+
+//Use this method to do the copy action in a background thread
+- (void)createNewFolderInBackground:(NSString *)urlSource {
+    
+    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForCreateFolder source:urlSource destination:@"" data:nil];
+    
+    //Hide the action Panel
+    [self hideActionsPanel];
+    
+    //check the status of the operation
+    if (errorMessage) {
+        [self performSelectorOnMainThread:@selector(showErrorForFileAction:) withObject:errorMessage waitUntilDone:NO];
+    }
+    
+    //Need to reload the content of the folder
+    [self startRetrieveDirectoryContent];
+    
+}
+
+
+
+//Method needed to call to create a new folder
+-(void)createNewFolder:(NSString *)newFolderName {
+    
+    [self hideFileFolderActionsController];
+
+    
+    //TODO Localize this string
+    [_hudFolder setCaption:@"Create new file folder..."];
+    [_hudFolder setActivity:YES];
+    [_hudFolder show];
+
+    
+    BOOL bExist;
+    if([newFolderName length] > 0)
+    {
+        for (File* file in _arrayContentOfRootFile) {
+            if([newFolderName isEqualToString:file.fileName])
+            {
+                bExist = YES;
+                                
+                UIAlertView* alert = [[UIAlertView alloc] 
+                                      initWithTitle:Localize(@"Info Message")
+                                      message: Localize(@"FolderNameAlreadyExist")
+                                      delegate:self 
+                                      cancelButtonTitle:@"OK" 
+                                      otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+                break;
+            }
+        }
+        
+        if (!bExist) 
+        {
+            if(!_rootFile.isFolder) {
+                newFolderName = [newFolderName stringByEncodingHTMLEntities];
+                newFolderName = [DataProcess encodeUrl:newFolderName];
+            }
+            
+            NSString* strNewFolderPath = [FilesProxy urlForFileAction:[_rootFile.urlStr stringByAppendingPathComponent:newFolderName]];
+            
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                        [self methodSignatureForSelector:@selector(createNewFolderInBackground:)]];
+            [invocation setTarget:self];
+            [invocation setSelector:@selector(createNewFolderInBackground:)];
+            [invocation setArgument:&strNewFolderPath atIndex:2];
+            [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO]; 
+
+        }
+    }
+    else 
+    {
+        UIAlertView* alert = [[UIAlertView alloc] 
+                              initWithTitle:Localize(@"Info Message")
+                              message: Localize(@"FolderNameEmpty")
+                              delegate:self 
+                              cancelButtonTitle:@"OK" 
+                              otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+}
+
+
+
+
+
+//Method needed to rename a folder
+-(void)renameFolder:(NSString *)newFolderName {
+
+    
+}
+
+
+
+//Method needed when the Controller must be hidden
+-(void)cancelFolderActions {
+    [_fileFolderActionsController.view removeFromSuperview];
+    
+    
+}
+
 
 
 

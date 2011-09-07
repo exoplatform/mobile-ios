@@ -61,6 +61,19 @@
 	return ret;
 }
 
++ (NSString *)urlForFileAction:(NSString *)url
+{
+	url = [DataProcess encodeUrl:url];
+	
+	NSRange range;
+	range = [url rangeOfString:@"http://"];
+	if(range.length == 0)
+		url = [url stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+	
+	return url;
+	
+}
+
 
 #pragma mark -
 #pragma NSObject Methods
@@ -226,6 +239,10 @@
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
 		[request setHTTPBody:data];
 		
+	}
+    if([protocol isEqualToString:@"MKCOL"])
+	{
+		[request setHTTPMethod:@"MKCOL"];
 	}
 	else if([protocol isEqualToString:kFileProtocolForCopy])
 	{

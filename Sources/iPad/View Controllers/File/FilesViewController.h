@@ -11,7 +11,7 @@
 
 @class FileContentDisplayController;
 @class FileActionsViewController_iPad;
-@class OptionsViewController;
+@class FileFolderActionsViewController_iPad;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +37,7 @@
 	
 	FileContentDisplayController*			_fileContentDisplayController; //Display file content
 	FileActionsViewController_iPad*			_fileActionsViewController;	//Display file actions
-	OptionsViewController*					_optionsViewController;	//Add or rename file
+	FileFolderActionsViewController_iPad*		_optionsViewController;	//Add or rename file
 	//Add, rename file pop up windows
 	UIPopoverController*					popoverController;
 	UIPopoverController*					optionsPopoverController;
@@ -59,7 +59,7 @@
 
 @property (nonatomic, retain) FileContentDisplayController* _fileContentDisplayController;
 @property (nonatomic, retain) FileActionsViewController_iPad* _fileActionsViewController;
-@property (nonatomic, retain) OptionsViewController* _optionsViewController;
+@property (nonatomic, retain) FileFolderActionsViewController_iPad* _optionsViewController;
 @property (nonatomic, retain) UITableView* _tbvFiles;
 @property (nonatomic, retain) UIButton* _btnLeftEdgeNavigation;
 @property (nonatomic, retain) UIButton* _btnRightEdgeNavigation;

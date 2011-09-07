@@ -19,6 +19,7 @@
 #define kFileProtocolForUpload @"UPLOAD"
 #define kFileProtocolForCopy @"COPY"
 #define kFileProtocolForMove @"MOVE"
+#define kFileProtocolForCreateFolder @"MKCOL"
 
 
 @interface FilesProxy : NSObject {    
@@ -29,6 +30,8 @@
 
 + (FilesProxy *)sharedInstance;
 + (NSString*)stringEncodedWithBase64:(NSString*)str;
++ (NSString *)urlForFileAction:(NSString *)url;
+
 
 //Create user's repository home url
 - (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35;

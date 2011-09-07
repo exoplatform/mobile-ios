@@ -10,10 +10,11 @@
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 #import "FileActionsViewController.h"
+#import "FileFolderActionsViewController.h"
 
 
 
-@interface DocumentsViewController : UITableViewController <FileActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate> {
+@interface DocumentsViewController : UITableViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate> {
     
     File *_rootFile;
     
@@ -24,6 +25,8 @@
     ATMHud *_hudFolder;//Heads up display
         
     NSString *_stringForUploadPhoto;
+    
+    FileFolderActionsViewController *_fileFolderActionsController;
     
 }
 

@@ -23,12 +23,12 @@
 	NSString *_strMove;	//Cut file
 	NSString *_strPaste;	//Paste file
 	NSString *_strCancel;	//Cancel
+    NSString *_strNewFolder; //NewFolder
+    NSString *_strRenameFolder; //RenameFolder
 	
 	BOOL _deleteFolderEnable;	//Enable folder deleting
     
-    
     id<FileActionsProtocol> fileActionsDelegate;
-    
     
 }
 
@@ -39,10 +39,8 @@
 
 //Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
-                                                 file:(File *)file 
-                               enableDeleteThisFolder:(BOOL)enable
+                 file:(File *)file 
+enableDeleteThisFolder:(BOOL)enable
              delegate:(id<FileActionsProtocol>)actionsDelegate;
-
-
 
 @end

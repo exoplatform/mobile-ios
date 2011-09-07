@@ -1,16 +1,18 @@
 //
-//  OptionsViewController.m
-//  eXoMobile
+//  FileFolderActionsViewController.m
+//  eXo Platform
 //
-//  Created by Tran Hoai Son on 6/30/10.
-//  Copyright 2010 home. All rights reserved.
+//  Created by Stévan Le Meur on 01/09/11.
+//  Copyright 2011 eXo Platform. All rights reserved.
 //
 
-#import "OptionsViewController.h"
+#import "FileFolderActionsViewController.h"
 #import "FilesViewController.h"
 #import "LanguageHelper.h"
 
-@implementation OptionsViewController
+@implementation FileFolderActionsViewController
+
+@synthesize delegate=_delegate;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -22,11 +24,6 @@
 	return self;
 }
 
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
-{
-	[super loadView];
-}
 
 - (void)setFocusOnTextFieldName
 {
@@ -39,8 +36,7 @@
 }
 
 - (void)setNameInputStr:(NSString *)nameStr {
-	_nameInputStr = [nameStr retain];
-	[self localize];
+    [_txtfNameInput setText:[nameStr copy]];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -48,12 +44,20 @@
 {
 	[super viewDidLoad];
 	_txtfNameInput.clearButtonMode = UITextFieldViewModeWhileEditing;
-	[self localize];
 	
-	[_indicator stopAnimating];
 	_btnOK.hidden = NO;
 	_btnCancel.hidden = NO;
 	
+    if(_isNewFolder) {
+		[_lbInstruction setText:Localize(@"NewFolderTitle")];
+	}
+	else {
+		[_lbInstruction setText:Localize(@"RenameTitle")];
+		
+	}
+    
+	[_btnCancel setTitle:Localize(@"CancelCopyButton") forState:UIControlStateNormal];
+    
 }
 
 - (void)didReceiveMemoryWarning 
@@ -71,26 +75,13 @@
 
 - (void)dealloc 
 {
+    [_lbInstruction release]; _lbInstruction = nil; 
+	[_txtfNameInput release]; _txtfNameInput = nil; 
+	[_btnOK release]; _btnOK = nil; 
+	[_btnCancel release]; _btnCancel = nil; 
+    _delegate = nil;
+    
     [super dealloc];
-}
-
-- (void)setDelegate:(id)delegate
-{
-	_delegate = delegate;
-}
-
-- (void)localize
-{	
-	if(_isNewFolder) {
-		[_lbInstruction setText:Localize(@"NewFolderTitle")];
-	}
-	else {
-		[_lbInstruction setText:Localize(@"RenameTitle")];
-		
-	}
-		
-	[_txtfNameInput setText:_nameInputStr];
-	[_btnCancel setTitle:Localize(@"CancelCopyButton") forState:UIControlStateNormal];
 }
 
 
@@ -98,36 +89,18 @@
 {
 	NSString* strName = [_txtfNameInput text];
 	strName = [strName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	
-	NSThread* startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
-	[startThread start];
-
-	[_delegate onOKBtnOptionsView:strName];
-	
-	[startThread release];
-	[self performSelectorOnMainThread:@selector(endProgress) withObject:nil waitUntilDone:NO];
-	
-}
-
--(void)startInProgress
-{
-	[_indicator startAnimating];
-	_btnOK.hidden = YES;
-	_btnCancel.hidden = YES;
-}
-
--(void)endProgress
-{
-	[_txtfNameInput setText:@""];
-	[_indicator stopAnimating];
-	_btnOK.hidden = NO;
-	_btnCancel.hidden = NO;
+    
+    if (_isNewFolder) {
+        [_delegate createNewFolder:strName];
+    } else {
+        [_delegate renameFolder:strName];
+    }    
 }
 
 
 - (IBAction)onCancelBtn:(id)sender
 {
-	[_delegate onCancelBtnOptionView];
+	[_delegate cancelFolderActions];
 }
 
 @end
