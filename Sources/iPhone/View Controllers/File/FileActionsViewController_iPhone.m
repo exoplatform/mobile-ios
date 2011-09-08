@@ -332,7 +332,7 @@ static short fileActionMode = 0;//1:copy, 2:move
                     }
         else if (row == 6)
         {
-            NSLog(@"row 6");
+            [fileActionsDelegate askToMakeFolderActions:NO];
         }
 	}
 }

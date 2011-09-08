@@ -522,10 +522,89 @@
 
 
 
+//Method to call the rename action of the proxy
+- (void)renameFolderInBackground:(NSString *)newFolderUrl forFolder:(NSString *)folderToRenameUrl {
+
+    NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForMove source:folderToRenameUrl destination:newFolderUrl data:nil];
+    
+    //Hide the action Panel
+    [self hideActionsPanel];
+    
+    //check the status of the operation
+    if (errorMessage) {
+        [self performSelectorOnMainThread:@selector(showErrorForFileAction:) withObject:errorMessage waitUntilDone:NO];
+    }
+    
+    //Need to reload the content of the folder
+    [self startRetrieveDirectoryContent];
+    
+}
+
 
 //Method needed to rename a folder
--(void)renameFolder:(NSString *)newFolderName {
+-(void)renameFolder:(NSString *)newFolderName forFolder:(File *)folderToRename {
+    
+    [self hideFileFolderActionsController];
+    
+    
+    //TODO Localize this string
+    [_hudFolder setCaption:@"Rename folder..."];
+    [_hudFolder setActivity:YES];
+    [_hudFolder show];
+    
+    if([newFolderName length] > 0)
+    {
+        BOOL bExist = NO;
+        
+        for (File* file in _arrayContentOfRootFile) {
+            if([newFolderName isEqualToString:file.fileName])
+            {
+                bExist = YES;
+                
+                UIAlertView* alert = [[UIAlertView alloc] 
+                                      initWithTitle:Localize(@"Info Message")
+                                      message: Localize(@"FolderNameAlreadyExist")
+                                      delegate:self 
+                                      cancelButtonTitle:@"OK" 
+                                      otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
 
+                
+                break;
+            }
+        }
+        if (!bExist) 
+        {
+            if(!_rootFile.isFolder) {
+                newFolderName = [newFolderName stringByEncodingHTMLEntities];
+                newFolderName = [DataProcess encodeUrl:newFolderName];
+            }
+            
+            NSString *strRenamePath = [FilesProxy urlForFileAction:[_rootFile.urlStr stringByAppendingPathComponent:newFolderName]];
+            NSString *strSource = [FilesProxy urlForFileAction:folderToRename.urlStr];
+
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                        [self methodSignatureForSelector:@selector(renameFolderInBackground:forFolder:)]];
+            [invocation setTarget:self];
+            [invocation setSelector:@selector(renameFolderInBackground:forFolder:)];
+            [invocation setArgument:&strRenamePath atIndex:2];
+            [invocation setArgument:&strSource atIndex:3];
+            [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO]; 
+            
+        }
+    }
+    else 
+    {
+        UIAlertView* alert = [[UIAlertView alloc] 
+                              initWithTitle:Localize(@"Info Message")
+                              message: Localize(@"FolderNameEmpty")
+                              delegate:self 
+                              cancelButtonTitle:@"OK" 
+                              otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
     
 }
 

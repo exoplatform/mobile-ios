@@ -13,6 +13,7 @@
 @implementation FileFolderActionsViewController
 
 @synthesize delegate=_delegate;
+@synthesize fileToApplyAction=_fileToApplyAction;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -93,7 +94,7 @@
     if (_isNewFolder) {
         [_delegate createNewFolder:strName];
     } else {
-        [_delegate renameFolder:strName];
+        [_delegate renameFolder:strName forFolder:_fileToApplyAction];
     }    
 }
 

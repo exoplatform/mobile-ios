@@ -17,7 +17,7 @@
 -(void)createNewFolder:(NSString *)newFolderName;
 
 //Method needed to rename a folder
--(void)renameFolder:(NSString *)newFolderName;
+-(void)renameFolder:(NSString *)newFolderName forFolder:(File *)folderToRename;
 
 //Method needed when the Controller must be hidden
 -(void)cancelFolderActions;
@@ -27,6 +27,8 @@
 
 @interface FileFolderActionsViewController :  UIViewController 
 {
+    File*                                   _fileToApplyAction;
+    
 	IBOutlet UILabel*						_lbInstruction;	//Action title
 	IBOutlet UITextField*					_txtfNameInput;	//Input name
 	IBOutlet UIButton*						_btnOK;	//Accept button
@@ -37,6 +39,8 @@
 }
 
 @property (retain, nonatomic) id<FileFolderActionsProtocol> delegate;
+@property (nonatomic, retain) File *fileToApplyAction;
+
 
 - (void)setIsNewFolder:(BOOL)isNewFolder;	//UI for create new folder
 - (void)setNameInputStr:(NSString *)nameStr;	//Give name for text box

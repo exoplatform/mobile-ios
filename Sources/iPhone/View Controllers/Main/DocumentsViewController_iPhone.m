@@ -127,6 +127,7 @@
     [_fileFolderActionsController setIsNewFolder:createNewFolder];
     [_fileFolderActionsController setNameInputStr:@""];
     [_fileFolderActionsController setFocusOnTextFieldName];
+    _fileFolderActionsController.fileToApplyAction = _actionsViewController.fileToApplyAction;
     _fileFolderActionsController.delegate = self;
     
     //_optionsViewController.view.hidden = YES;
