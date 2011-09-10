@@ -11,6 +11,7 @@
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 #import "FileActionsViewController.h"
+#import "FileFolderActionsViewController_iPad.h"
 #import "DocumentDisplayViewController_iPad.h"
 
 
@@ -181,9 +182,44 @@
 }
 
 
+//SLM Temporary
+-(void)askToMakeFolderActions:(BOOL)createNewFolder {
+    
+    [_actionPopoverController dismissPopoverAnimated:YES];
+    
+    //Get the controller of the popover
+    FileActionsViewController *fileActionViewController = (FileActionsViewController*) _actionPopoverController.contentViewController;
+    
+    _fileFolderActionsController = [[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil];
+    //[_optionsViewController setDelegate:self];
+    [_fileFolderActionsController setIsNewFolder:createNewFolder];
+    [_fileFolderActionsController setNameInputStr:@""];
+    [_fileFolderActionsController setFocusOnTextFieldName];
+    _fileFolderActionsController.fileToApplyAction = fileActionViewController.fileToApplyAction;
+    _fileFolderActionsController.delegate = self;
+    
+    //Give a good position to the popup
+    _fileFolderActionsController.view.center = CGPointMake(_tblFiles.center.x, 150);
+    
+    //Block interactions with the table view
+    _tblFiles.userInteractionEnabled = NO;
+    
+    //_optionsViewController.view.hidden = YES;
+    [self.view addSubview:_fileFolderActionsController.view];
+}
+
+
+
 - (void)hideFileFolderActionsController {
-    //[_maskingViewForActions removeFromSuperview];
+    //Unblock interactions with the table view
+    _tblFiles.userInteractionEnabled = YES;
+    
     [super hideFileFolderActionsController];
+    
+    
+    //Enable the button on the navigationBar
+    _navigationBar.topItem.rightBarButtonItem.enabled = YES;
+    
 }
 
 
