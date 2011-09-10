@@ -49,7 +49,7 @@
     
     if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory];
     
-    _arrayContentOfRootFile = [_filesProxy getPersonalDriveContent:_rootFile];
+    _arrayContentOfRootFile = [[_filesProxy getPersonalDriveContent:_rootFile] retain];
     
     [pool release];
     
@@ -67,16 +67,10 @@
     [_hudFolder hideAfter:1.0];
     
     //And finally reload the content of the tableView
-    [self.tableView reloadData];
+    [_tblFiles reloadData];
 }
 
-- (void)setTitleForFilesViewController {
-    if (_rootFile) {
-        self.title = _rootFile.fileName;
-    } else {
-        self.title = @"Documents";
-    }
-}
+
 
 
 - (void)hideFileFolderActionsController {
@@ -111,7 +105,6 @@
 - (void)dealloc
 {
     //Release the FileProxy of the Controller.
-    [_filesProxy release];
     _filesProxy = nil;
     
     //Release the rootFile
@@ -128,6 +121,9 @@
     
     [_stringForUploadPhoto release];
     _stringForUploadPhoto = nil;
+    
+    [_tblFiles release];
+    _tblFiles = nil;
     
     [super dealloc];
 }
@@ -148,12 +144,13 @@
     
     _hudFolder = [[ATMHud alloc] initWithDelegate:self];
     [_hudFolder setAllowSuperviewInteraction:YES];
+    [self setHudPosition];
 	[self.view addSubview:_hudFolder.view];
     
     //Set the background Color of the view
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
     backgroundView.frame = self.view.frame;
-    self.tableView.backgroundView = backgroundView;
+    _tblFiles.backgroundView = backgroundView;
     
     //Set the title of the view controller
     [self setTitleForFilesViewController];
@@ -187,9 +184,7 @@
     
     if (_arrayContentOfRootFile == nil) {
         //TODO Localize this string
-        [_hudFolder setCaption:[NSString stringWithFormat:@"Loading the content of the folder : %@",self.title]];
-        [_hudFolder setActivity:YES];
-        [_hudFolder show];
+        [self showHUDWithMessage:[NSString stringWithFormat:@"Loading the content of the folder : %@",self.title]];
         
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
@@ -309,9 +304,8 @@
     [self hideActionsPanel];
     
     //TODO Localize this string
-    [_hudFolder setCaption:@"Delete file..."];
-    [_hudFolder setActivity:YES];
-    [_hudFolder show];
+    [self showHUDWithMessage:@"Delete file..."];
+    
     
     [self performSelectorInBackground:@selector(deleteFileInBackground:) withObject:urlFileToDelete];
 }
@@ -350,9 +344,7 @@
     [self hideActionsPanel];
     
     //TODO Localize this string
-    [_hudFolder setCaption:@"Move file to wanted folder..."];
-    [_hudFolder setActivity:YES];
-    [_hudFolder show];
+    [self showHUDWithMessage:@"Move file to wanted folder..."];
     
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                 [self methodSignatureForSelector:@selector(moveFileInBackgroundSource:toDestination:)]];
@@ -388,9 +380,7 @@
          toDestination:(NSString *)urlDestination {
     
     //TODO Localize this string
-    [_hudFolder setCaption:@"Copy file to wanted folder..."];
-    [_hudFolder setActivity:YES];
-    [_hudFolder show];
+    [self showHUDWithMessage:@"Copy file to wanted folder..."];
     
     //Hide the action Panel
     [self hideActionsPanel];
@@ -463,9 +453,7 @@
 
     
     //TODO Localize this string
-    [_hudFolder setCaption:@"Create new file folder..."];
-    [_hudFolder setActivity:YES];
-    [_hudFolder show];
+    [self showHUDWithMessage:@"Create new file folder..."];
 
     
     BOOL bExist;
@@ -548,9 +536,7 @@
     
     
     //TODO Localize this string
-    [_hudFolder setCaption:@"Rename folder..."];
-    [_hudFolder setActivity:YES];
-    [_hudFolder show];
+    [self showHUDWithMessage:@"Rename folder..."];
     
     if([newFolderName length] > 0)
     {
@@ -654,9 +640,7 @@
 		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@",tmp];
 		
         //TODO Localize this string
-        [_hudFolder setCaption:@"Sending image to wanted folder..."];
-        [_hudFolder setActivity:YES];
-        [_hudFolder show];
+        [self showHUDWithMessage:@"Sending image to wanted folder..."];
         
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
@@ -680,13 +664,20 @@
 
 
 
-#pragma mark - ATMHud Delegate
-#pragma mark -
-#pragma mark ATMHudDelegate
-- (void)userDidTapHud:(ATMHud *)_hud {
-	[_hud hide];
+#pragma mark HUD Management
+
+-(void)setHudPosition{
+    //default implementation
+    //do nothing
 }
 
+
+-(void)showHUDWithMessage:(NSString *)message {
+    [self setHudPosition];
+    [_hudFolder setCaption:message];
+    [_hudFolder setActivity:YES];
+    [_hudFolder show];
+}
 
 
 

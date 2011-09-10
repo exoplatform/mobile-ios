@@ -14,7 +14,7 @@
 
 
 
-@interface DocumentsViewController : UITableViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate> {
+@interface DocumentsViewController : UIViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     File *_rootFile;
     
@@ -27,6 +27,9 @@
     NSString *_stringForUploadPhoto;
     
     FileFolderActionsViewController *_fileFolderActionsController;
+    
+    IBOutlet UITableView*   _tblFiles;
+
     
 }
 

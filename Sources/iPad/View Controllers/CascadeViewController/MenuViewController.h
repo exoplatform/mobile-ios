@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h> 
-#import "FilesViewController.h"
+#import "DocumentsViewController_iPad.h"
 #import "DashboardViewController_iPad.h"
 #import "DashboardProxy.h"
 #import "ChatWindowViewController_iPad.h"
@@ -25,7 +25,7 @@
 	NSMutableArray* _cellContents;
 	MenuHeaderView* _menuHeader;
     
-    FilesViewController*            _filesViewController;
+    DocumentsViewController_iPad*            _documentsViewController;
     
     
     DashboardViewController_iPad*   _dashboardViewController_iPad;

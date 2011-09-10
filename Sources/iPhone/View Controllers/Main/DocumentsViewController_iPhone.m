@@ -47,6 +47,15 @@
 
 
 
+#pragma mark - UINavigationBar Management
+
+- (void)setTitleForFilesViewController {
+    if (_rootFile) {
+        self.title = _rootFile.fileName;
+    } else {
+        self.title = @"Documents";
+    }
+}
 
 
 #pragma mark - Table view delegate
@@ -84,7 +93,7 @@
     //Check if the _actionsViewController is already created or not
     if (_actionsViewController == nil) {
         
-        _actionsViewController = [[FileActionsViewController_iPhone alloc] initWithNibName:@"FileActionsViewController_iPhone" 
+        _actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                                                     bundle:nil 
                                                                                       file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
                                                                     enableDeleteThisFolder:YES
@@ -111,7 +120,7 @@
     
     [self.view addSubview:_containerView];
 	[_containerView addSubview:_actionsViewController.view];
-    self.tableView.scrollEnabled = NO;
+    _tblFiles.scrollEnabled = NO;
 
 
 }
@@ -120,8 +129,6 @@
 
 //SLM Temporary
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
-    
-    
     _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
     //[_optionsViewController setDelegate:self];
     [_fileFolderActionsController setIsNewFolder:createNewFolder];
@@ -132,43 +139,7 @@
     
     //_optionsViewController.view.hidden = YES;
     [self.view addSubview:_fileFolderActionsController.view];
-    [_actionsViewController.view removeFromSuperview];
-    
-    /*
-
-    [UIView animateWithDuration:1.5 
-                          delay:0 
-                        options:UIViewAnimationOptionTransitionFlipFromLeft 
-                     animations:^(void) { 
-                         [_actionsViewController.view removeFromSuperview];
-                         _optionsViewController.view.hidden = NO;
-                     } 
-                     completion:NULL
-     ];
-    [UIView transitionFromView:_actionsViewController.view 
-                        toView:_optionsViewController.view 
-                      duration:1 
-                       options:UIViewAnimationOptionTransitionFlipFromLeft 
-                    completion:^(BOOL finished) {
-        
-    }];
-    */
-    /*
-    
-    [UIView transitionWithView:_containerView duration:1.0
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    animations:^ { 
-                        [_actionsViewController.view removeFromSuperview];
-                        _optionsViewController.view.hidden = NO;
-                        //[_containerView addSubview:_optionsViewController.view];
-                    }
-                    completion:nil];
- 
-    */ 
-
-    
-    
-    
+    [_actionsViewController.view removeFromSuperview]; 
 }
 
 
@@ -179,7 +150,7 @@
     //Check if the _actionsViewController is already created or not
     if (_actionsViewController == nil) {
         
-        _actionsViewController = [[FileActionsViewController_iPhone alloc] initWithNibName:@"FileActionsViewController_iPhone" 
+        _actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                                                     bundle:nil 
                                                                                       file:_rootFile 
                                                                     enableDeleteThisFolder:YES
@@ -201,7 +172,7 @@
     
     [self.view addSubview:_maskingViewForActions];
 	[self.view addSubview:_actionsViewController.view];
-    self.tableView.scrollEnabled = NO;
+    _tblFiles.scrollEnabled = NO;
 
 }
 
@@ -210,23 +181,14 @@
 -(void) hideActionsPanel {
     [_actionsViewController.view removeFromSuperview];
     [_maskingViewForActions removeFromSuperview];
-    self.tableView.scrollEnabled = YES;
+    _tblFiles.scrollEnabled = YES;
 }
 
 
 - (void)hideFileFolderActionsController {
     [_maskingViewForActions removeFromSuperview];
-    self.tableView.scrollEnabled = YES;
+    _tblFiles.scrollEnabled = YES;
     [super hideFileFolderActionsController];
-}
-
-
-
-#pragma mark - ATMHud Delegate
-#pragma mark -
-#pragma mark ATMHudDelegate
-- (void)userDidTapHud:(ATMHud *)_hud {
-	[_hud hide];
 }
 
 

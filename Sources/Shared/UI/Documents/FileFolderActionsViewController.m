@@ -7,7 +7,6 @@
 //
 
 #import "FileFolderActionsViewController.h"
-#import "FilesViewController.h"
 #import "LanguageHelper.h"
 
 @implementation FileFolderActionsViewController

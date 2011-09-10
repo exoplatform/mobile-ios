@@ -305,11 +305,8 @@
             break;
         case 2:
             // files
-            _filesViewController = [[FilesViewController alloc] initWithNibName:@"FilesViewController" bundle:nil];
-            [_filesViewController setDelegate:_delegate];
-            [_filesViewController initWithRootDirectory:_isCompatibleWithSocial];
-            [_filesViewController getPersonalDriveContent:_filesViewController._currenteXoFile];
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_filesViewController 
+            _documentsViewController = [[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil];
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_documentsViewController 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];
             break;

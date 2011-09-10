@@ -7,13 +7,13 @@
 //
 
 #import "DocumentsViewController.h"
-#import "FileActionsViewController_iPhone.h"
+#import "FileActionsViewController.h"
 
 
 
 @interface DocumentsViewController_iPhone : DocumentsViewController {
     
-    FileActionsViewController_iPhone *_actionsViewController;
+    FileActionsViewController *_actionsViewController;
     
     UIView *_maskingViewForActions;
     
