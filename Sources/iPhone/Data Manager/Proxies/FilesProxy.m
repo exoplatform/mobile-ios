@@ -204,6 +204,9 @@
 
 -(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
 {	
+    NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
+
+    
 	source = [DataProcess encodeUrl:source];
 	destination = [DataProcess encodeUrl:destination];
 	
@@ -250,7 +253,7 @@
 		[request setValue:destination forHTTPHeaderField:@"Destination"];
 		[request setValue:@"T" forHTTPHeaderField:@"Overwrite"];
         
-	}else
+	}else if ([protocol isEqualToString:kFileProtocolForMove])
 	{
 		[request setHTTPMethod:kFileProtocolForMove];
 		[request setValue:destination forHTTPHeaderField:@"Destination"];
@@ -285,6 +288,8 @@
         return errorMessage;
 		        
     }
+    
+    [pool release];
     
     
 	return nil;
