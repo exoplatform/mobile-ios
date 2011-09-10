@@ -598,8 +598,8 @@
 
 //Method needed when the Controller must be hidden
 -(void)cancelFolderActions {
-    [_fileFolderActionsController.view removeFromSuperview];
     
+    [self hideFileFolderActionsController];
     
 }
 
