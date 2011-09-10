@@ -7,7 +7,7 @@
 //
 
 #import "DocumentsViewController_iPhone.h"
-#import "eXoWebViewController.h"
+#import "DocumentDisplayViewController_iPhone.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "FileFolderActionsViewController_iPhone.h"
 
@@ -76,11 +76,13 @@
 	{
 		NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByReplacingOccurrencesOfString:@" " 
                                                                                                         withString:@"%20"]];
-		eXoWebViewController* fileWebViewController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController"
+		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
                                                                                                bundle:nil 
                                                                                                   url:urlOfTheFileToOpen
                                                                                              fileName:fileToBrowse.fileName];
-		[self.navigationController pushViewController:fileWebViewController animated:YES];     
+		[self.navigationController pushViewController:fileWebViewController animated:YES];    
+        
+        [fileWebViewController release];
 	}
 	
     
@@ -127,7 +129,6 @@
 
 
 
-//SLM Temporary
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
     _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
     //[_optionsViewController setDelegate:self];

@@ -11,6 +11,7 @@
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 #import "FileActionsViewController.h"
+#import "DocumentDisplayViewController_iPad.h"
 
 
 @implementation DocumentsViewController_iPad
@@ -123,15 +124,18 @@
 	}
 	else
 	{
-        /*
-        //Create a new FilesViewController_iPhone to push it into the navigationController
-        FileContentDisplayController *fileContentDisplayController = [[FileContentDisplayController alloc] initWithRootFile:fileToBrowse];
-        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:fileContentDisplayController invokeByController:self isStackStartView:FALSE];
         
+        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByReplacingOccurrencesOfString:@" " 
+                                                                                                        withString:@"%20"]];
+		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"
+                                                                                               bundle:nil 
+                                                                                                  url:urlOfTheFileToOpen
+                                                                                             fileName:fileToBrowse.fileName];
+		
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:contentViewController invokeByController:self isStackStartView:FALSE];
         
-		NSURL *url = [NSURL URLWithString:[file.urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
-		[fileContentDisplayController startDisplayFileContent:url];
-         */
+        [contentViewController release];
+        
     }
     
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];   
