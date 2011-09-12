@@ -24,6 +24,7 @@
 #import "SocialLikeActivityProxy.h"
 #import "ActivityDetailLikeTableViewCell.h"
 #import "SocialUserProfileCache.h"
+#import "defines.h"
 
 @implementation ActivityDetailViewController
 
@@ -35,6 +36,8 @@
         _activity = [[Activity alloc] init];        
         _socialActivityDetails = [[SocialActivityDetails alloc] init];
         _socialActivityDetails.comments = [[NSArray alloc] init];
+        
+        _activityAction = 0;
     }
     return self;
 }
@@ -86,6 +89,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Set the last update date at now 
+    _dateOfLastUpdate = [[NSDate date]retain];
     
     //Add the loader
     _hudActivityDetails = [[ATMHud alloc] initWithDelegate:self];
@@ -400,24 +406,38 @@
     //Nothing keep the default position of the HUD
 }
 
-- (void)showLoaderForUpdating {
+- (void)showLoaderForAction:(int)action {
     [self setHudPosition];
-    [_hudActivityDetails setCaption:@"Updating Details"];
+    
+    if(action == 0)
+        [_hudActivityDetails setCaption:ACTIVITY_DETAIL_GETTING_TITLE];
+    else if(action == 1)
+        [_hudActivityDetails setCaption:ACTIVITY_DETAIL_UPDATING_TITLE];
+    else
+        [_hudActivityDetails setCaption:ACTIVITY_LIKING_TITLE];
+    
     [_hudActivityDetails setActivity:YES];
     [_hudActivityDetails show];
 }
 
 
 
-- (void)hideLoader {
+- (void)hideLoader:(BOOL)successful {
     //Now update the HUD
-    //TODO Localize this string
+
     [self setHudPosition];
-    [_hudActivityDetails setCaption:@"Details loaded"];
+    [_hudActivityDetails hideAfter:0.1];
+    
+    if(successful)
+    {
+        [_hudActivityDetails setCaption:@"Details loaded"];    
+        [_hudActivityDetails setImage:[UIImage imageNamed:@"19-check"]];
+        [_hudActivityDetails hideAfter:0.5];
+    }
+    
     [_hudActivityDetails setActivity:NO];
-    [_hudActivityDetails setImage:[UIImage imageNamed:@"19-check"]];
     [_hudActivityDetails update];
-    [_hudActivityDetails hideAfter:0.5];
+
 }
 
 
@@ -441,7 +461,7 @@
     _dateOfLastUpdate = [[NSDate date] retain];
     
     //Hide the loader
-    [self hideLoader];
+    [self hideLoader:YES];
     
     [_tblvActivityDetail reloadData];
 }
@@ -449,7 +469,7 @@
 #pragma - Proxy Management
 - (void)startLoadingActivityDetail
 {
-    [self showLoaderForUpdating];
+    [self showLoaderForAction:_activityAction];
     
     _reloading = YES;
     SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
@@ -466,6 +486,7 @@
     _activityDetail.activityID = socialActivityStream.activityId;
     _currentUserProfile = currentUserProfile;
     
+    _activityAction = 0;
     [self startLoadingActivityDetail];
 }
 
@@ -510,13 +531,26 @@
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
+    //    [error localizedDescription] 
     
+    NSString *alertMessage = nil;
+    if(_activityAction == 0)
+        alertMessage = ACTIVITY_GETTING_MESSAGE_ERROR;
+    else if(_activityAction == 1)
+        alertMessage = ACTIVITY_UPDATING_MESSAGE_ERROR;
+    else
+        alertMessage = ACTIVITY_LIKING_MESSAGE_ERROR;
+    
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+     
+    [alertView show];
+//    [alertView release];
 }
 
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
-    [self showLoaderForUpdating];
+    [self showLoaderForAction:_activityAction];
     
     [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
@@ -524,10 +558,12 @@
     
     if(_currentUserLikeThisActivity)
     {
+        _activityAction = 3;
         [likeDislikeActProxy dislikeActivity:activity];
     }
     else
     {
+        _activityAction = 2;
         [likeDislikeActProxy likeActivity:activity];
     }
 }
@@ -560,6 +596,7 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	
+    _activityAction = 1;
     [self startLoadingActivityDetail];	
 }
 
@@ -574,5 +611,21 @@
 	
 }
 
+#pragma mark - 
+#pragma mark UIAlertViewDelegate method
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //Remove the loader
+    
+    [self hideLoader:NO];
+    
+    if(_activityAction == 1)
+    {
+        //Prevent any reloading status
+        _reloading = NO;
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
+    }
+    
+}
 @end

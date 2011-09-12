@@ -23,7 +23,7 @@
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
-@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate>{
+@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UINavigationBar*               _navigationBar;
@@ -55,6 +55,8 @@
     
     //Loader
     ATMHud*                                 _hudActivityDetails;//Heads up display
+    
+    int                                     _activityAction;//0: getting, 1: updating, 2: like, 3: dislike
 }
 
 //- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;

@@ -10,7 +10,6 @@
 #import "ActivityDetailViewController.h"
 
 @class ActivityStreamBrowseViewController;
-@class MessageComposerViewController_iPhone;
 
 @interface ActivityDetailViewController_iPhone : ActivityDetailViewController {
 

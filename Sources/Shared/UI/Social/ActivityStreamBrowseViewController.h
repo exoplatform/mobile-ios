@@ -21,7 +21,7 @@
 @class ActivityDetailViewController;
 @class SocialUserProfile;
 
-@interface ActivityStreamBrowseViewController : UIViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface ActivityStreamBrowseViewController : UIViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITableView*                   _tblvActivityStream;
     
@@ -44,6 +44,8 @@
     
     //Loader
     ATMHud*                                 _hudActivityStream;//Heads up display
+    
+    BOOL                                    _activityAction;
 
 }
 

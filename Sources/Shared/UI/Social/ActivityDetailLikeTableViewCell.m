@@ -91,19 +91,8 @@
 
 -(void)btnLikeAction:(UIButton *)sender
 {
-    BOOL isLike = YES;
-    
-    NSArray *arrLike = _socialActivityDetails.likedByIdentities;
-    for(NSDictionary* dic in arrLike)
-    {
-        if([_socialUserProfile.identity isEqualToString:[dic objectForKey:@"id"]])
-        {
-            isLike = NO;
-            break;
-        }     
-    }
-    
-    [_delegate likeDislikeActivity:_socialActivityDetails.identifyId];
+    if([_delegate respondsToSelector:@selector(likeDislikeActivity:)])
+        [_delegate likeDislikeActivity:_socialActivityDetails.identifyId];
     
      
 }

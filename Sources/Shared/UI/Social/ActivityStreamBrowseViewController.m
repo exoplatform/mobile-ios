@@ -47,6 +47,7 @@
                 
         _bIsPostClicked = NO;
         _bIsIPad = NO;
+        _activityAction = 0;
         
         _arrActivityStreams = [[NSMutableArray alloc] init];
     }
@@ -89,9 +90,42 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Loader management
+//Action: 0-Getting, 1-Updating, 2-Liking
+- (void)showLoaderForAction:(int)action {
+    [self setHudPosition];
+    
+    if(action == 0)
+        [_hudActivityStream setCaption:ACTIVITY_GETTING_TITLE];
+    else if(action == 1)
+        [_hudActivityStream setCaption:ACTIVITY_UPDATING_TITLE];
+    else if(action == 2)
+        [_hudActivityStream setCaption:ACTIVITY_LIKING_TITLE];
+    
+    [_hudActivityStream setActivity:YES];
+    [_hudActivityStream show];
+}
+
+
+- (void)hideLoader:(BOOL)successful {
+    //Now update the HUD
+    
+    [self setHudPosition];
+    [_hudActivityStream hideAfter:0.1];
+    
+    if(successful)
+    {
+        [_hudActivityStream setCaption:@"Activity Stream updated"];        
+        [_hudActivityStream setImage:[UIImage imageNamed:@"19-check"]];
+        [_hudActivityStream hideAfter:0.5];
+    }
+    
+    [_hudActivityStream setActivity:NO];
+    [_hudActivityStream update];
+    
+}
+
 #pragma mark - View lifecycle
-
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -131,8 +165,6 @@
     //Load all activities of the user
     [self startLoadingActivityStream];
     
-    
-
 }
 
 - (void)viewDidUnload
@@ -358,16 +390,19 @@
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
     SocialLikeActivityProxy *likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
+    likeDislikeActProxy.delegate = self;
     
     if(isLike)
+    {
+        _activityAction = 2;
         [likeDislikeActProxy likeActivity:activity];
+    }
     else
+    {
+        _activityAction = 3;
         [likeDislikeActProxy dislikeActivity:activity];
-    
-    
-    [self clearActivityData];
-    
-    [self startLoadingActivityStream];
+    }
+        
 }
 
 #pragma mark - Loader Management
@@ -376,31 +411,13 @@
     //Nothing keep the default position of the HUD
 }
 
-- (void)showLoaderForUpdating {
-    [self setHudPosition];
-    [_hudActivityStream setCaption:@"Updating Activity stream"];
-    [_hudActivityStream setActivity:YES];
-    [_hudActivityStream show];
-}
-
-
-- (void)hideLoader {
-    //Now update the HUD
-    //TODO Localize this string
-    [self setHudPosition];
-    [_hudActivityStream setCaption:@"Activity Stream updated"];
-    [_hudActivityStream setActivity:NO];
-    [_hudActivityStream setImage:[UIImage imageNamed:@"19-check"]];
-    [_hudActivityStream update];
-    [_hudActivityStream hideAfter:0.5];
-}
 
 #pragma mark - Social Proxy 
 #pragma mark Management
 
 - (void)startLoadingActivityStream {
-    
-    [self showLoaderForUpdating];
+
+    [self showLoaderForAction:_activityAction];
     
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
     identityProxy.delegate = self;
@@ -410,7 +427,7 @@
 
 - (void)updateActivityStream {
     
-    [self showLoaderForUpdating];
+    [self showLoaderForAction:_activityAction];
     
     _reloading = YES;
     SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
@@ -421,7 +438,7 @@
 - (void)finishLoadingAllDataForActivityStream {
     
     //Remove the loader
-    [self hideLoader];
+    [self hideLoader:YES];
     
     //Prevent any reloading status
     _reloading = NO;
@@ -486,8 +503,6 @@
             [self addTimeToActivities:_dateOfLastUpdate];
         }
         
-        
-        
         //Retrieve all activities
         //Start preparing data
         //retrieve all distinct identities
@@ -509,10 +524,31 @@
         socialUserProfile.delegate = self;
         [socialUserProfile retrieveIdentitiesSet:setOfIdentities];
     } 
+    else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) 
+    {
+        [self clearActivityData];
+        [self startLoadingActivityStream];
+    }
+    
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
+    //    [error localizedDescription] 
+    
+    NSString *alertMessages = nil;
+    
+    if(_activityAction == 0)
+        alertMessages = ACTIVITY_GETTING_MESSAGE_ERROR;
+    else if(_activityAction == 1)
+        alertMessages = ACTIVITY_UPDATING_MESSAGE_ERROR;
+    else
+        alertMessages = ACTIVITY_LIKING_MESSAGE_ERROR;
+    
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    
+    [alertView show];
+//    [alertView release];
     
 }
 
@@ -544,6 +580,7 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	
+    _activityAction = 1;
     [self updateActivityStream];	
 }
 
@@ -558,6 +595,26 @@
 	
 }
 
+#pragma mark - 
+#pragma mark UIAlertViewDelegate method
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //Remove the loader
+    
+    [self hideLoader:NO];
+    
+    if(_activityAction == 1)
+    {
+        //Prevent any reloading status
+        _reloading = NO;
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
+    }
+    else if(_activityAction == 0)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
 
 @end

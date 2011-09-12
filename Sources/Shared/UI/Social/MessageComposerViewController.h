@@ -17,7 +17,7 @@
 @protocol SocialMessageComposerDelegate;
 
 
-@interface MessageComposerViewController : UIViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate>
+@interface MessageComposerViewController : UIViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate>
 {
     IBOutlet UIButton*                  _btnCancel;
     IBOutlet UIButton*                  _btnSend;

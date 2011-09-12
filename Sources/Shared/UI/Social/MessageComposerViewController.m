@@ -12,6 +12,7 @@
 #import "SocialPostCommentProxy.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "FilesProxy.h"
+#import "defines.h"
 
 @implementation MessageComposerViewController
 
@@ -101,12 +102,12 @@
     
     if (_isPostMessage) 
     {
-        _strTitle = @"Post status";
+        _strTitle = ACTIVITY_POSTING_TITLE;
         [_btnAttach setHidden:NO];
     }
     else
     {
-        _strTitle = @"Post comment";
+        _strTitle = ACTIVITY_COMMENT_TITLE;
         [_btnAttach setHidden:YES];        
     }
     
@@ -129,27 +130,33 @@
 }
 
 - (void)showLoaderForSendingStatus {
-    [_hudMessageComposer setCaption:@"Posting the new status"];
+    [_hudMessageComposer setCaption:ACTIVITY_POSTING_TITLE];
     [_hudMessageComposer setActivity:YES];
     [_hudMessageComposer show];
 }
 
 - (void)showLoaderForSendingComment {
-    [_hudMessageComposer setCaption:@"Posting the new comment"];
+    [_hudMessageComposer setCaption:ACTIVITY_COMMENT_TITLE];
     [_hudMessageComposer setActivity:YES];
     [_hudMessageComposer show];
 }
 
 
 
-- (void)hideLoader {
+- (void)hideLoader:(BOOL)successful {
     //Now update the HUD
-    //TODO Localize this string
-    [_hudMessageComposer setCaption:@"Posted !"];
+    
+    [_hudMessageComposer hideAfter:0.1];
+    if(successful)
+    {
+        [_hudMessageComposer setCaption:@"Posted !"];        
+        [_hudMessageComposer setImage:[UIImage imageNamed:@"19-check"]];
+        [_hudMessageComposer hideAfter:0.5];
+    }
+
     [_hudMessageComposer setActivity:NO];
-    [_hudMessageComposer setImage:[UIImage imageNamed:@"19-check"]];
     [_hudMessageComposer update];
-    [_hudMessageComposer hideAfter:0.5];
+    
 }
 
 
@@ -214,14 +221,15 @@
             [self showLoaderForSendingComment];
             
             SocialPostCommentProxy *actComment = [[SocialPostCommentProxy alloc] init];
-            [actComment postComment:_txtvMessageComposer.text forActivity:_strActivityID];
             actComment.delegate = self;
+            [actComment postComment:_txtvMessageComposer.text forActivity:_strActivityID];
+
         }
 
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Composer" message:@"There is no message for comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Composer" message:@"There is no message for comment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         
         if(_isPostMessage)
@@ -273,7 +281,7 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
 
-    [self hideLoader];
+    [self hideLoader:YES];
     
     if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
         [delegate messageComposerDidSendData];
@@ -284,7 +292,18 @@
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
+    //    [error localizedDescription] 
     
+    NSString *alertMessage = nil;
+    if(_isPostMessage)
+        alertMessage = ACTIVITY_POSTING_MESSAGE_ERROR;    
+    else
+        alertMessage = ACTIVITY_COMMENT_MESSAGE_ERROR;
+
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    
+    [alertView show];
+//    [alertView release];
 }
 
 
@@ -309,7 +328,7 @@
             }
             else
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
                 [alert release];
             }
@@ -350,5 +369,13 @@
     
 }
 
+#pragma mark - 
+#pragma mark UIAlertViewDelegate method
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+
+//      Remove the loader
+        [self hideLoader:NO];
+}
 @end

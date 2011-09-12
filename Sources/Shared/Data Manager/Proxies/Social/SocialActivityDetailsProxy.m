@@ -168,9 +168,9 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error 
 {
-	UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-	[alert show];
-	NSLog(@"Hit error: %@", error);
+    if (delegate && [delegate respondsToSelector:@selector(proxy: didFailWithError:)]) {
+        [delegate proxy:self didFailWithError:error];
+    }
 }
 
 @end
