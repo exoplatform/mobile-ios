@@ -65,6 +65,7 @@
 {
 	[_domainName release];
     [_firstLoginContent release];
+    _firstLoginContent = nil;
     [_username release];
     [_password release];
 	[super dealloc];
@@ -346,7 +347,7 @@
 	else
 	{
 		[loginRequest release];
-		_firstLoginContent = urlContent;
+//		_firstLoginContent = urlContent;
         [urlContent release];
 		return @"YES";
 	}
