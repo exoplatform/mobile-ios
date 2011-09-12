@@ -430,9 +430,18 @@
     [self showLoaderForAction:_activityAction];
     
     _reloading = YES;
-    SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
-    socialActivityStreamProxy.delegate = self;
-    [socialActivityStreamProxy updateActivityStreamSinceActivity:[_arrActivityStreams objectAtIndex:0]];
+    
+    if(_arrActivityStreams == nil || [_arrActivityStreams count] == 0)
+    {
+        [self startLoadingActivityStream];
+    }
+    else
+    {
+        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
+        socialActivityStreamProxy.delegate = self;
+        [socialActivityStreamProxy updateActivityStreamSinceActivity:[_arrActivityStreams objectAtIndex:0]];    
+    }
+    
 }
 
 - (void)finishLoadingAllDataForActivityStream {
