@@ -11,7 +11,7 @@
 #import "PlatformVersionProxy.h"
 
 //Login page
-@interface AuthenticateViewController : UIViewController <PlatformVersionProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
+@interface AuthenticateViewController_iPhone : UIViewController <PlatformVersionProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
 	NSString*                   _strBSuccessful;	//Login status
 	UIActivityIndicatorView*    _indicator;	//Loding indicator

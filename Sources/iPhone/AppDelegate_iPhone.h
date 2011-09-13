@@ -8,17 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "eXoMobileAppDelegate.h"
+#import "AuthenticateViewController_iPhone.h"
+#import "HomeViewController_iPhone.h"
 
-
-@class AuthenticateViewController;
-@class HomeViewController_iPhone;
 
 //App delegate
 @interface AppDelegate_iPhone : eXoMobileAppDelegate <UIAlertViewDelegate> {
     IBOutlet UIWindow*					window;
 	IBOutlet UINavigationController*	navigationController;
 	
-	AuthenticateViewController*         authenticateViewController;	//Login page
+	AuthenticateViewController_iPhone*  _authenticateViewController;	//Login page
 	
     HomeViewController_iPhone*          _homeViewController_iPhone;
     BOOL                                _isCompatibleWithSocial;
@@ -27,7 +26,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow* window;
 @property (nonatomic, retain) UINavigationController* navigationController;
-@property (nonatomic, retain) IBOutlet AuthenticateViewController *authenticateViewController;
+@property (nonatomic, retain) IBOutlet AuthenticateViewController_iPhone *authenticateViewController;
 @property (nonatomic, retain) IBOutlet HomeViewController_iPhone* homeViewController_iPhone;
 @property BOOL isCompatibleWithSocial;
 

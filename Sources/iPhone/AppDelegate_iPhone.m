@@ -8,17 +8,15 @@
 
 #import "AppDelegate_iPhone.h"
 
-#import "AuthenticateViewController.h"
 #import "eXoSettingViewController.h"
 #import "defines.h"
 #import "ChatProxy.h"
 
-#import "HomeViewController_iPhone.h"
 
 @implementation AppDelegate_iPhone
 
 @synthesize window;
-@synthesize authenticateViewController;
+@synthesize authenticateViewController = _authenticateViewController;
 @synthesize navigationController;
 @synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
@@ -68,8 +66,8 @@
 	[navigationController release];
     navigationController = nil;
     
-    [authenticateViewController release];
-    authenticateViewController = nil;
+    [_authenticateViewController release];
+    _authenticateViewController = nil;
     
     
     if (_homeViewController_iPhone)

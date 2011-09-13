@@ -14,7 +14,7 @@
 #import "ContainerCell.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
-#import "AuthenticateViewController.h"
+#import "AuthenticateViewController_iPhone.h"
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
@@ -531,7 +531,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
                 [lbModify release];
             }
         
-            if ([_delegate isKindOfClass:[AuthenticateViewController class]]) 
+            if ([_delegate isKindOfClass:[AuthenticateViewController_iPhone class]]) 
             {
                 [cell setUserInteractionEnabled:YES];
             }

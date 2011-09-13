@@ -6,7 +6,7 @@
 //  Copyright EXO-Platform 2009. All rights reserved.
 //
 
-#import "AuthenticateViewController.h"
+#import "AuthenticateViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "CXMLDocument.h"
@@ -31,7 +31,7 @@
 
 
 
-@implementation AuthenticateViewController
+@implementation AuthenticateViewController_iPhone
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
