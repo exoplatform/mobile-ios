@@ -10,7 +10,7 @@
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "CXMLDocument.h"
-#import "SettingsViewController_iPhone.h"
+#import "SettingsViewController.h"
 #import "DataProcess.h"
 #import "NSString+HTML.h"
 #import "Configuration.h"
@@ -401,7 +401,7 @@
 
 - (IBAction)onSettingBtn
 {
-    SettingsViewController_iPhone *setting = [[SettingsViewController_iPhone alloc] initWithStyle:UITableViewStyleGrouped];
+    SettingsViewController *setting = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
     [setting release];
     

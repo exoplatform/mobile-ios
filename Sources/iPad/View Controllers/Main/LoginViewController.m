@@ -13,10 +13,7 @@
 #import "AuthenticateProxy.h"
 #import "SupportViewController.h"
 #import "Configuration.h"
-#import "SettingsViewController_iPad.h"
-#import "iPadServerManagerViewController.h"
-#import "iPadServerAddingViewController.h"
-#import "iPadServerEditingViewController.h"
+#import "SettingsViewController.h"
 #import "SSHUDView.h"
 
 #define kHeightForServerCell 44
@@ -375,7 +372,7 @@
 {
 	if(_iPadSettingViewController == nil)
     {
-        _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
+        _iPadSettingViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         //[_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
         //[self.view addSubview:_iPadSettingViewController.view];
     }
@@ -671,136 +668,8 @@
         }
         [self.view addSubview:tmpView];
     }
-    if (_iPadSettingViewController) 
-    {
-        //[_iPadSettingViewController changeOrientation:_interfaceOrientation];
-    }
-    if (_iPadServerManagerViewController) 
-    {
-        //[_iPadServerManagerViewController changeOrientation:_interfaceOrientation];
-    }
-    if (_iPadServerAddingViewController) 
-    {
-        //[_iPadServerAddingViewController changeOrientation:_interfaceOrientation];
-    }
-    if (_iPadServerEditingViewController) 
-    {
-        //[_iPadServerEditingViewController changeOrientation:_interfaceOrientation];
-    }
 }
 
-- (void)onBackDelegate
-{
-    [self pullViewOut:[_arrViewOfViewControllers lastObject]];
-    if (_iPadSettingViewController) 
-    {
-        //[_iPadSettingViewController.tblView reloadData];
-    }
-    if (_iPadServerManagerViewController) 
-    {
-        [_iPadServerManagerViewController._tbvlServerList reloadData];
-    }
-    if (_iPadServerAddingViewController) 
-    {
-        [_iPadServerAddingViewController._tblvServerInfo reloadData];
-    }
-    if (_iPadServerEditingViewController) 
-    {
-        [_iPadServerEditingViewController._tblvServerInfo reloadData];
-    }
-    [_tbvlServerList reloadData];
-}
-
-
-- (void)showiPadServerManagerViewController
-{
-    
-    if (_iPadServerManagerViewController == nil) 
-    {
-        _iPadServerManagerViewController = [[iPadServerManagerViewController alloc] initWithNibName:@"iPadServerManagerViewController" bundle:nil];
-        [_iPadServerManagerViewController setDelegate:self];
-    }
-    
-    if ([_modalNavigationSettingViewController.viewControllers containsObject:_iPadServerManagerViewController]) 
-    {
-        [_modalNavigationSettingViewController popToViewController:_iPadServerManagerViewController animated:YES];
-    }
-    else
-    {
-        [_modalNavigationSettingViewController pushViewController:_iPadServerManagerViewController animated:YES];
-    }
-}
-
-
-- (void)showiPadServerAddingViewController
-{
-       
-    if (_iPadServerAddingViewController == nil) 
-    {
-        _iPadServerAddingViewController = [[iPadServerAddingViewController alloc] initWithNibName:@"iPadServerAddingViewController" bundle:nil];
-        [_iPadServerAddingViewController setDelegate:self];
-    }
-    
-    if ([_modalNavigationSettingViewController.viewControllers containsObject:_iPadServerAddingViewController]) 
-    {
-        [_modalNavigationSettingViewController popToViewController:_iPadServerAddingViewController animated:YES];
-    }
-    else
-    {
-        [_modalNavigationSettingViewController pushViewController:_iPadServerAddingViewController animated:YES];
-    }
-}
-
-- (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index
-{
-    
-    
-    if (_iPadServerEditingViewController == nil) 
-    {
-        _iPadServerEditingViewController = [[iPadServerEditingViewController alloc] initWithNibName:@"iPadServerEditingViewController" bundle:nil];
-        [_iPadServerEditingViewController setDelegate:self];
-    }
-    
-    [_iPadServerEditingViewController setServerObj:serverObj andIndex:index];
-    
-    if ([_modalNavigationSettingViewController.viewControllers containsObject:_iPadServerEditingViewController]) 
-    {
-        [_modalNavigationSettingViewController popToViewController:_iPadServerEditingViewController animated:YES];
-    }
-    else
-    {
-        [_modalNavigationSettingViewController pushViewController:_iPadServerEditingViewController animated:YES];
-    }
-}
-
-- (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
-{
-    if (_iPadServerManagerViewController) 
-    {
-        [_iPadServerManagerViewController editServerObjAtIndex:intIndex withSeverName:strServerName andServerUrl:strServerUrl];
-    }
-}
-
-- (void)deleteServerObjAtIndex:(int)intIndex
-{
-    if (_iPadServerManagerViewController) 
-    {
-        [_iPadServerManagerViewController deleteServerObjAtIndex:intIndex];
-    }
-}
-
-- (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
-{
-    if(_iPadServerManagerViewController)
-    {
-        [_iPadServerManagerViewController addServerObjWithServerName:strServerName andServerUrl:strServerUrl]; 
-    }    
-}
-
-- (void)reloadData
-{
-    [_tbvlServerList reloadData];
-}
 
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {

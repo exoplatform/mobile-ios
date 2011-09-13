@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServerManagerViewController.h"
 
 @class ServerObj;
 
 @interface ServerEditingViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
-    id                                  _delegate;
+    id<ServerManagerProtocol>           _delegate;
     
     ServerObj*                          _serverObj;
     
@@ -30,7 +31,7 @@
 @property (nonatomic, retain) UITextField* _txtfServerName;
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
 
-- (void)setDelegate:(id)delegate;
+- (void)setDelegate:(id<ServerManagerProtocol>)delegate;
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index;
 - (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
 - (UITableViewCell*)textCellWithLabel:(UILabel*)label;

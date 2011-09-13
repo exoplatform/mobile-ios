@@ -11,6 +11,7 @@
 #import "ServerAddingViewController.h"
 #import "ServerEditingViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
+#import "LanguageHelper.h"
 
 
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
@@ -63,13 +64,18 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     [super viewDidLoad];
 
     //TODO localize this title
-	self.title = @"Server List";
+	self.title = Localize(@"Server List");
     
     
     //Set the background Color of the view
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    backgroundView.frame = self.view.frame;
+    _tbvlServerList.backgroundView = backgroundView;
+    [backgroundView release];
     
     _arrServerList = [[Configuration sharedInstance] getServerList];
+    
     UIBarButtonItem* bbtnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onBbtnAdd)];
     [self.navigationItem setRightBarButtonItem:bbtnAdd];
         
@@ -90,24 +96,101 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 }
 
 - (void)onBbtnAdd
-{
-    if (_serverAddingViewController == nil) 
-    {
-        _serverAddingViewController = [[ServerAddingViewController alloc] initWithNibName:@"ServerAddingViewController" bundle:nil];
-        [_serverAddingViewController setDelegate:self];
-    }
-    if ([self.navigationController.viewControllers containsObject:_serverAddingViewController]) 
-    {
-        [self.navigationController popToViewController:_serverAddingViewController animated:YES];
-    }
-    else
-    {
-        [self.navigationController pushViewController:_serverAddingViewController animated:YES];
-    }
+{    
+    ServerAddingViewController* serverAddingViewController = [[ServerAddingViewController alloc] initWithNibName:@"ServerAddingViewController" bundle:nil];
+    [serverAddingViewController setDelegate:self];
+    [self.navigationController pushViewController:serverAddingViewController animated:YES];
+    
 }
 
-- (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+
+
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSString* tmpStr = @"";
+	return tmpStr;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    return [_arrServerList count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float fHeight = 44.0;
+    return fHeight;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CustomBackgroundForCell_iPhone* cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
+    if (cell == nil) {
+        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierServer] autorelease];
+        
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:11.0];
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor]; 
+    }
+    
+    if (indexPath.row < [_arrServerList count]) 
+    {
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = tmpServerObj._strServerName;
+        cell.detailTextLabel.text = tmpServerObj._strServerUrl;
+    }
+    
+    //Customize the cell background
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+
+    return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+    
+    ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
+    [serverEditingViewController setDelegate:self];
+    [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:serverEditingViewController animated:YES];
+    
+    [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+#pragma - ServerManagerProtocol Methods
+
+
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    
+    //Check first message lenght for empty parameters
+    if ([strServerName length] == 0 || [strServerUrl length] == 0){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add a server with an empty name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    
+    //Check if the server has been existed
     BOOL bExist = NO;
     for (int i = 0; i < [_arrServerList count]; i++) 
     {
@@ -118,7 +201,7 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This Server has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
-            break;
+            return NO;
         }
     }
     
@@ -126,27 +209,38 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     {
         Configuration* configuration = [Configuration sharedInstance];
         
+        //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
         serverObj._strServerName = strServerName;
         serverObj._strServerUrl = strServerUrl;    
         serverObj._bSystemServer = NO;
         
-        NSMutableArray* arrAddedServer = [[NSMutableArray alloc] init];
-        arrAddedServer = [configuration loadUserConfiguration];
+        //Add the server in configuration
+        NSMutableArray* arrAddedServer = [configuration loadUserConfiguration];
         [arrAddedServer addObject:serverObj];
         [configuration writeUserConfiguration:arrAddedServer];
         [serverObj release];
-        [arrAddedServer release];
         
+        //Reload datas
         [_arrServerList removeAllObjects];
         _arrServerList = [configuration getServerList];
         [_tbvlServerList reloadData];
-        [self.navigationController popToViewController:self animated:YES];
-    }    
+                
+    }   
+    return YES;
 }
 
-- (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
+    
+    //Check first message lenght for empty parameters
+    if ([strServerName length] == 0 || [strServerUrl length] == 0){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot use a server with an empty name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+
     BOOL bExist = NO;
     
     ServerObj* serverObjEdited = [_arrServerList objectAtIndex:index];
@@ -164,10 +258,10 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This server has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
-            break;
+            return NO;
         }
     }
-   
+    
     if (!bExist) 
     {
         
@@ -200,12 +294,13 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
         [_arrServerList removeAllObjects];
         _arrServerList = [configuration getServerList];
         [_tbvlServerList reloadData];
-        [self.navigationController popToViewController:self animated:YES];
+        
     }
+    return YES;
 }
 
 
-- (void)deleteServerObjAtIndex:(int)index
+- (BOOL)deleteServerObjAtIndex:(int)index
 {
     ServerObj* deletedServerObj = [_arrServerList objectAtIndex:index];
     
@@ -233,100 +328,14 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
     }
     
     [arrTmp release];
-            
+    
     [_arrServerList removeAllObjects];
     _arrServerList = [configuration getServerList];
     [_tbvlServerList reloadData];
-    [self.navigationController popToViewController:self animated:YES];
-}
-
-#pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
-{
-    return 1;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	NSString* tmpStr = @"";
-	return tmpStr;
-}
-
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
-{
-    return [_arrServerList count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    float fHeight = 44.0;
-    return fHeight;
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNibServer owner:self options:nil];
-        cell = (CustomBackgroundForCell_iPhone *)[nib objectAtIndex:0];
-        
-        UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
-        lbServerName.textColor = [UIColor darkGrayColor];
-        
-        UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
-        CGRect tmpFrame = lbServerUrl.frame;
-        tmpFrame.size.width += 55;
-        lbServerUrl.frame = tmpFrame; 
-        
-        lbServerUrl.textColor = [UIColor darkGrayColor];
-        
-        //cell.accessoryView = nil;
-
-        
-    }
-    
-    if (indexPath.row < [_arrServerList count]) 
-    {
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-        
-        UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
-        lbServerName.text = tmpServerObj._strServerName;
-        
-        UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
-        lbServerUrl.text = tmpServerObj._strServerUrl;
-    }
-    
-    //Customize the cell background
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
-
-    return cell;
+    return YES;
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    
-    if (_serverEditingViewController == nil) 
-    {
-        _serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
-        [_serverEditingViewController setDelegate:self];
-    }
-    [_serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
-    
-    if ([self.navigationController.viewControllers containsObject:_serverEditingViewController]) 
-    {
-        [self.navigationController popToViewController:_serverEditingViewController animated:YES];
-    }
-    else
-    {
-        [self.navigationController pushViewController:_serverEditingViewController animated:YES];
-    }
-    [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
-}
 
 @end

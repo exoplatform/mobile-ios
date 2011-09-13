@@ -78,10 +78,13 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
                           forState:UIControlStateNormal];
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView addSubview:_btnDelete]; 
     
     //Set the background Color of the view
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    backgroundView.frame = self.view.frame;
+    self.tableView.backgroundView = backgroundView;
+    [backgroundView release];
     
 }
 
@@ -134,23 +137,14 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     _strServerName = [_txtfServerName text];
     _strServerUrl = [URLAnalyzer parserURL:[_txtfServerUrl text]];
     
-    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
-    {
-        [_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl];
-    }
-    else
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add an empty server name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-    }
+    if ([_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl]) [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)onBtnDelete
 {
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder]; 
-    [_delegate deleteServerObjAtIndex:_intIndex];
+    if ([_delegate deleteServerObjAtIndex:_intIndex]) [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -198,6 +192,20 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 44.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    _btnDelete.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 44);
+    
+    return _btnDelete;
+    
+}
+
+
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
@@ -210,7 +218,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     
     CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
         
-        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if(indexPath.row == 0)
@@ -218,14 +225,16 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
             cell.textLabel.text = @"Server Name";
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-            [cell addSubview:_txtfServerName];
+            
+            cell.accessoryView = _txtfServerName;
         }
         else
         {
             cell.textLabel.text = @"Server Url";
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-            [cell addSubview:_txtfServerUrl];
+            
+            cell.accessoryView = _txtfServerUrl;
         }
     
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];

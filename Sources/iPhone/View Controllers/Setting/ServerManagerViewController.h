@@ -8,18 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class ServerAddingViewController;
-@class ServerEditingViewController;
+@protocol ServerManagerProtocol <NSObject>
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (BOOL)deleteServerObjAtIndex:(int)index;
+@end
 
-@interface ServerManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+
+@interface ServerManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ServerManagerProtocol>
 {
     IBOutlet UITableView*           _tbvlServerList;
     NSMutableArray*                 _arrServerList;
-    ServerAddingViewController*     _serverAddingViewController;
-    ServerEditingViewController*    _serverEditingViewController;
 }
 
-- (void)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
-- (void)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
-- (void)deleteServerObjAtIndex:(int)index;
+
 @end

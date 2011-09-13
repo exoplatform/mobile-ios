@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ServerManagerViewController.h"
 
 @interface ServerAddingViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
-    id                                  _delegate;
+    id<ServerManagerProtocol>     _delegate;
     
     UITextField*                        _txtfServerName;
     UITextField*                        _txtfServerUrl;  
@@ -24,7 +24,7 @@
 @property (nonatomic, retain) UITextField* _txtfServerName;
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
 
-- (void)setDelegate:(id)delegate;
+- (void)setDelegate:(id<ServerManagerProtocol>)delegate;
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;
 
 @end

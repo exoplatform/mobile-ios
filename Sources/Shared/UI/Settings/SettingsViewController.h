@@ -8,20 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@class ServerManagerViewController;
+
 
 @interface SettingsViewController : UITableViewController {
 	    
-    BOOL                    bRememberMe;
-	BOOL                    bAutoLogin;
-	NSString*               languageStr;
+    BOOL                            bRememberMe;
+	BOOL                            bAutoLogin;
+	NSString*                       languageStr;
 	
-	UISwitch*               rememberMe;
-	UISwitch*               autoLogin;
+	UISwitch*                       rememberMe;
+	UISwitch*                       autoLogin;
 	
-    NSMutableArray*         _arrServerList;
-    int                     _intSelectedServer;
+    NSMutableArray*                 _arrServerList;
+    int                             _intSelectedServer;
     
-    UIBarButtonItem*        _doneBarButtonItem;
+    UIBarButtonItem*                _doneBarButtonItem;
+    ServerManagerViewController*    _serverManagerViewController;
+
+    
 }
 
 

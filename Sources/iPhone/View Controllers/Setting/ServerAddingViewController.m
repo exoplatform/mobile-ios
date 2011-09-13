@@ -69,7 +69,11 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [self.navigationItem setRightBarButtonItem:_bbtnDone];
     
     //Set the background Color of the view
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    backgroundView.frame = self.view.frame;
+    self.tableView.backgroundView = backgroundView;
+    [backgroundView release];
 }
 
 - (void)viewDidUnload
@@ -93,7 +97,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)setDelegate:(id)delegate
+- (void)setDelegate:(id<ServerManagerProtocol>)delegate
 {
     _delegate = delegate;
 }
@@ -105,21 +109,13 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     _strServerName = [_txtfServerName text];
     _strServerUrl = [URLAnalyzer parserURL:[_txtfServerUrl text]];
     
-    if ([_strServerName length] > 0 && [_strServerUrl length] > 0) 
-    {
-        [_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl];
-    }
-    else
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add a server with an empty name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-    }
+    if ([_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl]) [self.navigationController popViewControllerAnimated:YES];
 }
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
 {
-    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(140, 15, 170, 22)];
+    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 21)];
+    textField.autoresizingMask =  UIViewAutoresizingFlexibleWidth;
     textField.placeholder = @"Required";
     textField.secureTextEntry = secure;
     textField.keyboardType = UIKeyboardTypeASCIICapable;
@@ -195,7 +191,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 {
    
         CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if(indexPath.row == 0)
@@ -205,7 +200,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
 
-            [cell addSubview:_txtfServerName];
+            cell.accessoryView = _txtfServerName;
         }
         else
         {
@@ -214,7 +209,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
             
-            [cell addSubview:_txtfServerUrl];
+            cell.accessoryView = _txtfServerUrl;
         }
     
 

@@ -14,7 +14,6 @@
 #import "ContainerCell.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
-#import "AuthenticateViewController_iPhone.h"
 
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
@@ -79,6 +78,10 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 #pragma mark - View lifecycle
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -93,8 +96,9 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     [self loadSettingsInformations];
 
     //Set the background Color of the view
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    backgroundView.frame = self.view.frame;
     self.tableView.backgroundView = backgroundView;
     [backgroundView release];
     
@@ -474,14 +478,44 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             break;
     }
     
-    
     //Customize the cell background
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
-    
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
     
+	if(indexPath.section == 1)
+	{
+		int selectedLanguage = indexPath.row;
+        
+        //Save the language
+        [[LanguageHelper sharedInstance] changeToLanguage:selectedLanguage];
+        
+        //Save other settings (autologin, rememberme)
+        [self saveSettingsInformations];
+        
+        //Finally reload the content of the screen
+        [self reloadSettingsWithUpdate];
+	}
     
+	else if(indexPath.section == 2)
+	{
+        if (indexPath.row == [_arrServerList count]) 
+        {
+            _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
+            [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
+            
+        }
+	}
+	else if(indexPath.section == 3)
+    {
+		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
+		[self.navigationController pushViewController:userGuideController animated:YES];
+	}
 }
 
 

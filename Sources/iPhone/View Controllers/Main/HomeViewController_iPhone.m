@@ -24,7 +24,7 @@
 #import "DocumentsViewController_iPhone.h"
 #import "ActivityStreamBrowseViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
-#import "SettingsViewController_iPhone.h"
+#import "SettingsViewController.h"
 #import "MessengerViewController_iPhone.h"
 #import "FilesProxy.h"
 
@@ -189,7 +189,7 @@
     
     if([item.title isEqualToString:@"Settings"]) 
     {
-        SettingsViewController_iPhone *setting = [[SettingsViewController_iPhone alloc] initWithStyle:UITableViewStyleGrouped];
+        SettingsViewController *setting = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
         [setting release];
         
