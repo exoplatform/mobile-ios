@@ -173,10 +173,10 @@
 
 -(void)showSettings {
 
-    // files
+    // Settings
     if (_iPadSettingViewController == nil)
     {
-        _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
+        _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
         [_iPadSettingViewController setDelegate:_delegate];
     }    
     

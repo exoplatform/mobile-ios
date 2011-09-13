@@ -13,7 +13,7 @@
 #import "ContainerCell.h"
 #import "defines.h"
 #import "LoginViewController.h"
-#import "iPadSettingViewController.h"
+#import "SettingsViewController_iPad.h"
 #import "CustomBackgroundForCell_iPhone.h"
 
 #define kTagForCellSubviewServerNameLabel 444

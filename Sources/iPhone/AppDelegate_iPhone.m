@@ -8,7 +8,6 @@
 
 #import "AppDelegate_iPhone.h"
 
-#import "eXoSettingViewController.h"
 #import "defines.h"
 #import "ChatProxy.h"
 

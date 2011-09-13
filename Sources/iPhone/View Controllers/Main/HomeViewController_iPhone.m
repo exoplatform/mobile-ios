@@ -24,7 +24,7 @@
 #import "DocumentsViewController_iPhone.h"
 #import "ActivityStreamBrowseViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
-#import "eXoSettingViewController.h"
+#import "SettingsViewController_iPhone.h"
 #import "MessengerViewController_iPhone.h"
 #import "FilesProxy.h"
 
@@ -189,8 +189,7 @@
     
     if([item.title isEqualToString:@"Settings"]) 
     {
-        eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [setting setDelegate:self];
+        SettingsViewController_iPhone *setting = [[SettingsViewController_iPhone alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
         [setting release];
         

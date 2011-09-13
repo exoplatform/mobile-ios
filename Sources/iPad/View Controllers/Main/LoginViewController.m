@@ -13,13 +13,11 @@
 #import "AuthenticateProxy.h"
 #import "SupportViewController.h"
 #import "Configuration.h"
-#import "iPadSettingViewController.h"
+#import "SettingsViewController_iPad.h"
 #import "iPadServerManagerViewController.h"
 #import "iPadServerAddingViewController.h"
 #import "iPadServerEditingViewController.h"
 #import "SSHUDView.h"
-
-#import "eXoSettingViewController.h"
 
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
@@ -377,8 +375,7 @@
 {
 	if(_iPadSettingViewController == nil)
     {
-        _iPadSettingViewController = [[iPadSettingViewController alloc] initWithNibName:@"iPadSettingViewController" bundle:nil];
-        [_iPadSettingViewController setDelegate:self];
+        _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
         //[_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
         //[self.view addSubview:_iPadSettingViewController.view];
     }
@@ -697,7 +694,7 @@
     [self pullViewOut:[_arrViewOfViewControllers lastObject]];
     if (_iPadSettingViewController) 
     {
-        [_iPadSettingViewController.tblView reloadData];
+        //[_iPadSettingViewController.tblView reloadData];
     }
     if (_iPadServerManagerViewController) 
     {

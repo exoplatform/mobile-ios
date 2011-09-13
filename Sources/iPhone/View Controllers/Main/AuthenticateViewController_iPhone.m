@@ -10,7 +10,7 @@
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "CXMLDocument.h"
-#import "eXoSettingViewController.h"
+#import "SettingsViewController_iPhone.h"
 #import "DataProcess.h"
 #import "NSString+HTML.h"
 #import "Configuration.h"
@@ -401,8 +401,7 @@
 
 - (IBAction)onSettingBtn
 {
-    eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [setting setDelegate:self];
+    SettingsViewController_iPhone *setting = [[SettingsViewController_iPhone alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
     [setting release];
     
