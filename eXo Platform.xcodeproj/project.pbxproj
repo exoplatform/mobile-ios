@@ -329,6 +329,7 @@
 		89112721140B8BF000A8851C /* eXoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911271F140B8BF000A8851C /* eXoMessage.m */; };
 		89112724140B913600A8851C /* ChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112723140B913600A8851C /* ChatUser.m */; };
 		89112728140B9A8E00A8851C /* ChatProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112727140B9A8E00A8851C /* ChatProxy.m */; };
+		8911F5551420C7540093F2BD /* AuthenticateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911F5541420C7540093F2BD /* AuthenticateViewController.m */; };
 		8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937A32913387F1D00D8B474 /* NSString+HTML.m */; };
 		8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */; };
 		8937A3401338993900D8B474 /* ChatWindowViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32F1338993900D8B474 /* ChatWindowViewController_iPad.xib */; };
@@ -1132,6 +1133,8 @@
 		89112723140B913600A8851C /* ChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
 		89112726140B9A8E00A8851C /* ChatProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProxy.h; sourceTree = "<group>"; };
 		89112727140B9A8E00A8851C /* ChatProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProxy.m; sourceTree = "<group>"; };
+		8911F5531420C7540093F2BD /* AuthenticateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateViewController.h; sourceTree = "<group>"; };
+		8911F5541420C7540093F2BD /* AuthenticateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateViewController.m; sourceTree = "<group>"; };
 		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
 		8937A32F1338993900D8B474 /* ChatWindowViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatWindowViewController_iPad.xib; path = ../../NIB/ChatWindowViewController_iPad.xib; sourceTree = "<group>"; };
@@ -2325,6 +2328,8 @@
 		890F75CD141EF6AA004D35FE /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
+				8911F5531420C7540093F2BD /* AuthenticateViewController.h */,
+				8911F5541420C7540093F2BD /* AuthenticateViewController.m */,
 			);
 			path = Authenticate;
 			sourceTree = "<group>";
@@ -3796,6 +3801,7 @@
 				4633E6EE141BB919002A47F4 /* DocumentDisplayViewController_iPad.m in Sources */,
 				4633E6F3141BBE80002A47F4 /* DocumentDisplayViewController_iPhone.m in Sources */,
 				461BFAB4141F4D14009844F6 /* SettingsViewController.m in Sources */,
+				8911F5551420C7540093F2BD /* AuthenticateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

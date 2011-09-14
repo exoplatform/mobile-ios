@@ -189,9 +189,7 @@
     
     //[_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
+
     [self signInAnimation:bAutoLogin];
 
     [super viewDidLoad];
@@ -199,15 +197,6 @@
     
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification 
-{
-    [self moveUp:YES];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    [self moveUp:NO];
-}
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -227,7 +216,6 @@
         [_vContainer setFrame:CGRectMake(227, 230, 569, 460)];
 	}
     
-    //[self moveView];
 }
 
 
@@ -389,7 +377,6 @@
     }
     [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
     
-    //[self pushViewIn:_iPadSettingViewController.view];
 }
 
 - (IBAction)onSignInBtn:(id)sender
@@ -409,11 +396,6 @@
 	}
 	else
 	{		
-		NSRange range = [_strHost rangeOfString:@"http://"];
-		if(range.length == 0)
-		{
-			_strHost = [NSString stringWithFormat:@"http://%@", _strHost];
-		}
 		[self doSignIn];
 	}
 }
@@ -533,43 +515,25 @@
     [_tbvlServerList reloadData];
 }
 
-- (void)moveUp:(BOOL)bUp
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
 {
     CGRect frameToGo = _vContainer.frame;
+    
     if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {
-        if (bUp) 
-        {
-            frameToGo.origin.y = 330;
-        }
-        else
-        {
-            frameToGo.origin.y = 400;
-        }
+        frameToGo.origin.y = 330;
+    }
+    else    
+    {	
+        frameToGo.origin.y = 0;
     }
     
-    if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {	
-        if (bUp) 
-        {
-            frameToGo.origin.y = 0;
-        }
-        else
-        {
-            frameToGo.origin.y = 230;
-        }
-    }
-
-    [UIView animateWithDuration:0.5 
+    [UIView animateWithDuration:0.3 
                      animations:^{
                          _vContainer.frame = frameToGo;
                      }
      ];
-}
 
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
-{
 	return YES;
 }
 
@@ -582,6 +546,25 @@
     else
     {    
         [_txtfPassword resignFirstResponder];
+        
+        CGRect frameToGo = _vContainer.frame;
+        
+        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+        {
+            frameToGo.origin.y = 400;
+        }
+        else    
+        {	
+            frameToGo.origin.y = 230;
+        }
+        
+        [UIView animateWithDuration:0.3 
+                         animations:^{
+                             _vContainer.frame = frameToGo;
+                         }
+         ];
+
+        
         [self onSignInBtn:nil];
     }    
     
@@ -594,82 +577,26 @@
 	{
 		[_txtfUsername resignFirstResponder];
 		[_txtfPassword resignFirstResponder];
-	}
-}
-
-- (void)pushViewIn:(UIView*)view
-{
-    [_arrViewOfViewControllers addObject:view];
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        [view setFrame:CGRectMake(SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
-        [self.view setFrame:CGRectMake(0, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
-	}
-	
-	if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{	
-        [view setFrame:CGRectMake(SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
-        [self.view setFrame:CGRectMake(0, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
-	}
-    
-    [UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.75];
-	[UIView setAnimationDelegate:self];
-    [self moveView];
-    [UIView commitAnimations];
-}
-
-- (void)pullViewOut:(UIView*)viewController
-{
-    [self jumpToViewController:[_arrViewOfViewControllers count] - 2]; 
-    [_arrViewOfViewControllers removeLastObject];
-}
-
-- (void)jumpToViewController:(int)index
-{
-    [UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.75];
-	[UIView setAnimationDelegate:self];
-    for (int i = 0; i < [_arrViewOfViewControllers count]; i++) 
-    {
-        UIView* tmpView = [_arrViewOfViewControllers objectAtIndex:i];
-        int p = i - index;
+        
+        CGRect frameToGo = _vContainer.frame;
+        
         if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
         {
-            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+            frameToGo.origin.y = 400;
         }
-        
-        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
+        else    
         {	
-            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
-        }
-    }
-    [UIView commitAnimations];
-}
-
-
-
-- (void)moveView
-{
-    for (int i = 0; i < [_arrViewOfViewControllers count]; i++) 
-    {
-        UIView* tmpView = [_arrViewOfViewControllers objectAtIndex:i];
-        [tmpView removeFromSuperview];
-        
-        int p = i - [_arrViewOfViewControllers count] + 1;
-        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-        {
-            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_PRTR_IPAD, 0, SCR_WIDTH_PRTR_IPAD, SCR_HEIGHT_PRTR_IPAD)];
+            frameToGo.origin.y = 230;
         }
         
-        if((_interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (_interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-        {	
-            [tmpView setFrame:CGRectMake(p*SCR_WIDTH_LSCP_IPAD, 0, SCR_WIDTH_LSCP_IPAD, SCR_HEIGHT_LSCP_IPAD)];
-        }
-        [self.view addSubview:tmpView];
-    }
+        [UIView animateWithDuration:0.3 
+                         animations:^{
+                             _vContainer.frame = frameToGo;
+                         }
+         ];
+        
+	}
 }
-
 
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {

@@ -28,7 +28,6 @@
 	
 	BOOL									_bRememberMe;	//Is remember
 	BOOL									_bAutoSignIn;	//Is auto sign in
-	BOOL									_bMoveUp;	// Is move UI up
 	
 	NSDictionary*							_dictLocalize;	//Language dictionary
 	int										_intSelectedLanguage;	//Language index
@@ -83,7 +82,6 @@
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
 
 - (void)moveUIControls:(int)intOffset;
-- (void)moveUp:(BOOL)bUp;
 - (void)doSignIn;
 - (void)startSignInProgress;
 - (void)signInSuccesfully;
@@ -95,14 +93,6 @@
 - (IBAction)onBtnAccount:(id)sender;
 - (IBAction)onBtnServerList:(id)sender;
 
-- (void)pushViewIn:(UIView*)view;
-- (void)pullViewOut:(UIView*)viewController;
-- (void)moveView;
-- (void)onBackDelegate;
-- (void)jumpToViewController:(int)index;
-- (void)showiPadServerManagerViewController;
-- (void)showiPadServerAddingViewController;
-- (void)showiPadServerEditingViewControllerWithServerObj:(ServerObj*)serverObj andIndex:(int)index;
 - (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
 - (void)deleteServerObjAtIndex:(int)intIndex;
 - (void)reloadData;
