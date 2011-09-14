@@ -1,0 +1,44 @@
+//
+//  AuthenticateViewController.h
+//  Authenticate Screen
+//
+//  Created by Tran Hoai Son on 5/8/09.
+//  Copyright home 2009. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "SSHUDView.h"
+#import "PlatformVersionProxy.h"
+
+//Login page
+@interface AuthenticateViewController : UIViewController <PlatformVersionProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
+{
+	NSString*                   _strBSuccessful;	//Login status
+	BOOL                        bRememberMe;	//Remember
+	BOOL                        bAutoLogin;	//Autologin
+    
+    IBOutlet UIButton*          _btnAccount;
+    IBOutlet UIButton*          _btnServerList;
+    IBOutlet UITextField*       _txtfUsername;
+    IBOutlet UITextField*       _txtfPassword;
+    IBOutlet UIButton*          _btnLogin;
+    IBOutlet UIButton*          _btnSettings;
+    IBOutlet UIView*            _vAccountView;
+    IBOutlet UIView*            _vServerListView;
+    IBOutlet UITableView*       _tbvlServerList;
+    IBOutlet UIView*            _contentView;
+    
+    NSMutableArray*             _arrServerList;
+    NSString*                   _strHost;
+    int                         _intSelectedServer;
+    
+    SSHUDView*                  _hud;//Heads up display
+}
+
+- (IBAction)onSignInBtn:(id)sender;	//Login action
+- (IBAction)onSettingBtn;	//Setting action
+- (void)doSignIn;	//Login progress
+- (IBAction)onBtnAccount:(id)sender;
+- (IBAction)onBtnServerList:(id)sender;
+- (void)hitAtView:(UIView*)view;
+@end
