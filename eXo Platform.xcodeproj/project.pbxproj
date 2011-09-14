@@ -841,10 +841,10 @@
 		46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialYourCommentButtonBg@2x.png"; sourceTree = "<group>"; };
 		46A9375113F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailDislikeButton@2x.png"; sourceTree = "<group>"; };
 		46A9375313F03656009D41DA /* SocialActivityDetailDislikeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailDislikeButton.png; sourceTree = "<group>"; };
-		46ABBE8513890BD10077809B /* FilesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesProxy.h; sourceTree = "<group>"; };
-		46ABBE8613890BD10077809B /* FilesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxy.m; sourceTree = "<group>"; };
-		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
-		46ABBE8913890C260077809B /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
+		46ABBE8513890BD10077809B /* FilesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilesProxy.h; path = "../../../iPhone/Data Manager/Proxies/FilesProxy.h"; sourceTree = "<group>"; };
+		46ABBE8613890BD10077809B /* FilesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesProxy.m; path = "../../../iPhone/Data Manager/Proxies/FilesProxy.m"; sourceTree = "<group>"; };
+		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = "../../../iPhone/Data Manager/Model/File.h"; sourceTree = "<group>"; };
+		46ABBE8913890C260077809B /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = File.m; path = "../../../iPhone/Data Manager/Model/File.m"; sourceTree = "<group>"; };
 		46ABBE8C13890D0C0077809B /* eXo_Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eXo_Constants.h; path = Constant/eXo_Constants.h; sourceTree = "<group>"; };
 		46ABBE921389141E0077809B /* DocumentsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController_iPhone.h; path = ../Main/DocumentsViewController_iPhone.h; sourceTree = "<group>"; };
 		46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController_iPhone.m; path = ../Main/DocumentsViewController_iPhone.m; sourceTree = "<group>"; };
@@ -1509,6 +1509,24 @@
 				460736E3137C2F1C00D77DB9 /* AuthenticateTextfield@2x.png */,
 			);
 			path = "@2x";
+			sourceTree = "<group>";
+		};
+		4608C349142092030054E59C /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				46ABBE8813890C260077809B /* File.h */,
+				46ABBE8913890C260077809B /* File.m */,
+			);
+			name = Document;
+			sourceTree = "<group>";
+		};
+		4608C34A1420921D0054E59C /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				46ABBE8513890BD10077809B /* FilesProxy.h */,
+				46ABBE8613890BD10077809B /* FilesProxy.m */,
+			);
+			name = Document;
 			sourceTree = "<group>";
 		};
 		461BFAB1141F4CD9009844F6 /* Settings */ = {
@@ -3014,8 +3032,6 @@
 		8947352213375EE000B0AD11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				46ABBE8813890C260077809B /* File.h */,
-				46ABBE8913890C260077809B /* File.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3023,8 +3039,6 @@
 		8947352313375EE000B0AD11 /* Proxies */ = {
 			isa = PBXGroup;
 			children = (
-				46ABBE8513890BD10077809B /* FilesProxy.h */,
-				46ABBE8613890BD10077809B /* FilesProxy.m */,
 			);
 			path = Proxies;
 			sourceTree = "<group>";
@@ -3032,6 +3046,7 @@
 		8947352413375EF200B0AD11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4608C349142092030054E59C /* Document */,
 				8911271B140B8B5F00A8851C /* Chat */,
 				46ADAEE6140699A3005ABA79 /* Dashboard */,
 				462B62A313DEF7600050FCBC /* ServerConfiguration */,
@@ -3043,6 +3058,7 @@
 		8947352513375EF200B0AD11 /* Proxies */ = {
 			isa = PBXGroup;
 			children = (
+				4608C34A1420921D0054E59C /* Document */,
 				89112725140B9A7800A8851C /* Chat */,
 				46ADAD111403E3C0005ABA79 /* Dashboard */,
 				46ADAC6614028054005ABA79 /* Authenticate */,
