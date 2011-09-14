@@ -34,6 +34,7 @@
 		460736EF137C2F1C00D77DB9 /* AuthenticateServerCellBgNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 460736E1137C2F1C00D77DB9 /* AuthenticateServerCellBgNormal@2x.png */; };
 		460736F0137C2F1C00D77DB9 /* AuthenticateServerCellBgSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 460736E2137C2F1C00D77DB9 /* AuthenticateServerCellBgSelected@2x.png */; };
 		460736F1137C2F1C00D77DB9 /* AuthenticateTextfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 460736E3137C2F1C00D77DB9 /* AuthenticateTextfield@2x.png */; };
+		4608C4D01420F8450054E59C /* SettingsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608C4CF1420F8450054E59C /* SettingsViewController_iPad.m */; };
 		46144BCF13A94044009B7ECD /* NSDate+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 46144BCE13A94044009B7ECD /* NSDate+Formatting.m */; };
 		461931541385529D00EEB664 /* HomeBubbleBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */; };
 		46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 46193155138552A600EEB664 /* HomeBubbleBackground.png */; };
@@ -727,6 +728,8 @@
 		460736E1137C2F1C00D77DB9 /* AuthenticateServerCellBgNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AuthenticateServerCellBgNormal@2x.png"; sourceTree = "<group>"; };
 		460736E2137C2F1C00D77DB9 /* AuthenticateServerCellBgSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AuthenticateServerCellBgSelected@2x.png"; sourceTree = "<group>"; };
 		460736E3137C2F1C00D77DB9 /* AuthenticateTextfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AuthenticateTextfield@2x.png"; sourceTree = "<group>"; };
+		4608C4CE1420F8450054E59C /* SettingsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController_iPad.h; path = Setting/SettingsViewController_iPad.h; sourceTree = "<group>"; };
+		4608C4CF1420F8450054E59C /* SettingsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController_iPad.m; path = Setting/SettingsViewController_iPad.m; sourceTree = "<group>"; };
 		46144BCD13A94044009B7ECD /* NSDate+Formatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Formatting.h"; sourceTree = "<group>"; };
 		46144BCE13A94044009B7ECD /* NSDate+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatting.m"; sourceTree = "<group>"; };
 		461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeBubbleBackground@2x.png"; path = "Home/@2x/HomeBubbleBackground@2x.png"; sourceTree = "<group>"; };
@@ -1530,6 +1533,16 @@
 				46ABBE8613890BD10077809B /* FilesProxy.m */,
 			);
 			name = Document;
+			sourceTree = "<group>";
+		};
+		4608C4CD1420F7FD0054E59C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4608C4CE1420F8450054E59C /* SettingsViewController_iPad.h */,
+				4608C4CF1420F8450054E59C /* SettingsViewController_iPad.m */,
+			);
+			name = Settings;
+			path = "../../iPhone/View Controllers";
 			sourceTree = "<group>";
 		};
 		461BFAB1141F4CD9009844F6 /* Settings */ = {
@@ -2471,6 +2484,7 @@
 				8947333D13370B1900B0AD11 /* Chat */,
 				8947334713370B1900B0AD11 /* File */,
 				8947334E13370B1900B0AD11 /* Gadget */,
+				4608C4CD1420F7FD0054E59C /* Settings */,
 				8947335713370B1900B0AD11 /* Main */,
 			);
 			path = "View Controllers";
@@ -3802,6 +3816,7 @@
 				4633E6F3141BBE80002A47F4 /* DocumentDisplayViewController_iPhone.m in Sources */,
 				461BFAB4141F4D14009844F6 /* SettingsViewController.m in Sources */,
 				8911F5551420C7540093F2BD /* AuthenticateViewController.m in Sources */,
+				4608C4D01420F8450054E59C /* SettingsViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

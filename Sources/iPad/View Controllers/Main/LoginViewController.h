@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SSHUDView.h"
 #import "PlatformVersionProxy.h"
-#import "SettingsViewController.h"
+#import "SettingsViewController_iPad.h"
 
 @class Checkbox;
 @class ServerObj;
@@ -56,7 +56,7 @@
     int                         _intSelectedServer;
     
     UINavigationController*             _modalNavigationSettingViewController;
-    SettingsViewController*          _iPadSettingViewController;
+    SettingsViewController_iPad*          _iPadSettingViewController;
     
     NSMutableArray*             _arrViewOfViewControllers;
     UIInterfaceOrientation      _interfaceOrientation;

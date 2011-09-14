@@ -176,7 +176,7 @@
     // Settings
     if (_iPadSettingViewController == nil)
     {
-        _iPadSettingViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
         _iPadSettingViewController.settingsDelegate = self;
     }    
     

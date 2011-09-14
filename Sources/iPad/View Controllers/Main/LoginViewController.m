@@ -13,7 +13,7 @@
 #import "AuthenticateProxy.h"
 #import "SupportViewController.h"
 #import "Configuration.h"
-#import "SettingsViewController.h"
+#import "SettingsViewController_iPad.h"
 #import "SSHUDView.h"
 
 #define kHeightForServerCell 44
@@ -333,7 +333,7 @@
 {
 	if(_iPadSettingViewController == nil)
     {
-        _iPadSettingViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
         _iPadSettingViewController.settingsDelegate = self;
         //[_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
         //[self.view addSubview:_iPadSettingViewController.view];
