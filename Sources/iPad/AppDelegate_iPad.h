@@ -30,7 +30,6 @@
 -(void)showHome:(id)delegateForViewControllers isCompatibleWithSocial:(BOOL)isCompatibleWithSocial;
 -(void)backToAuthenticate;
 
-- (void)dismissKeyboard;
 
 +(AppDelegate_iPad*)instance;
 

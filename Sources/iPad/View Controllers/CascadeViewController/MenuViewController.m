@@ -177,6 +177,7 @@
     if (_iPadSettingViewController == nil)
     {
         _iPadSettingViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _iPadSettingViewController.settingsDelegate = self;
     }    
     
     if (_modalNavigationSettingViewController == nil) 
@@ -347,6 +348,12 @@
 	[_menuHeader release];
 	[_cellContents release];
     [super dealloc];
+}
+
+#pragma mark - Settings Delegate methods
+
+-(void)doneWithSettings {
+    [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }
 
 

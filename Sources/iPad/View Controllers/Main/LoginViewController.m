@@ -261,18 +261,6 @@
     {
         [_iPadSettingViewController release];
     }
-    if (_iPadServerManagerViewController) 
-    {
-        [_iPadServerManagerViewController release];
-    }
-    if (_iPadServerAddingViewController) 
-    {
-        [_iPadServerAddingViewController release];
-    }
-    if (_iPadServerEditingViewController) 
-    {
-        [_iPadServerEditingViewController release];
-    }
     [_arrServerList release];
     [_arrViewOfViewControllers release];
     [super dealloc];
@@ -322,22 +310,7 @@
 	[_settingViewController localize];
     */ 
     [_lbSigningInStatus setText:[_dictLocalize objectForKey:@"SigningIn"]];
-    if (_iPadSettingViewController) 
-    {
-        [_iPadSettingViewController localize];
-    }
-    if (_iPadServerManagerViewController) 
-    {
-        [_iPadServerManagerViewController localize];
-    }
-    if (_iPadServerAddingViewController) 
-    {
-        [_iPadServerAddingViewController localize];
-    }
-    if (_iPadServerEditingViewController) 
-    {
-        [_iPadServerEditingViewController localize];
-    }
+   
 }
 
 - (void)setSelectedLanguage:(int)languageId
@@ -361,6 +334,7 @@
 	if(_iPadSettingViewController == nil)
     {
         _iPadSettingViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _iPadSettingViewController.settingsDelegate = self;
         //[_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
         //[self.view addSubview:_iPadSettingViewController.view];
     }
@@ -699,5 +673,12 @@
     [_tbvlServerList reloadData];
 }
 
+
+#pragma - SettingsDelegate methods
+
+-(void)doneWithSettings {
+    [_tbvlServerList reloadData];
+    [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
+}
 
 @end

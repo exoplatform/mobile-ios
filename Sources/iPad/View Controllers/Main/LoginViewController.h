@@ -9,17 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "SSHUDView.h"
 #import "PlatformVersionProxy.h"
+#import "SettingsViewController.h"
 
 @class Checkbox;
-@class SupportViewController;
-@class iPadSettingViewController;
-@class iPadServerManagerViewController;
-@class iPadServerAddingViewController;
-@class iPadServerEditingViewController;
 @class ServerObj;
 
 //Login page
-@interface LoginViewController : UIViewController <PlatformVersionProxyDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface LoginViewController : UIViewController <PlatformVersionProxyDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, SettingsDelegateProcotol> {
 	
 	id										_delegate;
 
@@ -60,10 +56,7 @@
     int                         _intSelectedServer;
     
     UINavigationController*             _modalNavigationSettingViewController;
-    iPadSettingViewController*          _iPadSettingViewController;
-    iPadServerManagerViewController*    _iPadServerManagerViewController;
-    iPadServerAddingViewController*     _iPadServerAddingViewController;
-    iPadServerEditingViewController*    _iPadServerEditingViewController;
+    SettingsViewController*          _iPadSettingViewController;
     
     NSMutableArray*             _arrViewOfViewControllers;
     UIInterfaceOrientation      _interfaceOrientation;
@@ -81,7 +74,6 @@
 - (NSDictionary*)getLocalization;	//Get language dictionary
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
 
-- (void)moveUIControls:(int)intOffset;
 - (void)doSignIn;
 - (void)startSignInProgress;
 - (void)signInSuccesfully;
@@ -93,7 +85,4 @@
 - (IBAction)onBtnAccount:(id)sender;
 - (IBAction)onBtnServerList:(id)sender;
 
-- (void)editServerObjAtIndex:(int)intIndex withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
-- (void)deleteServerObjAtIndex:(int)intIndex;
-- (void)reloadData;
 @end

@@ -31,6 +31,7 @@
 - (void)contentDirectoryIsRetrieved;
 - (void)hideActionsPanel;
 - (void)hideFileFolderActionsController;
+- (void)showHUDWithMessage:(NSString *)message;
 
 @end
 

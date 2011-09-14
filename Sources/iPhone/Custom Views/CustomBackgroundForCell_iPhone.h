@@ -17,12 +17,12 @@ typedef enum  {
 
 
 @interface CustomBackgroundForCell_iPhone : UITableViewCell {
-	CustomCellBackgroundViewPosition position_;
+	CustomCellBackgroundViewPosition _cellPosition;
 }
 
 -(void)setBackgroundForRow:(int)rowIndex inSectionSize:(int)numberOfRowInSection;
 
 -(void)setBackgroundForPosition:(CustomCellBackgroundViewPosition)position;
 
-@property(nonatomic) CustomCellBackgroundViewPosition position;
+@property(nonatomic) CustomCellBackgroundViewPosition cellPosition;
 @end

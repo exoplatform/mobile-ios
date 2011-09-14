@@ -189,9 +189,10 @@
     
     if([item.title isEqualToString:@"Settings"]) 
     {
-        SettingsViewController *setting = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
-        [setting release];
+        SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        settingsViewController.settingsDelegate = self;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+        [settingsViewController release];
         
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self.navigationController presentModalViewController:navController animated:YES];
@@ -221,6 +222,11 @@
 }
 
 
+
+#pragma - Settings Delegate Methods
+- (void)doneWithSettings {
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
 
 
 @end

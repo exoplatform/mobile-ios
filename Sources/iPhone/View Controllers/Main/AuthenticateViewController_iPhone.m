@@ -7,23 +7,35 @@
 //
 
 #import "AuthenticateViewController_iPhone.h"
-//#import "eXoSettingViewController.h"
 #import "AppDelegate_iPhone.h"
 
 @implementation AuthenticateViewController_iPhone
 
 
+#pragma mark - Object Management
+-(void)dealloc {
+
+    [_settingsViewController release];
+    _settingsViewController = nil;
+    
+    [super dealloc];
+}
+
+
 - (IBAction)onSettingBtn
 {
-    /*
-    eXoSettingViewController *setting = [[eXoSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [setting setDelegate:self];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setting];
-    [setting release];
+    if (_settingsViewController == nil) {
+        
+        _settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _settingsViewController.settingsDelegate = self;
+    }
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_settingsViewController];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self.navigationController presentModalViewController:navController animated:YES];
-     */
+    
+    
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial {
@@ -34,6 +46,14 @@
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
     [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
     
+}
+
+
+#pragma mark - Settings Delegate methods
+
+- (void)doneWithSettings {
+    [_tbvlServerList reloadData];
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 

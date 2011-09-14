@@ -47,6 +47,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 @implementation SettingsViewController
 
+@synthesize settingsDelegate = _settingsDelegate;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -79,7 +81,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 #pragma mark - View lifecycle
 
 -(void)viewWillAppear:(BOOL)animated {
-    
+    [self reloadSettingsWithUpdate];
 }
 
 
@@ -112,7 +114,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     //Add the Done button for exit Settings
     _doneBarButtonItem = [[UIBarButtonItem alloc]
                           initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                          target:self action:@selector(dismissSettings)];
+                          target:self action:@selector(doneAction)];
     UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Done"];
     self.navigationItem.rightBarButtonItem = _doneBarButtonItem;
     [navigationItem release];
@@ -174,9 +176,9 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 #pragma - Actions Methods 
 
-//Method to dismiss settings
-- (void)dismissSettings {
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+//Method to done clicked settings
+- (void)doneAction {
+    [_settingsDelegate doneWithSettings];    
 }
 
 
@@ -516,6 +518,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
 		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

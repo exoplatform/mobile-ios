@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
+#import "SettingsViewController.h"
 
-@interface HomeViewController_iPhone : TTViewController <TTLauncherViewDelegate> {
+@interface HomeViewController_iPhone : TTViewController <TTLauncherViewDelegate,SettingsDelegateProcotol> {
     id                  _delegate;
     TTLauncherView*     _launcherView;
         
     BOOL                _isCompatibleWithSocial;
+        
 }
 
 @property BOOL _isCompatibleWithSocial;

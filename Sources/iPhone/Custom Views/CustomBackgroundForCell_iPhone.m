@@ -11,7 +11,7 @@
 
 @implementation CustomBackgroundForCell_iPhone
 
-@synthesize position;
+@synthesize cellPosition = _cellPosition;
 
 
 
@@ -43,7 +43,7 @@
 
 -(void)setBackgroundForPosition:(CustomCellBackgroundViewPosition)position {
 
-    self.position = position;
+    self.cellPosition = position;
     
     
     //Some customize of the cell background :-)
@@ -54,28 +54,28 @@
     
     UIImage *imgBgSelected;
     
-    if (self.position == CustomCellBackgroundViewPositionTop) {
+    if (self.cellPosition == CustomCellBackgroundViewPositionTop) {
         //If the position is top
         imgBgNormal = [[UIImage imageNamed:@"CustomBackgroundForCellTop.png"]
                        stretchableImageWithLeftCapWidth:5 topCapHeight:10];
         imgBgSelected = [[UIImage imageNamed:@"CustomBackgroundForCellTopSelected.png"]
                        stretchableImageWithLeftCapWidth:5 topCapHeight:10];
         
-    } else if (self.position == CustomCellBackgroundViewPositionBottom) {
+    } else if (self.cellPosition == CustomCellBackgroundViewPositionBottom) {
         //If the position is bottom
         imgBgNormal = [[UIImage imageNamed:@"CustomBackgroundForCellBottom.png"]
                        stretchableImageWithLeftCapWidth:5 topCapHeight:10];
         imgBgSelected = [[UIImage imageNamed:@"CustomBackgroundForCellBottomSelected.png"]
                          stretchableImageWithLeftCapWidth:5 topCapHeight:10];
 	
-    } else if (self.position == CustomCellBackgroundViewPositionMiddle) {
+    } else if (self.cellPosition == CustomCellBackgroundViewPositionMiddle) {
         //If the position is Middle
         imgBgNormal = [[UIImage imageNamed:@"CustomBackgroundForCellMiddle.png"]
                        stretchableImageWithLeftCapWidth:5 topCapHeight:10];
         imgBgSelected = [[UIImage imageNamed:@"CustomBackgroundForCellMiddleSelected.png"]
                          stretchableImageWithLeftCapWidth:5 topCapHeight:10];
 	
-    } else if (self.position == CustomCellBackgroundViewPositionSingle) {
+    } else if (self.cellPosition == CustomCellBackgroundViewPositionSingle) {
         //If the position is Single
         imgBgNormal = [[UIImage imageNamed:@"CustomBackgroundForCellSingle.png"]
                        stretchableImageWithLeftCapWidth:6 topCapHeight:10];

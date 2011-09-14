@@ -17,7 +17,7 @@
 
 @class MenuHeaderView;
 
-@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SettingsDelegateProcotol> {
 	
     id                              _delegate;
     

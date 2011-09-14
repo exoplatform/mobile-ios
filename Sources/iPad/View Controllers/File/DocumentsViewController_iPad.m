@@ -13,6 +13,7 @@
 #import "FileActionsViewController.h"
 #import "FileFolderActionsViewController_iPad.h"
 #import "DocumentDisplayViewController_iPad.h"
+#import "StackScrollViewController.h"
 
 
 @implementation DocumentsViewController_iPad

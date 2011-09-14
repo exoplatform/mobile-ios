@@ -11,6 +11,12 @@
 @class ServerManagerViewController;
 
 
+@protocol SettingsDelegateProcotol <NSObject>
+
+-(void)doneWithSettings;
+
+@end
+
 @interface SettingsViewController : UITableViewController {
 	    
     BOOL                            bRememberMe;
@@ -26,8 +32,11 @@
     UIBarButtonItem*                _doneBarButtonItem;
     ServerManagerViewController*    _serverManagerViewController;
 
+    id<SettingsDelegateProcotol>    _settingsDelegate;
     
 }
+
+@property (assign) id<SettingsDelegateProcotol>    settingsDelegate;
 
 
 

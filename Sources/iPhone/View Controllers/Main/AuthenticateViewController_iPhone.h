@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "AuthenticateViewController.h"
+#import "SettingsViewController.h"
+
+
 
 //Login page for iPhone
-@interface AuthenticateViewController_iPhone : AuthenticateViewController 
+@interface AuthenticateViewController_iPhone : AuthenticateViewController <SettingsDelegateProcotol> {
+
+    SettingsViewController* _settingsViewController;
+}
 
 
 @end

@@ -15,7 +15,6 @@
 
 
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
-static NSString *CellNibServer = @"AuthenticateServerCell";
 //Define tags for Server cells
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
@@ -56,6 +55,10 @@ static NSString *CellNibServer = @"AuthenticateServerCell";
 //- (void)loadView
 //{
 //}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+}
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
