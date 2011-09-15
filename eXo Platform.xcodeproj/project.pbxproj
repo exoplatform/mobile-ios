@@ -335,7 +335,6 @@
 		8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937A32913387F1D00D8B474 /* NSString+HTML.m */; };
 		8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */; };
 		8937A3401338993900D8B474 /* ChatWindowViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32F1338993900D8B474 /* ChatWindowViewController_iPad.xib */; };
-		8937A3411338993900D8B474 /* eXoMobileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3301338993900D8B474 /* eXoMobileViewController.xib */; };
 		8937A3441338993900D8B474 /* DocumentsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3331338993900D8B474 /* DocumentsViewController_iPad.xib */; };
 		8937A3451338993900D8B474 /* GadgetDisplayViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3341338993900D8B474 /* GadgetDisplayViewController_iPad.xib */; };
 		8937A3481338993900D8B474 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3371338993900D8B474 /* LoginViewController.xib */; };
@@ -351,7 +350,6 @@
 		8947336A13370B1900B0AD11 /* MessengerViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334113370B1900B0AD11 /* MessengerViewController_iPad.m */; };
 		8947336F13370B1900B0AD11 /* DocumentsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334D13370B1900B0AD11 /* DocumentsViewController_iPad.m */; };
 		8947337213370B1900B0AD11 /* GadgetDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335413370B1900B0AD11 /* GadgetDisplayViewController_iPad.m */; };
-		8947337513370B1900B0AD11 /* eXoMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335B13370B1900B0AD11 /* eXoMobileViewController.m */; };
 		8947337713370B1900B0AD11 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335F13370B1900B0AD11 /* LoginViewController.m */; };
 		8947337913370B1900B0AD11 /* FileFolderActionsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947336313370B1900B0AD11 /* FileFolderActionsViewController_iPad.m */; };
 		8947337A13370B1900B0AD11 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947336513370B1900B0AD11 /* SupportViewController.m */; };
@@ -1142,7 +1140,6 @@
 		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
 		8937A32F1338993900D8B474 /* ChatWindowViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatWindowViewController_iPad.xib; path = ../../NIB/ChatWindowViewController_iPad.xib; sourceTree = "<group>"; };
-		8937A3301338993900D8B474 /* eXoMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = eXoMobileViewController.xib; path = ../../NIB/eXoMobileViewController.xib; sourceTree = "<group>"; };
 		8937A3331338993900D8B474 /* DocumentsViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentsViewController_iPad.xib; path = ../../NIB/DocumentsViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A3341338993900D8B474 /* GadgetDisplayViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GadgetDisplayViewController_iPad.xib; path = ../../NIB/GadgetDisplayViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A3371338993900D8B474 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = ../../NIB/LoginViewController.xib; sourceTree = "<group>"; };
@@ -1162,8 +1159,6 @@
 		8947334D13370B1900B0AD11 /* DocumentsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentsViewController_iPad.m; sourceTree = "<group>"; };
 		8947335313370B1900B0AD11 /* GadgetDisplayViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayViewController_iPad.h; sourceTree = "<group>"; };
 		8947335413370B1900B0AD11 /* GadgetDisplayViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GadgetDisplayViewController_iPad.m; sourceTree = "<group>"; };
-		8947335A13370B1900B0AD11 /* eXoMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMobileViewController.h; sourceTree = "<group>"; };
-		8947335B13370B1900B0AD11 /* eXoMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoMobileViewController.m; sourceTree = "<group>"; };
 		8947335E13370B1900B0AD11 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8947335F13370B1900B0AD11 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		8947336213370B1900B0AD11 /* FileFolderActionsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileFolderActionsViewController_iPad.h; path = ../Main/FileFolderActionsViewController_iPad.h; sourceTree = "<group>"; };
@@ -2568,9 +2563,6 @@
 		8947335713370B1900B0AD11 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				8947335A13370B1900B0AD11 /* eXoMobileViewController.h */,
-				8947335B13370B1900B0AD11 /* eXoMobileViewController.m */,
-				8937A3301338993900D8B474 /* eXoMobileViewController.xib */,
 				8947335E13370B1900B0AD11 /* LoginViewController.h */,
 				8947335F13370B1900B0AD11 /* LoginViewController.m */,
 				8937A3371338993900D8B474 /* LoginViewController.xib */,
@@ -3456,7 +3448,6 @@
 				8947351513372BF900B0AD11 /* eXo_Platform-Info.plist in Resources */,
 				8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */,
 				8937A3401338993900D8B474 /* ChatWindowViewController_iPad.xib in Resources */,
-				8937A3411338993900D8B474 /* eXoMobileViewController.xib in Resources */,
 				8937A3441338993900D8B474 /* DocumentsViewController_iPad.xib in Resources */,
 				8937A3451338993900D8B474 /* GadgetDisplayViewController_iPad.xib in Resources */,
 				8937A3481338993900D8B474 /* LoginViewController.xib in Resources */,
@@ -3669,7 +3660,6 @@
 				8947336A13370B1900B0AD11 /* MessengerViewController_iPad.m in Sources */,
 				8947336F13370B1900B0AD11 /* DocumentsViewController_iPad.m in Sources */,
 				8947337213370B1900B0AD11 /* GadgetDisplayViewController_iPad.m in Sources */,
-				8947337513370B1900B0AD11 /* eXoMobileViewController.m in Sources */,
 				8947337713370B1900B0AD11 /* LoginViewController.m in Sources */,
 				8947337913370B1900B0AD11 /* FileFolderActionsViewController_iPad.m in Sources */,
 				8947337A13370B1900B0AD11 /* SupportViewController.m in Sources */,

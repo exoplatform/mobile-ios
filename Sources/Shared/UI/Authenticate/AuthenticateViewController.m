@@ -480,11 +480,11 @@
 		[self performSelectorOnMainThread:@selector(signInFailed) withObject:nil waitUntilDone:NO];
 	}
 	
-    [_hud dismiss];
     
 	[pool release];
     
-	
+    [_hud dismiss];
+
 }
 
 - (IBAction)onSettingBtn

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "eXoMobileAppDelegate.h"
 
+#import "LoginViewController.h"
+
 
 
 @class eXoMobileViewController;
@@ -16,18 +18,21 @@
 
 @interface AppDelegate_iPad : eXoMobileAppDelegate {
     UIWindow *window;
-    eXoMobileViewController *viewController;
+    //eXoMobileViewController *viewController;
     
+    LoginViewController *viewController;
     
     RootViewController *rootViewController;
     
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet eXoMobileViewController *viewController;
+//@property (nonatomic, retain) IBOutlet eXoMobileViewController *viewController;
+@property (nonatomic, retain) IBOutlet LoginViewController *viewController;
+
 @property (nonatomic, retain) RootViewController *rootViewController;
 
--(void)showHome:(id)delegateForViewControllers isCompatibleWithSocial:(BOOL)isCompatibleWithSocial;
+-(void)showHomeWithCompatibleWithSocial:(BOOL)isCompatibleWithSocial;
 -(void)backToAuthenticate;
 
 

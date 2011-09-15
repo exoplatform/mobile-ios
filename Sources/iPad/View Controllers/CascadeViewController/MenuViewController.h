@@ -19,7 +19,6 @@
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SettingsDelegateProcotol> {
 	
-    id                              _delegate;
     
 	UITableView*  _tableView;
 	NSMutableArray* _cellContents;
@@ -61,8 +60,6 @@
 @property BOOL isCompatibleWithSocial;
 
 - (id)initWithFrame:(CGRect)frame;
-
-- (void)setDelegate:(id)delegate;
 
 - (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 

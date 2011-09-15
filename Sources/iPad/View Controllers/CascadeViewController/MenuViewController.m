@@ -236,21 +236,6 @@
     return cell;
 }
 
-- (void)setDelegate:(id)delegate
-{
-    _delegate = delegate;
-    
-}
-
-- (int)getSelectedLanguage
-{
-	return _intSelectedLanguage;
-}
-
-- (NSDictionary*)getLocalization
-{
-	return _dictLocalize;
-}
 
 #pragma mark -
 #pragma mark Table view delegate

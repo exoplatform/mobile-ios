@@ -29,7 +29,6 @@
     UINavigationController*                 _modalNavigationSettingViewController;
     SettingsViewController_iPad*            _iPadSettingViewController;
     
-    NSMutableArray*             _arrViewOfViewControllers;
     UIInterfaceOrientation      _interfaceOrientation;
     
     IBOutlet UIImageView*       _panelBackground;

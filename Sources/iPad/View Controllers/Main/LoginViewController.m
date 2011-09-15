@@ -7,13 +7,13 @@
 //
 
 #import "LoginViewController.h"
-#import "eXoMobileViewController.h"
 #import "defines.h"
 #import "AuthenticateProxy.h"
 #import "SupportViewController.h"
 #import "Configuration.h"
 #import "SettingsViewController_iPad.h"
 #import "SSHUDView.h"
+#import "AppDelegate_iPad.h"
 
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
@@ -33,20 +33,15 @@
         _intSelectedServer = -1;
         _arrServerList = [[NSMutableArray alloc] init];
         
-        _arrViewOfViewControllers = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
-{
-	[super loadView];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    
     
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
@@ -77,6 +72,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
+    
+    [self changeOrientation:[[UIDevice currentDevice] orientation]];
+
     
     //Stevan UI fixes
     _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] 
@@ -160,7 +158,6 @@
 		[_txtfPassword setText:@""];
 	}
     
-    [_arrViewOfViewControllers addObject:_vLoginView];
     [_tbvlServerList setHidden:YES];
     [_vAccountView setHidden:NO];
 
@@ -198,18 +195,12 @@
 {
     _interfaceOrientation = interfaceOrientation;
     
-	if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-	{
-        //[_vLoginView setFrame:CGRectMake(226, 114, 609, 654)];
-        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
-        [_vContainer setFrame:CGRectMake(100, 400, 569, 460)];        
-	}
-	
-	if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-	{	
-        //[_vLoginView setFrame:CGRectMake(80, 200, 609, 654)];
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
         [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
         [_vContainer setFrame:CGRectMake(227, 230, 569, 460)];
+	} else {
+        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
+        [_vContainer setFrame:CGRectMake(100, 400, 569, 460)];
 	}
     
 }
@@ -221,12 +212,6 @@
     return YES;
 }
 
-/*
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	[menuViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	[stackScrollViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-}
-*/
 -(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     [self changeOrientation:toInterfaceOrientation];
 }	
@@ -257,13 +242,8 @@
     {
         [_iPadSettingViewController release];
     }
-    [_arrServerList release];
-    [_arrViewOfViewControllers release];
     [super dealloc];
 }
-
-
-
 
 - (void)setDelegate:(id)delegate
 {
@@ -370,11 +350,13 @@
 	}
 }
 
+/*
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)isCompatibleWithSocial {
     
     [_delegate showHomeViewController:isCompatibleWithSocial];
 }
-
+*/
+ 
 - (IBAction)onBtnAccount:(id)sender
 {
     [_btnAccount setImage:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn.png"] forState:UIControlStateNormal];
@@ -481,6 +463,18 @@
          ];   
 	}
 }
+
+
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial {
+    
+    //[_hud completeAndDismissWithTitle:@"Success..."];
+    
+    AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+    //appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+    [appDelegate performSelector:@selector(showHomeWithCompatibleWithSocial:) withObject:compatibleWithSocial afterDelay:1.0];
+    
+}
+
 
 
 #pragma UITableView Delegate

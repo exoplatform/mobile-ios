@@ -7,10 +7,10 @@
 //
 
 #import "AppDelegate_iPad.h"
-#import "eXoMobileViewController.h"
 #import "RootViewController.h"
 #import "MenuViewController.h"
 #import "defines.h"
+#import "FilesProxy.h"
 
 @implementation AppDelegate_iPad
 
@@ -29,42 +29,29 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    
-    //UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    //navigationController.navigationBarHidden = YES;
-    //[window addSubview:navigationController.view];
-    
-    //[window makeKeyAndVisible];
-
-    
-//    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-    
-    //[window addSubview:rootViewController.view];
-    
-    
+        
 	[window addSubview:viewController.view];
-    
-  
     [window makeKeyAndVisible];
-            
-    //[rootViewController.view removeFromSuperview];
-    
+                
     return YES;
 }
 
 
 
--(void)showHome:(id)delegateForViewControllers isCompatibleWithSocial:(BOOL)isCompatibleWithSocial
+-(void)showHomeWithCompatibleWithSocial:(BOOL)isCompatibleWithSocial
 {
+    
+    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:isCompatibleWithSocial];
+
+    
     rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:isCompatibleWithSocial];
-    rootViewController.delegate = delegateForViewControllers;
    
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromLeft
                     animations:^{ 
-                        [viewController.view removeFromSuperview]; 
-                        [self.window addSubview:rootViewController.view]; 
+                        [viewController.view removeFromSuperview];
+                        [self.window addSubview:rootViewController.view];
                     }
                     completion:NULL];
 }
@@ -74,13 +61,18 @@
 
     [[ChatProxy sharedInstance] disconnect];
     
+    //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     
+    //Display the eXoMobileView Controller
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromRight
-                    animations:^{ [rootViewController.view removeFromSuperview]; [self.window addSubview:viewController.view]; }
+                    animations:^{ 
+                        [rootViewController.view removeFromSuperview]; 
+                        [self.window addSubview:viewController.view]; 
+                    }
                     completion:NULL];
     
 }

@@ -57,7 +57,7 @@
 @end
 
 @implementation RootViewController
-@synthesize menuViewController, stackScrollViewController, delegate=_delegate, isCompatibleWithSocial = _isCompatibleWithSocial;
+@synthesize menuViewController, stackScrollViewController, isCompatibleWithSocial = _isCompatibleWithSocial;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
  
@@ -81,8 +81,7 @@
 	leftMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
 	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height) isCompatibleWithSocial: _isCompatibleWithSocial];
-    //Add the eXo Delegate for the menu
-    [menuViewController setDelegate:_delegate];
+
     
 	[menuViewController.view setBackgroundColor:[UIColor clearColor]];
 	[menuViewController viewWillAppear:FALSE];
@@ -130,8 +129,8 @@
     NSArray *arr = [stackScrollViewController viewControllersStack];
     if([arr count] == 2)
     {
-        ChatWindowViewController_iPad *chatWindowViewController = [arr objectAtIndex:1];
-        [chatWindowViewController changeOrientation:interfaceOrientation];
+        //ChatWindowViewController_iPad *chatWindowViewController = [arr objectAtIndex:1];
+        //[chatWindowViewController changeOrientation:interfaceOrientation];
     }
     return YES;
 }
