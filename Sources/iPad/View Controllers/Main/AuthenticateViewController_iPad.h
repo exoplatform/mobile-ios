@@ -15,7 +15,7 @@
 @class ServerObj;
 
 //Login page
-@interface AuthenticateViewController_iPad : AuthenticateViewController {
+@interface AuthenticateViewController_iPad : AuthenticateViewController <SettingsDelegateProcotol> {
 	
 	id										_delegate;
     

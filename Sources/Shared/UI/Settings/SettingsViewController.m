@@ -106,7 +106,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     //Customize the navigation bar appearance
     UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
-    navigationBarShadowImgV.frame = CGRectMake(0,self.navigationController.navigationBar.frame.size.height,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
+    navigationBarShadowImgV.frame = CGRectMake(0,self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.size.width,navigationBarShadowImgV.frame.size.height);
     [self.navigationController.navigationBar addSubview:navigationBarShadowImgV];
     [navigationBarShadowImgV release];
     

@@ -315,9 +315,6 @@
         //[self.view addSubview:_iPadSettingViewController.view];
     }
     
-    [_iPadSettingViewController viewWillAppear:YES];
-    
-    
     if (_modalNavigationSettingViewController == nil) 
     {
         _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
