@@ -14,7 +14,7 @@
 
 @implementation AppDelegate_iPad
 
-@synthesize window, viewController, rootViewController;
+@synthesize window, viewController, rootViewController, isCompatibleWithSocial=_isCompatibleWithSocial;
 
 + (AppDelegate_iPad *) instance {
     return (AppDelegate_iPad *) [[UIApplication sharedApplication] delegate];
@@ -38,13 +38,13 @@
 
 
 
--(void)showHomeWithCompatibleWithSocial:(BOOL)isCompatibleWithSocial
+-(void)showHome
 {
     
-    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:isCompatibleWithSocial];
+    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:_isCompatibleWithSocial];
 
     
-    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:isCompatibleWithSocial];
+    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
    
     [UIView transitionWithView:self.window
                       duration:1
@@ -74,7 +74,6 @@
                         [self.window addSubview:viewController.view]; 
                     }
                     completion:NULL];
-    
 }
 
 

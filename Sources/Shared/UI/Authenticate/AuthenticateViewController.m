@@ -428,6 +428,8 @@
 - (void)signInFailed
 {
 	[self view].userInteractionEnabled = YES;
+    [_hud dismiss];
+
 }
 
 
@@ -483,8 +485,6 @@
     
 	[pool release];
     
-    [_hud dismiss];
-
 }
 
 - (IBAction)onSettingBtn

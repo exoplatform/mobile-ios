@@ -23,14 +23,19 @@
     
     RootViewController *rootViewController;
     
+    BOOL _isCompatibleWithSocial;
+
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet AuthenticateViewController_iPad *viewController;
-
 @property (nonatomic, retain) RootViewController *rootViewController;
+@property BOOL isCompatibleWithSocial;
 
--(void)showHomeWithCompatibleWithSocial:(BOOL)isCompatibleWithSocial;
+
+
+-(void)showHome;
 -(void)backToAuthenticate;
 
 

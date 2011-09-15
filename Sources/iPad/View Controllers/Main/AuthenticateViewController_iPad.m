@@ -350,12 +350,6 @@
 	}
 }
 
-/*
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)isCompatibleWithSocial {
-    
-    [_delegate showHomeViewController:isCompatibleWithSocial];
-}
-*/
  
 - (IBAction)onBtnAccount:(id)sender
 {
@@ -467,11 +461,11 @@
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial {
     
-    //[_hud completeAndDismissWithTitle:@"Success..."];
+    [_hud completeWithTitle:@"Success..."];
     
     AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
-    //appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    [appDelegate performSelector:@selector(showHomeWithCompatibleWithSocial:) withObject:compatibleWithSocial afterDelay:1.0];
+    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+    [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
     
 }
 
