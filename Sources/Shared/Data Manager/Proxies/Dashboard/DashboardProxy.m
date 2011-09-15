@@ -128,6 +128,8 @@
 			loginStr = [[urlStr substringToIndex:rangeOfPrivate.location + rangeOfPrivate.length] stringByAppendingString:@"/j_security_check"];
 		}
 	}
+    //Prevent any crash with a wrong initialization of loginStr
+    if (loginStr == nil) return nil;
 	
 	NSURL* loginURL = [NSURL URLWithString:loginStr];
 	NSMutableURLRequest* loginRequest = [[NSMutableURLRequest alloc] init];	
