@@ -323,6 +323,7 @@
 		7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */; };
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
 		7CFEB09313CAFEA700D7C9FF /* SocialActivityStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */; };
+		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		89112716140B7DC800A8851C /* ChatBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */; };
 		89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */; };
 		8911271A140B7F2A00A8851C /* MessengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112719140B7F2A00A8851C /* MessengerViewController.m */; };
@@ -1122,6 +1123,7 @@
 		7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentity.m; sourceTree = "<group>"; };
 		7CFEB09113CAFEA700D7C9FF /* SocialActivityStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityStream.h; sourceTree = "<group>"; };
 		7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStream.m; sourceTree = "<group>"; };
+		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		89112713140B7DC800A8851C /* ChatBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBasicTableViewCell.h; sourceTree = "<group>"; };
 		89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBasicTableViewCell.m; sourceTree = "<group>"; };
 		89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatBasicTableViewCell.xib; sourceTree = "<group>"; };
@@ -2338,6 +2340,7 @@
 		890F75CD141EF6AA004D35FE /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
+				8909439A142204BC003A18BB /* AuthenticateServerCell.xib */,
 				8911F5531420C7540093F2BD /* AuthenticateViewController.h */,
 				8911F5541420C7540093F2BD /* AuthenticateViewController.m */,
 			);
@@ -3651,6 +3654,7 @@
 				46C81F7A141656CA0042AF64 /* MessageContentViewController.xib in Resources */,
 				4633E6EF141BB919002A47F4 /* DocumentDisplayViewController_iPad.xib in Resources */,
 				4633E6F4141BBE80002A47F4 /* DocumentDisplayViewController_iPhone.xib in Resources */,
+				8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
