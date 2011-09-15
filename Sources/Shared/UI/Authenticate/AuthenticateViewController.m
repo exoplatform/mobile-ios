@@ -10,7 +10,6 @@
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "CXMLDocument.h"
-//#import "eXoSettingViewController.h"
 #import "DataProcess.h"
 #import "NSString+HTML.h"
 #import "Configuration.h"
@@ -28,8 +27,6 @@
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
-
-
 
 @implementation AuthenticateViewController
 
@@ -100,8 +97,8 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     
-	bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-	bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
     
 	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     if (_strHost == nil) 
@@ -110,7 +107,7 @@
         _strHost = tmpServerObj._strServerUrl;
     }
 	
-	if(bRememberMe || bAutoLogin)
+	if(_bRememberMe || _bAutoLogin)
 	{
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
@@ -131,7 +128,7 @@
 	}
     [_tbvlServerList reloadData];
     
-    if(bAutoLogin)
+    if(_bAutoLogin)
     {
         _contentView.alpha = 1;
         [self onSignInBtn:nil];
@@ -219,8 +216,7 @@
                      }
      ];
     
-    
-	return YES;
+	return YES;   
 }
 
 
@@ -272,16 +268,28 @@
 #pragma UITableView Utils
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    if([deviceType isEqualToString:@"iPhone"])
+        return [[[UIImageView alloc] initWithImage:
+                 [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+    
+
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOff.png"]] autorelease];
 }
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
 {
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    if([deviceType isEqualToString:@"iPhone"])
+        return [[[UIImageView alloc] initWithImage:
+                 [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+    
     return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOn.png"]] autorelease];
 }
-
 
 #pragma UITableView Delegate
 
@@ -372,17 +380,16 @@
 
 - (void)doSignIn
 {
-    //TODO: Localize the label
     _hud = [[SSHUDView alloc] initWithTitle:@"Loading..."];
     [_hud show];
     
-	[[self navigationItem] setRightBarButtonItem:nil];
 	[self view].userInteractionEnabled = NO;
     
 	[_txtfUsername resignFirstResponder];
 	[_txtfPassword resignFirstResponder];
 	
     [NSThread detachNewThreadSelector:@selector(startSignInProgress) toTarget:self withObject:nil];
+    
 }
 
 - (IBAction)onSignInBtn:(id)sender
@@ -404,8 +411,15 @@
 	}
 }
 
-- (void)signInSuccess
+- (void)signInSuccesfully
 {    
+	
+	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+	[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
+	[userDefaults setObject:_txtfUsername.text forKey:EXO_PREFERENCE_USERNAME];
+	[userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
+    
     //The login has successed we need to check the version of Platform
     PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
     [plfVersionProxy retrievePlatformInformations];
@@ -438,7 +452,7 @@
 	if(_strBSuccessful == @"YES")
 	{
         //Todo need to be localized
-		[self performSelectorOnMainThread:@selector(signInSuccess) withObject:nil waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(signInSuccesfully) withObject:nil waitUntilDone:NO];
 	}
 	else if(_strBSuccessful == @"NO")
 	{

@@ -14,8 +14,8 @@
 @interface AuthenticateViewController : UIViewController <PlatformVersionProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
 	NSString*                   _strBSuccessful;	//Login status
-	BOOL                        bRememberMe;	//Remember
-	BOOL                        bAutoLogin;	//Autologin
+	BOOL                        _bRememberMe;	//Remember
+	BOOL                        _bAutoLogin;	//Autologin
     
     IBOutlet UIButton*          _btnAccount;
     IBOutlet UIButton*          _btnServerList;

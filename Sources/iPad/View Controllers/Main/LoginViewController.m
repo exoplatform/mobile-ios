@@ -8,7 +8,6 @@
 
 #import "LoginViewController.h"
 #import "eXoMobileViewController.h"
-#import "Checkbox.h"
 #import "defines.h"
 #import "AuthenticateProxy.h"
 #import "SupportViewController.h"
@@ -33,7 +32,6 @@
 		_intSelectedLanguage = 0;
         _intSelectedServer = -1;
         _arrServerList = [[NSMutableArray alloc] init];
-		isFirstTimeLogin = YES;
         
         _arrViewOfViewControllers = [[NSMutableArray alloc] init];
 	}
@@ -132,8 +130,8 @@
 	
 	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     
-	bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-	bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
     
 	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     if (_strHost == nil) 
@@ -142,7 +140,7 @@
         _strHost = tmpServerObj._strServerUrl;
     }
     
-	if(bRememberMe || bAutoLogin)
+	if(_bRememberMe || _bAutoLogin)
 	{
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
@@ -163,8 +161,6 @@
 	}
     
     [_arrViewOfViewControllers addObject:_vLoginView];
-    [_actiSigningIn setHidden:YES];
-    [_lbSigningInStatus setHidden:YES];
     [_tbvlServerList setHidden:YES];
     [_vAccountView setHidden:NO];
 
@@ -185,12 +181,12 @@
     //Add the background image for the login button
     [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
-                         forState:UIControlStateNormal];
+                            forState:UIControlStateNormal];
     
     //[_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
     
 
-    [self signInAnimation:bAutoLogin];
+    [self signInAnimation:_bAutoLogin];
 
     [super viewDidLoad];
     
@@ -278,17 +274,17 @@
 {
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 
-	_strUsername = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]; 
-	if(_strUsername)
+	NSString *strUsername = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]; 
+	if(strUsername)
 	{
-		[_txtfUsername setText:_strUsername];
+		[_txtfUsername setText:strUsername];
 		[_txtfUsername resignFirstResponder];
 	}
 	
-	_strPassword = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]; 
-	if(_strPassword)
+	NSString* strPassword = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]; 
+	if(strPassword)
 	{
-		[_txtfPassword setText:_strPassword];
+		[_txtfPassword setText:strPassword];
 		[_txtfPassword resignFirstResponder];
 	}
 }
@@ -309,7 +305,7 @@
 						   
 	[_settingViewController localize];
     */ 
-    [_lbSigningInStatus setText:[_dictLocalize objectForKey:@"SigningIn"]];
+   
    
 }
 
@@ -374,94 +370,9 @@
 	}
 }
 
-- (void)doSignIn
-{
-    _hud = [[SSHUDView alloc] initWithTitle:@"Loading..."];
-    [_hud show];
-    
-	[_actiSigningIn setHidden:NO];
-	[_lbSigningInStatus setHidden:NO];
-	[_actiSigningIn startAnimating];
-	[NSThread detachNewThreadSelector:@selector(startSignInProgress) toTarget:self withObject:nil];
-}
-
-- (void)startSignInProgress 
-{  	
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	_strUsername = [_txtfUsername text];
-	_strPassword = [_txtfPassword text];
-	
-	UIAlertView* alert;
-	
-	NSString* strResult = [[AuthenticateProxy sharedInstance] sendAuthenticateRequest:_strHost username:_strUsername password:_strPassword];
-	//NSString* strResult = @"YES";
-	if(strResult == @"YES")
-	{
-        [_hud completeAndDismissWithTitle:@"Success..."];
-        [_hud dismiss];
-		[self performSelectorOnMainThread:@selector(signInSuccesfully) withObject:nil waitUntilDone:NO];  
-	}
-	else if(strResult == @"NO")
-	{
-        [_hud dismiss];
-		alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
-														message:[_dictLocalize objectForKey:@"WrongUserNamePassword"]
-													   delegate:self 
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles: nil];
-		[alert show];
-		[alert release];
-		
-		[self performSelectorOnMainThread:@selector(signInFailed) withObject:nil waitUntilDone:NO];		
-		
-	}
-	else if(strResult == @"ERROR")
-	{
-        [_hud dismiss];
-		alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"NetworkConnection"]
-														message:[_dictLocalize objectForKey:@"NetworkConnectionFailed"]
-													   delegate:self 
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles: nil];
-		[alert show];
-		[alert release];
-		
-		[self performSelectorOnMainThread:@selector(signInFailed) withObject:nil waitUntilDone:NO];  
-	}
-
-    [pool release];
-}
-
-- (void)signInSuccesfully
-{
-	[_actiSigningIn stopAnimating];
-	[_actiSigningIn setHidden:YES];
-	[_lbSigningInStatus setHidden:YES];
-	[_btnLogin setHidden:NO];
-	
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-
-	[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-	[userDefaults setObject:_strUsername forKey:EXO_PREFERENCE_USERNAME];
-	[userDefaults setObject:_strPassword forKey:EXO_PREFERENCE_PASSWORD];
-    
-    PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
-    [plfVersionProxy retrievePlatformInformations];
-
-}
-
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)isCompatibleWithSocial {
     
     [_delegate showHomeViewController:isCompatibleWithSocial];
-}
-
-
-- (void)signInFailed
-{
-	[_actiSigningIn stopAnimating];
-	[_actiSigningIn setHidden:YES];
-	[_lbSigningInStatus setHidden:YES];
-	[_btnLogin setHidden:NO];
 }
 
 - (IBAction)onBtnAccount:(id)sender
@@ -567,112 +478,17 @@
                          animations:^{
                              _vContainer.frame = frameToGo;
                          }
-         ];
-        
+         ];   
 	}
-}
-
--(UIImageView *) makeCheckmarkOffAccessoryView
-{
-    return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOff.png"]] autorelease];
-}
-
--(UIImageView *) makeCheckmarkOnAccessoryView
-{
-    return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOn.png"]] autorelease];
 }
 
 
 #pragma UITableView Delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{	
-    return [_arrServerList count];
-}
-
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return kHeightForServerCell;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"AuthenticateServerCellIdentifier";
-    static NSString *CellNib = @"AuthenticateServerCell";
-    
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNib owner:self options:nil];
-        cell = (UITableViewCell *)[nib objectAtIndex:0];
-        
-        //Some customize of the cell background :-)
-        [cell setBackgroundColor:[UIColor clearColor]];
-        
-        //Create two streachables images for background states
-        UIImage *imgBgNormal = [[UIImage imageNamed:@"AuthenticateServerCellBgNormal.png"]
-                                stretchableImageWithLeftCapWidth:7 topCapHeight:0];
-        
-        UIImage *imgBgSelected = [[UIImage imageNamed:@"AuthenticateServerCellBgSelected.png"]
-                                  stretchableImageWithLeftCapWidth:7 topCapHeight:0];
-        
-        //Add images to imageView for the backgroundview of the cell
-        UIImageView *ImgVCellBGNormal = [[UIImageView alloc] initWithImage:imgBgNormal];
-        
-        UIImageView *ImgVBGSelected = [[UIImageView alloc] initWithImage:imgBgSelected];
-        
-        //Define the ImageView as background of the cell
-        [cell setBackgroundView:ImgVCellBGNormal];
-        [ImgVCellBGNormal release];
-        
-        //Define the ImageView as background of the cell
-        [cell setSelectedBackgroundView:ImgVBGSelected];
-        [ImgVBGSelected release];
-        
-    }
-    
-    
-    if (indexPath.row == _intSelectedServer) 
-    {
-        cell.accessoryView = [self makeCheckmarkOnAccessoryView];
-    }
-    else
-    {
-        cell.accessoryView = [self makeCheckmarkOffAccessoryView];
-    }
-    
-	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    
-    UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
-    
-    lbServerName.text = tmpServerObj._strServerName;
-    
-    
-    UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
-    lbServerUrl.text = tmpServerObj._strServerUrl;
-    
-	return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    _strHost = [tmpServerObj._strServerUrl retain];
-    _intSelectedServer = indexPath.row;
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-	[userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
-    [_tbvlServerList reloadData];
-}
-
 
 #pragma - SettingsDelegate methods
 

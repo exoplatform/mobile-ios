@@ -458,7 +458,6 @@
 		894735001337139800B0AD11 /* XMPPResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E31337139800B0AD11 /* XMPPResource.m */; };
 		894735011337139800B0AD11 /* XMPPStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E51337139800B0AD11 /* XMPPStream.m */; };
 		894735021337139800B0AD11 /* XMPPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E71337139800B0AD11 /* XMPPUser.m */; };
-		8947350F1337142200B0AD11 /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 894735041337142200B0AD11 /* Checkbox.m */; };
 		894735111337142200B0AD11 /* DataProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 894735081337142200B0AD11 /* DataProcess.m */; };
 		894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947350C1337142200B0AD11 /* GTMNSString+HTML.m */; };
 		8947351513372BF900B0AD11 /* eXo_Platform-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */; };
@@ -1308,8 +1307,6 @@
 		894734E51337139800B0AD11 /* XMPPStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStream.m; sourceTree = "<group>"; };
 		894734E61337139800B0AD11 /* XMPPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPUser.h; sourceTree = "<group>"; };
 		894734E71337139800B0AD11 /* XMPPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPUser.m; sourceTree = "<group>"; };
-		894735031337142200B0AD11 /* Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkbox.h; sourceTree = "<group>"; };
-		894735041337142200B0AD11 /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
 		894735071337142200B0AD11 /* DataProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcess.h; sourceTree = "<group>"; };
 		894735081337142200B0AD11 /* DataProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcess.m; sourceTree = "<group>"; };
 		894735091337142200B0AD11 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
@@ -3007,8 +3004,6 @@
 			children = (
 				7CF5629F135590350008DD21 /* TouchView.h */,
 				7CF562A0135590350008DD21 /* TouchView.m */,
-				894735031337142200B0AD11 /* Checkbox.h */,
-				894735041337142200B0AD11 /* Checkbox.m */,
 				894735071337142200B0AD11 /* DataProcess.h */,
 				894735081337142200B0AD11 /* DataProcess.m */,
 				894735091337142200B0AD11 /* defines.h */,
@@ -3703,7 +3698,6 @@
 				894735001337139800B0AD11 /* XMPPResource.m in Sources */,
 				894735011337139800B0AD11 /* XMPPStream.m in Sources */,
 				894735021337139800B0AD11 /* XMPPUser.m in Sources */,
-				8947350F1337142200B0AD11 /* Checkbox.m in Sources */,
 				894735111337142200B0AD11 /* DataProcess.m in Sources */,
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
 				8947351F13375E1900B0AD11 /* main.m in Sources */,
