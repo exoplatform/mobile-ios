@@ -311,8 +311,6 @@
     {
         _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
         _iPadSettingViewController.settingsDelegate = self;
-        //[_iPadSettingViewController setInterfaceOrientation:_interfaceOrientation];
-        //[self.view addSubview:_iPadSettingViewController.view];
     }
     
     if (_modalNavigationSettingViewController == nil) 
