@@ -7,7 +7,6 @@
 //
 
 #import "TouchView.h"
-#import "LoginViewController.h"
 
 
 @implementation TouchView
