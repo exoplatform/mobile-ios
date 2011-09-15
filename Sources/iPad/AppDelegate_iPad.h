@@ -9,26 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "eXoMobileAppDelegate.h"
 
-#import "LoginViewController.h"
+#import "AuthenticateViewController_iPad.h"
 
 
 
-@class eXoMobileViewController;
 @class RootViewController;
 
 @interface AppDelegate_iPad : eXoMobileAppDelegate {
     UIWindow *window;
     //eXoMobileViewController *viewController;
     
-    LoginViewController *viewController;
+    AuthenticateViewController_iPad *viewController;
     
     RootViewController *rootViewController;
     
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-//@property (nonatomic, retain) IBOutlet eXoMobileViewController *viewController;
-@property (nonatomic, retain) IBOutlet LoginViewController *viewController;
+@property (nonatomic, retain) IBOutlet AuthenticateViewController_iPad *viewController;
 
 @property (nonatomic, retain) RootViewController *rootViewController;
 

@@ -6,7 +6,7 @@
 //  Copyright 2010 home. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "AuthenticateViewController_iPad.h"
 #import "defines.h"
 #import "AuthenticateProxy.h"
 #import "SupportViewController.h"
@@ -19,7 +19,7 @@
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
 
-@implementation LoginViewController
+@implementation AuthenticateViewController_iPad
 
 @synthesize _dictLocalize;
 
