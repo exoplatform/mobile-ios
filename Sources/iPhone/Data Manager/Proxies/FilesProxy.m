@@ -111,9 +111,7 @@
 
 - (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35
 {
-    if(_strUserRepository != nil)
-        return;
-    
+   
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
