@@ -8,7 +8,6 @@
 
 #import "SettingsViewController.h"
 #import "defines.h"
-#import "eXoWebViewController.h"
 #import "Configuration.h"
 #import "ServerManagerViewController.h"
 #import "ContainerCell.h"
@@ -18,7 +17,6 @@
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
-static NSString *CellIdentifierGuide = @"CellIdentifierGuide";
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 //Define tags for Language cells

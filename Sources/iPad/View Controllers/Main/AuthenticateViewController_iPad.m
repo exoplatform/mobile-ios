@@ -9,7 +9,6 @@
 #import "AuthenticateViewController_iPad.h"
 #import "defines.h"
 #import "AuthenticateProxy.h"
-#import "SupportViewController.h"
 #import "Configuration.h"
 #import "SettingsViewController_iPad.h"
 #import "SSHUDView.h"

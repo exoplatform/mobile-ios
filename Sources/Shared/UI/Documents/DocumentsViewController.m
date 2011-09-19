@@ -7,7 +7,6 @@
 //
 
 #import "DocumentsViewController.h"
-#import "eXoWebViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "FileFolderActionsViewController_iPhone.h"
 #import "LanguageHelper.h"
