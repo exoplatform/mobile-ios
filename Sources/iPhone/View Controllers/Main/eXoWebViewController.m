@@ -42,20 +42,7 @@
 - (void)viewDidAppear:(BOOL)animated 
 {
 	NSURLRequest* request;
-	if(_url == nil)
-	{
-		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-		int selectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-		if(selectedLanguage == 0)
-			request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"HowtoUse_EN_iPhone" ofType:@"htm"]]];
-		else
-			request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"HowtoUse_FR_iPhone" ofType:@"htm"]]];
-		
-		self.title = Localize(@"UserGuide");
-		[_webView setScalesPageToFit:YES];
-		[_webView loadRequest:request];
-	}
-	else
+	if(_url)
 	{
 		request = [[NSURLRequest alloc] initWithURL:_url];
 		NSHTTPURLResponse* response;

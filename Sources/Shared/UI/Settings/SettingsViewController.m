@@ -187,7 +187,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 4;
+    return 3;
 }
 
 
@@ -236,12 +236,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 			headerLabel.text = Localize(@"ServerList");
 			break;
 		}
-            
-		case 3:
-		{
-			headerLabel.text = Localize(@"UserGuide");
-			break;
-		}
 			
 		default:
 			break;
@@ -276,12 +270,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 			tmpStr = Localize(@"ServerList");
 			break;
 		}
-            
-		case 3:
-		{
-			tmpStr = Localize(@"UserGuide");
-			break;
-		}
 			
 		default:
 			break;
@@ -306,10 +294,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 	if(section == 2)
 	{	
 		numofRows = [_arrServerList count] + 1;
-	}
-    if(section == 3)
-	{	
-		numofRows = 1;
 	}
     
 	return numofRows;
@@ -460,22 +444,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             break;
         }
             
-        case 3:
-        {
-            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierGuide];
-            if(cell == nil) 
-            {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
-                
-                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-                cell.textLabel.textColor = [UIColor darkGrayColor];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-            
-            cell.textLabel.text = Localize(@"UserGuide");
-            break;
-        }
-            
         default:
             break;
     }
@@ -503,7 +471,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         //Finally reload the content of the screen
         [self reloadSettingsWithUpdate];
 	}
-    
 	else if(indexPath.section == 2)
 	{
         if (indexPath.row == [_arrServerList count]) 
@@ -512,11 +479,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
             
         }
-	}
-	else if(indexPath.section == 3)
-    {
-		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
-		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
