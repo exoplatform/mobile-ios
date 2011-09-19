@@ -97,7 +97,6 @@
 								<string key="NSFrame">{{107, 391}, {106, 37}}</string>
 								<reference key="NSSuperview" ref="774585933"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC40OTQxMTc2NDcxIDAuNDk0MTE3NjQ3MSAwLjQ5NDExNzY0NzEgMAA</bytes>
@@ -179,6 +178,7 @@
 										<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 										<float key="IBUIMinimumFontSize">17</float>
 										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+											<int key="IBUIAutocorrectionType">1</int>
 											<int key="IBUIReturnKeyType">9</int>
 											<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 											<bool key="IBUISecureTextEntry">YES</bool>
@@ -210,6 +210,7 @@
 										<bool key="IBUIClearsOnBeginEditing">YES</bool>
 										<float key="IBUIMinimumFontSize">17</float>
 										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+											<int key="IBUIAutocorrectionType">1</int>
 											<int key="IBUIReturnKeyType">4</int>
 											<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -730,7 +731,7 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">AuthenticateViewController_iPhone</string>
+					<string key="className">AuthenticateViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -866,6 +867,14 @@
 							</object>
 						</object>
 					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AuthenticateViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">AuthenticateViewController_iPhone</string>
+					<string key="superclassName">AuthenticateViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AuthenticateViewController_iPhone.h</string>
