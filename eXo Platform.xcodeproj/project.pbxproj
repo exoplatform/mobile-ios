@@ -78,6 +78,7 @@
 		467F4EFE13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EF513AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib */; };
 		467F4EFF13AB6F1300B2DCFA /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF713AB6F1300B2DCFA /* ActivityDetailViewController.m */; };
 		468035DE139D0C0500B1DAE4 /* MockSocial_Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 468035DD139D0C0500B1DAE4 /* MockSocial_Activity.m */; };
+		468AAA9E14288D0700F89629 /* SocialActivityBrowserCommentButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468AAA9D14288D0700F89629 /* SocialActivityBrowserCommentButton@2x.png */; };
 		469597F71377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F01377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png */; };
 		469597FB1377017300ADC826 /* AuthenticateServersIconIphoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F41377017300ADC826 /* AuthenticateServersIconIphoneOff.png */; };
 		469597FD1377017300ADC826 /* AuthenticateSettingsIconIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 469597F61377017300ADC826 /* AuthenticateSettingsIconIphone.png */; };
@@ -112,7 +113,6 @@
 		46A03AC113A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */; };
 		46A03AC213A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB013A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png */; };
 		46A03AC313A8E0EF00E71AF9 /* SocialActivityBrowserActivityBgSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB113A8E0EF00E71AF9 /* SocialActivityBrowserActivityBgSelected@2x.png */; };
-		46A03AC413A8E0EF00E71AF9 /* SocialActivityBrowserCommentButton@2x.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB213A8E0EF00E71AF9 /* SocialActivityBrowserCommentButton@2x.png.png */; };
 		46A03AC513A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB313A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png */; };
 		46A03AC613A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */; };
 		46A03AC713A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */; };
@@ -684,7 +684,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* eXo Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* eXo Beta2-W37.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Beta2-W37.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3201088596B4756681693700 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = Three20/src/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -782,6 +782,7 @@
 		467F4EF713AB6F1300B2DCFA /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController.m; path = Social/ActivityDetailViewController.m; sourceTree = "<group>"; };
 		468035DC139D0C0500B1DAE4 /* MockSocial_Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockSocial_Activity.h; sourceTree = "<group>"; };
 		468035DD139D0C0500B1DAE4 /* MockSocial_Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockSocial_Activity.m; sourceTree = "<group>"; };
+		468AAA9D14288D0700F89629 /* SocialActivityBrowserCommentButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserCommentButton@2x.png"; sourceTree = "<group>"; };
 		469597F01377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCredentialsIconIphoneOn.png; path = "Authenticate/@1x/AuthenticateCredentialsIconIphoneOn.png"; sourceTree = "<group>"; };
 		469597F41377017300ADC826 /* AuthenticateServersIconIphoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateServersIconIphoneOff.png; path = "Authenticate/@1x/AuthenticateServersIconIphoneOff.png"; sourceTree = "<group>"; };
 		469597F61377017300ADC826 /* AuthenticateSettingsIconIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateSettingsIconIphone.png; path = "Authenticate/@1x/AuthenticateSettingsIconIphone.png"; sourceTree = "<group>"; };
@@ -819,7 +820,6 @@
 		46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowseHeaderNormalBg@2x.png"; sourceTree = "<group>"; };
 		46A03AB013A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserActivityBg@2x.png"; sourceTree = "<group>"; };
 		46A03AB113A8E0EF00E71AF9 /* SocialActivityBrowserActivityBgSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserActivityBgSelected@2x.png"; sourceTree = "<group>"; };
-		46A03AB213A8E0EF00E71AF9 /* SocialActivityBrowserCommentButton@2x.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserCommentButton@2x.png.png"; sourceTree = "<group>"; };
 		46A03AB313A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserCommentButtonSelected@2x.png"; sourceTree = "<group>"; };
 		46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserLikeButton@2x.png"; sourceTree = "<group>"; };
 		46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserLikeButtonSelected@2x.png"; sourceTree = "<group>"; };
@@ -1333,7 +1333,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* eXo Platform.app */,
+				1D6058910D05DD3D006BFB54 /* eXo Beta2-W37.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1792,8 +1792,8 @@
 				46A03AAE13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png */,
 				46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */,
 				46A03AB013A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png */,
+				468AAA9D14288D0700F89629 /* SocialActivityBrowserCommentButton@2x.png */,
 				46A03AB113A8E0EF00E71AF9 /* SocialActivityBrowserActivityBgSelected@2x.png */,
-				46A03AB213A8E0EF00E71AF9 /* SocialActivityBrowserCommentButton@2x.png.png */,
 				46A03AB313A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png */,
 				46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */,
 				46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */,
@@ -3054,7 +3054,7 @@
 			);
 			name = "eXo Platform";
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo Platform.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* eXo Beta2-W37.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3508,7 +3508,6 @@
 				46A03AC113A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png in Resources */,
 				46A03AC213A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png in Resources */,
 				46A03AC313A8E0EF00E71AF9 /* SocialActivityBrowserActivityBgSelected@2x.png in Resources */,
-				46A03AC413A8E0EF00E71AF9 /* SocialActivityBrowserCommentButton@2x.png.png in Resources */,
 				46A03AC513A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png in Resources */,
 				46A03AC613A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png in Resources */,
 				46A03AC713A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png in Resources */,
@@ -3564,6 +3563,7 @@
 				4633E6EF141BB919002A47F4 /* DocumentDisplayViewController_iPad.xib in Resources */,
 				4633E6F4141BBE80002A47F4 /* DocumentDisplayViewController_iPhone.xib in Resources */,
 				8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */,
+				468AAA9E14288D0700F89629 /* SocialActivityBrowserCommentButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3806,7 +3806,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Platform";
+				PRODUCT_NAME = "eXo Beta2-W37";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -3818,8 +3818,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -3852,7 +3852,8 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Platform";
+				PRODUCT_NAME = "eXo Beta2-W37";
+				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3864,9 +3865,9 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3880,9 +3881,9 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3925,7 +3926,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Platform";
+				PRODUCT_NAME = "eXo Beta2-W37";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3939,9 +3940,9 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3955,9 +3956,9 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3968,9 +3969,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -4000,7 +4001,10 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Platform";
+				PRODUCT_NAME = "eXo Beta2-W37";
+				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
+				"PROVISIONING_PROFILE[sdk=*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4036,8 +4040,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -4050,8 +4054,8 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "BA688602-60BB-445E-AE03-62F383E2E9A7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA688602-60BB-445E-AE03-62F383E2E9A7";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
