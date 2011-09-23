@@ -127,8 +127,10 @@
 	else
 	{
         
-        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByReplacingOccurrencesOfString:@" " 
-                                                                                                        withString:@"%20"]];
+//        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByReplacingOccurrencesOfString:@" " 
+//                                                                                                        withString:@"%20"]];
+        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
 		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"
                                                                                                bundle:nil 
                                                                                                   url:urlOfTheFileToOpen
