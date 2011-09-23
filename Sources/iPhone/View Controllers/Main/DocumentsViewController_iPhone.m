@@ -116,15 +116,9 @@
     _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
     
     [self.view addSubview:_maskingViewForActions];
-    
-    _containerView = [[UIView alloc] initWithFrame:self.view.frame];
-    _containerView.backgroundColor = [UIColor clearColor];
-    
-    [self.view addSubview:_containerView];
-	[_containerView addSubview:_actionsViewController.view];
+    [self.view addSubview:_actionsViewController.view];
+
     _tblFiles.scrollEnabled = NO;
-
-
 }
 
 
