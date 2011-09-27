@@ -22,9 +22,6 @@
 	NSDictionary*							_dictLocalize;	//Language dictionary
 	int										_intSelectedLanguage;	//Language index
        
-    IBOutlet UIView*                        _vLoginView;
-    IBOutlet UIView*                        _vContainer;
-    
     
     UINavigationController*                 _modalNavigationSettingViewController;
     SettingsViewController_iPad*            _iPadSettingViewController;

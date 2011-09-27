@@ -26,7 +26,8 @@
     IBOutlet UIView*            _vAccountView;
     IBOutlet UIView*            _vServerListView;
     IBOutlet UITableView*       _tbvlServerList;
-    IBOutlet UIView*            _contentView;
+    IBOutlet UIView*            _vContainer;
+    IBOutlet UIView*            _vLoginView;
     
     NSMutableArray*             _arrServerList;
     NSString*                   _strHost;

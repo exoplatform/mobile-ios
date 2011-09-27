@@ -53,10 +53,10 @@
 {
     [super viewDidLoad];
     
-    _contentView.backgroundColor = [UIColor clearColor];
+    _vContainer.backgroundColor = [UIColor clearColor];
     
     //Set Alpha for all subviews to make a small animation
-    _contentView.alpha = 0;
+    _vContainer.alpha = 0;
     
     _tbvlServerList.hidden = YES;
     
@@ -130,7 +130,7 @@
     
     if(_bAutoLogin)
     {
-        _contentView.alpha = 1;
+        _vContainer.alpha = 1;
         [self onSignInBtn:nil];
     }
     else
@@ -138,7 +138,7 @@
         //Start the animation to display the loginView
         [UIView animateWithDuration:1.0 
                          animations:^{
-                             _contentView.alpha = 1;
+                             _vContainer.alpha = 1;
                          }
          ];
     }    
