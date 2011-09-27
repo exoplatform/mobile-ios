@@ -23,12 +23,21 @@
     [_hudChat setAllowSuperviewInteraction:NO];
 	[self.view addSubview:_hudChat.view];
     
+    // set position
+    [self setHudPosition];
+    
+    
     self.title = @"Chat";
     self.view.userInteractionEnabled = NO;
     //Load all activities of the user
     [self startLoadingChat];
 }
 
+#pragma mark - Loader Management
+- (void)setHudPosition {
+    //Default implementation
+    //Nothing keep the default position of the HUD
+}
 
 -(void)viewDidDisappear:(BOOL)animated
 {
