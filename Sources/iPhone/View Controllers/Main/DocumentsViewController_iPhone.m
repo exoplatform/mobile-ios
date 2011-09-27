@@ -74,8 +74,8 @@
 	}
 	else
 	{
-		NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByReplacingOccurrencesOfString:@" " 
-                                                                                                        withString:@"%20"]];
+		
+        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
                                                                                                bundle:nil 
                                                                                                   url:urlOfTheFileToOpen
