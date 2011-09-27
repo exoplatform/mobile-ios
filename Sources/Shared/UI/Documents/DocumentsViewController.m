@@ -629,12 +629,12 @@
 		[picker dismissModalViewControllerAnimated:YES];
 		
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"dd-MM-yyy-HH-mm-ss"];
+		[dateFormatter setDateFormat:@"yyyy_mm_dd_hh_mm_ss"];
 		NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
         
         //release the date formatter because, not needed after that piece of code
         [dateFormatter release];
-		tmp = [tmp stringByAppendingFormat:@".png"];
+		tmp = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
 		
 		
 		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@",tmp];
