@@ -21,6 +21,10 @@
 #define EXO_PREFERENCE_SELECTED_SEVER		@"selected_server"
 #define EXO_REMEMBER_ME						@"remember_me"
 #define EXO_AUTO_LOGIN						@"auto_sigin"
+#define EXO_LOGIN                           @"sigin"
+#define EXO_PREFERENCE_VERSION_SERVER       @"version_server"
+#define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
+
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"
 #define HTTPS_PROTOCOL                       @"https://"
