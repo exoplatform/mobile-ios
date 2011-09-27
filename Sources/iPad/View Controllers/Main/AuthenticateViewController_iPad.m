@@ -310,7 +310,9 @@
     {
         _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
         _iPadSettingViewController.settingsDelegate = self;
+        
     }
+    [_iPadSettingViewController startRetrieve];
     
     if (_modalNavigationSettingViewController == nil) 
     {
@@ -452,15 +454,19 @@
 	}
 }
 
-
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial {
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
+    
+    //Setup Version Platfrom and Application
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];    
+	[userDefaults synchronize];
+    
     
     [_hud completeWithTitle:@"Success..."];
     
     AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
     [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
-    
 }
 
 
