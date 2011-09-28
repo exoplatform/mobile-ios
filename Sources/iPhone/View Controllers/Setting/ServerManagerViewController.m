@@ -7,7 +7,7 @@
 //
 
 #import "ServerManagerViewController.h"
-#import "Configuration.h"
+#import "ServerPreferencesManager.h"
 #import "ServerAddingViewController.h"
 #import "ServerEditingViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
@@ -77,7 +77,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     _tbvlServerList.backgroundView = backgroundView;
     [backgroundView release];
     
-    _arrServerList = [[Configuration sharedInstance] getServerList];
+    _arrServerList = [[ServerPreferencesManager sharedInstance] getServerList];
     
     UIBarButtonItem* bbtnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onBbtnAdd)];
     [self.navigationItem setRightBarButtonItem:bbtnAdd];
@@ -210,7 +210,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     if (!bExist) 
     {
-        Configuration* configuration = [Configuration sharedInstance];
+        ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
         
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
@@ -284,7 +284,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             }
         }
         
-        Configuration* configuration = [Configuration sharedInstance];
+        ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
         if (serverObjEdited._bSystemServer) 
         {
             [configuration writeSystemConfiguration:arrTmp];
@@ -320,7 +320,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         }
     }
     
-    Configuration* configuration = [Configuration sharedInstance];
+    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
     if (deletedServerObj._bSystemServer) 
     {
         [configuration writeSystemConfiguration:arrTmp];
