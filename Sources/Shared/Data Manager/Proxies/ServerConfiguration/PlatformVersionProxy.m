@@ -77,8 +77,8 @@
     }
     
     //We need to prevent the caller.
-    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:)]) {
-        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
+    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
+        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
     }
 
 }
@@ -88,8 +88,8 @@
     _isPlatformCompatibleWithSocialFeatures = NO;
     
     //We need to prevent the caller
-    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:)]) {
-        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures];
+    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
+        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures withServerInformation:nil];
     }
 
 }

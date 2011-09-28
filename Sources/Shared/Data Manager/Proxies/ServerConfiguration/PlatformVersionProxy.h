@@ -33,5 +33,5 @@
 
 
 @protocol PlatformVersionProxyDelegate<NSObject>
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial;	
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;	
 @end
