@@ -191,6 +191,7 @@
     {
         SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         settingsViewController.settingsDelegate = self;
+        [settingsViewController startRetrieve];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
         [settingsViewController release];
         
