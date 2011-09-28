@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SSHUDView.h"
 #import "PlatformVersionProxy.h"
+#import "ServerPreferencesManager.h"
 
 //Login page
 @interface AuthenticateViewController : UIViewController <PlatformVersionProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 

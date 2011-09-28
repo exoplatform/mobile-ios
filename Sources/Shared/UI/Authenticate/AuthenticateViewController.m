@@ -12,7 +12,6 @@
 #import "CXMLDocument.h"
 #import "DataProcess.h"
 #import "NSString+HTML.h"
-#import "Configuration.h"
 #import "SSHUDView.h"
 #import "AuthenticateProxy.h"
 #import "LanguageHelper.h"
@@ -89,7 +88,7 @@
     //Hide the Navigation Bar
     self.navigationController.navigationBarHidden = YES;
     
-    Configuration* configuration = [Configuration sharedInstance];
+    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
     _arrServerList = [configuration getServerList];
     
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
@@ -105,6 +104,7 @@
     {
         ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
         _strHost = tmpServerObj._strServerUrl;
+        [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
     }
 	
 	if(_bRememberMe || _bAutoLogin)
@@ -125,6 +125,8 @@
 	{
 		[_txtfUsername setText:@""];
 		[_txtfPassword setText:@""];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
 	}
     [_tbvlServerList reloadData];
     
@@ -264,6 +266,10 @@
 	}
 }
 
+#pragma mark PlatformServer
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
+    
+}
 
 #pragma UITableView Utils
 -(UIImageView *) makeCheckmarkOffAccessoryView
@@ -274,7 +280,7 @@
         return [[[UIImageView alloc] initWithImage:
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
     
-
+    
     return [[[UIImageView alloc] initWithImage:
              [UIImage imageNamed:@"AuthenticateCheckmarkiPadOff.png"]] autorelease];
 }
@@ -429,7 +435,7 @@
 {
 	[self view].userInteractionEnabled = YES;
     [_hud dismiss];
-
+    
 }
 
 
@@ -449,7 +455,7 @@
     //SLM : Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
     
-
+    
 	
 	if(_strBSuccessful == @"YES")
 	{
@@ -488,11 +494,6 @@
 }
 
 - (IBAction)onSettingBtn
-{
-    
-}
-
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial
 {
     
 }
