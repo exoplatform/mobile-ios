@@ -8,7 +8,8 @@
 
 #import "SettingsViewController.h"
 #import "defines.h"
-#import "Configuration.h"
+//#import "eXoWebViewController.h"
+#import "ServerPreferencesManager.h"
 #import "ServerManagerViewController.h"
 #import "ContainerCell.h"
 #import "CustomBackgroundForCell_iPhone.h"
@@ -17,6 +18,7 @@
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
+static NSString *CellIdentifierGuide = @"CellIdentifierGuide";
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 //Define tags for Language cells
@@ -34,7 +36,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 #define kTagInCellForServerURLLabel 20
 
 
-
+#define kTagInCellForServerVersion 400
 
 @interface SettingsViewController (PrivateMethods)
 -(void)setNavigationBarLabels;
@@ -65,7 +67,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         
         self.title = @"Settings";
         
-            }
+    }
     return self;
 }
 
@@ -88,13 +90,31 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 	[self saveSettingsInformations];
 }
 
+-(void)startRetrieve {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    if(![[userDefaults objectForKey:EXO_IS_USER_LOGGED] boolValue]){
+        bVersionServer = NO;
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(retrievePlatformVersion)]];
+        [invocation setTarget:self];
+        [invocation setSelector:@selector(retrievePlatformVersion)];
+        [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
+    } else {
+        bVersionServer = YES;
+    }
+    
+}
+
+-(void)retrievePlatformVersion{
+    PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
+    [plfVersionProxy retrievePlatformInformations];
+}
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
     [self loadSettingsInformations];
-
+    
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
@@ -108,7 +128,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     [self.navigationController.navigationBar addSubview:navigationBarShadowImgV];
     [navigationBarShadowImgV release];
     
-
+    
     //Add the Done button for exit Settings
     _doneBarButtonItem = [[UIBarButtonItem alloc]
                           initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -116,9 +136,20 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Done"];
     self.navigationItem.rightBarButtonItem = _doneBarButtonItem;
     [navigationItem release];
-
+    
     
     [self setNavigationBarLabels];
+}
+
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+    if(platformServerVersion){
+        //Setup Version Platfrom and Application
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults synchronize];
+    }
+    bVersionServer = YES;
+    [self.tableView reloadData];
 }
 
 
@@ -155,7 +186,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 -(void)loadSettingsInformations {
     //Load Settings informations
-    _arrServerList = [[Configuration sharedInstance] getServerList];
+    _arrServerList = [[ServerPreferencesManager sharedInstance] getServerList];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
@@ -185,7 +216,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 3;
+    return 5;
 }
 
 
@@ -234,9 +265,21 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 			headerLabel.text = Localize(@"ServerList");
 			break;
 		}
+            
+		case 3:
+		{
+			headerLabel.text = Localize(@"UserGuide");
+			break;
+		}
+        case 4:
+		{
+			headerLabel.text = Localize(@"ApplicationsInformation");
+			break;
+		}   
 			
 		default:
 			break;
+            
 	}
     
 	[customView addSubview:headerLabel];
@@ -246,35 +289,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	NSString* tmpStr = @"";
-	switch (section) 
-	{
-		case 0:
-		{
-			tmpStr = Localize(@"SignInButton");
-			break;
-		}
-			
-		case 1:
-		{
-			tmpStr = Localize(@"Language");
-			break;
-		}
-			
-		case 2:
-		{
-			tmpStr = Localize(@"ServerList");
-			break;
-		}
-			
-		default:
-			break;
-	}
-	
-	return tmpStr;
-}
 
 
 // Customize the number of rows in the table view.
@@ -292,6 +306,14 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 	if(section == 2)
 	{	
 		numofRows = [_arrServerList count] + 1;
+	}
+    if(section == 3)
+	{	
+		numofRows = 1;
+	}
+    if(section == 4)
+	{	
+		numofRows = 2;
 	}
     
 	return numofRows;
@@ -442,6 +464,74 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             break;
         }
             
+        case 3:
+        {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierGuide];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
+                
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            
+            cell.textLabel.text = Localize(@"UserGuide");
+            break;
+        }
+            
+        case 4:
+        {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierGuide];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
+                
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+            if(bVersionServer){                
+                UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 44)] autorelease];
+                label.backgroundColor = [UIColor clearColor];
+                label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                label.textColor = [UIColor darkGrayColor];
+                label.textAlignment = UITextAlignmentRight;
+                cell.accessoryView = label;
+                
+                if(indexPath.row == 0){
+                    cell.textLabel.text = @"Server Version";
+                    label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_SERVER];
+                }
+                if(indexPath.row == 1){
+                    cell.textLabel.text = @"Application Version";
+                    label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
+                }
+            } else {
+                
+                if(indexPath.row == 0){
+                    cell.textLabel.text = @"Server Version";
+                    UIActivityIndicatorView *loading = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+                    [loading startAnimating];
+                    cell.accessoryView = loading;
+                }
+                if(indexPath.row == 1){
+                    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 44)] autorelease];
+                    label.backgroundColor = [UIColor clearColor];
+                    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                    label.textColor = [UIColor darkGrayColor];
+                    label.textAlignment = UITextAlignmentRight;
+                    cell.accessoryView = label;
+                    cell.textLabel.text = @"Application Version";
+                    label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
+                    cell.accessoryView = label;
+                }
+            }
+            
+            break;
+        }
+            
         default:
             break;
     }
@@ -469,6 +559,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         //Finally reload the content of the screen
         [self reloadSettingsWithUpdate];
 	}
+    
 	else if(indexPath.section == 2)
 	{
         if (indexPath.row == [_arrServerList count]) 
@@ -477,6 +568,11 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
             
         }
+	}
+	else if(indexPath.section == 3)
+    {
+        //		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
+        //		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

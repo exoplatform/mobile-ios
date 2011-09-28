@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PlatformVersionProxy.h"
+#import "PlatformServerVersion.h"
 @class ServerManagerViewController;
 
 
@@ -17,10 +18,11 @@
 
 @end
 
-@interface SettingsViewController : UITableViewController {
-	    
+@interface SettingsViewController : UITableViewController <PlatformVersionProxyDelegate>{
+    
     BOOL                            bRememberMe;
 	BOOL                            bAutoLogin;
+    BOOL                            bVersionServer;
 	NSString*                       languageStr;
 	
 	UISwitch*                       rememberMe;
@@ -31,7 +33,7 @@
     
     UIBarButtonItem*                _doneBarButtonItem;
     ServerManagerViewController*    _serverManagerViewController;
-
+    
     id<SettingsDelegateProcotol>    _settingsDelegate;
     
 }
@@ -39,7 +41,7 @@
 @property (assign) id<SettingsDelegateProcotol>    settingsDelegate;
 
 
-
+-(void)startRetrieve;
 -(void)loadSettingsInformations;
 -(void)saveSettingsInformations;
 -(void)reloadSettingsWithUpdate;
