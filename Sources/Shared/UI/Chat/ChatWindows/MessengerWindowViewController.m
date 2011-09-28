@@ -8,12 +8,16 @@
 
 #import "MessengerWindowViewController.h"
 #import "MessageContentViewController.h"
-#import "XMPPMessage.h"
-#import "XMPPJID.h"
+#import "MessengerViewController.h"
 
 @implementation MessengerWindowViewController
 
 @synthesize delegate = _delegate, user = _user, heightOfKeyboard = _heightOfKeyboard;
+
+-(void)dealloc {
+    [super dealloc];
+    [_user release];
+}
 
 - (void)viewDidLoad
 {
@@ -37,9 +41,9 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-     if (![self.navigationController.viewControllers containsObject:self])
-     {
-//         [_xmppClient disconnect];
+    if (![self.navigationController.viewControllers containsObject:self])
+    {
+        //         [_xmppClient disconnect];
 	}	
     
     // unregister for keyboard notifications while not visible.
@@ -88,10 +92,10 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-//    Move view down
+    //    Move view down
     [self moveViewAnimation:_heightOfKeyboard];
     
-//    Set ketboard flag
+    //    Set ketboard flag
     _keyboardIsShown = NO;
 }
 
@@ -102,11 +106,15 @@
         return;
     }
     
-//    Move view up
+    //    Move view up
     [self moveViewAnimation:-_heightOfKeyboard];
-
-//    Set ketboard flag
+    
+    //    Set ketboard flag
     _keyboardIsShown = YES;
+}
+
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    
 }
 
 - (IBAction)onBtnSendMessage
@@ -129,18 +137,18 @@
     
     scrollContentSize.height += msgContentView.view.frame.size.height;
     _scrMessageContent.contentSize = scrollContentSize;
-
+    
     
     [msgContentView release];
     
     [_txtViewMsg setText:@""];
-
+    
     
     if([_delegate respondsToSelector:@selector(sendChatMessage: to:)])
     {
         [_delegate sendChatMessage:msgContentStr to:[[_user jid] full]];
     }
-	
+
 }
 
 - (void)receivedChatMessage:(XMPPMessage *)xmppMsg
@@ -166,7 +174,7 @@
     CGSize bsz = _scrMessageContent.bounds.size;
     if (_scrMessageContent.contentOffset.y + bsz.height > csz.height) {
         [_scrMessageContent setContentOffset:CGPointMake(_scrMessageContent.contentOffset.x, csz.height - bsz.height) 
-                    animated:YES];
+                                    animated:YES];
     }
 }
 

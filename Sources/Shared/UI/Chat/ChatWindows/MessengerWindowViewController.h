@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XMPPMessage.h"
+#import "XMPPJID.h"
 #import "XMPPUser.h"
 #import "defines.h"
 
@@ -34,5 +36,5 @@
 - (void)onBtnClearMessage;
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
-
+- (void)receivedChatMessage:(XMPPMessage *)xmppMsg;
 @end
