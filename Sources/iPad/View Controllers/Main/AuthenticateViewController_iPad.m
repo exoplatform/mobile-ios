@@ -9,7 +9,6 @@
 #import "AuthenticateViewController_iPad.h"
 #import "defines.h"
 #import "AuthenticateProxy.h"
-#import "Configuration.h"
 #import "SettingsViewController_iPad.h"
 #import "SSHUDView.h"
 #import "AppDelegate_iPad.h"
@@ -107,7 +106,7 @@
 
     
     _strBSuccessful = @"NO";
-    Configuration* configuration = [Configuration sharedInstance];
+    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
     _arrServerList = [configuration getServerList];
     
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -135,6 +134,7 @@
     {
         ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
         _strHost = tmpServerObj._strServerUrl;
+        [userDefaults setObject:[_strHost retain] forKey:EXO_PREFERENCE_DOMAIN];
     }
     
 	if(_bRememberMe || _bAutoLogin)
