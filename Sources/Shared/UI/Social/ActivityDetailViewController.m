@@ -108,6 +108,7 @@
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
     backgroundView.frame = self.view.frame;
     _tblvActivityDetail.backgroundView = backgroundView;
+    [backgroundView release];
     
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
     UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];

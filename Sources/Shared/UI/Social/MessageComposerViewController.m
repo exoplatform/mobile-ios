@@ -88,11 +88,11 @@
     [_btnCancel setBackgroundImage:strechCancelBg forState:UIControlStateNormal];
     [_btnCancel setBackgroundImage:strechCancelBgSelected forState:UIControlStateHighlighted];
     
-    UIBarButtonItem* bbtnSend = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnSend:)];
+    UIBarButtonItem* bbtnSend = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnSend:)] autorelease];
     [bbtnSend setCustomView:_btnSend];
-     self.navigationItem.rightBarButtonItem = bbtnSend;
+    self.navigationItem.rightBarButtonItem = bbtnSend;
     
-    UIBarButtonItem* bbtnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)];
+    UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
     [bbtnCancel setCustomView:_btnCancel];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
@@ -153,7 +153,7 @@
         [_hudMessageComposer setImage:[UIImage imageNamed:@"19-check"]];
         [_hudMessageComposer hideAfter:0.5];
     }
-
+    
     [_hudMessageComposer setActivity:NO];
     [_hudMessageComposer update];
     
@@ -184,13 +184,14 @@
             if(storageFolder)
             {
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"dd-MM-yyy-HH-mm-ss"];
+                [dateFormatter setDateFormat:@"yyyy_mm_dd_hh_mm_ss"];
                 NSString* fileName = [dateFormatter stringFromDate:[NSDate date]];
                 
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
-                fileName = [fileName stringByAppendingFormat:@".png"];
-                
+                //fileName = [fileName stringByAppendingFormat:@".png"];
+                fileName = [NSString stringWithFormat:@"MobileImage_%@.png", fileName];
+                NSLog(@"%@", fileName);
                 NSString *directory = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileName];
                 
                 NSData *imageData = UIImagePNGRepresentation(imgView.image);
@@ -203,7 +204,7 @@
                 [invocation setArgument:&imageData atIndex:3];
                 [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
                 
-//                [fileProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
+                //                [fileProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
             }
         }
         
@@ -223,9 +224,9 @@
             SocialPostCommentProxy *actComment = [[SocialPostCommentProxy alloc] init];
             actComment.delegate = self;
             [actComment postComment:_txtvMessageComposer.text forActivity:_strActivityID];
-
+            
         }
-
+        
     }
     else
     {
@@ -280,7 +281,7 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-
+    
     [self hideLoader:YES];
     
     if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
@@ -299,13 +300,20 @@
         alertMessage = ACTIVITY_POSTING_MESSAGE_ERROR;    
     else
         alertMessage = ACTIVITY_COMMENT_MESSAGE_ERROR;
-
+    
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     
     [alertView show];
-//    [alertView release];
+    //    [alertView release];
 }
 
+-(void)cancelDisplayAttachedPhoto {
+    
+}
+
+-(void)deleteAttachedPhoto{
+    
+}
 
 
 #pragma mark - ActionSheet Delegate
@@ -336,9 +344,9 @@
         else
         {
             /*
-            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            thePicker.allowsEditing = YES;
-            [self presentModalViewController:thePicker animated:YES];
+             thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+             thePicker.allowsEditing = YES;
+             [self presentModalViewController:thePicker animated:YES];
              */
             [self showPhotoLibrary];
         }
@@ -354,10 +362,10 @@
     
     [self addPhotoToView:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
     
-//    if (_popoverPhotoLibraryController) 
-//    {
-//        [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-//    }
+    //    if (_popoverPhotoLibraryController) 
+    //    {
+    //        [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    //    }
     
 }
 
@@ -374,8 +382,8 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-
-//      Remove the loader
-        [self hideLoader:NO];
+    
+    //      Remove the loader
+    [self hideLoader:NO];
 }
 @end

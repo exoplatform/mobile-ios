@@ -44,7 +44,7 @@
         
         //_bbtnPost = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnPost)];
         //self.navigationItem.rightBarButtonItem = _bbtnPost;
-                
+        
         _bIsPostClicked = NO;
         _bIsIPad = NO;
         _activityAction = 0;
@@ -88,6 +88,10 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(void)showHudForUpload{
+    
 }
 
 #pragma mark - Loader management
@@ -140,13 +144,13 @@
     
     
     self.title = @"Activity Stream";
-        
+    
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
     backgroundView.frame = self.view.frame;
     _tblvActivityStream.backgroundView = backgroundView;
-
+    
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		
@@ -156,7 +160,7 @@
 		_refreshHeaderView = view;
 		[view release];
         _reloading = FALSE;
-
+        
 	}
     
     //Set the last update date at now 
@@ -210,7 +214,7 @@
     _sortedActivities =[[NSMutableDictionary alloc] init];
     
     NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"postedTime"
-                                                  ascending:NO] autorelease];
+                                                                    ascending:NO] autorelease];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     _arrActivityStreams = [[NSMutableArray alloc] initWithArray:[_arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]];
     
@@ -330,7 +334,7 @@
     
     [customView addSubview:headerLabel];
     [headerLabel release];
-
+    
     
 	return customView;
 }
@@ -341,7 +345,7 @@
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     NSString* text = socialActivityStream.title;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
-        
+    
     return  fHeight;
 }
 
@@ -361,7 +365,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityBasicTableViewCell" owner:self options:nil];
         cell = (ActivityBasicTableViewCell *)[nib objectAtIndex:0];
         
-        //Create a cell, need to do some configurations
+        //Create a cell, need to do some Configurations
         [cell configureCell];
     }
     
@@ -402,7 +406,7 @@
         _activityAction = 3;
         [likeDislikeActProxy dislikeActivity:activity];
     }
-        
+    
 }
 
 #pragma mark - Loader Management
@@ -416,7 +420,7 @@
 #pragma mark Management
 
 - (void)startLoadingActivityStream {
-
+    
     [self showLoaderForAction:_activityAction];
     
     SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
@@ -523,7 +527,7 @@
             [socialActivityStream convertToPostedTimeInWords];
             
             [setOfIdentities addObject:[socialActivityStream.identityId copy]];
-
+            
             [_arrActivityStreams addObject:socialActivityStream];
             
         }
@@ -557,7 +561,7 @@
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     
     [alertView show];
-//    [alertView release];
+    //    [alertView release];
     
 }
 

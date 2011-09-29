@@ -11,7 +11,7 @@
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivityDetails.h"
-
+#import "ActivityDetailViewController.h"
 
 @implementation ActivityDetailLikeTableViewCell
 
@@ -94,7 +94,6 @@
     if([_delegate respondsToSelector:@selector(likeDislikeActivity:)])
         [_delegate likeDislikeActivity:_socialActivityDetails.identifyId];
     
-     
 }
 
 @end

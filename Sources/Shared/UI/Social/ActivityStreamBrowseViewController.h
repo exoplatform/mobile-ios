@@ -46,7 +46,7 @@
     ATMHud*                                 _hudActivityStream;//Heads up display
     
     BOOL                                    _activityAction;
-
+    
 }
 
 - (void)startLoadingActivityStream;
@@ -55,5 +55,5 @@
 - (void)clearActivityData;
 - (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
 - (void)setHudPosition;
-
+-(void)showHudForUpload;
 @end
