@@ -48,16 +48,17 @@
 
 - (void)dealloc 
 {
+    [_launcherView release];
     [super dealloc];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
+    
     self.navigationController.navigationBarHidden = NO;
     [super viewWillAppear:animated];
-
+    
     // Create a custom logout button    
     UIButton *barButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *barButtonImage = [UIImage imageNamed:@"HomeLogoutiPhone.png"];
@@ -66,14 +67,14 @@
     [barButton addTarget:self action:@selector(onBbtnSignOut) forControlEvents: UIControlEventTouchUpInside];
     UIBarButtonItem *customItem = [[UIBarButtonItem alloc] initWithCustomView:barButton];
     [self.navigationItem setLeftBarButtonItem:customItem];
-    
+    [customItem release];
 }
 
 
 - (void)loadView 
 {
     [super loadView];
-        
+    
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
@@ -90,24 +91,24 @@
     //Set the title of the controller
     //TODO Localize that
     self.title = @"Home";
-        
+    
     //Add the bubble background
     UIImageView* imgBubble = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeBubbleBackground.png"]];
     imgBubble.frame = CGRectMake(0, self.view.frame.size.height-imgBubble.frame.size.height, imgBubble.frame.size.width, imgBubble.frame.size.height);
     [self.view addSubview:imgBubble];
     [imgBubble release];
     
-/*
+    /*
+     
+     //Add the shadow at the bottom of the navigationBar
+     UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
+     navigationBarShadowImgV.frame = CGRectMake(0,0,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
+     [self.view addSubview:navigationBarShadowImgV];
+     [navigationBarShadowImgV release];
+     
+     */
     
-    //Add the shadow at the bottom of the navigationBar
-    UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
-    navigationBarShadowImgV.frame = CGRectMake(0,0,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
-    [self.view addSubview:navigationBarShadowImgV];
-    [navigationBarShadowImgV release];
-
- */
     
-   
     
     _launcherView = [[TTLauncherView alloc] initWithFrame:CGRectMake(0,5,self.view.frame.size.width, self.view.frame.size.height-120)];
     
@@ -137,8 +138,8 @@
                                                                    image:@"bundle://HomeSettingsIconiPhone.png"
                                                                      URL:@"tt://setting" canDelete:NO] autorelease];
     if(_isCompatibleWithSocial)
-    _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
-                                                    actStreamItem, chatItem, documentItem, dashboardItem, settingItem, nil], nil];
+        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
+                                                         actStreamItem, chatItem, documentItem, dashboardItem, settingItem, nil], nil];
     else
         _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
                                                          chatItem, documentItem, dashboardItem, settingItem, nil], nil];
@@ -156,25 +157,25 @@
 // TTLauncherViewDelegate
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item 
 {
-//    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
+    //    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
     
     if ([item.title isEqualToString:@"Activity Streams"]) 
     {
-        ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
+        ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil] autorelease];
         [self.navigationController pushViewController:_activityStreamBrowseViewController_iPhone animated:YES];
     }
     
     if ([item.title isEqualToString:@"Chat"]) 
     {
         //Start the Chat
-        MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil];
+        MessengerViewController_iPhone *messengerViewController_iPhone = [[[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil] autorelease];
         [self.navigationController pushViewController:messengerViewController_iPhone animated:YES];
     }
     
     if ([item.title isEqualToString:@"Documents"]) 
     {
         //Start Documents
-        DocumentsViewController_iPhone *documentsViewController = [[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil];
+        DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
         [self.navigationController pushViewController:documentsViewController animated:YES];
     }
     
@@ -183,7 +184,7 @@
         
         //Start Dashboard
         
-        DashboardViewController_iPhone *dashboardController = [[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil];
+        DashboardViewController_iPhone *dashboardController = [[[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil] autorelease];
         [self.navigationController pushViewController:dashboardController animated:YES];
     }
     
@@ -192,7 +193,7 @@
         SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         settingsViewController.settingsDelegate = self;
         [settingsViewController startRetrieve];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:settingsViewController] autorelease];
         [settingsViewController release];
         
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -219,7 +220,7 @@
     
     //Back to Login with a PopViewController
     [self.navigationController popViewControllerAnimated:YES];
-
+    
 }
 
 
