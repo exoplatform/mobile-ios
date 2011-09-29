@@ -29,7 +29,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-        
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    // version application
+    [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
 	[window addSubview:viewController.view];
     [window makeKeyAndVisible];
                 
@@ -42,7 +44,8 @@
 {
     
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:_isCompatibleWithSocial];
-
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
     
     rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
    
@@ -64,6 +67,7 @@
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
+    [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
     
     //Display the eXoMobileView Controller
     [UIView transitionWithView:self.window
@@ -111,6 +115,7 @@
 
 
 - (void)dealloc {
+    [rootViewController release];
     [window release];
     [super dealloc];
 }
