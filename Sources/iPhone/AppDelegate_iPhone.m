@@ -31,7 +31,9 @@
 	return self;
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {   
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
     window.rootViewController = navigationController;
 	[window makeKeyAndVisible];
     
@@ -44,6 +46,9 @@
 
 
 - (void)showHomeViewController {
+    // Login is successfully
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
     [_homeViewController_iPhone release];
     _homeViewController_iPhone = nil;   
     
@@ -93,6 +98,7 @@
     //window.rootViewController = authenticateViewController;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
+    [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
 }
 
 @end
