@@ -13,6 +13,7 @@
 #import "RootViewController.h"
 #import "MessageComposerViewController.h"
 #import "SocialUserProfileCache.h"
+#import "StackScrollViewController.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
 

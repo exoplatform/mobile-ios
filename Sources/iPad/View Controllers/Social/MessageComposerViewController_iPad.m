@@ -29,6 +29,12 @@
     _hudMessageComposer.center = CGPointMake(self.view.center.x, self.view.center.y-70);
 }
 
+-(void)dealloc 
+{
+    [_photoActionViewController release];
+    [super dealloc];
+}
+
 - (void)showActionSheetForPhotoAttachment
 {
     if (_photoActionViewController == nil) 

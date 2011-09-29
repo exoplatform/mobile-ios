@@ -22,4 +22,9 @@
 - (void)cancelDisplayAttachedPhoto;
 - (void)deleteAttachedPhoto;
 
+- (void)showPhotoLibrary;
+- (void)onBtnTakePhoto;
+- (void)onBtnPhotoLibrary;
+- (void)onBtnCancel;
+
 @end
