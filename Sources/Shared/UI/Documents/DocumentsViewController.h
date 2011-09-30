@@ -35,7 +35,7 @@
 
 -(void)setHudPosition;
 //Use this method to init the Controller with a root file
-- (id) initWithRootFile:(File *)rootFile; 
+- (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 
 - (void)hideFileFolderActionsController;
 
 @end

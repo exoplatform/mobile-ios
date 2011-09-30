@@ -35,12 +35,26 @@
 @end
 
 
+
+#pragma mark -
+#pragma mark Implementation
+
+// ================================
+// = Implementation for FilesViewController_iPhone
+// ================================
+@implementation DocumentsViewController
+
+- (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName  {
+    if ((self = [super initWithNibName:nibName bundle:nil])) {
+        //Set the rootFile 
+        _rootFile = [rootFile retain];
+    }
+    return self;
+}
+
 // =====================================
 // = Implementation of private methods
 // =====================================
-
-@implementation DocumentsViewController (PrivateMethods)
-
 -(void)startRetrieveDirectoryContent {
     
     NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
@@ -70,36 +84,18 @@
     [_tblFiles reloadData];
 }
 
+- (void)hideActionsPanel{
+    
+}
 
-
+- (void)setTitleForFilesViewController{
+    
+}
 
 - (void)hideFileFolderActionsController {
     [_fileFolderActionsController.view removeFromSuperview];
     [_fileFolderActionsController release]; _fileFolderActionsController = nil;
 }
-
-@end
-
-
-
-#pragma mark -
-#pragma mark Implementation
-
-// ================================
-// = Implementation for FilesViewController_iPhone
-// ================================
-@implementation DocumentsViewController
-
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 
 
 - (void)dealloc
@@ -115,9 +111,7 @@
     [_arrayContentOfRootFile release];
     _arrayContentOfRootFile = nil;
     
-    //Release the loader
     [_hudFolder release];
-    _hudFolder = nil;
     
     [_stringForUploadPhoto release];
     _stringForUploadPhoto = nil;
@@ -157,7 +151,7 @@
     
     //Add the "Actions" button
     //TODO localize this button
-    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithTitle:@"Actions" style:UIBarButtonItemStylePlain target:self action:@selector(showActionsPanelFromNavigationBarButton)];
+    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithTitle:@"Actions" style:UIBarButtonItemStylePlain target:self action:@selector(showActionsPanelFromNavigationBarButton:)];
     
     [self.navigationItem setRightBarButtonItem:actionButton];
     
@@ -194,6 +188,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    //Release the loader
+    [_hudFolder hide];
+    _hudFolder = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -603,7 +600,9 @@
     
 }
 
-
+-(void)askToMakeFolderActions:(BOOL)createNewFolder{
+    
+}
 
 
 
