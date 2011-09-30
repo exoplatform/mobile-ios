@@ -21,7 +21,7 @@
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
 	{
-
+        
 		// Custom initialization	
     }
 	return self;
@@ -35,6 +35,11 @@
 	[super viewDidLoad];
 }
 
+- (void)setHudPosition {
+    NSLog(@"%@", NSStringFromCGPoint(CGPointMake(self.view.center.x, self.view.center.y-70)));
+    _hudChat.center = CGPointMake(self.view.center.x, self.view.center.y-70);
+}
+
 - (void)didReceiveMemoryWarning 
 {
 	// Releases the view if it doesn't have a superview.
@@ -46,22 +51,24 @@
 {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+    
 }
 
 - (void)dealloc 
 {
     _delegate = nil;
     [_chatWindowViewController release];
-
+    
     
     [super dealloc];
 }
+
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (_chatWindowViewController) 
     {
-//        [_chatWindowViewController changeOrientation:interfaceOrientation];
+        //        [_chatWindowViewController changeOrientation:interfaceOrientation];
     }
 }
 
@@ -73,16 +80,17 @@
     }
 }
 
-    
+
 #pragma mark Table view methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-
+    
     _chatWindowViewController = [[ChatWindowViewController_iPad alloc] initWithNibName:@"ChatWindowViewController_iPad" bundle:nil];
     _chatWindowViewController.delegate = self;
+    //[_chatWindowViewController ]
     _chatWindowViewController.user = [_arrUsers objectAtIndex:indexPath.row];
     
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_chatWindowViewController invokeByController:self isStackStartView:FALSE];
