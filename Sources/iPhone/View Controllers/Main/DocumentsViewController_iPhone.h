@@ -8,16 +8,21 @@
 
 #import "DocumentsViewController.h"
 #import "FileActionsViewController.h"
+#import "WEPopoverController.h"
 
 
-
-@interface DocumentsViewController_iPhone : DocumentsViewController {
+@interface DocumentsViewController_iPhone : DocumentsViewController <WEPopoverControllerDelegate, UIPopoverControllerDelegate>{
     
     FileActionsViewController *_actionsViewController;
     
     UIView *_maskingViewForActions;
     
+    WEPopoverController *popoverController;
+    WEPopoverController *popoverClass;
+    NSInteger currentPopoverCellIndex;
+    
 }
-
+@property (nonatomic, retain) WEPopoverController *popoverController;
+@property (nonatomic, retain) WEPopoverController *popoverClass;
 
 @end

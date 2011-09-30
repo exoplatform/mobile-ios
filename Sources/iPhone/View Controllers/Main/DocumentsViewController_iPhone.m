@@ -14,6 +14,7 @@
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
+#import "UIBarButtonItem+WEPopover.h"
 
 
 #pragma mark -
@@ -24,28 +25,31 @@
 // ================================
 @implementation DocumentsViewController_iPhone
 
-
-
-
-//Use this method to init the Controller with a root file
-- (id) initWithRootFile:(File *)rootFile {
-    if ((self = [super initWithNibName:@"DocumentsViewController_iPhone" bundle:nil])) {
-        //Set the rootFile 
-        _rootFile = [rootFile retain];
-    }
-    return self;
-}
-
+@synthesize popoverController;
+@synthesize popoverClass;
 
 - (void)dealloc
 {
     [_actionsViewController release];
     _actionsViewController = nil;
-    
+    [_maskingViewForActions release];
     [super dealloc];
 }
 
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    //Try setting this to UIPopoverController to use the iPad popover. The API is exactly the same!
+	//popoverClass = [WEPopoverController class];
+    currentPopoverCellIndex = -1;
+}
 
+-(void)viewDidUnload{
+    [self.popoverController dismissPopoverAnimated:NO];
+	self.popoverController = nil;
+    [self.popoverClass dismissPopoverAnimated:NO];
+    self.popoverClass = nil;
+    [super viewDidUnload];
+}
 
 #pragma mark - UINavigationBar Management
 
@@ -56,7 +60,57 @@
         self.title = @"Documents";
     }
 }
+/**
+ Thanks to Paul Solt for supplying these background images and container view properties
+ */
+- (WEPopoverContainerViewProperties *)improvedContainerViewProperties {
+	
+	WEPopoverContainerViewProperties *props = [[WEPopoverContainerViewProperties alloc] autorelease];
+	NSString *bgImageName = nil;
+	CGFloat bgMargin = 0.0;
+	CGFloat bgCapSize = 0.0;
+	CGFloat contentMargin = 4.0;
+	
+	bgImageName = @"popoverBg.png";
+	
+	// These constants are determined by the popoverBg.png image file and are image dependent
+	bgMargin = 13; // margin width of 13 pixels on all sides popoverBg.png (62 pixels wide - 36 pixel background) / 2 == 26 / 2 == 13 
+	bgCapSize = 31; // ImageSize/2  == 62 / 2 == 31 pixels
+	
+	props.leftBgMargin = bgMargin;
+	props.rightBgMargin = bgMargin;
+	props.topBgMargin = bgMargin;
+	props.bottomBgMargin = bgMargin;
+	props.leftBgCapSize = bgCapSize;
+	props.topBgCapSize = bgCapSize;
+	props.bgImageName = bgImageName;
+	props.leftContentMargin = contentMargin;
+	props.rightContentMargin = contentMargin - 1; // Need to shift one pixel for border to look correct
+	props.topContentMargin = contentMargin; 
+	props.bottomContentMargin = contentMargin;
+	
+	props.arrowMargin = 4.0;
+	
+	props.upArrowImageName = @"popoverArrowUp.png";
+	props.downArrowImageName = @"popoverArrowDown.png";
+	props.leftArrowImageName = @"popoverArrowLeft.png";
+	props.rightArrowImageName = @"popoverArrowRight.png";
+	return props;	
+}
 
+#pragma mark -
+#pragma mark WEPopoverControllerDelegate implementation
+
+- (void)popoverControllerDidDismissPopover:(WEPopoverController *)thePopoverController {
+	//Safe to release the popover here
+	self.popoverController = nil;
+    self.popoverClass = nil;
+}
+
+- (BOOL)popoverControllerShouldDismissPopover:(WEPopoverController *)thePopoverController {
+	//The popover is automatically dismissed if you click outside it, unless you return NO here
+	return YES;
+}
 
 #pragma mark - Table view delegate
 
@@ -69,17 +123,18 @@
 	if(fileToBrowse.isFolder)
 	{
         //Create a new FilesViewController_iPhone to push it into the navigationController
-        DocumentsViewController_iPhone *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPhone alloc] initWithRootFile:fileToBrowse];
+        DocumentsViewController_iPhone *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPhone alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPhone"];
         [self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
 	}
 	else
 	{
 		
         NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
-                                                                                               bundle:nil 
-                                                                                                  url:urlOfTheFileToOpen
-                                                                                             fileName:fileToBrowse.fileName];
+		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc] 
+                                                                       initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
+                                                                                  bundle:nil 
+                                                                                    url:urlOfTheFileToOpen
+                                                                                fileName:fileToBrowse.fileName];
 		[self.navigationController pushViewController:fileWebViewController animated:YES];    
         
         [fileWebViewController release];
@@ -92,36 +147,62 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     
+    if (self.popoverController) {
+        self.popoverController = nil;
+    } 
+    
+    if (_actionsViewController == nil) {
+        
+        _actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
+                                                                             bundle:nil 
+                                                                               file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
+                                                             enableDeleteThisFolder:YES
+                                                                           delegate:self];
+    }
+    _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
+    CGRect frame = [tableView cellForRowAtIndexPath:indexPath].frame;
+    NSLog(@"%@", NSStringFromCGRect(frame));
+    frame.origin.x += 300;
+    
+    self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
+    [self.popoverController presentPopoverFromRect:frame 
+                                            inView:self.view 
+                          permittedArrowDirections:UIPopoverArrowDirectionRight|UIPopoverArrowDirectionLeft
+                                          animated:YES];
+}
+
+#pragma mark - Panel Actions
+
+-(void) showActionsPanelFromNavigationBarButton:(id)sender {
+    if (self.popoverClass) {
+        [self.popoverClass dismissPopoverAnimated:YES];
+        self.popoverClass = nil;
+        _tblFiles.scrollEnabled = NO;
+        return;
+    } 
     //Check if the _actionsViewController is already created or not
     if (_actionsViewController == nil) {
         
         _actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                                    bundle:nil 
-                                                                                      file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
-                                                                    enableDeleteThisFolder:YES
-                                                                                  delegate:self];
-        if (_maskingViewForActions ==nil) {
-            _maskingViewForActions = [[UIView alloc] initWithFrame:self.view.frame];
-            _maskingViewForActions.backgroundColor = [UIColor blackColor];
-            _maskingViewForActions.alpha = 0.45;
-            
-            //Add a Gesture Recognizer to remove the FileActionsPanel 
-            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideActionsPanel)];
-            [_maskingViewForActions addGestureRecognizer:tapGesture];
-            [tapGesture release];
-        }
+                                                                             bundle:nil 
+                                                                               file:_rootFile 
+                                                             enableDeleteThisFolder:YES
+                                                                           delegate:self];
+        
         
     }
     
-    _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
+    _actionsViewController.fileToApplyAction = _rootFile ;
     
-    [self.view addSubview:_maskingViewForActions];
-    [self.view addSubview:_actionsViewController.view];
-
+    self.popoverClass = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
+    self.popoverClass.delegate = self;
+    self.popoverClass.passthroughViews = [NSArray arrayWithObject:self.navigationController.navigationBar];
+    
+    [self.popoverClass presentPopoverFromBarButtonItem:sender 
+                                   permittedArrowDirections:(UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown) 
+                                                   animated:YES];
     _tblFiles.scrollEnabled = NO;
 }
-
-
 
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
     _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
@@ -135,40 +216,10 @@
     //_optionsViewController.view.hidden = YES;
     [self.view addSubview:_fileFolderActionsController.view];
     [_actionsViewController.view removeFromSuperview]; 
-}
-
-
-#pragma mark - Panel Actions
-
--(void) showActionsPanelFromNavigationBarButton {
-
-    //Check if the _actionsViewController is already created or not
-    if (_actionsViewController == nil) {
-        
-        _actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                                    bundle:nil 
-                                                                                      file:_rootFile 
-                                                                    enableDeleteThisFolder:YES
-                                                                                  delegate:self];
-        if (_maskingViewForActions ==nil) {
-            _maskingViewForActions = [[UIView alloc] initWithFrame:self.view.frame];
-            _maskingViewForActions.backgroundColor = [UIColor blackColor];
-            _maskingViewForActions.alpha = 0.45;
-            
-            //Add a Gesture Recognizer to remove the FileActionsPanel 
-            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideActionsPanel)];
-            [_maskingViewForActions addGestureRecognizer:tapGesture];
-            [tapGesture release];
-        }
-        
-    }
-    
-    _actionsViewController.fileToApplyAction = _rootFile ;
-    
-    [self.view addSubview:_maskingViewForActions];
-	[self.view addSubview:_actionsViewController.view];
-    _tblFiles.scrollEnabled = NO;
-
+    [self.popoverController dismissPopoverAnimated:YES];
+    self.popoverController = nil;
+    [self.popoverClass dismissPopoverAnimated:YES];
+    self.popoverClass = nil;
 }
 
 
@@ -177,6 +228,10 @@
     [_actionsViewController.view removeFromSuperview];
     [_maskingViewForActions removeFromSuperview];
     _tblFiles.scrollEnabled = YES;
+    [self.popoverController dismissPopoverAnimated:YES];
+    self.popoverController = nil;
+    [self.popoverClass dismissPopoverAnimated:YES];
+    self.popoverClass = nil;
 }
 
 
@@ -184,6 +239,10 @@
     [_maskingViewForActions removeFromSuperview];
     _tblFiles.scrollEnabled = YES;
     [super hideFileFolderActionsController];
+    [self.popoverController dismissPopoverAnimated:YES];
+    self.popoverController = nil;
+    [self.popoverClass dismissPopoverAnimated:YES];
+    self.popoverClass = nil;
 }
 
 
