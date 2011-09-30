@@ -39,8 +39,8 @@ enableDeleteThisFolder:(BOOL)enable
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
-        
-        self.view.frame = CGRectMake(30, 60, 230, 335);
+        self.contentSizeForViewInPopover = CGSizeMake(200, 275);
+        self.view.frame = CGRectMake(0, 0, 200, 275);
 		
         fileActionsDelegate = actionsDelegate;
         
@@ -56,14 +56,7 @@ enableDeleteThisFolder:(BOOL)enable
         _strNewFolder = [Localize(@"NewFolderTitle") copy];
         _strRenameFolder = [Localize(@"RenameTitle") copy];
         
-        
-        FileActionsBackgroundView *bgView = [[FileActionsBackgroundView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        
-        self.view.backgroundColor = [UIColor clearColor];
-        
-        [self.view addSubview:bgView];
-        [self.view sendSubviewToBack:bgView];
-        
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -137,23 +130,28 @@ enableDeleteThisFolder:(BOOL)enable
 	return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	if(section == 0)
-	{
-		NSString *strFileFolderName = _file.fileName;
-		strFileFolderName = [strFileFolderName stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
-		if([strFileFolderName length] >= 15)
-		{	
-			strFileFolderName = [strFileFolderName substringToIndex:15];
-			strFileFolderName = [strFileFolderName stringByAppendingString:@"..."];
-		}
-		return strFileFolderName;
-	}
-    
-	
-	return @"";
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//	return 30;
+//}
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//	if(section == 0)
+//	{
+//		NSString *strFileFolderName = _file.fileName;
+//		strFileFolderName = [strFileFolderName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//		if([strFileFolderName length] >= 15)
+//		{	
+//			strFileFolderName = [strFileFolderName substringToIndex:15];
+//			strFileFolderName = [strFileFolderName stringByAppendingString:@"..."];
+//		}
+//		return strFileFolderName;
+//	}
+//    
+//	
+//	return @"";
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
