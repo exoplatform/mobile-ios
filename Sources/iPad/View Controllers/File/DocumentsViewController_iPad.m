@@ -19,18 +19,6 @@
 @implementation DocumentsViewController_iPad
 
 
-#pragma mark - Object management
-
-//Use this method to init the Controller with a root file
-- (id) initWithRootFile:(File *)rootFile {
-    if ((self = [super initWithNibName:@"DocumentsViewController_iPad" bundle:nil])) {
-        //Set the rootFile 
-        _rootFile = [rootFile retain];
-    }
-    return self;
-}
-
-
 #pragma mark - HUD Management
 
 - (void)setHudPosition {
@@ -69,7 +57,12 @@
 	// e.g. self.myOutlet = nil;
 }
 
-
+-(void)dealloc {
+    if(_actionPopoverController != nil){
+        [_actionPopoverController release];
+    }
+    [super dealloc];
+}
 
 #pragma mark - UINavigationBar Management
 
@@ -119,16 +112,14 @@
 	if(fileToBrowse.isFolder)
 	{
         //Create a new FilesViewController_iPad to push it into the navigationController
-        DocumentsViewController_iPad *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPad alloc] initWithRootFile:fileToBrowse];
+        DocumentsViewController_iPad *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPad alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPad"];
+        newViewControllerForFilesBrowsing.title = fileToBrowse.fileName;
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:newViewControllerForFilesBrowsing invokeByController:self isStackStartView:FALSE];
         
         [newViewControllerForFilesBrowsing release];
 	}
 	else
 	{
-        
-//        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByReplacingOccurrencesOfString:@" " 
-//                                                                                                        withString:@"%20"]];
         NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
 		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"
@@ -141,8 +132,6 @@
         [contentViewController release];
         
     }
-    
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];   
 }
 
 
