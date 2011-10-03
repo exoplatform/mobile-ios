@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		1FCD3086143959F000C5BE6D /* disclosureActionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */; };
 		1FCED1C514355C1C00EC0B88 /* SocialAddPhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */; };
 		1FCED1C614355C1C00EC0B88 /* SocialAddPhotoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */; };
 		1FCED3431435B98500EC0B88 /* popoverArrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED3341435B98500EC0B88 /* popoverArrowDown.png */; };
@@ -707,6 +708,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* eXo Beta2-W37.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Beta2-W37.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosureActionButton.png; sourceTree = "<group>"; };
 		1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialAddPhotoButton.png; sourceTree = "<group>"; };
 		1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialAddPhotoButton@2x.png"; sourceTree = "<group>"; };
 		1FCED3341435B98500EC0B88 /* popoverArrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowDown.png; sourceTree = "<group>"; };
@@ -2780,6 +2782,7 @@
 		8947341113370F5000B0AD11 /* File */ = {
 			isa = PBXGroup;
 			children = (
+				1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */,
 				8947341213370F5000B0AD11 /* action.png */,
 				8947341313370F5000B0AD11 /* actionitem.png */,
 				8947341413370F5000B0AD11 /* addfolder.png */,
@@ -3668,6 +3671,7 @@
 				1FCED34F1435B98500EC0B88 /* popoverBg.png in Resources */,
 				1FCED3501435B98500EC0B88 /* popoverBg@2x.png in Resources */,
 				1FCED3511435B98500EC0B88 /* popoverBgSimple.png in Resources */,
+				1FCD3086143959F000C5BE6D /* disclosureActionButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
