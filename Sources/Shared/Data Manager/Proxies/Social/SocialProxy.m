@@ -71,7 +71,8 @@ static NSString *urlEncode(id object) {
 }
 
 - (NSData*)HTTPBody {
-	return [[self URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [[NSDictionary alloc] init];
+	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

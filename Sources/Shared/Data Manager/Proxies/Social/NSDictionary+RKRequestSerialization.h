@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RKRequestSerializable.h"
-
+#import <RestKit/Network/RKRequestSerializable.h>
 /**
  * Extends NSDictionary to enable usage as the params of an RKRequest.
  *
@@ -19,7 +19,7 @@
  * @see RKRequest#params
  * @class NSDictionary (RKRequestSerialization)
  */
-@interface NSDictionary (RKRequestSerialization) <RKRequestSerializable>
+@interface NSDictionary (EXORKRequestSerialization) <RKRequestSerializable>
 
 /**
  * Returns a representation of the dictionary as a URLEncoded string
