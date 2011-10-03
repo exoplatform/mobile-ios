@@ -12,7 +12,8 @@
 #import "XMPPClient.h"
 #import "XMPPElement.h"
 #import "XMPPMessage.h"
-
+#import "MessengerViewController.h"
+#import "MessengerWindowViewController.h"
 
 @implementation ChatProxy
 
