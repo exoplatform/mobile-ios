@@ -32,6 +32,8 @@
 + (AuthenticateProxy*)sharedInstance;
 - (BOOL)isReachabilityURL:(NSString *)urlStr userName:(NSString *)userName password:(NSString *)password;
 - (NSString*)sendAuthenticateRequest:(NSString*)domain username:(NSString*)username password:(NSString*)password;	//Athenticate with server
+- (NSString*)stringOfAuthorizationHeaderWithUsername:(NSString*)username password:(NSString*)password;
+
 - (NSData*)sendRequestWithAuthorization:(NSString*)urlStr;	//Send athenticated request 
 - (NSString*)loginForStandaloneGadget:(NSString*)domain;	//Get standalone gadget
 
