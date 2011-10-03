@@ -41,10 +41,14 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-     if (![self.navigationController.viewControllers containsObject:self])
-     {
-//         [_xmppClient disconnect];
+    if (![self.navigationController.viewControllers containsObject:self])
+    {
+        //         [_xmppClient disconnect];
 	}	
+}
+
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    
 }
 
 #pragma mark - Chat Proxy 
@@ -65,7 +69,7 @@
 }
 
 - (void)showChatLoader {
-
+    
     [_hudChat setCaption:@"Updating Chat"];
     [_hudChat setActivity:YES];
     [_hudChat show];
@@ -74,7 +78,7 @@
 - (void)hideLoader {
     //Now update the HUD
     //TODO Localize this string
-
+    
     self.view.userInteractionEnabled = YES;
     
     [_hudChat setCaption:@"Chat updated"];
@@ -90,7 +94,7 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connect To Chat Server" message:@"Can not connect to Chat server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
-    [alert show];
+    [alert release];
 }
 
 - (void)updateChatClient:(NSArray *)arr
@@ -100,7 +104,7 @@
     _arrUsers = [arr copy];
     
     [_tblvUsersList reloadData];
- 
+    
 }
 
 - (void)sendChatMessage:(NSString *)msg to:(NSString *)toUser
@@ -145,11 +149,11 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ChatBasicTableViewCell" owner:self options:nil];
         cell = (ChatBasicTableViewCell *)[nib objectAtIndex:0];
         
-        //Create a cell, need to do some configurations
+        //Create a cell, need to do some Configuration
         [cell configureCell];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-
+    
 	[cell setChatUser:[_arrUsers objectAtIndex:indexPath.row]];
     
 	return cell;

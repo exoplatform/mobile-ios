@@ -37,6 +37,7 @@
 - (void)updateChatClient:(NSArray *)arr;
 - (void)disconnect;
 
+- (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)sendChatMessage:(NSString *)msg  to:(NSString *)toUser;
 //- (void)receivedChatMessage:(XMPPMessage *)xmppMsg;
 
