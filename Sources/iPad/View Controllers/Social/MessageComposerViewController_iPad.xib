@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">300</string>
+			<string key="NS.object.0">301</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -131,7 +131,7 @@
 					<object class="IBUIButton" id="453212709">
 						<reference key="NSNextResponder" ref="307757626"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{496, 180}, {30, 30}}</string>
+						<string key="NSFrame">{{454, 158}, {74, 52}}</string>
 						<reference key="NSSuperview" ref="307757626"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="930502395"/>
@@ -148,7 +148,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="1065024029"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">TakePhoto.png</string>
+							<string key="NSResourceName">SocialAddPhotoButton@2x.png</string>
 						</object>
 					</object>
 				</object>
@@ -494,9 +494,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">TakePhoto.png</string>
-			<string key="NS.object.0">{35, 35}</string>
+			<string key="NS.key.0">SocialAddPhotoButton@2x.png</string>
+			<string key="NS.object.0">{74, 52}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">300</string>
+		<string key="IBCocoaTouchPluginVersion">301</string>
 	</data>
 </archive>
