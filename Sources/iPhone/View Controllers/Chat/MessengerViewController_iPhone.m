@@ -32,4 +32,11 @@
     }
 }
 
+//Dealloc method.
+- (void) dealloc
+{
+    [super dealloc];
+    [chatWindow release];
+}
+
 @end
