@@ -37,5 +37,5 @@
 //Use this method to init the Controller with a root file
 - (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 
 - (void)hideFileFolderActionsController;
-
+- (void)buttonAccessoryClick:(id)sender;
 @end

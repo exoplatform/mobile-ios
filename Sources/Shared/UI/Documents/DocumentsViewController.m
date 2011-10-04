@@ -151,11 +151,16 @@
     
     //Add the "Actions" button
     //TODO localize this button
-    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithTitle:@"Actions" style:UIBarButtonItemStylePlain target:self action:@selector(showActionsPanelFromNavigationBarButton:)];
-    
+    UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
+    UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
+    [bt setImage:image forState:UIControlStateNormal];
+    bt.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    [bt addTarget:self action:@selector(showActionsPanelFromNavigationBarButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
+    actionButton.width = image.size.width;
     [self.navigationItem setRightBarButtonItem:actionButton];
     
-    
+    [actionButton release];
 }
 
 - (void)viewDidUnload
@@ -242,15 +247,21 @@
         [cell addSubview:titleLabel];
         [titleLabel release];
         
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton.png"];
+        UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonAccessory setImage:image forState:UIControlStateNormal];
+        buttonAccessory.tag = indexPath.row;
+        buttonAccessory.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
+        cell.accessoryView = buttonAccessory;
     }
     
     File *file = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
     
-    
+    NSLog(@"%@", [file fileName]);
     UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
     if(file.isFolder)
-        imgViewFile.image = [UIImage imageNamed:@"folder.png"];
+        imgViewFile.image = [UIImage imageNamed:@"DocumentIconForFolder.png"];
     else
         imgViewFile.image = [UIImage imageNamed:[File fileType:file.fileName]];
     
@@ -266,7 +277,10 @@
     
 }
 
-
+#pragma Button Click
+- (void)buttonAccessoryClick:(id)sender{
+    
+}
 
 
 #pragma mark - FileAction delegate Methods

@@ -43,6 +43,15 @@
     currentPopoverCellIndex = -1;
 }
 
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.popoverController dismissPopoverAnimated:NO];
+	self.popoverController = nil;
+    [self.popoverClass dismissPopoverAnimated:NO];
+    self.popoverClass = nil;
+}
+
 -(void)viewDidUnload{
     [self.popoverController dismissPopoverAnimated:NO];
 	self.popoverController = nil;
@@ -125,6 +134,7 @@
         //Create a new FilesViewController_iPhone to push it into the navigationController
         DocumentsViewController_iPhone *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPhone alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPhone"];
         [self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
+        [newViewControllerForFilesBrowsing release];
 	}
 	else
 	{
@@ -145,8 +155,11 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+#pragma Button Click
+- (void)buttonAccessoryClick:(id)sender{
+    UIButton *bt = (UIButton *)sender;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
     if (self.popoverController) {
         self.popoverController = nil;
     } 
@@ -160,13 +173,13 @@
                                                                            delegate:self];
     }
     _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
-    CGRect frame = [tableView cellForRowAtIndexPath:indexPath].frame;
+    CGRect frame = [_tblFiles cellForRowAtIndexPath:indexPath].frame;
     NSLog(@"%@", NSStringFromCGRect(frame));
     frame.origin.x += 300;
     
     self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     [self.popoverController presentPopoverFromRect:frame 
-                                            inView:self.view 
+                                            inView:_tblFiles 
                           permittedArrowDirections:UIPopoverArrowDirectionRight|UIPopoverArrowDirectionLeft
                                           animated:YES];
 }
@@ -198,7 +211,7 @@
     self.popoverClass.delegate = self;
     self.popoverClass.passthroughViews = [NSArray arrayWithObject:self.navigationController.navigationBar];
     
-    [self.popoverClass presentPopoverFromBarButtonItem:sender 
+    [self.popoverClass presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem 
                                    permittedArrowDirections:(UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown) 
                                                    animated:YES];
     _tblFiles.scrollEnabled = NO;
