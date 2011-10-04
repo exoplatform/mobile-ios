@@ -166,7 +166,6 @@
     return YES;
 }
 
-
 #pragma mark -
 #pragma mark MenuManagement methods
 
@@ -333,6 +332,7 @@
 - (void)dealloc {
 	[_menuHeader release];
 	[_cellContents release];
+    [_tableView release];
     [super dealloc];
 }
 

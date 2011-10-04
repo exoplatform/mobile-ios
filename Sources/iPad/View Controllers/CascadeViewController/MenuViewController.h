@@ -52,15 +52,10 @@
     BOOL                            _isCompatibleWithSocial;
     
 }
-
-+ (void)setCompatibleWithSocial:(BOOL)compatible;
-- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
-
 @property(nonatomic, retain)UITableView* tableView;
 @property BOOL isCompatibleWithSocial;
 
-- (id)initWithFrame:(CGRect)frame;
-
+- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
 - (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 @end
