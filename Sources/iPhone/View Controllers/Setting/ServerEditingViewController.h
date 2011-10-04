@@ -33,8 +33,7 @@
 
 - (void)setDelegate:(id<ServerManagerProtocol>)delegate;
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index;
-- (UITableViewCell*)containerCellWithLabel:(UILabel*)label view:(UIView*)view;
-- (UITableViewCell*)textCellWithLabel:(UILabel*)label;
+
 
 @end
 
