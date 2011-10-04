@@ -33,15 +33,17 @@
 - (void)viewDidLoad 
 {
 	[super viewDidLoad];
-    
-    
     //Add the UIBarButtonItem for actions on the NavigationBar of the Controller
-    UIBarButtonItem* bbtnActions = [[UIBarButtonItem alloc] initWithTitle:@"Actions" style:UIBarButtonItemStylePlain target:self action:@selector(showActionsPanelFromNavigationBarButton)];
+    UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
+    UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
+    [bt setImage:image forState:UIControlStateNormal];
+    bt.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    [bt addTarget:self action:@selector(showActionsPanelFromNavigationBarButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
+    actionButton.width = image.size.width;
+    [_navigationBar.topItem setRightBarButtonItem:actionButton];
     
-    [_navigationBar.topItem setRightBarButtonItem:bbtnActions];
-    
-    [bbtnActions release];
-
+    [actionButton release];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -73,7 +75,32 @@
         _navigationBar.topItem.title = @"Documents";
     }
 }
- 
+#pragma Button Click
+- (void)buttonAccessoryClick:(id)sender{
+    UIButton *bt = (UIButton *)sender;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
+    FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
+                                                                                                       bundle:nil 
+                                                                                                         file:_rootFile 
+                                                                                       enableDeleteThisFolder:YES
+                                                                                                     delegate:self];
+    
+    fileActionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+    
+    //Getting the position of the cell in the tableView
+    CGRect rect = [_tblFiles rectForRowAtIndexPath:indexPath];
+    //Adjust the position for the PopoverController, in Y
+    rect.origin.x = _tblFiles.frame.size.width - 25;
+    
+    //Display the UIPopoverController
+	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
+    _actionPopoverController.delegate = self;
+	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
+	[_actionPopoverController presentPopoverFromRect:rect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];		
+    
+    
+    [fileActionsViewController release];
+}
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -93,7 +120,7 @@
     //Display the UIPopoverController
 	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
-	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 320) animated:YES];
+	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
 	[_actionPopoverController presentPopoverFromRect:rect inView:tableView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];		
 
 
@@ -137,7 +164,7 @@
 
 
 #pragma mark - Panel Actions
--(void) showActionsPanelFromNavigationBarButton {
+-(void) showActionsPanelFromNavigationBarButton:(id)sender {
     
     //Create the fileActionsView controller
     FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
@@ -150,7 +177,7 @@
     //Create the Popover to display potential actions to the user
     _actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     //set its size
-	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 320) animated:YES];
+	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
     //set its delegate
     _actionPopoverController.delegate = self;
     //present the popover from the rightBarButtonItem of the navigationBar
