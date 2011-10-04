@@ -7,7 +7,7 @@
 //
 
 #import "StackScrollViewController.h"
-#import "UIViewWithShadow.h";
+#import "UIViewWithShadow.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -19,8 +19,8 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 @synthesize slideViews, borderViews, viewControllersStack, slideStartPosition;
 
 -(id)init {
-	
-	if(self= [super init]) {
+	self = [super init];
+	if(self) {
 		
 		viewControllersStack = [[NSMutableArray alloc] init]; 
 		borderViews = [[UIView alloc] initWithFrame:CGRectMake(0 - 2, -2, 2, self.view.frame.size.height)];
