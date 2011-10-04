@@ -39,8 +39,8 @@ enableDeleteThisFolder:(BOOL)enable
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
-        self.contentSizeForViewInPopover = CGSizeMake(200, 275);
-        self.view.frame = CGRectMake(0, 0, 200, 275);
+        self.contentSizeForViewInPopover = CGSizeMake(200, 280);
+        self.view.frame = CGRectMake(0, 0, 200, 280);
 		
         fileActionsDelegate = actionsDelegate;
         
@@ -101,7 +101,7 @@ enableDeleteThisFolder:(BOOL)enable
     // Do any additional setup after loading the view from its nib.
     
     
-	_tblFileAction.scrollEnabled = NO;
+	_tblFileAction.scrollEnabled = YES;
 	_tblFileAction.backgroundColor = [UIColor clearColor];
 	self.view.backgroundColor = [UIColor clearColor];
     
@@ -130,28 +130,6 @@ enableDeleteThisFolder:(BOOL)enable
 	return 1;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//	return 30;
-//}
-
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//	if(section == 0)
-//	{
-//		NSString *strFileFolderName = _file.fileName;
-//		strFileFolderName = [strFileFolderName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//		if([strFileFolderName length] >= 15)
-//		{	
-//			strFileFolderName = [strFileFolderName substringToIndex:15];
-//			strFileFolderName = [strFileFolderName stringByAppendingString:@"..."];
-//		}
-//		return strFileFolderName;
-//	}
-//    
-//	
-//	return @"";
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -204,7 +182,7 @@ enableDeleteThisFolder:(BOOL)enable
 	{
 		if(row == 0)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"TakePhoto.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon.png"];
 			titleLabel.text = _strTakePicture;
 			if(!_file.isFolder)
 			{
@@ -214,7 +192,7 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if(row == 1)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"delete.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon.png"];
 			titleLabel.text = _strDelete;
 			if(!_deleteFolderEnable)
 			{
@@ -224,7 +202,7 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if(row == 2)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"copy.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon.png"];
 			titleLabel.text = _strCopy;
 			if(_file.isFolder)
 			{
@@ -234,7 +212,7 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if(row == 3)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"move.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon.png"];
 			titleLabel.text = _strMove;
 			if(_file.isFolder)
 			{
@@ -244,7 +222,7 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if (row ==4)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"paste.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon.png"];
 			titleLabel.text = _strPaste;
 			if(fileActionMode <= 0 || !_file.isFolder)
 			{
@@ -254,7 +232,7 @@ enableDeleteThisFolder:(BOOL)enable
 		}
         else if (row == 5)
         {
-            imgViewFileAction.image = [UIImage imageNamed:@"addfolder.png"];
+            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon.png"];
             titleLabel.text = _strNewFolder;
 			if(!_file.isFolder)
 			{
@@ -264,7 +242,7 @@ enableDeleteThisFolder:(BOOL)enable
         }
         else 
         {
-            imgViewFileAction.image = [UIImage imageNamed:@"rename.png"];
+            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupRenameIcon.png"];
             titleLabel.text = _strRenameFolder;
 			if(!_file.isFolder)
 			{
