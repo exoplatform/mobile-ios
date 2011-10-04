@@ -74,6 +74,10 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (void)dealloc
 {
+    [_arrServerList release];
+    [rememberMe release];
+    [autoLogin release];
+    [_doneBarButtonItem release];
     [super dealloc];
 }
 
@@ -133,10 +137,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     _doneBarButtonItem = [[UIBarButtonItem alloc]
                           initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                           target:self action:@selector(doneAction)];
-    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Done"];
-    self.navigationItem.rightBarButtonItem = _doneBarButtonItem;
-    [navigationItem release];
     
+    self.navigationItem.rightBarButtonItem = _doneBarButtonItem;    
     
     [self setNavigationBarLabels];
 }
