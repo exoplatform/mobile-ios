@@ -21,14 +21,17 @@
     //Remove protocol prefix: "http://", "https://" 
     NSRange rangeOfProtocol;
     
+    BOOL isHTTPSURL = NO;
+    
     rangeOfProtocol = [urlStr rangeOfString:HTTP_PROTOCOL];
     if(rangeOfProtocol.location == 0)
         urlStr = [urlStr substringFromIndex:rangeOfProtocol.length];
     
     rangeOfProtocol = [urlStr rangeOfString:HTTPS_PROTOCOL];
-    if(rangeOfProtocol.location == 0)
+    if(rangeOfProtocol.location == 0) {
         urlStr = [urlStr substringFromIndex:rangeOfProtocol.length];
-    
+        isHTTPSURL = YES;
+    }
     //Remove all redundant "/" at prefix
     while([[urlStr substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"])
     {
@@ -36,11 +39,19 @@
             urlStr = [urlStr substringFromIndex:1];
     }
     
-    //Add protocol
-    urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, urlStr];
     
-    NSURL *uri = [NSURL URLWithString:urlStr];
-    urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, [uri host]];
+    //Add protocol
+    NSURL *uri;
+    
+    if (!(isHTTPSURL)) {
+        urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, urlStr];
+        uri = [NSURL URLWithString:urlStr];
+        urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, [uri host]];
+    } else {
+        urlStr = [NSString stringWithFormat:@"%@%@", HTTPS_PROTOCOL, urlStr];
+        uri = [NSURL URLWithString:urlStr];
+        urlStr = [NSString stringWithFormat:@"%@%@", HTTPS_PROTOCOL, [uri host]];
+    }
 
     //Add port
     int port = [[uri port] intValue]; 
