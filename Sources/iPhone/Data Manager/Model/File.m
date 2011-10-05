@@ -30,41 +30,45 @@
 		   [tmp isEqualToString:@".gif"] || [tmp isEqualToString:@".psd"] || [tmp isEqualToString:@".tiff"] ||
 		   [tmp isEqualToString:@".bmp"] || [tmp isEqualToString:@".pict"])
 		{	
-			return @"image.png";
+			return @"DocumentIconForImage.png";
 		}	
 		if([tmp isEqualToString:@".rtf"] || [tmp isEqualToString:@".rtfd"] || [tmp isEqualToString:@".txt"])
 		{	
-			return @"txt.png";
-		}	
+			return @"DocumentIconForTxt.png";
+		}
+        if([tmp isEqualToString:@".mdb"])
+		{	
+			return @"DocumentIconForMdb.png";
+		}
 		if([tmp isEqualToString:@".pdf"])
 		{	
-			return @"pdf.png";
+			return @"DocumentIconForPdf.png";
 		}
 		if([tmp isEqualToString:@".doc"])
 		{	
-			return @"word.png";
+			return @"DocumentIconForWord.png";
 		}
 		if([tmp isEqualToString:@".ppt"])
 		{	
-			return @"ppt.png";
+			return @"DocumentIconForPpt.png";
 		}
 		if([tmp isEqualToString:@".xls"])
 		{	
-			return @"xls.png";
+			return @"DocumentIconForXls.png";
 		}
 		if([tmp isEqualToString:@".swf"])
 		{	
-			return @"swf.png";
+			return @"DocumentIconForSwf.png";
 		}
 		if([tmp isEqualToString:@".mp3"] || [tmp isEqualToString:@".aac"] || [tmp isEqualToString:@".wav"])
 		{	
-			return @"music.png";
+			return @"DocumentIconForMusic.png";
 		}	
 		if([tmp isEqualToString:@".mov"])
 		{	
-			return @"video.png";
+			return @"DocumentIconForVideo.png";
 		}
-		return @"unknownFileIcon.png";
+		return @"DocumentIconForUnknown.png";
 	}
 }
 
