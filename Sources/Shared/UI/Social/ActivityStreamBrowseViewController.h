@@ -48,7 +48,7 @@
     BOOL                                    _activityAction;
     
 }
-
+- (void)emptyState;
 - (void)startLoadingActivityStream;
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
 - (void)sortActivities;

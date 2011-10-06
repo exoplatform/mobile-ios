@@ -21,7 +21,9 @@
 #import "SocialLikeActivityProxy.h"
 #import "defines.h"
 #import "SocialUserProfileCache.h"
+#import "EmptyView.h"
 
+#define TAG_EMPTY 111
 
 @implementation ActivityStreamBrowseViewController
 
@@ -457,6 +459,10 @@
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
     
+    if ([_arrActivityStreams count] == 0) {
+        [self performSelector:@selector(emptyState) withObject:nil afterDelay:.1];
+    }
+    
     //Prepare data to be displayed
     for (int i = 0; i < [_arrActivityStreams count]; i++) 
     {
@@ -481,7 +487,23 @@
     
 }
 
-
+// Empty State
+-(void)emptyState {
+    //disable scroll in tableview
+    _tblvActivityStream.scrollEnabled = NO;
+    
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+        [emptyview release];
+    }
+    
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoActivities")];
+    emptyView.tag = TAG_EMPTY;
+    [self.view addSubview:emptyView];
+    [emptyView release];
+}
 
 #pragma -
 #pragma mark Proxies Delegate Methods
