@@ -7,7 +7,7 @@
 //
 
 #import "DocumentDisplayViewController.h"
-
+#import "EmptyView.h"
 
 
 @interface DocumentDisplayViewController (PrivateMethods)
@@ -70,6 +70,8 @@
     
     [self showLoader];
     
+    _webView.opaque = NO;
+    _webView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     //Set the title of the navigation bar
     [self setTitle:_fileName];
@@ -104,6 +106,11 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
     [self hideLoader];
+    
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
+    [self.view addSubview:emptyView];
+    [emptyView release];
 }
 
 // Stop loading animation
