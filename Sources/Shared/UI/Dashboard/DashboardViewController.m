@@ -9,14 +9,9 @@
 #import "DashboardViewController.h"
 #import "DashboardProxy.h"
 #import "LanguageHelper.h"
-#import "CustomBackgroundForCell_iPhone.h"
 #import "Gadget.h"
-
-
-//Constants Definitions
-#define kTagForCellSubviewTitleLabel 22
-#define kTagForCellSubviewDescriptionLabel 33
-#define kTagForCellSubviewImageView 44
+#import "EmptyView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DashboardViewController (PrivateMethods)
 - (void)showLoader;
@@ -84,6 +79,7 @@
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
     backgroundView.frame = self.view.frame;
     _tblGadgets.backgroundView = backgroundView;
+    [backgroundView release];
     
     [_arrTabs removeLastObject];
     
@@ -94,6 +90,8 @@
     [DashboardProxy sharedInstance];
     [DashboardProxy sharedInstance].proxyDelegate = self;
     [[DashboardProxy sharedInstance] startRetrievingGadgets];
+    
+
 }
 
 - (void)viewDidUnload
@@ -131,11 +129,6 @@
 	return 60;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString *str = [[_arrTabs objectAtIndex:section] _strDbItemName];
-    return str;
-}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
@@ -144,71 +137,23 @@
 	return n;
 }
 
-
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-	static NSString* kCellIdentifier = @"Cell";
-	
-    //We dequeue a cell
-	CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    
-    //Check if we found a cell
-    if (cell==nil) 
-    {
-        
-        //Not found, so create a new one
-        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
-        
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        
-        //Add subviews only one time, and use the propertie 'Tag' of UIView to retrieve them
-        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 5.0, 180.0, 20.0)];
-        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        //define the tag for the titleLabel
-        titleLabel.tag = kTagForCellSubviewTitleLabel; 
-        [cell addSubview:titleLabel];
-        //release the titleLabel because cell retain it now
-        [titleLabel release];
-        
-        //Create the descriptionLabel
-        UILabel* descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0, 23.0, 180.0, 33.0)];
-        descriptionLabel.numberOfLines = 2;
-        descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-        descriptionLabel.backgroundColor = [UIColor clearColor];
-        descriptionLabel.tag = kTagForCellSubviewDescriptionLabel;
-        [cell addSubview:descriptionLabel];
-        [descriptionLabel release];
-        
-        //Create the imageView
-        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0, 5.0, 50, 50)];
-        imgView.tag = kTagForCellSubviewImageView;
-        [cell addSubview:imgView];
-        [imgView release];
-        
-    }
-    
-    
-    //Configurate the cell
-    //Configurate the titleLabel and assign good value
-	UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
-    titleLabel.text = [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] name];
-    
-	//Configuration the DesriptionLabel
-    UILabel *descriptionLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewDescriptionLabel];
-	descriptionLabel.text = [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] description];
-	
-    //Configuration of the ImageView
-    UIImageView *imgView = (UIImageView *)[cell viewWithTag:kTagForCellSubviewImageView];
-    imgView.image = [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] imageIcon];
-    
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
-    
-	return cell;
+	return nil;
 }
 
+
+// Empty State
+-(void)emptyState {
+    //disable scroll in tableview
+    _tblGadgets.scrollEnabled = NO;
+    
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
+    [self.view addSubview:emptyView];
+    [emptyView release];
+}
 
 #pragma mark - DashboardProxy delegates methods 
 
@@ -217,6 +162,16 @@
     //Start the loader
     [self hideLoader];
     _arrTabs = arrGadgets;
+    
+    //if no data
+    int n = 0;
+    for (int i = 0; i < [_arrTabs count]; i++){
+        n += [[[_arrTabs objectAtIndex:i] _arrGadgetsInItem] count];
+    }
+    if (n == 0) {
+        [self performSelector:@selector(emptyState) withObject:nil afterDelay:.5];
+        return;
+    }
     [_tblGadgets reloadData];
 }
 
@@ -226,7 +181,23 @@
     //TODO Management error
 }
 
-
+- (void)customizeAvatarDecorations:(UIImageView *)_imgvAvatar{
+    //Add the CornerRadius
+    [[_imgvAvatar layer] setCornerRadius:6.0];
+    [[_imgvAvatar layer] setMasksToBounds:YES];
+    
+    //Add the border
+    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
+    CGFloat borderWidth = 2.0;
+    [[_imgvAvatar layer] setBorderWidth:borderWidth];
+    
+    //Add the inner shadow
+    CALayer *innerShadowLayer = [CALayer layer];
+    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
+    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
+    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
+    [_imgvAvatar.layer addSublayer:innerShadowLayer];
+}
 
 #pragma mark - Loader Management
 - (void)setHudPosition {
