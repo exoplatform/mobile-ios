@@ -9,7 +9,7 @@
 #import "MessengerViewController.h"
 #import "ChatBasicTableViewCell.h"
 #import "defines.h"
-
+#import "EmptyView.h"
 
 @implementation MessengerViewController
 
@@ -26,9 +26,13 @@
     // set position
     [self setHudPosition];
     
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    backgroundView.frame = self.view.frame;
+    _tblvUsersList.backgroundView = backgroundView;
+    [backgroundView release];
     
     self.title = @"Chat";
-    self.view.userInteractionEnabled = NO;
+    //self.view.userInteractionEnabled = NO;
     //Load all activities of the user
     [self startLoadingChat];
 }
@@ -43,7 +47,7 @@
 {
     if (![self.navigationController.viewControllers containsObject:self])
     {
-        //         [_xmppClient disconnect];
+        [self disconnect];
 	}	
 }
 
@@ -103,9 +107,26 @@
     
     _arrUsers = [arr copy];
     
-    [_tblvUsersList reloadData];
+    //if no data
+    if ([_arrUsers count] == 0) {
+        _tblvUsersList.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self performSelector:@selector(emptyState) withObject:nil afterDelay:.5];
+    }
     
+    [_tblvUsersList reloadData];
 }
+// Empty State
+-(void)emptyState {
+    //disable scroll in tableview
+    
+    _tblvUsersList.scrollEnabled = NO;
+    
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoContact.png" andContent:Localize(@"NoFriends")];
+    [self.view addSubview:emptyView];
+    [emptyView release];
+}
+
 
 - (void)sendChatMessage:(NSString *)msg to:(NSString *)toUser
 {
@@ -168,7 +189,7 @@
 
 - (void)disconnect
 {
-    [_chatProxy disconnect];
+    [_chatProxy disconnect];//disconnect
 }
 
 //Dealloc method.

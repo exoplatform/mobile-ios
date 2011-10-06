@@ -30,6 +30,7 @@
     ATMHud *_hudChat; //Heads up display
 
 }
+- (void)emptyState;
 - (void)setHudPosition;
 - (void)startLoadingChat;
 - (void)showChatLoader;

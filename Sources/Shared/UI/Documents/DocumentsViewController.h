@@ -13,7 +13,6 @@
 #import "FileFolderActionsViewController.h"
 
 
-
 @interface DocumentsViewController : UIViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     File *_rootFile;
@@ -32,7 +31,7 @@
 
     
 }
-
+-(void)emptyState;
 -(void)setHudPosition;
 //Use this method to init the Controller with a root file
 - (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 

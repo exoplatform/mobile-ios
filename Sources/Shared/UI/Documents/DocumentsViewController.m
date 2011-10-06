@@ -12,6 +12,8 @@
 #import "LanguageHelper.h"
 #import "NSString+HTML.h"
 #import "DataProcess.h"
+#import "EmptyView.h"
+
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -80,8 +82,30 @@
     [_hudFolder update];
     [_hudFolder hideAfter:1.0];
     
+    //check if no data
+    if([_arrayContentOfRootFile count] == 0){
+        [self performSelector:@selector(emptyState) withObject:nil afterDelay:1.0];
+    }
+    
     //And finally reload the content of the tableView
     [_tblFiles reloadData];
+}
+
+// Empty State
+-(void)emptyState {
+    //disable scroll in tableview
+    _tblFiles.scrollEnabled = NO;
+    
+//    UIImage *image = [UIImage imageNamed:@"IconForEmptyFolder.png"];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//    imageView.frame = CGRectMake(self.view.bounds.size.width/2 - image.size.width/2, self.view.bounds.size.height/2 - image.size.height/2, image.size.width, image.size.height);
+//    [self.view addSubview:imageView];
+//    [imageView release];
+    
+    //add empty view to the view    
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForEmptyFolder.png" andContent:Localize(@"EmptyFolder")];
+    [_tblFiles addSubview:emptyView];
+    [emptyView release];
 }
 
 - (void)hideActionsPanel{
@@ -145,6 +169,7 @@
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
     backgroundView.frame = self.view.frame;
     _tblFiles.backgroundView = backgroundView;
+    [backgroundView release];
     
     //Set the title of the view controller
     [self setTitleForFilesViewController];
@@ -260,11 +285,11 @@
     
     NSLog(@"%@", [file fileName]);
     UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
-    if(file.isFolder)
+    if(file.isFolder){
         imgViewFile.image = [UIImage imageNamed:@"DocumentIconForFolder.png"];
-    else
+    } else{
         imgViewFile.image = [UIImage imageNamed:[File fileType:file.fileName]];
-    
+    }
     
     UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
     titleLabel.text = file.fileName;
