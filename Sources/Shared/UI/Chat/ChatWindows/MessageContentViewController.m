@@ -23,57 +23,43 @@
 
 - (CGSize)getSizeForMessageContentView:(int)parentsViewWidth andText:(NSString*)text
 {
-    
-    float fWidth = parentsViewWidth - 50;
-    
-    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, 500) 
+    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(parentsViewWidth, 500) 
                           lineBreakMode:UILineBreakModeWordWrap];
     
-    theSize.width = fWidth;
     
     return theSize;
 }
 
-- (void)setContentView:(int)width avatar:(UIImage *)img message:(NSString *)msg left:(BOOL)left
+- (void)setContentView:(int)width message:(NSString *)msg left:(BOOL)left
 {
-    imgAvatar.image = img;
+   
     lbMessageContent.text = msg;
-    lbMessageContent.numberOfLines = 0;
-
-    width -= 10;
-    CGSize msgContentSize = [self getSizeForMessageContentView:width andText:msg];
-    
-    if(msgContentSize.height < 50)
-        msgContentSize.height = 50;
-    
-    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, msgContentSize.height + 5);
-    
-    lbMessageContent.backgroundColor = [UIColor clearColor];
     
     UIImage *strechBg = nil;
+    
     if(left)
     {
-        imgAvatar.frame = CGRectMake(5, 5, 40, 40);
-        lbMessageContent.frame = CGRectMake(imgAvatar.frame.origin.x + imgAvatar.frame.size.width + 5, 5, msgContentSize.width, msgContentSize.height);
-        
         
         //Add images for Background Message
-        strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+        strechBg = [[UIImage imageNamed:@"ChatDiscussionBuddyMessageBg"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
         
     }
     else
     {
-        lbMessageContent.frame = CGRectMake(5, 5, msgContentSize.width, msgContentSize.height);
-        imgAvatar.frame = CGRectMake(lbMessageContent.frame.origin.x + lbMessageContent.frame.size.width + 5, 5, 40, 40);
-        
         //Add images for Background Message
-        strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg2.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+        strechBg = [[UIImage imageNamed:@"ChatDiscussionUserMessageBg"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
         
     }
-    
-    imgBackground.frame = lbMessageContent.frame;
-    imgBackground.image = strechBg;
+
+    lbMessageContent.backgroundColor = [UIColor colorWithPatternImage:strechBg];
+    CGRect frame = lbMessageContent.frame;
+    frame.size.height = 0;
+    lbMessageContent.frame = frame;
+    lbMessageContent.lineBreakMode = UILineBreakModeWordWrap;
+    lbMessageContent.numberOfLines = 0;
+    [lbMessageContent sizeToFit];
 }
+
 
 - (void)dealloc
 {

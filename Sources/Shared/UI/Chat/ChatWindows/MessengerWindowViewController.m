@@ -22,9 +22,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    self.title = @"Chat Windows";
+    self.title = [_user nickname];
+    _txtViewMsg.backgroundColor = [UIColor clearColor];
     
-    _scrMessageContent.contentSize = CGSizeZero;
+    _scrMessageContent.contentSize = CGSizeMake(self.view.frame.size.width, 20);
     
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -36,6 +37,8 @@
                                              selector:@selector(keyboardWillHide:) 
                                                  name:UIKeyboardWillHideNotification 
                                                object:self.view.window];
+    
+    _scrMessageContent.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
 }
 
 
@@ -117,6 +120,65 @@
     
 }
 
+-(void) createChatMessageContentView:(BOOL)isMe message:(NSString*)msg{
+    
+    UILabel *lbMessageContent = [[UILabel alloc] initWithFrame:CGRectMake(25, _scrMessageContent.contentSize.height, self.view.frame.size.width - 40, 0)];
+    lbMessageContent.font = [UIFont systemFontOfSize:13];
+    
+    lbMessageContent.text = msg;
+    lbMessageContent.backgroundColor = [UIColor clearColor];
+    lbMessageContent.lineBreakMode = UILineBreakModeWordWrap;
+    lbMessageContent.numberOfLines = 0;
+    [lbMessageContent sizeToFit];
+    
+    UIImageView *imgViewMsgContent = nil;
+    
+    if(isMe) {
+        
+        //Add images for Background Message
+        UIImage* strechBg = [[UIImage imageNamed:@"ChatDiscussionUserMessageBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:22];
+        
+        CGRect frameForMsgBgContent = CGRectMake(0, lbMessageContent.frame.origin.y - 5, lbMessageContent.frame.size.width + 30, lbMessageContent.frame.size.height + 15);
+        
+        imgViewMsgContent = [[UIImageView alloc] initWithFrame:frameForMsgBgContent];
+        imgViewMsgContent.image = strechBg;
+        
+        [_scrMessageContent addSubview:imgViewMsgContent];
+        [_scrMessageContent addSubview:lbMessageContent];
+        
+    }
+    else {
+     
+        CGRect frame = lbMessageContent.frame;
+        frame.origin.x = self.view.frame.size.width - frame.size.width - 25;
+        lbMessageContent.frame = frame;
+        //Add images for Background Message
+        UIImage* strechBg = [[UIImage imageNamed:@"ChatDiscussionBuddyMessageBg"] stretchableImageWithLeftCapWidth:20 topCapHeight:22];
+        
+        CGRect frameForMsgBgContent = CGRectMake(frame.origin.x - 5, lbMessageContent.frame.origin.y - 5, self.view.frame.size.width - frame.origin.x + 10, lbMessageContent.frame.size.height + 15);
+        
+        UIImageView *imgViewMsgContent = [[UIImageView alloc] initWithFrame:frameForMsgBgContent];
+        imgViewMsgContent.image = strechBg;
+        
+        [_scrMessageContent addSubview:imgViewMsgContent];
+        [_scrMessageContent addSubview:lbMessageContent];
+        
+    }
+    
+    CGSize scrollContentSize = _scrMessageContent.contentSize;
+    
+    scrollContentSize.height += lbMessageContent.frame.size.height + 20;
+    _scrMessageContent.contentSize = scrollContentSize;
+
+//    CGPoint bottomOffset = CGPointMake(0, [_scrMessageContent contentSize].height);
+//    [_scrMessageContent setContentOffset: bottomOffset animated: YES];
+
+    
+    [imgViewMsgContent release];
+    [lbMessageContent release];
+}
+
+
 - (IBAction)onBtnSendMessage
 {
     if([_txtViewMsg.text isEqualToString:@""])
@@ -124,22 +186,7 @@
 	
     NSString* msgContentStr = [_txtViewMsg text];
     
-    MessageContentViewController *msgContentView = [[MessageContentViewController alloc] initWithNibName:@"MessageContentViewController" bundle:nil];
-    
-    [_scrMessageContent addSubview:msgContentView.view];
-    
-    [msgContentView setContentView:self.view.frame.size.width avatar:[UIImage imageNamed:@"default-avatar"] message:msgContentStr left:NO];
-    
-    CGSize scrollContentSize = _scrMessageContent.contentSize;
-    CGRect frame = msgContentView.view.frame;
-    frame.origin.y = scrollContentSize.height;
-    msgContentView.view.frame = frame;
-    
-    scrollContentSize.height += msgContentView.view.frame.size.height;
-    _scrMessageContent.contentSize = scrollContentSize;
-    
-    
-    [msgContentView release];
+    [self createChatMessageContentView:YES message:msgContentStr];
     
     [_txtViewMsg setText:@""];
     
@@ -153,29 +200,8 @@
 
 - (void)receivedChatMessage:(XMPPMessage *)xmppMsg
 {
-    MessageContentViewController *msgContentView = [[MessageContentViewController alloc] initWithNibName:@"MessageContentViewController" bundle:nil];
+    [self createChatMessageContentView:NO message:[xmppMsg stringValue]];
     
-    [_scrMessageContent addSubview:msgContentView.view];
-    
-    [msgContentView setContentView:self.view.frame.size.width avatar:[UIImage imageNamed:@"default-avatar"] message:[xmppMsg stringValue] left:YES];
-    
-    CGSize scrollContentSize = _scrMessageContent.contentSize;
-    CGRect frame = msgContentView.view.frame;
-    frame.origin.y = scrollContentSize.height;
-    msgContentView.view.frame = frame;
-    
-    scrollContentSize.height += msgContentView.view.frame.size.height;
-    _scrMessageContent.contentSize = scrollContentSize;
-    
-    
-    [msgContentView release];
-    
-    CGSize csz = _scrMessageContent.contentSize;
-    CGSize bsz = _scrMessageContent.bounds.size;
-    if (_scrMessageContent.contentOffset.y + bsz.height > csz.height) {
-        [_scrMessageContent setContentOffset:CGPointMake(_scrMessageContent.contentOffset.x, csz.height - bsz.height) 
-                                    animated:YES];
-    }
 }
 
 - (void)onBtnClearMessage

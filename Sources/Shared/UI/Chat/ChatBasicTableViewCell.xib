@@ -57,15 +57,11 @@
 								<reference key="NSNextKeyView" ref="768009934"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">default-avatar.png</string>
-								</object>
 							</object>
 							<object class="IBUILabel" id="768009934">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{55, 5}, {260, 40}}</string>
+								<string key="NSFrame">{{53, 5}, {260, 40}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -77,12 +73,8 @@
 								<string key="IBUIText">Label</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">13</double>
+									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
-								</object>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4wMzEzNzI1NDkwMiAwLjUzMzMzMzMzMzMgMC44MzkyMTU2ODYzAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -249,10 +241,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">default-avatar.png</string>
-			<string key="NS.object.0">{64, 64}</string>
-		</object>
 		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>

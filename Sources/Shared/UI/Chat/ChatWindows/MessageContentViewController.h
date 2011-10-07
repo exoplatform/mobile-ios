@@ -10,13 +10,11 @@
 
 
 @interface MessageContentViewController : UIViewController {
-    
-    IBOutlet UIImageView* imgAvatar;
+
     IBOutlet UILabel* lbMessageContent;
-    IBOutlet UIImageView* imgBackground;
     
 }
 
-- (void)setContentView:(int)width avatar:(UIImage *)img message:(NSString *)msg left:(BOOL)left;
+- (void)setContentView:(int)width message:(NSString *)msg left:(BOOL)left;
 
 @end

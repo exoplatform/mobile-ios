@@ -26,10 +26,10 @@
     // set position
     [self setHudPosition];
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    backgroundView.frame = self.view.frame;
-    _tblvUsersList.backgroundView = backgroundView;
-    [backgroundView release];
+//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+//    backgroundView.frame = self.view.frame;
+//    _tblvUsersList.backgroundView = backgroundView;
+//    [backgroundView release];
     
     self.title = @"Chat";
     //self.view.userInteractionEnabled = NO;
@@ -176,6 +176,9 @@
     }
     
 	[cell setChatUser:[_arrUsers objectAtIndex:indexPath.row]];
+//    cell.backgroundColor = [UIColor colorWithRed:239 green:243 blue:244 alpha:1];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
 	return cell;
     

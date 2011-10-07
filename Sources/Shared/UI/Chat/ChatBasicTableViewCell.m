@@ -69,34 +69,49 @@
 
 - (void)configureFonts {
     
-    _lbName.shadowOffset = CGSizeMake(0,1);
-    _lbName.shadowColor = [UIColor whiteColor];
+    _lbName.textColor = [UIColor darkGrayColor];
+    self.backgroundColor = [UIColor lightGrayColor];
+    
+//    _lbName.shadowOffset = CGSizeMake(0,1);
+//    _lbName.shadowColor = [UIColor brownColor];
     
 }
 
 
 - (void)configureCell {
     
-    [self customizeAvatarDecorations];
-    
+//    [self customizeAvatarDecorations];
+
     [self configureFonts];
     
 }
 
 - (void)setChatUser:(XMPPUser *)chatUser
 {
-    _lbName.text = [chatUser nickname];
+    UIImage *imgAvatar = nil;
     
     if([chatUser isOnline])
 	{	
-		_lbName.textColor = [UIColor blueColor];
-		_imgvAvatar.image = [UIImage imageNamed:@"onlineuser.png"];
+//		_lbName.textColor = [UIColor blueColor];
+		imgAvatar = [UIImage imageNamed:@"ChatContactAvailable"];
 	}
 	else
 	{
-		_lbName.textColor = [UIColor blackColor];
-		_imgvAvatar.image = [UIImage imageNamed:@"offlineuser.png"];
+//		_lbName.textColor = [UIColor blackColor];
+		imgAvatar = [UIImage imageNamed:@"ChatContactNotAvailable"];
 	}
+    
+    CGSize imageSize = imgAvatar.size;
+    _imgvAvatar.frame = CGRectMake(5, 0, imageSize.width, imageSize.height);
+    _imgvAvatar.center = CGPointMake(_imgvAvatar.center.x, self.center.y);
+    _imgvAvatar.image = imgAvatar;
+    
+    CGRect userNameTextFrame = _lbName.frame;
+    userNameTextFrame.origin.x = _imgvAvatar.frame.origin.x + _imgvAvatar.frame.size.width + 10;
+    
+    _lbName.frame = userNameTextFrame;
+    _lbName.center = CGPointMake(_lbName.center.x, self.center.y);
+    _lbName.text = [chatUser nickname];
 }
 
 @end
