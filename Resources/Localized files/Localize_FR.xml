@@ -112,5 +112,15 @@
 	<string>Liste des Serveurs</string>  
     <key>ServerModify</key>
 	<string>Modifier la liste</string>    
+    <key>EmptyFolder</key>
+	<string>Le contenu de ce dossier est vide</string>
+    <key>UnreadableFile</key>
+	<string>Ce fichier ne peut pas être ouvert depuis l'application</string>
+    <key>NoFriends</key>
+	<string>Votre liste de contacts est vide</string>
+    <key>NoActivities</key>
+	<string>Aucune activité n'a été postée sur votre flux d'activités</string>
+    <key>NoGadget</key>
+	<string>Aucun gadget n'est présent sur votre dashboard</string>
 </dict>
 </plist>

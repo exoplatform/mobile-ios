@@ -111,6 +111,16 @@
 	<key>ServerList</key>
 	<string>Server list</string>    
     <key>ServerModify</key>
-	<string>Modify the list</string>    
+	<string>Modify the list</string> 
+    <key>EmptyFolder</key>
+	<string>The content of this folder is empty</string>
+    <key>UnreadableFile</key>
+	<string>This file cannot be opened on the application</string>
+    <key>NoFriends</key>
+	<string>Your chat buddies list is empty</string>
+    <key>NoActivities</key>
+	<string>Any activities has been posted on your activity stream</string>
+    <key>NoGadget</key>
+	<string>You haven't got any gadgets on your dashboard</string>
 </dict>
 </plist>
