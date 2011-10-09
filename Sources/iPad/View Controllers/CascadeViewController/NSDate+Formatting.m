@@ -56,9 +56,7 @@
     long timeIntervalNow = [[NSDate date] timeIntervalSince1970];
     
     int time = (timeIntervalNow - postedTimeInSecond);
-    
-    NSLog(@"%d", time);
-    
+        
     NSString *value;
     
     if (time < 60) {
