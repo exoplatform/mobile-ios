@@ -47,6 +47,8 @@
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
     
+    NSLog(@"%@",[NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
+    
     return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
 
 }
@@ -56,9 +58,9 @@
 //Helper to create the path to get the ressources
 - (NSString *)createPath 
 {    
-    NSLog(@"%@", [NSString stringWithFormat:@"%@/user/default.json",_socialUserProfile.identity]);
+    NSLog(@"%@", [NSString stringWithFormat:@"feed.json",_socialUserProfile.identity]);
     
-    return [NSString stringWithFormat:@"%@/feed/default.json",_socialUserProfile.identity]; 
+    return @"feed.json"; 
 }
 
 
@@ -75,18 +77,30 @@
      @"liked",@"liked",
      @"postedTime",@"postedTime",            
      @"type",@"type",
-     @"posterIdentity",@"posterIdentity",
-     @"activityStream",@"activityStream",
      @"id",@"activityId",
      @"title",@"title",
-     @"priority",@"priority",
      @"createdAt",@"createdAt",
      @"likedByIdentities",@"likedByIdentities",
      @"titleId",@"titleId",
+     @"totalNumberOfComments",@"totalNumberOfComments",
+     @"totalNumberOfLikes",@"totalNumberOfLikes",
      @"comments",@"comments", 
     nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
+    
+    
+    //Retrieve the UserProfile directly on the activityStream service
+    RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [posterProfileMapping mapKeyPathsToAttributes:
+     @"id",@"identity",
+     @"remoteId",@"remoteId",
+     @"providerId",@"providerId",
+     @"profile.avatarUrl",@"avatarUrl",
+     @"profile.fullName",@"fullName",
+     nil];
+    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterUserProfile" withObjectMapping:posterProfileMapping];
+    
     
     //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
     [manager loadObjectsAtResourcePath:[self createPath] delegate:self];   
@@ -106,10 +120,8 @@
      @"postedTime",@"postedTime",            
      @"type",@"type",
      @"posterIdentity",@"posterIdentity",
-     @"activityStream",@"activityStream",
      @"id",@"activityId",
      @"title",@"title",
-     @"priority",@"priority",
      @"createdAt",@"createdAt",
      @"likedByIdentities",@"likedByIdentities",
      @"titleId",@"titleId",
@@ -118,8 +130,21 @@
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
     
+    
+    //Retrieve the UserProfile directly on the activityStream service
+    RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [posterProfileMapping mapKeyPathsToAttributes:
+     @"id",@"identity",
+     @"remoteId",@"remoteId",
+     @"providerId",@"providerId",
+     @"profile.avatarUrl",@"avatarUrl",
+     @"profile.fullName",@"fullName",
+     nil];
+    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterUserProfile" withObjectMapping:posterProfileMapping];
+
+    
     //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
-    [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@/feed/newer/%@.json",_socialUserProfile.identity,activity.activityId] delegate:self]; 
+    [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"feed.json?since_id=%@",activity.activityId] delegate:self]; 
     
 }
 

@@ -89,7 +89,7 @@
     }
     
     ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
-    activityDetail.userImageAvatar = socialActivityStream.userImageAvatar;
+    activityDetail.userImageAvatar = socialActivityStream.posterUserProfile.avatarUrl;
     
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                          andActivityDetail:activityDetail 

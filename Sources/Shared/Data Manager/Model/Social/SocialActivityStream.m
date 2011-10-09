@@ -13,37 +13,33 @@
 
 @synthesize identityId = _identityId;
 @synthesize totalNumberOfComments = _totalNumberOfComments;
+@synthesize totalNumberOfLikes = _totalNumberOfLikes;
 @synthesize liked = _liked;
 @synthesize postedTime = _postedTime;
 @synthesize type = _type;
 @synthesize posterIdentity = _posterIdentity;
-@synthesize activityStream = _activityStream;
 @synthesize activityId = _activityId;
 @synthesize title = _title;
-@synthesize priority = _priority;
 @synthesize createdAt = _createdAt;
 @synthesize likedByIdentities = _likedByIdentities;
 @synthesize titleId = _titleId;
 @synthesize comments = _comments;
-@synthesize userFullName = _userFullName;
-@synthesize userImageAvatar = _userImageAvatar;
 @synthesize postedTimeInWords = _postedTimeInWords;
+@synthesize posterUserProfile = _posterUserProfile;
 
  
 - (void)dealloc {
     [_identityId release];
     [_type release];
     [_posterIdentity release];
-    [_activityStream release];
     [_activityId release];
     [_title release];
-    [_priority release];
     [_createdAt release];
     [_likedByIdentities release];
     [_titleId release];
     [_comments release];
-    [_userFullName release];
     [_postedTimeInWords release];
+    [_posterUserProfile release];
     [super dealloc];
 }
 
@@ -52,9 +48,5 @@
     self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
 }
 
-- (void)setFullName:(NSString*)strFullName
-{
-    self.userFullName = [strFullName copy];
-}
 
 @end

@@ -17,7 +17,7 @@
 @implementation ActivityBasicTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
-@synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate, _socialUserProfile;
+@synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -57,7 +57,7 @@
     for(NSDictionary* dic in arrLike)
     {
         //if([_socialActivytyStream.identityId isEqualToString:[dic objectForKey:@"id"]])
-        if([_socialUserProfile.identity isEqualToString:[dic objectForKey:@"id"]])
+        if([_socialActivytyStream.posterUserProfile.identity isEqualToString:[dic objectForKey:@"id"]])
         {
             isLike = NO;
             break;
@@ -166,17 +166,17 @@
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 {
     //SonTH commented out
-    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.userImageAvatar];    
+    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];    
     _lbMessage.text = [socialActivityStream.title copy];
     _lbDate.text = [socialActivityStream.postedTimeInWords copy];
-    _lbName.text = [socialActivityStream.userFullName copy];
+    _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
     
     //display the like number '+' if 0
     NSString *stringForLikes;
-    if ([socialActivityStream.likedByIdentities count] == 0) {
+    if (socialActivityStream.totalNumberOfLikes == 0) {
         stringForLikes = @"+";
     } else {
-        stringForLikes = [NSString stringWithFormat:@"%d",[socialActivityStream.likedByIdentities count]];
+        stringForLikes = [NSString stringWithFormat:@"%d",socialActivityStream.totalNumberOfLikes];
     }
     [_btnLike setTitle:stringForLikes forState:UIControlStateNormal];
     
@@ -206,9 +206,6 @@
      [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setSocialUserProfile:(SocialUserProfile*)socialUserProfile
-{
-    _socialUserProfile = socialUserProfile;
-}
+
 
 @end

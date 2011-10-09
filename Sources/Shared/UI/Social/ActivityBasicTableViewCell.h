@@ -28,7 +28,6 @@
     
     SocialActivityStream*  _socialActivytyStream;
     ActivityStreamBrowseViewController* _delegate;
-    SocialUserProfile*     _socialUserProfile;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
@@ -39,7 +38,6 @@
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) SocialActivityStream*  socialActivytyStream;
-@property (retain, nonatomic) SocialUserProfile*  _socialUserProfile;
 @property (retain, nonatomic) ActivityStreamBrowseViewController* delegate;
 
 //Use this method after create the cell to customize the appearance of the Avatar
@@ -50,5 +48,4 @@
 
 //- (void)setActivity:(Activity*)activity;
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream;
-- (void)setSocialUserProfile:(SocialUserProfile*)socialUserProfile;
 @end

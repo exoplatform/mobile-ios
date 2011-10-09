@@ -14,18 +14,11 @@
 @interface SocialUserProfileProxy : SocialProxy <RKObjectLoaderDelegate> {
     
     SocialUserProfile* _userProfile;
-    
-    NSMutableSet* _identitiesSet;
-    BOOL _allActivitiesLoaded;
-    BOOL _isLoadingMultipleActivities;
 }
 
 @property (nonatomic, retain) SocialUserProfile* userProfile;
-@property (nonatomic) BOOL isLoadingMultipleActivities;
 
-- (void) getUserProfileFromIdentity:(NSString *)identity;
+- (void) getUserProfileFromUsername:(NSString *)username;
 
-//Method to load a list of Identities
-- (void) retrieveIdentitiesSet:(NSMutableSet*)identitiesSet;
 
 @end

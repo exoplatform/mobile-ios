@@ -381,11 +381,9 @@
     //Set the size of the cell
     float fWidth = tableView.frame.size.width;
     float fHeight = [self getHeighSizeForTableView:tableView andText:text];
-    NSLog(@"fHeight %2f",fHeight);
     [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
     
     //Set the cell content
-    [cell setSocialUserProfile:_socialUserProfile];
     [cell setSocialActivityStream:socialActivityStream];
     
 	return cell;
@@ -425,9 +423,11 @@
     
     [self showLoaderForAction:_activityAction];
     
-    SocialIdentityProxy* identityProxy = [[SocialIdentityProxy alloc] init];
-    identityProxy.delegate = self;
-    [identityProxy getIdentityFromUser];
+    
+    SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+    socialUserProfile.delegate = self;
+    [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username]; 
+    
 }
 
 
@@ -462,19 +462,7 @@
     if ([_arrActivityStreams count] == 0) {
         [self performSelector:@selector(emptyState) withObject:nil afterDelay:.1];
     }
-    
-    //Prepare data to be displayed
-    for (int i = 0; i < [_arrActivityStreams count]; i++) 
-    {
-        SocialActivityStream* socialActivityStream = [_arrActivityStreams objectAtIndex:i];
-        SocialUserProfile *userProfile = [[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId];
-        [socialActivityStream setFullName:userProfile.fullName];
         
-        NSString *userImageAvatar = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN], userProfile.avatarUrl];
-        
-        [socialActivityStream setUserImageAvatar:userImageAvatar];
-    }
-    
     //We have retreive new datas from API
     //Set the last update date at now 
     _dateOfLastUpdate = [[NSDate date] retain];
@@ -509,24 +497,13 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    //If proxy is king of class SocialIdentityProxy, then we can start the request for retrieve SocialActivityStream
-    if ([proxy isKindOfClass:[SocialIdentityProxy class]]) 
+    //If proxy is king of class SocialUserProfileProxy, then we can start the request for retrieve SocialActivityStream
+    if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
     {
-        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-        socialUserProfile.delegate = self;
-        [socialUserProfile getUserProfileFromIdentity:[(SocialIdentityProxy *)proxy _socialIdentity].identity]; 
-    } 
-    else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
-    {
-        //Check if the proxy is loading multiple activites
-        if ([(SocialUserProfileProxy *)proxy isLoadingMultipleActivities]) {
-            [self finishLoadingAllDataForActivityStream];
-        } else {
-            _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
-            SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
-            socialActivityStreamProxy.delegate = self;
-            [socialActivityStreamProxy getActivityStreams];
-        }
+        _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
+        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
+        socialActivityStreamProxy.delegate = self;
+        [socialActivityStreamProxy getActivityStreams];
     }
     else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) 
     {
@@ -540,24 +517,17 @@
         
         //Retrieve all activities
         //Start preparing data
-        //retrieve all distinct identities
-        NSMutableSet *setOfIdentities = [[NSMutableSet alloc] init];
-        
         for (int i = 0; i < [socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
-            
-            [setOfIdentities addObject:[socialActivityStream.identityId copy]];
-            
+                        
             [_arrActivityStreams addObject:socialActivityStream];
             
         }
         
-        //Retrieve all identities informations
-        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-        socialUserProfile.delegate = self;
-        [socialUserProfile retrieveIdentitiesSet:setOfIdentities];
+        //All informations has been retrieved we can now display them
+        [self finishLoadingAllDataForActivityStream];
     } 
     else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) 
     {
