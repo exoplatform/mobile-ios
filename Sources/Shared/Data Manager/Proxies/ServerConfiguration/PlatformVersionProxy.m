@@ -48,7 +48,7 @@
      @"platformBuildNumber",@"platformBuildNumber",
      nil];
     
-    [manager loadObjectsAtResourcePath:@"platform/version" objectMapping:mapping delegate:self];          
+    [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];          
 }
 
 
