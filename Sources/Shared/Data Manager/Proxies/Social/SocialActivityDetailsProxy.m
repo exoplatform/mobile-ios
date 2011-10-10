@@ -41,6 +41,8 @@
         
         //The set the wanted number of comments
         _numberOfComments = nbComments;
+        _posterIdentity = YES;
+        _activityStream = YES;
     }
     return self;
 }
@@ -60,10 +62,9 @@
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
     //http://demo:gtn@localhost:8080/rest/private/api/social/v1/portal/activity/1ed7c4c9c0a8012636585a573a15c26e
+    NSLog(@"%@", [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]);
     
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
-    //return @"http://john:gtn@localhost:8080/rest-socialdemo/private/api/social/v1-alpha1/socialdemo/identity/";
-    
+    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName];     
 }
 
 
@@ -135,11 +136,25 @@
      @"createdAt",@"createdAt",
      @"text",@"text",
      @"postedTime",@"postedTime",
-     @"identityId",@"identityId",
+     @"id",@"identityId",
+     //@"posterIdentity", @"userProfile",
+     
      nil];
      [mapping mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
-     
     
+//    //Retrieve the UserProfile directly on the activityStream service
+//    RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+//    [posterProfileMapping mapKeyPathsToAttributes:
+//     @"id",@"identity",
+//     @"remoteId",@"remoteId",
+//     @"providerId",@"providerId",
+//     @"profile.avatarUrl",@"avatarUrl",
+//     @"profile.fullName",@"fullName",
+//     nil];
+//    
+//    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
+     
+    NSLog(@"%@", [NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] 
                          objectMapping:mapping delegate:self];
     
@@ -151,13 +166,13 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    NSLog(@"Loaded payload ActivityDetail: %@", [response bodyAsString]);
 }
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-//	NSLog(@"Loaded statuses: %@", objects);    
+	NSLog(@"Loaded statuses ActivityDetail: %@ \n %@", objects, [objects objectAtIndex:0]);    
     
     _socialActivityDetails = [[objects objectAtIndex:0] retain];
     
