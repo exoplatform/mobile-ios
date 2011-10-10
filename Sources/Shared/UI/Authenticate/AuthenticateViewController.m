@@ -386,6 +386,8 @@
 
 - (void)doSignIn
 {
+    [self hitAtView:nil];
+    
     _hud = [[SSHUDView alloc] initWithTitle:@"Loading..."];
     [_hud show];
     
