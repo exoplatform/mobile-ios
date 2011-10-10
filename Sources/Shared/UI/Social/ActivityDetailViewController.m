@@ -276,8 +276,8 @@
     }
     if (indexPath.section == 2) 
     {
-        NSString* comment = [_activityDetail.arrComments objectAtIndex:indexPath.row];
-        n = [self getHeighSizeForTableView:tableView andText:comment];
+        SocialComment* comment = [_socialActivityDetails.comments objectAtIndex:indexPath.row];
+        n = [self getHeighSizeForTableView:tableView andText:comment.text];
 
     }
     return n;
@@ -513,7 +513,7 @@
         //Retrieve all identities informations
         SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
         socialUserProfile.delegate = self;
-        [socialUserProfile retrieveIdentitiesSet:setOfIdentities];
+        //[socialUserProfile retrieveIdentitiesSet:setOfIdentities];
         
         //Set the last update date at now 
         _dateOfLastUpdate = [[NSDate date]retain];
