@@ -21,7 +21,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"-%@, %@, %@, %@-",_text,_identityId,_createdAt,_postedTime];
+    return [NSString stringWithFormat:@"-%@, %@-",_text,_createdAt];
 }
 
 - (void)convertToPostedTimeInWords

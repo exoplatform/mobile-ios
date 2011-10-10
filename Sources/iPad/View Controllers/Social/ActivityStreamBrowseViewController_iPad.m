@@ -110,13 +110,10 @@
         _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
     }
     
-    ActivityDetail* activityDetail = [[ActivityDetail alloc] initWithUserID:socialActivityStream.identityId arrLikes:socialActivityStream.likedByIdentities arrComments:socialActivityStream.comments];
-    activityDetail.userImageAvatar = socialActivityStream.posterUserProfile.avatarUrl;
     
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
-                                         andActivityDetail:activityDetail 
-                                    andActivityUserProfile:[[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:socialActivityStream.identityId]
                                      andCurrentUserProfile:_socialUserProfile];
+
         
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
 }

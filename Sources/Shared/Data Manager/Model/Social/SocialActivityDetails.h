@@ -42,7 +42,7 @@
 @interface SocialActivityDetails : NSObject {
     NSString*               _identityId;
     NSNumber*               _totalNumberOfComments;
-    NSString*               _liked;
+    BOOL                    _liked;
     double                  _postedTime;
     NSString*               _type;
     NSString*               _activityStream;
@@ -54,13 +54,12 @@
     NSString*               _titleId;
     SocialUserProfile*      _posterIdentity;
     NSArray*                _comments;
-    
     NSString*               _postedTimeInWords;
 }
 
 @property (nonatomic, retain) NSString* identityId;
 @property (nonatomic, retain) NSNumber* totalNumberOfComments;
-@property (nonatomic, retain) NSString* liked;
+@property BOOL liked;
 @property double postedTime;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* activityStream;

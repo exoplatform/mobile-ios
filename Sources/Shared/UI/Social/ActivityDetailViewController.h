@@ -13,8 +13,6 @@
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 
-@class Activity;
-@class ActivityDetail;
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
 @class SocialActivityStream;
@@ -28,7 +26,6 @@
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UINavigationBar*               _navigationBar;
             
-    Activity*                               _activity;
     SocialActivityStream*                   _socialActivityStream;
     
     //Cell for the content of the message
@@ -36,12 +33,9 @@
     
     //Cell for the like part of the screen
     ActivityDetailLikeTableViewCell*        _cellForLikes;
-    
-    ActivityDetail*                         _activityDetail;
-    
+        
     SocialActivityDetails*                  _socialActivityDetails;
     SocialUserProfile*                      _socialUserProfile;
-    SocialUserProfile*                      _currentUserProfile;
     
     BOOL                                    _currentUserLikeThisActivity;
     
@@ -59,8 +53,7 @@
     int                                     _activityAction;//0: getting, 1: updating, 2: like, 3: dislike
 }
 
-//- (void)setActivity:(Activity*)activity andActivityDetail:(ActivityDetail*)activityDetail;
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andActivityUserProfile:(SocialUserProfile*)socialUserProfile andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
 
 - (void)setHudPosition;

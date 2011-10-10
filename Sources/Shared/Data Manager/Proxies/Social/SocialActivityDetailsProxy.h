@@ -16,6 +16,7 @@
     
     NSString*   _activityIdentity;
     int         _numberOfComments;
+    int         _numberOfLikes;
     BOOL        _posterIdentity;
     BOOL        _activityStream;
     
@@ -24,13 +25,14 @@
 
 @property (nonatomic, retain) NSString* activityIdentity;
 @property int numberOfComments;
+@property int numberOfLikes;
 @property BOOL posterIdentity;
 @property BOOL activityStream;
 @property (nonatomic, retain) SocialActivityDetails* socialActivityDetails;
 
 
 //Use this constructor when you want to set a particular value for the number of comment wanted
--(id)initWithNumberOfComments:(int)nbComments;
+-(id)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes;
 
 //Retrieve Activity details for a given identity
 - (void)getActivityDetail:(NSString *)activityId;

@@ -100,16 +100,14 @@
 }
 
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail andUserName:(NSString *)username;
+- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
     _lbMessage.text = [socialActivityDetail.title copy];
-    _lbName.text = [username copy];
+    _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     _lbDate.text = [socialActivityDetail.postedTimeInWords copy];
+    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
 }
 
-- (void)setActivityDetail:(ActivityDetail*)activityDetail
-{
-    _imgvAvatar.imageURL = [NSURL URLWithString:activityDetail.userImageAvatar];
-}
+
 
 @end

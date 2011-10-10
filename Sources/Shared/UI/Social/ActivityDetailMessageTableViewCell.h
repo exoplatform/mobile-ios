@@ -34,9 +34,5 @@
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
-
-
-
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail andUserName:(NSString *)username;
-- (void)setActivityDetail:(ActivityDetail*)activityDetail;
+- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail;
 @end

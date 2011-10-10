@@ -18,6 +18,7 @@
 
 @synthesize activityIdentity = _activityIdentity;
 @synthesize numberOfComments = _numberOfComments;
+@synthesize numberOfLikes = _numberOfLikes;
 @synthesize posterIdentity = _posterIdentity;
 @synthesize activityStream = _activityStream;
 @synthesize socialActivityDetails = _socialActivityDetails;
@@ -29,6 +30,7 @@
     if ((self=[super init])) {
         //Default behavior
         _numberOfComments = 0;
+        _numberOfLikes = 0;
         _posterIdentity = NO;
         _activityStream = NO;
     }
@@ -36,11 +38,12 @@
 }
 
 
--(id)initWithNumberOfComments:(int)nbComments {
+-(id)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes {
     if ((self = [self init])) {
         
         //The set the wanted number of comments
         _numberOfComments = nbComments;
+        _numberOfLikes = nbLikes;
         _posterIdentity = YES;
         _activityStream = YES;
     }
@@ -83,19 +86,25 @@
     
     //Check for poster Identity
     if (_posterIdentity) {
-        [dicForParams setValue:@"1" forKey:@"poster_identity"];
+        [dicForParams setValue:@"t" forKey:@"poster_identity"];
         hasParams = YES;
     }
     
     //Check for ActivityStream
     if (_activityStream) {
-        [dicForParams setValue:@"1" forKey:@"activity_stream"];
+        [dicForParams setValue:@"t" forKey:@"activity_stream"];
         hasParams = YES;
     }
     
     //Check for number of Comments
     if (_numberOfComments>0) {
         [dicForParams setValue:[NSString stringWithFormat:@"%d",_numberOfComments] forKey:@"number_of_comments"];
+        hasParams = YES;
+    }
+    
+    //Check for number of Likes
+    if (_numberOfLikes>0) {
+        [dicForParams setValue:[NSString stringWithFormat:@"%d",_numberOfLikes] forKey:@"number_of_likes"];
         hasParams = YES;
     }
         
@@ -123,38 +132,62 @@
      @"title",@"title",
      @"priority",@"priority",
      @"id",@"identifyId",
-     @"likedByIdentities",@"likedByIdentities",
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
-     @"posterIdentity",@"posterIdentity",
+     @"liked",@"liked",
      nil];
     
-    // Create our new SocialCommentIdentity mapping
     
+    //Retrieve the UserProfile directly on the activityDetails service
+    RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [posterProfileMapping mapKeyPathsToAttributes:
+     @"id",@"identity",
+     @"remoteId",@"remoteId",
+     @"providerId",@"providerId",
+     @"profile.avatarUrl",@"avatarUrl",
+     @"profile.fullName",@"fullName",
+     nil];
+
+    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
+
+    
+    
+    // Create our new SocialCommentIdentity mapping
     RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
     [socialCommentMapping mapKeyPathsToAttributes:
      @"createdAt",@"createdAt",
      @"text",@"text",
      @"postedTime",@"postedTime",
-     @"id",@"identityId",
-     //@"posterIdentity", @"userProfile",
-     
+     @"id",@"identityId",     
      nil];
      [mapping mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
     
-//    //Retrieve the UserProfile directly on the activityStream service
-//    RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-//    [posterProfileMapping mapKeyPathsToAttributes:
-//     @"id",@"identity",
-//     @"remoteId",@"remoteId",
-//     @"providerId",@"providerId",
-//     @"profile.avatarUrl",@"avatarUrl",
-//     @"profile.fullName",@"fullName",
-//     nil];
-//    
-//    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
+    //Retrieve the UserProfile directly for comments 
+    RKObjectMapping* commentPosterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [commentPosterProfileMapping mapKeyPathsToAttributes:
+     @"id",@"identity",
+     @"remoteId",@"remoteId",
+     @"providerId",@"providerId",
+     @"profile.avatarUrl",@"avatarUrl",
+     @"profile.fullName",@"fullName",
+     nil];
+    
+    [socialCommentMapping mapKeyPath:@"posterIdentity" toRelationship:@"userProfile" withObjectMapping:commentPosterProfileMapping];
+    
+    
+    //Retrieve likesByIdentities
+    RKObjectMapping* likedByIdentitiesMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [likedByIdentitiesMapping mapKeyPathsToAttributes:
+     @"id",@"identity",
+     @"remoteId",@"remoteId",
+     @"providerId",@"providerId",
+     @"profile.avatarUrl",@"avatarUrl",
+     @"profile.fullName",@"fullName",
+     nil];
+    [mapping mapKeyPath:@"likedByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likedByIdentitiesMapping];
+    
      
-    NSLog(@"%@", [NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
+    //NSLog(@"--------%@", [NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] 
                          objectMapping:mapping delegate:self];
     

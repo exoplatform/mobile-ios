@@ -153,6 +153,9 @@
     backgroundView.frame = self.view.frame;
     _tblvActivityStream.backgroundView = backgroundView;
     
+    //_tblvActivityStream.backgroundColor = [UIColor colorWithRed:215./255 green:216./255 blue:226./255 alpha:1.] ;
+
+    
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		

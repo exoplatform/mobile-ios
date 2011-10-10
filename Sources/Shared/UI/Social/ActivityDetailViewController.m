@@ -33,7 +33,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _activity = [[Activity alloc] init];        
         _socialActivityDetails = [[SocialActivityDetails alloc] init];
         _socialActivityDetails.comments = [[NSArray alloc] init];
         
@@ -46,15 +45,12 @@
 {
     [_tblvActivityDetail release];
     [_navigationBar release];
-    [_activity release];
     [_socialActivityStream release];
     
     [_cellForMessage release];
     [_cellForLikes release];
 
-    [_activityDetail release];
     [_socialActivityDetails release];
-    [_socialUserProfile release];
     
     [_txtvMsgComposer release];
     [_btnMsgComposer release];    
@@ -230,48 +226,6 @@
     }
     if (indexPath.section == 1) 
     {
-        NSMutableString* strLikes = [NSMutableString stringWithString:@""];
-        
-        if ([_socialActivityDetails.likedByIdentities count] > 0)
-        { 
-            
-            for (int i = 0; i < [_socialActivityDetails.likedByIdentities count]; i++) 
-            {
-                NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
-                
-                NSString *username = [dicActivity objectForKey:@"remoteId"];
-                
-                if ([_currentUserProfile.identity isEqualToString:[dicActivity objectForKey:@"id"]]) {
-                    username = @"You";
-                }
-                
-                if (i < [_activityDetail.arrLikes count] - 2) 
-                {
-                    [strLikes appendFormat:@"%@, ", username];
-                }
-                else if (i < [_activityDetail.arrLikes count] - 1) 
-                {
-                    [strLikes appendFormat:@"%@ ", username];
-                } 
-                else
-                {
-                    [strLikes appendFormat:@"and %@", username];
-                }     
-            }
-            if([_activityDetail.arrLikes count] > 1)
-                [strLikes appendString:@" like this"];
-            else
-            {
-                [strLikes appendString:@"likes this"];
-                strLikes = (NSMutableString *)[strLikes stringByReplacingOccurrencesOfString:@"," withString:@""];
-            }
-            
-        }
-        else
-        {
-            [strLikes appendString:@"No like for the moment"];
-        }
-        //n = [self getHeighSizeForTableView:tableView andText:strLikes];
         n = 55;
     }
     if (indexPath.section == 2) 
@@ -305,8 +259,7 @@
             [cell configureCell];
         }
         cell.userInteractionEnabled = NO;
-        [cell setSocialActivityDetail:_socialActivityDetails andUserName:_socialUserProfile.fullName];
-        [cell setActivityDetail:_activityDetail];
+        [cell setSocialActivityDetail:_socialActivityDetails];
         return cell;
     }
     else if (indexPath.section == 1) 
@@ -333,20 +286,20 @@
         { 
             for (int i = 0; i < [_socialActivityDetails.likedByIdentities count]; i++) 
             {
-                NSDictionary *dicActivity = [_socialActivityDetails.likedByIdentities objectAtIndex:i];
+                SocialUserProfile *userProfile = (SocialUserProfile*) [_socialActivityDetails.likedByIdentities objectAtIndex:i];
+                     
+                NSString *username = userProfile.fullName;
                 
-                NSString *username = [dicActivity objectForKey:@"remoteId"];
-                
-                if ([_currentUserProfile.identity isEqualToString:[dicActivity objectForKey:@"id"]]) {
+                if ([_socialUserProfile.identity isEqualToString:userProfile.identity]) {
                     username = @"You";
                     _currentUserLikeThisActivity = YES;
                 }
                 
-                if (i < [_activityDetail.arrLikes count] - 2) 
+                if (i < [_socialActivityDetails.likedByIdentities count] - 2) 
                 {
                     [strLikes appendFormat:@"%@, ", username];
                 }
-                else if (i < [_activityDetail.arrLikes count] - 1) 
+                else if (i < [_socialActivityDetails.likedByIdentities count] - 1) 
                 {
                     [strLikes appendFormat:@"%@ ", username];
                 } 
@@ -371,7 +324,7 @@
         {
             [strLikes appendString:@"No like for the moment"];
         }
-        [cell setUserProfile:_socialUserProfile];
+        [cell setUserProfile:_socialActivityDetails.posterIdentity];
         [cell setContent:strLikes];
         [cell setUserLikeThisActivity:_currentUserLikeThisActivity];
         [cell setSocialActivityDetails:_socialActivityDetails];
@@ -473,20 +426,16 @@
     [self showLoaderForAction:_activityAction];
     
     _reloading = YES;
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10 andNumberOfLikes:4];
     socialActivityDetailsProxy.delegate = self;
     [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
     
 }
 
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andActivityDetail:(ActivityDetail*)activityDetail andActivityUserProfile:(SocialUserProfile*)socialUserProfile andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
 {
     _socialActivityStream = socialActivityStream;
-    _activityDetail = activityDetail;
-    _socialUserProfile = socialUserProfile;
-    _activityDetail.activityID = socialActivityStream.activityId;
-    _currentUserProfile = currentUserProfile;
-    
+    _socialUserProfile = currentUserProfile;
     _activityAction = 0;
     [self startLoadingActivityDetail];
 }
@@ -500,31 +449,14 @@
         [_socialActivityDetails release];
         _socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         [_socialActivityDetails convertToPostedTimeInWords];
-        [_tblvActivityDetail reloadData];
-        
-        
-        NSMutableSet* setOfIdentities = [[NSMutableSet alloc] init];
-        
-        //Retrieve all identities of comments
-        for (SocialComment* comment in _socialActivityDetails.comments) {
-            [setOfIdentities addObject:comment.identityId];
-        }
-        
-        //Retrieve all identities informations
-        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-        socialUserProfile.delegate = self;
-        //[socialUserProfile retrieveIdentitiesSet:setOfIdentities];
         
         //Set the last update date at now 
         _dateOfLastUpdate = [[NSDate date]retain];
         
-        _reloading = NO;
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
-    }
-    else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) {
         [self finishLoadingAllDataForActivityDetails];
+
     }else{
-        SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10];
+        SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10 andNumberOfLikes:4];
         socialActivityDetailsProxy.delegate = self;
         [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
     }

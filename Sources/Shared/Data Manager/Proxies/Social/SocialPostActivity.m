@@ -108,15 +108,6 @@
      @"posterIdentity",@"posterIdentity",
      nil];
     
-    // Create our new SocialCommentIdentity mapping
-    RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
-    [socialCommentMapping mapKeyPathsToAttributes:
-     @"createdAt",@"createdAt",
-     @"text",@"text",
-     @"postedTime",@"postedTime",
-     @"identityId",@"identityId",
-     nil];
-    [mappingForResponse mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
     
     //[manager.mappingProvider addObjectMapping:mappingForResponse]; 
     
