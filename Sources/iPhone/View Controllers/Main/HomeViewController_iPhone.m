@@ -142,10 +142,7 @@
                                                          actStreamItem, chatItem, documentItem, dashboardItem, settingItem, nil], nil];
     else
         _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
-                                                         chatItem, documentItem, dashboardItem, settingItem, nil], nil];
-    
-    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:_isCompatibleWithSocial];
-    
+                                                         chatItem, documentItem, dashboardItem, settingItem, nil], nil];    
     [self.view addSubview:_launcherView];
 }
 

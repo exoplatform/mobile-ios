@@ -15,7 +15,7 @@
 
 @implementation FilesProxy
 
-@synthesize _strUserRepository;
+@synthesize _isWorkingWithMultipeUserLevel, _strUserRepository;
 
 #pragma mark -
 #pragma mark Utils method for files
@@ -109,42 +109,46 @@
 #pragma mark -
 #pragma mark Files retrieving methods
 
-- (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35
+- (void)creatUserRepositoryHomeUrl
 {
    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+    NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
     
-    NSMutableString *urlStr = [[NSMutableString alloc] initWithFormat:@"%@/rest/private/jcr/repository/collaboration/Users", domain];
+    NSString *urlForUserRepo = [NSString stringWithFormat:@"%@/rest/private/jcr/repository/collaboration/Users", domain];
     
-    if(isCompatibleWithPlatform35)
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:urlForUserRepo];
+    
+    int length = [username length];
+    
+    int numberOfUserLevel = 2;
+    if(length >= 4)
+        numberOfUserLevel = 3;
+    
+    for(int i = 1; i <= numberOfUserLevel; i++)
     {
-        int length = [username length];
+        NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
         
-        int numberOfUserLevel = 2;
-        if(length >= 4)
-            numberOfUserLevel = 3;
-        
-        for(int i = 1; i <= numberOfUserLevel; i++)
+        for(int j = 1; j <= 3; j++)
         {
-            NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
-            
-            for(int j = 1; j <= 3; j++)
-            {
-                [userNameLevel appendString:@"_"];
-            }
-            
-            [urlStr appendFormat:@"/%@", userNameLevel];
-            
-            [userNameLevel release];
+            [userNameLevel appendString:@"_"];
         }
         
+        [urlStr appendFormat:@"/%@", userNameLevel];
+        
+        [userNameLevel release];
     }
     
     [urlStr appendFormat:@"/%@", username];
     
-    self._strUserRepository = [NSString stringWithString:urlStr];
+    self._isWorkingWithMultipeUserLevel = [[AuthenticateProxy sharedInstance] isReachabilityURL:urlStr userName:username password:password];
+    
+    if(_isWorkingWithMultipeUserLevel)    
+        self._strUserRepository = [NSString stringWithString:urlStr];
+    else
+        self._strUserRepository = [NSString stringWithFormat:@"%@/%@", urlForUserRepo, username];
     
 }
 

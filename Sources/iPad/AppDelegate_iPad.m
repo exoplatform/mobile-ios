@@ -43,7 +43,8 @@
 -(void)showHome
 {
     
-    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl:_isCompatibleWithSocial];
+    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
     

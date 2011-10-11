@@ -23,9 +23,13 @@
 
 
 @interface FilesProxy : NSObject {    
+
+    BOOL _isWorkingWithMultipeUserLevel;
     NSString *_strUserRepository;
+
 }
 
+@property BOOL _isWorkingWithMultipeUserLevel;
 @property(nonatomic, retain) NSString *_strUserRepository;
 
 + (FilesProxy *)sharedInstance;
@@ -34,7 +38,7 @@
 
 
 //Create user's repository home url
-- (void)creatUserRepositoryHomeUrl:(BOOL)isCompatibleWithPlatform35;
+- (void)creatUserRepositoryHomeUrl;
 
 // Use this method to create the first initial file
 - (File *)initialFileForRootDirectory;

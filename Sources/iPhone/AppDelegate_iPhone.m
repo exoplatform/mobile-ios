@@ -10,6 +10,7 @@
 
 #import "defines.h"
 #import "ChatProxy.h"
+#import "FilesProxy.h"
 
 
 @implementation AppDelegate_iPhone
@@ -47,6 +48,9 @@
 
 - (void)showHomeViewController {
     // Login is successfully
+    
+    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
     [_homeViewController_iPhone release];
