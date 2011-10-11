@@ -51,8 +51,9 @@
     ATMHud*                                 _hudActivityDetails;//Heads up display
     
     int                                     _activityAction;//0: getting, 1: updating, 2: like, 3: dislike
+    NSIndexPath *                           indexpath;
 }
-
+@property (retain) NSIndexPath *indexpath;
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
 

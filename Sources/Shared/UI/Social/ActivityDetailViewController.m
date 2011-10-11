@@ -27,6 +27,7 @@
 #import "defines.h"
 
 @implementation ActivityDetailViewController
+@synthesize indexpath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,9 +58,11 @@
     
     [_refreshHeaderView release];
     [_dateOfLastUpdate release];
-    
+
     [_hudActivityDetails release];
     _hudActivityDetails = nil;
+    
+    [indexpath release];
     
     [super dealloc];
 }
@@ -279,7 +282,8 @@
         cell.delegate = self;
         [cell setContent:@""];
         
-        NSMutableString* strLikes = [NSMutableString stringWithString:@""];
+        NSString *strLike;
+        NSMutableArray *arrLikes = [[NSMutableArray alloc] initWithCapacity:[_socialActivityDetails.likedByIdentities count]];
         _currentUserLikeThisActivity = NO;
         
         if ([_socialActivityDetails.likedByIdentities count] > 0)
@@ -291,41 +295,56 @@
                 NSString *username = userProfile.fullName;
                 
                 if ([_socialUserProfile.identity isEqualToString:userProfile.identity]) {
-                    username = @"You";
                     _currentUserLikeThisActivity = YES;
+                    continue;
                 }
-                
-                if (i < [_socialActivityDetails.likedByIdentities count] - 2) 
-                {
-                    [strLikes appendFormat:@"%@, ", username];
-                }
-                else if (i < [_socialActivityDetails.likedByIdentities count] - 1) 
-                {
-                    [strLikes appendFormat:@"%@ ", username];
-                } 
-                else
-                {
-                    [strLikes appendFormat:@"and %@", username];
-                }       
+                [arrLikes addObject:[NSString stringWithFormat:@" %@", [username retain]]];
             }
+//            [arrLikes addObject:@" Nguyen Dai Duong"];
+//            [arrLikes addObject:@" Nguyen Dai Hai"];
+//            [arrLikes addObject:@" Nguyen Dai Hai"];
             if (_currentUserLikeThisActivity) {
-                [strLikes appendString:@"like this"];
-                strLikes = (NSMutableString *)[strLikes stringByReplacingOccurrencesOfString:@"," withString:@""];
-            }
-            else if([_socialActivityDetails.likedByIdentities count] > 1) {
-                [strLikes appendString:@"like this"];
-            } else {
-                [strLikes appendString:@"likes this"];
-                strLikes = (NSMutableString *)[strLikes stringByReplacingOccurrencesOfString:@"," withString:@""];
+                [arrLikes insertObject:@"You" atIndex:0];
             }
             
+            //rearrange like
+            int n = [arrLikes count];
+            NSMutableArray *arrCopy = [[NSMutableArray alloc] init];
+            if(n == 2){
+                strLike = [NSString stringWithFormat:@"%@ and%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]], [arrLikes objectAtIndex:1]];
+            } else if(n == 3){
+                if(_currentUserLikeThisActivity){
+                    strLike = [NSString stringWithFormat:@"%@,%@ and%@", [[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+                               [arrLikes objectAtIndex:1], [arrLikes objectAtIndex:2]];
+                } else {
+                    strLike = [NSString stringWithFormat:@"%@,%@,%@", [[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+                               [arrLikes objectAtIndex:1], [arrLikes objectAtIndex:2]];
+                }
+
+            } else if(n >= 4){
+                [arrCopy addObject:[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+                [arrCopy addObject:[arrLikes objectAtIndex:1]];
+                [arrCopy addObject:[arrLikes objectAtIndex:2]];
+                
+                strLike = [arrCopy componentsJoinedByString:@","];
+                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" and %d more", n-3]];
+            } else if (n == 1){
+                strLike = [NSString stringWithFormat:@"%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+            }
+            if(n == 1 && !_currentUserLikeThisActivity)
+                strLike = [strLike stringByAppendingString:@" likes this Activity"];
+            else 
+                strLike = [strLike stringByAppendingString:@" like this Activity"];
+            [arrCopy release];
         }
         else
         {
-            [strLikes appendString:@"No like for the moment"];
+            strLike = @"No like for the moment";
         }
+        [arrLikes release];
+        NSLog(@"%@", strLike);
         [cell setUserProfile:_socialActivityDetails.posterIdentity];
-        [cell setContent:strLikes];
+        [cell setContent:strLike];
         [cell setUserLikeThisActivity:_currentUserLikeThisActivity];
         [cell setSocialActivityDetails:_socialActivityDetails];
         
@@ -503,7 +522,8 @@
 
 #pragma mark -
 #pragma mark MessageComposer Methods
-- (void)messageComposerDidSendData {
+- (void)messageComposerDidSendData{
+    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_COMMENT object:(NSIndexPath *)indexpath];
     [self startLoadingActivityDetail];
 }
 

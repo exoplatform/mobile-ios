@@ -81,6 +81,9 @@
     [_hudActivityStream release];
     _hudActivityStream = nil;
     
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:EXO_NOTIFICATION_LIKE];
+    
     [super dealloc];
 }
 
@@ -131,12 +134,32 @@
     
 }
 
+#pragma mar - Update like
+-(void)updateLike{
+    //NSLog(@"%d/%d", indexpath.row, indexpath.section);
+    ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:indexpath];
+    [cell btnLikeAction:nil];
+}
+
+-(void)updateComment{
+    //NSLog(@"%d/%d", indexpath.row, indexpath.section);
+    ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:indexpath];
+    cell.socialActivytyStream.totalNumberOfComments += 1;
+    
+    NSString *stringForComment = [NSString stringWithFormat:@"%d",cell.socialActivytyStream.totalNumberOfComments];
+    [cell.btnComment setTitle:stringForComment forState:UIControlStateNormal];
+}
+
 #pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLikes) name:EXO_NOTIFICATION_LIKE object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateComment) name:EXO_NOTIFICATION_COMMENT object:nil];
     
     //Add the loader
     _hudActivityStream = [[ATMHud alloc] initWithDelegate:self];
@@ -396,6 +419,7 @@
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
+    //NSLog(@"%@")//SocialLikeActivityProxy
     SocialLikeActivityProxy *likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
     
