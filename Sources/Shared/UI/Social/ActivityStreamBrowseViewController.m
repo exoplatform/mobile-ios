@@ -464,6 +464,11 @@
     
     if ([_arrActivityStreams count] == 0) {
         [self performSelector:@selector(emptyState) withObject:nil afterDelay:.1];
+    } else {
+        EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+        if(emptyview != nil){
+            [emptyview removeFromSuperview];
+        }
     }
         
     //We have retreive new datas from API
@@ -483,16 +488,11 @@
     //disable scroll in tableview
     _tblvActivityStream.scrollEnabled = NO;
     
-    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
-    if(emptyview != nil){
-        [emptyview removeFromSuperview];
-        [emptyview release];
-    }
     
     //add empty view to the view 
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoActivities")];
     emptyView.tag = TAG_EMPTY;
-    [self.view addSubview:emptyView];
+    [self.view insertSubview:emptyView belowSubview:_hudActivityStream.view];
     [emptyView release];
 }
 
