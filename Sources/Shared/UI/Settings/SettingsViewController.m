@@ -144,10 +144,13 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion){
         //Setup Version Platfrom and Application
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults synchronize];
+    } else {
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults synchronize];
     }
     bVersionServer = YES;
@@ -188,7 +191,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 -(void)loadSettingsInformations {
     //Load Settings informations
-    _arrServerList = [[ServerPreferencesManager sharedInstance] getServerList];
+    _arrServerList = [[[ServerPreferencesManager sharedInstance] getServerList] retain];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
