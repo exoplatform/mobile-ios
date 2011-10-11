@@ -423,7 +423,7 @@
     SocialLikeActivityProxy *likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
     
-    if(isLike)
+    if(!isLike)
     {
         _activityAction = 2;
         [likeDislikeActProxy likeActivity:activity];
@@ -433,8 +433,15 @@
         _activityAction = 3;
         [likeDislikeActProxy dislikeActivity:activity];
     }
-    
 }
+
+
+
+- (void)postACommentOnActivity:(NSString *)activity {
+    //Default Implementation
+}
+
+
 
 #pragma mark - Loader Management
 - (void)setHudPosition {

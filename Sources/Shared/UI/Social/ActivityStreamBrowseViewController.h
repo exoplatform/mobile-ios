@@ -51,6 +51,7 @@
 - (void)emptyState;
 - (void)startLoadingActivityStream;
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;
+- (void)postACommentOnActivity:(NSString *)activity;
 - (void)sortActivities;
 - (void)clearActivityData;
 - (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;

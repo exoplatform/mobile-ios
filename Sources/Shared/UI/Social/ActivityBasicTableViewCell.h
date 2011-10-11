@@ -43,7 +43,8 @@
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
--(void)btnLikeAction:(UIButton *)sender;
+- (void)btnLikeAction:(UIButton *)sender;
+- (void)btnCommentAction:(UIButton *)sender;
 
 
 //- (void)setActivity:(Activity*)activity;

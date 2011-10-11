@@ -51,22 +51,14 @@
 
 -(void)btnLikeAction:(UIButton *)sender
 {
-    BOOL isLike = YES;
-    
-    NSArray *arrLike = _socialActivytyStream.likedByIdentities;
-    for(NSDictionary* dic in arrLike)
-    {
-        //if([_socialActivytyStream.identityId isEqualToString:[dic objectForKey:@"id"]])
-        if([_socialActivytyStream.posterUserProfile.identity isEqualToString:[dic objectForKey:@"id"]])
-        {
-            isLike = NO;
-            break;
-        }     
-    }
-    
-    [_delegate likeDislikeActivity:_socialActivytyStream.activityId like:isLike];
+    [_delegate likeDislikeActivity:_socialActivytyStream.activityId like:_socialActivytyStream.liked];
 }
 
+
+- (void)btnCommentAction:(UIButton *)sender 
+{
+    [_delegate postACommentOnActivity:_socialActivytyStream.activityId];
+} 
 
 - (void)dealloc
 {
@@ -195,6 +187,9 @@
         stringForComments = [NSString stringWithFormat:@"%d",socialActivityStream.totalNumberOfComments];
     }
     [_btnComment setTitle:stringForComments forState:UIControlStateNormal];
+    [_btnComment addTarget:self action:@selector(btnCommentAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
 
     //Set the size of the font in the button (to fit the width)
     if (socialActivityStream.totalNumberOfComments >= 100) {

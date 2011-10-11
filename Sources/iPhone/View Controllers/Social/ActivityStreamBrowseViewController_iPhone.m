@@ -60,6 +60,21 @@
 
 
 
+- (void)postACommentOnActivity:(NSString *)activity {
+    MessageComposerViewController_iPhone* messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
+    messageComposerViewController.delegate = self;
+    messageComposerViewController.isPostMessage = NO;
+    messageComposerViewController.strActivityID = activity;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    
+    [self.navigationController presentModalViewController:navController animated:YES];
+    
+    [messageComposerViewController release];
+}
+
+
+
 
 - (void)onBbtnPost
 {
