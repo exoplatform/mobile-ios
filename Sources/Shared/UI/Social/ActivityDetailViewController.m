@@ -503,7 +503,7 @@
 {
     
     [self showLoaderForAction:_activityAction];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_LIKE object:nil];
     [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
@@ -523,7 +523,7 @@
 #pragma mark -
 #pragma mark MessageComposer Methods
 - (void)messageComposerDidSendData{
-    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_COMMENT object:(NSIndexPath *)indexpath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_COMMENT object:nil];
     [self startLoadingActivityDetail];
 }
 
