@@ -26,7 +26,7 @@
 
 // Specific method to retrieve the height of the cell
 // This method override the inherited one.
-- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
+- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text  picture:(BOOL)isPicture
 {
     CGRect rectTableView = tableView.frame;
     float fWidth = 0;
@@ -46,10 +46,16 @@
     if (theSize.height < 30) 
     {
         fHeight = 100;
+        if (isPicture){
+            fHeight = 177;
+        }
     }
     else
     {
         fHeight = 75 + theSize.height;
+        if(isPicture){
+            fHeight = 130 + theSize.height;
+        }
     }
     
     if (fHeight > 200) {
