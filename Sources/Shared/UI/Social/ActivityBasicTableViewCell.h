@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Three20/Three20.h"
 
 @class Activity;
 @class EGOImageView;
@@ -28,6 +29,9 @@
     
     SocialActivityStream*  _socialActivytyStream;
     ActivityStreamBrowseViewController* _delegate;
+    
+    
+    TTStyledTextLabel  *htmlLabel;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;

@@ -13,6 +13,7 @@
 #import "SocialActivityStream.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "SocialUserProfile.h"
+#import "Three20/Three20.h"
 
 @implementation ActivityBasicTableViewCell
 
@@ -104,8 +105,8 @@
     _lbName.shadowOffset = CGSizeMake(0,1);
     _lbName.shadowColor = [UIColor whiteColor];
     
-    _lbMessage.shadowOffset = CGSizeMake(0,1);
-    _lbMessage.shadowColor = [UIColor whiteColor];
+    //_lbMessage.shadowOffset = CGSizeMake(0,1);
+    //_lbMessage.shadowColor = [UIColor whiteColor];
  
     _lbDate.shadowOffset = CGSizeMake(0,1);
     _lbDate.shadowColor = [UIColor whiteColor];
@@ -125,6 +126,15 @@
     
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
+    
+    htmlLabel = [[[TTStyledTextLabel alloc] initWithFrame:_lbMessage.frame] autorelease];
+    htmlLabel.userInteractionEnabled = NO;
+    htmlLabel.backgroundColor = [UIColor clearColor];
+    htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    htmlLabel.textColor = [UIColor grayColor];
+    
+    [self.contentView addSubview:htmlLabel];
+    
     
     
     //Add images for Comment button
@@ -158,8 +168,16 @@
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 {
     //SonTH commented out
-    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];    
-    _lbMessage.text = [socialActivityStream.title copy];
+    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
+    htmlLabel.html = socialActivityStream.title;
+    //htmlLabel.text = [TTStyledText textFromXHTML:socialActivityStream.title];
+    //htmlLabel.backgroundColor = [UIColor redColor];
+
+
+    _lbMessage.text = @"";//socialActivityStream.title;
+    //TTStyledTextLabel
+    
+    //_lbMessage.text = [socialActivityStream.title copy];
     _lbDate.text = [socialActivityStream.postedTimeInWords copy];
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
     
