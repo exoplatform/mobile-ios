@@ -89,6 +89,18 @@
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
     
+    //Retrieve the Picture  directly on the activityStream service
+    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
+    [posterPictureMapping mapKeyPathsToAttributes:
+     @"DOCPATH",@"docPath",
+     @"MESSAGE",@"message",
+     @"DOCLINK",@"docLink",
+     @"WORKSPACE",@"workspace",
+     @"REPOSITORY",@"repository",
+     @"DOCNAME",@"docName",
+     nil];
+    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
+    
     
     //Retrieve the UserProfile directly on the activityStream service
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
@@ -130,6 +142,18 @@
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
     
+    //Retrieve the Picture  directly on the activityStream service
+    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
+    [posterPictureMapping mapKeyPathsToAttributes:
+     @"DOCPATH",@"docPath",
+     @"MESSAGE",@"message",
+     @"DOCLINK",@"docLink",
+     @"WORKSPACE",@"workspace",
+     @"REPOSITORY",@"repository",
+     @"DOCNAME",@"docName",
+     nil];
+    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
+    
     
     //Retrieve the UserProfile directly on the activityStream service
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
@@ -141,7 +165,6 @@
      @"profile.fullName",@"fullName",
      nil];
     [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterUserProfile" withObjectMapping:posterProfileMapping];
-
     
     //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"feed.json?since_id=%@",activity.activityId] delegate:self]; 
@@ -154,13 +177,13 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    NSLog(@"Loaded payload Avtivity Stream: %@", [response bodyAsString]);
 }
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-//	NSLog(@"Loaded statuses: %@", objects);    
+	//xxNSLog(@"Loaded statuses: %@", objects);    
     _arrActivityStreams = [objects retain];
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];
