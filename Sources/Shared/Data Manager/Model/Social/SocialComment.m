@@ -16,12 +16,13 @@
 @synthesize createdAt = _createdAt;
 @synthesize postedTime = _postedTime;
 @synthesize userProfile = _userProfile;
+@synthesize userDict = _userDict;
 
 @synthesize postedTimeInWords = _postedTimeInWords;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"-%@, %@-",_text,_createdAt];
+    return [NSString stringWithFormat:@"-%@, %@, %@, %@",_text?_text:@"",_identityId?_identityId:@"",_createdAt?_createdAt:@"", [_userDict description]];
 }
 
 - (void)convertToPostedTimeInWords
