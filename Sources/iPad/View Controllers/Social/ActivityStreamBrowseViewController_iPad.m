@@ -110,7 +110,9 @@
         _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
     }
     
-    
+    _activityDetailViewController.indexpath = [indexPath retain];
+    indexpath = indexPath;
+
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                      andCurrentUserProfile:_socialUserProfile];
 
