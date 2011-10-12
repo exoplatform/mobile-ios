@@ -473,7 +473,7 @@
         _dateOfLastUpdate = [[NSDate date]retain];
         
         [self finishLoadingAllDataForActivityDetails];
-
+        //SocialLikeActivityProxy
     }else{
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10 andNumberOfLikes:4];
         socialActivityDetailsProxy.delegate = self;
