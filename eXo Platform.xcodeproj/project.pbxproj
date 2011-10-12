@@ -59,6 +59,9 @@
 		1FCD3A1A143A9A6C00C814C5 /* DocumentNavigationBarActionButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD39EC143A9A6B00C814C5 /* DocumentNavigationBarActionButton@2x.png */; };
 		1FCD3A20143AA05900C814C5 /* DashboardTabBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD3A1D143AA05900C814C5 /* DashboardTabBackground.png */; };
 		1FCD3A21143AA05900C814C5 /* DashboardTabBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD3A1F143AA05900C814C5 /* DashboardTabBackground@2x.png */; };
+		1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */; };
+		1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */; };
+		1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */; };
 		1FCED1C514355C1C00EC0B88 /* SocialAddPhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */; };
 		1FCED1C614355C1C00EC0B88 /* SocialAddPhotoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */; };
 		1FCED3431435B98500EC0B88 /* popoverArrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED3341435B98500EC0B88 /* popoverArrowDown.png */; };
@@ -832,6 +835,11 @@
 		1FCD39EC143A9A6B00C814C5 /* DocumentNavigationBarActionButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DocumentNavigationBarActionButton@2x.png"; sourceTree = "<group>"; };
 		1FCD3A1D143AA05900C814C5 /* DashboardTabBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DashboardTabBackground.png; sourceTree = "<group>"; };
 		1FCD3A1F143AA05900C814C5 /* DashboardTabBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DashboardTabBackground@2x.png"; sourceTree = "<group>"; };
+		1FCE304914453EB6004AE55F /* SocialPictureAttach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPictureAttach.h; sourceTree = "<group>"; };
+		1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPictureAttach.m; sourceTree = "<group>"; };
+		1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityPictureTableViewCell.h; path = Social/ActivityPictureTableViewCell.h; sourceTree = "<group>"; };
+		1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityPictureTableViewCell.m; path = Social/ActivityPictureTableViewCell.m; sourceTree = "<group>"; };
+		1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityPictureTableViewCell.xib; path = Social/ActivityPictureTableViewCell.xib; sourceTree = "<group>"; };
 		1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialAddPhotoButton.png; sourceTree = "<group>"; };
 		1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialAddPhotoButton@2x.png"; sourceTree = "<group>"; };
 		1FCED3341435B98500EC0B88 /* popoverArrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowDown.png; sourceTree = "<group>"; };
@@ -1911,6 +1919,8 @@
 				46BE69D413D5B30E00F62614 /* SocialComment.m */,
 				46DDC5AB13D764440026D036 /* SocialLike.h */,
 				46DDC5AC13D764460026D036 /* SocialLike.m */,
+				1FCE304914453EB6004AE55F /* SocialPictureAttach.h */,
+				1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -2082,6 +2092,9 @@
 		46A03A1913A79F0C00E71AF9 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */,
+				1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */,
+				1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */,
 				467F4F0113AB9B3400B2DCFA /* ActivityDetail */,
 				46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */,
 				46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */,
@@ -4045,6 +4058,7 @@
 				892D98A4143EE61200749A4C /* ChatContactNotAvailable@2x.png in Resources */,
 				892D98A5143EE61200749A4C /* ChatDiscussionBuddyMessageBg@2x.png in Resources */,
 				892D98A6143EE61200749A4C /* ChatDiscussionUserMessageBg@2x.png in Resources */,
+				1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4207,6 +4221,8 @@
 				1FCED35E1435BA1800EC0B88 /* WEPopoverController.m in Sources */,
 				1FCED35F1435BA1800EC0B88 /* WETouchableView.m in Sources */,
 				1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */,
+				1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */,
+				1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
