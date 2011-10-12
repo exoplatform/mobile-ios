@@ -405,7 +405,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         //Set the cell content
         [cell setSocialActivityStream:socialActivityStream];
         return cell;
-    } /*else {//
+    } else {//
         ActivityPictureTableViewCell *cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
         //Check if we found a cell
         if (cell == nil) 
@@ -429,9 +429,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         //Set the cell content
         [cell setSocialActivityStream:socialActivityStream];
         return cell;
-    }*/
-    
-	
+    }
 }
 
 

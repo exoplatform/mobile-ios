@@ -61,6 +61,11 @@
     if (fHeight > 200) {
         fHeight = 200;
     }
+    
+    if (isPicture) {
+        fHeight += 65;
+    }
+        
     return fHeight;
 }
 
