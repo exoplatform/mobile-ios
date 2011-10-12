@@ -27,6 +27,9 @@
 #define EXO_NOTIFICATION_LIKE               @"notification-like"
 #define EXO_NOTIFICATION_COMMENT            @"notification-comment"
 
+//#define EXO_NOTIFICATION_LIKE               @"likes"
+//#define EXO_NOTIFICATION_COMMENT            @"comments"
+
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"
 #define HTTPS_PROTOCOL                       @"https://"
