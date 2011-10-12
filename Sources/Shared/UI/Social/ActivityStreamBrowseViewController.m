@@ -8,6 +8,7 @@
 
 #import "ActivityStreamBrowseViewController.h"
 #import "ActivityBasicTableViewCell.h"
+#import "ActivityPictureTableViewCell.h"
 #import "NSDate+Formatting.h"
 #import "ActivityDetailViewController.h"
 #import "AppDelegate_iPad.h"
@@ -24,6 +25,9 @@
 #import "EmptyView.h"
 
 #define TAG_EMPTY 111
+
+static NSString* kCellIdentifier = @"ActivityCell";
+static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 
 @implementation ActivityStreamBrowseViewController
 
@@ -134,7 +138,7 @@
     
 }
 
-#pragma mar - Update like
+#pragma mark - Update like
 -(void)updateLike{
     //NSLog(@"%d/%d", indexpath.row, indexpath.section);
     ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:indexpath];
@@ -215,7 +219,7 @@
 
 
 #pragma mark - Helpers methods
-- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
+- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text picture:(BOOL)isPicture;
 {
     //Default value is 0, to force the developper to implement this method
     return 0.0;
@@ -372,7 +376,8 @@
 {
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     NSString* text = socialActivityStream.title;
-    float fHeight = [self getHeighSizeForTableView:tableView andText:text];
+    BOOL isPicture = (socialActivityStream.posterPicture.docName != nil);
+    float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:isPicture];
     
     return  fHeight;
 }
@@ -382,37 +387,60 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-	static NSString* kCellIdentifier = @"ActivityCell";
-	
-    //We dequeue a cell
-	ActivityBasicTableViewCell* cell = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    
-    //Check if we found a cell
-    if (cell == nil) 
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityBasicTableViewCell" owner:self options:nil];
-        cell = (ActivityBasicTableViewCell *)[nib objectAtIndex:0];
-        
-        //Create a cell, need to do some Configurations
-        [cell configureCell];
-    }
-    
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     
-    cell.delegate = self;
-    cell.socialActivytyStream = socialActivityStream;
+    if(socialActivityStream.posterPicture.docName == nil){
+        //We dequeue a cell
+        ActivityBasicTableViewCell *cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+        //Check if we found a cell
+        if (cell == nil) 
+        {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityBasicTableViewCell" owner:self options:nil];
+            cell = (ActivityBasicTableViewCell *)[nib objectAtIndex:0];
+            
+            //Create a cell, need to do some Configurations
+            [cell configureCell];
+        }
+        cell.delegate = self;
+        cell.socialActivytyStream = socialActivityStream;
+        
+        NSString* text = socialActivityStream.title;
+        
+        //Set the size of the cell
+        float fWidth = tableView.frame.size.width;
+        float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
+        [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+        
+        //Set the cell content
+        [cell setSocialActivityStream:socialActivityStream];
+        return cell;
+    } else {//
+        ActivityPictureTableViewCell *cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
+        //Check if we found a cell
+        if (cell == nil) 
+        {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureTableViewCell" owner:self options:nil];
+            cell = (ActivityPictureTableViewCell *)[nib objectAtIndex:0];
+            
+            //Create a cell, need to do some Configurations
+            [cell configureCell];
+        }
+        cell.delegate = self;
+        cell.socialActivytyStream = socialActivityStream;
+        
+        NSString* text = socialActivityStream.posterPicture.message;
+        
+        //Set the size of the cell
+        float fWidth = tableView.frame.size.width;
+        float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:YES];
+        [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+        
+        //Set the cell content
+        [cell setSocialActivityStream:socialActivityStream];
+        return cell;
+    }
     
-    NSString* text = socialActivityStream.title;
-    
-    //Set the size of the cell
-    float fWidth = tableView.frame.size.width;
-    float fHeight = [self getHeighSizeForTableView:tableView andText:text];
-    [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-    
-    //Set the cell content
-    [cell setSocialActivityStream:socialActivityStream];
-    
-	return cell;
+	
 }
 
 
