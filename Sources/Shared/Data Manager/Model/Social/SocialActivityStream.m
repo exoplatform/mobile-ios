@@ -26,7 +26,7 @@
 @synthesize comments = _comments;
 @synthesize postedTimeInWords = _postedTimeInWords;
 @synthesize posterUserProfile = _posterUserProfile;
-
+@synthesize posterPicture = _posterPicture;
  
 - (void)dealloc {
     [_identityId release];
@@ -40,6 +40,7 @@
     [_comments release];
     [_postedTimeInWords release];
     [_posterUserProfile release];
+    [_posterPicture release];
     [super dealloc];
 }
 

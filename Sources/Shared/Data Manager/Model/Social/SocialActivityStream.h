@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SocialUserProfile.h"
+#import "SocialPictureAttach.h"
 
 @interface SocialActivityStream : NSObject {
     NSString*               _identityId;
@@ -18,6 +19,7 @@
     NSString*               _type;
     NSString*               _posterIdentity;
     SocialUserProfile*      _posterUserProfile;
+    SocialPictureAttach*    _posterPicture;
     NSString*               _activityId;
     NSString*               _title;
     NSString*               _createdAt;
@@ -42,6 +44,7 @@
 @property (nonatomic, retain) NSArray* comments;
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) SocialUserProfile* posterUserProfile;
+@property (nonatomic, retain) SocialPictureAttach *posterPicture;
 
 - (void)convertToPostedTimeInWords;
 @end
