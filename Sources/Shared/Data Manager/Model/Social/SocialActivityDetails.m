@@ -13,6 +13,8 @@
 
 @synthesize identityId = _identityId;
 @synthesize totalNumberOfComments =_totalNumberOfComments;
+@synthesize totalNumberOfLikes =_totalNumberOfLikes;
+
 @synthesize liked = _liked;
 @synthesize postedTime = _postedTime;
 @synthesize type = _type;

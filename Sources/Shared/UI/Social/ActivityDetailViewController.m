@@ -27,7 +27,6 @@
 #import "defines.h"
 
 @implementation ActivityDetailViewController
-@synthesize indexpath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,9 +60,7 @@
 
     [_hudActivityDetails release];
     _hudActivityDetails = nil;
-    
-    [indexpath release];
-    
+        
     [super dealloc];
 }
 
@@ -416,6 +413,17 @@
 
 #pragma mark - Data Management
 
+- (void)updateActivityInActivityStream {
+    
+    
+    _socialActivityStream.totalNumberOfLikes = [_socialActivityDetails.totalNumberOfLikes intValue];
+    _socialActivityStream.totalNumberOfComments = [_socialActivityDetails.totalNumberOfComments intValue];  
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];
+}
+
+
+
 - (void)finishLoadingAllDataForActivityDetails {
     
     //Prevent any reloading status
@@ -437,6 +445,8 @@
     [self hideLoader:YES];
     
     [_tblvActivityDetail reloadData];
+    
+    [self updateActivityInActivityStream];
 }
 
 #pragma - Proxy Management
@@ -503,7 +513,6 @@
 {
     
     [self showLoaderForAction:_activityAction];
-    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_LIKE object:nil];
     [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
@@ -523,7 +532,6 @@
 #pragma mark -
 #pragma mark MessageComposer Methods
 - (void)messageComposerDidSendData{
-    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_COMMENT object:nil];
     [self startLoadingActivityDetail];
 }
 

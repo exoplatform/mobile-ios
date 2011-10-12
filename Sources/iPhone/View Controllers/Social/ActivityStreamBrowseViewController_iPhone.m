@@ -26,7 +26,7 @@
 
 // Specific method to retrieve the height of the cell
 // This method override the inherited one.
-- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
+- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text picture:(BOOL)isPicture
 {
     CGRect rectTableView = tableView.frame;
     float fWidth = 0;
@@ -94,6 +94,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+ 
+    _indexpathSelectedActivity = indexPath;
     
     if (_activityDetailViewController == nil) 
     {

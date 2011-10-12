@@ -24,11 +24,7 @@
 #define EXO_IS_USER_LOGGED                  @"sigin"
 #define EXO_PREFERENCE_VERSION_SERVER       @"version_server"
 #define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
-#define EXO_NOTIFICATION_LIKE               @"notification-like"
-#define EXO_NOTIFICATION_COMMENT            @"notification-comment"
-
-//#define EXO_NOTIFICATION_LIKE               @"likes"
-//#define EXO_NOTIFICATION_COMMENT            @"comments"
+#define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
 
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"

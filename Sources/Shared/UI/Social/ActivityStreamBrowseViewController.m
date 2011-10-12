@@ -86,7 +86,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     _hudActivityStream = nil;
     
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:EXO_NOTIFICATION_LIKE];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:EXO_NOTIFICATION_ACTIVITY_UPDATED];
     
     [super dealloc];
 }
@@ -138,21 +138,14 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     
 }
 
-#pragma mark - Update like
--(void)updateLike{
+#pragma mark - Update Acitivity From ActivityDetail
+-(void)updateActivity{
     //NSLog(@"%d/%d", indexpath.row, indexpath.section);
-    ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:indexpath];
-    [cell btnLikeAction:nil];
+    ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:_indexpathSelectedActivity];
+    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:_indexpathSelectedActivity];
+    [cell setSocialActivityStream:socialActivityStream];
 }
 
--(void)updateComment{
-    //NSLog(@"%d/%d", indexpath.row, indexpath.section);
-    ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:indexpath];
-    cell.socialActivytyStream.totalNumberOfComments += 1;
-    
-    NSString *stringForComment = [NSString stringWithFormat:@"%d",cell.socialActivytyStream.totalNumberOfComments];
-    [cell.btnComment setTitle:stringForComment forState:UIControlStateNormal];
-}
 
 #pragma mark - View lifecycle
 
@@ -161,10 +154,8 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLikes) name:EXO_NOTIFICATION_LIKE object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateComment) name:EXO_NOTIFICATION_COMMENT object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];
+        
     //Add the loader
     _hudActivityStream = [[ATMHud alloc] initWithDelegate:self];
     [_hudActivityStream setAllowSuperviewInteraction:NO];
@@ -414,7 +405,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         //Set the cell content
         [cell setSocialActivityStream:socialActivityStream];
         return cell;
-    } else {//
+    } /*else {//
         ActivityPictureTableViewCell *cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
         //Check if we found a cell
         if (cell == nil) 
@@ -438,7 +429,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         //Set the cell content
         [cell setSocialActivityStream:socialActivityStream];
         return cell;
-    }
+    }*/
     
 	
 }

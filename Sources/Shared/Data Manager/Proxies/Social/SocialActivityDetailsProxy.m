@@ -126,6 +126,7 @@
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"totalNumberOfComments",@"totalNumberOfComments",
+     @"totalNumberOfLikes",@"totalNumberOfLikes",
      @"postedTime",@"postedTime",
      @"type",@"type",
      @"activityStream",@"activityStream",
@@ -187,7 +188,7 @@
     [mapping mapKeyPath:@"likedByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likedByIdentitiesMapping];
     
      
-    //NSLog(@"--------%@", [NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
+    NSLog(@"--------%@", [NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] 
                          objectMapping:mapping delegate:self];
     

@@ -44,7 +44,7 @@
     
     //Loader
     ATMHud*                                 _hudActivityStream;//Heads up display
-    NSIndexPath *indexpath;
+    NSIndexPath*                            _indexpathSelectedActivity;
     BOOL                                    _activityAction;
     
 }
