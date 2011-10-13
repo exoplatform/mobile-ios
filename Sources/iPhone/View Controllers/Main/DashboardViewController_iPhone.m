@@ -140,7 +140,7 @@
                                                                                                               bundle:nil 
                                                                                                                  url:tmpURL];
 
-
+    gadgetDisplayViewController.title = [gadget name];
 	[gadgetDisplayViewController setUrl:tmpURL];
 
     [self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
