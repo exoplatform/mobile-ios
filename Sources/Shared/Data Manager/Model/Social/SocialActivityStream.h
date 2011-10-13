@@ -47,4 +47,5 @@
 @property (nonatomic, retain) SocialPictureAttach *posterPicture;
 
 - (void)convertToPostedTimeInWords;
+- (void)convertHTMLEncoding;
 @end

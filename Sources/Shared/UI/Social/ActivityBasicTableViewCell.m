@@ -130,7 +130,8 @@
     htmlLabel = [[[TTStyledTextLabel alloc] initWithFrame:_lbMessage.frame] autorelease];
     htmlLabel.userInteractionEnabled = NO;
     htmlLabel.backgroundColor = [UIColor clearColor];
-    htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    htmlLabel.font = [UIFont systemFontOfSize:13.0];
+    htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     htmlLabel.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:htmlLabel];

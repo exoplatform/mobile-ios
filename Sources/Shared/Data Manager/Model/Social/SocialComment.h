@@ -41,5 +41,7 @@
 @property (nonatomic, retain) NSDictionary *userDict;
 
 - (void)convertToPostedTimeInWords;
+- (void)convertHTMLEncoding;
+
 
 @end

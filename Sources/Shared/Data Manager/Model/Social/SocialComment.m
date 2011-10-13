@@ -8,6 +8,7 @@
 
 #import "SocialComment.h"
 #import "NSDate+Formatting.h"
+#import "GTMNSString+HTML.h"
 
 @implementation SocialComment
 
@@ -29,5 +30,10 @@
 {
     self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
 }
+
+-(void)convertHTMLEncoding 
+{
+    self.text = [self.text gtm_stringByUnescapingFromHTML];
+} 
 
 @end

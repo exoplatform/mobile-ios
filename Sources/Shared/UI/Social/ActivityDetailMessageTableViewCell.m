@@ -17,6 +17,7 @@
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;
+@synthesize webViewForContent = _webViewForContent;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -49,7 +50,7 @@
     self.lbMessage = nil;
     self.lbDate = nil;
     self.lbName = nil;
-    
+    self.webViewForContent = nil;
     self.imgvAvatar = nil;
     
     self.imgvMessageBg = nil;
@@ -97,12 +98,19 @@
     
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
+    
+    [_webViewForContent setBackgroundColor:[UIColor clearColor]];
+    [_webViewForContent setOpaque:NO];
 }
 
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
-    _lbMessage.text = [socialActivityDetail.title copy];
+    
+    [_webViewForContent loadHTMLString:
+     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] baseURL:nil];
+    
+    _lbMessage.text = @"";
     _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     _lbDate.text = [socialActivityDetail.postedTimeInWords copy];
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];

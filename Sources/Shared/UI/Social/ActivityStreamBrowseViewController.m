@@ -572,7 +572,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         {
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
-                        
+            [socialActivityStream convertHTMLEncoding];
             [_arrActivityStreams addObject:socialActivityStream];
             
         }

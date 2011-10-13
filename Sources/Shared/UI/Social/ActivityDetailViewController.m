@@ -435,6 +435,7 @@
     {
         comment.userProfile = [[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:comment.identityId];
         [comment convertToPostedTimeInWords];
+        [comment convertHTMLEncoding];
     }
     
     //We have retreive new datas from API

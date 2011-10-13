@@ -99,6 +99,15 @@
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
     
+    htmlLabel = [[[TTStyledTextLabel alloc] initWithFrame:_lbMessage.frame] autorelease];
+    htmlLabel.userInteractionEnabled = NO;
+    htmlLabel.backgroundColor = [UIColor clearColor];
+    htmlLabel.font = [UIFont systemFontOfSize:13.0];
+    htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    htmlLabel.textColor = [UIColor grayColor];
+    [self.contentView addSubview:htmlLabel];
+
+    
 }
 
 
@@ -113,7 +122,8 @@
     }
     
     _imgvAvatar.imageURL = [NSURL URLWithString:tmp];    
-    _lbMessage.text = [socialComment.text copy];
+    _lbMessage.text = @"";
+    htmlLabel.html = [socialComment.text copy];
     _lbName.text = [socialComment.userProfile.fullName copy];
     _lbDate.text = [socialComment.postedTimeInWords copy];
 }

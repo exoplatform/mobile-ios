@@ -23,6 +23,8 @@
     EGOImageView*          _imgvAvatar;
 
     UIImageView*           _imgvMessageBg;
+    
+    UIWebView*             _webViewForContent;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
@@ -30,6 +32,7 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
+@property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;

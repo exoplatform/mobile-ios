@@ -8,6 +8,7 @@
 
 #import "SocialActivityStream.h"
 #import "NSDate+Formatting.h"
+#import "GTMNSString+HTML.h"
 
 @implementation SocialActivityStream
 
@@ -48,6 +49,12 @@
 {    
     self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
 }
+
+-(void)convertHTMLEncoding 
+{
+    self.title = [self.title gtm_stringByUnescapingFromHTML];
+    self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];
+}    
 
 
 @end
