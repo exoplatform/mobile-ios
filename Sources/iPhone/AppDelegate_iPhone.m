@@ -11,6 +11,7 @@
 #import "defines.h"
 #import "ChatProxy.h"
 #import "FilesProxy.h"
+#import "HomeStyleSheet.h"
 
 
 @implementation AppDelegate_iPhone
@@ -48,6 +49,9 @@
 
 - (void)showHomeViewController {
     // Login is successfully
+    
+    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
+
     
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
     
