@@ -257,8 +257,11 @@
             cell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
             //Create a cell, need to do some configurations
             [cell configureCell];
+            
+            //Set the delegate of the webview
+            cell.webViewForContent.delegate = self;
         }
-        cell.userInteractionEnabled = NO;
+        //cell.userInteractionEnabled = NO;
         [cell setSocialActivityDetail:_socialActivityDetails];
         return cell;
     }
@@ -588,6 +591,11 @@
         _reloading = NO;
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
     }
-    
 }
+
+
+
+
+
+
 @end

@@ -12,6 +12,8 @@
 #import "SocialActivityStream.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "MessageComposerViewController.h"
+#import "defines.h"
+#import "ActivityLinkDisplayViewController_iPhone.h"
 
 @implementation ActivityDetailViewController_iPhone
 
@@ -31,5 +33,31 @@
     
     [messageComposerViewController release];
 }
+
+
+
+#pragma mark - UIWebViewDelegateMethod 
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    //CAPTURE USER LINK-CLICK.
+    NSURL *url = [request URL];
+    
+    
+    if (!([[url absoluteString] isEqualToString:[NSString stringWithFormat:@"%@/",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]])) {
+        
+		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
+                                                                       initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
+                                                                       bundle:nil 
+                                                                       url:url];
+		[self.navigationController pushViewController:linkWebViewController animated:YES];    
+        
+        [linkWebViewController release];
+        
+        return NO;
+    }
+    
+    
+    return YES;   
+}
+
 
 @end

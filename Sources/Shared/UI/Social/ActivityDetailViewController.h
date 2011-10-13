@@ -21,7 +21,7 @@
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
-@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate>{
+@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate, UIWebViewDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
     IBOutlet UINavigationBar*               _navigationBar;

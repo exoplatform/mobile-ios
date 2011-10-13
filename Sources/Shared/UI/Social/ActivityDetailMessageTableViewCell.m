@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivityStream.h"
 #import "SocialActivityDetails.h"
+#import "defines.h"
 
 @implementation ActivityDetailMessageTableViewCell
 
@@ -108,7 +109,9 @@
 {
     
     [_webViewForContent loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] baseURL:nil];
+     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
+                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+     ];
     
     _lbMessage.text = @"";
     _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];

@@ -11,6 +11,8 @@
 #import "SocialActivityStream.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import "ActivityLinkDisplayViewController_iPad.h"
+#import "defines.h"
 
 @implementation ActivityDetailViewController_iPad
 
@@ -56,5 +58,32 @@
 - (void)setHudPosition {
     _hudActivityDetails.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
 }
+
+
+#pragma mark - UIWebViewDelegateMethod 
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    //CAPTURE USER LINK-CLICK.
+    NSURL *url = [request URL];
+    
+    
+    if (!([[url absoluteString] isEqualToString:[NSString stringWithFormat:@"%@/",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]])) {
+        
+        
+        ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
+                                                                                                                           bundle:nil 
+                                                                                                                              url:url];
+		
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
+        
+        [linkWebViewController release];
+                
+        return NO;
+    }
+    
+    
+    return YES;   
+}
+
+
 
 @end

@@ -201,6 +201,11 @@
 		46A03AC513A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB313A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png */; };
 		46A03AC613A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */; };
 		46A03AC713A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */; };
+		46A08CD61447501300D53314 /* ActivityLinkDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A08CD51447501200D53314 /* ActivityLinkDisplayViewController.m */; };
+		46A08CDA1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A08CD81447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m */; };
+		46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A08CD91447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib */; };
+		46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */; };
+		46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */; };
 		46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2739613D7FBAE00A5C29D /* NSString+MD5.m */; };
 		46A3E5DD13F01AB900F606B4 /* SocialYourCommentButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */; };
 		46A3E5DF13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */; };
@@ -1015,6 +1020,14 @@
 		46A03AB313A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserCommentButtonSelected@2x.png"; sourceTree = "<group>"; };
 		46A03AB413A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserLikeButton@2x.png"; sourceTree = "<group>"; };
 		46A03AB513A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserLikeButtonSelected@2x.png"; sourceTree = "<group>"; };
+		46A08CD41447501200D53314 /* ActivityLinkDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDisplayViewController.h; path = Social/ActivityLinkDisplayViewController.h; sourceTree = "<group>"; };
+		46A08CD51447501200D53314 /* ActivityLinkDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkDisplayViewController.m; path = Social/ActivityLinkDisplayViewController.m; sourceTree = "<group>"; };
+		46A08CD71447503100D53314 /* ActivityLinkDisplayViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDisplayViewController_iPhone.h; path = "Sources/iPhone/View Controllers/Social/ActivityLinkDisplayViewController_iPhone.h"; sourceTree = SOURCE_ROOT; };
+		46A08CD81447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkDisplayViewController_iPhone.m; path = "Sources/iPhone/View Controllers/Social/ActivityLinkDisplayViewController_iPhone.m"; sourceTree = SOURCE_ROOT; };
+		46A08CD91447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDisplayViewController_iPhone.xib; path = "Sources/iPhone/View Controllers/Social/ActivityLinkDisplayViewController_iPhone.xib"; sourceTree = SOURCE_ROOT; };
+		46A08CDC144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDisplayViewController_iPad.h; path = Social/ActivityLinkDisplayViewController_iPad.h; sourceTree = "<group>"; };
+		46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkDisplayViewController_iPad.m; path = Social/ActivityLinkDisplayViewController_iPad.m; sourceTree = "<group>"; };
+		46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDisplayViewController_iPad.xib; path = Social/ActivityLinkDisplayViewController_iPad.xib; sourceTree = "<group>"; };
 		46A2739513D7FBAE00A5C29D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		46A2739613D7FBAE00A5C29D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialYourCommentButtonBg.png; sourceTree = "<group>"; };
@@ -2085,6 +2098,9 @@
 				7C3DF00713F1217100640BDB /* PhotoActionViewController.h */,
 				7C3DF00813F1217100640BDB /* PhotoActionViewController.m */,
 				7C3DF00513F1212700640BDB /* PhotoActionViewController.xib */,
+				46A08CDC144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.h */,
+				46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */,
+				46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -2103,6 +2119,8 @@
 				46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */,
 				7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */,
 				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
+				46A08CD41447501200D53314 /* ActivityLinkDisplayViewController.h */,
+				46A08CD51447501200D53314 /* ActivityLinkDisplayViewController.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -2578,6 +2596,9 @@
 				7C34684013C2DB770030DC23 /* MessageComposerViewController_iPhone.h */,
 				7C34684113C2DB770030DC23 /* MessageComposerViewController_iPhone.m */,
 				7C34684213C2DB770030DC23 /* MessageComposerViewController_iPhone.xib */,
+				46A08CD71447503100D53314 /* ActivityLinkDisplayViewController_iPhone.h */,
+				46A08CD81447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m */,
+				46A08CD91447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib */,
 			);
 			name = Social;
 			path = ActivityStream;
@@ -4059,6 +4080,8 @@
 				892D98A5143EE61200749A4C /* ChatDiscussionBuddyMessageBg@2x.png in Resources */,
 				892D98A6143EE61200749A4C /* ChatDiscussionUserMessageBg@2x.png in Resources */,
 				1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */,
+				46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */,
+				46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4223,6 +4246,9 @@
 				1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */,
 				1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */,
 				1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */,
+				46A08CD61447501300D53314 /* ActivityLinkDisplayViewController.m in Sources */,
+				46A08CDA1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m in Sources */,
+				46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
