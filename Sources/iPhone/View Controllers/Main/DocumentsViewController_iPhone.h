@@ -15,8 +15,6 @@
     
     FileActionsViewController *_actionsViewController;
     
-    UIView *_maskingViewForActions;
-    
     WEPopoverController *popoverController;
     WEPopoverController *popoverClass;
     NSInteger currentPopoverCellIndex;

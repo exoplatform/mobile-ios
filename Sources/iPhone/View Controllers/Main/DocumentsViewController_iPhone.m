@@ -32,7 +32,6 @@
 {
     [_actionsViewController release];
     _actionsViewController = nil;
-    [_maskingViewForActions release];
     [super dealloc];
 }
 
@@ -239,7 +238,6 @@
 
 -(void) hideActionsPanel {
     [_actionsViewController.view removeFromSuperview];
-    [_maskingViewForActions removeFromSuperview];
     _tblFiles.scrollEnabled = YES;
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
@@ -249,7 +247,6 @@
 
 
 - (void)hideFileFolderActionsController {
-    [_maskingViewForActions removeFromSuperview];
     _tblFiles.scrollEnabled = YES;
     [super hideFileFolderActionsController];
     [self.popoverController dismissPopoverAnimated:YES];
