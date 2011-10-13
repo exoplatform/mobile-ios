@@ -158,22 +158,25 @@
     
     if ([item.title isEqualToString:@"Activity Streams"]) 
     {
-        ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil] autorelease];
+        ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:_activityStreamBrowseViewController_iPhone animated:YES];
+        [_activityStreamBrowseViewController_iPhone release];
     }
     
     if ([item.title isEqualToString:@"Chat"]) 
     {
         //Start the Chat
-        MessengerViewController_iPhone *messengerViewController_iPhone = [[[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil] autorelease];
+        MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:messengerViewController_iPhone animated:YES];
+        [messengerViewController_iPhone release];
     }
     
     if ([item.title isEqualToString:@"Documents"]) 
     {
         //Start Documents
-        DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
+        DocumentsViewController_iPhone *documentsViewController = [[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:documentsViewController animated:YES];
+        [documentsViewController release];
     }
     
     if ([item.title isEqualToString:@"Dashboard"]) 
@@ -181,8 +184,9 @@
         
         //Start Dashboard
         
-        DashboardViewController_iPhone *dashboardController = [[[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil] autorelease];
+        DashboardViewController_iPhone *dashboardController = [[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:dashboardController animated:YES];
+        [dashboardController release];
     }
     
     if([item.title isEqualToString:@"Settings"]) 
@@ -196,7 +200,6 @@
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self.navigationController presentModalViewController:navController animated:YES];
     }
-    
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher 
