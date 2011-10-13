@@ -9,7 +9,7 @@
 #import "GadgetDisplayViewController.h"
 #import "Gadget.h"
 #import "AuthenticateProxy.h"
-
+#import "EmptyView.h"
 
 @interface GadgetDisplayViewController (PrivateMethods)
 - (void)showLoader;
@@ -93,6 +93,10 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
     [self hideLoader];
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
+    [self.view addSubview:emptyView];
+    [emptyView release];
 }
 
 // Stop loading animation
@@ -139,7 +143,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudGadget setCaption:@"Loading Gadget"];
+    [_hudGadget setCaption:[NSString stringWithFormat:@"Loading Gadget %@", self.title]];
     [_hudGadget setActivity:YES];
     [_hudGadget show];
 }
