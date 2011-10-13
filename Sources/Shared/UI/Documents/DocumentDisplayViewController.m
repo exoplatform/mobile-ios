@@ -136,7 +136,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudDocument setCaption:@"Loading Document"];
+    [_hudDocument setCaption:[NSString stringWithFormat:@"Loading Document %@", self.title]];
     [_hudDocument setActivity:YES];
     [_hudDocument show];
 }
