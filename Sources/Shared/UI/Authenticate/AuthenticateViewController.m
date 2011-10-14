@@ -51,7 +51,7 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
+
     _vContainer.backgroundColor = [UIColor clearColor];
     
     //Set Alpha for all subviews to make a small animation
@@ -128,22 +128,23 @@
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
 	}
+    
     [_tbvlServerList reloadData];
     
-    if(_bAutoLogin)
-    {
-        _vContainer.alpha = 1;
-        [self onSignInBtn:nil];
-    }
-    else
-    {
-        //Start the animation to display the loginView
-        [UIView animateWithDuration:1.0 
-                         animations:^{
-                             _vContainer.alpha = 1;
-                         }
-         ];
-    }    
+//    if(_bAutoLogin)
+//    {
+//        _vContainer.alpha = 1;
+//        [self onSignInBtn:nil];
+//    }
+//    else
+//    {
+//        //Start the animation to display the loginView
+//        [UIView animateWithDuration:1.0 
+//                         animations:^{
+//                             _vContainer.alpha = 1;
+//                         }
+//         ];
+//    }    
     
 }
 
@@ -201,51 +202,6 @@
     [_tbvlServerList reloadData];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
-{
-    //Check the textfield to go up the content of the view
-    CGRect frameToGo = self.view.frame;
-    
-    if (textField == _txtfUsername) {
-        frameToGo.origin.y = kHeigthNeededToGoUpSubviewsWhenEditingUsername;
-    } else {
-        frameToGo.origin.y = kHeigthNeededToGoUpSubviewsWhenEditingPassword;
-    }
-    
-    [UIView animateWithDuration:0.3 
-                     animations:^{
-                         self.view.frame = frameToGo;
-                     }
-     ];
-    
-	return YES;   
-}
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (textField == _txtfUsername) 
-    {
-        [_txtfPassword becomeFirstResponder];
-    }
-    else
-    {    
-        [_txtfPassword resignFirstResponder];
-        
-        //Replace the frame at the good position
-        CGRect frameToGo = self.view.frame;
-        frameToGo.origin.y = 0;
-        
-        [UIView animateWithDuration:0.3 
-                         animations:^{
-                             self.view.frame = frameToGo;
-                         }
-         ];
-        
-        [self onSignInBtn:nil];
-    }    
-	return YES;
-}
 
 - (void)hitAtView:(UIView*) view
 {
@@ -505,6 +461,7 @@
 	[_txtfUsername release];
 	[_txtfPassword release];
 	[_arrServerList release];
+    [_hud release];
     [super dealloc];	
 }
 

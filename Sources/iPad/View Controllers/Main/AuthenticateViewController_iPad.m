@@ -19,7 +19,7 @@
 
 @implementation AuthenticateViewController_iPad
 
-@synthesize _dictLocalize;
+//@synthesize _dictLocalize;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -35,14 +35,22 @@
 	return self;
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_hud dismiss];
+    [_hud release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardHidden) name:UIKeyboardDidHideNotification object:nil];
     
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
+    
+    [self signInAnimation:_bAutoLogin];
 
 }
 
@@ -73,7 +81,7 @@
     
     [self changeOrientation:[[UIDevice currentDevice] orientation]];
 
-    
+    self.view.backgroundColor = [UIColor clearColor];
     //Stevan UI fixes
     _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] 
                               stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
@@ -105,57 +113,58 @@
                                   topCapHeight:10]];
 
     
-    _strBSuccessful = @"NO";
-    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
-    _arrServerList = [configuration getServerList];
-    
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_intSelectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-	NSString* filePath;
-	if(_intSelectedLanguage == 0)
-	{
-		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
-	}	
-	else
-	{	
-		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
-	}	
-	
-	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
-	
-	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
-    
-	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-    
-	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-    if (_strHost == nil) 
-    {
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
-        _strHost = tmpServerObj._strServerUrl;
-        [userDefaults setObject:[_strHost retain] forKey:EXO_PREFERENCE_DOMAIN];
-    }
-    
-	if(_bRememberMe || _bAutoLogin)
-	{
-		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-		if(username)
-		{
-			[_txtfUsername setText:username];
-		}
-		
-		if(password)
-		{
-			[_txtfPassword setText:password];
-		}
-	}
-	else 
-	{
-		[_txtfUsername setText:@""];
-		[_txtfPassword setText:@""];
-	}
+//    _strBSuccessful = @"NO";
+//    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
+//    _arrServerList = [configuration getServerList];
+//    
+//	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//	_intSelectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
+//	NSString* filePath;
+//	if(_intSelectedLanguage == 0)
+//	{
+//		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
+//	}	
+//	else
+//	{	
+//		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
+//	}	
+//	
+//	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+//	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
+//	
+//	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
+//    
+//	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+//	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+//    
+//	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+//    if (_strHost == nil) 
+//    {
+//        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
+//        _strHost = tmpServerObj._strServerUrl;
+//        [userDefaults setObject:[_strHost retain] forKey:EXO_PREFERENCE_DOMAIN];
+//    }
+//    
+//	if(_bRememberMe || _bAutoLogin)
+//	{
+//		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+//		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+//		if(username)
+//		{
+//			[_txtfUsername setText:username];
+//		}
+//		
+//		if(password)
+//		{
+//			[_txtfPassword setText:password];
+//		}
+//	}
+//	else 
+//	{
+//		[_txtfUsername setText:@""];
+//		[_txtfPassword setText:@""];
+//        [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+//	}
     
     [_tbvlServerList setHidden:YES];
     [_vAccountView setHidden:NO];
@@ -181,8 +190,6 @@
     
     //[_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
     
-
-    [self signInAnimation:_bAutoLogin];
 
     [super viewDidLoad];
     
@@ -216,11 +223,6 @@
 }	
 
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [_hud dismiss];
-    [_hud release];
-}
-
 - (void)didReceiveMemoryWarning 
 {
 	// Releases the view if it doesn't have a superview.
@@ -241,6 +243,8 @@
     {
         [_iPadSettingViewController release];
     }
+    [_dictLocalize release];
+    
     [super dealloc];
 }
 
@@ -394,8 +398,28 @@
 	return YES;
 }
 
+-(void)keyBoardHidden {
+    CGRect frameToGo = _vContainer.frame;
+    
+    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        frameToGo.origin.y = 400;
+    }
+    else    
+    {	
+        frameToGo.origin.y = 230;
+    }
+    
+    [UIView animateWithDuration:0.3 
+                     animations:^{
+                         _vContainer.frame = frameToGo;
+                     }
+     ];   
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //[super textFieldShouldReturn:textField];
     if (textField == _txtfUsername) 
     {
         [_txtfPassword becomeFirstResponder];
@@ -451,7 +475,9 @@
                              _vContainer.frame = frameToGo;
                          }
          ];   
-	}
+	} else {
+        
+    }
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{

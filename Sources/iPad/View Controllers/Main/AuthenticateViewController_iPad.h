@@ -18,9 +18,6 @@
 @interface AuthenticateViewController_iPad : AuthenticateViewController <SettingsDelegateProcotol> {
 	
 	id										_delegate;
-    
-	NSDictionary*							_dictLocalize;	//Language dictionary
-	int										_intSelectedLanguage;	//Language index
        
     
     UINavigationController*                 _modalNavigationSettingViewController;
@@ -31,7 +28,7 @@
     IBOutlet UIImageView*       _panelBackground;
 }
 
-@property (nonatomic, retain) NSDictionary* _dictLocalize;
+//@property (nonatomic, retain) NSDictionary* _dictLocalize;
 
 - (void)setDelegate:(id)delegate;	//Set delegate
 - (void)setPreferenceValues;	//Set prefrrences

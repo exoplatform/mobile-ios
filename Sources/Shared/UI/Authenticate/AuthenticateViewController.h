@@ -35,6 +35,9 @@
     int                         _intSelectedServer;
     
     SSHUDView*                  _hud;//Heads up display
+    
+    NSDictionary*							_dictLocalize;	//Language dictionary
+	int										_intSelectedLanguage;	//Language index
 }
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action
