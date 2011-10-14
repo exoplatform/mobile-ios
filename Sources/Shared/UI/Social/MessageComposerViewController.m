@@ -174,6 +174,9 @@
     
     if([_txtvMessageComposer.text length] > 0)
     {
+        NSString* fileAttachName = nil;
+        NSString* fileAttachURL = nil;
+        
         UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
         if(imgView)
         {
@@ -185,14 +188,15 @@
             {
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                 [dateFormatter setDateFormat:@"yyyy_mm_dd_hh_mm_ss"];
-                NSString* fileName = [dateFormatter stringFromDate:[NSDate date]];
+                fileAttachName = [dateFormatter stringFromDate:[NSDate date]];
                 
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
-                //fileName = [fileName stringByAppendingFormat:@".png"];
-                fileName = [NSString stringWithFormat:@"MobileImage_%@.png", fileName];
-                NSLog(@"%@", fileName);
-                NSString *directory = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileName];
+
+                fileAttachName = [NSString stringWithFormat:@"MobileImage_%@.png", fileAttachName];
+                NSLog(@"%@", fileAttachName);
+                
+                fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
                 
                 NSData *imageData = UIImagePNGRepresentation(imgView.image);
                 
@@ -200,11 +204,10 @@
                                             [fileProxy methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
                 [invocation setTarget:fileProxy];
                 [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
-                [invocation setArgument:&directory atIndex:2];
+                [invocation setArgument:&fileAttachURL atIndex:2];
                 [invocation setArgument:&imageData atIndex:3];
                 [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
                 
-                //                [fileProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
             }
         }
         
@@ -215,7 +218,8 @@
             
             SocialPostActivity* actPost = [[SocialPostActivity alloc] init];
             actPost.delegate = self;
-            [actPost postActivity:_txtvMessageComposer.text];
+//            [actPost postActivity:_txtvMessageComposer.text];
+            [actPost postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName];
         }
         else
         {

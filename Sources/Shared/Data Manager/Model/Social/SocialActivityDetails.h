@@ -56,6 +56,7 @@
     SocialUserProfile*      _posterIdentity;
     NSArray*                _comments;
     NSString*               _postedTimeInWords;
+    NSMutableDictionary*    _templateParams;
 }
 
 @property (nonatomic, retain) NSString* identityId;
@@ -75,7 +76,9 @@
 @property (nonatomic, retain) NSArray* comments;
 
 @property (nonatomic, retain) NSString* postedTimeInWords;
+@property (nonatomic, retain) NSMutableDictionary* templateParams; 
 
 - (void)convertToPostedTimeInWords;
+- (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value;
 
 @end

@@ -17,6 +17,6 @@
 
 @property (nonatomic,retain) NSString* text;
 
--(void)postActivity:(NSString *)message;
+-(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName;
 
 @end

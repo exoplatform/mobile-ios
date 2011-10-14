@@ -9,7 +9,7 @@
 #import "SocialPostActivity.h"
 #import "SocialActivityDetails.h"
 #import "SocialRestConfiguration.h"
-
+#import "defines.h"
 
 
 @implementation SocialPostActivity
@@ -54,9 +54,7 @@
 }
 
 
-
-
--(void)postActivity:(NSString *)message {
+-(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName {
     if (message != nil) {
         _text = message;
     }
@@ -78,8 +76,41 @@
     
     //Register our mappings with the provider FOR SERIALIZATION
     RKObjectMapping *activitySimpleMapping = [RKObjectMapping mappingForClass: 
-                                       [SocialActivityDetails class]]; 
-    [activitySimpleMapping mapKeyPath:@"title" toAttribute:@"title"]; 
+                                              [SocialActivityDetails class]]; 
+    [activitySimpleMapping mapKeyPath:@"title" toAttribute:@"title"];
+    
+    //Attach file
+    if(fileURL != nil) {
+        activity.type = @"DOC_ACTIVITY";
+       /* "DOCPATH":"/Users/xuyen_mai/Public/Kaka.jpg",
+        "MESSAGE":"",
+        "DOCLINK":"/portal/rest/jcr/repository/collaboration/Users/xuyen_mai/Public/Kaka.jpg",
+        "WORKSPACE":"collaboration",
+        "REPOSITORY":"repository",
+        "DOCNAME":"KakaHaha.jpg"*/
+        
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *host = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+        
+        NSRange rangeOfDocLink = [fileURL rangeOfString:host];
+        NSString* docLink = [fileURL substringFromIndex:rangeOfDocLink.location + rangeOfDocLink.length];
+
+        rangeOfDocLink = [fileURL rangeOfString:@"jcr/repository/collaboration"];
+        NSString* docPath = [fileURL substringFromIndex:rangeOfDocLink.location + rangeOfDocLink.length];
+
+         activity.templateParams = [[NSMutableDictionary alloc] init];
+        
+        [activity setKeyForTemplateParams:@"DOCPATH" value:docPath];
+        [activity setKeyForTemplateParams:@"MESSAGE" value:@""];
+        [activity setKeyForTemplateParams:@"DOCLINK" value:docLink];
+        [activity setKeyForTemplateParams:@"WORKSPACE" value:@"collaboration"];
+        [activity setKeyForTemplateParams:@"REPOSITORY" value:@"repository"];
+        [activity setKeyForTemplateParams:@"DOCNAME" value:fileName];
+        
+        [activitySimpleMapping mapKeyPath:@"type" toAttribute:@"type"];
+        [activitySimpleMapping mapKeyPath:@"templateParams" toAttribute:@"templateParams"];
+    }
     
     //Configure a serialization mapping for our Product class 
     RKObjectMapping *activitySimpleSerializationMapping = [activitySimpleMapping 
@@ -106,6 +137,7 @@
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
      @"posterIdentity",@"posterIdentity",
+     @"templateParams",@"templateParams",
      nil];
     
     

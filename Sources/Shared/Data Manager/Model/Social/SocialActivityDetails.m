@@ -30,6 +30,8 @@
 
 @synthesize postedTimeInWords = _postedTimeInWords;
 
+@synthesize templateParams = templateParams;
+
 
 - (void)dealloc {
     [super dealloc];
@@ -42,6 +44,11 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ %@ %@",_title,_identityId,_comments];
+}
+
+- (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value {
+        
+    [self.templateParams setValue:value forKey:key];
 }
 
 @end
