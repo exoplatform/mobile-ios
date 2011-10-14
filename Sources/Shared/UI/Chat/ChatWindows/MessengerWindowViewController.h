@@ -13,12 +13,12 @@
 #import "defines.h"
 
 //Chat windows view
-@interface MessengerWindowViewController : UIViewController <UITextViewDelegate>
+@interface MessengerWindowViewController : UIViewController
 {
     id                              _delegate;
     XMPPUser*                       _user;
     
-	IBOutlet UIScrollView*          _scrMessageContent;	//Chat content view
+    IBOutlet UITableView*           _tblMessageContent;	//Chat content view
     IBOutlet UITextView*            _txtViewMsg;	//Chat typing area
     IBOutlet UIImageView*           _imgViewNewMessage;
     IBOutlet UIImageView*           _imgViewMessengerBackground;
@@ -26,11 +26,19 @@
     
     int                             _heightOfKeyboard;
     BOOL                            _keyboardIsShown;
+    
+    NSMutableArray*                 _cellArray;
+    
+    UIImage*                        _discussionUserMessageBg;
+    UIImage*                        _discussionBuddyMessageBg;
 }
 
 @property(nonatomic, retain) id delegate;
 @property(nonatomic, retain) XMPPUser* user;
 @property int heightOfKeyboard;
+
+@property(nonatomic, retain) UIImage* discussionUserMessageBg;
+@property(nonatomic, retain) UIImage* discussionBuddyMessageBg;
 
 - (IBAction)onBtnSendMessage;
 - (void)onBtnClearMessage;

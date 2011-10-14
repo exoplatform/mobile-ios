@@ -413,6 +413,7 @@
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
 		7CFEB09313CAFEA700D7C9FF /* SocialActivityStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
+		890FF79F1447D5E3001320A5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FF79E1447D5E3001320A5 /* Message.m */; };
 		89112716140B7DC800A8851C /* ChatBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */; };
 		89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */; };
 		8911271A140B7F2A00A8851C /* MessengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112719140B7F2A00A8851C /* MessengerViewController.m */; };
@@ -1310,6 +1311,8 @@
 		7CFEB09113CAFEA700D7C9FF /* SocialActivityStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityStream.h; sourceTree = "<group>"; };
 		7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStream.m; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
+		890FF79D1447D5E3001320A5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		890FF79E1447D5E3001320A5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		89112713140B7DC800A8851C /* ChatBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBasicTableViewCell.h; sourceTree = "<group>"; };
 		89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBasicTableViewCell.m; sourceTree = "<group>"; };
 		89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatBasicTableViewCell.xib; sourceTree = "<group>"; };
@@ -2720,6 +2723,8 @@
 				8911271F140B8BF000A8851C /* eXoMessage.m */,
 				89112722140B913600A8851C /* ChatUser.h */,
 				89112723140B913600A8851C /* ChatUser.m */,
+				890FF79D1447D5E3001320A5 /* Message.h */,
+				890FF79E1447D5E3001320A5 /* Message.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -4249,6 +4254,7 @@
 				46A08CD61447501300D53314 /* ActivityLinkDisplayViewController.m in Sources */,
 				46A08CDA1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m in Sources */,
 				46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */,
+				890FF79F1447D5E3001320A5 /* Message.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

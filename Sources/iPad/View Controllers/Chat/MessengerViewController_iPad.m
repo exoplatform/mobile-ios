@@ -68,7 +68,7 @@
 {
     if (_chatWindowViewController) 
     {
-        //        [_chatWindowViewController changeOrientation:interfaceOrientation];
+        [_chatWindowViewController changeOrientation:interfaceOrientation];
     }
 }
 

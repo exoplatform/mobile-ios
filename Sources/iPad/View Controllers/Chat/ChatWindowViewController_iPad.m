@@ -31,19 +31,32 @@
     [super dealloc];
 }
 
+
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+ 
+    CGRect rectTextField = _txtViewMsg.frame;
+    CGRect rectSendBtn = _btnSendMessage.frame;
     
     if((interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
     {
         self.view.frame = CGRectMake(0, 0, 600, 1004);
         _heightOfKeyboard = HEIGHT_OF_KEYBOARD_IPAD_PORTRAIT;
+        
+        rectTextField = CGRectMake(20, 936, 430, 58);
+        rectSendBtn = CGRectMake(470, 962, 120, 36);
     }
     else
     {
         self.view.frame = CGRectMake(500, 0, 600, 748);
         _heightOfKeyboard = HEIGHT_OF_KEYBOARD_IPAD_LANDSCAPE;
+        
+        rectTextField = CGRectMake(20, 680, 436, 58);
+        rectSendBtn = CGRectMake(470, 706, 120, 36);
     }
+    
+    _txtViewMsg.frame = rectTextField;
+    _btnSendMessage.frame = rectSendBtn;
     
 }
 
