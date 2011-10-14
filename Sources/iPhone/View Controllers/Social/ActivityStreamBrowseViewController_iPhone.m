@@ -10,6 +10,7 @@
 #import "MessageComposerViewController_iPhone.h"
 #import "ActivityDetailViewController_iPhone.h"
 #import "SocialUserProfileCache.h"
+#import "NSString+HTML.h"
 
 @implementation ActivityStreamBrowseViewController_iPhone
 
@@ -41,7 +42,9 @@
         fWidth = rectTableView.size.width - 70;
     }
     
-    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
+    
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                           lineBreakMode:UILineBreakModeWordWrap];
     if (theSize.height < 30) 
     {
@@ -49,7 +52,7 @@
     }
     else
     {
-        fHeight = 75 + theSize.height;
+        fHeight = 95 + theSize.height;
     }
     
     if (fHeight > 200) {

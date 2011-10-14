@@ -25,6 +25,8 @@
 #import "ActivityDetailLikeTableViewCell.h"
 #import "SocialUserProfileCache.h"
 #import "defines.h"
+#import "NSString+HTML.h"
+
 
 @implementation ActivityDetailViewController
 
@@ -161,7 +163,9 @@
         fWidth = rectTableView.size.width - 100;
     }
     
-    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
+    
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     
     if (theSize.height < 30) 
     {

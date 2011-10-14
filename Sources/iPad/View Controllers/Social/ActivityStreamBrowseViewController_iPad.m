@@ -14,6 +14,7 @@
 #import "MessageComposerViewController.h"
 #import "SocialUserProfileCache.h"
 #import "StackScrollViewController.h"
+#import "NSString+HTML.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
 
@@ -41,7 +42,9 @@
         fWidth = rectTableView.size.width - 100;
     }
     
-    CGSize theSize = [text sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
+    
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     
     if (theSize.height < 30) 
     {
@@ -52,9 +55,9 @@
     }
     else
     {
-        fHeight = 75 + theSize.height;
+        fHeight = 95 + theSize.height;
         if(isPicture){
-            fHeight = 130 + theSize.height;
+            fHeight = 150 + theSize.height;
         }
     }
     

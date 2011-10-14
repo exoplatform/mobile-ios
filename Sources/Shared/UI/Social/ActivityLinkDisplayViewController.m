@@ -27,6 +27,8 @@
 	[super initWithNibName:nibName bundle:nibBundle];
 	_url = [defaultURL retain];
     
+    self.title = [_url absoluteString];
+    
 	[_webView setDelegate:self];
 	return self;
 }
@@ -103,9 +105,9 @@
     [self hideLoader];
     
     //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
-    [self.view addSubview:emptyView];
-    [emptyView release];
+    //EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
+    //[self.view addSubview:emptyView];
+    //[emptyView release];
 }
 
 // Stop loading animation
@@ -131,7 +133,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudDocument setCaption:[NSString stringWithFormat:@"Loading Document %@", self.title]];
+    [_hudDocument setCaption:[NSString stringWithFormat:@"Loading URL %@", self.title]];
     [_hudDocument setActivity:YES];
     [_hudDocument show];
 }

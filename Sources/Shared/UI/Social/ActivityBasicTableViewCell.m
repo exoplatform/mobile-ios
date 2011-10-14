@@ -171,6 +171,8 @@
     //SonTH commented out
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
     htmlLabel.html = socialActivityStream.title;
+    [htmlLabel sizeToFit];
+
     //htmlLabel.text = [TTStyledText textFromXHTML:socialActivityStream.title];
     //htmlLabel.backgroundColor = [UIColor redColor];
 

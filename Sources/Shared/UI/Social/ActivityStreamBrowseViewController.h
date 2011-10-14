@@ -14,6 +14,8 @@
 #import "MessageComposerViewController.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
+#import "Three20/Three20.h"
+
 
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
@@ -47,6 +49,7 @@
     NSIndexPath*                            _indexpathSelectedActivity;
     BOOL                                    _activityAction;
     
+        
 }
 - (void)emptyState;
 - (void)startLoadingActivityStream;
