@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">800</int>
-		<string key="IBDocument.SystemVersion">10K540</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -47,7 +47,7 @@
 					<object class="IBUIWebView" id="238240563">
 						<reference key="NSNextResponder" ref="470407860"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 44}, {500, 556}}</string>
+						<string key="NSFrame">{{0, 44}, {650, 556}}</string>
 						<reference key="NSSuperview" ref="470407860"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -65,7 +65,7 @@
 					<object class="IBUINavigationBar" id="717850560">
 						<reference key="NSNextResponder" ref="470407860"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{500, 44}</string>
+						<string key="NSFrameSize">{650, 44}</string>
 						<reference key="NSSuperview" ref="470407860"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="238240563"/>
@@ -80,7 +80,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{500, 600}</string>
+				<string key="NSFrameSize">{650, 600}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="717850560"/>

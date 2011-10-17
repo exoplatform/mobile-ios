@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10K540</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -48,7 +48,7 @@
 					<object class="IBUITableView" id="795366070">
 						<reference key="NSNextResponder" ref="770781848"/>
 						<int key="NSvFlags">306</int>
-						<string key="NSFrame">{{0, 44}, {500, 556}}</string>
+						<string key="NSFrame">{{0, 44}, {650, 556}}</string>
 						<reference key="NSSuperview" ref="770781848"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="192215400"/>
@@ -67,10 +67,11 @@
 					</object>
 					<object class="IBUIButton" id="192215400">
 						<reference key="NSNextResponder" ref="770781848"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 549}, {500, 50}}</string>
+						<int key="NSvFlags">266</int>
+						<string key="NSFrame">{{0, 549}, {650, 50}}</string>
 						<reference key="NSSuperview" ref="770781848"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -91,7 +92,7 @@
 					<object class="IBUINavigationBar" id="180129462">
 						<reference key="NSNextResponder" ref="770781848"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{500, 44}</string>
+						<string key="NSFrameSize">{650, 44}</string>
 						<reference key="NSSuperview" ref="770781848"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="795366070"/>
@@ -106,7 +107,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{500, 600}</string>
+				<string key="NSFrameSize">{650, 600}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="180129462"/>
