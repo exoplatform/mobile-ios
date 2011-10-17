@@ -135,6 +135,8 @@
     
     //Retrieve the File corresponding to the selected Cell
 	File *fileToBrowse = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+    
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
 	
 	if(fileToBrowse.isFolder)
 	{

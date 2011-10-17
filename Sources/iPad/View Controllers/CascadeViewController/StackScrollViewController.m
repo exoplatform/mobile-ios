@@ -625,6 +625,19 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	[super viewWillAppear:animated];
 }
 
+- (void) removeViewFromController:(UIViewController*)controller {
+    
+    int index = [viewControllersStack indexOfObject:controller];
+    
+    for(int i = [viewControllersStack count] - 1; i > index; i--) {
+        
+        UIViewController *newerController = (UIViewController*) [viewControllersStack objectAtIndex:i];
+        
+        [newerController.view removeFromSuperview];
+        [viewControllersStack removeObjectAtIndex:i];
+    }    
+}
+
 - (void)addViewInSlider:(UIViewController*)controller invokeByController:(UIViewController*)invokeByController isStackStartView:(BOOL)isStackStartView{
 	
 	BOOL isContentSizeForMainViewSet = FALSE;
