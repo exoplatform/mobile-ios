@@ -64,12 +64,12 @@ discussionUserMessageBg = _discussionUserMessageBg, discussionBuddyMessageBg = _
     
     _tblMessageContent.clearsContextBeforeDrawing = NO;
     _tblMessageContent.contentInset = UIEdgeInsetsMake(7.0f, 0.0f, 0.0f, 0.0f);
-   // UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-   // backgroundView.frame = _tblMessageContent.frame;
-   // _tblMessageContent.backgroundView = backgroundView;
-   // [backgroundView release];
     
-    _tblMessageContent.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblMessageContent.backgroundView = background;
+    [background release];
     
     _tblMessageContent.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tblMessageContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

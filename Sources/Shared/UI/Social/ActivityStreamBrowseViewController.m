@@ -174,8 +174,14 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     //backgroundView.frame = self.view.frame;
     //_tblvActivityStream.backgroundView = backgroundView;
     
-    _tblvActivityStream.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-
+    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblvActivityStream.backgroundView = background;
+    [background release];
+    
+    /*self.parentViewController.view.backgroundColor =  [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblvActivityStream.backgroundColor = [UIColor clearColor];
+*/
     
     //_tblvActivityStream.backgroundColor = [UIColor colorWithRed:215./255 green:216./255 blue:226./255 alpha:1.] ;
 

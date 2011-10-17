@@ -171,12 +171,11 @@
 	[self.view addSubview:_hudFolder.view];
     
     //Set the background Color of the view
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //backgroundView.frame = self.view.frame;
-    //_tblFiles.backgroundView = backgroundView;
-    //[backgroundView release];
+    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblFiles.backgroundView = background;
+    [background release];
     
-    _tblFiles.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     //Set the title of the view controller
     [self setTitleForFilesViewController];

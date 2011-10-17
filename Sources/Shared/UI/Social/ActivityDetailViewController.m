@@ -106,11 +106,10 @@
     self.title = Localize(@"ActivityDetails");
     
     //Set the background Color of the view
-    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //backgroundView.frame = self.view.frame;
-    _tblvActivityDetail.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //[backgroundView release];
+    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblvActivityDetail.backgroundView = background;
+    [background release];
     
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
     UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:23];

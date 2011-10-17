@@ -75,12 +75,10 @@
 	[self.view addSubview:_hudDashboard.view];
     
     //Set the background Color of the view
-    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //backgroundView.frame = self.view.frame;
-    //_tblGadgets.backgroundView = backgroundView;
-    //[backgroundView release];
-    _tblGadgets.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblGadgets.backgroundView = background;
+    [background release];
     
     [_arrTabs removeLastObject];
     
