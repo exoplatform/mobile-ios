@@ -76,7 +76,7 @@
 - (void)contentDirectoryIsRetrieved {
     //Now update the HUD
     //TODO Localize this string
-    [_hudFolder setCaption:@"Folder content updated"];
+    [_hudFolder setCaption:Localize(@"FolderContentUpdated")];
     [_hudFolder setActivity:NO];
     [_hudFolder setImage:[UIImage imageNamed:@"19-check"]];
     [_hudFolder update];
@@ -208,7 +208,7 @@
     
     if (_arrayContentOfRootFile == nil) {
         //TODO Localize this string
-        [self showHUDWithMessage:[NSString stringWithFormat:@"Loading the content of the folder : %@",self.title]];
+        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"),self.title]];
         
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
@@ -312,7 +312,7 @@
 
 
 - (void)showErrorForFileAction:(NSString *)errorMessage {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File error" message:errorMessage delegate:self 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:errorMessage delegate:self 
                                           cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -337,7 +337,7 @@
 -(void)deleteFile:(NSString *)urlFileToDelete {
     
     //TODO Localize this string
-    [self showHUDWithMessage:@"Delete file..."];
+    [self showHUDWithMessage:Localize(@"DeleteFile")];
     
     //Hide the action Panel
     [self hideActionsPanel];
@@ -379,7 +379,7 @@
     [self hideActionsPanel];
     
     //TODO Localize this string
-    [self showHUDWithMessage:@"Move file to wanted folder..."];
+    [self showHUDWithMessage:Localize(@"MoveFile")];
     
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                 [self methodSignatureForSelector:@selector(moveFileInBackgroundSource:toDestination:)]];
@@ -415,7 +415,7 @@
          toDestination:(NSString *)urlDestination {
     
     //TODO Localize this string
-    [self showHUDWithMessage:@"Copy file to wanted folder..."];
+    [self showHUDWithMessage:Localize(@"CopyFile")];
     
     
     //Hide the action Panel
@@ -447,7 +447,7 @@
     }
 	else
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take Picture" message:@"Camera are not available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 		[alert show];
 		[alert release];
 	}
@@ -489,7 +489,7 @@
 
     
     //TODO Localize this string
-    [self showHUDWithMessage:@"Create new file folder..."];
+    [self showHUDWithMessage:Localize(@"CreateNewFile")];
 
     
     BOOL bExist;
@@ -572,7 +572,7 @@
     
     
     //TODO Localize this string
-    [self showHUDWithMessage:@"Rename folder..."];
+    [self showHUDWithMessage:Localize(@"RenameFolder")];
     
     if([newFolderName length] > 0)
     {
@@ -678,7 +678,7 @@
 		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@",tmp];
 		
         //TODO Localize this string
-        [self showHUDWithMessage:@"Sending image to wanted folder..."];
+        [self showHUDWithMessage:Localize(@"SendImageToFolder")];
         
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
