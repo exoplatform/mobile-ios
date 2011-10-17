@@ -14,7 +14,7 @@
 #import "FileFolderActionsViewController_iPad.h"
 #import "DocumentDisplayViewController_iPad.h"
 #import "StackScrollViewController.h"
-
+#import "LanguageHelper.h"
 
 @implementation DocumentsViewController_iPad
 
@@ -72,7 +72,7 @@
     if (_rootFile) {
         _navigationBar.topItem.title = _rootFile.fileName;
     } else {
-        _navigationBar.topItem.title = @"Documents";
+        _navigationBar.topItem.title = Localize(@"Documents") ;
     }
 }
 #pragma Button Click

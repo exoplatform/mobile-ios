@@ -143,7 +143,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudGadget setCaption:[NSString stringWithFormat:@"Loading Gadget %@", self.title]];
+    [_hudGadget setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingGadget"),self.title]];
     [_hudGadget setActivity:YES];
     [_hudGadget show];
 }

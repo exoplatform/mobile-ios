@@ -11,6 +11,7 @@
 #import "RootViewController.h"
 #import "StackScrollViewController.h"
 #import "ChatWindowViewController_iPhone.h"
+#import "LanguageHelper.h"
 
 @implementation MessengerViewController_iPad
 
@@ -31,7 +32,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	[self setTitle:@"Chat Application"];
+	[self setTitle:Localize(@"ChatApplication")];
 	[super viewDidLoad];
 }
 

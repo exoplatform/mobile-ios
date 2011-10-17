@@ -65,7 +65,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         _arrServerList = [[NSMutableArray alloc] init];
         _intSelectedServer = -1;
         
-        self.title = @"Settings";
+        self.title = Localize(@"Settings");
         
     }
     return self;
@@ -506,17 +506,17 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
                 cell.accessoryView = label;
                 
                 if(indexPath.row == 0){
-                    cell.textLabel.text = @"Server Version";
+                    cell.textLabel.text = Localize(@"ServerVersion");
                     label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_SERVER];
                 }
                 if(indexPath.row == 1){
-                    cell.textLabel.text = @"Application Version";
+                    cell.textLabel.text = Localize(@"ApplicationVersion");
                     label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
                 }
             } else {
                 
                 if(indexPath.row == 0){
-                    cell.textLabel.text = @"Server Version";
+                    cell.textLabel.text = Localize(@"ServerVersion");
                     UIActivityIndicatorView *loading = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
                     [loading startAnimating];
                     cell.accessoryView = loading;
@@ -528,7 +528,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
                     label.textColor = [UIColor darkGrayColor];
                     label.textAlignment = UITextAlignmentRight;
                     cell.accessoryView = label;
-                    cell.textLabel.text = @"Application Version";
+                    cell.textLabel.text = Localize(@"ApplicationVersion");
                     label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
                     cell.accessoryView = label;
                 }

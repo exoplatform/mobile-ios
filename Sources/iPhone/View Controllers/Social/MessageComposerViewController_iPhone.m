@@ -8,6 +8,7 @@
 
 #import "MessageComposerViewController_iPhone.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LanguageHelper.h"
 
 @implementation MessageComposerViewController_iPhone
 
@@ -22,7 +23,7 @@
 {
     [_txtvMessageComposer resignFirstResponder];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add a photo?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Take a picture" otherButtonTitles:@"Photo library", nil, nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto") delegate:self cancelButtonTitle:Localize(@"Cancel") destructiveButtonTitle:Localize(@"TakeAPicture")  otherButtonTitles:Localize(@"PhotoLibrary"), nil, nil];
     [actionSheet showInView:self.view];
     
     [actionSheet release];
@@ -63,8 +64,8 @@
 
 - (void)showPhotoActivity:(UIButton *)sender
 {
-    self.navigationItem.title = @"Attached photo";
-    [self._btnSend setTitle:@"Delete" forState:UIControlStateNormal];
+    self.navigationItem.title = Localize(@"AttachedPhoto");
+    [self._btnSend setTitle:Localize(@"Delete") forState:UIControlStateNormal];
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
     [self.view sendSubviewToBack:sender];
@@ -81,7 +82,7 @@
 
 - (void)deleteAttachedPhoto
 {
-    [self._btnSend setTitle:@"Send" forState:UIControlStateNormal];
+    [self._btnSend setTitle:Localize(@"Send") forState:UIControlStateNormal];
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
     CGRect rect = [(UIButton *)[self.view viewWithTag:2] frame];
@@ -100,7 +101,7 @@
 - (void)cancelDisplayAttachedPhoto
 {
  
-    [self._btnSend setTitle:@"Send" forState:UIControlStateNormal];
+    [self._btnSend setTitle:Localize(@"Send") forState:UIControlStateNormal];
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
     CGRect rect = [(UIButton *)[self.view viewWithTag:2] frame];

@@ -13,6 +13,7 @@
 #import "ActivityStreamBrowseViewController.h"
 #import "FilesProxy.h"
 #import "defines.h"
+#import "LanguageHelper.h"
 
 @implementation MessageComposerViewController
 
@@ -88,11 +89,11 @@
     [_btnCancel setBackgroundImage:strechCancelBg forState:UIControlStateNormal];
     [_btnCancel setBackgroundImage:strechCancelBgSelected forState:UIControlStateHighlighted];
     
-    UIBarButtonItem* bbtnSend = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnSend:)] autorelease];
+    UIBarButtonItem* bbtnSend = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Send") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnSend:)] autorelease];
     [bbtnSend setCustomView:_btnSend];
     self.navigationItem.rightBarButtonItem = bbtnSend;
     
-    UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
+    UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
     [bbtnCancel setCustomView:_btnCancel];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
@@ -149,7 +150,7 @@
     [_hudMessageComposer hideAfter:0.1];
     if(successful)
     {
-        [_hudMessageComposer setCaption:@"Posted !"];        
+        [_hudMessageComposer setCaption:Localize(@"Posted")];        
         [_hudMessageComposer setImage:[UIImage imageNamed:@"19-check"]];
         [_hudMessageComposer hideAfter:0.5];
     }
@@ -164,7 +165,7 @@
 - (IBAction)onBtnSend:(id)sender
 {
     
-    if([self.navigationItem.title isEqualToString:@"Attached photo"])
+    if([self.navigationItem.title isEqualToString:Localize(@"AttachedPhoto")])
     {
         [self deleteAttachedPhoto];
         [self.navigationItem setTitle:_strTitle];
@@ -234,11 +235,11 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Composer" message:@"There is no message for comment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"NoMessageComment") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         
         if(_isPostMessage)
-            alert.message = @"There is no message for posting";
+            alert.message = Localize(@"NoMessagePosting");
         
         [alert release];
     }
@@ -248,7 +249,7 @@
 - (IBAction)onBtnCancel:(id)sender
 {
     
-    if([self.navigationItem.title isEqualToString:@"Attached photo"])
+    if([self.navigationItem.title isEqualToString:Localize(@"AttachedPhoto")])
     {
         [self cancelDisplayAttachedPhoto];
         [self.navigationItem setTitle:_strTitle];

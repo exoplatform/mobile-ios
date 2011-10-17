@@ -28,7 +28,7 @@
 #import "MessengerViewController_iPhone.h"
 #import "FilesProxy.h"
 
-
+#import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
 
 @implementation HomeViewController_iPhone
@@ -90,7 +90,7 @@
     
     //Set the title of the controller
     //TODO Localize that
-    self.title = @"Home";
+    self.title = Localize(@"Home");
     
     //Add the bubble background
     UIImageView* imgBubble = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeBubbleBackground.png"]];
@@ -118,23 +118,23 @@
     _launcherView.pager.hidesForSinglePage = YES;
     
     //TODO Localize
-    TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:@"Activity Streams"
+    TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"ActivityStreams")
                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                        URL:@"tt://activityStream" canDelete:NO] autorelease];
     
-    TTLauncherItem *chatItem = [[[TTLauncherItem alloc] initWithTitle:@"Chat"
+    TTLauncherItem *chatItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Chat")
                                                                 image:@"bundle://HomeChatIconiPhone.png"
                                                                   URL:@"tt://chat" canDelete:NO] autorelease];
     
-    TTLauncherItem *documentItem = [[[TTLauncherItem alloc] initWithTitle:@"Documents"
+    TTLauncherItem *documentItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Documents")
                                                                     image:@"bundle://HomeDocumentsIconiPhone.png"
                                                                       URL:@"tt://documents" canDelete:NO] autorelease];
     
-    TTLauncherItem *dashboardItem = [[[TTLauncherItem alloc] initWithTitle:@"Dashboard"
+    TTLauncherItem *dashboardItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Dashboard")
                                                                      image:@"bundle://HomeDashboardIconiPhone.png"
                                                                        URL:@"tt://dashboard" canDelete:NO] autorelease];
     
-    TTLauncherItem *settingItem = [[[TTLauncherItem alloc] initWithTitle:@"Settings"
+    TTLauncherItem *settingItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Settings")
                                                                    image:@"bundle://HomeSettingsIconiPhone.png"
                                                                      URL:@"tt://setting" canDelete:NO] autorelease];
     if(_isCompatibleWithSocial)
@@ -156,7 +156,7 @@
 {
     //    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
     
-    if ([item.title isEqualToString:@"Activity Streams"]) 
+    if ([item.title isEqualToString:Localize(@"ActivityStreams")]) 
     {
         ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:_activityStreamBrowseViewController_iPhone animated:YES];
@@ -171,7 +171,7 @@
         [messengerViewController_iPhone release];
     }
     
-    if ([item.title isEqualToString:@"Documents"]) 
+    if ([item.title isEqualToString:Localize(@"Documents")]) 
     {
         //Start Documents
         DocumentsViewController_iPhone *documentsViewController = [[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil];
@@ -179,7 +179,7 @@
         [documentsViewController release];
     }
     
-    if ([item.title isEqualToString:@"Dashboard"]) 
+    if ([item.title isEqualToString:Localize(@"Dashboard")]) 
     {
         
         //Start Dashboard
@@ -189,7 +189,7 @@
         [dashboardController release];
     }
     
-    if([item.title isEqualToString:@"Settings"]) 
+    if([item.title isEqualToString:Localize(@"Settings")]) 
     {
         SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         settingsViewController.settingsDelegate = self;

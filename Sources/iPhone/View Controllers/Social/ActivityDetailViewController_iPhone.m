@@ -33,8 +33,56 @@
     
     [messageComposerViewController release];
 }
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+//    EGOImageView *imgView = (EGOImageView *)tapGesture.view;
+//    imgView.frame = originRect;
+}
 
+-(void)showContent:(UITapGestureRecognizer *)gesture{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], _socialActivityStream.posterPicture.docLink]];
+    ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
+                                                                       initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
+                                                                       bundle:nil 
+                                                                       url:url];
+    [self.navigationController pushViewController:linkWebViewController animated:YES];    
+    
+    [linkWebViewController release];
+    EGOImageView *imgView = (EGOImageView *)gesture.view;
+    zoomOutOrZoomIn = !zoomOutOrZoomIn;
+    if(zoomOutOrZoomIn){
+        [_tblvActivityDetail sendSubviewToBack:imgView];
+        
+    }
+    else {
+        [_tblvActivityDetail bringSubviewToFront:imgView];
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0f];
+    [UIView setAnimationDelegate:self];
+    
 
+    NSArray *array = [_tblvActivityDetail indexPathsForVisibleRows];
+    CGRect rect = CGRectMake(0, 0, 320, 0);
+    for (NSIndexPath *indexPath in array){
+        rect.size.height += [_tblvActivityDetail rectForRowAtIndexPath:indexPath].size.height;
+    }
+    //rect.size = _tblvActivityDetail.contentSize;
+    if(zoomOutOrZoomIn){
+        ///CGPoint poit = [imgView convertPoint:<#(CGPoint)#> toView:<#(UIView *)#>:<#(CGRect)#> fromView:<#(UIView *)#> ];
+//        imgView.frame = CGRectMake(0, 0, imgView.superview.superview.superview.superview.frame.size.width, imgView.superview.superview.superview.superview.frame.size.height);
+        imgView.frame = rect;
+        [_tblvActivityDetail setScrollEnabled:NO];
+    }
+    else {
+        imgView.frame = originRect;
+        [_tblvActivityDetail setScrollEnabled:YES];
+    }
+    
+    
+    [UIView commitAnimations];
+}
 
 #pragma mark - UIWebViewDelegateMethod 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {

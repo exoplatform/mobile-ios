@@ -10,6 +10,10 @@
 #import "MessageComposerViewController_iPhone.h"
 #import "ActivityDetailViewController_iPhone.h"
 #import "SocialUserProfileCache.h"
+#import "EGOImageView.h"
+#import "SocialPictureAttach.h"
+#import "DocumentDisplayViewController_iPhone.h"
+#import "defines.h"
 #import "NSString+HTML.h"
 
 @implementation ActivityStreamBrowseViewController_iPhone
@@ -57,11 +61,12 @@
     
     if (fHeight > 200) {
         fHeight = 200;
+        
+    }
+    if (isPicture) {
+        fHeight += 70;
     }
     
-    if (isPicture) {
-        fHeight += 60;
-    }
     
     return fHeight;
 }

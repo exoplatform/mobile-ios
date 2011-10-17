@@ -31,7 +31,7 @@
 //    _tblvUsersList.backgroundView = backgroundView;
 //    [backgroundView release];
     
-    self.title = @"Chat";
+    self.title = Localize(@"Chat");
     //self.view.userInteractionEnabled = NO;
     //Load all activities of the user
     [self startLoadingChat];
@@ -74,7 +74,7 @@
 
 - (void)showChatLoader {
     
-    [_hudChat setCaption:@"Updating Chat"];
+    [_hudChat setCaption:Localize(@"UpdatingChat")];
     [_hudChat setActivity:YES];
     [_hudChat show];
 }
@@ -85,7 +85,7 @@
     
     self.view.userInteractionEnabled = YES;
     
-    [_hudChat setCaption:@"Chat updated"];
+    [_hudChat setCaption:Localize(@"ChatUpdated")];
     [_hudChat setActivity:NO];
     [_hudChat setImage:[UIImage imageNamed:@"19-check"]];
     [_hudChat update];
@@ -96,7 +96,7 @@
 {
     [self hideLoader];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connect To Chat Server" message:@"Can not connect to Chat server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"ConnectToChatServer") message:Localize(@"CanNotConnectToChatServer") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
 }

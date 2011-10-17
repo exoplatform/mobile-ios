@@ -17,7 +17,7 @@
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
-
+#define TAG_EMPTY 111
 
 #pragma mark -
 #pragma mark Private
@@ -67,6 +67,7 @@
     
     _arrayContentOfRootFile = [[_filesProxy getPersonalDriveContent:_rootFile] retain];
     
+    
     [pool release];
     
     //Call in the main thread update method
@@ -74,6 +75,13 @@
 }
 
 - (void)contentDirectoryIsRetrieved {
+    
+    //if the empty is, remove it
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+    }
+    
     //Now update the HUD
     //TODO Localize this string
     [_hudFolder setCaption:Localize(@"FolderContentUpdated")];
@@ -82,10 +90,11 @@
     [_hudFolder update];
     [_hudFolder hideAfter:1.0];
     
+    
     //check if no data
     if([_arrayContentOfRootFile count] == 0){
         [self performSelector:@selector(emptyState) withObject:nil afterDelay:1.0];
-    }
+    } 
     
     //And finally reload the content of the tableView
     [_tblFiles reloadData];
@@ -96,14 +105,9 @@
     //disable scroll in tableview
     _tblFiles.scrollEnabled = NO;
     
-//    UIImage *image = [UIImage imageNamed:@"IconForEmptyFolder.png"];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//    imageView.frame = CGRectMake(self.view.bounds.size.width/2 - image.size.width/2, self.view.bounds.size.height/2 - image.size.height/2, image.size.width, image.size.height);
-//    [self.view addSubview:imageView];
-//    [imageView release];
-    
     //add empty view to the view    
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForEmptyFolder.png" andContent:Localize(@"EmptyFolder")];
+    emptyView.tag = TAG_EMPTY;
     [_tblFiles addSubview:emptyView];
     [emptyView release];
 }
@@ -374,7 +378,11 @@
 //Method needed to retrieve the action to move a file
 - (void)moveFileSource:(NSString *)urlSource
          toDestination:(NSString *)urlDestination {
-    
+    // remove if is
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+    }
     //Hide the action Panel
     [self hideActionsPanel];
     
@@ -413,7 +421,11 @@
 //Method needed to retrieve the action to copy a file
 - (void)copyFileSource:(NSString *)urlSource
          toDestination:(NSString *)urlDestination {
-    
+    // remove if is
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+    }
     //TODO Localize this string
     [self showHUDWithMessage:Localize(@"CopyFile")];
     

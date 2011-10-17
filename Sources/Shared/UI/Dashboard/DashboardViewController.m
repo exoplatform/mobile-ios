@@ -207,7 +207,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudDashboard setCaption:@"Loading your Dashboards"];
+    [_hudDashboard setCaption:Localize(@"LoadingYourDashboards")];
     [_hudDashboard setActivity:YES];
     [_hudDashboard show];
 }
@@ -217,7 +217,7 @@
     //Now update the HUD
     //TODO Localize this string
     [self setHudPosition];
-    [_hudDashboard setCaption:@"Dashboards loaded"];
+    [_hudDashboard setCaption:Localize(@"DashboardsLoaded")];
     [_hudDashboard setActivity:NO];
     [_hudDashboard setImage:[UIImage imageNamed:@"19-check"]];
     [_hudDashboard update];

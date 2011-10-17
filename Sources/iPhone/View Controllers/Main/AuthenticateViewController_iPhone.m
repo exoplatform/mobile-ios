@@ -9,6 +9,7 @@
 #import "AuthenticateViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
+#import "LanguageHelper.h"
 
 #define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
 #define kHeigthNeededToGoUpSubviewsWhenEditingPassword -150
@@ -62,16 +63,19 @@
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
-    
-    //Setup Version Platfrom and Application
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    
-	[userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
-    
-	[userDefaults synchronize];
-    
-    [_hud completeAndDismissWithTitle:@"Success..."];
-    
+    if(platformServerVersion != nil){
+        //Setup Version Platfrom and Application
+        [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults synchronize];
+        
+    } else {
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults synchronize];
+    }
+    //
+    [_hud completeAndDismissWithTitle:Localize(@"Success")];
+    //[_hud dismiss];
     AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
     [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];

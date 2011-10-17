@@ -187,7 +187,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     //Check first message lenght for empty parameters
     if ([strServerName length] == 0 || [strServerUrl length] == 0){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot add a server with an empty name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
@@ -201,7 +201,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
         {
             bExist = YES;
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This Server has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
             return NO;
@@ -238,7 +238,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     //Check first message lenght for empty parameters
     if ([strServerName length] == 0 || [strServerUrl length] == 0){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"You cannot use a server with an empty name or url" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
@@ -258,7 +258,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
         {
             bExist = YES;
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message Info" message:@"This server has been existed..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
             return NO;

@@ -12,6 +12,7 @@
 #import "SettingsViewController_iPad.h"
 #import "SSHUDView.h"
 #import "AppDelegate_iPad.h"
+#import "LanguageHelper.h"
 
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
@@ -112,59 +113,6 @@
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
 
-    
-//    _strBSuccessful = @"NO";
-//    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
-//    _arrServerList = [configuration getServerList];
-//    
-//	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//	_intSelectedLanguage = [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
-//	NSString* filePath;
-//	if(_intSelectedLanguage == 0)
-//	{
-//		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_EN" ofType:@"xml"];
-//	}	
-//	else
-//	{	
-//		filePath = [[NSBundle mainBundle] pathForResource:@"Localize_FR" ofType:@"xml"];
-//	}	
-//	
-//	_dictLocalize = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-//	[[self navigationItem] setTitle:[_dictLocalize objectForKey:@"SignInPageTitle"]];	
-//	
-//	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
-//    
-//	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-//	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-//    
-//	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-//    if (_strHost == nil) 
-//    {
-//        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
-//        _strHost = tmpServerObj._strServerUrl;
-//        [userDefaults setObject:[_strHost retain] forKey:EXO_PREFERENCE_DOMAIN];
-//    }
-//    
-//	if(_bRememberMe || _bAutoLogin)
-//	{
-//		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-//		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-//		if(username)
-//		{
-//			[_txtfUsername setText:username];
-//		}
-//		
-//		if(password)
-//		{
-//			[_txtfPassword setText:password];
-//		}
-//	}
-//	else 
-//	{
-//		[_txtfUsername setText:@""];
-//		[_txtfPassword setText:@""];
-//        [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
-//	}
     
     [_tbvlServerList setHidden:YES];
     [_vAccountView setHidden:NO];
@@ -336,8 +284,8 @@
 	
 	if([_txtfUsername.text isEqualToString:@""])
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_dictLocalize objectForKey:@"Authorization"]
-														message:[_dictLocalize objectForKey:@"UserNameEmpty"]
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+														message:Localize(@"UserNameEmpty")
 													   delegate:self 
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles: nil];
@@ -488,7 +436,7 @@
 	[userDefaults synchronize];
     
     
-    [_hud completeWithTitle:@"Success..."];
+    [_hud completeWithTitle:Localize(@"Success")];
     
     AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;

@@ -8,7 +8,7 @@
 
 #import "ActivityLinkDisplayViewController.h"
 #import "EmptyView.h"
-
+#import "LanguageHelper.h"
 
 @interface ActivityLinkDisplayViewController (PrivateMethods)
 - (void)showLoader;
@@ -133,7 +133,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudDocument setCaption:[NSString stringWithFormat:@"Loading URL %@", self.title]];
+    [_hudDocument setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingURL"),self.title]];
     [_hudDocument setActivity:YES];
     [_hudDocument show];
 }

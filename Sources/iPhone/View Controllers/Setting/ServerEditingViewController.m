@@ -13,6 +13,7 @@
 #import "ServerPreferencesManager.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "URLAnalyzer.h"
+#import "LanguageHelper.h"
 
 static NSString *ServerObjCellIdentifier = @"ServerObj";
 
@@ -222,7 +223,8 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         
         if(indexPath.row == 0)
         {
-            cell.textLabel.text = @"Server Name";
+            cell.textLabel.text = Localize(@"ServerName");
+            
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
             
@@ -230,7 +232,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         }
         else
         {
-            cell.textLabel.text = @"Server Url";
+            cell.textLabel.text = Localize(@"ServerUrl");
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
             

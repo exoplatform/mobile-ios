@@ -344,7 +344,7 @@
 {
     [self hitAtView:nil];
     
-    _hud = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+    _hud = [[SSHUDView alloc] initWithTitle:Localize(@"Loading")];
     [_hud show];
     
 	[self view].userInteractionEnabled = NO;
@@ -387,6 +387,7 @@
     //The login has successed we need to check the version of Platform
     PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
     [plfVersionProxy retrievePlatformInformations];
+    
 }
 
 - (void)signInFailed
