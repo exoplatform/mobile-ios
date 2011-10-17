@@ -219,8 +219,8 @@
 {
     [super viewWillDisappear:animated];
     //Release the loader
-    [_hudFolder hide];
-    _hudFolder = nil;
+//    [_hudFolder hide];
+//    _hudFolder = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -336,12 +336,11 @@
 //Method needed to retrieve the delete action
 -(void)deleteFile:(NSString *)urlFileToDelete {
     
-    //Hide the action Panel
-    [self hideActionsPanel];
-    
     //TODO Localize this string
     [self showHUDWithMessage:@"Delete file..."];
     
+    //Hide the action Panel
+    [self hideActionsPanel];
     
     [self performSelectorInBackground:@selector(deleteFileInBackground:) withObject:urlFileToDelete];
 }
@@ -417,6 +416,7 @@
     
     //TODO Localize this string
     [self showHUDWithMessage:@"Copy file to wanted folder..."];
+    
     
     //Hide the action Panel
     [self hideActionsPanel];

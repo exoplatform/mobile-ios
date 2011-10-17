@@ -144,6 +144,10 @@
                                                                                   bundle:nil 
                                                                                     url:urlOfTheFileToOpen
                                                                                 fileName:fileToBrowse.fileName];
+        
+        [_hudFolder release];
+        _hudFolder = nil;
+        
 		[self.navigationController pushViewController:fileWebViewController animated:YES];    
         
         [fileWebViewController release];
