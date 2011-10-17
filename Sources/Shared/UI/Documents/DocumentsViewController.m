@@ -140,6 +140,7 @@
     _arrayContentOfRootFile = nil;
     
     [_hudFolder release];
+    _hudFolder.delegate = nil;
     
     [_stringForUploadPhoto release];
     _stringForUploadPhoto = nil;
