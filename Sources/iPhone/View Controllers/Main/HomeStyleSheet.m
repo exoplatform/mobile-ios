@@ -15,8 +15,8 @@
 	return
     [TTPartStyle styleWithName:@"image" style:TTSTYLESTATE(launcherButtonImage:, state) next:
 	 [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13] color:[UIColor whiteColor]
-				minimumFontSize:11 shadowColor:nil
-				   shadowOffset:CGSizeZero next:nil]];
+				minimumFontSize:13 shadowColor:[UIColor darkGrayColor]
+				   shadowOffset:CGSizeMake(1., 1.) next:nil]];
 }
 
 - (TTStyle*)launcherPageDot:(UIControlState)state {

@@ -86,16 +86,16 @@
     [[_imgvAvatar layer] setMasksToBounds:YES];
     
     //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
-    CGFloat borderWidth = 2.0;
+    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:1.].CGColor];
+    CGFloat borderWidth = 1.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
     
     //Add the inner shadow
-    CALayer *innerShadowLayer = [CALayer layer];
+    /*CALayer *innerShadowLayer = [CALayer layer];
     innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
     innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
     innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
-    [_imgvAvatar.layer addSublayer:innerShadowLayer];
+    [_imgvAvatar.layer addSublayer:innerShadowLayer];*/
     _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
 }
 

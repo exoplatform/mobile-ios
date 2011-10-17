@@ -38,7 +38,7 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	// Draw shadow
     CGContextSaveGState(context);
-    CGContextSetShadowWithColor(context, CGSizeMake(-5, 0), 10, shadowColor);
+    CGContextSetShadowWithColor(context, CGSizeMake(-5, 0), 20, shadowColor);
 	CGContextSetFillColorWithColor(context, lightColor);
     CGContextFillRect(context, _coloredBoxRect);
 	CGContextRestoreGState(context);

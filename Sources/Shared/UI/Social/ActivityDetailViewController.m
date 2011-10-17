@@ -107,13 +107,14 @@
     
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    backgroundView.frame = self.view.frame;
-    _tblvActivityDetail.backgroundView = backgroundView;
-    [backgroundView release];
+    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //backgroundView.frame = self.view.frame;
+    _tblvActivityDetail.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //[backgroundView release];
     
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:23];
+    _btnMsgComposer.backgroundColor = [UIColor clearColor];
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
     
     //Add the pull to refresh header

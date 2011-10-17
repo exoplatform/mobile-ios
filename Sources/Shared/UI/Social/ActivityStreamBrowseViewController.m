@@ -170,9 +170,12 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    backgroundView.frame = self.view.frame;
-    _tblvActivityStream.backgroundView = backgroundView;
+    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //backgroundView.frame = self.view.frame;
+    //_tblvActivityStream.backgroundView = backgroundView;
+    
+    _tblvActivityStream.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+
     
     //_tblvActivityStream.backgroundColor = [UIColor colorWithRed:215./255 green:216./255 blue:226./255 alpha:1.] ;
 

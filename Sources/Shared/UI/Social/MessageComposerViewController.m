@@ -60,6 +60,10 @@
 {
     [super viewDidLoad];
     
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    
     //Add the loader
     _hudMessageComposer = [[ATMHud alloc] initWithDelegate:self];
     [_hudMessageComposer setAllowSuperviewInteraction:NO];
@@ -72,7 +76,7 @@
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailCommentBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
     [_imgvBackground setImage:strechBg];
     
-    UIImage *strechTextViewBg = [[UIImage imageNamed:@"MessageComposerTextfieldBackground.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:50];
+    UIImage *strechTextViewBg = [[UIImage imageNamed:@"MessageComposerTextfieldBackground.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:20];
     [_imgvTextViewBg setImage:strechTextViewBg];
     
     UIImage *strechSendBg = [[UIImage imageNamed:@"MessageComposerButtonSendBackground.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];

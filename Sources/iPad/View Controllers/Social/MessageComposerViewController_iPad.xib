@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
 		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">301</string>
+			<string key="NS.object.0">300</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -44,16 +44,6 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="873275145">
-						<reference key="NSNextResponder" ref="307757626"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{540, 220}</string>
-						<reference key="NSSuperview" ref="307757626"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="821013062"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-					</object>
 					<object class="IBUIImageView" id="821013062">
 						<reference key="NSNextResponder" ref="307757626"/>
 						<int key="NSvFlags">274</int>
@@ -117,7 +107,6 @@
 						<string key="NSFrame">{{333, 232}, {80, 30}}</string>
 						<reference key="NSSuperview" ref="307757626"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -131,7 +120,7 @@
 					<object class="IBUIButton" id="453212709">
 						<reference key="NSNextResponder" ref="307757626"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{454, 158}, {74, 52}}</string>
+						<string key="NSFrame">{{476, 173}, {44, 30}}</string>
 						<reference key="NSSuperview" ref="307757626"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="930502395"/>
@@ -155,7 +144,7 @@
 				<string key="NSFrameSize">{540, 220}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="873275145"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuODAwMDAwMDExOSAwLjgwMDAwMDAxMTkAA</bytes>
@@ -226,14 +215,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_imgvBackground</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="873275145"/>
-					</object>
-					<int key="connectionID">15</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_imgvTextViewBg</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="821013062"/>
@@ -286,7 +267,6 @@
 							<reference ref="499177849"/>
 							<reference ref="930502395"/>
 							<reference ref="662684648"/>
-							<reference ref="873275145"/>
 							<reference ref="821013062"/>
 							<reference ref="453212709"/>
 						</object>
@@ -313,11 +293,6 @@
 						<reference key="parent" ref="307757626"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="873275145"/>
-						<reference key="parent" ref="307757626"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
 						<reference key="object" ref="821013062"/>
 						<reference key="parent" ref="307757626"/>
@@ -330,7 +305,6 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
-					<string>14.IBPluginDependency</string>
 					<string>16.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
@@ -342,7 +316,6 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>MessageComposerViewController_iPad</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -497,6 +470,6 @@
 			<string key="NS.key.0">SocialAddPhotoButton@2x.png</string>
 			<string key="NS.object.0">{74, 52}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">301</string>
+		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>

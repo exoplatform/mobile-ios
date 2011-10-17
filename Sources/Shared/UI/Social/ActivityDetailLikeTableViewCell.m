@@ -56,7 +56,7 @@
 - (void)configureCell {
         
     UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(kSeparatorLineLeftMarging, self.frame.size.height-6, self.frame.size.width - (2*kSeparatorLineLeftMarging), 1)];
-    separatorLine.backgroundColor = [UIColor colorWithRed:100./255 green:139./255 blue:169./255 alpha:1.];
+    separatorLine.backgroundColor = [UIColor colorWithRed:100./255 green:100./255 blue:100./255 alpha:1.];
     separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:separatorLine];
     [separatorLine release];

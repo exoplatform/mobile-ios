@@ -96,6 +96,9 @@
 	[stackScrollViewController viewWillAppear:FALSE];
 	[stackScrollViewController viewDidAppear:FALSE];
 	[rightSlideView addSubview:stackScrollViewController.view];
+    //rightSlideView.backgroundColor = [UIColor colorWithRed:242./255 green:242./255 blue:242./255 alpha:1.];
+    rightSlideView.backgroundColor = [UIColor clearColor];
+    
     
     //Add the background image when no content
     UIImage *imageBg;
@@ -118,6 +121,7 @@
 	[rootView addSubview:leftMenuView];
 	[rootView addSubview:rightSlideView];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bgPatternIPad.png"]]];
+    //[self.view setBackgroundColor:[UIColor lightGrayColor]];
 	[self.view addSubview:rootView];
 }
 

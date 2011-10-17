@@ -118,10 +118,16 @@
 {
     SocialActivityStream* socialActivityStream = [super getSocialActivityStreamForIndexPath:indexPath];
     
-    if (_activityDetailViewController == nil) 
+    if (_activityDetailViewController != nil) 
     {
-        _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
-    }
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:_activityDetailViewController];
+
+        [_activityDetailViewController release];
+    } 
+    
+    _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
+    
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
     
     _indexpathSelectedActivity = indexPath;
 
@@ -129,7 +135,7 @@
                                      andCurrentUserProfile:_socialUserProfile];
 
         
-    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
+    
 }
 
 

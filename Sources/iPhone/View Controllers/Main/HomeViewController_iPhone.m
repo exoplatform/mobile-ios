@@ -93,11 +93,11 @@
     self.title = Localize(@"Home");
     
     //Add the bubble background
-    UIImageView* imgBubble = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeBubbleBackground.png"]];
+    /*UIImageView* imgBubble = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeBubbleBackground.png"]];
     imgBubble.frame = CGRectMake(0, self.view.frame.size.height-imgBubble.frame.size.height, imgBubble.frame.size.width, imgBubble.frame.size.height);
     [self.view addSubview:imgBubble];
     [imgBubble release];
-    
+    */
     /*
      
      //Add the shadow at the bottom of the navigationBar
@@ -116,6 +116,7 @@
     _launcherView.delegate = self;
     _launcherView.columnCount = 3;
     _launcherView.pager.hidesForSinglePage = YES;
+
     
     //TODO Localize
     TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"ActivityStreams")

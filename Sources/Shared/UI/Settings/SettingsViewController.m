@@ -121,10 +121,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    backgroundView.frame = self.view.frame;
-    self.tableView.backgroundView = backgroundView;
-    [backgroundView release];
+    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    //backgroundView.frame = self.view.frame;
+    //self.tableView.backgroundView = backgroundView;
+    //[backgroundView release];
+    
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     //Customize the navigation bar appearance
     UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
@@ -243,7 +245,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 	headerLabel.backgroundColor = [UIColor clearColor];
 	headerLabel.opaque = NO;
 	headerLabel.textColor = [UIColor whiteColor];
-	headerLabel.shadowColor = [UIColor blackColor];
+	headerLabel.shadowColor = [UIColor grayColor];
     headerLabel.shadowOffset = CGSizeMake(1, 1);
 	headerLabel.font = [UIFont boldSystemFontOfSize:17];
 	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
