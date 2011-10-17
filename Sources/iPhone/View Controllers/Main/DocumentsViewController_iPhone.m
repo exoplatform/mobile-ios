@@ -15,7 +15,7 @@
 #define kTagForCellSubviewImageView 333
 
 #import "UIBarButtonItem+WEPopover.h"
-
+#import "LanguageHelper.h"
 
 #pragma mark -
 #pragma mark Implementation
@@ -65,7 +65,7 @@
     if (_rootFile) {
         self.title = _rootFile.fileName;
     } else {
-        self.title = @"Documents";
+        self.title = Localize(@"Documents");
     }
 }
 /**
