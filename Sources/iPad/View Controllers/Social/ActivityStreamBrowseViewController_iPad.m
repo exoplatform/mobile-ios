@@ -14,6 +14,10 @@
 #import "MessageComposerViewController.h"
 #import "SocialUserProfileCache.h"
 #import "StackScrollViewController.h"
+#import "EGOImageView.h"
+#import "SocialPictureAttach.h"
+#import "DocumentDisplayViewController_iPhone.h"
+#import "defines.h"
 #import "NSString+HTML.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
@@ -49,25 +53,20 @@
     if (theSize.height < 30) 
     {
         fHeight = 100;
-        if (isPicture){
-            fHeight = 177;
-        }
     }
     else
     {
         fHeight = 95 + theSize.height;
-        if(isPicture){
-            fHeight = 150 + theSize.height;
-        }
     }
     
     if (fHeight > 200) {
         fHeight = 200;
+        
+    }
+    if (isPicture) {
+        fHeight += 70;
     }
     
-    if (isPicture) {
-        fHeight += 65;
-    }
         
     return fHeight;
 }
@@ -132,6 +131,7 @@
         
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
 }
+
 
 
 @end

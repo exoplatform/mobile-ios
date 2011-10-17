@@ -10,6 +10,7 @@
 #import "ActivityStreamBrowseViewController.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import "LanguageHelper.h"
 
 @implementation MessageComposerViewController_iPad
 
@@ -90,7 +91,7 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakeAPicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
     }
@@ -148,8 +149,8 @@
 
 - (void)showPhotoActivity:(UIButton *)sender
 {
-    self.navigationItem.title = @"Attached photo";
-    [self._btnSend setTitle:@"Delete" forState:UIControlStateNormal];
+    self.navigationItem.title = Localize(@"AttachedPhoto");
+    [self._btnSend setTitle:Localize(@"Delete") forState:UIControlStateNormal];
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
     [self.view sendSubviewToBack:sender];
@@ -192,7 +193,7 @@
 
 - (void)deleteAttachedPhoto
 {
-    [self._btnSend setTitle:@"Send" forState:UIControlStateNormal];
+    [self._btnSend setTitle:Localize(@"Send")  forState:UIControlStateNormal];
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
     
@@ -216,7 +217,7 @@
 
 - (void)cancelDisplayAttachedPhoto
 {
-    [self._btnSend setTitle:@"Send" forState:UIControlStateNormal];
+    [self._btnSend setTitle:Localize(@"Send") forState:UIControlStateNormal];
     CGRect frame = self.navigationController.view.frame;
     frame.size.height = 265;
     
