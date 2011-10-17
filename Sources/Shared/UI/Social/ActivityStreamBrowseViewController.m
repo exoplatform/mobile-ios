@@ -511,6 +511,11 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 }
 
 - (void)finishLoadingAllDataForActivityStream {
+    //if the empty is, remove it
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+    }
     
     //Remove the loader
     [self hideLoader:YES];
@@ -521,11 +526,6 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     
     if ([_arrActivityStreams count] == 0) {
         [self performSelector:@selector(emptyState) withObject:nil afterDelay:.1];
-    } else {
-        EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
-        if(emptyview != nil){
-            [emptyview removeFromSuperview];
-        }
     }
         
     //We have retreive new datas from API
@@ -610,7 +610,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     else
         alertMessages = ACTIVITY_LIKING_MESSAGE_ERROR;
     
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     
     [alertView show];
     //    [alertView release];
