@@ -27,7 +27,7 @@
 #import "SocialUserProfileCache.h"
 #import "defines.h"
 #import "NSString+HTML.h"
-
+#import "LanguageHelper.h"
 
 @implementation ActivityDetailViewController
 
@@ -103,7 +103,7 @@
     
     //Set the title of the screen
     //TODO Localize
-    self.title = @"Activity Details";
+    self.title = Localize(@"ActivityDetails");
     
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
@@ -285,8 +285,7 @@
         } else {
             //Check if we found a cell
             ActivityPictureDetailMessageTableViewCell* cell = (ActivityPictureDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityPictureDetailMessageTableViewCell];
-            if (cell == nil) 
-            {
+            if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureDetailMessageTableViewCell" owner:self options:nil];
                 cell = (ActivityPictureDetailMessageTableViewCell *)[nib objectAtIndex:0];
                 //Create a cell, need to do some configurations
@@ -297,8 +296,8 @@
             }
             //cell.userInteractionEnabled = NO;
             
-            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
-            [cell.imgvAttach addGestureRecognizer:tapGesture];
+//            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
+//            [cell.imgvAttach addGestureRecognizer:tapGesture];
             
             originRect = cell.imgvAttach.frame;
             //Set the size of the cell
@@ -350,22 +349,20 @@
                 }
                 [arrLikes addObject:[NSString stringWithFormat:@" %@", [username retain]]];
             }
-//            [arrLikes addObject:@" Nguyen Dai Duong"];
-//            [arrLikes addObject:@" Nguyen Dai Hai"];
-//            [arrLikes addObject:@" Nguyen Dai Hai"];
+
             if (_currentUserLikeThisActivity) {
-                [arrLikes insertObject:@"You" atIndex:0];
+                [arrLikes insertObject:Localize(@"You") atIndex:0];
             }
             
             //rearrange like
             int n = [arrLikes count];
             NSMutableArray *arrCopy = [[NSMutableArray alloc] init];
             if(n == 2){
-                strLike = [NSString stringWithFormat:@"%@ and%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]], [arrLikes objectAtIndex:1]];
+                strLike = [NSString stringWithFormat:@"%@ %@%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]], Localize(@"and"),[arrLikes objectAtIndex:1]];
             } else if(n == 3){
                 if(_currentUserLikeThisActivity){
-                    strLike = [NSString stringWithFormat:@"%@,%@ and%@", [[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-                               [arrLikes objectAtIndex:1], [arrLikes objectAtIndex:2]];
+                    strLike = [NSString stringWithFormat:@"%@,%@ %@%@", [[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+                               [arrLikes objectAtIndex:1], Localize(@"and"), [arrLikes objectAtIndex:2]];
                 } else {
                     strLike = [NSString stringWithFormat:@"%@,%@,%@", [[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
                                [arrLikes objectAtIndex:1], [arrLikes objectAtIndex:2]];
@@ -377,19 +374,19 @@
                 [arrCopy addObject:[arrLikes objectAtIndex:2]];
                 
                 strLike = [arrCopy componentsJoinedByString:@","];
-                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" and %d more", n-3]];
+                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@ %d %@", Localize(@"and"), Localize(@"more"),n-3]];
             } else if (n == 1){
                 strLike = [NSString stringWithFormat:@"%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
             }
             if(n == 1 && !_currentUserLikeThisActivity)
-                strLike = [strLike stringByAppendingString:@" likes this Activity"];
+                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@", Localize(@"likesThisActivity")]];
             else 
-                strLike = [strLike stringByAppendingString:@" like this Activity"];
+                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@", Localize(@"likeThisActivity")]];
             [arrCopy release];
         }
         else
         {
-            strLike = @"No like for the moment";
+            strLike = Localize(@"NoLikeForTheMoment");
         }
         [arrLikes release];
         NSLog(@"%@", strLike);
@@ -456,7 +453,7 @@
     
     if(successful)
     {
-        [_hudActivityDetails setCaption:@"Details loaded"];    
+        [_hudActivityDetails setCaption:Localize(@"DetailsLoaded")];    
         [_hudActivityDetails setImage:[UIImage imageNamed:@"19-check"]];
         [_hudActivityDetails hideAfter:0.5];
     }
@@ -560,7 +557,7 @@
     else
         alertMessage = ACTIVITY_LIKING_MESSAGE_ERROR;
     
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
      
     [alertView show];
 //    [alertView release];
