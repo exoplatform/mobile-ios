@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
 		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">300</string>
+			<string key="NS.object.0">301</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -76,7 +76,7 @@
 							<object class="IBUIImageView" id="858407537">
 								<reference key="NSNextResponder" ref="900677899"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrame">{{152, 54}, {70, 70}}</string>
+								<string key="NSFrame">{{152, 63}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="900677899"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="139632858"/>
@@ -570,6 +570,6 @@
 			<string key="NS.key.0">default-avatar.png</string>
 			<string key="NS.object.0">{64, 64}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">300</string>
+		<string key="IBCocoaTouchPluginVersion">301</string>
 	</data>
 </archive>

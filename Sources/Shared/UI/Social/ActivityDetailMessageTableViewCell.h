@@ -21,7 +21,6 @@
     UILabel*               _lbName;
     
     EGOImageView*          _imgvAvatar;
-
     UIImageView*           _imgvMessageBg;
     
     UIWebView*             _webViewForContent;
@@ -31,6 +30,7 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;
 
@@ -38,4 +38,5 @@
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail;
+
 @end

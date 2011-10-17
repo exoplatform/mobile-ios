@@ -169,6 +169,7 @@
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 {
     //SonTH commented out
+    NSLog(@"%@",socialActivityStream.posterUserProfile.avatarUrl);
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
     htmlLabel.html = socialActivityStream.title;
     [htmlLabel sizeToFit];

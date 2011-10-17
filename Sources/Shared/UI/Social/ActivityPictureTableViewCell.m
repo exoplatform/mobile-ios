@@ -17,11 +17,13 @@
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream{
     [super setSocialActivityStream:socialActivityStream];
+    _imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], socialActivityStream.posterPicture.docLink];
     NSLog(@"%@", strURL);
     _imgvAttach.imageURL = [NSURL URLWithString:strURL]; 
     _lbMessage.text = [socialActivityStream.posterPicture.message copy];
+     htmlLabel.html = @"";
 }
 
 -(void)setPicture {

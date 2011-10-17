@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ActivityDetailCommentTableViewCell.h"
 #import "ActivityDetailMessageTableViewCell.h"
+#import "ActivityPictureDetailMessageTableViewCell.h"
 #import "ActivityDetailLikeTableViewCell.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "MessageComposerViewController.h"
@@ -39,6 +40,7 @@
         _socialActivityDetails.comments = [[NSArray alloc] init];
         
         _activityAction = 0;
+        zoomOutOrZoomIn = NO;
     }
     return self;
 }
@@ -62,6 +64,8 @@
 
     [_hudActivityDetails release];
     _hudActivityDetails = nil;
+    
+    [tapGesture release];
         
     [super dealloc];
 }
@@ -87,7 +91,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor clearColor];
     //Set the last update date at now 
     _dateOfLastUpdate = [[NSDate date]retain];
     
@@ -227,6 +231,9 @@
     if (indexPath.section == 0) 
     {
         n = [self getHeighSizeForTableView:tableView andText:_socialActivityStream.title];
+        if(_socialActivityStream.posterPicture.docName != nil){
+            n += 70;
+        }
     }
     if (indexPath.section == 1) 
     {
@@ -246,28 +253,67 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
     static NSString *kIdentifierActivityDetailMessageTableViewCell = @"ActivityDetailMessageTableViewCell";
+    static NSString *kIdentifierActivityPictureDetailMessageTableViewCell = @"ActivityPictureDetailMessageTableViewCell";
     static NSString *kIdentifierActivityDetailLikeTableViewCell = @"ActivityDetailLikeTableViewCell";
     static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
 	
     //If section for messages
     if (indexPath.section == 0) 
     {
-        ActivityDetailMessageTableViewCell* cell = (ActivityDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailMessageTableViewCell];
-        
-        //Check if we found a cell
-        if (cell == nil) 
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
-            cell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
-            //Create a cell, need to do some configurations
-            [cell configureCell];
+        if(_socialActivityStream.posterPicture.docLink == nil){
+            ActivityDetailMessageTableViewCell* cell = (ActivityDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailMessageTableViewCell];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
+                cell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                //Create a cell, need to do some configurations
+                [cell configureCell];
+                
+                //Set the delegate of the webview
+                cell.webViewForContent.delegate = self;
+            }
+            //Set the size of the cell
+            NSString* text = _socialActivityStream.title;
+            float fWidth = tableView.frame.size.width;
+            float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
             
-            //Set the delegate of the webview
-            cell.webViewForContent.delegate = self;
+            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+            [cell setSocialActivityDetail:_socialActivityDetails];
+
+            return cell;
+        } else {
+            //Check if we found a cell
+            ActivityPictureDetailMessageTableViewCell* cell = (ActivityPictureDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityPictureDetailMessageTableViewCell];
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureDetailMessageTableViewCell" owner:self options:nil];
+                cell = (ActivityPictureDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                //Create a cell, need to do some configurations
+                [cell configureCell];
+                
+                //Set the delegate of the webview
+                cell.webViewForContent.delegate = self;
+            }
+            //cell.userInteractionEnabled = NO;
+            
+            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
+            [cell.imgvAttach addGestureRecognizer:tapGesture];
+            
+            originRect = cell.imgvAttach.frame;
+            //Set the size of the cell
+            NSString* text = _socialActivityStream.title;
+            float fWidth = tableView.frame.size.width;
+            float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
+
+            fHeight += 70;
+            
+            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+            [cell setSocialActivityDetail:_socialActivityDetails];
+            [cell setLinkForImageAttach:_socialActivityStream.posterPicture.docLink];
+            return cell;
         }
-        //cell.userInteractionEnabled = NO;
-        [cell setSocialActivityDetail:_socialActivityDetails];
-        return cell;
+        
     }
     else if (indexPath.section == 1) 
     {
@@ -376,7 +422,10 @@
     }
 }
 
-
+//
+-(void)showContent:(UITapGestureRecognizer *)tapGesture{
+    NSLog(@"test");
+}
 #pragma mark - Loader Management
 - (void)setHudPosition {
     //Default implementation

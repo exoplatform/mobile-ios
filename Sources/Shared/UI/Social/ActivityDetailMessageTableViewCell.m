@@ -14,6 +14,7 @@
 #import "SocialActivityDetails.h"
 #import "defines.h"
 
+
 @implementation ActivityDetailMessageTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
@@ -117,6 +118,7 @@
     _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     _lbDate.text = [socialActivityDetail.postedTimeInWords copy];
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
+    
 }
 
 

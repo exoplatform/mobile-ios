@@ -14,7 +14,7 @@
 #import "MessageComposerViewController.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
-#import "Three20/Three20.h"
+#import "EGOImageView.h"
 
 
 

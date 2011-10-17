@@ -23,6 +23,9 @@
 #import "defines.h"
 #import "SocialUserProfileCache.h"
 #import "EmptyView.h"
+#import "EGOImageView.h"
+#import "SocialPictureAttach.h"
+#import "DocumentDisplayViewController_iPhone.h"
 
 #define TAG_EMPTY 111
 
@@ -366,8 +369,13 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-    NSString* text = socialActivityStream.title;
     BOOL isPicture = (socialActivityStream.posterPicture.docName != nil);
+    NSString* text = @"";
+    if (isPicture){
+        text = socialActivityStream.posterPicture.message;
+    } else {
+        text = socialActivityStream.title;
+    }
     float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:isPicture];
     
     return  fHeight;
@@ -416,11 +424,13 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
             //Create a cell, need to do some Configurations
             [cell configureCell];
         }
+        
+        if(cell.imgvAvatar.image)
         cell.delegate = self;
         cell.socialActivytyStream = socialActivityStream;
         
         NSString* text = socialActivityStream.posterPicture.message;
-        
+        NSLog(@"%@",text);
         //Set the size of the cell
         float fWidth = tableView.frame.size.width;
         float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:YES];
@@ -431,7 +441,6 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         return cell;
     }
 }
-
 
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
