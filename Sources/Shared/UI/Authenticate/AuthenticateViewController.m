@@ -51,7 +51,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-
+    
+    if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
+        [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIphone.png"]]];
+        
+    }
+    
     _vContainer.backgroundColor = [UIColor clearColor];
     
     //Set Alpha for all subviews to make a small animation

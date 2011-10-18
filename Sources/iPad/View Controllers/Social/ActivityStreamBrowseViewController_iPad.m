@@ -129,7 +129,7 @@
     
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
     
-    _indexpathSelectedActivity = indexPath;
+    _indexpathSelectedActivity = [indexPath copy];
 
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                      andCurrentUserProfile:_socialUserProfile];

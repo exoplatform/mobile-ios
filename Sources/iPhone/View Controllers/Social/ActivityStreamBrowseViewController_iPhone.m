@@ -108,7 +108,7 @@
 {
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
  
-    _indexpathSelectedActivity = indexPath;
+    _indexpathSelectedActivity = [indexPath copy];
     
     if (_activityDetailViewController == nil) 
     {

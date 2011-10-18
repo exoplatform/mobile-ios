@@ -117,6 +117,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    //if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
+    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarIphone.png"] forBarMetrics:UIBarMetricsDefault];
+    //}
+    
+    
     [self loadSettingsInformations];
     
     //Set the background Color of the view

@@ -90,7 +90,11 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     _hudActivityStream = nil;
     
     
+    
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:EXO_NOTIFICATION_ACTIVITY_UPDATED];
+    
+    [_indexpathSelectedActivity release];
     
     [super dealloc];
 }

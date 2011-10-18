@@ -36,6 +36,17 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
+    
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3    
+    //Configuring the Navigation Bar for iOS 5
+    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar-FullWidth.png"] 
+                                           forBarMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:113./255]];
+    }
+#endif
+    
     window.rootViewController = navigationController;
 	[window makeKeyAndVisible];
     

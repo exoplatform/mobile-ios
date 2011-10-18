@@ -298,6 +298,8 @@
 		46DA10B41386CE98008DA976 /* SettingsIpadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */; };
 		46DA10B51386CE98008DA976 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */; };
 		46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */; };
+		46DC0C41144DD03F0014BB99 /* NavBar-FullWidth.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DC0C40144DD03E0014BB99 /* NavBar-FullWidth.png */; };
+		46DC0C43144DD0550014BB99 /* NavBar-FullWidth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DC0C42144DD0550014BB99 /* NavBar-FullWidth@2x.png */; };
 		46DDC5AA13D763690026D036 /* SocialLikeActivityProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC5A913D763660026D036 /* SocialLikeActivityProxy.m */; };
 		46DDC5AD13D764470026D036 /* SocialLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC5AC13D764460026D036 /* SocialLike.m */; };
 		46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D861393DB1B00A35D5A /* DeleteButton.png */; };
@@ -1150,6 +1152,8 @@
 		46DA109D1386CE98008DA976 /* SettingsIpadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIpadIcon.png; sourceTree = "<group>"; };
 		46DA10A11386CE98008DA976 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		46DA10A21386CE98008DA976 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		46DC0C40144DD03E0014BB99 /* NavBar-FullWidth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBar-FullWidth.png"; sourceTree = "<group>"; };
+		46DC0C42144DD0550014BB99 /* NavBar-FullWidth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBar-FullWidth@2x.png"; sourceTree = "<group>"; };
 		46DDC5A813D763630026D036 /* SocialLikeActivityProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialLikeActivityProxy.h; sourceTree = "<group>"; };
 		46DDC5A913D763660026D036 /* SocialLikeActivityProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialLikeActivityProxy.m; sourceTree = "<group>"; };
 		46DDC5AB13D764440026D036 /* SocialLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialLike.h; sourceTree = "<group>"; };
@@ -2270,6 +2274,7 @@
 		46BF6E401379639300D1E1A5 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				46DC0C42144DD0550014BB99 /* NavBar-FullWidth@2x.png */,
 				7C2234B913810E06006F847E /* CustomBackgroundForCellBottom@2x.png */,
 				7C2234BA13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png */,
 				7C2234BB13810E07006F847E /* CustomBackgroundForCellSingle@2x.png */,
@@ -2290,6 +2295,7 @@
 		46BF6E411379639800D1E1A5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				46DC0C40144DD03E0014BB99 /* NavBar-FullWidth.png */,
 				46CAF76513799D790017C959 /* GlobalNavigationBarShadowIphone.png */,
 				464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */,
 				46CAF6C6137985E70017C959 /* bgGlobal.png */,
@@ -3500,6 +3506,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "eXo Platform" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -4096,6 +4105,8 @@
 				46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */,
 				46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */,
 				1FCDDB7014481ED100846232 /* ActivityPictureDetailMessageTableViewCell.xib in Resources */,
+				46DC0C41144DD03F0014BB99 /* NavBar-FullWidth.png in Resources */,
+				46DC0C43144DD0550014BB99 /* NavBar-FullWidth@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
