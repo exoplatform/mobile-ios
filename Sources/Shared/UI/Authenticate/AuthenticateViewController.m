@@ -72,13 +72,14 @@
     [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                       stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     
     
     //Add the background image for the login button
     [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                          forState:UIControlStateNormal];
-    
+    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     
     _strBSuccessful = @"NO";
 }

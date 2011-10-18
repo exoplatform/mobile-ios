@@ -129,13 +129,13 @@
     [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                       stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
-    
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     
     //Add the background image for the login button
     [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
-    
+    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     //[_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
     
 
@@ -455,6 +455,8 @@
 #pragma - SettingsDelegate methods
 
 -(void)doneWithSettings {
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
+    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     [_tbvlServerList reloadData];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }

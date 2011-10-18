@@ -108,7 +108,9 @@
      
      */
     
-    
+    if(_launcherView != nil){
+        [_launcherView release];
+    }
     
     _launcherView = [[TTLauncherView alloc] initWithFrame:CGRectMake(0,5,self.view.frame.size.width, self.view.frame.size.height-120)];
     
@@ -164,7 +166,7 @@
         [_activityStreamBrowseViewController_iPhone release];
     }
     
-    if ([item.title isEqualToString:@"Chat"]) 
+    if ([item.title isEqualToString:Localize(@"Chat"])) 
     {
         //Start the Chat
         MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil];
@@ -228,6 +230,11 @@
 
 #pragma - Settings Delegate Methods
 - (void)doneWithSettings {
+//    NSArray *listItems = _launcherView.pages;
+//    for (TTLauncherItem *item in listItems){
+//        
+//    }
+    [self loadView];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

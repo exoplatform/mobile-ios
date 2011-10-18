@@ -45,6 +45,7 @@
 
 }
 
+
 - (IBAction)onSettingBtn
 {
     if (_settingsViewController == nil) {
@@ -130,6 +131,8 @@
 #pragma mark - Settings Delegate methods
 
 - (void)doneWithSettings {
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
+    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     [_tbvlServerList reloadData];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
