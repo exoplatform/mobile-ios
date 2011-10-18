@@ -148,7 +148,7 @@
 		4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3213CCA25D00328E41 /* SocialProxy.m */; };
 		4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */; };
 		4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3813CDC54D00328E41 /* SocialUserProfile.m */; };
-		4658F670144DE82A00A78FD9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4658F66F144DE82A00A78FD9 /* Entitlements.plist */; };
+		4658F672144DEC3300A78FD9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4658F671144DEC3300A78FD9 /* Entitlements.plist */; };
 		46616C7A137C729400D53D3D /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C74137C729400D53D3D /* SSHUDView.m */; };
 		46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C76137C729400D53D3D /* SSHUDWindow.m */; };
 		46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C77137C729400D53D3D /* SSVignetteiPad.png */; };
@@ -960,7 +960,7 @@
 		4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileProxy.m; sourceTree = "<group>"; };
 		4656FD3713CDC54D00328E41 /* SocialUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfile.h; sourceTree = "<group>"; };
 		4656FD3813CDC54D00328E41 /* SocialUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfile.m; sourceTree = "<group>"; };
-		4658F66F144DE82A00A78FD9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		4658F671144DEC3300A78FD9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		46616C73137C729400D53D3D /* SSHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDView.h; sourceTree = "<group>"; };
 		46616C74137C729400D53D3D /* SSHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDView.m; sourceTree = "<group>"; };
 		46616C75137C729400D53D3D /* SSHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDWindow.h; sourceTree = "<group>"; };
@@ -3035,12 +3035,12 @@
 		894733BB13370D7C00B0AD11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4658F671144DEC3300A78FD9 /* Entitlements.plist */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				46616C70137C729400D53D3D /* ThirdPart */,
 				894733BD13370D7C00B0AD11 /* Images */,
 				894733BE13370D7C00B0AD11 /* Localized files */,
 				8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */,
-				4658F66F144DE82A00A78FD9 /* Entitlements.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -4106,7 +4106,7 @@
 				1FCDDB7014481ED100846232 /* ActivityPictureDetailMessageTableViewCell.xib in Resources */,
 				46DC0C41144DD03F0014BB99 /* NavBar-FullWidth.png in Resources */,
 				46DC0C43144DD0550014BB99 /* NavBar-FullWidth@2x.png in Resources */,
-				4658F670144DE82A00A78FD9 /* Entitlements.plist in Resources */,
+				4658F672144DEC3300A78FD9 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
