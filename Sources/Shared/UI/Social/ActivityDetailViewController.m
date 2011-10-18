@@ -374,7 +374,7 @@
                 [arrCopy addObject:[arrLikes objectAtIndex:2]];
                 
                 strLike = [arrCopy componentsJoinedByString:@","];
-                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@ %d %@", Localize(@"and"), Localize(@"more"),n-3]];
+                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@ %d %@", Localize(@"and"), n-3, Localize(@"more")]];
             } else if (n == 1){
                 strLike = [NSString stringWithFormat:@"%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
             }
