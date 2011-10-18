@@ -122,5 +122,118 @@
 	<string>Aucune activité n'a été postée sur votre flux d'activités</string>
     <key>NoGadget</key>
 	<string>Aucun gadget n'est présent sur votre dashboard</string>
+    
+    <key>Home</key>
+	<string>Home</string>
+    <key>ActivityStreams</key>
+	<string>Activity Streams</string>
+    <key>Chat</key>
+	<string>Chat</string>
+    <key>Documents</key>
+	<string>Documents</string>
+    <key>Dashboard</key>
+	<string>Dashboard</string>
+    <key>Settings</key>
+	<string>Settings</string>
+    
+    <key>Success</key>
+	<string>Success...</string>
+    
+    <key>ServerVersion</key>
+	<string>Server Version</string>
+    <key>ApplicationVersion</key>
+	<string>Application Version</string>
+    <key>MessageInfo</key>
+    <string>Message Info</string>
+    <key>MessageErrorServer</key>
+    <string>You cannot add a server with an empty name or url</string>
+    <key>MessageErrorExist</key>
+    <string>This Server has been existed...</string>
+    <key>ServerName</key>
+    <string>Server Name</string>
+    <key>ServerUrl</key>
+    <string>Server Url</string>
+    
+    <key>Loading</key>
+    <string>Loading...</string>
+    
+    <key>FolderContentUpdated</key>
+    <string>Folder content updated</string>
+    <key>LoadingContent</key>
+    <string>Loading the content of the folder</string>
+    <key>FileError</key>
+    <string>File error</string>
+    <key>DeleteFile</key>
+    <string>Delete file...</string>
+    <key>MoveFile</key>
+    <string>Move file to wanted folder...</string>
+    <key>CopyFile</key>
+    <string>Copy file to wanted folder...</string>
+    <key>TakePicture</key>
+    <string>Take Picture</string>
+    <key>CameraNotAvailable</key>
+    <string>Camera are not available</string>
+    <key>CreateNewFile</key>
+    <string>Create new file folder...</string>
+    <key>RenameFolder</key>
+    <string>Rename folder...</string>
+    <key>SendImageToFolder</key>
+    <string>Sending image to wanted folder...</string>
+    <key>LoadingDocument</key>
+    <string>Loading Document</string>
+    
+    <key>TakeAPicture</key>
+    <string>Take a picture</string>
+    
+    <key>AttachedPhoto</key>
+    <string>Attached photo</string>
+    
+    <key>ChatApplication</key>
+    <string>Chat Application</string>
+    
+    <key>AddAPhoto</key>
+    <string>Add a photo?</string>
+    <key>PhotoLibrary</key>
+    <string>Photo library</string>
+    
+    <key>UpdatingChat</key>
+    <string>Updating Chat</string>
+    <key>ChatUpdated</key>
+    <string>Chat updated</string>
+    <key>ConnectToChatServer</key>
+    <string>Connect To Chat Server</string>
+    <key>CanNotConnectToChatServer</key>
+    <string>Can not connect to Chat server</string>
+    
+    <key>You</key>
+    <string>You</string>
+    <key>and</key>
+    <string>and</string>
+    <key>more</key>
+    <string>more</string>
+    <key>likesThisActivity</key>
+    <string>likes this Activity</string>
+    <key>likeThisActivity</key>
+    <string>like this Activity</string>
+    <key>NoLikeForTheMoment</key>
+    <string>No like for the moment</string>
+    <key>DetailsLoaded</key>
+    <string>Details loaded</string>
+    <key>ActivityDetails</key>
+    <string>Activity Details</string>
+    
+    <key>Error</key>
+    <string>Error</string>
+    <key>Posted</key>
+    <string>Posted !</string>
+    
+    <key>MessageComposer</key>
+    <string>Message Composer !</string>
+    <key>NoMessageComment</key>
+    <string>There is no message for comment</string>
+    <key>NoMessagePosting</key>
+    <string>There is no message for posting</string>
+    <key>LoadingURL</key>
+    <string>Loading URL</string>
 </dict>
 </plist>
