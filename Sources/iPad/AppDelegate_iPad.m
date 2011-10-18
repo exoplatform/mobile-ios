@@ -12,6 +12,8 @@
 #import "defines.h"
 #import "FilesProxy.h"
 #import "HomeStyleSheet.h"
+#import "ChatProxy.h"
+
 
 @implementation AppDelegate_iPad
 
