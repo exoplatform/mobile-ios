@@ -433,11 +433,11 @@
     [self setHudPosition];
     
     if(action == 0)
-        [_hudActivityDetails setCaption:ACTIVITY_DETAIL_GETTING_TITLE];
+        [_hudActivityDetails setCaption:Localize(@"GettingActivityDetail")];
     else if(action == 1)
-        [_hudActivityDetails setCaption:ACTIVITY_DETAIL_UPDATING_TITLE];
+        [_hudActivityDetails setCaption:Localize(@"UpdatingActivityDetail")];
     else
-        [_hudActivityDetails setCaption:ACTIVITY_LIKING_TITLE];
+        [_hudActivityDetails setCaption:Localize(@"LikingActivity")];
     
     [_hudActivityDetails setActivity:YES];
     [_hudActivityDetails show];
@@ -551,11 +551,11 @@
     
     NSString *alertMessage = nil;
     if(_activityAction == 0)
-        alertMessage = ACTIVITY_GETTING_MESSAGE_ERROR;
+        alertMessage = Localize(@"GettingActionCannotBeCompleted");
     else if(_activityAction == 1)
-        alertMessage = ACTIVITY_UPDATING_MESSAGE_ERROR;
+        alertMessage = Localize(@"UpdatingActionCannotBeCompleted");
     else
-        alertMessage = ACTIVITY_LIKING_MESSAGE_ERROR;
+        alertMessage = Localize(@"LikingActionCannotBeCompleted");
     
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
      

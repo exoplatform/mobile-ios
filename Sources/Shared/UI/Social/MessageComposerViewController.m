@@ -107,12 +107,12 @@
     
     if (_isPostMessage) 
     {
-        _strTitle = ACTIVITY_POSTING_TITLE;
+        _strTitle = Localize(@"PostingActivity");
         [_btnAttach setHidden:NO];
     }
     else
     {
-        _strTitle = ACTIVITY_COMMENT_TITLE;
+        _strTitle = Localize(@"CommentActivity");
         [_btnAttach setHidden:YES];        
     }
     
@@ -135,13 +135,13 @@
 }
 
 - (void)showLoaderForSendingStatus {
-    [_hudMessageComposer setCaption:ACTIVITY_POSTING_TITLE];
+    [_hudMessageComposer setCaption:Localize(@"PostingActivity")];
     [_hudMessageComposer setActivity:YES];
     [_hudMessageComposer show];
 }
 
 - (void)showLoaderForSendingComment {
-    [_hudMessageComposer setCaption:ACTIVITY_COMMENT_TITLE];
+    [_hudMessageComposer setCaption:Localize(@"CommentActivity")];
     [_hudMessageComposer setActivity:YES];
     [_hudMessageComposer show];
 }
@@ -306,9 +306,9 @@
     
     NSString *alertMessage = nil;
     if(_isPostMessage)
-        alertMessage = ACTIVITY_POSTING_MESSAGE_ERROR;    
+        alertMessage = Localize(@"PostingActionCannotBeCompleted");    
     else
-        alertMessage = ACTIVITY_COMMENT_MESSAGE_ERROR;
+        alertMessage = Localize(@"CommentActionCannotBeCompleted");
     
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     

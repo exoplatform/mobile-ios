@@ -37,20 +37,20 @@
 #define SCR_HEIGHT_PRTR_IPAD                1004
 
 
-#define ACTIVITY_GETTING_TITLE              @"Getting activity"
-#define ACTIVITY_GETTING_MESSAGE_ERROR      @"Getting action cannot be completed"
-#define ACTIVITY_UPDATING_TITLE             @"Updating activity"
-#define ACTIVITY_UPDATING_MESSAGE_ERROR     @"Updating action cannot be completed"
-#define ACTIVITY_LIKING_TITLE               @"Liking activity"
-#define ACTIVITY_LIKING_MESSAGE_ERROR       @"Liking action cannot be completed"
-
-#define ACTIVITY_POSTING_TITLE              @"Posting activity"
-#define ACTIVITY_POSTING_MESSAGE_ERROR      @"Posting action cannot be completed"
-#define ACTIVITY_COMMENT_TITLE              @"Comment activity"
-#define ACTIVITY_COMMENT_MESSAGE_ERROR      @"Comment action cannot be completed"
-
-#define ACTIVITY_DETAIL_GETTING_TITLE       @"Getting activity detail"
-#define ACTIVITY_DETAIL_UPDATING_TITLE      @"Updating activity detail"
+//#define ACTIVITY_GETTING_TITLE              @"Getting activity"
+//#define ACTIVITY_GETTING_MESSAGE_ERROR      @"Getting action cannot be completed"
+//#define ACTIVITY_UPDATING_TITLE             @"Updating activity"
+//#define ACTIVITY_UPDATING_MESSAGE_ERROR     @"Updating action cannot be completed"
+//#define ACTIVITY_LIKING_TITLE               @"Liking activity"
+//#define ACTIVITY_LIKING_MESSAGE_ERROR       @"Liking action cannot be completed"
+//
+//#define ACTIVITY_POSTING_TITLE              @"Posting activity"
+//#define ACTIVITY_POSTING_MESSAGE_ERROR      @"Posting action cannot be completed"
+//#define ACTIVITY_COMMENT_TITLE              @"Comment activity"
+//#define ACTIVITY_COMMENT_MESSAGE_ERROR      @"Comment action cannot be completed"
+//
+//#define ACTIVITY_DETAIL_GETTING_TITLE       @"Getting activity detail"
+//#define ACTIVITY_DETAIL_UPDATING_TITLE      @"Updating activity detail"
 
 
 

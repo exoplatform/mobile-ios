@@ -26,6 +26,7 @@
 #import "EGOImageView.h"
 #import "SocialPictureAttach.h"
 #import "DocumentDisplayViewController_iPhone.h"
+#import "LanguageHelper.h"
 
 #define TAG_EMPTY 111
 
@@ -112,11 +113,11 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     [self setHudPosition];
     
     if(action == 0)
-        [_hudActivityStream setCaption:ACTIVITY_GETTING_TITLE];
+        [_hudActivityStream setCaption:Localize(@"GettingActivity")];
     else if(action == 1)
-        [_hudActivityStream setCaption:ACTIVITY_UPDATING_TITLE];
+        [_hudActivityStream setCaption:Localize(@"UpdatingActivity")];
     else if(action == 2)
-        [_hudActivityStream setCaption:ACTIVITY_LIKING_TITLE];
+        [_hudActivityStream setCaption:Localize(@"LikingActivity")];
     
     [_hudActivityStream setActivity:YES];
     [_hudActivityStream show];
@@ -131,7 +132,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     
     if(successful)
     {
-        [_hudActivityStream setCaption:@"Activity Stream updated"];        
+        [_hudActivityStream setCaption:Localize(@"ActivityStreamUpdated")];        
         [_hudActivityStream setImage:[UIImage imageNamed:@"19-check"]];
         [_hudActivityStream hideAfter:0.5];
     }
@@ -166,7 +167,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 	[self.view addSubview:_hudActivityStream.view];
     
     
-    self.title = @"Activity Stream";
+    self.title = Localize(@"ActivityStream");
     
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
@@ -613,11 +614,11 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     NSString *alertMessages = nil;
     
     if(_activityAction == 0)
-        alertMessages = ACTIVITY_GETTING_MESSAGE_ERROR;
+        alertMessages = Localize(@"GettingActionCannotBeCompleted");
     else if(_activityAction == 1)
-        alertMessages = ACTIVITY_UPDATING_MESSAGE_ERROR;
+        alertMessages = Localize(@"UpdatingActionCannotBeCompleted");
     else
-        alertMessages = ACTIVITY_LIKING_MESSAGE_ERROR;
+        alertMessages = Localize(@"LikingActionCannotBeCompleted");
     
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     

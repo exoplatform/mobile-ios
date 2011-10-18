@@ -233,5 +233,39 @@
     <string>There is no message for posting</string>
     <key>LoadingURL</key>
     <string>Loading URL</string>
+    
+    <key>ActivityStreamUpdated</key>
+    <string>Activity Stream updated</string>
+    <key>ActivityStream</key>
+    <string>Activity Stream</string>
+    
+    <key>YourComment</key>
+    <string>Your comment</string>
+    <key>GettingActivity</key>
+    <string>Getting activity</string>
+    <key>GettingActionCannotBeCompleted</key>
+    <string>Getting action cannot be completed</string>
+    
+    <key>UpdatingActivity</key>
+    <string>Updating activity</string>
+    <key>UpdatingActionCannotBeCompleted</key>
+    <string>Updating action cannot be completed</string>
+    <key>LikingActivity</key>
+    <string>Liking activity</string>
+    <key>LikingActionCannotBeCompleted</key>
+    <string>Liking action cannot be completed</string>
+    
+    <key>PostingActivity</key>
+    <string>Posting activity</string>
+    <key>PostingActionCannotBeCompleted</key>
+    <string>Posting action cannot be completed</string>
+    <key>CommentActivity</key>
+    <string>Comment activity</string>
+    <key>CommentActionCannotBeCompleted</key>
+    <string>Comment action cannot be completed</string>
+    <key>Getting activity detail</key>
+    <string>GettingActivityDetail</string>
+    <key>UpdatingActivityDetail</key>
+    <string>Updating activity detail</string>
 </dict>
 </plist>
