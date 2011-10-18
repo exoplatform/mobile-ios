@@ -140,7 +140,6 @@
 		46371CAA13C60F6300CD2035 /* SocialRestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 46371CA913C60F6200CD2035 /* SocialRestConfiguration.m */; };
 		4642A042138A278E00AA786D /* DocumentsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4642A041138A278E00AA786D /* DocumentsViewController_iPhone.xib */; };
 		464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 464636DE13EC228700092723 /* SocialUserProfileCache.m */; };
-		464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 464C14A8138AB80B0001CBC8 /* Entitlements.plist */; };
 		464FC9DB137AC66E00B32A58 /* eXoLogoNavigationBariPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */; };
 		464FC9DD137AC67800B32A58 /* eXoLogoNavigationBariPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */; };
 		464FC9DF137AC77400B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464FC9DE137AC77300B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png */; };
@@ -149,6 +148,7 @@
 		4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3213CCA25D00328E41 /* SocialProxy.m */; };
 		4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */; };
 		4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3813CDC54D00328E41 /* SocialUserProfile.m */; };
+		4658F670144DE82A00A78FD9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4658F66F144DE82A00A78FD9 /* Entitlements.plist */; };
 		46616C7A137C729400D53D3D /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C74137C729400D53D3D /* SSHUDView.m */; };
 		46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C76137C729400D53D3D /* SSHUDWindow.m */; };
 		46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C77137C729400D53D3D /* SSVignetteiPad.png */; };
@@ -948,7 +948,6 @@
 		4642A041138A278E00AA786D /* DocumentsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentsViewController_iPhone.xib; path = ../../NIB/DocumentsViewController_iPhone.xib; sourceTree = "<group>"; };
 		464636DD13EC228600092723 /* SocialUserProfileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfileCache.h; sourceTree = "<group>"; };
 		464636DE13EC228700092723 /* SocialUserProfileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileCache.m; sourceTree = "<group>"; };
-		464C14A8138AB80B0001CBC8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		464FC9DA137AC66D00B32A58 /* eXoLogoNavigationBariPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eXoLogoNavigationBariPhone@2x.png"; path = "Global/@2x/eXoLogoNavigationBariPhone@2x.png"; sourceTree = "<group>"; };
 		464FC9DC137AC67800B32A58 /* eXoLogoNavigationBariPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eXoLogoNavigationBariPhone.png; path = "Global/@1x/eXoLogoNavigationBariPhone.png"; sourceTree = "<group>"; };
 		464FC9DE137AC77300B32A58 /* AuthenticateCheckmarkiPhoneOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateCheckmarkiPhoneOn@2x.png"; path = "Authenticate/@2x/AuthenticateCheckmarkiPhoneOn@2x.png"; sourceTree = "<group>"; };
@@ -961,6 +960,7 @@
 		4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileProxy.m; sourceTree = "<group>"; };
 		4656FD3713CDC54D00328E41 /* SocialUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfile.h; sourceTree = "<group>"; };
 		4656FD3813CDC54D00328E41 /* SocialUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfile.m; sourceTree = "<group>"; };
+		4658F66F144DE82A00A78FD9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		46616C73137C729400D53D3D /* SSHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDView.h; sourceTree = "<group>"; };
 		46616C74137C729400D53D3D /* SSHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDView.m; sourceTree = "<group>"; };
 		46616C75137C729400D53D3D /* SSHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDWindow.h; sourceTree = "<group>"; };
@@ -3035,12 +3035,12 @@
 		894733BB13370D7C00B0AD11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				464C14A8138AB80B0001CBC8 /* Entitlements.plist */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				46616C70137C729400D53D3D /* ThirdPart */,
 				894733BD13370D7C00B0AD11 /* Images */,
 				894733BE13370D7C00B0AD11 /* Localized files */,
 				8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */,
+				4658F66F144DE82A00A78FD9 /* Entitlements.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3917,7 +3917,6 @@
 				46DA10B51386CE98008DA976 /* Default-Landscape~ipad.png in Resources */,
 				46DA10B61386CE98008DA976 /* Default-Portrait~ipad.png in Resources */,
 				4642A042138A278E00AA786D /* DocumentsViewController_iPhone.xib in Resources */,
-				464C14A9138AB80B0001CBC8 /* Entitlements.plist in Resources */,
 				46C6B4E8138C12350079C514 /* FileActionsViewController.xib in Resources */,
 				46C6B51C138CA87F0079C514 /* 11-x.png in Resources */,
 				46C6B51D138CA87F0079C514 /* 19-check.png in Resources */,
@@ -4107,6 +4106,7 @@
 				1FCDDB7014481ED100846232 /* ActivityPictureDetailMessageTableViewCell.xib in Resources */,
 				46DC0C41144DD03F0014BB99 /* NavBar-FullWidth.png in Resources */,
 				46DC0C43144DD0550014BB99 /* NavBar-FullWidth@2x.png in Resources */,
+				4658F670144DE82A00A78FD9 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
