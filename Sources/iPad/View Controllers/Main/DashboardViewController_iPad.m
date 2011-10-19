@@ -12,10 +12,16 @@
 #import "Gadget.h"
 #import "RootViewController.h"
 #import "StackScrollViewController.h"
+#import "LanguageHelper.h"
 
 @implementation DashboardViewController_iPad
 
 #define kHeightForSectionHeader 40
+
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    _navigation.topItem.title = Localize(@"Dashboard");
+}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

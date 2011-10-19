@@ -14,8 +14,16 @@
 #import "ActivityLinkDisplayViewController_iPad.h"
 #import "defines.h"
 #import "StackScrollViewController.h"
+#import "LanguageHelper.h"
 
 @implementation ActivityDetailViewController_iPad
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];    
+    _navigationBar.topItem.title = Localize(@"Details");
+    
+}
 
 - (void)onBtnMessageComposer
 {
