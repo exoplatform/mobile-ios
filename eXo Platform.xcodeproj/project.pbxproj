@@ -4456,6 +4456,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
+					Three20/Build/Products/three20,
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
