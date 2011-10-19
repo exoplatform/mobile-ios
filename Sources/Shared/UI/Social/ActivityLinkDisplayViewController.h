@@ -18,8 +18,10 @@
     
     //Loader
     ATMHud*                 _hudDocument;//Heads up display
-}
+    NSString *titleForActivityLink;
 
+}
+@property (retain) NSString *titleForActivityLink;
 @property (nonatomic, retain) IBOutlet NSURL* _url;
 @property (nonatomic, retain) IBOutlet UIWebView* _webView;
 

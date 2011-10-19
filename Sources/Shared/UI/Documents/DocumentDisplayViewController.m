@@ -136,7 +136,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudDocument setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingDocument"),self.title]];
+    [_hudDocument setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingDocument"), _fileName]];
     [_hudDocument setActivity:YES];
     [_hudDocument show];
 }

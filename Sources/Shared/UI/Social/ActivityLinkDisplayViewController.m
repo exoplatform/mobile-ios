@@ -18,18 +18,18 @@
 
 @implementation ActivityLinkDisplayViewController
 
-@synthesize _url, _webView;
+@synthesize _url, _webView, titleForActivityLink;
 
 
 // custom init method to allow URL to be passed
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL
 {
-	[super initWithNibName:nibName bundle:nibBundle];
-	_url = [defaultURL retain];
-    
-    self.title = [_url absoluteString];
-    
-	[_webView setDelegate:self];
+	self = [super initWithNibName:nibName bundle:nibBundle];
+    if(self){
+        _url = [defaultURL retain];
+        [_webView setDelegate:self];
+        self.titleForActivityLink = [[_url absoluteString] retain];
+    }
 	return self;
 }
 
@@ -46,6 +46,7 @@
 	[_webView release];
     _webView = nil;
     
+    [titleForActivityLink release];
     
 	[_hudDocument release];
     _hudDocument = nil;
@@ -133,7 +134,8 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudDocument setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingURL"),self.title]];
+    NSLog(@"%@", self.title);
+    [_hudDocument setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingURL"),self.titleForActivityLink]];
     [_hudDocument setActivity:YES];
     [_hudDocument show];
 }

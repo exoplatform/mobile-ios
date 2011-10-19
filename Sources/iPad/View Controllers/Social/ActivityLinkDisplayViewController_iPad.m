@@ -20,8 +20,13 @@
     [super dealloc];
 }
 
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    _navBar.topItem.title = self.titleForActivityLink;
+}
+
 - (void) setTitle:(NSString *)title {
-    _navBar.topItem.title = @"URL";
+    _navBar.topItem.title = self.titleForActivityLink;
 }
 
 
