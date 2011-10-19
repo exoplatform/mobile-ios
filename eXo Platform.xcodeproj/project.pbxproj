@@ -792,7 +792,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* eXo CR1-17-10-LittlePluses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo CR1-17-10-LittlePluses.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* eXo CR1-19-10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo CR1-19-10.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
@@ -1561,7 +1561,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* eXo CR1-17-10-LittlePluses.app */,
+				1D6058910D05DD3D006BFB54 /* eXo CR1-19-10.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3498,7 +3498,7 @@
 			);
 			name = "eXo Platform";
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo CR1-17-10-LittlePluses.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* eXo CR1-19-10.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4361,7 +4361,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-17-10-LittlePluses";
+				PRODUCT_NAME = "eXo CR1-19-10";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -4407,7 +4407,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-17-10-LittlePluses";
+				PRODUCT_NAME = "eXo CR1-19-10";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -4459,6 +4459,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
+					"\"$(SOURCE_ROOT)/RestKit/Build\"",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
@@ -4475,13 +4476,14 @@
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphoneos\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphonesimulator\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/Mac\"",
+					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-17-10-LittlePluses";
+				PRODUCT_NAME = "eXo CR1-19-10";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4556,7 +4558,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-17-10-LittlePluses";
+				PRODUCT_NAME = "eXo CR1-19-10";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
