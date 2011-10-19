@@ -106,9 +106,9 @@
     [self hideLoader];
     
     //add empty view to the view 
-    //EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
-    //[self.view addSubview:emptyView];
-    //[emptyView release];
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
+    [self.view addSubview:emptyView];
+    [emptyView release];
 }
 
 // Stop loading animation
