@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomBackgroundForCell_iPhone.h"
 #import "XMPPUser.h"
 
-@interface ChatBasicTableViewCell : UITableViewCell {
+@interface ChatBasicTableViewCell : CustomBackgroundForCell_iPhone {
     
     UILabel*               _lbName;
     UIImageView*          _imgvAvatar;

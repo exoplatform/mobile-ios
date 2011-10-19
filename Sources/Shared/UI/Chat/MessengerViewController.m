@@ -26,6 +26,12 @@
     // set position
     [self setHudPosition];
     
+    //Set the background Color of the view
+    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblvUsersList.backgroundView = background;
+    [background release];
+    
 //    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
 //    backgroundView.frame = self.view.frame;
 //    _tblvUsersList.backgroundView = backgroundView;
@@ -179,6 +185,9 @@
 //    cell.backgroundColor = [UIColor colorWithRed:239 green:243 blue:244 alpha:1];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    //Customize the cell background
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
 	return cell;
     
