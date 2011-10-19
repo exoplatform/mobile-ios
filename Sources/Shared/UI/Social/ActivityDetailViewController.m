@@ -103,7 +103,7 @@
     
     //Set the title of the screen
     //TODO Localize
-    self.title = Localize(@"ActivityDetails");
+    self.title = Localize(@"Details");
     
     //Set the background Color of the view
     UIView *background = [[UIView alloc] initWithFrame:self.view.frame];

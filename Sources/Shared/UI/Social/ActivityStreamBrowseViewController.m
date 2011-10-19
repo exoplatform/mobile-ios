@@ -171,7 +171,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 	[self.view addSubview:_hudActivityStream.view];
     
     
-    self.title = Localize(@"ActivityStream");
+    self.title = Localize(@"News");
     
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
