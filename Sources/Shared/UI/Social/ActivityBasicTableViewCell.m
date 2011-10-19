@@ -15,6 +15,11 @@
 #import "SocialUserProfile.h"
 #import "Three20/Three20.h"
 
+
+@interface ActivityBasicTableViewCell (PrivateMethods)
+- (void)configureFonts:(BOOL)highlighted;
+@end
+
 @implementation ActivityBasicTableViewCell
 
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
@@ -37,6 +42,8 @@
     
     [_btnComment setHighlighted:highlighted];
     [_btnLike setHighlighted:highlighted];
+    
+    [self configureFonts:highlighted];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -48,6 +55,8 @@
     [_imgvMessageBg setHighlighted:selected];
     [_btnComment setSelected:selected];
     [_btnLike setSelected:selected];
+    [self configureFonts:selected];
+
 }
 
 -(void)btnLikeAction:(UIButton *)sender
@@ -100,16 +109,34 @@
 }
 
 
-- (void)configureFonts {
+- (void)configureFonts:(BOOL)highlighted {
     
-    _lbName.shadowOffset = CGSizeMake(0,1);
-    _lbName.shadowColor = [UIColor whiteColor];
+    if (!highlighted) {
+        _lbName.textColor = [UIColor colorWithRed:22./255 green:124./255 blue:205./255 alpha:1.];
+        _lbName.shadowOffset = CGSizeMake(0,1);
+        _lbName.shadowColor = [UIColor whiteColor];
     
-    //_lbMessage.shadowOffset = CGSizeMake(0,1);
-    //_lbMessage.shadowColor = [UIColor whiteColor];
+        htmlLabel.textColor = [UIColor grayColor];
+
  
-    _lbDate.shadowOffset = CGSizeMake(0,1);
-    _lbDate.shadowColor = [UIColor whiteColor];
+        _lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
+        _lbDate.shadowOffset = CGSizeMake(0,1);
+        _lbDate.shadowColor = [UIColor whiteColor];
+    } else {
+        //_lbName.textColor = [UIColor colorWithRed:22./255 green:124./255 blue:205./255 alpha:1.];
+        _lbName.textColor = [UIColor whiteColor];
+        _lbName.shadowOffset = CGSizeMake(0,1);
+        _lbName.shadowColor = [UIColor darkGrayColor];
+        
+        htmlLabel.textColor = [UIColor darkGrayColor];
+
+        
+        _lbDate.textColor = [UIColor colorWithRed:130./255 green:130./255 blue:130./255 alpha:1.];
+        _lbDate.shadowOffset = CGSizeMake(0,0);
+        _lbDate.shadowColor = [UIColor darkGrayColor];
+    }
+    
+    
 }
 
 
@@ -117,7 +144,7 @@
     
     [self customizeAvatarDecorations];
     
-    [self configureFonts];
+    [self configureFonts:NO];
     
     //Add images for Background Message
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
