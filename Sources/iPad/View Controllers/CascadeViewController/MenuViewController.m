@@ -45,7 +45,7 @@
         
         //TODO Localize this strings
         if(_isCompatibleWithSocial){
-            [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"ActivityStream"), kCellText, nil]];
+            [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
         }
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
 		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
@@ -259,23 +259,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     _intIndex = indexPath.row;
-
+    NSInteger index = indexPath.row;
     [tableView reloadData];
     
     [_messengerViewController disconnect];
-    
-    switch (indexPath.row) {
+    if(!_isCompatibleWithSocial){
+        index += 1;
+    }
+    switch (index) {
         case 0:
-            // messenger
-            if (_messengerViewController == nil) 
-            {
-                _messengerViewController = [[MessengerViewController_iPad alloc] initWithNibName:@"MessengerViewController_iPad" bundle:nil];
-            }
+            //Activity Stream
+            _activityViewController = [[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil];
             
-
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_messengerViewController 
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityViewController 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];
+            
+            
             break;
         case 1:
             // dashboard
@@ -298,18 +298,18 @@
                                                                                      isStackStartView:TRUE];
             break;
         
-                
         case 3:
-            //Activity Stream
-            _activityViewController = [[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil];
-
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityViewController 
+            // messenger
+            if (_messengerViewController == nil) 
+            {
+                _messengerViewController = [[MessengerViewController_iPad alloc] initWithNibName:@"MessengerViewController_iPad" bundle:nil];
+            }
+            
+            
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_messengerViewController 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];
-            
-            
             break;
-            
         default:
             break;
     }
@@ -344,7 +344,7 @@
     //TODO Localize this strings
     [_cellContents removeAllObjects];
     if(_isCompatibleWithSocial){
-        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"ActivityStream"), kCellText, nil]];
+        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
     }
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];

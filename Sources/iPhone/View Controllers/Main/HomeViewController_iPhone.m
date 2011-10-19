@@ -121,7 +121,7 @@
 
     
     //TODO Localize
-    TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"ActivityStreams")
+    TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"News")
                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                        URL:@"tt://activityStream" canDelete:NO] autorelease];
     
@@ -159,7 +159,7 @@
 {
     //    UIButton* logoutButton = (UIButton *)[self.navigationController.navigationBar viewWithTag:111];
     
-    if ([item.title isEqualToString:Localize(@"ActivityStreams")]) 
+    if ([item.title isEqualToString:Localize(@"News")]) 
     {
         ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:_activityStreamBrowseViewController_iPhone animated:YES];
