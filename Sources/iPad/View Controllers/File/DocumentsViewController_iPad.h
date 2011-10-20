@@ -16,9 +16,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Display file list
 @interface DocumentsViewController_iPad : DocumentsViewController <UIPopoverControllerDelegate>
-{
-    IBOutlet UINavigationBar* _navigationBar;
-    
+{    
     UIPopoverController *_actionPopoverController;
     
 }

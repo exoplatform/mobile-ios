@@ -33,6 +33,8 @@
     
     UIPopoverController *popoverPhotoLibraryController;
     
+    IBOutlet UINavigationBar* _navigationBar;
+    
 }
 -(void)emptyState;
 -(void)setHudPosition;

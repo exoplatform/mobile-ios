@@ -510,7 +510,23 @@
             popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
             
             [popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
-            [popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+            
+
+            if(displayActionDialogAtRect.size.width == 0) {
+                
+                //present the popover from the rightBarButtonItem of the navigationBar
+                [popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigationBar.topItem.rightBarButtonItem 
+                                                 permittedArrowDirections:UIPopoverArrowDirectionUp 
+                                                                 animated:YES];
+             
+
+            }
+            else {
+                [popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];    
+                
+            }
+                
+            displayActionDialogAtRect = CGRectZero;
         }
         
         [thePicker release];
