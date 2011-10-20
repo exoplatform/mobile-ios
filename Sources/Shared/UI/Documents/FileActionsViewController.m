@@ -48,6 +48,7 @@ enableDeleteThisFolder:(BOOL)enable
 		_deleteFolderEnable = enable;
         
         _strTakePicture = [Localize(@"TakePicture") copy];
+        _stringPhotoAlbumm = [Localize(@"PhotoLibrary") copy];
 		_strDelete = [Localize(@"Delete") copy];
 		_strCopy = [Localize(@"Copy") copy];
 		_strMove = [Localize(@"Move") copy];
@@ -139,7 +140,7 @@ enableDeleteThisFolder:(BOOL)enable
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if(section == 0)
-		return 7;
+		return 8;
 	return 1;
 }
 
@@ -168,7 +169,7 @@ enableDeleteThisFolder:(BOOL)enable
         }else {
             
             UIButton* tmpButton = [[UIButton alloc] initWithFrame:[cell frame]];
-            [tmpButton setBackgroundImage:[UIImage imageNamed:@"cancelitem.png"] forState:UIControlStateNormal];
+            [tmpButton setBackgroundImage:[UIImage imageNamed:@"cancelitem"] forState:UIControlStateNormal];
             [tmpButton setTitle:_strCancel forState:UIControlStateNormal];
             [cell setBackgroundView:tmpButton];
             [tmpButton release];
@@ -182,7 +183,7 @@ enableDeleteThisFolder:(BOOL)enable
 	{
 		if(row == 0)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon"];
 			titleLabel.text = _strTakePicture;
 			if(!_file.isFolder)
 			{
@@ -190,10 +191,10 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-		else if(row == 1)
+        else if(row == 1)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon.png"];
-			titleLabel.text = _strDelete;
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon"];
+			titleLabel.text = _stringPhotoAlbumm;
 			if(!_deleteFolderEnable)
 			{
 				titleLabel.textColor = [UIColor grayColor];
@@ -202,9 +203,9 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if(row == 2)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon.png"];
-			titleLabel.text = _strCopy;
-			if(_file.isFolder)
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon"];
+			titleLabel.text = _strDelete;
+			if(!_deleteFolderEnable)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -212,7 +213,17 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if(row == 3)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon"];
+			titleLabel.text = _strCopy;
+			if(_file.isFolder)
+			{
+				titleLabel.textColor = [UIColor grayColor];
+				cell.userInteractionEnabled = NO;
+			}
+		}
+		else if(row == 4)
+		{
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon"];
 			titleLabel.text = _strMove;
 			if(_file.isFolder)
 			{
@@ -220,9 +231,9 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-		else if (row ==4)
+		else if (row ==5)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon.png"];
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon"];
 			titleLabel.text = _strPaste;
 			if(fileActionMode <= 0 || !_file.isFolder)
 			{
@@ -230,9 +241,9 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-        else if (row == 5)
+        else if (row == 6)
         {
-            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon.png"];
+            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon"];
             titleLabel.text = _strNewFolder;
 			if(!_file.isFolder)
 			{
@@ -242,7 +253,7 @@ enableDeleteThisFolder:(BOOL)enable
         }
         else 
         {
-            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupRenameIcon.png"];
+            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupRenameIcon"];
             titleLabel.text = _strRenameFolder;
 			if(!_file.isFolder)
 			{
@@ -267,26 +278,30 @@ enableDeleteThisFolder:(BOOL)enable
 		
 		if(row == 0)
 		{
-			[fileActionsDelegate askToAddAPicture:_file.urlStr];
+			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
 		}
-		else if(row == 1)
+        else if(row == 1)
+		{
+            [fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:YES];
+		}
+		else if(row == 2)
 		{
             [fileActionsDelegate deleteFile:_file.urlStr];
 			//[_delegate fileAction:@"DELETE" source:_file._urlStr destination:nil data:nil];
 		}
-		else if(row == 2)
+		else if(row == 3)
 		{
 			fileActionMode = 1;
 			copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
-		else if(row == 3)
+		else if(row == 4)
 		{
 			fileActionMode = 2;
 			copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
-		else if (row == 4)
+		else if (row == 5)
 		{
 			if(fileActionMode == 1)
 			{
@@ -301,12 +316,12 @@ enableDeleteThisFolder:(BOOL)enable
 				fileActionMode = 0;
 			}
 		}
-        else if (row == 5)
+        else if (row == 6)
         {
             //Create a new folder
             [fileActionsDelegate askToMakeFolderActions:YES];
         }
-        else if (row == 6)
+        else if (row == 7)
         {
             [fileActionsDelegate askToMakeFolderActions:NO];
         }

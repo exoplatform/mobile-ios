@@ -29,10 +29,14 @@
     
     IBOutlet UITableView*   _tblFiles;
 
+    CGRect displayActionDialogAtRect;
+    
+    UIPopoverController *popoverPhotoLibraryController;
     
 }
 -(void)emptyState;
 -(void)setHudPosition;
+-(void)showHUDWithMessage:(NSString *)message;
 //Use this method to init the Controller with a root file
 - (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 
 - (void)hideFileFolderActionsController;

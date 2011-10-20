@@ -159,6 +159,22 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+#pragma mark HUD Management
+
+-(void)setHudPosition{
+    //default implementation
+    //do nothing
+}
+
+
+-(void)showHUDWithMessage:(NSString *)message {
+    [self setHudPosition];
+    [_hudFolder setCaption:message];
+    [_hudFolder setActivity:YES];
+    [_hudFolder show];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -446,25 +462,60 @@
 }
 
 
-- (void)askToAddAPicture:(NSString *)urlDestination {
+- (void)askToAddAPicture:(NSString *)urlDestination photoAlbum:(BOOL)photoAlbum {
     
     _stringForUploadPhoto = urlDestination;
+
+    UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+    thePicker.delegate = self;
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+    if (photoAlbum) 
 	{  
-        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
-		thePicker.delegate = self;
-		thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-		thePicker.allowsEditing = YES;
-		[self.navigationController presentModalViewController:thePicker animated:YES];
-		[thePicker release];
+        thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
 	else
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-		[alert show];
-		[alert release];
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            
+            [thePicker release];
+            thePicker = nil;
+        }
 	}
+
+    if(thePicker) {
+    
+        NSString *deviceName = [[UIDevice currentDevice] name];
+        NSRange range = [deviceName rangeOfString:@"iPhone"];
+        
+        thePicker.allowsEditing = YES;
+        
+        if(range.length > 0) {
+            [self.navigationController presentModalViewController:thePicker animated:YES];            
+        }
+        else {
+            
+            thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
+            
+            [popoverPhotoLibraryController release];
+            
+            popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
+            
+            [popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
+            [popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        }
+        
+        [thePicker release];
+        
+    }
     
     [self hideActionsPanel];
     
@@ -678,18 +729,21 @@
 	
 	if ([imageData length] > 0) 
 	{
-		[picker dismissModalViewControllerAnimated:YES];
+        NSString *imageName = [[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
 		
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"yyyy_mm_dd_hh_mm_ss"];
-		NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
-        
-        //release the date formatter because, not needed after that piece of code
-        [dateFormatter release];
-		tmp = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+        if(imageName == nil) {
+
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy_mm_dd_hh_mm_ss"];
+            NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
+            
+            //release the date formatter because, not needed after that piece of code
+            [dateFormatter release];
+            imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+
+        }
 		
-		
-		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@",tmp];
+		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
 		
         //TODO Localize this string
         [self showHUDWithMessage:Localize(@"SendImageToFolder")];
@@ -703,35 +757,17 @@
         [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
         
 	}
-	else
-	{	
-		[picker dismissModalViewControllerAnimated:YES];
-	}
+    
+    [picker dismissModalViewControllerAnimated:YES];
+    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    
 }  
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
-    [picker dismissModalViewControllerAnimated:YES];    
-} 
-
-
-
-#pragma mark HUD Management
-
--(void)setHudPosition{
-    //default implementation
-    //do nothing
+    [picker dismissModalViewControllerAnimated:YES];  
+    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
 }
-
-
--(void)showHUDWithMessage:(NSString *)message {
-    [self setHudPosition];
-    [_hudFolder setCaption:message];
-    [_hudFolder setActivity:YES];
-    [_hudFolder show];
-}
-
-
 
 
 @end

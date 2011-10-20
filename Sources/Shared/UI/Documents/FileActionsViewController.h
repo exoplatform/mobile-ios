@@ -25,7 +25,7 @@
          toDestination:urlDestination;
 
 //Method needed to retrieve the action when the user ask an image
-- (void)askToAddAPicture:(NSString *)urlDestination;
+- (void)askToAddAPicture:(NSString *)urlDestination photoAlbum:(BOOL)photoAlbum;
 
 
 //Method needed to ask to display the folder actions controller 
@@ -45,6 +45,7 @@
 	IBOutlet UITableView *_tblFileAction;	//file action list
 	
 	NSString *_strTakePicture;	//take a new picture
+    NSString *_stringPhotoAlbumm; //Photo from album
 	NSString *_strDelete;	//delete file
 	NSString *_strCopy;	//Copy file
 	NSString *_strMove;	//Cut file

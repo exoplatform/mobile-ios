@@ -92,6 +92,8 @@
     //Adjust the position for the PopoverController, in Y
     rect.origin.x = _tblFiles.frame.size.width - 25;
     
+    displayActionDialogAtRect = rect;
+    
     //Display the UIPopoverController
 	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
@@ -116,6 +118,8 @@
     CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
     //Adjust the position for the PopoverController, in Y
     rect.origin.x = tableView.frame.size.width - 25;
+    
+    displayActionDialogAtRect = rect;
     
     //Display the UIPopoverController
 	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
@@ -257,4 +261,5 @@
 
 }
  
+  
 @end
