@@ -4345,7 +4345,7 @@
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphoneos\"",
@@ -4386,7 +4386,7 @@
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
@@ -4463,7 +4463,7 @@
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
@@ -4539,7 +4539,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
