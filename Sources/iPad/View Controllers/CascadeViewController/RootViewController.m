@@ -99,7 +99,7 @@
     //rightSlideView.backgroundColor = [UIColor colorWithRed:242./255 green:242./255 blue:242./255 alpha:1.];
     rightSlideView.backgroundColor = [UIColor clearColor];
     
-    
+    [menuViewController tableView:menuViewController.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     //Add the background image when no content
     UIImage *imageBg;
     CGRect frameForBgImage;
