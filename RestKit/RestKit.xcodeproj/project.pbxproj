@@ -2303,7 +2303,7 @@
 			};
 			name = Release;
 		};
-		253216491338CA940099A5DB /* Distribution */ = {
+		253216491338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -2321,9 +2321,9 @@
 				SYMROOT = Build;
 				VALID_ARCHS = "armv6 armv7 i386 x86_64";
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		2532164B1338CA940099A5DB /* Distribution */ = {
+		2532164B1338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2336,9 +2336,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Network;
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		2532164C1338CA940099A5DB /* Distribution */ = {
+		2532164C1338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2351,9 +2351,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/ObjectMapping;
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		2532164D1338CA940099A5DB /* Distribution */ = {
+		2532164D1338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2366,9 +2366,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support;
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		2532164E1338CA940099A5DB /* Distribution */ = {
+		2532164E1338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2388,9 +2388,9 @@
 				YAJL_GENERAL_OTHER_CFLAGS = "-Wdiv-by-zero -Wbad-function-cast -Wnested-externs -Wold-style-definition";
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		2532164F1338CA940099A5DB /* Distribution */ = {
+		2532164F1338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2406,9 +2406,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support/JSON/SBJSON;
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		253216501338CA940099A5DB /* Distribution */ = {
+		253216501338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2423,9 +2423,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support/JSON/JSONKit;
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		253216511338CA940099A5DB /* Distribution */ = {
+		253216511338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2437,9 +2437,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/CoreData;
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		253216521338CA940099A5DB /* Distribution */ = {
+		253216521338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "";
@@ -2465,9 +2465,9 @@
 				VALID_ARCHS = "armv6 armv7 i386";
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
-		253216531338CA940099A5DB /* Distribution */ = {
+		253216531338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2512,7 +2512,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				ZERO_LINK = NO;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
 		253A07FD1255161B00976E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2632,7 +2632,7 @@
 			};
 			name = Release;
 		};
-		255920CC13BDEDB400E9C29C /* Ad Hoc */ = {
+		255920CC13BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -2650,18 +2650,18 @@
 				SYMROOT = Build;
 				VALID_ARCHS = "armv6 armv7 i386 x86_64";
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920CD13BDEDB400E9C29C /* Ad Hoc */ = {
+		255920CD13BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920CE13BDEDB400E9C29C /* Ad Hoc */ = {
+		255920CE13BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2674,9 +2674,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Network;
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920CF13BDEDB400E9C29C /* Ad Hoc */ = {
+		255920CF13BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2689,9 +2689,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/ObjectMapping;
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D013BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D013BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2704,9 +2704,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support;
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D113BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D113BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2726,9 +2726,9 @@
 				YAJL_GENERAL_OTHER_CFLAGS = "-Wdiv-by-zero -Wbad-function-cast -Wnested-externs -Wold-style-definition";
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D213BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D213BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2744,9 +2744,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support/JSON/SBJSON;
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D313BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D313BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2761,9 +2761,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support/JSON/JSONKit;
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D413BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D413BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2777,9 +2777,9 @@
 				PRODUCT_NAME = RestKitXMLParserLibxml;
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support/XML/LibXML;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D513BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D513BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2791,9 +2791,9 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/CoreData;
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D613BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D613BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "";
@@ -2819,9 +2819,9 @@
 				VALID_ARCHS = "armv6 armv7 i386";
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
-		255920D713BDEDB400E9C29C /* Ad Hoc */ = {
+		255920D713BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2866,7 +2866,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				ZERO_LINK = NO;
 			};
-			name = "Ad Hoc";
+			name = "Distribution AdHoc";
 		};
 		255B758A133BABBF00ED76AD /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2886,14 +2886,14 @@
 			};
 			name = Release;
 		};
-		255B758C133BABBF00ED76AD /* Distribution */ = {
+		255B758C133BABBF00ED76AD /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
 		2590E650125231F600531FA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3008,7 +3008,7 @@
 			};
 			name = Release;
 		};
-		259DF7821340290600233DF4 /* Distribution */ = {
+		259DF7821340290600233DF4 /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3022,7 +3022,7 @@
 				PRODUCT_NAME = RestKitXMLParserLibxml;
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/Support/XML/LibXML;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
 		3F6C39A810FE5C95008F47C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3162,8 +3162,8 @@
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
 				1DEB922408733DC00010E9CD /* Release */,
-				253216491338CA940099A5DB /* Distribution */,
-				255920CC13BDEDB400E9C29C /* Ad Hoc */,
+				253216491338CA940099A5DB /* Distribution AppStore */,
+				255920CC13BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3173,8 +3173,8 @@
 			buildConfigurations = (
 				2523360611E79F0A0048F9B4 /* Debug */,
 				2523360711E79F0A0048F9B4 /* Release */,
-				253216521338CA940099A5DB /* Distribution */,
-				255920D613BDEDB400E9C29C /* Ad Hoc */,
+				253216521338CA940099A5DB /* Distribution AppStore */,
+				255920D613BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3184,8 +3184,8 @@
 			buildConfigurations = (
 				253A07FD1255161B00976E89 /* Debug */,
 				253A07FE1255161B00976E89 /* Release */,
-				2532164B1338CA940099A5DB /* Distribution */,
-				255920CE13BDEDB400E9C29C /* Ad Hoc */,
+				2532164B1338CA940099A5DB /* Distribution AppStore */,
+				255920CE13BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3195,8 +3195,8 @@
 			buildConfigurations = (
 				253A08041255162D00976E89 /* Debug */,
 				253A08051255162D00976E89 /* Release */,
-				2532164C1338CA940099A5DB /* Distribution */,
-				255920CF13BDEDB400E9C29C /* Ad Hoc */,
+				2532164C1338CA940099A5DB /* Distribution AppStore */,
+				255920CF13BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3206,8 +3206,8 @@
 			buildConfigurations = (
 				253A080D12551D3100976E89 /* Debug */,
 				253A080E12551D3100976E89 /* Release */,
-				2532164D1338CA940099A5DB /* Distribution */,
-				255920D013BDEDB400E9C29C /* Ad Hoc */,
+				2532164D1338CA940099A5DB /* Distribution AppStore */,
+				255920D013BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3217,8 +3217,8 @@
 			buildConfigurations = (
 				253A081512551D5400976E89 /* Debug */,
 				253A081612551D5400976E89 /* Release */,
-				253216511338CA940099A5DB /* Distribution */,
-				255920D513BDEDB400E9C29C /* Ad Hoc */,
+				253216511338CA940099A5DB /* Distribution AppStore */,
+				255920D513BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3228,8 +3228,8 @@
 			buildConfigurations = (
 				255B758A133BABBF00ED76AD /* Debug */,
 				255B758B133BABBF00ED76AD /* Release */,
-				255B758C133BABBF00ED76AD /* Distribution */,
-				255920CD13BDEDB400E9C29C /* Ad Hoc */,
+				255B758C133BABBF00ED76AD /* Distribution AppStore */,
+				255920CD13BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3239,8 +3239,8 @@
 			buildConfigurations = (
 				2590E650125231F600531FA8 /* Debug */,
 				2590E651125231F600531FA8 /* Release */,
-				2532164E1338CA940099A5DB /* Distribution */,
-				255920D113BDEDB400E9C29C /* Ad Hoc */,
+				2532164E1338CA940099A5DB /* Distribution AppStore */,
+				255920D113BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3250,8 +3250,8 @@
 			buildConfigurations = (
 				2590E66C1252353800531FA8 /* Debug */,
 				2590E66D1252353800531FA8 /* Release */,
-				2532164F1338CA940099A5DB /* Distribution */,
-				255920D213BDEDB400E9C29C /* Ad Hoc */,
+				2532164F1338CA940099A5DB /* Distribution AppStore */,
+				255920D213BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3261,8 +3261,8 @@
 			buildConfigurations = (
 				259DF7801340290600233DF4 /* Debug */,
 				259DF7811340290600233DF4 /* Release */,
-				259DF7821340290600233DF4 /* Distribution */,
-				255920D413BDEDB400E9C29C /* Ad Hoc */,
+				259DF7821340290600233DF4 /* Distribution AppStore */,
+				255920D413BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3272,8 +3272,8 @@
 			buildConfigurations = (
 				3F6C39A810FE5C95008F47C5 /* Debug */,
 				3F6C39A910FE5C95008F47C5 /* Release */,
-				253216531338CA940099A5DB /* Distribution */,
-				255920D713BDEDB400E9C29C /* Ad Hoc */,
+				253216531338CA940099A5DB /* Distribution AppStore */,
+				255920D713BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3283,8 +3283,8 @@
 			buildConfigurations = (
 				73057FD21331AD2E001908EE /* Debug */,
 				73057FD31331AD2E001908EE /* Release */,
-				253216501338CA940099A5DB /* Distribution */,
-				255920D313BDEDB400E9C29C /* Ad Hoc */,
+				253216501338CA940099A5DB /* Distribution AppStore */,
+				255920D313BDEDB400E9C29C /* Distribution AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
