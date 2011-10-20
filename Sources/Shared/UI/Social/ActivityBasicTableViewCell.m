@@ -124,9 +124,9 @@
         _lbDate.shadowColor = [UIColor whiteColor];
     } else {
         //_lbName.textColor = [UIColor colorWithRed:22./255 green:124./255 blue:205./255 alpha:1.];
-        _lbName.textColor = [UIColor whiteColor];
-        _lbName.shadowOffset = CGSizeMake(0,1);
-        _lbName.shadowColor = [UIColor darkGrayColor];
+        //_lbName.textColor = [UIColor whiteColor];
+        //_lbName.shadowOffset = CGSizeMake(0,1);
+        //_lbName.shadowColor = [UIColor darkGrayColor];
         
         htmlLabel.textColor = [UIColor darkGrayColor];
 
