@@ -553,7 +553,6 @@
 		894735021337139800B0AD11 /* XMPPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E71337139800B0AD11 /* XMPPUser.m */; };
 		894735111337142200B0AD11 /* DataProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 894735081337142200B0AD11 /* DataProcess.m */; };
 		894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947350C1337142200B0AD11 /* GTMNSString+HTML.m */; };
-		8947351513372BF900B0AD11 /* eXo_Platform-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */; };
 		8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351613372CC200B0AD11 /* libidn-iPhone.a */; };
 		8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351813372CD100B0AD11 /* libidn-simulator.a */; };
 		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
@@ -1509,7 +1508,6 @@
 		8947350B1337142200B0AD11 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		8947350C1337142200B0AD11 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		8947350E1337142200B0AD11 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
-		8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eXo_Platform-Info.plist"; sourceTree = "<group>"; };
 		8947351613372CC200B0AD11 /* libidn-iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-iPhone.a"; sourceTree = "<group>"; };
 		8947351813372CD100B0AD11 /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-simulator.a"; sourceTree = "<group>"; };
 		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3040,7 +3038,6 @@
 				46616C70137C729400D53D3D /* ThirdPart */,
 				894733BD13370D7C00B0AD11 /* Images */,
 				894733BE13370D7C00B0AD11 /* Localized files */,
-				8947351413372BF900B0AD11 /* eXo_Platform-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3812,7 +3809,6 @@
 				8947349813370F5000B0AD11 /* PortletsIcon.png in Resources */,
 				8947349B13370F5D00B0AD11 /* Localize_EN.xml in Resources */,
 				8947349C13370F5D00B0AD11 /* Localize_FR.xml in Resources */,
-				8947351513372BF900B0AD11 /* eXo_Platform-Info.plist in Resources */,
 				8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */,
 				8937A3401338993900D8B474 /* ChatWindowViewController_iPad.xib in Resources */,
 				8937A3441338993900D8B474 /* DocumentsViewController_iPad.xib in Resources */,
