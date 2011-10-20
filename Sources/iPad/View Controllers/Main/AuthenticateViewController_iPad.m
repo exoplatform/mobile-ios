@@ -430,17 +430,37 @@
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
     
+    [_hud completeAndDismissWithTitle:Localize(@"Success")];
+    
     //Setup Version Platfrom and Application
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];    
-	[userDefaults synchronize];
-    
-    
-    [_hud completeWithTitle:Localize(@"Success")];
-    
-    AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
-    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
+    if(platformServerVersion != nil){
+        [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        if(![platformServerVersion.isMobileCompliant boolValue]){
+            AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+            [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+                                                            message:Localize(@"NotCompliant") 
+                                                           delegate:nil 
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        }
+	
+    } else {
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER]; 
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+                                                        message:Localize(@"NotCompliant") 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    [userDefaults synchronize];
 }
 
 

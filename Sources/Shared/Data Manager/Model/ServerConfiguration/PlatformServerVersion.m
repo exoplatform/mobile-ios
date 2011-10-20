@@ -11,13 +11,15 @@
 
 @implementation PlatformServerVersion
 
-@synthesize  platformVersion=_platformVersion, platformRevision=_platformRevision, platformBuildNumber=_platformBuildNumber;
+@synthesize  platformVersion=_platformVersion, platformRevision=_platformRevision, platformBuildNumber=_platformBuildNumber, isMobileCompliant=_isMobileCompliant, platformEdition=_platformEdition;
 
 
 - (void) dealloc {
     [_platformVersion release]; _platformVersion = nil;
     [_platformRevision release]; _platformRevision = nil;
     [_platformBuildNumber release]; _platformBuildNumber = nil;
+    [_isMobileCompliant release]; _isMobileCompliant = nil;
+    [_platformEdition release]; _platformEdition = nil;
     [super dealloc];
 }
 

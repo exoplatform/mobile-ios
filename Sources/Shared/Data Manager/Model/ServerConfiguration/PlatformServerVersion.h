@@ -14,6 +14,8 @@
     NSString* _platformVersion; // Version of the Platform (3.0 or 3.5 or higher)
     NSString* _platformRevision; // Revision of the Platform
     NSString* _platformBuildNumber; // BuildNumber
+    NSString* _isMobileCompliant;
+    NSString* _platformEdition;
 }
 
 
@@ -21,4 +23,6 @@
 @property (nonatomic, retain)NSString* platformRevision; // Revision of the Platform
 @property (nonatomic, retain)NSString* platformBuildNumber; // BuildNumber
 
+@property (nonatomic, retain)NSString* isMobileCompliant; // 
+@property (nonatomic, retain)NSString* platformEdition; //
 @end

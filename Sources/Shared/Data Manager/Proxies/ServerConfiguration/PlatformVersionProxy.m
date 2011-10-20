@@ -46,6 +46,8 @@
      @"platformVersion",@"platformVersion",
      @"platformRevision",@"platformRevision",
      @"platformBuildNumber",@"platformBuildNumber",
+     @"isMobileCompliant",@"isMobileCompliant",
+     @"platformEdition",@"platformEdition",
      nil];
     
     [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];          

@@ -64,22 +64,38 @@
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+    [_hud completeAndDismissWithTitle:Localize(@"Success")];
+    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){
         //Setup Version Platfrom and Application
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
-        [userDefaults synchronize];
+        if([platformServerVersion.isMobileCompliant boolValue]){
+            AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
+            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+            [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+                                                            message:Localize(@"NotCompliant") 
+                                                           delegate:nil 
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        }
         
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
-        [userDefaults synchronize];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+                                                        message:Localize(@"NotCompliant") 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
     }
-    //
-    [_hud completeAndDismissWithTitle:Localize(@"Success")];
-    //[_hud dismiss];
-    AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
-    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+    [userDefaults synchronize];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
