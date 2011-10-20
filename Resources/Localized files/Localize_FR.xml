@@ -238,6 +238,10 @@
     <string>Activity Stream updated</string>
     <key>ActivityStream</key>
     <string>Activity Stream</string>
+    <key>News</key>
+    <string>News</string>
+    <key>Details</key>
+    <string>Details</string>
     
     <key>YourComment</key>
     <string>Your comment</string>
@@ -267,5 +271,8 @@
     <string>GettingActivityDetail</string>
     <key>UpdatingActivityDetail</key>
     <string>Updating activity detail</string>
+    
+    <key>NotCompliant</key>
+    <string>The application can not run on the PLF edition</string>
 </dict>
 </plist>
