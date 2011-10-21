@@ -486,7 +486,6 @@
     //Prepare data to be displayed
     for (SocialComment* comment in _socialActivityDetails.comments) 
     {
-        comment.userProfile = [[SocialUserProfileCache sharedInstance] cachedProfileForIdentity:comment.identityId];
         [comment convertToPostedTimeInWords];
         [comment convertHTMLEncoding];
     }

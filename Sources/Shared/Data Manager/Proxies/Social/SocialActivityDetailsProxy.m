@@ -159,7 +159,7 @@
      @"createdAt",@"createdAt",
      @"text",@"text",
      @"postedTime",@"postedTime",
-     @"id",@"identityId",     
+     @"id",@"identityId",
      nil];
      [mapping mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
     
@@ -181,7 +181,7 @@
     [likedByIdentitiesMapping mapKeyPathsToAttributes:
      @"id",@"identity",
      @"remoteId",@"remoteId",
-     @"providerId",@"providerId",
+     @"providerId",@"providerId",   
      @"profile.avatarUrl",@"avatarUrl",
      @"profile.fullName",@"fullName",
      nil];

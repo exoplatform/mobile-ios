@@ -28,6 +28,7 @@
 @synthesize posterIdentity = _posterIdentity;
 @synthesize comments = _comments;
 
+
 @synthesize postedTimeInWords = _postedTimeInWords;
 
 @synthesize templateParams = templateParams;

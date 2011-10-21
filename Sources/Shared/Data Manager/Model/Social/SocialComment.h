@@ -29,7 +29,6 @@
     NSString*           _postedTimeInWords;
     
     SocialUserProfile*  _userProfile;
-    NSDictionary *_userDict;
 }
 
 @property (nonatomic, retain) NSString* text;
@@ -38,7 +37,6 @@
 @property double postedTime;
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) SocialUserProfile* userProfile;
-@property (nonatomic, retain) NSDictionary *userDict;
 
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
