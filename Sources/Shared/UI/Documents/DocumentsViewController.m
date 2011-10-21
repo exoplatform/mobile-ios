@@ -750,7 +750,7 @@
         if(imageName == nil) {
 
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy_mm_dd_hh_mm_ss"];
+            [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
             NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
             
             //release the date formatter because, not needed after that piece of code
