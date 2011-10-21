@@ -468,7 +468,7 @@
 	[_txtfUsername release];
 	[_txtfPassword release];
 	[_arrServerList release];
-    [_hud release];
+    //[_hud release];
     [super dealloc];	
 }
 
