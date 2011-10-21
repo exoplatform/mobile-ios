@@ -16,6 +16,7 @@
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
 
+
 @implementation DocumentsViewController_iPad
 
 
@@ -153,7 +154,7 @@
 	}
 	else
 	{
-        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[URLAnalyzer enCodeURL:fileToBrowse.urlStr]];
         
 		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"
                                                                                                bundle:nil 

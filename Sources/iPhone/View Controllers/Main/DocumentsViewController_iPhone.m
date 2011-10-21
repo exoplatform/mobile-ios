@@ -138,7 +138,7 @@
 	else
 	{
 		
-        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[URLAnalyzer enCodeURL:fileToBrowse.urlStr]];
 		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
                                                                                   bundle:nil 
@@ -177,7 +177,6 @@
     }
     _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
     CGRect frame = [_tblFiles cellForRowAtIndexPath:indexPath].frame;
-    NSLog(@"%@", NSStringFromCGRect(frame));
     frame.origin.x += 300;
     
     self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];

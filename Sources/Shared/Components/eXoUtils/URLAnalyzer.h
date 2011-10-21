@@ -14,5 +14,7 @@
 }
 
 + (NSString *)parserURL:(NSString *)urlStr;
++ (NSString *)enCodeURL:(NSString *)url;
++ (NSString *)decodeURL:(NSString *)url;
 
 @end
