@@ -14,7 +14,7 @@
 #import "ActivityStreamBrowseViewController.h"
 #import "SocialUserProfile.h"
 #import "Three20/Three20.h"
-
+#import "NSString+HTML.h"
 
 @interface ActivityBasicTableViewCell (PrivateMethods)
 - (void)configureFonts:(BOOL)highlighted;
@@ -158,7 +158,9 @@
     htmlLabel.userInteractionEnabled = NO;
     htmlLabel.backgroundColor = [UIColor clearColor];
     htmlLabel.font = [UIFont systemFontOfSize:13.0];
-    htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
+//        UIViewAutoresizingFlexibleBottomMargin |
+//        UIViewAutoresizingFlexibleRightMargin ;
     htmlLabel.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:htmlLabel];
@@ -199,7 +201,6 @@
     NSLog(@"%@",socialActivityStream.posterUserProfile.avatarUrl);
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
     htmlLabel.html = socialActivityStream.title;
-    [htmlLabel sizeToFit];
 
     //htmlLabel.text = [TTStyledText textFromXHTML:socialActivityStream.title];
     //htmlLabel.backgroundColor = [UIColor redColor];
