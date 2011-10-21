@@ -436,7 +436,7 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
-        if(![platformServerVersion.isMobileCompliant boolValue]){
+        if([platformServerVersion.isMobileCompliant boolValue]){
             AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
             appDelegate.isCompatibleWithSocial = compatibleWithSocial;
             [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
