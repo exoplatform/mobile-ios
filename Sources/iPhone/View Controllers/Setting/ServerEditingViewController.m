@@ -72,9 +72,16 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     
         
     _btnDelete = [[UIButton alloc] init];
-    [_btnDelete setFrame:CGRectMake(10, 110, 300, 40)];
+    
+    NSString *deviceName = [[UIDevice currentDevice] name];
+    NSRange range = [deviceName rangeOfString:@"iPad"];
+    if(range.length > 0)
+        [_btnDelete setFrame:CGRectMake(30, 10, 480, 44)];
+    else
+        [_btnDelete setFrame:CGRectMake(10, 10, 300, 44)];
+    
     //[_btnDelete setBackgroundColor:[UIColor redColor]];
-    [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton.png"]
+    [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton"]
                                     stretchableImageWithLeftCapWidth:5 topCapHeight:5]
                           forState:UIControlStateNormal];
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
@@ -202,9 +209,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    _btnDelete.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 44);
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
+    [view addSubview:_btnDelete];
     
-    return _btnDelete;
+    return view;
     
 }
 
