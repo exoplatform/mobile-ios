@@ -11,6 +11,7 @@
 #import "ATMHudDelegate.h"
 #import "FileActionsViewController.h"
 #import "FileFolderActionsViewController.h"
+#import "URLAnalyzer.h"
 
 
 @interface DocumentsViewController : UIViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate> {

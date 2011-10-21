@@ -305,7 +305,6 @@
     
     File *file = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
     
-    NSLog(@"%@", [file fileName]);
     UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
     if(file.isFolder){
         imgViewFile.image = [UIImage imageNamed:@"DocumentIconForFolder.png"];
@@ -314,7 +313,7 @@
     }
     
     UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
-    titleLabel.text = file.fileName;
+    titleLabel.text = [URLAnalyzer decodeURL:file.fileName];
     
     //Customize the cell background
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
@@ -492,11 +491,11 @@
     if(thePicker) {
     
         NSString *deviceName = [[UIDevice currentDevice] name];
-        NSRange range = [deviceName rangeOfString:@"iPhone"];
+        NSRange range = [deviceName rangeOfString:@"iPad"];
         
         thePicker.allowsEditing = YES;
         
-        if(range.length > 0) {
+        if(range.length <= 0) {
             [self.navigationController presentModalViewController:thePicker animated:YES];            
         }
         else {
