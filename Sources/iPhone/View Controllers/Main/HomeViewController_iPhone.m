@@ -125,9 +125,9 @@
                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                        URL:@"tt://activityStream" canDelete:NO] autorelease];
     
-    TTLauncherItem *chatItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Chat")
-                                                                image:@"bundle://HomeChatIconiPhone.png"
-                                                                  URL:@"tt://chat" canDelete:NO] autorelease];
+//    TTLauncherItem *chatItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Chat")
+//                                                                image:@"bundle://HomeChatIconiPhone.png"
+//                                                                  URL:@"tt://chat" canDelete:NO] autorelease];
     
     TTLauncherItem *documentItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Documents")
                                                                     image:@"bundle://HomeDocumentsIconiPhone.png"
@@ -142,10 +142,9 @@
                                                                      URL:@"tt://setting" canDelete:NO] autorelease];
     if(_isCompatibleWithSocial)
         _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
-                                                         actStreamItem, chatItem, documentItem, dashboardItem, settingItem, nil], nil];
+                                                         actStreamItem, documentItem, dashboardItem, settingItem, nil], nil];
     else
-        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
-                                                         chatItem, documentItem, dashboardItem, settingItem, nil], nil];    
+        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects: documentItem, dashboardItem, settingItem, nil], nil];    
     [self.view addSubview:_launcherView];
 }
 
