@@ -31,6 +31,7 @@
     return kHeightForSectionHeader;
     
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	if([[[_arrTabs objectAtIndex:section] _arrGadgetsInItem] count] == 0){
@@ -80,7 +81,7 @@
     {
         
         //Not found, so create a new one
-        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
         
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         

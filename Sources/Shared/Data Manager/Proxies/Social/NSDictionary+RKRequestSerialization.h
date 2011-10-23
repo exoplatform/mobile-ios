@@ -5,8 +5,9 @@
 //  Created by Blake Watters on 7/28/09.
 //  Copyright 2009 Two Toasters. All rights reserved.
 
+
+
 #import <Foundation/Foundation.h>
-#import "RKRequestSerializable.h"
 #import <RestKit/Network/RKRequestSerializable.h>
 /**
  * Extends NSDictionary to enable usage as the params of an RKRequest.

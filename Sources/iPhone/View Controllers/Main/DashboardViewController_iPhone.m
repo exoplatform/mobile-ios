@@ -74,7 +74,7 @@
     {
         
         //Not found, so create a new one
-        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithFrame:CGRectZero reuseIdentifier:kCellIdentifier] autorelease];
+        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
         
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
@@ -136,7 +136,7 @@
 	Gadget *gadget = [gadgetTab._arrGadgetsInItem objectAtIndex:indexPath.row];
 	NSURL *tmpURL = gadget._urlContent;
 	
-	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone" 
+	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = (GadgetDisplayViewController_iPhone *)[[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone" 
                                                                                                               bundle:nil 
                                                                                                                  url:tmpURL];
 

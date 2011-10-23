@@ -225,7 +225,6 @@
 		46BE69DB13D5B30E00F62614 /* SocialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D413D5B30E00F62614 /* SocialComment.m */; };
 		46BE69E013D5B33E00F62614 /* SocialPostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */; };
 		46BE69E313D5B38300F62614 /* SocialActivityDetailsProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69E213D5B38300F62614 /* SocialActivityDetailsProxy.m */; };
-		46BE69E613D5B59A00F62614 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BE69E513D5B59A00F62614 /* libidn.a */; };
 		46BE69E913D5C3CA00F62614 /* NSDictionary+RKRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */; };
 		46BF6E25137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E22137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png */; };
 		46BF6E2D137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46BF6E29137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png */; };
@@ -331,6 +330,7 @@
 		46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E4D138370A30085DCB6 /* StackScrollViewController.m */; };
 		46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E51138370A30085DCB6 /* UIViewWithShadow.m */; };
 		46EC3596140FDE150083FA07 /* FileFolderActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC3595140FDE150083FA07 /* FileFolderActionsViewController.m */; };
+		46F63426145467E200BB57D4 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F63425145467E100BB57D4 /* libidn.a */; };
 		46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F83140BD7A60077BE15 /* DocumentsViewController.m */; };
 		46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F89140CC4C20077BE15 /* FileActionsViewController.m */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
@@ -552,8 +552,6 @@
 		894735021337139800B0AD11 /* XMPPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E71337139800B0AD11 /* XMPPUser.m */; };
 		894735111337142200B0AD11 /* DataProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 894735081337142200B0AD11 /* DataProcess.m */; };
 		894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947350C1337142200B0AD11 /* GTMNSString+HTML.m */; };
-		8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351613372CC200B0AD11 /* libidn-iPhone.a */; };
-		8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947351813372CD100B0AD11 /* libidn-simulator.a */; };
 		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
 		89967CBA14074C5E00FF700D /* URLAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967CB914074C5E00FF700D /* URLAnalyzer.m */; };
 		8997843D13F53568002E7E1C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997843C13F53568002E7E1C /* Reachability.m */; };
@@ -790,7 +788,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* eXo Beta3-21-10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Beta3-21-10.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* eXo Beta3-23-10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Beta3-23-10.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
@@ -1064,7 +1062,6 @@
 		46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPostActivity.m; sourceTree = "<group>"; };
 		46BE69E113D5B38300F62614 /* SocialActivityDetailsProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityDetailsProxy.h; sourceTree = "<group>"; };
 		46BE69E213D5B38300F62614 /* SocialActivityDetailsProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityDetailsProxy.m; sourceTree = "<group>"; };
-		46BE69E513D5B59A00F62614 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libidn.a; path = Mac/libidn.a; sourceTree = "<group>"; };
 		46BE69E713D5C3C900F62614 /* NSDictionary+RKRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RKRequestSerialization.h"; sourceTree = "<group>"; };
 		46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RKRequestSerialization.m"; sourceTree = "<group>"; };
 		46BF6E22137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateCheckmarkiPhoneOff.png; path = "Authenticate/@1x/AuthenticateCheckmarkiPhoneOff.png"; sourceTree = "<group>"; };
@@ -1195,6 +1192,7 @@
 		46E96E51138370A30085DCB6 /* UIViewWithShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewWithShadow.m; sourceTree = "<group>"; };
 		46EC3594140FDE150083FA07 /* FileFolderActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileFolderActionsViewController.h; path = Documents/FileFolderActionsViewController.h; sourceTree = "<group>"; };
 		46EC3595140FDE150083FA07 /* FileFolderActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileFolderActionsViewController.m; path = Documents/FileFolderActionsViewController.m; sourceTree = "<group>"; };
+		46F63425145467E100BB57D4 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		46F87F82140BD7A60077BE15 /* DocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController.h; path = Documents/DocumentsViewController.h; sourceTree = "<group>"; };
 		46F87F83140BD7A60077BE15 /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController.m; path = Documents/DocumentsViewController.m; sourceTree = "<group>"; };
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
@@ -1505,8 +1503,6 @@
 		8947350B1337142200B0AD11 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		8947350C1337142200B0AD11 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		8947350E1337142200B0AD11 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
-		8947351613372CC200B0AD11 /* libidn-iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-iPhone.a"; sourceTree = "<group>"; };
-		8947351813372CD100B0AD11 /* libidn-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libidn-simulator.a"; sourceTree = "<group>"; };
 		8947351E13375E1900B0AD11 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89967CB814074C5E00FF700D /* URLAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLAnalyzer.h; sourceTree = "<group>"; };
 		89967CB914074C5E00FF700D /* URLAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzer.m; sourceTree = "<group>"; };
@@ -1521,6 +1517,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F63426145467E200BB57D4 /* libidn.a in Frameworks */,
 				7CEA55BA13C54D4E00FCB43A /* libRestKitCoreData.a in Frameworks */,
 				7CEA55BB13C54D4E00FCB43A /* libRestKitJSONParserJSONKit.a in Frameworks */,
 				7CEA55BE13C54D4F00FCB43A /* libRestKitNetwork.a in Frameworks */,
@@ -1540,13 +1537,10 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */,
-				8947351713372CC200B0AD11 /* libidn-iPhone.a in Frameworks */,
-				8947351913372CD100B0AD11 /* libidn-simulator.a in Frameworks */,
 				7C160E6713BAD86A00F6B48E /* QuartzCore.framework in Frameworks */,
 				7CE85B0713C46D0C00A219EB /* MobileCoreServices.framework in Frameworks */,
 				7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */,
 				7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */,
-				46BE69E613D5B59A00F62614 /* libidn.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1556,7 +1550,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* eXo Beta3-21-10.app */,
+				1D6058910D05DD3D006BFB54 /* eXo Beta3-23-10.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2247,14 +2241,6 @@
 				8947339113370B4500B0AD11 /* Gadget.m */,
 			);
 			name = Dashboard;
-			sourceTree = "<group>";
-		};
-		46BE69E413D5B57E00F62614 /* mac */ = {
-			isa = PBXGroup;
-			children = (
-				46BE69E513D5B59A00F62614 /* libidn.a */,
-			);
-			name = mac;
 			sourceTree = "<group>";
 		};
 		46BF6E3F137960E200D1E1A5 /* Global */ = {
@@ -3240,29 +3226,11 @@
 		894734AC1337139800B0AD11 /* libidn */ = {
 			isa = PBXGroup;
 			children = (
+				46F63425145467E100BB57D4 /* libidn.a */,
 				894734AD1337139800B0AD11 /* idn-int.h */,
-				894734AE1337139800B0AD11 /* iphoneos */,
-				894734AF1337139800B0AD11 /* iphonesimulator */,
-				46BE69E413D5B57E00F62614 /* mac */,
 				894734B11337139800B0AD11 /* stringprep.h */,
 			);
 			path = libidn;
-			sourceTree = "<group>";
-		};
-		894734AE1337139800B0AD11 /* iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				8947351613372CC200B0AD11 /* libidn-iPhone.a */,
-			);
-			path = iphoneos;
-			sourceTree = "<group>";
-		};
-		894734AF1337139800B0AD11 /* iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				8947351813372CD100B0AD11 /* libidn-simulator.a */,
-			);
-			path = iphonesimulator;
 			sourceTree = "<group>";
 		};
 		894734B21337139800B0AD11 /* TCP */ = {
@@ -3490,7 +3458,7 @@
 			);
 			name = "eXo Platform";
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo Beta3-21-10.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* eXo Beta3-23-10.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4319,6 +4287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4328,24 +4297,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					Three20/Build/Products/three20,
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
+					/usr/include/libxml2,
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/Mac\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/Mac\"",
-					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4362,6 +4325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -4369,29 +4333,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					Three20/Build/Products/three20,
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
+					/usr/include/libxml2,
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Shared/Classes/libidn/Mac\"",
-					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphoneos\"",
-					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/Mac\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/Mac\"",
-					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4408,7 +4361,10 @@
 		464C14AA138AB8890001CBC8 /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
@@ -4429,7 +4385,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Distribution AdHoc";
@@ -4438,6 +4394,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
@@ -4446,29 +4403,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					Three20/Build/Products/three20,
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
+					/usr/include/libxml2,
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Shared/Classes/libidn/Mac\"",
-					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphoneos\"",
-					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/Mac\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/Mac\"",
-					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4486,7 +4432,10 @@
 		46BC64021316F05B0034E7E3 /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
@@ -4507,7 +4456,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Distribution AppStore";
@@ -4516,6 +4465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo";
@@ -4524,26 +4474,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(SOURCE_ROOT)/RestKit/Build\"",
 					/usr/include/libxml2,
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Shared/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Shared/Classes/libidn/Mac\"",
-					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphoneos\"",
-					"\"/Users/maithanhxuyen/Downloads/Archive/exo-mobile-ipad/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Classes/libidn/Mac\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphoneos\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/iphonesimulator\"",
-					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/Mac\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4561,7 +4503,10 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4578,7 +4523,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4586,7 +4531,10 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -4604,7 +4552,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

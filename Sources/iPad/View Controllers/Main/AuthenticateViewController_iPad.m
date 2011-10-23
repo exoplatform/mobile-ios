@@ -80,7 +80,7 @@
 - (void)viewDidLoad 
 {
     
-    [self changeOrientation:[[UIDevice currentDevice] orientation]];
+    [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
     self.view.backgroundColor = [UIColor clearColor];
     //Stevan UI fixes

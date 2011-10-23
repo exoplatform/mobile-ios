@@ -51,7 +51,7 @@
 	[result detach];
 	[doc release];
 	
-	return [result retain];
+	return (id)[result retain];
 }
 
 + (id)nodeWithPrimitive:(xmlKindPtr)nodePtr
