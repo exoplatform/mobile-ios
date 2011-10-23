@@ -4297,7 +4297,6 @@
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
@@ -4337,7 +4336,6 @@
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
