@@ -71,10 +71,10 @@ static const NSInteger kDefaultColumnCount = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame 
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) 
+    if (self)
     {
         _scrollView = [[TTLauncherScrollView alloc] initWithFrame:
                        CGRectMake(0, 0, self.width, self.height - kPagerHeight)];
@@ -84,7 +84,8 @@ static const NSInteger kDefaultColumnCount = 3;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.alwaysBounceHorizontal = YES;
         _scrollView.pagingEnabled = YES;
-        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|
+                                        UIViewAutoresizingFlexibleHeight;
         _scrollView.delaysContentTouches = NO;
         _scrollView.multipleTouchEnabled = NO;
         [self addSubview:_scrollView];

@@ -74,7 +74,7 @@
 		6EE737821184A38F00A35176 /* UIColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737411184A38F00A35176 /* UIColorAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE737831184A38F00A35176 /* UIFontAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737421184A38F00A35176 /* UIFontAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE737841184A38F00A35176 /* UIImageAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737431184A38F00A35176 /* UIImageAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6EE737C31184A39B00A35176 /* TTBevelBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737851184A39B00A35176 /* TTBevelBorderStyle.m */; };
+		6EE737C31184A39B00A35176 /* TTBevelBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737851184A39B00A35176 /* TTBevelBorderStyle.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6EE737C41184A39B00A35176 /* TTBlendStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737861184A39B00A35176 /* TTBlendStyle.m */; };
 		6EE737C51184A39B00A35176 /* TTBoxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737871184A39B00A35176 /* TTBoxStyle.m */; };
 		6EE737C61184A39B00A35176 /* TTContentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737881184A39B00A35176 /* TTContentStyle.m */; };

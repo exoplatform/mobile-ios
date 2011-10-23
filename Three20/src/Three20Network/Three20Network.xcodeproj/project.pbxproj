@@ -31,7 +31,7 @@
 		6EE7361E11849A3500A35176 /* TTURLRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7361211849A3500A35176 /* TTURLRequestQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361F11849A3500A35176 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7361311849A3500A35176 /* TTURLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7362811849A4000A35176 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362011849A4000A35176 /* TTModel.m */; };
-		6EE7362911849A4000A35176 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362111849A4000A35176 /* TTRequestLoader.m */; };
+		6EE7362911849A4000A35176 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362111849A4000A35176 /* TTRequestLoader.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6EE7362A11849A4000A35176 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362211849A4000A35176 /* TTURLCache.m */; };
 		6EE7362B11849A4000A35176 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362311849A4000A35176 /* TTURLDataResponse.m */; };
 		6EE7362C11849A4000A35176 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362411849A4000A35176 /* TTURLImageResponse.m */; };

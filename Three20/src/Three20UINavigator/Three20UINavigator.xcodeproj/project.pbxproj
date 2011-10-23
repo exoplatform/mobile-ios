@@ -24,7 +24,7 @@
 		6E3C364A118B79140079637E /* TTURLSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3647118B79140079637E /* TTURLSelector.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E3C364B118B79140079637E /* TTURLWildcard.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3648118B79140079637E /* TTURLWildcard.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E3C3651118B79740079637E /* TTURLGeneratorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C364E118B79740079637E /* TTURLGeneratorPattern.m */; };
-		6E3C3652118B79740079637E /* TTURLNavigatorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C364F118B79740079637E /* TTURLNavigatorPattern.m */; };
+		6E3C3652118B79740079637E /* TTURLNavigatorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C364F118B79740079637E /* TTURLNavigatorPattern.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6E3C3653118B79740079637E /* TTURLPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3650118B79740079637E /* TTURLPattern.m */; };
 		6E3C3664118B798F0079637E /* TTURLLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3660118B798F0079637E /* TTURLLiteral.m */; };
 		6E3C3665118B798F0079637E /* TTURLPatternInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3661118B798F0079637E /* TTURLPatternInternal.m */; };
@@ -33,7 +33,7 @@
 		6E3C3672118B79B90079637E /* TTURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3671118B79B90079637E /* TTURLArguments.m */; };
 		6E3C36C8118B7E0C0079637E /* TTURLObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C36C7118B7E0C0079637E /* TTURLObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3754118C8E180079637E /* TTBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3753118C8E180079637E /* TTBaseNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E3C3756118C8E210079637E /* TTBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3755118C8E210079637E /* TTBaseNavigator.m */; };
+		6E3C3756118C8E210079637E /* TTBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3755118C8E210079637E /* TTBaseNavigator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6E3C3759118C8E490079637E /* TTNavigatorPersistenceMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6081C011B0C08600C93CD4 /* TTBaseNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6081BF11B0C08600C93CD4 /* TTBaseNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6081C211B0C08D00C93CD4 /* TTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6081C111B0C08D00C93CD4 /* TTBaseNavigationController.m */; };

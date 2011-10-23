@@ -159,7 +159,7 @@
 		2590E7371252372800531FA8 /* yajl_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2590E6BE1252372800531FA8 /* yajl_parser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2590E73A1252372800531FA8 /* YAJL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2590E71B1252372800531FA8 /* YAJL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2590E73B1252372800531FA8 /* YAJLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 2590E71C1252372800531FA8 /* YAJLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2590E73C1252372800531FA8 /* YAJLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2590E71D1252372800531FA8 /* YAJLDocument.m */; };
+		2590E73C1252372800531FA8 /* YAJLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2590E71D1252372800531FA8 /* YAJLDocument.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2590E73D1252372800531FA8 /* YAJLGen.h in Headers */ = {isa = PBXBuildFile; fileRef = 2590E71E1252372800531FA8 /* YAJLGen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2590E73E1252372800531FA8 /* YAJLGen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2590E71F1252372800531FA8 /* YAJLGen.m */; };
 		2590E73F1252372800531FA8 /* YAJLIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2590E7201252372800531FA8 /* YAJLIOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -272,7 +272,7 @@
 		3F71ED3513748536006281CA /* RKObjectMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F71ED3313748536006281CA /* RKObjectMappingProvider.m */; };
 		3FD12C851379AD64008B996A /* RKRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FD12C841379AD64008B996A /* RKRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73057FD61331AD5E001908EE /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 73057FC71331AA3D001908EE /* JSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		73057FD71331AD67001908EE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 73057FC81331AA3D001908EE /* JSONKit.m */; };
+		73057FD71331AD67001908EE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 73057FC81331AA3D001908EE /* JSONKit.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		73057FD91331AD99001908EE /* RKJSONParserJSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 73057FC41331A8F6001908EE /* RKJSONParserJSONKit.m */; };
 		7377FBE21268E96300868752 /* RKManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 7377FBE11268E96300868752 /* RKManagedObjectCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73C89EF212A5BB9A000FE600 /* RKReachabilityObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 73C89EEF12A5BB9A000FE600 /* RKReachabilityObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };

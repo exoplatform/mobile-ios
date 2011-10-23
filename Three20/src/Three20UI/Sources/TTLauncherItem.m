@@ -41,10 +41,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL 
+- (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL
 {
     self = [self initWithTitle:title image:image URL:URL canDelete:NO];
-    if (self) 
+    if (self)
     {
     }
     return self;
@@ -53,10 +53,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL
-      canDelete:(BOOL)canDelete 
+      canDelete:(BOOL)canDelete
 {
     self = [super init];
-    if (self) 
+    if (self)
     {
         _canDelete = canDelete;
         self.title = title;
@@ -81,13 +81,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark NSCoding   
+#pragma mark NSCoding
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
     self = [super init];
-    if (self) 
+    if (self)
     {
         self.title = [decoder decodeObjectForKey:@"title"];
         self.image = [decoder decodeObjectForKey:@"image"];
