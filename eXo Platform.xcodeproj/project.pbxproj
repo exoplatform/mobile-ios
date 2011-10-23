@@ -422,7 +422,6 @@
 		89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */; };
 		8911271A140B7F2A00A8851C /* MessengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112719140B7F2A00A8851C /* MessengerViewController.m */; };
 		89112720140B8BF000A8851C /* eXoChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911271D140B8BF000A8851C /* eXoChatUser.m */; };
-		89112721140B8BF000A8851C /* eXoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911271F140B8BF000A8851C /* eXoMessage.m */; };
 		89112724140B913600A8851C /* ChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112723140B913600A8851C /* ChatUser.m */; };
 		89112728140B9A8E00A8851C /* ChatProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112727140B9A8E00A8851C /* ChatProxy.m */; };
 		8911F5551420C7540093F2BD /* AuthenticateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911F5541420C7540093F2BD /* AuthenticateViewController.m */; };
@@ -791,7 +790,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* eXo CR1-19-10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo CR1-19-10.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* eXo Beta3-21-10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Beta3-21-10.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
@@ -1328,8 +1327,6 @@
 		89112719140B7F2A00A8851C /* MessengerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController.m; sourceTree = "<group>"; };
 		8911271C140B8BF000A8851C /* eXoChatUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoChatUser.h; sourceTree = "<group>"; };
 		8911271D140B8BF000A8851C /* eXoChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoChatUser.m; sourceTree = "<group>"; };
-		8911271E140B8BF000A8851C /* eXoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoMessage.h; sourceTree = "<group>"; };
-		8911271F140B8BF000A8851C /* eXoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoMessage.m; sourceTree = "<group>"; };
 		89112722140B913600A8851C /* ChatUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUser.h; sourceTree = "<group>"; };
 		89112723140B913600A8851C /* ChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
 		89112726140B9A8E00A8851C /* ChatProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProxy.h; sourceTree = "<group>"; };
@@ -1559,7 +1556,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* eXo CR1-19-10.app */,
+				1D6058910D05DD3D006BFB54 /* eXo Beta3-21-10.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2731,8 +2728,6 @@
 			children = (
 				8911271C140B8BF000A8851C /* eXoChatUser.h */,
 				8911271D140B8BF000A8851C /* eXoChatUser.m */,
-				8911271E140B8BF000A8851C /* eXoMessage.h */,
-				8911271F140B8BF000A8851C /* eXoMessage.m */,
 				89112722140B913600A8851C /* ChatUser.h */,
 				89112723140B913600A8851C /* ChatUser.m */,
 				890FF79D1447D5E3001320A5 /* Message.h */,
@@ -3495,7 +3490,7 @@
 			);
 			name = "eXo Platform";
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo CR1-19-10.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* eXo Beta3-21-10.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4243,7 +4238,6 @@
 				89112716140B7DC800A8851C /* ChatBasicTableViewCell.m in Sources */,
 				8911271A140B7F2A00A8851C /* MessengerViewController.m in Sources */,
 				89112720140B8BF000A8851C /* eXoChatUser.m in Sources */,
-				89112721140B8BF000A8851C /* eXoMessage.m in Sources */,
 				89112724140B913600A8851C /* ChatUser.m in Sources */,
 				89112728140B9A8E00A8851C /* ChatProxy.m in Sources */,
 				46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */,
@@ -4357,7 +4351,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-19-10";
+				PRODUCT_NAME = "eXo Beta3-23-10";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -4403,7 +4397,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-19-10";
+				PRODUCT_NAME = "eXo Beta3-23-10";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -4480,7 +4474,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-19-10";
+				PRODUCT_NAME = "eXo Beta3-23-10";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4555,7 +4549,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1-19-10";
+				PRODUCT_NAME = "eXo Beta3-23-10";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
