@@ -110,14 +110,11 @@
  
     _indexpathSelectedActivity = [indexPath copy];
     
-    if (_activityDetailViewController == nil) 
+    if (_activityDetailViewController != nil) 
     {
-        
-        ActivityDetailViewController_iPhone *activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
-        _activityDetailViewController = activityDetailViewController;
-        
+        [_activityDetailViewController release];
     }
-    
+    _activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                      andCurrentUserProfile:_socialUserProfile];
     
