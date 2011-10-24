@@ -268,11 +268,11 @@
     <string>Liking action cannot be completed</string>
     
     <key>PostingActivity</key>
-    <string>Posting activity</string>
+    <string>Post</string>
     <key>PostingActionCannotBeCompleted</key>
     <string>Posting action cannot be completed</string>
     <key>CommentActivity</key>
-    <string>Comment activity</string>
+    <string>Comment</string>
     <key>CommentActionCannotBeCompleted</key>
     <string>Comment action cannot be completed</string>
     <key>GettingActivityDetail</key>
