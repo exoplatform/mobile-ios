@@ -13,6 +13,8 @@
 #import "FilesProxy.h"
 #import "HomeStyleSheet.h"
 #import "ChatProxy.h"
+#import <dispatch/dispatch.h>
+
 
 
 @implementation AppDelegate_iPad
@@ -46,6 +48,7 @@
     }
 #endif
     
+    window.rootViewController = viewController;
 	[window addSubview:viewController.view];
     [window makeKeyAndVisible];
                 
@@ -65,22 +68,24 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
     
-    rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
-   
+    if (rootViewController == nil){
+        rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
+    }
+    
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromLeft
                     animations:^{ 
-                        [viewController.view removeFromSuperview];
-                        [self.window addSubview:rootViewController.view];
+                        self.window.rootViewController = rootViewController;
                     }
-                    completion:NULL];
+                    completion:^(BOOL finished){
+                    }];
 }
 
 
 -(void)backToAuthenticate{
 
-    [[ChatProxy sharedInstance] disconnect];
+    //[[ChatProxy sharedInstance] disconnect];
     
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -92,10 +97,10 @@
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromRight
                     animations:^{ 
-                        [rootViewController.view removeFromSuperview]; 
-                        [self.window addSubview:viewController.view]; 
+                        self.window.rootViewController = viewController;
                     }
-                    completion:NULL];
+                    completion:^(BOOL finished){
+                    }];
 }
 
 

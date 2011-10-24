@@ -39,7 +39,6 @@
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_hud dismiss];
-    [_hud release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -79,6 +78,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
+    [super viewDidLoad];
+
     
     [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
@@ -139,7 +140,6 @@
     //[_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
     
 
-    [super viewDidLoad];
     
     
 }
