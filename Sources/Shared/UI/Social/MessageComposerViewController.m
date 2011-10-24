@@ -101,7 +101,7 @@
     [bbtnCancel setCustomView:_btnCancel];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
-    //[_txtvMessageComposer becomeFirstResponder];
+    [_txtvMessageComposer becomeFirstResponder];
     [_txtvMessageComposer setBackgroundColor:[UIColor clearColor]];
     [_txtvMessageComposer setText:@""];
     

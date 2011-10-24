@@ -75,11 +75,15 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     
     NSString *deviceName = [[UIDevice currentDevice] name];
     NSRange range = [deviceName rangeOfString:@"iPad"];
-    if(range.length > 0)
-        [_btnDelete setFrame:CGRectMake(30, 10, 480, 44)];
-    else
-        [_btnDelete setFrame:CGRectMake(10, 10, 300, 44)];
+
+    int marginLeft;
     
+    if(range.length > 0)
+        marginLeft = 32;
+    else
+        marginLeft = 10;
+
+    [_btnDelete setFrame:CGRectMake(marginLeft, 10, self.navigationController.view.frame.size.width - marginLeft*2, 44)];
     //[_btnDelete setBackgroundColor:[UIColor redColor]];
     [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton"]
                                     stretchableImageWithLeftCapWidth:5 topCapHeight:5]
@@ -110,18 +114,32 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerName setTextColor:[UIColor grayColor]];
     [_txtfServerUrl setTextColor:[UIColor grayColor]];
     [_bbtnEdit setEnabled:NO];
+    
+    [_txtfServerName becomeFirstResponder];
+    
     [super viewWillAppear:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {    
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder];
+    
     [super viewWillDisappear:YES];
 }
+
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    [super disablesAutomaticKeyboardDismissal];
+    return NO;
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 - (void)setDelegate:(id)delegate

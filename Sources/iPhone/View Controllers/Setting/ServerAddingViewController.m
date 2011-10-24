@@ -91,13 +91,23 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerName setText:@""];
     [_txtfServerUrl setText:@""];
     [_bbtnDone setEnabled:NO];
+    
+    [_txtfServerName becomeFirstResponder];
+    
     [super viewWillAppear:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [_txtfServerName resignFirstResponder];
+    [_txtfServerUrl resignFirstResponder];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 - (void)setDelegate:(id<ServerManagerProtocol>)delegate

@@ -58,6 +58,8 @@
     
 	[_btnCancel setTitle:Localize(@"CancelCopyButton") forState:UIControlStateNormal];
     
+    [_txtfNameInput becomeFirstResponder];
+    
 }
 
 - (void)didReceiveMemoryWarning 

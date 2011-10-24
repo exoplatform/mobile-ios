@@ -46,7 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardHidden) name:UIKeyboardDidHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardHidden) name:UIKeyboardDidHideNotification object:nil];
     
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
@@ -265,15 +265,34 @@
         
     }
     [_iPadSettingViewController startRetrieve];
-    
+   
     if (_modalNavigationSettingViewController == nil) 
     {
         _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+//        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationPageSheet;
         
     }
     [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
+    
+    _modalNavigationSettingViewController.view.superview.autoresizingMask = 
+    UIViewAutoresizingFlexibleTopMargin | 
+    UIViewAutoresizingFlexibleBottomMargin;   
+    
+    
+    _modalNavigationSettingViewController.view.superview.frame = CGRectMake(0,0,
+                                                                            560.0f,
+                                                                            640.0f
+                                                                            );
+    
+    if(self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        _modalNavigationSettingViewController.view.superview.center = CGPointMake(768/2, 1024/2 + 10);        
+    }
+    else
+        _modalNavigationSettingViewController.view.superview.center = CGPointMake(1024/2, 768/2 + 10);
     
 }
 
