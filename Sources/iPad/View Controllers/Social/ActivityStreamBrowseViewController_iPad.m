@@ -81,6 +81,42 @@
 }
 
 
+- (void)postACommentOnActivity:(NSString *)activity {
+    MessageComposerViewController_iPad* messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
+    
+    messageComposerViewController.delegate = self;    
+    messageComposerViewController.isPostMessage = NO;
+    messageComposerViewController.strActivityID = activity;
+    
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    [messageComposerViewController release];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    
+    int x, y;
+    
+    if( [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || 
+       [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown )
+    {
+        x = 114;
+        y = 300;
+    }
+    else 
+    {
+        x = 242;
+        y = 70;
+    }
+    
+    navController.view.superview.autoresizingMask = UIViewAutoresizingNone;
+    navController.view.superview.frame = CGRectMake(x,y, 540.0f, 265.0f);
+}
+
+
 - (void)onBbtnPost
 {
     MessageComposerViewController_iPad* messageComposerViewController = [[MessageComposerViewController_iPad alloc] initWithNibName:@"MessageComposerViewController_iPad" bundle:nil];
