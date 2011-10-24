@@ -12,5 +12,6 @@
 @interface UINavigationBar (eXoCustomIphone)
 
 - (void) drawRect:(CGRect)rect;
+- (void) applyDefaultStyle;
 
 @end

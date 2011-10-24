@@ -134,13 +134,6 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
-    //Customize the navigation bar appearance
-    UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
-    navigationBarShadowImgV.frame = CGRectMake(0,self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.size.width,navigationBarShadowImgV.frame.size.height);
-    [self.navigationController.navigationBar addSubview:navigationBarShadowImgV];
-    [navigationBarShadowImgV release];
-    
-    
     //Add the Done button for exit Settings
     _doneBarButtonItem = [[UIBarButtonItem alloc]
                           initWithBarButtonSystemItem:UIBarButtonSystemItemDone

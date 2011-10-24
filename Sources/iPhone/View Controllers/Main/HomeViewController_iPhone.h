@@ -10,7 +10,7 @@
 #import "Three20/Three20.h"
 #import "SettingsViewController.h"
 
-@interface HomeViewController_iPhone : TTViewController <TTLauncherViewDelegate,SettingsDelegateProcotol> {
+@interface HomeViewController_iPhone : UIViewController <TTLauncherViewDelegate,SettingsDelegateProcotol> {
     id                  _delegate;
     TTLauncherView*     _launcherView;
         

@@ -70,6 +70,11 @@
     [customItem release];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+}
+
 
 - (void)loadView 
 {
@@ -79,7 +84,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     //Force the status bar to be black opaque since TTViewController reset it
-    self.statusBarStyle = UIStatusBarStyleBlackOpaque;
+    //self.statusBarStyle = UIStatusBarStyleBlackOpaque;
     
     //Add the eXo logo to the Navigation Bar
     UIImageView* img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eXoLogoNavigationBariPhone.png"]];

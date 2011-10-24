@@ -7,6 +7,7 @@
 //
 
 #import "UINavigationBar+eXoCustomIphone.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation UINavigationBar (eXoCustomIphone) 
@@ -21,6 +22,19 @@
                                                                           alpha:1.]];
 }
 
+
+-(void)willMoveToWindow:(UIWindow *)newWindow{
+	[super willMoveToWindow:newWindow];
+	[self applyDefaultStyle];
+}
+
+- (void)applyDefaultStyle {	
+	// add the drop shadow
+    self.clipsToBounds = NO;
+	self.layer.shadowColor = [[UIColor blackColor] CGColor];
+	self.layer.shadowOffset = CGSizeMake(0.0, 3.0);
+	self.layer.shadowOpacity = 0.25;
+}
 
 
 @end
