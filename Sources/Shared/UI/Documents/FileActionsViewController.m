@@ -263,6 +263,10 @@ enableDeleteThisFolder:(BOOL)enable
 			}
         }
 	}
+    UIView *view = [[UIView alloc] initWithFrame:cell.frame];
+    view.backgroundColor = [UIColor lightGrayColor];
+	cell.selectedBackgroundView = view;
+    [view release];
 	
 	return cell;
 }
