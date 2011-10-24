@@ -348,7 +348,7 @@
     }
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
-    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
+    //[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
     [_tableView reloadData];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }
