@@ -23,6 +23,7 @@
 #define EXO_AUTO_LOGIN						@"auto_sigin"
 #define EXO_IS_USER_LOGGED                  @"sigin"
 #define EXO_PREFERENCE_VERSION_SERVER       @"version_server"
+#define EXO_PREFERENCE_EDITION_SERVER       @"edition_server"
 #define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
 

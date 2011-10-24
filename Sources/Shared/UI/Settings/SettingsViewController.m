@@ -156,9 +156,11 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     if(platformServerVersion){
         //Setup Version Platfrom and Application
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         [userDefaults synchronize];
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
         [userDefaults synchronize];
     }
     bVersionServer = YES;
@@ -317,7 +319,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 	}
     if(section == 3)
 	{	
-		numofRows = 2;
+		numofRows = 3;
 	}
     
 	return numofRows;
@@ -477,7 +479,8 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 
-                cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13.0];
+                cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
                 cell.detailTextLabel.textColor = [UIColor grayColor];
                 
                 cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -490,9 +493,12 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
             if(indexPath.row == 0){
                 cell.textLabel.text = Localize(@"ServerVersion");
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_SERVER];
-                
             }
             if(indexPath.row == 1){
+                cell.textLabel.text = Localize(@"ApplicationEdition");
+                cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_EDITION_SERVER];
+            }
+            if(indexPath.row == 2){
                 cell.textLabel.text = Localize(@"ApplicationVersion");
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
             }

@@ -455,6 +455,7 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         if([platformServerVersion.isMobileCompliant boolValue]){
             AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
             appDelegate.isCompatibleWithSocial = compatibleWithSocial;
@@ -470,7 +471,8 @@
         }
 	
     } else {
-        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER]; 
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
                                                         message:Localize(@"NotCompliant") 
                                                        delegate:nil 

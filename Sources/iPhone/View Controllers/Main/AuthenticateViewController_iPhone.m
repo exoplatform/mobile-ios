@@ -70,6 +70,7 @@
     if(platformServerVersion != nil){
         //Setup Version Platfrom and Application
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         if([platformServerVersion.isMobileCompliant boolValue]){
             AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
             appDelegate.isCompatibleWithSocial = compatibleWithSocial;
@@ -86,6 +87,7 @@
         
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
                                                         message:Localize(@"NotCompliant") 
                                                        delegate:nil 

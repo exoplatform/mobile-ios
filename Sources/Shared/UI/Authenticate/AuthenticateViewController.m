@@ -343,6 +343,10 @@
     [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
 	[userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
     [_tbvlServerList reloadData];
+    
+    //Invalidate server informations
+    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
+    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
 }
 
 
