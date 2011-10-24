@@ -203,25 +203,16 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if(row == 2)
 		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon"];
-			titleLabel.text = _strDelete;
-			if(!_deleteFolderEnable)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-		}
-		else if(row == 3)
-		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon"];
+            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon"];
 			titleLabel.text = _strCopy;
 			if(_file.isFolder)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
 			}
+			
 		}
-		else if(row == 4)
+		else if(row == 3)
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon"];
 			titleLabel.text = _strMove;
@@ -231,11 +222,21 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-		else if (row ==5)
+		else if(row == 4)
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon"];
 			titleLabel.text = _strPaste;
 			if(fileActionMode <= 0 || !_file.isFolder)
+			{
+				titleLabel.textColor = [UIColor grayColor];
+				cell.userInteractionEnabled = NO;
+			}
+		}
+		else if (row ==5)
+		{
+			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon"];
+			titleLabel.text = _strDelete;
+			if(!_deleteFolderEnable)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -276,7 +277,59 @@ enableDeleteThisFolder:(BOOL)enable
 		//NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
 		//[startThread start];
 		
-		if(row == 0)
+//		if(row == 0)
+//		{
+//			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
+//		}
+//        else if(row == 1)
+//		{
+//            [fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:YES];
+//		}
+//		else if(row == 2)
+//		{
+//            [fileActionsDelegate deleteFile:_file.urlStr];
+//			//[_delegate fileAction:@"DELETE" source:_file._urlStr destination:nil data:nil];
+//		}
+//		else if(row == 3)
+//		{
+//			fileActionMode = 1;
+//			copyMoveFile = _file;
+//            [fileActionsDelegate moveOrCopyActionIsSelected];
+//		}
+//		else if(row == 4)
+//		{
+//			fileActionMode = 2;
+//			copyMoveFile = _file;
+//            [fileActionsDelegate moveOrCopyActionIsSelected];
+//		}
+//		else if (row == 5)
+//		{
+//			if(fileActionMode == 1)
+//			{
+//                
+//                [fileActionsDelegate copyFileSource:copyMoveFile.urlStr
+//                                      toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
+//			}
+//			else
+//			{	
+//                [fileActionsDelegate moveFileSource:copyMoveFile.urlStr
+//                                      toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
+//				fileActionMode = 0;
+//			}
+//		}
+//        else if (row == 6)
+//        {
+//            //Create a new folder
+//            [fileActionsDelegate askToMakeFolderActions:YES];
+//        }
+//        else if (row == 7)
+//        {
+//            [fileActionsDelegate askToMakeFolderActions:NO];
+//        }
+        
+        
+        
+        if(row == 0)
 		{
 			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
 		}
@@ -286,24 +339,19 @@ enableDeleteThisFolder:(BOOL)enable
 		}
 		else if(row == 2)
 		{
-            [fileActionsDelegate deleteFile:_file.urlStr];
-			//[_delegate fileAction:@"DELETE" source:_file._urlStr destination:nil data:nil];
-		}
-		else if(row == 3)
-		{
-			fileActionMode = 1;
+            fileActionMode = 1;
 			copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
-		else if(row == 4)
+		else if(row == 3)
 		{
 			fileActionMode = 2;
 			copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
-		else if (row == 5)
+		else if(row == 4)
 		{
-			if(fileActionMode == 1)
+            if(fileActionMode == 1)
 			{
                 
                 [fileActionsDelegate copyFileSource:copyMoveFile.urlStr
@@ -315,6 +363,11 @@ enableDeleteThisFolder:(BOOL)enable
                                       toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
 				fileActionMode = 0;
 			}
+			
+		}
+		else if (row == 5)
+		{
+			[fileActionsDelegate deleteFile:_file.urlStr];
 		}
         else if (row == 6)
         {
