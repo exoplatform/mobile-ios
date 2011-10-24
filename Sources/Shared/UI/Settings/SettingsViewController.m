@@ -18,8 +18,8 @@
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
-static NSString *CellIdentifierGuide = @"CellIdentifierGuide";
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
+static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformationCellIdentifier";
 
 //Define tags for Language cells
 #define kTagForCellSubviewTitleLabel 222
@@ -229,7 +229,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 5;
+    return 4;
 }
 
 
@@ -279,12 +279,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 			break;
 		}
             
-		case 3:
-		{
-			headerLabel.text = Localize(@"UserGuide");
-			break;
-		}
-        case 4:
+        case 3:
 		{
 			headerLabel.text = Localize(@"ApplicationsInformation");
 			break;
@@ -321,10 +316,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 		numofRows = [_arrServerList count] + 1;
 	}
     if(section == 3)
-	{	
-		numofRows = 1;
-	}
-    if(section == 4)
 	{	
 		numofRows = 2;
 	}
@@ -477,71 +468,34 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             break;
         }
             
+            
         case 3:
         {
-            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierGuide];
-            if(cell == nil) 
-            {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
-                
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServerInformation];
+            if(cell == nil) {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierServerInformation] autorelease];
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-            
-            cell.textLabel.text = Localize(@"UserGuide");
-            break;
-        }
-            
-        case 4:
-        {
-            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierGuide];
-            if(cell == nil) 
-            {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGuide] autorelease];
                 
-                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.detailTextLabel.textColor = [UIColor grayColor];
+                
+                cell.textLabel.backgroundColor = [UIColor clearColor];
+                cell.detailTextLabel.backgroundColor = [UIColor clearColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
+            }   
             NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-            if(bVersionServer){                
-                UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 44)] autorelease];
-                label.backgroundColor = [UIColor clearColor];
-                label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-                label.textColor = [UIColor darkGrayColor];
-                label.textAlignment = UITextAlignmentRight;
-                cell.accessoryView = label;
+               
+            //Create an image streachable images for background
+            if(indexPath.row == 0){
+                cell.textLabel.text = Localize(@"ServerVersion");
+                cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_SERVER];
                 
-                if(indexPath.row == 0){
-                    cell.textLabel.text = Localize(@"ServerVersion");
-                    label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_SERVER];
-                }
-                if(indexPath.row == 1){
-                    cell.textLabel.text = Localize(@"ApplicationVersion");
-                    label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
-                }
-            } else {
-                
-                if(indexPath.row == 0){
-                    cell.textLabel.text = Localize(@"ServerVersion");
-                    UIActivityIndicatorView *loading = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-                    [loading startAnimating];
-                    cell.accessoryView = loading;
-                }
-                if(indexPath.row == 1){
-                    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 44)] autorelease];
-                    label.backgroundColor = [UIColor clearColor];
-                    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-                    label.textColor = [UIColor darkGrayColor];
-                    label.textAlignment = UITextAlignmentRight;
-                    cell.accessoryView = label;
-                    cell.textLabel.text = Localize(@"ApplicationVersion");
-                    label.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
-                    cell.accessoryView = label;
-                }
             }
-            
+            if(indexPath.row == 1){
+                cell.textLabel.text = Localize(@"ApplicationVersion");
+                cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
+            }
             break;
         }
             
