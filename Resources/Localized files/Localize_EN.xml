@@ -140,8 +140,12 @@
     
     <key>ServerVersion</key>
 	<string>Server Version</string>
+    <key>ApplicationEdition</key>
+	<string>Application Edition</string>
     <key>ApplicationVersion</key>
 	<string>Application Version</string>
+    
+    
     <key>MessageInfo</key>
     <string>Message Info</string>
     <key>MessageErrorServer</key>
