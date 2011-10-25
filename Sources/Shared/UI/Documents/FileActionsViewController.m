@@ -278,61 +278,6 @@ enableDeleteThisFolder:(BOOL)enable
 	
 	if(section == 0)
 	{
-		//NSThread *startThread = [[NSThread alloc] initWithTarget:self selector:@selector(startInProgress) object:nil];
-		//[startThread start];
-		
-//		if(row == 0)
-//		{
-//			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
-//		}
-//        else if(row == 1)
-//		{
-//            [fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:YES];
-//		}
-//		else if(row == 2)
-//		{
-//            [fileActionsDelegate deleteFile:_file.urlStr];
-//			//[_delegate fileAction:@"DELETE" source:_file._urlStr destination:nil data:nil];
-//		}
-//		else if(row == 3)
-//		{
-//			fileActionMode = 1;
-//			copyMoveFile = _file;
-//            [fileActionsDelegate moveOrCopyActionIsSelected];
-//		}
-//		else if(row == 4)
-//		{
-//			fileActionMode = 2;
-//			copyMoveFile = _file;
-//            [fileActionsDelegate moveOrCopyActionIsSelected];
-//		}
-//		else if (row == 5)
-//		{
-//			if(fileActionMode == 1)
-//			{
-//                
-//                [fileActionsDelegate copyFileSource:copyMoveFile.urlStr
-//                                      toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
-//			}
-//			else
-//			{	
-//                [fileActionsDelegate moveFileSource:copyMoveFile.urlStr
-//                                      toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
-//				fileActionMode = 0;
-//			}
-//		}
-//        else if (row == 6)
-//        {
-//            //Create a new folder
-//            [fileActionsDelegate askToMakeFolderActions:YES];
-//        }
-//        else if (row == 7)
-//        {
-//            [fileActionsDelegate askToMakeFolderActions:NO];
-//        }
-        
-        
-        
         if(row == 0)
 		{
 			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
