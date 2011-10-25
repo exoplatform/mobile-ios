@@ -7,7 +7,7 @@
 //
 
 #import "DashboardViewController.h"
-#import "DashboardProxy.h"
+#import "DashboardProxy_old.h"
 #import "LanguageHelper.h"
 #import "Gadget.h"
 #import "EmptyView.h"
@@ -85,10 +85,10 @@
     //Start the loader
     [self showLoader];
     
-    //Set the controlle as delegate of the DashboardProxy
-    [DashboardProxy sharedInstance];
-    [DashboardProxy sharedInstance].proxyDelegate = self;
-    [[DashboardProxy sharedInstance] startRetrievingGadgets];
+    //Set the controlle as delegate of the DashboardProxy_old
+    [DashboardProxy_old sharedInstance];
+    [DashboardProxy_old sharedInstance].proxyDelegate = self;
+    [[DashboardProxy_old sharedInstance] startRetrievingGadgets];
     
 
 }
@@ -154,7 +154,7 @@
     [emptyView release];
 }
 
-#pragma mark - DashboardProxy delegates methods 
+#pragma mark - DashboardProxy_old delegates methods 
 
 //Method called when gadgets has been retrieved
 -(void)didFinishLoadingGadgets:(NSMutableArray *)arrGadgets {

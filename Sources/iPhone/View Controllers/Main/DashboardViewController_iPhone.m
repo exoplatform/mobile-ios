@@ -7,7 +7,7 @@
 //
 
 #import "DashboardViewController_iPhone.h"
-#import "DashboardProxy.h"
+#import "DashboardProxy_old.h"
 #import "Gadget.h"
 #import "GadgetDisplayViewController_iPhone.h"
 

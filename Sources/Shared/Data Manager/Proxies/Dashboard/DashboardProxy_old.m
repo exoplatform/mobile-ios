@@ -1,19 +1,20 @@
+
 //
-//  DashboardProxy.m
+//  DashboardProxy_old.m
 //  eXo Platform
 //
 //  Created by Stévan Le Meur on 23/08/11.
 //  Copyright 2011 eXo Platform. All rights reserved.
 //
 
-#import "DashboardProxy.h"
+#import "DashboardProxy_old.h"
 #import "defines.h"
 #import "AuthenticateProxy.h"
 #import "DataProcess.h"
 #import "Gadget.h"
 
 
-@interface DashboardProxy (PrivateMethods)
+@interface DashboardProxy_old (PrivateMethods)
 - (NSData*)sendRequest:(NSString*)urlStr;
 - (NSData*)sendRequestToGetGadget:(NSString*)urlStr;
 - (NSMutableArray*)listOfGadgetsWithURL:(NSString *)url;
@@ -24,20 +25,20 @@
 
 
 
-@implementation DashboardProxy
+@implementation DashboardProxy_old
 
 @synthesize proxyDelegate = proxyDelegate;
 
 #pragma mark - Object Management
 //Singleton Accessor/Creator
-+ (DashboardProxy*)sharedInstance
++ (DashboardProxy_old*)sharedInstance
 {
-	static DashboardProxy *sharedInstance;
+	static DashboardProxy_old *sharedInstance;
 	@synchronized(self)
 	{
 		if(!sharedInstance)
 		{
-			sharedInstance = [[DashboardProxy alloc] init];
+			sharedInstance = [[DashboardProxy_old alloc] init];
 		}
 		return sharedInstance;
 	}

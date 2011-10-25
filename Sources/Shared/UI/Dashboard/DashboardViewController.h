@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DashboardProxy.h"
+#import "DashboardProxy_old.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 #import "CustomBackgroundForCell_iPhone.h"
@@ -17,7 +17,7 @@
 #define kTagForCellSubviewDescriptionLabel 33
 #define kTagForCellSubviewImageView 44
 
-@interface DashboardViewController : UIViewController <DashboardProxyDelegate, UITableViewDataSource, UITableViewDelegate>{
+@interface DashboardViewController : UIViewController <DashboardProxyDelegate_old, UITableViewDataSource, UITableViewDelegate>{
     
     NSMutableArray*         _arrTabs;	//Gadget array 
     IBOutlet UITableView*   _tblGadgets;

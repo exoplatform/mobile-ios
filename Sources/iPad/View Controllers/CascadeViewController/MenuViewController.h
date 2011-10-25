@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h> 
 #import "DocumentsViewController_iPad.h"
 #import "DashboardViewController_iPad.h"
-#import "DashboardProxy.h"
+#import "DashboardProxy_old.h"
 #import "ChatWindowViewController_iPad.h"
 #import "MessengerViewController_iPad.h"
 #import "SettingsViewController_iPad.h"

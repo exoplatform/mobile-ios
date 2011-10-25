@@ -216,7 +216,7 @@
 		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
 		46ABBE95138914200077809B /* DocumentsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */; };
 		46ADAC691402809A005ABA79 /* AuthenticateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAC681402809A005ABA79 /* AuthenticateProxy.m */; };
-		46ADAD141403E419005ABA79 /* DashboardProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAD131403E419005ABA79 /* DashboardProxy.m */; };
+		46ADAD141403E419005ABA79 /* DashboardProxy_old.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAD131403E419005ABA79 /* DashboardProxy_old.m */; };
 		46ADAED314052599005ABA79 /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAED214052599005ABA79 /* LanguageHelper.m */; };
 		46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */; };
 		46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAEE414068EAF005ABA79 /* DashboardViewController.m */; };
@@ -1045,8 +1045,8 @@
 		46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController_iPhone.m; path = ../Main/DocumentsViewController_iPhone.m; sourceTree = "<group>"; };
 		46ADAC671402809A005ABA79 /* AuthenticateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticateProxy.h; path = Authenticate/AuthenticateProxy.h; sourceTree = "<group>"; };
 		46ADAC681402809A005ABA79 /* AuthenticateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticateProxy.m; path = Authenticate/AuthenticateProxy.m; sourceTree = "<group>"; };
-		46ADAD121403E419005ABA79 /* DashboardProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardProxy.h; path = Dashboard/DashboardProxy.h; sourceTree = "<group>"; };
-		46ADAD131403E419005ABA79 /* DashboardProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardProxy.m; path = Dashboard/DashboardProxy.m; sourceTree = "<group>"; };
+		46ADAD121403E419005ABA79 /* DashboardProxy_old.h */ = {isa = PBXFileReference; fileEncoding = 4; name = DashboardProxy_old.h; path = Dashboard/DashboardProxy_old.h; sourceTree = "<group>"; };
+		46ADAD131403E419005ABA79 /* DashboardProxy_old.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardProxy_old.m; path = Dashboard/DashboardProxy_old.m; sourceTree = "<group>"; };
 		46ADAED114052599005ABA79 /* LanguageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
 		46ADAED214052599005ABA79 /* LanguageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelper.m; sourceTree = "<group>"; };
 		46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityStreamBrowseViewController_iPhone.xib; path = Sources/iPhone/NIB/ActivityStreamBrowseViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
@@ -2203,8 +2203,8 @@
 		46ADAD111403E3C0005ABA79 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				46ADAD121403E419005ABA79 /* DashboardProxy.h */,
-				46ADAD131403E419005ABA79 /* DashboardProxy.m */,
+				46ADAD121403E419005ABA79 /* DashboardProxy_old.h */,
+				46ADAD131403E419005ABA79 /* DashboardProxy_old.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -4183,7 +4183,7 @@
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
 				8997843D13F53568002E7E1C /* Reachability.m in Sources */,
 				46ADAC691402809A005ABA79 /* AuthenticateProxy.m in Sources */,
-				46ADAD141403E419005ABA79 /* DashboardProxy.m in Sources */,
+				46ADAD141403E419005ABA79 /* DashboardProxy_old.m in Sources */,
 				46ADAED314052599005ABA79 /* LanguageHelper.m in Sources */,
 				46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */,
 				89967CBA14074C5E00FF700D /* URLAnalyzer.m in Sources */,
