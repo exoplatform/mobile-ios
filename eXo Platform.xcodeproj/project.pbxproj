@@ -787,7 +787,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* eXo Beta3-23-10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Beta3-23-10.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* eXo Beta3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo Beta3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
@@ -1045,7 +1045,7 @@
 		46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController_iPhone.m; path = ../Main/DocumentsViewController_iPhone.m; sourceTree = "<group>"; };
 		46ADAC671402809A005ABA79 /* AuthenticateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticateProxy.h; path = Authenticate/AuthenticateProxy.h; sourceTree = "<group>"; };
 		46ADAC681402809A005ABA79 /* AuthenticateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticateProxy.m; path = Authenticate/AuthenticateProxy.m; sourceTree = "<group>"; };
-		46ADAD121403E419005ABA79 /* DashboardProxy_old.h */ = {isa = PBXFileReference; fileEncoding = 4; name = DashboardProxy_old.h; path = Dashboard/DashboardProxy_old.h; sourceTree = "<group>"; };
+		46ADAD121403E419005ABA79 /* DashboardProxy_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardProxy_old.h; path = Dashboard/DashboardProxy_old.h; sourceTree = "<group>"; };
 		46ADAD131403E419005ABA79 /* DashboardProxy_old.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardProxy_old.m; path = Dashboard/DashboardProxy_old.m; sourceTree = "<group>"; };
 		46ADAED114052599005ABA79 /* LanguageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
 		46ADAED214052599005ABA79 /* LanguageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelper.m; sourceTree = "<group>"; };
@@ -1542,7 +1542,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* eXo Beta3-23-10.app */,
+				1D6058910D05DD3D006BFB54 /* eXo Beta3.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3443,7 +3443,7 @@
 			);
 			name = "eXo Platform";
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo Beta3-23-10.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* eXo Beta3.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4301,7 +4301,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Beta3-23-10";
+				PRODUCT_NAME = "eXo Beta3";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -4340,7 +4340,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Beta3-23-10";
+				PRODUCT_NAME = "eXo Beta3";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -4414,7 +4414,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Beta3-23-10";
+				PRODUCT_NAME = "eXo Beta3";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4489,7 +4489,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo Beta3-23-10";
+				PRODUCT_NAME = "eXo Beta3";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
