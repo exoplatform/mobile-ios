@@ -55,6 +55,8 @@
     CGRect originRect;
     BOOL zoomOutOrZoomIn;
     UITapGestureRecognizer *tapGesture;
+    
+    UIView *maskView;
 }
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;

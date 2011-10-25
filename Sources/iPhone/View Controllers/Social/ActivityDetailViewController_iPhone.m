@@ -33,10 +33,11 @@
     
     [messageComposerViewController release];
 }
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-//    EGOImageView *imgView = (EGOImageView *)tapGesture.view;
-//    imgView.frame = originRect;
+#pragma mark - Loader Management
+- (void)setHudPosition {
+    //Default implementation
+    //Nothing keep the default position of the HUD
+    _hudActivityDetails.center = self.view.center;
 }
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{

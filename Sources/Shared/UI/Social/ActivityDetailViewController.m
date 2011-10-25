@@ -66,6 +66,7 @@
     _hudActivityDetails = nil;
     
     [tapGesture release];
+    [maskView release];
         
     [super dealloc];
 }
@@ -106,10 +107,8 @@
     self.title = Localize(@"Details");
     
     //Set the background Color of the view
-    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
-    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    _tblvActivityDetail.backgroundView = background;
-    [background release];
+    _tblvActivityDetail.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
     UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:23];
@@ -127,7 +126,11 @@
         _reloading = FALSE;
         
 	}
+    maskView = [[UIView alloc] initWithFrame:_tblvActivityDetail.frame];
+    maskView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
+    [_btnMsgComposer setHidden:YES];
+    [_tblvActivityDetail setHidden:YES];
 }
 
 /*
@@ -231,7 +234,7 @@
     if (indexPath.section == 0) 
     {
         n = [self getHeighSizeForTableView:tableView andText:_socialActivityStream.title];
-        if(_socialActivityStream.posterPicture.docName != nil){
+        if([_socialActivityStream.templateParams valueForKey:@"DOCLINK"] != nil){
             n += 70;
         }
     }
@@ -260,7 +263,7 @@
     //If section for messages
     if (indexPath.section == 0) 
     {
-        if(_socialActivityStream.posterPicture.docLink == nil){
+        if([_socialActivityStream.templateParams valueForKey:@"DOCLINK"] == nil){
             ActivityDetailMessageTableViewCell* cell = (ActivityDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailMessageTableViewCell];
             //Check if we found a cell
             if (cell == nil) 
@@ -309,7 +312,7 @@
             
             [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
             [cell setSocialActivityDetail:_socialActivityDetails];
-            [cell setLinkForImageAttach:_socialActivityStream.posterPicture.docLink];
+            [cell setLinkForImageAttach:[_socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
             return cell;
         }
         
@@ -496,7 +499,9 @@
     
     //Hide the loader
     [self hideLoader:YES];
-    
+    if(maskView.superview != nil){
+        [maskView removeFromSuperview];
+    }
     [_tblvActivityDetail reloadData];
     
     [self updateActivityInActivityStream];
@@ -516,6 +521,7 @@
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
 {
+    //[self.view insertSubview:maskView belowSubview:_hudActivityDetails.view];
     _socialActivityStream = socialActivityStream;
     _socialUserProfile = currentUserProfile;
     _activityAction = 0;
@@ -527,6 +533,8 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy 
 {
+    [_btnMsgComposer setHidden:NO];
+    [_tblvActivityDetail setHidden:NO];
     if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) {
         [_socialActivityDetails release];
         _socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
@@ -560,6 +568,7 @@
      
     [alertView show];
 //    [alertView release];
+    [_btnMsgComposer setHidden:YES];
 }
 
 - (void)likeDislikeActivity:(NSString *)activity
