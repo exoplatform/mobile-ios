@@ -85,21 +85,22 @@
      @"totalNumberOfComments",@"totalNumberOfComments",
      @"totalNumberOfLikes",@"totalNumberOfLikes",
      @"comments",@"comments", 
+     @"templateParams", @"templateParams",
     nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
     
-    //Retrieve the Picture  directly on the activityStream service
-    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
-    [posterPictureMapping mapKeyPathsToAttributes:
-     @"DOCPATH",@"docPath",
-     @"MESSAGE",@"message",
-     @"DOCLINK",@"docLink",
-     @"WORKSPACE",@"workspace",
-     @"REPOSITORY",@"repository",
-     @"DOCNAME",@"docName",
-     nil];
-    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
+//    //Retrieve the Picture  directly on the activityStream service
+//    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
+//    [posterPictureMapping mapKeyPathsToAttributes:
+//     @"DOCPATH",@"docPath",
+//     @"MESSAGE",@"message",
+//     @"DOCLINK",@"docLink",
+//     @"WORKSPACE",@"workspace",
+//     @"REPOSITORY",@"repository",
+//     @"DOCNAME",@"docName",
+//     nil];
+//    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
     
     
     //Retrieve the UserProfile directly on the activityStream service
@@ -138,21 +139,22 @@
      @"likedByIdentities",@"likedByIdentities",
      @"titleId",@"titleId",
      @"comments",@"comments", 
+     @"templateParams", @"templateParams",
      nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
     
-    //Retrieve the Picture  directly on the activityStream service
-    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
-    [posterPictureMapping mapKeyPathsToAttributes:
-     @"DOCPATH",@"docPath",
-     @"MESSAGE",@"message",
-     @"DOCLINK",@"docLink",
-     @"WORKSPACE",@"workspace",
-     @"REPOSITORY",@"repository",
-     @"DOCNAME",@"docName",
-     nil];
-    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
+//    //Retrieve the Picture  directly on the activityStream service
+//    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
+//    [posterPictureMapping mapKeyPathsToAttributes:
+//     @"DOCPATH",@"docPath",
+//     @"MESSAGE",@"message",
+//     @"DOCLINK",@"docLink",
+//     @"WORKSPACE",@"workspace",
+//     @"REPOSITORY",@"repository",
+//     @"DOCNAME",@"docName",
+//     nil];
+//    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
     
     
     //Retrieve the UserProfile directly on the activityStream service

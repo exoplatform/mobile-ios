@@ -28,6 +28,7 @@
 @synthesize postedTimeInWords = _postedTimeInWords;
 @synthesize posterUserProfile = _posterUserProfile;
 @synthesize posterPicture = _posterPicture;
+@synthesize templateParams = _templateParams;
  
 - (void)dealloc {
     [_identityId release];
@@ -42,6 +43,7 @@
     [_postedTimeInWords release];
     [_posterUserProfile release];
     [_posterPicture release];
+    [_templateParams release];
     [super dealloc];
 }
 
