@@ -72,11 +72,7 @@
     
     _webView.opaque = NO;
     _webView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	if(_url != nil)
+    if(_url != nil)
 	{
 		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 		[request setURL:_url]; 
@@ -84,7 +80,6 @@
         [request release];
     }
 }
-
 
 
 - (void)viewDidUnload
