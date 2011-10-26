@@ -92,8 +92,6 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
-    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
-    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
     
     //Display the eXoMobileView Controller
     [UIView transitionWithView:self.window
