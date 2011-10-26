@@ -48,6 +48,8 @@
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
     
+
+    
     CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                           lineBreakMode:UILineBreakModeWordWrap];
     if (theSize.height < 30) 
@@ -59,13 +61,15 @@
         fHeight = 95 + theSize.height;
     }
     
-    if (fHeight > 200) {
+    /*if (fHeight > 200) {
         fHeight = 200;
         
-    }
+    }*/
     if (isPicture) {
         fHeight += 70;
     }
+    
+    
     
     
     return fHeight;
