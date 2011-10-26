@@ -101,6 +101,7 @@
 		1FCEDED11457A34F0058C80F /* ActivityTypeLink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC11457A34F0058C80F /* ActivityTypeLink@2x.png */; };
 		1FCEDED21457A34F0058C80F /* ActivityTypeNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC21457A34F0058C80F /* ActivityTypeNormal@2x.png */; };
 		1FCEDED31457A34F0058C80F /* ActivityTypeWiki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC31457A34F0058C80F /* ActivityTypeWiki@2x.png */; };
+		1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCEDED51458021C0058C80F /* eXoViewController.m */; };
 		1FD0C3FF143BF146002F40A7 /* IconForEmptyFolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3F4143BF146002F40A7 /* IconForEmptyFolder.png */; };
 		1FD0C400143BF146002F40A7 /* IconForNoActivities.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3F5143BF146002F40A7 /* IconForNoActivities.png */; };
 		1FD0C401143BF146002F40A7 /* IconForNoContact.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3F6143BF146002F40A7 /* IconForNoContact.png */; };
@@ -906,6 +907,8 @@
 		1FCEDEC11457A34F0058C80F /* ActivityTypeLink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityTypeLink@2x.png"; sourceTree = "<group>"; };
 		1FCEDEC21457A34F0058C80F /* ActivityTypeNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityTypeNormal@2x.png"; sourceTree = "<group>"; };
 		1FCEDEC31457A34F0058C80F /* ActivityTypeWiki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityTypeWiki@2x.png"; sourceTree = "<group>"; };
+		1FCEDED41458021C0058C80F /* eXoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoViewController.h; sourceTree = "<group>"; };
+		1FCEDED51458021C0058C80F /* eXoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoViewController.m; sourceTree = "<group>"; };
 		1FD0C3F4143BF146002F40A7 /* IconForEmptyFolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconForEmptyFolder.png; sourceTree = "<group>"; };
 		1FD0C3F5143BF146002F40A7 /* IconForNoActivities.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconForNoActivities.png; sourceTree = "<group>"; };
 		1FD0C3F6143BF146002F40A7 /* IconForNoContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconForNoContact.png; sourceTree = "<group>"; };
@@ -3402,6 +3405,8 @@
 				89967CB914074C5E00FF700D /* URLAnalyzer.m */,
 				1FCBCC26143D4BB300CC4F21 /* EmptyView.h */,
 				1FCBCC27143D4BB300CC4F21 /* EmptyView.m */,
+				1FCEDED41458021C0058C80F /* eXoViewController.h */,
+				1FCEDED51458021C0058C80F /* eXoViewController.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -4306,6 +4311,7 @@
 				46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */,
 				890FF79F1447D5E3001320A5 /* Message.m in Sources */,
 				1FCDDB6F14481ED100846232 /* ActivityPictureDetailMessageTableViewCell.m in Sources */,
+				1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
