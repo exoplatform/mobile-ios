@@ -27,7 +27,7 @@
     NSString*               _titleId;
     NSArray*                _comments;    
     NSString*               _postedTimeInWords;
-    NSDictionary*           _templateParams;
+    NSDictionary*           _templateParams;    
 }
 
 @property (nonatomic, retain) NSString* identityId;
@@ -47,6 +47,7 @@
 @property (nonatomic, retain) SocialUserProfile* posterUserProfile;
 @property (nonatomic, retain) SocialPictureAttach *posterPicture;
 @property (nonatomic, retain) NSDictionary *templateParams;
+
 
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;

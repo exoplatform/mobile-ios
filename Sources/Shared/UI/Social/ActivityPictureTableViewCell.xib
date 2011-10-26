@@ -76,13 +76,27 @@
 								<string key="NSFrame">{{150, 62}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="900677899"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="139632858"/>
+								<reference key="NSNextKeyView" ref="690318354"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
+							<object class="IBUIImageView" id="690318354">
+								<reference key="NSNextResponder" ref="900677899"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{71, 147}, {14, 14}}</string>
+								<reference key="NSSuperview" ref="900677899"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="139632858"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">ActivityTypeNormal.png</string>
+								</object>
 							</object>
 							<object class="IBUIButton" id="650007082">
 								<reference key="NSNextResponder" ref="900677899"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{229, 144}, {36, 19}}</string>
+								<string key="NSFrame">{{236, 144}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="900677899"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="672033065"/>
@@ -126,7 +140,7 @@
 							<object class="IBUIButton" id="672033065">
 								<reference key="NSNextResponder" ref="900677899"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{265, 144}, {36, 19}}</string>
+								<string key="NSFrame">{{272, 144}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="900677899"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -218,7 +232,7 @@
 							<object class="IBUILabel" id="139632858">
 								<reference key="NSNextResponder" ref="900677899"/>
 								<int key="NSvFlags">266</int>
-								<string key="NSFrame">{{71, 138}, {152, 30}}</string>
+								<string key="NSFrame">{{90, 142}, {138, 24}}</string>
 								<reference key="NSSuperview" ref="900677899"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="650007082"/>
@@ -342,6 +356,14 @@
 					</object>
 					<int key="connectionID">21</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">imgType</string>
+						<reference key="source" ref="534562999"/>
+						<reference key="destination" ref="690318354"/>
+					</object>
+					<int key="connectionID">23</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -378,6 +400,7 @@
 							<reference ref="139632858"/>
 							<reference ref="791795301"/>
 							<reference ref="858407537"/>
+							<reference ref="690318354"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -421,6 +444,11 @@
 						<reference key="object" ref="858407537"/>
 						<reference key="parent" ref="534562999"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">22</int>
+						<reference key="object" ref="690318354"/>
+						<reference key="parent" ref="534562999"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -433,6 +461,7 @@
 					<string>11.IBPluginDependency</string>
 					<string>12.CustomClassName</string>
 					<string>12.IBPluginDependency</string>
+					<string>22.IBPluginDependency</string>
 					<string>3.CustomClassName</string>
 					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
@@ -452,6 +481,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>EGOImageView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ActivityPictureTableViewCell</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -478,7 +508,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">21</int>
+			<int key="maxID">23</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -492,6 +522,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>btnComment</string>
 							<string>btnLike</string>
+							<string>imgType</string>
 							<string>imgvAvatar</string>
 							<string>imgvMessageBg</string>
 							<string>lbDate</string>
@@ -502,6 +533,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UIImageView</string>
 							<string>EGOImageView</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
@@ -515,6 +547,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>btnComment</string>
 							<string>btnLike</string>
+							<string>imgType</string>
 							<string>imgvAvatar</string>
 							<string>imgvMessageBg</string>
 							<string>lbDate</string>
@@ -530,6 +563,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">btnLike</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">imgType</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">imgvAvatar</string>
@@ -596,8 +633,17 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">default-avatar.png</string>
-			<string key="NS.object.0">{64, 64}</string>
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>ActivityTypeNormal.png</string>
+				<string>default-avatar.png</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{20, 20}</string>
+				<string>{59, 59}</string>
+			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

@@ -47,7 +47,7 @@
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
     
-    NSLog(@"%@",[NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
+//    NSLog(@"%@",[NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
     
     return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
 
@@ -58,7 +58,7 @@
 //Helper to create the path to get the ressources
 - (NSString *)createPath 
 {    
-    NSLog(@"%@", [NSString stringWithFormat:@"feed.json",_socialUserProfile.identity]);
+//    NSLog(@"%@", [NSString stringWithFormat:@"feed.json",_socialUserProfile.identity]);
     
     return @"feed.json"; 
 }
@@ -100,7 +100,7 @@
 //     @"REPOSITORY",@"repository",
 //     @"DOCNAME",@"docName",
 //     nil];
-//    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
+//    [mapping mapKeyPath:@"templateParams" toRelationship:@"templateParams" withObjectMapping:posterPictureMapping];
     
     
     //Retrieve the UserProfile directly on the activityStream service
@@ -179,7 +179,7 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    NSLog(@"Loaded payload Avtivity Stream: %@", [response bodyAsString]);
+    //NSLog(@"Loaded payload Avtivity Stream: %@", [response bodyAsString]);
 }
 
 

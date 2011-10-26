@@ -20,6 +20,7 @@
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;
 @synthesize webViewForContent = _webViewForContent;
+@synthesize imgType = _imgType;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

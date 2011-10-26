@@ -22,6 +22,7 @@
     
     EGOImageView*          _imgvAvatar;
     UIImageView*           _imgvMessageBg;
+    UIImageView*           _imgType;
     
     UIWebView*             _webViewForContent;
 }
@@ -30,6 +31,7 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+@property (retain, nonatomic) IBOutlet UIImageView* imgType;
 
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;

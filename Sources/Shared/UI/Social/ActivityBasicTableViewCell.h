@@ -22,6 +22,7 @@
     UILabel*               _lbName;
     
     EGOImageView*          _imgvAvatar;
+    UIImageView*           _imgType;
     UIButton*              _btnLike;
     UIButton*              _btnComment;
     
@@ -38,6 +39,7 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+@property (retain, nonatomic) IBOutlet UIImageView*  imgType;
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;

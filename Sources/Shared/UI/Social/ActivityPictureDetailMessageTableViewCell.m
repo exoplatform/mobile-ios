@@ -16,7 +16,7 @@
 @synthesize imgvAttach = _imgvAttach;
 
 - (void)setLinkForImageAttach:(NSString *)URL{
-    _imgvAttach.placeholderImage = [UIImage imageNamed:@"default-avatar"];
+    _imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     _imgvAttach.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], URL]];
 }

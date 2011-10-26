@@ -22,7 +22,7 @@
 
 @implementation ActivityBasicTableViewCell
 
-@synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
+@synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -198,7 +198,7 @@
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 {
     //SonTH commented out
-    NSLog(@"%@",socialActivityStream.posterUserProfile.avatarUrl);
+    //NSLog(@"%@",socialActivityStream.posterUserProfile.avatarUrl);
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
     htmlLabel.html = socialActivityStream.title;
 
