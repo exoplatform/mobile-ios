@@ -29,8 +29,7 @@
     [super viewDidLoad];
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
     
-    _navigation.topItem.title = Localize(@"News");
-    
+    //_navigation.topItem.title = Localize(@"News");
 }
 
 // Specific method to retrieve the height of the cell
@@ -166,7 +165,7 @@
     } 
     
     _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
-    
+    _activityDetailViewController.iconType = [self getIconForType:socialActivityStream.type];
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
     
     _indexpathSelectedActivity = [indexPath copy];

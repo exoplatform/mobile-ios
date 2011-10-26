@@ -14,21 +14,8 @@
 
 - (void)dealloc
 {
-    [_navBar release];
-    _navBar = nil;
-    
     [super dealloc];
 }
-
--(void)viewDidLoad {
-    [super viewDidLoad];
-    _navBar.topItem.title = self.titleForActivityLink;
-}
-
-- (void) setTitle:(NSString *)title {
-    _navBar.topItem.title = self.titleForActivityLink;
-}
-
 
 - (void)setHudPosition {
     _hudDocument.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);

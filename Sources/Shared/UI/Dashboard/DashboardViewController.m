@@ -30,9 +30,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        //TODO localize that
-        self.title = Localize(@"Dashboard");
     }
     return self;
 }
@@ -67,7 +64,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.title = Localize(@"Dashboard");
     //Add the loader
     _hudDashboard = [[ATMHud alloc] initWithDelegate:self];
     [_hudDashboard setAllowSuperviewInteraction:NO];

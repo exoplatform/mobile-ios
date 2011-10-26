@@ -60,6 +60,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         _activityAction = 0;
         
         _arrActivityStreams = [[NSMutableArray alloc] init];
+        _arrayOfType = [[NSMutableArray alloc] init]; 
     }
     return self;
 }
@@ -385,10 +386,10 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-    BOOL isPicture = (socialActivityStream.posterPicture.docName != nil);
+    BOOL isPicture = ([socialActivityStream.templateParams objectForKey:@"DOCLINK"] != nil);
     NSString* text = @"";
     if (isPicture){
-        text = socialActivityStream.posterPicture.message;
+        text = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
     } else {
         text = socialActivityStream.title;
     }
@@ -404,7 +405,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 {    
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     
-    if(socialActivityStream.posterPicture.docName == nil){
+    if([socialActivityStream.templateParams objectForKey:@"DOCLINK"] == nil){
         //We dequeue a cell
         ActivityBasicTableViewCell *cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
         //Check if we found a cell
@@ -425,7 +426,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         float fWidth = tableView.frame.size.width;
         float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
         [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-        
+        cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
         //Set the cell content
         [cell setSocialActivityStream:socialActivityStream];
         return cell;
@@ -441,23 +442,45 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
             [cell configureCell];
         }
         
-        if(cell.imgvAvatar.image)
         cell.delegate = self;
         cell.socialActivytyStream = socialActivityStream;
         
-        NSString* text = socialActivityStream.posterPicture.message;
-        NSLog(@"%@",text);
+        NSString* text = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
         //Set the size of the cell
         float fWidth = tableView.frame.size.width;
         float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:YES];
         [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-        
+        cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
         //Set the cell content
         [cell setSocialActivityStream:socialActivityStream];
         return cell;
     }
 }
 
+-(NSString *)getIconForType:(NSString *)type {
+    NSString *nameIcon = @"";
+    if([type rangeOfString:@"forum"].length > 0){
+        nameIcon = @"ActivityTypeForum.png";
+    }else if([type rangeOfString:@"answer"].length > 0){
+        nameIcon = @"ActivityTypeAnswer.png";
+    }else if([type rangeOfString:@"DOC_ACTIVITY"].length > 0){
+        nameIcon = @"ActivityTypeDocument.png";
+    }else if([type rangeOfString:@"wiki"].length > 0){
+        nameIcon = @"ActivityTypeWiki.png";
+    }else if([type rangeOfString:@"exosocial:relationship"].length > 0){
+        nameIcon = @"ActivityTypeConnection.png";
+    }else if([type rangeOfString:@"calendar"].length > 0){
+        nameIcon = @"ActivityTypeCalendar.png";
+    }else if([type rangeOfString:@"DEFAULT_ACTIVITY"].length > 0){
+        nameIcon = @"ActivityTypeNormal.png";
+    }else if([type rangeOfString:@"LINK_ACTIVITY"].length > 0){
+        nameIcon = @"ActivityTypeLink.png";
+    }else {
+        nameIcon = @"ActivityTypeNormal.png";
+    }
+    
+    return nameIcon;
+}
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
@@ -599,7 +622,8 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream convertHTMLEncoding];
             [_arrActivityStreams addObject:socialActivityStream];
-            
+
+            NSLog(@"type:%@", socialActivityStream.type);
         }
         
         //All informations has been retrieved we can now display them

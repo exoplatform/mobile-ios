@@ -115,6 +115,7 @@
         [_activityDetailViewController release];
     }
     _activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
+    _activityDetailViewController.iconType = [self getIconForType:socialActivityStream.type];
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                      andCurrentUserProfile:_socialUserProfile];
     

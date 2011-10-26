@@ -11,7 +11,7 @@
 
 @interface ActivityStreamBrowseViewController_iPad : ActivityStreamBrowseViewController {
     
-    IBOutlet UINavigationBar*           _navigation;
+    //IBOutlet UINavigationBar*           _navigation;
 }
 
 @end

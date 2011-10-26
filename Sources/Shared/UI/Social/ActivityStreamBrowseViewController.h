@@ -15,18 +15,19 @@
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 #import "EGOImageView.h"
-
-
+#import "SocialPictureAttach.h"
+#import "eXoViewController.h"
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 @class ActivityDetailViewController;
 @class SocialUserProfile;
 
-@interface ActivityStreamBrowseViewController : UIViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate>
+@interface ActivityStreamBrowseViewController : eXoViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITableView*                   _tblvActivityStream;
     
+    NSMutableArray*                          _arrayOfType;
     NSMutableArray*                         _arrayOfSectionsTitle;
     NSMutableDictionary*                    _sortedActivities;
     ActivityDetailViewController*           _activityDetailViewController;
@@ -51,6 +52,7 @@
     
         
 }
+- (NSString *)getIconForType:(NSString *)type;
 - (void)emptyState;
 - (void)startLoadingActivityStream;
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike;

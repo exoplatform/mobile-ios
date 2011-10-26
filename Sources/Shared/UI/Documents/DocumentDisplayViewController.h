@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
+#import "eXoViewController.h"
 
-
-@interface DocumentDisplayViewController : UIViewController <UIWebViewDelegate> {
+@interface DocumentDisplayViewController : eXoViewController <UIWebViewDelegate> {
     
     UIWebView*	_webView;	//Display gadget on webview
 	NSURL* _url;	//document URL

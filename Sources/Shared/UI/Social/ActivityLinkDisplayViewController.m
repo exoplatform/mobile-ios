@@ -62,6 +62,7 @@
     
     [super viewDidLoad];
     
+    self.title = [_url absoluteString];
     //Add the loader
     _hudDocument = [[ATMHud alloc] initWithDelegate:self];
     [_hudDocument setAllowSuperviewInteraction:NO];

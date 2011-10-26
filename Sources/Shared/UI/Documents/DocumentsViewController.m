@@ -192,6 +192,11 @@
     _tblFiles.backgroundView = background;
     [background release];
     
+    if (_rootFile) {
+        self.title = _rootFile.fileName;
+    } else {
+        self.title = Localize(@"Documents");
+    }
     
     //Set the title of the view controller
     [self setTitleForFilesViewController];
@@ -230,7 +235,7 @@
     
     if (_arrayContentOfRootFile == nil) {
         //TODO Localize this string
-        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"),self.title]];
+        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"), _rootFile ?_rootFile.fileName:Localize(@"Documents")]];
         
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
@@ -514,7 +519,7 @@
             if(displayActionDialogAtRect.size.width == 0) {
                 
                 //present the popover from the rightBarButtonItem of the navigationBar
-                [popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigationBar.topItem.rightBarButtonItem 
+                [popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
                                                  permittedArrowDirections:UIPopoverArrowDirectionUp 
                                                                  animated:YES];
              

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
+#import "eXoViewController.h"
 @class Gadget;
 
 //Display gadget content
-@interface GadgetDisplayViewController : UIViewController <UIWebViewDelegate> {
+@interface GadgetDisplayViewController : eXoViewController <UIWebViewDelegate> {
 	UIWebView*	_webView;	//Display gadget on webview
 	NSURL* _url;	//Gadget URL
 	NSString*	_strBConnectStatus;	//Network connection status

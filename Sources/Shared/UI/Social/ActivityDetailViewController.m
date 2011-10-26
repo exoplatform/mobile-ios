@@ -31,6 +31,8 @@
 
 @implementation ActivityDetailViewController
 
+@synthesize iconType = _iconType;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,7 +50,7 @@
 - (void)dealloc
 {
     [_tblvActivityDetail release];
-    [_navigationBar release];
+    [_navigation release];
     [_socialActivityStream release];
     
     [_cellForMessage release];
@@ -280,7 +282,7 @@
             NSString* text = _socialActivityStream.title;
             float fWidth = tableView.frame.size.width;
             float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
-            
+            cell.imgType.image = [UIImage imageNamed:_iconType];
             [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
             [cell setSocialActivityDetail:_socialActivityDetails];
 
@@ -309,7 +311,7 @@
             float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
 
             fHeight += 70;
-            
+            cell.imgType.image = [UIImage imageNamed:_iconType];
             [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
             [cell setSocialActivityDetail:_socialActivityDetails];
             [cell setLinkForImageAttach:[_socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
@@ -392,7 +394,7 @@
             strLike = Localize(@"NoLikeForTheMoment");
         }
         [arrLikes release];
-        NSLog(@"%@", strLike);
+        //NSLog(@"%@", strLike);
         [cell setUserProfile:_socialActivityDetails.posterIdentity];
         [cell setContent:strLike];
         [cell setUserLikeThisActivity:_currentUserLikeThisActivity];
@@ -525,6 +527,7 @@
     _socialActivityStream = socialActivityStream;
     _socialUserProfile = currentUserProfile;
     _activityAction = 0;
+    NSLog(@"Type:%@", _socialActivityStream.type);
     [self startLoadingActivityDetail];
 }
 

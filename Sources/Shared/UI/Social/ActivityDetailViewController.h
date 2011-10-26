@@ -12,6 +12,7 @@
 #import "MessageComposerViewController.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
+#import "eXoViewController.h"
 
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
@@ -21,10 +22,10 @@
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
-@interface ActivityDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate, UIWebViewDelegate>{
+@interface ActivityDetailViewController : eXoViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate, UIWebViewDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
-    IBOutlet UINavigationBar*               _navigationBar;
+//    IBOutlet UINavigationBar*               _navigationBar;
             
     SocialActivityStream*                   _socialActivityStream;
     
@@ -57,7 +58,11 @@
     UITapGestureRecognizer *tapGesture;
     
     UIView *maskView;
+    
+    NSString *_iconType; // icon for type of activity detail
 }
+@property (retain) NSString *iconType;
+
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
 

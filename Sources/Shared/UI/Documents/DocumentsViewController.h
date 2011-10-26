@@ -12,9 +12,9 @@
 #import "FileActionsViewController.h"
 #import "FileFolderActionsViewController.h"
 #import "URLAnalyzer.h"
+#import "eXoViewController.h"
 
-
-@interface DocumentsViewController : UIViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     File *_rootFile;
     
@@ -33,8 +33,6 @@
     CGRect displayActionDialogAtRect;
     
     UIPopoverController *popoverPhotoLibraryController;
-    
-    IBOutlet UINavigationBar* _navigationBar;
     
 }
 -(void)emptyState;

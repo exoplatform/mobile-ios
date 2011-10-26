@@ -10,7 +10,7 @@
 
 @interface DashboardViewController_iPad : DashboardViewController {
     
-    IBOutlet UINavigationBar*           _navigation;
+    //IBOutlet UINavigationBar*           _navigation;
 
 }
 

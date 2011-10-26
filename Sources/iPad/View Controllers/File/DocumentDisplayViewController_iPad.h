@@ -12,7 +12,7 @@
 
 @interface DocumentDisplayViewController_iPad : DocumentDisplayViewController {
     
-    IBOutlet UINavigationBar *_navBar;
+    //IBOutlet UINavigationBar *_navBar;
     
 }
 

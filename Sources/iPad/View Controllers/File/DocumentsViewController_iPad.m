@@ -42,7 +42,7 @@
     [bt addTarget:self action:@selector(showActionsPanelFromNavigationBarButton:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
     actionButton.width = image.size.width;
-    [_navigationBar.topItem setRightBarButtonItem:actionButton];
+    [_navigation.topItem setRightBarButtonItem:actionButton];
     
     [actionButton release];
 }
@@ -70,11 +70,11 @@
 #pragma mark - UINavigationBar Management
 
 - (void)setTitleForFilesViewController {
-    if (_rootFile) {
-        _navigationBar.topItem.title = _rootFile.fileName;
-    } else {
-        _navigationBar.topItem.title = Localize(@"Documents") ;
-    }
+//    if (_rootFile) {
+//        _navigationBar.topItem.title = _rootFile.fileName;
+//    } else {
+//        _navigationBar.topItem.title = Localize(@"Documents") ;
+//    }
 }
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
@@ -188,7 +188,7 @@
     //set its delegate
     _actionPopoverController.delegate = self;
     //present the popover from the rightBarButtonItem of the navigationBar
-	[_actionPopoverController presentPopoverFromBarButtonItem:_navigationBar.topItem.rightBarButtonItem 
+	[_actionPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
                                      permittedArrowDirections:UIPopoverArrowDirectionUp 
                                                      animated:YES];
     
@@ -196,12 +196,12 @@
     [fileActionsViewController release];
     
     //Prevent any new tap on the button
-    _navigationBar.topItem.rightBarButtonItem.enabled = NO;
+    _navigation.topItem.rightBarButtonItem.enabled = NO;
 }
 
 -(void) hideActionsPanel {
     //Enable the button on the navigationBar
-    _navigationBar.topItem.rightBarButtonItem.enabled = YES;
+    _navigation.topItem.rightBarButtonItem.enabled = YES;
     
     //Dismiss the popover
     [_actionPopoverController dismissPopoverAnimated:YES];
@@ -244,7 +244,7 @@
     
     
     //Enable the button on the navigationBar
-    _navigationBar.topItem.rightBarButtonItem.enabled = YES;
+    _navigation.topItem.rightBarButtonItem.enabled = YES;
     
 }
 
@@ -253,7 +253,7 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
     //Enable the button on the navigationBar
-    _navigationBar.topItem.rightBarButtonItem.enabled = YES;
+    _navigation.topItem.rightBarButtonItem.enabled = YES;
     
     
     //Release the _actionPopoverController

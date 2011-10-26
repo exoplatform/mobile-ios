@@ -14,15 +14,9 @@
 
 - (void)dealloc
 {
-    [_navBar release];
-    _navBar = nil;
-    
     [super dealloc];
 }
 
-- (void) setTitle:(NSString *)title {
-    _navBar.topItem.title = _fileName;
-}
 
 
 - (void)setHudPosition {

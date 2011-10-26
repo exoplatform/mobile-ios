@@ -11,13 +11,13 @@
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 #import "CustomBackgroundForCell_iPhone.h"
-
+#import "eXoViewController.h"
 //Constants Definitions
 #define kTagForCellSubviewTitleLabel 22
 #define kTagForCellSubviewDescriptionLabel 33
 #define kTagForCellSubviewImageView 44
 
-@interface DashboardViewController : UIViewController <DashboardProxyDelegate_old, UITableViewDataSource, UITableViewDelegate>{
+@interface DashboardViewController : eXoViewController <DashboardProxyDelegate_old, UITableViewDataSource, UITableViewDelegate>{
     
     NSMutableArray*         _arrTabs;	//Gadget array 
     IBOutlet UITableView*   _tblGadgets;

@@ -12,7 +12,7 @@
 
 @interface ActivityLinkDisplayViewController_iPad : ActivityLinkDisplayViewController {
     
-    IBOutlet UINavigationBar *_navBar;
+    //IBOutlet UINavigationBar *_navBar;
     
 }
 
