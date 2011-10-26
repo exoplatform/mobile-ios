@@ -95,7 +95,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
         [_activityDetailViewController release];
     }
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:EXO_NOTIFICATION_ACTIVITY_UPDATED];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_indexpathSelectedActivity release];
     
