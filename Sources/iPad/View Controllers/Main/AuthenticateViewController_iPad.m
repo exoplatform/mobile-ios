@@ -38,8 +38,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_hud dismiss];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -498,6 +497,9 @@
 -(void)doneWithSettings {
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue]; 
+    [self signInAnimation:_bAutoLogin];
     [_tbvlServerList reloadData];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }
