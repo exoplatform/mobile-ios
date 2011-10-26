@@ -37,7 +37,7 @@
 
 
 + (SocialRestConfiguration*)sharedInstance;
-
+- (void)updateDatas; //Method can be used to update datas after authentication
 
 
 @end

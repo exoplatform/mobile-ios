@@ -39,32 +39,37 @@
 }
 
 
+- (void)updateDatas {
+    _domainName = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] copy];
+    _restContextName = [kRestContextName copy];
+    _restVersion = [kRestVersion copy];
+    _portalContainerName = [kPortalContainerName copy];
+    _username = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME] copy];
+    _password = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD] copy];
+    
+    //TODO SLM
+    //REmove this line and provide a true Server URL analyzer
+    NSString *domainWithoutHttp = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] stringByReplacingOccurrencesOfString:@"http://" 
+                                                                                                                                                   withString:@""];
+    
+    //TODO SLM
+    //REmove this line and provide a true Server URL analyzer
+    domainWithoutHttp = [domainWithoutHttp stringByReplacingOccurrencesOfString:@"/portal" withString:@""];
+    _domainNameWithCredentials = [[NSString alloc] initWithFormat:@"http://%@:%@%@%@",
+                                  (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME],
+                                  (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD],
+                                  @"@",
+                                  domainWithoutHttp];
+    
+}
+
+
+
 - (id) init
 {
     if ((self = [super init])) 
     {
-        _domainName = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] copy];
-        _restContextName = [kRestContextName copy];
-        _restVersion = [kRestVersion copy];
-        _portalContainerName = [kPortalContainerName copy];
-        _username = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME] copy];
-        _password = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD] copy];
-        
-        //TODO SLM
-        //REmove this line and provide a true Server URL analyzer
-        NSString *domainWithoutHttp = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] stringByReplacingOccurrencesOfString:@"http://" 
-                                                                                                                                            withString:@""];
-        
-        //TODO SLM
-        //REmove this line and provide a true Server URL analyzer
-        domainWithoutHttp = [domainWithoutHttp stringByReplacingOccurrencesOfString:@"/portal" withString:@""];
-        _domainNameWithCredentials = [[NSString alloc] initWithFormat:@"http://%@:%@%@%@",
-                                      (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME],
-                                      (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD],
-                                      @"@",
-                                      domainWithoutHttp];
-        
-    }	
+            }	
 	return self;
 }
 

@@ -67,6 +67,8 @@
 
     
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
+    [[SocialRestConfiguration sharedInstance] updateDatas];
+    
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
@@ -101,11 +103,6 @@
         [_homeViewController_iPhone release];
     }
     
-    if (_navigationController)
-    {
-        [_navigationController release];
-    }
-    
     [window release];
     window = nil;
     
@@ -114,15 +111,20 @@
 
 - (void)onBtnSigtOutDelegate {
     
-    [[ChatProxy sharedInstance] disconnect];
+    //[[ChatProxy sharedInstance] disconnect];
     
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
-    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
-    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
+    
+    //Need to remove Cookies
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
 }
 
 @end

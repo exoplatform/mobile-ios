@@ -65,6 +65,8 @@
 
     
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
+    [[SocialRestConfiguration sharedInstance] updateDatas];
+
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
@@ -102,6 +104,14 @@
                     }
                     completion:^(BOOL finished){
                     }];
+    
+    
+    //Need to remove Cookies
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
 }
 
 
