@@ -75,10 +75,8 @@
     
     //Set the title of the navigation bar
     [self setTitle:_fileName];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	if(_url != nil)
+    
+    if(_url != nil)
 	{
 		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
 		[request setURL:_url]; 
@@ -86,8 +84,6 @@
         [request release];
     }
 }
-
-
 
 - (void)viewDidUnload
 {
