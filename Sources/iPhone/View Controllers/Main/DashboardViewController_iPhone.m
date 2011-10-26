@@ -7,8 +7,9 @@
 //
 
 #import "DashboardViewController_iPhone.h"
-#import "DashboardProxy_old.h"
-#import "Gadget.h"
+#import "DashboardProxy.h"
+#import "EGOImageView.h"
+#import "GadgetItem.h"
 #import "GadgetDisplayViewController_iPhone.h"
 
 
@@ -18,15 +19,18 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	if([[[_arrTabs objectAtIndex:section] _arrGadgetsInItem] count] == 0){
+	if([[(DashboardItem *)[_arrDashboard objectAtIndex:section] arrayOfGadgets] count] == 0){
         return 0;
     }
     return kHeightForSectionHeader;
 }
+
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	
-    if([[[_arrTabs objectAtIndex:section] _arrGadgetsInItem] count] == 0){
+    if([[(DashboardItem *)[_arrDashboard objectAtIndex:section] arrayOfGadgets] count] == 0){
         return nil;
     }
     // create the parent view that will hold header Label
@@ -41,7 +45,7 @@
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = UITextAlignmentCenter;
-    headerLabel.text = [[_arrTabs objectAtIndex:section] _strDbItemName];
+    headerLabel.text = [(DashboardItem *)[_arrDashboard objectAtIndex:section] label];
     
     CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblGadgets.frame.size.width-5, CGFLOAT_MAX) 
                                       lineBreakMode:UILineBreakModeWordWrap];
@@ -101,26 +105,27 @@
         [descriptionLabel release];
         
         //Create the imageView
-        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(8.0, 7.0, 45, 45)];
+        EGOImageView* imgView = [[EGOImageView alloc] initWithFrame:CGRectMake(8.0, 7.0, 45, 45)];
         imgView.tag = kTagForCellSubviewImageView;
         [cell.contentView addSubview:imgView];
         [imgView release];
         
     }
     
+    GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
     
     //Configurate the cell
     //Configurate the titleLabel and assign good value
 	UILabel *titleLabel = (UILabel*)[cell.contentView viewWithTag:kTagForCellSubviewTitleLabel];
-    titleLabel.text = [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] name];
+    titleLabel.text = gadgetTmp.gadgetName;
     
 	//Configuration the DesriptionLabel
     UILabel *descriptionLabel = (UILabel*)[cell.contentView viewWithTag:kTagForCellSubviewDescriptionLabel];
-	descriptionLabel.text = [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] description];
-	NSLog(@"%@", [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] description]);
+	descriptionLabel.text = gadgetTmp.gadgetDescription;
+	NSLog(@"%@", gadgetTmp.gadgetDescription);
     //Configuration of the ImageView
-    UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:kTagForCellSubviewImageView];
-    imgView.image = [[[[_arrTabs objectAtIndex:indexPath.section] _arrGadgetsInItem] objectAtIndex:indexPath.row] imageIcon];
+    EGOImageView *imgView = (EGOImageView *)[cell.contentView viewWithTag:kTagForCellSubviewImageView];
+    imgView.imageURL = [NSURL URLWithString:gadgetTmp.gadgetIcon];
     [self customizeAvatarDecorations:imgView];
     
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
@@ -130,21 +135,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    GateInDbItem *gadgetTab = [_arrTabs objectAtIndex:indexPath.section];
-	Gadget *gadget = [gadgetTab._arrGadgetsInItem objectAtIndex:indexPath.row];
-	NSURL *tmpURL = gadget._urlContent;
-	
+    GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+
 	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = (GadgetDisplayViewController_iPhone *)[[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone" 
                                                                                                               bundle:nil 
-                                                                                                                 url:tmpURL];
-
-    gadgetDisplayViewController.title = [gadget name];
-	[gadgetDisplayViewController setUrl:tmpURL];
+                                                                                                                 gadget:gadgetTmp];
 
     [self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
     [gadgetDisplayViewController release];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 @end

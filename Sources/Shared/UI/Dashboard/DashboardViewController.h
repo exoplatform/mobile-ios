@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DashboardProxy_old.h"
+#import "DashboardProxy.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 #import "CustomBackgroundForCell_iPhone.h"
@@ -17,16 +17,22 @@
 #define kTagForCellSubviewDescriptionLabel 33
 #define kTagForCellSubviewImageView 44
 
-@interface DashboardViewController : eXoViewController <DashboardProxyDelegate_old, UITableViewDataSource, UITableViewDelegate>{
+@interface DashboardViewController : eXoViewController <DashboardProxyDelegate, UITableViewDataSource, UITableViewDelegate>{
     
-    NSMutableArray*         _arrTabs;	//Gadget array 
+    NSArray*         _arrDashboard;	//Dashboard array 
     IBOutlet UITableView*   _tblGadgets;
     
     //Loader
     ATMHud*                 _hudDashboard;//Heads up display
+    
+    //Proxy
+    DashboardProxy*         _dashboardProxy;
+    
+    BOOL                    _isEmpty;
+    
 }
 
-@property(nonatomic, retain) NSMutableArray* _arrTabs;
+@property(nonatomic, retain) NSArray* _arrDashboard;
 
 - (void)setHudPosition;
 - (void)emptyState;

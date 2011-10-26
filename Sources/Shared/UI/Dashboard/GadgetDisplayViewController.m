@@ -7,7 +7,7 @@
 //
 
 #import "GadgetDisplayViewController.h"
-#import "Gadget.h"
+#import "GadgetItem.h"
 #import "AuthenticateProxy.h"
 #import "EmptyView.h"
 
@@ -20,17 +20,18 @@
 
 @implementation GadgetDisplayViewController
 
-@synthesize _url;
+@synthesize gadget = _gadget;
 @synthesize _webView;
 
-// custom init method to allow URL to be passed
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL 
+// custom init method
+- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
 {
-	[super initWithNibName:nibName bundle:nibBundle];
-	_url = defaultURL;
-	_strBConnectStatus = @"NO";
-	[_webView setDelegate:self];
-	return self;
+	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
+        [_webView setDelegate:self];
+
+        [self setGadget:gadgetToLoad];
+	}
+    return self;
 }
 
 
@@ -44,50 +45,18 @@
     [self setHudPosition];
 	[self.view addSubview:_hudGadget.view];
     
-    [self showLoader];
-
+    //Set the title of the controller
+    self.title = _gadget.gadgetName;
     
+    //Start loading the gadget
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_gadget.gadgetUrl]]];
+    [self showLoader];
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
-	if(_url != nil)
-	{
-		NSHTTPURLResponse* response;
-		NSError* error;
-		
-		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-		[request setURL:_url]; 
-
-		
-		NSRange rang = [[_url absoluteString] rangeOfString:@"standalone"];
-		if (rang.length > 0) 
-		{
-			_strBConnectStatus = [[AuthenticateProxy sharedInstance] loginForStandaloneGadget:[_url absoluteString]];
-		}
-        
-		[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-		NSUInteger statusCode = [response statusCode];
-		
-		if(statusCode >= 200 && statusCode < 300)
-		{
-			[_webView loadRequest:request];
-		}
-		else
-		{
-            [_webView loadHTMLString:[NSString stringWithFormat:@"<html><body>%@</body></html>", @"ConnectionTimedOut"] 
-                             baseURL:nil];
-		}
-		
-        
-        [request release];
-        
-	}
-}
-
-- (void)setUrl:(NSURL*)url
+- (void)setGadget:(GadgetItem *)gadgetToLoad
 {
-	_url = [url retain];
+	_gadget = [gadgetToLoad retain];    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
@@ -118,11 +87,8 @@
 
 - (void)dealloc 
 {
-	[_url release];	//Gadget URL
-    _url = nil;
-    
-    [_strBConnectStatus release];	//Network connection status
-    _strBConnectStatus = nil;
+	[_gadget release];	//Gadget URL
+    _gadget = nil;
     
 	[_webView release];
     _webView = nil;

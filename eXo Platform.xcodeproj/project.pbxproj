@@ -291,6 +291,10 @@
 		46CAF76413799D680017C959 /* HomeNotificationPanelBgIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */; };
 		46CAF76613799D790017C959 /* GlobalNavigationBarShadowIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76513799D790017C959 /* GlobalNavigationBarShadowIphone.png */; };
 		46CAF76813799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */; };
+		46CCF22D14571BEF0039CEAC /* DashboardProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CCF22C14571BEF0039CEAC /* DashboardProxy.m */; };
+		46CCF23014571E720039CEAC /* DashboardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CCF22F14571E720039CEAC /* DashboardItem.m */; };
+		46CCF2331457239C0039CEAC /* GadgetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CCF2321457239B0039CEAC /* GadgetItem.m */; };
+		46CCF2CA14580FD00039CEAC /* GadgetsProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CCF2C914580FD00039CEAC /* GadgetsProxy.m */; };
 		46D97B3013742B7F00F71E82 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B2F13742B7F00F71E82 /* Default.png */; };
 		46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B3113742B8B00F71E82 /* Default@2x.png */; };
 		46DA10A31386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10891386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png */; };
@@ -1158,6 +1162,14 @@
 		46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeNotificationPanelBgIphone.png; path = "Home/@1x/HomeNotificationPanelBgIphone.png"; sourceTree = "<group>"; };
 		46CAF76513799D790017C959 /* GlobalNavigationBarShadowIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GlobalNavigationBarShadowIphone.png; path = "Global/@1x/GlobalNavigationBarShadowIphone.png"; sourceTree = "<group>"; };
 		46CAF76713799D840017C959 /* GlobalNavigationBarShadowIphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GlobalNavigationBarShadowIphone@2x.png"; path = "Global/@2x/GlobalNavigationBarShadowIphone@2x.png"; sourceTree = "<group>"; };
+		46CCF22B14571BEE0039CEAC /* DashboardProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardProxy.h; path = Dashboard/DashboardProxy.h; sourceTree = "<group>"; };
+		46CCF22C14571BEF0039CEAC /* DashboardProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardProxy.m; path = Dashboard/DashboardProxy.m; sourceTree = "<group>"; };
+		46CCF22E14571E720039CEAC /* DashboardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardItem.h; path = Dashboard/DashboardItem.h; sourceTree = "<group>"; };
+		46CCF22F14571E720039CEAC /* DashboardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardItem.m; path = Dashboard/DashboardItem.m; sourceTree = "<group>"; };
+		46CCF2311457239B0039CEAC /* GadgetItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GadgetItem.h; path = Dashboard/GadgetItem.h; sourceTree = "<group>"; };
+		46CCF2321457239B0039CEAC /* GadgetItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GadgetItem.m; path = Dashboard/GadgetItem.m; sourceTree = "<group>"; };
+		46CCF2C814580FCF0039CEAC /* GadgetsProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GadgetsProxy.h; path = Dashboard/GadgetsProxy.h; sourceTree = "<group>"; };
+		46CCF2C914580FD00039CEAC /* GadgetsProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GadgetsProxy.m; path = Dashboard/GadgetsProxy.m; sourceTree = "<group>"; };
 		46D97B2F13742B7F00F71E82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Splashscreen/@1x/Default.png"; sourceTree = "<group>"; };
 		46D97B3113742B8B00F71E82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Splashscreen/@2x/Default@2x.png"; sourceTree = "<group>"; };
 		46DA10891386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateCheckmarkiPadOff.png; sourceTree = "<group>"; };
@@ -2279,6 +2291,10 @@
 			children = (
 				46ADAD121403E419005ABA79 /* DashboardProxy_old.h */,
 				46ADAD131403E419005ABA79 /* DashboardProxy_old.m */,
+				46CCF22B14571BEE0039CEAC /* DashboardProxy.h */,
+				46CCF22C14571BEF0039CEAC /* DashboardProxy.m */,
+				46CCF2C814580FCF0039CEAC /* GadgetsProxy.h */,
+				46CCF2C914580FD00039CEAC /* GadgetsProxy.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -2299,6 +2315,10 @@
 			children = (
 				8947339013370B4500B0AD11 /* Gadget.h */,
 				8947339113370B4500B0AD11 /* Gadget.m */,
+				46CCF22E14571E720039CEAC /* DashboardItem.h */,
+				46CCF22F14571E720039CEAC /* DashboardItem.m */,
+				46CCF2311457239B0039CEAC /* GadgetItem.h */,
+				46CCF2321457239B0039CEAC /* GadgetItem.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -4311,6 +4331,10 @@
 				46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */,
 				890FF79F1447D5E3001320A5 /* Message.m in Sources */,
 				1FCDDB6F14481ED100846232 /* ActivityPictureDetailMessageTableViewCell.m in Sources */,
+				46CCF22D14571BEF0039CEAC /* DashboardProxy.m in Sources */,
+				46CCF23014571E720039CEAC /* DashboardItem.m in Sources */,
+				46CCF2331457239C0039CEAC /* GadgetItem.m in Sources */,
+				46CCF2CA14580FD00039CEAC /* GadgetsProxy.m in Sources */,
 				1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

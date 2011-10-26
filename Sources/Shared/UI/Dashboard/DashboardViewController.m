@@ -8,6 +8,7 @@
 
 #import "DashboardViewController.h"
 #import "DashboardProxy_old.h"
+#import "DashboardProxy.h"
 #import "LanguageHelper.h"
 #import "Gadget.h"
 #import "EmptyView.h"
@@ -22,22 +23,25 @@
 @implementation DashboardViewController
 
 
-@synthesize _arrTabs;
+@synthesize _arrDashboard;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // Custom in itialization
+        
+        //Intialize the boolean to know if the content is empty or not
+        _isEmpty = NO;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_arrTabs release];
-	_arrTabs = nil;
+    [_arrDashboard release];
+	_arrDashboard = nil;
     
     [_tblGadgets release];
     _tblGadgets = nil;
@@ -45,6 +49,9 @@
     //Loader
     [_hudDashboard release];
     _hudDashboard = nil;
+    
+    [_dashboardProxy release];
+    _dashboardProxy = nil;
     
     [super dealloc];
 }
@@ -63,8 +70,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Reset the  content of the view 
+    [_arrDashboard release];
+    
     // Do any additional setup after loading the view from its nib.
     self.title = Localize(@"Dashboard");
+    
     //Add the loader
     _hudDashboard = [[ATMHud alloc] initWithDelegate:self];
     [_hudDashboard setAllowSuperviewInteraction:NO];
@@ -76,17 +88,13 @@
     background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     _tblGadgets.backgroundView = background;
     [background release];
-    
-    [_arrTabs removeLastObject];
-    
+        
     //Start the loader
     [self showLoader];
     
-    //Set the controlle as delegate of the DashboardProxy_old
-    [DashboardProxy_old sharedInstance];
-    [DashboardProxy_old sharedInstance].proxyDelegate = self;
-    [[DashboardProxy_old sharedInstance] startRetrievingGadgets];
-    
+    //Start the request to retrieve datas
+    _dashboardProxy = [[DashboardProxy alloc] initWithDelegate:self];
+    [_dashboardProxy retrieveDashboards];
 
 }
 
@@ -97,26 +105,65 @@
     // e.g. self.myOutlet = nil;
 }
 
-/*
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    BOOL b = NO;
-    if((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight))
-    {
-        b = YES;
-    }    
-    return b;
+#pragma UIHelper methods
+
+- (void)customizeAvatarDecorations:(UIImageView *)_imgvAvatar{
+    //Add the CornerRadius
+    [[_imgvAvatar layer] setCornerRadius:6.0];
+    [[_imgvAvatar layer] setMasksToBounds:YES];
+    
+    //Add the border
+    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:1.].CGColor];
+    CGFloat borderWidth = 1.0;
+    [[_imgvAvatar layer] setBorderWidth:borderWidth];
+    
+    //Add the inner shadow
+    CALayer *innerShadowLayer = [CALayer layer];
+    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
+    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
+    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
+    [_imgvAvatar.layer addSublayer:innerShadowLayer];
 }
-*/
+
+
+// Empty State
+-(void)emptyState {
+    //disable scroll in tableview
+    _tblGadgets.scrollEnabled = NO;
+    
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
+    [self.view insertSubview:emptyView aboveSubview:_tblGadgets];
+    [emptyView release];
+}
+
+
+-(void)errorState {
+    //disable scroll in tableview
+    _tblGadgets.scrollEnabled = NO;
+    
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadgetError")];
+    [self.view insertSubview:emptyView aboveSubview:_tblGadgets];
+    [emptyView release];
+}
+
+
+
+
 
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    int n = [_arrTabs count]; 
-    return n;
+    //Display the empty screen if data
+    if(_isEmpty) {
+        [self emptyState];
+        return 0;
+    }
+    
+    return [_arrDashboard count];
     
 }
 
@@ -129,8 +176,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-	int n = [[[_arrTabs objectAtIndex:section] _arrGadgetsInItem] count];
-	return n;
+	return [[(DashboardItem*)[_arrDashboard objectAtIndex:section] arrayOfGadgets] count] ;
 }
 
 // Customize the appearance of table view cells.
@@ -140,60 +186,56 @@
 }
 
 
-// Empty State
--(void)emptyState {
-    //disable scroll in tableview
-    _tblGadgets.scrollEnabled = NO;
-    
-    //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
-    [self.view addSubview:emptyView];
-    [emptyView release];
-}
 
 #pragma mark - DashboardProxy_old delegates methods 
-
-//Method called when gadgets has been retrieved
--(void)didFinishLoadingGadgets:(NSMutableArray *)arrGadgets {
-    //Start the loader
+//Method called when all dashboards has been retrieved
+- (void)dashboardProxyDidFinish:(DashboardProxy *)proxy {
+    //Hide the loader
     [self hideLoader];
-    _arrTabs = arrGadgets;
+
+    _arrDashboard = [proxy.arrayOfDashboards copy];
+
+    _isEmpty = YES;
     
-    //if no data
-    int n = 0;
-    for (int i = 0; i < [_arrTabs count]; i++){
-        n += [[[_arrTabs objectAtIndex:i] _arrGadgetsInItem] count];
+    //Check if there is data to display
+    for (DashboardItem* item in _arrDashboard) {
+        if ([item.arrayOfGadgets count] >0) _isEmpty = NO;
     }
-    if (n == 0) {
-        [self performSelector:@selector(emptyState) withObject:nil afterDelay:.5];
-        return;
-    }
+    
     [_tblGadgets reloadData];
 }
 
-
-//Method called when no gadgets has been found or error
--(void)didFailLoadingGadgetsWithError:(NSError *)error {
-    //TODO Management error
+//Error method called when the dahsboard call has failed
+- (void)dashboardProxy:(DashboardProxy *)proxy didFailWithError:(NSError *)error {
+    [_hudDashboard hide];
+    [self errorState];
+    
+    //Display an UIAlert to the user
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+                                                         message:Localize(@"DashboardsCannotBeRetrieved") 
+                                                        delegate:self 
+                                               cancelButtonTitle:Localize(@"OK") 
+                                               otherButtonTitles:nil] autorelease];
+    
+    [alertView show];
 }
 
-- (void)customizeAvatarDecorations:(UIImageView *)_imgvAvatar{
-    //Add the CornerRadius
-    [[_imgvAvatar layer] setCornerRadius:6.0];
-    [[_imgvAvatar layer] setMasksToBounds:YES];
+//Error to load gadgets from one specific dashboard
+- (void)dashboardProxyDidFailForDashboard:(DashboardItem *)dashboard {
     
-    //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:170./255 green:170./255 blue:170./255 alpha:1.].CGColor];
-    CGFloat borderWidth = 2.0;
-    [[_imgvAvatar layer] setBorderWidth:borderWidth];
+    NSString *alertMessage = [NSString stringWithFormat:@"%@: %@, %@",Localize(@"Dashboard"),dashboard.label,Localize(@"GadgetsCannotBeRetrieved")];
     
-    //Add the inner shadow
-    CALayer *innerShadowLayer = [CALayer layer];
-    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
-    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
-    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
-    [_imgvAvatar.layer addSublayer:innerShadowLayer];
+    //Display an UIAlert to the user
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+                                                         message:alertMessage 
+                                                        delegate:self 
+                                               cancelButtonTitle:Localize(@"OK") 
+                                               otherButtonTitles:nil] autorelease];
+    
+    [alertView show];
 }
+
+
 
 #pragma mark - Loader Management
 - (void)setHudPosition {

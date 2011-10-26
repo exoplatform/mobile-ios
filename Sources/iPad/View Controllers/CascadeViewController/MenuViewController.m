@@ -279,11 +279,8 @@
             break;
         case 1:
             // dashboard
-            
-            if (_dashboardViewController_iPad == nil) 
-            {
             _dashboardViewController_iPad = [[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil];
-            }
+            
             
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_dashboardViewController_iPad 
                                                                                    invokeByController:self 

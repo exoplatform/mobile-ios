@@ -10,23 +10,23 @@
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 #import "eXoViewController.h"
-@class Gadget;
+#import "GadgetItem.h"
+
 
 //Display gadget content
 @interface GadgetDisplayViewController : eXoViewController <UIWebViewDelegate> {
 	UIWebView*	_webView;	//Display gadget on webview
-	NSURL* _url;	//Gadget URL
-	NSString*	_strBConnectStatus;	//Network connection status
+	GadgetItem* _gadget;	//Gadget 
     
     //Loader
     ATMHud*                 _hudGadget;//Heads up display
 }
 
-@property (nonatomic, retain) IBOutlet NSURL* _url;
+@property (nonatomic, retain) GadgetItem *gadget;
 @property (nonatomic, retain) IBOutlet UIWebView* _webView;
 
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;	//Constructor
-- (void)setUrl:(NSURL*)url;	//Set gadget URL
+- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad;	//Constructor
+- (void)setGadget:(GadgetItem *)gadgetToLoad;	//Set gadget
 
 - (void)setHudPosition;
 
