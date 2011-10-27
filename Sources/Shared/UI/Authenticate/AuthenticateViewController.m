@@ -194,6 +194,11 @@
 {
     [_btnAccount setSelected:YES];
     [_btnServerList setSelected:NO];
+
+    //UI Hack
+    [_vContainer bringSubviewToFront:_btnAccount];
+    [_vContainer sendSubviewToBack:_btnServerList];
+
     _vServerListView.hidden = YES;
     _vAccountView.hidden = NO;
 }
@@ -203,6 +208,11 @@
     
     [_btnAccount setSelected:NO];
     [_btnServerList setSelected:YES];
+
+    //UI Hack
+    [_vContainer bringSubviewToFront:_btnServerList];
+    [_vContainer sendSubviewToBack:_btnAccount];
+
     _vServerListView.hidden = NO;
     _vAccountView.hidden = YES;
     [_tbvlServerList reloadData];
