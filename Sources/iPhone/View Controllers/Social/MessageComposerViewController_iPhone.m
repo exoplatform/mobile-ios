@@ -116,8 +116,8 @@
     
 }
 
+/*
 #pragma mark - ActionSheet Delegate
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex < 2)
@@ -159,5 +159,6 @@
     [self addPhotoToView:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
     
 }
+ */
 
 @end

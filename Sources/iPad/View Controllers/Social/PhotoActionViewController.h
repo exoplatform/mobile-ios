@@ -24,5 +24,5 @@
 
 - (IBAction)onBtnTakePhoto:(id)sender;
 - (IBAction)onBtnPhotoLibrary:(id)sender;
-- (IBAction)onBtnCancel:(id)sender;
+//- (IBAction)onBtnCancel:(id)sender;
 @end

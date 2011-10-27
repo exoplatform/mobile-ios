@@ -177,7 +177,7 @@
 
 - (UINavigationBar *)navigationBar
 {
-    return _navigationBar;    
+    return _navigation;    
 }
 
 - (NSString *)stringForUploadPhoto
@@ -523,24 +523,24 @@
             thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
             
-            [popoverPhotoLibraryController release];
+            [_popoverPhotoLibraryController release];
             
-            popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
+            _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
             
-            [popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
+            [_popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
             
 
             if(displayActionDialogAtRect.size.width == 0) {
                 
                 //present the popover from the rightBarButtonItem of the navigationBar
-                [popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
+                [_popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
                                                  permittedArrowDirections:UIPopoverArrowDirectionUp 
                                                                  animated:YES];
              
 
             }
             else {
-                [popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];    
+                [_popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];    
                 
             }
                 
@@ -753,6 +753,111 @@
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
 }
+
+
+#pragma mark - ActionSheet Delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex < 2)
+    {
+        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+        thePicker.delegate = self;
+        thePicker.allowsEditing = YES;
+        
+        if(buttonIndex == 0)//Take a photo
+        {
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+            {  
+                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentModalViewController:thePicker animated:YES];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+            }
+        }
+        else
+        {
+            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            NSString *deviceName = [[UIDevice currentDevice] name];
+            NSRange rangeOfiPad = [deviceName rangeOfString:@"iPad"];
+            if(rangeOfiPad.length <= 0)
+                [self presentModalViewController:thePicker animated:YES];
+            else
+            {
+                thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+                thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
+                
+                _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];      
+                
+                if(displayActionDialogAtRect.size.width == 0) {
+                    
+                    //present the popover from the rightBarButtonItem of the navigationBar
+                    [_popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp 
+                                                                          animated:YES];
+                    
+                    
+                }
+                else {
+                    [_popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
+                }
+                
+            }
+        }
+        
+        [thePicker release];
+    }
+    
+}
+
+
+#pragma mark - UIImagePickerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    [picker dismissModalViewControllerAnimated:YES];
+    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    [_popoverPhotoLibraryController release];
+    
+    UIImage* selectedImage = image;
+    NSData* imageData = UIImagePNGRepresentation(selectedImage);
+    
+    if ([imageData length] > 0) 
+    {
+        NSString *imageName = [[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
+        
+        if(imageName == nil) {
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
+            NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
+            
+            //release the date formatter because, not needed after that piece of code
+            [dateFormatter release];
+            imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+            
+        }
+        
+        _stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
+        
+        //TODO Localize this string
+        //            [self showHUDWithMessage:Localize(@"SendImageToFolder")];
+        
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
+        [invocation setTarget:self];
+        [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
+        [invocation setArgument:&_stringForUploadPhoto atIndex:2];
+        [invocation setArgument:&imageData atIndex:3];
+        [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
+        
+    }
+
+    
+}
+
 
 
 @end

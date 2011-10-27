@@ -14,7 +14,7 @@
 #import "URLAnalyzer.h"
 #import "eXoViewController.h"
 
-@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
     
     File *_rootFile;
     
@@ -32,9 +32,7 @@
 
     CGRect displayActionDialogAtRect;
     
-    UIPopoverController *popoverPhotoLibraryController;
-    
-    IBOutlet UINavigationBar* _navigationBar;
+    UIPopoverController *_popoverPhotoLibraryController;
     
 }
 -(void)emptyState;

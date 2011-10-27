@@ -146,18 +146,20 @@
     [thePicker release];
 }
 
-- (IBAction)onBtnCancel:(id)sender
-{
-    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    [_delegate dismissAddPhotoPopOver:YES];
-}
+//- (IBAction)onBtnCancel:(id)sender
+//{
+//    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+//    [_delegate dismissAddPhotoPopOver:YES];
+//}
 
 #pragma mark - UIImagePickerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     [picker dismissModalViewControllerAnimated:YES];
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    [_delegate dismissAddPhotoPopOver:YES];
+    
+    if([_delegate respondsToSelector:@selector(dismissAddPhotoPopOver:)])
+        [_delegate dismissAddPhotoPopOver:YES];
     
     if([_delegate isKindOfClass:[MessageComposerViewController class]])
     {

@@ -32,30 +32,21 @@
 
 -(void)dealloc 
 {
-    [_photoActionViewController release];
     [super dealloc];
 }
 
 - (void)showActionSheetForPhotoAttachment
 {
-    if (_photoActionViewController == nil) 
-    {
-        _photoActionViewController = [[PhotoActionViewController alloc] initWithNibName:@"PhotoActionViewController" bundle:nil];
-        _photoActionViewController._delegate = self;
-        _photoActionViewController._rectForPresentView = [_btnAttach frame];
-        _photoActionViewController._viewForPresent = self.view;
-    }
     
-    if (_popoverPhotoLibraryController == nil) 
-    {
-        _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:_photoActionViewController];
-    }
-    else
-    {
-        [_popoverPhotoLibraryController setContentViewController:_photoActionViewController];
-    }
-    [_popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 132) animated:YES];
-    [_popoverPhotoLibraryController presentPopoverFromRect:[_btnAttach frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto")
+                                                             delegate:self 
+                                                    cancelButtonTitle:nil 
+                                               destructiveButtonTitle:nil 
+                                                    otherButtonTitles:Localize(@"TakeAPicture"), 
+                                  Localize(@"PhotoLibrary"), nil];
+    
+    [actionSheet showFromRect:_btnAttach.frame inView:self.view animated:YES];
+    
 }
 
 - (void)showPhotoLibrary

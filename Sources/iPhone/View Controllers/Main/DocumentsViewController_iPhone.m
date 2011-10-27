@@ -342,14 +342,14 @@
 	}
     
     [picker dismissModalViewControllerAnimated:YES];
-    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
     
 }  
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
     [picker dismissModalViewControllerAnimated:YES];  
-    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
 }
 
 @end
