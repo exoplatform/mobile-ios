@@ -47,8 +47,8 @@
         if(_isCompatibleWithSocial){
             [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
         }
+        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
-		[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
 //        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
 		
 		_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
@@ -278,19 +278,20 @@
             
             break;
         case 1:
+            // files
+            _documentsViewController = [[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil];
+            _documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_documentsViewController 
+                                                                                   invokeByController:self 
+                                                                                     isStackStartView:TRUE];
+            
+            break;
+        case 2:
             // dashboard
             _dashboardViewController_iPad = [[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil];
             
             
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_dashboardViewController_iPad 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
-            break;
-        case 2:
-            // files
-            _documentsViewController = [[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil];
-            _documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_documentsViewController 
                                                                                    invokeByController:self 
                                                                                      isStackStartView:TRUE];
             break;
@@ -343,8 +344,8 @@
     if(_isCompatibleWithSocial){
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
     }
-    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
+    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
     //[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
     [_tableView reloadData];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
