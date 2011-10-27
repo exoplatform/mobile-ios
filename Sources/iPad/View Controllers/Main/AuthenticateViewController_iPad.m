@@ -316,62 +316,7 @@
 		[self doSignIn];
 	}
 }
-/*
-- (IBAction)onBtnAccount:(id)sender
-{
-    [_btnAccount setSelected:YES];
-    [_btnServerList setSelected:NO];
-    
-    //UI Hack
-    [_vContainer bringSubviewToFront:_btnAccount];
-    [_vContainer sendSubviewToBack:_btnServerList];
-    
-    _vServerListView.hidden = YES;
-    _vAccountView.hidden = NO;
-}
 
-- (IBAction)onBtnServerList:(id)sender
-{
-    
-    [_btnAccount setSelected:NO];
-    [_btnServerList setSelected:YES];
-    
-    //UI Hack
-    [_vContainer bringSubviewToFront:_btnServerList];
-    [_vContainer sendSubviewToBack:_btnAccount];
-    
-    _vServerListView.hidden = NO;
-    _vAccountView.hidden = YES;
-    [_tbvlServerList reloadData];
-}*/
-
-
-/* 
-- (IBAction)onBtnAccount:(id)sender
-{
-    [_btnAccount setImage:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn.png"] forState:UIControlStateNormal];
-    [_btnServerList setImage:[UIImage imageNamed:@"AuthenticateServersIconIpadOff.png"] forState:UIControlStateNormal];
-    [_btnAccount setSelected:YES];
-    [_btnServerList setSelected:NO];
-    [_vLoginView bringSubviewToFront:_vAccountView];
-    [_tbvlServerList setHidden:YES];
-    [_vAccountView setHidden:NO];
-}
-
-- (IBAction)onBtnServerList:(id)sender
-{
-    [_btnAccount setImage:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff.png"] forState:UIControlStateNormal];
-    [_btnServerList setImage:[UIImage imageNamed:@"AuthenticateServersIconIpadOn.png"] forState:UIControlStateNormal];
-    [_btnAccount setSelected:NO];
-    [_btnServerList setSelected:YES];
-    [_tbvlServerList setHidden:NO];
-    [_vAccountView setHidden:YES];  
-    [_vLoginView bringSubviewToFront:_tbvlServerList];   
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
-    [_tbvlServerList reloadData];
-}
- */
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
 {

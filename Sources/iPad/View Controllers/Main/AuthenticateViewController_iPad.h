@@ -41,7 +41,5 @@
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action
 - (IBAction)onSettingBtn:(id)sender;	//Setting action
-- (IBAction)onBtnAccount:(id)sender;
-- (IBAction)onBtnServerList:(id)sender;
 
 @end
