@@ -15,6 +15,7 @@
 #import "DocumentDisplayViewController_iPad.h"
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
+#import "PhotoActionViewController.h"
 
 
 @implementation DocumentsViewController_iPad
@@ -173,6 +174,8 @@
 #pragma mark - Panel Actions
 -(void) showActionsPanelFromNavigationBarButton:(id)sender {
     
+    displayActionDialogAtRect = CGRectZero;
+    
     //Create the fileActionsView controller
     FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                                                                        bundle:nil 
@@ -262,5 +265,50 @@
 
 }
  
-  
+- (void)showActionSheetForPhotoAttachment
+{
+    [_actionPopoverController dismissPopoverAnimated:YES];
+    
+    PhotoActionViewController *photoActionViewController = [[PhotoActionViewController alloc] initWithNibName:@"PhotoActionViewController" bundle:nil];
+    photoActionViewController._delegate = self;
+    
+    popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:photoActionViewController];
+    
+//    if (popoverPhotoLibraryController == nil) 
+//    {
+//        popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:photoActionViewController];
+//    }
+//    else
+//    {
+//        [popoverPhotoLibraryController setContentViewController:photoActionViewController];
+//    }
+//    
+    [popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 132) animated:YES];
+    
+    
+    if(displayActionDialogAtRect.size.width == 0) {
+        
+        //present the popover from the rightBarButtonItem of the navigationBar
+        [popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigationBar.topItem.rightBarButtonItem 
+                                              permittedArrowDirections:UIPopoverArrowDirectionUp 
+                                                              animated:YES];
+        
+        
+    }
+    else {
+        [popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
+        
+        photoActionViewController._rectForPresentView = displayActionDialogAtRect;
+        photoActionViewController._viewForPresent = _tblFiles;
+    }
+    
+    displayActionDialogAtRect = CGRectZero;
+    
+}
+
+- (void)dismissAddPhotoPopOver:(BOOL)animation
+{
+    [popoverPhotoLibraryController dismissPopoverAnimated:animation];
+}
+
 @end

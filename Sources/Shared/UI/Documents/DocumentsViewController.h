@@ -38,8 +38,13 @@
 -(void)emptyState;
 -(void)setHudPosition;
 -(void)showHUDWithMessage:(NSString *)message;
+- (void)showActionSheetForPhotoAttachment;
+- (void)startRetrieveDirectoryContent;
+
 //Use this method to init the Controller with a root file
 - (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 
 - (void)hideFileFolderActionsController;
 - (void)buttonAccessoryClick:(id)sender;
+- (UINavigationBar *)navigationBar;
+- (NSString *)stringForUploadPhoto;
 @end

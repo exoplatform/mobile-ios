@@ -11,7 +11,7 @@
 #import "WEPopoverController.h"
 
 
-@interface DocumentsViewController_iPhone : DocumentsViewController <WEPopoverControllerDelegate, UIPopoverControllerDelegate>{
+@interface DocumentsViewController_iPhone : DocumentsViewController <WEPopoverControllerDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate>{
     
     FileActionsViewController *_actionsViewController;
     

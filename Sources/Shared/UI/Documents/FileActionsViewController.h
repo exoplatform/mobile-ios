@@ -31,6 +31,7 @@
 //Method needed to ask to display the folder actions controller 
 //(panel to renanme or create a new folder)
 -(void)askToMakeFolderActions:(BOOL)createNewFolder;
+-(void)askToAddPhoto:(NSString*)url;
 
 @end
 
@@ -45,7 +46,6 @@
 	IBOutlet UITableView *_tblFileAction;	//file action list
 	
 	NSString *_strTakePicture;	//take a new picture
-    NSString *_stringPhotoAlbumm; //Photo from album
 	NSString *_strDelete;	//delete file
 	NSString *_strCopy;	//Copy file
 	NSString *_strMove;	//Cut file

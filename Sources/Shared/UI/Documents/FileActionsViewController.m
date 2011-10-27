@@ -47,8 +47,7 @@ enableDeleteThisFolder:(BOOL)enable
 		_file = [fileForActions retain];
 		_deleteFolderEnable = enable;
         
-        _strTakePicture = [Localize(@"TakePicture") copy];
-        _stringPhotoAlbumm = [Localize(@"PhotoLibrary") copy];
+        _strTakePicture = [Localize(@"AddAPhoto") copy];
 		_strDelete = [Localize(@"Delete") copy];
 		_strCopy = [Localize(@"Copy") copy];
 		_strMove = [Localize(@"Move") copy];
@@ -140,7 +139,7 @@ enableDeleteThisFolder:(BOOL)enable
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if(section == 0)
-		return 8;
+		return 7;
 	return 1;
 }
 
@@ -191,17 +190,7 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-        else if(row == 1)
-		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon"];
-			titleLabel.text = _stringPhotoAlbumm;
-			if(!_deleteFolderEnable)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-		}
-		else if(row == 2)
+		else if(row == 1)
 		{
             imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon"];
 			titleLabel.text = _strCopy;
@@ -212,7 +201,7 @@ enableDeleteThisFolder:(BOOL)enable
 			}
 			
 		}
-		else if(row == 3)
+		else if(row == 2)
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon"];
 			titleLabel.text = _strMove;
@@ -222,7 +211,7 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-		else if(row == 4)
+		else if(row == 3)
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon"];
 			titleLabel.text = _strPaste;
@@ -232,7 +221,7 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-		else if (row ==5)
+		else if(row == 4)
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon"];
 			titleLabel.text = _strDelete;
@@ -242,7 +231,7 @@ enableDeleteThisFolder:(BOOL)enable
 				cell.userInteractionEnabled = NO;
 			}
 		}
-        else if (row == 6)
+        else if(row == 5)
         {
             imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon"];
             titleLabel.text = _strNewFolder;
@@ -263,6 +252,7 @@ enableDeleteThisFolder:(BOOL)enable
 			}
         }
 	}
+    
     UIView *view = [[UIView alloc] initWithFrame:cell.frame];
     view.backgroundColor = [UIColor lightGrayColor];
 	cell.selectedBackgroundView = view;
@@ -273,32 +263,37 @@ enableDeleteThisFolder:(BOOL)enable
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 	int section = indexPath.section;
 	int row = indexPath.row;
 	
 	if(section == 0)
 	{
+        //        if(row == 0)
+        //		{
+        //			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
+        //		}
+        //        else if(row == 1)
+        //		{
+        //            [fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:YES];
+        //		}
         if(row == 0)
-		{
-			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
-		}
-        else if(row == 1)
-		{
-            [fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:YES];
-		}
-		else if(row == 2)
+        {
+            [fileActionsDelegate askToAddPhoto:_file.urlStr];
+        }
+		else if(row == 1)
 		{
             fileActionMode = 1;
 			copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
-		else if(row == 3)
+		else if(row == 2)
 		{
 			fileActionMode = 2;
 			copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
-		else if(row == 4)
+		else if(row == 3)
 		{
             if(fileActionMode == 1)
 			{
@@ -310,20 +305,22 @@ enableDeleteThisFolder:(BOOL)enable
 			{	
                 [fileActionsDelegate moveFileSource:copyMoveFile.urlStr
                                       toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
-				fileActionMode = 0;
+				
 			}
+            
+            fileActionMode = 0;
 			
 		}
-		else if (row == 5)
+		else if (row == 4)
 		{
 			[fileActionsDelegate deleteFile:_file.urlStr];
 		}
-        else if (row == 6)
+        else if (row == 5)
         {
             //Create a new folder
             [fileActionsDelegate askToMakeFolderActions:YES];
         }
-        else if (row == 7)
+        else if (row == 6)
         {
             [fileActionsDelegate askToMakeFolderActions:NO];
         }

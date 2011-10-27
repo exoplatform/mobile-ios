@@ -175,6 +175,16 @@
     [_hudFolder show];
 }
 
+- (UINavigationBar *)navigationBar
+{
+    return _navigationBar;    
+}
+
+- (NSString *)stringForUploadPhoto
+{
+    return _stringForUploadPhoto;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -465,11 +475,15 @@
     
 }
 
+-(void)askToAddPhoto:(NSString*)url
+{
+    _stringForUploadPhoto = url;
+    [self showActionSheetForPhotoAttachment];
+}
 
 - (void)askToAddAPicture:(NSString *)urlDestination photoAlbum:(BOOL)photoAlbum {
     
     _stringForUploadPhoto = urlDestination;
-
     UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
     thePicker.delegate = self;
     
@@ -738,55 +752,6 @@
     [_filesProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
-}
-
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo  
-{
-	UIImage* selectedImage = image;
-	NSData* imageData = UIImagePNGRepresentation(selectedImage);
-	
-	
-	if ([imageData length] > 0) 
-	{
-        NSString *imageName = [[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
-		
-        if(imageName == nil) {
-
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
-            NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
-            
-            //release the date formatter because, not needed after that piece of code
-            [dateFormatter release];
-            imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
-
-        }
-		
-		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
-		
-        //TODO Localize this string
-        [self showHUDWithMessage:Localize(@"SendImageToFolder")];
-        
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                    [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
-        [invocation setTarget:self];
-        [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
-        [invocation setArgument:&_stringForUploadPhoto atIndex:2];
-        [invocation setArgument:&imageData atIndex:3];
-        [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
-        
-	}
-    
-    [picker dismissModalViewControllerAnimated:YES];
-    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    
-}  
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
-{  
-    [picker dismissModalViewControllerAnimated:YES];  
-    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
 }
 
 

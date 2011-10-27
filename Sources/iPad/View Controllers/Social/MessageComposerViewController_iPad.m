@@ -42,6 +42,8 @@
     {
         _photoActionViewController = [[PhotoActionViewController alloc] initWithNibName:@"PhotoActionViewController" bundle:nil];
         _photoActionViewController._delegate = self;
+        _photoActionViewController._rectForPresentView = [_btnAttach frame];
+        _photoActionViewController._viewForPresent = self.view;
     }
     
     if (_popoverPhotoLibraryController == nil) 

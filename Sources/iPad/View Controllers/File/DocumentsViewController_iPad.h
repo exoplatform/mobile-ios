@@ -18,7 +18,8 @@
 @interface DocumentsViewController_iPad : DocumentsViewController <UIPopoverControllerDelegate>
 {    
     UIPopoverController *_actionPopoverController;
-    
 }
+
+- (void)dismissAddPhotoPopOver:(BOOL)animation;
 
 @end

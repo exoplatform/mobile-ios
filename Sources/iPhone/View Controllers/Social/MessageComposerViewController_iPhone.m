@@ -116,5 +116,48 @@
     
 }
 
+#pragma mark - ActionSheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex < 2)
+    {
+        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+        thePicker.delegate = self;
+        thePicker.allowsEditing = YES;
+        
+        if(buttonIndex == 0)//Take a photo
+        {
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+            {  
+                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentModalViewController:thePicker animated:YES];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+            }
+        }
+        else
+        {
+            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentModalViewController:thePicker animated:YES];
+        }
+        
+        [thePicker release];
+    }
+    
+}
+
+
+#pragma mark - UIImagePickerDelegate
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissModalViewControllerAnimated:YES];    
+    [self addPhotoToView:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+    
+}
 
 @end

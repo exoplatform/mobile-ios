@@ -189,6 +189,9 @@
 #pragma mark - Panel Actions
 
 -(void) showActionsPanelFromNavigationBarButton:(id)sender {
+    
+    displayActionDialogAtRect = CGRectZero;
+    
     if (self.popoverClass) {
         [self.popoverClass dismissPopoverAnimated:YES];
         self.popoverClass = nil;
@@ -259,6 +262,94 @@
 }
 
 
+- (void)showActionSheetForPhotoAttachment
+{    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto") delegate:self cancelButtonTitle:Localize(@"Cancel") destructiveButtonTitle:nil  otherButtonTitles:Localize(@"TakeAPicture"), Localize(@"PhotoLibrary"), nil, nil];
+    [actionSheet showInView:self.view];
+    
+    [actionSheet release];
+}
 
+#pragma mark - ActionSheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex < 2)
+    {
+        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+        thePicker.delegate = self;
+        thePicker.allowsEditing = YES;
+        
+        if(buttonIndex == 0)//Take a photo
+        {
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+            {  
+                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentModalViewController:thePicker animated:YES];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+            }
+        }
+        else
+        {
+            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentModalViewController:thePicker animated:YES];
+        }
+        [thePicker release];
+    }
+        
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo  
+{
+	UIImage* selectedImage = image;
+	NSData* imageData = UIImagePNGRepresentation(selectedImage);
+	
+	
+	if ([imageData length] > 0) 
+	{
+        NSString *imageName = [[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
+		
+        if(imageName == nil) {
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
+            NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
+            
+            //release the date formatter because, not needed after that piece of code
+            [dateFormatter release];
+            imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+            
+        }
+		
+		_stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
+		
+        //TODO Localize this string
+        [self showHUDWithMessage:Localize(@"SendImageToFolder")];
+        
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
+        [invocation setTarget:self];
+        [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
+        [invocation setArgument:&_stringForUploadPhoto atIndex:2];
+        [invocation setArgument:&imageData atIndex:3];
+        [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
+        
+	}
+    
+    [picker dismissModalViewControllerAnimated:YES];
+    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    
+}  
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
+{  
+    [picker dismissModalViewControllerAnimated:YES];  
+    [popoverPhotoLibraryController dismissPopoverAnimated:YES];
+}
 
 @end
