@@ -22,6 +22,8 @@
     
     FilesProxy *_filesProxy;
     
+    File *fileToApplyAction;
+    
     ATMHud *_hudFolder;//Heads up display
         
     NSString *_stringForUploadPhoto;
@@ -38,6 +40,7 @@
 -(void)emptyState;
 -(void)setHudPosition;
 -(void)showHUDWithMessage:(NSString *)message;
+-(void)hideHUDWithMessage:(NSString *)message;
 - (void)showActionSheetForPhotoAttachment;
 - (void)startRetrieveDirectoryContent;
 

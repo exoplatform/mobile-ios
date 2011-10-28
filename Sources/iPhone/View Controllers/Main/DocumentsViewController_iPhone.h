@@ -7,13 +7,10 @@
 //
 
 #import "DocumentsViewController.h"
-#import "FileActionsViewController.h"
 #import "WEPopoverController.h"
-
 
 @interface DocumentsViewController_iPhone : DocumentsViewController <WEPopoverControllerDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate>{
     
-    FileActionsViewController *_actionsViewController;
     
     WEPopoverController *popoverController;
     WEPopoverController *popoverClass;

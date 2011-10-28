@@ -33,7 +33,9 @@ static short fileActionMode = 0;//1:copy, 2:move
 //Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
                  file:(File *)fileForActions 
-enableDeleteThisFolder:(BOOL)enable 
+                enableDeleteThisFolder:(BOOL)enableDeleteFolder
+                enableCreateFolder:(BOOL)enableCreateFolder
+                enableRenameFile:(BOOL)enableRenameFile
              delegate:(id<FileActionsProtocol>)actionsDelegate
 {
     
@@ -45,7 +47,9 @@ enableDeleteThisFolder:(BOOL)enable
         fileActionsDelegate = actionsDelegate;
         
 		_file = [fileForActions retain];
-		_deleteFolderEnable = enable;
+		_deleteFolderEnable = enableDeleteFolder;
+        _createFolderEnable = enableCreateFolder;
+        _renameFileEnable = enableRenameFile;
         
         _strTakePicture = [Localize(@"AddAPhoto") copy];
 		_strDelete = [Localize(@"Delete") copy];
@@ -235,7 +239,7 @@ enableDeleteThisFolder:(BOOL)enable
         {
             imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon"];
             titleLabel.text = _strNewFolder;
-			if(!_file.isFolder)
+			if(!_file.isFolder || !_createFolderEnable)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -245,7 +249,7 @@ enableDeleteThisFolder:(BOOL)enable
         {
             imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupRenameIcon"];
             titleLabel.text = _strRenameFolder;
-			if(!_file.isFolder)
+			if(!_file.isFolder || !_renameFileEnable)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -269,14 +273,6 @@ enableDeleteThisFolder:(BOOL)enable
 	
 	if(section == 0)
 	{
-        //        if(row == 0)
-        //		{
-        //			[fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:NO];
-        //		}
-        //        else if(row == 1)
-        //		{
-        //            [fileActionsDelegate askToAddAPicture:_file.urlStr photoAlbum:YES];
-        //		}
         if(row == 0)
         {
             [fileActionsDelegate askToAddPhoto:_file.urlStr];

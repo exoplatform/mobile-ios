@@ -10,7 +10,7 @@
 
 @interface FileFolderActionsViewController_iPad : FileFolderActionsViewController 
 {
-	
+	IBOutlet UINavigationBar *navigationBar;
 }
 
 @end

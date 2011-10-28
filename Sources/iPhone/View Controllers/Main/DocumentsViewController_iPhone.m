@@ -10,12 +10,13 @@
 #import "DocumentDisplayViewController_iPhone.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "FileFolderActionsViewController_iPhone.h"
+#import "UIBarButtonItem+WEPopover.h"
+#import "LanguageHelper.h"
+#import "FileActionsViewController.h"
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
-#import "UIBarButtonItem+WEPopover.h"
-#import "LanguageHelper.h"
 
 #pragma mark -
 #pragma mark Implementation
@@ -30,8 +31,8 @@
 
 - (void)dealloc
 {
-    [_actionsViewController release];
-    _actionsViewController = nil;
+//    [_actionsViewController release];
+//    _actionsViewController = nil;
     [super dealloc];
 }
 
@@ -167,15 +168,15 @@
         self.popoverController = nil;
     } 
     
-    if (_actionsViewController == nil) {
-        
-        _actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                             bundle:nil 
-                                                                               file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
-                                                             enableDeleteThisFolder:YES
-                                                                           delegate:self];
-    }
-    _actionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row] ;
+        FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
+                                                bundle:nil 
+                                                file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
+                                                enableDeleteThisFolder:YES
+                                                enableCreateFolder:NO
+                                                enableRenameFile:YES
+                                                delegate:self];
+    
+    fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
     CGRect frame = [_tblFiles cellForRowAtIndexPath:indexPath].frame;
     frame.origin.x += 300;
     
@@ -199,16 +200,16 @@
         return;
     } 
     //Check if the _actionsViewController is already created or not
-    if (_actionsViewController == nil) {
+
+        FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
+                                                bundle:nil 
+                                                file:_rootFile 
+                                                enableDeleteThisFolder:YES
+                                                enableCreateFolder:YES
+                                                enableRenameFile:NO
+                                                delegate:self];
         
-        _actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                             bundle:nil 
-                                                                               file:_rootFile 
-                                                             enableDeleteThisFolder:YES
-                                                                           delegate:self];
         
-        
-    }
     
     _actionsViewController.fileToApplyAction = _rootFile ;
     
@@ -223,27 +224,28 @@
 }
 
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
+    
     _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
-    //[_optionsViewController setDelegate:self];
     [_fileFolderActionsController setIsNewFolder:createNewFolder];
     [_fileFolderActionsController setNameInputStr:@""];
     [_fileFolderActionsController setFocusOnTextFieldName];
-    _fileFolderActionsController.fileToApplyAction = _actionsViewController.fileToApplyAction;
+    _fileFolderActionsController.fileToApplyAction = fileToApplyAction;
     _fileFolderActionsController.delegate = self;
     
-    //_optionsViewController.view.hidden = YES;
-    [self.view addSubview:_fileFolderActionsController.view];
-    [_actionsViewController.view removeFromSuperview]; 
+//    [_actionsViewController.view removeFromSuperview]; 
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
     self.popoverClass = nil;
+    
+//    [self.view addSubview:_fileFolderActionsController.view];
+    [self.navigationController pushViewController:_fileFolderActionsController animated:YES];
 }
 
 
 
 -(void) hideActionsPanel {
-    [_actionsViewController.view removeFromSuperview];
+    
     _tblFiles.scrollEnabled = YES;
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;

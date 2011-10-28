@@ -55,6 +55,8 @@
     NSString *_strRenameFolder; //RenameFolder
 	
 	BOOL _deleteFolderEnable;	//Enable folder deleting
+    BOOL _createFolderEnable;	//Enable folder creating
+    BOOL _renameFileEnable;	//Enable folder renaming
     
     id<FileActionsProtocol> fileActionsDelegate;
     
@@ -68,7 +70,9 @@
 //Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
                  file:(File *)file 
-enableDeleteThisFolder:(BOOL)enable
+                enableDeleteThisFolder:(BOOL)enableDeleteFolder
+                enableCreateFolder:(BOOL)enableCreateFolder
+                enableRenameFile:(BOOL)enableRenameFile
              delegate:(id<FileActionsProtocol>)actionsDelegate;
 
 @end

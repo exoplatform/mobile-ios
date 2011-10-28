@@ -7,7 +7,7 @@
 //
 
 #import "FileFolderActionsViewController.h"
-#import "LanguageHelper.h"
+
 
 @implementation FileFolderActionsViewController
 
@@ -43,20 +43,16 @@
 - (void)viewDidLoad 
 {
 	[super viewDidLoad];
-	_txtfNameInput.clearButtonMode = UITextFieldViewModeWhileEditing;
-	
-	_btnOK.hidden = NO;
-	_btnCancel.hidden = NO;
-	
-    if(_isNewFolder) {
-		[_lbInstruction setText:Localize(@"NewFolderTitle")];
-	}
-	else {
-		[_lbInstruction setText:Localize(@"RenameTitle")];
-		
-	}
     
-	[_btnCancel setTitle:Localize(@"CancelCopyButton") forState:UIControlStateNormal];
+    //Set the background Color of the view
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+	_txtfNameInput.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+   
+    
+    
+    [self updateUI];
     
     [_txtfNameInput becomeFirstResponder];
     
@@ -77,32 +73,15 @@
 
 - (void)dealloc 
 {
-    [_lbInstruction release]; _lbInstruction = nil; 
 	[_txtfNameInput release]; _txtfNameInput = nil; 
-	[_btnOK release]; _btnOK = nil; 
-	[_btnCancel release]; _btnCancel = nil; 
+
     _delegate = nil;
     
     [super dealloc];
 }
 
-
-- (IBAction)onOKBtn:(id)sender
-{
-	NSString* strName = [_txtfNameInput text];
-	strName = [strName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+- (void)updateUI {
     
-    if (_isNewFolder) {
-        [_delegate createNewFolder:strName];
-    } else {
-        [_delegate renameFolder:strName forFolder:_fileToApplyAction];
-    }    
-}
-
-
-- (IBAction)onCancelBtn:(id)sender
-{
-	[_delegate cancelFolderActions];
 }
 
 @end

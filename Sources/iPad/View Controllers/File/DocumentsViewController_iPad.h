@@ -18,6 +18,7 @@
 @interface DocumentsViewController_iPad : DocumentsViewController <UIPopoverControllerDelegate>
 {    
     UIPopoverController *_actionPopoverController;
+    UIPopoverController *_fileFolderActionsPopoverController;
 }
 
 - (void)dismissAddPhotoPopOver:(BOOL)animation;

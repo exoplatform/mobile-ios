@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FileActionsViewController.h"
+#import "LanguageHelper.h"
 
 @class File;
 
@@ -29,10 +30,7 @@
 {
     File*                                   _fileToApplyAction;
     
-	IBOutlet UILabel*						_lbInstruction;	//Action title
 	IBOutlet UITextField*					_txtfNameInput;	//Input name
-	IBOutlet UIButton*						_btnOK;	//Accept button
-	IBOutlet UIButton*						_btnCancel;	//Cancel button
 	id<FileFolderActionsProtocol>			_delegate;	//The delegate
 	BOOL									_isNewFolder;	//Is create new folder
 	
@@ -45,7 +43,7 @@
 - (void)setIsNewFolder:(BOOL)isNewFolder;	//UI for create new folder
 - (void)setNameInputStr:(NSString *)nameStr;	//Give name for text box
 - (void)setFocusOnTextFieldName;	//Show keyboard
-- (IBAction)onOKBtn:(id)sender;	//Ok
-- (IBAction)onCancelBtn:(id)sender;	//Cancel
+
+- (void)updateUI;
 
 @end

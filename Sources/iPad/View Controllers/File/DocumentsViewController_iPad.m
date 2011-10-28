@@ -80,13 +80,16 @@
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
-    FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                                                       bundle:nil 
-                                                                                                         file:_rootFile 
-                                                                                       enableDeleteThisFolder:YES
-                                                                                                     delegate:self];
+    FileActionsViewController* fileActionsViewController = 
+            [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
+                                                    bundle:nil 
+                                                    file:_rootFile 
+                                                    enableDeleteThisFolder:YES
+                                                    enableCreateFolder:NO
+                                                    enableRenameFile:YES
+                                                    delegate:self];
     
-    fileActionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+    fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
     
     //Getting the position of the cell in the tableView
     CGRect rect = [_tblFiles rectForRowAtIndexPath:indexPath];
@@ -107,11 +110,14 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     
-    FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                                                       bundle:nil 
-                                                                                                         file:_rootFile 
-                                                                                       enableDeleteThisFolder:YES
-                                                                                                     delegate:self];
+    FileActionsViewController* fileActionsViewController = 
+                [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
+                    bundle:nil 
+                    file:_rootFile 
+                    enableDeleteThisFolder:YES
+                    enableCreateFolder:NO 
+                    enableRenameFile:YES
+                    delegate:self];
     
     fileActionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
 
@@ -177,10 +183,12 @@
     
     //Create the fileActionsView controller
     FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                                                       bundle:nil 
-                                                                                                         file:_rootFile 
-                                                                                       enableDeleteThisFolder:YES
-                                                                                                     delegate:self];
+                                                            bundle:nil 
+                                                            file:_rootFile 
+                                                            enableDeleteThisFolder:YES
+                                                            enableCreateFolder:YES
+                                                            enableRenameFile:NO
+                                                            delegate:self];
     
     
     //Create the Popover to display potential actions to the user
@@ -215,39 +223,35 @@
     
     [_actionPopoverController dismissPopoverAnimated:YES];
     
-    //Get the controller of the popover
-    FileActionsViewController *fileActionViewController = (FileActionsViewController*) _actionPopoverController.contentViewController;
     
     _fileFolderActionsController = [[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil];
     //[_optionsViewController setDelegate:self];
     [_fileFolderActionsController setIsNewFolder:createNewFolder];
     [_fileFolderActionsController setNameInputStr:@""];
     [_fileFolderActionsController setFocusOnTextFieldName];
-    _fileFolderActionsController.fileToApplyAction = fileActionViewController.fileToApplyAction;
+    _fileFolderActionsController.fileToApplyAction = fileToApplyAction;
     _fileFolderActionsController.delegate = self;
     
-    //Give a good position to the popup
-    _fileFolderActionsController.view.center = CGPointMake(_tblFiles.center.x, 150);
+    //Display the UIPopoverController
+	_fileFolderActionsPopoverController = [[UIPopoverController alloc] initWithContentViewController:_fileFolderActionsController];
+    _fileFolderActionsPopoverController.delegate = self;
+	[_fileFolderActionsPopoverController setPopoverContentSize:CGSizeMake(320, 140) animated:YES];
     
-    //Block interactions with the table view
-    _tblFiles.userInteractionEnabled = NO;
+    if(createNewFolder || displayActionDialogAtRect.size.width == 0)
+        [_fileFolderActionsPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    else
+		[_fileFolderActionsPopoverController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     
-    //_optionsViewController.view.hidden = YES;
-    [self.view addSubview:_fileFolderActionsController.view];
+    
+    [_fileFolderActionsController release];
+
+
 }
 
 
 
 - (void)hideFileFolderActionsController {
-    //Unblock interactions with the table view
-    _tblFiles.userInteractionEnabled = YES;
-    
-    [super hideFileFolderActionsController];
-    
-    
-    //Enable the button on the navigationBar
-    _navigation.topItem.rightBarButtonItem.enabled = YES;
-    
+    [_fileFolderActionsPopoverController dismissPopoverAnimated:YES];
 }
 
 

@@ -82,14 +82,7 @@
         [emptyview removeFromSuperview];
     }
     
-    //Now update the HUD
-    //TODO Localize this string
-    [_hudFolder setCaption:Localize(@"FolderContentUpdated")];
-    [_hudFolder setActivity:NO];
-    [_hudFolder setImage:[UIImage imageNamed:@"19-check"]];
-    [_hudFolder update];
-    [_hudFolder hideAfter:1.0];
-    
+    [self hideHUDWithMessage:Localize(@"FolderContentUpdated")];
     
     //check if no data
     if([_arrayContentOfRootFile count] == 0){
@@ -173,6 +166,20 @@
     [_hudFolder setCaption:message];
     [_hudFolder setActivity:YES];
     [_hudFolder show];
+}
+
+-(void)hideHUDWithMessage:(NSString *)message {
+    
+    [_hudFolder setCaption:message];
+    [_hudFolder setActivity:NO];
+    [_hudFolder setImage:[UIImage imageNamed:@"19-check"]];
+    [_hudFolder update];
+    [_hudFolder hideAfter:1.0];
+    
+}
+
+- (void)showActionSheetForPhotoAttachment {
+    
 }
 
 - (UINavigationBar *)navigationBar
@@ -352,6 +359,7 @@
                                           cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
+    
 }
 
 //Use this method to do the delete action in a background thread
@@ -580,13 +588,11 @@
 }
 
 
-
 //Method needed to call to create a new folder
 -(void)createNewFolder:(NSString *)newFolderName {
     
     [self hideFileFolderActionsController];
 
-    
     //TODO Localize this string
     [self showHUDWithMessage:Localize(@"CreateNewFile")];
 
@@ -640,9 +646,9 @@
         [alert show];
         [alert release];
     }
+    
+   [self hideHUDWithMessage:Localize(@"FolderContentUpdated")];
 }
-
-
 
 
 //Method to call the rename action of the proxy
@@ -726,6 +732,8 @@
         [alert show];
         [alert release];
     }
+    
+    [self hideHUDWithMessage:Localize(@"FolderContentUpdated")];    
     
 }
 
