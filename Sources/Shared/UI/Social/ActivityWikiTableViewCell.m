@@ -9,19 +9,25 @@
 #import "ActivityWikiTableViewCell.h"
 #import "SocialActivityStream.h"
 #import "LanguageHelper.h"
+#import "ActivityHelper.h"
 
 @implementation ActivityWikiTableViewCell
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream{
     [super setSocialActivityStream:socialActivityStream];
-    
-    NSString* textStr;
-    if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-        textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
-    } else if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-        textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
+
+    switch (socialActivityStream.activityType) {
+        case ACTIVITY_WIKI_MODIFY_PAGE:
+            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
+            break;
+        case ACTIVITY_WIKI_ADD_PAGE:
+            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
+            break; 
+        default:
+            break;
     }
-    _lbName.text = textStr;
+    
+    _lbName.text = @"";
     _lbMessage.text = @"";
     htmlLabel.html = @"";
 }

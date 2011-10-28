@@ -30,7 +30,7 @@
     
     SocialActivityStream*  _socialActivytyStream;
     ActivityStreamBrowseViewController* _delegate;
-    
+    NSInteger _activityType;
     
     TTStyledTextLabel  *htmlLabel;
     TTStyledTextLabel   *htmlName;
@@ -46,6 +46,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) SocialActivityStream*  socialActivytyStream;
 @property (retain, nonatomic) ActivityStreamBrowseViewController* delegate;
+
+@property NSInteger activityType;
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;

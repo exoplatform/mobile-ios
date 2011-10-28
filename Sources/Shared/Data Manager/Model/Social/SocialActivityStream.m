@@ -71,6 +71,8 @@
         _activityType = ACTIVITY_LINK;
     }else if([_type rangeOfString:@"DOC_ACTIVITY"].length){
         _activityType = ACTIVITY_DOC;
+    }else if([_type rangeOfString:@"contents"].length){
+        _activityType = ACTIVITY_CONTENTS;
     }else if([_type rangeOfString:@"ks-forum"].length){
         if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddTopic"]){
             _activityType = ACTIVITY_FORUM_CREATE_TOPIC;

@@ -9,20 +9,24 @@
 #import "ActivityForumTableViewCell.h"
 #import "SocialActivityStream.h"
 #import "LanguageHelper.h"
+#import "ActivityHelper.h"
 
 @implementation ActivityForumTableViewCell
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream{
     [super setSocialActivityStream:socialActivityStream];
 
-    NSString* textStr;
-    if([socialActivityStream.templateParams valueForKey:@"PostName"] != nil){
-        textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
-    } else if([socialActivityStream.templateParams valueForKey:@"TopicName"] != nil) {
-        textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName,  Localize(@"NewTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+    switch (socialActivityStream.activityType) {
+        case ACTIVITY_FORUM_CREATE_POST:
+            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
+            break;
+        case ACTIVITY_FORUM_CREATE_TOPIC:
+            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+            break; 
+        default:
+            break;
     }
-    //htmlName.html = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body><table><tr><td color: #0888D6>%@</td><td color: #0888D6>%@</td><td color: #0888D6>%@</td></tr></table></body></html>",socialActivityStream.posterUserProfile.fullName, @" has posted a new topic: ", [socialActivityStream.templateParams valueForKey:@"PostName"]];
-    _lbName.text = textStr;
+    _lbName.text = @"";
     _lbMessage.text = socialActivityStream.title;
     htmlLabel.html = @"";
 }
