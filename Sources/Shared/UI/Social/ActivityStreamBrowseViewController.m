@@ -9,6 +9,7 @@
 #import "ActivityStreamBrowseViewController.h"
 #import "ActivityBasicTableViewCell.h"
 #import "ActivityPictureTableViewCell.h"
+#import "ActivityForumTableViewCell.h"
 #import "NSDate+Formatting.h"
 #import "ActivityDetailViewController.h"
 #import "AppDelegate_iPad.h"
@@ -27,11 +28,13 @@
 #import "SocialPictureAttach.h"
 #import "DocumentDisplayViewController_iPhone.h"
 #import "LanguageHelper.h"
+#import "ActivityHelper.h"
 
 #define TAG_EMPTY 111
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
+static NSString* kCellIdentifierForum = @"ActivityForumCell";
 
 @implementation ActivityStreamBrowseViewController
 
@@ -176,23 +179,10 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     
     self.title = Localize(@"News");
     
-    //Set the background Color of the view
-    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //backgroundView.frame = self.view.frame;
-    //_tblvActivityStream.backgroundView = backgroundView;
-    
     UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
     background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     _tblvActivityStream.backgroundView = background;
     [background release];
-    
-    /*self.parentViewController.view.backgroundColor =  [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    _tblvActivityStream.backgroundColor = [UIColor clearColor];
-*/
-    
-    //_tblvActivityStream.backgroundColor = [UIColor colorWithRed:215./255 green:216./255 blue:226./255 alpha:1.] ;
-
     
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
@@ -386,15 +376,39 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-    BOOL isPicture = ([socialActivityStream.templateParams objectForKey:@"DOCLINK"] != nil);
     NSString* text = @"";
-    if (isPicture){
-        text = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
-    } else {
-        text = socialActivityStream.title;
+    float fHeight = 0.0;
+    switch (socialActivityStream.activityType) {
+        case ACTIVITY_DOC:{
+            text = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
+            fHeight = [self getHeighSizeForTableView:tableView andText:text picture:YES];
+        }
+            break;
+        case ACTIVITY_FORUM_CREATE_POST: 
+        case ACTIVITY_FORUM_CREATE_TOPIC:{
+            float fWidth = tableView.frame.size.width;
+            CGSize theSize;
+            NSString* textStr;
+            if([socialActivityStream.templateParams valueForKey:@"PostName"] != nil){
+                textStr = [NSString stringWithFormat:@"%@ has added a new post: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"PostName"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            } else if([socialActivityStream.templateParams valueForKey:@"TopicName"] != nil) {
+                textStr = [NSString stringWithFormat:@"%@ has posted a new topic: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            }
+            text = socialActivityStream.title;
+            fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
+            fHeight += theSize.height;
+        }
+            break;
+        default:{
+            text = socialActivityStream.title;
+            fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
+        }
+            break;
     }
-    float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:isPicture];
-    
     return  fHeight;
 }
 
@@ -404,57 +418,84 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-    
-    if([socialActivityStream.templateParams objectForKey:@"DOCLINK"] == nil){
-        //We dequeue a cell
-        ActivityBasicTableViewCell *cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-        //Check if we found a cell
-        if (cell == nil) 
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityBasicTableViewCell" owner:self options:nil];
-            cell = (ActivityBasicTableViewCell *)[nib objectAtIndex:0];
-            
-            //Create a cell, need to do some Configurations
-            [cell configureCell];
+    ActivityBasicTableViewCell *cell;
+    switch (socialActivityStream.activityType) {
+        case ACTIVITY_DOC:{
+            cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureTableViewCell" owner:self options:nil];
+                cell = (ActivityPictureTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some Configurations
+                [cell configureCell];
+            }
+            NSString* text = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
+            //Set the size of the cell
+            float fWidth = tableView.frame.size.width;
+            float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:YES];
+            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
         }
-        cell.delegate = self;
-        cell.socialActivytyStream = socialActivityStream;
-        
-        NSString* text = socialActivityStream.title;
-        
-        //Set the size of the cell
-        float fWidth = tableView.frame.size.width;
-        float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
-        [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-        cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
-        //Set the cell content
-        [cell setSocialActivityStream:socialActivityStream];
-        return cell;
-    } else {//
-        ActivityPictureTableViewCell *cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
-        //Check if we found a cell
-        if (cell == nil) 
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureTableViewCell" owner:self options:nil];
-            cell = (ActivityPictureTableViewCell *)[nib objectAtIndex:0];
+            break;
+        case ACTIVITY_FORUM_CREATE_POST: 
+        case ACTIVITY_FORUM_CREATE_TOPIC:{
+            cell  = (ActivityForumTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierForum];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityForumTableViewCell" owner:self options:nil];
+                cell = (ActivityForumTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some Configurations
+                [cell configureCell];
+            }
+            //Set the size of the cell
+            float fWidth = tableView.frame.size.width;
+            CGSize theSize;
+            NSString* textStr;
+            if([socialActivityStream.templateParams valueForKey:@"PostName"] != nil){
+                textStr = [NSString stringWithFormat:@"%@ has added a new post: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"PostName"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            } else if([socialActivityStream.templateParams valueForKey:@"TopicName"] != nil) {
+                textStr = [NSString stringWithFormat:@"%@ has posted a new topic: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            }
             
-            //Create a cell, need to do some Configurations
-            [cell configureCell];
+            NSString* text = socialActivityStream.title;
+            float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
+            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight + theSize.height)];
         }
-        
-        cell.delegate = self;
-        cell.socialActivytyStream = socialActivityStream;
-        
-        NSString* text = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
-        //Set the size of the cell
-        float fWidth = tableView.frame.size.width;
-        float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:YES];
-        [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-        cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
-        //Set the cell content
-        [cell setSocialActivityStream:socialActivityStream];
-        return cell;
+            break;
+        default:{
+            //We dequeue a cell
+            cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityBasicTableViewCell" owner:self options:nil];
+                cell = (ActivityBasicTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some Configurations
+                [cell configureCell];
+            }
+            NSString* text = socialActivityStream.title;
+            
+            //Set the size of the cell
+            float fWidth = tableView.frame.size.width;
+            float fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
+            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+        }
+            break;
     }
+    cell.delegate = self;
+    cell.socialActivytyStream = socialActivityStream;
+    cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
+    [cell setSocialActivityStream:socialActivityStream];
+    
+    return cell;
 }
 
 -(NSString *)getIconForType:(NSString *)type {
@@ -621,6 +662,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream convertHTMLEncoding];
+            [socialActivityStream getActivityType];
             [_arrActivityStreams addObject:socialActivityStream];
 
             NSLog(@"type:%@", socialActivityStream.type);
@@ -639,8 +681,6 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
-    //    [error localizedDescription] 
-    
     NSString *alertMessages = nil;
     
     if(_activityAction == 0)
@@ -653,8 +693,6 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     
     [alertView show];
-    //    [alertView release];
-    
 }
 
 #pragma mark -
