@@ -277,5 +277,14 @@
     
     <key>NotCompliant</key>
     <string>The application can not run on the PLF edition</string>
+    
+    <key>EditWiki</key>
+    <string>has edited Wiki page:</string>
+    <key>CreateWiki</key>
+    <string>has created Wiki page:</string>
+    <key>NewPost</key>
+    <string>has added a new post:</string>
+    <key>NewTopic</key>
+    <string>has posted a new topic:</string>
 </dict>
 </plist>
