@@ -9,6 +9,7 @@
 #import "SocialActivityStream.h"
 #import "NSDate+Formatting.h"
 #import "GTMNSString+HTML.h"
+#import "ActivityHelper.h"
 
 @implementation SocialActivityStream
 
@@ -18,6 +19,7 @@
 @synthesize liked = _liked;
 @synthesize postedTime = _postedTime;
 @synthesize type = _type;
+@synthesize activityType = _activityType;
 @synthesize posterIdentity = _posterIdentity;
 @synthesize activityId = _activityId;
 @synthesize title = _title;
@@ -57,6 +59,28 @@
     self.title = [self.title gtm_stringByUnescapingFromHTML];
     self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];
 }    
+
+-(void)getActivityType {
+    if([_type rangeOfString:@"ks-wiki"].length){
+        if([[_templateParams valueForKey:@"act_key"] isEqualToString:@"add_page"]){
+            _activityType = ACTIVITY_WIKI_ADD_PAGE;
+        } else if([[_templateParams valueForKey:@"act_key"] isEqualToString:@"update_page"]){
+            _activityType = ACTIVITY_WIKI_MODIFY_PAGE;
+        }
+    }else if([_type rangeOfString:@"LINK_ACTIVITY"].length){
+        _activityType = ACTIVITY_LINK;
+    }else if([_type rangeOfString:@"DOC_ACTIVITY"].length){
+        _activityType = ACTIVITY_DOC;
+    }else if([_type rangeOfString:@"ks-forum"].length){
+        if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddTopic"]){
+            _activityType = ACTIVITY_FORUM_CREATE_TOPIC;
+        } else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddPost"]){
+            _activityType = ACTIVITY_FORUM_CREATE_POST;
+        }
+    } else {
+        _activityType = ACTIVITY_DEFAULT;
+    }
+}
 
 
 @end

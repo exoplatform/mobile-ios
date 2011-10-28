@@ -27,7 +27,8 @@
     NSString*               _titleId;
     NSArray*                _comments;    
     NSString*               _postedTimeInWords;
-    NSDictionary*           _templateParams;    
+    NSDictionary*           _templateParams;  
+    NSInteger               _activityType;
 }
 
 @property (nonatomic, retain) NSString* identityId;
@@ -35,6 +36,7 @@
 @property int totalNumberOfLikes;
 @property BOOL liked;
 @property double postedTime;
+@property NSInteger activityType;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* posterIdentity;
 @property (nonatomic, retain) NSString* activityId;
@@ -48,7 +50,7 @@
 @property (nonatomic, retain) SocialPictureAttach *posterPicture;
 @property (nonatomic, retain) NSDictionary *templateParams;
 
-
+- (void)getActivityType;
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
 @end
