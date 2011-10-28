@@ -13,7 +13,8 @@
 #import "SocialActivityStream.h"
 #import "SocialActivityDetails.h"
 #import "defines.h"
-
+#import "ActivityHelper.h"
+#import "LanguageHelper.h"
 
 @implementation ActivityDetailMessageTableViewCell
 
@@ -21,6 +22,8 @@
 @synthesize imgvMessageBg=_imgvMessageBg;
 @synthesize webViewForContent = _webViewForContent;
 @synthesize imgType = _imgType;
+@synthesize activityType = _activityType;
+@synthesize templateParams = _templateParams;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -110,13 +113,42 @@
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
     
-    [_webViewForContent loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
-                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-     ];
+    switch (_activityType) {
+        case ACTIVITY_LINK:
+        case ACTIVITY_DEFAULT:{
+            [_webViewForContent loadHTMLString:
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
+                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+             ];
+            _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+        }
+            
+            break;
+        case ACTIVITY_FORUM_CREATE_TOPIC:
+        case ACTIVITY_WIKI_ADD_PAGE:
+        case ACTIVITY_WIKI_MODIFY_PAGE:
+        case ACTIVITY_FORUM_CREATE_POST:{
+            [_webViewForContent loadHTMLString:
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head>%@ %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"EditWiki"), [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]] 
+                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+             ];
+        }
+
+            break;  
+        default:
+        {
+            [_webViewForContent loadHTMLString:
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
+                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+             ];
+            _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+        }
+            break;
+    }
+    _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     
     _lbMessage.text = @"";
-    _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+    
     _lbDate.text = [socialActivityDetail.postedTimeInWords copy];
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
     

@@ -33,6 +33,7 @@
     
     
     TTStyledTextLabel  *htmlLabel;
+    TTStyledTextLabel   *htmlName;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;

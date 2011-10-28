@@ -82,6 +82,8 @@
     self.btnComment = nil;
     
     self.imgvMessageBg = nil;
+    htmlName = nil;
+    htmlLabel = nil;
     
     [super dealloc];
 }
@@ -117,6 +119,7 @@
         _lbName.shadowColor = [UIColor whiteColor];
     
         htmlLabel.textColor = [UIColor grayColor];
+        htmlName.textColor = [UIColor grayColor];
 
  
         _lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
@@ -129,7 +132,7 @@
         //_lbName.shadowColor = [UIColor darkGrayColor];
         
         htmlLabel.textColor = [UIColor darkGrayColor];
-
+        htmlName.textColor = [UIColor grayColor];
         
         _lbDate.textColor = [UIColor colorWithRed:130./255 green:130./255 blue:130./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,0);
@@ -154,6 +157,18 @@
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
     
+    htmlName = [[[TTStyledTextLabel alloc] initWithFrame:_lbName.frame] autorelease];
+    htmlName.userInteractionEnabled = NO;
+    htmlName.backgroundColor = [UIColor clearColor];
+    htmlName.font = [UIFont systemFontOfSize:13.0];
+    htmlName.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
+    //        UIViewAutoresizingFlexibleBottomMargin |
+    //        UIViewAutoresizingFlexibleRightMargin ;
+    htmlLabel.autoresizesSubviews = YES;
+    htmlLabel.textColor = [UIColor grayColor];
+    
+    [self.contentView addSubview:htmlName];
+    
     htmlLabel = [[[TTStyledTextLabel alloc] initWithFrame:_lbMessage.frame] autorelease];
     htmlLabel.userInteractionEnabled = NO;
     htmlLabel.backgroundColor = [UIColor clearColor];
@@ -161,6 +176,7 @@
     htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
 //        UIViewAutoresizingFlexibleBottomMargin |
 //        UIViewAutoresizingFlexibleRightMargin ;
+    htmlLabel.autoresizesSubviews = YES;
     htmlLabel.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:htmlLabel];

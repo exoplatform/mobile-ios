@@ -283,6 +283,8 @@
             float fWidth = tableView.frame.size.width;
             float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
             cell.imgType.image = [UIImage imageNamed:_iconType];
+            cell.activityType = _socialActivityStream.activityType;
+            cell.templateParams = _socialActivityStream.templateParams;
             [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
             [cell setSocialActivityDetail:_socialActivityDetails];
 
@@ -527,7 +529,7 @@
     _socialActivityStream = socialActivityStream;
     _socialUserProfile = currentUserProfile;
     _activityAction = 0;
-    NSLog(@"Type:%@", _socialActivityStream.type);
+    NSLog(@"Activity:%@ /nType:%@", [_socialActivityStream.templateParams description],_socialActivityStream.type);
     [self startLoadingActivityDetail];
 }
 

@@ -10,6 +10,7 @@
 #import "ActivityBasicTableViewCell.h"
 #import "ActivityPictureTableViewCell.h"
 #import "ActivityForumTableViewCell.h"
+#import "ActivityWikiTableViewCell.h"
 #import "NSDate+Formatting.h"
 #import "ActivityDetailViewController.h"
 #import "AppDelegate_iPad.h"
@@ -35,6 +36,7 @@
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 static NSString* kCellIdentifierForum = @"ActivityForumCell";
+static NSString* kCellIdentifierWiki = @"ActivityWikiCell";
 
 @implementation ActivityStreamBrowseViewController
 
@@ -384,17 +386,35 @@ static NSString* kCellIdentifierForum = @"ActivityForumCell";
             fHeight = [self getHeighSizeForTableView:tableView andText:text picture:YES];
         }
             break;
+        case ACTIVITY_WIKI_ADD_PAGE:
+        case ACTIVITY_WIKI_MODIFY_PAGE:{
+            float fWidth = tableView.frame.size.width;
+            CGSize theSize;
+            NSString* textStr;//
+
+            if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            } else if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            }
+            fHeight = theSize.height + 55;
+        }
+            break;
         case ACTIVITY_FORUM_CREATE_POST: 
         case ACTIVITY_FORUM_CREATE_TOPIC:{
             float fWidth = tableView.frame.size.width;
             CGSize theSize;
             NSString* textStr;
             if([socialActivityStream.templateParams valueForKey:@"PostName"] != nil){
-                textStr = [NSString stringWithFormat:@"%@ has added a new post: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"PostName"]];
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
                 theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                                   lineBreakMode:UILineBreakModeWordWrap];
             } else if([socialActivityStream.templateParams valueForKey:@"TopicName"] != nil) {
-                textStr = [NSString stringWithFormat:@"%@ has posted a new topic: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName,  Localize(@"NewTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]];
                 theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                                   lineBreakMode:UILineBreakModeWordWrap];
             }
@@ -419,6 +439,7 @@ static NSString* kCellIdentifierForum = @"ActivityForumCell";
 {    
     SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     ActivityBasicTableViewCell *cell;
+    //
     switch (socialActivityStream.activityType) {
         case ACTIVITY_DOC:{
             cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
@@ -438,6 +459,34 @@ static NSString* kCellIdentifierForum = @"ActivityForumCell";
             [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
         }
             break;
+        case ACTIVITY_WIKI_ADD_PAGE:
+        case ACTIVITY_WIKI_MODIFY_PAGE:{
+            cell  = (ActivityWikiTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierWiki];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiTableViewCell" owner:self options:nil];
+                cell = (ActivityWikiTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some Configurations
+                [cell configureCell];
+            }
+            //NSString* text = [socialActivityStream.templateParams valueForKey:@"page_name"];
+            float fWidth = tableView.frame.size.width;
+            CGSize theSize;
+            NSString* textStr;
+            if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            } else if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
+                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+            }
+            [cell setFrame:CGRectMake(0, 0, fWidth, 55 + theSize.height)];
+        }
+            break;
         case ACTIVITY_FORUM_CREATE_POST: 
         case ACTIVITY_FORUM_CREATE_TOPIC:{
             cell  = (ActivityForumTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierForum];
@@ -455,11 +504,11 @@ static NSString* kCellIdentifierForum = @"ActivityForumCell";
             CGSize theSize;
             NSString* textStr;
             if([socialActivityStream.templateParams valueForKey:@"PostName"] != nil){
-                textStr = [NSString stringWithFormat:@"%@ has added a new post: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"PostName"]];
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
                 theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                                   lineBreakMode:UILineBreakModeWordWrap];
             } else if([socialActivityStream.templateParams valueForKey:@"TopicName"] != nil) {
-                textStr = [NSString stringWithFormat:@"%@ has posted a new topic: %@", socialActivityStream.posterUserProfile.fullName, [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName,  Localize(@"NewTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]];
                 theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                                   lineBreakMode:UILineBreakModeWordWrap];
             }

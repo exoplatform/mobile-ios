@@ -25,6 +25,8 @@
     UIImageView*           _imgType;
     
     UIWebView*             _webViewForContent;
+    NSInteger             _activityType;
+    NSDictionary*          _templateParams;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
@@ -32,6 +34,8 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
 @property (retain, nonatomic) IBOutlet UIImageView* imgType;
+@property  NSInteger activityType;
+@property (retain, nonatomic) NSDictionary *templateParams;
 
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;

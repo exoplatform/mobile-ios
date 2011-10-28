@@ -60,6 +60,7 @@
     UIView *maskView;
     
     NSString *_iconType; // icon for type of activity detail
+    
 }
 @property (retain) NSString *iconType;
 
