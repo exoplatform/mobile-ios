@@ -106,6 +106,8 @@
 		1FCEDED21457A34F0058C80F /* ActivityTypeNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC21457A34F0058C80F /* ActivityTypeNormal@2x.png */; };
 		1FCEDED31457A34F0058C80F /* ActivityTypeWiki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC31457A34F0058C80F /* ActivityTypeWiki@2x.png */; };
 		1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCEDED51458021C0058C80F /* eXoViewController.m */; };
+		1FD02F97145A8C1500A36840 /* ActivityWikiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */; };
+		1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FD02F98145A8C4100A36840 /* ActivityWikiTableViewCell.xib */; };
 		1FD0C3FF143BF146002F40A7 /* IconForEmptyFolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3F4143BF146002F40A7 /* IconForEmptyFolder.png */; };
 		1FD0C400143BF146002F40A7 /* IconForNoActivities.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3F5143BF146002F40A7 /* IconForNoActivities.png */; };
 		1FD0C401143BF146002F40A7 /* IconForNoContact.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3F6143BF146002F40A7 /* IconForNoContact.png */; };
@@ -924,6 +926,9 @@
 		1FCEDED41458021C0058C80F /* eXoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoViewController.h; sourceTree = "<group>"; };
 		1FCEDED51458021C0058C80F /* eXoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoViewController.m; sourceTree = "<group>"; };
 		1FD02F92145A50CD00A36840 /* ActivityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityHelper.h; sourceTree = "<group>"; };
+		1FD02F95145A8C1300A36840 /* ActivityWikiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityWikiTableViewCell.h; path = Social/ActivityWikiTableViewCell.h; sourceTree = "<group>"; };
+		1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityWikiTableViewCell.m; path = Social/ActivityWikiTableViewCell.m; sourceTree = "<group>"; };
+		1FD02F98145A8C4100A36840 /* ActivityWikiTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityWikiTableViewCell.xib; path = Social/ActivityWikiTableViewCell.xib; sourceTree = "<group>"; };
 		1FD0C3F4143BF146002F40A7 /* IconForEmptyFolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconForEmptyFolder.png; sourceTree = "<group>"; };
 		1FD0C3F5143BF146002F40A7 /* IconForNoActivities.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconForNoActivities.png; sourceTree = "<group>"; };
 		1FD0C3F6143BF146002F40A7 /* IconForNoContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconForNoContact.png; sourceTree = "<group>"; };
@@ -2202,6 +2207,9 @@
 				46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */,
 				46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */,
 				46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */,
+				1FD02F95145A8C1300A36840 /* ActivityWikiTableViewCell.h */,
+				1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */,
+				1FD02F98145A8C4100A36840 /* ActivityWikiTableViewCell.xib */,
 				1F20AC3F14590BB90068A2CB /* ActivityForumTableViewCell.h */,
 				1F20AC4014590BB90068A2CB /* ActivityForumTableViewCell.m */,
 				1F20AC4214590BDA0068A2CB /* ActivityForumTableViewCell.xib */,
@@ -4183,6 +4191,7 @@
 				1FCEDED31457A34F0058C80F /* ActivityTypeWiki@2x.png in Resources */,
 				1F20AC4314590BDA0068A2CB /* ActivityForumTableViewCell.xib in Resources */,
 				1F20ACDF145968080068A2CB /* ActivityForumDetailMessageTableViewCell.xib in Resources */,
+				1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4358,6 +4367,7 @@
 				1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */,
 				1F20AC4114590BBA0068A2CB /* ActivityForumTableViewCell.m in Sources */,
 				1F20ACE2145968310068A2CB /* ActivityForumDetailMessageTableViewCell.m in Sources */,
+				1FD02F97145A8C1500A36840 /* ActivityWikiTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
