@@ -539,6 +539,13 @@ static NSString* kCellIdentifierWiki = @"ActivityWikiCell";
         }
             break;
     }
+    
+    if (_tblvActivityStream.dragging == NO && _tblvActivityStream.decelerating == NO)
+    {
+        cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];
+    }
+        // if a download is deferred or in progress, return a placeholder image
+        
     cell.delegate = self;
     cell.socialActivytyStream = socialActivityStream;
     cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
@@ -751,19 +758,42 @@ static NSString* kCellIdentifierWiki = @"ActivityWikiCell";
 }
 
 
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    if ([_arrActivityStreams count] > 0)
+    {
+        NSArray *visiblePaths = [_tblvActivityStream indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+            
+            ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell*)[_tblvActivityStream cellForRowAtIndexPath:indexPath];
+            
+            // Display the newly loaded image
+           cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];
+            
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+    {
+        [self loadImagesForOnscreenRows];
+    }
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
 	
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-	
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-	
+    [self loadImagesForOnscreenRows];
 }
 
 

@@ -216,7 +216,7 @@
 {
     //SonTH commented out
     //NSLog(@"%@",socialActivityStream.posterUserProfile.avatarUrl);
-    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
+    //_imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
     htmlLabel.html = socialActivityStream.title;
 
     //htmlLabel.text = [TTStyledText textFromXHTML:socialActivityStream.title];
