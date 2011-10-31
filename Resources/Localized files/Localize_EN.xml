@@ -293,8 +293,12 @@
     <string>has created Wiki page:</string>
     <key>NewPost</key>
     <string>has added a new post:</string>
+    <key>UpdatePost</key>
+    <string>has updated a post:</string>
     <key>NewTopic</key>
     <string>has posted a new topic:</string>
+    <key>UpdateTopic</key>
+    <string>has updated a topic:</string>
     
 </dict>
 </plist>
