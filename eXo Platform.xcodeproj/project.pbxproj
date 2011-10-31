@@ -4441,7 +4441,7 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
@@ -4480,7 +4480,7 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
@@ -4553,7 +4553,7 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
@@ -4628,7 +4628,7 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
