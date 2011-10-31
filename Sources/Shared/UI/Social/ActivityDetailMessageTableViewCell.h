@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Three20/Three20.h"
 
 @class Activity;
 @class EGOImageView;
@@ -29,6 +30,7 @@
     NSInteger             _activityType;
     NSDictionary*          _templateParams;
     
+    TTStyledTextLabel*     htmlLabel;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;

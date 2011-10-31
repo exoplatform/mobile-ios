@@ -13,7 +13,7 @@
 
 @implementation ActivityPictureTableViewCell
 
-@synthesize imgvAttach = _imgvAttach;
+@synthesize imgvAttach = _imgvAttach, lbFileName = _lbFileName;
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream{
     [super setSocialActivityStream:socialActivityStream];
@@ -23,6 +23,8 @@
     
     _imgvAttach.imageURL = [NSURL URLWithString:strURL]; 
     _lbMessage.text = [[socialActivityStream.templateParams valueForKey:@"MESSAGE"] copy];
+    _lbFileName.text = [socialActivityStream.templateParams valueForKey:@"DOCNAME"];
+    
      htmlLabel.html = @"";
 }
 

@@ -11,8 +11,13 @@
 
 @interface ActivityPictureTableViewCell : ActivityBasicTableViewCell {
     EGOImageView*          _imgvAttach;
+    UILabel*               _lbFileName;
+    
+    TTStyledTextLabel  *htmlFileName;
 }
+
 @property (retain) IBOutlet EGOImageView* imgvAttach;
+@property (retain) IBOutlet UILabel* lbFileName;
 
 -(void)setPicture;
 @end

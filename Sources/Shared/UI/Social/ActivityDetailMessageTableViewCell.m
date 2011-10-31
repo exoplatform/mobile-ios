@@ -107,6 +107,9 @@
     _imgvMessageBg.highlightedImage = strechBgSelected;
     
     [_webViewForContent setBackgroundColor:[UIColor clearColor]];
+    _webViewForContent.scrollView.bounces = NO;
+    [_webViewForContent.scrollView flashScrollIndicators];
+
     [_webViewForContent setOpaque:NO];
 }
 

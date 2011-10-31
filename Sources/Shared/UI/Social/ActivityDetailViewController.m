@@ -188,9 +188,6 @@
         fHeight = 75 + theSize.height;
     }
     
-    if (fHeight > 200) {
-        fHeight = 200;
-    }
     return fHeight;
 }
 

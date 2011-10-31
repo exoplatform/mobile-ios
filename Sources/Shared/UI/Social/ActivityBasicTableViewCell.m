@@ -150,6 +150,10 @@
     
     [self configureFonts:NO];
     
+//    self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//    self.autoresizesSubviews = YES;
+    
+    
     //Add images for Background Message
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
     
@@ -168,8 +172,6 @@
     htmlName.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
     //        UIViewAutoresizingFlexibleBottomMargin |
     //        UIViewAutoresizingFlexibleRightMargin ;
-    htmlLabel.autoresizesSubviews = YES;
-    htmlLabel.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:htmlName];
     
@@ -178,6 +180,7 @@
     }
     htmlLabel = [[[TTStyledTextLabel alloc] initWithFrame:_lbMessage.frame] autorelease];
     htmlLabel.userInteractionEnabled = NO;
+    htmlLabel.autoresizesSubviews = YES;
     htmlLabel.backgroundColor = [UIColor clearColor];
     htmlLabel.font = [UIFont systemFontOfSize:13.0];
     htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
@@ -187,7 +190,6 @@
     htmlLabel.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:htmlLabel];
-    
     
     
     //Add images for Comment button

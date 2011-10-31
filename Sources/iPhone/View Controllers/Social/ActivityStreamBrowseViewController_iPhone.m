@@ -61,10 +61,6 @@
         fHeight = 95 + theSize.height;
     }
     
-    /*if (fHeight > 200) {
-        fHeight = 200;
-        
-    }*/
     if (isPicture) {
         fHeight += 70;
     }

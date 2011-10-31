@@ -72,7 +72,7 @@
     
     // Let's create an SocialActivityDetails
     SocialActivityDetails* activity = [[SocialActivityDetails alloc] init];
-    activity.title = _text;
+    activity.title = message;
     
     //Register our mappings with the provider FOR SERIALIZATION
     RKObjectMapping *activitySimpleMapping = [RKObjectMapping mappingForClass: 
@@ -81,14 +81,8 @@
     
     //Attach file
     if(fileURL != nil) {
-        activity.type = @"DOC_ACTIVITY";
-       /* "DOCPATH":"/Users/xuyen_mai/Public/Kaka.jpg",
-        "MESSAGE":"",
-        "DOCLINK":"/portal/rest/jcr/repository/collaboration/Users/xuyen_mai/Public/Kaka.jpg",
-        "WORKSPACE":"collaboration",
-        "REPOSITORY":"repository",
-        "DOCNAME":"KakaHaha.jpg"*/
         
+        activity.type = @"DOC_ACTIVITY"; 
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSString *host = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
@@ -98,11 +92,14 @@
 
         rangeOfDocLink = [fileURL rangeOfString:@"jcr/repository/collaboration"];
         NSString* docPath = [fileURL substringFromIndex:rangeOfDocLink.location + rangeOfDocLink.length];
+        
+        activity.title = [NSString stringWithFormat:@"Shared a document <a href=\"%@\">%@</a>\"", docLink, fileName];
+        
 
          activity.templateParams = [[NSMutableDictionary alloc] init];
         
         [activity setKeyForTemplateParams:@"DOCPATH" value:docPath];
-        [activity setKeyForTemplateParams:@"MESSAGE" value:@""];
+        [activity setKeyForTemplateParams:@"MESSAGE" value:message];
         [activity setKeyForTemplateParams:@"DOCLINK" value:docLink];
         [activity setKeyForTemplateParams:@"WORKSPACE" value:@"collaboration"];
         [activity setKeyForTemplateParams:@"REPOSITORY" value:@"repository"];
