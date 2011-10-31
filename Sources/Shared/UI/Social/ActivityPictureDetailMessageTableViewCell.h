@@ -10,9 +10,9 @@
 #import "ActivityDetailMessageTableViewCell.h"
 
 @interface ActivityPictureDetailMessageTableViewCell : ActivityDetailMessageTableViewCell {
-    EGOImageView*          _imgvAttach;
+    
 }
-@property (retain) IBOutlet EGOImageView* imgvAttach;
+
 - (void)setLinkForImageAttach:(NSString *) URL;
 
 @end

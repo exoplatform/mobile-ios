@@ -49,7 +49,7 @@
 							<object class="IBUIImageView" id="180318526">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{320, 99}</string>
+								<string key="NSFrameSize">{320, 109}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="785649985"/>
@@ -59,7 +59,7 @@
 							<object class="IBUILabel" id="800775345">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{70, 10}, {237, 23}}</string>
+								<string key="NSFrame">{{62, 7}, {245, 23}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="480406158"/>
@@ -143,7 +143,7 @@
 							<object class="IBUIWebView" id="550099940">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{62, 29}, {243, 43}}</string>
+								<string key="NSFrame">{{62, 35}, {243, 43}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="800775345"/>
@@ -157,7 +157,7 @@
 							<object class="IBUILabel" id="789010297">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{84, 70}, {222, 21}}</string>
+								<string key="NSFrame">{{84, 80}, {222, 21}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -190,7 +190,7 @@
 							<object class="IBUIImageView" id="1062781650">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{63, 75}, {14, 14}}</string>
+								<string key="NSFrame">{{63, 85}, {14, 14}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="789010297"/>
@@ -202,7 +202,7 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 99}</string>
+						<string key="NSFrameSize">{320, 109}</string>
 						<reference key="NSSuperview" ref="679851206"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="180318526"/>
@@ -214,7 +214,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 100}</string>
+				<string key="NSFrameSize">{320, 110}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="818041569"/>
@@ -226,6 +226,7 @@
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="818041569"/>
 				<string key="IBUIReuseIdentifier">ActivityCell</string>
+				<real value="110" key="IBUIRowHeight"/>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -426,6 +427,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>imgType</string>
+							<string>imgvAttach</string>
 							<string>imgvAvatar</string>
 							<string>imgvMessageBg</string>
 							<string>lbDate</string>
@@ -436,6 +438,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIImageView</string>
+							<string>EGOImageView</string>
 							<string>EGOImageView</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
@@ -449,6 +452,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>imgType</string>
+							<string>imgvAttach</string>
 							<string>imgvAvatar</string>
 							<string>imgvMessageBg</string>
 							<string>lbDate</string>
@@ -461,6 +465,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">imgType</string>
 								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">imgvAttach</string>
+								<string key="candidateClassName">EGOImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">imgvAvatar</string>

@@ -158,6 +158,9 @@
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
     
+    if(htmlName.superview != nil){
+        [htmlName removeFromSuperview];
+    }
     htmlName = [[[TTStyledTextLabel alloc] initWithFrame:_lbName.frame] autorelease];
     htmlName.userInteractionEnabled = NO;
     htmlName.backgroundColor = [UIColor clearColor];
@@ -170,6 +173,9 @@
     
     [self.contentView addSubview:htmlName];
     
+    if(htmlLabel.superview != nil){
+        [htmlLabel removeFromSuperview];
+    }
     htmlLabel = [[[TTStyledTextLabel alloc] initWithFrame:_lbMessage.frame] autorelease];
     htmlLabel.userInteractionEnabled = NO;
     htmlLabel.backgroundColor = [UIColor clearColor];

@@ -23,16 +23,19 @@
     EGOImageView*          _imgvAvatar;
     UIImageView*           _imgvMessageBg;
     UIImageView*           _imgType;
+    EGOImageView*          _imgvAttach;
     
     UIWebView*             _webViewForContent;
     NSInteger             _activityType;
     NSDictionary*          _templateParams;
+    
 }
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+@property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain, nonatomic) IBOutlet UIImageView* imgType;
 @property  NSInteger activityType;
 @property (retain, nonatomic) NSDictionary *templateParams;

@@ -79,39 +79,6 @@
 									<string key="NSResourceName">ActivityTypeNormal.png</string>
 								</object>
 							</object>
-							<object class="IBUILabel" id="1034166353">
-								<reference key="NSNextResponder" ref="801735477"/>
-								<int key="NSvFlags">282</int>
-								<string key="NSFrame">{{70, 43}, {244, 24}}</string>
-								<reference key="NSSuperview" ref="801735477"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="795643960"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC40OTQxMTc2NDcxIDAuNDk0MTE3NjQ3MSAwLjQ5NDExNzY0NzEAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">10</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">0</int>
-									<double key="pointSize">13</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">13</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
 							<object class="IBUILabel" id="640516210">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">274</int>
@@ -141,6 +108,39 @@
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">16</int>
+								</object>
+							</object>
+							<object class="IBUILabel" id="1034166353">
+								<reference key="NSNextResponder" ref="801735477"/>
+								<int key="NSvFlags">282</int>
+								<string key="NSFrame">{{70, 43}, {244, 24}}</string>
+								<reference key="NSSuperview" ref="801735477"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="795643960"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<string key="IBUIText">Label</string>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC40OTQxMTc2NDcxIDAuNDk0MTE3NjQ3MSAwLjQ5NDExNzY0NzEAA</bytes>
+								</object>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUINumberOfLines">10</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<string key="name">Helvetica</string>
+									<string key="family">Helvetica</string>
+									<int key="traits">0</int>
+									<double key="pointSize">13</double>
+								</object>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -229,7 +229,6 @@
 								<string key="NSFrame">{{274, 77}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="267389099"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -363,11 +362,11 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="668293437"/>
 							<reference ref="795643960"/>
-							<reference ref="640516210"/>
 							<reference ref="659293156"/>
 							<reference ref="910239226"/>
 							<reference ref="1034166353"/>
 							<reference ref="361966082"/>
+							<reference ref="640516210"/>
 							<reference ref="148382084"/>
 						</array>
 						<reference key="parent" ref="0"/>

@@ -13,8 +13,6 @@
 
 @implementation ActivityPictureDetailMessageTableViewCell
 
-@synthesize imgvAttach = _imgvAttach;
-
 - (void)setLinkForImageAttach:(NSString *)URL{
     _imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];

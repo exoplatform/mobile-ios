@@ -18,10 +18,18 @@
 
     switch (socialActivityStream.activityType) {
         case ACTIVITY_FORUM_CREATE_POST:
-            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
+            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
             break;
         case ACTIVITY_FORUM_CREATE_TOPIC:
-            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+            break; 
+        case ACTIVITY_FORUM_UPDATE_TOPIC:
+            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdateTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+            NSLog(@"%@", [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdateTopic"), [socialActivityStream.templateParams valueForKey:@"TopicName"]]);
+            break; 
+        case ACTIVITY_FORUM_UPDATE_POST:
+            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdatePost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
+            NSLog(@"%@", [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdatePost"), [socialActivityStream.templateParams valueForKey:@"PostName"]]);
             break; 
         default:
             break;

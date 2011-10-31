@@ -76,9 +76,13 @@
     }else if([_type rangeOfString:@"ks-forum"].length){
         if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddTopic"]){
             _activityType = ACTIVITY_FORUM_CREATE_TOPIC;
-        } else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddPost"]){
+        } else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"UpdatePost"]){
+            _activityType = ACTIVITY_FORUM_UPDATE_POST;
+        }else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddPost"]){
             _activityType = ACTIVITY_FORUM_CREATE_POST;
-        }
+        }else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"UpdateTopic"]){
+            _activityType = ACTIVITY_FORUM_UPDATE_TOPIC;
+        }//
     } else {
         _activityType = ACTIVITY_DEFAULT;
     }

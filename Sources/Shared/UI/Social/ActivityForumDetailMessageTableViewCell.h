@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ActivityDetailCommentTableViewCell.h"
+#import "ActivityDetailMessageTableViewCell.h"
 
-@interface ActivityForumDetailMessageTableViewCell : ActivityDetailCommentTableViewCell
+@interface ActivityForumDetailMessageTableViewCell : ActivityDetailMessageTableViewCell
 
 @end

@@ -18,10 +18,10 @@
 
     switch (socialActivityStream.activityType) {
         case ACTIVITY_WIKI_MODIFY_PAGE:
-            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
+            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
-            htmlName.html = [NSString stringWithFormat:@"<a> %@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
+            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
             break; 
         default:
             break;
