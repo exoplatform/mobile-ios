@@ -275,10 +275,15 @@
                 //Set the size of the cell
                 NSString* text = _socialActivityStream.title;
                 float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
-                n=  fHeight + theSize.height;
+                n =  fHeight + theSize.height;
             }
                 break;
-            default:
+            default:{
+                NSString* text = _socialActivityStream.title;
+                float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
+                //[cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
+                n = fHeight;
+            }
                 break;
         }
     }
