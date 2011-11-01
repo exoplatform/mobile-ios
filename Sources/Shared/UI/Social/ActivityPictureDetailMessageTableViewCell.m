@@ -19,4 +19,11 @@
     _imgvAttach.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], URL]];
 }
 
+- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+    [super setSocialActivityDetail:socialActivityDetail];
+    _imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    _imgvAttach.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [_templateParams valueForKey:@"DOCLINK"]]];
+}
+
 @end
