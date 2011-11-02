@@ -15,6 +15,7 @@
 @implementation ActivityWikiDetailMessageTableViewCell
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+    [super setSocialActivityDetail:socialActivityDetail];
     switch (_activityType) {
         case ACTIVITY_WIKI_ADD_PAGE:{
             [_webViewForContent loadHTMLString:

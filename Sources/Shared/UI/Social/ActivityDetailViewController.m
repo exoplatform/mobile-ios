@@ -254,7 +254,14 @@
                 }
                 theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                                   lineBreakMode:UILineBreakModeWordWrap];
-                n = 50 + theSize.height;
+                
+                if([[_socialActivityStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
+                    n = theSize.height + 50;
+                } else {
+                    NSString* text = [_socialActivityStream.templateParams valueForKey:@"page_exceprt"];
+                    n = [self getHeighSizeForTableView:tableView andText:text] + theSize.height + 5;
+                }
+                //n = 50 + theSize.height + fHeight;
             }
                 break;
             case ACTIVITY_FORUM_CREATE_POST: 
@@ -343,31 +350,61 @@
             case ACTIVITY_WIKI_ADD_PAGE:
             case ACTIVITY_WIKI_MODIFY_PAGE:
             {
-                cell = (ActivityWikiDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityWikiDetailMessageTableViewCell];
-                //Check if we found a cell
-                if (cell == nil) 
-                {
-                    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiDetailMessageTableViewCell" owner:self options:nil];
-                    cell = (ActivityWikiDetailMessageTableViewCell *)[nib objectAtIndex:0];
-                    //Create a cell, need to do some configurations
-                    [cell configureCell];
-                    
-                    //Set the delegate of the webview
-                    cell.webViewForContent.delegate = self;
-                }
-                float fWidth = tableView.frame.size.width;
                 CGSize theSize;
                 NSString* textStr;
-                if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
+                float fWidth = tableView.frame.size.width;
+                if([[_socialActivityStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
+                    cell = (ActivityWikiDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityWikiDetailMessageTableViewCell];
+                    //Check if we found a cell
+                    if (cell == nil) 
+                    {
+                        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiDetailMessageTableViewCell" owner:self options:nil];
+                        cell = (ActivityWikiDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                        //Create a cell, need to do some configurations
+                        [cell configureCell];
+                        
+                        //Set the delegate of the webview
+                        cell.webViewForContent.delegate = self;
+                    }
                     
-                } else if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
+        
+                    if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
+                        textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
+                        
+                    } else if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
+                        textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
+                    }
+                    theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                      lineBreakMode:UILineBreakModeWordWrap];
+                    [cell setFrame:CGRectMake(0, 0, fWidth, 50 + theSize.height)];
+                    cell.templateParams = _socialActivityStream.templateParams;
+                } else {
+                    cell = (ActivityForumDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityForumDetailMessageTableViewCell];
+                    //Check if we found a cell
+                    if (cell == nil) 
+                    {
+                        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityForumDetailMessageTableViewCell" owner:self options:nil];
+                        cell = (ActivityForumDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                        //Create a cell, need to do some configurations
+                        [cell configureCell];
+                        
+                        //Set the delegate of the webview
+                        cell.webViewForContent.delegate = self;
+                    }
+                    if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
+                        textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
+                    } else if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
+                        textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
+                        
+                    }
+                    theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                      lineBreakMode:UILineBreakModeWordWrap];
+                    NSString* text = [_socialActivityStream.templateParams valueForKey:@"page_exceprt"];
+                    float fHeight = [self getHeighSizeForTableView:tableView andText:text];
+                    [cell setFrame:CGRectMake(0, 0, fWidth, fHeight + theSize.height + 5)];
+                    cell.templateParams = _socialActivityStream.templateParams;
                 }
-                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-                                  lineBreakMode:UILineBreakModeWordWrap];
-                [cell setFrame:CGRectMake(0, 0, fWidth, 50 + theSize.height)];
-                cell.templateParams = _socialActivityStream.templateParams;
+                
             }
                 break;
             case ACTIVITY_FORUM_CREATE_POST: 
@@ -428,6 +465,7 @@
             }
                 break;
         }
+        cell.userInteractionEnabled = NO;
         cell.activityType = _socialActivityStream.activityType;
         cell.imgType.image = [UIImage imageNamed:_iconType];
         [cell setSocialActivityDetail:_socialActivityDetails];
@@ -641,7 +679,7 @@
     _socialActivityStream = socialActivityStream;
     _socialUserProfile = currentUserProfile;
     _activityAction = 0;
-    NSLog(@"Activity:%@ /nType:%@", [_socialActivityStream.templateParams description],_socialActivityStream.type);
+    NSLog(@"Tempalte Params:%@ \nType:%@", [_socialActivityStream.templateParams description],_socialActivityStream.type);
     [self startLoadingActivityDetail];
 }
 

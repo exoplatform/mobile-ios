@@ -34,8 +34,11 @@
     
     TTStyledTextLabel  *htmlLabel;
     TTStyledTextLabel   *htmlName;
+    UILabel*            _lbComment;
+    TTStyledTextLabel   *htmlComment;
+    
 }
-
+@property (retain) IBOutlet UILabel* lbComment;
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
@@ -46,6 +49,10 @@
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) SocialActivityStream*  socialActivytyStream;
 @property (retain, nonatomic) ActivityStreamBrowseViewController* delegate;
+
+@property (retain, nonatomic) TTStyledTextLabel  *htmlLabel;
+@property (retain, nonatomic) TTStyledTextLabel   *htmlName;
+@property (retain, nonatomic) TTStyledTextLabel   *htmlComment;
 
 @property NSInteger activityType;
 

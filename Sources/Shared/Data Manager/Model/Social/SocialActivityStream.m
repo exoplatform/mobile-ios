@@ -61,19 +61,19 @@
 }    
 
 -(void)getActivityType {
-    if([_type rangeOfString:@"ks-wiki"].length){
+    if([_type rangeOfString:@"ks-wiki"].length > 0){
         if([[_templateParams valueForKey:@"act_key"] isEqualToString:@"add_page"]){
             _activityType = ACTIVITY_WIKI_ADD_PAGE;
         } else if([[_templateParams valueForKey:@"act_key"] isEqualToString:@"update_page"]){
             _activityType = ACTIVITY_WIKI_MODIFY_PAGE;
         }
-    }else if([_type rangeOfString:@"LINK_ACTIVITY"].length){
+    }else if([_type rangeOfString:@"LINK_ACTIVITY"].length > 0){
         _activityType = ACTIVITY_LINK;
-    }else if([_type rangeOfString:@"DOC_ACTIVITY"].length){
+    }else if([_type rangeOfString:@"DOC_ACTIVITY"].length > 0){
         _activityType = ACTIVITY_DOC;
-    }else if([_type rangeOfString:@"contents"].length){
-        _activityType = ACTIVITY_CONTENTS;
-    }else if([_type rangeOfString:@"ks-forum"].length){
+    }else if([_type rangeOfString:@"contents"].length > 0){
+        _activityType = ACTIVITY_CONTENTS_SPACE;
+    }else if([_type rangeOfString:@"ks-forum"].length > 0){
         if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddTopic"]){
             _activityType = ACTIVITY_FORUM_CREATE_TOPIC;
         } else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"UpdatePost"]){

@@ -25,6 +25,10 @@
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 @synthesize activityType = _activityType;
+@synthesize htmlLabel;
+@synthesize htmlName;
+@synthesize lbComment = _lbComment;
+@synthesize htmlComment;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -85,6 +89,7 @@
     self.imgvMessageBg = nil;
     htmlName = nil;
     htmlLabel = nil;
+    htmlComment = nil;
     
     [super dealloc];
 }
@@ -121,7 +126,7 @@
     
         htmlLabel.textColor = [UIColor grayColor];
         htmlName.textColor = [UIColor grayColor];
-
+        htmlComment.textColor = [UIColor grayColor];
  
         _lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,1);
@@ -133,7 +138,8 @@
         //_lbName.shadowColor = [UIColor darkGrayColor];
         
         htmlLabel.textColor = [UIColor darkGrayColor];
-        htmlName.textColor = [UIColor grayColor];
+        htmlName.textColor = [UIColor darkGrayColor];
+        htmlComment.textColor = [UIColor darkGrayColor];
         
         _lbDate.textColor = [UIColor colorWithRed:130./255 green:130./255 blue:130./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,0);
@@ -170,8 +176,7 @@
     htmlName.backgroundColor = [UIColor clearColor];
     htmlName.font = [UIFont systemFontOfSize:13.0];
     htmlName.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
-    //        UIViewAutoresizingFlexibleBottomMargin |
-    //        UIViewAutoresizingFlexibleRightMargin ;
+    
     
     [self.contentView addSubview:htmlName];
     
@@ -190,6 +195,19 @@
     htmlLabel.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:htmlLabel];
+    
+    htmlComment = [[[TTStyledTextLabel alloc] initWithFrame:_lbComment.frame] autorelease];
+    htmlComment.userInteractionEnabled = NO;
+    htmlComment.autoresizesSubviews = YES;
+    htmlComment.backgroundColor = [UIColor clearColor];
+    htmlComment.font = [UIFont systemFontOfSize:13.0];
+    htmlComment.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
+    //        UIViewAutoresizingFlexibleBottomMargin |
+    //        UIViewAutoresizingFlexibleRightMargin ;
+    htmlComment.autoresizesSubviews = YES;
+    htmlComment.textColor = [UIColor grayColor];
+    
+    [self.contentView addSubview:htmlComment];
     
     
     //Add images for Comment button

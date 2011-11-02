@@ -13,6 +13,8 @@
 		1F20AC4314590BDA0068A2CB /* ActivityForumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F20AC4214590BDA0068A2CB /* ActivityForumTableViewCell.xib */; };
 		1F20ACDF145968080068A2CB /* ActivityForumDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F20ACDE145968060068A2CB /* ActivityForumDetailMessageTableViewCell.xib */; };
 		1F20ACE2145968310068A2CB /* ActivityForumDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20ACE11459682F0068A2CB /* ActivityForumDetailMessageTableViewCell.m */; };
+		1F92437A145FE07600D5AF85 /* ActivityLinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */; };
+		1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */; };
 		1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCBCC27143D4BB300CC4F21 /* EmptyView.m */; };
 		1FCD3086143959F000C5BE6D /* disclosureActionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */; };
 		1FCD39ED143A9A6C00C814C5 /* DocumentActionPopupAddFolderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD39BE143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon.png */; };
@@ -824,6 +826,9 @@
 		1F20ACDE145968060068A2CB /* ActivityForumDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityForumDetailMessageTableViewCell.xib; path = Social/ActivityForumDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1F20ACE01459682D0068A2CB /* ActivityForumDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityForumDetailMessageTableViewCell.h; path = Social/ActivityForumDetailMessageTableViewCell.h; sourceTree = "<group>"; };
 		1F20ACE11459682F0068A2CB /* ActivityForumDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityForumDetailMessageTableViewCell.m; path = Social/ActivityForumDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1F924378145FE07300D5AF85 /* ActivityLinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkTableViewCell.h; path = Social/ActivityLinkTableViewCell.h; sourceTree = "<group>"; };
+		1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkTableViewCell.m; path = Social/ActivityLinkTableViewCell.m; sourceTree = "<group>"; };
+		1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkTableViewCell.xib; path = Social/ActivityLinkTableViewCell.xib; sourceTree = "<group>"; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
 		1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosureActionButton.png; sourceTree = "<group>"; };
@@ -2224,6 +2229,9 @@
 				1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */,
 				1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */,
 				1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */,
+				1F924378145FE07300D5AF85 /* ActivityLinkTableViewCell.h */,
+				1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */,
+				1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */,
 				467F4F0113AB9B3400B2DCFA /* ActivityDetail */,
 				46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */,
 				46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */,
@@ -4201,6 +4209,7 @@
 				1F20ACDF145968080068A2CB /* ActivityForumDetailMessageTableViewCell.xib in Resources */,
 				1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */,
 				1FCD8093145E9A62009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib in Resources */,
+				1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4378,6 +4387,7 @@
 				1F20ACE2145968310068A2CB /* ActivityForumDetailMessageTableViewCell.m in Sources */,
 				1FD02F97145A8C1500A36840 /* ActivityWikiTableViewCell.m in Sources */,
 				1FCD8091145E9A32009B34D3 /* ActivityWikiDetailMessageTableViewCell.m in Sources */,
+				1F92437A145FE07600D5AF85 /* ActivityLinkTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

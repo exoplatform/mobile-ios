@@ -107,8 +107,9 @@
     _imgvMessageBg.highlightedImage = strechBgSelected;
     
     [_webViewForContent setBackgroundColor:[UIColor clearColor]];
-    _webViewForContent.scrollView.bounces = NO;
-    [_webViewForContent.scrollView flashScrollIndicators];
+    UIScrollView *scrollView = (UIScrollView *)[[_webViewForContent subviews] objectAtIndex:0];
+    scrollView.bounces = NO;
+    [scrollView flashScrollIndicators];
 
     [_webViewForContent setOpaque:NO];
 }
@@ -116,7 +117,6 @@
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
-    
     switch (_activityType) {
         case ACTIVITY_LINK:
         case ACTIVITY_DEFAULT:{

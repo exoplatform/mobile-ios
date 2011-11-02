@@ -62,4 +62,5 @@
 - (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
 - (void)setHudPosition;
 -(void)showHudForUpload;
+- (float)getHeightForText:(NSString *)text width:(float)width;
 @end

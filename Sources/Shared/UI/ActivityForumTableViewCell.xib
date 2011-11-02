@@ -68,7 +68,7 @@
 							<object class="IBUIImageView" id="795643960">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{71, 81}, {14, 14}}</string>
+								<string key="NSFrame">{{71, 80}, {14, 14}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="659293156"/>
@@ -82,7 +82,7 @@
 							<object class="IBUILabel" id="640516210">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{69, 11}, {237, 22}}</string>
+								<string key="NSFrame">{{68, 11}, {242, 22}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1034166353"/>
@@ -97,9 +97,10 @@
 									<bytes key="NSRGB">MC4wMzEzNzI1NDkwMiAwLjUzMzMzMzMzMzMgMC44MzkyMTU2ODYzAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
+								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">10</int>
+								<int key="IBUINumberOfLines">0</int>
+								<int key="IBUILineBreakMode">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Helvetica-Bold</string>
 									<string key="family">Helvetica</string>
@@ -114,8 +115,8 @@
 							</object>
 							<object class="IBUILabel" id="1034166353">
 								<reference key="NSNextResponder" ref="801735477"/>
-								<int key="NSvFlags">282</int>
-								<string key="NSFrame">{{70, 43}, {244, 24}}</string>
+								<int key="NSvFlags">274</int>
+								<string key="NSFrame">{{69, 42}, {240, 21}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="795643960"/>
@@ -130,9 +131,10 @@
 									<bytes key="NSRGB">MC40OTQxMTc2NDcxIDAuNDk0MTE3NjQ3MSAwLjQ5NDExNzY0NzEAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
+								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">10</int>
+								<int key="IBUINumberOfLines">0</int>
+								<int key="IBUILineBreakMode">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Helvetica</string>
 									<string key="family">Helvetica</string>
@@ -148,7 +150,7 @@
 							<object class="IBUILabel" id="659293156">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">270</int>
-								<string key="NSFrame">{{92, 76}, {140, 24}}</string>
+								<string key="NSFrame">{{92, 75}, {140, 24}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="361966082"/>
@@ -185,7 +187,7 @@
 							<object class="IBUIButton" id="361966082">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{236, 77}, {36, 19}}</string>
+								<string key="NSFrame">{{236, 76}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="148382084"/>
@@ -226,9 +228,10 @@
 							<object class="IBUIButton" id="148382084">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{274, 77}, {36, 19}}</string>
+								<string key="NSFrame">{{274, 76}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="267389099"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
