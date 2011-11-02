@@ -135,9 +135,6 @@
     [_hudFolder release];
     _hudFolder.delegate = nil;
     
-    [_stringForUploadPhoto release];
-    _stringForUploadPhoto = nil;
-    
     [_tblFiles release];
     _tblFiles = nil;
     
