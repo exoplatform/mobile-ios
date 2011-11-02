@@ -222,7 +222,6 @@
 								<string key="NSFrame">{{271, 121}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="42066679"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="854124177"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -301,6 +300,7 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="42066679"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="42066679"/>
 				<real value="151" key="IBUIRowHeight"/>
 			</object>

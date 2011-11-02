@@ -155,6 +155,7 @@
 								<string key="NSFrame">{{273, 40}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="664421155"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="130062592"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -233,6 +234,7 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="664421155"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="664421155"/>
 				<real value="63" key="IBUIRowHeight"/>
 			</object>
@@ -400,6 +402,7 @@
 						<string key="imgType">UIImageView</string>
 						<string key="imgvAvatar">EGOImageView</string>
 						<string key="imgvMessageBg">UIImageView</string>
+						<string key="lbComment">UILabel</string>
 						<string key="lbDate">UILabel</string>
 						<string key="lbMessage">UILabel</string>
 						<string key="lbName">UILabel</string>
@@ -424,6 +427,10 @@
 						<object class="IBToOneOutletInfo" key="imgvMessageBg">
 							<string key="name">imgvMessageBg</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lbComment">
+							<string key="name">lbComment</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lbDate">
 							<string key="name">lbDate</string>

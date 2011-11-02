@@ -2082,6 +2082,38 @@
 			name = "@2x";
 			sourceTree = "<group>";
 		};
+		464F723F146181830085D3F9 /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */,
+				46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */,
+				46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */,
+				46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */,
+				46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */,
+				464F7240146181900085D3F9 /* ActivityKind */,
+			);
+			name = Stream;
+			sourceTree = "<group>";
+		};
+		464F7240146181900085D3F9 /* ActivityKind */ = {
+			isa = PBXGroup;
+			children = (
+				1FD02F95145A8C1300A36840 /* ActivityWikiTableViewCell.h */,
+				1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */,
+				1FD02F98145A8C4100A36840 /* ActivityWikiTableViewCell.xib */,
+				1F20AC3F14590BB90068A2CB /* ActivityForumTableViewCell.h */,
+				1F20AC4014590BB90068A2CB /* ActivityForumTableViewCell.m */,
+				1F20AC4214590BDA0068A2CB /* ActivityForumTableViewCell.xib */,
+				1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */,
+				1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */,
+				1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */,
+				1F924378145FE07300D5AF85 /* ActivityLinkTableViewCell.h */,
+				1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */,
+				1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */,
+			);
+			name = ActivityKind;
+			sourceTree = "<group>";
+		};
 		4660597B13D72217009C6353 /* Needed Import for RestKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2217,24 +2249,8 @@
 		46A03A1913A79F0C00E71AF9 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				46A03A2713A8C16D00E71AF9 /* ActivityBasicTableViewCell.h */,
-				46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */,
-				46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */,
-				1FD02F95145A8C1300A36840 /* ActivityWikiTableViewCell.h */,
-				1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */,
-				1FD02F98145A8C4100A36840 /* ActivityWikiTableViewCell.xib */,
-				1F20AC3F14590BB90068A2CB /* ActivityForumTableViewCell.h */,
-				1F20AC4014590BB90068A2CB /* ActivityForumTableViewCell.m */,
-				1F20AC4214590BDA0068A2CB /* ActivityForumTableViewCell.xib */,
-				1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */,
-				1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */,
-				1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */,
-				1F924378145FE07300D5AF85 /* ActivityLinkTableViewCell.h */,
-				1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */,
-				1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */,
+				464F723F146181830085D3F9 /* Stream */,
 				467F4F0113AB9B3400B2DCFA /* ActivityDetail */,
-				46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */,
-				46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */,
 				7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */,
 				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
 				46A08CD41447501200D53314 /* ActivityLinkDisplayViewController.h */,
