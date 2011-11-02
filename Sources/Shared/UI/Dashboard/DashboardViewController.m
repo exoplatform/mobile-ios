@@ -116,13 +116,6 @@
     [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:1.].CGColor];
     CGFloat borderWidth = 1.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
-    
-    //Add the inner shadow
-    CALayer *innerShadowLayer = [CALayer layer];
-    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
-    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
-    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
-    [_imgvAvatar.layer addSublayer:innerShadowLayer];
 }
 
 
@@ -157,13 +150,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
+    int nbSections = 0;
+    
     //Display the empty screen if data
     if(_isEmpty) {
         [self emptyState];
-        return 0;
+    } else {
+        //Manage the case that some tabs are empty
+        for (DashboardItem* dashboard in _arrDashboard) {
+            if ([[dashboard arrayOfGadgets] count] > 0) {
+                nbSections += 1;
+            }
+        }
     }
     
-    return [_arrDashboard count];
+    return nbSections;
     
 }
 
@@ -193,14 +194,25 @@
     //Hide the loader
     [self hideLoader];
 
-    _arrDashboard = [proxy.arrayOfDashboards copy];
-
-    _isEmpty = YES;
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:proxy.arrayOfDashboards];
+    
+       _isEmpty = YES;
     
     //Check if there is data to display
-    for (DashboardItem* item in _arrDashboard) {
-        if ([item.arrayOfGadgets count] >0) _isEmpty = NO;
+    for (DashboardItem* item in proxy.arrayOfDashboards) {
+        if ([item.arrayOfGadgets count] >0) { 
+            _isEmpty = NO;
+        } else {
+            //Remove the dashboard from the array of dashboards
+            [mutableArray removeObject:item];
+        }
     }
+    
+    _arrDashboard = [[NSMutableArray alloc] initWithArray:mutableArray];
+    
+
+    
+    
     
     [_tblGadgets reloadData];
 }
@@ -209,6 +221,9 @@
 - (void)dashboardProxy:(DashboardProxy *)proxy didFailWithError:(NSError *)error {
     [_hudDashboard hide];
     [self errorState];
+    
+    
+    
     
     //Display an UIAlert to the user
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") 
@@ -222,6 +237,7 @@
 
 //Error to load gadgets from one specific dashboard
 - (void)dashboardProxyDidFailForDashboard:(DashboardItem *)dashboard {
+
     
     NSString *alertMessage = [NSString stringWithFormat:@"%@: %@, %@",Localize(@"Dashboard"),dashboard.label,Localize(@"GadgetsCannotBeRetrieved")];
     
@@ -233,6 +249,8 @@
                                                otherButtonTitles:nil] autorelease];
     
     [alertView show];
+    
+    NSLog(@"arrDashboard %@",_arrDashboard);
 }
 
 
