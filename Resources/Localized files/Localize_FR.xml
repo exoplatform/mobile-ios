@@ -177,7 +177,9 @@
     <key>CameraNotAvailable</key>
     <string>Camera are not available</string>
     <key>CreateNewFile</key>
-    <string>Create new file folder...</string>
+    <string>Create new file in folder...</string>
+    <key>CreateNewFolder</key>
+    <string>Create new folder...</string>
     <key>RenameFolder</key>
     <string>Rename folder...</string>
     <key>SendImageToFolder</key>
