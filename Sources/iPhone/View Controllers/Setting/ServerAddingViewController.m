@@ -52,7 +52,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.title = Localize(@"ServerInformation");
     _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;

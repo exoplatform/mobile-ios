@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PlatformVersionProxy.h"
 #import "PlatformServerVersion.h"
+#import "eXoTableViewController.h"
 @class ServerManagerViewController;
 
 
@@ -18,7 +19,7 @@
 
 @end
 
-@interface SettingsViewController : UITableViewController <PlatformVersionProxyDelegate>{
+@interface SettingsViewController : eXoTableViewController <PlatformVersionProxyDelegate>{
     
     BOOL                            bRememberMe;
 	BOOL                            bAutoLogin;

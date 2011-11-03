@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "eXoViewController.h"
 
 @protocol ServerManagerProtocol <NSObject>
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
@@ -16,7 +17,7 @@
 
 
 
-@interface ServerManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ServerManagerProtocol>
+@interface ServerManagerViewController : eXoViewController <UITableViewDelegate, UITableViewDataSource, ServerManagerProtocol>
 {
     IBOutlet UITableView*           _tbvlServerList;
     NSMutableArray*                 _arrServerList;

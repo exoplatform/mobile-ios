@@ -110,6 +110,8 @@
 	<string>Le dossier est vide</string>	
 	<key>ServerList</key>
 	<string>Liste des Serveurs</string>  
+    <key>ServerInformation</key>
+	<string>Server Information</string>
     <key>ServerModify</key>
 	<string>Modifier la liste</string>    
     <key>EmptyFolder</key>

@@ -109,7 +109,10 @@
 	<key>EmptyPage</key>
 	<string>Folder is empty</string>
 	<key>ServerList</key>
-	<string>Server list</string>    
+	<string>Server list</string>  
+    <key>ServerInformation</key>
+	<string>Server Information</string>
+    
     <key>ServerModify</key>
 	<string>Modify the list</string> 
     <key>EmptyFolder</key>

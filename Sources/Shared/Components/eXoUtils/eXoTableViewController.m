@@ -1,19 +1,18 @@
 //
-//  eXoViewController.m
+//  eXoTableViewController.m
 //  eXo Platform
 //
-//  Created by Nguyen Khac Trung on 10/26/11.
+//  Created by Nguyen Khac Trung on 11/3/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "eXoViewController.h"
+#import "eXoTableViewController.h"
 
-@implementation eXoViewController
 
-#define TAG_TITLE 100
+@implementation eXoTableViewController
 
 #pragma mark - View lifecycle
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -24,7 +23,6 @@
     } else {
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 40)];
     }
-    label.tag = TAG_TITLE;
     label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
@@ -47,20 +45,5 @@
     [super dealloc];
     [label release];
 }
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 
 @end

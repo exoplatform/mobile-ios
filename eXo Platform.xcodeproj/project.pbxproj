@@ -72,6 +72,7 @@
 		1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */; };
 		1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */; };
 		1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */; };
+		1FCE58E8146238840045FC10 /* eXoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE58E7146238840045FC10 /* eXoTableViewController.m */; };
 		1FCED1C514355C1C00EC0B88 /* SocialAddPhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */; };
 		1FCED1C614355C1C00EC0B88 /* SocialAddPhotoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */; };
 		1FCED3431435B98500EC0B88 /* popoverArrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED3341435B98500EC0B88 /* popoverArrowDown.png */; };
@@ -891,6 +892,8 @@
 		1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityPictureTableViewCell.h; path = Social/ActivityPictureTableViewCell.h; sourceTree = "<group>"; };
 		1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityPictureTableViewCell.m; path = Social/ActivityPictureTableViewCell.m; sourceTree = "<group>"; };
 		1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityPictureTableViewCell.xib; path = Social/ActivityPictureTableViewCell.xib; sourceTree = "<group>"; };
+		1FCE58E6146238840045FC10 /* eXoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoTableViewController.h; sourceTree = "<group>"; };
+		1FCE58E7146238840045FC10 /* eXoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoTableViewController.m; sourceTree = "<group>"; };
 		1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialAddPhotoButton.png; sourceTree = "<group>"; };
 		1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialAddPhotoButton@2x.png"; sourceTree = "<group>"; };
 		1FCED3341435B98500EC0B88 /* popoverArrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowDown.png; sourceTree = "<group>"; };
@@ -3485,6 +3488,8 @@
 				1FCBCC27143D4BB300CC4F21 /* EmptyView.m */,
 				1FCEDED41458021C0058C80F /* eXoViewController.h */,
 				1FCEDED51458021C0058C80F /* eXoViewController.m */,
+				1FCE58E6146238840045FC10 /* eXoTableViewController.h */,
+				1FCE58E7146238840045FC10 /* eXoTableViewController.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -4404,6 +4409,7 @@
 				1FD02F97145A8C1500A36840 /* ActivityWikiTableViewCell.m in Sources */,
 				1FCD8091145E9A32009B34D3 /* ActivityWikiDetailMessageTableViewCell.m in Sources */,
 				1F92437A145FE07600D5AF85 /* ActivityLinkTableViewCell.m in Sources */,
+				1FCE58E8146238840045FC10 /* eXoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

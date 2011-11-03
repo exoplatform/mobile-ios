@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ServerManagerViewController.h"
+#import "eXoTableViewController.h"
 
-@interface ServerAddingViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface ServerAddingViewController : eXoTableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
     id<ServerManagerProtocol>     _delegate;
     

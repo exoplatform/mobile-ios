@@ -65,8 +65,6 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
         _arrServerList = [[NSMutableArray alloc] init];
         _intSelectedServer = -1;
         
-        self.title = Localize(@"Settings");
-        
     }
     return self;
 }
@@ -141,7 +139,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     
     self.navigationItem.rightBarButtonItem = _doneBarButtonItem;    
     
-    [self setNavigationBarLabels];
+    self.title = Localize(@"Settings");
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
