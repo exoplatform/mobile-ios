@@ -20,7 +20,7 @@
     NSString *deviceType = [UIDevice currentDevice].model;
     
     if([deviceType rangeOfString:@"iPhone"].length > 0){
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     } else {
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 40)];
     }
