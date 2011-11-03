@@ -35,16 +35,24 @@
 {
 	[super viewDidLoad];
     //Add the UIBarButtonItem for actions on the NavigationBar of the Controller
-    UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
-    UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bt setImage:image forState:UIControlStateNormal];
-    bt.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    [bt addTarget:self action:@selector(showActionsPanelFromNavigationBarButton:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
-    actionButton.width = image.size.width;
-    [_navigation.topItem setRightBarButtonItem:actionButton];
     
-    [actionButton release];
+}
+
+- (void)contentDirectoryIsRetrieved{
+    [super contentDirectoryIsRetrieved];
+    // not the root level
+    if(![self.title isEqualToString:Localize(@"Documents")]){
+        UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
+        UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bt setImage:image forState:UIControlStateNormal];
+        bt.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        [bt addTarget:self action:@selector(showActionsPanelFromNavigationBarButton:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
+        actionButton.width = image.size.width;
+        [_navigation.topItem setRightBarButtonItem:actionButton];
+        
+        [actionButton release];
+    }
 }
 
 - (void)didReceiveMemoryWarning 
@@ -83,7 +91,7 @@
     FileActionsViewController* fileActionsViewController = 
             [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                     bundle:nil 
-                                                    file:_rootFile 
+                                                    file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
                                                     enableDeleteThisFolder:YES
                                                     enableCreateFolder:NO
                                                     enableRenameFile:YES
@@ -95,6 +103,8 @@
     CGRect rect = [_tblFiles rectForRowAtIndexPath:indexPath];
     //Adjust the position for the PopoverController, in Y
     rect.origin.x = _tblFiles.frame.size.width - 25;
+    NSLog(@"%@", NSStringFromCGRect(rect));
+    
     
     displayActionDialogAtRect = rect;
     
@@ -220,7 +230,7 @@
 
 //SLM Temporary
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
-    
+    [super askToMakeFolderActions:createNewFolder];
     [_actionPopoverController dismissPopoverAnimated:YES];
     
     

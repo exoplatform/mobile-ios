@@ -43,6 +43,8 @@
 -(void)hideHUDWithMessage:(NSString *)message;
 - (void)showActionSheetForPhotoAttachment;
 - (void)startRetrieveDirectoryContent;
+- (void)contentDirectoryIsRetrieved;
+- (void)askToMakeFolderActions:(BOOL)createNewFolder;
 
 //Use this method to init the Controller with a root file
 - (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 
@@ -50,4 +52,5 @@
 - (void)buttonAccessoryClick:(id)sender;
 - (UINavigationBar *)navigationBar;
 - (NSString *)stringForUploadPhoto;
+
 @end

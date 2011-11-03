@@ -75,6 +75,9 @@
 }
 
 - (void)contentDirectoryIsRetrieved {
+    _tblFiles.scrollEnabled = YES;
+    //Add the "Actions" button
+    
     
     //if the empty is, remove it
     EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
@@ -87,8 +90,7 @@
     //check if no data
     if([_arrayContentOfRootFile count] == 0){
         [self performSelector:@selector(emptyState) withObject:nil afterDelay:1.0];
-    } 
-    
+    }
     //And finally reload the content of the tableView
     [_tblFiles reloadData];
 }
@@ -97,7 +99,7 @@
 -(void)emptyState {
     //disable scroll in tableview
     _tblFiles.scrollEnabled = NO;
-    
+    self.navigationItem.rightBarButtonItem = nil;
     //add empty view to the view    
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForEmptyFolder.png" andContent:Localize(@"EmptyFolder")];
     emptyView.tag = TAG_EMPTY;
@@ -216,19 +218,6 @@
     
     //Set the title of the view controller
     [self setTitleForFilesViewController];
-    
-    //Add the "Actions" button
-    //TODO localize this button
-    UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
-    UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bt setImage:image forState:UIControlStateNormal];
-    bt.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    [bt addTarget:self action:@selector(showActionsPanelFromNavigationBarButton:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
-    actionButton.width = image.size.width;
-    [self.navigationItem setRightBarButtonItem:actionButton];
-    
-    [actionButton release];
 }
 
 - (void)viewDidUnload
@@ -315,17 +304,17 @@
         [cell addSubview:titleLabel];
         [titleLabel release];
         
-        UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton.png"];
-        UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
-        [buttonAccessory setImage:image forState:UIControlStateNormal];
-        buttonAccessory.tag = indexPath.row;
-        buttonAccessory.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
-        cell.accessoryView = buttonAccessory;
+        
     }
-    
+    UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton.png"];
+    UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
+    [buttonAccessory setImage:image forState:UIControlStateNormal];
+    buttonAccessory.tag = indexPath.row;
+    buttonAccessory.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
+    cell.accessoryView = buttonAccessory;
     File *file = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
-    
+    NSLog(@"%@", [file description]);
     UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
     if(file.isFolder){
         imgViewFile.image = [UIImage imageNamed:@"DocumentIconForFolder.png"];
@@ -384,7 +373,7 @@
     
     //Hide the action Panel
     [self hideActionsPanel];
-    
+    //NSLog(@"%@", urlFileToDelete);
     [self performSelectorInBackground:@selector(deleteFileInBackground:) withObject:urlFileToDelete];
 }
 
@@ -593,7 +582,7 @@
     [self hideFileFolderActionsController];
 
     //TODO Localize this string
-    [self showHUDWithMessage:Localize(@"CreateNewFile")];
+    [self showHUDWithMessage:Localize(@"CreateNewFolder")];
 
     
     BOOL bExist;
@@ -624,7 +613,7 @@
             }
             
             NSString* strNewFolderPath = [FilesProxy urlForFileAction:[_rootFile.urlStr stringByAppendingPathComponent:newFolderName]];
-            
+            NSLog(@"%@", strNewFolderPath);
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(createNewFolderInBackground:)]];
             [invocation setTarget:self];
@@ -645,10 +634,7 @@
         [alert show];
         [alert release];
     }
-    
-   [self hideHUDWithMessage:Localize(@"FolderContentUpdated")];
 }
-
 
 //Method to call the rename action of the proxy
 - (void)renameFolderInBackground:(NSString *)newFolderUrl forFolder:(NSString *)folderToRenameUrl {
@@ -746,7 +732,7 @@
 }
 
 -(void)askToMakeFolderActions:(BOOL)createNewFolder{
-    
+    //[self showHUDWithMessage:Localize(@"CreateNewFolder")];
 }
 
 
@@ -850,7 +836,7 @@
         _stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
         
         //TODO Localize this string
-        //            [self showHUDWithMessage:Localize(@"SendImageToFolder")];
+        [self showHUDWithMessage:Localize(@"SendImageToFolder")];
         
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
@@ -865,6 +851,10 @@
     
 }
 
-
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
+{  
+    [picker dismissModalViewControllerAnimated:YES];  
+    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+}
 
 @end
