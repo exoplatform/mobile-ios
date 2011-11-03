@@ -64,7 +64,7 @@
 
 - (void)showPhotoActivity:(UIButton *)sender
 {
-    self.navigationItem.title = Localize(@"AttachedPhoto");
+    self.title = Localize(@"AttachedPhoto");
     [self._btnSend setTitle:Localize(@"Delete") forState:UIControlStateNormal];
     
     UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];

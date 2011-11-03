@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FileActionsViewController.h"
 #import "LanguageHelper.h"
+#import "eXoViewController.h"
 
 @class File;
 
@@ -26,7 +27,7 @@
 @end
 
 
-@interface FileFolderActionsViewController :  UIViewController 
+@interface FileFolderActionsViewController :  eXoViewController 
 {
     File*                                   _fileToApplyAction;
     

@@ -10,6 +10,7 @@
 #import "SocialProxy.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
+#import "eXoViewController.h"
 
 @class ActivityStreamBrowseViewController;
 
@@ -17,7 +18,7 @@
 @protocol SocialMessageComposerDelegate;
 
 
-@interface MessageComposerViewController : UIViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate>
+@interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate>
 {
     IBOutlet UIButton*                  _btnCancel;
     IBOutlet UIButton*                  _btnSend;
