@@ -15,6 +15,7 @@
 #import "SocialUserProfile.h"
 #import "Three20/Three20.h"
 #import "NSString+HTML.h"
+#import "ActivityHelper.h"
 
 @interface ActivityBasicTableViewCell (PrivateMethods)
 - (void)configureFonts:(BOOL)highlighted;
@@ -292,8 +293,18 @@
     }
  
      [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    switch (socialActivityStream.activityType) {
+        case ACTIVITY_ANSWER_UPDATE_QUESTION:
+        case ACTIVITY_ANSWER_ADD_QUESTION:{
+            htmlLabel.html = [socialActivityStream.templateParams valueForKey:@"Name"];
+        }
+            
+            break;
+        default:
+            break;
+    }
 }
-
-
+    //_lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
 
 @end

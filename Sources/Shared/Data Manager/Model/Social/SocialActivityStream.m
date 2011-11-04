@@ -83,7 +83,14 @@
         }else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"UpdateTopic"]){
             _activityType = ACTIVITY_FORUM_UPDATE_TOPIC;
         }//
-    } else {
+    } 
+    else if([_type rangeOfString:@"ks-answer"].length > 0){//
+        if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionAdd"]){
+            _activityType = ACTIVITY_ANSWER_ADD_QUESTION;
+        } else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionUpdate"]){
+            _activityType = ACTIVITY_ANSWER_UPDATE_QUESTION;
+        }//QuestionUpdate
+    }else {
         _activityType = ACTIVITY_DEFAULT;
     }
 }
