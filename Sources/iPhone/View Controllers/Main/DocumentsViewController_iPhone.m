@@ -60,6 +60,21 @@
     [super viewDidUnload];
 }
 
+//- (void)setHudPosition {
+//    NSArray *visibleCells  = [_tblFiles visibleCells];
+//    CGRect rect = CGRectZero;
+//    for (int n = 0; n < [visibleCells count]; n ++){
+//        UITableViewCell *cell = [visibleCells objectAtIndex:n];
+//        if(n == 0){
+//            rect.origin.y = cell.frame.origin.y;
+//            rect.size.width = cell.frame.size.width;
+//        }
+//        rect.size.height += cell.frame.size.height;
+//    }
+//    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
+//    NSLog(@"%@", NSStringFromCGPoint(_hudFolder.center));
+//}
+
 #pragma mark - UINavigationBar Management
 
 - (void)setTitleForFilesViewController {
@@ -92,6 +107,7 @@
 
 - (void)popoverControllerDidDismissPopover:(WEPopoverController *)thePopoverController {
 	//Safe to release the popover here
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 	self.popoverController = nil;
     self.popoverClass = nil;
 }
@@ -138,38 +154,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];    
 }
 
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    if (self.popoverController) {
-        self.popoverController = nil;
-    } 
-    
-    FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                                                                    bundle:nil 
-                                                                                                      file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
-                                                                                    enableDeleteThisFolder:YES
-                                                                                        enableCreateFolder:NO
-                                                                                          enableRenameFile:YES
-                                                                                                  delegate:self];
-    
-    fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
-    
-    //    CustomBackgroundForCell_iPhone *cell  = (CustomBackgroundForCell_iPhone *)[_tblFiles cellForRowAtIndexPath:indexPath];
-    CGRect frame = [tableView cellForRowAtIndexPath:indexPath].frame;
-    frame.origin.x += 300;
-    NSLog(@"%@", NSStringFromCGRect(frame));
-    
-    //    frame = [_tblFiles convertRect:frame toView:self.view];
-    //     //CGRect tableCoord = [myButton convertRect:myButton.frame toView:myTableView]
-    //    NSLog(@"%@", NSStringFromCGRect(frame));
-    self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
-    
-    [self.popoverController presentPopoverFromRect:frame 
-                                            inView:tableView 
-                          permittedArrowDirections:UIPopoverArrowDirectionRight|UIPopoverArrowDirectionLeft
-                                          animated:YES];
-    [_actionsViewController release];
-}
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
@@ -197,8 +181,8 @@
     self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     
     [self.popoverController presentPopoverFromRect:frame 
-                                            inView:_tblFiles 
-                          permittedArrowDirections:UIPopoverArrowDirectionRight
+                                            inView:self.view 
+                          permittedArrowDirections:UIPopoverArrowDirectionUp |UIPopoverArrowDirectionDown
                                           animated:YES];
     [_actionsViewController release];
 }
@@ -237,10 +221,10 @@
     [self.popoverClass presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem 
                                    permittedArrowDirections:(UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown) 
                                                    animated:YES];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
-    //[super askToMakeFolderActions:createNewFolder];
     _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
     [_fileFolderActionsController setIsNewFolder:createNewFolder];
     [_fileFolderActionsController setNameInputStr:@""];
@@ -248,19 +232,19 @@
     _fileFolderActionsController.fileToApplyAction = fileToApplyAction;
     _fileFolderActionsController.delegate = self;
     
-//    [_actionsViewController.view removeFromSuperview]; 
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
     self.popoverClass = nil;
     
-//    [self.view addSubview:_fileFolderActionsController.view];
     [self.navigationController pushViewController:_fileFolderActionsController animated:YES];
 }
 
 
 
 -(void) hideActionsPanel {
+    [super hideActionsPanel];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];

@@ -108,7 +108,7 @@
 }
 
 - (void)hideActionsPanel{
-    
+    _tblFiles.scrollEnabled = NO;
 }
 
 - (void)setTitleForFilesViewController{
@@ -159,6 +159,18 @@
 -(void)setHudPosition{
     //default implementation
     //do nothing
+    NSArray *visibleCells  = [_tblFiles visibleCells];
+    CGRect rect = CGRectZero;
+    for (int n = 0; n < [visibleCells count]; n ++){
+        UITableViewCell *cell = [visibleCells objectAtIndex:n];
+        if(n == 0){
+            rect.origin.y = cell.frame.origin.y;
+            rect.size.width = cell.frame.size.width;
+        }
+        rect.size.height += cell.frame.size.height;
+    }
+    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
+    NSLog(@"%@", NSStringFromCGPoint(_hudFolder.center));
 }
 
 
@@ -313,8 +325,9 @@
     buttonAccessory.frame = CGRectMake(0, 0, image.size.width, image.size.height);
     [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.accessoryView = buttonAccessory;
+    
     File *file = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
-    NSLog(@"%@", [file description]);
+    
     UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
     if(file.isFolder){
         imgViewFile.image = [UIImage imageNamed:@"DocumentIconForFolder.png"];
@@ -406,11 +419,6 @@
 //Method needed to retrieve the action to move a file
 - (void)moveFileSource:(NSString *)urlSource
          toDestination:(NSString *)urlDestination {
-    // remove if is
-    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
-    if(emptyview != nil){
-        [emptyview removeFromSuperview];
-    }
     //Hide the action Panel
     [self hideActionsPanel];
     
@@ -449,11 +457,6 @@
 //Method needed to retrieve the action to copy a file
 - (void)copyFileSource:(NSString *)urlSource
          toDestination:(NSString *)urlDestination {
-    // remove if is
-    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
-    if(emptyview != nil){
-        [emptyview removeFromSuperview];
-    }
     //TODO Localize this string
     [self showHUDWithMessage:Localize(@"CopyFile")];
     

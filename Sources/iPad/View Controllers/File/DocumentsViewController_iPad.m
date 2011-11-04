@@ -22,9 +22,9 @@
 
 #pragma mark - HUD Management
 
-- (void)setHudPosition {
-    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
-}
+//- (void)setHudPosition {
+//    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
+//}
 
 
 #pragma mark - UIViewController methods
@@ -117,39 +117,6 @@
     
     [fileActionsViewController release];
 }
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    
-    FileActionsViewController* fileActionsViewController = 
-                [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                    bundle:nil 
-                    file:_rootFile 
-                    enableDeleteThisFolder:YES
-                    enableCreateFolder:NO 
-                    enableRenameFile:YES
-                    delegate:self];
-    
-    fileActionsViewController.fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
-
-    //Getting the position of the cell in the tableView
-    CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
-    //Adjust the position for the PopoverController, in Y
-    rect.origin.x = tableView.frame.size.width - 25;
-    
-    displayActionDialogAtRect = rect;
-    
-    //Display the UIPopoverController
-	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
-    _actionPopoverController.delegate = self;
-	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
-	[_actionPopoverController presentPopoverFromRect:rect inView:tableView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];		
-
-
-    [fileActionsViewController release];
-
-}
-
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -220,6 +187,7 @@
 }
 
 -(void) hideActionsPanel {
+    [super hideActionsPanel];
     //Enable the button on the navigationBar
     _navigation.topItem.rightBarButtonItem.enabled = YES;
     
