@@ -10,6 +10,7 @@
 #import "GadgetItem.h"
 #import "AuthenticateProxy.h"
 #import "EmptyView.h"
+#import "LanguageHelper.h"
 
 @interface GadgetDisplayViewController (PrivateMethods)
 - (void)showLoader;

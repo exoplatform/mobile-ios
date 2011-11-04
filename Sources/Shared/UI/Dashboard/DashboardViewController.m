@@ -12,7 +12,13 @@
 #import "LanguageHelper.h"
 #import "Gadget.h"
 #import "EmptyView.h"
+#import "NSString+HTML.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GadgetItem.h"
+#import "DashboardTableViewCell.h"
+
+#define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
+#define kHeightForSectionHeader 40
 
 @interface DashboardViewController (PrivateMethods)
 - (void)showLoader;
@@ -107,17 +113,6 @@
 
 #pragma UIHelper methods
 
-- (void)customizeAvatarDecorations:(UIImageView *)_imgvAvatar{
-    //Add the CornerRadius
-    [[_imgvAvatar layer] setCornerRadius:6.0];
-    [[_imgvAvatar layer] setMasksToBounds:YES];
-    
-    //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:1.].CGColor];
-    CGFloat borderWidth = 1.0;
-    [[_imgvAvatar layer] setBorderWidth:borderWidth];
-}
-
 
 // Empty State
 -(void)emptyState {
@@ -143,34 +138,104 @@
 
 
 
+- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
+{
+    CGRect rectTableView = tableView.frame;
+    float fWidth = 0;
+    float fHeight = 0;
+    
+    if (rectTableView.size.width > 320) 
+    {
+        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
+    }
+    else
+    {
+        fWidth = rectTableView.size.width - 70;
+    }
+    
+    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
+    
+    
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                     lineBreakMode:UILineBreakModeWordWrap];
+    if (theSize.height < 30) 
+    {
+        fHeight = 60;
+    }
+    else
+    {
+        fHeight = 30 + theSize.height;
+    }
+    
+    return fHeight;
+}
 
+- (CGRect)rectOfHeader:(int)width
+{
+    return CGRectMake(25.0, 11.0, width, kHeightForSectionHeader);
+}
 
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    int nbSections = 0;
-    
     //Display the empty screen if data
     if(_isEmpty) {
         [self emptyState];
-    } else {
-        //Manage the case that some tabs are empty
-        for (DashboardItem* dashboard in _arrDashboard) {
-            if ([[dashboard arrayOfGadgets] count] > 0) {
-                nbSections += 1;
-            }
-        }
+        return 0;
     }
     
-    return nbSections;
+    return [_arrDashboard count];
     
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return kHeightForSectionHeader;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	
+    // create the parent view that will hold header Label
+	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 10.0, _tblGadgets.frame.size.width-5, kHeightForSectionHeader)];
+	
+	// create the label object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.opaque = NO;
+	headerLabel.textColor = [UIColor colorWithRed:79.0/255 green:79.0/255 blue:79.0/255 alpha:1];
+	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
+    headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
+    headerLabel.shadowOffset = CGSizeMake(0,1);
+    headerLabel.textAlignment = UITextAlignmentCenter;
+    headerLabel.text = [(DashboardItem *)[_arrDashboard objectAtIndex:section] label];
+    
+    CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblGadgets.frame.size.width-5, CGFLOAT_MAX) 
+                                      lineBreakMode:UILineBreakModeWordWrap];
+    headerLabel.frame = [self rectOfHeader:theSize.width];
+    //Retrieve the image depending of the section
+    UIImage *imgForSection = [UIImage imageNamed:@"DashboardTabBackground.png"];
+    UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:5 topCapHeight:7]];
+    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 20, kHeightForSectionHeader-15);
+    
+	[customView addSubview:imgVBackground];
+    [imgVBackground release];
+    
+    [customView addSubview:headerLabel];
+    [headerLabel release];
+    
+    
+	return customView;
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-	return 60;
+    GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+    
+    return [self getHeighSizeForTableView:tableView andText:gadgetTmp.gadgetDescription];
 }
 
 
@@ -183,7 +248,29 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-	return nil;
+    static NSString* kCellIdentifier = @"Cell";
+	
+    //We dequeue a cell
+	DashboardTableViewCell *cell = (DashboardTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    
+    //Check if we found a cell
+    if (cell==nil) 
+    { 
+        GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DashboardTableViewCell" owner:self options:nil];
+        cell = (DashboardTableViewCell *)[nib objectAtIndex:0];
+        //Not found, so create a new one
+        
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell configureCell:gadgetTmp.gadgetName description:gadgetTmp.gadgetDescription icon:gadgetTmp.gadgetIcon];
+        
+        [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+        
+    }
+    
+	return cell;
+
 }
 
 
@@ -193,26 +280,20 @@
 - (void)dashboardProxyDidFinish:(DashboardProxy *)proxy {
     //Hide the loader
     [self hideLoader];
-
-    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:proxy.arrayOfDashboards];
     
-       _isEmpty = YES;
-    
-    //Check if there is data to display
+    NSMutableArray *dashboards = [[NSMutableArray alloc] init];
     for (DashboardItem* item in proxy.arrayOfDashboards) {
-        if ([item.arrayOfGadgets count] >0) { 
-            _isEmpty = NO;
-        } else {
-            //Remove the dashboard from the array of dashboards
-            [mutableArray removeObject:item];
-        }
+        if ([item.arrayOfGadgets count] > 0)
+            [dashboards addObject:item];
     }
     
-    _arrDashboard = [[NSMutableArray alloc] initWithArray:mutableArray];
+    _arrDashboard = (NSArray *)dashboards;
     
-
+    _isEmpty = YES;
     
-    
+    //Check if there is data to display
+    if ([_arrDashboard count] >0)
+        _isEmpty = NO;
     
     [_tblGadgets reloadData];
 }
@@ -221,8 +302,6 @@
 - (void)dashboardProxy:(DashboardProxy *)proxy didFailWithError:(NSError *)error {
     [_hudDashboard hide];
     [self errorState];
-    
-    
     
     
     //Display an UIAlert to the user

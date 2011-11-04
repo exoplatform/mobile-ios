@@ -9,8 +9,6 @@
 #import "DashboardViewController.h"
 
 @interface DashboardViewController_iPad : DashboardViewController {
-    
-    //IBOutlet UINavigationBar*           _navigation;
 
 }
 

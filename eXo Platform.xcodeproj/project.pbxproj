@@ -448,6 +448,8 @@
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
 		7CFEB09313CAFEA700D7C9FF /* SocialActivityStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
+		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
+		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
 		890FF79F1447D5E3001320A5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FF79E1447D5E3001320A5 /* Message.m */; };
 		89112716140B7DC800A8851C /* ChatBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */; };
 		89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */; };
@@ -1384,6 +1386,9 @@
 		7CFEB09113CAFEA700D7C9FF /* SocialActivityStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivityStream.h; sourceTree = "<group>"; };
 		7CFEB09213CAFEA700D7C9FF /* SocialActivityStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStream.m; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
+		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
+		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
+		890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardTableViewCell.xib; path = Dashboard/DashboardTableViewCell.xib; sourceTree = "<group>"; };
 		890FF79D1447D5E3001320A5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		890FF79E1447D5E3001320A5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		89112713140B7DC800A8851C /* ChatBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBasicTableViewCell.h; sourceTree = "<group>"; };
@@ -2363,6 +2368,9 @@
 		46ADAEE2140688F5005ABA79 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */,
+				890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */,
+				890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */,
 				46ADAEE314068EAF005ABA79 /* DashboardViewController.h */,
 				46ADAEE414068EAF005ABA79 /* DashboardViewController.m */,
 				4633E6E5141BB094002A47F4 /* GadgetDisplayViewController.h */,
@@ -4231,6 +4239,7 @@
 				1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */,
 				1FCD8093145E9A62009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib in Resources */,
 				1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */,
+				890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4410,6 +4419,7 @@
 				1FCD8091145E9A32009B34D3 /* ActivityWikiDetailMessageTableViewCell.m in Sources */,
 				1F92437A145FE07600D5AF85 /* ActivityLinkTableViewCell.m in Sources */,
 				1FCE58E8146238840045FC10 /* eXoTableViewController.m in Sources */,
+				890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,8 +34,8 @@
 
 @property(nonatomic, retain) NSArray* _arrDashboard;
 
+- (CGRect)rectOfHeader:(int)width;
 - (void)setHudPosition;
 - (void)emptyState;
-- (void)customizeAvatarDecorations:(UIImageView *)_imgvAvatar;
 
 @end
