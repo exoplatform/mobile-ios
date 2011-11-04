@@ -9,11 +9,12 @@
 #import "DocumentDisplayViewController.h"
 #import "EmptyView.h"
 
-
+#define TAG_EMPTY 100
 @interface DocumentDisplayViewController (PrivateMethods)
 - (void)showLoader;
 - (void)hideLoader;
 @end
+
 
 
 @implementation DocumentDisplayViewController
@@ -48,6 +49,7 @@
     [_fileName release];
     _fileName = nil;
     
+    [_hudDocument hide];
 	[_hudDocument release];
     _hudDocument = nil;
 	
@@ -99,26 +101,43 @@
 	_url = [url retain];
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    return YES;
+}
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
     [self hideLoader];
-    
+    NSLog(@"%@\n %@",[error description], [[error userInfo] description]);
     //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
-    [self.view addSubview:emptyView];
-    [emptyView release];
+    NSUInteger statusCode = [error code];
+	if(!(statusCode >= 200 && statusCode < 300))
+	{
+        EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
+        emptyView.tag = TAG_EMPTY;
+        [self.view addSubview:emptyView];
+        [emptyView release];
+        
+    }
+//    if(_hudDocument.view.superview != nil)
+//        [_hudDocument.view removeFromSuperview];
 }
 
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
     [self hideLoader];
-    
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+    }
 }
 
 // Start loading animation
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
+    
+
 }
 
 
@@ -132,7 +151,7 @@
 
 - (void)showLoader {
     [self setHudPosition];
-    [_hudDocument setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingDocument"), _fileName]];
+    [_hudDocument setCaption:[NSString stringWithFormat:@"%@: %@", Localize(@"LoadingDocument"), _fileName]];
     [_hudDocument setActivity:YES];
     [_hudDocument show];
 }
