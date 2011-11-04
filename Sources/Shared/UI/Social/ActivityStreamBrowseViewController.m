@@ -460,6 +460,12 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             //fHeight += [self getHeightForText:text width:fWidth + 50];
         }
             break;
+        case ACTIVITY_ANSWER_ADD_QUESTION:
+        case ACTIVITY_ANSWER_UPDATE_QUESTION:{
+            text = [socialActivityStream.templateParams valueForKey:@"Name"];
+            fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
+        }
+            break;
         default:{
             text = socialActivityStream.title;
             fHeight = [self getHeighSizeForTableView:tableView andText:text picture:NO];
@@ -610,6 +616,8 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             [cell setFrame:CGRectMake(0, 0, fWidth, fHeight + 50)];
         }
             break;
+        case ACTIVITY_ANSWER_ADD_QUESTION:
+        case ACTIVITY_ANSWER_UPDATE_QUESTION:
         default:{
             //We dequeue a cell
             cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
