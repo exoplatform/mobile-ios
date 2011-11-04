@@ -10,6 +10,9 @@
 #import "EmptyView.h"
 #import "LanguageHelper.h"
 
+#define TAG_EMPTY 100
+
+
 @interface ActivityLinkDisplayViewController (PrivateMethods)
 - (void)showLoader;
 - (void)hideLoader;
@@ -101,22 +104,31 @@
 {
     [self hideLoader];
     
-    //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
-    [self.view addSubview:emptyView];
-    [emptyView release];
+    NSUInteger statusCode = [error code];
+	if(!(statusCode >= 200 && statusCode < 300))
+	{
+        EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
+        emptyView.tag = TAG_EMPTY;
+        [self.view addSubview:emptyView];
+        [emptyView release];
+        
+    }
 }
 
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
     [self hideLoader];
-    
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+    }
 }
 
 // Start loading animation
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
+    
 }
 
 
