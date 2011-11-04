@@ -40,6 +40,9 @@
         
         //Intialize the boolean to know if the content is empty or not
         _isEmpty = NO;
+        
+        //Initialize the error message to nil
+        _errorForRetrievingDashboard = nil;
     }
     return self;
 }
@@ -57,6 +60,9 @@
     
     [_dashboardProxy release];
     _dashboardProxy = nil;
+    
+    [_errorForRetrievingDashboard release];
+    _errorForRetrievingDashboard = nil;
     
     [super dealloc];
 }
@@ -294,6 +300,25 @@
     if ([_arrDashboard count] >0)
         _isEmpty = NO;
     
+    
+    
+    //Check is we encountered an error for retreiving one dashboard
+    if (_errorForRetrievingDashboard != nil) {
+        NSString *alertMessage = [NSString stringWithFormat:@"%@: %@, %@",Localize(@"Dashboard"),_errorForRetrievingDashboard,Localize(@"GadgetsCannotBeRetrieved")];
+        
+        //Display an UIAlert to the user
+        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+                                                             message:alertMessage 
+                                                            delegate:self 
+                                                   cancelButtonTitle:Localize(@"OK") 
+                                                   otherButtonTitles:nil] autorelease];
+        
+        [alertView show];
+    }
+        
+    
+    
+    
     [_tblGadgets reloadData];
 }
 
@@ -315,20 +340,19 @@
 
 //Error to load gadgets from one specific dashboard
 - (void)dashboardProxyDidFailForDashboard:(DashboardItem *)dashboard {
-
+    //If we meet a problem to retrieve one specific dahsboard/
+    //We manage the error by storing the DahsboardName
     
-    NSString *alertMessage = [NSString stringWithFormat:@"%@: %@, %@",Localize(@"Dashboard"),dashboard.label,Localize(@"GadgetsCannotBeRetrieved")];
+    //First case, the first dashboard can not be retrieved
+    if (_errorForRetrievingDashboard == nil) {
+        _errorForRetrievingDashboard = [[NSMutableString alloc] initWithFormat:@"%@",dashboard.label];
+    } else {
+    //Second case, more than one dahsboard can not be retrieved
+        [_errorForRetrievingDashboard appendFormat:@", %@",dashboard.label];
+    }
     
-    //Display an UIAlert to the user
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") 
-                                                         message:alertMessage 
-                                                        delegate:self 
-                                               cancelButtonTitle:Localize(@"OK") 
-                                               otherButtonTitles:nil] autorelease];
     
-    [alertView show];
-    
-    NSLog(@"arrDashboard %@",_arrDashboard);
+    //Error will be showned to the user after completing the request for all dashboards
 }
 
 

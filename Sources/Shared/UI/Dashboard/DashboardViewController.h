@@ -30,6 +30,9 @@
     
     BOOL                    _isEmpty;
     
+    //Error message for dashboard problems
+    NSMutableString*        _errorForRetrievingDashboard;
+    
 }
 
 @property(nonatomic, retain) NSArray* _arrDashboard;
