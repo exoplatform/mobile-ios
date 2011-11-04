@@ -49,7 +49,6 @@
     [_arrDashboard release];
 	_arrDashboard = nil;
     
-    [_tblGadgets release];
     _tblGadgets = nil;
     
     //Loader
