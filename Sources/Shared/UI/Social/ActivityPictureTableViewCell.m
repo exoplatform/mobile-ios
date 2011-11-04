@@ -17,11 +17,12 @@
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream{
     [super setSocialActivityStream:socialActivityStream];
-    _imgvAttach.placeholderImage = [UIImage imageNamed:@"ActivityTypeDocument.png"];
+    _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
     
-    _imgvAttach.imageURL = [NSURL URLWithString:strURL]; 
+    _imgvAttach.imageURL = [NSURL URLWithString:strURL];
+    _imgvAttach.contentMode = UIViewContentModeScaleAspectFit;
     _lbMessage.text = [[socialActivityStream.templateParams valueForKey:@"MESSAGE"] copy];
     _lbFileName.text = [socialActivityStream.templateParams valueForKey:@"DOCNAME"];
     
