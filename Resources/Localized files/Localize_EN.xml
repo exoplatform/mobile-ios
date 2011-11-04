@@ -63,7 +63,7 @@
 	<key>NativeApplicationsHeader</key>
 	<string>GateIn Native Applications</string>
 	<key>GadgetsHeader</key>
-	<string>My Dashboard</string>	
+	<string>My Apps</string>	
 	<key>Settings</key>
 	<string>Settings</string>
 	<key>Edit</key>
@@ -103,7 +103,7 @@
     <key>GadgetMessageTitle</key>
 	<string>Info Message</string>
 	<key>GadgetMessageContent</key>
-	<string>Please add gadget(s) to your portal dashboard to use them on your mobile device.</string>
+	<string>Please add gadget(s) to your portal Apps to use them on your mobile device.</string>
 	<key>SupportViewTitle</key>
 	<string>Information</string>
 	<key>EmptyPage</key>
@@ -124,7 +124,7 @@
     <key>NoActivities</key>
 	<string>Any activities has been posted on your activity stream</string>
     <key>NoGadget</key>
-	<string>You haven't got any gadgets on your dashboard</string>
+	<string>You haven't got any gadgets on your Apps</string>
     
     <key>Home</key>
 	<string>Home</string>
@@ -135,7 +135,7 @@
     <key>Documents</key>
 	<string>Documents</string>
     <key>Dashboard</key>
-	<string>Dashboard</string>
+	<string>Apps</string>
     
     
     <key>Success</key>
@@ -214,11 +214,13 @@
     <string>Can not connect to Chat server</string>
     
     <key>LoadingYourDashboards</key>
-    <string>Loading your Dashboards</string>
+    <string>Loading your Apps</string>
     <key>DashboardsLoaded</key>
-    <string>Dashboards loaded</string>
+    <string>Apps loaded</string>
     <key>LoadingGadget</key>
     <string>Loading Gadget</string>
+    <key>GadgetsCannotBeRetrieved</key>
+    <string>Gadgets Cannot Be Retrieved</string>
     
     <key>You</key>
     <string>You</string>

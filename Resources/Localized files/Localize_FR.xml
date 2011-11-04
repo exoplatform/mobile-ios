@@ -123,7 +123,7 @@
     <key>NoActivities</key>
 	<string>Aucune activité n'a été postée sur votre flux d'activités</string>
     <key>NoGadget</key>
-	<string>Aucun gadget n'est présent sur votre dashboard</string>
+	<string>Aucun gadget n'est présent sur votre Apps</string>
     
     <key>Home</key>
 	<string>Home</string>
@@ -134,7 +134,7 @@
     <key>Documents</key>
 	<string>Documents</string>
     <key>Dashboard</key>
-	<string>Dashboard</string>
+	<string>Apps</string>
     
     <key>Success</key>
 	<string>Success...</string>
@@ -209,6 +209,15 @@
     <string>Connect To Chat Server</string>
     <key>CanNotConnectToChatServer</key>
     <string>Can not connect to Chat server</string>
+    
+    <key>LoadingYourDashboards</key>
+    <string>Loading your Apps</string>
+    <key>DashboardsLoaded</key>
+    <string>Apps loaded</string>
+    <key>LoadingGadget</key>
+    <string>Loading Gadget</string>
+    <key>GadgetsCannotBeRetrieved</key>
+    <string>Gadgets ne peut être retrouvé</string>
     
     <key>You</key>
     <string>You</string>
