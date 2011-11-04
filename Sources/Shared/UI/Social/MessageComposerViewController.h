@@ -58,7 +58,7 @@
 
 - (void)cancelDisplayAttachedPhoto;
 - (void)deleteAttachedPhoto;
-- (UIImage *)resizeImage:(UIImage *)image forSize:(CGSize)newSize;
+- (UIImage *)resizeImage:(UIImage *)image withScale:(int)scale;
 
 @end
 

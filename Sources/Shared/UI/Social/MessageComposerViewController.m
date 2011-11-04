@@ -203,7 +203,7 @@
                 
                 fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
                 
-                NSData *imageData = UIImagePNGRepresentation([self resizeImage:imgView.image forSize:CGSizeMake(100, 100)]);
+                NSData *imageData = UIImagePNGRepresentation([self resizeImage:imgView.image withScale:1]);
                 
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                             [fileProxy methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
@@ -266,7 +266,9 @@
 }
 
 
--(UIImage *)resizeImage:(UIImage *)image forSize:(CGSize)newSize {
+- (UIImage *)resizeImage:(UIImage *)image withScale:(int)scale {
+    
+    CGSize newSize = CGSizeMake(image.size.width*scale, image.size.height*scale);
     UIGraphicsBeginImageContext(newSize);
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
