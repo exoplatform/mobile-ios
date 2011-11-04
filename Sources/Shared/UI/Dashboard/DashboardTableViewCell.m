@@ -27,17 +27,17 @@
 
 - (void)dealloc
 {
-//    [_lbName release];
-//    _lbName = nil;
-//    
-//    [_lbDescription release];
-//    _lbDescription = nil;
-//
-//    [_imgvIcon release];
-//    _imgvIcon = nil;
-//    
-//    [_ttLabelDescription release];
-//    _ttLabelDescription = nil;
+    [_lbName release];
+    _lbName = nil;
+    
+    [_lbDescription release];
+    _lbDescription = nil;
+
+    [_imgvIcon release];
+    _imgvIcon = nil;
+    
+    [_ttLabelDescription release];
+    _ttLabelDescription = nil;
     
     [super dealloc];
 }
