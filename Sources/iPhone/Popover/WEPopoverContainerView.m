@@ -69,6 +69,8 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 }
 
 - (void)drawRect:(CGRect)rect {
+    arrowRect.origin.x += 5;
+    bgRect.origin.x += 5;
 	[bgImage drawInRect:bgRect blendMode:kCGBlendModeNormal alpha:1.0];
 	[arrowImage drawInRect:arrowRect blendMode:kCGBlendModeNormal alpha:1.0]; 
 }
@@ -122,7 +124,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 	arrowOffset = CGPointMake(MAX(0, -arrowRect.origin.x), MAX(0, -arrowRect.origin.y));
 	bgRect = CGRectOffset(bgRect, arrowOffset.x, arrowOffset.y);
 	arrowRect = CGRectOffset(arrowRect, arrowOffset.x, arrowOffset.y);
-	
+
 	self.frame = theFrame;	
 }																		 
 
@@ -135,6 +137,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 							 properties.topBgMargin + properties.topContentMargin + arrowOffset.y, 
 							 bgRect.size.width - properties.leftBgMargin - properties.rightBgMargin - properties.leftContentMargin - properties.rightContentMargin,
 							 bgRect.size.height - properties.topBgMargin - properties.bottomBgMargin - properties.topContentMargin - properties.bottomContentMargin);
+    rect.origin.x += 5;
 	return rect;
 }
 
@@ -176,7 +179,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 			
 			switch (theArrowDirection) {
 				case UIPopoverArrowDirectionUp:
-					
+					anchorRect.origin.y -= 20;
 					anchorPoint = CGPointMake(CGRectGetMidX(anchorRect), CGRectGetMaxY(anchorRect));
 					
 					xArrowOffset = theSize.width / 2 - upArrowImage.size.width / 2;
@@ -201,7 +204,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 					
 					break;
 				case UIPopoverArrowDirectionDown:
-					
+					anchorRect.origin.y += 40;
 					anchorPoint = CGPointMake(CGRectGetMidX(anchorRect), CGRectGetMinY(anchorRect));
 					
 					xArrowOffset = theSize.width / 2 - downArrowImage.size.width / 2;
