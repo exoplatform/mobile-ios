@@ -10,6 +10,7 @@
 #import "SocialActivityStream.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
+#import "NSString+HTML.h"
 
 @implementation ActivityWikiTableViewCell
 
@@ -26,9 +27,9 @@
         default:
             break;
     }
-    
+    NSLog(@"%@", [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText]);
+    _lbMessage.text = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
     _lbName.text = @"";
-    _lbMessage.text = @"";
     htmlLabel.html = @"";
 }
 

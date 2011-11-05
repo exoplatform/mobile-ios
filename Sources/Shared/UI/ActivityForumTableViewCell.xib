@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">11C74</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.AppKitVersion">1138.23</string>
+		<string key="IBDocument.HIToolboxVersion">567.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">933</string>
@@ -82,7 +82,7 @@
 							<object class="IBUILabel" id="640516210">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{68, 11}, {242, 22}}</string>
+								<string key="NSFrame">{{68, 11}, {232, 22}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1034166353"/>
@@ -116,7 +116,7 @@
 							<object class="IBUILabel" id="1034166353">
 								<reference key="NSNextResponder" ref="801735477"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{69, 42}, {240, 21}}</string>
+								<string key="NSFrame">{{69, 50}, {240, 21}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="795643960"/>
@@ -231,6 +231,7 @@
 								<string key="NSFrame">{{272, 76}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="801735477"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="267389099"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

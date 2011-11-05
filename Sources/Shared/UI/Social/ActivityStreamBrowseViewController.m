@@ -433,10 +433,10 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             }
             fHeight += [self getHeightForText:textStr width:fWidth];
             if([[socialActivityStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
-                fHeight += 55;
+                fHeight += 70;
             } else {
                 NSString* text = [socialActivityStream.templateParams valueForKey:@"page_exceprt"];
-                fHeight += [self getHeighSizeForTableView:tableView andText:text picture:NO] + 5;
+                fHeight += [self getHeightForText:text width:fWidth] + 50;
             }
         }
             break;
@@ -456,8 +456,7 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             }
             fHeight += [self getHeightForText:textStr width:fWidth];
             text = socialActivityStream.title;
-            fHeight += [self getHeighSizeForTableView:tableView andText:text picture:NO] + 10;
-            //fHeight += [self getHeightForText:text width:fWidth + 50];
+            fHeight += [self getHeightForText:text width:fWidth] + 70;
         }
             break;
         case ACTIVITY_ANSWER_ADD_QUESTION:
@@ -536,49 +535,32 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
         case ACTIVITY_WIKI_MODIFY_PAGE:{
-            CGSize theSize;
             NSString* textStr;
-            if([[socialActivityStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
-                cell  = (ActivityWikiTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierWiki];
-                //Check if we found a cell
-                if (cell == nil) 
-                {
-                    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiTableViewCell" owner:self options:nil];
-                    cell = (ActivityWikiTableViewCell *)[nib objectAtIndex:0];
-                    
-                    //Create a cell, need to do some Configurations
-                    [cell configureCell];
-                }
-                if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-                    textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
-                } else if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-                    textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
-                    
-                }
-                float fHeight = [self getHeightForText:textStr width:fWidth];
-                [cell setFrame:CGRectMake(0, 0, fWidth, 55 + fHeight)];
-            } else {
-                cell  = (ActivityForumTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierForum];
-                //Check if we found a cell
-                if (cell == nil) 
-                {
-                    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityForumTableViewCell" owner:self options:nil];
-                    cell = (ActivityForumTableViewCell *)[nib objectAtIndex:0];
-                    
-                    //Create a cell, need to do some Configurations
-                    [cell configureCell];
-                }
-                if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-                    textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
-                } else if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-                    textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
-                    
-                }
-                float fHeight = [self getHeightForText:textStr width:fWidth];
-                NSString* text = [socialActivityStream.templateParams valueForKey:@"page_exceprt"];
-                fHeight += [self getHeighSizeForTableView:tableView andText:text picture:NO];
-                [cell setFrame:CGRectMake(0, 0, fWidth, fHeight + theSize.height + 5)];
+            cell  = (ActivityWikiTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierWiki];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiTableViewCell" owner:self options:nil];
+                cell = (ActivityWikiTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some Configurations
+                [cell configureCell];
             }
+            if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
+            } else if([[socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[socialActivityStream.templateParams valueForKey:@"page_name"]];
+                
+            }
+            float fHeight = 0.0;
+            fHeight += [self getHeightForText:textStr width:fWidth];
+            if([[socialActivityStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
+                fHeight += 70;
+            } else {
+                NSString* text = [socialActivityStream.templateParams valueForKey:@"page_exceprt"];
+                fHeight += [self getHeightForText:text width:fWidth] + 50;
+            }
+            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight + 5)];
             
         }
             break;
@@ -610,10 +592,9 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             float fHeight = [self getHeightForText:textStr width:fWidth];
 
             NSString* text = socialActivityStream.title;
-            fHeight += [self getHeighSizeForTableView:tableView andText:text picture:NO];
-            
+            fHeight += [self getHeightForText:text width:fWidth] + 70;
 
-            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight + 50)];
+            [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
         }
             break;
         case ACTIVITY_ANSWER_ADD_QUESTION:
@@ -656,7 +637,7 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
 - (float)getHeightForText:(NSString *)text width:(float)fWidth{
     if (fWidth > 320) 
     {
-        fWidth -= 100; //fmargin = 85 will be defined as a constant.
+        fWidth -= 90; //fmargin = 85 will be defined as a constant.
     }
     else
     {

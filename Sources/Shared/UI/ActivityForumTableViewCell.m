@@ -18,13 +18,6 @@
     [super setSocialActivityStream:socialActivityStream];
 
     switch (socialActivityStream.activityType) {
-        case ACTIVITY_WIKI_MODIFY_PAGE:
-            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
-            break;
-        case ACTIVITY_WIKI_ADD_PAGE:
-            htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"), [socialActivityStream.templateParams valueForKey:@"page_name"]];
-            break; 
-        
         case ACTIVITY_FORUM_CREATE_POST:
             htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
             break;
@@ -40,12 +33,9 @@
         default:
             break;
     }
+    NSLog(@"%@", [socialActivityStream.title stringByConvertingHTMLToPlainText]);
     _lbName.text = @"";
-    if([socialActivityStream.templateParams valueForKey:@"page_exceprt"] == nil){
-        _lbMessage.text = [socialActivityStream.title stringByConvertingHTMLToPlainText];
-    } else {
-        _lbMessage.text = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
-    }
+    _lbMessage.text = [socialActivityStream.title stringByConvertingHTMLToPlainText];
     htmlLabel.html = @"";
 }
 

@@ -31,17 +31,8 @@
              ];
         }
             break;
-        default:
-        {
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
-            _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
-        }
-            break;
     }
-    _lbMessage.text = @"";
+    _lbMessage.text = [_templateParams valueForKey:@"page_exceprt"];
 }
 
 @end
