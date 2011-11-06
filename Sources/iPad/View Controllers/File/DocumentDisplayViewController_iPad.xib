@@ -44,7 +44,7 @@
 					<object class="IBUINavigationBar" id="33966340">
 						<reference key="NSNextResponder" ref="530994535"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{650, 44}</string>
+						<string key="NSFrameSize">{550, 44}</string>
 						<reference key="NSSuperview" ref="530994535"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="402008539"/>
@@ -61,9 +61,10 @@
 					<object class="IBUIWebView" id="402008539">
 						<reference key="NSNextResponder" ref="530994535"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 44}, {650, 556}}</string>
+						<string key="NSFrame">{{0, 44}, {550, 506}}</string>
 						<reference key="NSSuperview" ref="530994535"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -74,7 +75,7 @@
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{650, 600}</string>
+				<string key="NSFrameSize">{550, 550}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="33966340"/>

@@ -8,7 +8,7 @@
 
 #import "GadgetDisplayViewController_iPad.h"
 
-#define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 200
+#define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 250
 
 
 @implementation GadgetDisplayViewController_iPad
@@ -16,7 +16,7 @@
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad {
     if ((self = [super initWithNibAndUrl:nibName bundle:nibBundle gadget:gadgetToLoad])) {
         
-        //If the orientation is 
+        //If the orientation is in Landscape mode
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
             CGRect tmpFrame = self.view.frame;
             tmpFrame.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;

@@ -45,7 +45,7 @@
 					<object class="IBUITableView" id="795366070">
 						<reference key="NSNextResponder" ref="770781848"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 44}, {650, 510}}</string>
+						<string key="NSFrame">{{0, 44}, {550, 560}}</string>
 						<reference key="NSSuperview" ref="770781848"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="192215400"/>
@@ -65,7 +65,7 @@
 					<object class="IBUIButton" id="192215400">
 						<reference key="NSNextResponder" ref="770781848"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{0, 549}, {650, 50}}</string>
+						<string key="NSFrame">{{0, 599}, {550, 50}}</string>
 						<reference key="NSSuperview" ref="770781848"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -94,7 +94,7 @@
 					<object class="IBUINavigationBar" id="180129462">
 						<reference key="NSNextResponder" ref="770781848"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{650, 44}</string>
+						<string key="NSFrameSize">{550, 44}</string>
 						<reference key="NSSuperview" ref="770781848"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="795366070"/>
@@ -109,7 +109,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{650, 600}</string>
+				<string key="NSFrameSize">{550, 650}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="180129462"/>
@@ -119,6 +119,10 @@
 					<object class="NSColorSpace" key="NSCustomColorSpace">
 						<int key="NSID">2</int>
 					</object>
+				</object>
+				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
+					<int key="IBUIInterfaceOrientation">3</int>
+					<int key="interfaceOrientation">3</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>

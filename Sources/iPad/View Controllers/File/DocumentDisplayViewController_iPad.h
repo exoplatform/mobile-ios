@@ -10,6 +10,7 @@
 #import "DocumentDisplayViewController.h"
 
 
+
 @interface DocumentDisplayViewController_iPad : DocumentDisplayViewController {
     
     //IBOutlet UINavigationBar *_navBar;

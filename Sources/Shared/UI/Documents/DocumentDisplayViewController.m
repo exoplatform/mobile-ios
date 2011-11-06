@@ -9,7 +9,7 @@
 #import "DocumentDisplayViewController.h"
 #import "EmptyView.h"
 
-#define TAG_EMPTY 100
+#define TAG_EMPTY 500
 @interface DocumentDisplayViewController (PrivateMethods)
 - (void)showLoader;
 - (void)hideLoader;
@@ -76,7 +76,7 @@
     _webView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     //Set the title of the navigation bar
-    [self setTitle:_fileName];
+    [self setTitle:[_fileName copy]];
     
     if(_url != nil)
 	{

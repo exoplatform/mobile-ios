@@ -16,7 +16,28 @@
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
 
+
+#define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 250
+
+
 @implementation ActivityDetailViewController_iPad
+
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+
+        //If the orientation is in Landscape mode
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            CGRect tmpFrame = self.view.frame;
+            tmpFrame.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+            self.view.frame = tmpFrame;
+        }
+    }
+    return self;
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -101,40 +122,33 @@
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];   
     
     [linkWebViewController release];
-    //    EGOImageView *imgView = (EGOImageView *)gesture.view;
-    //    zoomOutOrZoomIn = !zoomOutOrZoomIn;
-    //    if(zoomOutOrZoomIn){
-    //        [_tblvActivityDetail sendSubviewToBack:imgView];
-    //        
-    //    }
-    //    else {
-    //        [_tblvActivityDetail bringSubviewToFront:imgView];
-    //    }
-    //    
-    //    [UIView beginAnimations:nil context:nil];
-    //    [UIView setAnimationDuration:1.0f];
-    //    [UIView setAnimationDelegate:self];
-    //    
-    //
-    //    NSArray *array = [_tblvActivityDetail indexPathsForVisibleRows];
-    //    CGRect rect = CGRectMake(0, 0, 320, 0);
-    //    for (NSIndexPath *indexPath in array){
-    //        rect.size.height += [_tblvActivityDetail rectForRowAtIndexPath:indexPath].size.height;
-    //    }
-    //    //rect.size = _tblvActivityDetail.contentSize;
-    //    if(zoomOutOrZoomIn){
-    //        ///CGPoint poit = [imgView convertPoint:<#(CGPoint)#> toView:<#(UIView *)#>:<#(CGRect)#> fromView:<#(UIView *)#> ];
-    ////        imgView.frame = CGRectMake(0, 0, imgView.superview.superview.superview.superview.frame.size.width, imgView.superview.superview.superview.superview.frame.size.height);
-    //        imgView.frame = rect;
-    //        [_tblvActivityDetail setScrollEnabled:NO];
-    //    }
-    //    else {
-    //        imgView.frame = originRect;
-    //        [_tblvActivityDetail setScrollEnabled:YES];
-    //    }
-    //    
-    //    
-    //    [UIView commitAnimations];
 }
+
+
+
+//Test for rotation management
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Overriden to allow any orientation.
+    return YES;
+}
+
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
+        CGRect tmpRect = self.view.frame;
+        tmpRect.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+        tmpRect.origin.x -= WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+        self.view.frame = tmpRect;
+    } else {
+        CGRect tmpRect = self.view.frame;
+        tmpRect.size.width -= WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+        tmpRect.origin.x += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+        self.view.frame = tmpRect;
+    }
+}
+
+
+
 
 @end
