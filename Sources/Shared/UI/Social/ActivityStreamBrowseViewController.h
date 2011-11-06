@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
 #import "SocialActivityStream.h"
-#import "MockSocial_Activity.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MessageComposerViewController.h"
 #import "ATMHud.h"
@@ -36,8 +35,6 @@
     NSMutableArray*                         _arrActivityStreams;
     
     BOOL                                    _bIsPostClicked;
-    BOOL                                    _bIsIPad;
-    UITextView*                             _txtvMsgComposer;
     SocialUserProfile*                      _socialUserProfile;
     
     //Refresh Management

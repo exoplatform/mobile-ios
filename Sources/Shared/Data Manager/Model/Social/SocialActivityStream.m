@@ -31,6 +31,7 @@
 @synthesize posterUserProfile = _posterUserProfile;
 @synthesize posterPicture = _posterPicture;
 @synthesize templateParams = _templateParams;
+@synthesize cellHeight = _cellHeight;
  
 - (void)dealloc {
     [_identityId release];
@@ -93,7 +94,18 @@
     }else {
         _activityType = ACTIVITY_DEFAULT;
     }
+    
+    
+    
+    
 }
 
+
+
+- (void)cellHeightCalculationForWidth:(CGFloat)fWidth {
+
+    _cellHeight = [ActivityHelper getHeightForActivityCell:self forTableViewWidth:fWidth];
+    
+}
 
 @end

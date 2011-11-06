@@ -361,6 +361,7 @@
 		46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E4D138370A30085DCB6 /* StackScrollViewController.m */; };
 		46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E51138370A30085DCB6 /* UIViewWithShadow.m */; };
 		46EC3596140FDE150083FA07 /* FileFolderActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC3595140FDE150083FA07 /* FileFolderActionsViewController.m */; };
+		46EC7DE71466D596009D7BB0 /* ActivityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC7DE61466D596009D7BB0 /* ActivityHelper.m */; };
 		46F63426145467E200BB57D4 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F63425145467E100BB57D4 /* libidn.a */; };
 		46F6344414549DBC00BB57D4 /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55AA13C54CAF00FCB43A /* libRestKitCoreData.a */; };
 		46F6344514549DBC00BB57D4 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55A613C54CAF00FCB43A /* libRestKitJSONParserJSONKit.a */; };
@@ -1268,6 +1269,7 @@
 		46E96E51138370A30085DCB6 /* UIViewWithShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewWithShadow.m; sourceTree = "<group>"; };
 		46EC3594140FDE150083FA07 /* FileFolderActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileFolderActionsViewController.h; path = Documents/FileFolderActionsViewController.h; sourceTree = "<group>"; };
 		46EC3595140FDE150083FA07 /* FileFolderActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileFolderActionsViewController.m; path = Documents/FileFolderActionsViewController.m; sourceTree = "<group>"; };
+		46EC7DE61466D596009D7BB0 /* ActivityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityHelper.m; sourceTree = "<group>"; };
 		46F63425145467E100BB57D4 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		46F87F82140BD7A60077BE15 /* DocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController.h; path = Documents/DocumentsViewController.h; sourceTree = "<group>"; };
 		46F87F83140BD7A60077BE15 /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController.m; path = Documents/DocumentsViewController.m; sourceTree = "<group>"; };
@@ -2070,6 +2072,7 @@
 				464636DD13EC228600092723 /* SocialUserProfileCache.h */,
 				464636DE13EC228700092723 /* SocialUserProfileCache.m */,
 				1FD02F92145A50CD00A36840 /* ActivityHelper.h */,
+				46EC7DE61466D596009D7BB0 /* ActivityHelper.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -4420,6 +4423,7 @@
 				1F92437A145FE07600D5AF85 /* ActivityLinkTableViewCell.m in Sources */,
 				1FCE58E8146238840045FC10 /* eXoTableViewController.m in Sources */,
 				890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */,
+				46EC7DE71466D596009D7BB0 /* ActivityHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

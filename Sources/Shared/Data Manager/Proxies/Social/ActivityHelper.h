@@ -5,6 +5,10 @@
 //  Created by Nguyen Khac Trung on 10/28/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
+
+#import "SocialActivityStream.h"
+
+
 #define ACTIVITY_DEFAULT 0
 #define ACTIVITY_FORUM_CREATE_TOPIC 1
 #define ACTIVITY_FORUM_CREATE_POST 2
@@ -28,3 +32,12 @@
 #define ACTIVITY_ANSWER_UPDATE_QUESTION 14
 
 
+@interface ActivityHelper : NSObject {
+    
+}
+
++ (CGFloat)getHeightForActivityCell:(SocialActivityStream *)activtyStream forTableViewWidth:(CGFloat)fWidth;
++ (float)getHeightSizeForText:(NSString*)text andTableViewWidth:(CGFloat)fWidth;
++ (float)heightForAllDecorationsWithTableViewWidth:(CGFloat)fWidth;
+
+@end

@@ -17,19 +17,14 @@
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
 
-@interface ActivityBasicTableViewCell (PrivateMethods)
-- (void)configureFonts:(BOOL)highlighted;
-@end
+
 
 @implementation ActivityBasicTableViewCell
 
-@synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
+@synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 @synthesize activityType = _activityType;
-@synthesize htmlLabel;
-@synthesize htmlName;
-@synthesize lbComment = _lbComment;
-@synthesize htmlComment;
+@synthesize htmlMessage = _htmlMessage;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -55,7 +50,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+              
     // Configure the view for the selected state
     
     [_imgvMessageBg setHighlighted:selected];
@@ -76,10 +71,11 @@
     [_delegate postACommentOnActivity:_socialActivytyStream.activityId];
 } 
 
+
+
 - (void)dealloc
 {
     
-    self.lbMessage = nil;
     self.lbDate = nil;
     self.lbName = nil;
     
@@ -88,9 +84,9 @@
     self.btnComment = nil;
     
     self.imgvMessageBg = nil;
-    htmlName = nil;
-    htmlLabel = nil;
-    htmlComment = nil;
+    
+    [_htmlMessage release];
+    _htmlMessage = nil;
     
     [super dealloc];
 }
@@ -108,12 +104,6 @@
     CGFloat borderWidth = 1.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
     
-    //Add the inner shadow
-    /*CALayer *innerShadowLayer = [CALayer layer];
-    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
-    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
-    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
-    [_imgvAvatar.layer addSublayer:innerShadowLayer];*/
     _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
 }
 
@@ -124,42 +114,41 @@
         _lbName.textColor = [UIColor colorWithRed:22./255 green:124./255 blue:205./255 alpha:1.];
         _lbName.shadowOffset = CGSizeMake(0,1);
         _lbName.shadowColor = [UIColor whiteColor];
+        _lbName.backgroundColor = [UIColor whiteColor];
     
-        htmlLabel.textColor = [UIColor grayColor];
-        htmlName.textColor = [UIColor grayColor];
-        htmlComment.textColor = [UIColor grayColor];
+        _htmlMessage.textColor = [UIColor grayColor];
+        _htmlMessage.backgroundColor = [UIColor purpleColor];
  
         _lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,1);
         _lbDate.shadowColor = [UIColor whiteColor];
+        _lbDate.backgroundColor = [UIColor whiteColor];
     } else {
-        //_lbName.textColor = [UIColor colorWithRed:22./255 green:124./255 blue:205./255 alpha:1.];
-        //_lbName.textColor = [UIColor whiteColor];
-        //_lbName.shadowOffset = CGSizeMake(0,1);
-        //_lbName.shadowColor = [UIColor darkGrayColor];
         
-        htmlLabel.textColor = [UIColor darkGrayColor];
-        htmlName.textColor = [UIColor darkGrayColor];
-        htmlComment.textColor = [UIColor darkGrayColor];
+        _lbName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+
+        
+        _htmlMessage.textColor = [UIColor darkGrayColor];
+        _htmlMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
         
         _lbDate.textColor = [UIColor colorWithRed:130./255 green:130./255 blue:130./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,0);
         _lbDate.shadowColor = [UIColor darkGrayColor];
+        _lbDate.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        
+        
+        
     }
     
     
 }
 
 
-- (void)configureCell {
+- (void)configureCellForWidth:(CGFloat)fWidth {
     
     [self customizeAvatarDecorations];
     
     [self configureFonts:NO];
-    
-//    self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//    self.autoresizesSubviews = YES;
-    
     
     //Add images for Background Message
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
@@ -168,60 +157,17 @@
     
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
-    
-    if(htmlName.superview != nil){
-        [htmlName removeFromSuperview];
-    }
-    htmlName = [[[TTStyledTextLabel alloc] initWithFrame:_lbName.frame] autorelease];
-    htmlName.userInteractionEnabled = NO;
-    htmlName.backgroundColor = [UIColor clearColor];
-    htmlName.font = [UIFont systemFontOfSize:13.0];
-    htmlName.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
-    
-    
-    [self.contentView addSubview:htmlName];
-    
-    if(htmlLabel.superview != nil){
-        [htmlLabel removeFromSuperview];
-    }
-    htmlLabel = [[[TTStyledTextLabel alloc] initWithFrame:_lbMessage.frame] autorelease];
-    htmlLabel.userInteractionEnabled = NO;
-    htmlLabel.autoresizesSubviews = YES;
-    htmlLabel.backgroundColor = [UIColor clearColor];
-    htmlLabel.font = [UIFont systemFontOfSize:13.0];
-    htmlLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
-//        UIViewAutoresizingFlexibleBottomMargin |
-//        UIViewAutoresizingFlexibleRightMargin ;
-    htmlLabel.autoresizesSubviews = YES;
-    htmlLabel.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:htmlLabel];
-    
-    htmlComment = [[[TTStyledTextLabel alloc] initWithFrame:_lbComment.frame] autorelease];
-    htmlComment.userInteractionEnabled = NO;
-    htmlComment.autoresizesSubviews = YES;
-    htmlComment.backgroundColor = [UIColor clearColor];
-    htmlComment.font = [UIFont systemFontOfSize:13.0];
-    htmlComment.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// | 
-    //        UIViewAutoresizingFlexibleBottomMargin |
-    //        UIViewAutoresizingFlexibleRightMargin ;
-    htmlComment.autoresizesSubviews = YES;
-    htmlComment.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:htmlComment];
-    
-    
+            
     //Add images for Comment button
     [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"] 
-                                     stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0] 
                            forState:UIControlStateNormal];
     [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"] 
-                                     stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0] 
                            forState:UIControlStateSelected];
     [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"] 
-                                     stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0] 
                            forState:UIControlStateHighlighted];
-    
     
     
     //Add images for Like button
@@ -235,27 +181,51 @@
                                   stretchableImageWithLeftCapWidth:15 topCapHeight:0] 
                         forState:UIControlStateHighlighted];
     
+    
+    [self configureCellForSpecificContentWithWidth:fWidth];
+
+    
 }
 
 
-//- (void)setActivity:(Activity*)activity
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
-{
-    //SonTH commented out
-    //NSLog(@"%@",socialActivityStream.posterUserProfile.avatarUrl);
-    //_imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]; 
-    htmlLabel.html = socialActivityStream.title;
 
-    //htmlLabel.text = [TTStyledText textFromXHTML:socialActivityStream.title];
-    //htmlLabel.backgroundColor = [UIColor redColor];
+- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
 
-
-    _lbMessage.text = @"";//socialActivityStream.title;
-    //TTStyledTextLabel
+    CGRect tmpFrame = CGRectZero;
     
-    //_lbMessage.text = [socialActivityStream.title copy];
+    if (fWidth > 320) {
+        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPAD, 21);
+    } else {
+        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
+    }
+    
+    _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+
+    
+    _htmlMessage.userInteractionEnabled = NO;
+    _htmlMessage.autoresizesSubviews = YES;
+    _htmlMessage.backgroundColor = [UIColor clearColor];
+    _htmlMessage.font = [UIFont systemFontOfSize:13.0];
+    _htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _htmlMessage.textColor = [UIColor grayColor];
+    
+    [self.contentView addSubview:_htmlMessage];
+}
+
+
+
+
+
+
+
+
+
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
+{ 
+    
+    self.socialActivytyStream = socialActivityStream;
+    
     _lbDate.text = [socialActivityStream.postedTimeInWords copy];
-    _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
     
     //display the like number '+' if 0
     NSString *stringForLikes;
@@ -294,10 +264,23 @@
  
      [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    [self setSocialActivityStreamForSpecificContent:socialActivityStream];
+}
+
+
+
+
+
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream*)socialActivityStream {
+ 
+    _htmlMessage.html = socialActivityStream.title;
+    _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
+    
     switch (socialActivityStream.activityType) {
         case ACTIVITY_ANSWER_UPDATE_QUESTION:
         case ACTIVITY_ANSWER_ADD_QUESTION:{
-            htmlLabel.html = [socialActivityStream.templateParams valueForKey:@"Name"];
+            _htmlMessage.html = [socialActivityStream.templateParams valueForKey:@"Name"];
         }
             
             break;
@@ -305,6 +288,8 @@
             break;
     }
 }
-    //_lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+
+
+
 
 @end

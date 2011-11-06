@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityBasicTableViewCell.h"
-@interface ActivityWikiTableViewCell : ActivityBasicTableViewCell
+
+
+
+@interface ActivityWikiTableViewCell : ActivityBasicTableViewCell {
+
+    UILabel*                                _lbMessage;
+    TTStyledTextLabel*                      _htmlName;
+
+}
+
+
+@property (retain, nonatomic) IBOutlet UILabel* lbMessage;
+@property (retain, nonatomic) TTStyledTextLabel* htmlName;
+
+
 
 @end

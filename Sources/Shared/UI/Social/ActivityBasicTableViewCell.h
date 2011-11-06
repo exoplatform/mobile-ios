@@ -15,54 +15,59 @@
 @class ActivityStreamBrowseViewController;
 @class SocialUserProfile;
 
+
+#define WIDTH_FOR_CONTENT_IPHONE 237
+#define WIDTH_FOR_CONTENT_IPAD 409
+
+
 @interface ActivityBasicTableViewCell : UITableViewCell {
     
-    UILabel*               _lbMessage;
-    UILabel*               _lbDate;
-    UILabel*               _lbName;
+    UILabel*                                _lbDate;
+    UILabel*                                _lbName;
     
-    EGOImageView*          _imgvAvatar;
-    UIImageView*           _imgType;
-    UIButton*              _btnLike;
-    UIButton*              _btnComment;
+    EGOImageView*                           _imgvAvatar;
+    UIImageView*                            _imgType;
+    UIButton*                               _btnLike;
+    UIButton*                               _btnComment;
     
-    UIImageView*           _imgvMessageBg;
+    UIImageView*                            _imgvMessageBg;
     
-    SocialActivityStream*  _socialActivytyStream;
-    ActivityStreamBrowseViewController* _delegate;
-    NSInteger _activityType;
+    SocialActivityStream*                   _socialActivytyStream;
+    ActivityStreamBrowseViewController*     _delegate;
+    NSInteger                               _activityType;
     
-    TTStyledTextLabel  *htmlLabel;
-    TTStyledTextLabel   *htmlName;
-    UILabel*            _lbComment;
-    TTStyledTextLabel   *htmlComment;
-    
+    TTStyledTextLabel*                      _htmlMessage;
 }
-@property (retain) IBOutlet UILabel* lbComment;
-@property (retain, nonatomic) IBOutlet UILabel* lbMessage;
-@property (retain, nonatomic) IBOutlet UILabel* lbDate;
-@property (retain, nonatomic) IBOutlet UILabel* lbName;
+
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
-@property (retain, nonatomic) IBOutlet UIImageView*  imgType;
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) SocialActivityStream*  socialActivytyStream;
 @property (retain, nonatomic) ActivityStreamBrowseViewController* delegate;
 
-@property (retain, nonatomic) TTStyledTextLabel  *htmlLabel;
-@property (retain, nonatomic) TTStyledTextLabel   *htmlName;
-@property (retain, nonatomic) TTStyledTextLabel   *htmlComment;
+@property (retain, nonatomic) IBOutlet UIImageView*  imgType;
+@property (retain, nonatomic) IBOutlet UILabel* lbDate;
+@property (retain, nonatomic) IBOutlet UILabel* lbName;
+@property (retain, nonatomic) TTStyledTextLabel   *htmlMessage;
 
 @property NSInteger activityType;
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
-- (void)configureCell;
+- (void)configureCellForWidth:(CGFloat)fWidth;
+- (void)configureFonts:(BOOL)highlighted;
+- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream;
+
+
+//Methods for customizing + setting the content of the cell for specific activity
+- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream*)socialActivityStream;
+
+
+//Actions over the cell
 - (void)btnLikeAction:(UIButton *)sender;
 - (void)btnCommentAction:(UIButton *)sender;
 
 
-//- (void)setActivity:(Activity*)activity;
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream;
 @end

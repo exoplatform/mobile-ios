@@ -10,8 +10,16 @@
 #import "ActivityBasicTableViewCell.h"
 #import "Three20/Three20.h"
 
-@interface ActivityForumTableViewCell : ActivityBasicTableViewCell{
+@interface ActivityForumTableViewCell : ActivityBasicTableViewCell {
+
     
+    UILabel*                                _lbMessage;
+    TTStyledTextLabel*                      _htmlName;
+
 }
+
+@property (retain, nonatomic) IBOutlet UILabel* lbMessage;
+@property (retain, nonatomic) TTStyledTextLabel* htmlName;
+
 
 @end

@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ActivityBasicTableViewCell.h"
 
-@interface ActivityLinkTableViewCell : ActivityBasicTableViewCell{
-
+@interface ActivityLinkTableViewCell : ActivityBasicTableViewCell {
+ 
     EGOImageView*          _imgvAttach;
+    UILabel*               _lbComment;
+    TTStyledTextLabel*     _htmlLinkMessage;
     
 }
+
 @property (retain) IBOutlet EGOImageView* imgvAttach;
+@property (retain, nonatomic) IBOutlet UILabel* lbComment;
+
 @end

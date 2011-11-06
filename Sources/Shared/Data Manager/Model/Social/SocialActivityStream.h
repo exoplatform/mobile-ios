@@ -29,6 +29,8 @@
     NSString*               _postedTimeInWords;
     NSDictionary*           _templateParams;  
     NSInteger               _activityType;
+    
+    CGFloat                 _cellHeight;
 }
 
 @property (nonatomic, retain) NSString* identityId;
@@ -37,6 +39,7 @@
 @property BOOL liked;
 @property double postedTime;
 @property NSInteger activityType;
+@property CGFloat cellHeight;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* posterIdentity;
 @property (nonatomic, retain) NSString* activityId;
@@ -53,4 +56,7 @@
 - (void)getActivityType;
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
+- (void)cellHeightCalculationForWidth:(CGFloat)fWidth;
+
+
 @end
