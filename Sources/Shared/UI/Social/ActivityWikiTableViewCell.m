@@ -25,10 +25,10 @@
     
     if (!highlighted) {
         _htmlName.textColor = [UIColor grayColor];
-        _htmlName.backgroundColor = [UIColor yellowColor];
+        _htmlName.backgroundColor = [UIColor whiteColor];
         
         _lbMessage.textColor = [UIColor grayColor];
-        _lbMessage.backgroundColor = [UIColor greenColor];
+        _lbMessage.backgroundColor = [UIColor whiteColor];
     } else {
         _htmlName.textColor = [UIColor darkGrayColor];
         _htmlName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];

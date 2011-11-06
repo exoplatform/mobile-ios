@@ -117,7 +117,7 @@
         _lbName.backgroundColor = [UIColor whiteColor];
     
         _htmlMessage.textColor = [UIColor grayColor];
-        _htmlMessage.backgroundColor = [UIColor purpleColor];
+        _htmlMessage.backgroundColor = [UIColor whiteColor];
  
         _lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,1);
