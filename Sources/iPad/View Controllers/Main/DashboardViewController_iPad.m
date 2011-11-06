@@ -38,7 +38,7 @@
     GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
 
     
-    GadgetDisplayViewController_iPad* gadgetDisplayViewController = (GadgetDisplayViewController_iPad *)[[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPad" 
+    GadgetDisplayViewController_iPad* gadgetDisplayViewController = [[GadgetDisplayViewController_iPad alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPad" 
           bundle:nil                                                                                                                                                             gadget:gadgetTmp];
     
     // push the gadgets
