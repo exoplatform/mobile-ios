@@ -204,7 +204,6 @@
     
     _htmlMessage.userInteractionEnabled = NO;
     _htmlMessage.autoresizesSubviews = YES;
-    _htmlMessage.backgroundColor = [UIColor clearColor];
     _htmlMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     _htmlMessage.textColor = [UIColor grayColor];

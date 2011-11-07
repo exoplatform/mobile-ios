@@ -203,7 +203,8 @@
                 
                 fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
                 
-                NSData *imageData = UIImagePNGRepresentation([self resizeImage:imgView.image withScale:1]);
+                
+                NSData *imageData = UIImagePNGRepresentation(imgView.image);
                 
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                             [fileProxy methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
@@ -223,8 +224,8 @@
             
             SocialPostActivity* actPost = [[SocialPostActivity alloc] init];
             actPost.delegate = self;
-//            [actPost postActivity:_txtvMessageComposer.text];
-            [actPost postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName];
+
+            [actPost postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName];            
         }
         else
         {
@@ -266,9 +267,28 @@
 }
 
 
-- (UIImage *)resizeImage:(UIImage *)image withScale:(int)scale {
+- (UIImage *)resizeImage:(UIImage *)image {
     
-    CGSize newSize = CGSizeMake(image.size.width*scale, image.size.height*scale);
+    
+    int width = image.size.width;
+    int height = image.size.height;
+    
+    if(width > height) {
+        if(width > 1024) {
+            
+            height = height*1024/width;
+            width = 1024;
+        }
+    }
+    else {
+        if(height > 1024) {
+            
+            width = width*1024/height;
+            height = 1024;
+        }
+    }
+    
+    CGSize newSize = CGSizeMake(width, height);
     UIGraphicsBeginImageContext(newSize);
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -295,6 +315,47 @@
 
 - (void)addPhotoToView:(UIImage *)image
 {
+    if(_popoverPhotoLibraryController)
+        [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    else
+        [self dismissModalViewControllerAnimated:YES];
+    
+    [[self.view viewWithTag:1] removeFromSuperview];
+    [[self.view viewWithTag:2] removeFromSuperview];
+    
+    CGSize size = [image size];
+    CGSize selfSize = self.view.frame.size;
+
+    CGRect rect;
+    if (size.width > size.height) 
+    {
+        if(_popoverPhotoLibraryController)
+            rect = CGRectMake(10, selfSize.height - (50 + 10), 50*size.width/size.height, 50);
+        else
+            rect = CGRectMake(10, 150, 50*size.width/size.height, 50);
+    }
+    else
+    {
+        if(_popoverPhotoLibraryController)
+            rect = CGRectMake(10, selfSize.height - (50*size.height/size.width + 10), 50, 50*size.height/size.width);
+        else
+            rect = CGRectMake(10, 150, 50, 50*size.height/size.width);
+    }
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:rect];
+    imgView.tag = 1;
+    imgView.image = image;
+    [self.view addSubview:imgView];
+    [imgView release];
+    
+    
+    UIButton *btnPhotoActivity = [[UIButton alloc] initWithFrame:rect];
+    btnPhotoActivity.tag = 2;
+    [btnPhotoActivity addTarget:self action:@selector(showPhotoActivity:) forControlEvents:UIControlEventTouchUpInside];
+    [btnPhotoActivity setBackgroundImage:image forState:UIControlStateNormal];
+    
+    [self.view addSubview:btnPhotoActivity];
+    [btnPhotoActivity release];
     
 }
 
@@ -360,7 +421,7 @@
     {
         UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
         thePicker.delegate = self;
-        thePicker.allowsEditing = YES;
+//        thePicker.allowsEditing = YES;
         
         if(buttonIndex == 0)//Take a photo
         {
@@ -410,7 +471,8 @@
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
     [_popoverPhotoLibraryController release];
     
-    [self addPhotoToView:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+     
+    [self addPhotoToView:[self resizeImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]]];
     
 }
 

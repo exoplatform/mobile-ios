@@ -14,7 +14,6 @@
 @implementation ActivityPictureTableViewCell
 
 @synthesize imgvAttach = _imgvAttach, lbFileName = _lbFileName;
-@synthesize lbMessage = _lbMessage;
 
 
 - (void)configureFonts:(BOOL)highlighted {
@@ -23,23 +22,14 @@
         _lbFileName.textColor = [UIColor grayColor];
         _lbFileName.backgroundColor = [UIColor whiteColor];
         
-        _lbMessage.textColor = [UIColor grayColor];
-        _lbMessage.backgroundColor = [UIColor whiteColor];
     } else {
         _lbFileName.textColor = [UIColor darkGrayColor];
         _lbFileName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
         
-        _lbMessage.textColor = [UIColor darkGrayColor];
-        _lbMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
     }
     
     [super configureFonts:highlighted];
 }
-
-
-- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
-}
-
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
     
@@ -52,9 +42,8 @@
     NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
     
     _imgvAttach.imageURL = [NSURL URLWithString:strURL];
-    _lbMessage.text = [[socialActivityStream.templateParams valueForKey:@"MESSAGE"] copy];
+    _htmlMessage.html = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
     _lbFileName.text = [socialActivityStream.templateParams valueForKey:@"DOCNAME"];
-    
 }
 
 

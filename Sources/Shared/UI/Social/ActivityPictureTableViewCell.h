@@ -11,13 +11,10 @@
 
 @interface ActivityPictureTableViewCell : ActivityBasicTableViewCell {
     EGOImageView*          _imgvAttach;
-    UILabel*               _lbFileName;
-    UILabel*               _lbMessage;    
+    UILabel*               _lbFileName;   
 }
 
 @property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain) IBOutlet UILabel* lbFileName;
-@property (retain) IBOutlet UILabel* lbMessage;
-
 
 @end

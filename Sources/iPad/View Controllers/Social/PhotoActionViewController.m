@@ -93,7 +93,7 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
     {  
         thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        thePicker.allowsEditing = YES;
+//        thePicker.allowsEditing = YES;
         [self presentModalViewController:thePicker animated:YES];
     }
     else
@@ -111,7 +111,7 @@
     UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
     thePicker.delegate = self;
     thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    thePicker.allowsEditing = YES;
+//    thePicker.allowsEditing = YES;
     thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     thePicker.modalPresentationStyle = UIModalPresentationFormSheet;

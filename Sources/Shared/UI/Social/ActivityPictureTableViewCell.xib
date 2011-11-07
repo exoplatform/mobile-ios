@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBUIButton</string>
 			<string>IBUITableViewCell</string>
-			<string>IBUILabel</string>
 			<string>IBUIImageView</string>
+			<string>IBUIButton</string>
+			<string>IBUILabel</string>
 			<string>IBProxyObject</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -73,7 +73,7 @@
 							<object class="IBUIImageView" id="858407537">
 								<reference key="NSNextResponder" ref="900677899"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrame">{{150, 64}, {70, 70}}</string>
+								<string key="NSFrame">{{150, 55}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="900677899"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="247652694"/>
@@ -170,7 +170,7 @@
 								<string key="NSFrame">{{71, 11}, {237, 22}}</string>
 								<reference key="NSSuperview" ref="900677899"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="791795301"/>
+								<reference key="NSNextKeyView" ref="858407537"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -193,39 +193,6 @@
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">13</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-							<object class="IBUILabel" id="791795301">
-								<reference key="NSNextResponder" ref="900677899"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{71, 31}, {234, 31}}</string>
-								<reference key="NSSuperview" ref="900677899"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="858407537"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Message</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC40OTQxMTc2NDcxIDAuNDk0MTE3NjQ3MSAwLjQ5NDExNzY0NzEAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">10</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">0</int>
-									<double key="pointSize">13</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -327,19 +294,11 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imgvAttach</string>
+						<string key="label">imgvAvatar</string>
 						<reference key="source" ref="534562999"/>
-						<reference key="destination" ref="858407537"/>
+						<reference key="destination" ref="141515213"/>
 					</object>
-					<int key="connectionID">13</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnLike</string>
-						<reference key="source" ref="534562999"/>
-						<reference key="destination" ref="650007082"/>
-					</object>
-					<int key="connectionID">14</int>
+					<int key="connectionID">21</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -359,38 +318,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbName</string>
-						<reference key="source" ref="534562999"/>
-						<reference key="destination" ref="905467883"/>
-					</object>
-					<int key="connectionID">18</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbMessage</string>
-						<reference key="source" ref="534562999"/>
-						<reference key="destination" ref="791795301"/>
-					</object>
-					<int key="connectionID">19</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imgvMessageBg</string>
-						<reference key="source" ref="534562999"/>
-						<reference key="destination" ref="1045947159"/>
-					</object>
-					<int key="connectionID">20</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imgvAvatar</string>
-						<reference key="source" ref="534562999"/>
-						<reference key="destination" ref="141515213"/>
-					</object>
-					<int key="connectionID">21</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">imgType</string>
 						<reference key="source" ref="534562999"/>
 						<reference key="destination" ref="690318354"/>
@@ -399,11 +326,43 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnLike</string>
+						<reference key="source" ref="534562999"/>
+						<reference key="destination" ref="650007082"/>
+					</object>
+					<int key="connectionID">14</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">lbFileName</string>
 						<reference key="source" ref="534562999"/>
 						<reference key="destination" ref="247652694"/>
 					</object>
 					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">imgvAttach</string>
+						<reference key="source" ref="534562999"/>
+						<reference key="destination" ref="858407537"/>
+					</object>
+					<int key="connectionID">13</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lbName</string>
+						<reference key="source" ref="534562999"/>
+						<reference key="destination" ref="905467883"/>
+					</object>
+					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">imgvMessageBg</string>
+						<reference key="source" ref="534562999"/>
+						<reference key="destination" ref="1045947159"/>
+					</object>
+					<int key="connectionID">20</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -439,22 +398,11 @@
 							<reference ref="672033065"/>
 							<reference ref="905467883"/>
 							<reference ref="139632858"/>
-							<reference ref="791795301"/>
 							<reference ref="858407537"/>
 							<reference ref="690318354"/>
 							<reference ref="247652694"/>
 						</object>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="650007082"/>
-						<reference key="parent" ref="534562999"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="905467883"/>
-						<reference key="parent" ref="534562999"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
@@ -472,13 +420,18 @@
 						<reference key="parent" ref="534562999"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="1045947159"/>
+						<int key="objectID">22</int>
+						<reference key="object" ref="690318354"/>
 						<reference key="parent" ref="534562999"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">11</int>
-						<reference key="object" ref="791795301"/>
+						<int key="objectID">4</int>
+						<reference key="object" ref="650007082"/>
+						<reference key="parent" ref="534562999"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">24</int>
+						<reference key="object" ref="247652694"/>
 						<reference key="parent" ref="534562999"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -487,13 +440,13 @@
 						<reference key="parent" ref="534562999"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="690318354"/>
+						<int key="objectID">5</int>
+						<reference key="object" ref="905467883"/>
 						<reference key="parent" ref="534562999"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="247652694"/>
+						<int key="objectID">9</int>
+						<reference key="object" ref="1045947159"/>
 						<reference key="parent" ref="534562999"/>
 					</object>
 				</object>
@@ -505,7 +458,6 @@
 					<string>-1.IBPluginDependency</string>
 					<string>-2.CustomClassName</string>
 					<string>-2.IBPluginDependency</string>
-					<string>11.IBPluginDependency</string>
 					<string>12.CustomClassName</string>
 					<string>12.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
@@ -526,7 +478,6 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>EGOImageView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -557,7 +508,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">25</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -646,12 +597,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>imgvAttach</string>
 							<string>lbFileName</string>
-							<string>lbMessage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>EGOImageView</string>
-							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -661,7 +610,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>imgvAttach</string>
 							<string>lbFileName</string>
-							<string>lbMessage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -671,10 +619,6 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">lbFileName</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">lbMessage</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 						</object>

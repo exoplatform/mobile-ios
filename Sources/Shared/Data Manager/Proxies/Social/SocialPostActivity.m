@@ -84,13 +84,10 @@
         
         activity.type = @"DOC_ACTIVITY"; 
         
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *host = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-        
-        NSRange rangeOfDocLink = [fileURL rangeOfString:host];
-        NSString* docLink = [fileURL substringFromIndex:rangeOfDocLink.location + rangeOfDocLink.length];
+        NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr/repository/collaboration"];
+        NSString* docLink = [NSString stringWithFormat:@"/portal/rest/%@",
+                             [fileURL substringFromIndex:rangeOfDocLink.location]];
 
-        rangeOfDocLink = [fileURL rangeOfString:@"jcr/repository/collaboration"];
         NSString* docPath = [fileURL substringFromIndex:rangeOfDocLink.location + rangeOfDocLink.length];
         
         activity.title = [NSString stringWithFormat:@"Shared a document <a href=\"%@\">%@</a>\"", docLink, fileName];

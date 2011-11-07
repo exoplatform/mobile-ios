@@ -38,30 +38,11 @@
     UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
     thePicker.delegate = self;
     thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    thePicker.allowsEditing = YES;
+//    thePicker.allowsEditing = YES;
     [self presentModalViewController:thePicker animated:YES];
 }
 
-- (void)addPhotoToView:(UIImage *)image
-{
-    [self dismissModalViewControllerAnimated:YES];
-    
-    [[self.view viewWithTag:1] removeFromSuperview];
-    
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 150, 50, 50)];
-    imgView.tag = 1;
-    imgView.image = image;
-    [self.view addSubview:imgView];
-    
-    UIButton *btnPhotoActivity = [[UIButton alloc] initWithFrame:CGRectMake(10, 150, 50, 50)];
-    btnPhotoActivity.tag = 2;
-    [btnPhotoActivity addTarget:self action:@selector(showPhotoActivity:) forControlEvents:UIControlEventTouchUpInside];
-    [btnPhotoActivity setBackgroundImage:image forState:UIControlStateNormal];
-    
-    [self.view addSubview:btnPhotoActivity];
-    
-}
-
+ 
 - (void)showPhotoActivity:(UIButton *)sender
 {
     self.title = Localize(@"AttachedPhoto");
@@ -115,50 +96,5 @@
     [UIView commitAnimations];
     
 }
-
-/*
-#pragma mark - ActionSheet Delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex < 2)
-    {
-        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
-        thePicker.delegate = self;
-        thePicker.allowsEditing = YES;
-        
-        if(buttonIndex == 0)//Take a photo
-        {
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
-            {  
-                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self presentModalViewController:thePicker animated:YES];
-            }
-            else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alert show];
-                [alert release];
-            }
-        }
-        else
-        {
-            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentModalViewController:thePicker animated:YES];
-        }
-        
-        [thePicker release];
-    }
-    
-}
-
-
-#pragma mark - UIImagePickerDelegate
-- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissModalViewControllerAnimated:YES];    
-    [self addPhotoToView:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
-    
-}
- */
 
 @end

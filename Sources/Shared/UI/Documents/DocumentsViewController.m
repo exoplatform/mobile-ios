@@ -511,7 +511,7 @@
         NSString *deviceName = [[UIDevice currentDevice] name];
         NSRange range = [deviceName rangeOfString:@"iPad"];
         
-        thePicker.allowsEditing = YES;
+//        thePicker.allowsEditing = YES;
         
         if(range.length <= 0) {
             [self.navigationController presentModalViewController:thePicker animated:YES];            
@@ -758,7 +758,7 @@
     {
         UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
         thePicker.delegate = self;
-        thePicker.allowsEditing = YES;
+//        thePicker.allowsEditing = YES;
         
         if(buttonIndex == 0)//Take a photo
         {

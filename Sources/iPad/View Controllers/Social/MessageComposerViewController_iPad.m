@@ -54,7 +54,7 @@
     UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
     thePicker.delegate = self;
     thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    thePicker.allowsEditing = YES;
+//    thePicker.allowsEditing = YES;
     thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -79,7 +79,7 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
     {  
         thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        thePicker.allowsEditing = YES;
+//        thePicker.allowsEditing = YES;
         [self presentModalViewController:thePicker animated:YES];
     }
     else
@@ -99,45 +99,6 @@
 - (void)onBtnCancel
 {
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-}
-
-- (void)addPhotoToView:(UIImage *)image
-{
-    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    
-    [[self.view viewWithTag:1] removeFromSuperview];
-    [[self.view viewWithTag:2] removeFromSuperview];
-    
-    CGSize size = [image size];
-    BOOL bCheck = NO;
-    if (size.width > size.height) 
-    {
-        bCheck = YES;
-    }
-    
-    CGRect rect;
-    if (bCheck) 
-    {
-        rect = CGRectMake(10, self.view.frame.size.height - (50 + 10), 50*size.width/size.height, 50);
-    }
-    else
-    {
-        rect = CGRectMake(10, self.view.frame.size.height - (50*size.height/size.width + 10), 50, 50*size.height/size.width);
-    }
-    
-    
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:rect];
-    imgView.tag = 1;
-    imgView.image = image;
-    [self.view addSubview:imgView];
-    
-    UIButton *btnPhotoActivity = [[UIButton alloc] initWithFrame:rect];
-    btnPhotoActivity.tag = 2;
-    [btnPhotoActivity addTarget:self action:@selector(showPhotoActivity:) forControlEvents:UIControlEventTouchUpInside];
-    [btnPhotoActivity setBackgroundImage:image forState:UIControlStateNormal];
-    
-    [self.view addSubview:btnPhotoActivity];
-    
 }
 
 - (void)showPhotoActivity:(UIButton *)sender

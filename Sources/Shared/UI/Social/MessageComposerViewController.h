@@ -37,6 +37,7 @@
     UIPopoverController*                _popoverPhotoLibraryController;
     //Loader
     ATMHud*                             _hudMessageComposer;//Heads up display
+    
 }
 
 @property BOOL isPostMessage;
@@ -58,7 +59,7 @@
 
 - (void)cancelDisplayAttachedPhoto;
 - (void)deleteAttachedPhoto;
-- (UIImage *)resizeImage:(UIImage *)image withScale:(int)scale;
+- (UIImage *)resizeImage:(UIImage *)image;
 
 @end
 
