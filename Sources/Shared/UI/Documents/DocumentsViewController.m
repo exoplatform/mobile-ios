@@ -99,7 +99,6 @@
 -(void)emptyState {
     //disable scroll in tableview
     _tblFiles.scrollEnabled = NO;
-    self.navigationItem.rightBarButtonItem = nil;
     //add empty view to the view    
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForEmptyFolder.png" andContent:Localize(@"EmptyFolder")];
     emptyView.tag = TAG_EMPTY;

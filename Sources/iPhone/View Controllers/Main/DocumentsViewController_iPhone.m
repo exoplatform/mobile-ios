@@ -270,10 +270,15 @@
 }
  
 
+#pragma mark - ActionSheet Delegate
+
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
     [picker dismissModalViewControllerAnimated:YES];  
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+
 }
 
 @end
