@@ -31,6 +31,8 @@
     [super configureFonts:highlighted];
 }
 
+
+
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
     
     //Set the UserName of the activity

@@ -82,7 +82,7 @@
 							<object class="IBUIImageView" id="547776058">
 								<reference key="NSNextResponder" ref="42066679"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{66, 51}, {60, 60}}</string>
+								<string key="NSFrame">{{70, 51}, {60, 60}}</string>
 								<reference key="NSSuperview" ref="42066679"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="785546042"/>
@@ -161,8 +161,8 @@
 							</object>
 							<object class="IBUILabel" id="785546042">
 								<reference key="NSNextResponder" ref="42066679"/>
-								<int key="NSvFlags">266</int>
-								<string key="NSFrame">{{129, 53}, {178, 60}}</string>
+								<int key="NSvFlags">264</int>
+								<string key="NSFrame">{{139, 54}, {168, 58}}</string>
 								<reference key="NSSuperview" ref="42066679"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1069369048"/>
@@ -179,7 +179,8 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">10</int>
+								<int key="IBUINumberOfLines">0</int>
+								<int key="IBUILineBreakMode">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Helvetica</string>
 									<string key="family">Helvetica</string>

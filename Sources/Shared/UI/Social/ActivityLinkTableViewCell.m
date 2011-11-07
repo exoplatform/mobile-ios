@@ -53,10 +53,23 @@
     _htmlLinkMessage.autoresizesSubviews = YES;
     _htmlLinkMessage.backgroundColor = [UIColor clearColor];
     _htmlLinkMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlLinkMessage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    //_htmlLinkMessage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     _htmlLinkMessage.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:_htmlLinkMessage];
+    
+    
+    //Also modify the frame of the _lbComment
+    tmpFrame = _lbComment.frame;
+    if (fWidth > 320) {
+        tmpFrame.size.width = WIDTH_FOR_CONTENT_IPAD - _imgvAttach.frame.size.width;
+    } else {
+        tmpFrame.size.width = WIDTH_FOR_CONTENT_IPHONE - _imgvAttach.frame.size.width;
+    }
+    
+    _lbComment.frame = tmpFrame;
+    
+    
 }
 
 
@@ -66,10 +79,10 @@
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
      
     if([[socialActivityStream.templateParams valueForKey:@"image"] isEqualToString:@""]){
-        CGRect rect = _htmlLinkMessage.frame;
+        CGRect rect = _lbComment.frame;
         rect.origin.x = _imgvAttach.frame.origin.x;
         rect.size.width += _imgvAttach.frame.size.width;
-        _htmlLinkMessage.frame = rect;
+        _lbComment.frame = rect;
     } else {
         _imgvAttach.placeholderImage = [UIImage imageNamed:@"ActivityTypeDocument.png"];
         _imgvAttach.imageURL = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
@@ -78,7 +91,14 @@
     _htmlLinkMessage.html = socialActivityStream.title;
     [_htmlLinkMessage sizeToFit];
     
+    CGRect rect = _lbComment.frame;
+    rect.origin.y = _htmlLinkMessage.frame.origin.y + _htmlLinkMessage.frame.size.height + 15;
+    _lbComment.frame = rect;
+    
+    
     _lbComment.text = [socialActivityStream.templateParams valueForKey:@"comment"];
+    [_lbComment sizeToFit];
+
     
 }
 
