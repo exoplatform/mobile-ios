@@ -274,6 +274,8 @@
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream*)socialActivityStream {
  
     _htmlMessage.html = socialActivityStream.title;
+    //_htmlMessage.text = [TTStyledText textFromXHTML:socialActivityStream.title];
+
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
     
     switch (socialActivityStream.activityType) {

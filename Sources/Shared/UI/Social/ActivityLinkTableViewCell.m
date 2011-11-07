@@ -68,8 +68,7 @@
     }
     
     _lbComment.frame = tmpFrame;
-    
-    
+        
 }
 
 
@@ -91,13 +90,18 @@
     _htmlLinkMessage.html = socialActivityStream.title;
     [_htmlLinkMessage sizeToFit];
     
-    CGRect rect = _lbComment.frame;
-    rect.origin.y = _htmlLinkMessage.frame.origin.y + _htmlLinkMessage.frame.size.height + 15;
-    _lbComment.frame = rect;
+    NSLog(@"_htmlLinkMessage Y:%2f  HEIGHT:%2f", _htmlLinkMessage.frame.origin.y, _htmlLinkMessage.frame.size.height);
+    
     
     
     _lbComment.text = [socialActivityStream.templateParams valueForKey:@"comment"];
     [_lbComment sizeToFit];
+          
+    CGRect rect = _lbComment.frame;
+    rect.origin.y = _htmlLinkMessage.frame.origin.y + _htmlLinkMessage.frame.size.height +15;
+    _lbComment.frame = rect;
+
+    NSLog(@"_lbComment Y:%2f  HEIGHT:%2f", _lbComment.frame.origin.y, _lbComment.frame.size.height);
 
     
 }
