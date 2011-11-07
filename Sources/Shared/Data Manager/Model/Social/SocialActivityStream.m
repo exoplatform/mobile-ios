@@ -55,10 +55,19 @@
     self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
 }
 
+- (NSString*)fixupTextForStyledTextLabel:(NSString*)text { 
+    text = [text stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    return text; 
+} 
+
 -(void)convertHTMLEncoding 
 {
-    self.title = [self.title gtm_stringByUnescapingFromHTML];
-    self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];
+    //self.title = [self.title gtm_stringByUnescapingFromHTML];
+    //self.title = [self fixupTextForStyledTextLabel:self.title];
+
+    //self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];
+    //self.posterPicture.message = [self fixupTextForStyledTextLabel:self.posterPicture.message];
+
 }    
 
 -(void)getActivityType {

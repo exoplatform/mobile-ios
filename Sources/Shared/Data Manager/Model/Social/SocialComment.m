@@ -30,9 +30,18 @@
     self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime];
 }
 
+
+- (NSString*)fixupTextForStyledTextLabel:(NSString*)text { 
+    text = [text stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"]; 
+    return text; 
+} 
+
 -(void)convertHTMLEncoding 
 {
-    self.text = [self.text gtm_stringByUnescapingFromHTML];
+    //self.text = [self.text gtm_stringByEscapingForAsciiHTML];
+    //NSLog(@"---%@----",self.text);
+
+    //self.text = [self fixupTextForStyledTextLabel:self.text];
 } 
 
 @end
