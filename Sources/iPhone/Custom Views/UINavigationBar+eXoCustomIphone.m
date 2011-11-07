@@ -22,7 +22,7 @@
                                                                           alpha:1.]];
 }
 
-
+/*
 -(void)willMoveToWindow:(UIWindow *)newWindow{
 	[super willMoveToWindow:newWindow];
 	[self applyDefaultStyle];
@@ -35,6 +35,6 @@
 	self.layer.shadowOffset = CGSizeMake(0.0, 3.0);
 	self.layer.shadowOpacity = 0.25;
 }
-
+*/
 
 @end
