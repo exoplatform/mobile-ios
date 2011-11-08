@@ -371,6 +371,9 @@
 		46F6344914549DBC00BB57D4 /* libRestKitXMLParserLibxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55A813C54CAF00FCB43A /* libRestKitXMLParserLibxml.a */; };
 		46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F83140BD7A60077BE15 /* DocumentsViewController.m */; };
 		46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F89140CC4C20077BE15 /* FileActionsViewController.m */; };
+		46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */; };
+		46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */; };
+		46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
@@ -1275,6 +1278,12 @@
 		46F87F83140BD7A60077BE15 /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController.m; path = Documents/DocumentsViewController.m; sourceTree = "<group>"; };
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
 		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
+		46FE84DD146989F0000F1FE0 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "UIImage+Resize/UIImage+Alpha.h"; sourceTree = "<group>"; };
+		46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "UIImage+Resize/UIImage+Alpha.m"; sourceTree = "<group>"; };
+		46FE84DF146989F0000F1FE0 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "UIImage+Resize/UIImage+Resize.h"; sourceTree = "<group>"; };
+		46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
+		46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "UIImage+Resize/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "UIImage+Resize/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerEditingViewController.xib; path = ../../iPhone/NIB/ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerEditingViewController.h; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.h"; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerEditingViewController.m; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.m"; sourceTree = "<group>"; };
@@ -2723,6 +2732,19 @@
 			name = Documents;
 			sourceTree = "<group>";
 		};
+		46FE84D91469893A000F1FE0 /* UIImage+Resize */ = {
+			isa = PBXGroup;
+			children = (
+				46FE84DD146989F0000F1FE0 /* UIImage+Alpha.h */,
+				46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */,
+				46FE84DF146989F0000F1FE0 /* UIImage+Resize.h */,
+				46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */,
+				46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */,
+				46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */,
+			);
+			name = "UIImage+Resize";
+			sourceTree = "<group>";
+		};
 		7C5053E913E2AF3600FA73CD /* Social */ = {
 			isa = PBXGroup;
 			children = (
@@ -3363,6 +3385,7 @@
 		894734A01337139800B0AD11 /* 3-part */ = {
 			isa = PBXGroup;
 			children = (
+				46FE84D91469893A000F1FE0 /* UIImage+Resize */,
 				8997843A13F53568002E7E1C /* InternetReachability */,
 				46982F2F13E701900063CF62 /* EGOTableViewPullRefresh */,
 				7CAB435913A76A7800CED7A3 /* EGOImageLoading */,
@@ -4424,6 +4447,9 @@
 				1FCE58E8146238840045FC10 /* eXoTableViewController.m in Sources */,
 				890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */,
 				46EC7DE71466D596009D7BB0 /* ActivityHelper.m in Sources */,
+				46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */,
+				46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */,
+				46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
