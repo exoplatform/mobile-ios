@@ -33,12 +33,18 @@
 	NSURL* imageURL;
 	UIImage* placeholderImage;
 	id<EGOImageViewDelegate> delegate;
+    
+    CGSize sizeToResize;
+    BOOL resize;
 }
 
 - (id)initWithPlaceholderImage:(UIImage*)anImage; // delegate:nil
 - (id)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageViewDelegate>)aDelegate;
 
 - (void)cancelImageLoad;
+
+- (void)setImageURLWithoutDownloading:(NSURL *)aURL;
+- (void)needToBeResizedForSize:(CGSize)size;
 
 @property(nonatomic,retain) NSURL* imageURL;
 @property(nonatomic,retain) UIImage* placeholderImage;

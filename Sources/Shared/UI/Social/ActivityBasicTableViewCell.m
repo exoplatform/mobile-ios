@@ -31,6 +31,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
+        [_imgvAvatar needToBeResizedForSize:CGSizeMake(45,45)];
+        
     }
     return self;
 }
@@ -221,6 +224,9 @@
 
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 { 
+    
+    //Setting the avatar without starting the download to prevent troubles during scrolling
+    [_imgvAvatar setImageURLWithoutDownloading:[NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]];
     
     self.socialActivytyStream = socialActivityStream;
     

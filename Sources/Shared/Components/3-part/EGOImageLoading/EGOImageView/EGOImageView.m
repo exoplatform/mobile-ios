@@ -26,6 +26,17 @@
 
 #import "EGOImageView.h"
 #import "EGOImageLoader.h"
+#import "UIImage+Resize.h"
+#import "EGOCache.h"
+
+inline static NSString* keyForURL(NSURL* url, NSString* style) {
+	if(style) {
+		return [NSString stringWithFormat:@"EGOImageLoader-%u-%u", [[url description] hash], [style hash]];
+	} else {
+		return [NSString stringWithFormat:@"EGOImageLoader-%u", [[url description] hash]];
+	}
+}
+
 
 @implementation EGOImageView
 @synthesize imageURL, placeholderImage, delegate;
@@ -38,9 +49,41 @@
 	if((self = [super initWithImage:anImage])) {
 		self.placeholderImage = anImage;
 		self.delegate = aDelegate;
+        resize = NO;
 	}
 	
 	return self;
+}
+
+
+
+- (void)setImageURLWithoutDownloading:(NSURL *)aURL {
+	if(imageURL) {
+		[[EGOImageLoader sharedImageLoader] removeObserver:self forURL:imageURL];
+		[imageURL release];
+		imageURL = nil;
+	}
+	
+	if(!aURL) {
+		self.image = self.placeholderImage;
+		imageURL = nil;
+		return;
+	} else {
+		imageURL = [aURL retain];
+	}
+    
+	[[EGOImageLoader sharedImageLoader] removeObserver:self];
+	UIImage* anImage = [[EGOCache currentCache] imageForKey:keyForURL(aURL,nil)];
+    
+    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                        bounds:sizeToResize 
+                                          interpolationQuality:kCGInterpolationMedium];
+	
+	if(anImage) {
+		self.image = anImage;
+	} else {
+		self.image = self.placeholderImage;
+	}
 }
 
 - (void)setImageURL:(NSURL *)aURL {
@@ -60,6 +103,10 @@
 
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
 	UIImage* anImage = [[EGOImageLoader sharedImageLoader] imageForURL:aURL shouldLoadWithObserver:self];
+    
+    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                        bounds:sizeToResize 
+                                          interpolationQuality:kCGInterpolationMedium];
 	
 	if(anImage) {
 		self.image = anImage;
@@ -67,6 +114,16 @@
 		self.image = self.placeholderImage;
 	}
 }
+
+
+#pragma mark - 
+#pragma Resize images
+- (void)needToBeResizedForSize:(CGSize)size {
+    resize = YES;
+    sizeToResize = size;
+}
+
+
 
 #pragma mark -
 #pragma mark Image loading
@@ -80,6 +137,10 @@
 	if(![[[notification userInfo] objectForKey:@"imageURL"] isEqual:self.imageURL]) return;
 
 	UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
+
+    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                        bounds:sizeToResize 
+                                          interpolationQuality:kCGInterpolationMedium];    
 	self.image = anImage;
 	[self setNeedsDisplay];
 	

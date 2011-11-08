@@ -41,6 +41,11 @@ static NSString* kCellIdentifierWiki = @"ActivityWikiCell";
 static NSString* kCellIdentifierLink = @"ActivityLinkCell";
 
 
+@interface ActivityStreamBrowseViewController (PrivateMethods)
+- (void)loadImagesForOnscreenRows;
+@end
+
+
 @implementation ActivityStreamBrowseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -484,18 +489,23 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             break;
     }
     
-    if (_tblvActivityStream.dragging == NO && _tblvActivityStream.decelerating == NO)
-    {
-        cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];
-    }
-    // if a download is deferred or in progress, return a placeholder image
-    
     cell.delegate = self;
     cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
     [cell setSocialActivityStream:socialActivityStream];
     
+    //Load images
+    if ((_tblvActivityStream.dragging == NO) && (_tblvActivityStream.decelerating == NO)) {        
+        // Display the newly loaded image
+        cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];
+        
+        if ([cell respondsToSelector:@selector(startLoadingImageAttached)]) {
+            [(ActivityPictureTableViewCell *)cell startLoadingImageAttached];
+        }
+    }
+
     return cell;
 }
+
 
 
 
@@ -619,6 +629,8 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
     [_tblvActivityStream reloadData];
     
     
+    
+    
 }
 
 // Empty State
@@ -719,6 +731,9 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             // Display the newly loaded image
             cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];
             
+            if ([cell respondsToSelector:@selector(startLoadingImageAttached)]) {
+                [(ActivityPictureTableViewCell *)cell startLoadingImageAttached];
+            }
         }
     }
 }
@@ -736,10 +751,14 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 
+-(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self loadImagesForOnscreenRows];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
 	
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    [self loadImagesForOnscreenRows];
+    //[self loadImagesForOnscreenRows];
 }
 
 

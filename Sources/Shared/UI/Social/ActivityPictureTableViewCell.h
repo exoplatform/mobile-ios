@@ -11,10 +11,16 @@
 
 @interface ActivityPictureTableViewCell : ActivityBasicTableViewCell {
     EGOImageView*          _imgvAttach;
-    UILabel*               _lbFileName;   
+    UILabel*               _lbFileName;
+    
+    NSURL*                 _urlForAttachment;
 }
 
 @property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain) IBOutlet UILabel* lbFileName;
+
+
+//Method use to start the loading of the image Attached.
+- (void)startLoadingImageAttached;
 
 @end
