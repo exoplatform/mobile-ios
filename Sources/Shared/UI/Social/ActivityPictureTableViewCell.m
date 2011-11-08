@@ -52,13 +52,15 @@
 
     
     _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
+    //to make the image displayed the placeHolder
+    _imgvAttach.imageURL = nil;
     
        
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
     
     //Setting the avatar without starting the download to prevent troubles during scrolling
-    [_imgvAttach setImageURLWithoutDownloading:[NSURL URLWithString:strURL]];
+    //[_imgvAttach setImageURLWithoutDownloading:[NSURL URLWithString:strURL]];
         
     _urlForAttachment = [[NSURL alloc] initWithString:strURL]; 
     _htmlMessage.html = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];

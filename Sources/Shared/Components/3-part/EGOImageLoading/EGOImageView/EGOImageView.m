@@ -83,7 +83,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
         
         if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
                                                         bounds:sizeToResize 
-                                          interpolationQuality:kCGInterpolationMedium];
+                                          interpolationQuality:kCGInterpolationDefault];
     });
     
 	if(anImage) {
@@ -118,7 +118,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
         
         if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
                                                             bounds:sizeToResize 
-                                              interpolationQuality:kCGInterpolationMedium];
+                                              interpolationQuality:kCGInterpolationDefault];
     });
     
     
@@ -150,11 +150,19 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 - (void)imageLoaderDidLoad:(NSNotification*)notification {
 	if(![[[notification userInfo] objectForKey:@"imageURL"] isEqual:self.imageURL]) return;
 
-	UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
+	__block UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
 
-    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
-                                                        bounds:sizeToResize 
-                                          interpolationQuality:kCGInterpolationMedium];    
+    dispatch_queue_t queue = dispatch_get_global_queue(
+                                                       DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    
+    dispatch_async(queue, ^{
+        
+        if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                            bounds:sizeToResize 
+                                              interpolationQuality:kCGInterpolationDefault];
+    });
+    
+    
 	self.image = anImage;
 	[self setNeedsDisplay];
 	
