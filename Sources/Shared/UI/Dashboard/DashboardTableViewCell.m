@@ -51,13 +51,6 @@
     [[_imgvIcon layer] setBorderColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:1.].CGColor];
     CGFloat borderWidth = 1.0;
     [[_imgvIcon layer] setBorderWidth:borderWidth];
-    
-    //Add the inner shadow
-    CALayer *innerShadowLayer = [CALayer layer];
-    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
-    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
-    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvIcon.frame.size.width-2*borderWidth, _imgvIcon.frame.size.height-2*borderWidth);
-    [_imgvIcon.layer addSublayer:innerShadowLayer];
 }
 
 - (void)configureCell:(NSString*)name description:(NSString*)description icon:(NSString*)iconURL {
