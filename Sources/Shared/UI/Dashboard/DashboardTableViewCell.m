@@ -27,13 +27,10 @@
 
 - (void)dealloc
 {
-    [_lbName release];
     _lbName = nil;
     
-    [_lbDescription release];
     _lbDescription = nil;
 
-    [_imgvIcon release];
     _imgvIcon = nil;
     
     [_ttLabelDescription release];
@@ -74,7 +71,7 @@
     _lbName.backgroundColor = [UIColor clearColor];
     
     
-    _ttLabelDescription = [[[TTStyledTextLabel alloc] initWithFrame:_lbDescription.frame] autorelease];
+    _ttLabelDescription = [[TTStyledTextLabel alloc] initWithFrame:_lbDescription.frame];
     _ttLabelDescription.userInteractionEnabled = NO;
     _ttLabelDescription.autoresizesSubviews = YES;
     _ttLabelDescription.backgroundColor = [UIColor clearColor];
