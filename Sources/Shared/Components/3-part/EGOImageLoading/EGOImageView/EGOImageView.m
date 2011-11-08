@@ -28,6 +28,7 @@
 #import "EGOImageLoader.h"
 #import "UIImage+Resize.h"
 #import "EGOCache.h"
+#import <dispatch/dispatch.h>
 
 inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	if(style) {
@@ -73,12 +74,18 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	}
     
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
-	UIImage* anImage = [[EGOCache currentCache] imageForKey:keyForURL(aURL,nil)];
+	__block UIImage* anImage = [[EGOCache currentCache] imageForKey:keyForURL(aURL,nil)];
     
-    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+    dispatch_queue_t queue = dispatch_get_global_queue(
+                                                       DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    
+    dispatch_async(queue, ^{
+        
+        if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
                                                         bounds:sizeToResize 
                                           interpolationQuality:kCGInterpolationMedium];
-	
+    });
+    
 	if(anImage) {
 		self.image = anImage;
 	} else {
@@ -102,12 +109,19 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	}
 
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
-	UIImage* anImage = [[EGOImageLoader sharedImageLoader] imageForURL:aURL shouldLoadWithObserver:self];
+	__block UIImage* anImage = [[EGOImageLoader sharedImageLoader] imageForURL:aURL shouldLoadWithObserver:self];
     
-    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
-                                                        bounds:sizeToResize 
-                                          interpolationQuality:kCGInterpolationMedium];
-	
+    dispatch_queue_t queue = dispatch_get_global_queue(
+                                                       DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    
+    dispatch_async(queue, ^{
+        
+        if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                            bounds:sizeToResize 
+                                              interpolationQuality:kCGInterpolationMedium];
+    });
+    
+    
 	if(anImage) {
 		self.image = anImage;
 	} else {
