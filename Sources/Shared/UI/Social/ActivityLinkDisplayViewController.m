@@ -21,7 +21,7 @@
 
 @implementation ActivityLinkDisplayViewController
 
-@synthesize _url, _webView, titleForActivityLink;
+@synthesize  titleForActivityLink;
 
 
 // custom init method to allow URL to be passed
@@ -36,103 +36,17 @@
 	return self;
 }
 
-- (void)didReceiveMemoryWarning 
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (void)dealloc 
 {
-	[_url release];	//Gadget URL
-    _url = nil;
-    
-	[_webView release];
-    _webView = nil;
-    
-    [titleForActivityLink release];
-    
-	[_hudDocument release];
-    _hudDocument = nil;
-	
     [super dealloc];
 }
 
-#pragma mark - View lifecycle
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     
     [super viewDidLoad];
-    
     self.title = [_url absoluteString];
-    //Add the loader
-    _hudDocument = [[ATMHud alloc] initWithDelegate:self];
-    [_hudDocument setAllowSuperviewInteraction:NO];
-    [self setHudPosition];
-    [self.view addSubview:_hudDocument.view];
-    
-    [self showLoader];
-    
-    _webView.opaque = NO;
-    _webView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    if(_url != nil)
-	{
-		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-		[request setURL:_url]; 
-        [_webView loadRequest:request];
-        [request release];
-    }
 }
-
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-
-
-- (void)setUrl:(NSURL*)url
-{
-	_url = [url retain];
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
-{
-    [self hideLoader];
-    
-    NSUInteger statusCode = [error code];
-	if(!(statusCode >= 200 && statusCode < 300))
-	{
-        EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
-        emptyView.tag = TAG_EMPTY;
-        [self.view addSubview:emptyView];
-        [emptyView release];
-        
-    }
-}
-
-// Stop loading animation
-- (void)webViewDidFinishLoad:(UIWebView *)aWebView 
-{
-    [self hideLoader];
-    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
-    if(emptyview != nil){
-        [emptyview removeFromSuperview];
-    }
-}
-
-// Start loading animation
-- (void)webViewDidStartLoad:(UIWebView *)webView 
-{
-    
-}
-
-
-
 
 #pragma mark - Loader Management
 - (void)setHudPosition {
@@ -143,19 +57,10 @@
 - (void)showLoader {
     [self setHudPosition];
     NSLog(@"%@", self.title);
-    [_hudDocument setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingURL"),self.titleForActivityLink]];
-    [_hudDocument setActivity:YES];
-    [_hudDocument show];
+    [_hudView setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingURL"),self.titleForActivityLink]];
+    [_hudView setActivity:YES];
+    [_hudView show];
 }
-
-
-- (void)hideLoader {
-    //Now update the HUD
-    //TODO Localize this string
-    [self setHudPosition];
-    [_hudDocument hide];
-}
-
 
 
 

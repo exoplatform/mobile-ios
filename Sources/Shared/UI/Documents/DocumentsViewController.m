@@ -169,7 +169,7 @@
         rect.size.height += cell.frame.size.height;
     }
     _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
-    NSLog(@"%@", NSStringFromCGPoint(_hudFolder.center));
+    NSLog(@"view :%@ HUD:%@", NSStringFromCGRect(self.view.frame),NSStringFromCGPoint(_hudFolder.center));
 }
 
 
@@ -719,9 +719,6 @@
         [alert show];
         [alert release];
     }
-    
-    [self hideHUDWithMessage:Localize(@"FolderContentUpdated")];    
-    
 }
 
 

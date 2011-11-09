@@ -9,26 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
-#import "eXoViewController.h"
 #import "GadgetItem.h"
-
+#import "eXoDisplayViewController.h"
 
 //Display gadget content
-@interface GadgetDisplayViewController : eXoViewController <UIWebViewDelegate> {
-	UIWebView*	_webView;	//Display gadget on webview
+@interface GadgetDisplayViewController : eXoDisplayViewController{
 	GadgetItem* _gadget;	//Gadget 
-    
-    //Loader
-    ATMHud*                 _hudGadget;//Heads up display
 }
 
 @property (nonatomic, retain) GadgetItem *gadget;
-@property (nonatomic, retain) IBOutlet UIWebView* _webView;
-
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad;	//Constructor
-- (void)setGadget:(GadgetItem *)gadgetToLoad;	//Set gadget
-
-- (void)setHudPosition;
+- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad;
 
 @end
 

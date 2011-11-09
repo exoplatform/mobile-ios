@@ -16,6 +16,8 @@
 		1F92437A145FE07600D5AF85 /* ActivityLinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */; };
 		1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */; };
 		1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCBCC27143D4BB300CC4F21 /* EmptyView.m */; };
+		1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D3146A72990040989B /* eXoDisplayViewController.m */; };
+		1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */; };
 		1FCD3086143959F000C5BE6D /* disclosureActionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */; };
 		1FCD39ED143A9A6C00C814C5 /* DocumentActionPopupAddFolderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD39BE143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon.png */; };
 		1FCD39EE143A9A6C00C814C5 /* DocumentActionPopupBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD39BF143A9A6B00C814C5 /* DocumentActionPopupBackground.png */; };
@@ -838,6 +840,10 @@
 		1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkTableViewCell.xib; path = Social/ActivityLinkTableViewCell.xib; sourceTree = "<group>"; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
+		1FCC23D2146A72990040989B /* eXoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoDisplayViewController.h; sourceTree = "<group>"; };
+		1FCC23D3146A72990040989B /* eXoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoDisplayViewController.m; sourceTree = "<group>"; };
+		1FCC23D4146A72990040989B /* eXoTapDetectingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoTapDetectingWindow.h; sourceTree = "<group>"; };
+		1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoTapDetectingWindow.m; sourceTree = "<group>"; };
 		1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosureActionButton.png; sourceTree = "<group>"; };
 		1FCD39BE143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DocumentActionPopupAddFolderIcon.png; sourceTree = "<group>"; };
 		1FCD39BF143A9A6B00C814C5 /* DocumentActionPopupBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DocumentActionPopupBackground.png; sourceTree = "<group>"; };
@@ -3504,6 +3510,10 @@
 		894734E81337139800B0AD11 /* eXoUtils */ = {
 			isa = PBXGroup;
 			children = (
+				1FCC23D2146A72990040989B /* eXoDisplayViewController.h */,
+				1FCC23D3146A72990040989B /* eXoDisplayViewController.m */,
+				1FCC23D4146A72990040989B /* eXoTapDetectingWindow.h */,
+				1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */,
 				7CF5629F135590350008DD21 /* TouchView.h */,
 				7CF562A0135590350008DD21 /* TouchView.m */,
 				894735071337142200B0AD11 /* DataProcess.h */,
@@ -4450,6 +4460,8 @@
 				46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */,
 				46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */,
 				46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */,
+				1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */,
+				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

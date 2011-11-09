@@ -9,25 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
-#import "eXoViewController.h"
+#import "eXoDisplayViewController.h"
 
-@interface ActivityLinkDisplayViewController : eXoViewController <UIWebViewDelegate> {
+@interface ActivityLinkDisplayViewController : eXoDisplayViewController{
     
-    UIWebView*	_webView;	//Display gadget on webview
-	NSURL* _url;	//document URL
-    
-    //Loader
-    ATMHud*                 _hudDocument;//Heads up display
     NSString *titleForActivityLink;
-
 }
 @property (retain) NSString *titleForActivityLink;
-@property (nonatomic, retain) IBOutlet NSURL* _url;
-@property (nonatomic, retain) IBOutlet UIWebView* _webView;
-
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;
-- (void)setUrl:(NSURL*)url;	//Set URL
-
-- (void)setHudPosition;
 
 @end

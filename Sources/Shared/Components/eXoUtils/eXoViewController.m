@@ -10,21 +10,18 @@
 
 @implementation eXoViewController
 
-#define TAG_TITLE 100
 
 #pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *deviceType = [UIDevice currentDevice].model;
-    
-    if([deviceType rangeOfString:@"iPhone"].length > 0){
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
-    } else {
+        
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 40)];
+    } else {
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     }
-    label.tag = TAG_TITLE;
     label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
