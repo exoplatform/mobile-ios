@@ -56,18 +56,15 @@
 }
 
 - (NSString*)fixupTextForStyledTextLabel:(NSString*)text { 
-    text = [text stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    text = [text stringByReplacingOccurrencesOfString:@"&eacute;" withString:@"&amp;"];
     return text; 
 } 
 
 -(void)convertHTMLEncoding 
 {
-    //self.title = [self.title gtm_stringByUnescapingFromHTML];
-    //self.title = [self fixupTextForStyledTextLabel:self.title];
+    self.title = [self.title gtm_stringByUnescapingFromHTML];
 
-    //self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];
-    //self.posterPicture.message = [self fixupTextForStyledTextLabel:self.posterPicture.message];
-
+    self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];
 }    
 
 -(void)getActivityType {

@@ -38,10 +38,7 @@
 
 -(void)convertHTMLEncoding 
 {
-    //self.text = [self.text gtm_stringByEscapingForAsciiHTML];
-    //NSLog(@"---%@----",self.text);
-
-    //self.text = [self fixupTextForStyledTextLabel:self.text];
+    self.text = [self.text gtm_stringByUnescapingFromHTML];
 } 
 
 @end
