@@ -25,6 +25,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
+        [_imgvAvatar needToBeResizedForSize:CGSizeMake(45,45)];
     }
     return self;
 }
@@ -120,6 +122,7 @@
     {
         tmp = [NSString stringWithFormat:@"%@%@",domainName,tmp];
     }
+    
     
     _imgvAvatar.imageURL = [NSURL URLWithString:tmp];    
     _lbMessage.text = @"";
