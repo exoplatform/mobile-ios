@@ -31,6 +31,9 @@
 #import "NSString+HTML.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
+#import "EmptyView.h"
+
+#define TAG_EMPTY 100
 
 @implementation ActivityDetailViewController
 
@@ -70,8 +73,8 @@
     [_hudActivityDetails release];
     _hudActivityDetails = nil;
     
-    [tapGesture release];
-    [maskView release];
+//    [tapGesture release];
+//    [maskView release];
         
     [super dealloc];
 }
@@ -131,8 +134,8 @@
         _reloading = FALSE;
         
 	}
-    maskView = [[UIView alloc] initWithFrame:_tblvActivityDetail.frame];
-    maskView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+//    maskView = [[UIView alloc] initWithFrame:_tblvActivityDetail.frame];
+//    maskView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     [_btnMsgComposer setHidden:YES];
     [_tblvActivityDetail setHidden:YES];
@@ -294,6 +297,7 @@
                 break;
         }
     }
+    
     if (indexPath.section == 1) 
     {
         n = 55;
@@ -336,12 +340,15 @@
                     cell.webViewForContent.delegate = self;
                 }
                 
-                originRect = cell.imgvAttach.frame;
+                //originRect = cell.imgvAttach.frame;
                 //Set the size of the cell
                 NSString* text = _socialActivityStream.title;
                 float fWidth = tableView.frame.size.width;
                 float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
-                
+                UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
+                //tapGesture.delegate = self;
+                [cell.imgvAttach addGestureRecognizer:tapGesture];
+                [tapGesture release];
                 fHeight += 70;
                 [cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
                 cell.templateParams = _socialActivityStream.templateParams;
@@ -443,7 +450,7 @@
             }
                 break;
         }
-        cell.userInteractionEnabled = NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.activityType = _socialActivityStream.activityType;
         cell.imgType.image = [UIImage imageNamed:_iconType];
         [cell setSocialActivityDetail:_socialActivityDetails];
@@ -554,9 +561,25 @@
     }
 }
 
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+// Empty State
+-(void)emptyState {
+    //add empty view to the view 
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoComment")];
+    emptyView.tag = TAG_EMPTY;
+    [self.view insertSubview:emptyView belowSubview:_hudActivityDetails.view];
+    [emptyView release];
+}
+
 //
 -(void)showContent:(UITapGestureRecognizer *)tapGesture{
-    NSLog(@"test");
+    //NSLog(@"test");
 }
 #pragma mark - Loader Management
 - (void)setHudPosition {
@@ -613,7 +636,10 @@
 
 
 - (void)finishLoadingAllDataForActivityDetails {
-    
+    EmptyView *emptyview = (EmptyView *)[_tblvActivityDetail viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview removeFromSuperview];
+    }
     //Prevent any reloading status
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
@@ -625,16 +651,38 @@
         [comment convertHTMLEncoding];
     }
     
+    
     //We have retreive new datas from API
     //Set the last update date at now 
     _dateOfLastUpdate = [[NSDate date] retain];
     
     //Hide the loader
     [self hideLoader:YES];
-    if(maskView.superview != nil){
-        [maskView removeFromSuperview];
-    }
+    
     [_tblvActivityDetail reloadData];
+    
+    if([_socialActivityDetails.comments count] == 0){
+        CGRect rect = CGRectZero;
+        float height = 0.0;
+        UITableViewCell *cell = [_tblvActivityDetail cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        height += cell.frame.size.height;
+        height += 55;
+        
+        rect.size.width = _tblvActivityDetail.frame.size.width;
+        rect.origin.y = height;
+        NSString *currentDevice = [UIDevice currentDevice].model;
+        if([currentDevice rangeOfString:@"iPhone"].length){
+            rect.size.height = 200;
+        } else {
+            rect.size.height = 400;
+        }
+        _tblvActivityDetail.contentSize = CGSizeMake(_tblvActivityDetail.frame.size.width, rect.size.height + rect.origin.y);
+        EmptyView *emptyView = [[EmptyView alloc] initWithFrame:rect withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoComment")];
+        emptyView.tag = TAG_EMPTY;
+        [_tblvActivityDetail insertSubview:emptyView belowSubview:_hudActivityDetails.view];
+        [emptyView release];
+        
+    }
     
     [self updateActivityInActivityStream];
 }

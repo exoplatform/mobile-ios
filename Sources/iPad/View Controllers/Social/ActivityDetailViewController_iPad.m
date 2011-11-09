@@ -98,9 +98,10 @@
     if (!([[url absoluteString] isEqualToString:[NSString stringWithFormat:@"%@/",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]])) {
         
         
-        ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
-                                                                                                                           bundle:nil 
-                                                                                                                              url:url];
+        ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] 
+                                                                         initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
+                                                                         bundle:nil 
+                                                                         url:url];
 		
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
         
@@ -114,7 +115,7 @@
 }
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], _socialActivityStream.posterPicture.docLink]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]]];
     ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] 
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
                                                                        bundle:nil 

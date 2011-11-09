@@ -56,7 +56,7 @@
     
     CGRect originRect;
     BOOL zoomOutOrZoomIn;
-    UITapGestureRecognizer *tapGesture;
+    //UITapGestureRecognizer *tapGesture;
     
     UIView *maskView;
     
