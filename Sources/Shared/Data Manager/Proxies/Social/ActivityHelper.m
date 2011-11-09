@@ -26,6 +26,12 @@
 // This method override the inherited one.
 + (float)getHeightSizeForText:(NSString*)text andTableViewWidth:(CGFloat)fWidth
 {
+     
+    NSMutableString *textMutable = [[NSMutableString alloc] init];
+    if (text) [textMutable setString:text];
+    
+    int nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
+    
     
     //Search the width available to display the text
     if (fWidth > 320) 
@@ -41,8 +47,13 @@
         
     CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
+    
+    int fHeight = theSize.height + nbBR * 10;
+
+    
+    NSLog(@"text :%@   height:%d",text,fHeight);
         
-    return theSize.height;
+    return fHeight;
 }
 
 
@@ -136,9 +147,20 @@
         default:{
             text = activtyStream.title;
             fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            
         }
             break;
     }
+    
+    //Need to calculate the number of <br> + for each br Add 10 pixel
+    /*
+    NSMutableString *textMutable = [[NSMutableString alloc] init];
+    [textMutable setString:text];
+    
+    int nbBR = [textMutable replaceOccurrencesOfString:@"<br>" withString:@"<br>" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
+    
+    fHeight += nbBR * 10;
+    */
     
     fHeight += [ActivityHelper heightForAllDecorationsWithTableViewWidth:fWidth];
     
