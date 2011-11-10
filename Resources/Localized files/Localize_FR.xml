@@ -303,5 +303,14 @@
     <string>has posted a new topic:</string>
     <key>UpdateTopic</key>
     <string>has updated a topic:</string>
+    <key>UpdateQuestion</key>
+    <string>has updated question:</string>
+    <key>Answered</key>
+    <string>has answered for question:</string>
+    <key>Asked</key>
+    <string>has asked:</string>
+    
+    <key>NoComment</key>
+    <string>No one has commented, be the first one</string>
 </dict>
 </plist>
