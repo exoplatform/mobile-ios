@@ -141,7 +141,17 @@
         }
             break;
         case ACTIVITY_ANSWER_ADD_QUESTION:
+        case ACTIVITY_ANSWER_QUESTION:
         case ACTIVITY_ANSWER_UPDATE_QUESTION:{
+            NSString* textStr;
+            if(activtyStream.activityType == ACTIVITY_ANSWER_ADD_QUESTION){
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"Asked"), [activtyStream.templateParams valueForKey:@"Name"]];
+            } else if(activtyStream.activityType == ACTIVITY_ANSWER_QUESTION) {
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"Answered"), [activtyStream.templateParams valueForKey:@"Name"]];
+            }else if(activtyStream.activityType == ACTIVITY_ANSWER_UPDATE_QUESTION) {
+                textStr = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"UpdateQuestion"), [activtyStream.templateParams valueForKey:@"Name"]];
+            }
+            fHeight += [ActivityHelper getHeightSizeForText:textStr andTableViewWidth:fWidth];
             text = [activtyStream.templateParams valueForKey:@"Name"];
             fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
         }

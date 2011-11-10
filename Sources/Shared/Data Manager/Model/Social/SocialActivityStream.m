@@ -96,7 +96,9 @@
             _activityType = ACTIVITY_ANSWER_ADD_QUESTION;
         } else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionUpdate"]){
             _activityType = ACTIVITY_ANSWER_UPDATE_QUESTION;
-        }//QuestionUpdate
+        }else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AnswerAdd"]){
+            _activityType = ACTIVITY_ANSWER_QUESTION;
+        }//
     }else {
         _activityType = ACTIVITY_DEFAULT;
     }
