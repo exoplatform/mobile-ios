@@ -12,6 +12,7 @@
 #import "ActivityForumTableViewCell.h"
 #import "ActivityWikiTableViewCell.h"
 #import "ActivityLinkTableViewCell.h"
+#import "ActivityAnswerTableViewCell.h"
 #import "NSDate+Formatting.h"
 #import "ActivityDetailViewController.h"
 #import "AppDelegate_iPad.h"
@@ -39,7 +40,7 @@ static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 static NSString* kCellIdentifierForum = @"ActivityForumCell";
 static NSString* kCellIdentifierWiki = @"ActivityWikiCell";
 static NSString* kCellIdentifierLink = @"ActivityLinkCell";
-
+static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
 
 @interface ActivityStreamBrowseViewController (PrivateMethods)
 - (void)loadImagesForOnscreenRows;
@@ -471,8 +472,23 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
             }
         }
             break;
+        case ACTIVITY_ANSWER_QUESTION:
         case ACTIVITY_ANSWER_ADD_QUESTION:
         case ACTIVITY_ANSWER_UPDATE_QUESTION:
+        {
+            //We dequeue a cell
+            cell  = (ActivityAnswerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierAnswer];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityAnswerTableViewCell" owner:self options:nil];
+                cell = (ActivityAnswerTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some Configurations
+                [cell configureCellForWidth:tableView.frame.size.width];
+            }
+        }
+            break;
         default:{
             //We dequeue a cell
             cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
@@ -576,7 +592,7 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
     
     
     SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-    socialUserProfile.delegate = self;
+    socialUserProfile.delegate = [self retain];
     [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username]; 
     
 }
@@ -655,7 +671,7 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
     {
         _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
         SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
-        socialActivityStreamProxy.delegate = self;
+        socialActivityStreamProxy.delegate = [self retain];
         [socialActivityStreamProxy getActivityStreams];
     }
     else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) 
