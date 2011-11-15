@@ -103,7 +103,7 @@
     [[_imgvAvatar layer] setMasksToBounds:YES];
     
     //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:1.].CGColor];
+    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:45./255 green:45./255 blue:45./255 alpha:1.].CGColor];
     CGFloat borderWidth = 1.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
     

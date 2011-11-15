@@ -34,6 +34,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIImageView* iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    iv.frame = self.view.frame;
+    //iv.userInteractionEnabled = YES;
+    [self.view addSubview:iv];
+    [self.view sendSubviewToBack:iv];
+    [iv release];
+    
     hide = NO;
 
     //Add the loader
@@ -45,7 +53,7 @@
     [self showLoader];
     
     _webView.opaque = NO;
-    _webView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];    
+   
     
     if(_url != nil)
 	{

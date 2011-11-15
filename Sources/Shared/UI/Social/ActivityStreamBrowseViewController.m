@@ -204,11 +204,16 @@ static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
     
     
     self.title = Localize(@"News");
-    
+    /*
     UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
     background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     _tblvActivityStream.backgroundView = background;
     [background release];
+    */
+    
+    _tblvActivityStream.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    
+    //_tblvActivityStream.backgroundColor = [UIColor colorWithRed:200./255 green:200./255 blue:200./255  alpha:1.];
     
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {

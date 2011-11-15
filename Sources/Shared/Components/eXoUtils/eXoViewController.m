@@ -17,7 +17,7 @@
 {
     [super viewDidLoad];
         
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+    /*if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 40)];
     } else {
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -32,17 +32,17 @@
     label.shadowColor = [UIColor grayColor];
     
     _navigation.topItem.titleView = label;
-    self.navigationItem.titleView = label;
+    self.navigationItem.titleView = label;*/
 }
-
+/*
 -(void)setTitle:(NSString *)_titleView {
     [super setTitle:_titleView];
     label.text = _titleView;
-}
+}*/
 
 -(void)dealloc {
     [super dealloc];
-    [label release];
+    //[label release];
 }
 
 - (void)viewDidUnload

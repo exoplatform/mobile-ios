@@ -130,7 +130,9 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     //self.tableView.backgroundView = backgroundView;
     //[backgroundView release];
     
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    
+    self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     
     //Add the Done button for exit Settings
     _doneBarButtonItem = [[UIBarButtonItem alloc]

@@ -95,10 +95,10 @@
 	[self.view addSubview:_hudDashboard.view];
     
     //Set the background Color of the view
-    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
-    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    _tblGadgets.backgroundView = background;
-    [background release];
+    //UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    //background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblGadgets.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    //[background release];
         
     //Start the loader
     [self showLoader];

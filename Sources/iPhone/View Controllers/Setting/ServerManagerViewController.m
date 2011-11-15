@@ -71,10 +71,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     
     //Set the background Color of the view
-    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    /*UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
     background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     _tbvlServerList.backgroundView = background;
-    [background release];
+    [background release];*/
+    
+    _tbvlServerList.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
         
     _arrServerList = [[ServerPreferencesManager sharedInstance] getServerList];
     
