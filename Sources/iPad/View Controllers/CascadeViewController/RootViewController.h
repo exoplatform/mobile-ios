@@ -25,9 +25,11 @@
     UIImageView *imageForBackground;
     
     BOOL _isCompatibleWithSocial;
-    	
+    NSTimeInterval duration;
+    UIInterfaceOrientation interfaceOrientation;
 }
-
+@property NSTimeInterval duration;
+@property UIInterfaceOrientation interfaceOrientation;
 @property (nonatomic, retain) MenuViewController* menuViewController;
 @property (nonatomic, retain) StackScrollViewController* stackScrollViewController;
 @property BOOL isCompatibleWithSocial;

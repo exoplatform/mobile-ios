@@ -11,16 +11,16 @@
 #import "ATMHudDelegate.h"
 #import "eXoViewController.h"
 #import "LanguageHelper.h"
-#import "eXoTapDetectingWindow.h"
 
-@interface eXoDisplayViewController : eXoViewController<UIWebViewDelegate, UIGestureRecognizerDelegate, eXoTapDetectingWindowDelegate>
+@interface eXoDisplayViewController : eXoViewController<UIWebViewDelegate, UIScrollViewDelegate>
 {
-    BOOL hide;
+    BOOL fullscreen;
     UIWebView*	_webView;	
 	NSURL* _url;
     NSString *_fileName;
     ATMHud* _hudView;
-    eXoTapDetectingWindow *mWindow;
+    CGRect rect;
+    UINavigationController *navigationBar;
 }
 
 @property (nonatomic, retain) IBOutlet NSURL* _url;

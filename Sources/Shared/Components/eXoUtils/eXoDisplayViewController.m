@@ -8,8 +8,13 @@
 
 #import "eXoDisplayViewController.h"
 #import "EmptyView.h"
+#import "defines.h"
+#import "AppDelegate_iPad.h"
 
 #define TAG_EMPTY 500
+#define TAG_WEBVIEW 10000
+#define TAG_VIEW 10001
+
 @interface eXoDisplayViewController (PrivateMethods)
 - (void)showLoader;
 - (void)hideLoader;
@@ -41,8 +46,6 @@
     [self.view addSubview:iv];
     [self.view sendSubviewToBack:iv];
     [iv release];
-    
-    hide = NO;
 
     //Add the loader
     _hudView = [[ATMHud alloc] initWithDelegate:self];
@@ -51,7 +54,7 @@
     [self.view addSubview:_hudView.view];
     
     [self showLoader];
-    
+    _webView.delegate = self;
     _webView.opaque = NO;
    
     
@@ -62,42 +65,48 @@
         [_webView loadRequest:request];
         [request release];
     }
-    mWindow = (eXoTapDetectingWindow *)[[UIApplication sharedApplication].windows objectAtIndex:0];
-    mWindow.viewToObserve = _webView;
-    mWindow.controllerThatObserves = [self retain];
-    //self.navigationController.navigationBar.isTranslucent = YES;
-    
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-
-    _navigation.barStyle = UIBarStyleBlackTranslucent;
-    _navigation.translucent = YES;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"FullScreen" style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)];
+    }
 }
+
+-(void)fullScreen {
+    UIWebView *webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    webview.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    webview.delegate = self;
+    webview.opaque = YES;
+    webview.autoresizesSubviews = YES;
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
+    [request setURL:_url]; 
+    [webview loadRequest:request];
+    [request release];
+    eXoViewController *viewController = [[eXoViewController alloc] initWithNibName:nil bundle:nil];
+    viewController.view.frame = webview.frame;
+    [viewController.view addSubview:webview];
+    
+    navigationBar = [[UINavigationController alloc] initWithRootViewController:viewController];
+    viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
+                                                        initWithTitle:@"Close" 
+                                                        style:UIBarButtonItemStylePlain 
+                                                        target:self 
+                                                        action:@selector(close)];
+
+    
+
+    viewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    viewController.wantsFullScreenLayout = YES;
+
+    [webview release];
+    [viewController release];
+    
+    [[[AppDelegate_iPad instance] rootViewController] presentModalViewController:navigationBar animated:YES];
+}
+-(void)close {
+    [navigationBar dismissModalViewControllerAnimated:YES];
+}
+
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-    _navigation.barStyle = UIBarStyleDefault;
-    _navigation.translucent = NO;
-}
-- (void)userDidTapWebView:(id)tapPoint{
-    hide = !hide;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        if(hide){
-            _navigation.hidden = YES;
-            
-        } else {
-            _navigation.hidden = NO;
-        }
-    } else {
-        if(hide){
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
-            
-        } else {
-            [self.navigationController setNavigationBarHidden:NO animated:YES];
-            _navigation.hidden = NO;
-        }
-    }
 }
 
 - (void)viewDidUnload
@@ -121,12 +130,15 @@
 	[_webView release];
     _webView = nil;
     
-    [_fileName release];
-    _fileName = nil;
+    if(_fileName != nil){
+        [_fileName release];
+        _fileName = nil;
+    }
     
     [_hudView release];
     
-    [mWindow release];
+    if(navigationBar != nil)
+        [navigationBar release];
 	
     [super dealloc];
 }
@@ -160,16 +172,15 @@
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
     [self hideLoader];
-    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
-    if(emptyview != nil){
-        [emptyview removeFromSuperview];
-    }
 }
 
 // Start loading animation
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
-    
+//    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+//    if(emptyview != nil){
+//        [emptyview removeFromSuperview];
+//    }
     
 }
 
@@ -194,7 +205,6 @@
     [self setHudPosition];
     [_hudView hide];
 }
-
 
 
 @end

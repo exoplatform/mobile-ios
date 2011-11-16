@@ -59,6 +59,7 @@
 @implementation RootViewController
 @synthesize menuViewController, stackScrollViewController, isCompatibleWithSocial = _isCompatibleWithSocial;
 
+@synthesize duration, interfaceOrientation;
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
  
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isCompatibleWithSocial:(BOOL)compatipleWithSocial {
@@ -131,7 +132,10 @@
     [menuViewController tableView:menuViewController.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
-
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:duration];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Overriden to allow any orientation.
@@ -150,7 +154,9 @@
 	[stackScrollViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
--(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+-(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)durations{
+    self.interfaceOrientation = toInterfaceOrientation;
+    self.duration = durations;
     [menuViewController setPositionsForOrientation:toInterfaceOrientation];
     //Add the background image when no content
     UIImage *imageBg;
