@@ -40,6 +40,12 @@
     label.text = _titleView;
 }*/
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+	return YES;
+}
+
 -(void)dealloc {
     [super dealloc];
     //[label release];
