@@ -1,4 +1,4 @@
-    //
+//
 //  RootView.m
 //  StackScrollView
 //
@@ -11,7 +11,7 @@
 
 #import "MenuViewController.h"
 #import "StackScrollViewController.h"
-
+#import "eXoFullScreenView.h"
 
 @interface UIViewExt : UIView {} 
 @end
@@ -59,9 +59,9 @@
 @implementation RootViewController
 @synthesize menuViewController, stackScrollViewController, isCompatibleWithSocial = _isCompatibleWithSocial;
 
-@synthesize duration, interfaceOrientation;
+@synthesize duration, interfaceOrient;
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
- 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isCompatibleWithSocial:(BOOL)compatipleWithSocial {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {		
@@ -75,6 +75,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeOrientation:) name:EXO_NOTIFICATION_WEBVIEW_FULLSCREEN object:nil];
+    
 	rootView = [[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
 	[rootView setBackgroundColor:[UIColor clearColor]];
@@ -82,7 +85,7 @@
 	leftMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
 	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height) isCompatibleWithSocial: _isCompatibleWithSocial];
-
+    
     
 	[menuViewController.view setBackgroundColor:[UIColor clearColor]];
 	[menuViewController viewWillAppear:FALSE];
@@ -134,7 +137,21 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:duration];
+    //UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    //[self willAnimateRotationToInterfaceOrientation:self.interfaceOrient duration:duration];
+}
+
+-(void)changeOrientation:(NSNotification *)notification{
+    eXoFullScreenView *object = (eXoFullScreenView *)[notification object];
+    CGRect rect = self.view.frame;
+    if(object.orientation == UIInterfaceOrientationPortrait || object.orientation == UIInterfaceOrientationPortraitUpsideDown){
+        rect.size.height = 1004;
+    } else {
+        rect.size.height = 748;   
+    }
+    self.view.frame = rect;
+    [self willAnimateRotationToInterfaceOrientation:object.orientation duration:duration];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -155,8 +172,8 @@
 }
 
 -(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)durations{
-    self.interfaceOrientation = toInterfaceOrientation;
     self.duration = durations;
+    self.interfaceOrient = toInterfaceOrientation;
     [menuViewController setPositionsForOrientation:toInterfaceOrientation];
     //Add the background image when no content
     UIImage *imageBg;
@@ -188,6 +205,11 @@
 
 - (void)dealloc {
     [super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
+
+
+
+

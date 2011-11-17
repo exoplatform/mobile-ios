@@ -26,10 +26,10 @@
     
     BOOL _isCompatibleWithSocial;
     NSTimeInterval duration;
-    UIInterfaceOrientation interfaceOrientation;
+    UIInterfaceOrientation interfaceOrient;
 }
 @property NSTimeInterval duration;
-@property UIInterfaceOrientation interfaceOrientation;
+@property UIInterfaceOrientation interfaceOrient;
 @property (nonatomic, retain) MenuViewController* menuViewController;
 @property (nonatomic, retain) StackScrollViewController* stackScrollViewController;
 @property BOOL isCompatibleWithSocial;
