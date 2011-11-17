@@ -8,6 +8,7 @@
 
 #import "SocialActivityDetails.h"
 #import "NSDate+Formatting.h"
+#import "ActivityHelper.h"
 
 @implementation SocialActivityDetails
 
@@ -27,11 +28,13 @@
 @synthesize titleId = _titleId;
 @synthesize posterIdentity = _posterIdentity;
 @synthesize comments = _comments;
-
+@synthesize cellHeight = _cellHeight;
 
 @synthesize postedTimeInWords = _postedTimeInWords;
 
 @synthesize templateParams = templateParams;
+
+@synthesize activityType = _activityType;
 
 
 - (void)dealloc {
@@ -50,6 +53,12 @@
 - (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value {
         
     [self.templateParams setValue:value forKey:key];
+}
+
+- (void)cellHeightCalculationForWidth:(CGFloat)fWidth {
+    
+    _cellHeight = [ActivityHelper getHeightForActivityDetailCell:self forTableViewWidth:fWidth];
+    
 }
 
 @end

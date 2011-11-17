@@ -57,6 +57,10 @@
     NSArray*                _comments;
     NSString*               _postedTimeInWords;
     NSMutableDictionary*    _templateParams;
+    NSInteger               _activityType;
+    
+    CGFloat                 _cellHeight;
+    
 }
 
 @property (nonatomic, retain) NSString* identityId;
@@ -64,6 +68,7 @@
 @property (nonatomic, retain) NSNumber* totalNumberOfLikes;
 @property BOOL liked;
 @property double postedTime;
+@property CGFloat cellHeight;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSString* activityStream;
 @property (nonatomic, retain) NSString* identifyId;
@@ -77,8 +82,10 @@
 
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) NSMutableDictionary* templateParams; 
+@property NSInteger           activityType;
 
 - (void)convertToPostedTimeInWords;
 - (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value;
+- (void)cellHeightCalculationForWidth:(CGFloat)fWidth;
 
 @end

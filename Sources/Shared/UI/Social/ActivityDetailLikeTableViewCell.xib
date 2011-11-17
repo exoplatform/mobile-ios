@@ -149,7 +149,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="818041569"/>
-				<string key="IBUIReuseIdentifier">ActivityCell</string>
+				<string key="IBUIReuseIdentifier">ActivityDetailLikeTableViewCell</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

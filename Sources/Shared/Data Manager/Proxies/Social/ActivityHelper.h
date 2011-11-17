@@ -7,7 +7,7 @@
 //
 
 #import "SocialActivityStream.h"
-
+#import "SocialActivityDetails.h"
 
 #define ACTIVITY_DEFAULT 0
 #define ACTIVITY_FORUM_CREATE_TOPIC 1
@@ -39,5 +39,5 @@
 + (CGFloat)getHeightForActivityCell:(SocialActivityStream *)activtyStream forTableViewWidth:(CGFloat)fWidth;
 + (float)getHeightSizeForText:(NSString*)text andTableViewWidth:(CGFloat)fWidth;
 + (float)heightForAllDecorationsWithTableViewWidth:(CGFloat)fWidth;
-
++ (CGFloat)getHeightForActivityDetailCell:(SocialActivityDetails *)activtyStreamDetail forTableViewWidth:(CGFloat)fWidth;
 @end

@@ -160,7 +160,6 @@
 								<string key="NSFrame">{{84, 80}, {222, 21}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="659554922"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -225,7 +224,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="818041569"/>
-				<string key="IBUIReuseIdentifier">ActivityCell</string>
+				<string key="IBUIReuseIdentifier">ActivityDetailMessageTableViewCell</string>
 				<real value="110" key="IBUIRowHeight"/>
 			</object>
 		</object>

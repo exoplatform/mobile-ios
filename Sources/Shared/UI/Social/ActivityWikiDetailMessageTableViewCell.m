@@ -11,6 +11,7 @@
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "defines.h"
+#import "NSString+HTML.h"
 
 @implementation ActivityWikiDetailMessageTableViewCell
 
@@ -32,7 +33,15 @@
         }
             break;
     }
-    _lbMessage.text = [_templateParams valueForKey:@"page_exceprt"];
+    //Set the position of lbMessage
+    CGRect tmpFrame = _lbMessage.frame;
+    tmpFrame.origin.y = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + 5;
+    _lbMessage.frame = tmpFrame;
+    
+    NSLog(@"%@", [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText]);
+    _lbMessage.text = [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
+    //[_lbMessage sizeToFit];
+    //_lbMessage.text = [_templateParams valueForKey:@"page_exceprt"];
 }
 
 @end

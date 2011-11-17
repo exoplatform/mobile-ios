@@ -14,6 +14,7 @@
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
 #import "EGOImageView.h"
+#import "NSString+HTML.h"
 
 @implementation ActivityForumDetailMessageTableViewCell
 
@@ -65,8 +66,15 @@
             break;
     }
     
-    _lbMessage.text = socialActivityDetail.title;
     
+    //Set the position of lbMessage
+    CGRect tmpFrame = _lbMessage.frame;
+    tmpFrame.origin.y = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + 5;
+    _lbMessage.frame = tmpFrame;
+    
+    _lbMessage.text = [socialActivityDetail.title stringByConvertingHTMLToPlainText];
+    //[_lbMessage sizeToFit];
+    //_lbMessage.text = socialActivityDetail.title;
 }
 
 @end

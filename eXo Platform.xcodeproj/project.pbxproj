@@ -15,6 +15,8 @@
 		1F20ACE2145968310068A2CB /* ActivityForumDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20ACE11459682F0068A2CB /* ActivityForumDetailMessageTableViewCell.m */; };
 		1F92437A145FE07600D5AF85 /* ActivityLinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */; };
 		1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */; };
+		1FC3453B1474FD3600540016 /* ActivityAnswerDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC3453A1474FD3500540016 /* ActivityAnswerDetailMessageTableViewCell.m */; };
+		1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FC3453C1474FD5200540016 /* ActivityAnswerDetailMessageTableViewCell.xib */; };
 		1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCBCC27143D4BB300CC4F21 /* EmptyView.m */; };
 		1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D3146A72990040989B /* eXoDisplayViewController.m */; };
 		1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */; };
@@ -843,6 +845,9 @@
 		1F924378145FE07300D5AF85 /* ActivityLinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkTableViewCell.h; path = Social/ActivityLinkTableViewCell.h; sourceTree = "<group>"; };
 		1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkTableViewCell.m; path = Social/ActivityLinkTableViewCell.m; sourceTree = "<group>"; };
 		1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkTableViewCell.xib; path = Social/ActivityLinkTableViewCell.xib; sourceTree = "<group>"; };
+		1FC345391474FD3400540016 /* ActivityAnswerDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityAnswerDetailMessageTableViewCell.h; path = Social/ActivityAnswerDetailMessageTableViewCell.h; sourceTree = "<group>"; };
+		1FC3453A1474FD3500540016 /* ActivityAnswerDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityAnswerDetailMessageTableViewCell.m; path = Social/ActivityAnswerDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1FC3453C1474FD5200540016 /* ActivityAnswerDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityAnswerDetailMessageTableViewCell.xib; path = Social/ActivityAnswerDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
 		1FCC23D2146A72990040989B /* eXoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoDisplayViewController.h; sourceTree = "<group>"; };
@@ -2228,6 +2233,9 @@
 				1FCD808F145E9A23009B34D3 /* ActivityWikiDetailMessageTableViewCell.h */,
 				1FCD8090145E9A26009B34D3 /* ActivityWikiDetailMessageTableViewCell.m */,
 				1FCD8092145E9A60009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib */,
+				1FC345391474FD3400540016 /* ActivityAnswerDetailMessageTableViewCell.h */,
+				1FC3453A1474FD3500540016 /* ActivityAnswerDetailMessageTableViewCell.m */,
+				1FC3453C1474FD5200540016 /* ActivityAnswerDetailMessageTableViewCell.xib */,
 			);
 			name = ActivityDetail;
 			sourceTree = "<group>";
@@ -4298,6 +4306,7 @@
 				1FD91DC1147109A200DBDED0 /* ActivityAnswerTableViewCell.xib in Resources */,
 				8989B06614735C9700EEBD7C /* gadgetPlaceHolder.png in Resources */,
 				8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */,
+				1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4486,6 +4495,7 @@
 				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
 				1FCCC2F91474AE00000F03F4 /* eXoFullScreenView.m in Sources */,
+				1FC3453B1474FD3600540016 /* ActivityAnswerDetailMessageTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
