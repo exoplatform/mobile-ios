@@ -17,6 +17,7 @@
 }
 
 @property (retain) IBOutlet EGOImageView* imgvAttach;
+@property (retain) NSURL* urlForAttachment;
 @property (retain) IBOutlet UILabel* lbFileName;
 
 

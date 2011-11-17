@@ -13,7 +13,7 @@
 
 @implementation ActivityPictureTableViewCell
 
-@synthesize imgvAttach = _imgvAttach, lbFileName = _lbFileName;
+@synthesize imgvAttach = _imgvAttach, urlForAttachment = _urlForAttachment, lbFileName = _lbFileName;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -50,10 +50,9 @@
     //Set the UserName of the activity
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
 
-    
-    _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
-    //to make the image displayed the placeHolder
-    _imgvAttach.imageURL = nil;
+//    
+//    _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
+//    _imgvAttach.imageURL = nil;
     
        
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -69,7 +68,8 @@
 
 
 - (void)startLoadingImageAttached {
-    _imgvAttach.imageURL = _urlForAttachment;
+    if(self.imgvAttach.imageURL == nil)
+        self.imgvAttach.imageURL = self.urlForAttachment;
 }
 
 
