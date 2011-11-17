@@ -80,7 +80,7 @@
     [request setURL:_url]; 
     [webview loadRequest:request];
     [request release];
-    eXoViewController *viewController = [[eXoViewController alloc] initWithNibName:nil bundle:nil];
+    eXoFullScreenView *viewController = [[eXoFullScreenView alloc] initWithNibName:nil bundle:nil];
     viewController.view.frame = webview.frame;
     [viewController.view addSubview:webview];
     
@@ -102,6 +102,7 @@
     [[[AppDelegate_iPad instance] rootViewController] presentModalViewController:navigationBar animated:YES];
 }
 -(void)close {
+
     [navigationBar dismissModalViewControllerAnimated:YES];
 }
 

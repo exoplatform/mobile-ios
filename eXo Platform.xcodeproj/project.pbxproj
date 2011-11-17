@@ -18,6 +18,7 @@
 		1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCBCC27143D4BB300CC4F21 /* EmptyView.m */; };
 		1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D3146A72990040989B /* eXoDisplayViewController.m */; };
 		1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */; };
+		1FCCC2F91474AE00000F03F4 /* eXoFullScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */; };
 		1FCD3086143959F000C5BE6D /* disclosureActionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */; };
 		1FCD39ED143A9A6C00C814C5 /* DocumentActionPopupAddFolderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD39BE143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon.png */; };
 		1FCD39EE143A9A6C00C814C5 /* DocumentActionPopupBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD39BF143A9A6B00C814C5 /* DocumentActionPopupBackground.png */; };
@@ -848,6 +849,8 @@
 		1FCC23D3146A72990040989B /* eXoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoDisplayViewController.m; sourceTree = "<group>"; };
 		1FCC23D4146A72990040989B /* eXoTapDetectingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoTapDetectingWindow.h; sourceTree = "<group>"; };
 		1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoTapDetectingWindow.m; sourceTree = "<group>"; };
+		1FCCC2F71474ADFF000F03F4 /* eXoFullScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoFullScreenView.h; sourceTree = "<group>"; };
+		1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoFullScreenView.m; sourceTree = "<group>"; };
 		1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosureActionButton.png; sourceTree = "<group>"; };
 		1FCD39BE143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DocumentActionPopupAddFolderIcon.png; sourceTree = "<group>"; };
 		1FCD39BF143A9A6B00C814C5 /* DocumentActionPopupBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DocumentActionPopupBackground.png; sourceTree = "<group>"; };
@@ -3548,6 +3551,8 @@
 				1FCEDED51458021C0058C80F /* eXoViewController.m */,
 				1FCE58E6146238840045FC10 /* eXoTableViewController.h */,
 				1FCE58E7146238840045FC10 /* eXoTableViewController.m */,
+				1FCCC2F71474ADFF000F03F4 /* eXoFullScreenView.h */,
+				1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -4480,6 +4485,7 @@
 				1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */,
 				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
+				1FCCC2F91474AE00000F03F4 /* eXoFullScreenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

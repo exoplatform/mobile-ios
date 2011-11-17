@@ -11,6 +11,7 @@
 #import "ATMHudDelegate.h"
 #import "eXoViewController.h"
 #import "LanguageHelper.h"
+#import "eXoFullScreenView.h"
 
 @interface eXoDisplayViewController : eXoViewController<UIWebViewDelegate, UIScrollViewDelegate>
 {
@@ -21,6 +22,7 @@
     ATMHud* _hudView;
     CGRect rect;
     UINavigationController *navigationBar;
+    //eXoFullScreenView *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet NSURL* _url;

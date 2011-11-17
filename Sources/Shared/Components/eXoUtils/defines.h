@@ -12,6 +12,10 @@
 #define HEIGHT_OF_KEYBOARD_IPAD_PORTRAIT	262.0
 #define HEIGHT_OF_KEYBOARD_IPAD_LANDSCAPE	352.0
 
+#define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 250
+
+#define DISTANCE_LANDSCAPE                  18
+#define DISTANCE_PORTRAIT                   24
 
 #define EXO_PREFERENCE_USERID				@"userId"
 #define EXO_PREFERENCE_USERNAME				@"username"
@@ -26,6 +30,7 @@
 #define EXO_PREFERENCE_EDITION_SERVER       @"edition_server"
 #define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
+#define EXO_NOTIFICATION_WEBVIEW_FULLSCREEN @"notification-fullscreen-updated"
 
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"

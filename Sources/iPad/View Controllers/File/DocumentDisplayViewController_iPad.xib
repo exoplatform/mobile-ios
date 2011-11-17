@@ -43,8 +43,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIWebView" id="402008539">
 						<reference key="NSNextResponder" ref="530994535"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{550, 550}</string>
+						<int key="NSvFlags">319</int>
+						<string key="NSFrame">{{0, 44}, {550, 506}}</string>
 						<reference key="NSSuperview" ref="530994535"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="33966340"/>
@@ -63,8 +63,8 @@
 						<string key="NSFrameSize">{550, 44}</string>
 						<reference key="NSSuperview" ref="530994535"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIBarStyle">2</int>
 						<object class="NSArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUINavigationItem" id="390847242">

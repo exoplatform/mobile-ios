@@ -7,9 +7,8 @@
 //
 
 #import "DocumentDisplayViewController_iPad.h"
+#import "defines.h"
 
-
-#define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 250
 
 
 @implementation DocumentDisplayViewController_iPad
@@ -30,14 +29,6 @@
 }
 
 
-
-- (void)dealloc
-{
-    [super dealloc];
-}
-
-
-
 - (void)setHudPosition {
     _hudView.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
 }
@@ -56,12 +47,12 @@
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
         CGRect tmpRect = self.view.frame;
         tmpRect.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        tmpRect.origin.x -= WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+        tmpRect.origin.x = DISTANCE_LANDSCAPE;
         self.view.frame = tmpRect;
     } else {
         CGRect tmpRect = self.view.frame;
         tmpRect.size.width -= WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        tmpRect.origin.x += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+        tmpRect.origin.x = DISTANCE_PORTRAIT;
         self.view.frame = tmpRect;
     }
 }
