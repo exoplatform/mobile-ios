@@ -62,6 +62,13 @@
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     [self.contentView addSubview:_htmlName];
+    
+    
+    _lbMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+    _lbMessage.userInteractionEnabled = NO;
+    _lbMessage.backgroundColor = [UIColor clearColor];
+    _lbMessage.font = [UIFont systemFontOfSize:13.0];
+    [self.contentView addSubview:_lbMessage];
 }
 
 
@@ -97,10 +104,10 @@
     CGRect tmpFrame = _lbMessage.frame;
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
     _lbMessage.frame = tmpFrame;
+    _lbMessage.html = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
     
-    NSLog(@"%@", [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText]);
-    _lbMessage.text = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
     [_lbMessage sizeToFit];
+    
 }
 
 

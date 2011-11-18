@@ -7,7 +7,6 @@
 //
 
 #import "ActivityAnswerTableViewCell.h"
-#import "SocialActivityStream.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "NSString+HTML.h"
@@ -55,6 +54,12 @@
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     [self.contentView addSubview:_htmlName];
+    
+    _lbMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+    _lbMessage.userInteractionEnabled = NO;
+    _lbMessage.backgroundColor = [UIColor clearColor];
+    _lbMessage.font = [UIFont systemFontOfSize:13.0];
+    [self.contentView addSubview:_lbMessage];
 }
 
 
@@ -84,7 +89,7 @@
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
     _lbMessage.frame = tmpFrame;
     
-    _lbMessage.text = [socialActivityStream.title stringByConvertingHTMLToPlainText];
+    _lbMessage.html = [socialActivityStream.title stringByConvertingHTMLToPlainText];
     [_lbMessage sizeToFit];
     
 }

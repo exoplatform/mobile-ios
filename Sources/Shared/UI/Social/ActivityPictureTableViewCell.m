@@ -49,17 +49,11 @@
     
     //Set the UserName of the activity
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
-
-//    
-//    _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
-//    _imgvAttach.imageURL = nil;
+     
+    self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
     
-       
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
-    
-    //Setting the avatar without starting the download to prevent troubles during scrolling
-    //[_imgvAttach setImageURLWithoutDownloading:[NSURL URLWithString:strURL]];
         
     _urlForAttachment = [[NSURL alloc] initWithString:strURL]; 
     _htmlMessage.html = [socialActivityStream.templateParams valueForKey:@"MESSAGE"];
@@ -71,7 +65,6 @@
     if(self.imgvAttach.imageURL == nil)
         self.imgvAttach.imageURL = self.urlForAttachment;
 }
-
 
 - (void)dealloc
 {

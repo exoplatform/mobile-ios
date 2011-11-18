@@ -177,7 +177,7 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = activtyStream.title;
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            if (![[activtyStream.templateParams valueForKey:@"image"] isEqualToString:@""]) fHeight += 30;
+            if (![[activtyStream.templateParams valueForKey:@"image"] isEqualToString:@""]) fHeight += 60;
         }
             break;
         case ACTIVITY_WIKI_ADD_PAGE:

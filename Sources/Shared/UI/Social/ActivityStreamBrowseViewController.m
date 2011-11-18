@@ -429,6 +429,7 @@ static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
                 
                 //Create a cell, need to do some Configurations
                 [cell configureCellForWidth:tableView.frame.size.width];
+                
             }
         }
             break;

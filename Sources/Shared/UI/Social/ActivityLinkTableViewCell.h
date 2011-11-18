@@ -12,12 +12,12 @@
 @interface ActivityLinkTableViewCell : ActivityBasicTableViewCell {
  
     EGOImageView*          _imgvAttach;
-    UILabel*               _lbComment;
+    TTStyledTextLabel*     _lbComment;
     TTStyledTextLabel*     _htmlLinkMessage;
     
 }
 
 @property (retain) IBOutlet EGOImageView* imgvAttach;
-@property (retain, nonatomic) IBOutlet UILabel* lbComment;
+@property (retain, nonatomic) TTStyledTextLabel* lbComment;
 
 @end

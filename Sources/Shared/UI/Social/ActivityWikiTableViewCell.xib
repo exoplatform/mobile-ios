@@ -47,7 +47,7 @@
 								<string key="NSFrame">{{58, 6}, {257, 91}}</string>
 								<reference key="NSSuperview" ref="664421155"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="210891083"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -183,40 +183,6 @@
 								<reference key="IBUIFontDescription" ref="951527313"/>
 								<reference key="IBUIFont" ref="727864356"/>
 							</object>
-							<object class="IBUILabel" id="210891083">
-								<reference key="NSNextResponder" ref="664421155"/>
-								<int key="NSvFlags">258</int>
-								<string key="NSFrame">{{70, 45}, {237, 22}}</string>
-								<reference key="NSSuperview" ref="664421155"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="863648505"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Message</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC40OTQxMTc2NDcxIDAuNDk0MTE3NjQ3MSAwLjQ5NDExNzY0NzEAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">0</int>
-								<int key="IBUILineBreakMode">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">0</int>
-									<double key="pointSize">13</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">13</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
 						</array>
 						<string key="NSFrameSize">{320, 101}</string>
 						<reference key="NSSuperview" ref="125062826"/>
@@ -291,14 +257,6 @@
 					</object>
 					<int key="connectionID">18</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbMessage</string>
-						<reference key="source" ref="125062826"/>
-						<reference key="destination" ref="210891083"/>
-					</object>
-					<int key="connectionID">22</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -329,7 +287,6 @@
 							<reference ref="286274675"/>
 							<reference ref="847449976"/>
 							<reference ref="982423210"/>
-							<reference ref="210891083"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -363,11 +320,6 @@
 						<reference key="object" ref="549957444"/>
 						<reference key="parent" ref="125062826"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="210891083"/>
-						<reference key="parent" ref="125062826"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -376,7 +328,6 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.CustomClassName">EGOImageView</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">ActivityWikiTableViewCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

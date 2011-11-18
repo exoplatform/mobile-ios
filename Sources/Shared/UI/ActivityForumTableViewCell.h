@@ -13,12 +13,12 @@
 @interface ActivityForumTableViewCell : ActivityBasicTableViewCell {
 
     
-    UILabel*                                _lbMessage;
+    TTStyledTextLabel*                       _lbMessage;
     TTStyledTextLabel*                      _htmlName;
 
 }
 
-@property (retain, nonatomic) IBOutlet UILabel* lbMessage;
+@property (retain, nonatomic) TTStyledTextLabel* lbMessage;
 @property (retain, nonatomic) TTStyledTextLabel* htmlName;
 
 

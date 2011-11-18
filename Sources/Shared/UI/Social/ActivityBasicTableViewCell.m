@@ -214,14 +214,6 @@
     [self.contentView addSubview:_htmlMessage];
 }
 
-
-
-
-
-
-
-
-
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
 { 
     

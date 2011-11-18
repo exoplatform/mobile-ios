@@ -45,12 +45,12 @@
     self.wantsFullScreenLayout = YES;
     
     // because on iOS 5, when init class the function willAnimateRotationToInterfaceOrientation don't call
-    NSLog(@"%d", [[[[UIDevice currentDevice] systemVersion] substringFromIndex:0] integerValue ]);
-    if([[[[UIDevice currentDevice] systemVersion] substringFromIndex:0] integerValue ] < IOS_5){
-        first = YES;
-    } else {
+    
+    #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3
         first = NO;
-    }
+    #elif 
+        first = YES;
+    #endif
 }
 
 

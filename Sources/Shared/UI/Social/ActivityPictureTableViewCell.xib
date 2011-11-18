@@ -79,10 +79,6 @@
 								<reference key="NSNextKeyView" ref="247652694"/>
 								<int key="IBUIContentMode">1</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">IconForUnreadableFile.png</string>
-								</object>
 							</object>
 							<object class="IBUIImageView" id="690318354">
 								<reference key="NSNextResponder" ref="900677899"/>
@@ -656,13 +652,11 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>ActivityTypeNormal.png</string>
-				<string>IconForUnreadableFile.png</string>
 				<string>default-avatar.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{20, 20}</string>
-				<string>{92, 117}</string>
 				<string>{59, 59}</string>
 			</object>
 		</object>
