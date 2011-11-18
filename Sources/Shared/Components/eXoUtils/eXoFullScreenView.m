@@ -9,6 +9,8 @@
 #import "eXoFullScreenView.h"
 #import "defines.h"
 
+#define IOS_5 5
+
 @implementation eXoFullScreenView
 
 @synthesize orientation;
@@ -18,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        first = YES;
     }
     return self;
 }
@@ -40,6 +43,14 @@
 {
     [super viewDidLoad];
     self.wantsFullScreenLayout = YES;
+    
+    // because on iOS 5, when init class the function willAnimateRotationToInterfaceOrientation don't call
+    NSLog(@"%d", [[[[UIDevice currentDevice] systemVersion] substringFromIndex:0] integerValue ]);
+    if([[[[UIDevice currentDevice] systemVersion] substringFromIndex:0] integerValue ] < IOS_5){
+        first = YES;
+    } else {
+        first = NO;
+    }
 }
 
 
@@ -58,6 +69,12 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
+    // if the first time presentModalViewController, return
+    if(first){
+        first = NO;
+        return;
+    }
+    // when device rotate
     self.orientation = interfaceOrientation;
     [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_WEBVIEW_FULLSCREEN object:self];
 }

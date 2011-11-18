@@ -11,6 +11,7 @@
 @interface eXoFullScreenView : UIViewController
 {
     UIInterfaceOrientation orientation;
+    BOOL first;
 }
 @property UIInterfaceOrientation orientation;
 @end
