@@ -22,6 +22,7 @@
 
 #define kFontForName [UIFont fontWithName:@"Helvetica-Bold" size:13]
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
+#define TAG_EMPTY 100
 
 @interface ActivityDetailViewController : eXoViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate, UIWebViewDelegate>{
     

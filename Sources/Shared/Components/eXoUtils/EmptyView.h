@@ -10,7 +10,11 @@
 #import "LanguageHelper.h"
 
 @interface EmptyView : UIView {
-    
+    UIImageView *imageView;
+    UILabel *label;
+    NSString *imagename;
+    NSInteger distance;
 }
 - (id)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content;
+- (void)changeOrientation;
 @end

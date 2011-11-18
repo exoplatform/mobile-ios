@@ -15,15 +15,18 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
         // Initialization code
         //add empty image to the view
+        imagename = imageName;
         UIImage *image = [UIImage imageNamed:imageName];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView = [[UIImageView alloc] initWithImage:image];
         imageView.frame = CGRectMake(frame.size.width/2 - image.size.width/2, frame.size.height/2 - image.size.height/2 - 20, image.size.width, image.size.height);
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin| UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
         [self addSubview:imageView];
-        [imageView release];
         
-        NSInteger distance = 0;
+        
+        distance = 0;
         if([imageName isEqualToString:@"IconForEmptyFolder.png"]){
             distance = 80;
         } else if([imageName isEqualToString:@"IconForNoActivities.png"]){
@@ -36,24 +39,34 @@
             distance = 110;
         }
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height/2 - image.size.height/2 + distance, frame.size.width, 40)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height/2 - image.size.height/2 + distance, frame.size.width, 40)];
         label.backgroundColor = [UIColor clearColor];//
         label.textAlignment = UITextAlignmentCenter;
         label.textColor = [UIColor whiteColor];
         label.numberOfLines = 2;
         label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
         label.text = content;
+        label.autoresizingMask =  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
         [self addSubview:label];
-        [label release];
+        
         
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 
+
+- (void)changeOrientation{
+    UIImage *image = [UIImage imageNamed:imagename];
+    imageView.frame = CGRectMake(self.frame.size.width/2 - image.size.width/2, self.frame.size.height/2 - image.size.height/2 - 20, image.size.width, image.size.height);
+    label.frame = CGRectMake(0, self.frame.size.height/2 - image.size.height/2 + distance, self.frame.size.width, 40);
+}
+
 - (void)dealloc
 {
     [super dealloc];
+    [label release];
+    [imageView release];
 }
 
 @end

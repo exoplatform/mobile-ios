@@ -16,6 +16,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIImageView* iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    iv.frame = self.view.frame;
+    iv.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
+    [self.view insertSubview:iv atIndex:0];
+    [iv release];
         
     /*if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 40)];
@@ -45,6 +51,7 @@
     // Return YES for supported orientations
 	return YES;
 }
+
 
 -(void)dealloc {
     [super dealloc];

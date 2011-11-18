@@ -15,7 +15,7 @@
 #import "defines.h"
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
-
+#import "EmptyView.h"
 
 #define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 250
 
@@ -147,8 +147,12 @@
         tmpRect.origin.x += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
         self.view.frame = tmpRect;
     }
+    //if the empty is, remove it
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview changeOrientation];
+    }
 }
-
 
 
 

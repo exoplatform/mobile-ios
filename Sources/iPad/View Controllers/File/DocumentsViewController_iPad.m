@@ -15,7 +15,7 @@
 #import "DocumentDisplayViewController_iPad.h"
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
-
+#import "EmptyView.h"
 
 @implementation DocumentsViewController_iPad
 
@@ -274,6 +274,22 @@
 - (void)dismissAddPhotoPopOver:(BOOL)animation
 {
 //    [popoverPhotoLibraryController dismissPopoverAnimated:animation];
+}
+
+//Test for rotation management
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Overriden to allow any orientation.
+    return YES;
+}
+
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+    //if the empty is, remove it
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview changeOrientation];
+    }
 }
 
 @end

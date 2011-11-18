@@ -35,7 +35,7 @@
 #import "ActivityHelper.h"
 #import "EmptyView.h"
 
-#define TAG_EMPTY 100
+
 
 @implementation ActivityDetailViewController
 
