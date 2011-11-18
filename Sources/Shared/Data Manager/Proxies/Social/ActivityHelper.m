@@ -90,6 +90,14 @@
             fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 80;
         }
             break;  
+        case ACTIVITY_LINK:{
+            text = [activtyStreamDetail.templateParams valueForKey:@"comment"];
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            text = activtyStreamDetail.title;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            if (![[activtyStreamDetail.templateParams valueForKey:@"image"] isEqualToString:@""]) fHeight += 30;
+        }
+            break;
         case ACTIVITY_WIKI_ADD_PAGE:
         case ACTIVITY_WIKI_MODIFY_PAGE:
         {
@@ -102,10 +110,10 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             
             if([[activtyStreamDetail.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
-                fHeight += 80;
+                fHeight -= 20;
             } else {
                 text = [activtyStreamDetail.templateParams valueForKey:@"page_exceprt"];
-                fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 5;
+                fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             }
         }
             break;
@@ -149,11 +157,12 @@
             break;
         default:{
             text = activtyStreamDetail.title;
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            
+            fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            NSLog(@"%@", text);
         }
             break;
     }
+    
     fHeight += [ActivityHelper heightForAllDecorationsWithTableViewWidth:fWidth];
     return fHeight;
 }

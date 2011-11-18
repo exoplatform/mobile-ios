@@ -66,6 +66,9 @@
     [super dealloc];
 }
 
+- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
+    
+}
 
 #pragma mark - Activity Cell methods 
 
@@ -119,28 +122,21 @@
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
     switch (_activityType) {
-        case ACTIVITY_LINK:
         case ACTIVITY_DEFAULT:{
             [_webViewForContent loadHTMLString:
              [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
-            //_lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
-        }
-            
-            break;
-        
-        default:
-        {
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
-            //_lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+            NSLog(@"title :%@", socialActivityDetail.title);
+            _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+            //Set the position of lbMessage
+            CGRect tmpFrame = _webViewForContent.frame;
+            tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height + 5;
+            _webViewForContent.frame = tmpFrame;
+
         }
             break;
     }
-    _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     
     _lbMessage.text = @"";
     

@@ -7,7 +7,7 @@
 //
 
 #import "ActivityPictureDetailMessageTableViewCell.h"
-#import "SocialActivityStream.h"
+#import "SocialActivityDetails.h"
 #import "EGOImageView.h"
 #import "defines.h"
 
@@ -21,6 +21,7 @@
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
+    _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     _imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     _imgvAttach.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [_templateParams valueForKey:@"DOCLINK"]]];

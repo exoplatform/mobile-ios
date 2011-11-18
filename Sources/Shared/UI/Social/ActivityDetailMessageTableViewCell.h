@@ -48,6 +48,7 @@
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
+- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail;
 
 @end

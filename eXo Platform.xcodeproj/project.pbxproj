@@ -116,6 +116,8 @@
 		1FCEDED21457A34F0058C80F /* ActivityTypeNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC21457A34F0058C80F /* ActivityTypeNormal@2x.png */; };
 		1FCEDED31457A34F0058C80F /* ActivityTypeWiki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC31457A34F0058C80F /* ActivityTypeWiki@2x.png */; };
 		1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCEDED51458021C0058C80F /* eXoViewController.m */; };
+		1FCF4A461476410900EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */; };
+		1FCF4A491476413E00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */; };
 		1FD02F97145A8C1500A36840 /* ActivityWikiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */; };
 		1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FD02F98145A8C4100A36840 /* ActivityWikiTableViewCell.xib */; };
 		1FD0C3FF143BF146002F40A7 /* IconForEmptyFolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3F4143BF146002F40A7 /* IconForEmptyFolder.png */; };
@@ -962,6 +964,9 @@
 		1FCEDEC31457A34F0058C80F /* ActivityTypeWiki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityTypeWiki@2x.png"; sourceTree = "<group>"; };
 		1FCEDED41458021C0058C80F /* eXoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoViewController.h; sourceTree = "<group>"; };
 		1FCEDED51458021C0058C80F /* eXoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoViewController.m; sourceTree = "<group>"; };
+		1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDetailMessageTableViewCell.xib; path = Social/ActivityLinkDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
+		1FCF4A471476413700EEB9C7 /* ActivityLinkDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDetailMessageTableViewCell.h; path = Social/ActivityLinkDetailMessageTableViewCell.h; sourceTree = "<group>"; };
+		1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkDetailMessageTableViewCell.m; path = Social/ActivityLinkDetailMessageTableViewCell.m; sourceTree = "<group>"; };
 		1FD02F92145A50CD00A36840 /* ActivityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityHelper.h; sourceTree = "<group>"; };
 		1FD02F95145A8C1300A36840 /* ActivityWikiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityWikiTableViewCell.h; path = Social/ActivityWikiTableViewCell.h; sourceTree = "<group>"; };
 		1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityWikiTableViewCell.m; path = Social/ActivityWikiTableViewCell.m; sourceTree = "<group>"; };
@@ -2236,6 +2241,9 @@
 				1FC345391474FD3400540016 /* ActivityAnswerDetailMessageTableViewCell.h */,
 				1FC3453A1474FD3500540016 /* ActivityAnswerDetailMessageTableViewCell.m */,
 				1FC3453C1474FD5200540016 /* ActivityAnswerDetailMessageTableViewCell.xib */,
+				1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */,
+				1FCF4A471476413700EEB9C7 /* ActivityLinkDetailMessageTableViewCell.h */,
+				1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */,
 			);
 			name = ActivityDetail;
 			sourceTree = "<group>";
@@ -4307,6 +4315,7 @@
 				8989B06614735C9700EEBD7C /* gadgetPlaceHolder.png in Resources */,
 				8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */,
 				1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */,
+				1FCF4A461476410900EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4496,6 +4505,7 @@
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
 				1FCCC2F91474AE00000F03F4 /* eXoFullScreenView.m in Sources */,
 				1FC3453B1474FD3600540016 /* ActivityAnswerDetailMessageTableViewCell.m in Sources */,
+				1FCF4A491476413E00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4555,7 +4565,7 @@
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nguyen Khac Trung (68LM5Q2C35)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4581,7 +4591,7 @@
 				);
 				PRODUCT_NAME = "eXo CR1";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "430B43DA-4050-459B-8660-C9EA176D98B5";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

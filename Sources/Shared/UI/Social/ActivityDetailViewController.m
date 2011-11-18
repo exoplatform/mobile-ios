@@ -12,6 +12,7 @@
 #import "ActivityDetailCommentTableViewCell.h"
 #import "ActivityDetailMessageTableViewCell.h"
 #import "ActivityPictureDetailMessageTableViewCell.h"
+#import "ActivityLinkDetailMessageTableViewCell.h"
 #import "ActivityDetailLikeTableViewCell.h"
 #import "ActivityForumDetailMessageTableViewCell.h"
 #import "ActivityWikiDetailMessageTableViewCell.h"
@@ -231,9 +232,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    CGSize theSize;
-    NSString* textStr;
-    float fWidth = tableView.frame.size.width;
+//    CGSize theSize;
+//    NSString* textStr;
+//    float fWidth = tableView.frame.size.width;
     int n = 0;
     if (indexPath.section == 0) 
     {
@@ -319,10 +320,11 @@
     static NSString *kIdentifierActivityForumDetailMessageTableViewCell = @"ActivityForumDetailMessageTableViewCell";
     static NSString *kIdentifierActivityWikiDetailMessageTableViewCell = @"ActivityWikiDetailMessageTableViewCell";
     static NSString *kIdentifierActivityAnswerDetailMessageTableViewCell = @"kIdentifierActivityAnswerDetailMessageTableViewCell";
+    static NSString *kIdentifierActivityLinkDetailMessageTableViewCell = @"kIdentifierActivityLinkDetailMessageTableViewCell";
     static NSString *kIdentifierActivityDetailLikeTableViewCell = @"ActivityDetailLikeTableViewCell";
     static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
     
-	
+	////Create a cell, need to do some Configurations
     //If section for messages
     if (indexPath.section == 0) 
     {
@@ -400,6 +402,22 @@
                 }
             }
                 break;
+            case ACTIVITY_LINK:{
+                cell = (ActivityLinkDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityLinkDetailMessageTableViewCell];
+                //Check if we found a cell
+                if (cell == nil) 
+                {
+                    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityLinkDetailMessageTableViewCell" owner:self options:nil];
+                    cell = (ActivityLinkDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                    //Create a cell, need to do some configurations
+                    [cell configureCell];
+                    [cell configureCellForSpecificContentWithWidth:tableView.frame.size.width];
+                    
+                    //Set the delegate of the webview
+                    cell.webViewForContent.delegate = self;
+                }
+            }
+                break;
             default:{
                 cell = (ActivityDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailMessageTableViewCell];
                 //Check if we found a cell
@@ -408,16 +426,16 @@
                     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
                     cell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
                     //Create a cell, need to do some configurations
-                    
+                    [cell configureCell];
                     
                     //Set the delegate of the webview
-                    
+                    cell.webViewForContent.delegate = self;
                 }
             }
                 break;
         }
-        [cell configureCell];
-        cell.webViewForContent.delegate = self;
+        
+        
         cell.templateParams = _socialActivityStream.templateParams;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.activityType = _socialActivityStream.activityType;
