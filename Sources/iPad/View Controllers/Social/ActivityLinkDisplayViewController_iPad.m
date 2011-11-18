@@ -39,26 +39,4 @@
 
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Overriden to allow any orientation.
-    return YES;
-}
-
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
-{
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
-        CGRect tmpRect = self.view.frame;
-        tmpRect.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        tmpRect.origin.x = DISTANCE_LANDSCAPE;
-        self.view.frame = tmpRect;
-    } else {
-        CGRect tmpRect = self.view.frame;
-        tmpRect.size.width -= WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        tmpRect.origin.x = DISTANCE_PORTRAIT;
-        self.view.frame = tmpRect;
-    }
-}
-
-
 @end

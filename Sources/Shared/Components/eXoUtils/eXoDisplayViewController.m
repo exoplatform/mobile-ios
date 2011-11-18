@@ -40,13 +40,6 @@
 {
     [super viewDidLoad];
     
-    UIImageView* iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    iv.frame = self.view.frame;
-    //iv.userInteractionEnabled = YES;
-    [self.view addSubview:iv];
-    [self.view sendSubviewToBack:iv];
-    [iv release];
-
     //Add the loader
     _hudView = [[ATMHud alloc] initWithDelegate:self];
     [_hudView setAllowSuperviewInteraction:NO];
@@ -142,6 +135,28 @@
         [navigationBar release];
 	
     [super dealloc];
+}
+
+//Test for rotation management
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Overriden to allow any orientation.
+    return YES;
+}
+
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
+        CGRect tmpRect = self.view.frame;
+        tmpRect.size.width = WIDTH_LANDSCAPE_WEBVIEW;
+        tmpRect.origin.x = DISTANCE_LANDSCAPE;
+        self.view.frame = tmpRect;
+    } else {
+        CGRect tmpRect = self.view.frame;
+        tmpRect.size.width = WIDTH_PORTRAIT_WEBVIEW;
+        tmpRect.origin.x = DISTANCE_PORTRAIT;
+        self.view.frame = tmpRect;
+    }
 }
 
 - (void)setUrl:(NSURL*)url

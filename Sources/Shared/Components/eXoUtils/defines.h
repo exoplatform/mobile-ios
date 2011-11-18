@@ -14,8 +14,11 @@
 
 #define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 250
 
+
 #define DISTANCE_LANDSCAPE                  18
 #define DISTANCE_PORTRAIT                   24
+#define WIDTH_LANDSCAPE_WEBVIEW             800
+#define WIDTH_PORTRAIT_WEBVIEW              550
 
 #define EXO_PREFERENCE_USERID				@"userId"
 #define EXO_PREFERENCE_USERNAME				@"username"
