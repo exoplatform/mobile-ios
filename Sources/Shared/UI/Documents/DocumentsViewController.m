@@ -17,7 +17,6 @@
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
-#define TAG_EMPTY 111
 
 #pragma mark -
 #pragma mark Private
@@ -216,13 +215,8 @@
 	[self.view addSubview:_hudFolder.view];
     
     //Set the background Color of the view
-    _tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
-/*
-    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
-    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    _tblFiles.backgroundView = background;
-    [background release];
-  */  
+    _tblFiles.backgroundColor = [UIColor clearColor];
+
     if (_rootFile) {
         self.title = _rootFile.fileName;
     } else {
