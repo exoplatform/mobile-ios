@@ -14,7 +14,6 @@
 #import "URLAnalyzer.h"
 #import "eXoViewController.h"
 
-#define TAG_EMPTY 111
 
 @interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
     

@@ -147,7 +147,7 @@
         tmpRect.origin.x += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
         self.view.frame = tmpRect;
     }
-    //if the empty is, remove it
+    //if the empty is, change rotaion it
     EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
     if(emptyview != nil){
         [emptyview changeOrientation];

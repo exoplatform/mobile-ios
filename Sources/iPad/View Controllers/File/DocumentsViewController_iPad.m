@@ -285,7 +285,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    //if the empty is, remove it
+    //if the empty is, change rotate it
     EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
     if(emptyview != nil){
         [emptyview changeOrientation];

@@ -11,7 +11,6 @@
 #import "defines.h"
 #import "AppDelegate_iPad.h"
 
-#define TAG_EMPTY 500
 #define TAG_WEBVIEW 10000
 #define TAG_VIEW 10001
 

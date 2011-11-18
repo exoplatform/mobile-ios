@@ -10,7 +10,6 @@
 #import "EmptyView.h"
 #import "LanguageHelper.h"
 
-#define TAG_EMPTY 100
 
 
 @interface ActivityLinkDisplayViewController (PrivateMethods)

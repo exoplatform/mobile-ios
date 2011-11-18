@@ -60,10 +60,6 @@
 {
     [super viewDidLoad];
     
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    
-    
     //Add the loader
     _hudMessageComposer = [[ATMHud alloc] initWithDelegate:self];
     [_hudMessageComposer setAllowSuperviewInteraction:NO];

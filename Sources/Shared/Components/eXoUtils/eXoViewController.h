@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define TAG_EMPTY 110
+
 @interface eXoViewController : UIViewController {
     IBOutlet UINavigationBar*           _navigation;
     UILabel *label;
