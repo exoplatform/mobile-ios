@@ -578,10 +578,6 @@
 -(void)createNewFolder:(NSString *)newFolderName {
     
     [self hideFileFolderActionsController];
-
-    //TODO Localize this string
-    [self showHUDWithMessage:Localize(@"CreateNewFolder")];
-
     
     BOOL bExist;
     if([newFolderName length] > 0)
@@ -605,6 +601,8 @@
         
         if (!bExist) 
         {
+            //TODO Localize this string
+            [self showHUDWithMessage:Localize(@"CreateNewFolder")];
             if(!_rootFile.isFolder) {
                 newFolderName = [newFolderName stringByEncodingHTMLEntities];
                 newFolderName = [DataProcess encodeUrl:newFolderName];
@@ -632,6 +630,7 @@
         [alert show];
         [alert release];
     }
+    
 }
 
 //Method to call the rename action of the proxy
@@ -659,9 +658,6 @@
     [self hideFileFolderActionsController];
     
     
-    //TODO Localize this string
-    [self showHUDWithMessage:Localize(@"RenameFolder")];
-    
     if([newFolderName length] > 0)
     {
         BOOL bExist = NO;
@@ -686,6 +682,8 @@
         }
         if (!bExist) 
         {
+            //TODO Localize this string
+            [self showHUDWithMessage:Localize(@"RenameFolder")];
             if(!_rootFile.isFolder) {
                 newFolderName = [newFolderName stringByEncodingHTMLEntities];
                 newFolderName = [DataProcess encodeUrl:newFolderName];
@@ -715,6 +713,7 @@
         [alert show];
         [alert release];
     }
+    
 }
 
 
