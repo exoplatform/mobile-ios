@@ -200,7 +200,7 @@
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
     [super askToMakeFolderActions:createNewFolder];
     [_actionPopoverController dismissPopoverAnimated:YES];
-    
+    _navigation.topItem.rightBarButtonItem.enabled = YES;
     
     _fileFolderActionsController = [[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil];
     //[_optionsViewController setDelegate:self];
@@ -229,6 +229,7 @@
 
 
 - (void)hideFileFolderActionsController {
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     [_fileFolderActionsPopoverController dismissPopoverAnimated:YES];
 }
 
@@ -271,9 +272,17 @@
     
 }
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
+{  
+    [picker dismissModalViewControllerAnimated:YES];  
+    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    _navigation.topItem.rightBarButtonItem.enabled = YES;
+    
+}
+
 - (void)dismissAddPhotoPopOver:(BOOL)animation
 {
-//    [popoverPhotoLibraryController dismissPopoverAnimated:animation];
+    _navigation.topItem.rightBarButtonItem.enabled = YES;
 }
 
 //Test for rotation management

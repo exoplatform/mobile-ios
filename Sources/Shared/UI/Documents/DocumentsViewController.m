@@ -520,7 +520,7 @@
             [_popoverPhotoLibraryController release];
             
             _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
-            
+            _popoverPhotoLibraryController.delegate = self;
             [_popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
             
 
@@ -778,7 +778,8 @@
                 thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
                 
-                _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];      
+                _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];    
+                _popoverPhotoLibraryController.delegate = self;
                 
                 if(displayActionDialogAtRect.size.width == 0) {
                     

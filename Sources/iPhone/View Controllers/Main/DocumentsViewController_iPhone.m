@@ -181,7 +181,7 @@
     self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     
     [self.popoverController presentPopoverFromRect:frame 
-                                            inView:self.view 
+                                            inView:_tblFiles 
                           permittedArrowDirections:UIPopoverArrowDirectionUp |UIPopoverArrowDirectionDown
                                           animated:YES];
     [_actionsViewController release];
@@ -236,7 +236,7 @@
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
     self.popoverClass = nil;
-    
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     [self.navigationController pushViewController:_fileFolderActionsController animated:YES];
 }
 
@@ -254,6 +254,7 @@
 
 - (void)hideFileFolderActionsController {
     [super hideFileFolderActionsController];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
