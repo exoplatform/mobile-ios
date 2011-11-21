@@ -79,7 +79,7 @@
     
  
     _lbName.text = name;
-    _ttLabelDescription.html = description;
+    _ttLabelDescription.html = description?description:@"";
     _imgvIcon.placeholderImage = [UIImage imageNamed:@"gadgetPlaceHolder"];
     _imgvIcon.imageURL = [NSURL URLWithString:iconURL];
     
