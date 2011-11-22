@@ -67,17 +67,10 @@
     }
     //Set the position of web
     CGRect tmpFrame = _webViewForContent.frame;
-    tmpFrame.origin.y = 6;
+    tmpFrame.origin.y = 2;
     _webViewForContent.frame = tmpFrame;
     
-    //Set the position of lbMessage
-    tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + 5;
-    _lbMessage.frame = tmpFrame;
-    
     _lbMessage.text = socialActivityDetail.title;
-    //[_lbMessage sizeToFit];
-    //_lbMessage.text = socialActivityDetail.title;
 }
 
 @end

@@ -46,13 +46,7 @@
     tmpFrame.origin.y = 6;
     _webViewForContent.frame = tmpFrame;
     
-    //Set the position of lbMessage
-    tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + 5;
-    _lbMessage.frame = tmpFrame;
-    
     _lbMessage.text = [socialActivityDetail.title stringByConvertingHTMLToPlainText];
-    //[_lbMessage sizeToFit];
 }
 
 @end

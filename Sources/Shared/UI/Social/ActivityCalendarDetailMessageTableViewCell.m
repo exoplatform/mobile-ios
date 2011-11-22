@@ -71,15 +71,11 @@
     tmpFrame.origin.y = 6;
     _webViewForContent.frame = tmpFrame;
     
-    //Set the position of lbMessage
-    tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + 5;
-    _lbMessage.frame = tmpFrame;
-    
 
     NSString *startTime = [[NSDate date] dateWithTimeInterval:[[_templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText]];
     NSString *endTime = [[NSDate date] dateWithTimeInterval:[[_templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText]];
-    _lbMessage.text = [NSString stringWithFormat:@"Description: %@\nLocation: %@\nStart Time: %@\nEnd Time: %@",[[socialActivityDetail.templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText], [[socialActivityDetail.templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText],startTime, endTime];
+    
+    _lbMessage.text = [NSString stringWithFormat:@"%@: %@\n%@: %@\n%@: %@\n%@: %@",Localize(@"Description"), [[_templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText], Localize(@"Location"),[[_templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText], Localize(@"StartTime"), startTime, Localize(@"EndTime"), endTime];
 }
 
 @end
