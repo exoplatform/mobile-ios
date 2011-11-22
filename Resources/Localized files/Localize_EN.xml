@@ -333,11 +333,11 @@
     <string>End Time</string>
     
     
-    
-    
-    
     <key>NoComment</key>
     <string>No one has commented, be the first one</string>
+    
+    <key>SpecialCharacters</key>
+    <string>Special characters are not allowed in the server name</string>
     
 </dict>
 </plist>

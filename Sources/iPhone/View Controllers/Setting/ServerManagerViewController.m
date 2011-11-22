@@ -186,6 +186,19 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 #pragma - ServerManagerProtocol Methods
 
+- (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
+ 
+    NSCharacterSet *invalidCharSet = nil;
+    
+    
+    invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:chars] invertedSet];
+    
+    NSString *filtered = [[str componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+    
+    
+    return [str rangeOfString:filtered].length > 0;
+    
+}
 
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
@@ -193,6 +206,15 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     //Check first message lenght for empty parameters
     if ([strServerName length] == 0 || [strServerUrl length] == 0){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    
+    //Check if server name or url contains special chars
+    if ([self nameContainSpecialCharacter:strServerName inSet:SPECIAL_CHAR_NAME_SET] ||
+        [self nameContainSpecialCharacter:strServerUrl inSet:SPECIAL_CHAR_URL_SET]){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
@@ -248,6 +270,16 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         [alert release];
         return NO;
     }
+    
+    //Check if server name or url contains special chars
+    if ([self nameContainSpecialCharacter:strServerName inSet:SPECIAL_CHAR_NAME_SET] ||
+        [self nameContainSpecialCharacter:strServerUrl inSet:SPECIAL_CHAR_URL_SET]){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+
 
     BOOL bExist = NO;
     

@@ -330,5 +330,9 @@
     
     <key>NoComment</key>
     <string>No one has commented, be the first one</string>
+    
+    <key>SpecialCharacters</key>
+    <string>Les caractères spéciaux ne sont pas autorisés dans le nom du serveu</string>
+    
 </dict>
 </plist>

@@ -155,24 +155,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_bbtnDone setEnabled:YES];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    // Only characters in the NSCharacterSet you choose will insertable.
-    NSCharacterSet *invalidCharSet = nil;
-    
-    if(textField == _txtfServerName)
-        invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:SPECIAL_CHAR_NAME_SET] invertedSet];
-    else
-        invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:SPECIAL_CHAR_URL_SET] invertedSet];
-    
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
-   
-    if(string && [string length] > 0)
-        return ![string isEqualToString:filtered];
-    
-    return YES;
-}
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
