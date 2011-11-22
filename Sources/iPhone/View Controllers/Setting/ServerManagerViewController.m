@@ -12,7 +12,7 @@
 #import "ServerEditingViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
-
+#import "defines.h"
 
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 //Define tags for Server cells
@@ -29,7 +29,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     {
         // Custom initialization
         _arrServerList = [[NSMutableArray alloc] init];
-        
+        _intSelectedServer = -1;
     }
     return self;
 }
@@ -77,12 +77,13 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     [background release];*/
     
     _tbvlServerList.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
-        
+     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];  
     _arrServerList = [[ServerPreferencesManager sharedInstance] getServerList];
     
     UIBarButtonItem* bbtnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onBbtnAdd)];
     [self.navigationItem setRightBarButtonItem:bbtnAdd];
-        
+    [bbtnAdd release];
 }
 
 
@@ -169,13 +170,15 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    
-    ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
-    [serverEditingViewController setDelegate:self];
-    [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
-    
-    [self.navigationController pushViewController:serverEditingViewController animated:YES];
+    if(_intSelectedServer != indexPath.row){
+        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+        
+        ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
+        [serverEditingViewController setDelegate:self];
+        [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+        
+        [self.navigationController pushViewController:serverEditingViewController animated:YES];
+    }
     
     [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
 }
