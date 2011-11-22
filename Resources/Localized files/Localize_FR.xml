@@ -310,6 +310,15 @@
     <key>Asked</key>
     <string>has asked:</string>
     
+    <key>EventAdded</key>
+    <string>added an event:</string>
+    <key>EventUpdated</key>
+    <string>has just updated the event:</string>
+    <key>TaskAdded</key>
+    <string>added a task:</string>
+    <key>TaskUpdated</key>
+    <string>has just updated the task:</string>
+    
     <key>NoComment</key>
     <string>No one has commented, be the first one</string>
 </dict>
