@@ -175,11 +175,31 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     if ([_delegate deleteServerObjAtIndex:_intIndex]) [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+#pragma mark TextField methods
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [_bbtnEdit setEnabled:YES];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // Only characters in the NSCharacterSet you choose will insertable.
+    NSCharacterSet *invalidCharSet = nil;
+    
+    if(textField == _txtfServerName)
+        invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:SPECIAL_CHAR_NAME_SET] invertedSet];
+    else
+        invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:SPECIAL_CHAR_URL_SET] invertedSet];
+        
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+    
+
+    if(string && [string length] > 0)
+        return ![string isEqualToString:filtered];
+
+    return YES;
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
@@ -243,7 +263,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     
     CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
         

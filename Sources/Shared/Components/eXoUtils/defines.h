@@ -45,6 +45,9 @@
 #define SCR_WIDTH_PRTR_IPAD                 768
 #define SCR_HEIGHT_PRTR_IPAD                1004
 
+#define SPECIAL_CHAR_NAME_SET                    @"[ ] / \\ & ~ ? * | < > \" ; : +"
+#define SPECIAL_CHAR_URL_SET                    @"[ ] \\ & ~ ? * | < > \" ; +"
+
 
 //#define ACTIVITY_GETTING_TITLE              @"Getting activity"
 //#define ACTIVITY_GETTING_MESSAGE_ERROR      @"Getting action cannot be completed"

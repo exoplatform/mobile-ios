@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "defines.h"
 
 @interface URLAnalyzer : NSObject {
     

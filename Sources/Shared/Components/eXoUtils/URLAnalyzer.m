@@ -7,7 +7,6 @@
 //
 
 #import "URLAnalyzer.h"
-#import "defines.h"
 
 @implementation URLAnalyzer
 
