@@ -116,6 +116,9 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 {
     [super viewDidLoad];
     
+    [autoLogin addTarget:self action:@selector(autoLoginChange) forControlEvents:UIControlEventValueChanged];
+    
+    
     //if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
     //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarIphone.png"] forBarMetrics:UIBarMetricsDefault];
     //}
@@ -189,6 +192,12 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     [self loadSettingsInformations];
     [self setNavigationBarLabels];
     [self.tableView reloadData];
+}
+
+-(void)autoLoginChange {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSString stringWithFormat:@"%d", autoLogin.on] forKey:EXO_AUTO_LOGIN];
+    [userDefaults synchronize];
 }
 
 
