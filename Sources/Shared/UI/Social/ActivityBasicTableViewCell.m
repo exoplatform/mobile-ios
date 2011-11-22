@@ -114,7 +114,7 @@
 - (void)configureFonts:(BOOL)highlighted {
     
     if (!highlighted) {
-        _lbName.textColor = [UIColor colorWithRed:22./255 green:124./255 blue:205./255 alpha:1.];
+        _lbName.textColor = [UIColor colorWithRed:17./255 green:94./255 blue:173./255 alpha:1.];
         _lbName.shadowOffset = CGSizeMake(0,1);
         _lbName.shadowColor = [UIColor whiteColor];
         _lbName.backgroundColor = [UIColor whiteColor];

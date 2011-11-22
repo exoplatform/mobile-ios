@@ -19,7 +19,9 @@
 		self.title = Localize(@"RenameTitle");	
 	}
     
-    _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStylePlain target:self action:@selector(OKBtn)];
+    _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"OK") style:UIBarButtonItemStyleDone target:self action:@selector(OKBtn)];
+    
+    _navigation.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStylePlain target:self action:@selector(CancelBtn)];
     
 }
 
@@ -36,5 +38,11 @@
     
 }
 
+
+- (void)CancelBtn {
+    
+    [_delegate cancelFolderActions];
+    
+}
 
 @end

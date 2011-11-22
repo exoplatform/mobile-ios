@@ -124,7 +124,7 @@
     switch (_activityType) {
         case ACTIVITY_DEFAULT:{
             [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             NSLog(@"title :%@", socialActivityDetail.title);
@@ -134,6 +134,15 @@
             tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height + 5;
             _webViewForContent.frame = tmpFrame;
 
+        }
+            break;
+        default:
+        {
+            [_webViewForContent loadHTMLString:
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]] 
+                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+             ];
+            //_lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
         }
             break;
     }

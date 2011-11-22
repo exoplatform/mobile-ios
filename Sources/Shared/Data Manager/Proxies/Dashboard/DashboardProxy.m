@@ -29,6 +29,7 @@
 }
 
 - (void) dealloc {
+        
     _delegate = nil;
     [_gadgetsProxy release];
     [super dealloc];
@@ -51,8 +52,15 @@
 
 - (void)retrieveDashboards {
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
-    [RKObjectManager setSharedManager:manager];
+    
+    if ([RKObjectManager sharedManager] == nil) {
+        RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
+        [RKObjectManager setSharedManager:manager];
+    } else {
+        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:[self createBaseURL]] retain];
+    }
+    RKObjectManager* manager = [RKObjectManager sharedManager];
+    
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[DashboardItem class]];
     [mapping mapKeyPathsToAttributes:

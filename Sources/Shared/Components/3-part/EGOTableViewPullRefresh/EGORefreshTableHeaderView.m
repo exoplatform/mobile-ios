@@ -44,7 +44,7 @@
     if((self = [super initWithFrame:frame])) {
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        self.backgroundColor = [UIColor colorWithRed:59./255 green:59./255 blue:59./255 alpha:1.0];
+        self.backgroundColor = [UIColor colorWithRed:152./255 green:152./255 blue:152./255 alpha:1.0];
 
 
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
@@ -93,7 +93,7 @@
         
         UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-2, frame.size.width, 1.0f)];
         lineView.backgroundColor = [UIColor whiteColor];
-        lineView.layer.shadowColor = [[UIColor colorWithWhite:0.1f alpha:1.0f] CGColor];
+        lineView.layer.shadowColor = [[UIColor colorWithWhite:0.1f alpha:0.5f] CGColor];
         lineView.layer.shadowOffset = CGSizeMake(0, 1);
         [self addSubview: lineView];
         [lineView release];

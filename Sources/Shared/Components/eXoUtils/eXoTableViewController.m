@@ -16,7 +16,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *deviceType = [UIDevice currentDevice].model;
+    /*NSString *deviceType = [UIDevice currentDevice].model;
     
     if([deviceType rangeOfString:@"iPhone"].length > 0){
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -33,17 +33,19 @@
     label.shadowColor = [UIColor grayColor];
     
     _navigation.topItem.titleView = label;
-    self.navigationItem.titleView = label;
+    self.navigationItem.titleView = label;*/
 }
 
+/*
 -(void)setTitle:(NSString *)_titleView {
     [super setTitle:_titleView];
     label.text = _titleView;
 }
+*/
 
 -(void)dealloc {
     [super dealloc];
-    [label release];
+    //[label release];
 }
 
 @end

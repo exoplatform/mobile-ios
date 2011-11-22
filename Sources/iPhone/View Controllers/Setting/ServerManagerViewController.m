@@ -76,7 +76,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     _tbvlServerList.backgroundView = background;
     [background release];*/
     
-    _tbvlServerList.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    //_tbvlServerList.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+
+    
+    _tbvlServerList.backgroundColor = EXO_BACKGROUND_COLOR;
+
+    
      NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];  
     _arrServerList = [[ServerPreferencesManager sharedInstance] getServerList];

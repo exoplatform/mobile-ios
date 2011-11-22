@@ -48,6 +48,7 @@
 
 -(void)dealloc {
     
+    [[RKRequestQueue sharedQueue] cancelAllRequests];
     [_dashboard release];
     _delegate = nil;
 
@@ -64,8 +65,14 @@
 
 - (void)retrieveGadgets {
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];  
-    [RKObjectManager setSharedManager:manager];
+    if ([RKObjectManager sharedManager] == nil) {
+        RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];  
+        [RKObjectManager setSharedManager:manager];
+    } else {
+        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:_dashboard.link] retain];
+    }
+    RKObjectManager* manager = [RKObjectManager sharedManager];
+
         
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[GadgetItem class]];
     [mapping mapKeyPathsToAttributes:

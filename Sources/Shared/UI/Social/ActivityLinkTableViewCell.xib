@@ -135,7 +135,7 @@
 								<string key="IBUIText">Name</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4wMzEzNzI1NDkwMiAwLjUzMzMzMzMzMzMgMC44MzkyMTU2ODYzAA</bytes>
+									<bytes key="NSRGB">MC4wNjY2NjY2NjY2NyAwLjM2ODYyNzQ1MSAwLjY3ODQzMTM3MjUAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -158,7 +158,6 @@
 								<int key="NSvFlags">265</int>
 								<string key="NSFrame">{{269, 118}, {36, 19}}</string>
 								<reference key="NSSuperview" ref="42066679"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="854124177"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

@@ -29,7 +29,7 @@
 
 
 - (UIColor*)linkTextColor {
-    return RGBCOLOR(8, 136, 214);
+    return RGBCOLOR(17, 94, 173);
 }
 
 @end

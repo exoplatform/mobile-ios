@@ -13,6 +13,9 @@
 #import "UIBarButtonItem+WEPopover.h"
 #import "LanguageHelper.h"
 #import "FileActionsViewController.h"
+#import "AppDelegate_iPhone.h"
+#import "JTRevealSidebarView.h"
+#import "JTNavigationView.h"
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -36,11 +39,25 @@
     [super dealloc];
 }
 
+
+-(void)setView:(UIView *)view {
+    [super setView:view];
+}
+
 -(void)viewDidLoad {
     [super viewDidLoad];
     //Try setting this to UIPopoverController to use the iPad popover. The API is exactly the same!
 	//popoverClass = [WEPopoverController class];
     currentPopoverCellIndex = -1;
+    
+    self.view.title = self.title;
+    
+    
+    //self.view.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+
+    
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    
 }
 
 
@@ -96,8 +113,9 @@
         [bt addTarget:self action:@selector(showActionsPanelFromNavigationBarButton:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
         actionButton.width = image.size.width;
-        [self.navigationItem setRightBarButtonItem:actionButton];
+        //[self.view.navigationItem setRightBarButtonItem:actionButton];
         
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem setRightBarButtonItem:actionButton];        
         [actionButton release];
     }
 }
@@ -107,7 +125,7 @@
 
 - (void)popoverControllerDidDismissPopover:(WEPopoverController *)thePopoverController {
 	//Safe to release the popover here
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem.rightBarButtonItem.enabled = YES;
 	self.popoverController = nil;
     self.popoverClass = nil;
 }
@@ -129,8 +147,11 @@
 	{
         //Create a new FilesViewController_iPhone to push it into the navigationController
         DocumentsViewController_iPhone *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPhone alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPhone"];
-        [self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
-        [newViewControllerForFilesBrowsing release];
+        
+        
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:newViewControllerForFilesBrowsing.view animated:YES];
+        //[self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
+        //[newViewControllerForFilesBrowsing release];
 	}
 	else
 	{
@@ -145,9 +166,11 @@
         [_hudFolder release];
         _hudFolder = nil;
         
-		[self.navigationController pushViewController:fileWebViewController animated:YES];    
         
-        [fileWebViewController release];
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:fileWebViewController.view animated:YES];
+		//[self.navigationController pushViewController:fileWebViewController animated:YES];    
+        
+        //[fileWebViewController release];
 	}
 	
     
@@ -216,15 +239,16 @@
     self.popoverClass = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     [_actionsViewController release];
     self.popoverClass.delegate = self;
-    self.popoverClass.passthroughViews = [NSArray arrayWithObject:self.navigationController.navigationBar];
+    //self.popoverClass.passthroughViews = [NSArray arrayWithObject:[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView];
     
-    [self.popoverClass presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem 
+    [self.popoverClass presentPopoverFromBarButtonItem:[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem.rightBarButtonItem
                                    permittedArrowDirections:(UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown) 
                                                    animated:YES];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem.rightBarButtonItem.enabled = NO;
 }
 
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
+    
     _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
     [_fileFolderActionsController setIsNewFolder:createNewFolder];
     [_fileFolderActionsController setNameInputStr:@""];
@@ -232,19 +256,25 @@
     _fileFolderActionsController.fileToApplyAction = fileToApplyAction;
     _fileFolderActionsController.delegate = self;
     
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_fileFolderActionsController];
+    
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:navController animated:YES];
+    [navController release];
+    
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
     self.popoverClass = nil;
     self.navigationItem.rightBarButtonItem.enabled = YES;
-    [self.navigationController pushViewController:_fileFolderActionsController animated:YES];
 }
 
 
 
 -(void) hideActionsPanel {
     [super hideActionsPanel];
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem.rightBarButtonItem.enabled = YES;
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
@@ -254,7 +284,9 @@
 
 - (void)hideFileFolderActionsController {
     [super hideFileFolderActionsController];
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone dismissModalViewControllerAnimated:YES];
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem.rightBarButtonItem.enabled = YES;
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
@@ -273,13 +305,62 @@
 
 #pragma mark - ActionSheet Delegate
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex<2) {
+        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+        thePicker.delegate = self;
+            
+        if(buttonIndex == 0)//Take a photo
+        {
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+            {  
+                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+
+                UINavigationController *modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:thePicker];
+                modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:modalNavigationSettingViewController animated:YES];
+                [modalNavigationSettingViewController release];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+            }
+        }
+        else
+        {
+            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+            
+            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
+        }
+        [thePicker release];
+    }
+}
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
     [picker dismissModalViewControllerAnimated:YES];  
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
     self.navigationItem.rightBarButtonItem.enabled = YES;
 
+    //Dismiss all popover
+    [self.popoverController dismissPopoverAnimated:YES];
+    self.popoverController = nil;
+    [self.popoverClass dismissPopoverAnimated:YES];
+    self.popoverClass = nil;
+    
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem.rightBarButtonItem.enabled = YES;
+
 }
+
+
+
 
 @end

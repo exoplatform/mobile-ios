@@ -32,7 +32,9 @@
 
 - (void)dealloc 
 {
-    
+    delegate = nil;
+    [[RKRequestQueue sharedQueue] cancelAllRequests];
+
     [_socialUserProfile release]; _socialUserProfile = nil;
     [_arrActivityStreams release]; _arrActivityStreams = nil;
     [super dealloc];

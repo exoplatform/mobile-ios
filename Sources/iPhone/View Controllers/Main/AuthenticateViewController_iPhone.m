@@ -76,7 +76,8 @@
         if([platformServerVersion.isMobileCompliant boolValue]){
             AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
             appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-            [appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+            //[appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
+            [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
         } else {
             [_hud dismiss];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 

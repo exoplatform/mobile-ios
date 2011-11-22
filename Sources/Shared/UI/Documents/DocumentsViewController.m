@@ -13,6 +13,8 @@
 #import "NSString+HTML.h"
 #import "DataProcess.h"
 #import "EmptyView.h"
+#import "defines.h"
+
 
 
 #define kTagForCellSubviewTitleLabel 222
@@ -114,7 +116,6 @@
 }
 
 - (void)hideFileFolderActionsController {
-    [_fileFolderActionsController.view removeFromSuperview];
     [_fileFolderActionsController release]; _fileFolderActionsController = nil;
 }
 
@@ -215,8 +216,17 @@
 	[self.view addSubview:_hudFolder.view];
     
     //Set the background Color of the view
-    _tblFiles.backgroundColor = [UIColor clearColor];
+    //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    //_tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
+/*
+    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblFiles.backgroundView = background;
+    [background release];
+  */  
 
+    _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
+    
     if (_rootFile) {
         self.title = _rootFile.fileName;
     } else {
@@ -225,6 +235,14 @@
     
     //Set the title of the view controller
     [self setTitleForFilesViewController];
+    
+    if (_arrayContentOfRootFile == nil) {
+        //TODO Localize this string
+        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"), _rootFile ?_rootFile.fileName:Localize(@"Documents")]];
+        
+        //Start the request to load file content
+        [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
+    }
 }
 
 - (void)viewDidUnload
@@ -240,7 +258,7 @@
     
     
 }
-
+/*
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -253,6 +271,7 @@
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
     }
 }
+*/
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -755,8 +774,11 @@
         {
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
             {  
+                UINavigationController *modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:thePicker];
+                modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self presentModalViewController:thePicker animated:YES];
+                [self presentModalViewController:modalNavigationSettingViewController animated:YES];
+                [modalNavigationSettingViewController release];
             }
             else
             {
@@ -770,9 +792,10 @@
             thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             NSString *deviceName = [[UIDevice currentDevice] name];
             NSRange rangeOfiPad = [deviceName rangeOfString:@"iPad"];
-            if(rangeOfiPad.length <= 0)
+            if(rangeOfiPad.length <= 0) {
                 [self presentModalViewController:thePicker animated:YES];
-            else
+            }
+                else
             {
                 thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
                 thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

@@ -45,7 +45,7 @@
 	[super viewDidLoad];
     
     //Set the background Color of the view
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
 	_txtfNameInput.clearButtonMode = UITextFieldViewModeWhileEditing;
     

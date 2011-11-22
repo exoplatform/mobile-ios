@@ -14,6 +14,9 @@
 #import "ContainerCell.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
+#import "AppDelegate_iPhone.h"
+#import "JTNavigationView.h"
+#import "JTRevealSidebarView.h"
 
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
@@ -135,7 +138,9 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     
     
     
-    self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    //self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    
+    self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
     
     //Add the Done button for exit Settings
     _doneBarButtonItem = [[UIBarButtonItem alloc]
@@ -254,9 +259,9 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	headerLabel.backgroundColor = [UIColor clearColor];
 	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor whiteColor];
-	headerLabel.shadowColor = [UIColor grayColor];
-    headerLabel.shadowOffset = CGSizeMake(1, 1);
+	headerLabel.textColor = [UIColor darkGrayColor];
+	headerLabel.shadowColor = [UIColor whiteColor];
+    headerLabel.shadowOffset = CGSizeMake(0, 1);
 	headerLabel.font = [UIFont boldSystemFontOfSize:17];
 	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
     
@@ -540,8 +545,8 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
         if (indexPath.row == [_arrServerList count]) 
         {
             _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
-            [self.navigationController pushViewController:_serverManagerViewController animated:YES];		
             
+            [self.navigationController pushViewController:_serverManagerViewController animated:YES];
         }
 	}
 	else if(indexPath.section == 3)

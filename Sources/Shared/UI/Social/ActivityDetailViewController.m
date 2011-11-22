@@ -103,7 +103,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     //Set the last update date at now 
     _dateOfLastUpdate = [[NSDate date]retain];
     
@@ -117,7 +117,11 @@
     //TODO Localize
     self.title = Localize(@"Details");
     
-    _tblvActivityDetail.backgroundColor = [UIColor clearColor];
+    //Set the background Color of the view    
+    //_tblvActivityDetail.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+   // self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    _tblvActivityDetail.backgroundColor = EXO_BACKGROUND_COLOR;
+    
     
     [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
     UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:23];

@@ -8,6 +8,7 @@
 
 #import "GadgetDisplayViewController.h"
 
+
 @interface GadgetDisplayViewController_iPhone : GadgetDisplayViewController {
     
 }

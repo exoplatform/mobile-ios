@@ -14,6 +14,7 @@
 #import "CustomBackgroundForCell_iPhone.h"
 #import "URLAnalyzer.h"
 #import "LanguageHelper.h"
+#import "defines.h"
 
 static NSString *ServerObjCellIdentifier = @"ServerObj";
 
@@ -98,8 +99,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     //self.tableView.backgroundView = backgroundView;
     //[backgroundView release];
     
-    self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    //self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     
+    self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
+
 }
 
 - (void)viewDidUnload

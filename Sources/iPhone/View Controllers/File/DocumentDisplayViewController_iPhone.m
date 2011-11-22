@@ -7,9 +7,18 @@
 //
 
 #import "DocumentDisplayViewController_iPhone.h"
+#import "JTNavigationView.h"
+
 
 
 @implementation DocumentDisplayViewController_iPhone
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.title = self.title;
+}
 
 
 

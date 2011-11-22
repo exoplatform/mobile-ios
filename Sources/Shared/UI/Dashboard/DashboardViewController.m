@@ -97,8 +97,10 @@
     //Set the background Color of the view
     //UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
     //background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    _tblGadgets.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    //_tblGadgets.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     //[background release];
+    
+    _tblGadgets.backgroundColor = EXO_BACKGROUND_COLOR;
         
     //Start the loader
     [self showLoader];
@@ -222,7 +224,7 @@
     headerLabel.frame = [self rectOfHeader:theSize.width];
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"DashboardTabBackground.png"];
-    UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:5 topCapHeight:7]];
+    UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:10 topCapHeight:7]];
     imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 20, kHeightForSectionHeader-15);
     
 	[customView addSubview:imgVBackground];

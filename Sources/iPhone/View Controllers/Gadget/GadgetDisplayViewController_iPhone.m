@@ -7,8 +7,17 @@
 //
 
 #import "GadgetDisplayViewController_iPhone.h"
+#import "JTNavigationView.h"
+
 
 @implementation GadgetDisplayViewController_iPhone
 
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.title = self.title;
+}
 
 @end

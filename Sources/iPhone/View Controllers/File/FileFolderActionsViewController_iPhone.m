@@ -21,7 +21,15 @@
 		self.title = Localize(@"RenameTitle");	
 	}
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStylePlain target:self action:@selector(OKBtn)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"OK") 
+                                                                              style:UIBarButtonItemStyleDone 
+                                                                             target:self 
+                                                                             action:@selector(OKBtn)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") 
+                                                                             style:UIBarButtonItemStylePlain 
+                                                                            target:self 
+                                                                            action:@selector(CancelBtn)];
     
 }
 
@@ -36,7 +44,30 @@
         [_delegate renameFolder:strName forFolder:_fileToApplyAction];
     }    
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
+
+
+- (void)CancelBtn {
+
+    [_delegate cancelFolderActions];
+    
+}
+
+
+
+
+
+
+#pragma mark - Rotation Methods
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
 
 @end

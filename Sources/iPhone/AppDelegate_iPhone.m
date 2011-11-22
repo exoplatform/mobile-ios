@@ -21,6 +21,7 @@
 @synthesize navigationController;
 @synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
+@synthesize homeSidebarViewController_iPhone = _homeSidebarViewController_iPhone;
 
 
 + (AppDelegate_iPhone *) instance {
@@ -58,6 +59,34 @@
     [self applicationDidFinishLaunching:application];
     return YES;
 }
+
+
+
+- (void)showHomeSidebarViewController {
+    // Login is successfully
+    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
+
+    
+    [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
+    [[SocialRestConfiguration sharedInstance] updateDatas];
+    
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
+    
+    _homeSidebarViewController_iPhone = [[HomeSidebarViewController_iPhone alloc] initWithNibName:nil bundle:nil];
+    
+    window.rootViewController = _homeSidebarViewController_iPhone;
+    
+    //[_homeViewControllerSidebar_iPhone setDelegate:self];
+    
+    //_homeViewController_iPhone._isCompatibleWithSocial = _isCompatibleWithSocial;
+    
+    //[self.navigationController pushViewController:_homeViewController_iPhone animated:YES];
+    
+    
+}
+
 
 
 - (void)showHomeViewController {
@@ -112,6 +141,9 @@
 - (void)onBtnSigtOutDelegate {
     
     //[[ChatProxy sharedInstance] disconnect];
+    
+    window.rootViewController = navigationController;
+    
     
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;

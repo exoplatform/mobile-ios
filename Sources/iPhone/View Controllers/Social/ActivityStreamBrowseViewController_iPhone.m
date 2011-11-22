@@ -15,6 +15,10 @@
 #import "DocumentDisplayViewController_iPhone.h"
 #import "defines.h"
 #import "NSString+HTML.h"
+#import "AppDelegate_iPhone.h"
+#import "JTRevealSidebarView.h"
+#import "JTNavigationView.h"
+
 
 @implementation ActivityStreamBrowseViewController_iPhone
 
@@ -22,12 +26,24 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
+
+    
     // Unselect the selected row if any
     NSIndexPath*	selection = [_tblvActivityStream indexPathForSelectedRow];
     if (selection)
         [_tblvActivityStream deselectRowAtIndexPath:selection animated:YES];
 }
 
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.title = self.title;
+    
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+}
 
 
 
@@ -38,11 +54,14 @@
     messageComposerViewController.isPostMessage = NO;
     messageComposerViewController.strActivityID = activity;
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    
-    [self.navigationController presentModalViewController:navController animated:YES];
-    
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
+    
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+    
+    [self presentModalViewController:navController animated:YES];
+
+
 }
 
 
@@ -56,10 +75,13 @@
     messageComposerViewController.delegate = self;
     messageComposerViewController.isPostMessage = YES;
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
     
-    [self.navigationController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 
@@ -78,7 +100,12 @@
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                      andCurrentUserProfile:_socialUserProfile];
     
-    [self.navigationController pushViewController:_activityDetailViewController animated:YES];
+    //[self.navigationController pushViewController:_activityDetailViewController animated:YES];
+    
+    //[_revealView.contentView setRootView:_activityStreamBrowseViewController_iPhone.view];
+    //[_revealView revealSidebar:NO];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:_activityDetailViewController.view animated:YES];
+
 }
 
 

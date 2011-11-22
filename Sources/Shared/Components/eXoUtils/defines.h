@@ -65,4 +65,4 @@
 //#define ACTIVITY_DETAIL_UPDATING_TITLE      @"Updating activity detail"
 
 
-
+#define EXO_BACKGROUND_COLOR                [UIColor colorWithRed:220./255 green:220./255 blue:220./255  alpha:1.]

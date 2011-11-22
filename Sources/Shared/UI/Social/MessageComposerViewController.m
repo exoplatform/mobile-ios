@@ -31,6 +31,7 @@
 
 - (void)dealloc
 {
+    _hudMessageComposer.delegate = nil;
     [_hudMessageComposer release];
     _hudMessageComposer = nil;
     
@@ -60,6 +61,17 @@
 {
     [super viewDidLoad];
     
+    /*UIImageView* iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    iv.userInteractionEnabled = YES;
+    self.view = iv;
+    [iv release];
+    */
+    //[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    self.view.backgroundColor = EXO_BACKGROUND_COLOR;
+    
     //Add the loader
     _hudMessageComposer = [[ATMHud alloc] initWithDelegate:self];
     [_hudMessageComposer setAllowSuperviewInteraction:NO];
@@ -75,26 +87,10 @@
     UIImage *strechTextViewBg = [[UIImage imageNamed:@"MessageComposerTextfieldBackground.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:20];
     [_imgvTextViewBg setImage:strechTextViewBg];
     
-    UIImage *strechSendBg = [[UIImage imageNamed:@"MessageComposerButtonSendBackground.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
-    
-    UIImage *strechSendBgSelected = [[UIImage imageNamed:@"MessageComposerButtonSendBackgroundSelected.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
-    
-    [_btnSend setBackgroundImage:strechSendBg forState:UIControlStateNormal];
-    [_btnSend setBackgroundImage:strechSendBgSelected forState:UIControlStateHighlighted];
-    
-    UIImage *strechCancelBg = [[UIImage imageNamed:@"MessageComposerButtonCancelBackground.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
-    
-    UIImage *strechCancelBgSelected = [[UIImage imageNamed:@"MessageComposerButtonCancelBackgroundSelected.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:13];
-    
-    [_btnCancel setBackgroundImage:strechCancelBg forState:UIControlStateNormal];
-    [_btnCancel setBackgroundImage:strechCancelBgSelected forState:UIControlStateHighlighted];
-    
-    UIBarButtonItem* bbtnSend = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Send") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnSend:)] autorelease];
-    [bbtnSend setCustomView:_btnSend];
+    UIBarButtonItem* bbtnSend = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Send") style:UIBarButtonItemStylePlain target:self action:@selector(onBtnSend:)] autorelease];
     self.navigationItem.rightBarButtonItem = bbtnSend;
     
     UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
-    [bbtnCancel setCustomView:_btnCancel];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
     [_txtvMessageComposer becomeFirstResponder];

@@ -13,7 +13,7 @@
 @class ServerManagerViewController;
 
 
-@protocol SettingsDelegateProcotol <NSObject>
+@protocol SettingsDelegateProcotol
 
 -(void)doneWithSettings;
 

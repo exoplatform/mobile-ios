@@ -248,6 +248,8 @@
 		46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A08CD91447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib */; };
 		46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */; };
 		46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */; };
+		46A0C14D1474065600258901 /* MenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A0C14C1474065600258901 /* MenuButton@2x.png */; };
+		46A0C14F1474066200258901 /* MenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A0C14E1474066200258901 /* MenuButton.png */; };
 		46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2739613D7FBAE00A5C29D /* NSString+MD5.m */; };
 		46A3E5DD13F01AB900F606B4 /* SocialYourCommentButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */; };
 		46A3E5DF13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */; };
@@ -373,6 +375,13 @@
 		46E96E63138370A30085DCB6 /* RoundedUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E49138370A30085DCB6 /* RoundedUITableView.m */; };
 		46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E4D138370A30085DCB6 /* StackScrollViewController.m */; };
 		46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E51138370A30085DCB6 /* UIViewWithShadow.m */; };
+		46EA0E861472641500F42855 /* JTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EA0E7B1472641500F42855 /* JTNavigationBar.m */; };
+		46EA0E871472641500F42855 /* JTNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EA0E7D1472641500F42855 /* JTNavigationView.m */; };
+		46EA0E881472641500F42855 /* JTRevealSidebarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EA0E7F1472641500F42855 /* JTRevealSidebarView.m */; };
+		46EA0E891472641500F42855 /* JTTableViewCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EA0E811472641500F42855 /* JTTableViewCellFactory.m */; };
+		46EA0E8A1472641500F42855 /* JTTableViewCellModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EA0E831472641500F42855 /* JTTableViewCellModal.m */; };
+		46EA0E8B1472641500F42855 /* JTTableViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EA0E851472641500F42855 /* JTTableViewDatasource.m */; };
+		46EA0E8E147264B100F42855 /* HomeSidebarViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EA0E8D147264B100F42855 /* HomeSidebarViewController_iPhone.m */; };
 		46EC3596140FDE150083FA07 /* FileFolderActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC3595140FDE150083FA07 /* FileFolderActionsViewController.m */; };
 		46EC7DE71466D596009D7BB0 /* ActivityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC7DE61466D596009D7BB0 /* ActivityHelper.m */; };
 		46F63426145467E200BB57D4 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F63425145467E100BB57D4 /* libidn.a */; };
@@ -840,7 +849,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* eXo CR1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo CR1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* eXo CR1-Test new iPhone Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo CR1-Test new iPhone Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F20AC3F14590BB90068A2CB /* ActivityForumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityForumTableViewCell.h; sourceTree = "<group>"; };
 		1F20AC4014590BB90068A2CB /* ActivityForumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityForumTableViewCell.m; sourceTree = "<group>"; };
@@ -1140,6 +1149,8 @@
 		46A08CDC144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDisplayViewController_iPad.h; path = Social/ActivityLinkDisplayViewController_iPad.h; sourceTree = "<group>"; };
 		46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkDisplayViewController_iPad.m; path = Social/ActivityLinkDisplayViewController_iPad.m; sourceTree = "<group>"; };
 		46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDisplayViewController_iPad.xib; path = Social/ActivityLinkDisplayViewController_iPad.xib; sourceTree = "<group>"; };
+		46A0C14C1474065600258901 /* MenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuButton@2x.png"; path = "Home/@2x/MenuButton@2x.png"; sourceTree = "<group>"; };
+		46A0C14E1474066200258901 /* MenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuButton.png; path = "Home/@1x/MenuButton.png"; sourceTree = "<group>"; };
 		46A2739513D7FBAE00A5C29D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		46A2739613D7FBAE00A5C29D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialYourCommentButtonBg.png; sourceTree = "<group>"; };
@@ -1306,6 +1317,20 @@
 		46E96E4D138370A30085DCB6 /* StackScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackScrollViewController.m; sourceTree = "<group>"; };
 		46E96E50138370A30085DCB6 /* UIViewWithShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewWithShadow.h; sourceTree = "<group>"; };
 		46E96E51138370A30085DCB6 /* UIViewWithShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewWithShadow.m; sourceTree = "<group>"; };
+		46EA0E7A1472641500F42855 /* JTNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTNavigationBar.h; path = RevealSidebar/JTNavigationBar.h; sourceTree = "<group>"; };
+		46EA0E7B1472641500F42855 /* JTNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTNavigationBar.m; path = RevealSidebar/JTNavigationBar.m; sourceTree = "<group>"; };
+		46EA0E7C1472641500F42855 /* JTNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTNavigationView.h; path = RevealSidebar/JTNavigationView.h; sourceTree = "<group>"; };
+		46EA0E7D1472641500F42855 /* JTNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTNavigationView.m; path = RevealSidebar/JTNavigationView.m; sourceTree = "<group>"; };
+		46EA0E7E1472641500F42855 /* JTRevealSidebarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTRevealSidebarView.h; path = RevealSidebar/JTRevealSidebarView.h; sourceTree = "<group>"; };
+		46EA0E7F1472641500F42855 /* JTRevealSidebarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTRevealSidebarView.m; path = RevealSidebar/JTRevealSidebarView.m; sourceTree = "<group>"; };
+		46EA0E801472641500F42855 /* JTTableViewCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTTableViewCellFactory.h; path = RevealSidebar/JTTableViewCellFactory.h; sourceTree = "<group>"; };
+		46EA0E811472641500F42855 /* JTTableViewCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTTableViewCellFactory.m; path = RevealSidebar/JTTableViewCellFactory.m; sourceTree = "<group>"; };
+		46EA0E821472641500F42855 /* JTTableViewCellModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTTableViewCellModal.h; path = RevealSidebar/JTTableViewCellModal.h; sourceTree = "<group>"; };
+		46EA0E831472641500F42855 /* JTTableViewCellModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTTableViewCellModal.m; path = RevealSidebar/JTTableViewCellModal.m; sourceTree = "<group>"; };
+		46EA0E841472641500F42855 /* JTTableViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTTableViewDatasource.h; path = RevealSidebar/JTTableViewDatasource.h; sourceTree = "<group>"; };
+		46EA0E851472641500F42855 /* JTTableViewDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTTableViewDatasource.m; path = RevealSidebar/JTTableViewDatasource.m; sourceTree = "<group>"; };
+		46EA0E8C147264B100F42855 /* HomeSidebarViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSidebarViewController_iPhone.h; sourceTree = "<group>"; };
+		46EA0E8D147264B100F42855 /* HomeSidebarViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSidebarViewController_iPhone.m; sourceTree = "<group>"; };
 		46EC3594140FDE150083FA07 /* FileFolderActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileFolderActionsViewController.h; path = Documents/FileFolderActionsViewController.h; sourceTree = "<group>"; };
 		46EC3595140FDE150083FA07 /* FileFolderActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileFolderActionsViewController.m; path = Documents/FileFolderActionsViewController.m; sourceTree = "<group>"; };
 		46EC7DE61466D596009D7BB0 /* ActivityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityHelper.m; sourceTree = "<group>"; };
@@ -1672,7 +1697,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* eXo CR1.app */,
+				1D6058910D05DD3D006BFB54 /* eXo CR1-Test new iPhone Menu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2521,6 +2546,7 @@
 		46BF6E471379640600D1E1A5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				46A0C14E1474066200258901 /* MenuButton.png */,
 				46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */,
 				46CAF7491379907B0017C959 /* HomeActivityStreamsIconiPhone.png */,
 				46CAF74B1379907B0017C959 /* HomeChatIconiPhone.png */,
@@ -2535,6 +2561,7 @@
 		46BF6E481379641000D1E1A5 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				46A0C14C1474065600258901 /* MenuButton@2x.png */,
 				461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */,
 				46CAF76113799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png */,
 				46CAF755137990880017C959 /* HomeActivityStreamsIconiPhone@2x.png */,
@@ -2769,6 +2796,25 @@
 				46E96E51138370A30085DCB6 /* UIViewWithShadow.m */,
 			);
 			path = CascadeViewController;
+			sourceTree = "<group>";
+		};
+		46EA0E75147262E100F42855 /* RevealSidebar */ = {
+			isa = PBXGroup;
+			children = (
+				46EA0E7A1472641500F42855 /* JTNavigationBar.h */,
+				46EA0E7B1472641500F42855 /* JTNavigationBar.m */,
+				46EA0E7C1472641500F42855 /* JTNavigationView.h */,
+				46EA0E7D1472641500F42855 /* JTNavigationView.m */,
+				46EA0E7E1472641500F42855 /* JTRevealSidebarView.h */,
+				46EA0E7F1472641500F42855 /* JTRevealSidebarView.m */,
+				46EA0E801472641500F42855 /* JTTableViewCellFactory.h */,
+				46EA0E811472641500F42855 /* JTTableViewCellFactory.m */,
+				46EA0E821472641500F42855 /* JTTableViewCellModal.h */,
+				46EA0E831472641500F42855 /* JTTableViewCellModal.m */,
+				46EA0E841472641500F42855 /* JTTableViewDatasource.h */,
+				46EA0E851472641500F42855 /* JTTableViewDatasource.m */,
+			);
+			name = RevealSidebar;
 			sourceTree = "<group>";
 		};
 		46F87F81140BD6870077BE15 /* Documents */ = {
@@ -3045,6 +3091,7 @@
 		894730861336FBC000B0AD11 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				46EA0E75147262E100F42855 /* RevealSidebar */,
 				1FCED3521435BA1800EC0B88 /* Popover */,
 				894732391336FFE400B0AD11 /* Custom Views */,
 				8947323A1336FFE400B0AD11 /* Data Manager */,
@@ -3237,6 +3284,8 @@
 				7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */,
 				46CAF73C13798D230017C959 /* HomeStyleSheet.h */,
 				46CAF73D13798D230017C959 /* HomeStyleSheet.m */,
+				46EA0E8C147264B100F42855 /* HomeSidebarViewController_iPhone.h */,
+				46EA0E8D147264B100F42855 /* HomeSidebarViewController_iPhone.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3698,7 +3747,7 @@
 			);
 			name = "eXo Platform";
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo CR1.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* eXo CR1-Test new iPhone Menu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4328,6 +4377,8 @@
 				1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */,
 				890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */,
 				1FD91DC1147109A200DBDED0 /* ActivityAnswerTableViewCell.xib in Resources */,
+				46A0C14D1474065600258901 /* MenuButton@2x.png in Resources */,
+				46A0C14F1474066200258901 /* MenuButton.png in Resources */,
 				8989B06614735C9700EEBD7C /* gadgetPlaceHolder.png in Resources */,
 				8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */,
 				1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */,
@@ -4521,6 +4572,13 @@
 				1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */,
 				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
+				46EA0E861472641500F42855 /* JTNavigationBar.m in Sources */,
+				46EA0E871472641500F42855 /* JTNavigationView.m in Sources */,
+				46EA0E881472641500F42855 /* JTRevealSidebarView.m in Sources */,
+				46EA0E891472641500F42855 /* JTTableViewCellFactory.m in Sources */,
+				46EA0E8A1472641500F42855 /* JTTableViewCellModal.m in Sources */,
+				46EA0E8B1472641500F42855 /* JTTableViewDatasource.m in Sources */,
+				46EA0E8E147264B100F42855 /* HomeSidebarViewController_iPhone.m in Sources */,
 				1FCCC2F91474AE00000F03F4 /* eXoFullScreenView.m in Sources */,
 				1FC3453B1474FD3600540016 /* ActivityAnswerDetailMessageTableViewCell.m in Sources */,
 				1FCF4A491476413E00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m in Sources */,
@@ -4609,7 +4667,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1";
+				PRODUCT_NAME = "eXo CR1-Test new iPhone Menu";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "430B43DA-4050-459B-8660-C9EA176D98B5";
 				SDKROOT = iphoneos;
@@ -4648,7 +4706,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1";
+				PRODUCT_NAME = "eXo CR1-Test new iPhone Menu";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -4722,7 +4780,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1";
+				PRODUCT_NAME = "eXo CR1-Test new iPhone Menu";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4797,7 +4855,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "eXo CR1";
+				PRODUCT_NAME = "eXo CR1-Test new iPhone Menu";
 				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";

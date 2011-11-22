@@ -10,9 +10,21 @@
 #import "DashboardProxy.h"
 #import "GadgetItem.h"
 #import "GadgetDisplayViewController_iPhone.h"
-
+#import "AppDelegate_iPhone.h"
+#import "JTRevealSidebarView.h"
+#import "JTNavigationView.h"
 
 @implementation DashboardViewController_iPhone
+
+
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.title = self.title;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+}
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -24,10 +36,10 @@
 bundle:nil 
 gadget:gadgetTmp];
 
-    [self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
-    [gadgetDisplayViewController release];
+    //[self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:gadgetDisplayViewController.view animated:YES];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 

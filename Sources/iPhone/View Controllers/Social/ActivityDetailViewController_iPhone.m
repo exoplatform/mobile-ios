@@ -14,8 +14,29 @@
 #import "MessageComposerViewController.h"
 #import "defines.h"
 #import "ActivityLinkDisplayViewController_iPhone.h"
+#import "AppDelegate_iPhone.h"
+#import "JTRevealSidebarView.h"
+#import "JTNavigationView.h"
 
 @implementation ActivityDetailViewController_iPhone
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.view.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
+
+
+    
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.title = self.title;
+
+}
 
 
 - (void)onBtnMessageComposer
@@ -27,11 +48,15 @@
     messageComposerViewController.isPostMessage = NO;
     messageComposerViewController.strActivityID = _socialActivityStream.activityId;
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    
-    [self.navigationController presentModalViewController:navController animated:YES];
-    
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
+    
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+    
+    [self presentModalViewController:navController animated:YES];
+
+    
+    
 }
 #pragma mark - Loader Management
 - (void)setHudPosition {

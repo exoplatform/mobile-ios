@@ -16,9 +16,9 @@
 {
         UIImage *image = [UIImage imageNamed:@"NavBarIphone.png"];
         [image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [self setTintColor:[UIColor colorWithRed:76./255 
-                                                                          green:76./255 
-                                                                           blue:76./255 
+        [self setTintColor:[UIColor colorWithRed:112./255 
+                                                                          green:112./255 
+                                                                           blue:112./255 
                                                                           alpha:1.]];
 }
 

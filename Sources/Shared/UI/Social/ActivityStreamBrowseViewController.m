@@ -206,8 +206,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     self.title = Localize(@"News");
     
-    _tblvActivityStream.backgroundColor = [UIColor clearColor];
-    
+    //_tblvActivityStream.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
+    _tblvActivityStream.backgroundColor = EXO_BACKGROUND_COLOR;
+
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		

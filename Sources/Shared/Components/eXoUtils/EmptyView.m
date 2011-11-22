@@ -42,9 +42,9 @@
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height/2 - image.size.height/2 + distance, frame.size.width, 40)];
         label.backgroundColor = [UIColor clearColor];//
         label.textAlignment = UITextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
+        label.textColor = [UIColor colorWithRed:112./255 green:112./255 blue:112./255 alpha:1.];
         label.numberOfLines = 2;
-        label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13.0];
         label.text = content;
         label.autoresizingMask =  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
         [self addSubview:label];
