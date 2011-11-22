@@ -323,6 +323,18 @@
     <key>TaskUpdated</key>
     <string>has just updated the task:</string>
     
+    <key>Description</key>
+    <string>Description</string>
+    <key>Location</key>
+    <string>Location</string>
+    <key>StartTime</key>
+    <string>Start Time</string>
+    <key>EndTime</key>
+    <string>End Time</string>
+    
+    
+    
+    
     
     <key>NoComment</key>
     <string>No one has commented, be the first one</string>
