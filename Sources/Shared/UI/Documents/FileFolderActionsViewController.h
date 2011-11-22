@@ -27,7 +27,7 @@
 @end
 
 
-@interface FileFolderActionsViewController :  eXoViewController 
+@interface FileFolderActionsViewController :  eXoViewController <UITextFieldDelegate>
 {
     File*                                   _fileToApplyAction;
     

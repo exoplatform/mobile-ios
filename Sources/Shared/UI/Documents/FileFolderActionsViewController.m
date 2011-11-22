@@ -7,7 +7,7 @@
 //
 
 #import "FileFolderActionsViewController.h"
-
+#import "defines.h"
 
 @implementation FileFolderActionsViewController
 
@@ -49,13 +49,29 @@
     
 	_txtfNameInput.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-   
-    
     
     [self updateUI];
     
     [_txtfNameInput becomeFirstResponder];
     
+}
+
+#pragma mark TextField methods
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // Only characters in the NSCharacterSet you choose will insertable.
+    NSCharacterSet *invalidCharSet = nil;
+    
+  
+    invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:SPECIAL_CHAR_NAME_SET] invertedSet];
+  
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+    
+    if(string && [string length] > 0)
+        return ![string isEqualToString:filtered];
+    
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning 

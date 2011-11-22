@@ -16,67 +16,38 @@
 @synthesize fileName=_fileName, urlStr=_urlStr, contentType=_contentType, isFolder=_isFolder;
 
 
-+ (NSString *)fileType:(NSString *)fileName
++ (NSString *)fileType:(NSString *)type
 {	
-	if([fileName length] < 5)
-		return @"unknownFileIcon.png";
-	else
-	{
-		NSRange range = NSMakeRange([fileName length] - 4, 4);
-		NSString *tmp = [fileName substringWithRange:range];
-		tmp = [tmp lowercaseString];
-		
-		if([tmp isEqualToString:@".png"] || [tmp isEqualToString:@".jpg"] || [tmp isEqualToString:@".jpeg"] || 
-		   [tmp isEqualToString:@".gif"] || [tmp isEqualToString:@".psd"] || [tmp isEqualToString:@".tiff"] ||
-		   [tmp isEqualToString:@".bmp"] || [tmp isEqualToString:@".pict"])
-		{	
-			return @"DocumentIconForImage.png";
-		}	
-		if([tmp isEqualToString:@".rtf"] || [tmp isEqualToString:@".rtfd"] || [tmp isEqualToString:@".txt"])
-		{	
-			return @"DocumentIconForTxt.png";
-		}
-        if([tmp isEqualToString:@".mdb"])
-		{	
-			return @"DocumentIconForMdb.png";
-		}
-		if([tmp isEqualToString:@".pdf"])
-		{	
-			return @"DocumentIconForPdf.png";
-		}
-		if([tmp isEqualToString:@".doc"])
-		{	
-			return @"DocumentIconForWord.png";
-		}
-		if([tmp isEqualToString:@".ppt"])
-		{	
-			return @"DocumentIconForPpt.png";
-		}
-		if([tmp isEqualToString:@".xls"])
-		{	
-			return @"DocumentIconForXls.png";
-		}
-		if([tmp isEqualToString:@".swf"])
-		{	
-			return @"DocumentIconForSwf.png";
-		}
-		if([tmp isEqualToString:@".mp3"] || [tmp isEqualToString:@".aac"] || [tmp isEqualToString:@".wav"])
-		{	
-			return @"DocumentIconForMusic.png";
-		}	
-		if([tmp isEqualToString:@".mov"])
-		{	
-			return @"DocumentIconForVideo.png";
-		}
-		return @"DocumentIconForUnknown.png";
-	}
+    NSString* strIconFileName = @"unknownFileIcon.png";
+    if (type != nil || type.length > 0) {
+        if (([type rangeOfString:@"image"]).length > 0)
+            strIconFileName = @"DocumentIconForImage.png";
+        else if (([type rangeOfString:@"video"]).length > 0)
+            strIconFileName = @"DocumentIconForVideo.png";
+        else if (([type rangeOfString:@"audio"]).length > 0)
+            strIconFileName = @"DocumentIconForMusic.png";
+        else if (([type rangeOfString:@"application/msword"]).length > 0)
+            strIconFileName = @"DocumentIconForWord.png";
+        else if (([type rangeOfString:@"application/pdf"]).length > 0)
+            strIconFileName = @"DocumentIconForPdf.png";
+        else if (([type rangeOfString:@"application/xls"]).length > 0)
+            strIconFileName = @"DocumentIconForXls.png";
+        else if (([type rangeOfString:@"application/vnd.ms-powerpoint"]).length > 0)
+            strIconFileName = @"DocumentIconForPpt.png";
+        else if (([type rangeOfString:@"text"]).length > 0)
+            strIconFileName = @"DocumentIconForTxt.png";
+    } else
+        strIconFileName = @"unknownFileIcon.png";
+    
+    return strIconFileName;
+
 }
 
 
 
 -(BOOL)isFolder:(NSString *)urlStr
 {
-	_contentType = [[NSString alloc] initWithString:@""];
+	self.contentType = [[NSString alloc] initWithString:@"text/html"];
 	
 	urlStr = [urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 	
@@ -119,7 +90,7 @@
 		NSRange contentTypeRange1 = [responseStr rangeOfString:@"<D:getcontenttype>"];
 		NSRange contentTypeRange2 = [responseStr rangeOfString:@"</D:getcontenttype>"];
 		if(contentTypeRange1.length > 0 && contentTypeRange2.length > 0)
-            _contentType = [responseStr substringWithRange:
+            self.contentType = [responseStr substringWithRange:
                             NSMakeRange(contentTypeRange1.location + contentTypeRange1.length, 
                                         contentTypeRange2.location - contentTypeRange1.location - contentTypeRange1.length)];
 	}

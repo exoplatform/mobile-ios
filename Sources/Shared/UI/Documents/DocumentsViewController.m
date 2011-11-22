@@ -327,7 +327,7 @@
     if(file.isFolder){
         imgViewFile.image = [UIImage imageNamed:@"DocumentIconForFolder.png"];
     } else{
-        imgViewFile.image = [UIImage imageNamed:[File fileType:file.fileName]];
+        imgViewFile.image = [UIImage imageNamed:[File fileType:file.contentType]];
     }
     
     UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];

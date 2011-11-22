@@ -48,6 +48,7 @@
     [self showLoader];
     _webView.delegate = self;
     _webView.opaque = NO;
+
    
     
     if(_url != nil)
