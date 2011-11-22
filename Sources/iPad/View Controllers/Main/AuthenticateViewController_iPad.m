@@ -424,11 +424,14 @@
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
     
-    [_hud completeAndDismissWithTitle:Localize(@"Success")];
+    
     
     //Setup Version Platfrom and Application
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){
+        
+        [_hud completeAndDismissWithTitle:Localize(@"Success")];
+        
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         if([platformServerVersion.isMobileCompliant boolValue]){
@@ -436,6 +439,7 @@
             appDelegate.isCompatibleWithSocial = compatibleWithSocial;
             [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
         } else {
+            [_hud dismiss];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
                                                             message:Localize(@"NotCompliant") 
                                                            delegate:nil 
@@ -446,6 +450,7 @@
         }
 	
     } else {
+        [_hud dismiss];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
