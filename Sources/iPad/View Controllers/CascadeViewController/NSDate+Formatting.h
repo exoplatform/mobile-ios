@@ -28,5 +28,6 @@
 - (NSString *)distanceOfTimeInWords;
 - (NSString *)distanceOfTimeInWordsWithTimeInterval:(double)postedTime;
 - (NSString *)distanceOfTimeInWords:(NSDate *)date;
+- (NSString *)dateWithTimeInterval:(NSString *)string;
 
 @end

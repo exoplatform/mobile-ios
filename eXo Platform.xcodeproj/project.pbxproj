@@ -20,6 +20,8 @@
 		1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCBCC27143D4BB300CC4F21 /* EmptyView.m */; };
 		1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D3146A72990040989B /* eXoDisplayViewController.m */; };
 		1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */; };
+		1FCC6FF1147A5C7A00BBB64F /* ActivityCalendarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC6FF0147A5C7900BBB64F /* ActivityCalendarTableViewCell.m */; };
+		1FCC6FF3147A5C9600BBB64F /* ActivityCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCC6FF2147A5C9500BBB64F /* ActivityCalendarTableViewCell.xib */; };
 		1FCCC2F91474AE00000F03F4 /* eXoFullScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */; };
 		1FCD3086143959F000C5BE6D /* disclosureActionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */; };
 		1FCD39ED143A9A6C00C814C5 /* DocumentActionPopupAddFolderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD39BE143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon.png */; };
@@ -74,6 +76,8 @@
 		1FCD8093145E9A62009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCD8092145E9A60009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib */; };
 		1FCDDB6F14481ED100846232 /* ActivityPictureDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDDB6D14481ECF00846232 /* ActivityPictureDetailMessageTableViewCell.m */; };
 		1FCDDB7014481ED100846232 /* ActivityPictureDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCDDB6E14481ED000846232 /* ActivityPictureDetailMessageTableViewCell.xib */; };
+		1FCDF076147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCDF075147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib */; };
+		1FCDF079147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDF078147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m */; };
 		1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */; };
 		1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */; };
 		1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */; };
@@ -856,6 +860,9 @@
 		1FCC23D3146A72990040989B /* eXoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoDisplayViewController.m; sourceTree = "<group>"; };
 		1FCC23D4146A72990040989B /* eXoTapDetectingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoTapDetectingWindow.h; sourceTree = "<group>"; };
 		1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoTapDetectingWindow.m; sourceTree = "<group>"; };
+		1FCC6FEF147A5C7900BBB64F /* ActivityCalendarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCalendarTableViewCell.h; path = Social/ActivityCalendarTableViewCell.h; sourceTree = "<group>"; };
+		1FCC6FF0147A5C7900BBB64F /* ActivityCalendarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCalendarTableViewCell.m; path = Social/ActivityCalendarTableViewCell.m; sourceTree = "<group>"; };
+		1FCC6FF2147A5C9500BBB64F /* ActivityCalendarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityCalendarTableViewCell.xib; path = Social/ActivityCalendarTableViewCell.xib; sourceTree = "<group>"; };
 		1FCCC2F71474ADFF000F03F4 /* eXoFullScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoFullScreenView.h; sourceTree = "<group>"; };
 		1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoFullScreenView.m; sourceTree = "<group>"; };
 		1FCD3085143959ED00C5BE6D /* disclosureActionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosureActionButton.png; sourceTree = "<group>"; };
@@ -913,6 +920,9 @@
 		1FCDDB6C14481ECD00846232 /* ActivityPictureDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityPictureDetailMessageTableViewCell.h; path = Social/ActivityPictureDetailMessageTableViewCell.h; sourceTree = "<group>"; };
 		1FCDDB6D14481ECF00846232 /* ActivityPictureDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityPictureDetailMessageTableViewCell.m; path = Social/ActivityPictureDetailMessageTableViewCell.m; sourceTree = "<group>"; };
 		1FCDDB6E14481ED000846232 /* ActivityPictureDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityPictureDetailMessageTableViewCell.xib; path = Social/ActivityPictureDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
+		1FCDF075147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityCalendarDetailMessageTableViewCell.xib; path = Social/ActivityCalendarDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
+		1FCDF077147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCalendarDetailMessageTableViewCell.h; path = Social/ActivityCalendarDetailMessageTableViewCell.h; sourceTree = "<group>"; };
+		1FCDF078147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCalendarDetailMessageTableViewCell.m; path = Social/ActivityCalendarDetailMessageTableViewCell.m; sourceTree = "<group>"; };
 		1FCE304914453EB6004AE55F /* SocialPictureAttach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPictureAttach.h; sourceTree = "<group>"; };
 		1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPictureAttach.m; sourceTree = "<group>"; };
 		1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityPictureTableViewCell.h; path = Social/ActivityPictureTableViewCell.h; sourceTree = "<group>"; };
@@ -2163,6 +2173,9 @@
 				1FD91DBD1471092E00DBDED0 /* ActivityAnswerTableViewCell.h */,
 				1FD91DBE1471092E00DBDED0 /* ActivityAnswerTableViewCell.m */,
 				1FD91DC0147109A000DBDED0 /* ActivityAnswerTableViewCell.xib */,
+				1FCC6FEF147A5C7900BBB64F /* ActivityCalendarTableViewCell.h */,
+				1FCC6FF0147A5C7900BBB64F /* ActivityCalendarTableViewCell.m */,
+				1FCC6FF2147A5C9500BBB64F /* ActivityCalendarTableViewCell.xib */,
 			);
 			name = ActivityKind;
 			sourceTree = "<group>";
@@ -2244,6 +2257,9 @@
 				1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */,
 				1FCF4A471476413700EEB9C7 /* ActivityLinkDetailMessageTableViewCell.h */,
 				1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */,
+				1FCDF075147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib */,
+				1FCDF077147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.h */,
+				1FCDF078147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m */,
 			);
 			name = ActivityDetail;
 			sourceTree = "<group>";
@@ -4316,6 +4332,8 @@
 				8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */,
 				1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */,
 				1FCF4A461476410900EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */,
+				1FCC6FF3147A5C9600BBB64F /* ActivityCalendarTableViewCell.xib in Resources */,
+				1FCDF076147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4506,6 +4524,8 @@
 				1FCCC2F91474AE00000F03F4 /* eXoFullScreenView.m in Sources */,
 				1FC3453B1474FD3600540016 /* ActivityAnswerDetailMessageTableViewCell.m in Sources */,
 				1FCF4A491476413E00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m in Sources */,
+				1FCC6FF1147A5C7A00BBB64F /* ActivityCalendarTableViewCell.m in Sources */,
+				1FCDF079147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,6 +50,15 @@
 }
 
 
+-(NSString *)dateWithTimeInterval:(NSString *)string {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[string doubleValue]/1000];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm"];
+    NSString *stringDate = [dateFormatter stringFromDate:date];
+    [dateFormatter release];
+    return stringDate;
+}
+
 - (NSString *)distanceOfTimeInWordsWithTimeInterval:(double)postedTime {
     
     long postedTimeInSecond = round(postedTime/1000);

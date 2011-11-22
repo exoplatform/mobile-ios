@@ -99,13 +99,19 @@
         }else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AnswerAdd"]){
             _activityType = ACTIVITY_ANSWER_QUESTION;
         }//
+    }else if([_type rangeOfString:@"cs-calendar"].length > 0){//
+        if([[_templateParams valueForKey:@"EventType"] isEqualToString:@"EventAdded"]){
+            _activityType = ACTIVITY_CALENDAR_ADD_EVENT;
+        } else if([[_templateParams valueForKey:@"EventType"] isEqualToString:@"EventUpdated"]){
+            _activityType = ACTIVITY_CALENDAR_UPDATE_EVENT;
+        }else if([[_templateParams valueForKey:@"EventType"] isEqualToString:@"TaskAdded"]){
+            _activityType = ACTIVITY_CALENDAR_ADD_TASK;
+        }else if([[_templateParams valueForKey:@"EventType"] isEqualToString:@"TaskUpdated"]){
+            _activityType = ACTIVITY_CALENDAR_UPDATE_TASK;
+        }
     }else {
         _activityType = ACTIVITY_DEFAULT;
     }
-    
-    
-    
-    
 }
 
 

@@ -155,6 +155,24 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
         }
             break;
+        case ACTIVITY_CALENDAR_UPDATE_TASK:
+        case ACTIVITY_CALENDAR_ADD_TASK:
+        case ACTIVITY_CALENDAR_ADD_EVENT:
+        case ACTIVITY_CALENDAR_UPDATE_EVENT:
+        {
+            if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_ADD_EVENT){//
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EventAdded"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+                
+            } else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EventUpdated"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+            } else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_ADD_TASK) {
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskAdded"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+            }else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskUpdated"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+            }
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 64;
+        }
+            break;
         default:{
             text = activtyStreamDetail.title;
             fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
@@ -240,6 +258,24 @@
             fHeight += [ActivityHelper getHeightSizeForText:textStr andTableViewWidth:fWidth];
             text = [activtyStream.templateParams valueForKey:@"Name"];
             fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+        }
+            break;
+        case ACTIVITY_CALENDAR_UPDATE_TASK:
+        case ACTIVITY_CALENDAR_ADD_TASK:
+        case ACTIVITY_CALENDAR_ADD_EVENT:
+        case ACTIVITY_CALENDAR_UPDATE_EVENT:
+        {
+            if(activtyStream.activityType == ACTIVITY_CALENDAR_ADD_EVENT){//
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventAdded"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
+                
+            } else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventUpdated"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
+            } else if(activtyStream.activityType == ACTIVITY_CALENDAR_ADD_TASK) {
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskAdded"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
+            }else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
+                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskUpdated"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
+            }
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 64;
         }
             break;
         default:{

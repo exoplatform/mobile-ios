@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ActivityDetailCommentTableViewCell.h"
 #import "ActivityDetailMessageTableViewCell.h"
+#import "ActivityCalendarDetailMessageTableViewCell.h"
 #import "ActivityPictureDetailMessageTableViewCell.h"
 #import "ActivityLinkDetailMessageTableViewCell.h"
 #import "ActivityDetailLikeTableViewCell.h"
@@ -232,68 +233,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-//    CGSize theSize;
-//    NSString* textStr;
-//    float fWidth = tableView.frame.size.width;
+
     int n = 0;
     if (indexPath.section == 0) 
     {
-//        switch (_socialActivityStream.activityType) {
-//            case ACTIVITY_DOC:{
-//                n = [self getHeighSizeForTableView:tableView andText:_socialActivityStream.title] + 70;
-//            }
-//                break;  
-//            case ACTIVITY_WIKI_ADD_PAGE:
-//            case ACTIVITY_WIKI_MODIFY_PAGE:
-//            {
-//                
-//                if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-//                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"EditWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
-//                    
-//                } else if([[_socialActivityStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-//                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[_socialActivityStream.templateParams valueForKey:@"page_name"]];
-//                }
-//                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-//                                  lineBreakMode:UILineBreakModeWordWrap];
-//                
-//                if([[_socialActivityStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
-//                    n = theSize.height + 80;
-//                } else {
-//                    NSString* text = [_socialActivityStream.templateParams valueForKey:@"page_exceprt"];
-//                    n = [self getHeighSizeForTableView:tableView andText:text] + theSize.height + 5;
-//                }
-//                //n = 50 + theSize.height + fHeight;
-//            }
-//                break;
-//            case ACTIVITY_FORUM_CREATE_POST: 
-//            case ACTIVITY_FORUM_CREATE_TOPIC:
-//            case ACTIVITY_FORUM_UPDATE_POST:
-//            case ACTIVITY_FORUM_UPDATE_TOPIC:{
-//                if(_socialActivityStream.activityType == ACTIVITY_FORUM_CREATE_POST){
-//                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [_socialActivityStream.templateParams valueForKey:@"PostName"]];
-//                } else if(_socialActivityStream.activityType == ACTIVITY_FORUM_CREATE_TOPIC) {
-//                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName,  Localize(@"NewTopic"), [_socialActivityStream.templateParams valueForKey:@"TopicName"]];
-//                }else if(_socialActivityStream.activityType == ACTIVITY_FORUM_UPDATE_POST) {
-//                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName,  Localize(@"UpdatePost"), [_socialActivityStream.templateParams valueForKey:@"PostName"]];
-//                }else if(_socialActivityStream.activityType == ACTIVITY_FORUM_UPDATE_TOPIC) {
-//                    textStr = [NSString stringWithFormat:@"%@ %@ %@", _socialActivityStream.posterUserProfile.fullName,  Localize(@"UpdateTopic"), [_socialActivityStream.templateParams valueForKey:@"TopicName"]];
-//                }
-//                theSize = [textStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-//                                  lineBreakMode:UILineBreakModeWordWrap];
-//                //Set the size of the cell
-//                NSString* text = _socialActivityStream.title;
-//                float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
-//                n =  fHeight + theSize.height;
-//            }
-//                break;
-//            default:{
-//                NSString* text = _socialActivityStream.title;
-//                float fHeight = [self getHeighSizeForTableView:tableView andText:text ];
-//                //[cell setFrame:CGRectMake(0, 0, fWidth, fHeight)];
-//                n = fHeight;
-//            }
-//                break;
-//        }
         _socialActivityDetails.activityType = _socialActivityStream.activityType;
         return _socialActivityDetails.cellHeight;
     }
@@ -321,6 +264,8 @@
     static NSString *kIdentifierActivityWikiDetailMessageTableViewCell = @"ActivityWikiDetailMessageTableViewCell";
     static NSString *kIdentifierActivityAnswerDetailMessageTableViewCell = @"kIdentifierActivityAnswerDetailMessageTableViewCell";
     static NSString *kIdentifierActivityLinkDetailMessageTableViewCell = @"kIdentifierActivityLinkDetailMessageTableViewCell";
+    static NSString *kIdentifierActivityCalendarDetailMessageTableViewCell = @"kIdentifierActivityCalendarDetailMessageTableViewCell";
+    
     static NSString *kIdentifierActivityDetailLikeTableViewCell = @"ActivityDetailLikeTableViewCell";
     static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
     
@@ -385,6 +330,24 @@
                 
             }
                 break;
+            case ACTIVITY_CALENDAR_UPDATE_TASK: 
+            case ACTIVITY_CALENDAR_ADD_TASK:
+            case ACTIVITY_CALENDAR_UPDATE_EVENT:
+            case ACTIVITY_CALENDAR_ADD_EVENT:{
+                cell = (ActivityCalendarDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityCalendarDetailMessageTableViewCell];
+                //Check if we found a cell
+                if (cell == nil) 
+                {
+                    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityCalendarDetailMessageTableViewCell" owner:self options:nil];
+                    cell = (ActivityCalendarDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                    //Create a cell, need to do some configurations
+                    [cell configureCell];
+                    
+                    //Set the delegate of the webview
+                    cell.webViewForContent.delegate = self;
+                }
+            }
+                break; 
             case ACTIVITY_ANSWER_QUESTION:
             case ACTIVITY_ANSWER_ADD_QUESTION:
             case ACTIVITY_ANSWER_UPDATE_QUESTION:{

@@ -13,6 +13,7 @@
 #import "ActivityWikiTableViewCell.h"
 #import "ActivityLinkTableViewCell.h"
 #import "ActivityAnswerTableViewCell.h"
+#import "ActivityCalendarTableViewCell.h"
 #import "NSDate+Formatting.h"
 #import "ActivityDetailViewController.h"
 #import "AppDelegate_iPad.h"
@@ -40,6 +41,7 @@ static NSString* kCellIdentifierForum = @"ActivityForumCell";
 static NSString* kCellIdentifierWiki = @"ActivityWikiCell";
 static NSString* kCellIdentifierLink = @"ActivityLinkCell";
 static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
+static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 @interface ActivityStreamBrowseViewController (PrivateMethods)
 - (void)loadImagesForOnscreenRows;
@@ -486,6 +488,25 @@ static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
             }
         }
             break;
+        case ACTIVITY_CALENDAR_UPDATE_TASK:
+        case ACTIVITY_CALENDAR_UPDATE_EVENT:
+        case ACTIVITY_CALENDAR_ADD_EVENT:
+        case ACTIVITY_CALENDAR_ADD_TASK:
+        {
+            //We dequeue a cell
+            cell  = (ActivityCalendarTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierCalendar];
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityCalendarTableViewCell" owner:self options:nil];
+                cell = (ActivityCalendarTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some Configurations
+                [cell configureCellForWidth:tableView.frame.size.width];
+            }
+        }
+            break;
+        
         default:{
             //We dequeue a cell
             cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
