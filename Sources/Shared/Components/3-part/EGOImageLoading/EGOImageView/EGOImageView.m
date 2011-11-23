@@ -74,7 +74,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	}
     
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
-	__block UIImage* anImage = [[EGOCache currentCache] imageForKey:keyForURL(aURL,nil)];
+	/*__block UIImage* anImage = [[EGOCache currentCache] imageForKey:keyForURL(aURL,nil)];
     
     dispatch_queue_t queue = dispatch_get_global_queue(
                                                        DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
@@ -85,6 +85,13 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
                                                         bounds:sizeToResize 
                                           interpolationQuality:kCGInterpolationDefault];
     });
+    */
+    
+    UIImage* anImage = [[EGOCache currentCache] imageForKey:keyForURL(aURL,nil)];
+
+    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                        bounds:sizeToResize 
+                                          interpolationQuality:kCGInterpolationDefault];
     
 	if(anImage) {
 		self.image = anImage;
@@ -109,7 +116,9 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	}
 
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
-	__block UIImage* anImage = [[EGOImageLoader sharedImageLoader] imageForURL:aURL shouldLoadWithObserver:self];
+    
+	/*
+    __block UIImage* anImage = [[EGOImageLoader sharedImageLoader] imageForURL:aURL shouldLoadWithObserver:self];
     
     dispatch_queue_t queue = dispatch_get_global_queue(
                                                        DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
@@ -121,6 +130,13 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
                                               interpolationQuality:kCGInterpolationDefault];
     });
     
+    */
+    
+    UIImage* anImage = [[EGOImageLoader sharedImageLoader] imageForURL:aURL shouldLoadWithObserver:self];
+    
+    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                        bounds:sizeToResize 
+                                          interpolationQuality:kCGInterpolationDefault];
     
 	if(anImage) {
 		self.image = anImage;
@@ -150,6 +166,12 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 - (void)imageLoaderDidLoad:(NSNotification*)notification {
 	if(![[[notification userInfo] objectForKey:@"imageURL"] isEqual:self.imageURL]) return;
 
+    UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
+    if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
+                                                        bounds:sizeToResize 
+                                          interpolationQuality:kCGInterpolationDefault];
+    
+    /*
 	__block UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
 
     dispatch_queue_t queue = dispatch_get_global_queue(
@@ -161,7 +183,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
                                                             bounds:sizeToResize 
                                               interpolationQuality:kCGInterpolationDefault];
     });
-    
+    */
     
 	self.image = anImage;
 	[self setNeedsDisplay];
