@@ -4643,7 +4643,7 @@
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nguyen Khac Trung (68LM5Q2C35)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mai Thanh Xuyen (Y8MG4Q3BJ2)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4669,7 +4669,7 @@
 				);
 				PRODUCT_NAME = "eXo CR1-Test new iPhone Menu";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "430B43DA-4050-459B-8660-C9EA176D98B5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2FAEFEA-D36D-4BF2-975F-94562002DCCD";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

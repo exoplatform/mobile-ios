@@ -55,7 +55,7 @@
     [_txtfNameInput becomeFirstResponder];
     
 }
-
+/*
 #pragma mark TextField methods
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -73,7 +73,7 @@
     
     return YES;
 }
-
+*/
 - (void)didReceiveMemoryWarning 
 {
 	// Releases the view if it doesn't have a superview.

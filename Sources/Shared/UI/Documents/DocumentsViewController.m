@@ -592,15 +592,36 @@
     
 }
 
+- (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
+    
+    NSCharacterSet *invalidCharSet = nil;
+    
+    
+    invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:chars] invertedSet];
+    
+    NSString *filtered = [[str componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+    
+    return [str rangeOfString:filtered].length > 0;    
+}
 
 //Method needed to call to create a new folder
 -(void)createNewFolder:(NSString *)newFolderName {
     
     [self hideFileFolderActionsController];
     
-    BOOL bExist;
+    BOOL bExist = NO;
     if([newFolderName length] > 0)
     {
+        
+        //Check if server name or url contains special chars
+        if ([self nameContainSpecialCharacter:newFolderName inSet:SPECIAL_CHAR_NAME_SET]) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            
+            return;
+        }
+
         for (File* file in _arrayContentOfRootFile) {
             if([newFolderName isEqualToString:file.fileName])
             {
@@ -679,6 +700,17 @@
     
     if([newFolderName length] > 0)
     {
+        
+        //Check if server name or url contains special chars
+        if ([self nameContainSpecialCharacter:newFolderName inSet:SPECIAL_CHAR_NAME_SET]) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            
+            return;
+        }
+
+        
         BOOL bExist = NO;
         
         for (File* file in _arrayContentOfRootFile) {

@@ -345,7 +345,7 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
     [picker dismissModalViewControllerAnimated:YES];  
-    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];    
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
     self.navigationItem.rightBarButtonItem.enabled = YES;

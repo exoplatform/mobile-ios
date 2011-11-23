@@ -337,7 +337,7 @@
     <string>No one has commented, be the first one</string>
     
     <key>SpecialCharacters</key>
-    <string>Special characters are not allowed in the server name</string>
+    <string>Special characters are not allowed</string>
     
 </dict>
 </plist>
