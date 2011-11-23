@@ -369,7 +369,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 	headerLabel.opaque = NO;
 	headerLabel.textColor = [UIColor darkGrayColor];
 	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
-    headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
+    headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.5];
     headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = UITextAlignmentRight;
 	headerLabel.frame = CGRectMake(0.0, 0.0, _tblvActivityStream.frame.size.width-5, kHeightForSectionHeader);
@@ -380,8 +380,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderNormalBg.png"];
-    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:@"Today"]) {
+    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:Localize(@"Today"])) {
         imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderHighlightedBg.png"];
+        headerLabel.textColor = [UIColor colorWithRed:21./255 green:94./255 blue:173./255 alpha:1.];
     }
     
     UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:5 topCapHeight:7]];
