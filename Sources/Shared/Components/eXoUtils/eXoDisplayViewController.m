@@ -49,8 +49,6 @@
     _webView.delegate = self;
     _webView.opaque = NO;
 
-   
-    
     if(_url != nil)
 	{
 		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
@@ -64,19 +62,14 @@
 }
 
 -(void)fullScreen {
-    UIWebView *webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    webview.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    webview.delegate = self;
-    webview.opaque = YES;
-    webview.autoresizesSubviews = YES;
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-    [request setURL:_url]; 
-    [webview loadRequest:request];
-    [request release];
     eXoFullScreenView *viewController = [[eXoFullScreenView alloc] initWithNibName:nil bundle:nil];
-    viewController.view.frame = webview.frame;
-    [viewController.view addSubview:webview];
     
+    if(_webView.superview != nil){
+        [_webView removeFromSuperview];
+    }
+    [viewController.view addSubview:_webView];
+    
+//    _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     navigationBar = [[UINavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
                                                         initWithTitle:@"Close" 
@@ -85,17 +78,29 @@
                                                         action:@selector(close)];
 
     
-
+    CGRect frame = _webView.frame;
+    frame.origin.y -= _navigation.frame.size.height;
+    frame.size.height = navigationBar.view.bounds.size.height;
+    frame.size.width = navigationBar.view.bounds.size.width;
+    _webView.frame = frame;
+    
     viewController.modalPresentationStyle = UIModalPresentationFullScreen;
     viewController.wantsFullScreenLayout = YES;
 
-    [webview release];
     [viewController release];
     
     [[[AppDelegate_iPad instance] rootViewController] presentModalViewController:navigationBar animated:YES];
 }
 -(void)close {
-
+    CGRect frame = _webView.frame;
+    frame.origin.y += _navigation.frame.size.height;
+    frame.size.width = self.view.bounds.size.width;
+    frame.size.height = self.view.bounds.size.height;
+    _webView.frame = frame;
+    if(_webView.superview != nil){
+        [_webView removeFromSuperview];
+    }
+    [self.view addSubview:_webView];
     [navigationBar dismissModalViewControllerAnimated:YES];
 }
 
@@ -156,6 +161,10 @@
         tmpRect.size.width = WIDTH_PORTRAIT_WEBVIEW;
         tmpRect.origin.x = DISTANCE_PORTRAIT;
         self.view.frame = tmpRect;
+    }
+    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
+    if(emptyview != nil){
+        [emptyview changeOrientation];
     }
 }
 

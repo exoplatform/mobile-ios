@@ -45,12 +45,12 @@
     self.wantsFullScreenLayout = YES;
     
     // because on iOS 5, when init class the function willAnimateRotationToInterfaceOrientation don't call
-    NSLog(@"%f", [[[UIDevice currentDevice] systemVersion] floatValue]);
-    if([[[UIDevice currentDevice] systemVersion] floatValue] < IOS_5){
-        first = YES;
-    }else {
-        first = NO;
-    }
+//    NSLog(@"%f", [[[UIDevice currentDevice] systemVersion] floatValue]);
+//    if([[[UIDevice currentDevice] systemVersion] floatValue] < IOS_5){
+//        first = YES;
+//    }else {
+//        first = NO;
+//    }
 }
 
 
@@ -70,10 +70,10 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
     // if the first time presentModalViewController, return (only on iso4)
-    if(first){
-        first = NO;
-        return;
-    }
+//    if(first){
+//        first = NO;
+//        return;
+//    }
     // when device rotate
     self.orientation = interfaceOrientation;
     [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_WEBVIEW_FULLSCREEN object:self];
