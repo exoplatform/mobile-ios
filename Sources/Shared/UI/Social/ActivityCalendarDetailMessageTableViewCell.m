@@ -24,11 +24,13 @@
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
     CGRect tmpFrame = CGRectZero;
-    width = fWidth;
+    //width = fWidth;
     if (fWidth > 320) {
         tmpFrame = CGRectMake(70, 0, WIDTH_FOR_CONTENT_IPAD, 21);
+        width = WIDTH_FOR_CONTENT_IPAD;
     } else {
-        tmpFrame = CGRectMake(70, 0, WIDTH_FOR_CONTENT_IPHONE, 21);
+        tmpFrame = CGRectMake(70, 0, WIDTH_FOR_CONTENT_IPHONE - 10, 21);
+        width = WIDTH_FOR_CONTENT_IPHONE;
     }
     
     _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
@@ -92,10 +94,6 @@
     CGRect tmpFrame = _webViewForContent.frame;
     tmpFrame.origin.y = 6;
     _webViewForContent.frame = tmpFrame;
-    
-    tmpFrame = _htmlMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
-    _lbMessage.frame = tmpFrame;
     
     CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];

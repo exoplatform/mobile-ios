@@ -308,7 +308,7 @@
                     cell = (ActivityWikiDetailMessageTableViewCell *)[nib objectAtIndex:0];
                     //Create a cell, need to do some configurations
                     [cell configureCell];
-                    
+                    [cell configureCellForSpecificContentWithWidth:tableView.frame.size.width];
                     //Set the delegate of the webview
                     cell.webViewForContent.delegate = self;
                 }
@@ -327,7 +327,7 @@
                     cell = (ActivityForumDetailMessageTableViewCell *)[nib objectAtIndex:0];
                     //Create a cell, need to do some configurations
                     [cell configureCell];
-                    
+                    [cell configureCellForSpecificContentWithWidth:tableView.frame.size.width];
                     //Set the delegate of the webview
                     cell.webViewForContent.delegate = self;
                 }
@@ -363,7 +363,7 @@
                     cell = (ActivityAnswerDetailMessageTableViewCell *)[nib objectAtIndex:0];
                     //Create a cell, need to do some configurations
                     [cell configureCell];
-                    
+                    [cell configureCellForSpecificContentWithWidth:tableView.frame.size.width];
                     //Set the delegate of the webview
                     cell.webViewForContent.delegate = self;
                 }

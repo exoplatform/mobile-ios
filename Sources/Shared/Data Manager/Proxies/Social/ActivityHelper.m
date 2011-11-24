@@ -169,7 +169,7 @@
             }else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
                 text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskUpdated"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 32;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 50;
             text = [activtyStreamDetail.templateParams valueForKey:@"EventDescription"];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [activtyStreamDetail.templateParams valueForKey:@"EventLocale"];
@@ -279,7 +279,7 @@
             }else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
                 text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskUpdated"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 32;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 50;
             text = [activtyStream.templateParams valueForKey:@"EventDescription"];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [activtyStream.templateParams valueForKey:@"EventLocale"];
