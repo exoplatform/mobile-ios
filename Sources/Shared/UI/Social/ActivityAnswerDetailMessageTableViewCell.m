@@ -25,7 +25,7 @@
         tmpFrame = CGRectMake(70, 0, WIDTH_FOR_CONTENT_IPAD, 21);
         width = WIDTH_FOR_CONTENT_IPAD;
     } else {
-        tmpFrame = CGRectMake(70, 0, WIDTH_FOR_CONTENT_IPHONE - 10, 21);
+        tmpFrame = CGRectMake(70, 0, WIDTH_FOR_CONTENT_IPHONE , 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
     
@@ -82,7 +82,7 @@
     
     NSLog(@"%@", [[_templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText]);
     //_lbMessage.text = [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
-    _htmlMessage.text = [_templateParams valueForKey:@"Name"];
+    _htmlMessage.html = [_templateParams valueForKey:@"Name"];
     [_htmlMessage sizeToFit];
     
     //_lbMessage.text = [socialActivityDetail.title stringByConvertingHTMLToPlainText];
