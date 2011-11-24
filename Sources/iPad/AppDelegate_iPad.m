@@ -73,6 +73,8 @@
     
     if (rootViewController == nil){
         rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
+    } else {
+        [rootViewController resetComponent];
     }
     
     [UIView transitionWithView:self.window

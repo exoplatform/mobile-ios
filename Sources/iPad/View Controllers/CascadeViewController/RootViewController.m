@@ -135,6 +135,10 @@
     [menuViewController tableView:menuViewController.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
+- (void)resetComponent{
+    [menuViewController tableView:menuViewController.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
