@@ -178,7 +178,21 @@ typedef enum {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma - Settings Delegate Methods
 
+-(void)doneWithSettings {
+    //    NSArray *listItems = _launcherView.pages;
+    //    for (TTLauncherItem *item in listItems){
+    //        
+    //    }
+    //[self loadView];
+    
+    //[self.revealView.contentView setNavigationBarHidden:NO animated:YES];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN]; 
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 #pragma mark Helper
 
@@ -393,21 +407,6 @@ typedef enum {
     [(UITableView *)[_revealView.sidebarView topView] reloadData];
 }
 
-
-#pragma - Settings Delegate Methods
-
--(void)doneWithSettings {
-    //    NSArray *listItems = _launcherView.pages;
-    //    for (TTLauncherItem *item in listItems){
-    //        
-    //    }
-    //[self loadView];
-    
-    //[self.revealView.contentView setNavigationBarHidden:NO animated:YES];
-
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
 
 
 @end
