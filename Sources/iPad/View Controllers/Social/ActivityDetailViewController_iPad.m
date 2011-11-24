@@ -36,7 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    //_navigationBar.topItem.title = Localize(@"Details");
+    _navigation.topItem.title = Localize(@"Details");
 }
 
 - (void)onBtnMessageComposer

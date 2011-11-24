@@ -29,7 +29,7 @@
     [super viewDidLoad];
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
     
-    //_navigation.topItem.title = Localize(@"News");
+    _navigation.topItem.title = Localize(@"News");
 }
 
 // Specific method to retrieve the height of the cell
