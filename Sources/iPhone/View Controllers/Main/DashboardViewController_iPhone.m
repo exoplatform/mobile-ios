@@ -32,7 +32,7 @@
     
     GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
 
-	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = (GadgetDisplayViewController_iPhone *)[[GadgetDisplayViewController alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone" 
+	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[GadgetDisplayViewController_iPhone alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone" 
 bundle:nil 
 gadget:gadgetTmp];
 
