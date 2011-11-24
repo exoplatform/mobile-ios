@@ -120,7 +120,7 @@ typedef enum {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,31,34)];
     [imageView setImage:image];
     
-    [buttonLogout addTarget:[AppDelegate_iPhone instance] action:@selector(onBtnSigtOutDelegate) forControlEvents:UIControlEventTouchUpInside];
+    [buttonLogout addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
     
     [buttonLogout addSubview:imageView];
@@ -147,6 +147,12 @@ typedef enum {
     [self.view addSubview:_revealView];
 }
 
+-(void)logout {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
+    [userDefaults synchronize];
+    [[AppDelegate_iPhone instance] onBtnSigtOutDelegate];
+}
 
 - (void)viewDidUnload
 {
@@ -188,8 +194,6 @@ typedef enum {
     //[self loadView];
     
     //[self.revealView.contentView setNavigationBarHidden:NO animated:YES];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN]; 
     
     [self dismissModalViewControllerAnimated:YES];
 }
