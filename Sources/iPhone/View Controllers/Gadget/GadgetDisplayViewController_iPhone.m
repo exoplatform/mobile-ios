@@ -12,6 +12,14 @@
 
 @implementation GadgetDisplayViewController_iPhone
 
+// custom init method
+- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
+{
+	if (self = [super initWithNibAndUrl:nibName bundle:nibBundle gadget:gadgetToLoad]) {
+        
+	}
+    return self;
+}
 
 
 - (void)viewDidLoad {
