@@ -35,7 +35,11 @@
 {
 	[super viewDidLoad];
     //Add the UIBarButtonItem for actions on the NavigationBar of the Controller
-    
+    if (_rootFile) {
+        _navigation.topItem.title = _rootFile.fileName;
+    } else {
+        _navigation.topItem.title = Localize(@"Documents") ;
+    }
 }
 
 - (void)contentDirectoryIsRetrieved{
@@ -75,15 +79,7 @@
     [super dealloc];
 }
 
-#pragma mark - UINavigationBar Management
 
-- (void)setTitleForFilesViewController {
-//    if (_rootFile) {
-//        _navigationBar.topItem.title = _rootFile.fileName;
-//    } else {
-//        _navigationBar.topItem.title = Localize(@"Documents") ;
-//    }
-}
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
