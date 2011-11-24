@@ -28,6 +28,11 @@
 	return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    _navigation.topItem.title = self.title;
+}
 
 - (void)setHudPosition {
     _hudView.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
