@@ -71,9 +71,9 @@
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
                                                                        url:url];
-    [self.navigationController pushViewController:linkWebViewController animated:YES];    
     
-    [linkWebViewController release];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:linkWebViewController.view animated:YES]; 
+    
 }
 
 #pragma mark - UIWebViewDelegateMethod 
@@ -88,9 +88,9 @@
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
                                                                        url:url];
-		[self.navigationController pushViewController:linkWebViewController animated:YES];    
         
-        [linkWebViewController release];
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:linkWebViewController.view animated:YES]; 
+
         
         return NO;
     }
