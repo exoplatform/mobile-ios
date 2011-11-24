@@ -62,6 +62,7 @@
     _htmlName.userInteractionEnabled = NO;
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
+    //_htmlName.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:_htmlName];
     
     
@@ -69,6 +70,7 @@
     _lbMessage.userInteractionEnabled = NO;
     _lbMessage.backgroundColor = [UIColor clearColor];
     _lbMessage.font = [UIFont systemFontOfSize:13.0];
+    //_lbMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:_lbMessage];
 }
 
@@ -115,6 +117,7 @@
     //Set the position of lbMessage
     CGRect tmpFrame = _lbMessage.frame;
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
+//    //tmpFrame.size.width -= 30;
     _lbMessage.frame = tmpFrame;
     
     NSString *startTime = [[NSDate date] dateWithTimeInterval:[[socialActivityStream.templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText]];
