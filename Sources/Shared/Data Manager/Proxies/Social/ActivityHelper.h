@@ -37,6 +37,7 @@
 #define ACTIVITY_CALENDAR_ADD_TASK  18
 #define ACTIVITY_CALENDAR_UPDATE_TASK  19
 
+#define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 @interface ActivityHelper : NSObject {
     
 }

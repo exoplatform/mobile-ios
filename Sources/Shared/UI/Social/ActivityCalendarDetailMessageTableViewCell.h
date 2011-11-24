@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ActivityDetailMessageTableViewCell.h"
 
-@interface ActivityCalendarDetailMessageTableViewCell : ActivityDetailMessageTableViewCell
+@interface ActivityCalendarDetailMessageTableViewCell : ActivityDetailMessageTableViewCell{
+    TTStyledTextLabel*                      _htmlMessage;
+    CGFloat width;
+}
+@property (retain, nonatomic) TTStyledTextLabel* htmlMessage;
 
 @end

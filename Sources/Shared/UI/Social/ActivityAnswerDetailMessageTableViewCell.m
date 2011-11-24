@@ -21,21 +21,21 @@
     switch (_activityType) {
         case ACTIVITY_ANSWER_ADD_QUESTION:{
             [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a  href=\"%@\">%@</a> %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, socialActivityDetail.posterIdentity.fullName, Localize(@"Asked"), [_templateParams valueForKey:@"Name"],[_templateParams valueForKey:@"Name"]] 
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>",  socialActivityDetail.posterIdentity.fullName, Localize(@"Asked"), [_templateParams valueForKey:@"Name"]] 
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
         }
             break;
         case ACTIVITY_ANSWER_QUESTION:{
             [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a  href=\"%@\">%@</a> %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, socialActivityDetail.posterIdentity.fullName, Localize(@"Answered"), [_templateParams valueForKey:@"Name"],[_templateParams valueForKey:@"Name"]] 
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>",  socialActivityDetail.posterIdentity.fullName, Localize(@"Answered"), [_templateParams valueForKey:@"Name"]] 
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
         }
             break;
         case ACTIVITY_ANSWER_UPDATE_QUESTION:{
             [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a  href=\"%@\">%@</a> %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateQuestion"), [_templateParams valueForKey:@"Name"],[_templateParams valueForKey:@"Name"]] 
+             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateQuestion"), [_templateParams valueForKey:@"Name"]] 
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
         }
@@ -45,6 +45,10 @@
     CGRect tmpFrame = _webViewForContent.frame;
     tmpFrame.origin.y = 6;
     _webViewForContent.frame = tmpFrame;
+    
+    tmpFrame = _lbMessage.frame;
+    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
+    _lbMessage.frame = tmpFrame;
     
     _lbMessage.text = [socialActivityDetail.title stringByConvertingHTMLToPlainText];
 }

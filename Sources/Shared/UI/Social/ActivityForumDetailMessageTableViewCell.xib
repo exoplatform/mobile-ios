@@ -53,7 +53,7 @@
 							</object>
 							<object class="IBUIWebView" id="632031562">
 								<reference key="NSNextResponder" ref="855340942"/>
-								<int key="NSvFlags">314</int>
+								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{62, 6}, {245, 43}}</string>
 								<reference key="NSSuperview" ref="855340942"/>
 								<reference key="NSWindow"/>
@@ -95,11 +95,10 @@
 							</object>
 							<object class="IBUILabel" id="218931402">
 								<reference key="NSNextResponder" ref="855340942"/>
-								<int key="NSvFlags">268</int>
+								<int key="NSvFlags">266</int>
 								<string key="NSFrame">{{84, 85}, {222, 21}}</string>
 								<reference key="NSSuperview" ref="855340942"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="168522760">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -131,7 +130,7 @@
 							</object>
 							<object class="IBUILabel" id="101461549">
 								<reference key="NSNextResponder" ref="855340942"/>
-								<int key="NSvFlags">314</int>
+								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{63, 56}, {243, 27}}</string>
 								<reference key="NSSuperview" ref="855340942"/>
 								<reference key="NSWindow"/>

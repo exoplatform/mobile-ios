@@ -11,11 +11,11 @@
 
 @interface ActivityLinkDetailMessageTableViewCell : ActivityDetailMessageTableViewCell{
 
-    UILabel*               _lbComment;
+    TTStyledTextLabel*      _lbComment;
     TTStyledTextLabel*     _htmlLinkMessage;
     
 }
-@property (retain, nonatomic) IBOutlet UILabel* lbComment;
+@property (retain, nonatomic) TTStyledTextLabel* lbComment;
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
 
 @end

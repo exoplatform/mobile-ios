@@ -110,11 +110,12 @@
     _imgvMessageBg.image = strechBg;
     _imgvMessageBg.highlightedImage = strechBgSelected;
     
+    _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     [_webViewForContent setBackgroundColor:[UIColor clearColor]];
     UIScrollView *scrollView = (UIScrollView *)[[_webViewForContent subviews] objectAtIndex:0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
-
+    
     [_webViewForContent setOpaque:NO];
 }
 

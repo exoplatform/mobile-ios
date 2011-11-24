@@ -13,7 +13,6 @@
 
 #define WIDTH_FOR_CONTENT_IPHONE 237
 #define WIDTH_FOR_CONTENT_IPAD 409
-#define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 
 #define HEIGHT_FOR_DECORATION_IPHONE 90
@@ -95,7 +94,7 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = activtyStreamDetail.title;
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            if (![[activtyStreamDetail.templateParams valueForKey:@"image"] isEqualToString:@""]) fHeight += 30;
+            if (![[activtyStreamDetail.templateParams valueForKey:@"image"] isEqualToString:@""]) fHeight += 60;
         }
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
@@ -133,7 +132,7 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             //Set the size of the cell
             text = activtyStreamDetail.title;
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 20;
             
         }
             break;
@@ -170,7 +169,12 @@
             }else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
                 text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskUpdated"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 64;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 32;
+            text = [activtyStreamDetail.templateParams valueForKey:@"EventDescription"];
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            text = [activtyStreamDetail.templateParams valueForKey:@"EventLocale"];
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            
         }
             break;
         default:{
@@ -275,7 +279,11 @@
             }else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
                 text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskUpdated"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 64;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 32;
+            text = [activtyStream.templateParams valueForKey:@"EventDescription"];
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            text = [activtyStream.templateParams valueForKey:@"EventLocale"];
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
         }
             break;
         default:{

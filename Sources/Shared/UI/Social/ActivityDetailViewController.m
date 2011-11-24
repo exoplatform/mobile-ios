@@ -346,7 +346,7 @@
                     cell = (ActivityCalendarDetailMessageTableViewCell *)[nib objectAtIndex:0];
                     //Create a cell, need to do some configurations
                     [cell configureCell];
-                    
+                    [cell configureCellForSpecificContentWithWidth:tableView.frame.size.width];
                     //Set the delegate of the webview
                     cell.webViewForContent.delegate = self;
                 }
