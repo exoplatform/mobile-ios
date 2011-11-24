@@ -27,12 +27,6 @@
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 
-        //If the orientation is in Landscape mode
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            CGRect tmpFrame = self.view.frame;
-            tmpFrame.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-            self.view.frame = tmpFrame;
-        }
     }
     return self;
 }
@@ -136,17 +130,6 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
-        CGRect tmpRect = self.view.frame;
-        tmpRect.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        tmpRect.origin.x -= WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        self.view.frame = tmpRect;
-    } else {
-        CGRect tmpRect = self.view.frame;
-        tmpRect.size.width -= WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        tmpRect.origin.x += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
-        self.view.frame = tmpRect;
-    }
     //if the empty is, change rotaion it
     EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
     if(emptyview != nil){
