@@ -7,10 +7,14 @@
 //
 
 #import "ActivityLinkDisplayViewController_iPhone.h"
-
+#import "JTNavigationView.h"
 
 @implementation ActivityLinkDisplayViewController_iPhone
 
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.title = self.title;
+}
 
 @end

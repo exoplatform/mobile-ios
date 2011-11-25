@@ -26,7 +26,11 @@
     return self;
 }
 
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    _navigation.topItem.title = self.title;
+}
 
 - (void)dealloc
 {
