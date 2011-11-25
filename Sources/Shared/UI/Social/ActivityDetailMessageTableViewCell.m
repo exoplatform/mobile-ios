@@ -21,6 +21,8 @@
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;
 @synthesize webViewForContent = _webViewForContent;
+@synthesize webViewComment =  _webViewComment;
+
 @synthesize imgType = _imgType;
 @synthesize activityType = _activityType;
 @synthesize templateParams = _templateParams;

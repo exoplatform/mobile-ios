@@ -14,7 +14,9 @@
     TTStyledTextLabel*      _lbComment;
     TTStyledTextLabel*     _htmlLinkMessage;
     
+    CGFloat width;
 }
+
 @property (retain, nonatomic) TTStyledTextLabel* lbComment;
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
 

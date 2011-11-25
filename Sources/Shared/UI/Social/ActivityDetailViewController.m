@@ -382,6 +382,7 @@
                     
                     //Set the delegate of the webview
                     cell.webViewForContent.delegate = self;
+                    cell.webViewComment.delegate = self;
                 }
             }
                 break;

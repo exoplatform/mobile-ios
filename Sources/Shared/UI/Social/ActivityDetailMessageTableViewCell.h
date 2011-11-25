@@ -30,12 +30,15 @@
     EGOImageView*          _imgvAttach;
     
     UIWebView*             _webViewForContent;
+    UIWebView   *          _webViewComment;
+    
+    
     NSInteger             _activityType;
     NSDictionary*          _templateParams;
     
     TTStyledTextLabel*     htmlLabel;
 }
-
+@property (retain, nonatomic) UIWebView *webViewComment;
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
