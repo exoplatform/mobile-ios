@@ -74,52 +74,52 @@
                                                         action:@selector(close)];
 
     
-    CGRect frame = _webView.frame;
-    frame.origin.y -= _navigation.frame.size.height;
-    frame.size.height = navigationBar.view.bounds.size.height;
-    frame.size.width = navigationBar.view.bounds.size.width;
-    _webView.frame = frame;
     
     viewController.modalPresentationStyle = UIModalPresentationFullScreen;
     viewController.wantsFullScreenLayout = YES;
     
+    _webView.alpha = 0;
     [UIView animateWithDuration:0.5
                           delay:1.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
-                         _webView.alpha = 0;
                          if(_webView.superview != nil){
                              [_webView removeFromSuperview];
                          }
-                     } 
-                     completion:^(BOOL finished){
-                         
+                         CGRect frame = _webView.frame;
+                         frame.origin.y -= _navigation.frame.size.height;
+                         frame.size.height = navigationBar.view.bounds.size.height;
+                         frame.size.width = navigationBar.view.bounds.size.width;
+                         _webView.frame = frame;
                          _webView.alpha = 1;
                          [viewController.view addSubview:_webView];
+                     } 
+                     completion:^(BOOL finished){
+
                      }];
     
     [[[AppDelegate_iPad instance] rootViewController] presentModalViewController:navigationBar animated:YES];
     [viewController release];
 }
 -(void)close {
-    CGRect frame = _webView.frame;
-    frame.origin.y += _navigation.frame.size.height;
-    frame.size.width = self.view.bounds.size.width;
-    frame.size.height = self.view.bounds.size.height;
-    _webView.frame = frame;
-    
+    _webView.alpha = 0;
     [UIView animateWithDuration:0.5
                           delay:1.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
-                         _webView.alpha = 0;
-                     } 
-                     completion:^(BOOL finished){
+                         CGRect frame = _webView.frame;
+                         frame.origin.y += _navigation.frame.size.height;
+                         frame.size.width = self.view.bounds.size.width;
+                         frame.size.height = self.view.bounds.size.height;
+                         _webView.frame = frame;
                          _webView.alpha = 1;
                          if(_webView.superview != nil){
                              [_webView removeFromSuperview];
                          }
                          [self.view addSubview:_webView];
+                     } 
+                     completion:^(BOOL finished){
+                         
                      }];
     
     [navigationBar dismissModalViewControllerAnimated:YES];
