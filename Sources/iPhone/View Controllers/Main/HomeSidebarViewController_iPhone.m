@@ -103,17 +103,21 @@ typedef enum {
     buttonLogout.frame = CGRectMake(6, 15, 31, 34);
     buttonLogout.showsTouchWhenHighlighted = YES;
     
-    UILabel *disconnectLabel = [[UILabel alloc] initWithFrame:CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + 7, 15, 200, 34)];
+    UIButton *disconnectLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+    disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + 7, 15, 80, 34);
     
-    disconnectLabel.text = Localize(@"Disconnect");
-    disconnectLabel.backgroundColor = [UIColor clearColor];
-    disconnectLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    disconnectLabel.textColor = [UIColor whiteColor];
-    disconnectLabel.shadowOffset = CGSizeMake(0, 2);
-    disconnectLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
+    [disconnectLabel setTitle:Localize(@"Disconnect") forState:UIControlStateNormal];
+
+    disconnectLabel.showsTouchWhenHighlighted = YES;
+    [disconnectLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [disconnectLabel setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25] forState:UIControlStateNormal];
     
+    disconnectLabel.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    [disconnectLabel.titleLabel setTextAlignment:UITextAlignmentLeft];
+
+    [disconnectLabel addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [footer addSubview:disconnectLabel];
-    [disconnectLabel release];
+
     
     // Now load the image and create the image view
     UIImage *image = [UIImage imageNamed:@"Ipad_logout.png"];
