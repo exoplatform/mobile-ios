@@ -250,28 +250,29 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        if(indexPath.row == 0)
-        {
-            cell.textLabel.text = Localize(@"ServerName");
-            
-            cell.textLabel.textColor = [UIColor darkGrayColor];
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-            
-            cell.accessoryView = _txtfServerName;
-        }
-        else
-        {
-            cell.textLabel.text = Localize(@"ServerUrl");
-            cell.textLabel.textColor = [UIColor darkGrayColor];
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-            
-            cell.accessoryView = _txtfServerUrl;
-        }
+    CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone*)[tableView  dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
+    if(cell == nil){
+        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    if(indexPath.row == 0)
+    {
+        cell.textLabel.text = Localize(@"ServerName");
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        
+        cell.accessoryView = _txtfServerName;
+    }
+    else
+    {
+        cell.textLabel.text = Localize(@"ServerUrl");
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        
+        cell.accessoryView = _txtfServerUrl;
+    }
+
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
     return cell;
