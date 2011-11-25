@@ -64,12 +64,8 @@
 -(void)fullScreen {
     eXoFullScreenView *viewController = [[eXoFullScreenView alloc] initWithNibName:nil bundle:nil];
     
-    if(_webView.superview != nil){
-        [_webView removeFromSuperview];
-    }
-    [viewController.view addSubview:_webView];
     
-//    _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
     navigationBar = [[UINavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
                                                         initWithTitle:@"Close" 
@@ -86,10 +82,24 @@
     
     viewController.modalPresentationStyle = UIModalPresentationFullScreen;
     viewController.wantsFullScreenLayout = YES;
-
-    [viewController release];
+    
+    [UIView animateWithDuration:0.5
+                          delay:1.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         _webView.alpha = 0;
+                         if(_webView.superview != nil){
+                             [_webView removeFromSuperview];
+                         }
+                     } 
+                     completion:^(BOOL finished){
+                         
+                         _webView.alpha = 1;
+                         [viewController.view addSubview:_webView];
+                     }];
     
     [[[AppDelegate_iPad instance] rootViewController] presentModalViewController:navigationBar animated:YES];
+    [viewController release];
 }
 -(void)close {
     CGRect frame = _webView.frame;
@@ -97,10 +107,21 @@
     frame.size.width = self.view.bounds.size.width;
     frame.size.height = self.view.bounds.size.height;
     _webView.frame = frame;
-    if(_webView.superview != nil){
-        [_webView removeFromSuperview];
-    }
-    [self.view addSubview:_webView];
+    
+    [UIView animateWithDuration:0.5
+                          delay:1.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         _webView.alpha = 0;
+                     } 
+                     completion:^(BOOL finished){
+                         _webView.alpha = 1;
+                         if(_webView.superview != nil){
+                             [_webView removeFromSuperview];
+                         }
+                         [self.view addSubview:_webView];
+                     }];
+    
     [navigationBar dismissModalViewControllerAnimated:YES];
 }
 
