@@ -53,7 +53,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = Localize(@"ServerInformation");
+    self.title = Localize(@"NewServer");
     _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
@@ -131,9 +131,15 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     if ([_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl]) [self.navigationController popViewControllerAnimated:YES];
 }
 
-+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure 
++ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure
 {
-    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 21)];
+    CGFloat fWidth = 0.0;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        fWidth = 320;
+    } else {
+        fWidth = 160;
+    }
+    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, fWidth, 21)];
     textField.autoresizingMask =  UIViewAutoresizingFlexibleWidth;
     textField.placeholder = @"Required";
     textField.secureTextEntry = secure;
@@ -209,27 +215,30 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
-        CustomBackgroundForCell_iPhone *cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        if(indexPath.row == 0)
-        {
-            //TODO localize the label
-            cell.textLabel.text = Localize(@"ServerName");
-            cell.textLabel.textColor = [UIColor darkGrayColor];
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+    CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone*)[tableView  dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
+    if(cell == nil){
+        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if(indexPath.row == 0)
+    {
+        //TODO localize the label
+        cell.textLabel.text = Localize(@"ServerName");
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
 
-            cell.accessoryView = _txtfServerName;
-        }
-        else
-        {
-            //TODO localize this label
-            cell.textLabel.text = Localize(@"ServerUrl");
-            cell.textLabel.textColor = [UIColor darkGrayColor];
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-            
-            cell.accessoryView = _txtfServerUrl;
-        }
+        cell.accessoryView = _txtfServerName;
+    }
+    else
+    {
+        //TODO localize this label
+        cell.textLabel.text = Localize(@"ServerUrl");
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        
+        cell.accessoryView = _txtfServerUrl;
+    }
     
 
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
