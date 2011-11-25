@@ -608,6 +608,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)startLoadingActivityStream {
     
+    [self clearActivityData];
+    
     [self showLoaderForAction:_activityAction];
     
     
@@ -623,7 +625,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self showLoaderForAction:_activityAction];
     
     _reloading = YES;
+
+    [self startLoadingActivityStream];
     
+    /*
     if(_arrActivityStreams == nil || [_arrActivityStreams count] == 0)
     {
         [self startLoadingActivityStream];
@@ -634,7 +639,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         socialActivityStreamProxy.delegate = self;
         [socialActivityStreamProxy updateActivityStreamSinceActivity:[_arrActivityStreams objectAtIndex:0]];    
     }
-    
+    */
 }
 
 - (void)finishLoadingAllDataForActivityStream {
@@ -706,6 +711,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         //Retrieve all activities
         //Start preparing data
+        
         for (int i = 0; i < [socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
@@ -723,7 +729,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     } 
     else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) 
     {
-        [self clearActivityData];
         [self startLoadingActivityStream];
     }
     
