@@ -112,8 +112,10 @@
 	<string>Liste des Serveurs</string>  
     <key>ServerInformation</key>
 	<string>Server Information</string>
+    <key>NewServer</key>
+	<string>New Server</string>
     <key>ServerModify</key>
-	<string>Modifier la liste</string>    
+	<string>Modify server</string>     
     <key>EmptyFolder</key>
 	<string>Le contenu de ce dossier est vide</string>
     <key>UnreadableFile</key>

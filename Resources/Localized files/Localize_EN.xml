@@ -112,9 +112,12 @@
 	<string>Server list</string>  
     <key>ServerInformation</key>
 	<string>Server Information</string>
+    <key>NewServer</key>
+	<string>New Server</string>
+    
     
     <key>ServerModify</key>
-	<string>Modify the list</string> 
+	<string>Modify server</string> 
     <key>EmptyFolder</key>
 	<string>The content of this folder is empty</string>
     <key>UnreadableFile</key>
