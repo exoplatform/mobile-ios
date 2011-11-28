@@ -21,12 +21,7 @@
 
 
 
-typedef enum {
-    eXoActivityStream,
-    eXoDocuments,
-    eXoDashboard,
-    eXoSettings,
-} JTTableRowTypes;
+
 
 @interface HomeSidebarViewController_iPhone (UITableView) <JTTableViewDatasourceDelegate>
 @end
@@ -137,7 +132,7 @@ typedef enum {
     
     [_revealView.sidebarView addSubview:footer];
     
-    
+    rowType = eXoActivityStream;
     
     // Create a custom Menu button    
     UIButton *tmpButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -197,7 +192,8 @@ typedef enum {
     //[self loadView];
     
     //[self.revealView.contentView setNavigationBarHidden:NO animated:YES];
-    
+    //[(UITableView *)[_revealView.sidebarView topView] reloadData];
+    [(UITableView *)[_revealView.sidebarView topView] selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -359,7 +355,8 @@ typedef enum {
             tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             [_revealView.sidebarView pushView:tableView animated:YES];
         }
-    } else if ([object conformsToProtocol:@protocol(JTTableViewCellModalSimpleType)]) {        
+    } else if ([object conformsToProtocol:@protocol(JTTableViewCellModalSimpleType)]) {  
+        
         switch ([(JTTableViewCellModalSimpleType *)object type]) {
             case eXoActivityStream:
             {
@@ -369,6 +366,7 @@ typedef enum {
                 [_revealView.contentView setRootView:_activityStreamBrowseViewController_iPhone.view];
                 //[_activityStreamBrowseViewController_iPhone release];
                 [_revealView revealSidebar:NO];
+                rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
             case eXoDashboard:
@@ -380,6 +378,7 @@ typedef enum {
                 [_revealView.contentView setRootView:dashboardController.view];
                 //[dashboardController release];
                 [_revealView revealSidebar:NO];
+                rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
             case eXoSettings:
@@ -402,6 +401,7 @@ typedef enum {
                 [_revealView.contentView setRootView:documentsViewController.view];
                 //[documentsViewController release];
                 [_revealView revealSidebar:NO];
+                rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
             default:
@@ -412,7 +412,7 @@ typedef enum {
 
 - (void)datasource:(JTTableViewDatasource *)datasource sectionsDidChanged:(NSArray *)oldSections {
     [(UITableView *)[_revealView.sidebarView topView] reloadData];
-    [(UITableView *)[_revealView.sidebarView topView] selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [(UITableView *)[_revealView.sidebarView topView] selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
 
 

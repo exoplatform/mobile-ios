@@ -9,12 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "SettingsViewController.h"
 
+typedef enum {
+    eXoActivityStream = 0,
+    eXoDocuments = 1,
+    eXoDashboard = 2,
+    eXoSettings = 3,
+} JTTableRowTypes;
+
 @class JTRevealSidebarView;
 @class JTTableViewDatasource;
 
 @interface HomeSidebarViewController_iPhone : UIViewController <SettingsDelegateProcotol> {
     JTRevealSidebarView *_revealView;
     JTTableViewDatasource *_datasource;
+    JTTableRowTypes rowType;
 }
 
 @property (retain, nonatomic) JTRevealSidebarView* revealView;
