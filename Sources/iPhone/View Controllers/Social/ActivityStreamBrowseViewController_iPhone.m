@@ -106,6 +106,7 @@
     //[_revealView revealSidebar:NO];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:_activityDetailViewController.view animated:YES];
 
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

@@ -171,6 +171,8 @@
     
     if([_txtvMessageComposer.text length] > 0)
     {
+        self.navigationController.navigationBar.userInteractionEnabled = NO;
+        
         NSString* fileAttachName = nil;
         NSString* fileAttachURL = nil;
         
@@ -363,6 +365,7 @@
         [self dismissModalViewControllerAnimated:YES];    
     }
     
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error

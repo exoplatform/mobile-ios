@@ -39,7 +39,7 @@ gadget:gadgetTmp];
     //[self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:gadgetDisplayViewController.view animated:YES];
     
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 
