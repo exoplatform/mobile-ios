@@ -83,7 +83,6 @@ typedef enum {
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_revealView.sidebarView pushView:tableView animated:NO];
     
-    
     //Add the ActivityStream as main view
     ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
     
@@ -413,6 +412,7 @@ typedef enum {
 
 - (void)datasource:(JTTableViewDatasource *)datasource sectionsDidChanged:(NSArray *)oldSections {
     [(UITableView *)[_revealView.sidebarView topView] reloadData];
+    [(UITableView *)[_revealView.sidebarView topView] selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
 
 
