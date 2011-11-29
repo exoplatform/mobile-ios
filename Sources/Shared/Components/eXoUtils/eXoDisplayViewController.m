@@ -10,6 +10,8 @@
 #import "EmptyView.h"
 #import "defines.h"
 #import "AppDelegate_iPad.h"
+#import "RootViewController.h"
+
 
 #define TAG_WEBVIEW 10000
 #define TAG_VIEW 10001
@@ -28,6 +30,7 @@
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle 
 {
 	if(self = [super initWithNibName:nibName bundle:nibBundle]){
+        
         
     }
 	return self;
@@ -76,13 +79,10 @@
     
     
     viewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    viewController.wantsFullScreenLayout = YES;
+    viewController.wantsFullScreenLayout = YES;    
     
     
-    
-    [UIView animateWithDuration:1.0
-                          delay:0.
-                        options: UIViewAnimationCurveEaseOut
+    [UIView animateWithDuration:0.3
                      animations:^{
                          _webView.alpha = 0;
 
@@ -93,7 +93,7 @@
                          }
                          [viewController.view addSubview:_webView];
 
-                         [[[AppDelegate_iPad instance] rootViewController] presentModalViewController:navigationBar animated:YES];
+                         [[AppDelegate_iPad instance].rootViewController presentModalViewController:navigationBar animated:YES];
                          
                          CGRect frame = _webView.frame;
                          frame.origin.y -= _navigation.frame.size.height;
@@ -101,9 +101,7 @@
                          frame.size.width = navigationBar.view.bounds.size.width;
                          _webView.frame = frame;
                          
-                         [UIView animateWithDuration:1.0
-                                               delay:0.
-                                             options: UIViewAnimationCurveEaseOut
+                         [UIView animateWithDuration:0.3
                                           animations:^{
                                               
                                               
@@ -124,16 +122,15 @@
 
 
 -(void)close {
-    [UIView animateWithDuration:1.0
-                          delay:0.
-                        options: UIViewAnimationCurveEaseOut
+    [navigationBar dismissModalViewControllerAnimated:YES];
+
+    [UIView animateWithDuration:0.3
                      animations:^{
                          _webView.alpha = 0;
 
                      } 
                      completion:^(BOOL finished){
                          
-                         [navigationBar dismissModalViewControllerAnimated:YES];
 
                          
                          if(_webView.superview != nil){
@@ -147,9 +144,7 @@
                          frame.size.height = self.view.bounds.size.height;
                          _webView.frame = frame;
                                                    
-                         [UIView animateWithDuration:1.0
-                                               delay:0.
-                                             options: UIViewAnimationCurveEaseIn
+                         [UIView animateWithDuration:0.3
                                           animations:^{
                                               
                                               _webView.alpha = 1;
@@ -157,6 +152,7 @@
                                           completion:^(BOOL finished){
                                               
                                           }];
+
                      }];
 
     
@@ -209,17 +205,23 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
+    CGRect tmpRect = self.view.frame;
+
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
-        CGRect tmpRect = self.view.frame;
-        tmpRect.size.width = WIDTH_LANDSCAPE_WEBVIEW;
-        tmpRect.origin.x = DISTANCE_LANDSCAPE;
-        self.view.frame = tmpRect;
+        if (tmpRect.size.width != WIDTH_LANDSCAPE_WEBVIEW) {
+            tmpRect.size.width = WIDTH_LANDSCAPE_WEBVIEW;
+            tmpRect.origin.x = DISTANCE_LANDSCAPE;
+            self.view.frame = tmpRect;
+        }
     } else {
-        CGRect tmpRect = self.view.frame;
-        tmpRect.size.width = WIDTH_PORTRAIT_WEBVIEW;
-        tmpRect.origin.x = DISTANCE_PORTRAIT;
-        self.view.frame = tmpRect;
+        if (tmpRect.size.width != WIDTH_PORTRAIT_WEBVIEW) {
+            tmpRect.size.width = WIDTH_PORTRAIT_WEBVIEW;
+            tmpRect.origin.x = DISTANCE_PORTRAIT;
+            self.view.frame = tmpRect;
+        }
     }
+    
+    
     EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
     if(emptyview != nil){
         [emptyview changeOrientation];

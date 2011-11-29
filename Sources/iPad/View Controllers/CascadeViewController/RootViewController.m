@@ -76,8 +76,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeOrientation:) name:EXO_NOTIFICATION_WEBVIEW_FULLSCREEN object:nil];
-    
 	rootView = [[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
 	[rootView setBackgroundColor:[UIColor clearColor]];

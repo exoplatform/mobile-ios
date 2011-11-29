@@ -30,6 +30,13 @@
     [super viewDidLoad];
     
     _navigation.topItem.title = self.title;
+    
+    //If the orientation is in Landscape mode
+    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+        CGRect tmpFrame = self.view.frame;
+        tmpFrame.size.width += WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT;
+        self.view.frame = tmpFrame;
+    }
 }
 
 - (void)dealloc

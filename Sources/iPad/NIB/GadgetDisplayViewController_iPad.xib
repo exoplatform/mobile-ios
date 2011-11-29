@@ -44,7 +44,7 @@
 					<object class="IBUIWebView" id="238240563">
 						<reference key="NSNextResponder" ref="470407860"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 44}, {550, 980}}</string>
+						<string key="NSFrame">{{0, 44}, {550, 606}}</string>
 						<reference key="NSSuperview" ref="470407860"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -79,7 +79,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{550, 1024}</string>
+				<string key="NSFrameSize">{550, 650}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="717850560"/>
@@ -87,10 +87,6 @@
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MSAwAA</bytes>
 					<reference key="NSCustomColorSpace" ref="287450273"/>
-				</object>
-				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
-					<int key="IBUIInterfaceOrientation">3</int>
-					<int key="interfaceOrientation">3</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>

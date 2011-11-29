@@ -76,6 +76,5 @@
 //    }
     // when device rotate
     self.orientation = interfaceOrientation;
-    [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_WEBVIEW_FULLSCREEN object:self];
 }
 @end
