@@ -37,6 +37,9 @@
 #import "EmptyView.h"
 
 
+#define NUMBER_OF_COMMENT_TO_LOAD 30
+
+
 
 @implementation ActivityDetailViewController
 
@@ -648,7 +651,8 @@
     [self showLoaderForAction:_activityAction];
     
     _reloading = YES;
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10 andNumberOfLikes:4];
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
+                                                                                                         andNumberOfLikes:4];
     socialActivityDetailsProxy.delegate = self;
     [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
     
@@ -684,7 +688,8 @@
         [self finishLoadingAllDataForActivityDetails];
         //SocialLikeActivityProxy
     }else{
-        SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:10 andNumberOfLikes:4];
+        SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
+                                                                                                             andNumberOfLikes:4];
         socialActivityDetailsProxy.delegate = self;
         [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
     }
