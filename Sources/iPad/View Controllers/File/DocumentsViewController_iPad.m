@@ -45,7 +45,7 @@
 - (void)contentDirectoryIsRetrieved{
     [super contentDirectoryIsRetrieved];
     // not the root level
-    if(![self.title isEqualToString:Localize(@"Documents")]){
+    if(!isRoot){
         UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
         UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
         [bt setImage:image forState:UIControlStateNormal];

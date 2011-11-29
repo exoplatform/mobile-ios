@@ -47,8 +47,21 @@
 // ================================
 @implementation DocumentsViewController
 
+@synthesize isRoot;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        isRoot = NO;
+    }
+    return self;
+}
+
+
+
 - (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName  {
-    if ((self = [super initWithNibName:nibName bundle:nil])) {
+    if ((self = [self initWithNibName:nibName bundle:nil])) {
         //Set the rootFile 
         _rootFile = [rootFile retain];
     }

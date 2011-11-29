@@ -37,7 +37,11 @@
     
     UIPopoverController *_popoverPhotoLibraryController;
     
+    BOOL isRoot;
+    
 }
+
+@property BOOL isRoot;
 -(void)emptyState;
 -(void)setHudPosition;
 -(void)showHUDWithMessage:(NSString *)message;
@@ -54,5 +58,7 @@
 - (void)buttonAccessoryClick:(id)sender;
 - (UINavigationBar *)navigationBar;
 - (NSString *)stringForUploadPhoto;
+
+
 
 @end

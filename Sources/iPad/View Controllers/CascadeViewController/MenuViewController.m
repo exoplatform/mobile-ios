@@ -280,6 +280,7 @@
         case 1:
             // files
             _documentsViewController = [[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil];
+            _documentsViewController.isRoot = YES;
             _documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_documentsViewController 
                                                                                    invokeByController:self 

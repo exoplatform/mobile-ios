@@ -397,7 +397,7 @@
             case eXoDocuments:
             {
                 DocumentsViewController_iPhone *documentsViewController = [[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil];
-                
+                documentsViewController.isRoot = YES;
                 [_revealView.contentView setRootView:documentsViewController.view];
                 //[documentsViewController release];
                 [_revealView revealSidebar:NO];
