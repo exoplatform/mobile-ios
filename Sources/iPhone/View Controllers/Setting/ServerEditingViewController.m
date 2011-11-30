@@ -92,14 +92,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     
-    //Set the background Color of the view
-    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //backgroundView.frame = self.view.frame;
-    //self.tableView.backgroundView = backgroundView;
-    //[backgroundView release];
-    
-    //self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     
     self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
 
@@ -262,15 +254,15 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
         
-        cell.accessoryView = _txtfServerName;
+        [cell.contentView addSubview:_txtfServerName];
     }
     else
     {
         cell.textLabel.text = Localize(@"ServerUrl");
         cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-        
-        cell.accessoryView = _txtfServerUrl;
+    
+        [cell.contentView addSubview:_txtfServerUrl];
     }
 
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];

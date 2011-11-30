@@ -133,13 +133,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure
 {
-    CGFloat fWidth = 0.0;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        fWidth = 320;
-    } else {
-        fWidth = 160;
-    }
-    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, fWidth, 21)];
+    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(120, 14, 190, 21)];
     textField.autoresizingMask =  UIViewAutoresizingFlexibleWidth;
     textField.placeholder = @"Required";
     textField.secureTextEntry = secure;
@@ -228,7 +222,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
 
-        cell.accessoryView = _txtfServerName;
+        [cell.contentView addSubview:_txtfServerName];
     }
     else
     {
@@ -237,7 +231,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
         
-        cell.accessoryView = _txtfServerUrl;
+        [cell.contentView addSubview:_txtfServerUrl];
     }
     
 
