@@ -59,6 +59,13 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {    
+    // Unselect the selected row if any
+    NSIndexPath*	selection = [_tblFiles indexPathForSelectedRow];
+    if (selection)
+        [_tblFiles deselectRowAtIndexPath:selection animated:YES];
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -172,8 +179,6 @@
         //[fileWebViewController release];
 	}
 	
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];    
 }
 
 #pragma Button Click

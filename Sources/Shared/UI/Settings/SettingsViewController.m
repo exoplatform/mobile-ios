@@ -95,6 +95,14 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 	[self saveSettingsInformations];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    // Unselect the selected row if any
+    NSIndexPath*	selection = [self.tableView indexPathForSelectedRow];
+    if (selection)
+        [self.tableView deselectRowAtIndexPath:selection animated:YES];   
+}
+
 -(void)startRetrieve {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(![[userDefaults objectForKey:EXO_IS_USER_LOGGED] boolValue]){
@@ -555,7 +563,6 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
         //		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
     
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

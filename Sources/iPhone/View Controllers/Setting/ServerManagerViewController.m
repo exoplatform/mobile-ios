@@ -60,6 +60,14 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    // Unselect the selected row if any
+    NSIndexPath*	selection = [_tbvlServerList indexPathForSelectedRow];
+    if (selection)
+        [_tbvlServerList deselectRowAtIndexPath:selection animated:YES];   
+}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -185,7 +193,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         [self.navigationController pushViewController:serverEditingViewController animated:YES];
     }
     
-    [_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
+    //[_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

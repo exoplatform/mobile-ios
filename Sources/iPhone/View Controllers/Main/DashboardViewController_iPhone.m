@@ -26,6 +26,14 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {    
+    // Unselect the selected row if any
+    NSIndexPath*	selection = [_tblGadgets indexPathForSelectedRow];
+    if (selection)
+        [_tblGadgets deselectRowAtIndexPath:selection animated:YES];
+}
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
@@ -39,8 +47,6 @@ gadget:gadgetTmp];
     //[self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:gadgetDisplayViewController.view animated:YES];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 }
 
 @end

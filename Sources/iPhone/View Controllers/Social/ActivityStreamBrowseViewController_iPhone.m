@@ -23,6 +23,7 @@
 @implementation ActivityStreamBrowseViewController_iPhone
 
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -30,10 +31,16 @@
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
 
     
+        
+}
+
+- (void)viewDidAppear:(BOOL)animated {    
     // Unselect the selected row if any
     NSIndexPath*	selection = [_tblvActivityStream indexPathForSelectedRow];
     if (selection)
         [_tblvActivityStream deselectRowAtIndexPath:selection animated:YES];
+    
+
 }
 
 
@@ -106,7 +113,6 @@
     //[_revealView revealSidebar:NO];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:_activityDetailViewController.view animated:YES];
 
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

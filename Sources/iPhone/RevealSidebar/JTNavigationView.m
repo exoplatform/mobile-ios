@@ -92,6 +92,13 @@
 }
 
 
+- (void)callViewDidAppear:(UIView *)view {
+    //SLM : Retrieve the view controller of the view and call its method
+    [(UIViewController *)[view nextResponder] viewDidAppear:YES];
+}
+
+
+
 - (UIView *)popViewAnimated:(BOOL)animated shouldPopNavigationItem:(BOOL)popNavigationItem {
     UIView *view = [_views lastObject];
     [_views removeLastObject];
@@ -106,13 +113,21 @@
         if (_animationStyle == JTNavigationViewAnimationStylePush) {
             previousView.transform = CGAffineTransformMakeTranslation(0, 0);
         }
-    }
-
+    } 
+    
     if (animated) {
         [UIView commitAnimations];
     }
-
+    
     [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3];
+    
+    
+    //SLM : Check is a previous view exist and call its viewDidAppear Method
+    if (previousView) {
+        [self performSelector:@selector(callViewDidAppear:) withObject:previousView afterDelay:0.3];
+    } else {
+        [self performSelector:@selector(callViewDidAppear:) withObject:_rootView afterDelay:0.3];
+    }
     return view;
 }
 
