@@ -14,8 +14,7 @@
 #import "LanguageHelper.h"
 #import "FileActionsViewController.h"
 #import "AppDelegate_iPhone.h"
-#import "JTRevealSidebarView.h"
-#import "JTNavigationView.h"
+
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -267,7 +266,7 @@
     self.popoverController = nil;
     [self.popoverClass dismissPopoverAnimated:YES];
     self.popoverClass = nil;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar.topItem.rightBarButtonItem.enabled = YES;
 }
 
 

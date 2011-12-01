@@ -13,7 +13,8 @@
 #import "FileFolderActionsViewController.h"
 #import "URLAnalyzer.h"
 #import "eXoViewController.h"
-
+#import "JTRevealSidebarView.h"
+#import "JTNavigationView.h"
 
 @interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate> {
     

@@ -14,7 +14,7 @@
 #import "DataProcess.h"
 #import "EmptyView.h"
 #import "defines.h"
-
+#import "AppDelegate_iPhone.h"
 
 
 #define kTagForCellSubviewTitleLabel 222
@@ -541,7 +541,8 @@
 //        thePicker.allowsEditing = YES;
         
         if(range.length <= 0) {
-            [self.navigationController presentModalViewController:thePicker animated:YES];            
+            //[self.navigationController presentModalViewController:thePicker animated:YES];  
+            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
         }
         else {
             
@@ -823,6 +824,7 @@
                 modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [self presentModalViewController:modalNavigationSettingViewController animated:YES];
+                
                 [modalNavigationSettingViewController release];
             }
             else
@@ -839,6 +841,7 @@
             NSRange rangeOfiPad = [deviceName rangeOfString:@"iPad"];
             if(rangeOfiPad.length <= 0) {
                 [self presentModalViewController:thePicker animated:YES];
+                
             }
                 else
             {
@@ -876,6 +879,11 @@
     [picker dismissModalViewControllerAnimated:YES];
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
     [_popoverPhotoLibraryController release];
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
+    }
+    
     
     UIImage* selectedImage = image;
     NSData* imageData = UIImagePNGRepresentation(selectedImage);
