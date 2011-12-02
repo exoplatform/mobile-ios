@@ -34,26 +34,7 @@
         tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
-    
-//    _htmlLinkMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-//    _htmlLinkMessage.userInteractionEnabled = NO;
-//    _htmlLinkMessage.autoresizesSubviews = YES;
-//    _htmlLinkMessage.backgroundColor = [UIColor clearColor];
-//    _htmlLinkMessage.font = [UIFont systemFontOfSize:13.0];
-//    //_htmlLinkMessage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//    _htmlLinkMessage.textColor = [UIColor grayColor];
-//    
-//    [self.contentView addSubview:_htmlLinkMessage];
-//    
-//    _lbComment = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-//    _lbComment.userInteractionEnabled = NO;
-//    _lbComment.autoresizesSubviews = YES;
-//    _lbComment.backgroundColor = [UIColor clearColor];
-//    _lbComment.font = [UIFont systemFontOfSize:13.0];
-//    _lbComment.textColor = [UIColor grayColor];
-//    
-//    [self.contentView addSubview:_lbComment];
-    
+        
     _webViewComment = [[UIWebView alloc] initWithFrame:CGRectMake(60, 38, WIDTH_FOR_CONTENT_IPAD + 10, 28)];
     _webViewComment.contentMode = UIViewContentModeScaleAspectFit;
     [_webViewComment setBackgroundColor:[UIColor clearColor]];
@@ -70,11 +51,8 @@
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     //Set the UserName of the activity
-    //Set the UserName of the activity
     _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     
-//    _htmlLinkMessage.html = socialActivityDetail.title;
-//    [_htmlLinkMessage sizeToFit];
     NSString *textWithoutHtml = [NSString stringWithFormat:@"Shared a link: %@", [_templateParams valueForKey:@"title"]];
     CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
@@ -85,7 +63,7 @@
     frame.size.height =  theSize.height + 10;
     _webViewForContent.frame = frame;
     [_webViewForContent loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head>Shared a link: <a href=\"%@\">%@</a></body></html>",[_templateParams valueForKey:@"link"], [_templateParams valueForKey:@"title"]] 
+     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head>Shared a link: <a href=\"%@\">%@</a></body></html>",[_templateParams valueForKey:@"link"], [_templateParams valueForKey:@"title"]?[_templateParams valueForKey:@"title"]:@""] 
                                baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
      ];
 
@@ -113,11 +91,9 @@
     rect.size.height = theSize.height + 10;
     _webViewComment.frame = rect;
     [_webViewComment loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[_templateParams valueForKey:@"comment"] ] 
+     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[_templateParams valueForKey:@"comment"]?[_templateParams valueForKey:@"comment"]:@"" ] 
                                baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
      ];
-//    _lbComment.html = [_templateParams valueForKey:@"comment"];
-//    [_lbComment sizeToFit];
 }
 
 - (void)dealloc {

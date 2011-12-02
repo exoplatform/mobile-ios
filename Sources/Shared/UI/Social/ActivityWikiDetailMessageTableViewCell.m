@@ -41,19 +41,19 @@
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *textWithoutHtml = @"";
-
+    NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_WIKI_ADD_PAGE:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"CreateWiki"), [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"CreateWiki"), [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]]:@"";         
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"CreateWiki"),[_templateParams valueForKey:@"page_name"]];
         }
             break;
         case ACTIVITY_WIKI_MODIFY_PAGE:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"EditWiki"), [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName? [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a href=\"%@\"> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"EditWiki"), [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]]:@""; 
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"EditWiki"),[_templateParams valueForKey:@"page_name"]];

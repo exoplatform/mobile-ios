@@ -47,10 +47,11 @@
 {
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *textWithoutHtml = @"";
+    NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"EventAdded"),[_templateParams valueForKey:@"EventSummary"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"EventAdded"),[_templateParams valueForKey:@"EventSummary"]] :@"";
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             
@@ -59,18 +60,16 @@
         }
             break;
         case ACTIVITY_CALENDAR_UPDATE_EVENT:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"EventUpdated"), [_templateParams valueForKey:@"EventSummary"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"EventUpdated"), [_templateParams valueForKey:@"EventSummary"]]:@"";
+            [_webViewForContent loadHTMLString:htmlStr              
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"EventUpdated"),[_templateParams valueForKey:@"EventSummary"]];
         }
-            
-
             break; 
         case ACTIVITY_CALENDAR_ADD_TASK:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"TaskAdded"), [_templateParams valueForKey:@"EventSummary"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"TaskAdded"), [_templateParams valueForKey:@"EventSummary"]]:@"";
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"TaskAdded"),[_templateParams valueForKey:@"EventSummary"]];
@@ -79,8 +78,8 @@
             
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>",  socialActivityDetail.posterIdentity.fullName, Localize(@"TaskUpdated"), [_templateParams valueForKey:@"EventSummary"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"TaskUpdated"), [_templateParams valueForKey:@"EventSummary"]] :@"";
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"TaskUpdated"),[_templateParams valueForKey:@"EventSummary"]];

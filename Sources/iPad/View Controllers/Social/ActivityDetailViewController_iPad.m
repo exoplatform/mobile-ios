@@ -85,28 +85,24 @@
 
 #pragma mark - UIWebViewDelegateMethod 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(@"%d", navigationType );
     //CAPTURE USER LINK-CLICK.
-    NSURL *url = [request URL];
-    
-    
-    if (!([[url absoluteString] isEqualToString:[NSString stringWithFormat:@"%@/",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]])) {
-        
-        
+    if(navigationType == UIWebViewNavigationTypeLinkClicked){
+   
         ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] 
                                                                          initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
                                                                          bundle:nil 
-                                                                         url:url];
+                                                                         url:[request URL]];
 		
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
         
         [linkWebViewController release];
-                
         return NO;
     }
     
-    
     return YES;   
 }
+
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]]];

@@ -42,26 +42,27 @@
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *textWithoutHtml = @"";
+    NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_ANSWER_ADD_QUESTION:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>",  socialActivityDetail.posterIdentity.fullName, Localize(@"Asked"), [_templateParams valueForKey:@"Name"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"Asked"), [_templateParams valueForKey:@"Name"]]:@"";
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"Asked"),[_templateParams valueForKey:@"Name"]];
         }
             break;
         case ACTIVITY_ANSWER_QUESTION:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>",  socialActivityDetail.posterIdentity.fullName, Localize(@"Answered"), [_templateParams valueForKey:@"Name"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>",  socialActivityDetail.posterIdentity.fullName, Localize(@"Answered"), [_templateParams valueForKey:@"Name"]]:@"";
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"Answered"),[_templateParams valueForKey:@"Name"]];
         }
             break;
         case ACTIVITY_ANSWER_UPDATE_QUESTION:{
-            [_webViewForContent loadHTMLString:
-             [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateQuestion"), [_templateParams valueForKey:@"Name"]] 
+            htmlStr = socialActivityDetail.posterIdentity.fullName?[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><a>%@</a> %@<a> %@</a></body></html>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateQuestion"), [_templateParams valueForKey:@"Name"]] :@"";
+            [_webViewForContent loadHTMLString:htmlStr
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateQuestion"),[_templateParams valueForKey:@"Name"]];

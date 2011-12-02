@@ -79,23 +79,15 @@
 #pragma mark - UIWebViewDelegateMethod 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     //CAPTURE USER LINK-CLICK.
-    NSURL *url = [request URL];
-    
-    
-    if (!([[url absoluteString] isEqualToString:[NSString stringWithFormat:@"%@/",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]])) {
-        
+    if(navigationType == UIWebViewNavigationTypeLinkClicked) {
 		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
-                                                                       url:url];
+                                                                       url:[request URL]];
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:linkWebViewController.view animated:YES]; 
-
-        
         return NO;
     }
-    
-    
     return YES;   
 }
 
