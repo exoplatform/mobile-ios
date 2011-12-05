@@ -12,12 +12,13 @@
 #import "eXoMobileAppDelegate.h"
 
 #define WIDTH_FOR_CONTENT_IPHONE 237
-#define WIDTH_FOR_CONTENT_IPAD 409
+#define WIDTH_FOR_CONTENT_IPAD 425
 
 
 #define HEIGHT_FOR_DECORATION_IPHONE 90
 #define HEIGHT_FOR_DECORATION_IPAD 90
 
+#define MAX_LENGTH 80
 
 @implementation ActivityHelper
 
@@ -102,18 +103,18 @@
         case ACTIVITY_WIKI_MODIFY_PAGE:
         {
             if([[activtyStreamDetail.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EditWiki"),[activtyStreamDetail.templateParams valueForKey:@"page_name"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EditWiki")];
                 
             } else if([[activtyStreamDetail.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"CreateWiki"),[activtyStreamDetail.templateParams valueForKey:@"page_name"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"CreateWiki")];
             }
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            
+            fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
             if([[activtyStreamDetail.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
-                fHeight -= 20;
+                fHeight -= 35;
             } else {
                 text = [activtyStreamDetail.templateParams valueForKey:@"page_exceprt"];
-                fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+                fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 25;
             }
         }
             break;
@@ -216,16 +217,28 @@
         case ACTIVITY_WIKI_MODIFY_PAGE:{
             NSString* textStr;//
             if([[activtyStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-                textStr = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EditWiki"),[activtyStream.templateParams valueForKey:@"page_name"]];
+                textStr = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EditWiki")];
             } else if([[activtyStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-                textStr = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"CreateWiki"),[activtyStream.templateParams valueForKey:@"page_name"]];
+                textStr = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"CreateWiki")];
             }
             fHeight += [ActivityHelper getHeightSizeForText:textStr andTableViewWidth:fWidth];
+            
+            float h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
+            if(h > MAX_LENGTH){
+                h = MAX_LENGTH;
+            }
+            fHeight += h;
+            
             if([[activtyStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
-                fHeight -= 25;
+                fHeight -= 30;
             } else {
                 NSString* text = [activtyStream.templateParams valueForKey:@"page_exceprt"];
-                fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+                
+                float h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+                if(h > MAX_LENGTH){
+                    h = MAX_LENGTH;
+                }
+                fHeight += h - 20;
             }
         }
             break;

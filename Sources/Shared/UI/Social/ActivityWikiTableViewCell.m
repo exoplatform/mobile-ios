@@ -12,14 +12,14 @@
 #import "ActivityHelper.h"
 #import "NSString+HTML.h"
 
-
+#define MAX_LENGTH 80
 
 @implementation ActivityWikiTableViewCell
 
 @synthesize lbMessage = _lbMessage;
 @synthesize htmlName = _htmlName;
 
-
+@synthesize lbTitle = _lbTitle;
 
 - (void)configureFonts:(BOOL)highlighted {
     
@@ -29,6 +29,9 @@
         
         _lbMessage.textColor = [UIColor grayColor];
         _lbMessage.backgroundColor = [UIColor whiteColor];
+        
+        _lbTitle.textColor = [UIColor grayColor];
+        _lbTitle.backgroundColor = [UIColor whiteColor];
     } else {
         _htmlName.textColor = [UIColor darkGrayColor];
         _htmlName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
@@ -36,7 +39,8 @@
         _lbMessage.textColor = [UIColor darkGrayColor];
         _lbMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
         
-        
+        _lbTitle.textColor = [UIColor darkGrayColor];
+        _lbTitle.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
         NSLog(@"Size width:%2f  height:%2f",_htmlName.frame.size.width, _htmlName.frame.size.height);
         
     }
@@ -63,6 +67,12 @@
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     [self.contentView addSubview:_htmlName];
     
+    _lbTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+    _lbTitle.userInteractionEnabled = NO;
+    _lbTitle.backgroundColor = [UIColor clearColor];
+    _lbTitle.font = [UIFont systemFontOfSize:13.0];
+    [self.contentView addSubview:_lbTitle];
+    
     
     _lbMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _lbMessage.userInteractionEnabled = NO;
@@ -74,40 +84,55 @@
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
-
     switch (socialActivityStream.activityType) {
-        case ACTIVITY_WIKI_MODIFY_PAGE:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", 
+        case ACTIVITY_WIKI_MODIFY_PAGE:{
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", 
                              socialActivityStream.posterUserProfile.fullName, 
-                             Localize(@"EditWiki"), 
-                             [socialActivityStream.templateParams valueForKey:@"page_name"]];
+                             Localize(@"EditWiki")];
+            
+        }
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", 
-                             socialActivityStream.posterUserProfile.fullName, 
-                             Localize(@"CreateWiki"), 
-                             [socialActivityStream.templateParams valueForKey:@"page_name"]];
+        {
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", 
+                              socialActivityStream.posterUserProfile.fullName, 
+                              Localize(@"CreateWiki")];
+        }
+            
             break; 
         default:
             break;
     }
-    
-    
-    NSLog(@"%@ --- Size width:%2f  height:%2f",_htmlName.html,_htmlName.frame.size.width, _htmlName.frame.size.height);
-
     [_htmlName sizeToFit];
-    
-    NSLog(@"%@ --- Size width:%2f  height:%2f",_htmlName.html,_htmlName.frame.size.width, _htmlName.frame.size.height);
 
+    _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", 
+                     [socialActivityStream.templateParams valueForKey:@"page_name"]];
+    [_lbTitle sizeToFit];
     
-    //Set the position of lbMessage
-    CGRect tmpFrame = _lbMessage.frame;
+    //Set the position of Title
+    CGRect tmpFrame = _lbTitle.frame;
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
+    tmpFrame.size.width = _htmlName.frame.size.width;
+    
+    double heigthForTTLabel = [[[self lbTitle] text] height];
+    if (heigthForTTLabel > MAX_LENGTH)
+        heigthForTTLabel = MAX_LENGTH;  // Do not exceed the maximum height for the TTStyledTextLabel.
+    // The Text was supposed to clip here when maximum height is set!**
+    tmpFrame.size.height = heigthForTTLabel;
+    _lbTitle.frame = tmpFrame;
+    
+    tmpFrame = _lbMessage.frame;
+    tmpFrame.origin.y = _lbTitle.frame.origin.y + _lbTitle.frame.size.height + 5;
+    tmpFrame.size.width = _lbTitle.frame.size.width;
+    heigthForTTLabel = [[[self lbMessage] text] height];
+    if (heigthForTTLabel > MAX_LENGTH)
+        heigthForTTLabel = MAX_LENGTH;  // Do not exceed the maximum height for the TTStyledTextLabel.
+    // The Text was supposed to clip here when maximum height is set!**
+    tmpFrame.size.height = heigthForTTLabel;
     _lbMessage.frame = tmpFrame;
     _lbMessage.html = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
-    
+
     [_lbMessage sizeToFit];
-    
 }
 
 
@@ -115,6 +140,8 @@
 - (void)dealloc {
     
     _lbMessage = nil;
+    
+    _lbTitle = nil;
     
     [_htmlName release];
     _htmlName = nil;
