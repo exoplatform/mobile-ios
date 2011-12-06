@@ -109,6 +109,10 @@
                      [socialActivityStream.templateParams valueForKey:@"page_name"]];
     [_lbTitle sizeToFit];
     
+    _lbMessage.html = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
+    
+    [_lbMessage sizeToFit];
+    
     //Set the position of Title
     CGRect tmpFrame = _lbTitle.frame;
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
@@ -130,9 +134,6 @@
     // The Text was supposed to clip here when maximum height is set!**
     tmpFrame.size.height = heigthForTTLabel;
     _lbMessage.frame = tmpFrame;
-    _lbMessage.html = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
-
-    [_lbMessage sizeToFit];
 }
 
 
