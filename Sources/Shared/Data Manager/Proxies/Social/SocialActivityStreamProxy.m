@@ -81,29 +81,15 @@
      @"type",@"type",
      @"id",@"activityId",
      @"title",@"title",
+     @"body",@"body",
      @"createdAt",@"createdAt",
-     @"likedByIdentities",@"likedByIdentities",
      @"titleId",@"titleId",
      @"totalNumberOfComments",@"totalNumberOfComments",
      @"totalNumberOfLikes",@"totalNumberOfLikes",
-     @"comments",@"comments", 
      @"templateParams", @"templateParams",
     nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
-    
-//    //Retrieve the Picture  directly on the activityStream service
-//    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
-//    [posterPictureMapping mapKeyPathsToAttributes:
-//     @"DOCPATH",@"docPath",
-//     @"MESSAGE",@"message",
-//     @"DOCLINK",@"docLink",
-//     @"WORKSPACE",@"workspace",
-//     @"REPOSITORY",@"repository",
-//     @"DOCNAME",@"docName",
-//     nil];
-//    [mapping mapKeyPath:@"templateParams" toRelationship:@"templateParams" withObjectMapping:posterPictureMapping];
-    
     
     //Retrieve the UserProfile directly on the activityStream service
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
@@ -137,27 +123,14 @@
      @"posterIdentity",@"posterIdentity",
      @"id",@"activityId",
      @"title",@"title",
+     @"body",@"body",
      @"createdAt",@"createdAt",
-     @"likedByIdentities",@"likedByIdentities",
      @"titleId",@"titleId",
-     @"comments",@"comments", 
      @"templateParams", @"templateParams",
      nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
-    
-//    //Retrieve the Picture  directly on the activityStream service
-//    RKObjectMapping* posterPictureMapping = [RKObjectMapping mappingForClass:[SocialPictureAttach class]];
-//    [posterPictureMapping mapKeyPathsToAttributes:
-//     @"DOCPATH",@"docPath",
-//     @"MESSAGE",@"message",
-//     @"DOCLINK",@"docLink",
-//     @"WORKSPACE",@"workspace",
-//     @"REPOSITORY",@"repository",
-//     @"DOCNAME",@"docName",
-//     nil];
-//    [mapping mapKeyPath:@"templateParams" toRelationship:@"posterPicture" withObjectMapping:posterPictureMapping];
-    
+
     
     //Retrieve the UserProfile directly on the activityStream service
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
@@ -187,7 +160,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-	//xxNSLog(@"Loaded statuses: %@", objects);    
+	//NSLog(@"Loaded statuses: %@", objects);    
     _arrActivityStreams = [objects retain];
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];

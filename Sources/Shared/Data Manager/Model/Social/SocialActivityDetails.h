@@ -49,6 +49,8 @@
     NSString*               _activityStream;
     NSString*               _identifyId;
     NSString*               _title;
+    NSString*               _body;
+    
     NSNumber*               _priority;
     NSString*               _createdAt;
     NSArray*                _likedByIdentities;
@@ -73,6 +75,7 @@
 @property (nonatomic, retain) NSString* activityStream;
 @property (nonatomic, retain) NSString* identifyId;
 @property (nonatomic, retain) NSString* title;
+@property (nonatomic, retain) NSString* body;
 @property (nonatomic, retain) NSNumber* priority;
 @property (nonatomic, retain) NSString* createdAt;
 @property (nonatomic, retain) NSArray*  likedByIdentities;

@@ -22,6 +22,7 @@
     SocialPictureAttach*    _posterPicture;
     NSString*               _activityId;
     NSString*               _title;
+    NSString*               _body;
     NSString*               _createdAt;
     NSArray*                _likedByIdentities;
     NSString*               _titleId;
@@ -44,6 +45,7 @@
 @property (nonatomic, retain) NSString* posterIdentity;
 @property (nonatomic, retain) NSString* activityId;
 @property (nonatomic, retain) NSString* title;
+@property (nonatomic, retain) NSString* body;
 @property (nonatomic, retain) NSString* createdAt;
 @property (nonatomic, retain) NSArray* likedByIdentities;
 @property (nonatomic, retain) NSString* titleId;

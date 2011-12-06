@@ -23,6 +23,7 @@
 @synthesize posterIdentity = _posterIdentity;
 @synthesize activityId = _activityId;
 @synthesize title = _title;
+@synthesize body = _body;
 @synthesize createdAt = _createdAt;
 @synthesize likedByIdentities = _likedByIdentities;
 @synthesize titleId = _titleId;
@@ -39,6 +40,7 @@
     [_posterIdentity release];
     [_activityId release];
     [_title release];
+    [_body release];
     [_createdAt release];
     [_likedByIdentities release];
     [_titleId release];

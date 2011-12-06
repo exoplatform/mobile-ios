@@ -21,6 +21,7 @@
 @synthesize type = _type;
 @synthesize activityStream = _activityStream;
 @synthesize title = _title;
+@synthesize body = _body;
 @synthesize priority = _priority;
 @synthesize identifyId = _identifyId;
 @synthesize createdAt = _createdAt;
@@ -47,7 +48,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@ %@ %@",_title,_identityId,_comments];
+    return [NSString stringWithFormat:@"%@ %@ %@ %@",_title,_body, _identityId,_comments];
 }
 
 - (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value {

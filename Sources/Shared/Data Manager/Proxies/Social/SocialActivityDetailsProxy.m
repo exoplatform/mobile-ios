@@ -31,8 +31,8 @@
         //Default behavior
         _numberOfComments = 0;
         _numberOfLikes = 0;
-        _posterIdentity = NO;
-        _activityStream = NO;
+        _posterIdentity = YES;
+        _activityStream = YES;
     }
     return self;
 }
@@ -131,6 +131,7 @@
      @"type",@"type",
      //@"activityStream",@"activityStream",
      @"title",@"title",
+     @"body",@"body",
      @"priority",@"priority",
      @"id",@"identifyId",
      @"createdAt",@"createdAt",
@@ -188,7 +189,7 @@
     [mapping mapKeyPath:@"likedByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likedByIdentitiesMapping];
     
      
-//    NSLog(@"--------%@", [NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
+    NSLog(@"--------%@",[NSString stringWithFormat:@"%@%@?%@",[self createBaseURL], [self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] 
                          objectMapping:mapping delegate:self];
     
