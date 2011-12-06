@@ -14,7 +14,7 @@
 #import "HomeStyleSheet.h"
 #import "ChatProxy.h"
 #import <dispatch/dispatch.h>
-
+#import <Crashlytics/Crashlytics.h>
 
 
 @implementation AppDelegate_iPad
@@ -32,6 +32,11 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    
+    //Add Crashlytics
+    [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
+    
+    
     
     // Override point for customization after application launch.
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

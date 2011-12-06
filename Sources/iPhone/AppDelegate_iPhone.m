@@ -12,6 +12,8 @@
 #import "ChatProxy.h"
 #import "FilesProxy.h"
 #import "HomeStyleSheet.h"
+#import <Crashlytics/Crashlytics.h>
+
 
 
 @implementation AppDelegate_iPhone
@@ -34,7 +36,12 @@
 	return self;
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {   
+- (void)applicationDidFinishLaunching:(UIApplication *)application { 
+    
+    //Add Crashlytics
+    [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
+    
+    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
     
