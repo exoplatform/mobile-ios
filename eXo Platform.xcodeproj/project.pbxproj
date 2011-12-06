@@ -187,8 +187,6 @@
 		464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */; };
 		46540FA2148786F1006C010C /* Bubble_horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46540FA0148786F1006C010C /* Bubble_horizontal.png */; };
 		46540FA3148786F1006C010C /* Bubble_vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 46540FA1148786F1006C010C /* Bubble_vertical.png */; };
-		46540FA514878802006C010C /* bubbles_horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46540FA414878802006C010C /* bubbles_horizontal.png */; };
-		46540FA714878B34006C010C /* bubbleHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46540FA614878B33006C010C /* bubbleHorizontal.png */; };
 		4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3213CCA25D00328E41 /* SocialProxy.m */; };
 		4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */; };
 		4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3813CDC54D00328E41 /* SocialUserProfile.m */; };
@@ -1034,8 +1032,6 @@
 		464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBackgroundForCell_iPhone.m; sourceTree = "<group>"; };
 		46540FA0148786F1006C010C /* Bubble_horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bubble_horizontal.png; sourceTree = "<group>"; };
 		46540FA1148786F1006C010C /* Bubble_vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bubble_vertical.png; sourceTree = "<group>"; };
-		46540FA414878802006C010C /* bubbles_horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbles_horizontal.png; sourceTree = "<group>"; };
-		46540FA614878B33006C010C /* bubbleHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleHorizontal.png; sourceTree = "<group>"; };
 		4656FD3113CCA25C00328E41 /* SocialProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialProxy.h; sourceTree = "<group>"; };
 		4656FD3213CCA25D00328E41 /* SocialProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialProxy.m; sourceTree = "<group>"; };
 		4656FD3413CDC50200328E41 /* SocialUserProfileProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialUserProfileProxy.h; sourceTree = "<group>"; };
@@ -2629,8 +2625,6 @@
 			children = (
 				46540FA0148786F1006C010C /* Bubble_horizontal.png */,
 				46540FA1148786F1006C010C /* Bubble_vertical.png */,
-				46540FA614878B33006C010C /* bubbleHorizontal.png */,
-				46540FA414878802006C010C /* bubbles_horizontal.png */,
 				46C6B54B138D108D0079C514 /* Ipad_exo_black.png */,
 				46C6B54C138D108D0079C514 /* Ipad_logout.png */,
 				46C6B54D138D108D0079C514 /* Ipad_setting.png */,
@@ -4244,8 +4238,6 @@
 				1FCDF076147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib in Resources */,
 				46540FA2148786F1006C010C /* Bubble_horizontal.png in Resources */,
 				46540FA3148786F1006C010C /* Bubble_vertical.png in Resources */,
-				46540FA514878802006C010C /* bubbles_horizontal.png in Resources */,
-				46540FA714878B34006C010C /* bubbleHorizontal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
