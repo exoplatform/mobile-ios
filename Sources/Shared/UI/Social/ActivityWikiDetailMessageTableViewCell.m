@@ -50,18 +50,14 @@
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
-    NSString *textWithoutHtml = @"";
     NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_WIKI_ADD_PAGE:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"CreateWiki")];         
-            
-            textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"CreateWiki"),[_templateParams valueForKey:@"page_name"]];
         }
             break;
         case ACTIVITY_WIKI_MODIFY_PAGE:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"EditWiki")];
-            textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"EditWiki"),[_templateParams valueForKey:@"page_name"]];
         }
             break;
     }
@@ -74,28 +70,28 @@
     _htmlName.frame = tmpFrame;
     
     // Title
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    CGSize theSize = [[[_templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
-    [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]]
+    [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]]
                                baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]];
      
     _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     //Set the position of web
     tmpFrame = _webViewForContent.frame;
-    tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y ;
+    tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y + 5;
     tmpFrame.size.height = theSize.height;
     _webViewForContent.frame = tmpFrame;
-    [_webViewForContent sizeToFit];
+    
     // Content
     tmpFrame = _htmlMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
+    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
     _htmlMessage.frame = tmpFrame;
     
-    NSLog(@"%@", [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText]);
+    //NSLog(@"%@", [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText]);
     _htmlMessage.html = [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
     [_htmlMessage sizeToFit];
-    
+    [_webViewForContent sizeToFit];
 }
 
 - (void)dealloc {
