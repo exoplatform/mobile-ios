@@ -13,13 +13,13 @@
 #import "ActivityHelper.h"
 #import "NSString+HTML.h"
 #import "NSDate+Formatting.h"
-
+#import "defines.h"
 
 @implementation ActivityCalendarTableViewCell
 
 @synthesize lbMessage = _lbMessage;
 @synthesize htmlName = _htmlName;
-
+@synthesize htmlTitle = _htmlTitle;
 
 
 - (void)configureFonts:(BOOL)highlighted {
@@ -28,11 +28,17 @@
         _htmlName.textColor = [UIColor grayColor];
         _htmlName.backgroundColor = [UIColor whiteColor];
         
+        _htmlTitle.textColor = [UIColor grayColor];
+        _htmlTitle.backgroundColor = [UIColor whiteColor];
+        
         _lbMessage.textColor = [UIColor grayColor];
         _lbMessage.backgroundColor = [UIColor whiteColor];
     } else {
         _htmlName.textColor = [UIColor darkGrayColor];
         _htmlName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        
+        _htmlTitle.textColor = [UIColor darkGrayColor];
+        _htmlTitle.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
         
         _lbMessage.textColor = [UIColor darkGrayColor];
         _lbMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
@@ -65,6 +71,14 @@
     //_htmlName.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:_htmlName];
     
+    //Use an html styled label to display informations about the author of the wiki page
+    _htmlTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+    _htmlTitle.userInteractionEnabled = NO;
+    _htmlTitle.backgroundColor = [UIColor clearColor];
+    _htmlTitle.font = [UIFont systemFontOfSize:13.0];
+    //_htmlName.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.contentView addSubview:_htmlTitle];
+    
     
     _lbMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _lbMessage.userInteractionEnabled = NO;
@@ -80,45 +94,34 @@
     
     switch (socialActivityStream.activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", 
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
                               socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"EventAdded"), 
-                              [socialActivityStream.templateParams valueForKey:@"EventSummary"]];
+                              Localize(@"EventAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_EVENT:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", 
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
                               socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"EventUpdated"), 
-                              [socialActivityStream.templateParams valueForKey:@"EventSummary"]];
+                              Localize(@"EventUpdated")];
             break;
         case ACTIVITY_CALENDAR_ADD_TASK:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", 
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
                               socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"TaskAdded"), 
-                              [socialActivityStream.templateParams valueForKey:@"EventSummary"]];
+                              Localize(@"TaskAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@<a> %@</a>", 
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
                               socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"TaskUpdated"), 
-                              [socialActivityStream.templateParams valueForKey:@"EventSummary"]];
+                              Localize(@"TaskUpdated")];
             break; 
         default:
             break;
     }
     
-    NSLog(@"%@ --- Size width:%2f  height:%2f",_htmlName.html,_htmlName.frame.size.width, _htmlName.frame.size.height);
-    
     [_htmlName sizeToFit];
     
-    NSLog(@"%@ --- Size width:%2f  height:%2f",_htmlName.html,_htmlName.frame.size.width, _htmlName.frame.size.height);
-    
-    
-    //Set the position of lbMessage
-    CGRect tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
-//    //tmpFrame.size.width -= 30;
-    _lbMessage.frame = tmpFrame;
+    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[socialActivityStream.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText]];
+
+    [_htmlTitle sizeToFit];
     
     NSString *startTime = [[NSDate date] dateWithTimeInterval:[[socialActivityStream.templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText]];
     NSString *endTime = [[NSDate date] dateWithTimeInterval:[[socialActivityStream.templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText]];
@@ -126,6 +129,21 @@
     _lbMessage.html = [NSString stringWithFormat:@"%@: %@\n%@: %@\n%@: %@\n%@: %@",Localize(@"Description"), [[socialActivityStream.templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText], Localize(@"Location"),[[socialActivityStream.templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText], Localize(@"StartTime"), startTime, Localize(@"EndTime"), endTime];
     
     [_lbMessage sizeToFit];
+    
+    //Set the position of lbMessage
+    CGRect tmpFrame = _htmlTitle.frame;
+    tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height;
+    double heigthForTTLabel = [[[self htmlTitle] text] height];
+    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
+    tmpFrame.size.height = heigthForTTLabel;
+    _htmlTitle.frame = tmpFrame;
+    
+    tmpFrame = _lbMessage.frame;
+    tmpFrame.origin.y = _htmlTitle.frame.origin.y + _htmlTitle.frame.size.height;
+    heigthForTTLabel = [[[self lbMessage] text] height];
+    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
+    tmpFrame.size.height = heigthForTTLabel;
+    _lbMessage.frame = tmpFrame;
     
 }
 

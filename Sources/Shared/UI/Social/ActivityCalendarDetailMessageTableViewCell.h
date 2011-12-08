@@ -11,8 +11,11 @@
 
 @interface ActivityCalendarDetailMessageTableViewCell : ActivityDetailMessageTableViewCell{
     TTStyledTextLabel*                      _htmlMessage;
+    TTStyledTextLabel*                      _htmlName;
+    TTStyledTextLabel*                      _htmlTitle;
     CGFloat width;
 }
+@property (retain, nonatomic) TTStyledTextLabel* htmlName;
 @property (retain, nonatomic) TTStyledTextLabel* htmlMessage;
-
+@property (retain, nonatomic) TTStyledTextLabel* htmlTitle;
 @end

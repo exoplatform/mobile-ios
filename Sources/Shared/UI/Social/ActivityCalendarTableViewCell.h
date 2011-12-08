@@ -12,9 +12,10 @@
 {
     TTStyledTextLabel*                      _lbMessage;
     TTStyledTextLabel*                      _htmlName;
+    TTStyledTextLabel*                      _htmlTitle;
     
 }
-
+@property (retain, nonatomic) TTStyledTextLabel* htmlTitle;
 @property (retain, nonatomic) TTStyledTextLabel* lbMessage;
 @property (retain, nonatomic) TTStyledTextLabel* htmlName;
 

@@ -119,7 +119,7 @@
             if([[activtyStreamDetail.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
                 fHeight -= 25;
             } else {
-                text = [activtyStreamDetail.templateParams valueForKey:@"page_exceprt"];
+                text = [[activtyStreamDetail.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
                 fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 15;
             }
         }
@@ -144,7 +144,7 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             //Set the size of the cell
             text = activtyStreamDetail.body;
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 10;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 20;
             
         }
             break;
@@ -165,7 +165,7 @@
             text = [activtyStreamDetail.templateParams valueForKey:@"Name"];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = activtyStreamDetail.body;
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 15;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 30;
         }
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
@@ -174,16 +174,18 @@
         case ACTIVITY_CALENDAR_UPDATE_EVENT:
         {
             if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_ADD_EVENT){//
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EventAdded"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EventAdded")];
                 
             } else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EventUpdated"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EventUpdated")];
             } else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_ADD_TASK) {
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskAdded"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskAdded")];
             }else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskUpdated"),[activtyStreamDetail.templateParams valueForKey:@"EventSummary"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskUpdated")];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 50;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 30;
+            text = [activtyStreamDetail.templateParams valueForKey:@"EventSummary"];
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [activtyStreamDetail.templateParams valueForKey:@"EventDescription"];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [activtyStreamDetail.templateParams valueForKey:@"EventLocale"];
@@ -208,6 +210,7 @@
 
     NSString* text = @"";
     float fHeight = 0.0;
+    float h = 0.0;
     switch (activtyStream.activityType) {
         case ACTIVITY_DOC:
             text = [activtyStream.templateParams valueForKey:@"MESSAGE"];
@@ -218,7 +221,6 @@
             fHeight += 80;
             break;
         case ACTIVITY_LINK:{
-            float h = 0.0;
             text = [activtyStream.templateParams valueForKey:@"comment"];
             h =  [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
@@ -252,7 +254,7 @@
             }
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             
-            float h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
+            h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
@@ -261,7 +263,7 @@
             if([[activtyStream.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
                 fHeight -= 20;
             } else {
-                text = [activtyStream.templateParams valueForKey:@"page_exceprt"];
+                text = [[activtyStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
                 
                 float h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
                 if(h > EXO_MAX_HEIGHT){
@@ -275,7 +277,6 @@
         case ACTIVITY_FORUM_UPDATE_POST:
         case ACTIVITY_FORUM_CREATE_POST: 
         case ACTIVITY_FORUM_CREATE_TOPIC:{
-            float h = 0.0;
             if(activtyStream.activityType == ACTIVITY_FORUM_CREATE_POST){
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"NewPost")];
                 h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
@@ -302,7 +303,6 @@
         case ACTIVITY_ANSWER_ADD_QUESTION:
         case ACTIVITY_ANSWER_QUESTION:
         case ACTIVITY_ANSWER_UPDATE_QUESTION:{
-            float h = 0.0;
             if(activtyStream.activityType == ACTIVITY_ANSWER_ADD_QUESTION){
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"Asked")];
             } else if(activtyStream.activityType == ACTIVITY_ANSWER_QUESTION) {
@@ -330,23 +330,37 @@
         case ACTIVITY_CALENDAR_UPDATE_TASK:
         case ACTIVITY_CALENDAR_ADD_TASK:
         case ACTIVITY_CALENDAR_ADD_EVENT:
-        case ACTIVITY_CALENDAR_UPDATE_EVENT:
-        {
+        case ACTIVITY_CALENDAR_UPDATE_EVENT:{
             if(activtyStream.activityType == ACTIVITY_CALENDAR_ADD_EVENT){//
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventAdded"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
-                
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventAdded")];
             } else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventUpdated"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventUpdated")];
             } else if(activtyStream.activityType == ACTIVITY_CALENDAR_ADD_TASK) {
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskAdded"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskAdded")];
             }else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
-                text = [NSString stringWithFormat:@"%@ %@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskUpdated"),[activtyStream.templateParams valueForKey:@"EventSummary"]];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskUpdated")];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 50;
-            text = [activtyStream.templateParams valueForKey:@"EventDescription"];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            text = [activtyStream.templateParams valueForKey:@"EventLocale"];
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            
+            text = [[activtyStream.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText];
+            h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            if(h > EXO_MAX_HEIGHT){
+                h = EXO_MAX_HEIGHT;
+            }
+            fHeight += h;
+            
+            text = [[activtyStream.templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText];
+            h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            
+            text = [[activtyStream.templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText];
+            h += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            if(h > EXO_MAX_HEIGHT){
+                h = EXO_MAX_HEIGHT;
+            }
+            if(h < 32){
+                h = 32;
+            }
+            fHeight += h + 20;
         }
             break;
         default:{
