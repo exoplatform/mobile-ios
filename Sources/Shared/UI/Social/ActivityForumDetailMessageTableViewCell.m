@@ -61,7 +61,7 @@
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"TopicLink"],[_templateParams valueForKey:@"TopicName"]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
-             textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"NewTopic"),[_templateParams valueForKey:@"TopicName"]];
+             textWithoutHtml = [_templateParams valueForKey:@"TopicName"];
         }
             break;
         case ACTIVITY_FORUM_CREATE_POST:{
@@ -70,25 +70,25 @@
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a href=\"%@\">%@</a></body></html>",[_templateParams valueForKey:@"PostLink"],[_templateParams valueForKey:@"PostName"]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
-            textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"NewPost"),[_templateParams valueForKey:@"PostName"]];
+            textWithoutHtml = [_templateParams valueForKey:@"PostName"];
         }
             
             break; 
         case ACTIVITY_FORUM_UPDATE_POST:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdatePost")];
-            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"PostLink"],[_templateParams valueForKey:@"PostName"]]
+            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"PostLink"],[_templateParams valueForKey:@"PostName"]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
-            textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdatePost"),[_templateParams valueForKey:@"PostName"]];
+            textWithoutHtml = [_templateParams valueForKey:@"PostName"];
         }
             
             break;
         case ACTIVITY_FORUM_UPDATE_TOPIC:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateTopic")];
-            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"TopicLink"],[_templateParams valueForKey:@"TopicName"]]
+            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"TopicLink"],[_templateParams valueForKey:@"TopicName"]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
-            textWithoutHtml = [NSString stringWithFormat:@"%@ %@ %@", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateTopic"),[_templateParams valueForKey:@"TopicName"]];
+            textWithoutHtml = [_templateParams valueForKey:@"TopicName"];
         }
             break;
     }
@@ -97,29 +97,30 @@
     [_htmlName sizeToFit];
     
     _htmlMessage.html = [socialActivityDetail.body stringByConvertingHTMLToPlainText];
-    [_htmlMessage sizeToFit];
+    
     
     CGRect tmpFrame = _htmlName.frame;
     tmpFrame.origin.y = 5;
     _htmlName.frame = tmpFrame;
 
     //Set the position of web
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    CGSize theSize = [[textWithoutHtml stringByConvertingHTMLToPlainText] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
     _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     tmpFrame = _webViewForContent.frame;
-    tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y;
+    tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y + 5;
     tmpFrame.size.height = theSize.height;
     _webViewForContent.frame = tmpFrame;
-    [_webViewForContent sizeToFit];
+    
     
     // Content
     tmpFrame = _htmlMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
+    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
     _htmlMessage.frame = tmpFrame;
+    [_htmlMessage sizeToFit];
     
-    
+    [_webViewForContent sizeToFit];
 }
 
 - (void)dealloc {
