@@ -311,6 +311,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    
     if (buttonIndex<2) {
         UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
         thePicker.delegate = self;
@@ -321,11 +322,15 @@
             {  
                 [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
 
+                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+/*                
                 UINavigationController *modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:thePicker];
                 modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+
                 [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:modalNavigationSettingViewController animated:YES];
                 [modalNavigationSettingViewController release];
+ */
+                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
             }
             else
             {
