@@ -538,6 +538,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         if ([cell respondsToSelector:@selector(startLoadingImageAttached)]) {
             [(ActivityPictureTableViewCell *)cell startLoadingImageAttached];
         }
+    } else {
+        //reset the imgAttached
+        if ([cell respondsToSelector:@selector(startLoadingImageAttached)]) {
+            [(ActivityPictureTableViewCell *)cell resetImageAttached];
+        }
     }
 
     return cell;

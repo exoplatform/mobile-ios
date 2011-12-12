@@ -170,7 +170,12 @@
 
 - (void)startLoadingImageAttached {
     //if(self.imgvAttach.imageURL == nil)
-        self.imgvAttach.imageURL = self.urlForAttachment;
+    self.imgvAttach.imageURL = self.urlForAttachment;
+}
+
+
+- (void)resetImageAttached {
+    self.imgvAttach.imageURL = nil;
 }
 
 - (void)dealloc

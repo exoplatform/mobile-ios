@@ -24,4 +24,7 @@
 //Method use to start the loading of the image Attached.
 - (void)startLoadingImageAttached;
 
+//Method use to reset the loading of the image Attached.
+- (void)resetImageAttached;
+
 @end
