@@ -80,7 +80,7 @@
         _activityType = ACTIVITY_LINK;
     }else if([_type rangeOfString:@"DOC_ACTIVITY"].length > 0){
         _activityType = ACTIVITY_DOC;
-    }else if([_type rangeOfString:@"contents"].length > 0){
+    }else if([_type rangeOfString:@"contents:spaces"].length > 0){
         _activityType = ACTIVITY_CONTENTS_SPACE;
     }else if([_type rangeOfString:@"ks-forum"].length > 0){
         if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddTopic"]){
@@ -92,8 +92,7 @@
         }else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"UpdateTopic"]){
             _activityType = ACTIVITY_FORUM_UPDATE_TOPIC;
         }//
-    } 
-    else if([_type rangeOfString:@"ks-answer"].length > 0){//
+    }else if([_type rangeOfString:@"ks-answer"].length > 0){//
         if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionAdd"]){
             _activityType = ACTIVITY_ANSWER_ADD_QUESTION;
         } else if([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionUpdate"]){

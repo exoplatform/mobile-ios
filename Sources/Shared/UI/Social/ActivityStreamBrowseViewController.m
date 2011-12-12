@@ -414,7 +414,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     ActivityBasicTableViewCell *cell;
     
     switch (socialActivityStream.activityType) {
-        case ACTIVITY_DOC:{
+        case ACTIVITY_DOC:
+        case ACTIVITY_CONTENTS_SPACE:{
             cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
             //Check if we found a cell
             if (cell == nil) 
@@ -551,7 +552,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         nameIcon = @"ActivityTypeForum.png";
     }else if([type rangeOfString:@"answer"].length > 0){
         nameIcon = @"ActivityTypeAnswer.png";
-    }else if([type rangeOfString:@"DOC_ACTIVITY"].length > 0){
+    }else if([type rangeOfString:@"DOC_ACTIVITY"].length > 0 || [type rangeOfString:@"contents:spaces"].length > 0){
         nameIcon = @"ActivityTypeDocument.png";
     }else if([type rangeOfString:@"wiki"].length > 0){
         nameIcon = @"ActivityTypeWiki.png";

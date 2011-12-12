@@ -10,9 +10,10 @@
 #import "ActivityDetailMessageTableViewCell.h"
 
 @interface ActivityPictureDetailMessageTableViewCell : ActivityDetailMessageTableViewCell {
+    CGFloat width;
+    UILabel*     _lbFileName;
     
 }
 
-- (void)setLinkForImageAttach:(NSString *) URL;
-
+@property (retain) IBOutlet UILabel* lbFileName;
 @end

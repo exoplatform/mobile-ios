@@ -11,8 +11,8 @@
 
 @interface ActivityPictureTableViewCell : ActivityBasicTableViewCell {
     EGOImageView*          _imgvAttach;
-    UILabel*               _lbFileName;
-    
+    UILabel*     _lbFileName;
+    CGFloat width;
     NSURL*                 _urlForAttachment;
 }
 

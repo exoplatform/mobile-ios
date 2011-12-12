@@ -87,7 +87,15 @@
     float fHeight = 0.0;
     switch (activtyStreamDetail.activityType) {
         case ACTIVITY_DOC:{
-            text = activtyStreamDetail.title;
+            text = [activtyStreamDetail.templateParams valueForKey:@"MESSAGE"];
+            fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 80;
+            fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"DOCNAME"]
+                                          andTableViewWidth:fWidth];
+        }
+            break;
+        case ACTIVITY_CONTENTS_SPACE:
+        {
+            text = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a> state : %@", [activtyStreamDetail.templateParams valueForKey:@"contentName"], [activtyStreamDetail.templateParams valueForKey:@"author"], [activtyStreamDetail.templateParams valueForKey:@"state"]];
             fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 80;
         }
             break;  
@@ -212,13 +220,29 @@
     float fHeight = 0.0;
     float h = 0.0;
     switch (activtyStream.activityType) {
-        case ACTIVITY_DOC:
+        case ACTIVITY_DOC:{
             text = [activtyStream.templateParams valueForKey:@"MESSAGE"];
-            fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            fHeight += [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"DOCNAME"]
+            h =  [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            if(h > EXO_MAX_HEIGHT){
+                h = EXO_MAX_HEIGHT;
+            }
+            fHeight = +h;
+            h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"DOCNAME"]
  andTableViewWidth:fWidth];
-
-            fHeight += 80;
+            if(h > 32){
+                h = 32;
+            }
+            fHeight += h + 80;
+        }
+            break;
+        case ACTIVITY_CONTENTS_SPACE:{
+            text = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a> state : %@", [activtyStream.templateParams valueForKey:@"contentName"], [activtyStream.templateParams valueForKey:@"author"], [activtyStream.templateParams valueForKey:@"state"]];
+            h =  [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            if(h > EXO_MAX_HEIGHT){
+                h = EXO_MAX_HEIGHT;
+            }
+            fHeight += h + 80;
+        }
             break;
         case ACTIVITY_LINK:{
             text = [activtyStream.templateParams valueForKey:@"comment"];
