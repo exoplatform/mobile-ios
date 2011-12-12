@@ -38,6 +38,14 @@
 #pragma mark -
 #pragma mark Instance Methods
 
+- (NSString *) stringByEncodeWithHTML{
+	NSString *string = [[self copy] autorelease];
+	string = [string stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+	string = [string stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
+    string = [string stringByReplacingOccurrencesOfString:@">" withString:@"&lg;"];
+	return string;
+}
+
 // Strip HTML tags
 - (NSString *)stringByConvertingHTMLToPlainText {
 	
