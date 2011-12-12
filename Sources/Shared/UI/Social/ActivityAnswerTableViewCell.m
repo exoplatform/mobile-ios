@@ -96,11 +96,13 @@
     [_htmlName sizeToFit];
     
     //Set the position of Title
-    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [socialActivityStream.templateParams valueForKey:@"Name"]];
+    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
+    
     [_htmlTitle sizeToFit];
     
-    _lbMessage.html = [socialActivityStream.body stringByConvertingHTMLToPlainText];
+    _lbMessage.html = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     [_lbMessage sizeToFit];
+    
     
     // for title
     CGRect tmpFrame = _htmlTitle.frame;

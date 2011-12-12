@@ -43,9 +43,6 @@
         _lbMessage.textColor = [UIColor darkGrayColor];
         _lbMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
         
-        
-        NSLog(@"Size width:%2f  height:%2f",_htmlName.frame.size.width, _htmlName.frame.size.height);
-        
     }
     
     [super configureFonts:highlighted];
@@ -119,7 +116,7 @@
     
     [_htmlName sizeToFit];
     
-    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[socialActivityStream.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText]];
+    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
 
     [_htmlTitle sizeToFit];
     
@@ -152,6 +149,8 @@
 - (void)dealloc {
     
     _lbMessage = nil;
+    
+    [_htmlTitle release];
     
     [_htmlName release];
     _htmlName = nil;

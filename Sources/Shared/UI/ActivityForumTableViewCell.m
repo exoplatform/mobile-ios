@@ -52,9 +52,9 @@
     CGRect tmpFrame = CGRectZero;
     
     if (fWidth > 320) {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPAD, 21);
+        tmpFrame = CGRectMake(67, 14, WIDTH_FOR_CONTENT_IPAD, 21);
     } else {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPHONE, 21);
+        tmpFrame = CGRectMake(67, 14, WIDTH_FOR_CONTENT_IPHONE, 21);
     }
     
     //Use an html styled label to display informations about the author of the wiki page
@@ -82,55 +82,56 @@
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
-
+    NSString *html = nil;
     switch (socialActivityStream.activityType) {
         case ACTIVITY_FORUM_CREATE_POST:
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
-            _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [socialActivityStream.templateParams valueForKey:@"PostName"]];
+            html = [NSString stringWithFormat:@"<a>%@</a>", 
+                             [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break;
         case ACTIVITY_FORUM_CREATE_TOPIC:
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewTopic")];
-            _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+            html = [NSString stringWithFormat:@"<a>%@</a>", 
+                             [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break; 
         case ACTIVITY_FORUM_UPDATE_TOPIC:
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdateTopic")];
-            _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [socialActivityStream.templateParams valueForKey:@"TopicName"]];
+            html = [NSString stringWithFormat:@"<a>%@</a>", 
+                             [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break; 
         case ACTIVITY_FORUM_UPDATE_POST:
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdatePost")];
-            _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [socialActivityStream.templateParams valueForKey:@"PostName"]];
+            html = [NSString stringWithFormat:@"<a>%@</a>", 
+                             [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break; 
         default:
             break;
     }
     
     [_htmlName sizeToFit];
+    
+    _lbTitle.html = html;
     [_lbTitle sizeToFit];
     
-    _lbMessage.html = [socialActivityStream.body stringByConvertingHTMLToPlainText];
+    NSLog(@"%@", socialActivityStream.body );
+    _lbMessage.html = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     [_lbMessage sizeToFit];
-    
-    NSLog(@"%@", [socialActivityStream.body stringByConvertingHTMLToPlainText]);
-    
+    NSLog(@"%@", [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]);
     //Set the position of Title
     CGRect tmpFrame = _lbTitle.frame;
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
     tmpFrame.size.width = _htmlName.frame.size.width;
-    
     _lbTitle.frame = tmpFrame;
     
     //Set the position of lbMessage
     tmpFrame = _lbMessage.frame;
     tmpFrame.origin.y = _lbTitle.frame.origin.y + _lbTitle.frame.size.height + 5;
     double heigthForTTLabel = [[[self lbMessage] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT)
-        heigthForTTLabel = EXO_MAX_HEIGHT;  // Do not exceed the maximum height for the TTStyledTextLabel.
-    // The Text was supposed to clip here when maximum height is set!**
+    if (heigthForTTLabel > EXO_MAX_HEIGHT){
+        heigthForTTLabel = EXO_MAX_HEIGHT; 
+    }
     tmpFrame.size.height = heigthForTTLabel;
+    tmpFrame.size.width = _htmlName.frame.size.width;
     _lbMessage.frame = tmpFrame;
 }
 

@@ -80,7 +80,7 @@
     //Set the position of web
     tmpFrame = _webViewForContent.frame;
     tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y + 5;
-    tmpFrame.size.height = theSize.height;
+    tmpFrame.size.height = theSize.height + 5;
     _webViewForContent.frame = tmpFrame;
     
     // Content
@@ -88,8 +88,8 @@
     tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
     _htmlMessage.frame = tmpFrame;
     
-    //NSLog(@"%@", [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText]);
-    _htmlMessage.html = [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
+    NSLog(@"%@", [[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText]);
+    _htmlMessage.html = [NSString stringWithFormat:@"<p>%@</p>", [[[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
     [_htmlMessage sizeToFit];
     [_webViewForContent sizeToFit];
 }

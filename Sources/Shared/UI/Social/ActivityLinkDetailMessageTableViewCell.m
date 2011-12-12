@@ -84,9 +84,9 @@
     } else {
         rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"ActivityTypeDocument.png"];
-        self.imgvAttach.imageURL = [NSURL URLWithString:[_templateParams valueForKey:@"image"]];
+        self.imgvAttach.imageURL = [NSURL URLWithString:[[_templateParams valueForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
-        rect.origin.x = (_lbName.frame.size.width > 320)?(_lbName.frame.size.width/3 + 30):_webViewForContent.frame.size.width/3 + _lbName.frame.origin.x;
+        rect.origin.x = width/3 + 50;
         self.imgvAttach.frame = rect;
         
         rect = _webViewComment.frame;

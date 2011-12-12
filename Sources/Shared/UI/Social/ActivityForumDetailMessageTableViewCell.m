@@ -96,7 +96,7 @@
     _htmlName.html = htmlStr;
     [_htmlName sizeToFit];
     
-    _htmlMessage.html = [socialActivityDetail.body stringByConvertingHTMLToPlainText];
+    _htmlMessage.html = [socialActivityDetail.body stringByEncodeWithHTML];
     
     
     CGRect tmpFrame = _htmlName.frame;
@@ -104,13 +104,14 @@
     _htmlName.frame = tmpFrame;
 
     //Set the position of web
-    CGSize theSize = [[textWithoutHtml stringByConvertingHTMLToPlainText] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage 
+                                 constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
     _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     tmpFrame = _webViewForContent.frame;
     tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y + 5;
-    tmpFrame.size.height = theSize.height;
+    tmpFrame.size.height = theSize.height + 5;
     _webViewForContent.frame = tmpFrame;
     
     

@@ -41,8 +41,6 @@
         
         _lbTitle.textColor = [UIColor darkGrayColor];
         _lbTitle.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
-        NSLog(@"Size width:%2f  height:%2f",_htmlName.frame.size.width, _htmlName.frame.size.height);
-        
     }
     
     [super configureFonts:highlighted];
@@ -81,8 +79,6 @@
     [self.contentView addSubview:_lbMessage];
 }
 
-
-
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
     switch (socialActivityStream.activityType) {
         case ACTIVITY_WIKI_MODIFY_PAGE:{
@@ -105,13 +101,12 @@
     }
     [_htmlName sizeToFit];
 
-    _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", 
-                     [socialActivityStream.templateParams valueForKey:@"page_name"]];
+    _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[socialActivityStream.templateParams valueForKey:@"page_name"] stringByEncodeWithHTML]];
     [_lbTitle sizeToFit];
     
-    _lbMessage.html = [[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
-    
+    _lbMessage.html =  [[[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     [_lbMessage sizeToFit];
+
     
     //Set the position of Title
     CGRect tmpFrame = _lbTitle.frame;

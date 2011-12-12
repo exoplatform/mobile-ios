@@ -40,7 +40,7 @@
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     _htmlName.textColor = [UIColor grayColor];
     _htmlName.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
+    
     [self.contentView addSubview:_htmlName];
     
     _htmlTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
@@ -49,7 +49,7 @@
     _htmlTitle.font = [UIFont systemFontOfSize:13.0];
     _htmlTitle.textColor = [UIColor grayColor];
     _htmlTitle.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
+    
     [self.contentView addSubview:_htmlTitle];
     
     _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
@@ -58,7 +58,7 @@
     _htmlMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlMessage.textColor = [UIColor grayColor];
     _htmlMessage.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
+    
     [self.contentView addSubview:_htmlMessage];
 }
 
@@ -90,7 +90,7 @@
     _htmlName.html = htmlStr;
     [_htmlName sizeToFit];
     
-    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[_templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText]];
+    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[_templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
     
     NSString *startTime = [[NSDate date] dateWithTimeInterval:[[_templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText]];
     NSString *endTime = [[NSDate date] dateWithTimeInterval:[[_templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText]];
@@ -115,6 +115,7 @@
 }
 
 - (void)dealloc {
+    [_htmlTitle release];
     [_htmlMessage release];
     _htmlMessage = nil;
     

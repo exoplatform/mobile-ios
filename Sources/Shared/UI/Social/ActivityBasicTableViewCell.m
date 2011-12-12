@@ -275,17 +275,6 @@
     //_htmlMessage.text = [TTStyledText textFromXHTML:socialActivityStream.title];
 
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
-    
-    switch (socialActivityStream.activityType) {
-        case ACTIVITY_ANSWER_UPDATE_QUESTION:
-        case ACTIVITY_ANSWER_ADD_QUESTION:{
-            _htmlMessage.html = [socialActivityStream.templateParams valueForKey:@"Name"];
-        }
-            
-            break;
-        default:
-            break;
-    }
 }
 
 
