@@ -282,7 +282,8 @@
     {
         ActivityDetailMessageTableViewCell* cell;
         switch (_socialActivityStream.activityType) {
-            case ACTIVITY_DOC:{
+            case ACTIVITY_DOC:
+            case ACTIVITY_CONTENTS_SPACE:{
                 //Check if we found a cell
                 cell = (ActivityPictureDetailMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityPictureDetailMessageTableViewCell];
                 if (cell == nil) {
@@ -290,7 +291,7 @@
                     cell = (ActivityPictureDetailMessageTableViewCell *)[nib objectAtIndex:0];
                     //Create a cell, need to do some configurations
                     [cell configureCell];
-                    
+                    [cell configureCellForSpecificContentWithWidth:tableView.frame.size.width];
                     //Set the delegate of the webview
                     cell.webViewForContent.delegate = self;
                 }
