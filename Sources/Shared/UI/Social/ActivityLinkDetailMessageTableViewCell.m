@@ -21,21 +21,22 @@
 
 @implementation ActivityLinkDetailMessageTableViewCell
 
-@synthesize lbComment = _lbComment;
+@synthesize htmlLinkTitle = _htmlLinkTitle;
+@synthesize htmlLinkMessage = _htmlLinkMessage;
+@synthesize htmlActivityMessage = _htmlActivityMessage;
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
     CGRect tmpFrame = CGRectZero;
     
     if (fWidth > 320) {
-        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPAD, 21);
+        tmpFrame = CGRectMake(67, 0, WIDTH_FOR_CONTENT_IPAD, 21);
         width = WIDTH_FOR_CONTENT_IPAD;
     } else {
-        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
+        tmpFrame = CGRectMake(67, 0, WIDTH_FOR_CONTENT_IPHONE, 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
         
-    _webViewComment = [[UIWebView alloc] initWithFrame:CGRectMake(60, 38, WIDTH_FOR_CONTENT_IPAD + 10, 28)];
     _webViewComment.contentMode = UIViewContentModeScaleAspectFit;
     [_webViewComment setBackgroundColor:[UIColor clearColor]];
     UIScrollView *scrollView = (UIScrollView *)[[_webViewComment subviews] objectAtIndex:0];
@@ -44,7 +45,6 @@
     _webViewComment.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeAddress;
 
     [_webViewComment setOpaque:NO];
-    [self.contentView addSubview:_webViewComment];
 }
 
 #define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
@@ -53,55 +53,75 @@
     //Set the UserName of the activity
     _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
     
-    NSString *textWithoutHtml = [NSString stringWithFormat:@"Shared a link: %@", [_templateParams valueForKey:@"title"]];
+    // comment
+    [_webViewForContent loadHTMLString:
+     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"comment"]?[_templateParams valueForKey:@"comment"]:@""] 
+                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+     ];
+    
+    // Content
+    [_webViewComment loadHTMLString:
+     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} p{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body><a href=\"%@\">%@</a></br>%@Source : %@</body></html>",[_templateParams valueForKey:@"link"],[_templateParams valueForKey:@"title"],(![[[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] isEqualToString:@""])?[NSString stringWithFormat:@"%@</br>", [[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText]]:@"",  [_templateParams valueForKey:@"link"]] 
+                            baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+     ];
+    
+    NSString *textWithoutHtml = [[_templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText];
     CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
+    _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     
-    CGRect frame = _webViewForContent.frame;
-    frame.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y + 5;
-    frame.size.height =  theSize.height + 10;
-    _webViewForContent.frame = frame;
-    [_webViewForContent loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head>Shared a link: <a href=\"%@\">%@</a></body></html>",[_templateParams valueForKey:@"link"], [_templateParams valueForKey:@"title"]?[_templateParams valueForKey:@"title"]:@""] 
-                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-     ];
-
-    CGRect rect = _webViewComment.frame;
-    rect.origin.y = _lbName.frame.size.height + _lbName.frame.origin.y + theSize.height + 10;
+    CGRect rect = _webViewForContent.frame;
+    rect.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y;
+    rect.size.height =  theSize.height + 5;
     
+    _webViewForContent.frame = rect;
+    //NSLog(@"%@", [_templateParams valueForKey:@"image"]);
     if([[_templateParams valueForKey:@"image"] isEqualToString:@""]){
-        
-        rect.size.width = _webViewForContent.frame.size.width - 10;
+        rect = _webViewComment.frame;
+        rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
         
     } else {
+        rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"ActivityTypeDocument.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[_templateParams valueForKey:@"image"]];
+        rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
+        rect.origin.x = (_lbName.frame.size.width > 320)?(_lbName.frame.size.width/3 + 30):_webViewForContent.frame.size.width/3 + _lbName.frame.origin.x;
+        self.imgvAttach.frame = rect;
         
-        rect.origin.x = _imgvAttach.frame.size.width + _imgvAttach.frame.origin.x + 10;
-        rect.size.width = _webViewForContent.frame.size.width - self.imgvAttach.frame.size.width - 10; 
-        
-        CGRect rectOfAttachImg = _imgvAttach.frame;
-        rectOfAttachImg.origin.y = rect.origin.y;
-        _imgvAttach.frame = rectOfAttachImg;
+        rect = _webViewComment.frame;
+        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
     }
     
-    theSize = [[_templateParams valueForKey:@"comment"] sizeWithFont:kFontForLink constrainedToSize:CGSizeMake(rect.size.width, CGFLOAT_MAX) 
+     _webViewComment.contentMode = UIViewContentModeScaleAspectFit;
+    textWithoutHtml = [[_templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText];
+    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
-    rect.size.height = theSize.height + 10;
+    rect.size.height = theSize.height;
+    //
+    textWithoutHtml = [[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText];
+    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+                              lineBreakMode:UILineBreakModeWordWrap];
+    rect.size.height += theSize.height;
+    
+    textWithoutHtml = [NSString stringWithFormat:@"Source : %@",[[_templateParams valueForKey:@"link"] stringByConvertingHTMLToPlainText]];
+    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+                              lineBreakMode:UILineBreakModeWordWrap];
+    rect.size.height += theSize.height + 5;
+    
     _webViewComment.frame = rect;
-    [_webViewComment loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #0888D6; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[_templateParams valueForKey:@"comment"]?[_templateParams valueForKey:@"comment"]:@"" ] 
-                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-     ];
+    [_webViewComment sizeToFit];
+    [_webViewForContent sizeToFit];
 }
 
 - (void)dealloc {
     [_htmlLinkMessage release];
     _htmlLinkMessage = nil;
     
-    [_lbComment release];
-    _lbComment = nil;
+    [_htmlLinkTitle release];
+    _htmlLinkTitle = nil;
+    
+    _webViewComment = nil;
     
     [super dealloc];
 }
