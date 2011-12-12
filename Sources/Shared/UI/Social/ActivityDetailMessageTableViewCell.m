@@ -117,6 +117,7 @@
     UIScrollView *scrollView = (UIScrollView *)[[_webViewForContent subviews] objectAtIndex:0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
+    scrollView.scrollsToTop = YES;
     
     [_webViewForContent setOpaque:NO];
 }
@@ -126,7 +127,6 @@
 {
     switch (_activityType) {
         case ACTIVITY_DEFAULT:
-        case ACTIVITY_CONTENTS_SPACE:
         {
             NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]?[socialActivityDetail.title copy]:@""];
             [_webViewForContent loadHTMLString:htmlStr ? htmlStr :@""

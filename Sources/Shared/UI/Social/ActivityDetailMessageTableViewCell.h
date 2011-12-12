@@ -38,7 +38,7 @@
     
     TTStyledTextLabel*     htmlLabel;
 }
-@property (retain, nonatomic) UIWebView *webViewComment;
+
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
@@ -50,7 +50,7 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;
-
+@property (retain, nonatomic) IBOutlet UIWebView *webViewComment;
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
