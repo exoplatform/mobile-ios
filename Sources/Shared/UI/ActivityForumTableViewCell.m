@@ -120,7 +120,7 @@
     //Set the position of Title
     CGRect tmpFrame = _lbTitle.frame;
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
-    tmpFrame.size.width = _htmlName.frame.size.width;
+    //tmpFrame.size.width = _htmlName.frame.size.width;
     _lbTitle.frame = tmpFrame;
     
     //Set the position of lbMessage
@@ -131,7 +131,7 @@
         heigthForTTLabel = EXO_MAX_HEIGHT; 
     }
     tmpFrame.size.height = heigthForTTLabel;
-    tmpFrame.size.width = _htmlName.frame.size.width;
+    //tmpFrame.size.width = _htmlName.frame.size.width;
     _lbMessage.frame = tmpFrame;
 }
 
