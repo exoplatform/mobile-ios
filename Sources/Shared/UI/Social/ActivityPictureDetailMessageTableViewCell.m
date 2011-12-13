@@ -24,10 +24,10 @@
     CGRect tmpFrame = CGRectZero;
     
     if (fWidth > 320) {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPAD, 21);
+        tmpFrame = CGRectMake(67, 14, WIDTH_FOR_CONTENT_IPAD, 21);
         width = WIDTH_FOR_CONTENT_IPAD;
     } else {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPHONE, 21);
+        tmpFrame = CGRectMake(67, 14, WIDTH_FOR_CONTENT_IPHONE, 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
     

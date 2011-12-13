@@ -134,7 +134,7 @@
 							<object class="IBUIWebView" id="550099940">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{59, 36}, {243, 36}}</string>
+								<string key="NSFrame">{{56, 36}, {249, 36}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="144653702"/>
@@ -151,7 +151,6 @@
 								<string key="NSFrame">{{81, 188}, {217, 21}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="659554922"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
