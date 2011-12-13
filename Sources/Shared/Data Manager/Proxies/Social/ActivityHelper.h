@@ -38,6 +38,7 @@
 #define ACTIVITY_CALENDAR_UPDATE_TASK  19
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
+#define kFontForTitle [UIFont boldSystemFontOfSize:13]
 @interface ActivityHelper : NSObject {
     
 }

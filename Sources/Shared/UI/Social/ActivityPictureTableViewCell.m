@@ -83,7 +83,7 @@
     NSString *html = nil;
     switch (socialActivityStream.activityType) {
         case ACTIVITY_DOC:{
-            html = [[socialActivityStream.templateParams valueForKey:@"MESSAGE"] stringByEncodeWithHTML];
+            html = [[[socialActivityStream.templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
         
             _htmlMessage.html = html?html:@"";
             [_htmlMessage sizeToFit];
@@ -112,7 +112,7 @@
             //Set the position of lbMessage
             tmpFrame = self.imgvAttach.frame;
             tmpFrame.origin.y = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height + 5;
-            tmpFrame.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 70);
+            tmpFrame.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 70);
             self.imgvAttach.frame = tmpFrame;
             
             
@@ -160,7 +160,7 @@
             //Set the position of lbMessage
             tmpFrame = self.imgvAttach.frame;
             tmpFrame.origin.y = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height + 10;
-            tmpFrame.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 70);
+            tmpFrame.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 70);
             self.imgvAttach.frame = tmpFrame;
         }
             break;

@@ -50,7 +50,7 @@
         case ACTIVITY_DOC:{
 //            NSLog(@"%@", [NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [_templateParams valueForKey:@"DOCLINK"]]);
             _imgvAttach.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [[_templateParams valueForKey:@"DOCLINK"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"MESSAGE"]?[_templateParams valueForKey:@"MESSAGE"]:@""]
+            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"MESSAGE"]?[[_templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText]:@""]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             
@@ -71,9 +71,9 @@
     }
     htmlStr = [htmlStr stringByConvertingHTMLToPlainText];
     
-    CGSize theSize = [htmlStr sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    CGSize theSize = [htmlStr sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
-    _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
+    //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     
     CGRect rect = _webViewForContent.frame;
     rect.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y;
@@ -84,7 +84,7 @@
     //Set the position of lbMessage
     rect = self.imgvAttach.frame;
     rect.origin.y =  _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
-    rect.origin.x = (width > 320)? (width/3 + 130) : (width/3 + 70);
+    rect.origin.x = (width > 320)? (width/3 + 120) : (width/3 + 60);
     self.imgvAttach.frame = rect;
     
     rect = _lbFileName.frame;

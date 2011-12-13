@@ -136,7 +136,7 @@
     _htmlTitle.frame = tmpFrame;
     
     tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _htmlTitle.frame.origin.y + _htmlTitle.frame.size.height;
+    tmpFrame.origin.y = _htmlTitle.frame.origin.y + _htmlTitle.frame.size.height + 5;
     heigthForTTLabel = [[[self lbMessage] text] height];
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     tmpFrame.size.height = heigthForTTLabel;

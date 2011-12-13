@@ -85,7 +85,6 @@
 								<string key="NSFrame">{{84, 85}, {222, 21}}</string>
 								<reference key="NSSuperview" ref="760222638"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="542920876">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -148,7 +147,7 @@
 							</object>
 							<object class="IBUIWebView" id="786436380">
 								<reference key="NSNextResponder" ref="760222638"/>
-								<int key="NSvFlags">274</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{58, 6}, {249, 43}}</string>
 								<reference key="NSSuperview" ref="760222638"/>
 								<reference key="NSWindow"/>
@@ -341,6 +340,7 @@
 						<string key="lbDate">UILabel</string>
 						<string key="lbMessage">UILabel</string>
 						<string key="lbName">UILabel</string>
+						<string key="webViewComment">UIWebView</string>
 						<string key="webViewForContent">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -371,6 +371,10 @@
 						<object class="IBToOneOutletInfo" key="lbName">
 							<string key="name">lbName</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="webViewComment">
+							<string key="name">webViewComment</string>
+							<string key="candidateClassName">UIWebView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="webViewForContent">
 							<string key="name">webViewForContent</string>

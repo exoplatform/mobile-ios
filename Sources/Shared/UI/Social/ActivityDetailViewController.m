@@ -665,7 +665,7 @@
     _socialActivityStream = socialActivityStream;
     _socialUserProfile = currentUserProfile;
     _activityAction = 0;
-    NSLog(@"Tempalte Params:%@ \nType:%@", [_socialActivityStream.templateParams description],_socialActivityStream.type);
+    NSLog(@"Tempalte Params:%@ \n %@\nType:%@", _socialActivityStream.body, [_socialActivityStream.templateParams description],_socialActivityStream.type);
     [self startLoadingActivityDetail];
 }
 

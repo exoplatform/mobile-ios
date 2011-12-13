@@ -99,10 +99,10 @@
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
 
     // Activity Message
-    _htmlActivityMessage.html = [[socialActivityStream.templateParams valueForKey:@"comment"] stringByEncodeWithHTML];
+    _htmlActivityMessage.html = [[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
     // Link Title
-    _htmlLinkTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[socialActivityStream.templateParams valueForKey:@"title"] stringByEncodeWithHTML]];
+    _htmlLinkTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
     _htmlLinkTitle.textAlignment = UITextAlignmentCenter;
     
     // Link Message
@@ -115,7 +115,7 @@
     double heigthForTTLabel = [[[self htmlActivityMessage] text] height];
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     rect.size.height = heigthForTTLabel;
-    rect.size.width = _lbName.frame.size.width;
+    //rect.size.width = _lbName.frame.size.width;
     _htmlActivityMessage.frame = rect;
     [_htmlActivityMessage sizeToFit];
     

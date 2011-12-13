@@ -76,7 +76,7 @@
             break; 
         case ACTIVITY_FORUM_UPDATE_POST:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdatePost")];
-            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"PostLink"],[_templateParams valueForKey:@"PostName"]]
+            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"PostLink"],[[_templateParams valueForKey:@"PostName"] stringByConvertingHTMLToPlainText]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [_templateParams valueForKey:@"PostName"];
@@ -85,7 +85,7 @@
             break;
         case ACTIVITY_FORUM_UPDATE_TOPIC:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateTopic")];
-            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"TopicLink"],[_templateParams valueForKey:@"TopicName"]]
+            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"TopicLink"],[[_templateParams valueForKey:@"TopicName"] stringByConvertingHTMLToPlainText]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
             textWithoutHtml = [_templateParams valueForKey:@"TopicName"];
@@ -96,7 +96,7 @@
     _htmlName.html = htmlStr;
     [_htmlName sizeToFit];
     
-    _htmlMessage.html = [socialActivityDetail.body stringByEncodeWithHTML];
+    _htmlMessage.html = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
     
     CGRect tmpFrame = _htmlName.frame;
@@ -104,14 +104,14 @@
     _htmlName.frame = tmpFrame;
 
     //Set the position of web
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage 
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForTitle 
                                  constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
     _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     tmpFrame = _webViewForContent.frame;
     tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y + 5;
-    tmpFrame.size.height = theSize.height + 5;
+    tmpFrame.size.height = theSize.height + 10;
     _webViewForContent.frame = tmpFrame;
     
     

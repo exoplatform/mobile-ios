@@ -60,7 +60,39 @@
     return fHeight;
 }
 
-
++ (float)getHeightSizeForTitle:(NSString*)text andTableViewWidth:(CGFloat)fWidth
+{
+    
+    NSMutableString *textMutable = [[NSMutableString alloc] init];
+    if (text) [textMutable setString:text];
+    
+    int nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
+    
+    [textMutable release];
+    
+    
+    //Search the width available to display the text
+    if (fWidth > 320) 
+    {
+        fWidth = WIDTH_FOR_CONTENT_IPAD - 15;
+    }
+    else
+    {
+        fWidth = WIDTH_FOR_CONTENT_IPHONE - 10;
+    }
+    
+    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
+    
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
+                                     lineBreakMode:UILineBreakModeWordWrap];
+    
+    int fHeight = theSize.height + nbBR * 10;
+    
+    
+    NSLog(@"text :%@   height:%d",text,fHeight);
+    
+    return fHeight;
+}
 
 
 + (float)heightForAllDecorationsWithTableViewWidth:(CGFloat)fWidth {
@@ -123,12 +155,12 @@
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"CreateWiki")];
             }
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:[activtyStreamDetail.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
             if([[activtyStreamDetail.templateParams valueForKey:@"page_exceprt"] isEqualToString:@""]){
                 fHeight -= 25;
             } else {
                 text = [[activtyStreamDetail.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText];
-                fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 15;
+                fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 25;
             }
         }
             break;
@@ -138,21 +170,21 @@
         case ACTIVITY_FORUM_UPDATE_TOPIC:{
             if(activtyStreamDetail.activityType == ACTIVITY_FORUM_CREATE_POST){
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"NewPost")];
-                fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
+                fHeight += [ActivityHelper getHeightSizeForTitle:[activtyStreamDetail.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
             } else if(activtyStreamDetail.activityType == ACTIVITY_FORUM_CREATE_TOPIC) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName,  Localize(@"NewTopic")];
-                fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
+                fHeight += [ActivityHelper getHeightSizeForTitle:[activtyStreamDetail.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
             }else if(activtyStreamDetail.activityType == ACTIVITY_FORUM_UPDATE_POST) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName,  Localize(@"UpdatePost")];
-                fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
+                fHeight += [ActivityHelper getHeightSizeForTitle:[activtyStreamDetail.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
             }else if(activtyStreamDetail.activityType == ACTIVITY_FORUM_UPDATE_TOPIC) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName,  Localize(@"UpdateTopic")];
-                fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
+                fHeight += [ActivityHelper getHeightSizeForTitle:[activtyStreamDetail.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
             }
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             //Set the size of the cell
             text = activtyStreamDetail.body;
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 20;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 30;
             
         }
             break;
@@ -168,10 +200,10 @@
             } else if(activtyStreamDetail.activityType == ACTIVITY_ANSWER_UPDATE_QUESTION) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"UpdateQuestion")];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
 
             text = [activtyStreamDetail.templateParams valueForKey:@"Name"];
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             text = activtyStreamDetail.body;
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] - 30;
         }
@@ -188,15 +220,15 @@
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"EventUpdated")];
             } else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_ADD_TASK) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskAdded")];
-            }else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
+            }else if(activtyStreamDetail.activityType == ACTIVITY_CALENDAR_UPDATE_TASK) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStreamDetail.posterIdentity.fullName, Localize(@"TaskUpdated")];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 30;
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             text = [activtyStreamDetail.templateParams valueForKey:@"EventSummary"];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
+            text = [NSString stringWithFormat:@"Description : %@", [activtyStreamDetail.templateParams valueForKey:@"EventDescription"]];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            text = [activtyStreamDetail.templateParams valueForKey:@"EventDescription"];
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            text = [activtyStreamDetail.templateParams valueForKey:@"EventLocale"];
+            text = [NSString stringWithFormat:@"Location : %@", [activtyStreamDetail.templateParams valueForKey:@"EventLocale"]];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             
         }
@@ -276,9 +308,9 @@
             } else if([[activtyStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"CreateWiki")];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             
-            h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
+            h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"page_name"] andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
@@ -293,7 +325,7 @@
                 if(h > EXO_MAX_HEIGHT){
                     h = EXO_MAX_HEIGHT;
                 }
-                fHeight += h - 15;
+                fHeight += h - 25;
             }
         }
             break;
@@ -303,25 +335,25 @@
         case ACTIVITY_FORUM_CREATE_TOPIC:{
             if(activtyStream.activityType == ACTIVITY_FORUM_CREATE_POST){
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"NewPost")];
-                h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
+                h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
             } else if(activtyStream.activityType == ACTIVITY_FORUM_CREATE_TOPIC) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"NewTopic")];
-                h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
+                h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
             }else if(activtyStream.activityType == ACTIVITY_FORUM_UPDATE_POST) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"UpdatePost")];
-                h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
+                h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
             }else if(activtyStream.activityType == ACTIVITY_FORUM_UPDATE_TOPIC) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"UpdateTopic")];
-                h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
+                h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + h;
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth] + h;
             text = activtyStream.body;
             //fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
-            fHeight += h - 10;
+            fHeight += h - 20;
         }
             break;
         case ACTIVITY_ANSWER_ADD_QUESTION:
@@ -334,10 +366,10 @@
             }else if(activtyStream.activityType == ACTIVITY_ANSWER_UPDATE_QUESTION) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"UpdateQuestion")];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             
             text = [activtyStream.templateParams valueForKey:@"Name"];
-            h =  [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            h =  [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
@@ -361,22 +393,22 @@
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventUpdated")];
             } else if(activtyStream.activityType == ACTIVITY_CALENDAR_ADD_TASK) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskAdded")];
-            }else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
+            }else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_TASK) {
                 text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskUpdated")];
             }
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             
             text = [[activtyStream.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText];
-            h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            h = [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
             fHeight += h;
             
-            text = [[activtyStream.templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText];
+            text = [NSString stringWithFormat:@"Description : %@", [[activtyStream.templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText]];
             h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             
-            text = [[activtyStream.templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText];
+            text = [NSString stringWithFormat:@"Location : %@", [[activtyStream.templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText]];
             h += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
@@ -384,7 +416,7 @@
             if(h < 32){
                 h = 32;
             }
-            fHeight += h + 20;
+            fHeight += h;
         }
             break;
         default:{

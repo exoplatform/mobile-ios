@@ -101,7 +101,7 @@
     }
     [_htmlName sizeToFit];
 
-    _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[socialActivityStream.templateParams valueForKey:@"page_name"] stringByEncodeWithHTML]];
+    _lbTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
     [_lbTitle sizeToFit];
     
     _lbMessage.html =  [[[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];

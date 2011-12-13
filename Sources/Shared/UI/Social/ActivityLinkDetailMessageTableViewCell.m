@@ -37,7 +37,8 @@
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
         
-    _webViewComment.contentMode = UIViewContentModeScaleAspectFit;
+    //_webViewComment.contentMode = UIViewContentModeScaleAspectFit;
+    [[_webViewComment.subviews objectAtIndex:0] setScrollEnabled:NO];
     [_webViewComment setBackgroundColor:[UIColor clearColor]];
     UIScrollView *scrollView = (UIScrollView *)[[_webViewComment subviews] objectAtIndex:0];
     scrollView.bounces = NO;
@@ -66,7 +67,7 @@
      ];
     
     NSString *textWithoutHtml = [[_templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText];
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
     _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;

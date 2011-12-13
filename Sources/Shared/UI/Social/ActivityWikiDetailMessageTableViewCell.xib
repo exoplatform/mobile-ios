@@ -81,7 +81,7 @@
 							</object>
 							<object class="IBUIWebView" id="923597215">
 								<reference key="NSNextResponder" ref="188234836"/>
-								<int key="NSvFlags">294</int>
+								<int key="NSvFlags">258</int>
 								<string key="NSFrame">{{58, 27}, {255, 42}}</string>
 								<reference key="NSSuperview" ref="188234836"/>
 								<reference key="NSWindow"/>
@@ -331,6 +331,7 @@
 						<string key="lbDate">UILabel</string>
 						<string key="lbMessage">UILabel</string>
 						<string key="lbName">UILabel</string>
+						<string key="webViewComment">UIWebView</string>
 						<string key="webViewForContent">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -361,6 +362,10 @@
 						<object class="IBToOneOutletInfo" key="lbName">
 							<string key="name">lbName</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="webViewComment">
+							<string key="name">webViewComment</string>
+							<string key="candidateClassName">UIWebView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="webViewForContent">
 							<string key="name">webViewForContent</string>
