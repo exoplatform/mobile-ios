@@ -54,7 +54,7 @@
 							<object class="IBUIWebView" id="632031562">
 								<reference key="NSNextResponder" ref="855340942"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{58, 31}, {245, 38}}</string>
+								<string key="NSFrame">{{56, 31}, {245, 38}}</string>
 								<reference key="NSSuperview" ref="855340942"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="101461549"/>
@@ -82,7 +82,7 @@
 							<object class="IBUIImageView" id="737390251">
 								<reference key="NSNextResponder" ref="855340942"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{63, 110}, {14, 14}}</string>
+								<string key="NSFrame">{{64, 110}, {14, 14}}</string>
 								<reference key="NSSuperview" ref="855340942"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="218931402"/>
@@ -96,9 +96,10 @@
 							<object class="IBUILabel" id="218931402">
 								<reference key="NSNextResponder" ref="855340942"/>
 								<int key="NSvFlags">266</int>
-								<string key="NSFrame">{{84, 105}, {222, 21}}</string>
+								<string key="NSFrame">{{86, 105}, {222, 21}}</string>
 								<reference key="NSSuperview" ref="855340942"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="168522760">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -131,7 +132,7 @@
 							<object class="IBUILabel" id="101461549">
 								<reference key="NSNextResponder" ref="855340942"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{63, 76}, {243, 27}}</string>
+								<string key="NSFrame">{{58, 76}, {243, 27}}</string>
 								<reference key="NSSuperview" ref="855340942"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="737390251"/>
@@ -332,6 +333,7 @@
 						<string key="lbDate">UILabel</string>
 						<string key="lbMessage">UILabel</string>
 						<string key="lbName">UILabel</string>
+						<string key="webViewComment">UIWebView</string>
 						<string key="webViewForContent">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -362,6 +364,10 @@
 						<object class="IBToOneOutletInfo" key="lbName">
 							<string key="name">lbName</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="webViewComment">
+							<string key="name">webViewComment</string>
+							<string key="candidateClassName">UIWebView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="webViewForContent">
 							<string key="name">webViewForContent</string>
