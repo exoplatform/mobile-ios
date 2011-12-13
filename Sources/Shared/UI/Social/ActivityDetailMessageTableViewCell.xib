@@ -62,7 +62,7 @@
 								<string key="NSFrame">{{62, 7}, {245, 23}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="480406158"/>
+								<reference key="NSNextKeyView" ref="550099940"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="659554922">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -99,7 +99,7 @@
 								<string key="NSFrame">{{5, 10}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="550099940"/>
+								<reference key="NSNextKeyView" ref="800775345"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -110,7 +110,7 @@
 							<object class="IBUILabel" id="480406158">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{70, 29}, {237, 34}}</string>
+								<string key="NSFrame">{{63, 29}, {237, 34}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1062781650"/>
@@ -143,10 +143,10 @@
 							<object class="IBUIWebView" id="550099940">
 								<reference key="NSNextResponder" ref="818041569"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{62, 35}, {243, 43}}</string>
+								<string key="NSFrame">{{55, 35}, {250, 43}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="800775345"/>
+								<reference key="NSNextKeyView" ref="480406158"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -160,6 +160,7 @@
 								<string key="NSFrame">{{84, 80}, {222, 21}}</string>
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="659554922"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -428,6 +429,7 @@
 							<string>lbDate</string>
 							<string>lbMessage</string>
 							<string>lbName</string>
+							<string>webViewComment</string>
 							<string>webViewForContent</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -439,6 +441,7 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIWebView</string>
 							<string>UIWebView</string>
 						</object>
 					</object>
@@ -453,6 +456,7 @@
 							<string>lbDate</string>
 							<string>lbMessage</string>
 							<string>lbName</string>
+							<string>webViewComment</string>
 							<string>webViewForContent</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -484,6 +488,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">lbName</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">webViewComment</string>
+								<string key="candidateClassName">UIWebView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">webViewForContent</string>
