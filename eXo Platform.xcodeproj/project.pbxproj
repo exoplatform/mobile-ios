@@ -4536,6 +4536,7 @@
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
 				);
+				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lxml2",
