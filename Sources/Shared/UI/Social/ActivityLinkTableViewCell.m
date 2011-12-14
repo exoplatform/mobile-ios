@@ -100,13 +100,14 @@
 
     // Activity Message
     _htmlActivityMessage.html = [[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+    [_htmlActivityMessage sizeToFit];
     
     // Link Title
     _htmlLinkTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
     _htmlLinkTitle.textAlignment = UITextAlignmentCenter;
     
     // Link Message
-    NSString *description = (![[[socialActivityStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] isEqualToString:@""])?[NSString stringWithFormat:@"<p>%@</p>", [[socialActivityStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText]]:@"";
+    NSString *description = [[[socialActivityStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     _htmlLinkMessage.html = [NSString stringWithFormat:@"%@<p>Source : %@</p>", description, [socialActivityStream.templateParams valueForKey:@"link"]];
     [_htmlLinkMessage sizeToFit];
     
@@ -117,7 +118,7 @@
     rect.size.height = heigthForTTLabel;
     //rect.size.width = _lbName.frame.size.width;
     _htmlActivityMessage.frame = rect;
-    [_htmlActivityMessage sizeToFit];
+    
     
     if([[socialActivityStream.templateParams valueForKey:@"image"] isEqualToString:@""]){
         rect = _htmlLinkTitle.frame;
@@ -130,7 +131,7 @@
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"ActivityTypeDocument.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
         rect.origin.y = _htmlActivityMessage.frame.size.height + _htmlActivityMessage.frame.origin.y + 5;
-        rect.origin.x = width/3 + 50;
+        rect.origin.x = (width > 320)? (width/3 + 60) : (width/3 + 40);
         self.imgvAttach.frame = rect;
         
         rect = _htmlLinkTitle.frame;
