@@ -25,16 +25,16 @@
     
     if (!highlighted) {
         _htmlLinkDescription.textColor = [UIColor grayColor];
-        _htmlLinkDescription.backgroundColor = [UIColor whiteColor];
+        _htmlLinkDescription.backgroundColor = [UIColor yellowColor];
         
         _htmlLinkTitle.textColor = [UIColor grayColor];
-        _htmlLinkTitle.backgroundColor = [UIColor whiteColor];
+        _htmlLinkTitle.backgroundColor = [UIColor redColor];
         
         _htmlLinkMessage.textColor = [UIColor grayColor];
-        _htmlLinkMessage.backgroundColor = [UIColor whiteColor];
+        _htmlLinkMessage.backgroundColor = [UIColor greenColor];
         
         _htmlActivityMessage.textColor = [UIColor grayColor];
-        _htmlActivityMessage.backgroundColor = [UIColor whiteColor];
+        _htmlActivityMessage.backgroundColor = [UIColor blueColor];
     } else {
         _htmlLinkDescription.textColor = [UIColor darkGrayColor];
         _htmlLinkDescription.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
@@ -96,8 +96,22 @@
     _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
 
     // Activity Message
+    
+    NSLog(@"-----   : %@",[[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]);
+    
     _htmlActivityMessage.html = [[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    [_htmlActivityMessage sizeToFit];
+    
+    //SLM : Bug fix
+    //When _htmlActivityMessage is empty, _htmlActivityMessage's frame is set to width:0 in sizeToFit
+    //When the the view is recycle, the reuse will keep the width to 0
+    // so _htmlActivityMessage will not be correctly displayed
+    if (![(NSString*)[socialActivityStream.templateParams valueForKey:@"comment"] isEqualToString:@""]) {
+        [_htmlActivityMessage sizeToFit];
+    } else {
+        CGRect rect = _htmlActivityMessage.frame;
+        rect.size.height = 0;
+        _htmlActivityMessage.frame = rect;
+    }
     
     // Link Title
     _htmlLinkTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
@@ -114,6 +128,9 @@
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     rect.size.height = heigthForTTLabel;
     _htmlActivityMessage.frame = rect;
+
+    
+    
     
     NSURL *url = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
@@ -147,9 +164,9 @@
 
 - (void)dealloc {
     _lbName = nil;
-    
-    _htmlLinkTitle = nil;
+
     [_htmlLinkTitle release];
+    _htmlLinkTitle = nil;
     
     [_htmlLinkMessage release];
     _htmlLinkMessage = nil;
