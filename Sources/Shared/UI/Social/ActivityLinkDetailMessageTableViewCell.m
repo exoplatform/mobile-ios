@@ -67,22 +67,17 @@
      ];
     
     NSString *textWithoutHtml = [[_templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText];
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
-    _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     
     CGRect rect = _webViewForContent.frame;
     rect.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y;
     rect.size.height =  theSize.height + 5;
     
     _webViewForContent.frame = rect;
-    //NSLog(@"%@", [_templateParams valueForKey:@"image"]);
-    if([[_templateParams valueForKey:@"image"] isEqualToString:@""]){
-        rect = _webViewComment.frame;
-        rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
-        
-    } else {
+    NSURL *url = [NSURL URLWithString:[_templateParams valueForKey:@"image"]];
+    if (url && url.host && url.scheme){
         rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[[_templateParams valueForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -92,9 +87,11 @@
         
         rect = _webViewComment.frame;
         rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
+    } else {
+        rect = _webViewComment.frame;
+        rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
     }
     
-     _webViewComment.contentMode = UIViewContentModeScaleAspectFit;
     textWithoutHtml = [[_templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText];
     theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
@@ -111,8 +108,9 @@
     rect.size.height += theSize.height + 5;
     
     _webViewComment.frame = rect;
-    [_webViewComment sizeToFit];
+    
     [_webViewForContent sizeToFit];
+    [_webViewComment sizeToFit];
 }
 
 - (void)dealloc {

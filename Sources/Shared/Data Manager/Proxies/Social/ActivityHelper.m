@@ -140,7 +140,9 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [NSString stringWithFormat:@"Source : %@", [activtyStreamDetail.templateParams valueForKey:@"link"]];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            if (![[activtyStreamDetail.templateParams valueForKey:@"image"] isEqualToString:@""]) {
+            
+            NSURL *url = [NSURL URLWithString:[activtyStreamDetail.templateParams valueForKey:@"image"]];
+            if (url && url.host && url.scheme) {
                 fHeight += 75;
             }
         }
@@ -293,7 +295,9 @@
                 h = EXO_MAX_HEIGHT;
             }
             fHeight += h;
-            if (![[activtyStream.templateParams valueForKey:@"image"] isEqualToString:@""]) {
+            
+            NSURL *url = [NSURL URLWithString:[activtyStream.templateParams valueForKey:@"image"]];
+            if (url && url.host && url.scheme){
                 fHeight += 65;
             } else {
                 fHeight -= 10;

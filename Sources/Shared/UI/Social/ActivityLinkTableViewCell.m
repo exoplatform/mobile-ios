@@ -66,7 +66,6 @@
     
     _htmlLinkTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _htmlLinkTitle.userInteractionEnabled = NO;
-    _htmlLinkTitle.autoresizesSubviews = YES;
     _htmlLinkTitle.backgroundColor = [UIColor clearColor];
     _htmlLinkTitle.font = [UIFont systemFontOfSize:13.0];
     _htmlLinkTitle.textColor = [UIColor grayColor];
@@ -75,7 +74,6 @@
     
     _htmlLinkMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _htmlLinkMessage.userInteractionEnabled = NO;
-    _htmlLinkMessage.autoresizesSubviews = YES;
     _htmlLinkMessage.backgroundColor = [UIColor clearColor];
     _htmlLinkMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlLinkMessage.textColor = [UIColor grayColor];
@@ -84,7 +82,6 @@
     
     _htmlActivityMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _htmlActivityMessage.userInteractionEnabled = NO;
-    _htmlActivityMessage.autoresizesSubviews = YES;
     _htmlActivityMessage.backgroundColor = [UIColor clearColor];
     _htmlActivityMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlActivityMessage.textColor = [UIColor grayColor];
@@ -104,7 +101,7 @@
     
     // Link Title
     _htmlLinkTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
-    _htmlLinkTitle.textAlignment = UITextAlignmentCenter;
+     
     
     // Link Message
     NSString *description = [[[socialActivityStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
@@ -116,16 +113,10 @@
     double heigthForTTLabel = [[[self htmlActivityMessage] text] height];
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     rect.size.height = heigthForTTLabel;
-    //rect.size.width = _lbName.frame.size.width;
     _htmlActivityMessage.frame = rect;
     
-    
-    if([[socialActivityStream.templateParams valueForKey:@"image"] isEqualToString:@""]){
-        rect = _htmlLinkTitle.frame;
-        rect.origin.y = _htmlActivityMessage.frame.size.height + _htmlActivityMessage.frame.origin.y;
-        _htmlLinkTitle.frame = rect;
-        self.imgvAttach.hidden = YES;
-    } else {
+    NSURL *url = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
+    if (url && url.host && url.scheme){
         self.imgvAttach.hidden = NO;
         rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"ActivityTypeDocument.png"];
@@ -137,6 +128,11 @@
         rect = _htmlLinkTitle.frame;
         rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
         _htmlLinkTitle.frame = rect;
+    } else {
+        rect = _htmlLinkTitle.frame;
+        rect.origin.y = _htmlActivityMessage.frame.size.height + _htmlActivityMessage.frame.origin.y;
+        _htmlLinkTitle.frame = rect;
+        self.imgvAttach.hidden = YES;
     }
     [_htmlLinkTitle sizeToFit];
     rect = _htmlLinkMessage.frame;
