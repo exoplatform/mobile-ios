@@ -289,13 +289,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AuthenticateServerCellIdentifier";
+    //static NSString *CellIdentifier = @"AuthenticateServerCellIdentifier";
     static NSString *CellNib = @"AuthenticateServerCell";
     
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellNib];
     if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellNib owner:self options:nil];
-        cell = (UITableViewCell *)[nib objectAtIndex:0];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellNib] autorelease];
         
         //Some customize of the cell background :-)
         [cell setBackgroundColor:[UIColor clearColor]];
@@ -320,6 +319,14 @@
         [cell setSelectedBackgroundView:ImgVBGSelected];
         [ImgVBGSelected release];
         
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13.0];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:11.0];
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+        
     }
     
     
@@ -333,12 +340,8 @@
     }
     
 	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    
-    UILabel* lbServerName = (UILabel*)[cell viewWithTag:kTagInCellForServerNameLabel];
-    lbServerName.text = tmpServerObj._strServerName;
-    
-    UILabel* lbServerUrl = (UILabel*)[cell viewWithTag:kTagInCellForServerURLLabel];
-    lbServerUrl.text = tmpServerObj._strServerUrl;
+    cell.textLabel.text = tmpServerObj._strServerName;
+    cell.detailTextLabel.text = tmpServerObj._strServerUrl;
     
 	return cell;
 }
