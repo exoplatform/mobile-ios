@@ -25,16 +25,16 @@
     
     if (!highlighted) {
         _htmlLinkDescription.textColor = [UIColor grayColor];
-        _htmlLinkDescription.backgroundColor = [UIColor yellowColor];
+        _htmlLinkDescription.backgroundColor = [UIColor whiteColor];
         
         _htmlLinkTitle.textColor = [UIColor grayColor];
-        _htmlLinkTitle.backgroundColor = [UIColor redColor];
+        _htmlLinkTitle.backgroundColor = [UIColor whiteColor];
         
         _htmlLinkMessage.textColor = [UIColor grayColor];
-        _htmlLinkMessage.backgroundColor = [UIColor greenColor];
+        _htmlLinkMessage.backgroundColor = [UIColor whiteColor];
         
         _htmlActivityMessage.textColor = [UIColor grayColor];
-        _htmlActivityMessage.backgroundColor = [UIColor blueColor];
+        _htmlActivityMessage.backgroundColor = [UIColor whiteColor];
     } else {
         _htmlLinkDescription.textColor = [UIColor darkGrayColor];
         _htmlLinkDescription.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
