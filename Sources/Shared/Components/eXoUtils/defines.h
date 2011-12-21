@@ -46,7 +46,7 @@
 
 #define EXO_MAX_HEIGHT                      80
 
-#define SPECIAL_CHAR_NAME_SET                    @"[]/\\&~?*|<>\";:+"
+#define SPECIAL_CHAR_NAME_SET                    @"[]/\\&~?*|<>\";:+()$%@#!"
 #define SPECIAL_CHAR_URL_SET                    @"[]\\&~?*|<>\";+"
 
 

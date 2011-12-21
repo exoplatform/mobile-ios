@@ -607,15 +607,11 @@
 }
 
 - (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
+    NSCharacterSet *invalidCharSet = [NSCharacterSet characterSetWithCharactersInString:chars];
     
-    NSCharacterSet *invalidCharSet = nil;
+    NSRange range = [str rangeOfCharacterFromSet:invalidCharSet];
     
-    
-    invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:chars] invertedSet];
-    
-    NSString *filtered = [[str componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
-    
-    return [str rangeOfString:filtered].length > 0;    
+    return (range.length > 0); 
 }
 
 //Method needed to call to create a new folder
