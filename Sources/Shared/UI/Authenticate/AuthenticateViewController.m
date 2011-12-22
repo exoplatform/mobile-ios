@@ -58,6 +58,8 @@
     }
     
     _vContainer.backgroundColor = [UIColor clearColor];
+    [_vContainer viewWithTag:1].backgroundColor = [UIColor clearColor];
+    
     
     //Set Alpha for all subviews to make a small animation
     _vContainer.alpha = 0;
@@ -188,6 +190,12 @@
 	{
 		[_txtfPassword becomeFirstResponder];
 	}
+}
+
+- (IBAction)onHitViewBtn:(id)sender {
+
+    [self hitAtView:self.view];
+    
 }
 
 - (IBAction)onBtnAccount:(id)sender

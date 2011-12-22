@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -329,11 +329,42 @@
 								<reference key="IBUIBackgroundColor" ref="426176812"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
+							<object class="IBUIButton" id="638436833">
+								<reference key="NSNextResponder" ref="963642831"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{280, 0}, {400, 70}}</string>
+								<reference key="NSSuperview" ref="963642831"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="933514235"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace">
+										<int key="NSID">2</int>
+									</object>
+								</object>
+								<bool key="IBUIOpaque">NO</bool>
+								<int key="IBUITag">1</int>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIHighlightedTitleColor" ref="637575445"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="851842597"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">2</int>
+									<double key="pointSize">15</double>
+								</object>
+								<reference key="IBUIFont" ref="569062371"/>
+							</object>
 						</object>
 						<string key="NSFrame">{{99, 327}, {569, 460}}</string>
 						<reference key="NSSuperview" ref="194849999"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="933514235"/>
+						<reference key="NSNextKeyView" ref="638436833"/>
 						<reference key="IBUIBackgroundColor" ref="426176812"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
@@ -532,6 +563,15 @@
 					</object>
 					<int key="connectionID">238</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onHitViewBtn:</string>
+						<reference key="source" ref="638436833"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">269</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -584,6 +624,7 @@
 							<reference ref="424109607"/>
 							<reference ref="1055870661"/>
 							<reference ref="933514235"/>
+							<reference ref="638436833"/>
 						</object>
 						<reference key="parent" ref="194849999"/>
 					</object>
@@ -644,6 +685,11 @@
 						<reference key="object" ref="545959274"/>
 						<reference key="parent" ref="933514235"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">268</int>
+						<reference key="object" ref="638436833"/>
+						<reference key="parent" ref="963642831"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -670,6 +716,7 @@
 					<string>229.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>235.IBPluginDependency</string>
 					<string>235.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
+					<string>268.IBPluginDependency</string>
 					<string>46.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
@@ -695,6 +742,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -709,7 +757,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">267</int>
+			<int key="maxID">269</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -723,11 +771,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>onBtnAccount:</string>
 							<string>onBtnServerList:</string>
+							<string>onHitViewBtn:</string>
 							<string>onSettingBtn</string>
 							<string>onSignInBtn:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -740,6 +790,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>onBtnAccount:</string>
 							<string>onBtnServerList:</string>
+							<string>onHitViewBtn:</string>
 							<string>onSettingBtn</string>
 							<string>onSignInBtn:</string>
 						</object>
@@ -751,6 +802,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">onBtnServerList:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">onHitViewBtn:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -870,15 +925,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>onBtnAccount:</string>
-							<string>onBtnServerList:</string>
 							<string>onSettingBtn:</string>
 							<string>onSignInBtn:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -887,21 +938,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>onBtnAccount:</string>
-							<string>onBtnServerList:</string>
 							<string>onSettingBtn:</string>
 							<string>onSignInBtn:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">onBtnAccount:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">onBtnServerList:</string>
-								<string key="candidateClassName">id</string>
-							</object>
 							<object class="IBActionInfo">
 								<string key="name">onSettingBtn:</string>
 								<string key="candidateClassName">id</string>
@@ -979,9 +1020,9 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{52, 60}</string>
 				<string>{48, 56}</string>
-				<string>{286, 122}</string>
-				<string>{63, 40}</string>
-				<string>{63, 40}</string>
+				<string>{286, 120}</string>
+				<string>{61, 43}</string>
+				<string>{61, 43}</string>
 				<string>{54, 61}</string>
 				<string>{45, 51}</string>
 				<string>{23, 23}</string>
