@@ -55,6 +55,7 @@
         
         _activityAction = 0;
         zoomOutOrZoomIn = NO;
+        isPostComment = NO;
     }
     return self;
 }
@@ -620,6 +621,15 @@
     
     [_tblvActivityDetail reloadData];
     
+    //if comment tableview scroll at bottom
+    if(isPostComment){
+        if([_socialActivityDetails.comments count] > 0){
+            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_socialActivityDetails.comments count] - 1 inSection:2] 
+                                       atScrollPosition:UITableViewScrollPositionBottom 
+                                               animated:YES];
+        }
+        isPostComment = NO;
+    }
     if([_socialActivityDetails.comments count] == 0){
         CGRect rect = CGRectZero;
         float height = 0.0;
@@ -665,7 +675,7 @@
     _socialActivityStream = socialActivityStream;
     _socialUserProfile = currentUserProfile;
     _activityAction = 0;
-    NSLog(@"Tempalte Params:%@ \n %@\nType:%@", _socialActivityStream.body, [_socialActivityStream.templateParams description],_socialActivityStream.type);
+    NSLog(@"Tempalte Params:%@ \n Body:%@\nType:%@", _socialActivityStream.body, [_socialActivityStream.templateParams description],_socialActivityStream.type);
     [self startLoadingActivityDetail];
 }
 
@@ -738,6 +748,7 @@
 #pragma mark -
 #pragma mark MessageComposer Methods
 - (void)messageComposerDidSendData{
+    isPostComment = YES;
     [self startLoadingActivityDetail];
 }
 

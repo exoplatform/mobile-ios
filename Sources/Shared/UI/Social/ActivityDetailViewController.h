@@ -62,7 +62,7 @@
     UIView *maskView;
     
     NSString *_iconType; // icon for type of activity detail
-    
+    BOOL isPostComment;
 }
 @property (retain) NSString *iconType;
 
