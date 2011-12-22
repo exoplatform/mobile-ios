@@ -64,6 +64,12 @@
     [_dateOfLastUpdate release];
     _dateOfLastUpdate = nil;
     
+    [_refreshHeaderView release];
+    _refreshHeaderView = nil;
+    
+    [_dateOfLastUpdate release];
+    _dateOfLastUpdate = nil;
+    
     [_dashboardProxy release];
     _dashboardProxy = nil;
     
@@ -316,6 +322,12 @@
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblGadgets];
     
     
+    _reloading = NO;
+    //Set the last update date at now 
+    _dateOfLastUpdate = [[NSDate date] retain];
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblGadgets];
+    
+    
     NSMutableArray *dashboards = [[NSMutableArray alloc] init];
     for (DashboardItem* item in proxy.arrayOfDashboards) {
         if ([item.arrayOfGadgets count] > 0)
@@ -329,7 +341,6 @@
     //Check if there is data to display
     if ([_arrDashboard count] >0)
         _isEmpty = NO;
-    
     
     //Check is we encountered an error for retreiving one dashboard
     if (_errorForRetrievingDashboard != nil) {

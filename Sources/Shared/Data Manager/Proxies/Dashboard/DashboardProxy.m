@@ -106,10 +106,13 @@
 }
 
 
-
-
-
-
+- (void)finishLoadingGadgets {
+    
+    //We complete the loading of Gadgets, so now we need to prevent the controller
+    if (_delegate && [_delegate respondsToSelector:@selector(dashboardProxyDidFinish:)]) {
+        [_delegate dashboardProxyDidFinish:self];
+    }
+}
 
 
 #pragma mark - GadgetsProxy Management
@@ -128,18 +131,11 @@
         [_setOfDashboardsToRetrieveGadgets removeObject:tmpDashboard];
 
     }
-}
-
-
-- (void)finishLoadingGadgets {
-    
-    //We complete the loading of Gadgets, so now we need to prevent the controller
-    if (_delegate && [_delegate respondsToSelector:@selector(dashboardProxyDidFinish:)]) {
-        [_delegate dashboardProxyDidFinish:self];
+    else
+    {
+        [self finishLoadingGadgets];
     }
 }
-
-
 
 
 
