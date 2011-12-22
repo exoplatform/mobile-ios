@@ -12,18 +12,25 @@
 #import "ATMHudDelegate.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "eXoViewController.h"
+#import "EGORefreshTableHeaderView.h"
+
 //Constants Definitions
 #define kTagForCellSubviewTitleLabel 22
 #define kTagForCellSubviewDescriptionLabel 33
 #define kTagForCellSubviewImageView 44
 
-@interface DashboardViewController : eXoViewController <DashboardProxyDelegate, UITableViewDataSource, UITableViewDelegate>{
+@interface DashboardViewController : eXoViewController <DashboardProxyDelegate, UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate>{
     
     NSArray*         _arrDashboard;	//Dashboard array 
     IBOutlet UITableView*   _tblGadgets;
     
     //Loader
     ATMHud*                 _hudDashboard;//Heads up display
+    
+    //Refresh Management
+    EGORefreshTableHeaderView*              _refreshHeaderView;
+    BOOL                                    _reloading;
+    NSDate*                                 _dateOfLastUpdate;
     
     //Proxy
     DashboardProxy*         _dashboardProxy;

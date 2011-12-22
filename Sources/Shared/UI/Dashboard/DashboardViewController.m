@@ -58,6 +58,12 @@
     [_hudDashboard release];
     _hudDashboard = nil;
     
+    [_refreshHeaderView release];
+    _refreshHeaderView = nil;
+    
+    [_dateOfLastUpdate release];
+    _dateOfLastUpdate = nil;
+    
     [_dashboardProxy release];
     _dashboardProxy = nil;
     
@@ -108,11 +114,27 @@
     //Start the request to retrieve datas
     _dashboardProxy = [[DashboardProxy alloc] initWithDelegate:self];
     [_dashboardProxy retrieveDashboards];
+    
+    //Add the pull to refresh header
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblGadgets.bounds.size.height, self.view.frame.size.width, _tblGadgets.bounds.size.height)];
+		view.delegate = self;
+		[_tblGadgets addSubview:view];
+		_refreshHeaderView = view;
+		[view release];
+        _reloading = FALSE;
+        
+	}
+    
+    //Set the last update date at now 
+    _dateOfLastUpdate = [[NSDate date]retain];
 
 }
 
 - (void)viewDidUnload
 {
+    [_refreshHeaderView release]; _refreshHeaderView =nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -288,6 +310,12 @@
     //Hide the loader
     [self hideLoader];
     
+    _reloading = NO;
+    //Set the last update date at now 
+    _dateOfLastUpdate = [[NSDate date] retain];
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblGadgets];
+    
+    
     NSMutableArray *dashboards = [[NSMutableArray alloc] init];
     for (DashboardItem* item in proxy.arrayOfDashboards) {
         if ([item.arrayOfGadgets count] > 0)
@@ -301,7 +329,6 @@
     //Check if there is data to display
     if ([_arrDashboard count] >0)
         _isEmpty = NO;
-    
     
     
     //Check is we encountered an error for retreiving one dashboard
@@ -384,8 +411,47 @@
     [_hudDashboard hideAfter:0.5];
 }
 
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
 
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
+	
+//	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+
+    //Start the loader
+    [self showLoader];
+    
+    _reloading = YES;
+    
+    //Start the request to retrieve datas
+    [_dashboardProxy retrieveDashboards];
+	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return _dateOfLastUpdate; // should return date data source was last changed
+	
+}
 
 
 @end
