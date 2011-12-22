@@ -340,6 +340,7 @@
         titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.tag = kTagForCellSubviewTitleLabel;
+        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [cell addSubview:titleLabel];
         [titleLabel release];
         
