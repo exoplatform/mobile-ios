@@ -39,6 +39,6 @@
 //Saved the deleted system Configuration to the /app/documents
 - (void)writeSystemConfiguration:(NSMutableArray*)arrSystemServerList;
 - (void)writeDeletedSystemConfiguration:(NSMutableArray*)arrDeletedSystemServerList;
-- (void)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList;
-- (void)writeData:(NSData*)data toFile:(NSString*)strFileName;
+- (BOOL)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList;
+- (BOOL)writeData:(NSData*)data toFile:(NSString*)strFileName;
 @end

@@ -12,6 +12,7 @@
 #import "ServerEditingViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
+#import "URLAnalyzer.h"
 #import "defines.h"
 
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
@@ -212,37 +213,44 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
  
-    NSCharacterSet *invalidCharSet = nil;
-    
-    
-    invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:chars] invertedSet];
-    
-    NSString *filtered = [[str componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
-    
-    
-    return [str rangeOfString:filtered].length > 0;
+    NSCharacterSet *invalidCharSet = [NSCharacterSet characterSetWithCharactersInString:chars];
+    NSRange range = [str rangeOfCharacterFromSet:invalidCharSet];
+    return (range.length > 0);
     
 }
 
-- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
-{
-    
+-(BOOL) checkServerInfo:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl {
+ 
     //Check first message lenght for empty parameters
-    if ([strServerName length] == 0 || [strServerUrl length] == 0){
+    if ([strServerName length] == 0){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
     }
     
-    //Check if server name or url contains special chars
-    if ([self nameContainSpecialCharacter:strServerName inSet:SPECIAL_CHAR_NAME_SET] ||
-        [self nameContainSpecialCharacter:strServerUrl inSet:SPECIAL_CHAR_URL_SET]){
+    if ([self nameContainSpecialCharacter:strServerName inSet:@"&<>\"'"]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
     }
+    
+    if(strServerUrl == nil) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    
+   if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
+       return NO;
     
     //Check if the server has been existed
     BOOL bExist = NO;
@@ -287,23 +295,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 - (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
     
-    //Check first message lenght for empty parameters
-    if ([strServerName length] == 0 || [strServerUrl length] == 0){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
+    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
         return NO;
-    }
-    
-    //Check if server name or url contains special chars
-    if ([self nameContainSpecialCharacter:strServerName inSet:SPECIAL_CHAR_NAME_SET] ||
-        [self nameContainSpecialCharacter:strServerUrl inSet:SPECIAL_CHAR_URL_SET]){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-        return NO;
-    }
-
 
     BOOL bExist = NO;
     

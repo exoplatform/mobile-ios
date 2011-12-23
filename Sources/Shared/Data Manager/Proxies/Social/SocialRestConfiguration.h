@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kRestVersion [NSString stringWithFormat:@"v1-alpha2"]
+#define kRestVersion [NSString stringWithFormat:@"v1-alpha3"]
 #define kRestContextName [NSString stringWithFormat:@"rest"]
 #define kPortalContainerName [NSString stringWithFormat:@"portal"]
 

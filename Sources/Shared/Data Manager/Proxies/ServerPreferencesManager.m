@@ -217,18 +217,18 @@
 }
 
 //Saved the user Configuration to the /app/documents
-- (void)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList
+- (BOOL)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList
 {
     NSData* dataWrite = [self createXmlDataWithServerList:arrUserSystemServerList];
-    [self writeData:dataWrite toFile:@"UserConfiguration"];
+    return [self writeData:dataWrite toFile:@"UserConfiguration"];
 }
 
-- (void)writeData:(NSData*)data toFile:(NSString*)strFileName
+- (BOOL)writeData:(NSData*)data toFile:(NSString*)strFileName
 {
     NSFileManager* fileManager = [NSFileManager defaultManager];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* strFilePath = [[paths objectAtIndex:0] stringByAppendingString:[NSString stringWithFormat:@"/%@",strFileName]];
-    [fileManager createFileAtPath:strFilePath contents:data attributes:nil];
+    return [fileManager createFileAtPath:strFilePath contents:data attributes:nil];
 }
 
 
