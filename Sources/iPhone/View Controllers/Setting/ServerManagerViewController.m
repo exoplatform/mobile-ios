@@ -183,16 +183,27 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    if(_intSelectedServer != indexPath.row){
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-        
-        ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
-        [serverEditingViewController setDelegate:self];
-        [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
-        
-        [self.navigationController pushViewController:serverEditingViewController animated:YES];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    //[userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+    if([[userDefaults valueForKey:EXO_IS_USER_LOGGED] boolValue]){
+        if(_intSelectedServer != indexPath.row){
+              ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+              
+              ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
+              [serverEditingViewController setDelegate:self];
+              [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+              
+              [self.navigationController pushViewController:serverEditingViewController animated:YES];
+        }
+     } else {
+         ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+         
+         ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
+         [serverEditingViewController setDelegate:self];
+         [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+         
+         [self.navigationController pushViewController:serverEditingViewController animated:YES];
     }
-    
     //[_tbvlServerList deselectRowAtIndexPath:indexPath animated:YES];
 }
 
