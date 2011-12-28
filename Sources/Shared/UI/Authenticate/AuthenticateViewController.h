@@ -46,4 +46,5 @@
 - (IBAction)onBtnAccount:(id)sender;
 - (IBAction)onBtnServerList:(id)sender;
 - (void)hitAtView:(UIView*)view;
+- (IBAction)onHitViewBtn:(id)sender;
 @end

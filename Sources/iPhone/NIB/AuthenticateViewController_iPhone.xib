@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -375,11 +375,40 @@
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
+							<object class="IBUIButton" id="912449294">
+								<reference key="NSNextResponder" ref="774585933"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{142, 0}, {135, 37}}</string>
+								<reference key="NSSuperview" ref="774585933"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="657440319"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC43NQA</bytes>
+									<reference key="NSCustomColorSpace" ref="184330792"/>
+								</object>
+								<bool key="IBUIOpaque">NO</bool>
+								<int key="IBUITag">1</int>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIHighlightedTitleColor" ref="213115350"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="564120801"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">2</int>
+									<double key="pointSize">15</double>
+								</object>
+								<reference key="IBUIFont" ref="436996072"/>
+							</object>
 						</object>
 						<string key="NSFrame">{{20, 190}, {280, 250}}</string>
 						<reference key="NSSuperview" ref="579721483"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="657440319"/>
+						<reference key="NSNextKeyView" ref="912449294"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -579,6 +608,15 @@
 					</object>
 					<int key="connectionID">99</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onHitViewBtn:</string>
+						<reference key="source" ref="912449294"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">132</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -625,6 +663,7 @@
 							<reference ref="373218100"/>
 							<reference ref="619938619"/>
 							<reference ref="405667486"/>
+							<reference ref="912449294"/>
 						</object>
 						<reference key="parent" ref="579721483"/>
 						<string key="objectName">Content View</string>
@@ -696,6 +735,11 @@
 						<reference key="parent" ref="414793247"/>
 						<string key="objectName">Button - Login</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">131</int>
+						<reference key="object" ref="912449294"/>
+						<reference key="parent" ref="774585933"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -711,6 +755,7 @@
 					<string>124.IBPluginDependency</string>
 					<string>126.CustomClassName</string>
 					<string>126.IBPluginDependency</string>
+					<string>131.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
 					<string>40.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>41.IBPluginDependency</string>
@@ -735,6 +780,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>TouchView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="2"/>
@@ -763,7 +809,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">130</int>
+			<int key="maxID">132</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -777,11 +823,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>onBtnAccount:</string>
 							<string>onBtnServerList:</string>
+							<string>onHitViewBtn:</string>
 							<string>onSettingBtn</string>
 							<string>onSignInBtn:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -794,6 +842,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>onBtnAccount:</string>
 							<string>onBtnServerList:</string>
+							<string>onHitViewBtn:</string>
 							<string>onSettingBtn</string>
 							<string>onSignInBtn:</string>
 						</object>
@@ -805,6 +854,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">onBtnServerList:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">onHitViewBtn:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
