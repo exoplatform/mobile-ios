@@ -38,18 +38,23 @@
             urlStr = [urlStr substringFromIndex:1];
     }
     
-    
     //Add protocol
     NSURL *uri;
     
     if (!(isHTTPSURL)) {
         urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, urlStr];
         uri = [NSURL URLWithString:urlStr];
-        urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, [uri host]];
+        if(uri == nil)
+            return nil;
+        else
+            urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, [uri host]];
     } else {
         urlStr = [NSString stringWithFormat:@"%@%@", HTTPS_PROTOCOL, urlStr];
         uri = [NSURL URLWithString:urlStr];
-        urlStr = [NSString stringWithFormat:@"%@%@", HTTPS_PROTOCOL, [uri host]];
+        if(uri == nil)
+            return nil;
+        else
+            urlStr = [NSString stringWithFormat:@"%@%@", HTTPS_PROTOCOL, [uri host]];
     }
 
     //Add port

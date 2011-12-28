@@ -158,6 +158,8 @@
     <string>Server Name</string>
     <key>ServerUrl</key>
     <string>Server Url</string>
+    <key>InvalidUrl</key>
+    <string>Invalid Url</string>
     
     <key>Loading</key>
     <string>Loading...</string>
