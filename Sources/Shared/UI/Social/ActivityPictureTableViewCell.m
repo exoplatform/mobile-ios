@@ -140,7 +140,8 @@
             self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [[socialActivityStream.templateParams valueForKey:@"contenLink"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+            NSString *strURL = [NSString stringWithFormat:@"%@/portal/rest/jcr/%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [[socialActivityStream.templateParams valueForKey:@"contenLink"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
             
