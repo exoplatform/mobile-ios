@@ -18,6 +18,15 @@
     }	
 	return self;
 }
+
+- (void)dealloc 
+{
+    delegate = nil;
+    [[RKRequestQueue sharedQueue] cancelAllRequests];
+    
+    [super dealloc];
+}
+
 //Helper to create the base URL
 - (NSString *)createBaseURL 
 {

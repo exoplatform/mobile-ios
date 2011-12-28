@@ -33,7 +33,7 @@
 #import "DocumentDisplayViewController_iPhone.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
-
+#import "SocialRestProxy.h"
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
@@ -618,10 +618,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [self showLoaderForAction:_activityAction];
     
-    
-    SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-    socialUserProfile.delegate = [self retain];
-    [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username]; 
+    SocialRestProxy *socialRest = [[SocialRestProxy alloc] init];
+    socialRest.delegate = self;
+    [socialRest getVersion];
+//    SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+//    socialUserProfile.delegate = [self retain];
+//    [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username]; 
     
 }
 
@@ -675,9 +677,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [_tblvActivityStream reloadData];
     
-    
-    
-    
 }
 
 // Empty State
@@ -697,8 +696,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    //If proxy is king of class SocialUserProfileProxy, then we can start the request for retrieve SocialActivityStream
-    if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
+    
+    if([proxy isKindOfClass:[SocialRestProxy class]]){
+        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+        socialUserProfile.delegate = [self retain];
+        [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username];
+    } else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) //If proxy is king of class SocialUserProfileProxy, then we can start the request for retrieve SocialActivityStream
     {
         _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
         SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
