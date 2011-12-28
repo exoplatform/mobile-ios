@@ -619,7 +619,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self showLoaderForAction:_activityAction];
     
     SocialRestProxy *socialRest = [[SocialRestProxy alloc] init];
-    socialRest.delegate = self;
+    socialRest.delegate = [self retain];
     [socialRest getVersion];
 //    SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
 //    socialUserProfile.delegate = [self retain];
