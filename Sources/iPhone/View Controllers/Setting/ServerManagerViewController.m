@@ -390,6 +390,13 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     _arrServerList = [configuration getServerList];
     [_tbvlServerList reloadData];
     
+     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    int currentIndex = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
+    if(currentIndex > index)
+        [userDefaults setObject:[NSString stringWithFormat:@"%d", --currentIndex] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+    
+    
+    
     return YES;
 }
 

@@ -31,7 +31,8 @@
     if(_bAutoLogin)
     {
         _vContainer.alpha = 1;
-        [self onSignInBtn:nil];
+        if(_bRememberMe)
+            [self onSignInBtn:nil];
     }
     else
     {

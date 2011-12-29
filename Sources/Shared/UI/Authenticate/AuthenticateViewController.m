@@ -114,7 +114,7 @@
         [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
     }
 	
-	if(_bRememberMe || _bAutoLogin)
+	if(_bRememberMe)
 	{
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
@@ -410,9 +410,10 @@
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     
-	[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-	[userDefaults setObject:_txtfUsername.text forKey:EXO_PREFERENCE_USERNAME];
-	[userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
+        
+    [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
+    [userDefaults setObject:_txtfUsername.text forKey:EXO_PREFERENCE_USERNAME];
+    [userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
     
     //The login has successed we need to check the version of Platform
     PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
@@ -444,8 +445,6 @@
     //SLM : Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
     
-    
-	
 	if(_strBSuccessful == @"YES")
 	{
         //Todo need to be localized
