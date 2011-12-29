@@ -221,6 +221,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
     bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+    
 }
 
 
