@@ -185,6 +185,7 @@
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
+    _indexpathSelectedDocument = bt.tag;
     if (self.popoverController) {
         self.popoverController = nil;
     } 

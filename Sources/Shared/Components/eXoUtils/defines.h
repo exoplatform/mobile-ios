@@ -34,6 +34,8 @@
 #define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
 
+#define EXO_NOTIFICATION_CUT_FILE           @"notification_cut_file"
+
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"
 #define HTTPS_PROTOCOL                       @"https://"

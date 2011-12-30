@@ -20,7 +20,7 @@
     
     File *_rootFile;
     
-    NSArray *_arrayContentOfRootFile;
+    NSMutableArray *_arrayContentOfRootFile;
     
     FilesProxy *_filesProxy;
     
@@ -39,6 +39,8 @@
     UIPopoverController *_popoverPhotoLibraryController;
     
     BOOL isRoot;
+    NSInteger fileActionMode;
+    NSInteger _indexpathSelectedDocument;
     
 }
 

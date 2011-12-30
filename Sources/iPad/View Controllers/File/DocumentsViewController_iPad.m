@@ -83,6 +83,7 @@
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
+    _indexpathSelectedDocument = bt.tag;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
     FileActionsViewController* fileActionsViewController = 
             [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 

@@ -281,13 +281,13 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
             fileActionMode = 1;
 			copyMoveFile = _file;
-            [fileActionsDelegate moveOrCopyActionIsSelected];
+            [fileActionsDelegate moveOrCopyActionIsSelected:fileActionMode];
 		}
 		else if(row == 2)
 		{
 			fileActionMode = 2;
 			copyMoveFile = _file;
-            [fileActionsDelegate moveOrCopyActionIsSelected];
+            [fileActionsDelegate moveOrCopyActionIsSelected:fileActionMode];
 		}
 		else if(row == 3)
 		{

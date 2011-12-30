@@ -14,7 +14,7 @@
 -(void)deleteFile:(NSString *)urlFileToDelete;
 
 //Method needed to ctach when an move/copy action is requested over one file
--(void)moveOrCopyActionIsSelected;
+-(void)moveOrCopyActionIsSelected:(NSInteger)index;
 
 //Method needed to retrieve the action to move a file
 - (void)moveFileSource:urlSource

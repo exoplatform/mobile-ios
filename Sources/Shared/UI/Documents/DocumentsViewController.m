@@ -54,6 +54,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         isRoot = NO;
+        fileActionMode = -1;
+        _indexpathSelectedDocument = -1;
     }
     return self;
 }
@@ -121,7 +123,7 @@
 }
 
 - (void)hideActionsPanel{
-    _tblFiles.scrollEnabled = NO;
+    _tblFiles.scrollEnabled = YES;
 }
 
 - (void)setTitleForFilesViewController{
@@ -153,6 +155,8 @@
     
     [_tblFiles release];
     _tblFiles = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];
 }
@@ -222,6 +226,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDocument) name:EXO_NOTIFICATION_CUT_FILE object:nil];
     
     _hudFolder = [[ATMHud alloc] initWithDelegate:self];
     [_hudFolder setAllowSuperviewInteraction:YES];
@@ -417,10 +423,25 @@
     [self performSelectorInBackground:@selector(deleteFileInBackground:) withObject:urlFileToDelete];
 }
 
--(void)moveOrCopyActionIsSelected {
+-(void)moveOrCopyActionIsSelected:(NSInteger)indexSelect {
+    fileActionMode = indexSelect;
     [self hideActionsPanel];
 }
 
+-(void)updateDocument{
+    // only for move file
+    @synchronized (self){
+        if(fileActionMode == 2){
+            [_arrayContentOfRootFile removeObjectAtIndex:_indexpathSelectedDocument];
+            
+            [_tblFiles beginUpdates];
+            [_tblFiles deleteRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:_indexpathSelectedDocument inSection:0], nil] withRowAnimation:UITableViewRowAnimationLeft];
+            [_tblFiles endUpdates];
+            
+            fileActionMode = -1;
+        }
+    }
+}
 
 //Use this method to do the move action in a background thread
 - (void)moveFileInBackgroundSource:(NSString *)urlSource
@@ -435,6 +456,8 @@
     //check the status of the operation
     if (errorMessage) {
         [self performSelectorOnMainThread:@selector(showErrorForFileAction:) withObject:errorMessage waitUntilDone:NO];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_CUT_FILE object:nil];
     }
     
     //Need to reload the content of the folder
