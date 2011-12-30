@@ -17,6 +17,7 @@
 #import "AppDelegate_iPhone.h"
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
+#import "ActivityHelper.h"
 
 @implementation ActivityDetailViewController_iPhone
 
@@ -66,7 +67,18 @@
 }
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]]];
+    NSURL *url;
+    switch (_socialActivityStream.activityType) {
+        case ACTIVITY_DOC:{
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+            break;
+        case ACTIVITY_CONTENTS_SPACE:{
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_socialActivityStream.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+            break;
+    }
+    
     ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
