@@ -18,7 +18,7 @@
 #import "EmptyView.h"
 #import "ActivityHelper.h"
 
-#define WIDTH_DIFF_BETWEEN_LANDSCAPE_AND_PORTRAIT 250
+
 
 
 @implementation ActivityDetailViewController_iPad
