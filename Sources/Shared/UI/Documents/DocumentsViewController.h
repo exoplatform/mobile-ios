@@ -39,6 +39,7 @@
     UIPopoverController *_popoverPhotoLibraryController;
     
     BOOL isRoot;
+    BOOL stop;
     NSInteger fileActionMode;
     NSInteger _indexpathSelectedDocument;
     
@@ -62,6 +63,7 @@
 - (UINavigationBar *)navigationBar;
 - (NSString *)stringForUploadPhoto;
 
+-(void)stopRetrieveData;
 
 
 @end

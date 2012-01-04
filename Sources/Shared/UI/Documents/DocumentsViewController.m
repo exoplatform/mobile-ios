@@ -54,6 +54,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         isRoot = NO;
+        stop = NO;
         fileActionMode = -1;
         _indexpathSelectedDocument = -1;
     }
@@ -68,6 +69,10 @@
         _rootFile = [rootFile retain];
     }
     return self;
+}
+
+-(void)stopRetrieveData{
+    stop = YES;
 }
 
 // =====================================
@@ -85,6 +90,10 @@
     
     
     [pool release];
+    
+    if(stop){
+        return;
+    }
     
     //Call in the main thread update method
     [self performSelectorOnMainThread:@selector(contentDirectoryIsRetrieved) withObject:nil waitUntilDone:NO];

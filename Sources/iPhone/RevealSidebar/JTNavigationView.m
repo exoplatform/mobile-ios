@@ -107,7 +107,7 @@
     if (animated) {
         [UIView beginAnimations:@"popView" context:view];
     }
-
+    
     view.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(self.frame), 0);
     if (previousView) {
         if (_animationStyle == JTNavigationViewAnimationStylePush) {
@@ -119,6 +119,9 @@
         [UIView commitAnimations];
     }
     
+    if([[view nextResponder] respondsToSelector:@selector(stopRetrieveData)]){
+        [[view nextResponder] performSelector:@selector(stopRetrieveData)];
+    }
     [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3];
     
     
