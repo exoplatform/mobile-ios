@@ -77,6 +77,8 @@
 		1FCDDB7014481ED100846232 /* ActivityPictureDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCDDB6E14481ED000846232 /* ActivityPictureDetailMessageTableViewCell.xib */; };
 		1FCDF076147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCDF075147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib */; };
 		1FCDF079147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDF078147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m */; };
+		1FCE235F14BA8DCF00ED95AB /* SocialRestProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE235E14BA8DCF00ED95AB /* SocialRestProxy.m */; };
+		1FCE236214BA8E4300ED95AB /* SocialVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE236114BA8E4300ED95AB /* SocialVersion.m */; };
 		1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */; };
 		1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */; };
 		1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */; };
@@ -911,6 +913,10 @@
 		1FCDF075147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityCalendarDetailMessageTableViewCell.xib; path = Social/ActivityCalendarDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCDF077147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCalendarDetailMessageTableViewCell.h; path = Social/ActivityCalendarDetailMessageTableViewCell.h; sourceTree = "<group>"; };
 		1FCDF078147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCalendarDetailMessageTableViewCell.m; path = Social/ActivityCalendarDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1FCE235D14BA8DCF00ED95AB /* SocialRestProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialRestProxy.h; sourceTree = "<group>"; };
+		1FCE235E14BA8DCF00ED95AB /* SocialRestProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialRestProxy.m; sourceTree = "<group>"; };
+		1FCE236014BA8E4200ED95AB /* SocialVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialVersion.h; sourceTree = "<group>"; };
+		1FCE236114BA8E4300ED95AB /* SocialVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialVersion.m; sourceTree = "<group>"; };
 		1FCE304914453EB6004AE55F /* SocialPictureAttach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPictureAttach.h; sourceTree = "<group>"; };
 		1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPictureAttach.m; sourceTree = "<group>"; };
 		1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityPictureTableViewCell.h; path = Social/ActivityPictureTableViewCell.h; sourceTree = "<group>"; };
@@ -2089,6 +2095,8 @@
 				46DDC5AC13D764460026D036 /* SocialLike.m */,
 				1FCE304914453EB6004AE55F /* SocialPictureAttach.h */,
 				1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */,
+				1FCE236014BA8E4200ED95AB /* SocialVersion.h */,
+				1FCE236114BA8E4300ED95AB /* SocialVersion.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -2119,6 +2127,8 @@
 				464636DE13EC228700092723 /* SocialUserProfileCache.m */,
 				1FD02F92145A50CD00A36840 /* ActivityHelper.h */,
 				46EC7DE61466D596009D7BB0 /* ActivityHelper.m */,
+				1FCE235D14BA8DCF00ED95AB /* SocialRestProxy.h */,
+				1FCE235E14BA8DCF00ED95AB /* SocialRestProxy.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -4561,6 +4571,8 @@
 				8958E66D14A9B7D300580EEB /* CXMLNode_XPathExtensions.m in Sources */,
 				8958E67714A9C82400580EEB /* URLAnalyzer.m in Sources */,
 				8958E67B14A9CE1C00580EEB /* ServerPreferencesManager.m in Sources */,
+				1FCE235F14BA8DCF00ED95AB /* SocialRestProxy.m in Sources */,
+				1FCE236214BA8E4300ED95AB /* SocialVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

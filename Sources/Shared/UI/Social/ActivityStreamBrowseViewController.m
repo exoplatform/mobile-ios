@@ -33,7 +33,7 @@
 #import "DocumentDisplayViewController_iPhone.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
-
+#import "SocialRestProxy.h"
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
@@ -618,10 +618,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [self showLoaderForAction:_activityAction];
     
-    
-    SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-    socialUserProfile.delegate = [self retain];
-    [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username]; 
+    SocialRestProxy *socialRest = [[SocialRestProxy alloc] init];
+    socialRest.delegate = [self retain];
+    [socialRest getVersion];
+//    SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+//    socialUserProfile.delegate = [self retain];
+//    [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username]; 
     
 }
 
@@ -649,6 +651,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 }
 
 - (void)finishLoadingAllDataForActivityStream {
+    
+    _tblvActivityStream.scrollEnabled = YES;
+    
     //if the empty is, remove it
     EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
     if(emptyview != nil){
@@ -675,9 +680,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [_tblvActivityStream reloadData];
     
-    
-    
-    
 }
 
 // Empty State
@@ -698,7 +700,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     //If proxy is king of class SocialUserProfileProxy, then we can start the request for retrieve SocialActivityStream
-    if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
+    if([proxy isKindOfClass:[SocialRestProxy class]]){
+        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
+        socialUserProfile.delegate = [self retain];
+        [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username];
+    } else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
     {
         _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
         SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
