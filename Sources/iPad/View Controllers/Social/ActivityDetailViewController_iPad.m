@@ -16,7 +16,7 @@
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
 #import "EmptyView.h"
-
+#import "ActivityHelper.h"
 
 @implementation ActivityDetailViewController_iPad
 
@@ -103,11 +103,21 @@
 
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]]];
+    NSURL *url;
+    switch (_socialActivityStream.activityType) {
+        case ACTIVITY_DOC:{
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+            break;
+        case ACTIVITY_CONTENTS_SPACE:{
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_socialActivityStream.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+            break;
+    }
     ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] 
-                                                                       initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
-                                                                       bundle:nil 
-                                                                       url:url];
+                                                                     initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
+                                                                     bundle:nil 
+                                                                     url:url];
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];   
     
     [linkWebViewController release];
