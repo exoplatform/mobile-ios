@@ -32,7 +32,6 @@
     NSMutableArray*                 _arrServerList;
     int                             _intSelectedServer;
     
-    UIBarButtonItem*                _doneBarButtonItem;
     ServerManagerViewController*    _serverManagerViewController;
     
     id<SettingsDelegateProcotol>    _settingsDelegate;

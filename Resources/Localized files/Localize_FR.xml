@@ -115,7 +115,7 @@
     <key>NewServer</key>
 	<string>New Server</string>
     <key>ServerModify</key>
-	<string>Modify server</string>     
+	<string>Modifier le serveur</string>     
     <key>EmptyFolder</key>
 	<string>Le contenu de ce dossier est vide</string>
     <key>UnreadableFile</key>
@@ -141,12 +141,14 @@
     <key>Success</key>
 	<string>Success...</string>
     
+    <key>ApplicationsInformation</key>
+	<string>Applications de l'information</string>
     <key>ServerVersion</key>
-	<string>Server Version</string>
+	<string>Version du serveur</string>
     <key>ApplicationEdition</key>
-	<string>Application Edition</string>
+	<string>Demande édition</string>
     <key>ApplicationVersion</key>
-	<string>Application Version</string>
+	<string>Version de l'application</string>
     
     <key>MessageInfo</key>
     <string>Message Info</string>

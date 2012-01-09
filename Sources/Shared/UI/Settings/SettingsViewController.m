@@ -78,7 +78,6 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     [_arrServerList release];
     [rememberMe release];
     [autoLogin release];
-    [_doneBarButtonItem release];
     [super dealloc];
 }
 
@@ -151,11 +150,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
     
     //Add the Done button for exit Settings
-    _doneBarButtonItem = [[UIBarButtonItem alloc]
-                          initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                          target:self action:@selector(doneAction)];
-    
-    self.navigationItem.rightBarButtonItem = _doneBarButtonItem;    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStyleDone target:self action:@selector(doneAction)];
     
     self.title = Localize(@"Settings");
 }
@@ -197,7 +192,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 
 - (void)setNavigationBarLabels {
     self.title = Localize(@"Settings");
-    _doneBarButtonItem.title = Localize(@"Done");
+    self.navigationItem.rightBarButtonItem.title = Localize(@"DoneButton");
 }
 
 
