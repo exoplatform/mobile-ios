@@ -119,6 +119,9 @@
         [UIView commitAnimations];
     }
     
+    if([[view nextResponder] respondsToSelector:@selector(stopRetrieveData)]){
+        [[view nextResponder] performSelector:@selector(stopRetrieveData)];
+    }
     [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3];
     
     

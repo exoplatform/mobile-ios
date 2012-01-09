@@ -39,7 +39,7 @@
     UIPopoverController *_popoverPhotoLibraryController;
     
     BOOL isRoot;
-    
+    BOOL stop;
 }
 
 @property BOOL isRoot;
