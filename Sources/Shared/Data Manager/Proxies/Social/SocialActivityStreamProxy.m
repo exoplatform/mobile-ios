@@ -49,7 +49,7 @@
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     
     
-//    NSLog(@"%@",[NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
+    NSLog(@"%@",[NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
     
     return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
 
@@ -60,7 +60,7 @@
 //Helper to create the path to get the ressources
 - (NSString *)createPath 
 {    
-//    NSLog(@"%@", [NSString stringWithFormat:@"feed.json",_socialUserProfile.identity]);
+    NSLog(@"%@", [NSString stringWithFormat:@"feed.json",_socialUserProfile.identity]);
     
     return @"feed.json"; 
 }
@@ -87,6 +87,7 @@
      @"totalNumberOfComments",@"totalNumberOfComments",
      @"totalNumberOfLikes",@"totalNumberOfLikes",
      @"templateParams", @"templateParams",
+     @"activityStream", @"activityStream",
     nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
@@ -127,6 +128,7 @@
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
      @"templateParams", @"templateParams",
+     @"activityStream", @"activityStream",
      nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];

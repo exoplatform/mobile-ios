@@ -80,18 +80,23 @@
 }
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
+    NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityStream.activityStream valueForKey:@"fullName"];
+    }
     switch (socialActivityStream.activityType) {
         case ACTIVITY_WIKI_MODIFY_PAGE:{
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", 
-                             socialActivityStream.posterUserProfile.fullName, 
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", 
+                             socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
                              Localize(@"EditWiki")];
             
         }
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
         {
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", 
-                              socialActivityStream.posterUserProfile.fullName, 
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", 
+                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
                               Localize(@"CreateWiki")];
         }
             

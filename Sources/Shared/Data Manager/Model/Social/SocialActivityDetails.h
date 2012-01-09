@@ -46,7 +46,7 @@
     BOOL                    _liked;
     double                  _postedTime;
     NSString*               _type;
-    NSString*               _activityStream;
+    NSDictionary*               _activityStream;
     NSString*               _identifyId;
     NSString*               _title;
     NSString*               _body;
@@ -72,7 +72,7 @@
 @property double postedTime;
 @property CGFloat cellHeight;
 @property (nonatomic, retain) NSString* type;
-@property (nonatomic, retain) NSString* activityStream;
+@property (nonatomic, retain) NSDictionary* activityStream;
 @property (nonatomic, retain) NSString* identifyId;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* body;

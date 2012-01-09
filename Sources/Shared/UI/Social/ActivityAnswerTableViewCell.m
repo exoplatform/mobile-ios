@@ -79,15 +79,20 @@
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
+    NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityStream.activityStream valueForKey:@"fullName"];
+    }
     switch (socialActivityStream.activityType) {
         case ACTIVITY_ANSWER_ADD_QUESTION:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"Asked")];
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Asked")];
             break;
         case ACTIVITY_ANSWER_QUESTION:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"Answered")];
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Answered")];
             break; 
         case ACTIVITY_ANSWER_UPDATE_QUESTION:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdateQuestion")];
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"UpdateQuestion")];
             break; 
         default:
             break;

@@ -88,27 +88,28 @@
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
+    NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityStream.activityStream valueForKey:@"fullName"];
+    }
     
     switch (socialActivityStream.activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"EventAdded")];
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
+                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_EVENT:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"EventUpdated")];
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
+                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventUpdated")];
             break;
         case ACTIVITY_CALENDAR_ADD_TASK:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"TaskAdded")];
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
+                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
-            _htmlName.html = [NSString stringWithFormat:@"<a>%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, 
-                              Localize(@"TaskUpdated")];
+            _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
+                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskUpdated")];
             break; 
         default:
             break;

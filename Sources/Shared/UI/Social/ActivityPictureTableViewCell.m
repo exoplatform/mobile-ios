@@ -78,7 +78,13 @@
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
     //Set the UserName of the activity
-    _lbName.text = socialActivityStream.posterUserProfile.fullName?socialActivityStream.posterUserProfile.fullName:@"";
+    NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityStream.activityStream valueForKey:@"fullName"];
+    }
+    
+    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
    
     NSString *html = nil;
     switch (socialActivityStream.activityType) {

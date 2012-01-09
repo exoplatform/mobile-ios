@@ -49,15 +49,20 @@
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
+    NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
+    }
     
     NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_WIKI_ADD_PAGE:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"CreateWiki")];         
+            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"CreateWiki")];         
         }
             break;
         case ACTIVITY_WIKI_MODIFY_PAGE:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"EditWiki")];
+            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"EditWiki")];
         }
             break;
     }

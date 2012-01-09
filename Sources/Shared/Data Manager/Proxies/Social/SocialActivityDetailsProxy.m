@@ -129,7 +129,7 @@
      @"totalNumberOfLikes",@"totalNumberOfLikes",
      @"postedTime",@"postedTime",
      @"type",@"type",
-     //@"activityStream",@"activityStream",
+     @"activityStream",@"activityStream",
      @"title",@"title",
      @"body",@"body",
      @"priority",@"priority",

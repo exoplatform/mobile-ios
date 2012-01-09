@@ -28,7 +28,8 @@
     NSString*               _titleId;
     NSArray*                _comments;    
     NSString*               _postedTimeInWords;
-    NSDictionary*           _templateParams;  
+    NSDictionary*           _templateParams; 
+    NSDictionary*           _activityStream; 
     NSInteger               _activityType;
     
     CGFloat                 _cellHeight;
@@ -54,6 +55,7 @@
 @property (nonatomic, retain) SocialUserProfile* posterUserProfile;
 @property (nonatomic, retain) SocialPictureAttach *posterPicture;
 @property (nonatomic, retain) NSDictionary *templateParams;
+@property (nonatomic, retain) NSDictionary* activityStream;
 
 - (void)getActivityType;
 - (void)convertToPostedTimeInWords;

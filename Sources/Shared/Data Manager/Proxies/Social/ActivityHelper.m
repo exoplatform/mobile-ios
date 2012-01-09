@@ -117,10 +117,18 @@
     //return 0.0;
     NSString* text = @"";
     float fHeight = 0.0;
+    NSString *type = [activtyStreamDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [activtyStreamDetail.activityStream valueForKey:@"fullName"];
+    }
+    text = [NSString stringWithFormat:@"%@ %@", [activtyStreamDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@"in %@ space", space] : @""];
+    fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+    
     switch (activtyStreamDetail.activityType) {
         case ACTIVITY_DOC:{
             text = [activtyStreamDetail.templateParams valueForKey:@"MESSAGE"];
-            fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 80;
+            fHeight = [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth] + 80;
             fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"DOCNAME"]
                                           andTableViewWidth:fWidth];
         }
@@ -135,11 +143,11 @@
             text = [activtyStreamDetail.templateParams valueForKey:@"comment"];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [activtyStreamDetail.templateParams valueForKey:@"title"];
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             text = [activtyStreamDetail.templateParams valueForKey:@"description"];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [NSString stringWithFormat:@"Source : %@", [activtyStreamDetail.templateParams valueForKey:@"link"]];
-            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             
             NSURL *url = [NSURL URLWithString:[activtyStreamDetail.templateParams valueForKey:@"image"]];
             if (url && url.host && url.scheme) {
@@ -252,15 +260,23 @@
 
     NSString* text = @"";
     float fHeight = 0.0;
+    NSString *type = [activtyStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [activtyStream.activityStream valueForKey:@"fullName"];
+    }
+    text = [NSString stringWithFormat:@"%@ %@", [activtyStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@"in %@ space", space] : @""];
+    fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+    
     float h = 0.0;
     switch (activtyStream.activityType) {
         case ACTIVITY_DOC:{
             text = [activtyStream.templateParams valueForKey:@"MESSAGE"];
-            h =  [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            h =  [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
-            fHeight = +h;
+            fHeight += h;
             h = [ActivityHelper getHeightSizeForText:[activtyStream.templateParams valueForKey:@"DOCNAME"]
  andTableViewWidth:fWidth];
             if(h > 32){
@@ -279,15 +295,15 @@
         }
             break;
         case ACTIVITY_LINK:{
-            text = [activtyStream.templateParams valueForKey:@"comment"];
+            text = [[activtyStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText];
             h =  [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
             fHeight += h;
-            text = [activtyStream.templateParams valueForKey:@"title"];
+            text = [[activtyStream.templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText];
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            text = [activtyStream.templateParams valueForKey:@"description"];
+            text = [[activtyStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText];
             h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [NSString stringWithFormat:@"Source : %@", [activtyStream.templateParams valueForKey:@"link"]];
             h += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];

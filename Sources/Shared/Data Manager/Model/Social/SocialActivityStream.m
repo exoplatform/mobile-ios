@@ -32,6 +32,7 @@
 @synthesize posterUserProfile = _posterUserProfile;
 @synthesize posterPicture = _posterPicture;
 @synthesize templateParams = _templateParams;
+@synthesize activityStream = _activityStream;
 @synthesize cellHeight = _cellHeight;
  
 - (void)dealloc {
@@ -49,6 +50,7 @@
     [_posterUserProfile release];
     [_posterPicture release];
     [_templateParams release];
+    [_activityStream release];
     [super dealloc];
 }
 

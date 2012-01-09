@@ -50,19 +50,26 @@
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
+    
+    NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
+    }
+    
     //NSString *textWithoutHtml = @"";
     NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_ANSWER_ADD_QUESTION:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"Asked")];
+            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Asked")];
         }
             break;
         case ACTIVITY_ANSWER_QUESTION:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"Answered")];
+            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Answered")];
         }
             break;
         case ACTIVITY_ANSWER_UPDATE_QUESTION:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, Localize(@"UpdateQuestion")]; 
+            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"UpdateQuestion")]; 
         }
             break;
     }

@@ -51,8 +51,20 @@
 #define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
+    NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
+    }
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+                           lineBreakMode:UILineBreakModeWordWrap];
+    CGRect rect = _lbName.frame;
+    rect.size.height = theSize.height + 5;
+    _lbName.frame = rect;
+    
     //Set the UserName of the activity
-    _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+    _lbName.text = title;
     
     // comment
     [_webViewForContent loadHTMLString:
@@ -67,11 +79,11 @@
      ];
     
     NSString *textWithoutHtml = [[_templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText];
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
     
-    CGRect rect = _webViewForContent.frame;
+    rect = _webViewForContent.frame;
     rect.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y;
     rect.size.height =  theSize.height + 5;
     

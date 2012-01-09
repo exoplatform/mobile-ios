@@ -41,14 +41,27 @@
 
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
-    _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
+    
+    NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
+    }
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+                      lineBreakMode:UILineBreakModeWordWrap];
+    CGRect rect = _lbName.frame;
+    rect.size.height = theSize.height + 5;
+    _lbName.frame = rect;
+    
+    _lbName.text = title;
+    
     _imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_DOC:{
-//            NSLog(@"%@", [NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [_templateParams valueForKey:@"DOCLINK"]]);
             _imgvAttach.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [[_templateParams valueForKey:@"DOCLINK"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"MESSAGE"]?[[_templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText]:@""]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
@@ -59,7 +72,6 @@
         }
             break;
         case ACTIVITY_CONTENTS_SPACE:{
-//            NSLog(@"%@", [NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]]]);
             _imgvAttach.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [[_templateParams valueForKey:@"contenLink"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><a href=\"%@\">%@</a> was created by <a>%@</a> state : %@</body></html>", [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]],[_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"], [_templateParams valueForKey:@"state"]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
@@ -71,11 +83,11 @@
     }
     htmlStr = [htmlStr stringByConvertingHTMLToPlainText];
     
-    CGSize theSize = [htmlStr sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    theSize = [htmlStr sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     
-    CGRect rect = _webViewForContent.frame;
+    rect = _webViewForContent.frame;
     rect.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y;
     rect.size.height =  theSize.height + 5;
     _webViewForContent.frame = rect;

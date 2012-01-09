@@ -65,25 +65,31 @@
 - (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
 {
     [super setSocialActivityDetail:socialActivityDetail];
+    NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
+    }
+    
     NSString *htmlStr = nil;
     switch (_activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@</a> %@", socialActivityDetail.posterIdentity.fullName, Localize(@"EventAdded")];
+            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
             
         }
             break;
         case ACTIVITY_CALENDAR_UPDATE_EVENT:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@</a> %@", socialActivityDetail.posterIdentity.fullName, Localize(@"EventUpdated")];
+            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventUpdated")];
         }
             break; 
         case ACTIVITY_CALENDAR_ADD_TASK:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@</a> %@", socialActivityDetail.posterIdentity.fullName, Localize(@"TaskAdded")];
+            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName,space ? [NSString stringWithFormat:@" in %@", space] : @"", Localize(@"TaskAdded")];
             
         }
             
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@</a> %@", socialActivityDetail.posterIdentity.fullName, Localize(@"TaskUpdated")];
+            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskUpdated")];
         }
             break;
     }

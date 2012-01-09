@@ -93,12 +93,16 @@
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
     //Set the UserName of the activity
-    _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
+    NSLog(@"-----   : %@",[socialActivityStream.activityStream valueForKey:@"type"]);
+    NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityStream.activityStream valueForKey:@"fullName"];
+    }
+    
+    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
 
     // Activity Message
-    
-    NSLog(@"-----   : %@",[[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]);
-    
     _htmlActivityMessage.html = [[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
     //SLM : Bug fix

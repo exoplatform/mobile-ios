@@ -83,24 +83,29 @@
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
     NSString *html = nil;
+    NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if(type != nil) {
+        space = [socialActivityStream.activityStream valueForKey:@"fullName"];
+    }
     switch (socialActivityStream.activityType) {
         case ACTIVITY_FORUM_CREATE_POST:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewPost"), [socialActivityStream.templateParams valueForKey:@"PostName"]];
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewPost")];
             html = [NSString stringWithFormat:@"<a>%@</a>", 
                              [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break;
         case ACTIVITY_FORUM_CREATE_TOPIC:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"NewTopic")];
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewTopic")];
             html = [NSString stringWithFormat:@"<a>%@</a>", 
                              [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break; 
         case ACTIVITY_FORUM_UPDATE_TOPIC:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdateTopic")];
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdateTopic")];
             html = [NSString stringWithFormat:@"<a>%@</a>", 
                              [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break; 
         case ACTIVITY_FORUM_UPDATE_POST:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, Localize(@"UpdatePost")];
+            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdatePost")];
             html = [NSString stringWithFormat:@"<a>%@</a>", 
                              [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
             break; 
