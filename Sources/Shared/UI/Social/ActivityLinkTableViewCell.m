@@ -11,6 +11,7 @@
 #import "EGOImageView.h"
 #import "defines.h"
 #import "NSString+HTML.h"
+#import "ActivityHelper.h"
 
 @implementation ActivityLinkTableViewCell
 
@@ -63,6 +64,14 @@
     } else {
         tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
     }
+
+    _htmlActivityMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+    _htmlActivityMessage.userInteractionEnabled = NO;
+    _htmlActivityMessage.backgroundColor = [UIColor clearColor];
+    _htmlActivityMessage.font = [UIFont systemFontOfSize:13.0];
+    _htmlActivityMessage.textColor = [UIColor grayColor];
+    
+    [self.contentView addSubview:_htmlActivityMessage];
     
     _htmlLinkTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _htmlLinkTitle.userInteractionEnabled = NO;
@@ -72,6 +81,15 @@
     
     [self.contentView addSubview:_htmlLinkTitle];
     
+    
+    _htmlLinkDescription = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+    _htmlLinkDescription.userInteractionEnabled = NO;
+    _htmlLinkDescription.backgroundColor = [UIColor clearColor];
+    _htmlLinkDescription.font = [UIFont systemFontOfSize:13.0];
+    _htmlLinkDescription.textColor = [UIColor grayColor];
+    
+    [self.contentView addSubview:_htmlLinkDescription];
+    
     _htmlLinkMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _htmlLinkMessage.userInteractionEnabled = NO;
     _htmlLinkMessage.backgroundColor = [UIColor clearColor];
@@ -79,14 +97,6 @@
     _htmlLinkMessage.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:_htmlLinkMessage];
-    
-    _htmlActivityMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlActivityMessage.userInteractionEnabled = NO;
-    _htmlActivityMessage.backgroundColor = [UIColor clearColor];
-    _htmlActivityMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlActivityMessage.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlActivityMessage];
         
 }
 
@@ -100,7 +110,16 @@
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
     
-    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+//    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX) 
+                           lineBreakMode:UILineBreakModeWordWrap];
+    CGRect frame = _lbName.frame;
+    frame.size.height = theSize.height;
+    _lbName.frame = frame;
+    
+    _lbName.text = title;
 
     // Activity Message
     _htmlActivityMessage.html = [[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
@@ -122,8 +141,19 @@
      
     
     // Link Message
-    NSString *description = [[[socialActivityStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    _htmlLinkMessage.html = [NSString stringWithFormat:@"%@<p>Source : %@</p>", description, [socialActivityStream.templateParams valueForKey:@"link"]];
+    _htmlLinkDescription.html = [[[socialActivityStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+    
+    if (![(NSString*)[socialActivityStream.templateParams valueForKey:@"description"] isEqualToString:@""]) {
+        [_htmlLinkDescription sizeToFit];
+    } else {
+        CGRect rect = _htmlLinkDescription.frame;
+        rect.size.height = 0;
+        _htmlLinkDescription.frame = rect;
+    }
+    
+    NSLog(@"%@", NSStringFromCGRect(_htmlLinkMessage.frame));
+    _htmlLinkMessage.html = [NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
+    
     [_htmlLinkMessage sizeToFit];
     
     CGRect rect = _htmlActivityMessage.frame;
@@ -133,9 +163,6 @@
     rect.size.height = heigthForTTLabel;
     _htmlActivityMessage.frame = rect;
 
-    
-    
-    
     NSURL *url = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
         self.imgvAttach.hidden = NO;
@@ -156,12 +183,31 @@
         self.imgvAttach.hidden = YES;
     }
     [_htmlLinkTitle sizeToFit];
-    rect = _htmlLinkMessage.frame;
+    rect = _htmlLinkDescription.frame;
     rect.origin.y = _htmlLinkTitle.frame.size.height + _htmlLinkTitle.frame.origin.y;
-    heigthForTTLabel = [[[self htmlLinkMessage] text] height];
+    heigthForTTLabel = _htmlLinkDescription.frame.size.height;
+    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
+    rect.size.height = heigthForTTLabel;
+    _htmlLinkDescription.frame = rect;
+    NSLog(@"%@", NSStringFromCGRect(rect));
+    
+    rect = _htmlLinkMessage.frame;
+    rect.origin.y = _htmlLinkDescription.frame.size.height + _htmlLinkDescription.frame.origin.y;
+    
+    
+    NSString *link = [NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
+    theSize = [link sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX) 
+                           lineBreakMode:UILineBreakModeWordWrap];
+    rect.size.height = theSize.height;
+    rect.size.width = _htmlLinkDescription.frame.size.width;
+    
+    
+    heigthForTTLabel = rect.size.height;
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     rect.size.height = heigthForTTLabel;
     _htmlLinkMessage.frame = rect;
+    NSLog(@"%@", NSStringFromCGRect(rect));
+    
 }
 
 
