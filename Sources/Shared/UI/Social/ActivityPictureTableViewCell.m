@@ -84,7 +84,16 @@
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
     
-    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+//    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+                           lineBreakMode:UILineBreakModeWordWrap];
+    CGRect rect = _lbName.frame;
+    rect.size.height = theSize.height + 5;
+    _lbName.frame = rect;
+    
+    _lbName.text = title;
+    
    
     NSString *html = nil;
     switch (socialActivityStream.activityType) {

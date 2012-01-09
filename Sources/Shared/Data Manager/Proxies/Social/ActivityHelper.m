@@ -128,7 +128,7 @@
     switch (activtyStreamDetail.activityType) {
         case ACTIVITY_DOC:{
             text = [activtyStreamDetail.templateParams valueForKey:@"MESSAGE"];
-            fHeight = [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth] + 80;
+            fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth] + 80;
             fHeight += [ActivityHelper getHeightSizeForText:[activtyStreamDetail.templateParams valueForKey:@"DOCNAME"]
                                           andTableViewWidth:fWidth];
         }
@@ -136,7 +136,7 @@
         case ACTIVITY_CONTENTS_SPACE:
         {
             text = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a> state : %@", [activtyStreamDetail.templateParams valueForKey:@"contentName"], [activtyStreamDetail.templateParams valueForKey:@"author"], [activtyStreamDetail.templateParams valueForKey:@"state"]];
-            fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 80;
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth] + 80;
         }
             break;  
         case ACTIVITY_LINK:{
@@ -245,8 +245,8 @@
             break;
         default:{
             text = activtyStreamDetail.title;
-            fHeight = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            NSLog(@"%@", text);
+            fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            //NSLog(@"%@", text);
         }
             break;
     }
@@ -305,8 +305,13 @@
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             text = [[activtyStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText];
             h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            if(h > EXO_MAX_HEIGHT){
+                h = EXO_MAX_HEIGHT;
+            }
+            fHeight += h;
+            
             text = [NSString stringWithFormat:@"Source : %@", [activtyStream.templateParams valueForKey:@"link"]];
-            h += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
+            h = [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
