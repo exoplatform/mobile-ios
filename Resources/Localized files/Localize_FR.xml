@@ -278,8 +278,12 @@
     <string>Updating action cannot be completed</string>
     <key>LikingActivity</key>
     <string>Liking activity</string>
+    <key>UnLikeActivity</key>
+    <string>Unlike activity</string>
     <key>LikingActionCannotBeCompleted</key>
     <string>Liking action cannot be completed</string>
+    <key>UnLikeActionCannotBeCompleted</key>
+    <string>Unlike action cannot be completed</string>
     
     <key>PostingActivity</key>
     <string>Posting activity</string>

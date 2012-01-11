@@ -134,6 +134,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         [_hudActivityStream setCaption:Localize(@"UpdatingActivity")];
     else if(action == 2)
         [_hudActivityStream setCaption:Localize(@"LikingActivity")];
+    else 
+        [_hudActivityStream setCaption:Localize(@"UnLikeActivity")];
     
     [_hudActivityStream setActivity:YES];
     [_hudActivityStream show];
@@ -754,8 +756,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         alertMessages = Localize(@"GettingActionCannotBeCompleted");
     else if(_activityAction == 1)
         alertMessages = Localize(@"UpdatingActionCannotBeCompleted");
-    else
+    else if (_activityAction == 2)
         alertMessages = Localize(@"LikingActionCannotBeCompleted");
+    else 
+        alertMessages = Localize(@"UnLikeActionCannotBeCompleted");
     
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     

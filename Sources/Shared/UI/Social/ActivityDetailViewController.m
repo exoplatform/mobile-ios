@@ -699,6 +699,11 @@
         [self finishLoadingAllDataForActivityDetails];
         //SocialLikeActivityProxy
     }else{
+        if (_activityAction == 2){
+            _socialActivityStream.liked = YES;
+        } else if (_activityAction == 3){
+            _socialActivityStream.liked = NO;
+        }
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
                                                                                                              andNumberOfLikes:4];
         socialActivityDetailsProxy.delegate = self;
