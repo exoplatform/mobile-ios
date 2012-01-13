@@ -360,7 +360,8 @@
     UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonAccessory setImage:image forState:UIControlStateNormal];
     buttonAccessory.tag = indexPath.row;
-    buttonAccessory.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
+    buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.accessoryView = buttonAccessory;
     
