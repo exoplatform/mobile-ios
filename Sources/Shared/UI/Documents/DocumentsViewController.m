@@ -359,6 +359,7 @@
     UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton.png"];
     UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonAccessory setImage:image forState:UIControlStateNormal];
+    [buttonAccessory setImage:image forState:UIControlStateHighlighted];
     buttonAccessory.tag = indexPath.row;
     buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
     buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
