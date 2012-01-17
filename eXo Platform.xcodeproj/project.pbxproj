@@ -4708,7 +4708,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4736,7 +4736,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "eXo 2.1";
-				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4863,9 +4863,9 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4893,9 +4893,9 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "eXo 2.1";
-				PROVISIONING_PROFILE = "D77CD881-3718-47FB-8E84-85E448B92C96";
-				"PROVISIONING_PROFILE[sdk=*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D77CD881-3718-47FB-8E84-85E448B92C96";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
