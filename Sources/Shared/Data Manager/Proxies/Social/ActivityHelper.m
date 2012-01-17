@@ -12,9 +12,6 @@
 #import "eXoMobileAppDelegate.h"
 #import "defines.h"
 
-#define WIDTH_FOR_CONTENT_IPHONE 237
-#define WIDTH_FOR_CONTENT_IPAD 420
-
 
 #define HEIGHT_FOR_DECORATION_IPHONE 90
 #define HEIGHT_FOR_DECORATION_IPAD 90

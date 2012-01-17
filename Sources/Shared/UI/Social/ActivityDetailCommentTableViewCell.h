@@ -25,15 +25,16 @@
     UIImageView*           _imgvCellBg;
     
     TTStyledTextLabel  *htmlLabel;
-
+    UIWebView*             _webViewForContent;
+    
 }
-
-@property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
+@property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvCellBg;
+@property (nonatomic) CGFloat width;
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
@@ -43,6 +44,5 @@
 
 //- (void)setActivity:(Activity*)activity;
 - (void)setSocialComment:(SocialComment*)socialComment;
-
 
 @end

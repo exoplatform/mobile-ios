@@ -511,12 +511,13 @@
             
             //Create a cell, need to do some configurations
             [cell configureCell];
+            cell.width = tableView.frame.size.width;
+            cell.webViewForContent.delegate = self;
         }
         
         SocialComment* socialComment = [_socialActivityDetails.comments objectAtIndex:indexPath.row];
         [cell setSocialComment:socialComment];
-        
-        cell.userInteractionEnabled = NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }

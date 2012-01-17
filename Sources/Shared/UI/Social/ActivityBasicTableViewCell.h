@@ -8,16 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
+#import "defines.h"
 
 @class Activity;
 @class EGOImageView;
 @class SocialActivityStream;
 @class ActivityStreamBrowseViewController;
 @class SocialUserProfile;
-
-
-#define WIDTH_FOR_CONTENT_IPHONE 237
-#define WIDTH_FOR_CONTENT_IPAD 409
 
 
 @interface ActivityBasicTableViewCell : UITableViewCell {
