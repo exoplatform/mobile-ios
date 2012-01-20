@@ -36,15 +36,12 @@
 + (NSString*)stringEncodedWithBase64:(NSString*)str;
 + (NSString *)urlForFileAction:(NSString *)url;
 
+- (NSString *)fullURLofFile:(NSString *)path;
+- (NSArray*)getDrives:(NSString*)driveName;
+- (NSArray*)getContentOfFolder:(File *)file;
 
 //Create user's repository home url
 - (void)creatUserRepositoryHomeUrl;
-
-// Use this method to create the first initial file
-- (File *)initialFileForRootDirectory;
-
-//Use this method to retrieve the content of a virtual drive
-- (NSMutableArray*)getPersonalDriveContent:(File *)file;
 
 //Use this method to do some actions over files (DELETE, PUT, COPY, PASTE...)
 //Return en error Message

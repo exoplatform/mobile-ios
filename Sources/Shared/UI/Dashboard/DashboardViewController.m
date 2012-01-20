@@ -261,7 +261,6 @@
     [customView addSubview:headerLabel];
     [headerLabel release];
     
-    
 	return customView;
 }
 
@@ -271,6 +270,7 @@
     GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
     
     return [self getHeighSizeForTableView:tableView andText:gadgetTmp.gadgetDescription];
+
 }
 
 

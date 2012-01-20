@@ -13,7 +13,10 @@
 
 @implementation File
 
-@synthesize fileName=_fileName, urlStr=_urlStr, contentType=_contentType, isFolder=_isFolder;
+@synthesize path=_path, isFolder=_isFolder;
+@synthesize name=_name, canAddChild=_canAddChild, canRemove=_canRemove, currentFolder=_currentFolder, 
+driveName=_driveName, hasChild=_hasChild, workspaceName=_workspaceName, nodeType=_nodeType,
+creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_size;
 
 
 + (NSString *)fileType:(NSString *)type
@@ -44,94 +47,16 @@
 }
 
 
-
--(BOOL)isFolder:(NSString *)urlStr
-{
-	self.contentType = [[NSString alloc] initWithString:@"text/html"];
-	
-	urlStr = [urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-	
-	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	
-	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-	
-	BOOL returnValue = FALSE;
-	
-	NSURL* url = [NSURL URLWithString:[NSString stringWithString:urlStr]];
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-	[request setURL:url];
-	[request setTimeoutInterval:60.0];
-	[request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-	
-	[request setHTTPMethod:@"PROPFIND"];
-	
-	[request setHTTPBody: [[NSString stringWithString: @"<?xml version=\"1.0\" encoding=\"utf-8\" ?><D:propfind xmlns:D=\"DAV:\">"
-							"<D:prop><D:getcontenttype/></D:prop></D:propfind>"] dataUsingEncoding:NSUTF8StringEncoding]]; 
-    
-    
-	[request setValue:[[AuthenticateProxy sharedInstance] stringOfAuthorizationHeaderWithUsername:username password:password] forHTTPHeaderField:@"Authorization"];
-	
-	NSData *dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSString *responseStr = [[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding];
-    [request release];
-    
-    
-	NSRange dirRange = [responseStr rangeOfString:@"<D:getcontenttype/></D:prop>"];
-    
-	if(dirRange.length > 0)
-	{	
-		returnValue = TRUE;
-        
-	}
-	else
-	{
-		NSRange contentTypeRange1 = [responseStr rangeOfString:@"<D:getcontenttype>"];
-		NSRange contentTypeRange2 = [responseStr rangeOfString:@"</D:getcontenttype>"];
-		if(contentTypeRange1.length > 0 && contentTypeRange2.length > 0)
-            self.contentType = [responseStr substringWithRange:
-                            NSMakeRange(contentTypeRange1.location + contentTypeRange1.length, 
-                                        contentTypeRange2.location - contentTypeRange1.location - contentTypeRange1.length)];
-	}
-    
-    [responseStr release];
-	
-	return returnValue;
-}
-
 -(NSString *)convertPathToUrlStr:(NSString *)path
 {
 	return [path stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
 }
 
--(id)initWithUrlStr:(NSString *)urlStr fileName:(NSString *)fileName
-{
-    self = [super init];
-	if(self)
-	{
-		_fileName = [[NSString alloc] initWithString:fileName];
-		_urlStr = [[NSString alloc] initWithString:urlStr];
-		_isFolder = [self isFolder:urlStr];
-        
-	}
-	
-	return self;
-}
-
-
-
-
 
 - (void)dealloc {
-    [_contentType release];
-    _contentType = nil;
     
-    [_fileName release];
-    _fileName = nil;
-    
-    [_urlStr release];
-    _urlStr = nil;
+    [_path release];
+    _path = nil;
     
     [super dealloc];
 }

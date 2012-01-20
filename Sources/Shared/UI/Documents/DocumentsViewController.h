@@ -16,10 +16,15 @@
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
 
+#define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
+#define kHeightForSectionHeader 40
+
 @interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate> {
     
+    DocumentsViewController *_parentController;
     File *_rootFile;
     
+    NSMutableDictionary *_dicContentOfFolder;
     NSArray *_arrayContentOfRootFile;
     
     FilesProxy *_filesProxy;
@@ -42,7 +47,9 @@
     BOOL stop;
 }
 
+@property(nonatomic, retain) DocumentsViewController *parentController;
 @property BOOL isRoot;
+
 -(void)emptyState;
 -(void)setHudPosition;
 -(void)showHUDWithMessage:(NSString *)message;

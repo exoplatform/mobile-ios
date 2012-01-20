@@ -20,6 +20,9 @@
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
+#define PERSONAL @"personal"
+#define SHARED @"group"
+
 #pragma mark -
 #pragma mark Private
 
@@ -47,7 +50,7 @@
 // ================================
 @implementation DocumentsViewController
 
-@synthesize isRoot;
+@synthesize parentController = _parentController, isRoot;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,16 +80,30 @@
 // =====================================
 // = Implementation of private methods
 // =====================================
+
 -(void)startRetrieveDirectoryContent {
     
     NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
-    
+//    
     if (_filesProxy == nil) _filesProxy = [FilesProxy sharedInstance];
+    [_dicContentOfFolder removeAllObjects];
     
-    if (_rootFile == nil) _rootFile = [_filesProxy initialFileForRootDirectory];
-    
-    _arrayContentOfRootFile = [[_filesProxy getPersonalDriveContent:_rootFile] retain];
-    
+    if (_rootFile == nil) {
+        NSArray *personalDrives = [_filesProxy getDrives:@"personal"];
+        NSArray *sharedDrives = [_filesProxy getDrives:@"group"];
+        
+        if([personalDrives count] > 0)
+            [_dicContentOfFolder setValue:[personalDrives copy] forKey:@"personal"];
+        
+        if([sharedDrives count] > 0)
+            [_dicContentOfFolder setValue:[sharedDrives copy] forKey:@"group"];
+        
+    }
+    else {
+        NSArray *folderContet = [_filesProxy getContentOfFolder:_rootFile];
+        if([folderContet count] > 0)
+            [_dicContentOfFolder setValue:[folderContet copy] forKey:_rootFile.name];
+    }
     
     [pool release];
     
@@ -112,7 +129,7 @@
     [self hideHUDWithMessage:Localize(@"FolderContentUpdated")];
     
     //check if no data
-    if([_arrayContentOfRootFile count] == 0){
+    if([_dicContentOfFolder count] == 0){
         [self performSelector:@selector(emptyState) withObject:nil afterDelay:1.0];
     }
     //And finally reload the content of the tableView
@@ -145,6 +162,10 @@
 
 - (void)dealloc
 {
+     
+    [_dicContentOfFolder release];
+    _dicContentOfFolder = nil;
+    
     //Release the FileProxy of the Controller.
     _filesProxy = nil;
     
@@ -233,6 +254,8 @@
 {
     [super viewDidLoad];
     
+    _dicContentOfFolder = [[NSMutableDictionary alloc] init];
+    
     _hudFolder = [[ATMHud alloc] initWithDelegate:self];
     [_hudFolder setAllowSuperviewInteraction:YES];
     [self setHudPosition];
@@ -248,10 +271,15 @@
     [background release];
   */  
 
+//    [[NSNotificationCenter defaultCenter] addObserver:self 
+//                                             selector:@selector(updateData:)        
+//                                                 name:@"updateData" 
+//                                               object:nil];
+    
     _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
     
     if (_rootFile) {
-        self.title = _rootFile.fileName;
+        self.title = _rootFile.name;
     } else {
         self.title = Localize(@"Documents");
     }
@@ -261,7 +289,7 @@
     
     if (_arrayContentOfRootFile == nil) {
         //TODO Localize this string
-        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"), _rootFile ?_rootFile.fileName:Localize(@"Documents")]];
+        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"), _rootFile ?_rootFile.name:Localize(@"Documents")]];
         
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
@@ -281,20 +309,13 @@
     
     
 }
-/*
+
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    
-    if (_arrayContentOfRootFile == nil) {
-        //TODO Localize this string
-        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"), _rootFile ?_rootFile.fileName:Localize(@"Documents")]];
-        
-        //Start the request to load file content
-        [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
-    }
+    [super viewDidAppear:animated];    
 }
-*/
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -315,11 +336,86 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (CGRect)rectOfHeader:(int)width
+{
+    return CGRectMake(25.0, 11.0, width, kHeightForSectionHeader);
+}
+
+- (void)configImageTitleOfCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
+ 
+    if(file.isFolder){
+        imgView.image = [UIImage imageNamed:@"DocumentIconForFolder"];
+    } else{
+        imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
+    }
+    
+    
+    imgView.frame = CGRectMake(20.0, (cell.frame.size.height - imgView.image.size.height)/2, 
+                                   imgView.image.size.width, imgView.image.size.height);
+    imgView.center = CGPointMake(imgView.center.x, cell.center.y);    
+    
+    titleLabel.frame = CGRectMake(imgView.frame.size.width + 25, 0, 200, 30);
+    titleLabel.center = CGPointMake(titleLabel.center.x, cell.center.y);
+    titleLabel.text = [URLAnalyzer decodeURL:file.name];
+
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 1;
+    if(_dicContentOfFolder)
+        return [_dicContentOfFolder count];
+    
+    return 0;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if([_dicContentOfFolder count] > 1)
+        return kHeightForSectionHeader;
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if([_dicContentOfFolder count] <= 1)
+        return nil;
+        
+    // create the parent view that will hold header Label
+	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 10.0, _tblFiles.frame.size.width-5, kHeightForSectionHeader)];
+	
+	// create the label object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.opaque = NO;
+	headerLabel.textColor = [UIColor colorWithRed:79.0/255 green:79.0/255 blue:79.0/255 alpha:1];
+	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
+    headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
+    headerLabel.shadowOffset = CGSizeMake(0,1);
+    headerLabel.textAlignment = UITextAlignmentCenter;
+
+    headerLabel.text = [[_dicContentOfFolder allKeys] objectAtIndex:section];
+    
+    CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblFiles.frame.size.width-5, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    
+    if(theSize.width > _tblFiles.frame.size.width - 20)
+        theSize.width = _tblFiles.frame.size.width - 50;
+    
+    headerLabel.frame = [self rectOfHeader:theSize.width];
+    
+    //Retrieve the image depending of the section
+    UIImage *imgForSection = [UIImage imageNamed:@"DashboardTabBackground.png"];
+    UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:10 topCapHeight:7]];
+    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 20, kHeightForSectionHeader-15);
+    
+	[customView addSubview:imgVBackground];
+    [imgVBackground release];
+    
+    [customView addSubview:headerLabel];
+    [headerLabel release];
+    
+	return customView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -330,7 +426,7 @@
 // tell our table how many rows it will have, in our case the size of our menuList
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [_arrayContentOfRootFile count];
+	return [[[_dicContentOfFolder allValues] objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -341,12 +437,12 @@
     if(cell == nil) {
         cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
         
-        UIImageView* imgViewFile = [[UIImageView alloc] initWithFrame:CGRectMake(5.0, 5.0, 40, 40)];
-        cell.tag = kTagForCellSubviewImageView;
+        UIImageView* imgViewFile = [[UIImageView alloc] init];
+        imgViewFile.tag = kTagForCellSubviewImageView;
         [cell addSubview:imgViewFile];
         [imgViewFile release];
         
-        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55.0, 13.0, 200.0, 20.0)];
+        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.tag = kTagForCellSubviewTitleLabel;
@@ -356,9 +452,9 @@
         
         
     }
-    UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton.png"];
+    UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
     UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buttonAccessory setImage:image forState:UIControlStateNormal];
+    [buttonAccessory setImage:image forState:UIControlStateNormal];  
     [buttonAccessory setImage:image forState:UIControlStateHighlighted];
     buttonAccessory.tag = indexPath.row;
     buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
@@ -366,23 +462,17 @@
     [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.accessoryView = buttonAccessory;
     
-    File *file = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+    File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
-    if(file.isFolder){
-        imgViewFile.image = [UIImage imageNamed:@"DocumentIconForFolder.png"];
-    } else{
-        imgViewFile.image = [UIImage imageNamed:[File fileType:file.contentType]];
-    }
-    
     UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
-    titleLabel.text = [URLAnalyzer decodeURL:file.fileName];
+    
+    [self configImageTitleOfCell:cell imageView:imgViewFile label:titleLabel file:file]; 
     
     //Customize the cell background
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
     return cell;
-    
     
 }
 
@@ -391,7 +481,9 @@
     
 }
 
-
+- (void)deleteCurentFileView {
+    
+}
 #pragma mark - FileAction delegate Methods
 
 
@@ -412,15 +504,20 @@
     if (errorMessage) {
         //On main thread, as to send the AlertView
         [self performSelectorOnMainThread:@selector(showErrorForFileAction:) withObject:errorMessage waitUntilDone:NO];
+        return;
     }
     
-    //Need to reload the content of the folder
-    [self startRetrieveDirectoryContent];
+    if([urlFileToDelete isEqualToString:_rootFile.path]) {
+        [self deleteCurentFileView];
+    }
+    else
+        [self startRetrieveDirectoryContent];
+    
 }
 
 //Method needed to retrieve the delete action
 -(void)deleteFile:(NSString *)urlFileToDelete {
-    
+        
     //TODO Localize this string
     [self showHUDWithMessage:Localize(@"DeleteFile")];
     
@@ -645,8 +742,12 @@
             return;
         }
 
-        for (File* file in _arrayContentOfRootFile) {
-            if([newFolderName isEqualToString:file.fileName])
+        NSArray *arrFileFolder = nil;
+        if([[_dicContentOfFolder allValues] count] > 0)
+            arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+        
+        for (File* file in arrFileFolder) {
+            if([newFolderName isEqualToString:file.name])
             {
                 bExist = YES;
                                 
@@ -671,7 +772,7 @@
                 newFolderName = [DataProcess encodeUrl:newFolderName];
             }
             
-            NSString* strNewFolderPath = [FilesProxy urlForFileAction:[_rootFile.urlStr stringByAppendingPathComponent:newFolderName]];
+            NSString* strNewFolderPath = [FilesProxy urlForFileAction:[_rootFile.path stringByAppendingPathComponent:newFolderName]];
             NSLog(@"%@", strNewFolderPath);
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(createNewFolderInBackground:)]];
@@ -736,8 +837,13 @@
         
         BOOL bExist = NO;
         
-        for (File* file in _arrayContentOfRootFile) {
-            if([newFolderName isEqualToString:file.fileName])
+        NSArray *arrFileFolder = nil;
+        if([[_dicContentOfFolder allValues] count] > 0)
+            arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+
+        
+        for (File* file in arrFileFolder) {
+            if([newFolderName isEqualToString:file.name])
             {
                 bExist = YES;
                 
@@ -763,8 +869,8 @@
                 newFolderName = [DataProcess encodeUrl:newFolderName];
             }
             
-            NSString *strRenamePath = [FilesProxy urlForFileAction:[_rootFile.urlStr stringByAppendingPathComponent:newFolderName]];
-            NSString *strSource = [FilesProxy urlForFileAction:folderToRename.urlStr];
+            NSString *strRenamePath = [FilesProxy urlForFileAction:[_rootFile.path stringByAppendingPathComponent:newFolderName]];
+            NSString *strSource = [FilesProxy urlForFileAction:folderToRename.path];
 
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(renameFolderInBackground:forFolder:)]];

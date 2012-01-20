@@ -58,9 +58,14 @@
         [RKObjectManager setSharedManager:manager];
     } else {
         [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:[self createBaseURL]] retain];
+//        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:[self createBaseURL] username:@"demo" password:@"gtn"] retain];
     }
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
+//    if([RKObjectManager sharedManager].client.username == nil) {
+//       [RKObjectManager sharedManager].client.username = @"demo";
+//       [RKObjectManager sharedManager].client.password = @"gtn";
+//    }
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[DashboardItem class]];
     [mapping mapKeyPathsToAttributes:

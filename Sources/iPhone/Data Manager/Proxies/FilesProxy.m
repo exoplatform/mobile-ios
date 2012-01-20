@@ -12,6 +12,8 @@
 #import "DataProcess.h"
 #import "Reachability.h"
 #import "AuthenticateProxy.h"
+#import "TouchXML.h"
+#import "defines.h"
 
 @implementation FilesProxy
 
@@ -89,6 +91,7 @@
 		}
 		return sharedInstance;
 	}
+    
 	return sharedInstance;
 }
 
@@ -104,10 +107,115 @@
 }
 
 
-
+- (NSString *)fullURLofFile:(NSString *)path {
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+    return [NSString stringWithFormat:@"%@%@%@", domain, DOCUMENT_JCR_PATH_REST, path];
+}
 
 #pragma mark -
 #pragma mark Files retrieving methods
+
+- (NSArray*)getDrives:(NSString*)driveName {
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+
+    // Initialize the array of files
+    NSMutableArray *folderArray = [[NSMutableArray alloc] init];	
+	
+    // Create URL for getting data
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName]];
+	
+    // Create a new parser object based on the TouchXML "CXMLDocument" class
+    CXMLDocument *parser = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:nil] autorelease];
+	
+    // Create a new Array object to be used with the looping of the results from the parser
+    NSArray *resultNodes = NULL;
+	
+    // Set the resultNodes Array to contain an object for every instance of an  node file/folder data
+    resultNodes = [parser nodesForXPath:@"//Folder" error:nil];
+	
+    // Loop through the resultNodes to access each items actual data
+    for (CXMLElement *resultElement in resultNodes) {
+        
+        File *file = [[File alloc] init];
+        file.name = [[resultElement attributeForName:@"name"] stringValue];
+        file.workspaceName = [[resultElement attributeForName:@"workspaceName"] stringValue];
+        file.driveName = file.name;
+        file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
+        if(file.currentFolder == nil)
+            file.currentFolder = @"";
+        file.isFolder = YES;
+		
+        // Add the file to the global Array so that the view can access it.
+        [folderArray addObject:file];
+        [file release];
+    }
+
+    return folderArray;
+}
+
+- (NSArray*)getContentOfFolder:(File *)file {
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+    
+    // Initialize the array of files
+    NSMutableArray *folderArray = [[NSMutableArray alloc] init];
+	
+    // Create URL for getting data
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", domain, DOCUMENT_FILE_PATH_REST, file.driveName, DOCUMENT_WORKSPACE_NAME, file.workspaceName, DOCUMENT_CURRENT_FOLDER, file.currentFolder];
+    NSURL *url = [NSURL URLWithString: [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	
+    // Create a new parser object based on the TouchXML "CXMLDocument" class
+    CXMLDocument *parser = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:nil] autorelease];
+	
+    // Create a new Array object to be used with the looping of the results from the parser
+    NSArray *resultNodes = NULL;
+	
+    // Set the resultNodes Array to contain an object for every instance of an  node file/folder data
+    resultNodes = [parser nodesForXPath:@"//Folder/Folders/Folder" error:nil];
+	
+    // Loop through the resultNodes to access each items actual data
+    for (CXMLElement *resultElement in resultNodes) {
+        
+        File *file = [[File alloc] init];
+        file.name = [[resultElement attributeForName:@"name"] stringValue];
+        file.workspaceName = [[resultElement attributeForName:@"workspaceName"] stringValue];
+        file.driveName = [[resultElement attributeForName:@"driveName"] stringValue];
+        file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
+        file.isFolder = YES;
+		file.path = [self fullURLofFile:[[resultElement attributeForName:@"path"] stringValue]];
+        
+        // Add the file to the global Array so that the view can access it.
+        [folderArray addObject:file];
+        [file release];
+    }
+    
+    resultNodes = [parser nodesForXPath:@"//Folder/Files/File" error:nil];
+	
+    // Loop through the resultNodes to access each items actual data
+    for (CXMLElement *resultElement in resultNodes) {
+        
+        File *file = [[File alloc] init];
+        file.name = [[resultElement attributeForName:@"name"] stringValue];
+        file.workspaceName = [[resultElement attributeForName:@"workspaceName"] stringValue];
+        file.driveName = [[resultElement attributeForName:@"driveName"] stringValue];
+        file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
+        file.isFolder = NO;
+        file.path = [self fullURLofFile:[[resultElement attributeForName:@"path"] stringValue]];
+        file.nodeType = [[resultElement attributeForName:@"nodeType"] stringValue];
+		
+        // Add the file to the global Array so that the view can access it.
+        [folderArray addObject:file];
+        [file release];
+    }
+    
+    return folderArray; 
+    
+}
 
 - (void)creatUserRepositoryHomeUrl
 {
@@ -117,7 +225,7 @@
     NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
     NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
     
-    NSString *urlForUserRepo = [NSString stringWithFormat:@"%@/rest/private/jcr/repository/collaboration/Users", domain];
+    NSString *urlForUserRepo = [NSString stringWithFormat:@"%@%@/Users", domain, DOCUMENT_JCR_PATH_REST];
     
     NSMutableString *urlStr = [[NSMutableString alloc] initWithString:urlForUserRepo];
     
@@ -152,53 +260,6 @@
     
 }
 
-- (File *)initialFileForRootDirectory
-{
-    NSString* username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME];
-    
-    return [[File alloc] initWithUrlStr:self._strUserRepository fileName:username];
-}
-
-- (NSArray*)getPersonalDriveContent:(File *)file
-{
-	
-	NSData* dataReply = [[AuthenticateProxy sharedInstance] sendRequestWithAuthorization:file.urlStr];
-	NSString* strData = [[[NSString alloc] initWithData:dataReply encoding:NSUTF8StringEncoding] autorelease];
-	
-	NSMutableArray* arrDicts = [[NSMutableArray alloc] init];
-	
-	NSRange range1;
-	NSRange range2;
-	do 
-	{
-		range1 = [strData rangeOfString:@"alt=\"\"> "];
-		range2 = [strData rangeOfString:@"</a>"];
-		
-		if(range1.length > 0)
-		{
-			NSString *fileName = [strData substringWithRange:NSMakeRange(range1.length + range1.location, 
-																		 range2.location - range1.location - range1.length)];
-			fileName = [fileName stringByDecodingHTMLEntities];
-			if(![fileName isEqualToString:@".."])
-			{
-				NSRange range3 = [strData rangeOfString:@"<a href=\""];
-				NSRange range4 = [strData rangeOfString:@"\"><img src"];
-				NSString *urlStr = [strData substringWithRange:NSMakeRange(range3.length + range3.location, 
-																		   range4.location - range3.location - range3.length)];
-				File *file2 = [[File alloc] initWithUrlStr:urlStr fileName:fileName];
-				[arrDicts addObject:file2];
-                [file2 release];
-			}
-            
-		}
-		if(range2.length > 0)
-			strData = [strData substringFromIndex:range2.location + range2.length];
-	} while (range1.length > 0);
-	
-    
-	return (NSArray *)arrDicts;
-}
-
 - (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
 {
     [self fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
@@ -211,14 +272,6 @@
     
 	source = [DataProcess encodeUrl:source];
 	destination = [DataProcess encodeUrl:destination];
-	
-	NSRange range;
-	range = [source rangeOfString:@"http://"];
-	if(range.length == 0)
-		source = [source stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
-	range = [destination rangeOfString:@"http://"];
-	if(range.length == 0)
-		destination = [destination stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];

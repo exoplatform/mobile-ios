@@ -275,7 +275,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 	{
         if(row == 0)
         {
-            [fileActionsDelegate askToAddPhoto:_file.urlStr];
+            [fileActionsDelegate askToAddPhoto:_file.path];
         }
 		else if(row == 1)
 		{
@@ -294,13 +294,13 @@ static short fileActionMode = 0;//1:copy, 2:move
             if(fileActionMode == 1)
 			{
                 
-                [fileActionsDelegate copyFileSource:copyMoveFile.urlStr
-                                      toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
+                [fileActionsDelegate copyFileSource:copyMoveFile.path
+                                      toDestination:[_file.path stringByAppendingPathComponent:[copyMoveFile.path lastPathComponent]]];
 			}
 			else
 			{	
-                [fileActionsDelegate moveFileSource:copyMoveFile.urlStr
-                                      toDestination:[_file.urlStr stringByAppendingPathComponent:[copyMoveFile.urlStr lastPathComponent]]];
+                [fileActionsDelegate moveFileSource:copyMoveFile.path
+                                      toDestination:[_file.path stringByAppendingPathComponent:[copyMoveFile.path lastPathComponent]]];
 				
 			}
             
@@ -308,8 +308,9 @@ static short fileActionMode = 0;//1:copy, 2:move
 			
 		}
 		else if (row == 4)
-		{
-			[fileActionsDelegate deleteFile:_file.urlStr];
+		{            
+			[fileActionsDelegate deleteFile:_file.path];
+
 		}
         else if (row == 5)
         {

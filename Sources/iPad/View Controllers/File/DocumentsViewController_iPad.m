@@ -36,10 +36,43 @@
 	[super viewDidLoad];
     //Add the UIBarButtonItem for actions on the NavigationBar of the Controller
     if (_rootFile) {
-        _navigation.topItem.title = _rootFile.fileName;
+        _navigation.topItem.title = _rootFile.name;
     } else {
         _navigation.topItem.title = Localize(@"Documents") ;
     }
+}
+
+- (CGRect)rectOfHeader:(int)width
+{
+    return CGRectMake(50.0, 11.0, width, kHeightForSectionHeader);
+}
+
+- (void)configImageOfCell:(UIImageView*)imgView file:(File*)file {
+    
+    if(file.isFolder){
+        imgView.image = [UIImage imageNamed:@"DocumentIconForFolder@2x"];
+    } else{
+        imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
+    }   
+}
+
+- (void)configImageTitleOfCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
+    
+    if(file.isFolder){
+        imgView.image = [UIImage imageNamed:@"DocumentIconForFolder@2x"];
+    } else{
+        imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
+    }
+    
+    
+    imgView.frame = CGRectMake(40.0, (cell.frame.size.height - imgView.image.size.height)/2, 
+                               imgView.image.size.width, imgView.image.size.height);
+    imgView.center = CGPointMake(imgView.center.x, cell.center.y + 5);    
+    
+    titleLabel.frame = CGRectMake(imgView.frame.size.width + 50, 0, 280, 30);
+    titleLabel.center = CGPointMake(titleLabel.center.x, cell.center.y + 5);
+    titleLabel.text = [URLAnalyzer decodeURL:file.name];
+    
 }
 
 - (void)contentDirectoryIsRetrieved{
@@ -56,6 +89,21 @@
         [_navigation.topItem setRightBarButtonItem:actionButton];
         
         [actionButton release];
+    }
+}
+
+- (void)deleteCurentFileView {
+    
+    NSMutableArray *viewControllersStack = [AppDelegate_iPad instance].rootViewController.stackScrollViewController.viewControllersStack;
+                                            
+    int index = [viewControllersStack indexOfObject:self];
+    if(index > 0) {
+        DocumentsViewController *parentsController = [viewControllersStack objectAtIndex:index - 1];
+        
+        [self.view removeFromSuperview];
+        [viewControllersStack removeObject:self];
+        
+        [parentsController startRetrieveDirectoryContent];        
     }
 }
 
@@ -84,16 +132,20 @@
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
+    
+    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+    fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
+    
     FileActionsViewController* fileActionsViewController = 
             [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                     bundle:nil 
-                                                    file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
+                                                    file:fileToApplyAction 
                                                     enableDeleteThisFolder:YES
                                                     enableCreateFolder:NO
                                                     enableRenameFile:YES
                                                     delegate:self];
     
-    fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+    
     
     //Getting the position of the cell in the tableView
     CGRect rect = [_tblFiles rectForRowAtIndexPath:indexPath];
@@ -114,11 +166,16 @@
     [fileActionsViewController release];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 60.0;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     //Retrieve the File corresponding to the selected Cell
-	File *fileToBrowse = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+	File *fileToBrowse = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
 	
@@ -126,19 +183,19 @@
 	{
         //Create a new FilesViewController_iPad to push it into the navigationController
         DocumentsViewController_iPad *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPad alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPad"];
-        newViewControllerForFilesBrowsing.title = fileToBrowse.fileName;
+        newViewControllerForFilesBrowsing.title = fileToBrowse.name;
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:newViewControllerForFilesBrowsing invokeByController:self isStackStartView:FALSE];
         
         [newViewControllerForFilesBrowsing release];
 	}
 	else
 	{
-        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[URLAnalyzer enCodeURL:fileToBrowse.urlStr]];
+         NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
 		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"
                                                                                                bundle:nil 
                                                                                                   url:urlOfTheFileToOpen
-                                                                                             fileName:fileToBrowse.fileName];
+                                                                                             fileName:fileToBrowse.name];
 		
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:contentViewController invokeByController:self isStackStartView:FALSE];
         

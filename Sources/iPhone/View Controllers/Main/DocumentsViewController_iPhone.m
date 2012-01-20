@@ -102,7 +102,7 @@
 
 - (void)setTitleForFilesViewController {
     if (_rootFile) {
-        self.title = _rootFile.fileName;
+        self.title = _rootFile.name;
     } else {
         self.title = Localize(@"Documents");
     }
@@ -126,6 +126,12 @@
     }
 }
 
+- (void)deleteCurentFileView {
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationBar popNavigationItemAnimated:YES];
+    [_parentController startRetrieveDirectoryContent];
+
+}
+
 #pragma mark -
 #pragma mark WEPopoverControllerDelegate implementation
 
@@ -145,15 +151,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	
+    
     //Retrieve the File corresponding to the selected Cell
-	File *fileToBrowse = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+
+	File *fileToBrowse = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 	
 	if(fileToBrowse.isFolder)
 	{
         //Create a new FilesViewController_iPhone to push it into the navigationController
         DocumentsViewController_iPhone *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPhone alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPhone"];
         
+        newViewControllerForFilesBrowsing.parentController = self;
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:newViewControllerForFilesBrowsing.view animated:YES];
         //[self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
@@ -162,12 +170,13 @@
 	else
 	{
 		
-        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[URLAnalyzer enCodeURL:fileToBrowse.urlStr]];
+        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
 		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
                                                                                   bundle:nil 
                                                                                     url:urlOfTheFileToOpen
-                                                                                fileName:fileToBrowse.fileName];
+                                                                                fileName:fileToBrowse.name];
         
         [_hudFolder release];
         _hudFolder = nil;
@@ -189,15 +198,18 @@
         self.popoverController = nil;
     } 
     
+    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+    fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
+    
         FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                 bundle:nil 
-                                                file:[_arrayContentOfRootFile objectAtIndex:indexPath.row] 
+                                                file:fileToApplyAction 
                                                 enableDeleteThisFolder:YES
                                                 enableCreateFolder:NO
                                                 enableRenameFile:YES
                                                 delegate:self];
     
-    fileToApplyAction = [_arrayContentOfRootFile objectAtIndex:indexPath.row];
+    
     
 
     CGRect frame = [_tblFiles cellForRowAtIndexPath:indexPath].frame;
