@@ -341,7 +341,7 @@
     return CGRectMake(25.0, 11.0, width, kHeightForSectionHeader);
 }
 
-- (void)configImageTitleOfCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
+- (void)configImageTitleForCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
  
     if(file.isFolder){
         imgView.image = [UIImage imageNamed:@"DocumentIconForFolder"];
@@ -450,27 +450,25 @@
         [cell addSubview:titleLabel];
         [titleLabel release];
         
+        UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
+        UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonAccessory setImage:image forState:UIControlStateNormal];  
+        [buttonAccessory setImage:image forState:UIControlStateHighlighted];
+        buttonAccessory.tag = indexPath.row;
+        buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
+        buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
+        cell.accessoryView = buttonAccessory;        
+        
+        File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        [self configImageTitleForCell:cell imageView:imgViewFile label:titleLabel file:file]; 
+        
+        //Customize the cell background
+        [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
         
     }
-    UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
-    UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buttonAccessory setImage:image forState:UIControlStateNormal];  
-    [buttonAccessory setImage:image forState:UIControlStateHighlighted];
-    buttonAccessory.tag = indexPath.row;
-    buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
-    buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
-    cell.accessoryView = buttonAccessory;
-    
-    File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
-    UIImageView* imgViewFile = (UIImageView*)[cell viewWithTag:kTagForCellSubviewImageView];
-    UILabel *titleLabel = (UILabel*)[cell viewWithTag:kTagForCellSubviewTitleLabel];
-    
-    [self configImageTitleOfCell:cell imageView:imgViewFile label:titleLabel file:file]; 
-    
-    //Customize the cell background
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+
     
     return cell;
     

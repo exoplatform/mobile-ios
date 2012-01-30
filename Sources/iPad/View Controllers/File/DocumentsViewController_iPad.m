@@ -47,16 +47,8 @@
     return CGRectMake(50.0, 11.0, width, kHeightForSectionHeader);
 }
 
-- (void)configImageOfCell:(UIImageView*)imgView file:(File*)file {
-    
-    if(file.isFolder){
-        imgView.image = [UIImage imageNamed:@"DocumentIconForFolder@2x"];
-    } else{
-        imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
-    }   
-}
 
-- (void)configImageTitleOfCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
+- (void)configImageTitleForCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
     
     if(file.isFolder){
         imgView.image = [UIImage imageNamed:@"DocumentIconForFolder@2x"];
