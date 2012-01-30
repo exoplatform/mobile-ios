@@ -398,7 +398,8 @@
 											  otherButtonTitles: nil];
 		[alert show];
 		[alert release];
-		
+        
+        [self hitAtView:self.view];
 	}
 	else
 	{		
