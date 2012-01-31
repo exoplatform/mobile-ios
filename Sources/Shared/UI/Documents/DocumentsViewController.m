@@ -73,6 +73,19 @@
     return self;
 }
 
+- (void)createTableViewWithStyle:(UITableViewStyle)style {
+
+    CGRect rectOfSelf = self.view.frame;
+    CGRect rectForTableView = CGRectMake(0, 0, rectOfSelf.size.width, rectOfSelf.size.height - 44);
+
+    _tblFiles = [[UITableView alloc] initWithFrame:rectForTableView style:style];
+    _tblFiles.delegate = self;
+    _tblFiles.dataSource = self;
+    _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
+    [_tblFiles setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view addSubview:_tblFiles];
+}
+
 -(void)stopRetrieveData{
     stop = YES;
 }
@@ -89,6 +102,7 @@
     [_dicContentOfFolder removeAllObjects];
     
     if (_rootFile == nil) {
+        
         NSArray *personalDrives = [_filesProxy getDrives:@"personal"];
         NSArray *sharedDrives = [_filesProxy getDrives:@"group"];
         
@@ -100,6 +114,7 @@
         
     }
     else {
+                
         NSArray *folderContet = [_filesProxy getContentOfFolder:_rootFile];
         if([folderContet count] > 0)
             [_dicContentOfFolder setValue:[folderContet copy] forKey:_rootFile.name];
@@ -254,6 +269,11 @@
 {
     [super viewDidLoad];
     
+    if (_rootFile == nil)
+        [self createTableViewWithStyle:UITableViewStyleGrouped];
+    else
+        [self createTableViewWithStyle:UITableViewStylePlain];
+    
     _dicContentOfFolder = [[NSMutableDictionary alloc] init];
     
     _hudFolder = [[ATMHud alloc] initWithDelegate:self];
@@ -349,12 +369,15 @@
         imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
     }
     
-    
-    imgView.frame = CGRectMake(20.0, (cell.frame.size.height - imgView.image.size.height)/2, 
+    int x = 20;
+    if(_tblFiles.style == UITableViewStylePlain)
+        x = 10;
+        
+    imgView.frame = CGRectMake(x, (cell.frame.size.height - imgView.image.size.height)/2, 
                                    imgView.image.size.width, imgView.image.size.height);
     imgView.center = CGPointMake(imgView.center.x, cell.center.y);    
     
-    titleLabel.frame = CGRectMake(imgView.frame.size.width + 25, 0, 200, 30);
+    titleLabel.frame = CGRectMake(imgView.frame.size.width + x + 5, 0, 200, 30);
     titleLabel.center = CGPointMake(titleLabel.center.x, cell.center.y);
     titleLabel.text = [URLAnalyzer decodeURL:file.name];
 
@@ -454,7 +477,7 @@
         UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
         [buttonAccessory setImage:image forState:UIControlStateNormal];  
         [buttonAccessory setImage:image forState:UIControlStateHighlighted];
-        buttonAccessory.tag = indexPath.row;
+        buttonAccessory.tag = 1000*indexPath.section + indexPath.row;
         buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
         buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -464,11 +487,11 @@
         
         [self configImageTitleForCell:cell imageView:imgViewFile label:titleLabel file:file]; 
         
-        //Customize the cell background
-        [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
-        
     }
 
+    //Customize the cell background
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    
     
     return cell;
     

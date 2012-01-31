@@ -37,7 +37,7 @@
     
     FileFolderActionsViewController *_fileFolderActionsController;
     
-    IBOutlet UITableView*   _tblFiles;
+    UITableView*   _tblFiles;
 
     CGRect displayActionDialogAtRect;
     

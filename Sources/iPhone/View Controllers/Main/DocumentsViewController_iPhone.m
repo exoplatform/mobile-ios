@@ -193,12 +193,12 @@
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag%1000 inSection:bt.tag/1000];
     if (self.popoverController) {
         self.popoverController = nil;
     } 
     
-    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];
     fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
     
         FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
@@ -210,19 +210,18 @@
                                                 delegate:self];
     
     
-    
-
-    CGRect frame = [_tblFiles cellForRowAtIndexPath:indexPath].frame;
-    frame.origin.x += 300;
-    NSLog(@"%@", NSStringFromCGRect(frame));
+    UITableViewCell *cell = [_tblFiles cellForRowAtIndexPath:indexPath];
+    CGRect frame = cell.accessoryView.frame;
+    frame.origin.x -= 5;
     
     //frame = [_tblFiles convertRect:_tblFiles.frame toView:self.view];
     self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     
     [self.popoverController presentPopoverFromRect:frame 
-                                            inView:_tblFiles 
+                                            inView:cell 
                           permittedArrowDirections:UIPopoverArrowDirectionUp |UIPopoverArrowDirectionDown
                                           animated:YES];
+    
     [_actionsViewController release];
 }
 

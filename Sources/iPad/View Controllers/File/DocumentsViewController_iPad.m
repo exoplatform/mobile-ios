@@ -29,6 +29,19 @@
 
 #pragma mark - UIViewController methods
 
+- (void)createTableViewWithStyle:(UITableViewStyle)style {
+    
+    CGRect rectOfSelf = self.view.frame;
+    CGRect rectForTableView = CGRectMake(0, 44, rectOfSelf.size.width, rectOfSelf.size.height - 44);
+
+    _tblFiles = [[UITableView alloc] initWithFrame:rectForTableView style:style];
+    _tblFiles.delegate = self;
+    _tblFiles.dataSource = self;
+    _tblFiles.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
+    [_tblFiles setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view addSubview:_tblFiles];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
@@ -56,12 +69,15 @@
         imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
     }
     
+    int x = 40;
+    if(_tblFiles.style == UITableViewStylePlain)
+        x = 20;
     
-    imgView.frame = CGRectMake(40.0, (cell.frame.size.height - imgView.image.size.height)/2, 
+    imgView.frame = CGRectMake(x, (cell.frame.size.height - imgView.image.size.height)/2, 
                                imgView.image.size.width, imgView.image.size.height);
     imgView.center = CGPointMake(imgView.center.x, cell.center.y + 5);    
     
-    titleLabel.frame = CGRectMake(imgView.frame.size.width + 50, 0, 280, 30);
+    titleLabel.frame = CGRectMake(imgView.frame.size.width + x + 10, 0, 280, 30);
     titleLabel.center = CGPointMake(titleLabel.center.x, cell.center.y + 5);
     titleLabel.text = [URLAnalyzer decodeURL:file.name];
     
@@ -123,9 +139,9 @@
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag%1000 inSection:bt.tag/1000];
     
-    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];
     fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
     
     FileActionsViewController* fileActionsViewController = 
@@ -139,20 +155,19 @@
     
     
     
-    //Getting the position of the cell in the tableView
-    CGRect rect = [_tblFiles rectForRowAtIndexPath:indexPath];
-    //Adjust the position for the PopoverController, in Y
-    rect.origin.x = _tblFiles.frame.size.width - 25;
-    NSLog(@"%@", NSStringFromCGRect(rect));
     
+    UITableViewCell *cell = [_tblFiles cellForRowAtIndexPath:indexPath];
+    CGRect frame = cell.accessoryView.frame;
+    frame.origin.x += 20;
     
-    displayActionDialogAtRect = rect;
+    displayActionDialogAtRect = frame;
+
     
     //Display the UIPopoverController
 	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
 	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
-	[_actionPopoverController presentPopoverFromRect:rect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];		
+	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];		
     
     
     [fileActionsViewController release];
@@ -313,7 +328,6 @@
     else {
         [actionSheet showFromRect:displayActionDialogAtRect inView:_tblFiles animated:YES];
     }
-    
     
 }
 
