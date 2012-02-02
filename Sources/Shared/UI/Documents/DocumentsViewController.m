@@ -370,7 +370,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(_dicContentOfFolder) {
-        NSLog(@"[_dicContentOfFolder count] : %d",[_dicContentOfFolder count]);
         return [_dicContentOfFolder count];
     }
     
@@ -434,7 +433,6 @@
 // tell our table how many rows it will have, in our case the size of our menuList
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"SECTION : %d || [[[_dicContentOfFolder allValues] objectAtIndex:section] count] %d",section, [[[_dicContentOfFolder allValues] objectAtIndex:section] count]);
 	return [[[_dicContentOfFolder allValues] objectAtIndex:section] count];
 }
 
