@@ -61,28 +61,6 @@
 }
 
 
-- (void)configImageTitleForCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
-    
-    if(file.isFolder){
-        imgView.image = [UIImage imageNamed:@"DocumentIconForFolder@2x"];
-    } else{
-        imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
-    }
-    
-    int x = 40;
-    if(_tblFiles.style == UITableViewStylePlain)
-        x = 20;
-    
-    imgView.frame = CGRectMake(x, (cell.frame.size.height - imgView.image.size.height)/2, 
-                               imgView.image.size.width, imgView.image.size.height);
-    imgView.center = CGPointMake(imgView.center.x, cell.center.y + 5);    
-    
-    titleLabel.frame = CGRectMake(imgView.frame.size.width + x + 10, 0, 280, 30);
-    titleLabel.center = CGPointMake(titleLabel.center.x, cell.center.y + 5);
-    titleLabel.text = [URLAnalyzer decodeURL:file.name];
-    
-}
-
 - (void)contentDirectoryIsRetrieved{
     [super contentDirectoryIsRetrieved];
     // not the root level
@@ -139,6 +117,8 @@
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
     UIButton *bt = (UIButton *)sender;
+    //Retrieve in the button, the tag with information corresponding to the indexPath of the touched cell
+    //Use Modulo to retrieve the section information.
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag%1000 inSection:bt.tag/1000];
     
     NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];

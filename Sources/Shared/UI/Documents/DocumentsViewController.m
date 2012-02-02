@@ -284,20 +284,23 @@
     //Set the background Color of the view
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     //_tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
-/*
+    /*
     UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
     background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     _tblFiles.backgroundView = background;
     [background release];
-  */  
+     */  
 
-//    [[NSNotificationCenter defaultCenter] addObserver:self 
-//                                             selector:@selector(updateData:)        
-//                                                 name:@"updateData" 
-//                                               object:nil];
+//  [[NSNotificationCenter defaultCenter] addObserver:self 
+//                                           selector:@selector(updateData:)        
+//                                               name:@"updateData" 
+//                                             object:nil];
     
-    _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
     
+    //Hack for the tableview backgroung
+    [_tblFiles setBackgroundView:nil];
+    [_tblFiles setBackgroundView:[[[UIView alloc] init] autorelease]];
+  
     if (_rootFile) {
         self.title = _rootFile.name;
     } else {
@@ -361,34 +364,15 @@
     return CGRectMake(25.0, 11.0, width, kHeightForSectionHeader);
 }
 
-- (void)configImageTitleForCell:(UITableViewCell*)cell imageView:(UIImageView*)imgView label:(UILabel*)titleLabel file:(File*)file {
- 
-    if(file.isFolder){
-        imgView.image = [UIImage imageNamed:@"DocumentIconForFolder"];
-    } else{
-        imgView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
-    }
-    
-    int x = 20;
-    if(_tblFiles.style == UITableViewStylePlain)
-        x = 10;
-        
-    imgView.frame = CGRectMake(x, (cell.frame.size.height - imgView.image.size.height)/2, 
-                                   imgView.image.size.width, imgView.image.size.height);
-    imgView.center = CGPointMake(imgView.center.x, cell.center.y);    
-    
-    titleLabel.frame = CGRectMake(imgView.frame.size.width + x + 5, 0, 200, 30);
-    titleLabel.center = CGPointMake(titleLabel.center.x, cell.center.y);
-    titleLabel.text = [URLAnalyzer decodeURL:file.name];
-
-}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(_dicContentOfFolder)
+    if(_dicContentOfFolder) {
+        NSLog(@"[_dicContentOfFolder count] : %d",[_dicContentOfFolder count]);
         return [_dicContentOfFolder count];
+    }
     
     return 0;
 }
@@ -397,6 +381,7 @@
 {
     if([_dicContentOfFolder count] > 1)
         return kHeightForSectionHeader;
+    
     return 0;
 }
 
@@ -449,6 +434,7 @@
 // tell our table how many rows it will have, in our case the size of our menuList
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"SECTION : %d || [[[_dicContentOfFolder allValues] objectAtIndex:section] count] %d",section, [[[_dicContentOfFolder allValues] objectAtIndex:section] count]);
 	return [[[_dicContentOfFolder allValues] objectAtIndex:section] count];
 }
 
@@ -456,46 +442,66 @@
 {
     
     static NSString *kCellIdentifier = @"CellIdentifierForFiles";
+    
+
     CustomBackgroundForCell_iPhone *cell =  (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     if(cell == nil) {
         cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
         
-        UIImageView* imgViewFile = [[UIImageView alloc] init];
-        imgViewFile.tag = kTagForCellSubviewImageView;
-        [cell addSubview:imgViewFile];
-        [imgViewFile release];
+        //Configure font for the cell
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+        cell.textLabel.backgroundColor = [UIColor whiteColor];
+        //cell.textLabel.contentMode = UIViewAutoresizingFlexibleWidth;
         
-        UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.tag = kTagForCellSubviewTitleLabel;
-        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [cell addSubview:titleLabel];
-        [titleLabel release];
-        
+        //Add disclosure button
         UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
         UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
         [buttonAccessory setImage:image forState:UIControlStateNormal];  
         [buttonAccessory setImage:image forState:UIControlStateHighlighted];
+        
+        //Provide to the button, the tag corresponding to the indexPath
+        //Use Modulo to provide the section information.
         buttonAccessory.tag = 1000*indexPath.section + indexPath.row;
+        
+        //Increase the size of the button, to make it easier to touch
         buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
+        
         buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
         cell.accessoryView = buttonAccessory;        
-        
-        File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        
-        [self configImageTitleForCell:cell imageView:imgViewFile label:titleLabel file:file]; 
-        
     }
 
     //Customize the cell background
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+
+
+    //Retrieve the correct file corresponding to the indexPath
+    File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    
+    //Configure the cell content
+    //Determine and set the correct image for the file
+    if(file.isFolder){
+        cell.imageView.image = [UIImage imageNamed:@"DocumentIconForFolder"];
+    } else{
+        cell.imageView.image = [UIImage imageNamed:[File fileType:file.nodeType]];
+    }
+    
+    //Set the file name
+    cell.textLabel.text = [URLAnalyzer decodeURL:file.name]; 
+    
     
     
     return cell;
     
 }
+
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //Set the background color of the cell, as the tableView is manually created.
+    cell.backgroundColor = [UIColor clearColor];
+}
+
 
 #pragma Button Click
 - (void)buttonAccessoryClick:(id)sender{
