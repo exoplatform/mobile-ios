@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ATMHud.h"
-#import "ATMHudDelegate.h"
 #import "eXoViewController.h"
 #import "LanguageHelper.h"
 #import "eXoFullScreenView.h"
@@ -19,7 +17,6 @@
     UIWebView*	_webView;	
 	NSURL* _url;
     NSString *_fileName;
-    ATMHud* _hudView;
     CGRect rect;
     UINavigationController *navigationBar;
     //eXoFullScreenView *viewController;
@@ -29,7 +26,5 @@
 @property (nonatomic, retain) IBOutlet UIWebView* _webView;
 
 - (void)setUrl:(NSURL*)url;	//Set gadget URL
-
-- (void)setHudPosition;
 
 @end

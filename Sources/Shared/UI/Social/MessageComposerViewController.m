@@ -30,11 +30,7 @@
 }
 
 - (void)dealloc
-{
-    _hudMessageComposer.delegate = nil;
-    [_hudMessageComposer release];
-    _hudMessageComposer = nil;
-    
+{    
     [super dealloc];
 }
 
@@ -72,14 +68,8 @@
     
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
-    //Add the loader
-    _hudMessageComposer = [[ATMHud alloc] initWithDelegate:self];
-    [_hudMessageComposer setAllowSuperviewInteraction:NO];
     
-    //Set the position of the loader 
-    [self setHudPosition];
-    
-	[self.view addSubview:_hudMessageComposer.view];
+	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailCommentBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
     [_imgvBackground setImage:strechBg];
@@ -121,41 +111,10 @@
 
 
 #pragma mark - Loader Management
-- (void)setHudPosition {
+- (void)updateHudPosition {
     //Default implementation
     //Nothing keep the default position of the HUD
 }
-
-- (void)showLoaderForSendingStatus {
-    [_hudMessageComposer setCaption:Localize(@"PostingActivity")];
-    [_hudMessageComposer setActivity:YES];
-    [_hudMessageComposer show];
-}
-
-- (void)showLoaderForSendingComment {
-    [_hudMessageComposer setCaption:Localize(@"CommentActivity")];
-    [_hudMessageComposer setActivity:YES];
-    [_hudMessageComposer show];
-}
-
-
-
-- (void)hideLoader:(BOOL)successful {
-    //Now update the HUD
-    
-    [_hudMessageComposer hideAfter:0.1];
-    if(successful)
-    {
-        [_hudMessageComposer setCaption:Localize(@"Posted")];        
-        [_hudMessageComposer setImage:[UIImage imageNamed:@"19-check"]];
-        [_hudMessageComposer hideAfter:0.5];
-    }
-    
-    [_hudMessageComposer setActivity:NO];
-    [_hudMessageComposer update];
-    
-}
-
 
 
 - (IBAction)onBtnSend:(id)sender
@@ -214,7 +173,7 @@
         
         if(_isPostMessage)
         {
-            [self showLoaderForSendingStatus];
+            [self displayHudLoader];
             
             SocialPostActivity* actPost = [[SocialPostActivity alloc] init];
             actPost.delegate = self;
@@ -223,7 +182,7 @@
         }
         else
         {
-            [self showLoaderForSendingComment];
+            [self displayHudLoader];
             
             SocialPostCommentProxy *actComment = [[SocialPostCommentProxy alloc] init];
             actComment.delegate = self;

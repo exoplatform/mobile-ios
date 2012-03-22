@@ -10,8 +10,6 @@
 #import "SocialProxy.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MessageComposerViewController.h"
-#import "ATMHud.h"
-#import "ATMHudDelegate.h"
 #import "eXoViewController.h"
 
 @class ActivityDetailMessageTableViewCell;
@@ -50,9 +48,6 @@
     BOOL                                    _reloading;
     NSDate*                                 _dateOfLastUpdate;
     
-    //Loader
-    ATMHud*                                 _hudActivityDetails;//Heads up display
-    
     int                                     _activityAction;//0: getting, 1: updating, 2: like, 3: dislike
     
     CGRect originRect;
@@ -69,5 +64,4 @@
 - (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
 
-- (void)setHudPosition;
 @end

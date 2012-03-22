@@ -32,8 +32,8 @@
     _navigation.topItem.title = _gadget.gadgetName;
 }
 
-- (void)setHudPosition {
-    _hudView.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
+- (void)updateHudPosition {
+    self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
 }
 
 

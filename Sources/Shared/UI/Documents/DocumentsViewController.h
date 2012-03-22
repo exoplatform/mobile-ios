@@ -7,7 +7,6 @@
 //
 
 #import "FilesProxy.h"
-#import "ATMHud.h"
 #import "ATMHudDelegate.h"
 #import "FileActionsViewController.h"
 #import "FileFolderActionsViewController.h"
@@ -30,8 +29,6 @@
     FilesProxy *_filesProxy;
     
     File *fileToApplyAction;
-    
-    ATMHud *_hudFolder;//Heads up display
         
     NSString *_stringForUploadPhoto;
     
@@ -51,9 +48,6 @@
 @property BOOL isRoot;
 
 -(void)emptyState;
--(void)setHudPosition;
--(void)showHUDWithMessage:(NSString *)message;
--(void)hideHUDWithMessage:(NSString *)message;
 - (void)showActionSheetForPhotoAttachment;
 - (void)startRetrieveDirectoryContent;
 - (void)contentDirectoryIsRetrieved;

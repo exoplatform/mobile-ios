@@ -95,9 +95,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [_dateOfLastUpdate release];
     _dateOfLastUpdate = nil;
     
-    //Release the loader
-    [_hudActivityStream release];
-    _hudActivityStream = nil;
     
     if (_activityDetailViewController != nil) 
     {
@@ -120,43 +117,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 }
 
 -(void)showHudForUpload{
-    
-}
-
-#pragma mark - Loader management
-//Action: 0-Getting, 1-Updating, 2-Liking
-- (void)showLoaderForAction:(int)action {
-    [self setHudPosition];
-    
-    if(action == 0)
-        [_hudActivityStream setCaption:Localize(@"GettingActivity")];
-    else if(action == 1)
-        [_hudActivityStream setCaption:Localize(@"UpdatingActivity")];
-    else if(action == 2)
-        [_hudActivityStream setCaption:Localize(@"LikingActivity")];
-    else 
-        [_hudActivityStream setCaption:Localize(@"UnLikeActivity")];
-    
-    [_hudActivityStream setActivity:YES];
-    [_hudActivityStream show];
-}
-
-
-- (void)hideLoader:(BOOL)successful {
-    //Now update the HUD
-    
-    [self setHudPosition];
-    [_hudActivityStream hideAfter:0.1];
-    
-    if(successful)
-    {
-        [_hudActivityStream setCaption:Localize(@"ActivityStreamUpdated")];        
-        [_hudActivityStream setImage:[UIImage imageNamed:@"19-check"]];
-        [_hudActivityStream hideAfter:0.5];
-    }
-    
-    [_hudActivityStream setActivity:NO];
-    [_hudActivityStream update];
     
 }
 
@@ -197,13 +157,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];
-    
-    //Add the loader
-    _hudActivityStream = [[ATMHud alloc] initWithDelegate:self];
-    [_hudActivityStream setAllowSuperviewInteraction:NO];
-    [self setHudPosition];
-	[self.view addSubview:_hudActivityStream.view];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];    
+	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
     
     self.title = Localize(@"News");
@@ -605,7 +560,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 
 #pragma mark - Loader Management
-- (void)setHudPosition {
+- (void)updateHudPosition {
     //Default implementation
     //Nothing keep the default position of the HUD
 }
@@ -618,7 +573,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [self clearActivityData];
     
-    [self showLoaderForAction:_activityAction];
+    [self displayHudLoader];
     
     SocialRestProxy *socialRest = [[SocialRestProxy alloc] init];
     socialRest.delegate = [self retain];
@@ -632,7 +587,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)updateActivityStream {
     
-    [self showLoaderForAction:_activityAction];
+    [self displayHudLoader];
     
     _reloading = YES;
 
@@ -693,7 +648,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //add empty view to the view 
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoActivities")];
     emptyView.tag = TAG_EMPTY;
-    [self.view insertSubview:emptyView belowSubview:_hudActivityStream.view];
+    [self.view insertSubview:emptyView belowSubview:self.hudLoadWaiting.view];
     [emptyView release];
 }
 

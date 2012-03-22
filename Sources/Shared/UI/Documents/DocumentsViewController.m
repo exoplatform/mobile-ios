@@ -36,7 +36,6 @@
 - (void)contentDirectoryIsRetrieved;
 - (void)hideActionsPanel;
 - (void)hideFileFolderActionsController;
-- (void)showHUDWithMessage:(NSString *)message;
 
 @end
 
@@ -141,7 +140,7 @@
         [emptyview removeFromSuperview];
     }
     
-    [self hideHUDWithMessage:Localize(@"FolderContentUpdated")];
+    [self hideLoader:YES];
     
     //check if no data
     if([_dicContentOfFolder count] == 0){
@@ -192,9 +191,6 @@
     [_arrayContentOfRootFile release];
     _arrayContentOfRootFile = nil;
     
-    [_hudFolder release];
-    _hudFolder.delegate = nil;
-    
     _stringForUploadPhoto = nil;
     
     [_tblFiles release];
@@ -214,7 +210,7 @@
 
 #pragma mark HUD Management
 
--(void)setHudPosition{
+-(void)updateHudPosition {
     //default implementation
     //do nothing
     NSArray *visibleCells  = [_tblFiles visibleCells];
@@ -227,27 +223,10 @@
         }
         rect.size.height += cell.frame.size.height;
     }
-    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
-    NSLog(@"view :%@ HUD:%@", NSStringFromCGRect(self.view.frame),NSStringFromCGPoint(_hudFolder.center));
+    self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
+    NSLog(@"view :%@ HUD:%@", NSStringFromCGRect(self.view.frame),NSStringFromCGPoint(self.hudLoadWaiting.center));
 }
 
-
--(void)showHUDWithMessage:(NSString *)message {
-    [self setHudPosition];
-    [_hudFolder setCaption:message];
-    [_hudFolder setActivity:YES];
-    [_hudFolder show];
-}
-
--(void)hideHUDWithMessage:(NSString *)message {
-    
-    [_hudFolder setCaption:message];
-    [_hudFolder setActivity:NO];
-    [_hudFolder setImage:[UIImage imageNamed:@"19-check"]];
-    [_hudFolder update];
-    [_hudFolder hideAfter:1.0];
-    
-}
 
 - (void)showActionSheetForPhotoAttachment {
     
@@ -276,10 +255,7 @@
     
     _dicContentOfFolder = [[NSMutableDictionary alloc] init];
     
-    _hudFolder = [[ATMHud alloc] initWithDelegate:self];
-    [_hudFolder setAllowSuperviewInteraction:YES];
-    [self setHudPosition];
-	[self.view addSubview:_hudFolder.view];
+	[self.view addSubview:self.hudLoadWaiting.view];
     
     //Set the background Color of the view
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
@@ -312,7 +288,7 @@
     
     if (_arrayContentOfRootFile == nil) {
         //TODO Localize this string
-        [self showHUDWithMessage:[NSString stringWithFormat:@"%@ : %@", Localize(@"LoadingContent"), _rootFile ?_rootFile.name:Localize(@"Documents")]];
+        [self displayHudLoader];
         
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
@@ -544,7 +520,7 @@
 -(void)deleteFile:(NSString *)urlFileToDelete {
         
     //TODO Localize this string
-    [self showHUDWithMessage:Localize(@"DeleteFile")];
+    [self displayHudLoader];
     
     //Hide the action Panel
     [self hideActionsPanel];
@@ -585,7 +561,7 @@
     [self hideActionsPanel];
     
     //TODO Localize this string
-    [self showHUDWithMessage:Localize(@"MoveFile")];
+    [self displayHudLoader];
     
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                 [self methodSignatureForSelector:@selector(moveFileInBackgroundSource:toDestination:)]];
@@ -620,7 +596,7 @@
 - (void)copyFileSource:(NSString *)urlSource
          toDestination:(NSString *)urlDestination {
     //TODO Localize this string
-    [self showHUDWithMessage:Localize(@"CopyFile")];
+    [self displayHudLoader];
     
     
     //Hide the action Panel
@@ -791,7 +767,7 @@
         if (!bExist) 
         {
             //TODO Localize this string
-            [self showHUDWithMessage:Localize(@"CreateNewFolder")];
+            [self displayHudLoader];
             if(!_rootFile.isFolder) {
                 newFolderName = [newFolderName stringByEncodingHTMLEntities];
                 newFolderName = [DataProcess encodeUrl:newFolderName];
@@ -888,7 +864,7 @@
         if (!bExist) 
         {
             //TODO Localize this string
-            [self showHUDWithMessage:Localize(@"RenameFolder")];
+            [self displayHudLoader];
             if(!_rootFile.isFolder) {
                 newFolderName = [newFolderName stringByEncodingHTMLEntities];
                 newFolderName = [DataProcess encodeUrl:newFolderName];
@@ -1047,7 +1023,7 @@
         _stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
         
         //TODO Localize this string
-        [self showHUDWithMessage:Localize(@"SendImageToFolder")];
+        [self displayHudLoader];
         
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];

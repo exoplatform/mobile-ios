@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ATMHud.h"
-#import "ATMHudDelegate.h"
 #import "GadgetItem.h"
 #import "eXoDisplayViewController.h"
 

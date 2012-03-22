@@ -17,8 +17,7 @@
 #define TAG_VIEW 10001
 
 @interface eXoDisplayViewController (PrivateMethods)
-- (void)showLoader;
-- (void)hideLoader;
+
 @end
 
 
@@ -43,12 +42,9 @@
     [super viewDidLoad];
     
     //Add the loader
-    _hudView = [[ATMHud alloc] initWithDelegate:self];
-    [_hudView setAllowSuperviewInteraction:NO];
-    [self setHudPosition];
-    [self.view addSubview:_hudView.view];
+    [self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
-    [self showLoader];
+    [self displayHudLoader];
     _webView.delegate = self;
     _webView.opaque = NO;
 
@@ -188,8 +184,6 @@
         _fileName = nil;
     }
     
-    [_hudView release];
-    
     if(navigationBar != nil)
         [navigationBar release];
 	
@@ -239,7 +233,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
-    [self hideLoader];
+    [self hideLoader:NO];
     NSLog(@"%@\n %@",[error description], [[error userInfo] description]);
     //add empty view to the view 
     NSUInteger statusCode = [error code];
@@ -256,7 +250,7 @@
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
-    [self hideLoader];
+    [self hideLoader:YES];
 }
 
 // Start loading animation
@@ -268,28 +262,5 @@
 //    }
     
 }
-
-
-#pragma mark - Loader Management
-- (void)setHudPosition {
-    //Default implementation
-    //Nothing keep the default position of the HUD
-}
-
-- (void)showLoader {
-//    [self setHudPosition];
-//    [_hudDocument setCaption:[NSString stringWithFormat:@"%@: %@", Localize(@"LoadingDocument"), _fileName]];
-//    [_hudDocument setActivity:YES];
-//    [_hudDocument show];
-}
-
-
-- (void)hideLoader {
-    //Now update the HUD
-    //TODO Localize this string
-    [self setHudPosition];
-    [_hudView hide];
-}
-
 
 @end

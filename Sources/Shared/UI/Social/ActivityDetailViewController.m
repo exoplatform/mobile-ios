@@ -76,9 +76,6 @@
     
     [_refreshHeaderView release];
     [_dateOfLastUpdate release];
-
-    [_hudActivityDetails release];
-    _hudActivityDetails = nil;
     
 //    [tapGesture release];
 //    [maskView release];
@@ -111,11 +108,7 @@
     //Set the last update date at now 
     _dateOfLastUpdate = [[NSDate date]retain];
     
-    //Add the loader
-    _hudActivityDetails = [[ATMHud alloc] initWithDelegate:self];
-    [_hudActivityDetails setAllowSuperviewInteraction:NO];
-    [self setHudPosition];
-	[self.view addSubview:_hudActivityDetails.view];
+	[self.view addSubview:self.hudLoadWaiting.view];
     
     //Set the title of the screen
     //TODO Localize
@@ -534,7 +527,7 @@
     //add empty view to the view 
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoComment")];
     emptyView.tag = TAG_EMPTY;
-    [self.view insertSubview:emptyView belowSubview:_hudActivityDetails.view];
+    [self.view insertSubview:emptyView belowSubview:self.hudLoadWaiting.view];
     [emptyView release];
 }
 
@@ -543,44 +536,11 @@
     //NSLog(@"test");
 }
 #pragma mark - Loader Management
-- (void)setHudPosition {
+- (void)updateHudPosition {
     //Default implementation
     //Nothing keep the default position of the HUD
 }
 
-- (void)showLoaderForAction:(int)action {
-    [self setHudPosition];
-    
-    if(action == 0)
-        [_hudActivityDetails setCaption:Localize(@"GettingActivityDetail")];
-    else if(action == 1)
-        [_hudActivityDetails setCaption:Localize(@"UpdatingActivityDetail")];
-    else
-        [_hudActivityDetails setCaption:Localize(@"LikingActivity")];
-    
-    [_hudActivityDetails setActivity:YES];
-    [_hudActivityDetails show];
-}
-
-
-
-- (void)hideLoader:(BOOL)successful {
-    //Now update the HUD
-
-    [self setHudPosition];
-    [_hudActivityDetails hideAfter:0.1];
-    
-    if(successful)
-    {
-        [_hudActivityDetails setCaption:Localize(@"DetailsLoaded")];    
-        [_hudActivityDetails setImage:[UIImage imageNamed:@"19-check"]];
-        [_hudActivityDetails hideAfter:0.5];
-    }
-    
-    [_hudActivityDetails setActivity:NO];
-    [_hudActivityDetails update];
-
-}
 
 
 #pragma mark - Data Management
@@ -649,7 +609,7 @@
         _tblvActivityDetail.contentSize = CGSizeMake(_tblvActivityDetail.frame.size.width, rect.size.height + rect.origin.y);
         EmptyView *emptyView = [[EmptyView alloc] initWithFrame:rect withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoComment")];
         emptyView.tag = TAG_EMPTY;
-        [_tblvActivityDetail insertSubview:emptyView belowSubview:_hudActivityDetails.view];
+        [_tblvActivityDetail insertSubview:emptyView belowSubview:self.hudLoadWaiting.view];
         [emptyView release];
         
     }
@@ -660,11 +620,9 @@
 #pragma - Proxy Management
 - (void)startLoadingActivityDetail
 {
-    [self showLoaderForAction:_activityAction];
-    
+    [self displayHudLoader];
     _reloading = YES;
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
-                                                                                                         andNumberOfLikes:4];
+    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD andNumberOfLikes:4];
     socialActivityDetailsProxy.delegate = self;
     [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
     
@@ -734,7 +692,7 @@
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
-    [self showLoaderForAction:_activityAction];
+    [self displayHudLoader];
     [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;

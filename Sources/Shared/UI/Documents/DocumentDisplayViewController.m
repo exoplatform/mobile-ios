@@ -23,7 +23,7 @@
 }
 
 #pragma mark - Loader Management
-- (void)setHudPosition {
+- (void)updateHudPosition {
     //Default implementation
     //Nothing keep the default position of the HUD
 }
@@ -32,13 +32,6 @@
 {
     [super viewDidLoad];
     self.title = _fileName;
-}
-
-- (void)showLoader {
-    [self setHudPosition];
-    [_hudView setCaption:[NSString stringWithFormat:@"%@: %@", Localize(@"LoadingDocument"), _fileName]];
-    [_hudView setActivity:YES];
-    [_hudView show];
 }
 
 

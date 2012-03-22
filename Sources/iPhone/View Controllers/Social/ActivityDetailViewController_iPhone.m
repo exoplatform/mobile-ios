@@ -60,10 +60,10 @@
     
 }
 #pragma mark - Loader Management
-- (void)setHudPosition {
+- (void)updateHudPosition {
     //Default implementation
     //Nothing keep the default position of the HUD
-    _hudActivityDetails.center = self.view.center;
+    self.hudLoadWaiting.center = self.view.center;
 }
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{

@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DashboardProxy.h"
-#import "ATMHud.h"
-#import "ATMHudDelegate.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "eXoViewController.h"
 #import "EGORefreshTableHeaderView.h"
@@ -23,9 +21,6 @@
     
     NSArray*         _arrDashboard;	//Dashboard array 
     IBOutlet UITableView*   _tblGadgets;
-    
-    //Loader
-    ATMHud*                 _hudDashboard;//Heads up display
     
     //Refresh Management
     EGORefreshTableHeaderView*              _refreshHeaderView;
@@ -45,7 +40,6 @@
 @property(nonatomic, retain) NSArray* _arrDashboard;
 
 - (CGRect)rectOfHeader:(int)width;
-- (void)setHudPosition;
 - (void)emptyState;
 
 @end

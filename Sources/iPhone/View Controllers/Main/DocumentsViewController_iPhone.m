@@ -176,11 +176,7 @@
                                                                        initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
                                                                                   bundle:nil 
                                                                                     url:urlOfTheFileToOpen
-                                                                                fileName:fileToBrowse.name];
-        
-        [_hudFolder release];
-        _hudFolder = nil;
-        
+                                                                                fileName:fileToBrowse.name];        
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:fileWebViewController.view animated:YES];
 		//[self.navigationController pushViewController:fileWebViewController animated:YES];    

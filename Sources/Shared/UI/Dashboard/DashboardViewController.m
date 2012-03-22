@@ -21,8 +21,6 @@
 #define kHeightForSectionHeader 40
 
 @interface DashboardViewController (PrivateMethods)
-- (void)showLoader;
-- (void)hideLoader;
 @end
 
 
@@ -53,10 +51,6 @@
 	_arrDashboard = nil;
     
     _tblGadgets = nil;
-    
-    //Loader
-    [_hudDashboard release];
-    _hudDashboard = nil;
     
     [_refreshHeaderView release];
     _refreshHeaderView = nil;
@@ -101,10 +95,7 @@
     self.title = Localize(@"Dashboard");
     
     //Add the loader
-    _hudDashboard = [[ATMHud alloc] initWithDelegate:self];
-    [_hudDashboard setAllowSuperviewInteraction:NO];
-    [self setHudPosition];
-	[self.view addSubview:_hudDashboard.view];
+	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
     //Set the background Color of the view
     //UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
@@ -115,7 +106,7 @@
     _tblGadgets.backgroundColor = EXO_BACKGROUND_COLOR;
         
     //Start the loader
-    [self showLoader];
+    [self displayHudLoader];
     
     //Start the request to retrieve datas
     _dashboardProxy = [[DashboardProxy alloc] initWithDelegate:self];
@@ -314,7 +305,7 @@
 //Method called when all dashboards has been retrieved
 - (void)dashboardProxyDidFinish:(DashboardProxy *)proxy {
     //Hide the loader
-    [self hideLoader];
+    [self hideLoader:YES];
     
     _reloading = NO;
     //Set the last update date at now 
@@ -364,7 +355,7 @@
 
 //Error method called when the dahsboard call has failed
 - (void)dashboardProxy:(DashboardProxy *)proxy didFailWithError:(NSError *)error {
-    [_hudDashboard hide];
+    [self hideLoader:NO];
     [self errorState];
     
     
@@ -398,28 +389,9 @@
 
 
 #pragma mark - Loader Management
-- (void)setHudPosition {
+- (void)updateHudPosition {
     //Default implementation
     //Nothing keep the default position of the HUD
-}
-
-- (void)showLoader {
-    [self setHudPosition];
-    [_hudDashboard setCaption:Localize(@"LoadingYourDashboards")];
-    [_hudDashboard setActivity:YES];
-    [_hudDashboard show];
-}
-
-
-- (void)hideLoader {
-    //Now update the HUD
-    //TODO Localize this string
-    [self setHudPosition];
-    [_hudDashboard setCaption:Localize(@"DashboardsLoaded")];
-    [_hudDashboard setActivity:NO];
-    [_hudDashboard setImage:[UIImage imageNamed:@"19-check"]];
-    [_hudDashboard update];
-    [_hudDashboard hideAfter:0.5];
 }
 
 #pragma mark -
@@ -444,7 +416,7 @@
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 
     //Start the loader
-    [self showLoader];
+    [self displayHudLoader];
     
     _reloading = YES;
     

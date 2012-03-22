@@ -13,8 +13,6 @@
 #import "LanguageHelper.h"
 
 @interface GadgetDisplayViewController (PrivateMethods)
-- (void)showLoader;
-- (void)hideLoader;
 @end
 
 
@@ -49,18 +47,6 @@
 }
 
 
-#pragma mark - Loader Management
-- (void)setHudPosition {
-    //Default implementation
-    //Nothing keep the default position of the HUD
-}
-
-- (void)showLoader {
-    [self setHudPosition];
-    [_hudView setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingGadget"), _gadget.gadgetName]];
-    [_hudView setActivity:YES];
-    [_hudView show];
-}
 
 
 

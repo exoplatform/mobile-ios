@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
-#import "ATMHud.h"
-#import "ATMHudDelegate.h"
 #import "eXoViewController.h"
 
 @class ActivityStreamBrowseViewController;
@@ -35,8 +33,6 @@
     UITableView*                        _tblvActivityDetail;
     
     UIPopoverController*                _popoverPhotoLibraryController;
-    //Loader
-    ATMHud*                             _hudMessageComposer;//Heads up display
     
 }
 
@@ -53,7 +49,6 @@
 
 - (IBAction)onBtnAttachment:(id)sender;
 - (void)showActionSheetForPhotoAttachment;
-- (void)setHudPosition;
 - (void)showPhotoLibrary;
 - (void)addPhotoToView:(UIImage *)image;
 

@@ -20,12 +20,6 @@
 @implementation DocumentsViewController_iPad
 
 
-#pragma mark - HUD Management
-
-//- (void)setHudPosition {
-//    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
-//}
-
 
 #pragma mark - UIViewController methods
 

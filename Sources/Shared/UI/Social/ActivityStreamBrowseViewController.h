@@ -11,8 +11,6 @@
 #import "SocialActivityStream.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MessageComposerViewController.h"
-#import "ATMHud.h"
-#import "ATMHudDelegate.h"
 #import "EGOImageView.h"
 #import "SocialPictureAttach.h"
 #import "eXoViewController.h"
@@ -42,8 +40,6 @@
     BOOL                                    _reloading;
     NSDate*                                 _dateOfLastUpdate;
     
-    //Loader
-    ATMHud*                                 _hudActivityStream;//Heads up display
     NSIndexPath*                            _indexpathSelectedActivity;
     BOOL                                    _activityAction;
     
@@ -57,7 +53,6 @@
 - (void)sortActivities;
 - (void)clearActivityData;
 - (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
-- (void)setHudPosition;
 -(void)showHudForUpload;
 //- (float)getHeightForText:(NSString *)text width:(float)width;
 @end

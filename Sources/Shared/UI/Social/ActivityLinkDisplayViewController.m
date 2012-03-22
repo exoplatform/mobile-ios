@@ -47,20 +47,4 @@
     self.title = [_url absoluteString];
 }
 
-#pragma mark - Loader Management
-- (void)setHudPosition {
-    //Default implementation
-    //Nothing keep the default position of the HUD
-}
-
-- (void)showLoader {
-    [self setHudPosition];
-    NSLog(@"%@", self.title);
-    [_hudView setCaption:[NSString stringWithFormat:@"%@ %@", Localize(@"LoadingURL"),self.titleForActivityLink]];
-    [_hudView setActivity:YES];
-    [_hudView show];
-}
-
-
-
 @end

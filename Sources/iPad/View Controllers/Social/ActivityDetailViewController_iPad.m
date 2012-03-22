@@ -76,8 +76,8 @@
 }
 
 
-- (void)setHudPosition {
-    _hudActivityDetails.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
+- (void)updateHudPosition {
+    self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
 }
 
 
