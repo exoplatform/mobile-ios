@@ -646,7 +646,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     
     //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoActivities")];
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:_tblvActivityStream.frame withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoActivities")];
     emptyView.tag = TAG_EMPTY;
     [self.view insertSubview:emptyView belowSubview:self.hudLoadWaiting.view];
     [emptyView release];
