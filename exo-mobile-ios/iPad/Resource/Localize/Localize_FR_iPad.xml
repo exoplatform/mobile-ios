@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SignInPageTitle</key>
+	<string>Connexion</string>
+	<key>SignInButton</key>
+	<string>Connexion</string>
+	<key>SigningIn</key>
+	<string>S'Inscrire</string>
+	<key>SignOutButton</key>
+	<string>Déconnexion</string>
+	<key>GridButton</key>
+	<string>Grille</string>
+	<key>ListButton</key>
+	<string>Liste</string>		
+	<key>DomainHeader</key>
+	<string>Nom du Serveur</string>
+	<key>DomainCellTitle</key>
+	<string>Serveur</string>
+	<key>AccountHeader</key>
+	<string>Connexion</string>
+	<key>UserNameCellTitle</key>
+	<string>Utilisateur</string>
+	<key>PasswordCellTitle</key>
+	<string>Mot de passe</string>
+	<key>ApplicationsTitle</key>
+	<string>Applications</string>
+	<key>BackButton</key>
+	<string>Retour</string>
+	<key>SelectCopyButton</key>	
+	<string>Sélectionner</string>
+	<key>NewFolderTitle</key>
+	<string>Nouveau Dossier</string>
+	<key>RenameTitle</key>
+	<string>Renommer</string>		
+	<key>CopyTitle</key>
+	<string>Copier</string>
+	<key>MoveTitle</key>
+	<string>Déplacer</string>
+	<key>PasteTitle</key>
+	<string>Coller</string>			
+	<key>DoneButton</key>
+	<string>OK</string>
+	<key>ActionButton</key>
+	<string>Actions</string>
+	<key>DeleteButton</key>
+	<string>Supprimer</string>
+	<key>DeleteButtonDone</key>
+	<string>Supprimé</string>
+	<key>CancelCopyButton</key>
+	<string>Annuler</string>	
+    <key>OptionDialogInstruction</key>
+	<string>Nom du dossier</string>
+	<key>NativeApplicationsHeader</key>
+	<string>Applications GateIn</string>
+	<key>GadgetsHeader</key>
+	<string>Mon tableau de bord</string>
+	<key>Settings</key>
+	<string>Paramètres</string>
+	<key>Edit</key>
+	<string>Modifier</string>
+	<key>Save</key>
+	<string>Enregistrer</string>
+	<key>Close</key>
+	<string>Fermer</string>		
+	<key>RememberMe</key>
+	<string>Se souvenir de moi</string>
+	<key>AutoLogin</key>
+	<string>Automatique</string>
+	<key>Language</key>
+	<string>Langues</string>
+	<key>English</key>
+	<string>Anglais (English)</string>
+	<key>French</key>
+	<string>Français (French)</string>
+    <key>UserGuide</key>
+	<string>Guide Utilisateur</string>
+	<key>FileViewer</key>
+	<string>Affichage</string>
+	<key>Clear</key>
+	<string>Clear</string>
+	<key>Send</key>
+	<string>Envoyer</string>
+	<key>NetworkConnection</key>
+	<string>Erreur de connexion</string>
+	<key>Authorization</key>
+	<string>L'authentification a échoué</string>
+	<key>WrongUserNamePassword</key>
+	<string>Nom d'utilisateur ou mot de passe incorrect</string>
+	<key>NetworkConnectionFailed</key>
+	<string>Nom d'hôte non valid</string>
+	<key>UserNameEmpty</key>
+	<string>Veuillez entrer un nom d'utilisateur.</string>
+    <key>GadgetMessageTitle</key>
+	<string>Message d'information</string>
+	<key>GadgetMessageContent</key>
+	<string>Il n'ya pas de n'importe quel gadget</string>	
+	<key>SupportViewTitle</key>
+	<string>Information</string>
+	<key>EmptyPage</key>
+	<string>Vide Page</string>	
+</dict>
+</plist>
