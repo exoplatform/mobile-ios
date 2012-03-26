@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SignInPageTitle</key>
+	<string>Login Page</string>
+	<key>SignInButton</key>
+	<string>Login</string>
+    <key>ConnectionTimedOut</key>
+	<string>Connection timed out</string>
+	<key>SigningIn</key>
+	<string>Signing in ...</string>
+	<key>SignOutButton</key>
+	<string>Logout</string>
+	<key>GridButton</key>
+	<string>Grid</string>
+	<key>ListButton</key>
+	<string>List</string>	
+	<key>DomainHeader</key>
+	<string>Server Name</string>
+	<key>DomainCellTitle</key>
+	<string>Server</string>
+	<key>AccountHeader</key>
+	<string>Login</string>
+	<key>UserNameCellTitle</key>
+	<string>Username</string>
+	<key>PasswordCellTitle</key>
+	<string>Password</string>
+	<key>ApplicationsTitle</key>
+	<string>Applications</string>
+	<key>BackButton</key>
+	<string>Back</string>
+	<key>SelectCopyButton</key>	
+	<string>Select</string>	
+    <key>TakePicture</key>
+	<string>Take a picture</string>
+	<key>NewFolderTitle</key>
+	<string>New Folder</string>
+	<key>RenameTitle</key>
+	<string>Rename</string>
+	<key>Copy</key>
+	<string>Copy</string>
+	<key>Move</key>
+	<string>Cut</string>		
+	<key>Paste</key>
+	<string>Paste</string>		
+    <key>Cancel</key>
+	<string>Cancel</string>
+	<key>DoneButton</key>
+	<string>Done</string>
+	<key>ActionButton</key>
+	<string>Actions</string>
+    <key>Delete</key>
+	<string>Delete</string>
+	<key>DeleteButton</key>
+	<string>Delete</string>	
+	<key>DeleteButtonDone</key>
+	<string>Done</string>	
+	<key>CancelCopyButton</key>
+	<string>Cancel</string>	
+	<key>OptionDialogInstruction</key>
+	<string>New folder</string>
+	<key>NativeApplicationsHeader</key>
+	<string>GateIn Native Applications</string>
+	<key>GadgetsHeader</key>
+	<string>My Apps</string>	
+	<key>Settings</key>
+	<string>Settings</string>
+	<key>Edit</key>
+	<string>Edit</string>
+	<key>Save</key>
+	<string>Save</string>
+	<key>Close</key>
+	<string>Close</string>	
+	<key>RememberMe</key>
+	<string>Remember me</string>
+	<key>AutoLogin</key>
+	<string>Auto login</string>
+	<key>Language</key>
+	<string>Language</string>
+	<key>English</key>
+	<string>English</string>
+	<key>French</key>
+	<string>French</string>
+	<key>UserGuide</key>
+	<string>User Guide</string>
+	<key>FileViewer</key>
+	<string>Display</string>
+	<key>Clear</key>
+	<string>Clear</string>
+	<key>Send</key>
+	<string>Send</string>
+	<key>NetworkConnection</key>
+	<string>Connection Error</string>
+	<key>Authorization</key>
+	<string>Login Failed</string>
+	<key>WrongUserNamePassword</key>
+	<string>Incorrect username/password combination.</string>
+	<key>NetworkConnectionFailed</key>
+	<string>Invalid server name</string>
+	<key>UserNameEmpty</key>
+	<string>Incorrect username.</string>
+    <key>GadgetMessageTitle</key>
+	<string>Info Message</string>
+	<key>GadgetMessageContent</key>
+	<string>Please add gadget(s) to your portal Apps to use them on your mobile device.</string>
+	<key>SupportViewTitle</key>
+	<string>Information</string>
+	<key>EmptyPage</key>
+	<string>Folder is empty</string>
+	<key>ServerList</key>
+	<string>Server list</string>  
+    <key>ServerInformation</key>
+	<string>Server Information</string>
+    <key>NewServer</key>
+	<string>New Server</string>
+    
+    
+    <key>ServerModify</key>
+	<string>Modify server</string> 
+    <key>EmptyFolder</key>
+	<string>The content of this folder is empty</string>
+    <key>UnreadableFile</key>
+	<string>This file cannot be opened on the application</string>
+    <key>NoFriends</key>
+	<string>Your chat buddies list is empty</string>
+    <key>NoActivities</key>
+	<string>Any activities has been posted on your activity stream</string>
+    <key>NoGadget</key>
+	<string>You haven't got any gadgets on your Apps</string>
+    
+    <key>Home</key>
+	<string>Home</string>
+    <key>ActivityStreams</key>
+	<string>Activity Streams</string>
+    <key>Chat</key>
+	<string>Chat</string>
+    <key>Documents</key>
+	<string>Documents</string>
+    <key>Dashboard</key>
+	<string>Apps</string>
+    
+    
+    <key>Success</key>
+	<string>Success...</string>
+    
+    <key>ServerVersion</key>
+	<string>Server Version</string>
+    <key>ApplicationEdition</key>
+	<string>Application Edition</string>
+    <key>ApplicationVersion</key>
+	<string>Application Version</string>
+    
+    
+    <key>MessageInfo</key>
+    <string>Message Info</string>
+    <key>MessageErrorServer</key>
+    <string>You cannot add a server with an empty name or url</string>
+    <key>MessageErrorExist</key>
+    <string>This Server has been existed...</string>
+    <key>ServerName</key>
+    <string>Server Name</string>
+    <key>ServerUrl</key>
+    <string>Server Url</string>
+    
+    <key>Loading</key>
+    <string>Loading...</string>
+    
+    <key>FolderContentUpdated</key>
+    <string>Folder content updated</string>
+    <key>LoadingContent</key>
+    <string>Loading the content of the folder</string>
+    <key>FileError</key>
+    <string>File error</string>
+    <key>DeleteFile</key>
+    <string>Delete file...</string>
+    <key>MoveFile</key>
+    <string>Move file to wanted folder...</string>
+    <key>CopyFile</key>
+    <string>Copy file to wanted folder...</string>
+    <key>TakePicture</key>
+    <string>Take Picture</string>
+    <key>CameraNotAvailable</key>
+    <string>Camera are not available</string>
+    <key>CreateNewFile</key>
+    <string>Create new file in folder...</string>
+    <key>CreateNewFolder</key>
+    <string>Create new folder...</string>
+    <key>RenameFolder</key>
+    <string>Rename folder...</string>
+    <key>SendImageToFolder</key>
+    <string>Sending image to wanted folder...</string>
+    <key>LoadingDocument</key>
+    <string>Loading Document</string>
+    
+    <key>TakeAPicture</key>
+    <string>Take a picture</string>
+    
+    <key>AttachedPhoto</key>
+    <string>Attached photo</string>
+    
+    <key>ChatApplication</key>
+    <string>Chat Application</string>
+    
+    <key>AddAPhoto</key>
+    <string>Add a photo</string>
+    <key>PhotoLibrary</key>
+    <string>Photo library</string>
+    
+    <key>UpdatingChat</key>
+    <string>Updating Chat</string>
+    <key>ChatUpdated</key>
+    <string>Chat updated</string>
+    <key>ConnectToChatServer</key>
+    <string>Connect To Chat Server</string>
+    <key>CanNotConnectToChatServer</key>
+    <string>Can not connect to Chat server</string>
+    
+    <key>LoadingYourDashboards</key>
+    <string>Loading your Apps</string>
+    <key>DashboardsLoaded</key>
+    <string>Apps loaded</string>
+    <key>LoadingGadget</key>
+    <string>Loading Gadget</string>
+    <key>GadgetsCannotBeRetrieved</key>
+    <string>Gadgets Cannot Be Retrieved</string>
+    
+    <key>You</key>
+    <string>You</string>
+    <key>and</key>
+    <string>and</string>
+    <key>more</key>
+    <string>more</string>
+    <key>likesThisActivity</key>
+    <string>likes this Activity</string>
+    <key>likeThisActivity</key>
+    <string>like this Activity</string>
+    <key>NoLikeForTheMoment</key>
+    <string>No like for the moment</string>
+    <key>DetailsLoaded</key>
+    <string>Details loaded</string>
+    <key>ActivityDetails</key>
+    <string>Activity Details</string>
+    
+    <key>Error</key>
+    <string>Error</string>
+    <key>Posted</key>
+    <string>Posted !</string>
+    
+    <key>MessageComposer</key>
+    <string>Message Composer !</string>
+    <key>NoMessageComment</key>
+    <string>There is no message for comment</string>
+    <key>NoMessagePosting</key>
+    <string>There is no message for posting</string>
+    <key>LoadingURL</key>
+    <string>Loading URL</string>
+    
+    <key>ActivityStreamUpdated</key>
+    <string>Activity Stream updated</string>
+    <key>ActivityStream</key>
+    <string>Activity Stream</string>
+    <key>News</key>
+    <string>News</string>
+    <key>Details</key>
+    <string>Details</string>
+    
+    <key>YourComment</key>
+    <string>Your comment</string>
+    <key>GettingActivity</key>
+    <string>Getting activity</string>
+    <key>GettingActionCannotBeCompleted</key>
+    <string>Getting action cannot be completed</string>
+    
+    <key>UpdatingActivity</key>
+    <string>Updating activity</string>
+    <key>UpdatingActionCannotBeCompleted</key>
+    <string>Updating action cannot be completed</string>
+    <key>LikingActivity</key>
+    <string>Liking activity</string>
+    <key>LikingActionCannotBeCompleted</key>
+    <string>Liking action cannot be completed</string>
+    
+    <key>PostingActivity</key>
+    <string>Post</string>
+    <key>PostingActionCannotBeCompleted</key>
+    <string>Posting action cannot be completed</string>
+    <key>CommentActivity</key>
+    <string>Comment</string>
+    <key>CommentActionCannotBeCompleted</key>
+    <string>Comment action cannot be completed</string>
+    <key>GettingActivityDetail</key>
+    <string>Getting activity detail</string>
+    <key>UpdatingActivityDetail</key>
+    <string>Updating activity detail</string>
+    
+    <key>NotCompliant</key>
+    <string>The application can not run on the PLF edition</string>
+    
+    <key>EditWiki</key>
+    <string>has edited Wiki page:</string>
+    <key>CreateWiki</key>
+    <string>has created Wiki page:</string>
+    <key>NewPost</key>
+    <string>has added a new post:</string>
+    <key>UpdatePost</key>
+    <string>has updated a post:</string>
+    <key>NewTopic</key>
+    <string>has posted a new topic:</string>
+    <key>UpdateTopic</key>
+    <string>has updated a topic:</string>
+    
+    <key>UpdateQuestion</key>
+    <string>has updated question:</string>
+    <key>Answered</key>
+    <string>has answered for question:</string>
+    <key>Asked</key>
+    <string>has asked:</string>
+    
+    <key>EventAdded</key>
+    <string>added an event:</string>
+    <key>EventUpdated</key>
+    <string>has just updated the event:</string>
+    <key>TaskAdded</key>
+    <string>added a task:</string>
+    <key>TaskUpdated</key>
+    <string>has just updated the task:</string>
+    
+    <key>Description</key>
+    <string>Description</string>
+    <key>Location</key>
+    <string>Location</string>
+    <key>StartTime</key>
+    <string>Start Time</string>
+    <key>EndTime</key>
+    <string>End Time</string>
+    
+    
+    <key>NoComment</key>
+    <string>No one has commented, be the first one</string>
+    
+    <key>SpecialCharacters</key>
+    <string>Special characters are not allowed</string>
+    
+</dict>
+</plist>
