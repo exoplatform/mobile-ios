@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SignInPageTitle</key>
+	<string>Page de connexion</string>
+	<key>SignInButton</key>
+	<string>Connexion</string>
+	<key>SignOutButton</key>
+	<string>Déconnexion</string>
+	<key>DomainHeader</key>
+	<string>Nom d'hôte</string>
+	<key>DomainCellTitle</key>
+	<string>Hôte</string>
+	<key>AccountHeader</key>
+	<string>Connexion avec un compte eXo</string>
+	<key>UserNameCellTitle</key>
+	<string>Utilisateur</string>
+	<key>PasswordCellTitle</key>
+	<string>Mot de passe</string>
+	<key>ApplicationsTitle</key>
+	<string>Applications</string>
+	<key>BackButton</key>
+	<string>Retour</string>
+	<key>SelectCopyButton</key>	
+	<string>Sélectionnez</string>
+	<key>Copy</key>
+	<string>Copier</string>
+	<key>Move</key>
+	<string>Bouger</string>	
+	<key>DoneButton</key>
+	<string>OK</string>
+	<key>ActionButton</key>
+	<string>Actions</string>
+	<key>TakePicture</key>
+	<string>Prendre une photo</string>
+	<key>Delete</key>
+	<string>Delete</string>
+	<key>Paste</key>
+	<string>Coller</string>
+	<key>Cancel</key>
+	<string>Annuler</string>
+    <key>DeleteButton</key>
+	<string>Supprimer</string>
+	<key>DeleteButtonDone</key>
+	<string>Fait</string>
+	<key>CancelCopyButton</key>
+	<string>Annuler</string>	
+	<key>SourceActionTitle</key>
+	<string>Source (Toucher la ligne ci-dessous pour sélectionner le répertoire source)</string>		
+	<key>DestinationActionTitle</key>
+	<string>Destination (Toucher la ligne ci-dessous pour sélectionner le répertoire destination)</string>		
+	<key>TouchHere</key>
+	<string>(Touchons ici)</string>		
+	<key>NativeApplicationsHeader</key>
+	<string>Applications eXo</string>
+	<key>GadgetsHeader</key>
+	<string>Gadgets eXo</string>
+	<key>Settings</key>
+	<string>Paramètres</string>
+	<key>Edit</key>
+	<string>Modifier</string>
+	<key>Save</key>
+	<string>Enregistrer</string>
+	<key>RememberMe</key>
+	<string>Se souvenir de moi</string>
+	<key>AutoLogin</key>
+	<string>Automatique</string>
+	<key>Language</key>
+	<string>Langues</string>
+	<key>English</key>
+	<string>Anglais (English)</string>
+	<key>French</key>
+	<string>Français (French)</string>
+	<key>Vietnamese</key>
+	<string>Vietnamien (Vietnamese)</string>
+	<key>UserGuide</key>
+	<string>Guide d&apos;utilisation</string>
+	<key>FileViewer</key>
+	<string>Affichage</string>
+	<key>Clear</key>
+	<string>Clear</string>
+	<key>Send</key>
+	<string>Envoyer</string>
+	<key>NetworkConnection</key>
+	<string>Connexion</string>
+	<key>Authorization</key>
+	<string>L'authentification a échoué</string>
+	<key>WrongUserNamePassword</key>
+	<string>La connexion a échoué, vérifiez vos identifiants.</string>
+	<key>NetworkConnectionFailed</key>
+	<string>La connexion au serveur a échoué, vérifiez l'URL.</string>
+	<key>UserNameEmpty</key>
+	<string>Veuillez entrer un nom d'utilisateur.</string>
+	<key>ChatDescription</key>
+	<string>Echangez des messages texte avec vos contacts</string>
+	<key>FileDescription</key>
+	<string>Gérez vos documents présents dans votre lecteur privé.</string>
+	<key>ActivityDescription</key>
+	<string>Suivez vos activités.</string>
+	<key>TouchHere</key>
+	<string>Appuyez ici</string>
+	<key>Source</key>
+	<string>Source</string>
+	<key>Destination</key>
+	<string>Destination</string>
+	<key>SourceDescription</key>
+	<string>Source (Pressez la zone ci dessous pour sélectionner la source)</string>
+	<key>DestinationDescription</key>
+	<string>Destination (Presses la zone ci dessous pour sélectionner la destination)</string>
+</dict>
+</plist>
