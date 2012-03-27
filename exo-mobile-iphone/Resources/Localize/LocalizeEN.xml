@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SignInPageTitle</key>
+	<string>Login Page</string>
+	<key>SignInButton</key>
+	<string>Login</string>
+	<key>SigningIn</key>
+	<string>Signing in ...</string>
+	<key>SignOutButton</key>
+	<string>Logout</string>
+	<key>GridButton</key>
+	<string>Grid</string>
+	<key>ListButton</key>
+	<string>List</string>	
+	<key>DomainHeader</key>
+	<string>Server Name</string>
+	<key>DomainCellTitle</key>
+	<string>Server</string>
+	<key>AccountHeader</key>
+	<string>Login</string>
+	<key>UserNameCellTitle</key>
+	<string>Username</string>
+	<key>PasswordCellTitle</key>
+	<string>Password</string>
+	<key>ApplicationsTitle</key>
+	<string>Applications</string>
+	<key>BackButton</key>
+	<string>Back</string>
+	<key>SelectCopyButton</key>	
+	<string>Select</string>	
+	<key>Copy</key>
+	<string>Copy</string>
+	<key>Move</key>
+	<string>Move</string>		
+	<key>DoneButton</key>
+	<string>Done</string>
+	<key>ActionButton</key>
+	<string>Actions</string>
+	<key>TakePicture</key>
+	<string>Take a picture</string>
+	<key>Delete</key>
+	<string>Delete</string>
+	<key>Paste</key>
+	<string>Paste</string>
+	<key>Cancel</key>
+	<string>Cancel</string>
+	<key>DeleteButton</key>
+	<string>Delete</string>	
+	<key>DeleteButtonDone</key>
+	<string>Done</string>	
+	<key>CancelCopyButton</key>
+	<string>Cancel</string>	
+	<key>SourceActionTitle</key>
+	<string>Source (Touch the line below to select source directory)</string>		
+	<key>DestinationActionTitle</key>
+	<string>Destination (Touch the line below to select destination directory)</string>		
+	<key>TouchHere</key>
+	<string>(Touch here)</string>	
+	<key>NativeApplicationsHeader</key>
+	<string>Applications</string>
+	<key>GadgetsHeader</key>
+	<string>My Dashboards</string>	
+	<key>Settings</key>
+	<string>Settings</string>
+	<key>Edit</key>
+	<string>Edit</string>
+	<key>Save</key>
+	<string>Save</string>
+	<key>RememberMe</key>
+	<string>Remember me</string>
+	<key>AutoLogin</key>
+	<string>Auto sign in</string>
+	<key>Language</key>
+	<string>Languages</string>
+	<key>English</key>
+	<string>English</string>
+	<key>French</key>
+	<string>French</string>
+	<key>Vietnamese</key>
+	<string>Vietnamese</string>
+	<key>UserGuide</key>
+	<string>User guide</string>
+	<key>FileViewer</key>
+	<string>Display</string>
+	<key>Clear</key>
+	<string>Clear</string>
+	<key>Send</key>
+	<string>Send</string>
+	<key>NetworkConnection</key>
+	<string>Network connection</string>
+	<key>Authorization</key>
+	<string>Authorization Failed</string>
+	<key>WrongUserNamePassword</key>
+	<string>Incorrect username/password combination.</string>
+	<key>NetworkConnectionFailed</key>
+	<string>Invalid server name</string>
+	<key>UserNameEmpty</key>
+	<string>Sign in failed. Username is empty</string>
+	<key>ChatDescription</key>
+	<string></string>
+	<key>FileDescription</key>
+	<string></string>
+	<key>ActivityDescription</key>
+	<string></string>
+	<key>TouchHere</key>
+	<string>Touch here</string>
+	<key>Source</key>
+	<string>Source</string>
+	<key>Destination</key>
+	<string>Destination</string>
+	<key>SourceDescription</key>
+	<string>Source (Touch the line below to select source directory)</string>
+	<key>DestinationDescription</key>
+	<string>Destination (Touch the line below to select destination directory)</string>
+</dict>
+</plist>

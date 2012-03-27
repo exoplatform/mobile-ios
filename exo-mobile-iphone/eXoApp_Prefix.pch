@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'eXoApp' target in the 'eXoApp' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+
+#define kBufferDurationSeconds .5
+
+#endif
