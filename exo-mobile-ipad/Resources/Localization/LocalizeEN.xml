@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SignInPageTitle</key>
+	<string>Sign in page</string>
+	<key>SignInButton</key>
+	<string>Sign in</string>
+	<key>SigningIn</key>
+	<string>Signing in ...</string>
+	<key>SignOutButton</key>
+	<string>Sign Out</string>
+	<key>GridButton</key>
+	<string>Grid</string>
+	<key>ListButton</key>
+	<string>List</string>	
+	<key>DomainHeader</key>
+	<string>Please input host name:</string>
+	<key>DomainCellTitle</key>
+	<string>Host</string>
+	<key>AccountHeader</key>
+	<string>Sign in with an GateIn account:</string>
+	<key>UserNameCellTitle</key>
+	<string>UserName</string>
+	<key>PasswordCellTitle</key>
+	<string>Password</string>
+	<key>ApplicationsTitle</key>
+	<string>Applications</string>
+	<key>BackButton</key>
+	<string>Back</string>
+	<key>SelectCopyButton</key>	
+	<string>Select</string>	
+	<key>NewFolderTitle</key>
+	<string>New Folder</string>
+	<key>RenameTitle</key>
+	<string>Rename</string>
+	<key>CopyTitle</key>
+	<string>Copy</string>
+	<key>MoveTitle</key>
+	<string>Move</string>		
+	<key>PasteTitle</key>
+	<string>Paste</string>		
+	<key>DoneButton</key>
+	<string>Done</string>
+	<key>ActionButton</key>
+	<string>Actions</string>
+	<key>DeleteButton</key>
+	<string>Delete</string>	
+	<key>DeleteButtonDone</key>
+	<string>Done</string>	
+	<key>CancelCopyButton</key>
+	<string>Cancel</string>	
+	<key>OptionDialogInstruction</key>
+	<string>Please input a name</string>
+	<key>SourceActionTitle</key>
+	<string>Source (Touch the libe below to select source directory)</string>		
+	<key>DestinationActionTitle</key>
+	<string>Destination (Touch the line below to select destination directory)</string>		
+	<key>TouchHere</key>
+	<string>(Touch here)</string>	
+	<key>NativeApplicationsHeader</key>
+	<string>GateIn Native Applications</string>
+	<key>GadgetsHeader</key>
+	<string>GateIn Gadgets List</string>	
+	<key>Settings</key>
+	<string>Settings</string>
+	<key>Edit</key>
+	<string>Edit</string>
+	<key>Save</key>
+	<string>Save</string>
+	<key>Close</key>
+	<string>Close</string>	
+	<key>RememberMe</key>
+	<string>Remember me</string>
+	<key>AutoLogin</key>
+	<string>Auto sign in</string>
+	<key>Language</key>
+	<string>  Languages</string>
+	<key>English</key>
+	<string>English</string>
+	<key>French</key>
+	<string>French</string>
+	<key>Vietnamese</key>
+	<string>Vietnamese</string>
+	<key>UserGuide</key>
+	<string>User guide</string>
+	<key>FileViewer</key>
+	<string>Display</string>
+	<key>Clear</key>
+	<string>Clear</string>
+	<key>Send</key>
+	<string>Send</string>
+	<key>NetworkConnection</key>
+	<string>Network connection</string>
+	<key>Authorization</key>
+	<string>Authorization Failed</string>
+	<key>WrongUserNamePassword</key>
+	<string>Sign in failed. Wrong username or password</string>
+	<key>NetworkConnectionFailed</key>
+	<string>The network connection failed, please verify the domain URL and try again</string>
+	<key>UserNameEmpty</key>
+	<string>Sign in failed. Username is empty</string>
+	<key>ChatDescription</key>
+	<string>This application is used to communicate via sending text messages</string>
+	<key>FileDescription</key>
+	<string>This application is used to look for documents in your personal drive</string>
+	<key>ActivityDescription</key>
+	<string>This application is used to show what you are doing.</string>
+	<key>TouchHere</key>
+	<string>Touch here</string>
+	<key>Source</key>
+	<string>Source</string>
+	<key>Destination</key>
+	<string>Destination</string>
+	<key>SourceDescription</key>
+	<string>Source (Touch the line below to select source directory)</string>
+	<key>DestinationDescription</key>
+	<string>Destination (Touch the line below to select destination directory)</string>
+	<key>GadgetMessageTitle</key>
+	<string>Info Message</string>
+	<key>GadgetMessageContent</key>
+	<string>There is no any gadget</string>
+	<key>SupportViewTitle</key>
+	<string>Information</string>
+</dict>
+</plist>
