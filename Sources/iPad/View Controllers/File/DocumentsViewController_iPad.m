@@ -58,7 +58,7 @@
 - (void)contentDirectoryIsRetrieved{
     [super contentDirectoryIsRetrieved];
     // not the root level
-    if(!isRoot){
+    if(!isRoot && self.actionVisibleOnFolder) {
         UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
         UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
         [bt setImage:image forState:UIControlStateNormal];
@@ -164,6 +164,16 @@
 	{
         //Create a new FilesViewController_iPad to push it into the navigationController
         DocumentsViewController_iPad *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPad alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPad"];
+        
+        // Check the folder can be supported actions or not.
+        if (!_rootFile) {
+            // if the view is first document view.
+            NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+            newViewControllerForFilesBrowsing.actionVisibleOnFolder = [self supportActionsInFolder:fileToBrowse ofGroup:driveGroup];
+        } else {
+            // support action for every folder which is not a drive.
+            newViewControllerForFilesBrowsing.actionVisibleOnFolder = YES;
+        }
         newViewControllerForFilesBrowsing.title = fileToBrowse.name;
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:newViewControllerForFilesBrowsing invokeByController:self isStackStartView:FALSE];
         

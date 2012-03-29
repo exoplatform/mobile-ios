@@ -51,11 +51,11 @@
     
     self.view.title = self.title;
     
-    
-    //self.view.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
-
-    
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    if (self.actionVisibleOnFolder) {
+        [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    } else {
+        [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = nil;
+    }
     
 }
 
@@ -111,7 +111,7 @@
 - (void)contentDirectoryIsRetrieved{
     [super contentDirectoryIsRetrieved];
     // not the root level
-    if(!isRoot){
+    if(!isRoot && self.actionVisibleOnFolder) {
         UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
         UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
         [bt setImage:image forState:UIControlStateNormal];
@@ -160,6 +160,16 @@
 	{
         //Create a new FilesViewController_iPhone to push it into the navigationController
         DocumentsViewController_iPhone *newViewControllerForFilesBrowsing = [[DocumentsViewController_iPhone alloc] initWithRootFile:fileToBrowse withNibName:@"DocumentsViewController_iPhone"];
+        
+        // Check the folder can be supported actions or not.
+        if (!_rootFile) {
+            // if the view is first document view.
+            NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+            newViewControllerForFilesBrowsing.actionVisibleOnFolder = [self supportActionsInFolder:fileToBrowse ofGroup:driveGroup];
+        } else {
+            // support action for every folder which is not a drive.
+            newViewControllerForFilesBrowsing.actionVisibleOnFolder = YES;
+        }
         
         newViewControllerForFilesBrowsing.parentController = self;
         

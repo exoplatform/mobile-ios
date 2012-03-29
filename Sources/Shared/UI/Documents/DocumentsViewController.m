@@ -20,8 +20,12 @@
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
 
-#define PERSONAL @"personal"
-#define SHARED @"group"
+
+#pragma mark - Constants
+static NSString *PERSONAL_GROUP = @"personal";
+static NSString *SHARED_GROUP = @"group";
+static NSString *PUBLIC_DRIVE = @"Public";
+static NSString *PRIVATE_GROUP = @"Private";
 
 #pragma mark -
 #pragma mark Private
@@ -50,6 +54,7 @@
 @implementation DocumentsViewController
 
 @synthesize parentController = _parentController, isRoot;
+@synthesize actionVisibleOnFolder = _actionVisibleOnFolder;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -102,14 +107,14 @@
     
     if (_rootFile == nil) {
         
-        NSArray *personalDrives = [_filesProxy getDrives:@"personal"];
-        NSArray *sharedDrives = [_filesProxy getDrives:@"group"];
+        NSArray *personalDrives = [_filesProxy getDrives:PERSONAL_GROUP];
+        NSArray *sharedDrives = [_filesProxy getDrives:SHARED_GROUP];
         
         if([personalDrives count] > 0)
-            [_dicContentOfFolder setValue:[personalDrives copy] forKey:@"personal"];
+            [_dicContentOfFolder setValue:[personalDrives copy] forKey:PERSONAL_GROUP];
         
         if([sharedDrives count] > 0)
-            [_dicContentOfFolder setValue:[sharedDrives copy] forKey:@"group"];
+            [_dicContentOfFolder setValue:[sharedDrives copy] forKey:SHARED_GROUP];
         
     }
     else {
@@ -173,6 +178,31 @@
     [_fileFolderActionsController release]; _fileFolderActionsController = nil;
 }
 
+- (BOOL)supportActionsInFolder:(File *)folder ofGroup:(NSString *)driveGroup {
+    /*
+     This method is installed as a workaround for bug about action buttons on drive folders. 
+     A folder is not action-able if: 
+        + Its currentFolder is empty or nil.
+     */
+    NSMutableArray *exceptDrives = [NSMutableArray array];
+    if ([driveGroup isEqualToString:PERSONAL_GROUP]) {
+        // For personal group, "Public" and "Private" drive have actions for user.
+//        [exceptDrives addObject:PUBLIC_DRIVE];
+//        [exceptDrives addObject:PRIVATE_GROUP];
+    }
+    if ([folder isFolder]) {
+        NSString *currentfolder = [folder currentFolder];
+        if (!currentfolder || [currentfolder length] == 0) {
+            if ([exceptDrives containsObject:[folder name]]) {
+                return YES;
+            }
+            return NO; 
+        } else {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 - (void)dealloc
 {
@@ -208,7 +238,7 @@
 }
 
 
-#pragma mark HUD Management
+#pragma mark - HUD Management
 
 -(void)updateHudPosition {
     //default implementation
@@ -426,23 +456,6 @@
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
         cell.textLabel.backgroundColor = [UIColor whiteColor];
         //cell.textLabel.contentMode = UIViewAutoresizingFlexibleWidth;
-        
-        //Add disclosure button
-        UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
-        UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
-        [buttonAccessory setImage:image forState:UIControlStateNormal];  
-        [buttonAccessory setImage:image forState:UIControlStateHighlighted];
-        
-        //Provide to the button, the tag corresponding to the indexPath
-        //Use Modulo to provide the section information.
-        buttonAccessory.tag = 1000*indexPath.section + indexPath.row;
-        
-        //Increase the size of the button, to make it easier to touch
-        buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
-        
-        buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
-        cell.accessoryView = buttonAccessory;        
     }
 
     //Customize the cell background
@@ -451,7 +464,28 @@
 
     //Retrieve the correct file corresponding to the indexPath
     File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
+    NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+    if ([self supportActionsInFolder:file ofGroup:driveGroup]) {
+        //Add action button
+        UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
+        UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonAccessory setImage:image forState:UIControlStateNormal];  
+        [buttonAccessory setImage:image forState:UIControlStateHighlighted];
+        
+        //Provide to the button, the tag corresponding to the indexPath
+        //Use Modulo to provide the section information.
+        buttonAccessory.tag = 1000 * indexPath.section + indexPath.row;
+        
+        //Increase the size of the button, to make it easier to touch
+        buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
+        
+        buttonAccessory.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [buttonAccessory addTarget:self action:@selector(buttonAccessoryClick:) forControlEvents:UIControlEventTouchUpInside];
+        cell.accessoryView = buttonAccessory;
+    } else {
+        // Remove action button if the folder does not have actions for user.
+        cell.accessoryView = nil;
+    }
     //Configure the cell content
     //Determine and set the correct image for the file
     if(file.isFolder){

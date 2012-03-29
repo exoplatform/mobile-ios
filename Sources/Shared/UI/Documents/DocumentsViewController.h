@@ -44,8 +44,13 @@
     BOOL stop;
 }
 
-@property(nonatomic, retain) DocumentsViewController *parentController;
+// Follow the Apple convention, the child view should keep a weak reference to parent only.
+@property(nonatomic, assign) DocumentsViewController *parentController;
+@property (nonatomic, assign) BOOL actionVisibleOnFolder;
 @property BOOL isRoot;
+
+// Check whether user can execute actions on the folder or not. 
+- (BOOL)supportActionsInFolder:(File *)folder ofGroup:(NSString *)driveGroup;
 
 -(void)emptyState;
 - (void)showActionSheetForPhotoAttachment;
