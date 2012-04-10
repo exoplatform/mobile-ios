@@ -280,8 +280,6 @@
     
     if([_txtvMessageComposer.text length] > 0)
     {
-        self.navigationController.navigationBar.userInteractionEnabled = NO;
-        
         NSString* fileAttachName = nil;
         NSString* fileAttachURL = nil;
         
@@ -478,20 +476,18 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     
-    [self hideLoader:YES];
+    [self hideLoaderImmediately:YES];
     
     if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
         [delegate messageComposerDidSendData];
         [self dismissModalViewControllerAnimated:YES];    
     }
     
-    self.navigationController.navigationBar.userInteractionEnabled = NO;
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
-    //    [error localizedDescription] 
-    
+    [self hideLoaderImmediately:NO];
     NSString *alertMessage = nil;
     if(_isPostMessage)
         alertMessage = Localize(@"PostingActionCannotBeCompleted");    

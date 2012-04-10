@@ -30,4 +30,7 @@
 - (void)displayHUDLoaderWithMessage:(NSString *)message;
 // Hide Hud Load view 
 - (void)hideLoader:(BOOL)successful;
+// Hide Hud Load view immediately
+- (void)hideLoaderImmediately:(BOOL)successful;
+
 @end
