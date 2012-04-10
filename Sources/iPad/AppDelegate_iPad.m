@@ -52,6 +52,10 @@
         [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
         [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:113./255]];
     }
+    if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
+        [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar-FullWidth.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+        [[UIToolbar appearance] setTintColor:[UIColor darkGrayColor]];
+    }
 #endif
     
     window.rootViewController = viewController;
