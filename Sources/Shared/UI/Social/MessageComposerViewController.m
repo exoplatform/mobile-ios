@@ -15,56 +15,81 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 
+// Horizontal margin to subviews. 
+#define kHorizontalMargin 10.0
+// Vertical margin to subviews.
+#define kVerticalMargin 10.0
+// Pading between left/right panes
+#define kPaneMargin 15.0
+// Photo view margin
+#define kPhotoViewMargin 20.0
+// Portrait image width 
+#define kPortraitImageWidth (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 70.0 : 55.0)
+// Landscape image width 
+#define kLandscapeImageWidth (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 85.0 : 70.0)
+
+@interface MessageComposerViewController () {
+    // Keep previous status bar style as the image picker changed it when displayed.
+    UIStatusBarStyle _previousStatusBarStyle;
+    BOOL _previousStatusBarHidden;
+}
+
+@property (nonatomic, readonly) UIButton *attPhotoButton;
+@property(nonatomic, readonly) UIImageView *photoFrameView;
+
+- (UIImagePickerController *)getPicker:(UIImagePickerControllerSourceType)sourceType;
+
+@end
+
+
 @implementation MessageComposerViewController
 
 @synthesize isPostMessage=_isPostMessage, strActivityID=_strActivityID, delegate, tblvActivityDetail=_tblvActivityDetail;
-@synthesize _popoverPhotoLibraryController, _btnSend, _btnCancel;
+@synthesize _popoverPhotoLibraryController, btnSend, _btnCancel;
+@synthesize btnAttachPhoto = _btnAttachPhoto;
+@synthesize txtMessage = _txtMessage;
+@synthesize attPhotoView = _attPhotoView;
+@synthesize photoFrameView = _photoFrameView;
+@synthesize attPhotoButton = _attPhotoButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
 - (void)dealloc
 {    
+    [_strActivityID release];
+    [_tblvActivityDetail release];
+    [btnSend release];
+    [_btnCancel release];
+    [_btnAttachPhoto release];
+    [_txtMessage release];
+    [_attPhotoView release];
+    [_photoFrameView release];
+    [_attPhotoButton release];
     [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
+    self.btnAttachPhoto = nil;
+    self.txtMessage = nil;
+    self.attPhotoView = nil;
+    [_photoFrameView release];
+    _photoFrameView = nil;
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
-
-/*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView
- {
- }
- */
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    /*UIImageView* iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    iv.userInteractionEnabled = YES;
-    self.view = iv;
-    [iv release];
-    */
-    //[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
-    
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
@@ -100,15 +125,140 @@
     
     [self setTitle:_strTitle];
     
+    /*
+    ##### Add sub views for managing attached photo.
+     */
+    [self.view addSubview:self.attPhotoView];
+    [self.view insertSubview:self.photoFrameView aboveSubview:self.attPhotoView];
+    [self.view insertSubview:self.attPhotoButton aboveSubview:self.photoFrameView];
+    /*
+     ######
+     */
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self reArrangeSubViews];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
+#pragma mark - subviews management
+/*
+ rearrange text field, button and attachment component in relevant position.
+ */
+- (void)reArrangeSubViews { 
+    CGRect viewFrame = _imgvTextViewBg.frame;
+    CGRect attBtnBounds = _btnAttach.bounds;
+    
+    /* Hide subviews for attaching image */
+    self.attPhotoView.hidden = YES;
+    self.photoFrameView.hidden = YES;
+    self.attPhotoButton.hidden = YES;
+    _btnAttach.hidden = YES;
+    
+    float rightPaneWidth = 0;
+    /*
+        Calculate attached photo view position to be placed at the middle of right pane.
+     */
+    if (self.attPhotoView && self.attPhotoView.image) {
+        self.attPhotoView.hidden = NO;
+        self.photoFrameView.hidden = NO;
+        self.attPhotoButton.hidden = NO;
+        CGRect attPhotoBounds = self.attPhotoView.bounds;
+        float attPhotoViewX = viewFrame.origin.x + viewFrame.size.width - kHorizontalMargin - attPhotoBounds.size.width;
+        float attPhotoViewY = viewFrame.origin.y + kPhotoViewMargin;
+        self.attPhotoView.frame = CGRectMake(attPhotoViewX, attPhotoViewY, attPhotoBounds.size.width, attPhotoBounds.size.height);
+        // if the photo is available, right pane width is its width.
+        rightPaneWidth = self.attPhotoView.frame.size.width;
+        self.photoFrameView.frame = CGRectMake(attPhotoViewX - 1, attPhotoViewY - 1, attPhotoBounds.size.width + 2, attPhotoBounds.size.height + 2);
+        self.attPhotoButton.frame = self.photoFrameView.frame;
+    } else if (_isPostMessage) {
+        /* 
+         Calculate attachment button position to be placed at the right bottom corner.
+         */
+        _btnAttach.hidden = NO;
+        float buttonX = viewFrame.origin.x + viewFrame.size.width - kHorizontalMargin - attBtnBounds.size.width;
+        float buttonY = viewFrame.origin.y + viewFrame.size.height - kVerticalMargin - attBtnBounds.size.height;
+        _btnAttach.frame = CGRectMake(buttonX, buttonY, attBtnBounds.size.width, attBtnBounds.size.height);
+        // right pane width is equal to button width
+        rightPaneWidth = attBtnBounds.size.width;
+    }
+    
+    /*
+     Calculate message text view position to be placed at the left pane of the parent view.
+     */
+    float txtMsgWidth = viewFrame.size.width - kHorizontalMargin * 2 - rightPaneWidth - kPaneMargin; // text message view width
+    CGRect frame = _txtvMessageComposer.frame;
+    frame.size.width = txtMsgWidth;
+    _txtvMessageComposer.frame = frame;
+}
+
+
+
+#pragma mark - getters & setters
+- (UIButton *)btnAttachPhoto {
+    if (!_btnAttachPhoto) {
+        _btnAttachPhoto = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _btnAttachPhoto.imageView.image = [UIImage imageNamed:@"SocialAddPhotoButton.png"];
+        [_btnAttachPhoto addTarget:self action:@selector(onBtnAttachment:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnAttachPhoto;
+}
+
+- (UIImageView *)photoFrameView {
+    if (!_photoFrameView) {
+        UIImage *layerImage = [UIImage imageNamed:@"SocialAttachedImageBorder.png"];
+        layerImage = [layerImage stretchableImageWithLeftCapWidth:layerImage.size.width/2 topCapHeight:layerImage.size.height/2];
+        _photoFrameView = [[UIImageView alloc] initWithImage:layerImage];
+    }
+    return _photoFrameView;
+}
+
+- (UITextView *)txtMessage {
+    if (!_txtMessage) {
+        
+    }
+    return _txtMessage;
+}
+
+- (UIImageView *)attPhotoView {
+    if (!_attPhotoView) {
+        _attPhotoView = [[UIImageView alloc] init];
+    }
+    return _attPhotoView;
+}
+
+- (UIButton *)attPhotoButton {
+    if (!_attPhotoButton) {
+        _attPhotoButton = [[UIButton alloc] init];
+        [_attPhotoButton addTarget:self action:@selector(editPhoto) forControlEvents:UIControlEventTouchUpInside];
+        _attPhotoButton.backgroundColor = [UIColor clearColor];
+    }
+    return _attPhotoButton;
+}
+
+- (UIImagePickerController *)getPicker:(UIImagePickerControllerSourceType)sourceType {
+    UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+    thePicker.delegate = self;
+    if(sourceType == UIImagePickerControllerSourceTypeCamera) {//Take a photo
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {  
+            thePicker.sourceType = sourceType;
+        }
+    } else {
+        thePicker.sourceType = sourceType;
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
+        }
+    }
+    
+    return [thePicker autorelease];
+}
 
 #pragma mark - Loader Management
 - (void)updateHudPosition {
@@ -135,8 +285,7 @@
         NSString* fileAttachName = nil;
         NSString* fileAttachURL = nil;
         
-        UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
-        if(imgView)
+        if(self.attPhotoView.image)
         {
             FilesProxy *fileProxy = [FilesProxy sharedInstance];
             
@@ -157,7 +306,7 @@
                 fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
                 
                 
-                NSData *imageData = UIImagePNGRepresentation(imgView.image);
+                NSData *imageData = UIImagePNGRepresentation(self.attPhotoView.image);
                 
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                             [fileProxy methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
@@ -261,55 +410,67 @@
     
 }
 
-- (void)showPhotoLibrary
+- (void)editPhoto
 {
-    
+    ImagePreviewViewController *imagePreview = [[[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil] autorelease];
+    __block __typeof__(imagePreview) bImagePreview = imagePreview; // create a weak reference to avoid retain cycle.
+    [imagePreview changeImageWithCompletion:^(void) {
+        // when user change existed photo, remove the image preview from the navigation view and present a picker from library source.
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            UIImagePickerController *picker = [self getPicker:UIImagePickerControllerSourceTypePhotoLibrary];
+            [self._popoverPhotoLibraryController setContentViewController:picker animated:YES];
+            // set style for navigation bar because the popover using the default style if it is not set.
+            picker.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+            _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
+            _previousStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
+            
+            [self presentModalViewController:[self getPicker:UIImagePickerControllerSourceTypePhotoLibrary] animated:YES];
+        }
+    }];
+    [imagePreview removeImageWithCompletion:^(void) {
+        // when user remove existed photo, remove the photo in self and pop the image preview to return self view.
+        self.attPhotoView.image = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
+            self._popoverPhotoLibraryController = nil;
+            [self reArrangeSubViews]; // Due to the self.view is not reappeared, this message is called to update the view.
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    [imagePreview selectImageWithCompletion:^(void) {
+        // when user selects new photo, come back the self view and add given photo to this.
+        [self addPhotoToView:bImagePreview.imageView.image];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
+            self._popoverPhotoLibraryController = nil;
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:imagePreview] autorelease];
+        self._popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:navController] autorelease];
+        [self._popoverPhotoLibraryController presentPopoverFromRect:self.attPhotoButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        // set style for navigation bar because the popover using the default style if it is not set.
+        navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    } else {
+        [self.navigationController pushViewController:imagePreview animated:YES];
+    }
+    [imagePreview displayImage:self.attPhotoView.image];
 }
 
 - (void)addPhotoToView:(UIImage *)image
 {
-    if(_popoverPhotoLibraryController)
-        [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    else
-        [self dismissModalViewControllerAnimated:YES];
-    
-    [[self.view viewWithTag:1] removeFromSuperview];
-    [[self.view viewWithTag:2] removeFromSuperview];
-    
     CGSize size = [image size];
-    CGSize selfSize = self.view.frame.size;
-
-    CGRect rect;
-    if (size.width > size.height) 
-    {
-        if(_popoverPhotoLibraryController)
-            rect = CGRectMake(10, selfSize.height - (50 + 10), 50*size.width/size.height, 50);
-        else
-            rect = CGRectMake(10, 150, 50*size.width/size.height, 50);
-    }
-    else
-    {
-        if(_popoverPhotoLibraryController)
-            rect = CGRectMake(10, selfSize.height - (50*size.height/size.width + 10), 50, 50*size.height/size.width);
-        else
-            rect = CGRectMake(10, 150, 50, 50*size.height/size.width);
-    }
-    
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:rect];
-    imgView.tag = 1;
-    imgView.image = image;
-    [self.view addSubview:imgView];
-    [imgView release];
-    
-    
-    UIButton *btnPhotoActivity = [[UIButton alloc] initWithFrame:rect];
-    btnPhotoActivity.tag = 2;
-    [btnPhotoActivity addTarget:self action:@selector(showPhotoActivity:) forControlEvents:UIControlEventTouchUpInside];
-    [btnPhotoActivity setBackgroundImage:image forState:UIControlStateNormal];
-    
-    [self.view addSubview:btnPhotoActivity];
-    [btnPhotoActivity release];
-    
+    // the image width depends on it is landscape or portrait. 
+    float imgWidth = size.width > size.height ? kLandscapeImageWidth : kPortraitImageWidth;
+    float imgHeight = imgWidth * size.height / size.width;
+    self.attPhotoView.bounds = CGRectMake(0, 0, imgWidth, imgHeight);
+    self.attPhotoView.image = image;
+    [self reArrangeSubViews];
 }
 
 #pragma -
@@ -358,8 +519,7 @@
     
 }
 
-#pragma mark - 
-#pragma mark UIAlertViewDelegate method
+#pragma mark - UIAlertViewDelegate method
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -371,48 +531,32 @@
 #pragma mark - ActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    UIImagePickerController *thePicker = nil;
     if(buttonIndex < 2)
     {
-        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
-        thePicker.delegate = self;
-//        thePicker.allowsEditing = YES;
-        
         if(buttonIndex == 0)//Take a photo
         {
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
-            {  
-                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self presentModalViewController:thePicker animated:YES];
-            }
-            else
-            {
+            thePicker = [self getPicker:UIImagePickerControllerSourceTypeCamera];
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
                 [alert release];
+                return;
             }
-        }
-        else
-        {
-            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            NSString *deviceName = [[UIDevice currentDevice] name];
-            NSRange rangeOfiPad = [deviceName rangeOfString:@"iPad"];
-            if(rangeOfiPad.length <= 0)
-                [self presentModalViewController:thePicker animated:YES];
-            else
-            {
-                thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-                thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
-                
-               
-                _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];      
-               
-                [_popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];        
-                
-            }
+        } else {
+            thePicker = [self getPicker:UIImagePickerControllerSourceTypePhotoLibrary];
         }
         
-        [thePicker release];
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
+            _previousStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
+            [self presentModalViewController:thePicker animated:YES];
+        } else {
+            self._popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:thePicker] autorelease];
+            [self._popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];        
+            // set style for navigation bar because the popover using the default style if it is not set.
+            thePicker.navigationBar.barStyle = UIBarStyleBlackTranslucent;            
+        }
     }
     
 }
@@ -421,13 +565,49 @@
 #pragma mark - UIImagePickerDelegate
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [picker dismissModalViewControllerAnimated:YES];    
-    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    [_popoverPhotoLibraryController release];
-    
-     
-    [self addPhotoToView:[self resizeImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]]];
-    
+    ImagePreviewViewController *imagePreview = [[[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil] autorelease];
+    __block __typeof__(imagePreview) bImagePreview = imagePreview; // create a weak reference to avoid retain cycle.
+    [imagePreview changeImageWithCompletion:^(void) {
+        // when user changes the photo, remove image preview from nav bar to back to image picker.
+        [bImagePreview.navigationController popViewControllerAnimated:YES];
+        
+    }];
+    [imagePreview removeImageWithCompletion:^(void) {
+        // when user remove the photo, remove image in self view and dismiss image picker to back to self view.
+        self.attPhotoView.image = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
+            self._popoverPhotoLibraryController = nil;
+            [self reArrangeSubViews]; // rearrange the view to update the photo view.
+        } else {
+            // restore previous status bar
+            [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
+            [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
+            [self dismissModalViewControllerAnimated:YES];
+        }
+    }];
+    [imagePreview selectImageWithCompletion:^(void) {
+        // when user select the photo, add photo to the self view and come back to such view.
+        [self addPhotoToView:[self resizeImage:bImagePreview.imageView.image]];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
+            self._popoverPhotoLibraryController = nil;
+        } else {
+            // restore previous status bar
+            [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
+            [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
+            [self dismissModalViewControllerAnimated:YES];
+        }
+    }];
+    [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
+    [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
+    [picker pushViewController:imagePreview animated:YES];
+    [imagePreview displayImage:[self resizeImage:[info objectForKey:UIImagePickerControllerOriginalImage]]];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
