@@ -679,13 +679,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 	}
 
     if(thePicker) {
-    
-        NSString *deviceName = [[UIDevice currentDevice] name];
-        NSRange range = [deviceName rangeOfString:@"iPad"];
-        
-//        thePicker.allowsEditing = YES;
-        
-        if(range.length <= 0) {
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             //[self.navigationController presentModalViewController:thePicker animated:YES];  
             [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
         }
@@ -987,9 +981,7 @@ static NSString *PRIVATE_GROUP = @"Private";
         else
         {
             thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            NSString *deviceName = [[UIDevice currentDevice] name];
-            NSRange rangeOfiPad = [deviceName rangeOfString:@"iPad"];
-            if(rangeOfiPad.length <= 0) {
+            if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
                 [self presentModalViewController:thePicker animated:YES];
                 
             }

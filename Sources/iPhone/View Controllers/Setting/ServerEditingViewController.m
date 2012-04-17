@@ -73,13 +73,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     
         
     _btnDelete = [[UIButton alloc] init];
-    
-    NSString *deviceName = [[UIDevice currentDevice] name];
-    NSRange range = [deviceName rangeOfString:@"iPad"];
 
     int marginLeft;
     
-    if(range.length > 0)
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         marginLeft = 32;
     else
         marginLeft = 10;

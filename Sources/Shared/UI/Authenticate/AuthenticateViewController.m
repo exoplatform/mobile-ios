@@ -254,9 +254,7 @@
 #pragma UITableView Utils
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
-    NSString *deviceType = [UIDevice currentDevice].model;
-    
-    if([deviceType isEqualToString:@"iPhone"])
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         return [[[UIImageView alloc] initWithImage:
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
     
@@ -267,9 +265,7 @@
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
 {
-    NSString *deviceType = [UIDevice currentDevice].model;
-    
-    if([deviceType isEqualToString:@"iPhone"])
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         return [[[UIImageView alloc] initWithImage:
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
     
