@@ -82,7 +82,7 @@
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
-    if(type != nil) {
+    if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
     switch (socialActivityStream.activityType) {

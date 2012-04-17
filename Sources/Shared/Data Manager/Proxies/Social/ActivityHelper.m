@@ -116,7 +116,7 @@
     float fHeight = 0.0;
     NSString *type = [activtyStreamDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
-    if(type != nil) {
+    if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [activtyStreamDetail.activityStream valueForKey:@"fullName"];
     }
     text = [NSString stringWithFormat:@"%@ %@", [activtyStreamDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@"in %@ space", space] : @""];
@@ -259,7 +259,7 @@
     float fHeight = 0.0;
     NSString *type = [activtyStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
-    if(type != nil) {
+    if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [activtyStream.activityStream valueForKey:@"fullName"];
     }
     text = [NSString stringWithFormat:@"%@ %@", [activtyStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@"in %@ space", space] : @""];

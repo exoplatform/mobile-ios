@@ -37,8 +37,13 @@
 #define ACTIVITY_CALENDAR_ADD_TASK  18
 #define ACTIVITY_CALENDAR_UPDATE_TASK  19
 
+
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 #define kFontForTitle [UIFont boldSystemFontOfSize:13]
+
+// Constant which represents activity stream typed space
+static NSString *STREAM_TYPE_SPACE = @"space";
+
 @interface ActivityHelper : NSObject {
     
 }

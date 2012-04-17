@@ -53,7 +53,7 @@
     
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
-    if(type != nil) {
+    if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
     
