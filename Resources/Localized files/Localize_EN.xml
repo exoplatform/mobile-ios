@@ -348,6 +348,13 @@
     
     <key>SpecialCharacters</key>
     <string>Special characters are not allowed</string>
-    
+    <key>OK</key>
+    <string>OK</string>
+    <key>Image Preview</key>
+    <string>Image Preview</string>
+    <key>Change</key>
+    <string>Change</string>
+    <key>Remove</key>
+    <string>Remove</string>
 </dict>
 </plist>

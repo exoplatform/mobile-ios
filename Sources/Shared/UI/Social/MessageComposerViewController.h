@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
 #import "eXoViewController.h"
+#import "ImagePreviewViewController.h"
 
 @class ActivityStreamBrowseViewController;
 
@@ -19,7 +20,7 @@
 @interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate>
 {
     IBOutlet UIButton*                  _btnCancel;
-    IBOutlet UIButton*                  _btnSend;
+    IBOutlet UIButton*                  btnSend;
     IBOutlet UIButton*                  _btnAttach;
     IBOutlet UITextView*                _txtvMessageComposer;
     IBOutlet UIImageView*               _imgvBackground;
@@ -38,9 +39,13 @@
 
 @property BOOL isPostMessage;
 @property(nonatomic, retain) UIButton* _btnCancel;
-@property(nonatomic, retain) UIButton* _btnSend;
+@property(nonatomic, retain) UIButton* btnSend;
 @property(nonatomic, retain) NSString* strActivityID;
-@property(nonatomic, retain) id<SocialMessageComposerDelegate> delegate;
+@property(nonatomic, retain) UIButton *btnAttachPhoto;
+@property(nonatomic, retain) UITextView *txtMessage;
+@property(nonatomic, retain) UIImageView *attPhotoView;
+
+@property(nonatomic, assign) id<SocialMessageComposerDelegate> delegate;
 @property(nonatomic, retain) UITableView* tblvActivityDetail;
 @property(nonatomic, retain) UIPopoverController* _popoverPhotoLibraryController;
 
@@ -49,12 +54,13 @@
 
 - (IBAction)onBtnAttachment:(id)sender;
 - (void)showActionSheetForPhotoAttachment;
-- (void)showPhotoLibrary;
+- (void)editPhoto;
 - (void)addPhotoToView:(UIImage *)image;
 
 - (void)cancelDisplayAttachedPhoto;
 - (void)deleteAttachedPhoto;
 - (UIImage *)resizeImage:(UIImage *)image;
+- (void)reArrangeSubViews;
 
 @end
 

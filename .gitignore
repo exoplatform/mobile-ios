@@ -40,3 +40,6 @@ target/
 
 # Misc
 *.swp
+
+# XCode
+xcuserdata/

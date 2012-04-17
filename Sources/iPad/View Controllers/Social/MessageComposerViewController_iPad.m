@@ -44,33 +44,11 @@
                                                destructiveButtonTitle:nil 
                                                     otherButtonTitles:Localize(@"TakeAPicture"), 
                                   Localize(@"PhotoLibrary"), nil];
-    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [actionSheet showFromRect:_btnAttach.frame inView:self.view animated:YES];
     
 }
 
-- (void)showPhotoLibrary
-{
-    UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
-    thePicker.delegate = self;
-    thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    thePicker.allowsEditing = YES;
-    thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    if (_popoverPhotoLibraryController == nil) 
-    {
-        _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
-    }
-    else
-    {
-        [_popoverPhotoLibraryController setContentViewController:thePicker];   
-    }
-    [_popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
-    [_popoverPhotoLibraryController presentPopoverFromRect:[_btnAttach frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
-    [thePicker release];
-}
 
 - (void)onBtnTakePhoto
 {
@@ -93,103 +71,12 @@
 
 - (void)onBtnPhotoLibrary
 {
-    [self showPhotoLibrary];
+    [self editPhoto];
 }
 
 - (void)onBtnCancel
 {
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-}
-
-- (void)showPhotoActivity:(UIButton *)sender
-{
-    self.navigationItem.title = Localize(@"AttachedPhoto");
-    [self._btnSend setTitle:Localize(@"Delete") forState:UIControlStateNormal];
-    
-    UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
-    [self.view sendSubviewToBack:sender];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5f];
-    [UIView setAnimationDelegate:self];
-    
-    CGSize size = imgView.frame.size;
-    
-    CGRect screenRect = self.navigationController.view.superview.superview.frame;
-    CGRect selfRect = self.navigationController.view.superview.frame;
-    
-    CGRect rect;
-    
-    float tmpHeight = screenRect.size.height - selfRect.origin.y;
-    if (540*size.height/size.width > tmpHeight) 
-    {
-        rect = CGRectMake((540 - size.width*tmpHeight/size.height)/2, 0, size.width*tmpHeight/size.height, tmpHeight);
-        imgView.frame = CGRectMake(0, 0, 540, tmpHeight);
-    }
-    else
-    {
-        rect = CGRectMake(0, 0, 540, 540*size.height/size.width );
-        imgView.frame = rect;
-    }
-    
-    //imgView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 400);
-    //imgView.frame = rect;
-    self.navigationController.view.frame = imgView.frame;
-    self.view.frame = imgView.frame;
-    
-    [UIView commitAnimations];
-    
-    [self.view bringSubviewToFront:imgView];
-    [_txtvMessageComposer resignFirstResponder];
-    [_txtvMessageComposer setUserInteractionEnabled:NO];    
-}
-
-
-- (void)deleteAttachedPhoto
-{
-    [self._btnSend setTitle:Localize(@"Send")  forState:UIControlStateNormal];
-    
-    UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
-    
-    CGRect frame = imgView.frame;
-    frame.size.height = 265;
-    
-    CGRect rect = [(UIButton *)[self.view viewWithTag:2] frame];
-    [[self.view viewWithTag:2] removeFromSuperview];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5f];
-    [UIView setAnimationDelegate:self];
-    
-    imgView.frame = CGRectMake(rect.origin.x, rect.origin.y, 0, 0);
-    self.navigationController.view.frame = frame;
-    self.view.frame = frame;
-    
-    [UIView commitAnimations];
-    [_txtvMessageComposer setUserInteractionEnabled:YES];
-}
-
-- (void)cancelDisplayAttachedPhoto
-{
-    [self._btnSend setTitle:Localize(@"Send") forState:UIControlStateNormal];
-    CGRect frame = self.navigationController.view.frame;
-    frame.size.height = 265;
-    
-    
-    UIImageView *imgView = (UIImageView *)[self.view viewWithTag:1];
-    UIButton* btnPhotoActivity = (UIButton *)[self.view viewWithTag:2];
-    CGRect rect = [btnPhotoActivity frame];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5f];
-    [UIView setAnimationDelegate:self];
-    imgView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-    self.navigationController.view.frame = frame;
-    self.view.frame = frame;
-    [UIView commitAnimations];
-    
-    [self.view bringSubviewToFront:btnPhotoActivity];
-    [_txtvMessageComposer setUserInteractionEnabled:YES];    
 }
 
 @end

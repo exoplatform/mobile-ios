@@ -600,6 +600,11 @@
 		8997843D13F53568002E7E1C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997843C13F53568002E7E1C /* Reachability.m */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 		89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */; };
+		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
+		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
+		A61E3FE0152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */; };
+		A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */; };
+		A65F2818152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1618,6 +1623,13 @@
 		8997843C13F53568002E7E1C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController_iPhone.xib; path = ../../NIB/DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
+		A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePreviewViewController.h; path = Social/ImagePreviewViewController.h; sourceTree = "<group>"; };
+		A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePreviewViewController.m; path = Social/ImagePreviewViewController.m; sourceTree = "<group>"; };
+		A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePreviewViewController.xib; path = Social/ImagePreviewViewController.xib; sourceTree = "<group>"; };
+		A61E3FDE152AD7A500110F4B /* UIToolbar+eXoCustomIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+eXoCustomIphone.h"; sourceTree = "<group>"; };
+		A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+eXoCustomIphone.m"; sourceTree = "<group>"; };
+		A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SocialAttachedImageBorder.png; path = Resources/Images/Shared/Social/SocialAttachedImageBorder.png; sourceTree = SOURCE_ROOT; };
+		A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SocialAttachedImageBorder@2x.png"; path = "Resources/Images/Shared/Social/SocialAttachedImageBorder@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2337,6 +2349,9 @@
 				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
 				46A08CD41447501200D53314 /* ActivityLinkDisplayViewController.h */,
 				46A08CD51447501200D53314 /* ActivityLinkDisplayViewController.m */,
+				A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */,
+				A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */,
+				A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -2353,6 +2368,7 @@
 		46A03AA213A8E0EF00E71AF9 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */,
 				462E95B113F150DB0027E093 /* SocialPostActivityButton.png */,
 				46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */,
 				46A03AA313A8E0EF00E71AF9 /* ActivityAvatarShadow.png */,
@@ -2383,6 +2399,7 @@
 		46A03AAC13A8E0EF00E71AF9 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */,
 				462E95AF13F150D00027E093 /* SocialPostActivityButton@2x.png */,
 				46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */,
 				46A03AAD13A8E0EF00E71AF9 /* ActivityAvatarShadow@2x.png */,
@@ -3126,6 +3143,8 @@
 				464FC9EB137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m */,
 				4607365E137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.h */,
 				4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */,
+				A61E3FDE152AD7A500110F4B /* UIToolbar+eXoCustomIphone.h */,
+				A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3743,6 +3762,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = eXoPlatform;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "eXo Platform" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -4335,6 +4355,9 @@
 				1FCDF076147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib in Resources */,
 				46540FA2148786F1006C010C /* Bubble_horizontal.png in Resources */,
 				46540FA3148786F1006C010C /* Bubble_vertical.png in Resources */,
+				A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */,
+				A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */,
+				A65F2818152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4573,6 +4596,8 @@
 				8958E67B14A9CE1C00580EEB /* ServerPreferencesManager.m in Sources */,
 				1FCE235F14BA8DCF00ED95AB /* SocialRestProxy.m in Sources */,
 				1FCE236214BA8E4300ED95AB /* SocialVersion.m in Sources */,
+				A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */,
+				A61E3FE0152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

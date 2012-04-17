@@ -343,6 +343,13 @@
     
     <key>SpecialCharacters</key>
     <string>Les caractères spéciaux ne sont pas autorisés</string>
-    
+    <key>OK</key>
+    <string>OK</string>
+    <key>Image Preview</key>
+    <string>Image Sélectionnée</string>
+    <key>Change</key>
+    <string>Remplacer</string>
+    <key>Remove</key>
+    <string>Supprimer</string>
 </dict>
 </plist>

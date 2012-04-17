@@ -15,9 +15,5 @@
 }
 
 - (void)showActionSheetForPhotoAttachment;
-- (void)showPhotoLibrary;
-
-- (void)cancelDisplayAttachedPhoto;
-- (void)deleteAttachedPhoto;
 
 @end

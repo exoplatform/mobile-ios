@@ -117,4 +117,16 @@
     [self.hudLoadWaiting update];
 }
 
+- (void)hideLoaderImmediately:(BOOL)successful {
+    [self.hudLoadWaitingWithPositionUpdated setActivity:NO];
+    if (successful) {
+        [self.hudLoadWaiting setImage:[UIImage imageNamed:@"19-check"]];
+        [self.hudLoadWaiting setCaption:Localize(@"Success")];
+    } else {
+        [self.hudLoadWaiting setImage:[UIImage imageNamed:@"11-x"]];
+        [self.hudLoadWaiting setCaption:Localize(@"Error")];
+    }
+    [self.hudLoadWaiting hide];
+}
+
 @end
