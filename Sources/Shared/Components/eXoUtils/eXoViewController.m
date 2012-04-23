@@ -76,7 +76,7 @@
 - (ATMHud *)hudLoadWaiting {
     // lazy loading
     if (!_hudLoadWaiting) {
-        _hudLoadWaiting = [[ATMHud alloc] initWithDelegate:self];
+        _hudLoadWaiting = [[ATMHud alloc] initWithDelegate:nil];
         // disable user interaction during the loading.
         [_hudLoadWaiting setAllowSuperviewInteraction:NO];
     }
