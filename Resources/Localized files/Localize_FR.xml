@@ -65,7 +65,7 @@
 	<key>GadgetsHeader</key>
 	<string>Mon tableau de bord</string>
 	<key>Settings</key>
-	<string>Paramètres</string>
+	<string>Réglages</string>
 	<key>Edit</key>
 	<string>Modifier</string>
 	<key>Save</key>
@@ -261,9 +261,9 @@
     <key>ActivityStream</key>
     <string>Activity Stream</string>
     <key>News</key>
-    <string>News</string>
+    <string>Nouvelles</string>
     <key>Details</key>
-    <string>Details</string>
+    <string>Détails</string>
     
     <key>YourComment</key>
     <string>Your comment</string>

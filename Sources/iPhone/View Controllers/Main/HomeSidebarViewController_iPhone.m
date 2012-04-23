@@ -185,15 +185,13 @@
 #pragma - Settings Delegate Methods
 
 -(void)doneWithSettings {
-    //    NSArray *listItems = _launcherView.pages;
-    //    for (TTLauncherItem *item in listItems){
-    //        
-    //    }
-    //[self loadView];
-    
-    //[self.revealView.contentView setNavigationBarHidden:NO animated:YES];
-    //[(UITableView *)[_revealView.sidebarView topView] reloadData];
-    [(UITableView *)[_revealView.sidebarView topView] selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    UITableView *tableView = (UITableView *)[_revealView.sidebarView topView];
+    // Reload menu view by setting changes
+    [tableView reloadData];
+    // Jump to last selected menu item
+    [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    // Update title for content view by selected menu item
+    _revealView.contentView.navigationItem.title = [[[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0]] textLabel] text];
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -204,10 +202,10 @@
     if ([url isEqualToString:@"root"]) {
         [datasource configureSingleSectionWithArray:
          [NSArray arrayWithObjects:
-          [JTTableViewCellModalSimpleType modalWithTitle:Localize(@"News") type:eXoActivityStream],
-          [JTTableViewCellModalSimpleType modalWithTitle:Localize(@"Documents") type:eXoDocuments],
-          [JTTableViewCellModalSimpleType modalWithTitle:Localize(@"Dashboard") type:eXoDashboard],
-          [JTTableViewCellModalSimpleType modalWithTitle:Localize(@"Settings") type:eXoSettings],
+          [JTTableViewCellModalSimpleType modalWithTitle:@"News" type:eXoActivityStream],
+          [JTTableViewCellModalSimpleType modalWithTitle:@"Documents" type:eXoDocuments],
+          [JTTableViewCellModalSimpleType modalWithTitle:@"Dashboard" type:eXoDashboard],
+          [JTTableViewCellModalSimpleType modalWithTitle:@"Settings" type:eXoSettings],
 
           nil]
          ];
@@ -285,7 +283,7 @@
             cell.textLabel.shadowOffset = CGSizeMake(0.,1.);
             cell.textLabel.font = [UIFont systemFontOfSize:16.];*/
         }
-        cell.textLabel.text = [(id <JTTableViewCellModal>)object title];
+        cell.textLabel.text = Localize([(id <JTTableViewCellModal>)object title]);
         
         
         switch ([(JTTableViewCellModalSimpleType *)object type]) {
