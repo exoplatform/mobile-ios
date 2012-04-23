@@ -38,7 +38,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_hud dismiss];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
 }
 
@@ -430,16 +429,16 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){
         
-        [_hud completeAndDismissWithTitle:Localize(@"Success")];
         
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         if([platformServerVersion.isMobileCompliant boolValue]){
+            [self.hud completeAndDismissWithTitle:Localize(@"Success")];
             AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
             appDelegate.isCompatibleWithSocial = compatibleWithSocial;
             [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
         } else {
-            [_hud dismiss];
+            [self.hud failAndDismissWithTitle:Localize(@"Error")];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
                                                             message:Localize(@"NotCompliant") 
                                                            delegate:nil 
@@ -450,7 +449,7 @@
         }
 	
     } else {
-        [_hud dismiss];
+        [self.hud failAndDismissWithTitle:Localize(@"Error")];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 

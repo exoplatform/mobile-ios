@@ -34,11 +34,11 @@
     NSString*                   _strHost;
     int                         _intSelectedServer;
     
-    SSHUDView*                  _hud;//Heads up display
-    
     NSDictionary*							_dictLocalize;	//Language dictionary
 	int										_intSelectedLanguage;	//Language index
 }
+
+@property (nonatomic, readonly) SSHUDView *hud; // display loading
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action
 - (IBAction)onSettingBtn;	//Setting action

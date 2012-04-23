@@ -29,6 +29,8 @@
 
 @implementation AuthenticateViewController
 
+@synthesize hud = _hud;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -167,6 +169,8 @@
 
 - (void)didReceiveMemoryWarning 
 {
+    [_hud release];
+    _hud = nil;
     [super didReceiveMemoryWarning];
 }
 
@@ -244,6 +248,16 @@
                          }
          ];
 	}
+}
+
+#pragma mark - getters & setters
+- (SSHUDView *)hud {
+    if (!_hud) {
+        _hud = [[SSHUDView alloc] initWithTitle:Localize(@"Loading")];
+        _hud.completeImage = [UIImage imageNamed:@"19-check.png"];
+        _hud.failImage = [UIImage imageNamed:@"11-x.png"];
+    }
+    return _hud;
 }
 
 #pragma mark PlatformServer
@@ -370,10 +384,10 @@
 - (void)doSignIn
 {
     [self hitAtView:nil];
-    
-    _hud = [[SSHUDView alloc] initWithTitle:Localize(@"Loading")];
-    [_hud show];
-    
+    // active hud loading 
+    self.hud.textLabel.text = Localize(@"Loading");
+    [self.hud setLoading:YES];
+    [self.hud show];
 	[self view].userInteractionEnabled = NO;
     
 	[_txtfUsername resignFirstResponder];
@@ -421,7 +435,7 @@
 - (void)signInFailed
 {
 	[self view].userInteractionEnabled = YES;
-    [_hud dismiss];
+    [self.hud failAndDismissWithTitle:Localize(@"Error")];
     
 }
 
@@ -490,7 +504,7 @@
 	[_txtfUsername release];
 	[_txtfPassword release];
 	[_arrServerList release];
-    //[_hud release];
+    [_hud release];
     [super dealloc];	
 }
 
