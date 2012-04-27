@@ -55,6 +55,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 @synthesize parentController = _parentController, isRoot;
 @synthesize actionVisibleOnFolder = _actionVisibleOnFolder;
+@synthesize popoverPhotoLibraryController = _popoverPhotoLibraryController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -521,6 +522,11 @@ static NSString *PRIVATE_GROUP = @"Private";
 - (void)deleteCurentFileView {
     
 }
+
+- (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
+    
+}
+
 #pragma mark - FileAction delegate Methods
 
 
@@ -691,24 +697,22 @@ static NSString *PRIVATE_GROUP = @"Private";
             thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
             
-            [_popoverPhotoLibraryController release];
-            
-            _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
-            _popoverPhotoLibraryController.delegate = self;
-            [_popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
+            self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:thePicker] autorelease];
+            self.popoverPhotoLibraryController.delegate = self;
+            [self.popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
             
 
             if(displayActionDialogAtRect.size.width == 0) {
                 
                 //present the popover from the rightBarButtonItem of the navigationBar
-                [_popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
+                [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
                                                  permittedArrowDirections:UIPopoverArrowDirectionUp 
                                                                  animated:YES];
              
 
             }
             else {
-                [_popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];    
+                [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];    
                 
             }
                 
@@ -966,12 +970,7 @@ static NSString *PRIVATE_GROUP = @"Private";
         {
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
             {  
-                UINavigationController *modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:thePicker];
-                modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self presentModalViewController:modalNavigationSettingViewController animated:YES];
-                
-                [modalNavigationSettingViewController release];
             }
             else
             {
@@ -982,35 +981,10 @@ static NSString *PRIVATE_GROUP = @"Private";
         }
         else
         {
-            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-                [self presentModalViewController:thePicker animated:YES];
-                
-            }
-                else
-            {
-                thePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-                thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
-                
-                _popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];    
-                _popoverPhotoLibraryController.delegate = self;
-                
-                if(displayActionDialogAtRect.size.width == 0) {
-                    
-                    //present the popover from the rightBarButtonItem of the navigationBar
-                    [_popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp 
-                                                                          animated:YES];
-                    
-                    
-                }
-                else {
-                    [_popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
-                }
-                
-            }
+            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;            
         }
         
+        [self showImagePickerForAddPhotoAction:thePicker];
         [thePicker release];
     }
     
@@ -1021,8 +995,8 @@ static NSString *PRIVATE_GROUP = @"Private";
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     [picker dismissModalViewControllerAnimated:YES];
-    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-    [_popoverPhotoLibraryController release];
+    [self.popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    self.popoverPhotoLibraryController = nil;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];

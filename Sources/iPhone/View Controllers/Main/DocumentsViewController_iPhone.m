@@ -132,6 +132,10 @@
 
 }
 
+- (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
+    [self presentModalViewController:picker animated:YES];
+}
+
 #pragma mark -
 #pragma mark WEPopoverControllerDelegate implementation
 

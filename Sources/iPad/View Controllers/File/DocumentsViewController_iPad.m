@@ -87,6 +87,21 @@
     }
 }
 
+- (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
+    picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    picker.modalPresentationStyle = UIModalPresentationFormSheet;
+    self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:picker] autorelease];    
+    self.popoverPhotoLibraryController.delegate = self;
+    
+    if(displayActionDialogAtRect.size.width == 0) {
+        //present the popover from the rightBarButtonItem of the navigationBar
+        [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    } else {
+        [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
+    }
+}
+
 - (void)didReceiveMemoryWarning 
 {
 	// Releases the view if it doesn't have a superview.
@@ -318,7 +333,7 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
     [picker dismissModalViewControllerAnimated:YES];  
-    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+    [self.popoverPhotoLibraryController dismissPopoverAnimated:YES];
     _navigation.topItem.rightBarButtonItem.enabled = YES;
     
 }

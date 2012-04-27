@@ -46,6 +46,7 @@
 
 // Follow the Apple convention, the child view should keep a weak reference to parent only.
 @property(nonatomic, assign) DocumentsViewController *parentController;
+@property(nonatomic, retain) UIPopoverController *popoverPhotoLibraryController;
 @property (nonatomic, assign) BOOL actionVisibleOnFolder;
 @property BOOL isRoot;
 
@@ -65,7 +66,8 @@
 - (void)buttonAccessoryClick:(id)sender;
 - (UINavigationBar *)navigationBar;
 - (NSString *)stringForUploadPhoto;
-
+// This method is called when user chooses add new photo to the document. The derived classes should reinstall this method for apropriate display
+- (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker;
 
 
 @end
