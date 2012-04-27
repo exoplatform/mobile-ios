@@ -185,10 +185,9 @@ static NSString *PRIVATE_GROUP = @"Private";
         + Its currentFolder is empty or nil.
      */
     NSMutableArray *exceptDrives = [NSMutableArray array];
-    if ([driveGroup isEqualToString:PERSONAL_GROUP]) {
-        // For personal group, "Public" and "Private" drive have actions for user.
-//        [exceptDrives addObject:PUBLIC_DRIVE];
-//        [exceptDrives addObject:PRIVATE_GROUP];
+    if ([driveGroup isEqualToString:PERSONAL_GROUP] && !isRoot) {
+        // For public drive of personal group, action is supported when view its detail.
+        [exceptDrives addObject:PUBLIC_DRIVE];
     }
     if ([folder isFolder]) {
         NSString *currentfolder = [folder currentFolder];

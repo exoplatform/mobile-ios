@@ -175,6 +175,12 @@
     // Create a new Array object to be used with the looping of the results from the parser
     NSArray *resultNodes = NULL;
 	
+    // MOB-1117 Update the folder path if it's unavailable. This case occurs when the folder is a drive and its path is not provided by other API methods before.
+    if (!file.path) {
+        resultNodes = [parser nodesForXPath:@"//Folder" error:nil];
+        file.path = [self fullURLofFile:[[[resultNodes objectAtIndex:0] attributeForName:@"path"] stringValue]];
+    }
+    
     // Set the resultNodes Array to contain an object for every instance of an  node file/folder data
     resultNodes = [parser nodesForXPath:@"//Folder/Folders/Folder" error:nil];
 	
