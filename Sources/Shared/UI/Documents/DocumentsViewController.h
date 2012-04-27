@@ -50,7 +50,7 @@
 @property BOOL isRoot;
 
 // Check whether user can execute actions on the folder or not. 
-- (BOOL)supportActionsInFolder:(File *)folder ofGroup:(NSString *)driveGroup;
+- (BOOL)supportActionsForItem:(File *)item ofGroup:(NSString *)driveGroup;
 
 -(void)emptyState;
 - (void)showActionSheetForPhotoAttachment;

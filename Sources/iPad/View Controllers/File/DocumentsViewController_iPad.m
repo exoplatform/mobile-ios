@@ -169,7 +169,7 @@
         if (!_rootFile) {
             // if the view is first document view.
             NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
-            newViewControllerForFilesBrowsing.actionVisibleOnFolder = [newViewControllerForFilesBrowsing supportActionsInFolder:fileToBrowse ofGroup:driveGroup];
+            newViewControllerForFilesBrowsing.actionVisibleOnFolder = [newViewControllerForFilesBrowsing supportActionsForItem:fileToBrowse ofGroup:driveGroup];
         } else {
             // support action for every folder which is not a drive.
             newViewControllerForFilesBrowsing.actionVisibleOnFolder = YES;

@@ -178,7 +178,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     [_fileFolderActionsController release]; _fileFolderActionsController = nil;
 }
 
-- (BOOL)supportActionsInFolder:(File *)folder ofGroup:(NSString *)driveGroup {
+- (BOOL)supportActionsForItem:(File *)item ofGroup:(NSString *)driveGroup {
     /*
      This method is installed as a workaround for bug about action buttons on drive folders. 
      A folder is not action-able if: 
@@ -189,16 +189,19 @@ static NSString *PRIVATE_GROUP = @"Private";
         // For public drive of personal group, action is supported when view its detail.
         [exceptDrives addObject:PUBLIC_DRIVE];
     }
-    if ([folder isFolder]) {
-        NSString *currentfolder = [folder currentFolder];
+    if ([item isFolder]) {
+        NSString *currentfolder = [item currentFolder];
         if (!currentfolder || [currentfolder length] == 0) {
-            if ([exceptDrives containsObject:[folder name]]) {
+            if ([exceptDrives containsObject:[item name]]) {
                 return YES;
             }
             return NO; 
         } else {
             return YES;
         }
+    } else {
+        // actions are always supported for files.
+        return YES;
     }
     return NO;
 }
@@ -464,7 +467,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     //Retrieve the correct file corresponding to the indexPath
     File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
-    if ([self supportActionsInFolder:file ofGroup:driveGroup]) {
+    if ([self supportActionsForItem:file ofGroup:driveGroup]) {
         //Add action button
         UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
         UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
