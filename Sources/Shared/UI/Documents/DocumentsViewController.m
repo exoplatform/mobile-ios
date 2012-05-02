@@ -531,6 +531,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 
 - (void)showErrorForFileAction:(NSString *)errorMessage {
+    [self hideLoader:NO];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:errorMessage delegate:self 
                                           cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];

@@ -73,18 +73,22 @@
 }
 
 - (void)deleteCurentFileView {
-    
-    NSMutableArray *viewControllersStack = [AppDelegate_iPad instance].rootViewController.stackScrollViewController.viewControllersStack;
-                                            
-    int index = [viewControllersStack indexOfObject:self];
-    if(index > 0) {
-        DocumentsViewController *parentsController = [viewControllersStack objectAtIndex:index - 1];
-        
-        [self.view removeFromSuperview];
-        [viewControllersStack removeObject:self];
-        
-        [parentsController startRetrieveDirectoryContent];        
+    // This method will remove this view and reload its parent view. 
+    StackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
+    NSMutableArray *viewControllersStack = stackScrollVC.viewControllersStack;
+    DocumentsViewController *parentController = [[viewControllersStack objectAtIndex:viewControllersStack.count - 2] retain];
+    if (viewControllersStack.count == 2) {
+        // if parent view is the start view, reassign it in the stack
+        [stackScrollVC addViewInSlider:parentController invokeByController:nil isStackStartView:YES];
+    } else {
+        // if parent view is not the start view, remove the views from the grand parent view and reattach the parent view
+        DocumentsViewController *grandController = [viewControllersStack objectAtIndex:viewControllersStack.count - 3];
+        [stackScrollVC removeViewFromController:grandController];
+        [stackScrollVC addViewInSlider:parentController invokeByController:grandController isStackStartView:NO];
     }
+    // Reload the content of the parent view.
+    [parentController startRetrieveDirectoryContent];
+    [parentController release];
 }
 
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
