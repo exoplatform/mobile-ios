@@ -39,6 +39,8 @@
 }
 
 @property (nonatomic, readonly) SSHUDView *hud; // display loading
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, assign) UITextField *activeField;
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action
 - (IBAction)onSettingBtn;	//Setting action
@@ -47,4 +49,11 @@
 - (IBAction)onBtnServerList:(id)sender;
 - (void)hitAtView:(UIView*)view;
 - (IBAction)onHitViewBtn:(id)sender;
+
+// methods for managing keyboard behaviours
+- (void)registerForKeyboardNotifications;
+- (void)unRegisterForKeyboardNotifications;
+- (void)keyboardWasShown:(NSNotification *)notification;
+- (void)keyboardWillHide:(NSNotification *)notification;
+- (void)dismissKeyboard;
 @end

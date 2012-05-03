@@ -18,9 +18,6 @@
 #import "URLAnalyzer.h"
 
 
-#define kHeigthNeededToGoUpSubviewsWhenEditingUsername -85
-#define kHeigthNeededToGoUpSubviewsWhenEditingPassword -150
-
 
 //Define for cells of the Server Selection Panel
 #define kHeightForServerCell 44
@@ -28,6 +25,8 @@
 #define kTagInCellForServerURLLabel 20
 
 @implementation AuthenticateViewController
+@synthesize scrollView = _scrollView;
+@synthesize activeField = _activeField;
 
 @synthesize hud = _hud;
 
@@ -58,6 +57,8 @@
         [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIphone.png"]]];
         
     }
+    
+    self.scrollView.contentSize = self.view.frame.size;
     
     _vContainer.backgroundColor = [UIColor clearColor];
     [_vContainer viewWithTag:1].backgroundColor = [UIColor clearColor];
@@ -91,10 +92,16 @@
     [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     
     _strBSuccessful = @"NO";
+
+    /* Add tap gesture to dismiss keyboard */
+    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
+    [tapGesure setCancelsTouchesInView:NO]; // Do not cancel touch processes on subviews
+    [self.view addGestureRecognizer:tapGesure];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     //Hide the Navigation Bar
     self.navigationController.navigationBarHidden = YES;
     
@@ -140,27 +147,18 @@
 	}
     
     [_tbvlServerList reloadData];
-    
-//    if(_bAutoLogin)
-//    {
-//        _vContainer.alpha = 1;
-//        [self onSignInBtn:nil];
-//    }
-//    else
-//    {
-//        //Start the animation to display the loginView
-//        [UIView animateWithDuration:1.0 
-//                         animations:^{
-//                             _vContainer.alpha = 1;
-//                         }
-//         ];
-//    }    
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    /* register keyboard notification */
+    [self registerForKeyboardNotifications];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self unRegisterForKeyboardNotifications];
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
@@ -176,6 +174,7 @@
 
 - (void)viewDidUnload 
 {
+    [self setScrollView:nil];
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 	
@@ -248,6 +247,58 @@
                          }
          ];
 	}
+}
+
+#pragma mark - Keyboard management
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)unRegisterForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)keyboardWasShown:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    // Get the size of the keyboard.
+    CGSize keyboardSize = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size;
+    
+    // Adjust the bottom content inset of your scroll view by the keyboard height.
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    CGRect aRect = [self.view convertRect:self.view.frame fromView:nil];
+    
+    aRect.size.height -= keyboardSize.height;
+    
+    CGPoint fieldPoint = CGPointMake(_vContainer.frame.origin.x + _txtfPassword.frame.origin.x + _vAccountView.frame.origin.x, _vContainer.frame.origin.y + _txtfPassword.frame.origin.y + _vAccountView.frame.origin.y);
+    
+    // Scroll the target text field into view.
+    if (!CGRectContainsPoint(aRect, fieldPoint)) {
+        CGPoint scrollPoint = CGPointMake(0.0, fieldPoint.y - keyboardSize.height);
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+        
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+}
+
+- (void)dismissKeyboard {
+    [self.activeField resignFirstResponder];
+}
+
+#pragma mark - TextField delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activeField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.activeField = nil;
 }
 
 #pragma mark - getters & setters
@@ -501,10 +552,12 @@
 
 - (void)dealloc 
 {
+    [self unRegisterForKeyboardNotifications];
 	[_txtfUsername release];
 	[_txtfPassword release];
 	[_arrServerList release];
     [_hud release];
+    [_scrollView release];
     [super dealloc];	
 }
 

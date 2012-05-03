@@ -38,13 +38,11 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardHidden) name:UIKeyboardDidHideNotification object:nil];
     
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
@@ -78,7 +76,6 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-
     
     [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
@@ -136,10 +133,6 @@
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
     [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    //[_tbvlServerList setFrame:CGRectMake(42,194, 532, 209)];
-    
-
-    
     
 }
 
@@ -149,10 +142,10 @@
     _interfaceOrientation = interfaceOrientation;
     
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
-        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
+        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
         [_vContainer setFrame:CGRectMake(227, 230, 569, 460)];
 	} else {
-        [_vLoginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
+        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
         [_vContainer setFrame:CGRectMake(100, 400, 569, 460)];
 	}
     
@@ -175,12 +168,6 @@
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];	
 	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload 
-{
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
 }
 
 
@@ -316,47 +303,7 @@
 	}
 }
 
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField 
-{
-    CGRect frameToGo = _vContainer.frame;
-    
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        frameToGo.origin.y = 330;
-    }
-    else    
-    {	
-        frameToGo.origin.y = 0;
-    }
-    
-    [UIView animateWithDuration:0.3 
-                     animations:^{
-                         _vContainer.frame = frameToGo;
-                     }
-     ];
-
-	return YES;
-}
-
--(void)keyBoardHidden {
-    CGRect frameToGo = _vContainer.frame;
-    
-    if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-    {
-        frameToGo.origin.y = 400;
-    }
-    else    
-    {	
-        frameToGo.origin.y = 230;
-    }
-    
-    [UIView animateWithDuration:0.3 
-                     animations:^{
-                         _vContainer.frame = frameToGo;
-                     }
-     ];   
-}
+#pragma mark - TextField delegate 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -368,25 +315,7 @@
     else
     {    
         [_txtfPassword resignFirstResponder];
-        
-        CGRect frameToGo = _vContainer.frame;
-        
-        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-        {
-            frameToGo.origin.y = 400;
-        }
-        else    
-        {	
-            frameToGo.origin.y = 230;
-        }
-        
-        [UIView animateWithDuration:0.3 
-                         animations:^{
-                             _vContainer.frame = frameToGo;
-                         }
-         ];
-
-        
+       
         [self onSignInBtn:nil];
     }    
     
@@ -399,23 +328,6 @@
 	{
 		[_txtfUsername resignFirstResponder];
 		[_txtfPassword resignFirstResponder];
-        
-        CGRect frameToGo = _vContainer.frame;
-        
-        if((_interfaceOrientation == UIInterfaceOrientationPortrait) || (_interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
-        {
-            frameToGo.origin.y = 400;
-        }
-        else    
-        {	
-            frameToGo.origin.y = 230;
-        }
-        
-        [UIView animateWithDuration:0.3 
-                         animations:^{
-                             _vContainer.frame = frameToGo;
-                         }
-         ];   
 	} else {
         
     }
