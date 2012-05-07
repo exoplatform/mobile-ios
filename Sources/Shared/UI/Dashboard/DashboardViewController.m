@@ -90,6 +90,7 @@
     
     //Reset the  content of the view 
     [_arrDashboard release];
+    self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
     // Do any additional setup after loading the view from its nib.
     self.title = Localize(@"Dashboard");
@@ -102,8 +103,7 @@
     //background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     //_tblGadgets.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     //[background release];
-    
-    _tblGadgets.backgroundColor = EXO_BACKGROUND_COLOR;
+    _tblGadgets.backgroundColor = [UIColor clearColor];
         
     //Start the loader
     [self displayHudLoader];
@@ -142,13 +142,15 @@
 
 // Empty State
 -(void)emptyState {
-    //disable scroll in tableview
-    _tblGadgets.scrollEnabled = NO;
-    
-    //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
-    [self.view insertSubview:emptyView aboveSubview:_tblGadgets];
-    [emptyView release];
+    if (_isEmpty) {
+        //add empty view to the view 
+        EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
+        emptyView.tag = TAG_EMPTY;
+        [self.view insertSubview:emptyView belowSubview:_tblGadgets];
+        [emptyView release];        
+    } else {
+        [[self.view viewWithTag:TAG_EMPTY] removeFromSuperview];
+    }
 }
 
 
@@ -206,12 +208,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    //Display the empty screen if data
-    if(_isEmpty) {
-        [self emptyState];
-        return 0;
-    }
-    
+    //Display the empty screen if data is empty 
+    [self emptyState];
     return [_arrDashboard count];
     
 }

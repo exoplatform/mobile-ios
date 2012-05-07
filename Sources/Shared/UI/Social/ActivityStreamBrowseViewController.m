@@ -163,9 +163,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     self.title = Localize(@"News");
     
-    //_tblvActivityStream.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
-    _tblvActivityStream.backgroundColor = EXO_BACKGROUND_COLOR;
-
+    self.view.backgroundColor = EXO_BACKGROUND_COLOR;
+    _tblvActivityStream.backgroundColor = [UIColor clearColor];
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		
@@ -641,14 +640,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 // Empty State
 -(void)emptyState {
-    //disable scroll in tableview
-    _tblvActivityStream.scrollEnabled = NO;
-    
-    
     //add empty view to the view 
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:_tblvActivityStream.frame withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoActivities")];
     emptyView.tag = TAG_EMPTY;
-    [self.view insertSubview:emptyView belowSubview:self.hudLoadWaiting.view];
+    [self.view insertSubview:emptyView belowSubview:_tblvActivityStream];
     [emptyView release];
 }
 
