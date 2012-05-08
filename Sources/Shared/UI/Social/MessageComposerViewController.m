@@ -280,7 +280,6 @@
 
 - (IBAction)onBtnSend:(id)sender
 {
-    
     if([self.navigationItem.title isEqualToString:Localize(@"AttachedPhoto")])
     {
         [self deleteAttachedPhoto];
@@ -288,6 +287,8 @@
         
         return;
     }
+
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     if([_txtvMessageComposer.text length] > 0)
     {
@@ -351,6 +352,7 @@
     }
     else
     {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"NoMessageComment") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         
@@ -486,7 +488,6 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    
     [self hideLoaderImmediately:YES];
     
     if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
@@ -499,6 +500,7 @@
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
     [self hideLoaderImmediately:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     NSString *alertMessage = nil;
     if(_isPostMessage)
         alertMessage = Localize(@"PostingActionCannotBeCompleted");    
