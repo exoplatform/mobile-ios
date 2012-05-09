@@ -7,6 +7,7 @@
 //
 
 #import "PlatformVersionProxy.h"
+#import "ServerPreferencesManager.h"
 #import "defines.h"
 
 
@@ -28,8 +29,9 @@
 #pragma mark - helper methods
 
 //Helper to create the base URL
-- (NSString *)createBaseURL {    
-    return [NSString stringWithFormat:@"%@/%@/%@/",[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN],kPortalContainerName,kRestContextName]; 
+- (NSString *)createBaseURL {  
+    NSString *domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    return !domainName || [domainName length] == 0 ? nil : [NSString stringWithFormat:@"%@/%@/%@/",domainName, kPortalContainerName, kRestContextName]; 
 }
 
 

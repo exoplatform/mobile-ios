@@ -29,11 +29,7 @@
     IBOutlet UITableView*       _tbvlServerList;
     IBOutlet UIView*            _vContainer;
     IBOutlet UIView*            _vLoginView;
-    
-    NSMutableArray*             _arrServerList;
-    NSString*                   _strHost;
-    int                         _intSelectedServer;
-    
+        
     NSDictionary*							_dictLocalize;	//Language dictionary
 	int										_intSelectedLanguage;	//Language index
 }

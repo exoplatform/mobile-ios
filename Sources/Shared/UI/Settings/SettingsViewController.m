@@ -64,9 +64,6 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
         
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
-		
-        _arrServerList = [[NSMutableArray alloc] init];
-        _intSelectedServer = -1;
         
     }
     return self;
@@ -75,7 +72,6 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 
 - (void)dealloc
 {
-    [_arrServerList release];
     [rememberMe release];
     [autoLogin release];
     [super dealloc];
@@ -211,9 +207,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 
 -(void)loadSettingsInformations {
     //Load Settings informations
-    _arrServerList = [[[ServerPreferencesManager sharedInstance] getServerList] retain];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
     bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
 }
@@ -325,7 +319,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 	}	
 	if(section == 2)
 	{	
-		numofRows = [_arrServerList count] + 1;
+		numofRows = [[ServerPreferencesManager sharedInstance].serverList count] + 1;
 	}
     if(section == 3)
 	{	
@@ -444,9 +438,9 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
                 cell.detailTextLabel.backgroundColor = [UIColor clearColor]; 
             }
             
-            if (indexPath.row < [_arrServerList count]) 
+            if (indexPath.row < [[ServerPreferencesManager sharedInstance].serverList count]) 
             {
-                if (indexPath.row == _intSelectedServer) 
+                if (indexPath.row == [ServerPreferencesManager sharedInstance].selectedServerIndex) 
                 {
                     cell.accessoryView = [self makeCheckmarkOnAccessoryView];
                 }
@@ -455,7 +449,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
                     cell.accessoryView = [self makeCheckmarkOffAccessoryView];
                 }
                 
-                ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+                ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
                 
                 cell.textLabel.text = tmpServerObj._strServerName;
                 cell.detailTextLabel.text = tmpServerObj._strServerUrl;
@@ -545,7 +539,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     
 	else if(indexPath.section == 2)
 	{
-        if (indexPath.row == [_arrServerList count]) 
+        if (indexPath.row == [[ServerPreferencesManager sharedInstance].serverList count]) 
         {
             _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
             

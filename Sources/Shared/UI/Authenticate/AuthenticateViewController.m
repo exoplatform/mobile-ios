@@ -37,8 +37,6 @@
 	{
 		//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
         _strBSuccessful = [[NSString alloc] init];
-        _intSelectedServer = -1;
-        _arrServerList = [[NSMutableArray alloc] init];
         
     }
     return self;
@@ -105,24 +103,12 @@
     //Hide the Navigation Bar
     self.navigationController.navigationBarHidden = YES;
     
-    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
-    _arrServerList = [configuration getServerList];
-    
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
 	
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     
 	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
 	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-    
-	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-    if (_strHost == nil) 
-    {
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:_intSelectedServer];
-        _strHost = tmpServerObj._strServerUrl;
-        [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-    }
 	
 	if(_bRememberMe || _bAutoLogin)
 	{
@@ -176,7 +162,6 @@
 {
     [self setScrollView:nil];
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	_strHost = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
 	
 	NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]; 
 	if(username)
@@ -347,7 +332,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {	
-    return [_arrServerList count];
+    return [[ServerPreferencesManager sharedInstance].serverList count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -399,7 +384,7 @@
     }
     
     
-    if (indexPath.row == _intSelectedServer) 
+    if (indexPath.row == [ServerPreferencesManager sharedInstance].selectedServerIndex) 
     {
         cell.accessoryView = [self makeCheckmarkOnAccessoryView];
     }
@@ -408,7 +393,7 @@
         cell.accessoryView = [self makeCheckmarkOffAccessoryView];
     }
     
-	ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+	ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
     cell.textLabel.text = tmpServerObj._strServerName;
     cell.detailTextLabel.text = tmpServerObj._strServerUrl;
     
@@ -418,17 +403,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
-    _strHost = [tmpServerObj._strServerUrl retain];
-    _intSelectedServer = indexPath.row;
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
-	[userDefaults setObject:[NSString stringWithFormat:@"%d",_intSelectedServer] forKey:EXO_PREFERENCE_SELECTED_SEVER];
-    [_tbvlServerList reloadData];
+    [ServerPreferencesManager sharedInstance].selectedServerIndex = indexPath.row;
     
     //Invalidate server informations
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
     [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
+    
+    // Reload the tableview
+    [_tbvlServerList reloadData];
 }
 
 
@@ -473,7 +456,6 @@
 	
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     
-	[userDefaults setObject:_strHost forKey:EXO_PREFERENCE_DOMAIN];
 	[userDefaults setObject:_txtfUsername.text forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
     
@@ -502,7 +484,7 @@
 	[userDefaults setObject:username forKey:EXO_PREFERENCE_USERNAME];
 	[userDefaults setObject:password forKey:EXO_PREFERENCE_PASSWORD];	
 	
-	_strBSuccessful = [[AuthenticateProxy sharedInstance] sendAuthenticateRequest:_strHost username:username password:password];
+	_strBSuccessful = [[AuthenticateProxy sharedInstance] sendAuthenticateRequest:[ServerPreferencesManager sharedInstance].selectedDomain username:username password:password];
     
     //SLM : Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
@@ -555,7 +537,6 @@
     [self unRegisterForKeyboardNotifications];
 	[_txtfUsername release];
 	[_txtfPassword release];
-	[_arrServerList release];
     [_hud release];
     [_scrollView release];
     [super dealloc];	

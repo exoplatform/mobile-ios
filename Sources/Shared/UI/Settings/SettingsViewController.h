@@ -29,9 +29,6 @@
 	UISwitch*                       rememberMe;
 	UISwitch*                       autoLogin;
 	
-    NSMutableArray*                 _arrServerList;
-    int                             _intSelectedServer;
-    
     ServerManagerViewController*    _serverManagerViewController;
     
     id<SettingsDelegateProcotol>    _settingsDelegate;

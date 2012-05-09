@@ -28,10 +28,7 @@
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
 	{
 		_strBSuccessful = [[NSString alloc] init];
-		_intSelectedLanguage = 0;
-        _intSelectedServer = -1;
-        _arrServerList = [[NSMutableArray alloc] init];
-        
+		_intSelectedLanguage = 0;        
 	}
 	return self;
 }

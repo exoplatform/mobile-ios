@@ -20,8 +20,6 @@
 @interface ServerManagerViewController : eXoViewController <UITableViewDelegate, UITableViewDataSource, ServerManagerProtocol>
 {
     IBOutlet UITableView*           _tbvlServerList;
-    NSMutableArray*                 _arrServerList;
-    NSInteger _intSelectedServer;
 }
 
 

@@ -29,15 +29,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     if (self) 
     {
         // Custom initialization
-        _arrServerList = [[NSMutableArray alloc] init];
-        _intSelectedServer = -1;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_arrServerList release];
     [super dealloc];
 }
 
@@ -91,10 +88,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     _tbvlServerList.backgroundColor = EXO_BACKGROUND_COLOR;
 
     
-     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _intSelectedServer = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];  
-    _arrServerList = [[ServerPreferencesManager sharedInstance] getServerList];
-    
     UIBarButtonItem* bbtnAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onBbtnAdd)];
     [self.navigationItem setRightBarButtonItem:bbtnAdd];
     [bbtnAdd release];
@@ -142,7 +135,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    return [_arrServerList count];
+    return [[ServerPreferencesManager sharedInstance].serverList count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,9 +160,9 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         cell.detailTextLabel.backgroundColor = [UIColor clearColor]; 
     }
     
-    if (indexPath.row < [_arrServerList count]) 
+    if (indexPath.row < [[ServerPreferencesManager sharedInstance].serverList count]) 
     {
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+        ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
         
         cell.textLabel.text = tmpServerObj._strServerName;
         cell.detailTextLabel.text = tmpServerObj._strServerUrl;
@@ -186,9 +179,10 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     //[userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+    ServerPreferencesManager *serverPrefManager = [ServerPreferencesManager sharedInstance];
     if([[userDefaults valueForKey:EXO_IS_USER_LOGGED] boolValue]){
-        if(_intSelectedServer != indexPath.row){
-            ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+        if(serverPrefManager.selectedServerIndex != indexPath.row){
+            ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:indexPath.row];
             
             ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
             [serverEditingViewController setDelegate:self];
@@ -197,7 +191,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
             [self.navigationController pushViewController:serverEditingViewController animated:YES];
         }
     } else {
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:indexPath.row];
+        ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:indexPath.row];
         
         ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
         [serverEditingViewController setDelegate:self];
@@ -249,14 +243,15 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
     
+    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
        return NO;
     
     //Check if the server has been existed
     BOOL bExist = NO;
-    for (int i = 0; i < [_arrServerList count]; i++) 
+    for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
     {
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:i];
+        ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:i];
         if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
         {
             bExist = YES;
@@ -269,7 +264,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     if (!bExist) 
     {
-        ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
         
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
@@ -278,16 +272,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         serverObj._bSystemServer = NO;
         
         //Add the server in configuration
-        NSMutableArray* arrAddedServer = [configuration loadUserConfiguration];
+        NSMutableArray* arrAddedServer = [serverPrefManager loadUserConfiguration];
         [arrAddedServer addObject:serverObj];
-        [configuration writeUserConfiguration:arrAddedServer];
+        [serverPrefManager writeUserConfiguration:arrAddedServer];
         [serverObj release];
-        
-        //Reload datas
-        [_arrServerList removeAllObjects];
-        _arrServerList = [configuration getServerList];
+        [serverPrefManager loadServerList]; // reload list of servers
         [_tbvlServerList reloadData];
-                
     }   
     return YES;
 }
@@ -299,16 +289,16 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         return NO;
 
     BOOL bExist = NO;
-    
-    ServerObj* serverObjEdited = [_arrServerList objectAtIndex:index];
+    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+    ServerObj* serverObjEdited = [serverPrefManager.serverList objectAtIndex:index];
     
     ServerObj* tmpServerObj;
-    for (int i = 0; i < [_arrServerList count]; i++) 
+    for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
     {
         if(index == i)
             continue;
         
-        tmpServerObj = [_arrServerList objectAtIndex:i];
+        tmpServerObj = [serverPrefManager.serverList objectAtIndex:i];
         if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
         {
             bExist = YES;
@@ -325,31 +315,29 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         serverObjEdited._strServerName = strServerName;
         serverObjEdited._strServerUrl = strServerUrl;
         
-        [_arrServerList replaceObjectAtIndex:index withObject:serverObjEdited];
+        [serverPrefManager.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
         
         NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i < [_arrServerList count]; i++) 
+        for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
         {
-            tmpServerObj = [_arrServerList objectAtIndex:i];
+            tmpServerObj = [serverPrefManager.serverList objectAtIndex:i];
             if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer) 
             {
                 [arrTmp addObject:tmpServerObj];
             }
         }
         
-        ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
         if (serverObjEdited._bSystemServer) 
         {
-            [configuration writeSystemConfiguration:arrTmp];
+            [serverPrefManager writeSystemConfiguration:arrTmp];
         }
         else
         {
-            [configuration writeUserConfiguration:arrTmp];
+            [serverPrefManager writeUserConfiguration:arrTmp];
         }
         
-        [_arrServerList removeAllObjects];
-        _arrServerList = [configuration getServerList];
+        [serverPrefManager loadServerList];
         [_tbvlServerList reloadData];
         
     }
@@ -359,43 +347,44 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)deleteServerObjAtIndex:(int)index
 {
-    ServerObj* deletedServerObj = [_arrServerList objectAtIndex:index];
+    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+    ServerObj* deletedServerObj = [serverPrefManager.serverList objectAtIndex:index];
     
-    [_arrServerList removeObjectAtIndex:index];
-    
+    [serverPrefManager.serverList removeObjectAtIndex:index];
+    int currentIndex = serverPrefManager.selectedServerIndex;
+    if ([serverPrefManager.serverList count] > 0) {
+        if(currentIndex > index) {
+            serverPrefManager.selectedServerIndex = currentIndex - 1;
+        } else if (currentIndex == index) {
+            serverPrefManager.selectedServerIndex = currentIndex < serverPrefManager.serverList.count ? currentIndex : serverPrefManager.serverList.count - 1;           
+        }        
+    } else {
+        serverPrefManager.selectedServerIndex = -1;
+    }
     NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < [_arrServerList count]; i++) 
+    for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
     {
-        ServerObj* tmpServerObj = [_arrServerList objectAtIndex:i];
+        ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:i];
         if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer) 
         {
             [arrTmp addObject:tmpServerObj];
         }
     }
     
-    ServerPreferencesManager* configuration = [ServerPreferencesManager sharedInstance];
     if (deletedServerObj._bSystemServer) 
     {
-        [configuration writeSystemConfiguration:arrTmp];
+        [serverPrefManager writeSystemConfiguration:arrTmp];
     }
     else
     {
-        [configuration writeUserConfiguration:arrTmp];
+        [serverPrefManager writeUserConfiguration:arrTmp];
     }
     
     [arrTmp release];
     
-    [_arrServerList removeAllObjects];
-    _arrServerList = [configuration getServerList];
+    [serverPrefManager loadServerList]; // reload list of servers
     [_tbvlServerList reloadData];
-    
-     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    int currentIndex = [[userDefaults objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
-    if(currentIndex > index)
-        [userDefaults setObject:[NSString stringWithFormat:@"%d", --currentIndex] forKey:EXO_PREFERENCE_SELECTED_SEVER];
-    
-    
     
     return YES;
 }

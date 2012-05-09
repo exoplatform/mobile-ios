@@ -26,8 +26,12 @@
     NSMutableArray*        _arrServerList;
 }
 
+@property (nonatomic, assign) int selectedServerIndex;
+@property (nonatomic, readonly) NSString *selectedDomain;
+
 + (ServerPreferencesManager*)sharedInstance;
-- (NSMutableArray*)getServerList;
+- (NSMutableArray *)serverList;
+- (void)loadServerList;
 - (CXMLNode*) getNode: (CXMLNode*) element withName: (NSString*) name;
 - (NSString*) getNodeValue: (CXMLNode*) node withName: (NSString*) name;
 - (NSMutableArray*)parseConfiguration:(NSData*)data withBSystemSever:(BOOL)bSystemServer;

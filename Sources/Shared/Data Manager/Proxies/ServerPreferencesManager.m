@@ -10,6 +10,7 @@
 #import "CXMLDocument.h"
 #import "CXMLNode.h"
 #import "CXMLElement.h"
+#import "defines.h"
 
 @implementation ServerObj
 @synthesize _strServerName;
@@ -20,6 +21,9 @@
 
 //======================================================================
 @implementation ServerPreferencesManager
+
+@synthesize selectedServerIndex = _selectedServerIndex;
+@synthesize selectedDomain = _selectedDomain;
 
 + (ServerPreferencesManager*)sharedInstance
 {
@@ -39,19 +43,20 @@
 {
 	self = [super init];
     if (self) 
-    {
-        _arrServerList = [[NSMutableArray alloc] init];
+    {        
+        _selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     }	
 	return self;
 }
 
 - (void) dealloc
 {
+    [_selectedDomain release];
 	[_arrServerList release];
 	[super dealloc];
 }
 
-- (NSMutableArray*)getServerList
+- (void)loadServerList
 {
     NSError* error;
     NSMutableArray* arrSystemServerList;
@@ -107,6 +112,7 @@
     
     //Load the user Configuration    
     arrUserServerList = [self loadUserConfiguration];
+    if (!_arrServerList) _arrServerList = [[NSMutableArray alloc] init];
     [_arrServerList removeAllObjects];
     if ([arrSystemServerList count] > 0) 
     {
@@ -119,7 +125,6 @@
     
     NSData* tmpData = [self createXmlDataWithServerList:_arrServerList];
     [self writeData:tmpData toFile:@"Test"];
-    return _arrServerList;
 }
 
 //Load the system Configuration
@@ -202,6 +207,8 @@
 //Saved the system Configuration to the /app/documents
 - (void)writeSystemConfiguration:(NSMutableArray*)arrSystemServerList
 {
+    // update selected server info to userdefault
+    self.selectedServerIndex = self.selectedServerIndex;
     NSData* dataWrite  = [self createXmlDataWithServerList:arrSystemServerList];
     [self writeData:dataWrite toFile:@"SystemConfiguration"];
 }
@@ -219,6 +226,8 @@
 //Saved the user Configuration to the /app/documents
 - (BOOL)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList
 {
+    // update selected server info
+    self.selectedServerIndex = self.selectedServerIndex;
     NSData* dataWrite = [self createXmlDataWithServerList:arrUserSystemServerList];
     return [self writeData:dataWrite toFile:@"UserConfiguration"];
 }
@@ -298,6 +307,40 @@
 		return [child stringValue];
 	}
 	return nil;
+}
+
+- (NSMutableArray *)serverList {
+    if (!_arrServerList) {
+        [self loadServerList];
+    }
+    return _arrServerList;
+}
+
+#pragma mark - getters & setters 
+- (void)setSelectedServerIndex:(int)selectedServerIndex {
+    // customize setter of selectedServerIndex
+    int tmpIndex = -1; // default value for selected server index 
+    NSString *tmpDomain = nil; // default value for selected domain
+    if (selectedServerIndex >= 0 && self.serverList.count > 0) {
+        if (selectedServerIndex < [self.serverList count]) {
+            tmpIndex = selectedServerIndex;
+            ServerObj *selectedObj = [self.serverList objectAtIndex:selectedServerIndex];
+            tmpDomain = selectedObj._strServerUrl;
+        }
+    }
+    [_selectedDomain release];
+    _selectedDomain = [tmpDomain retain];
+    _selectedServerIndex = tmpIndex;
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedServerIndex] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+    [userDefaults setObject:_selectedDomain forKey:EXO_PREFERENCE_DOMAIN];
+}
+
+- (NSString *)selectedDomain {
+    if (!_selectedDomain) {
+        _selectedDomain = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+    }
+    return [[_selectedDomain copy] autorelease];
 }
 
 @end
