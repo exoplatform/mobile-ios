@@ -1003,41 +1003,41 @@ static NSString *PRIVATE_GROUP = @"Private";
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
     }
     
+    // Display HUD loading
+    [self displayHudLoader];
     
     UIImage* selectedImage = image;
-    NSData* imageData = UIImagePNGRepresentation(selectedImage);
     
-    if ([imageData length] > 0) 
-    {
-        NSString *imageName = [[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
+    dispatch_queue_t uploadQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(uploadQueue, ^(void) {
+        NSData* imageData = UIImagePNGRepresentation(selectedImage);
         
-        if(imageName == nil) {
+        if ([imageData length] > 0) 
+        {
+            NSString *imageName = [[editingInfo objectForKey:UIImagePickerControllerReferenceURL] lastPathComponent];
             
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
-            NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
+            if(imageName == nil) {
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
+                NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
+                
+                //release the date formatter because, not needed after that piece of code
+                [dateFormatter release];
+                imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+                
+            }
             
-            //release the date formatter because, not needed after that piece of code
-            [dateFormatter release];
-            imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
-            
+            _stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
+            [self sendImageInBackgroundForDirectory:_stringForUploadPhoto data:imageData];
         }
-        
-        _stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
-        
-        //TODO Localize this string
-        [self displayHudLoader];
-        
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                    [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
-        [invocation setTarget:self];
-        [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
-        [invocation setArgument:&_stringForUploadPhoto atIndex:2];
-        [invocation setArgument:&imageData atIndex:3];
-        [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
-        
-    }
-
+        dispatch_sync(dispatch_get_main_queue(), ^(void) {
+            [self hideLoader:YES]; 
+        });
+    });
+    
+    dispatch_release(uploadQueue);
     
 }
 

@@ -133,7 +133,7 @@
 }
 
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
-    [self presentModalViewController:picker animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:picker animated:YES];
 }
 
 #pragma mark -
@@ -331,48 +331,6 @@
  
 
 #pragma mark - ActionSheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if (buttonIndex<2) {
-        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
-        thePicker.delegate = self;
-            
-        if(buttonIndex == 0)//Take a photo
-        {
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
-            {  
-                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
-
-                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-/*                
-                UINavigationController *modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:thePicker];
-                modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
-                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:modalNavigationSettingViewController animated:YES];
-                [modalNavigationSettingViewController release];
- */
-                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
-            }
-            else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alert show];
-                [alert release];
-            }
-        }
-        else
-        {
-            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
-            
-            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
-        }
-        [thePicker release];
-    }
-}
-
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
