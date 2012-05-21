@@ -10,7 +10,7 @@
 
 @class Activity;
 @class EGOImageView;
-@class SocialActivityDetails;
+@class SocialActivity;
 @class SocialUserProfile;
 @interface ActivityDetailLikeTableViewCell : UITableViewCell {
     
@@ -18,7 +18,7 @@
     
     UIButton*              _btnLike;
     
-    SocialActivityDetails*  _socialActivityDetails;
+    SocialActivity        *_socialActivityDetails;
     SocialUserProfile*      _socialUserProfile;
     id                      _delegate;
 }
@@ -32,5 +32,5 @@
 - (void)setUserProfile:(SocialUserProfile*)socialUserProfile;
 - (void)setUserLikeThisActivity:(BOOL)userLikeThisActivity;
 - (void)setContent:(NSString*)strLikes;
-- (void)setSocialActivityDetails:(SocialActivityDetails*)socialActivityDetails;
+- (void)setSocialActivityDetails:(SocialActivity *)socialActivityDetails;
 @end

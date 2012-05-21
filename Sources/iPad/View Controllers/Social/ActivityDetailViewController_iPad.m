@@ -8,7 +8,6 @@
 
 #import "ActivityDetailViewController_iPad.h"
 #import "MessageComposerViewController_iPad.h"
-#import "SocialActivityStream.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 #import "ActivityLinkDisplayViewController_iPad.h"

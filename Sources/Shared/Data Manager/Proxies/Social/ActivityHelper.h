@@ -6,8 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SocialActivityStream.h"
-#import "SocialActivityDetails.h"
+#import "SocialActivity.h"
 
 #define ACTIVITY_DEFAULT 0
 #define ACTIVITY_FORUM_CREATE_TOPIC 1
@@ -48,8 +47,8 @@ static NSString *STREAM_TYPE_SPACE = @"space";
     
 }
 
-+ (CGFloat)getHeightForActivityCell:(SocialActivityStream *)activtyStream forTableViewWidth:(CGFloat)fWidth;
++ (CGFloat)getHeightForActivityCell:(SocialActivity *)activtyStream forTableViewWidth:(CGFloat)fWidth;
 + (float)getHeightSizeForText:(NSString*)text andTableViewWidth:(CGFloat)fWidth;
 + (float)heightForAllDecorationsWithTableViewWidth:(CGFloat)fWidth;
-+ (CGFloat)getHeightForActivityDetailCell:(SocialActivityDetails *)activtyStreamDetail forTableViewWidth:(CGFloat)fWidth;
++ (CGFloat)getHeightForActivityDetailCell:(SocialActivity *)activtyStreamDetail forTableViewWidth:(CGFloat)fWidth;
 @end

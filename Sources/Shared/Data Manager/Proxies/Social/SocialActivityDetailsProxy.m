@@ -8,9 +8,9 @@
 
 #import "SocialActivityDetailsProxy.h"
 #import "SocialRestConfiguration.h"
-#import "SocialActivityDetails.h"
 #import "SocialIdentity.h"
 #import "SocialComment.h"
+#import "SocialActivity.h"
 
 
 
@@ -122,7 +122,7 @@
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
     
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityDetails class]];
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"totalNumberOfComments",@"totalNumberOfComments",
@@ -133,7 +133,7 @@
      @"title",@"title",
      @"body",@"body",
      @"priority",@"priority",
-     @"id",@"identifyId",
+     @"id",@"activityId",
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
      @"liked",@"liked",

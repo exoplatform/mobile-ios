@@ -14,8 +14,7 @@
 
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
-@class SocialActivityStream;
-@class SocialActivityDetails;
+@class SocialActivity;
 @class SocialUserProfile;
 
 #define kFontForName [UIFont fontWithName:@"Helvetica-Bold" size:13]
@@ -27,7 +26,7 @@
     IBOutlet UITableView*                   _tblvActivityDetail;
 //    IBOutlet UINavigationBar*               _navigationBar;
             
-    SocialActivityStream*                   _socialActivityStream;
+    SocialActivity                          *_socialActivityStream;
     
     //Cell for the content of the message
     ActivityDetailMessageTableViewCell*     _cellForMessage;
@@ -35,7 +34,7 @@
     //Cell for the like part of the screen
     ActivityDetailLikeTableViewCell*        _cellForLikes;
         
-    SocialActivityDetails*                  _socialActivityDetails;
+    SocialActivity                         *_socialActivityDetails;
     SocialUserProfile*                      _socialUserProfile;
     
     BOOL                                    _currentUserLikeThisActivity;
@@ -61,7 +60,7 @@
 }
 @property (retain) NSString *iconType;
 
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
+- (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
 
 @end

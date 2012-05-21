@@ -7,7 +7,7 @@
 //
 
 #import "SocialPostActivity.h"
-#import "SocialActivityDetails.h"
+#import "SocialActivity.h"
 #import "SocialRestConfiguration.h"
 #import "defines.h"
 
@@ -67,16 +67,16 @@
     RKObjectRouter* router = [[RKObjectRouter new] autorelease];
     manager.router = router;
     
-    // Send POST requests for instances of SocialActivityDetails to '/activity.json'
-    [router routeClass:[SocialActivityDetails class] toResourcePath:@"activity.json" forMethod:RKRequestMethodPOST];
+    // Send POST requests for instances of SocialActivity to '/activity.json'
+    [router routeClass:[SocialActivity class] toResourcePath:@"activity.json" forMethod:RKRequestMethodPOST];
     
-    // Let's create an SocialActivityDetails
-    SocialActivityDetails* activity = [[SocialActivityDetails alloc] init];
+    // Let's create an SocialActivity
+    SocialActivity *activity = [[SocialActivity alloc] init];
     activity.title = message;
     
     //Register our mappings with the provider FOR SERIALIZATION
     RKObjectMapping *activitySimpleMapping = [RKObjectMapping mappingForClass: 
-                                              [SocialActivityDetails class]]; 
+                                              [SocialActivity class]]; 
     [activitySimpleMapping mapKeyPath:@"title" toAttribute:@"title"];
     
     //Attach file
@@ -112,13 +112,13 @@
     
     //serialization mapping 
     [manager.mappingProvider 
-     setSerializationMapping:activitySimpleSerializationMapping forClass:[SocialActivityDetails 
+     setSerializationMapping:activitySimpleSerializationMapping forClass:[SocialActivity 
                                                                    class]]; 
     
     
     
     //Now create the mapping for the response
-    RKObjectMapping* mappingForResponse = [RKObjectMapping mappingForClass:[SocialActivityDetails class]];
+    RKObjectMapping* mappingForResponse = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mappingForResponse mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"totalNumberOfComments",@"totalNumberOfComments",
@@ -127,7 +127,7 @@
      @"activityStream",@"activityStream",
      @"title",@"title",
      @"priority",@"priority",
-     @"identifyId",@"identifyId",
+     @"activityId",@"activityId",
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
      @"posterIdentity",@"posterIdentity",

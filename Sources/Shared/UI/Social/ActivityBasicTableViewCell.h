@@ -12,7 +12,7 @@
 
 @class Activity;
 @class EGOImageView;
-@class SocialActivityStream;
+@class SocialActivity;
 @class ActivityStreamBrowseViewController;
 @class SocialUserProfile;
 
@@ -29,7 +29,7 @@
     
     UIImageView*                            _imgvMessageBg;
     
-    SocialActivityStream*                   _socialActivytyStream;
+    SocialActivity*                   _socialActivytyStream;
     ActivityStreamBrowseViewController*     _delegate;
     NSInteger                               _activityType;
     
@@ -40,7 +40,7 @@
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
-@property (retain, nonatomic) SocialActivityStream*  socialActivytyStream;
+@property (retain, nonatomic) SocialActivity*  socialActivytyStream;
 @property (retain, nonatomic) ActivityStreamBrowseViewController* delegate;
 
 @property (retain, nonatomic) IBOutlet UIImageView*  imgType;
@@ -54,12 +54,12 @@
 - (void)customizeAvatarDecorations;
 - (void)configureCellForWidth:(CGFloat)fWidth;
 - (void)configureFonts:(BOOL)highlighted;
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream;
+- (void)setSocialActivityStream:(SocialActivity *)socialActivityStream;
 
 
 //Methods for customizing + setting the content of the cell for specific activity
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
-- (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream*)socialActivityStream;
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream;
 
 
 //Actions over the cell

@@ -22,10 +22,9 @@
 #import "MessageComposerViewController.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
-#import "SocialActivityStream.h"
+#import "SocialActivity.h"
 #import "SocialActivityDetailsProxy.h"
 #import "SocialUserProfileProxy.h"
-#import "SocialActivityDetails.h"
 #import "SocialComment.h"
 #import "SocialLikeActivityProxy.h"
 #import "ActivityDetailLikeTableViewCell.h"
@@ -50,7 +49,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _socialActivityDetails = [[SocialActivityDetails alloc] init];
+        _socialActivityDetails = [[SocialActivity alloc] init];
         _socialActivityDetails.comments = [[NSArray alloc] init];
         
         _activityAction = 0;
@@ -548,8 +547,8 @@
 - (void)updateActivityInActivityStream {
     
     
-    _socialActivityStream.totalNumberOfLikes = [_socialActivityDetails.totalNumberOfLikes intValue];
-    _socialActivityStream.totalNumberOfComments = [_socialActivityDetails.totalNumberOfComments intValue];  
+    _socialActivityStream.totalNumberOfLikes = _socialActivityDetails.totalNumberOfLikes;
+    _socialActivityStream.totalNumberOfComments = _socialActivityDetails.totalNumberOfComments;  
     
     [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];
 }
@@ -628,7 +627,7 @@
     
 }
 
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
+- (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
 {
     //[self.view insertSubview:maskView belowSubview:_hudActivityDetails.view];
     _socialActivityStream = socialActivityStream;

@@ -10,8 +10,7 @@
 #import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SocialActivityStream.h"
-#import "SocialActivityDetails.h"
+#import "SocialActivity.h"
 #import "defines.h"
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
@@ -124,7 +123,7 @@
 }
 
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     switch (_activityType) {
         case ACTIVITY_DEFAULT:

@@ -7,7 +7,6 @@
 //
 
 #import "ActivityWikiTableViewCell.h"
-#import "SocialActivityStream.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "NSString+HTML.h"
@@ -79,7 +78,7 @@
     [self.contentView addSubview:_lbMessage];
 }
 
-- (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
@@ -88,7 +87,7 @@
     switch (socialActivityStream.activityType) {
         case ACTIVITY_WIKI_MODIFY_PAGE:{
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", 
-                             socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                             socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
                              Localize(@"EditWiki")];
             
         }
@@ -96,7 +95,7 @@
         case ACTIVITY_WIKI_ADD_PAGE:
         {
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", 
-                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
                               Localize(@"CreateWiki")];
         }
             

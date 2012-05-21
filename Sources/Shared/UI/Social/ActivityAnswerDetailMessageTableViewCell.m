@@ -8,7 +8,6 @@
 
 #import "ActivityAnswerDetailMessageTableViewCell.h"
 
-#import "SocialActivityDetails.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "defines.h"
@@ -48,7 +47,7 @@
     [self.contentView addSubview:_htmlMessage];
 }
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];

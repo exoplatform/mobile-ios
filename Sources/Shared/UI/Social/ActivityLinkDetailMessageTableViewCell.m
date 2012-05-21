@@ -7,7 +7,6 @@
 //
 
 #import "ActivityLinkDetailMessageTableViewCell.h"
-#import "SocialActivityDetails.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "defines.h"
@@ -49,7 +48,7 @@
 }
 
 #define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;

@@ -9,7 +9,6 @@
 #import "ActivityDetailViewController_iPhone.h"
 #import "MessageComposerViewController_iPhone.h"
 #import "ActivityDetailViewController.h"
-#import "SocialActivityStream.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "MessageComposerViewController.h"
 #import "defines.h"

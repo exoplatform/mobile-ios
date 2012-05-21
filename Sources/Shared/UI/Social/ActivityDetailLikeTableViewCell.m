@@ -10,7 +10,7 @@
 #import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SocialActivityDetails.h"
+#import "SocialActivity.h"
 #import "ActivityDetailViewController.h"
 
 @implementation ActivityDetailLikeTableViewCell
@@ -78,7 +78,7 @@
     _lbMessage.text = strLikes;
 }
 
-- (void)setSocialActivityDetails:(SocialActivityDetails*)socialActivityDetails
+- (void)setSocialActivityDetails:(SocialActivity *)socialActivityDetails
 {
     _socialActivityDetails = [socialActivityDetails retain];
     [_btnLike addTarget:self action:@selector(btnLikeAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -92,7 +92,7 @@
 -(void)btnLikeAction:(UIButton *)sender
 {
     if([_delegate respondsToSelector:@selector(likeDislikeActivity:)])
-        [_delegate likeDislikeActivity:_socialActivityDetails.identifyId];
+        [_delegate likeDislikeActivity:_socialActivityDetails.identityId];
     
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "ActivityPictureDetailMessageTableViewCell.h"
-#import "SocialActivityDetails.h"
+#import "SocialActivity.h"
 #import "EGOImageView.h"
 #import "defines.h"
 #import "ActivityHelper.h"
@@ -39,7 +39,7 @@
     _lbFileName.numberOfLines = 2;
 }
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];

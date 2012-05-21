@@ -8,7 +8,6 @@
 
 #import "ActivityCalendarDetailMessageTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SocialActivityDetails.h"
 #import "defines.h"
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
@@ -62,7 +61,7 @@
     [self.contentView addSubview:_htmlMessage];
 }
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];

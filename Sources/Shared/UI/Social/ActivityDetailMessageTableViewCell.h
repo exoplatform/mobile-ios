@@ -11,8 +11,7 @@
 #import "defines.h"
 @class Activity;
 @class EGOImageView;
-@class SocialActivityStream;
-@class SocialActivityDetails;
+@class SocialActivity;
 @class ActivityDetail;
 
 
@@ -53,6 +52,6 @@
 - (void)customizeAvatarDecorations;
 - (void)configureCell;
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail;
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail;
 
 @end
