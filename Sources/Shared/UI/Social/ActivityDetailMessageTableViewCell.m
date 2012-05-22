@@ -17,14 +17,13 @@
 
 @implementation ActivityDetailMessageTableViewCell
 
+@synthesize socialActivity = _socialActivity;
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;
 @synthesize webViewForContent = _webViewForContent;
 @synthesize webViewComment =  _webViewComment;
 
 @synthesize imgType = _imgType;
-@synthesize activityType = _activityType;
-@synthesize templateParams = _templateParams;
 @synthesize imgvAttach = _imgvAttach;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -125,7 +124,8 @@
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
-    switch (_activityType) {
+    self.socialActivity = socialActivityDetail;
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_DEFAULT:
         {
             NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]?[socialActivityDetail.title copy]:@""];

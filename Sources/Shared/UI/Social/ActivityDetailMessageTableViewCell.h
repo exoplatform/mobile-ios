@@ -29,12 +29,10 @@
     UIWebView*             _webViewForContent;
     UIWebView   *          _webViewComment;
     
-    
-    NSInteger             _activityType;
-    NSDictionary*          _templateParams;
-    
     TTStyledTextLabel*     htmlLabel;
 }
+
+@property (nonatomic, retain) SocialActivity *socialActivity;
 
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
@@ -42,8 +40,6 @@
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
 @property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain, nonatomic) IBOutlet UIImageView* imgType;
-@property  NSInteger activityType;
-@property (retain, nonatomic) NSDictionary *templateParams;
 
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;

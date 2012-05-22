@@ -59,7 +59,8 @@
     
     NSString *textWithoutHtml = @"";
     NSString *htmlStr = nil;
-    switch (_activityType) {
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_FORUM_CREATE_TOPIC:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"NewTopic")];
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"TopicLink"],[_templateParams valueForKey:@"TopicName"]]

@@ -46,7 +46,7 @@
     messageComposerViewController.delegate = self;
     messageComposerViewController.tblvActivityDetail = _tblvActivityDetail;
     messageComposerViewController.isPostMessage = NO;
-    messageComposerViewController.strActivityID = _socialActivityStream.activityId;
+    messageComposerViewController.strActivityID = self.socialActivity.activityId;
     
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
@@ -67,13 +67,13 @@
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{
     NSURL *url;
-    switch (_socialActivityStream.activityType) {
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_DOC:{
-            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [self.socialActivity.templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
             break;
         case ACTIVITY_CONTENTS_SPACE:{
-            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_socialActivityStream.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [self.socialActivity.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
             break;
     }

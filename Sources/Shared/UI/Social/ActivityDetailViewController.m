@@ -43,14 +43,12 @@
 @implementation ActivityDetailViewController
 
 @synthesize iconType = _iconType;
+@synthesize socialActivity = _socialActivity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        _socialActivityDetails = [[SocialActivity alloc] init];
-        _socialActivityDetails.comments = [[NSArray alloc] init];
         
         _activityAction = 0;
         zoomOutOrZoomIn = NO;
@@ -63,12 +61,10 @@
 {
     [_tblvActivityDetail release];
     [_navigation release];
-    [_socialActivityStream release];
     
     [_cellForMessage release];
     [_cellForLikes release];
 
-    [_socialActivityDetails release];
     
     [_txtvMsgComposer release];
     [_btnMsgComposer release];    
@@ -135,9 +131,6 @@
         _reloading = FALSE;
         
 	}
-    
-    [_btnMsgComposer setHidden:YES];
-    [_tblvActivityDetail setHidden:YES];
 }
 
 /*
@@ -200,11 +193,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
     int n = 3;
-    if ([_socialActivityDetails.likedByIdentities count] == 0) 
+    if ([self.socialActivity.likedByIdentities count] == 0) 
     {
         //n --;
     }
-    if ([_socialActivityDetails.comments count] == 0) 
+    if ([self.socialActivity.comments count] == 0) 
     {
         n--;
     }
@@ -226,7 +219,7 @@
     }
     if (section == 2) 
     {
-        n = [_socialActivityDetails.comments count];
+        n = [self.socialActivity.comments count];
     }
     return n;
 }
@@ -237,8 +230,7 @@
     int n = 0;
     if (indexPath.section == 0) 
     {
-        _socialActivityDetails.activityType = _socialActivityStream.activityType;
-        return _socialActivityDetails.cellHeight;
+        return self.socialActivity.cellHeight;
     }
     
     if (indexPath.section == 1) 
@@ -247,7 +239,7 @@
     }
     if (indexPath.section == 2) 
     {
-        SocialComment* comment = [_socialActivityDetails.comments objectAtIndex:indexPath.row];
+        SocialComment* comment = [self.socialActivity.comments objectAtIndex:indexPath.row];
         n = [self getHeighSizeForTableView:tableView andText:comment.text];
 
     }
@@ -274,7 +266,7 @@
     if (indexPath.section == 0) 
     {
         ActivityDetailMessageTableViewCell* cell;
-        switch (_socialActivityStream.activityType) {
+        switch (self.socialActivity.activityType) {
             case ACTIVITY_DOC:
             case ACTIVITY_CONTENTS_SPACE:{
                 //Check if we found a cell
@@ -401,11 +393,9 @@
         }
         
         
-        cell.templateParams = _socialActivityStream.templateParams;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.activityType = _socialActivityStream.activityType;
         cell.imgType.image = [UIImage imageNamed:_iconType];
-        [cell setSocialActivityDetail:_socialActivityDetails];
+        [cell setSocialActivityDetail:self.socialActivity];
         return cell;
     }
     else if (indexPath.section == 1) 
@@ -426,18 +416,18 @@
         [cell setContent:@""];
         
         NSString *strLike;
-        NSMutableArray *arrLikes = [[NSMutableArray alloc] initWithCapacity:[_socialActivityDetails.likedByIdentities count]];
+        NSMutableArray *arrLikes = [[NSMutableArray alloc] initWithCapacity:[self.socialActivity.likedByIdentities count]];
         _currentUserLikeThisActivity = NO;
         
-        if ([_socialActivityDetails.likedByIdentities count] > 0)
+        if ([self.socialActivity.likedByIdentities count] > 0)
         { 
-            for (int i = 0; i < [_socialActivityDetails.likedByIdentities count]; i++) 
+            for (int i = 0; i < [self.socialActivity.likedByIdentities count]; i++) 
             {
-                SocialUserProfile *userProfile = (SocialUserProfile*) [_socialActivityDetails.likedByIdentities objectAtIndex:i];
+                SocialUserProfile *userProfile = (SocialUserProfile*) [self.socialActivity.likedByIdentities objectAtIndex:i];
                      
                 NSString *username = userProfile.fullName;
                 
-                if ([_socialUserProfile.identity isEqualToString:userProfile.identity]) {
+                if ([self.socialActivity.posterIdentity.identity isEqualToString:userProfile.identity]) {
                     _currentUserLikeThisActivity = YES;
                     continue;
                 }
@@ -484,10 +474,10 @@
         }
         [arrLikes release];
         //NSLog(@"%@", strLike);
-        [cell setUserProfile:_socialActivityDetails.posterIdentity];
+        [cell setUserProfile:self.socialActivity.posterIdentity];
         [cell setContent:strLike];
         [cell setUserLikeThisActivity:_currentUserLikeThisActivity];
-        [cell setSocialActivityDetails:_socialActivityDetails];
+        [cell setSocialActivityDetails:self.socialActivity];
         
         return cell;
     }
@@ -507,7 +497,7 @@
             cell.webViewForContent.delegate = self;
         }
         
-        SocialComment* socialComment = [_socialActivityDetails.comments objectAtIndex:indexPath.row];
+        SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
         [cell setSocialComment:socialComment];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -545,11 +535,6 @@
 #pragma mark - Data Management
 
 - (void)updateActivityInActivityStream {
-    
-    
-    _socialActivityStream.totalNumberOfLikes = _socialActivityDetails.totalNumberOfLikes;
-    _socialActivityStream.totalNumberOfComments = _socialActivityDetails.totalNumberOfComments;  
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];
 }
 
@@ -565,7 +550,7 @@
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
     
     //Prepare data to be displayed
-    for (SocialComment* comment in _socialActivityDetails.comments) 
+    for (SocialComment* comment in self.socialActivity.comments) 
     {
         [comment convertToPostedTimeInWords];
         [comment convertHTMLEncoding];
@@ -583,14 +568,14 @@
     
     //if comment tableview scroll at bottom
     if(isPostComment){
-        if([_socialActivityDetails.comments count] > 0){
-            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_socialActivityDetails.comments count] - 1 inSection:2] 
+        if([self.socialActivity.comments count] > 0){
+            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:2] 
                                        atScrollPosition:UITableViewScrollPositionBottom 
                                                animated:YES];
         }
         isPostComment = NO;
     }
-    if([_socialActivityDetails.comments count] == 0){
+    if([self.socialActivity.comments count] == 0){
         CGRect rect = CGRectZero;
         float height = 0.0;
         UITableViewCell *cell = [_tblvActivityDetail cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -619,21 +604,19 @@
 #pragma - Proxy Management
 - (void)startLoadingActivityDetail
 {
-    [self displayHudLoader];
     _reloading = YES;
     SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD andNumberOfLikes:4];
     socialActivityDetailsProxy.delegate = self;
-    [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
+    [socialActivityDetailsProxy getActivityDetail:self.socialActivity.activityId];
     
 }
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
 {
     //[self.view insertSubview:maskView belowSubview:_hudActivityDetails.view];
-    _socialActivityStream = socialActivityStream;
-    _socialUserProfile = currentUserProfile;
+    self.socialActivity = socialActivityStream;
     _activityAction = 0;
-    NSLog(@"Tempalte Params:%@ \n Body:%@\nType:%@", _socialActivityStream.body, [_socialActivityStream.templateParams description],_socialActivityStream.type);
+    NSLog(@"Tempalte Params:%@ \n Body:%@\nType:%@", self.socialActivity.body, [self.socialActivity.templateParams description],self.socialActivity.type);
     [self startLoadingActivityDetail];
 }
 
@@ -642,15 +625,14 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy 
 {
-    [_btnMsgComposer setHidden:NO];
-    [_tblvActivityDetail setHidden:NO];
     if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) {
-        [_socialActivityDetails release];
-        _socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
-        [_socialActivityDetails convertToPostedTimeInWords];
-        _socialActivityDetails.activityType = _socialActivityStream.activityType;
-        _socialActivityDetails.templateParams = (NSMutableDictionary *)_socialActivityStream.templateParams;
-        [_socialActivityDetails cellHeightCalculationForWidth:_tblvActivityDetail.frame.size.width];
+        
+        SocialActivity *socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
+        self.socialActivity.likedByIdentities = socialActivityDetails.likedByIdentities;
+        self.socialActivity.comments = socialActivityDetails.comments;
+        
+        [self.socialActivity convertToPostedTimeInWords];
+        [self.socialActivity cellHeightCalculationForWidth:_tblvActivityDetail.frame.size.width];
         //Set the last update date at now 
         _dateOfLastUpdate = [[NSDate date]retain];
         
@@ -658,14 +640,14 @@
         //SocialLikeActivityProxy
     }else{
         if (_activityAction == 2){
-            _socialActivityStream.liked = YES;
+            self.socialActivity.liked = YES;
         } else if (_activityAction == 3){
-            _socialActivityStream.liked = NO;
+            self.socialActivity.liked = NO;
         }
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
                                                                                                              andNumberOfLikes:4];
         socialActivityDetailsProxy.delegate = self;
-        [socialActivityDetailsProxy getActivityDetail:_socialActivityStream.activityId];
+        [socialActivityDetailsProxy getActivityDetail:self.socialActivity.activityId];
     }
 }
 
@@ -684,15 +666,12 @@
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
      
     [alertView show];
-//    [alertView release];
-    [_btnMsgComposer setHidden:YES];
 }
 
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
     [self displayHudLoader];
-    [_socialActivityDetails release];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
     

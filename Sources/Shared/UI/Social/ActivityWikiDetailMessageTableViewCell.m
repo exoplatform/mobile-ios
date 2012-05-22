@@ -55,7 +55,8 @@
     }
     
     NSString *htmlStr = nil;
-    switch (_activityType) {
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_WIKI_ADD_PAGE:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"CreateWiki")];         
         }

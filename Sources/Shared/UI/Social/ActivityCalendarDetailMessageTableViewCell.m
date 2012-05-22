@@ -71,7 +71,8 @@
     }
     
     NSString *htmlStr = nil;
-    switch (_activityType) {
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:{
             htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
             

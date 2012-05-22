@@ -52,6 +52,7 @@
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
