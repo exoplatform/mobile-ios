@@ -72,8 +72,7 @@
     [_refreshHeaderView release];
     [_dateOfLastUpdate release];
     
-//    [tapGesture release];
-//    [maskView release];
+    [_socialActivity release];
         
     [super dealloc];
 }
@@ -401,83 +400,13 @@
     else if (indexPath.section == 1) 
     {
         ActivityDetailLikeTableViewCell* cell = (ActivityDetailLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikeTableViewCell];
-        
-        //Check if we found a cell
-        
+                
         if (cell == nil) 
         {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailLikeTableViewCell" owner:self options:nil];
-            cell = (ActivityDetailLikeTableViewCell *)[nib objectAtIndex:0];    
-            //Create a cell, need to do some configurations
-            [cell configureCell];
+            cell = [[[ActivityDetailLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kIdentifierActivityDetailLikeTableViewCell] autorelease];    
+            cell.delegate = self;
         }
-    
-        cell.delegate = self;
-        [cell setContent:@""];
-        
-        NSString *strLike;
-        NSMutableArray *arrLikes = [[NSMutableArray alloc] initWithCapacity:[self.socialActivity.likedByIdentities count]];
-        _currentUserLikeThisActivity = NO;
-        
-        if ([self.socialActivity.likedByIdentities count] > 0)
-        { 
-            for (int i = 0; i < [self.socialActivity.likedByIdentities count]; i++) 
-            {
-                SocialUserProfile *userProfile = (SocialUserProfile*) [self.socialActivity.likedByIdentities objectAtIndex:i];
-                     
-                NSString *username = userProfile.fullName;
-                
-                if ([self.socialActivity.posterIdentity.identity isEqualToString:userProfile.identity]) {
-                    _currentUserLikeThisActivity = YES;
-                    continue;
-                }
-                [arrLikes addObject:[NSString stringWithFormat:@" %@", [username retain]]];
-            }
-
-            if (_currentUserLikeThisActivity) {
-                [arrLikes insertObject:Localize(@"You") atIndex:0];
-            }
-            
-            //rearrange like
-            int n = [arrLikes count];
-            NSMutableArray *arrCopy = [[NSMutableArray alloc] init];
-            if(n == 2){
-                strLike = [NSString stringWithFormat:@"%@ %@%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]], Localize(@"and"),[arrLikes objectAtIndex:1]];
-            } else if(n == 3){
-                if(_currentUserLikeThisActivity){
-                    strLike = [NSString stringWithFormat:@"%@,%@ %@%@", [[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-                               [arrLikes objectAtIndex:1], Localize(@"and"), [arrLikes objectAtIndex:2]];
-                } else {
-                    strLike = [NSString stringWithFormat:@"%@,%@,%@", [[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-                               [arrLikes objectAtIndex:1], [arrLikes objectAtIndex:2]];
-                }
-
-            } else if(n >= 4){
-                [arrCopy addObject:[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-                [arrCopy addObject:[arrLikes objectAtIndex:1]];
-                [arrCopy addObject:[arrLikes objectAtIndex:2]];
-                
-                strLike = [arrCopy componentsJoinedByString:@","];
-                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@ %d %@", Localize(@"and"), n-3, Localize(@"more")]];
-            } else if (n == 1){
-                strLike = [NSString stringWithFormat:@"%@",[[arrLikes objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-            }
-            if(n == 1 && !_currentUserLikeThisActivity)
-                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@", Localize(@"likesThisActivity")]];
-            else 
-                strLike = [strLike stringByAppendingString:[NSString stringWithFormat:@" %@", Localize(@"likeThisActivity")]];
-            [arrCopy release];
-        }
-        else
-        {
-            strLike = Localize(@"NoLikeForTheMoment");
-        }
-        [arrLikes release];
-        //NSLog(@"%@", strLike);
-        [cell setUserProfile:self.socialActivity.posterIdentity];
-        [cell setContent:strLike];
-        [cell setUserLikeThisActivity:_currentUserLikeThisActivity];
-        [cell setSocialActivityDetails:self.socialActivity];
+        cell.socialActivity = self.socialActivity;
         
         return cell;
     }
@@ -626,10 +555,11 @@
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy 
 {
     if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) {
-        
         SocialActivity *socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         self.socialActivity.likedByIdentities = socialActivityDetails.likedByIdentities;
         self.socialActivity.comments = socialActivityDetails.comments;
+        self.socialActivity.totalNumberOfComments = socialActivityDetails.totalNumberOfComments;
+        self.socialActivity.totalNumberOfLikes = socialActivityDetails.totalNumberOfLikes;
         
         [self.socialActivity convertToPostedTimeInWords];
         [self.socialActivity cellHeightCalculationForWidth:_tblvActivityDetail.frame.size.width];

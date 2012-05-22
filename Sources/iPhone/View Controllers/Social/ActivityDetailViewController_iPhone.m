@@ -18,6 +18,8 @@
 #import "JTNavigationView.h"
 #import "ActivityHelper.h"
 
+#define kLikeCellHeight (self.socialActivity.totalNumberOfLikes > 0 ? 70.0 : 50.0)
+
 @implementation ActivityDetailViewController_iPhone
 
 
@@ -102,5 +104,12 @@
     return YES;   
 }
 
+#pragma mark - TableView management
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1)
+        return kLikeCellHeight;
+    else return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
 
 @end

@@ -234,7 +234,7 @@
     <key>likesThisActivity</key>
     <string>likes this Activity</string>
     <key>likeThisActivity</key>
-    <string>like this Activity</string>
+    <string>%d people like this</string>
     <key>NoLikeForTheMoment</key>
     <string>No like for the moment</string>
     <key>DetailsLoaded</key>

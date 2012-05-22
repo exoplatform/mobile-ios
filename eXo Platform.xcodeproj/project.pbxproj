@@ -203,7 +203,6 @@
 		467F4EF913AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EEE13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m */; };
 		467F4EFA13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EEF13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib */; };
 		467F4EFB13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF113AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m */; };
-		467F4EFC13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EF213AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib */; };
 		467F4EFD13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF413AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m */; };
 		467F4EFE13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EF513AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib */; };
 		467F4EFF13AB6F1300B2DCFA /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF713AB6F1300B2DCFA /* ActivityDetailViewController.m */; };
@@ -1082,7 +1081,6 @@
 		467F4EEF13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailMessageTableViewCell.xib; path = Social/ActivityDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		467F4EF013AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailLikeTableViewCell.h; path = Social/ActivityDetailLikeTableViewCell.h; sourceTree = "<group>"; };
 		467F4EF113AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailLikeTableViewCell.m; path = Social/ActivityDetailLikeTableViewCell.m; sourceTree = "<group>"; };
-		467F4EF213AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailLikeTableViewCell.xib; path = Social/ActivityDetailLikeTableViewCell.xib; sourceTree = "<group>"; };
 		467F4EF313AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailCommentTableViewCell.h; path = Social/ActivityDetailCommentTableViewCell.h; sourceTree = "<group>"; };
 		467F4EF413AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailCommentTableViewCell.m; path = Social/ActivityDetailCommentTableViewCell.m; sourceTree = "<group>"; };
 		467F4EF513AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailCommentTableViewCell.xib; path = Social/ActivityDetailCommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -2255,7 +2253,6 @@
 				467F4EEF13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib */,
 				467F4EF013AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.h */,
 				467F4EF113AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m */,
-				467F4EF213AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib */,
 				467F4EF313AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.h */,
 				467F4EF413AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.m */,
 				467F4EF513AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib */,
@@ -4170,7 +4167,6 @@
 				46A03AC613A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton@2x.png in Resources */,
 				46A03AC713A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected@2x.png in Resources */,
 				467F4EFA13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib in Resources */,
-				467F4EFC13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.xib in Resources */,
 				467F4EFE13AB6F1300B2DCFA /* ActivityDetailCommentTableViewCell.xib in Resources */,
 				7CBB39A513B09F850011A63C /* SocialActivityDetailLikeBg.png in Resources */,
 				7CBB39A613B09F850011A63C /* SocialActivityDetailLikeBgSelected.png in Resources */,
