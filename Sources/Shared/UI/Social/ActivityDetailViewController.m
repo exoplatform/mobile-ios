@@ -404,6 +404,7 @@
         if (cell == nil) 
         {
             cell = [[[ActivityDetailLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kIdentifierActivityDetailLikeTableViewCell] autorelease];    
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell.delegate = self;
         }
         cell.socialActivity = self.socialActivity;

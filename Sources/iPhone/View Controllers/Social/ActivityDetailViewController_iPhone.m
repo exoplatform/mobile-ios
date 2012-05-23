@@ -17,6 +17,7 @@
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
 #import "ActivityHelper.h"
+#import "ActivityLikersViewController.h"
 
 #define kLikeCellHeight (self.socialActivity.totalNumberOfLikes > 0 ? 70.0 : 50.0)
 
@@ -110,6 +111,18 @@
     if (indexPath.section == 1)
         return kLikeCellHeight;
     else return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {        
+        ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
+        likersView.socialActivity = self.socialActivity;
+        likersView.view.title = [NSString stringWithFormat:@"%d likers", self.socialActivity.totalNumberOfLikes];
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:likersView.view animated:YES];
+
+    } else {
+        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
 }
 
 @end
