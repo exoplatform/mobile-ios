@@ -2,8 +2,8 @@
 //  ActivityLikersViewController.m
 //  eXo Platform
 //
-//  Created by exo on 5/23/12.
-//  Copyright (c) 2012 eXoPlatform. All rights reserved.
+//  Created by Le Thanh Quang on 5/23/12.
+//  Copyright (c) 2012 eXo Platform. All rights reserved.
 //
 
 #import "ActivityLikersViewController.h"
@@ -11,6 +11,7 @@
 #import "SocialActivity.h"
 #import "EGOImageView.h"
 #import "defines.h"
+#import "SocialActivityDetailsProxy.h"
 
 #define kLikersViewTopBottomMargin 10.0
 #define kLikersViewLeftRightMargin 10.0
@@ -29,6 +30,7 @@
 - (void)updateLikerViews;
 - (EGOImageView *)newAvatarView;
 - (UILabel *)newNameLabel;
+- (void)updateListOfLikers;
 
 @end
 
@@ -91,8 +93,12 @@
     
     [self.view addSubview:self.likersHeader];
     [self updateLikerViews];
+    [self updateListOfLikers];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -195,6 +201,22 @@
     return [label autorelease];
 }
 
+- (void)updateListOfLikers {
+    SocialActivityDetailsProxy *activityProxy = [[SocialActivityDetailsProxy alloc] init];
+    activityProxy.delegate = self;
+    [activityProxy getLikers:self.socialActivity.activityId];
+}
+
+#pragma mark - SocialProxyDelegate 
+- (void)proxyDidFinishLoading:(SocialProxy *)proxy {
+    SocialActivityDetailsProxy *activityProxy = (SocialActivityDetailsProxy *)proxy;
+    self.socialActivity.likedByIdentities = activityProxy.socialActivityDetails.likedByIdentities;
+    [self updateLikerViews];
+}
+
+- (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {
+    
+}
 
 #pragma mark - EGORefreshTableHeaderDelegate
 //- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {

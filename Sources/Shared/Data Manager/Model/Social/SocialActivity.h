@@ -2,8 +2,8 @@
 //  SocialActivity.h
 //  eXo Platform
 //
-//  Created by exo on 5/21/12.
-//  Copyright (c) 2012 eXoPlatform. All rights reserved.
+//  Created by Le Thanh Quang on 5/21/12.
+//  Copyright (c) 2012 eXo Platform. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

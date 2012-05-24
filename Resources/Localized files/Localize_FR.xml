@@ -231,6 +231,8 @@
     <string>and</string>
     <key>more</key>
     <string>more</string>
+    <key>numOfLikers</key>
+    <string>%d likers</string>
     <key>likesThisActivity</key>
     <string>likes this Activity</string>
     <key>likeThisActivity</key>

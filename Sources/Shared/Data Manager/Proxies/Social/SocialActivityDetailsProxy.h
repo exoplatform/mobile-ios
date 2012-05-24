@@ -30,14 +30,16 @@
 @property BOOL activityStream;
 @property (nonatomic, retain) SocialActivity *socialActivityDetails;
 
+// helper methods
+- (NSString *)createLikeResourcePath:(NSString *)activityId;
 
 //Use this constructor when you want to set a particular value for the number of comment wanted
 -(id)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes;
 
-//Retrieve Activity details for a given identity
+// Retrieve Activity details for a given identity
 - (void)getActivityDetail:(NSString *)activityId;
-
-
+// Get all of likers 
+- (void)getLikers:(NSString *)activityId;
 
 
 @end
