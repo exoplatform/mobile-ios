@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     self.view.title = self.title;
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
 }
 
 
@@ -40,12 +40,10 @@
     
     GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
 
-	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[GadgetDisplayViewController_iPhone alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone" 
-bundle:nil 
-gadget:gadgetTmp];
+	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[[GadgetDisplayViewController_iPhone alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone"  bundle:nil gadget:gadgetTmp] autorelease];
 
     //[self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:gadgetDisplayViewController.view animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone  pushViewController:gadgetDisplayViewController animated:YES];
     
 }
 

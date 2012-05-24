@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SettingsViewController.h"
+#import "JTNavigationBar.h"
 
 typedef enum {
     eXoActivityStream = 0,
@@ -19,12 +20,21 @@ typedef enum {
 @class JTRevealSidebarView;
 @class JTTableViewDatasource;
 
-@interface HomeSidebarViewController_iPhone : UIViewController <SettingsDelegateProcotol> {
+@interface HomeSidebarViewController_iPhone : UIViewController <JTNavigationBarDelegate, SettingsDelegateProcotol> {
     JTRevealSidebarView *_revealView;
     JTTableViewDatasource *_datasource;
     JTTableRowTypes rowType;
+    NSMutableArray *_viewControllers;
 }
 
-@property (retain, nonatomic) JTRevealSidebarView* revealView;
+@property (nonatomic, readonly) UINavigationItem *contentNavigationItem;
+@property (nonatomic, readonly) JTNavigationBar *contentNavigationBar;
+
+// Navigation management 
+- (void)setContentNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated;
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated;
+- (void)setRootViewController:(UIViewController *)viewController animated:(BOOL)animated;
+
 
 @end

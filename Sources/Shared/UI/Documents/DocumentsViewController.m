@@ -1000,7 +1000,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     self.popoverPhotoLibraryController = nil;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];
     }
     
     // Display HUD loading

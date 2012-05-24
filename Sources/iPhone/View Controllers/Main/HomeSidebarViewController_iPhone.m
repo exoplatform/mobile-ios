@@ -29,13 +29,21 @@
 
 @implementation HomeSidebarViewController_iPhone
 
-@synthesize revealView = _revealView;
+@synthesize contentNavigationItem;
+@synthesize contentNavigationBar;
+
+- (void)dealloc {
+    [_viewControllers release];
+    [_revealView release];
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _viewControllers = [[NSMutableArray alloc] init];
         _datasource = [[JTTableViewDatasource alloc] init];
         _datasource.sourceInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"root", @"url", nil];
         _datasource.delegate   = self;
@@ -68,7 +76,9 @@
     
     // Create a default style RevealSidebarView
     _revealView = [[JTRevealSidebarView defaultViewWithFrame:self.view.bounds] retain];
-    
+
+    // This hack to handle the navigation actions.
+    _revealView.contentView.navigationBar.delegate = self;
     // Setup a view to be the rootView of the sidebar
     UITableView *tableView = [[[UITableView alloc] initWithFrame:_revealView.sidebarView.bounds] autorelease];
     tableView.backgroundColor = [UIColor colorWithRed:84./255 green:84./255 blue:84./255 alpha:1.];
@@ -159,7 +169,14 @@
     // e.g. self.myOutlet = nil;
 }
 
+#pragma mark - getters & setters 
+- (UINavigationItem *)contentNavigationItem {
+    return _revealView.contentView.navigationItem;
+}
 
+- (JTNavigationBar *)contentNavigationBar {
+    return _revealView.contentView.navigationBar;
+}
 
 #pragma mark Actions
 
@@ -218,6 +235,37 @@
     [self performSelector:@selector(simulateDidSucceedFetchingDatasource:)
                withObject:datasource
                afterDelay:1];
+}
+
+#pragma mark - navigation view controllers management
+- (void)setContentNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated {
+    [_revealView.contentView setNavigationBarHidden:hidden animated:animated];
+}
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // * the viewcontroller must not be already on the navigation stack
+    if ([_viewControllers containsObject:viewController])
+        return;
+    [_viewControllers addObject:viewController];
+    [_revealView.contentView pushView:viewController.view animated:animated];
+}
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated {
+    UIViewController *lastViewController = [_viewControllers lastObject];
+    [_viewControllers removeLastObject];
+    [_revealView.contentView popViewAnimated:animated];
+    return lastViewController;
+}
+
+- (void)setRootViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [_viewControllers removeAllObjects];
+    [_viewControllers addObject:viewController];
+    [_revealView.contentView setRootView:viewController.view];
+}
+
+#pragma mark - JTNavigationBarDelegate
+- (void)willPopNavigationItemAnimated:(BOOL)animated {
+    [_viewControllers removeLastObject];
+    [_revealView.contentView willPopNavigationItemAnimated:animated];
 }
 
 @end
@@ -412,7 +460,5 @@
     [(UITableView *)[_revealView.sidebarView topView] reloadData];
     [(UITableView *)[_revealView.sidebarView topView] selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
-
-
 
 @end

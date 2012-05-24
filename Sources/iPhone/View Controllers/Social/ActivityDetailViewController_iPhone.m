@@ -27,7 +27,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.view.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];
 
 
     
@@ -54,7 +54,7 @@
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
     
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
     [self presentModalViewController:navController animated:YES];
 
@@ -81,12 +81,12 @@
             break;
     }
     
-    ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
+    ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
-                                                                       url:url];
+                                                                       url:url] autorelease];
     
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:linkWebViewController.view animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
     
 }
 
@@ -94,12 +94,12 @@
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     //CAPTURE USER LINK-CLICK.
     if(navigationType == UIWebViewNavigationTypeLinkClicked) {
-		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
+		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
-                                                                       url:[request URL]];
+                                                                       url:[request URL]] autorelease];
         
-        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:linkWebViewController.view animated:YES]; 
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES]; 
         return NO;
     }
     return YES;   
@@ -118,7 +118,7 @@
         ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
         likersView.socialActivity = self.socialActivity;
         likersView.view.title = [NSString stringWithFormat:Localize(@"numOfLikers"), self.socialActivity.totalNumberOfLikes];
-        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:likersView.view animated:YES];
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:likersView animated:YES];
     } else {
         [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
