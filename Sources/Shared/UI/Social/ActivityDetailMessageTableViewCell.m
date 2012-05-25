@@ -19,7 +19,6 @@
 
 @synthesize socialActivity = _socialActivity;
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
-@synthesize imgvMessageBg=_imgvMessageBg;
 @synthesize webViewForContent = _webViewForContent;
 @synthesize webViewComment =  _webViewComment;
 
@@ -39,17 +38,11 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     
     [super setHighlighted:highlighted animated:animated];
-
-    [_imgvMessageBg setHighlighted:highlighted]; 
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-    
-    [_imgvMessageBg setHighlighted:selected];
+    [super setSelected:selected animated:animated];    
 }
 
 - (void)dealloc
@@ -60,9 +53,6 @@
     self.lbName = nil;
     self.webViewForContent = nil;
     self.imgvAvatar = nil;
-    
-    self.imgvMessageBg = nil;
-    
     [super dealloc];
 }
 
@@ -98,17 +88,8 @@
 
 
 - (void)configureCell {
-    
     [self customizeAvatarDecorations];
     
-    //Add images for Background Message
-    
-    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityDetailMessageBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:60];
-    
-    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityDetailMessageBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:60];
-    
-    _imgvMessageBg.image = strechBg;
-    _imgvMessageBg.highlightedImage = strechBgSelected;
     
     //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     [[_webViewForContent.subviews objectAtIndex:0] setScrollEnabled:NO];

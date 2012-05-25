@@ -21,6 +21,7 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 @property (retain, nonatomic) UIView *separatorLine;
+@property (retain, nonatomic) UIButton *myAccessoryView;
 
 - (void)setUserLikeThisActivity:(BOOL)userLikeThisActivity;
 

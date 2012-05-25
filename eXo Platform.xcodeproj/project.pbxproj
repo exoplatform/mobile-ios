@@ -602,6 +602,14 @@
 		A61E3FE0152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */; };
 		A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */; };
 		A65F2818152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */; };
+		A6B4EF21156F8AD60007D631 /* activityDetailLikeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */; };
+		A6B4EF23156F8ADE0007D631 /* activityDetailLikeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF22156F8ADD0007D631 /* activityDetailLikeBg@2x.png */; };
+		A6B4EF25156F8AFA0007D631 /* activityDetailLikeBgSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF24156F8AF90007D631 /* activityDetailLikeBgSelected.png */; };
+		A6B4EF27156F8C8F0007D631 /* activityDetailLikeBgSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF26156F8C8F0007D631 /* activityDetailLikeBgSelected@2x.png */; };
+		A6B4EF2C156F98920007D631 /* activityDetailLikersAccessoryView.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF28156F988A0007D631 /* activityDetailLikersAccessoryView.png */; };
+		A6B4EF2D156F98920007D631 /* activityDetailLikersAccessoryView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */; };
+		A6B4EF2E156F98920007D631 /* activityDetailLikersAccessoryViewSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */; };
+		A6B4EF2F156F98920007D631 /* activityDetailLikersAccessoryViewSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF2B156F98900007D631 /* activityDetailLikersAccessoryViewSelected@2x.png */; };
 		DE442BBB1569E21000E10A00 /* SocialActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = DE442BBA1569E21000E10A00 /* SocialActivity.m */; };
 		DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */; };
 /* End PBXBuildFile section */
@@ -1624,6 +1632,14 @@
 		A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+eXoCustomIphone.m"; sourceTree = "<group>"; };
 		A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SocialAttachedImageBorder.png; path = Resources/Images/Shared/Social/SocialAttachedImageBorder.png; sourceTree = SOURCE_ROOT; };
 		A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SocialAttachedImageBorder@2x.png"; path = "Resources/Images/Shared/Social/SocialAttachedImageBorder@2x.png"; sourceTree = SOURCE_ROOT; };
+		A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikeBg.png; sourceTree = "<group>"; };
+		A6B4EF22156F8ADD0007D631 /* activityDetailLikeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikeBg@2x.png"; sourceTree = "<group>"; };
+		A6B4EF24156F8AF90007D631 /* activityDetailLikeBgSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikeBgSelected.png; sourceTree = "<group>"; };
+		A6B4EF26156F8C8F0007D631 /* activityDetailLikeBgSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikeBgSelected@2x.png"; sourceTree = "<group>"; };
+		A6B4EF28156F988A0007D631 /* activityDetailLikersAccessoryView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikersAccessoryView.png; sourceTree = "<group>"; };
+		A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikersAccessoryView@2x.png"; sourceTree = "<group>"; };
+		A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikersAccessoryViewSelected.png; sourceTree = "<group>"; };
+		A6B4EF2B156F98900007D631 /* activityDetailLikersAccessoryViewSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikersAccessoryViewSelected@2x.png"; sourceTree = "<group>"; };
 		DE442BB91569E21000E10A00 /* SocialActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivity.h; sourceTree = "<group>"; };
 		DE442BBA1569E21000E10A00 /* SocialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivity.m; sourceTree = "<group>"; };
 		DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikersViewController.h; sourceTree = "<group>"; };
@@ -2837,6 +2853,14 @@
 		7C5053E913E2AF3600FA73CD /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				A6B4EF28156F988A0007D631 /* activityDetailLikersAccessoryView.png */,
+				A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */,
+				A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */,
+				A6B4EF2B156F98900007D631 /* activityDetailLikersAccessoryViewSelected@2x.png */,
+				A6B4EF26156F8C8F0007D631 /* activityDetailLikeBgSelected@2x.png */,
+				A6B4EF24156F8AF90007D631 /* activityDetailLikeBgSelected.png */,
+				A6B4EF22156F8ADD0007D631 /* activityDetailLikeBg@2x.png */,
+				A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */,
 				1FCEDEB11457A34F0058C80F /* ActivitiesTypes */,
 				1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */,
 				1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */,
@@ -4354,6 +4378,14 @@
 				A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */,
 				A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */,
 				A65F2818152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png in Resources */,
+				A6B4EF21156F8AD60007D631 /* activityDetailLikeBg.png in Resources */,
+				A6B4EF23156F8ADE0007D631 /* activityDetailLikeBg@2x.png in Resources */,
+				A6B4EF25156F8AFA0007D631 /* activityDetailLikeBgSelected.png in Resources */,
+				A6B4EF27156F8C8F0007D631 /* activityDetailLikeBgSelected@2x.png in Resources */,
+				A6B4EF2C156F98920007D631 /* activityDetailLikersAccessoryView.png in Resources */,
+				A6B4EF2D156F98920007D631 /* activityDetailLikersAccessoryView@2x.png in Resources */,
+				A6B4EF2E156F98920007D631 /* activityDetailLikersAccessoryViewSelected.png in Resources */,
+				A6B4EF2F156F98920007D631 /* activityDetailLikersAccessoryViewSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

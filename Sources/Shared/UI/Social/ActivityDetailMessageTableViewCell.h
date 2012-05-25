@@ -22,7 +22,6 @@
     UILabel*               _lbName;
     
     EGOImageView*          _imgvAvatar;
-    UIImageView*           _imgvMessageBg;
     UIImageView*           _imgType;
     EGOImageView*          _imgvAttach;
     
@@ -41,7 +40,6 @@
 @property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain, nonatomic) IBOutlet UIImageView* imgType;
 
-@property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;
 @property (retain, nonatomic) IBOutlet UIWebView *webViewComment;
 //Use this method after create the cell to customize the appearance of the Avatar

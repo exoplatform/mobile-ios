@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<int key="IBDocument.SystemTarget">1296</int>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1181</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIWebView</string>
@@ -41,16 +41,6 @@
 						<reference key="NSNextResponder" ref="1066774154"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="363775305">
-								<reference key="NSNextResponder" ref="854945432"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{320, 191}</string>
-								<reference key="NSSuperview" ref="854945432"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="770228502"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
 							<object class="IBUIImageView" id="25562674">
 								<reference key="NSNextResponder" ref="854945432"/>
 								<int key="NSvFlags">268</int>
@@ -145,7 +135,6 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">9</float>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Helvetica</string>
@@ -158,6 +147,7 @@
 									<double key="NSSize">11</double>
 									<int key="NSfFlags">16</int>
 								</object>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIWebView" id="695024165">
 								<reference key="NSNextResponder" ref="854945432"/>
@@ -190,7 +180,7 @@
 						<string key="NSFrameSize">{320, 191}</string>
 						<reference key="NSSuperview" ref="1066774154"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="363775305"/>
+						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="693510399"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -203,6 +193,10 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="854945432"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MQA</bytes>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="854945432"/>
 				<string key="IBUIReuseIdentifier">kIdentifierActivityLinkDetailMessageTableViewCell</string>
@@ -253,14 +247,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imgvMessageBg</string>
-						<reference key="source" ref="1066774154"/>
-						<reference key="destination" ref="363775305"/>
-					</object>
-					<int key="connectionID">18</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">webViewForContent</string>
 						<reference key="source" ref="1066774154"/>
 						<reference key="destination" ref="695024165"/>
@@ -301,7 +287,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="770228502"/>
 							<reference ref="790402116"/>
-							<reference ref="363775305"/>
 							<reference ref="25562674"/>
 							<reference ref="917447928"/>
 							<reference ref="231458852"/>
@@ -318,11 +303,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="790402116"/>
-						<reference key="parent" ref="1066774154"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="363775305"/>
 						<reference key="parent" ref="1066774154"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -363,7 +343,6 @@
 				<string key="4.CustomClassName">EGOImageView</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.CustomClassName">EGOImageView</string>
@@ -384,7 +363,6 @@
 						<string key="imgType">UIImageView</string>
 						<string key="imgvAttach">EGOImageView</string>
 						<string key="imgvAvatar">EGOImageView</string>
-						<string key="imgvMessageBg">UIImageView</string>
 						<string key="lbDate">UILabel</string>
 						<string key="lbMessage">UILabel</string>
 						<string key="lbName">UILabel</string>
@@ -403,10 +381,6 @@
 						<object class="IBToOneOutletInfo" key="imgvAvatar">
 							<string key="name">imgvAvatar</string>
 							<string key="candidateClassName">EGOImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgvMessageBg">
-							<string key="name">imgvMessageBg</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lbDate">
 							<string key="name">lbDate</string>
@@ -454,12 +428,16 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
+			<real value="1296" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="ActivityTypeNormal.png">{20, 20}</string>
 			<string key="default-avatar.png">{59, 59}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>

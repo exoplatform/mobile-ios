@@ -435,6 +435,12 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        // message detail cell
+        cell.backgroundColor = [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1];
+    }
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -606,7 +612,7 @@
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
     
-    if(_currentUserLikeThisActivity)
+    if(self.socialActivity.liked)
     {
         _activityAction = 3;
         [likeDislikeActProxy dislikeActivity:activity];
