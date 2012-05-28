@@ -156,7 +156,7 @@
         label.text = user.fullName;
         // update position of the avatar 
         CGSize labelSize = [label.text sizeWithFont:label.font];
-        label.frame = CGRectMake(avatarView.frame.origin.x, avatarView.frame.origin.y + avatarWidth + 3.0, avatarWidth, labelSize.height);
+        label.frame = CGRectMake(avatarView.frame.origin.x, avatarView.frame.origin.y + avatarWidth, avatarWidth, labelSize.height);
         
         columnCount++;
         
@@ -184,7 +184,7 @@
     [[imageView layer] setMasksToBounds:YES];
     
     //Add the border
-    [[imageView layer] setBorderColor:[UIColor colorWithRed:45./255 green:45./255 blue:45./255 alpha:1.].CGColor];
+    [[imageView layer] setBorderColor:[UIColor whiteColor].CGColor];
     CGFloat borderWidth = 1.0;
     [[imageView layer] setBorderWidth:borderWidth];
     
@@ -194,8 +194,9 @@
 
 - (UILabel *)newNameLabel {
     UILabel *label = [[UILabel alloc] init];
-    label.font = [UIFont boldSystemFontOfSize:15.0];
+    label.font = [UIFont boldSystemFontOfSize:11.0];
     label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor colorWithRed:58.0/255 green:118.0/255 blue:178.0/255 alpha:1];
     label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = UITextAlignmentCenter;
     return [label autorelease];

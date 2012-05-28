@@ -16,7 +16,8 @@
 
 
 #define kSeparatorLineLeftMargin 20.0
-#define kTopBottomMargin 10.0
+#define kTopMargin 15.0
+#define kBottomMargin 5.0
 #define kLeftRightMargin 10.0
 #define kPadding 5.0
 #define kNumberOfDisplayedAvatars 4
@@ -37,7 +38,6 @@
 @synthesize socialActivity = _socialActivity;
 @synthesize lbMessage=_lbMessage;
 @synthesize btnLike=_btnLike, delegate=_delegate;
-@synthesize separatorLine = _separatorLine;
 @synthesize likerAvatarImageViews = _likerAvatarImageViews;
 @synthesize myAccessoryView = _myAccessoryView;
 
@@ -45,7 +45,6 @@
 {
     [_lbMessage release];
     [_btnLike release];
-    [_separatorLine release];
     [_socialActivity release];
     [_likerAvatarImageViews release];
     [_myAccessoryView release];
@@ -56,8 +55,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIImage *backgroundImage = [[UIImage imageNamed:@"activityDetailLikeBg"] stretchableImageWithLeftCapWidth:100 topCapHeight:0];
-        UIImage *selectedBGImage = [[UIImage imageNamed:@"activityDetailLikeBgSelected"] stretchableImageWithLeftCapWidth:100 topCapHeight:0];
+        UIImage *backgroundImage = [UIImage imageNamed:@"activityDetailLikeBg"];
+        UIImage *selectedBGImage = [UIImage imageNamed:@"activityDetailLikeBgSelected"];
         self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
         self.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectedBGImage] autorelease];
         self.likerAvatarImageViews = [NSMutableArray arrayWithCapacity:kNumberOfDisplayedAvatars];
@@ -67,11 +66,6 @@
         [self.contentView addSubview:self.lbMessage];
         
         [self.contentView addSubview:self.btnLike];
-        
-        
-        
-        _separatorLine = [[UIView alloc] init];
-        [self addSubview:_separatorLine];
     }
     return self;
 }
@@ -82,9 +76,9 @@
     CGRect contentBounds = self.contentView.bounds;
     /* ### Configure message label ### */
     CGSize messageSize = [_lbMessage.text sizeWithFont:_lbMessage.font];
-    _lbMessage.frame = CGRectMake(kLeftRightMargin, kTopBottomMargin, messageSize.width, messageSize.height); // the message is on the top of the content view
+    _lbMessage.frame = CGRectMake(kLeftRightMargin, kTopMargin, messageSize.width, messageSize.height); // the message is on the top of the content view
     /* ##### */
-    float avatarHeight = (contentBounds.size.height - kTopBottomMargin * 2 - self.lbMessage.bounds.size.height - kPadding);
+    float avatarHeight = (contentBounds.size.height - (kTopMargin + kBottomMargin) - self.lbMessage.bounds.size.height - kPadding);
     
     /* ### Configure accessory view ### */
     if (self.selected) {
@@ -98,7 +92,7 @@
     
     float secondLineHeight = self.socialActivity.totalNumberOfLikes > 0 ? avatarHeight : MAX(accessorySize.height, likeButtonSize.height);
     
-    float secondLineY = contentBounds.size.height - kTopBottomMargin - secondLineHeight;
+    float secondLineY = contentBounds.size.height - kBottomMargin - secondLineHeight;
     
     /* ##### */
     self.myAccessoryView.frame = CGRectMake(contentBounds.size.width - kLeftRightMargin - accessorySize.width, secondLineY + (secondLineHeight - accessorySize.height) / 2, accessorySize.width, accessorySize.height);
@@ -111,7 +105,7 @@
     int i = 0;
     for (EGOImageView *avatarView in self.likerAvatarImageViews) {
         // the avatar view is putted consequently on the left bottom corner of the content view
-        avatarView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kTopBottomMargin - avatarHeight, avatarHeight, avatarHeight);
+        avatarView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
         i++;
     }
     /* ##### */
@@ -125,16 +119,10 @@
             [self.contentView addSubview:threePointView];
         }
     if (self.socialActivity.totalNumberOfLikes > kNumberOfDisplayedAvatars) {
-        threePointView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kTopBottomMargin - avatarHeight, avatarHeight, avatarHeight);
+        threePointView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
     } else {
         [threePointView setHidden:YES];
     }
-    /* ##### */
-    
-    /* ### Configure separated line ### */
-    self.separatorLine.frame = CGRectMake(kSeparatorLineLeftMargin, self.frame.size.height-6, self.frame.size.width - (2*kSeparatorLineLeftMargin), 1);
-    self.separatorLine.backgroundColor = [UIColor colorWithRed:112./255 green:112./255 blue:112./255 alpha:1.];
-    self.separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     /* ##### */
 }
 
@@ -174,7 +162,7 @@
     [[imageView layer] setMasksToBounds:YES];
     
     //Add the border
-    [[imageView layer] setBorderColor:[UIColor colorWithRed:45./255 green:45./255 blue:45./255 alpha:1.].CGColor];
+    [[imageView layer] setBorderColor:[UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor];
     CGFloat borderWidth = 1.0;
     [[imageView layer] setBorderWidth:borderWidth];
     

@@ -119,6 +119,7 @@
         likersView.socialActivity = self.socialActivity;
         likersView.view.title = [NSString stringWithFormat:Localize(@"numOfLikers"), self.socialActivity.totalNumberOfLikes];
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:likersView animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else {
         [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     }

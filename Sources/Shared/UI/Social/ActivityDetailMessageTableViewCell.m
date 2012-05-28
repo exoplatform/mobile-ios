@@ -68,7 +68,7 @@
     [[_imgvAvatar layer] setMasksToBounds:YES];
     
     //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:1.].CGColor];
+    [[_imgvAvatar layer] setBorderColor:[UIColor whiteColor].CGColor];
     CGFloat borderWidth = 1.0;
     [[_imgvAvatar layer] setBorderWidth:borderWidth];
     _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
