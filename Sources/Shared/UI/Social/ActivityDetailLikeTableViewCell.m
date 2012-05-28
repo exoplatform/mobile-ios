@@ -56,8 +56,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIImage *backgroundImage = [[UIImage imageNamed:@"activityDetailLikeBg"] stretchableImageWithLeftCapWidth:50 topCapHeight:0];
-        UIImage *selectedBGImage = [[UIImage imageNamed:@"activityDetailLikeBgSelected"] stretchableImageWithLeftCapWidth:50 topCapHeight:0];
+        UIImage *backgroundImage = [[UIImage imageNamed:@"activityDetailLikeBg"] stretchableImageWithLeftCapWidth:100 topCapHeight:0];
+        UIImage *selectedBGImage = [[UIImage imageNamed:@"activityDetailLikeBgSelected"] stretchableImageWithLeftCapWidth:100 topCapHeight:0];
         self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
         self.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectedBGImage] autorelease];
         self.likerAvatarImageViews = [NSMutableArray arrayWithCapacity:kNumberOfDisplayedAvatars];
@@ -207,7 +207,7 @@
     // this method is available from iOS 4.0
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1].CGColor);
     CGContextFillRect(context, rect);
     
     CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);

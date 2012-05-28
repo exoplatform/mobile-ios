@@ -443,8 +443,6 @@
 		7CBB39AA13B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CBB39A813B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png */; };
 		7CD4E5E613BD8C8000F5015D /* MessageComposerButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4E5E513BD8C8000F5015D /* MessageComposerButtonBg.png */; };
 		7CD4E5E913BDA92500F5015D /* MessageComposerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */; };
-		7CE0131F13B1917700F16971 /* SocialActivityDetailMessageBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0131E13B1917700F16971 /* SocialActivityDetailMessageBg.png */; };
-		7CE0132113B1918400F16971 /* SocialActivityDetailMessageBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132013B1918400F16971 /* SocialActivityDetailMessageBg@2x.png */; };
 		7CE0132313B1A62000F16971 /* SocialActivityDetailLikeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132213B1A61F00F16971 /* SocialActivityDetailLikeButton@2x.png */; };
 		7CE0132513B1A62C00F16971 /* SocialActivityDetailLikeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */; };
 		7CE0132713B1A9EA00F16971 /* SocialActivityDetailCommentBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132613B1A9E800F16971 /* SocialActivityDetailCommentBg.png */; };
@@ -1410,8 +1408,6 @@
 		7CD4E5E513BD8C8000F5015D /* MessageComposerButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageComposerButtonBg.png; sourceTree = "<group>"; };
 		7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposerViewController.h; path = Social/MessageComposerViewController.h; sourceTree = "<group>"; };
 		7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposerViewController.m; path = Social/MessageComposerViewController.m; sourceTree = "<group>"; };
-		7CE0131E13B1917700F16971 /* SocialActivityDetailMessageBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailMessageBg.png; sourceTree = "<group>"; };
-		7CE0132013B1918400F16971 /* SocialActivityDetailMessageBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailMessageBg@2x.png"; sourceTree = "<group>"; };
 		7CE0132213B1A61F00F16971 /* SocialActivityDetailLikeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailLikeButton@2x.png"; sourceTree = "<group>"; };
 		7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailLikeButton.png; sourceTree = "<group>"; };
 		7CE0132613B1A9E800F16971 /* SocialActivityDetailCommentBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailCommentBg.png; sourceTree = "<group>"; };
@@ -2398,7 +2394,6 @@
 				7CBB39A413B09F840011A63C /* SocialActivityDetailLikeBgSelected.png */,
 				7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */,
 				46A9375313F03656009D41DA /* SocialActivityDetailDislikeButton.png */,
-				7CE0131E13B1917700F16971 /* SocialActivityDetailMessageBg.png */,
 				7CD4E5E513BD8C8000F5015D /* MessageComposerButtonBg.png */,
 				7CA74B9513C31ACA0006306D /* MessageComposerButtonCancelBackground.png */,
 				7CA74B9613C31ACB0006306D /* MessageComposerButtonCancelBackgroundSelected.png */,
@@ -2429,7 +2424,6 @@
 				7CBB39A813B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png */,
 				7CE0132213B1A61F00F16971 /* SocialActivityDetailLikeButton@2x.png */,
 				46A9375113F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png */,
-				7CE0132013B1918400F16971 /* SocialActivityDetailMessageBg@2x.png */,
 				7CA74B8B13C31AB50006306D /* MessageComposerButtonCancelBackground@2x.png */,
 				7CA74B8C13C31AB50006306D /* MessageComposerButtonCancelBackgroundSelected@2x.png */,
 				7CA74B8D13C31AB50006306D /* MessageComposerButtonSendBackground@2x.png */,
@@ -4201,8 +4195,6 @@
 				7CBB39A613B09F850011A63C /* SocialActivityDetailLikeBgSelected.png in Resources */,
 				7CBB39A913B09FA00011A63C /* SocialActivityDetailLikeBg@2x.png in Resources */,
 				7CBB39AA13B09FA00011A63C /* SocialActivityDetailLikeBgSelected@2x.png in Resources */,
-				7CE0131F13B1917700F16971 /* SocialActivityDetailMessageBg.png in Resources */,
-				7CE0132113B1918400F16971 /* SocialActivityDetailMessageBg@2x.png in Resources */,
 				7CE0132313B1A62000F16971 /* SocialActivityDetailLikeButton@2x.png in Resources */,
 				7CE0132513B1A62C00F16971 /* SocialActivityDetailLikeButton.png in Resources */,
 				7CE0132713B1A9EA00F16971 /* SocialActivityDetailCommentBg.png in Resources */,
