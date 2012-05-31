@@ -608,6 +608,7 @@
 		A6B4EF2D156F98920007D631 /* activityDetailLikersAccessoryView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */; };
 		A6B4EF2E156F98920007D631 /* activityDetailLikersAccessoryViewSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */; };
 		A6B4EF2F156F98920007D631 /* activityDetailLikersAccessoryViewSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF2B156F98900007D631 /* activityDetailLikersAccessoryViewSelected@2x.png */; };
+		A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B61A8C15774B07006C3526 /* AvatarView.m */; };
 		DE442BBB1569E21000E10A00 /* SocialActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = DE442BBA1569E21000E10A00 /* SocialActivity.m */; };
 		DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */; };
 /* End PBXBuildFile section */
@@ -1636,6 +1637,8 @@
 		A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikersAccessoryView@2x.png"; sourceTree = "<group>"; };
 		A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikersAccessoryViewSelected.png; sourceTree = "<group>"; };
 		A6B4EF2B156F98900007D631 /* activityDetailLikersAccessoryViewSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikersAccessoryViewSelected@2x.png"; sourceTree = "<group>"; };
+		A6B61A8B15774B07006C3526 /* AvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarView.h; sourceTree = "<group>"; };
+		A6B61A8C15774B07006C3526 /* AvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarView.m; sourceTree = "<group>"; };
 		DE442BB91569E21000E10A00 /* SocialActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivity.h; sourceTree = "<group>"; };
 		DE442BBA1569E21000E10A00 /* SocialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivity.m; sourceTree = "<group>"; };
 		DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikersViewController.h; sourceTree = "<group>"; };
@@ -2361,6 +2364,8 @@
 				A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */,
 				A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */,
 				A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */,
+				A6B61A8B15774B07006C3526 /* AvatarView.h */,
+				A6B61A8C15774B07006C3526 /* AvatarView.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -4618,6 +4623,7 @@
 				A61E3FE0152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m in Sources */,
 				DE442BBB1569E21000E10A00 /* SocialActivity.m in Sources */,
 				DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */,
+				A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

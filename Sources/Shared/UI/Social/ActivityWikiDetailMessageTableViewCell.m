@@ -32,8 +32,6 @@
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     _htmlName.textColor = [UIColor grayColor];
-    _htmlName.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
     [self.contentView addSubview:_htmlName];
     
     _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
@@ -41,8 +39,6 @@
     _htmlMessage.backgroundColor = [UIColor clearColor];
     _htmlMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlMessage.textColor = [UIColor grayColor];
-    _htmlMessage.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
     [self.contentView addSubview:_htmlMessage];
 }
 
@@ -78,7 +74,7 @@
     CGSize theSize = [[[_templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText] sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];
     
-    [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]]
+    [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#F5F5F5;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]]
                                baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]];
     _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
     //Set the position of web

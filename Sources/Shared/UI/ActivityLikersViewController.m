@@ -9,7 +9,7 @@
 #import "ActivityLikersViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivity.h"
-#import "EGOImageView.h"
+#import "AvatarView.h"
 #import "defines.h"
 #import "SocialActivityDetailsProxy.h"
 
@@ -19,16 +19,13 @@
 #define kLikersViewColumns 3
 
 
-
-@interface ActivityLikersViewController () {
-    EGORefreshTableHeaderView *_refreshHeaderView;
-}
+@interface ActivityLikersViewController ()
 
 @property (nonatomic, retain) NSMutableArray *avatarViews;
 @property (nonatomic, retain) NSMutableArray *nameLabels;
 
 - (void)updateLikerViews;
-- (EGOImageView *)newAvatarView;
+- (AvatarView *)newAvatarView;
 - (UILabel *)newNameLabel;
 - (void)updateListOfLikers;
 
@@ -46,7 +43,6 @@
     [_avatarViews release];
     [_nameLabels release];
     [_likersHeader release];
-    _refreshHeaderView = nil;
     [super dealloc];
 }
 
@@ -77,19 +73,8 @@
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     scrollView.backgroundColor = EXO_BACKGROUND_COLOR;
     scrollView.scrollEnabled = YES;
-//    scrollView.delegate = self;
-//    [scrollView setContentSize:CGSizeMake(320.0, 1000.0)];
-//    if (!_refreshHeaderView) {
-//        EGORefreshTableHeaderView *refreshView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - scrollView.bounds.size.height, scrollView.frame.size.width, scrollView.bounds.size.height)];
-//        refreshView.delegate = self;
-//        
-//        [scrollView addSubview:refreshView];
-//        _refreshHeaderView = refreshView;
-//        [refreshView release];
-//    }
     
     self.view = [scrollView autorelease];
-    [_refreshHeaderView refreshLastUpdatedDate];
     
     [self.view addSubview:self.likersHeader];
     [self updateLikerViews];
@@ -177,18 +162,15 @@
     [((UIScrollView *)self.view) setContentSize:CGSizeMake(viewBounds.size.width, contentHeight)];
 }
 
-- (EGOImageView *)newAvatarView {
-    EGOImageView *imageView = [[[EGOImageView alloc] init] autorelease];
+- (AvatarView *)newAvatarView {
+    AvatarView *imageView = [[[AvatarView alloc] init] autorelease];
     //Add the CornerRadius
     [[imageView layer] setCornerRadius:6.0];
     [[imageView layer] setMasksToBounds:YES];
     
     //Add the border
     [[imageView layer] setBorderColor:[UIColor whiteColor].CGColor];
-    CGFloat borderWidth = 1.0;
-    [[imageView layer] setBorderWidth:borderWidth];
     
-    imageView.placeholderImage = [UIImage imageNamed:@"default-avatar"];
     return imageView;
 }
 
@@ -218,27 +200,5 @@
 - (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {
     
 }
-
-#pragma mark - EGORefreshTableHeaderDelegate
-//- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {
-//    return YES;
-//}
-//
-//- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view {
-//    return [NSDate date];
-//}
-//
-//- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
-//    
-//}
-//
-//#pragma mark - UIScrollViewDelegate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-//}
 
 @end

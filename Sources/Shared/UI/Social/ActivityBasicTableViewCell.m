@@ -7,7 +7,6 @@
 //
 
 #import "ActivityBasicTableViewCell.h"
-#import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivity.h"
@@ -98,16 +97,7 @@
 #pragma mark - Activity Cell methods 
 
 - (void)customizeAvatarDecorations {
-    //Add the CornerRadius
-    [[_imgvAvatar layer] setCornerRadius:6.0];
-    [[_imgvAvatar layer] setMasksToBounds:YES];
-    
-    //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor whiteColor].CGColor];
-    CGFloat borderWidth = 1.0;
-    [[_imgvAvatar layer] setBorderWidth:borderWidth];
-    
-    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
+
 }
 
 

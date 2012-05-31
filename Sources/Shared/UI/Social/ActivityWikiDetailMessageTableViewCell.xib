@@ -75,11 +75,7 @@
 								<string key="NSFrame">{{58, 27}, {255, 42}}</string>
 								<reference key="NSSuperview" ref="188234836"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="127949627"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAxIDEAA</bytes>
-								</object>
+								<reference key="NSNextKeyView" ref="100253699"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIDataDetectorTypes">2</int>
 							</object>
@@ -124,6 +120,7 @@
 								<string key="NSFrame">{{62, 80}, {251, 21}}</string>
 								<reference key="NSSuperview" ref="188234836"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="127949627"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -152,7 +149,7 @@
 						<string key="NSFrameSize">{320, 136}</string>
 						<reference key="NSSuperview" ref="814187654"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="454305275"/>
 						<reference key="IBUIBackgroundColor" ref="181466961"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -288,7 +285,7 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="8.CustomClassName">EGOImageView</string>
+				<string key="8.CustomClassName">AvatarView</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -305,7 +302,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="imgType">UIImageView</string>
 						<string key="imgvAttach">EGOImageView</string>
-						<string key="imgvAvatar">EGOImageView</string>
+						<string key="imgvAvatar">AvatarView</string>
 						<string key="lbDate">UILabel</string>
 						<string key="lbMessage">UILabel</string>
 						<string key="lbName">UILabel</string>
@@ -323,7 +320,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="imgvAvatar">
 							<string key="name">imgvAvatar</string>
-							<string key="candidateClassName">EGOImageView</string>
+							<string key="candidateClassName">AvatarView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lbDate">
 							<string key="name">lbDate</string>
@@ -357,6 +354,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ActivityWikiDetailMessageTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">AvatarView</string>
+					<string key="superclassName">EGOImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AvatarView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

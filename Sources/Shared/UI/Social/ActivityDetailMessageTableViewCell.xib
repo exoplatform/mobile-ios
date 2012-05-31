@@ -137,10 +137,6 @@
 								<reference key="NSSuperview" ref="818041569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="480406158"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAxIDEAA</bytes>
-								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIDataDetectorTypes">2</int>
 							</object>
@@ -364,7 +360,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>EGOImageView</string>
+					<string>AvatarView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ActivityDetailMessageTableViewCell</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -412,7 +408,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIImageView</string>
 							<string>EGOImageView</string>
-							<string>EGOImageView</string>
+							<string>AvatarView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -445,7 +441,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">imgvAvatar</string>
-								<string key="candidateClassName">EGOImageView</string>
+								<string key="candidateClassName">AvatarView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">lbDate</string>
@@ -472,6 +468,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ActivityDetailMessageTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">AvatarView</string>
+					<string key="superclassName">EGOImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AvatarView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

@@ -132,6 +132,14 @@
 	}
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSIndexPath *selection = [_tblvActivityDetail indexPathForSelectedRow];
+    if (selection) {
+        [_tblvActivityDetail deselectRowAtIndexPath:selection animated:YES];
+    }
+}
+
 /*
 - (void)viewWillAppear:(BOOL)animated
 {

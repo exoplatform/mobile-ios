@@ -7,7 +7,7 @@
 //
 
 #import "ActivityDetailLikeTableViewCell.h"
-#import "EGOImageView.h"
+#import "AvatarView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivity.h"
@@ -28,7 +28,7 @@
 @property (nonatomic, retain) NSMutableArray *likerAvatarImageViews;
 - (void)reloadAvatarViews;
 - (UIImage *)imageOfThreePointsWithSize:(CGSize)imageSize;
-- (EGOImageView *)newAvatarView;
+- (AvatarView *)newAvatarView;
 
 
 @end
@@ -155,18 +155,14 @@
 }
 
 #pragma mark - Liker avatar management
-- (EGOImageView *)newAvatarView {
-    EGOImageView *imageView = [[[EGOImageView alloc] init] autorelease];
-    //Add the CornerRadius
+- (AvatarView *)newAvatarView {
+    AvatarView *imageView = [[[AvatarView alloc] init] autorelease];
+    // Update the CornerRadius
     [[imageView layer] setCornerRadius:3.0];
     [[imageView layer] setMasksToBounds:YES];
-    
-    //Add the border
+    // Update the border color
     [[imageView layer] setBorderColor:[UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor];
-    CGFloat borderWidth = 1.0;
-    [[imageView layer] setBorderWidth:borderWidth];
     
-    imageView.placeholderImage = [UIImage imageNamed:@"default-avatar"];
     return imageView;
 }
 
@@ -198,7 +194,7 @@
     CGContextSetFillColorWithColor(context, [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1].CGColor);
     CGContextFillRect(context, rect);
     
-    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor);
     [threePoints drawInRect:rect withFont:font lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

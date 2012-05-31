@@ -13,6 +13,7 @@
 @class EGOImageView;
 @class SocialActivity;
 @class ActivityDetail;
+@class AvatarView;
 
 
 @interface ActivityDetailMessageTableViewCell : UITableViewCell {
@@ -21,7 +22,6 @@
     UILabel*               _lbDate;
     UILabel*               _lbName;
     
-    EGOImageView*          _imgvAvatar;
     UIImageView*           _imgType;
     EGOImageView*          _imgvAttach;
     
@@ -36,7 +36,7 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
-@property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+@property (retain, nonatomic) IBOutlet AvatarView* imgvAvatar;
 @property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain, nonatomic) IBOutlet UIImageView* imgType;
 

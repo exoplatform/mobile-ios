@@ -7,7 +7,7 @@
 //
 
 #import "ActivityDetailMessageTableViewCell.h"
-#import "EGOImageView.h"
+#import "AvatarView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SocialActivity.h"
@@ -63,22 +63,6 @@
 #pragma mark - Activity Cell methods 
 
 - (void)customizeAvatarDecorations {
-    //Add the CornerRadius
-    [[_imgvAvatar layer] setCornerRadius:6.0];
-    [[_imgvAvatar layer] setMasksToBounds:YES];
-    
-    //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor whiteColor].CGColor];
-    CGFloat borderWidth = 1.0;
-    [[_imgvAvatar layer] setBorderWidth:borderWidth];
-    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
-    
-    //Add the inner shadow
-    /*CALayer *innerShadowLayer = [CALayer layer];
-    innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow.png"].CGImage;
-    innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
-    innerShadowLayer.frame = CGRectMake(borderWidth,borderWidth,_imgvAvatar.frame.size.width-2*borderWidth, _imgvAvatar.frame.size.height-2*borderWidth);
-    [_imgvAvatar.layer addSublayer:innerShadowLayer];*/
 }
 
 
@@ -98,7 +82,6 @@
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
     scrollView.scrollsToTop = YES;
-    
     [_webViewForContent setOpaque:NO];
 }
 

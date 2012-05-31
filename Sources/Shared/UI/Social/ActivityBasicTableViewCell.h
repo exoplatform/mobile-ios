@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 #import "defines.h"
+#import "AvatarView.h"
 
 @class Activity;
-@class EGOImageView;
 @class SocialActivity;
 @class ActivityStreamBrowseViewController;
 @class SocialUserProfile;
@@ -22,7 +22,6 @@
     UILabel*                                _lbDate;
     UILabel*                                _lbName;
     
-    EGOImageView*                           _imgvAvatar;
     UIImageView*                            _imgType;
     UIButton*                               _btnLike;
     UIButton*                               _btnComment;
@@ -36,7 +35,7 @@
     TTStyledTextLabel*                      _htmlMessage;
 }
 
-@property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+@property (retain, nonatomic) IBOutlet AvatarView *imgvAvatar;
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
