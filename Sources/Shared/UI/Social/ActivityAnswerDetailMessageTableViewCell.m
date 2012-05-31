@@ -33,8 +33,6 @@
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     _htmlName.textColor = [UIColor grayColor];
-    _htmlName.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
     [self.contentView addSubview:_htmlName];
     
     _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
@@ -42,8 +40,6 @@
     _htmlMessage.backgroundColor = [UIColor clearColor];
     _htmlMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlMessage.textColor = [UIColor grayColor];
-    _htmlMessage.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
     [self.contentView addSubview:_htmlMessage];
 }
 

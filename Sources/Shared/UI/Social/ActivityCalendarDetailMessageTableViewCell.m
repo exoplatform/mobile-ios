@@ -47,7 +47,6 @@
     _htmlTitle.backgroundColor = [UIColor clearColor];
     _htmlTitle.font = [UIFont systemFontOfSize:13.0];
     _htmlTitle.textColor = [UIColor grayColor];
-    _htmlTitle.backgroundColor = [UIColor whiteColor];
     
     [self.contentView addSubview:_htmlTitle];
     
@@ -56,7 +55,6 @@
     _htmlMessage.backgroundColor = [UIColor clearColor];
     _htmlMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlMessage.textColor = [UIColor grayColor];
-    _htmlMessage.backgroundColor = [UIColor whiteColor];
     
     [self.contentView addSubview:_htmlMessage];
 }
@@ -123,7 +121,7 @@
 - (void)dealloc {
     [_htmlTitle release];
     [_htmlMessage release];
-    _htmlMessage = nil;
+    [_htmlName release];
     
     [super dealloc];
 }
