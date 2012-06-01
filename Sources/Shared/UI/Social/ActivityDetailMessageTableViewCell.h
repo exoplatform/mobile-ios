@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 #import "defines.h"
+
+#define kBottomMargin 5.0
+#define kPadding 5.0
+
 @class Activity;
 @class EGOImageView;
 @class SocialActivity;
 @class ActivityDetail;
 @class AvatarView;
+
 
 
 @interface ActivityDetailMessageTableViewCell : UITableViewCell {
@@ -47,5 +52,6 @@
 - (void)configureCell;
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail;
+- (void)updateSizeToFitSubViews;
 
 @end

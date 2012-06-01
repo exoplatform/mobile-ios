@@ -47,6 +47,14 @@
     [_webViewComment setOpaque:NO];
 }
 
+- (void)updateSizeToFitSubViews {
+    
+    CGRect myFrame = self.frame;
+    myFrame.size.height = _webViewComment.frame.origin.y + _webViewComment.frame.size.height + _lbDate.bounds.size.height + kBottomMargin;
+    
+    self.frame = myFrame;
+}
+
 #define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
@@ -123,6 +131,7 @@
     
     [_webViewForContent sizeToFit];
     [_webViewComment sizeToFit];
+    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {

@@ -38,7 +38,6 @@
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     _htmlName.textColor = [UIColor grayColor];
-    _htmlName.backgroundColor = [UIColor whiteColor];
     
     [self.contentView addSubview:_htmlName];
     
@@ -46,7 +45,6 @@
     _htmlTitle.userInteractionEnabled = NO;
     _htmlTitle.backgroundColor = [UIColor clearColor];
     _htmlTitle.font = [UIFont systemFontOfSize:13.0];
-    _htmlTitle.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:_htmlTitle];
     
@@ -57,6 +55,12 @@
     _htmlMessage.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:_htmlMessage];
+}
+
+- (void)updateSizeToFitSubViews {
+    CGRect frame = self.frame;
+    frame.size.height = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height + kPadding + self.lbDate.frame.size.height + kBottomMargin;
+    self.frame = frame;
 }
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
@@ -116,6 +120,7 @@
     
     [_htmlMessage sizeToFit];
     [_htmlTitle sizeToFit];
+    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {

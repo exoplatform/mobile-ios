@@ -43,6 +43,16 @@
     [self.contentView addSubview:_htmlMessage];
 }
 
+- (void)updateSizeToFitSubViews {
+    CGRect frame = _htmlMessage.frame;
+    frame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + kPadding;
+    _htmlMessage.frame = frame;
+    
+    frame = self.frame;
+    frame.size.height = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height + kPadding + self.lbDate.frame.size.height + kBottomMargin;
+    self.frame = frame;
+}
+
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
@@ -90,18 +100,12 @@
     tmpFrame.size.height = theSize.height + 5;
     _webViewForContent.frame = tmpFrame;
     
-    
-    //content
     _htmlMessage.html = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    theSize = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                                                                                        lineBreakMode:UILineBreakModeWordWrap];
-    tmpFrame = _htmlMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
-    tmpFrame.size.height = theSize.height + 5;
-    _htmlMessage.frame = tmpFrame;
+    
     [_htmlMessage sizeToFit];
     
     [_webViewForContent sizeToFit];
+    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {

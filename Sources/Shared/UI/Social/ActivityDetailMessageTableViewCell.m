@@ -35,6 +35,17 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGRect frame = self.lbDate.frame;
+    frame.origin.y = self.frame.size.height - kBottomMargin - frame.size.height;
+    self.lbDate.frame = frame;
+    
+    frame = self.imgType.frame;
+    frame.origin.y = self.lbDate.frame.origin.y;
+    self.imgType.frame = frame;
+}
+
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     
     [super setHighlighted:highlighted animated:animated];
@@ -58,6 +69,18 @@
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
     
+}
+
+- (void)updateSizeToFitSubViews {
+    //Set the position of lbMessage
+    CGRect tmpFrame = _webViewForContent.frame;
+    tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height + 5;
+    _webViewForContent.frame = tmpFrame;
+    
+    CGRect myFrame = self.frame;
+    myFrame.size.height = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + kPadding + _lbDate.bounds.size.height + kBottomMargin;
+    
+    self.frame = myFrame;
 }
 
 #pragma mark - Activity Cell methods 
@@ -89,30 +112,25 @@
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     self.socialActivity = socialActivityDetail;
+    _lbMessage.text = @"";
+    _lbName.text = self.socialActivity.posterIdentity.fullName;
+    _lbDate.text = socialActivityDetail.postedTimeInWords;
+    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DEFAULT:
         {
-            NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",[socialActivityDetail.title copy]?[socialActivityDetail.title copy]:@""];
+            NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialActivityDetail.title ? socialActivityDetail.title : @""];
             [_webViewForContent loadHTMLString:htmlStr ? htmlStr :@""
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
-            NSLog(@"title :%@", socialActivityDetail.title);
-            _lbName.text = [socialActivityDetail.posterIdentity.fullName copy];
-            //Set the position of lbMessage
-            CGRect tmpFrame = _webViewForContent.frame;
-            tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height + 5;
-            _webViewForContent.frame = tmpFrame;
+            
+            [self updateSizeToFitSubViews];
+            
         }
             break;
     }
     
-    _lbMessage.text = @"";
-    
-    _lbDate.text = [socialActivityDetail.postedTimeInWords copy];
-    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
-    
 }
-
 
 
 @end

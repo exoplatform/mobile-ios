@@ -46,6 +46,15 @@
     [self.contentView addSubview:_htmlMessage];
 }
 
+- (void)updateSizeToFitSubViews {
+    // update position of last line: icon and date label
+    float lastLineY = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height;
+    
+    CGRect myFrame = self.frame;
+    myFrame.size.height = lastLineY + self.lbDate.frame.size.height + kBottomMargin;
+    self.frame = myFrame;
+}
+
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     [super setSocialActivityDetail:socialActivityDetail];
@@ -125,6 +134,8 @@
     [_htmlMessage sizeToFit];
     
     [_webViewForContent sizeToFit];
+    
+    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {

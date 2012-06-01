@@ -25,9 +25,6 @@
     
     IBOutlet UITableView*                   _tblvActivityDetail;
 //    IBOutlet UINavigationBar*               _navigationBar;
-                
-    //Cell for the content of the message
-    ActivityDetailMessageTableViewCell*     _cellForMessage;
     
     //Cell for the like part of the screen
     ActivityDetailLikeTableViewCell*        _cellForLikes;
@@ -55,6 +52,8 @@
 }
 @property (retain) NSString *iconType;
 @property (nonatomic, retain) SocialActivity *socialActivity;
+@property (nonatomic, retain) ActivityDetailMessageTableViewCell *activityDetailCell;
+@property (nonatomic, retain) ActivityDetailLikeTableViewCell *activityLikesCell;
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;

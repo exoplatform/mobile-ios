@@ -39,6 +39,32 @@
     _lbFileName.numberOfLines = 2;
 }
 
+- (void)updateSizeToFitSubViews {
+    //Set the position of lbMessage
+    CGRect rect = self.imgvAttach.frame;
+    rect.origin.y =  _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
+    rect.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 60);
+    self.imgvAttach.frame = rect;
+    
+    rect = _lbFileName.frame;
+    rect.origin.y = self.imgvAttach.frame.origin.y + self.imgvAttach.frame.size.height + 5;
+    CGSize theSize = [[self.socialActivity.templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage 
+                                                   constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)             
+                                                       lineBreakMode:UILineBreakModeWordWrap];
+    if(theSize.height > MAX_HEIGHT_FILE_NAME){
+        theSize.height = MAX_HEIGHT_FILE_NAME;
+    }
+    rect.size.height = theSize.height;
+    rect.size.width = _lbName.frame.size.width;
+    _lbFileName.frame = rect;
+    
+    [_webViewForContent sizeToFit];
+    
+    rect = self.frame;
+    rect.size.height = _lbFileName.frame.origin.y + _lbFileName.frame.size.height + _lbDate.frame.size.height + kBottomMargin;
+    self.frame = rect;
+}
+
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
@@ -94,25 +120,7 @@
     _webViewForContent.frame = rect;
     
     
-    //Set the position of lbMessage
-    rect = self.imgvAttach.frame;
-    rect.origin.y =  _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
-    rect.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 60);
-    self.imgvAttach.frame = rect;
-    
-    rect = _lbFileName.frame;
-    rect.origin.y = self.imgvAttach.frame.origin.y + self.imgvAttach.frame.size.height + 5;
-    theSize = [[_templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage 
-                                                          constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)             
-                                                              lineBreakMode:UILineBreakModeWordWrap];
-    if(theSize.height > MAX_HEIGHT_FILE_NAME){
-        theSize.height = MAX_HEIGHT_FILE_NAME;
-    }
-    rect.size.height = theSize.height;
-    rect.size.width = _lbName.frame.size.width;
-    _lbFileName.frame = rect;
-    
-    [_webViewForContent sizeToFit];
+    [self updateSizeToFitSubViews];
     
 }
 
