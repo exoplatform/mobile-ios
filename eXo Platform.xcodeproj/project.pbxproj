@@ -228,7 +228,6 @@
 		46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */; };
 		46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */; };
 		46A03A2E13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */; };
-		46A03AB613A8E0EF00E71AF9 /* ActivityAvatarShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AA313A8E0EF00E71AF9 /* ActivityAvatarShadow.png */; };
 		46A03AB713A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AA413A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png */; };
 		46A03AB813A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AA513A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png */; };
 		46A03AB913A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AA613A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg.png */; };
@@ -237,7 +236,6 @@
 		46A03ABC13A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AA913A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected.png */; };
 		46A03ABD13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AAA13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton.png */; };
 		46A03ABE13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AAB13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected.png */; };
-		46A03ABF13A8E0EF00E71AF9 /* ActivityAvatarShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AAD13A8E0EF00E71AF9 /* ActivityAvatarShadow@2x.png */; };
 		46A03AC013A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AAE13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png */; };
 		46A03AC113A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */; };
 		46A03AC213A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A03AB013A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png */; };
@@ -598,6 +596,8 @@
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
 		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
 		A61E3FE0152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */; };
+		A62433DC1578D2DA007D67CC /* ActivityAvatarShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = A62433DB1578D2DA007D67CC /* ActivityAvatarShadow.png */; };
+		A62433DE1578D2E2007D67CC /* ActivityAvatarShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A62433DD1578D2E2007D67CC /* ActivityAvatarShadow@2x.png */; };
 		A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */; };
 		A65F2818152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */; };
 		A6B4EF21156F8AD60007D631 /* activityDetailLikeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */; };
@@ -1120,7 +1120,6 @@
 		46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityBasicTableViewCell.xib; path = Social/ActivityBasicTableViewCell.xib; sourceTree = "<group>"; };
 		46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController.h; path = Social/ActivityStreamBrowseViewController.h; sourceTree = "<group>"; };
 		46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController.m; path = Social/ActivityStreamBrowseViewController.m; sourceTree = "<group>"; };
-		46A03AA313A8E0EF00E71AF9 /* ActivityAvatarShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ActivityAvatarShadow.png; sourceTree = "<group>"; };
 		46A03AA413A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowseHeaderHighlightedBg.png; sourceTree = "<group>"; };
 		46A03AA513A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowseHeaderNormalBg.png; sourceTree = "<group>"; };
 		46A03AA613A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowserActivityBg.png; sourceTree = "<group>"; };
@@ -1129,7 +1128,6 @@
 		46A03AA913A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowserCommentButtonSelected.png; sourceTree = "<group>"; };
 		46A03AAA13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowserLikeButton.png; sourceTree = "<group>"; };
 		46A03AAB13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowserLikeButtonSelected.png; sourceTree = "<group>"; };
-		46A03AAD13A8E0EF00E71AF9 /* ActivityAvatarShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityAvatarShadow@2x.png"; sourceTree = "<group>"; };
 		46A03AAE13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowseHeaderHighlightedBg@2x.png"; sourceTree = "<group>"; };
 		46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowseHeaderNormalBg@2x.png"; sourceTree = "<group>"; };
 		46A03AB013A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityBrowserActivityBg@2x.png"; sourceTree = "<group>"; };
@@ -1627,6 +1625,8 @@
 		A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePreviewViewController.xib; path = Social/ImagePreviewViewController.xib; sourceTree = "<group>"; };
 		A61E3FDE152AD7A500110F4B /* UIToolbar+eXoCustomIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+eXoCustomIphone.h"; sourceTree = "<group>"; };
 		A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+eXoCustomIphone.m"; sourceTree = "<group>"; };
+		A62433DB1578D2DA007D67CC /* ActivityAvatarShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ActivityAvatarShadow.png; sourceTree = "<group>"; };
+		A62433DD1578D2E2007D67CC /* ActivityAvatarShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityAvatarShadow@2x.png"; sourceTree = "<group>"; };
 		A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SocialAttachedImageBorder.png; path = Resources/Images/Shared/Social/SocialAttachedImageBorder.png; sourceTree = SOURCE_ROOT; };
 		A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SocialAttachedImageBorder@2x.png"; path = "Resources/Images/Shared/Social/SocialAttachedImageBorder@2x.png"; sourceTree = SOURCE_ROOT; };
 		A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikeBg.png; sourceTree = "<group>"; };
@@ -2382,10 +2382,10 @@
 		46A03AA213A8E0EF00E71AF9 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				A62433DB1578D2DA007D67CC /* ActivityAvatarShadow.png */,
 				A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */,
 				462E95B113F150DB0027E093 /* SocialPostActivityButton.png */,
 				46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */,
-				46A03AA313A8E0EF00E71AF9 /* ActivityAvatarShadow.png */,
 				46A03AA413A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png */,
 				46A03AA513A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png */,
 				46A03AA613A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg.png */,
@@ -2412,10 +2412,10 @@
 		46A03AAC13A8E0EF00E71AF9 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				A62433DD1578D2E2007D67CC /* ActivityAvatarShadow@2x.png */,
 				A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */,
 				462E95AF13F150D00027E093 /* SocialPostActivityButton@2x.png */,
 				46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */,
-				46A03AAD13A8E0EF00E71AF9 /* ActivityAvatarShadow@2x.png */,
 				46A03AAE13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png */,
 				46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */,
 				46A03AB013A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png */,
@@ -4177,7 +4177,6 @@
 				7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */,
 				46A03A2113A7A39000E71AF9 /* ActivityStreamBrowseViewController_iPad.xib in Resources */,
 				46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */,
-				46A03AB613A8E0EF00E71AF9 /* ActivityAvatarShadow.png in Resources */,
 				46A03AB713A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png in Resources */,
 				46A03AB813A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png in Resources */,
 				46A03AB913A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg.png in Resources */,
@@ -4186,7 +4185,6 @@
 				46A03ABC13A8E0EF00E71AF9 /* SocialActivityBrowserCommentButtonSelected.png in Resources */,
 				46A03ABD13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButton.png in Resources */,
 				46A03ABE13A8E0EF00E71AF9 /* SocialActivityBrowserLikeButtonSelected.png in Resources */,
-				46A03ABF13A8E0EF00E71AF9 /* ActivityAvatarShadow@2x.png in Resources */,
 				46A03AC013A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png in Resources */,
 				46A03AC113A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png in Resources */,
 				46A03AC213A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg@2x.png in Resources */,
@@ -4383,6 +4381,8 @@
 				A6B4EF2D156F98920007D631 /* activityDetailLikersAccessoryView@2x.png in Resources */,
 				A6B4EF2E156F98920007D631 /* activityDetailLikersAccessoryViewSelected.png in Resources */,
 				A6B4EF2F156F98920007D631 /* activityDetailLikersAccessoryViewSelected@2x.png in Resources */,
+				A62433DC1578D2DA007D67CC /* ActivityAvatarShadow.png in Resources */,
+				A62433DE1578D2E2007D67CC /* ActivityAvatarShadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
