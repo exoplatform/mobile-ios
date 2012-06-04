@@ -151,7 +151,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    SocialActivityStream* socialActivityStream = [super getSocialActivityStreamForIndexPath:indexPath];
+    SocialActivity *socialActivityStream = [super getSocialActivityStreamForIndexPath:indexPath];
     
     if (_activityDetailViewController != nil) 
     {

@@ -22,7 +22,6 @@
     //eXoFullScreenView *viewController;
 }
 
-@property (nonatomic, retain) IBOutlet NSURL* _url;
 @property (nonatomic, retain) IBOutlet UIWebView* _webView;
 
 - (void)setUrl:(NSURL*)url;	//Set gadget URL

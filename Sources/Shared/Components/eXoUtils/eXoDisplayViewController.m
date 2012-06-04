@@ -23,7 +23,7 @@
 
 @implementation eXoDisplayViewController
 
-@synthesize _url, _webView;
+@synthesize _webView;
 
 // custom init method to allow URL to be passed
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle 
@@ -160,33 +160,26 @@
 
 - (void)viewDidUnload
 {
+    [_webView setDelegate:nil];
+    [_webView stopLoading];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
 - (void)didReceiveMemoryWarning 
 {
+    
     [super didReceiveMemoryWarning];
 }
 
 - (void)dealloc 
 {
-	[_url release];	//Gadget URL
-    _url = nil;
-    
-	[_webView release];
-    _webView = nil;
-    
-    if(_fileName != nil){
-        [_fileName release];
-        _fileName = nil;
-    }
-    
-    if(navigationBar != nil)
-        [navigationBar release];
-	
+    [_url release];
+    [_webView setDelegate:nil];
+    [_webView stopLoading];
+    [_webView release];
+    [_fileName release];
+    [navigationBar release];
     [super dealloc];
 }
 

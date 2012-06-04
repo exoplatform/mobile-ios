@@ -20,14 +20,18 @@
 @implementation GadgetDisplayViewController
 
 @synthesize gadget = _gadget;
-//@synthesize _webView;
+
+- (void)dealloc {
+    [_gadget release];
+    [super dealloc];
+}
 
 // custom init method
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
 {
 	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
         [self setGadget:gadgetToLoad];
-        _url = [NSURL URLWithString:[_gadget.gadgetUrl retain]];
+        _url = [[NSURL URLWithString:_gadget.gadgetUrl] retain];
 	}
     return self;
 }
@@ -39,15 +43,6 @@
     //Set the title of the controller
     self.title = _gadget.gadgetName;
 }
-
-
-- (void)setGadget:(GadgetItem *)gadgetToLoad
-{
-	_gadget = [gadgetToLoad retain];    
-}
-
-
-
 
 
 @end

@@ -7,10 +7,9 @@
 //
 
 #import "ActivityBasicTableViewCell.h"
-#import "EGOImageView.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SocialActivityStream.h"
+#import "SocialActivity.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "SocialUserProfile.h"
 #import "Three20/Three20.h"
@@ -98,16 +97,7 @@
 #pragma mark - Activity Cell methods 
 
 - (void)customizeAvatarDecorations {
-    //Add the CornerRadius
-    [[_imgvAvatar layer] setCornerRadius:6.0];
-    [[_imgvAvatar layer] setMasksToBounds:YES];
-    
-    //Add the border
-    [[_imgvAvatar layer] setBorderColor:[UIColor colorWithRed:45./255 green:45./255 blue:45./255 alpha:1.].CGColor];
-    CGFloat borderWidth = 1.0;
-    [[_imgvAvatar layer] setBorderWidth:borderWidth];
-    
-    _imgvAvatar.placeholderImage = [UIImage imageNamed:@"default-avatar"];
+
 }
 
 
@@ -214,11 +204,11 @@
     [self.contentView addSubview:_htmlMessage];
 }
 
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream
+- (void)setSocialActivityStream:(SocialActivity *)socialActivityStream
 { 
     
     //Setting the avatar without starting the download to prevent troubles during scrolling
-    [_imgvAvatar setImageURLWithoutDownloading:[NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl]];
+    [_imgvAvatar setImageURLWithoutDownloading:[NSURL URLWithString:socialActivityStream.posterIdentity.avatarUrl]];
     
     self.socialActivytyStream = socialActivityStream;
     
@@ -269,12 +259,12 @@
 
 
 
-- (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream*)socialActivityStream {
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
  
     _htmlMessage.html = socialActivityStream.title;
     //_htmlMessage.text = [TTStyledText textFromXHTML:socialActivityStream.title];
 
-    _lbName.text = [socialActivityStream.posterUserProfile.fullName copy];
+    _lbName.text = [socialActivityStream.posterIdentity.fullName copy];
 }
 
 

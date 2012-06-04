@@ -7,7 +7,7 @@
 //
 
 #import "ActivityPictureDetailMessageTableViewCell.h"
-#import "SocialActivityDetails.h"
+#import "SocialActivity.h"
 #import "EGOImageView.h"
 #import "defines.h"
 #import "ActivityHelper.h"
@@ -39,7 +39,33 @@
     _lbFileName.numberOfLines = 2;
 }
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+- (void)updateSizeToFitSubViews {
+    //Set the position of lbMessage
+    CGRect rect = self.imgvAttach.frame;
+    rect.origin.y =  _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
+    rect.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 60);
+    self.imgvAttach.frame = rect;
+    
+    rect = _lbFileName.frame;
+    rect.origin.y = self.imgvAttach.frame.origin.y + self.imgvAttach.frame.size.height + 5;
+    CGSize theSize = [[self.socialActivity.templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage 
+                                                   constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)             
+                                                       lineBreakMode:UILineBreakModeWordWrap];
+    if(theSize.height > MAX_HEIGHT_FILE_NAME){
+        theSize.height = MAX_HEIGHT_FILE_NAME;
+    }
+    rect.size.height = theSize.height;
+    rect.size.width = _lbName.frame.size.width;
+    _lbFileName.frame = rect;
+    
+    [_webViewForContent sizeToFit];
+    
+    rect = self.frame;
+    rect.size.height = _lbFileName.frame.origin.y + _lbFileName.frame.size.height + _lbDate.frame.size.height + kBottomMargin;
+    self.frame = rect;
+}
+
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
@@ -60,7 +86,8 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     NSString *htmlStr = nil;
-    switch (_activityType) {
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_DOC:{
             _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [_templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"MESSAGE"]?[[_templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText]:@""]
@@ -93,25 +120,7 @@
     _webViewForContent.frame = rect;
     
     
-    //Set the position of lbMessage
-    rect = self.imgvAttach.frame;
-    rect.origin.y =  _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
-    rect.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 60);
-    self.imgvAttach.frame = rect;
-    
-    rect = _lbFileName.frame;
-    rect.origin.y = self.imgvAttach.frame.origin.y + self.imgvAttach.frame.size.height + 5;
-    theSize = [[_templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage 
-                                                          constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)             
-                                                              lineBreakMode:UILineBreakModeWordWrap];
-    if(theSize.height > MAX_HEIGHT_FILE_NAME){
-        theSize.height = MAX_HEIGHT_FILE_NAME;
-    }
-    rect.size.height = theSize.height;
-    rect.size.width = _lbName.frame.size.width;
-    _lbFileName.frame = rect;
-    
-    [_webViewForContent sizeToFit];
+    [self updateSizeToFitSubViews];
     
 }
 

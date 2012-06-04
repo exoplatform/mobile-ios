@@ -7,7 +7,6 @@
 //
 
 #import "ActivityLinkDetailMessageTableViewCell.h"
-#import "SocialActivityDetails.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "defines.h"
@@ -48,11 +47,20 @@
     [_webViewComment setOpaque:NO];
 }
 
+- (void)updateSizeToFitSubViews {
+    
+    CGRect myFrame = self.frame;
+    myFrame.size.height = _webViewComment.frame.origin.y + _webViewComment.frame.size.height + _lbDate.bounds.size.height + kBottomMargin;
+    
+    self.frame = myFrame;
+}
+
 #define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
@@ -123,6 +131,7 @@
     
     [_webViewForContent sizeToFit];
     [_webViewComment sizeToFit];
+    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {

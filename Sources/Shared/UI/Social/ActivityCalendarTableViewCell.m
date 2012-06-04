@@ -8,7 +8,7 @@
 
 #import "ActivityCalendarTableViewCell.h"
 
-#import "SocialActivityStream.h"
+#import "SocialActivity.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "NSString+HTML.h"
@@ -87,7 +87,7 @@
 
 
 
-- (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
@@ -97,19 +97,19 @@
     switch (socialActivityStream.activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:
             _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_EVENT:
             _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventUpdated")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventUpdated")];
             break;
         case ACTIVITY_CALENDAR_ADD_TASK:
             _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskAdded")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
             _htmlName.html = [NSString stringWithFormat:@"<a>%@%@</a> %@", 
-                              socialActivityStream.posterUserProfile.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskUpdated")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskUpdated")];
             break; 
         default:
             break;

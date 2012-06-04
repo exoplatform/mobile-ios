@@ -9,7 +9,6 @@
 #import "ActivityDetailViewController_iPhone.h"
 #import "MessageComposerViewController_iPhone.h"
 #import "ActivityDetailViewController.h"
-#import "SocialActivityStream.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "MessageComposerViewController.h"
 #import "defines.h"
@@ -18,14 +17,40 @@
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
 #import "ActivityHelper.h"
+#import "ActivityLikersViewController.h"
+#import "ActivityDetailLikeTableViewCell.h"
+#import "ActivityDetailCommentTableViewCell.h"
+#import "EmptyView.h"
+
+#define kLikeCellHeight (self.socialActivity.totalNumberOfLikes > 0 ? 70.0 : 50.0)
+#define kNoCommentCellHeight 200.0
 
 @implementation ActivityDetailViewController_iPhone
 
+@synthesize noCommentCell = _noCommentCell;
+
+- (void)dealloc {
+    [_noCommentCell release];
+    [super dealloc];
+}
+
+- (UITableViewCell *)noCommentCell {
+    if (!_noCommentCell) {
+        CGRect cellBounds = CGRectMake(0, 0, _tblvActivityDetail.bounds.size.width, kNoCommentCellHeight);
+        _noCommentCell = [[UITableViewCell alloc] init];
+        _noCommentCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _noCommentCell.bounds = cellBounds;
+        EmptyView *emptyView = [[[EmptyView alloc] initWithFrame:_noCommentCell.bounds withImageName:@"IconForNoActivities" andContent:Localize(@"NoComment")] autorelease];
+        emptyView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
+        [_noCommentCell.contentView addSubview:emptyView];
+    }
+    return _noCommentCell;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.view.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];
 
 
     
@@ -47,12 +72,12 @@
     messageComposerViewController.delegate = self;
     messageComposerViewController.tblvActivityDetail = _tblvActivityDetail;
     messageComposerViewController.isPostMessage = NO;
-    messageComposerViewController.strActivityID = _socialActivityStream.activityId;
+    messageComposerViewController.strActivityID = self.socialActivity.activityId;
     
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
     
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
     [self presentModalViewController:navController animated:YES];
 
@@ -68,23 +93,23 @@
 
 -(void)showContent:(UITapGestureRecognizer *)gesture{
     NSURL *url;
-    switch (_socialActivityStream.activityType) {
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_DOC:{
-            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [_socialActivityStream.templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [self.socialActivity.templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
             break;
         case ACTIVITY_CONTENTS_SPACE:{
-            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_socialActivityStream.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [self.socialActivity.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
             break;
     }
     
-    ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
+    ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
-                                                                       url:url];
+                                                                       url:url] autorelease];
     
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:linkWebViewController.view animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
     
 }
 
@@ -92,16 +117,93 @@
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     //CAPTURE USER LINK-CLICK.
     if(navigationType == UIWebViewNavigationTypeLinkClicked) {
-		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] 
+		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] 
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
-                                                                       url:[request URL]];
+                                                                       url:[request URL]] autorelease];
         
-        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:linkWebViewController.view animated:YES]; 
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES]; 
         return NO;
     }
     return YES;   
 }
 
+#pragma mark - TableView management
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
+    return 3;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    return (section == 2 && self.socialActivity.totalNumberOfComments > 0) ? [self.socialActivity.comments count] : 1;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *kIdentifierActivityDetailLikeTableViewCell = @"ActivityDetailLikeTableViewCell";
+    static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
+    if (indexPath.section == 1) {
+        ActivityDetailLikeTableViewCell* cell = (ActivityDetailLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikeTableViewCell];
+        
+        if (cell == nil) 
+        {
+            cell = [[[ActivityDetailLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kIdentifierActivityDetailLikeTableViewCell] autorelease];    
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.delegate = self;
+        }
+        cell.socialActivity = self.socialActivity;
+        
+        return cell;
+    } else if (indexPath.section == 2) {
+        if (self.socialActivity.totalNumberOfComments == 0) {
+            return self.noCommentCell;
+        } else {
+            ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
+            
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
+                cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some configurations
+                [cell configureCell];
+                cell.width = tableView.frame.size.width;
+                cell.webViewForContent.delegate = self;
+            }
+            
+            SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+            [cell setSocialComment:socialComment];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1)
+        return kLikeCellHeight;
+    else if (indexPath.section == 2 && self.socialActivity.totalNumberOfComments == 0) {
+        return self.noCommentCell.bounds.size.height;
+    }
+    else return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {        
+        ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
+        likersView.socialActivity = self.socialActivity;
+        likersView.view.title = [NSString stringWithFormat:Localize(@"numOfLikers"), self.socialActivity.totalNumberOfLikes];
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:likersView animated:YES];
+    } else {
+        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
+}
 
 @end

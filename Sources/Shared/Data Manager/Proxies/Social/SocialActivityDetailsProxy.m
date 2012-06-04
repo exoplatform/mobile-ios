@@ -8,9 +8,9 @@
 
 #import "SocialActivityDetailsProxy.h"
 #import "SocialRestConfiguration.h"
-#import "SocialActivityDetails.h"
 #import "SocialIdentity.h"
 #import "SocialComment.h"
+#import "SocialActivity.h"
 
 
 
@@ -76,6 +76,10 @@
     return [NSString stringWithFormat:@"%@.json",activityId]; 
 }
 
+- (NSString *)createLikeResourcePath:(NSString *)activityId {
+    return [NSString stringWithFormat:@"%@/likes.json", activityId];
+}
+
 
 //Helper to add Parameters to the request
 //Conform to the RestKit Documentation
@@ -122,7 +126,7 @@
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
     
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityDetails class]];
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"totalNumberOfComments",@"totalNumberOfComments",
@@ -133,7 +137,7 @@
      @"title",@"title",
      @"body",@"body",
      @"priority",@"priority",
-     @"id",@"identifyId",
+     @"id",@"activityId",
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
      @"liked",@"liked",
@@ -195,7 +199,23 @@
     
 }
 
-
+- (void)getLikers:(NSString *)activityId {
+    RKObjectManager *manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
+    [RKObjectManager setSharedManager:manager];
+    
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
+    [mapping mapKeyPathsToAttributes:@"totalNumberOfLikes", @"totalNumberOfLikes", nil];
+    RKObjectMapping *likesByIdentitiesMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [likesByIdentitiesMapping mapKeyPathsToAttributes:
+     @"id", @"identity",
+     @"remoteId", @"remoteId",
+     @"providerId", @"providerId",   
+     @"profile.avatarUrl", @"avatarUrl",
+     @"profile.fullName", @"fullName",
+     nil];
+    [mapping mapKeyPath:@"likesByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likesByIdentitiesMapping];
+    [manager loadObjectsAtResourcePath:[self createLikeResourcePath:activityId] objectMapping:mapping delegate:self];
+}
 
 #pragma mark - RKObjectLoaderDelegate methods
 
@@ -209,7 +229,7 @@
 {
 	//NSLog(@"Loaded statuses ActivityDetail: %@ \n %@", objects, [objects objectAtIndex:0]);    
     
-    _socialActivityDetails = [[objects objectAtIndex:0] retain];
+    self.socialActivityDetails = [objects objectAtIndex:0];
     
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];

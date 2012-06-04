@@ -28,7 +28,7 @@
 {
     [super viewWillAppear:animated];
     
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:NO animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];
 
     
         
@@ -49,7 +49,7 @@
     
     self.view.title = self.title;
     
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
 }
 
 
@@ -64,7 +64,7 @@
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
     
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
     [self presentModalViewController:navController animated:YES];
 
@@ -85,7 +85,7 @@
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
     [messageComposerViewController release];
     
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView setNavigationBarHidden:YES animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 
     
     [self presentModalViewController:navController animated:YES];
@@ -94,7 +94,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
  
     _indexpathSelectedActivity = [indexPath copy];
     
@@ -111,7 +111,7 @@
     
     //[_revealView.contentView setRootView:_activityStreamBrowseViewController_iPhone.view];
     //[_revealView revealSidebar:NO];
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView pushView:_activityDetailViewController.view animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:_activityDetailViewController animated:YES];
 
 }
 

@@ -8,8 +8,6 @@
 
 #import "ActivityForumDetailMessageTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SocialActivityStream.h"
-#import "SocialActivityDetails.h"
 #import "defines.h"
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
@@ -36,7 +34,6 @@
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     _htmlName.textColor = [UIColor grayColor];
-    _htmlName.backgroundColor = [UIColor whiteColor];
     
     [self.contentView addSubview:_htmlName];
     
@@ -45,12 +42,20 @@
     _htmlMessage.backgroundColor = [UIColor clearColor];
     _htmlMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlMessage.textColor = [UIColor grayColor];
-    _htmlMessage.backgroundColor = [UIColor whiteColor];
     
     [self.contentView addSubview:_htmlMessage];
 }
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail
+- (void)updateSizeToFitSubViews {
+    // update position of last line: icon and date label
+    float lastLineY = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height;
+    
+    CGRect myFrame = self.frame;
+    myFrame.size.height = lastLineY + self.lbDate.frame.size.height + kBottomMargin;
+    self.frame = myFrame;
+}
+
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
@@ -61,7 +66,8 @@
     
     NSString *textWithoutHtml = @"";
     NSString *htmlStr = nil;
-    switch (_activityType) {
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_FORUM_CREATE_TOPIC:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"NewTopic")];
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"TopicLink"],[_templateParams valueForKey:@"TopicName"]]
@@ -128,11 +134,13 @@
     [_htmlMessage sizeToFit];
     
     [_webViewForContent sizeToFit];
+    
+    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {
     [_htmlMessage release];
-    _htmlMessage = nil;
+    [_htmlName release];
     
     [super dealloc];
 }

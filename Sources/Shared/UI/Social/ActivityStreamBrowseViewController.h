@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SocialProxy.h"
-#import "SocialActivityStream.h"
+#import "SocialActivity.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MessageComposerViewController.h"
 #import "EGOImageView.h"
@@ -52,7 +52,7 @@
 - (void)postACommentOnActivity:(NSString *)activity;
 - (void)sortActivities;
 - (void)clearActivityData;
-- (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
+- (SocialActivity *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
 -(void)showHudForUpload;
 //- (float)getHeightForText:(NSString *)text width:(float)width;
 @end

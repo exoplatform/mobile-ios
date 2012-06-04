@@ -10,7 +10,7 @@
 #import <RestKit/RestKit.h>
 #import "SocialProxy.h"
 #import "SocialUserProfile.h"
-#import "SocialActivityStream.h"
+#import "SocialActivity.h"
 
 @class SocialUserProfileProxy;
 
@@ -29,7 +29,7 @@
 
 - (id)initWithSocialUserProfile:(SocialUserProfile*)aSocialUserProfile;
 - (void)getActivityStreams;
-- (void)updateActivityStreamSinceActivity:(SocialActivityStream*)activity;
+- (void)updateActivityStreamSinceActivity:(SocialActivity *)activity;
 
 @end
 

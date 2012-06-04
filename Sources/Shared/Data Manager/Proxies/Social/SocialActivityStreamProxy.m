@@ -9,7 +9,6 @@
 #import "SocialActivityStreamProxy.h"
 #import "SocialIdentity.h"
 #import "SocialRestConfiguration.h"
-#import "SocialActivityStream.h"
 #import "SocialUserProfileProxy.h"
 
 
@@ -73,7 +72,7 @@
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
     
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityStream class]];
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"liked",@"liked",
@@ -101,21 +100,21 @@
      @"profile.avatarUrl",@"avatarUrl",
      @"profile.fullName",@"fullName",
      nil];
-    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterUserProfile" withObjectMapping:posterProfileMapping];
+    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
     
     
-    //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
+    //[manager registerClass:[SocialActivity class] forElementNamed:@"activities"];
     [manager loadObjectsAtResourcePath:[self createPath] delegate:self];   
 }
 
-- (void)updateActivityStreamSinceActivity:(SocialActivityStream*)activity {
+- (void)updateActivityStreamSinceActivity:(SocialActivity *)activity {
 
     _isUpdateRequest = YES;
     
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
     
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivityStream class]];
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"liked",@"liked",
@@ -143,7 +142,7 @@
      @"profile.avatarUrl",@"avatarUrl",
      @"profile.fullName",@"fullName",
      nil];
-    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterUserProfile" withObjectMapping:posterProfileMapping];
+    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
     
     //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"feed.json?since_id=%@",activity.activityId] delegate:self]; 

@@ -8,7 +8,6 @@
 
 #import "ActivityAnswerDetailMessageTableViewCell.h"
 
-#import "SocialActivityDetails.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "defines.h"
@@ -34,8 +33,6 @@
     _htmlName.backgroundColor = [UIColor clearColor];
     _htmlName.font = [UIFont systemFontOfSize:13.0];
     _htmlName.textColor = [UIColor grayColor];
-    _htmlName.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
     [self.contentView addSubview:_htmlName];
     
     _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
@@ -43,12 +40,20 @@
     _htmlMessage.backgroundColor = [UIColor clearColor];
     _htmlMessage.font = [UIFont systemFontOfSize:13.0];
     _htmlMessage.textColor = [UIColor grayColor];
-    _htmlMessage.backgroundColor = [UIColor whiteColor];
-    //_htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;// |UIViewAutoresizingFlexibleTopMargin;
     [self.contentView addSubview:_htmlMessage];
 }
 
-- (void)setSocialActivityDetail:(SocialActivityDetails*)socialActivityDetail{
+- (void)updateSizeToFitSubViews {
+    CGRect frame = _htmlMessage.frame;
+    frame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + kPadding;
+    _htmlMessage.frame = frame;
+    
+    frame = self.frame;
+    frame.size.height = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height + kPadding + self.lbDate.frame.size.height + kBottomMargin;
+    self.frame = frame;
+}
+
+- (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
@@ -59,7 +64,8 @@
     
     //NSString *textWithoutHtml = @"";
     NSString *htmlStr = nil;
-    switch (_activityType) {
+    NSDictionary *_templateParams = self.socialActivity.templateParams;
+    switch (self.socialActivity.activityType) {
         case ACTIVITY_ANSWER_ADD_QUESTION:{
             htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Asked")];
         }
@@ -94,18 +100,12 @@
     tmpFrame.size.height = theSize.height + 5;
     _webViewForContent.frame = tmpFrame;
     
-    
-    //content
     _htmlMessage.html = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    theSize = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                                                                                        lineBreakMode:UILineBreakModeWordWrap];
-    tmpFrame = _htmlMessage.frame;
-    tmpFrame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
-    tmpFrame.size.height = theSize.height + 5;
-    _htmlMessage.frame = tmpFrame;
+    
     [_htmlMessage sizeToFit];
     
     [_webViewForContent sizeToFit];
+    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {

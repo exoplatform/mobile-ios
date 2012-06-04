@@ -7,7 +7,6 @@
 //
 
 #import "ActivityLinkTableViewCell.h"
-#import "SocialActivityStream.h"
 #import "EGOImageView.h"
 #import "defines.h"
 #import "NSString+HTML.h"
@@ -101,7 +100,7 @@
 }
 
 
-- (void)setSocialActivityStreamForSpecificContent:(SocialActivityStream *)socialActivityStream {
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
@@ -111,7 +110,7 @@
     
 //    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
     
-    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
     CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX) 
                            lineBreakMode:UILineBreakModeWordWrap];
     CGRect frame = _lbName.frame;

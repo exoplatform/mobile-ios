@@ -14,8 +14,7 @@
 
 @class ActivityDetailMessageTableViewCell;
 @class ActivityDetailLikeTableViewCell;
-@class SocialActivityStream;
-@class SocialActivityDetails;
+@class SocialActivity;
 @class SocialUserProfile;
 
 #define kFontForName [UIFont fontWithName:@"Helvetica-Bold" size:13]
@@ -26,18 +25,10 @@
     
     IBOutlet UITableView*                   _tblvActivityDetail;
 //    IBOutlet UINavigationBar*               _navigationBar;
-            
-    SocialActivityStream*                   _socialActivityStream;
-    
-    //Cell for the content of the message
-    ActivityDetailMessageTableViewCell*     _cellForMessage;
     
     //Cell for the like part of the screen
     ActivityDetailLikeTableViewCell*        _cellForLikes;
         
-    SocialActivityDetails*                  _socialActivityDetails;
-    SocialUserProfile*                      _socialUserProfile;
-    
     BOOL                                    _currentUserLikeThisActivity;
     
     UITextView*                             _txtvMsgComposer;
@@ -60,8 +51,11 @@
     BOOL isPostComment;
 }
 @property (retain) NSString *iconType;
+@property (nonatomic, retain) SocialActivity *socialActivity;
+@property (nonatomic, retain) ActivityDetailMessageTableViewCell *activityDetailCell;
+@property (nonatomic, retain) ActivityDetailLikeTableViewCell *activityLikesCell;
 
-- (void)setSocialActivityStream:(SocialActivityStream*)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
+- (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
 
 @end

@@ -10,27 +10,18 @@
 
 @class Activity;
 @class EGOImageView;
-@class SocialActivityDetails;
+@class SocialActivity;
 @class SocialUserProfile;
 @interface ActivityDetailLikeTableViewCell : UITableViewCell {
-    
-    UILabel*               _lbMessage;
-    
-    UIButton*              _btnLike;
-    
-    SocialActivityDetails*  _socialActivityDetails;
-    SocialUserProfile*      _socialUserProfile;
     id                      _delegate;
 }
 
-@property (retain, nonatomic) id delegate;
+@property (retain, nonatomic) SocialActivity *socialActivity;
+@property (assign, nonatomic) id delegate;
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UIButton* btnLike;
+@property (retain, nonatomic) UIButton *myAccessoryView;
 
-//Use this method after create the cell to customize the appearance of the Avatar
-- (void)configureCell;
-- (void)setUserProfile:(SocialUserProfile*)socialUserProfile;
 - (void)setUserLikeThisActivity:(BOOL)userLikeThisActivity;
-- (void)setContent:(NSString*)strLikes;
-- (void)setSocialActivityDetails:(SocialActivityDetails*)socialActivityDetails;
+
 @end

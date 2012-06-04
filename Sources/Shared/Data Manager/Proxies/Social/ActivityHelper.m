@@ -110,7 +110,7 @@
     
 }
 
-+ (CGFloat)getHeightForActivityDetailCell:(SocialActivityDetails *)activtyStreamDetail forTableViewWidth:(CGFloat)fWidth{
++ (CGFloat)getHeightForActivityDetailCell:(SocialActivity *)activtyStreamDetail forTableViewWidth:(CGFloat)fWidth{
     //return 0.0;
     NSString* text = @"";
     float fHeight = 0.0;
@@ -253,7 +253,7 @@
 }
 
 
-+ (CGFloat)getHeightForActivityCell:(SocialActivityStream *)activtyStream forTableViewWidth:(CGFloat)fWidth{
++ (CGFloat)getHeightForActivityCell:(SocialActivity *)activtyStream forTableViewWidth:(CGFloat)fWidth{
 
     NSString* text = @"";
     float fHeight = 0.0;
@@ -262,7 +262,7 @@
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [activtyStream.activityStream valueForKey:@"fullName"];
     }
-    text = [NSString stringWithFormat:@"%@ %@", [activtyStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@"in %@ space", space] : @""];
+    text = [NSString stringWithFormat:@"%@ %@", [activtyStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@"in %@ space", space] : @""];
     fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
     
     float h = 0.0;
@@ -326,9 +326,9 @@
         case ACTIVITY_WIKI_ADD_PAGE:
         case ACTIVITY_WIKI_MODIFY_PAGE:{
             if([[activtyStream.templateParams valueForKey:@"act_key"] rangeOfString:@"add_page"].length > 0){//
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EditWiki")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"EditWiki")];
             } else if([[activtyStream.templateParams valueForKey:@"act_key"] rangeOfString:@"update_page"].length > 0) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"CreateWiki")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"CreateWiki")];
             }
             fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             
@@ -356,16 +356,16 @@
         case ACTIVITY_FORUM_CREATE_POST: 
         case ACTIVITY_FORUM_CREATE_TOPIC:{
             if(activtyStream.activityType == ACTIVITY_FORUM_CREATE_POST){
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"NewPost")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"NewPost")];
                 h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
             } else if(activtyStream.activityType == ACTIVITY_FORUM_CREATE_TOPIC) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"NewTopic")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName,  Localize(@"NewTopic")];
                 h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
             }else if(activtyStream.activityType == ACTIVITY_FORUM_UPDATE_POST) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"UpdatePost")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName,  Localize(@"UpdatePost")];
                 h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"PostName"] andTableViewWidth:fWidth];
             }else if(activtyStream.activityType == ACTIVITY_FORUM_UPDATE_TOPIC) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName,  Localize(@"UpdateTopic")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName,  Localize(@"UpdateTopic")];
                 h = [ActivityHelper getHeightSizeForTitle:[activtyStream.templateParams valueForKey:@"TopicName"] andTableViewWidth:fWidth];
             }
             fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth] + h;
@@ -382,11 +382,11 @@
         case ACTIVITY_ANSWER_QUESTION:
         case ACTIVITY_ANSWER_UPDATE_QUESTION:{
             if(activtyStream.activityType == ACTIVITY_ANSWER_ADD_QUESTION){
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"Asked")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"Asked")];
             } else if(activtyStream.activityType == ACTIVITY_ANSWER_QUESTION) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"Answered")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"Answered")];
             }else if(activtyStream.activityType == ACTIVITY_ANSWER_UPDATE_QUESTION) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"UpdateQuestion")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"UpdateQuestion")];
             }
             fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             
@@ -410,13 +410,13 @@
         case ACTIVITY_CALENDAR_ADD_EVENT:
         case ACTIVITY_CALENDAR_UPDATE_EVENT:{
             if(activtyStream.activityType == ACTIVITY_CALENDAR_ADD_EVENT){//
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventAdded")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"EventAdded")];
             } else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_EVENT) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"EventUpdated")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"EventUpdated")];
             } else if(activtyStream.activityType == ACTIVITY_CALENDAR_ADD_TASK) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskAdded")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"TaskAdded")];
             }else if(activtyStream.activityType == ACTIVITY_CALENDAR_UPDATE_TASK) {
-                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterUserProfile.fullName, Localize(@"TaskUpdated")];
+                text = [NSString stringWithFormat:@"%@ %@", activtyStream.posterIdentity.fullName, Localize(@"TaskUpdated")];
             }
             fHeight += [ActivityHelper getHeightSizeForTitle:text andTableViewWidth:fWidth];
             

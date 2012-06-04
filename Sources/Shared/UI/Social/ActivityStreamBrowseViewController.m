@@ -123,7 +123,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 #pragma mark - Update Acitivity From ActivityDetail
 -(void)updateActivity{
     //ActivityBasicTableViewCell *cell;
-    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:_indexpathSelectedActivity];
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:_indexpathSelectedActivity];
     /*switch (socialActivityStream.activityType) {
         case ACTIVITY_WIKI_ADD_PAGE:
         case ACTIVITY_WIKI_MODIFY_PAGE:
@@ -212,7 +212,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 {
     int intervalBetweenNowAndLastUpdate = [dateOfLastUpdate timeIntervalSinceNow];
     //Browse each activities
-    for (SocialActivityStream *a in _arrActivityStreams) {
+    for (SocialActivity *a in _arrActivityStreams) {
         a.postedTime += intervalBetweenNowAndLastUpdate;
         
         //Change the value of the label displayed
@@ -233,7 +233,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     _arrActivityStreams = [[NSMutableArray alloc] initWithArray:[_arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]];
     
     //Browse each activities
-    for (SocialActivityStream *a in _arrActivityStreams) {
+    for (SocialActivity *a in _arrActivityStreams) {
         
         //Check activities of today
         long postedTimeInSecond = round(a.postedTime/1000);
@@ -282,7 +282,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 }
 
 
-- (SocialActivityStream *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath
+- (SocialActivity *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:indexPath.section]];
     return [arrayForSection objectAtIndex:indexPath.row];
@@ -357,7 +357,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     return  socialActivityStream.cellHeight;
 }
 
@@ -366,7 +366,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-    SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     ActivityBasicTableViewCell *cell;
     
     switch (socialActivityStream.activityType) {
@@ -489,7 +489,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //Load images
     if ((_tblvActivityStream.dragging == NO) && (_tblvActivityStream.decelerating == NO)) {        
         // Display the newly loaded image
-        cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];
+        cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterIdentity.avatarUrl];
         
         if ([cell respondsToSelector:@selector(startLoadingImageAttached)]) {
             [(ActivityPictureTableViewCell *)cell startLoadingImageAttached];
@@ -678,7 +678,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         for (int i = 0; i < [socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
-            SocialActivityStream* socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
+            SocialActivity *socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream convertHTMLEncoding];
             [socialActivityStream getActivityType];
@@ -731,12 +731,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         NSArray *visiblePaths = [_tblvActivityStream indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths)
         {
-            SocialActivityStream* socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+            SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
             
             ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell*)[_tblvActivityStream cellForRowAtIndexPath:indexPath];
             
             // Display the newly loaded image
-            cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterUserProfile.avatarUrl];
+            cell.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityStream.posterIdentity.avatarUrl];
             
             if ([cell respondsToSelector:@selector(startLoadingImageAttached)]) {
                 [(ActivityPictureTableViewCell *)cell startLoadingImageAttached];
