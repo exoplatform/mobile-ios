@@ -240,8 +240,10 @@
     <string>likes this Activity</string>
     <key>likeThisActivity</key>
     <string>%d people like this</string>
-    <key>NoLikeForTheMoment</key>
-    <string>No like for the moment</string>
+    <key>NoOneLikeThis</key>
+    <string>No one likes this</string>
+    <key>NoOneLikeThis_iPad</key>
+    <string>No one likes this, be the first</string>
     <key>DetailsLoaded</key>
     <string>Details loaded</string>
     <key>ActivityDetails</key>

@@ -12,17 +12,20 @@
 #import "AvatarView.h"
 #import "defines.h"
 #import "SocialActivityDetailsProxy.h"
+#import "EmptyView.h"
 
 #define kLikersViewTopBottomMargin 10.0
 #define kLikersViewLeftRightMargin 10.0
 #define kLikersViewPadding 10.0
 #define kLikersViewColumns 3
+#define kNoLikerViewTag 100
 
 
 @interface ActivityLikersViewController ()
 
 @property (nonatomic, retain) NSMutableArray *avatarViews;
 @property (nonatomic, retain) NSMutableArray *nameLabels;
+@property (nonatomic, retain) EmptyView *noLikerView;
 
 - (void)updateLikerViews;
 - (AvatarView *)newAvatarView;
@@ -37,12 +40,14 @@
 @synthesize avatarViews = _avatarViews;
 @synthesize nameLabels = _nameLabels;
 @synthesize likersHeader = _likersHeader;
+@synthesize noLikerView = _noLikerView;
 
 - (void)dealloc {
     [_socialActivity release];
     [_avatarViews release];
     [_nameLabels release];
     [_likersHeader release];
+    [_noLikerView release];
     [super dealloc];
 }
 
@@ -56,17 +61,11 @@
 
 - (void)didReceiveMemoryWarning
 {
+    self.noLikerView = nil;
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
-
-//- (void)loadView
-//{
-//    UIScrollView *view = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.view = [view autorelease];
-//    [super loadView];
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -96,6 +95,14 @@
 
 #pragma mark - getters & setters
 
+- (EmptyView *)noLikerView {
+    if (!_noLikerView) {
+        _noLikerView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities" andContent:Localize(@"NoOneLikeThis")];
+        [_noLikerView setTag:kNoLikerViewTag];
+    }
+    return _noLikerView;
+}
+
 - (void)setSocialActivity:(SocialActivity *)socialActivity {
     [_socialActivity release];
     _socialActivity = [socialActivity retain];
@@ -122,9 +129,16 @@
         [label removeFromSuperview];
     }
     [_nameLabels removeAllObjects];
+    
+    [[self.view viewWithTag:kNoLikerViewTag] removeFromSuperview];
+    self.noLikerView = nil;
     // **********
     
     CGRect viewBounds = self.view.bounds;
+    if (self.socialActivity.totalNumberOfLikes == 0) {     
+        [self.view addSubview:self.noLikerView];
+        return;
+    }
     // calculate avatar width 
     float avatarWidth = (viewBounds.size.width - kLikersViewLeftRightMargin * 2 - kLikersViewPadding * (kLikersViewColumns - 1)) / kLikersViewColumns;
     avatarWidth = ceilf(avatarWidth);

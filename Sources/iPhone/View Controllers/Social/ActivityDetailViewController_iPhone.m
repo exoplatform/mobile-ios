@@ -18,11 +18,34 @@
 #import "JTNavigationView.h"
 #import "ActivityHelper.h"
 #import "ActivityLikersViewController.h"
+#import "ActivityDetailLikeTableViewCell.h"
+#import "ActivityDetailCommentTableViewCell.h"
+#import "EmptyView.h"
 
 #define kLikeCellHeight (self.socialActivity.totalNumberOfLikes > 0 ? 70.0 : 50.0)
+#define kNoCommentCellHeight 200.0
 
 @implementation ActivityDetailViewController_iPhone
 
+@synthesize noCommentCell = _noCommentCell;
+
+- (void)dealloc {
+    [_noCommentCell release];
+    [super dealloc];
+}
+
+- (UITableViewCell *)noCommentCell {
+    if (!_noCommentCell) {
+        CGRect cellBounds = CGRectMake(0, 0, _tblvActivityDetail.bounds.size.width, kNoCommentCellHeight);
+        _noCommentCell = [[UITableViewCell alloc] init];
+        _noCommentCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _noCommentCell.bounds = cellBounds;
+        EmptyView *emptyView = [[[EmptyView alloc] initWithFrame:_noCommentCell.bounds withImageName:@"IconForNoActivities" andContent:Localize(@"NoComment")] autorelease];
+        emptyView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
+        [_noCommentCell.contentView addSubview:emptyView];
+    }
+    return _noCommentCell;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -107,9 +130,68 @@
 
 #pragma mark - TableView management
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
+    return 3;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    return (section == 2 && self.socialActivity.totalNumberOfComments > 0) ? [self.socialActivity.comments count] : 1;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *kIdentifierActivityDetailLikeTableViewCell = @"ActivityDetailLikeTableViewCell";
+    static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
+    if (indexPath.section == 1) {
+        ActivityDetailLikeTableViewCell* cell = (ActivityDetailLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikeTableViewCell];
+        
+        if (cell == nil) 
+        {
+            cell = [[[ActivityDetailLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kIdentifierActivityDetailLikeTableViewCell] autorelease];    
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.delegate = self;
+        }
+        cell.socialActivity = self.socialActivity;
+        
+        return cell;
+    } else if (indexPath.section == 2) {
+        if (self.socialActivity.totalNumberOfComments == 0) {
+            return self.noCommentCell;
+        } else {
+            ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
+            
+            //Check if we found a cell
+            if (cell == nil) 
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
+                cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
+                
+                //Create a cell, need to do some configurations
+                [cell configureCell];
+                cell.width = tableView.frame.size.width;
+                cell.webViewForContent.delegate = self;
+            }
+            
+            SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+            [cell setSocialComment:socialComment];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1)
         return kLikeCellHeight;
+    else if (indexPath.section == 2 && self.socialActivity.totalNumberOfComments == 0) {
+        return self.noCommentCell.bounds.size.height;
+    }
     else return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 

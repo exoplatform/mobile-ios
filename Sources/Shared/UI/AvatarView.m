@@ -48,7 +48,7 @@
 
 - (void)configureAvatar {
     //Add the CornerRadius
-    [[self layer] setCornerRadius:6.0];
+    [[self layer] setCornerRadius:5.5];
     [[self layer] setMasksToBounds:YES];
     
     //Add the border

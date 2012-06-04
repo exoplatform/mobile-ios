@@ -158,10 +158,9 @@
 - (AvatarView *)newAvatarView {
     AvatarView *imageView = [[[AvatarView alloc] init] autorelease];
     // Update the CornerRadius
-    [[imageView layer] setCornerRadius:3.0];
     [[imageView layer] setMasksToBounds:YES];
     // Update the border color
-    [[imageView layer] setBorderColor:[UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor];
+//    [[imageView layer] setBorderColor:[UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor];
     
     return imageView;
 }

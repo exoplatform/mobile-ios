@@ -9,12 +9,10 @@
 #import "ActivityDetailViewController.h"
 #import "MockSocial_Activity.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ActivityDetailCommentTableViewCell.h"
 #import "ActivityDetailMessageTableViewCell.h"
 #import "ActivityCalendarDetailMessageTableViewCell.h"
 #import "ActivityPictureDetailMessageTableViewCell.h"
 #import "ActivityLinkDetailMessageTableViewCell.h"
-#import "ActivityDetailLikeTableViewCell.h"
 #import "ActivityForumDetailMessageTableViewCell.h"
 #import "ActivityWikiDetailMessageTableViewCell.h"
 #import "ActivityAnswerDetailMessageTableViewCell.h"
@@ -33,7 +31,6 @@
 #import "NSString+HTML.h"
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
-#import "EmptyView.h"
 
 
 #define NUMBER_OF_COMMENT_TO_LOAD 30
@@ -199,36 +196,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    int n = 3;
-    if ([self.socialActivity.likedByIdentities count] == 0) 
-    {
-        //n --;
-    }
-    if ([self.socialActivity.comments count] == 0) 
-    {
-        n--;
-    }
-    return n;
+   return 0;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    int n = 0;
-    if (section == 0) 
-    {
-        n = 1;
-    }
-    if (section == 1) 
-    {
-        n = 1;
-    }
-    if (section == 2) 
-    {
-        n = [self.socialActivity.comments count];
-    }
-    return n;
+   return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -257,47 +232,10 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
-    static NSString *kIdentifierActivityDetailLikeTableViewCell = @"ActivityDetailLikeTableViewCell";
-    static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
-    
-    if (indexPath.section == 0) 
-    {
+    if (indexPath.section == 0) {
         return self.activityDetailCell;
-    }
-    else if (indexPath.section == 1) 
-    {
-        ActivityDetailLikeTableViewCell* cell = (ActivityDetailLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikeTableViewCell];
-                
-        if (cell == nil) 
-        {
-            cell = [[[ActivityDetailLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kIdentifierActivityDetailLikeTableViewCell] autorelease];    
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            cell.delegate = self;
-        }
-        cell.socialActivity = self.socialActivity;
-        
-        return cell;
-    }
-    else
-    {
-        ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
-    
-        //Check if we found a cell
-        if (cell == nil) 
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
-            cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
-            
-            //Create a cell, need to do some configurations
-            [cell configureCell];
-            cell.width = tableView.frame.size.width;
-            cell.webViewForContent.delegate = self;
-        }
-        
-        SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
-        [cell setSocialComment:socialComment];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+    } else {
+        return nil;
     }
 }
 
@@ -311,16 +249,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-// Empty State
--(void)emptyState {
-    //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoComment")];
-    emptyView.tag = TAG_EMPTY;
-    [self.view insertSubview:emptyView belowSubview:self.hudLoadWaiting.view];
-    [emptyView release];
 }
 
 //
@@ -445,10 +373,6 @@
 
 
 - (void)finishLoadingAllDataForActivityDetails {
-    EmptyView *emptyview = (EmptyView *)[_tblvActivityDetail viewWithTag:TAG_EMPTY];
-    if(emptyview != nil){
-        [emptyview removeFromSuperview];
-    }
     //Prevent any reloading status
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
@@ -479,28 +403,7 @@
         }
         isPostComment = NO;
     }
-    if([self.socialActivity.comments count] == 0){
-        CGRect rect = CGRectZero;
-        float height = 0.0;
-        UITableViewCell *cell = [_tblvActivityDetail cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        height += cell.frame.size.height;
-        height += 55;
-        
-        rect.size.width = _tblvActivityDetail.frame.size.width;
-        rect.origin.y = height;
-        
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-            rect.size.height = 400;
-        } else {
-            rect.size.height = 200;
-        }
-        _tblvActivityDetail.contentSize = CGSizeMake(_tblvActivityDetail.frame.size.width, rect.size.height + rect.origin.y);
-        EmptyView *emptyView = [[EmptyView alloc] initWithFrame:rect withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoComment")];
-        emptyView.tag = TAG_EMPTY;
-        [_tblvActivityDetail insertSubview:emptyView belowSubview:self.hudLoadWaiting.view];
-        [emptyView release];
-        
-    }
+   
     
     [self updateActivityInActivityStream];
 }

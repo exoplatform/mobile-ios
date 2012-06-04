@@ -39,7 +39,7 @@
             distance = 110;
         }
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height/2 - image.size.height/2 + distance, frame.size.width, 40)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.frame.origin.y + imageView.frame.size.height + distance, frame.size.width, 40)];
         label.backgroundColor = [UIColor clearColor];//
         label.textAlignment = UITextAlignmentCenter;
         label.textColor = [UIColor colorWithRed:112./255 green:112./255 blue:112./255 alpha:1.];
@@ -64,9 +64,10 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [label release];
     [imageView release];
+    [imagename release];
+    [super dealloc];
 }
 
 @end
