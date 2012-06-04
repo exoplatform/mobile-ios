@@ -234,11 +234,11 @@
     <key>numOfLikers</key>
     <string>%d likers</string>
     <key>likesThisActivity</key>
-    <string>likes this Activity</string>
+    <string>aime l'activité</string>
     <key>likeThisActivity</key>
-    <string>%d people like this</string>
+    <string>%d aime l'activité</string>
     <key>NoLikeForTheMoment</key>
-    <string>No like for the moment</string>
+    <string>Personne n'aime pour le moment</string>
     <key>DetailsLoaded</key>
     <string>Details loaded</string>
     <key>ActivityDetails</key>
