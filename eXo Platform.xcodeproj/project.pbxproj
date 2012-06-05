@@ -608,7 +608,11 @@
 		A6B4EF2D156F98920007D631 /* activityDetailLikersAccessoryView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */; };
 		A6B4EF2E156F98920007D631 /* activityDetailLikersAccessoryViewSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */; };
 		A6B4EF2F156F98920007D631 /* activityDetailLikersAccessoryViewSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF2B156F98900007D631 /* activityDetailLikersAccessoryViewSelected@2x.png */; };
+		A6B54E4F157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B54E4E157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m */; };
+		A6B54E52157DBEA6005BFFCD /* activity-detail-action-dislike.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B54E50157DBEA5005BFFCD /* activity-detail-action-dislike.png */; };
+		A6B54E53157DBEA6005BFFCD /* activity-detail-action-like.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B54E51157DBEA5005BFFCD /* activity-detail-action-like.png */; };
 		A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B61A8C15774B07006C3526 /* AvatarView.m */; };
+		A6D3C1B5157DF17600219CA3 /* activity-detail-actions-cell.png in Resources */ = {isa = PBXBuildFile; fileRef = A6D3C1B4157DF17600219CA3 /* activity-detail-actions-cell.png */; };
 		DE442BBB1569E21000E10A00 /* SocialActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = DE442BBA1569E21000E10A00 /* SocialActivity.m */; };
 		DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */; };
 /* End PBXBuildFile section */
@@ -1637,8 +1641,13 @@
 		A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikersAccessoryView@2x.png"; sourceTree = "<group>"; };
 		A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikersAccessoryViewSelected.png; sourceTree = "<group>"; };
 		A6B4EF2B156F98900007D631 /* activityDetailLikersAccessoryViewSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikersAccessoryViewSelected@2x.png"; sourceTree = "<group>"; };
+		A6B54E4D157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailExtraActionsCell.h; path = Social/ActivityDetailExtraActionsCell.h; sourceTree = "<group>"; };
+		A6B54E4E157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailExtraActionsCell.m; path = Social/ActivityDetailExtraActionsCell.m; sourceTree = "<group>"; };
+		A6B54E50157DBEA5005BFFCD /* activity-detail-action-dislike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-action-dislike.png"; sourceTree = "<group>"; };
+		A6B54E51157DBEA5005BFFCD /* activity-detail-action-like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-action-like.png"; sourceTree = "<group>"; };
 		A6B61A8B15774B07006C3526 /* AvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarView.h; sourceTree = "<group>"; };
 		A6B61A8C15774B07006C3526 /* AvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarView.m; sourceTree = "<group>"; };
+		A6D3C1B4157DF17600219CA3 /* activity-detail-actions-cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-actions-cell.png"; sourceTree = "<group>"; };
 		DE442BB91569E21000E10A00 /* SocialActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivity.h; sourceTree = "<group>"; };
 		DE442BBA1569E21000E10A00 /* SocialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivity.m; sourceTree = "<group>"; };
 		DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikersViewController.h; sourceTree = "<group>"; };
@@ -2291,6 +2300,8 @@
 				1FCDF078147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m */,
 				DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */,
 				DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */,
+				A6B54E4D157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.h */,
+				A6B54E4E157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m */,
 			);
 			name = ActivityDetail;
 			sourceTree = "<group>";
@@ -2852,6 +2863,9 @@
 		7C5053E913E2AF3600FA73CD /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				A6D3C1B4157DF17600219CA3 /* activity-detail-actions-cell.png */,
+				A6B54E50157DBEA5005BFFCD /* activity-detail-action-dislike.png */,
+				A6B54E51157DBEA5005BFFCD /* activity-detail-action-like.png */,
 				A6B4EF28156F988A0007D631 /* activityDetailLikersAccessoryView.png */,
 				A6B4EF29156F988C0007D631 /* activityDetailLikersAccessoryView@2x.png */,
 				A6B4EF2A156F988D0007D631 /* activityDetailLikersAccessoryViewSelected.png */,
@@ -4383,6 +4397,9 @@
 				A6B4EF2F156F98920007D631 /* activityDetailLikersAccessoryViewSelected@2x.png in Resources */,
 				A62433DC1578D2DA007D67CC /* ActivityAvatarShadow.png in Resources */,
 				A62433DE1578D2E2007D67CC /* ActivityAvatarShadow@2x.png in Resources */,
+				A6B54E52157DBEA6005BFFCD /* activity-detail-action-dislike.png in Resources */,
+				A6B54E53157DBEA6005BFFCD /* activity-detail-action-like.png in Resources */,
+				A6D3C1B5157DF17600219CA3 /* activity-detail-actions-cell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4624,6 +4641,7 @@
 				DE442BBB1569E21000E10A00 /* SocialActivity.m in Sources */,
 				DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */,
 				A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */,
+				A6B54E4F157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

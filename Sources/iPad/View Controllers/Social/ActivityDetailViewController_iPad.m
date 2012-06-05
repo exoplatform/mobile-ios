@@ -16,14 +16,21 @@
 #import "LanguageHelper.h"
 #import "EmptyView.h"
 #import "ActivityHelper.h"
+#import "ActivityDetailExtraActionsCell.h"
 
 @implementation ActivityDetailViewController_iPad
 
+@synthesize extraActionsCell = _extraActionsCell;
+
+- (void)dealloc {
+    [_extraActionsCell release];
+    [super dealloc];
+}
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-
+        
     }
     return self;
 }
@@ -79,6 +86,11 @@
     self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
 }
 
+#pragma mark - overriden 
+- (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile {
+    self.extraActionsCell.socialActivity = socialActivityStream;
+    [super setSocialActivityStream:socialActivityStream andCurrentUserProfile:currentUserProfile];
+}
 
 #pragma mark - UIWebViewDelegateMethod 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -140,6 +152,40 @@
     }
 }
 
+#pragma mark - UITableViewDelegate 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return self.extraActionsCell;
+    } else if (indexPath.section == 2) {
+        return nil;
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return self.extraActionsCell.frame.size.height;
+    } else {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+#pragma mark - cell initialization
+
+- (ActivityDetailExtraActionsCell *)extraActionsCell {
+    if (!_extraActionsCell) {
+        _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    }
+    return _extraActionsCell;
+}
 
 @end

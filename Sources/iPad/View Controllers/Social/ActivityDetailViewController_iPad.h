@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ActivityDetailViewController.h"
 
+@class ActivityDetailExtraActionsCell;
+
 @interface ActivityDetailViewController_iPad : ActivityDetailViewController {
     
 }
+
+@property (nonatomic, retain) ActivityDetailExtraActionsCell *extraActionsCell;
 
 @end
