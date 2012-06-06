@@ -43,6 +43,7 @@
 @synthesize socialActivity = _socialActivity;
 @synthesize activityDetailCell = _activityDetailCell;
 @synthesize activityLikesCell = _activityLikesCell;
+@synthesize tblvActivityDetail = _tblvActivityDetail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

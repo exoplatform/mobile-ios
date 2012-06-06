@@ -54,6 +54,7 @@
 @property (nonatomic, retain) SocialActivity *socialActivity;
 @property (nonatomic, retain) ActivityDetailMessageTableViewCell *activityDetailCell;
 @property (nonatomic, retain) ActivityDetailLikeTableViewCell *activityLikesCell;
+@property (nonatomic, retain) UITableView *tblvActivityDetail;
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;

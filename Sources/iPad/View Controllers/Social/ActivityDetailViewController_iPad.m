@@ -17,13 +17,17 @@
 #import "EmptyView.h"
 #import "ActivityHelper.h"
 #import "ActivityDetailExtraActionsCell.h"
+#import "ActivityDetailAdvancedInfoCell_iPad.h"
+#import "CustomBackgroundView.h"
 
 @implementation ActivityDetailViewController_iPad
 
 @synthesize extraActionsCell = _extraActionsCell;
+@synthesize advancedInfoCell = _advancedInfoCell;
 
 - (void)dealloc {
     [_extraActionsCell release];
+    [_advancedInfoCell release];
     [super dealloc];
 }
 
@@ -40,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
+    self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] init] autorelease];
     _navigation.topItem.title = Localize(@"Details");
 }
 
@@ -158,14 +163,14 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         return self.extraActionsCell;
     } else if (indexPath.section == 2) {
-        return nil;
+        return self.self.advancedInfoCell;
     } else {
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
@@ -174,6 +179,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         return self.extraActionsCell.frame.size.height;
+    } else if (indexPath.section == 2) {
+        return self.view.bounds.size.height - self.advancedInfoCell.frame.origin.y - self.advancedInfoCell.frame.size.height;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -183,9 +190,16 @@
 
 - (ActivityDetailExtraActionsCell *)extraActionsCell {
     if (!_extraActionsCell) {
-        _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+        _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
     }
     return _extraActionsCell;
+}
+
+- (ActivityDetailAdvancedInfoCell_iPad *)advancedInfoCell {
+    if (!_advancedInfoCell) {
+        _advancedInfoCell = [[ActivityDetailAdvancedInfoCell_iPad alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"advanced info cell"];
+    }
+    return _advancedInfoCell;
 }
 
 @end
