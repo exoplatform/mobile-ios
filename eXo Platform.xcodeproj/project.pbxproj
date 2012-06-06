@@ -601,6 +601,15 @@
 		A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */; };
 		A65F2818152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */; };
 		A661D86D157EFEB800CCF870 /* CustomBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = A661D86C157EFEB800CCF870 /* CustomBackgroundView.m */; };
+		A69B049D157F0F1C003DDFDF /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B0496157F0F1C003DDFDF /* UIColor+Hex.m */; };
+		A69B049E157F0F1C003DDFDF /* UIView+InnerShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B0498157F0F1C003DDFDF /* UIView+InnerShadow.m */; };
+		A69B049F157F0F1C003DDFDF /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B049A157F0F1C003DDFDF /* UIView+Positioning.m */; };
+		A69B04A0157F0F1C003DDFDF /* UIView+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B049C157F0F1C003DDFDF /* UIView+Size.m */; };
+		A69B04AE157F103D003DDFDF /* JMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B04A3157F103D003DDFDF /* JMSelectionView.m */; };
+		A69B04AF157F103D003DDFDF /* JMTabContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B04A6157F103D003DDFDF /* JMTabContainer.m */; };
+		A69B04B0157F103D003DDFDF /* JMTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B04A8157F103D003DDFDF /* JMTabItem.m */; };
+		A69B04B1157F103D003DDFDF /* JMTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B04AA157F103D003DDFDF /* JMTabView.m */; };
+		A69B04B2157F103D003DDFDF /* BarBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B04AD157F103D003DDFDF /* BarBackgroundLayer.m */; };
 		A6B4EF21156F8AD60007D631 /* activityDetailLikeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */; };
 		A6B4EF23156F8ADE0007D631 /* activityDetailLikeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF22156F8ADD0007D631 /* activityDetailLikeBg@2x.png */; };
 		A6B4EF25156F8AFA0007D631 /* activityDetailLikeBgSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B4EF24156F8AF90007D631 /* activityDetailLikeBgSelected.png */; };
@@ -1638,6 +1647,25 @@
 		A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SocialAttachedImageBorder@2x.png"; path = "Resources/Images/Shared/Social/SocialAttachedImageBorder@2x.png"; sourceTree = SOURCE_ROOT; };
 		A661D86B157EFEB800CCF870 /* CustomBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBackgroundView.h; sourceTree = "<group>"; };
 		A661D86C157EFEB800CCF870 /* CustomBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBackgroundView.m; sourceTree = "<group>"; };
+		A69B0495157F0F1C003DDFDF /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		A69B0496157F0F1C003DDFDF /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		A69B0497157F0F1C003DDFDF /* UIView+InnerShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InnerShadow.h"; sourceTree = "<group>"; };
+		A69B0498157F0F1C003DDFDF /* UIView+InnerShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+InnerShadow.m"; sourceTree = "<group>"; };
+		A69B0499157F0F1C003DDFDF /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
+		A69B049A157F0F1C003DDFDF /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
+		A69B049B157F0F1C003DDFDF /* UIView+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Size.h"; sourceTree = "<group>"; };
+		A69B049C157F0F1C003DDFDF /* UIView+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Size.m"; sourceTree = "<group>"; };
+		A69B04A2157F103D003DDFDF /* JMSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMSelectionView.h; sourceTree = "<group>"; };
+		A69B04A3157F103D003DDFDF /* JMSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMSelectionView.m; sourceTree = "<group>"; };
+		A69B04A4157F103D003DDFDF /* JMTabConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTabConstants.h; sourceTree = "<group>"; };
+		A69B04A5157F103D003DDFDF /* JMTabContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTabContainer.h; sourceTree = "<group>"; };
+		A69B04A6157F103D003DDFDF /* JMTabContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTabContainer.m; sourceTree = "<group>"; };
+		A69B04A7157F103D003DDFDF /* JMTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTabItem.h; sourceTree = "<group>"; };
+		A69B04A8157F103D003DDFDF /* JMTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTabItem.m; sourceTree = "<group>"; };
+		A69B04A9157F103D003DDFDF /* JMTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTabView.h; sourceTree = "<group>"; };
+		A69B04AA157F103D003DDFDF /* JMTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTabView.m; sourceTree = "<group>"; };
+		A69B04AC157F103D003DDFDF /* BarBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarBackgroundLayer.h; sourceTree = "<group>"; };
+		A69B04AD157F103D003DDFDF /* BarBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarBackgroundLayer.m; sourceTree = "<group>"; };
 		A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikeBg.png; sourceTree = "<group>"; };
 		A6B4EF22156F8ADD0007D631 /* activityDetailLikeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityDetailLikeBg@2x.png"; sourceTree = "<group>"; };
 		A6B4EF24156F8AF90007D631 /* activityDetailLikeBgSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityDetailLikeBgSelected.png; sourceTree = "<group>"; };
@@ -3498,6 +3526,7 @@
 		894734A01337139800B0AD11 /* 3-part */ = {
 			isa = PBXGroup;
 			children = (
+				A69B0481157F0DCF003DDFDF /* JMTabView */,
 				8958E65514A9B7D300580EEB /* TouchXml */,
 				46FE84D91469893A000F1FE0 /* UIImage+Resize */,
 				8997843A13F53568002E7E1C /* InternetReachability */,
@@ -3761,6 +3790,56 @@
 				A661D86C157EFEB800CCF870 /* CustomBackgroundView.m */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		A69B0481157F0DCF003DDFDF /* JMTabView */ = {
+			isa = PBXGroup;
+			children = (
+				A69B04A1157F1021003DDFDF /* Subviews */,
+				A69B0483157F0EA8003DDFDF /* Categories */,
+			);
+			path = JMTabView;
+			sourceTree = "<group>";
+		};
+		A69B0483157F0EA8003DDFDF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A69B0495157F0F1C003DDFDF /* UIColor+Hex.h */,
+				A69B0496157F0F1C003DDFDF /* UIColor+Hex.m */,
+				A69B0497157F0F1C003DDFDF /* UIView+InnerShadow.h */,
+				A69B0498157F0F1C003DDFDF /* UIView+InnerShadow.m */,
+				A69B0499157F0F1C003DDFDF /* UIView+Positioning.h */,
+				A69B049A157F0F1C003DDFDF /* UIView+Positioning.m */,
+				A69B049B157F0F1C003DDFDF /* UIView+Size.h */,
+				A69B049C157F0F1C003DDFDF /* UIView+Size.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		A69B04A1157F1021003DDFDF /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A69B04A2157F103D003DDFDF /* JMSelectionView.h */,
+				A69B04A3157F103D003DDFDF /* JMSelectionView.m */,
+				A69B04A4157F103D003DDFDF /* JMTabConstants.h */,
+				A69B04A5157F103D003DDFDF /* JMTabContainer.h */,
+				A69B04A6157F103D003DDFDF /* JMTabContainer.m */,
+				A69B04A7157F103D003DDFDF /* JMTabItem.h */,
+				A69B04A8157F103D003DDFDF /* JMTabItem.m */,
+				A69B04A9157F103D003DDFDF /* JMTabView.h */,
+				A69B04AA157F103D003DDFDF /* JMTabView.m */,
+				A69B04AB157F103D003DDFDF /* Layers */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A69B04AB157F103D003DDFDF /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				A69B04AC157F103D003DDFDF /* BarBackgroundLayer.h */,
+				A69B04AD157F103D003DDFDF /* BarBackgroundLayer.m */,
+			);
+			path = Layers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4666,6 +4745,15 @@
 				A6B54E4F157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m in Sources */,
 				A6D3C1C4157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.m in Sources */,
 				A661D86D157EFEB800CCF870 /* CustomBackgroundView.m in Sources */,
+				A69B049D157F0F1C003DDFDF /* UIColor+Hex.m in Sources */,
+				A69B049E157F0F1C003DDFDF /* UIView+InnerShadow.m in Sources */,
+				A69B049F157F0F1C003DDFDF /* UIView+Positioning.m in Sources */,
+				A69B04A0157F0F1C003DDFDF /* UIView+Size.m in Sources */,
+				A69B04AE157F103D003DDFDF /* JMSelectionView.m in Sources */,
+				A69B04AF157F103D003DDFDF /* JMTabContainer.m in Sources */,
+				A69B04B0157F103D003DDFDF /* JMTabItem.m in Sources */,
+				A69B04B1157F103D003DDFDF /* JMTabView.m in Sources */,
+				A69B04B2157F103D003DDFDF /* BarBackgroundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
