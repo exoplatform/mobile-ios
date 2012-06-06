@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JMTabView.h"
 
-@interface ActivityDetailAdvancedInfoCell_iPad : UITableViewCell
+@class SocialActivity;
+
+@interface ActivityDetailAdvancedInfoCell_iPad : UITableViewCell <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, retain) JMTabView *tabView;
+@property (nonatomic, retain) UITableView *infoView;
+@property (nonatomic, retain) SocialActivity *socialActivity;
 
 @end

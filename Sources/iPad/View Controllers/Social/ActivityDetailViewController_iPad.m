@@ -94,6 +94,7 @@
 #pragma mark - overriden 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile {
     self.extraActionsCell.socialActivity = socialActivityStream;
+    self.advancedInfoCell.socialActivity = socialActivityStream;
     [super setSocialActivityStream:socialActivityStream andCurrentUserProfile:currentUserProfile];
 }
 
@@ -180,7 +181,7 @@
     if (indexPath.section == 1) {
         return self.extraActionsCell.frame.size.height;
     } else if (indexPath.section == 2) {
-        return self.view.bounds.size.height - self.advancedInfoCell.frame.origin.y - self.advancedInfoCell.frame.size.height;
+        return self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
