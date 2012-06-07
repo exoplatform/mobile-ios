@@ -158,41 +158,6 @@
 }
 
 
-// Specific method to retrieve the height of the cell
-// This method override the inherited one.
-- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
-{
-    CGRect rectTableView = tableView.frame;
-    float fWidth = 0;
-    float fHeight = 0;
-    
-    if (rectTableView.size.width > 320) 
-    {
-        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
-    }
-    else
-    {
-        fWidth = rectTableView.size.width - 100;
-    }
-    
-    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
-    
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    
-    if (theSize.height < 30) 
-    {
-        fHeight = 100;
-    }
-    else
-    {
-        fHeight = 75 + theSize.height;
-    }
-    
-    return fHeight;
-}
-
-
-
 #pragma mark - Table view Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -223,7 +188,7 @@
     if (indexPath.section == 2) 
     {
         SocialComment* comment = [self.socialActivity.comments objectAtIndex:indexPath.row];
-        n = [self getHeighSizeForTableView:tableView andText:comment.text];
+        n = [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];
 
     }
     return n;

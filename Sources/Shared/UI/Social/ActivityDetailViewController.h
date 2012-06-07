@@ -58,5 +58,6 @@
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
+- (void)finishLoadingAllDataForActivityDetails;
 
 @end

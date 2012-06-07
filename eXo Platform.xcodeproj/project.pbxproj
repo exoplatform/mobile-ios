@@ -624,9 +624,9 @@
 		A6B54E52157DBEA6005BFFCD /* activity-detail-action-dislike.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B54E50157DBEA5005BFFCD /* activity-detail-action-dislike.png */; };
 		A6B54E53157DBEA6005BFFCD /* activity-detail-action-like.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B54E51157DBEA5005BFFCD /* activity-detail-action-like.png */; };
 		A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B61A8C15774B07006C3526 /* AvatarView.m */; };
+		A6B8CF211580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */; };
 		A6C929FA157E1DE9002E160B /* activity-detail-background-pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C929F9157E1DE9002E160B /* activity-detail-background-pattern.png */; };
 		A6D3C1B5157DF17600219CA3 /* activity-detail-actions-cell.png in Resources */ = {isa = PBXBuildFile; fileRef = A6D3C1B4157DF17600219CA3 /* activity-detail-actions-cell.png */; };
-		A6D3C1C4157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D3C1C3157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.m */; };
 		DE442BBB1569E21000E10A00 /* SocialActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = DE442BBA1569E21000E10A00 /* SocialActivity.m */; };
 		DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */; };
 /* End PBXBuildFile section */
@@ -1684,10 +1684,10 @@
 		A6B54E51157DBEA5005BFFCD /* activity-detail-action-like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-action-like.png"; sourceTree = "<group>"; };
 		A6B61A8B15774B07006C3526 /* AvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarView.h; sourceTree = "<group>"; };
 		A6B61A8C15774B07006C3526 /* AvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarView.m; sourceTree = "<group>"; };
+		A6B8CF1F1580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailAdvancedInfoController_iPad.h; path = Social/ActivityDetailAdvancedInfoController_iPad.h; sourceTree = "<group>"; };
+		A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailAdvancedInfoController_iPad.m; path = Social/ActivityDetailAdvancedInfoController_iPad.m; sourceTree = "<group>"; };
 		A6C929F9157E1DE9002E160B /* activity-detail-background-pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-background-pattern.png"; sourceTree = "<group>"; };
 		A6D3C1B4157DF17600219CA3 /* activity-detail-actions-cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-actions-cell.png"; sourceTree = "<group>"; };
-		A6D3C1C2157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailAdvancedInfoCell_iPad.h; path = Social/ActivityDetailAdvancedInfoCell_iPad.h; sourceTree = "<group>"; };
-		A6D3C1C3157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailAdvancedInfoCell_iPad.m; path = Social/ActivityDetailAdvancedInfoCell_iPad.m; sourceTree = "<group>"; };
 		DE442BB91569E21000E10A00 /* SocialActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivity.h; sourceTree = "<group>"; };
 		DE442BBA1569E21000E10A00 /* SocialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivity.m; sourceTree = "<group>"; };
 		DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikersViewController.h; sourceTree = "<group>"; };
@@ -2399,8 +2399,8 @@
 				46A08CDC144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.h */,
 				46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */,
 				46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */,
-				A6D3C1C2157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.h */,
-				A6D3C1C3157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.m */,
+				A6B8CF1F1580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.h */,
+				A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -4751,7 +4751,6 @@
 				DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */,
 				A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */,
 				A6B54E4F157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m in Sources */,
-				A6D3C1C4157E0C9900219CA3 /* ActivityDetailAdvancedInfoCell_iPad.m in Sources */,
 				A661D86D157EFEB800CCF870 /* CustomBackgroundView.m in Sources */,
 				A69B049D157F0F1C003DDFDF /* UIColor+Hex.m in Sources */,
 				A69B049E157F0F1C003DDFDF /* UIView+InnerShadow.m in Sources */,
@@ -4762,6 +4761,7 @@
 				A69B04B0157F103D003DDFDF /* JMTabItem.m in Sources */,
 				A69B04B1157F103D003DDFDF /* JMTabView.m in Sources */,
 				A69B04B2157F103D003DDFDF /* BarBackgroundLayer.m in Sources */,
+				A6B8CF211580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

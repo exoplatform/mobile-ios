@@ -51,4 +51,5 @@ static NSString *STREAM_TYPE_SPACE = @"space";
 + (float)getHeightSizeForText:(NSString*)text andTableViewWidth:(CGFloat)fWidth;
 + (float)heightForAllDecorationsWithTableViewWidth:(CGFloat)fWidth;
 + (CGFloat)getHeightForActivityDetailCell:(SocialActivity *)activtyStreamDetail forTableViewWidth:(CGFloat)fWidth;
++ (float)calculateCellHeighForTableView:(UITableView *)tableView andText:(NSString*)text;
 @end

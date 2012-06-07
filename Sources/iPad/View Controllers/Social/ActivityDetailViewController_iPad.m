@@ -17,17 +17,17 @@
 #import "EmptyView.h"
 #import "ActivityHelper.h"
 #import "ActivityDetailExtraActionsCell.h"
-#import "ActivityDetailAdvancedInfoCell_iPad.h"
+#import "ActivityDetailAdvancedInfoController_iPad.h"
 #import "CustomBackgroundView.h"
 
 @implementation ActivityDetailViewController_iPad
 
 @synthesize extraActionsCell = _extraActionsCell;
-@synthesize advancedInfoCell = _advancedInfoCell;
+@synthesize advancedInfoController = _advancedInfoController;
 
 - (void)dealloc {
     [_extraActionsCell release];
-    [_advancedInfoCell release];
+    [_advancedInfoController release];
     [super dealloc];
 }
 
@@ -94,8 +94,14 @@
 #pragma mark - overriden 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile {
     self.extraActionsCell.socialActivity = socialActivityStream;
-    self.advancedInfoCell.socialActivity = socialActivityStream;
+    self.advancedInfoController.socialActivity = socialActivityStream;
     [super setSocialActivityStream:socialActivityStream andCurrentUserProfile:currentUserProfile];
+}
+
+- (void)finishLoadingAllDataForActivityDetails {
+    [super finishLoadingAllDataForActivityDetails];
+    [self.extraActionsCell updateSubViews];
+    [self.advancedInfoController updateSubViews];
 }
 
 #pragma mark - UIWebViewDelegateMethod 
@@ -168,10 +174,23 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *kIdentifierActivityDetailAdvancedInfoTableViewCell = @"ActivityDetailAdvancedInfoTableViewCell";
     if (indexPath.section == 1) {
         return self.extraActionsCell;
     } else if (indexPath.section == 2) {
-        return self.self.advancedInfoCell;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailAdvancedInfoTableViewCell];
+        if (!cell) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailAdvancedInfoTableViewCell] autorelease];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell.contentView addSubview:self.advancedInfoController.view];
+        }
+        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height - self.tblvActivityDetail.sectionFooterHeight;
+        CGRect frame = CGRectZero;
+        frame.size.height = height;
+        frame.size.width = self.tblvActivityDetail.bounds.size.width;
+        self.advancedInfoController.view.frame = frame;
+        [self.advancedInfoController updateSubViews];
+        return cell;
     } else {
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
@@ -181,7 +200,8 @@
     if (indexPath.section == 1) {
         return self.extraActionsCell.frame.size.height;
     } else if (indexPath.section == 2) {
-        return self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
+        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height - self.tblvActivityDetail.sectionFooterHeight;
+        return height;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -196,11 +216,14 @@
     return _extraActionsCell;
 }
 
-- (ActivityDetailAdvancedInfoCell_iPad *)advancedInfoCell {
-    if (!_advancedInfoCell) {
-        _advancedInfoCell = [[ActivityDetailAdvancedInfoCell_iPad alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"advanced info cell"];
+- (ActivityDetailAdvancedInfoController_iPad *)advancedInfoController {
+    if (!_advancedInfoController) {
+        _advancedInfoController = [[ActivityDetailAdvancedInfoController_iPad alloc] init];
     }
-    return _advancedInfoCell;
+    return _advancedInfoController;
 }
 
 @end
+
+
+

@@ -10,11 +10,11 @@
 #import "ActivityDetailViewController.h"
 
 @class ActivityDetailExtraActionsCell;
-@class ActivityDetailAdvancedInfoCell_iPad;
+@class ActivityDetailAdvancedInfoController_iPad;
 
 @interface ActivityDetailViewController_iPad : ActivityDetailViewController 
 
 @property (nonatomic, retain) ActivityDetailExtraActionsCell *extraActionsCell;
-@property (nonatomic, retain) ActivityDetailAdvancedInfoCell_iPad *advancedInfoCell;
+@property (nonatomic, retain) ActivityDetailAdvancedInfoController_iPad *advancedInfoController;
 
 @end
