@@ -17,4 +17,6 @@
 @property (nonatomic, retain) ActivityDetailExtraActionsCell *extraActionsCell;
 @property (nonatomic, retain) ActivityDetailAdvancedInfoController_iPad *advancedInfoController;
 
+- (IBAction)likeDislike:(id)sender;
+
 @end

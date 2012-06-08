@@ -44,8 +44,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] init] autorelease];
+    self.tblvActivityDetail.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"activity-detail-background-pattern"]];
     _navigation.topItem.title = Localize(@"Details");
+}
+
+- (void)likeDislike:(id)sender {
+    [self likeDislikeActivity:self.socialActivity.activityId];
 }
 
 - (void)onBtnMessageComposer
@@ -102,6 +106,7 @@
     [super finishLoadingAllDataForActivityDetails];
     [self.extraActionsCell updateSubViews];
     [self.advancedInfoController updateSubViews];
+    [self.advancedInfoController updateTabLabels];
 }
 
 #pragma mark - UIWebViewDelegateMethod 
@@ -212,6 +217,7 @@
 - (ActivityDetailExtraActionsCell *)extraActionsCell {
     if (!_extraActionsCell) {
         _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
+        [_extraActionsCell.likeButton addTarget:self action:@selector(likeDislike:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _extraActionsCell;
 }

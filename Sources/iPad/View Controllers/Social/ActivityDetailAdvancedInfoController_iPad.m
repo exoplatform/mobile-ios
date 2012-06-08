@@ -12,14 +12,76 @@
 #import "ActivityDetailCommentTableViewCell.h"
 #import "ActivityLikersViewController.h"
 #import "ActivityHelper.h"
+#import "LanguageHelper.h"
+#import "UIColor+Hex.h"
+
 
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellBottomMargin 10.0
 #define kAdvancedCellTabBarHeight 60.0
 
+@interface CustomTabItem : JMTabItem
+
+@end
+
+@implementation CustomTabItem 
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor * shadowColor = [UIColor blackColor];
+    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 1.0f, [shadowColor CGColor]);
+    CGContextSaveGState(context);   
+    
+    CGFloat xOffset = self.padding.width;
+    
+    if (self.icon)
+    {
+        [self.icon drawAtPoint:CGPointMake(xOffset, self.padding.height)];
+        xOffset += [self.icon size].width + kTabItemIconMargin;
+    }
+    
+    [kTabItemTextColor set];
+    
+    CGFloat heightTitle = [self.title sizeWithFont:kTabItemFont].height;
+    CGFloat titleYOffset = (self.bounds.size.height - heightTitle) / 2;
+    [self.title drawAtPoint:CGPointMake(xOffset, titleYOffset) withFont:kTabItemFont];
+    
+    CGContextRestoreGState(context);
+}
+
+@end
+
+@interface CustomSelectionView : JMSelectionView 
+
+@end
+
+#define kTriangleHeight 8.0
+@implementation CustomSelectionView 
+    
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGRect squareRect = rect;
+    [[UIColor colorWithHex:0x252525] set];
+    squareRect.size.height -= kTriangleHeight;
+    UIBezierPath *squarePath = [UIBezierPath bezierPathWithRoundedRect:squareRect cornerRadius:4.];
+    [squarePath fill];
+    UIBezierPath *trianglePath = [UIBezierPath bezierPath];
+    [trianglePath moveToPoint:CGPointMake(squareRect.size.width / 2 - kTriangleHeight, squareRect.size.height)];
+    [trianglePath addLineToPoint:CGPointMake(squareRect.size.width / 2, squareRect.size.height + kTriangleHeight)];
+    [trianglePath addLineToPoint:CGPointMake(squareRect.size.width / 2 + kTriangleHeight, squareRect.size.height)];
+    [trianglePath closePath];
+    [trianglePath fill];
+    CGContextRestoreGState(context);
+}
+
+@end
+
+
 static NSString *kTabType = @"kTapType";
 static NSString *kTabTitle = @"kTapTitle";
 static NSString *kTabImageName = @"kTapImageName";
+static NSString *kTabItem = @"kTabItem";
 
 @interface ActivityDetailAdvancedInfoController_iPad () {
     ActivityAdvancedInfoCellTab _selectedTab;
@@ -50,13 +112,13 @@ static NSString *kTabImageName = @"kTapImageName";
     _dataSourceArray = [[NSArray arrayWithObjects:
                         [NSDictionary dictionaryWithObjectsAndKeys:
                             [NSNumber numberWithInt:ActivityAdvancedInfoCellTabComment], kTabType,
-                            @"comments", kTabTitle, 
-                            @"activity-detail-tabs-comment-icon", kTabImageName, 
+                            @"comments(%d)", kTabTitle, 
+                            [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-comment-icon"]] autorelease], kTabItem,
                             nil],
                         [NSDictionary dictionaryWithObjectsAndKeys:
                             [NSNumber numberWithInt:ActivityAdvancedInfoCellTabLike], kTabType,
-                            @"Likes", kTabTitle, 
-                            @"activity-detail-tabs-likers-icon", kTabImageName, 
+                            @"likes(%d)", kTabTitle, 
+                            [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-likers-icon"]] autorelease], kTabItem, 
                             nil],
                         nil] retain];
 }
@@ -75,7 +137,9 @@ static NSString *kTabImageName = @"kTapImageName";
     [self.view setAutoresizesSubviews:YES];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     for (NSDictionary *tabData in _dataSourceArray) {
-        [self.tabView addTabItemWithTitle:[tabData valueForKey:kTabTitle] icon:[UIImage imageNamed:[tabData valueForKey:kTabImageName]]];        
+        JMTabItem *tabItem = [tabData objectForKey:kTabItem];
+        tabItem.highlighted = NO;
+        [self.tabView addTabItem:tabItem];
     }
     
     [self.view addSubview:self.tabView];
@@ -100,6 +164,7 @@ static NSString *kTabImageName = @"kTapImageName";
         _tabView = [[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kAdvancedCellTabBarHeight)];
         _tabView.delegate = self;
         [_tabView setBackgroundLayer:nil];
+        [_tabView setSelectionView:[[[CustomSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
     }
     return _tabView;
 }
@@ -129,6 +194,7 @@ static NSString *kTabImageName = @"kTapImageName";
     [_socialActivity release];
     _socialActivity = socialActivity;
     self.likersViewController.socialActivity = socialActivity;
+    [self updateTabLabels];
 }
 
 #pragma mark - controller methods 
@@ -136,6 +202,24 @@ static NSString *kTabImageName = @"kTapImageName";
     [self.tabView setSelectedIndex:selectedTab];
 }
 
+- (void)updateTabLabels {
+    for (NSDictionary *tabData in _dataSourceArray) {
+        JMTabItem *tabItem = [tabData objectForKey:kTabItem];
+        int number = 0;
+        ActivityAdvancedInfoCellTab tabType = [[tabData objectForKey:kTabType] intValue];
+        switch (tabType) {
+            case ActivityAdvancedInfoCellTabComment:
+                number = self.socialActivity.totalNumberOfComments;
+                break;
+            case ActivityAdvancedInfoCellTabLike:
+                number = self.socialActivity.totalNumberOfLikes;
+                break;
+            default:
+                break;
+        }
+        tabItem.title = [NSString stringWithFormat:Localize([tabData objectForKey:kTabTitle]), number];
+    }
+}
 
 - (void)updateSubViews {
     CGRect viewBounds = self.view.bounds;
@@ -149,7 +233,8 @@ static NSString *kTabImageName = @"kTapImageName";
     [UIView setAnimationDuration:.5];
     self.infoView.frame = infoFrame;
     [UIView commitAnimations];
-//    [self.infoView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
+    [self.infoView reloadData];
+    
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -221,7 +306,7 @@ static NSString *kTabImageName = @"kTapImageName";
 #pragma mark - JMTabViewDelegate 
 - (void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
     _selectedTab = [[[_dataSourceArray objectAtIndex:itemIndex] valueForKey:kTabType] intValue];
-    [self updateSubViews];
+    [self.infoView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
 }
 
 @end

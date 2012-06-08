@@ -26,6 +26,7 @@ typedef enum {
 
 // this method is used to update value for subviews
 - (void)updateSubViews;
+- (void)updateTabLabels;
 - (void)selectTab:(ActivityAdvancedInfoCellTab)selectedTab;
 
 @end
