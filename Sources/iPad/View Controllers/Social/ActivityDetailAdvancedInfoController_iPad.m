@@ -58,6 +58,17 @@
 #define kTriangleHeight 8.0
 @implementation CustomSelectionView 
 
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.layer.shadowOffset = CGSizeMake(0, -3.0);
+        self.layer.shadowRadius = 0.;
+        self.layer.shadowColor = [[UIColor whiteColor] CGColor];
+        self.layer.shadowOpacity = 0;
+        self.clipsToBounds = NO;
+    }
+    return self;
+}
+
 CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     CGRect squareRect = rect;
     squareRect.size.height -= kTriangleHeight;
@@ -88,15 +99,42 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     squareRect.size.width -= borderWidth * 2;
     squareRect.size.height -= borderWidth * 2;
     CGContextSetFillColorWithColor(context, [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern-button"]].CGColor);
-    CGContextAddPath(context, createCommentShapeForRect(squareRect, 8.));
+    CGPathRef shapePath = createCommentShapeForRect(squareRect, 8.);
+    CGContextAddPath(context, shapePath);
     CGContextFillPath(context);
+    CGContextClosePath(context);
+    
+    // draw Shadow
+    CGContextSaveGState(context);
+    float offset = 20.;
+    CGRect largerRect = CGRectInset(squareRect, -offset, -offset);
+    largerRect.size.height -= offset;
+    CGMutablePathRef largerPath = createCommentShapeForRect(largerRect, 8.);
+    CGPathAddPath(largerPath, NULL, shapePath);
+    CGContextAddPath(context, shapePath);
+    CGContextClip(context);
+    
+    
+    UIColor * shadowColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1];
+    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 8.0f, [shadowColor CGColor]);
+    [shadowColor setFill];   
+    
+    CGContextAddPath(context, largerPath);
+    CGContextEOFillPath(context);
+    CGContextRestoreGState(context);
+    // ------
     
     CGRect borderRect = CGRectMake(rect.origin.x + borderWidth / 2, rect.origin.y + borderWidth / 2, rect.size.width - borderWidth, rect.size.height - borderWidth);
-    CGContextAddPath(context, createCommentShapeForRect(borderRect, 8.));
+    CGPathRef borderPath = createCommentShapeForRect(borderRect, 8.);
+    CGContextAddPath(context, borderPath);
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:120./255 green:157./255 blue:185./255 alpha:1].CGColor);
     CGContextSetLineWidth(context, borderWidth);
     CGContextStrokePath(context);
+    CGContextClosePath(context);
     
+    CGPathRelease(shapePath);
+    CGPathRelease(borderPath);
+    CGPathRelease(largerPath);
     CGContextRestoreGState(context);
 }
 
