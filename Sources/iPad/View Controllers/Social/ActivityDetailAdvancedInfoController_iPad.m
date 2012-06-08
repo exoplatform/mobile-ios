@@ -13,6 +13,7 @@
 #import "ActivityLikersViewController.h"
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
+#import "EmptyView.h"
 
 
 #define kAdvancedCellLeftRightMargin 20.0
@@ -121,13 +122,14 @@ static NSString *kTabItem = @"kTabItem";
 @synthesize infoView = _infoView;
 @synthesize socialActivity = _socialActivity;
 @synthesize likersViewController = _likersViewController;
-
+@synthesize emptyView = _emptyView;
 
 - (void)dealloc {
     [_tabView release];
     [_infoView release];
     [_socialActivity release];
     [_likersViewController release];
+    [_emptyView release];
     [_dataSourceArray release];
     [super dealloc];
 }
@@ -213,6 +215,13 @@ static NSString *kTabItem = @"kTabItem";
     return _likersViewController;
 }
 
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoActivities" andContent:Localize(@"NoComment")];
+    }
+    return _emptyView;
+}
+
 - (void)setSocialActivity:(SocialActivity *)socialActivity {
     [socialActivity retain];
     [_socialActivity release];
@@ -265,7 +274,18 @@ static NSString *kTabItem = @"kTabItem";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
     static NSString *kIdentifierActivityDetailLikersTableViewCell = @"ActivityDetailLikersTableViewCell";
+    static NSString *kIdentifierActivityDetailEmptyViewCell = @"ActivityDetailEmptyViewCell";
     if (_selectedTab == ActivityAdvancedInfoCellTabComment) {
+        if (self.socialActivity.totalNumberOfComments == 0) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailEmptyViewCell];
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailEmptyViewCell] autorelease];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                [cell.contentView addSubview:self.emptyView];
+            }
+            self.emptyView.frame = self.infoView.bounds;
+            return cell;
+        }
         ActivityDetailCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
@@ -304,8 +324,12 @@ static NSString *kTabItem = @"kTabItem";
             return self.infoView.frame.size.height;
         }
         case ActivityAdvancedInfoCellTabComment: {
-            SocialComment *comment = [self.socialActivity.comments objectAtIndex:indexPath.row];
-            return [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];
+            if (self.socialActivity.totalNumberOfComments > 0) {
+                SocialComment *comment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+                return [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];                
+            } else {
+                return self.infoView.frame.size.height;
+            }
         }
         default:
             return 0;
@@ -322,7 +346,7 @@ static NSString *kTabItem = @"kTabItem";
         case ActivityAdvancedInfoCellTabLike:
             return 1;
         case ActivityAdvancedInfoCellTabComment:
-            return [self.socialActivity.comments count];
+            return self.socialActivity.totalNumberOfComments == 0 ? 1 : [self.socialActivity.comments count];
         default:
             return 0;
     }
