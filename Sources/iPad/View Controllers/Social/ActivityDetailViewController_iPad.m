@@ -44,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    self.tblvActivityDetail.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"activity-detail-background-pattern"]];
+    self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
 }
 

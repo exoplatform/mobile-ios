@@ -13,7 +13,6 @@
 #import "ActivityLikersViewController.h"
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
-#import "UIColor+Hex.h"
 
 
 #define kAdvancedCellLeftRightMargin 20.0
@@ -57,21 +56,46 @@
 
 #define kTriangleHeight 8.0
 @implementation CustomSelectionView 
+
+CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
+    CGRect squareRect = rect;
+    squareRect.size.height -= kTriangleHeight;
+    CGFloat minx = CGRectGetMinX(squareRect), midx = CGRectGetMidX(squareRect), maxx = CGRectGetMaxX(squareRect); 
+    CGFloat miny = CGRectGetMinY(squareRect), maxy = CGRectGetMaxY(squareRect);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, midx, miny);
+    CGPathAddArcToPoint(path, NULL, maxx, miny, maxx, maxy, radius);
+    CGPathAddArcToPoint(path, NULL, maxx, maxy, minx, maxy, radius);
+    CGPathAddLineToPoint(path, NULL, midx + kTriangleHeight, maxy);
+    CGPathAddLineToPoint(path, NULL, midx, maxy + kTriangleHeight);
+    CGPathAddLineToPoint(path, NULL, midx - kTriangleHeight, maxy);
+    CGPathAddArcToPoint(path, NULL, minx, maxy, minx, miny, radius);
+    CGPathAddArcToPoint(path, NULL, minx, miny, maxx, miny, radius);
+    CGPathCloseSubpath(path);
     
+    return path;        
+}
+
+
+
+
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
-    CGRect squareRect = rect;
-    [[UIColor colorWithHex:0x252525] set];
-    squareRect.size.height -= kTriangleHeight;
-    UIBezierPath *squarePath = [UIBezierPath bezierPathWithRoundedRect:squareRect cornerRadius:4.];
-    [squarePath fill];
-    UIBezierPath *trianglePath = [UIBezierPath bezierPath];
-    [trianglePath moveToPoint:CGPointMake(squareRect.size.width / 2 - kTriangleHeight, squareRect.size.height)];
-    [trianglePath addLineToPoint:CGPointMake(squareRect.size.width / 2, squareRect.size.height + kTriangleHeight)];
-    [trianglePath addLineToPoint:CGPointMake(squareRect.size.width / 2 + kTriangleHeight, squareRect.size.height)];
-    [trianglePath closePath];
-    [trianglePath fill];
+    float borderWidth = 1.;
+    CGRect squareRect = CGRectOffset(rect, borderWidth, borderWidth);
+    squareRect.size.width -= borderWidth * 2;
+    squareRect.size.height -= borderWidth * 2;
+    CGContextSetFillColorWithColor(context, [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern-button"]].CGColor);
+    CGContextAddPath(context, createCommentShapeForRect(squareRect, 8.));
+    CGContextFillPath(context);
+    
+    CGRect borderRect = CGRectMake(rect.origin.x + borderWidth / 2, rect.origin.y + borderWidth / 2, rect.size.width - borderWidth, rect.size.height - borderWidth);
+    CGContextAddPath(context, createCommentShapeForRect(borderRect, 8.));
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:120./255 green:157./255 blue:185./255 alpha:1].CGColor);
+    CGContextSetLineWidth(context, borderWidth);
+    CGContextStrokePath(context);
+    
     CGContextRestoreGState(context);
 }
 

@@ -10,6 +10,16 @@
 
 @implementation CustomBackgroundView
 
+const float kPatternWidth = 150.;
+const float kPatternHeight = 120.;
+
+void DrawPatternCellCallback(void *info, CGContextRef context)
+{
+    UIImage *image = [UIImage imageNamed:@"activity-detail-background-pattern"];
+    CGContextDrawImage(context, CGRectMake(0, 0, kPatternWidth, kPatternHeight), image.CGImage);
+    
+}
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self)
@@ -22,15 +32,17 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
-    CGRect bounds = rect;
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:bounds];
-    CGContextAddPath(context, [path CGPath]);
-    CGContextClip(context);
-    CGContextSetBlendMode(context, kCGBlendModeMultiply);
-    UIImage * bgPattern = [UIImage imageNamed:@"activity-detail-background-pattern"];
-    [bgPattern drawAsPatternInRect:bounds];
+    CGColorSpaceRef patternSpace = CGColorSpaceCreatePattern(NULL);
+    CGContextSetFillColorSpace(context, patternSpace);
+    CGColorSpaceRelease(patternSpace);
+    const CGRect patternBounds = CGRectMake(0, 0, kPatternWidth, kPatternHeight);
+    const CGPatternCallbacks kPatternCallbacks = {0, &DrawPatternCellCallback, NULL};
+    CGPatternRef pattern = CGPatternCreate(NULL, patternBounds, CGAffineTransformIdentity, kPatternWidth, kPatternHeight, kCGPatternTilingConstantSpacing, true, &kPatternCallbacks);
+    CGFloat alpha = 1.0;
+    CGContextSetFillPattern(context, pattern, &alpha);
+    CGPatternRelease(pattern);
+    CGContextFillRect(context, rect);
     CGContextRestoreGState(context);
-    [super drawRect:rect];
 }
 
 @end
