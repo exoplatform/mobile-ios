@@ -48,8 +48,20 @@
     _navigation.topItem.title = Localize(@"Details");
 }
 
+#pragma mark - like/dislike management
 - (void)likeDislike:(id)sender {
+    [self.extraActionsCell likeButtonToActivityIndicator];
     [self likeDislikeActivity:self.socialActivity.activityId];
+}
+
+- (void)didFinishedLikeAction {
+    [self.extraActionsCell activityIndicatorToLikeButton];
+    [self.extraActionsCell updateSubViews];
+    [self.advancedInfoController updateTabLabels];
+}
+
+- (void)didFailedLikeAction {
+    [self.extraActionsCell activityIndicatorToLikeButton];
 }
 
 - (void)onBtnMessageComposer

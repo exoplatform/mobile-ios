@@ -102,7 +102,6 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     CGPathRef shapePath = createCommentShapeForRect(squareRect, 8.);
     CGContextAddPath(context, shapePath);
     CGContextFillPath(context);
-    CGContextClosePath(context);
     
     // draw Shadow
     CGContextSaveGState(context);
@@ -130,7 +129,6 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:120./255 green:157./255 blue:185./255 alpha:1].CGColor);
     CGContextSetLineWidth(context, borderWidth);
     CGContextStrokePath(context);
-    CGContextClosePath(context);
     
     CGPathRelease(shapePath);
     CGPathRelease(borderPath);
@@ -170,6 +168,12 @@ static NSString *kTabItem = @"kTabItem";
     [_emptyView release];
     [_dataSourceArray release];
     [super dealloc];
+}
+
+- (void)didReceiveMemoryWarning {
+    self.emptyView = nil;
+    self.likersViewController = nil;
+    [super didReceiveMemoryWarning];
 }
 
 - (void)doInit {

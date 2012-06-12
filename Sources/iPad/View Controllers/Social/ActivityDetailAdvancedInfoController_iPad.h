@@ -31,4 +31,5 @@ typedef enum {
 - (void)updateTabLabels;
 - (void)selectTab:(ActivityAdvancedInfoCellTab)selectedTab;
 
+
 @end

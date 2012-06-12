@@ -23,5 +23,7 @@
 @property (retain, nonatomic) UIButton *myAccessoryView;
 
 - (void)setUserLikeThisActivity:(BOOL)userLikeThisActivity;
+- (void)likeButtonToActivityIndicator;
+- (void)activityIndicatorToLikeButton;
 
 @end

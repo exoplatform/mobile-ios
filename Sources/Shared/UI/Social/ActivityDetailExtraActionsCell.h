@@ -15,7 +15,10 @@
 
 @property (nonatomic, retain) SocialActivity *socialActivity;
 @property (nonatomic, retain) UIButton *likeButton;
+@property (nonatomic, retain) UIActivityIndicatorView *likeActivityIndicatorView;
 
 - (void)updateSubViews;
+- (void)likeButtonToActivityIndicator;
+- (void)activityIndicatorToLikeButton;
 
 @end

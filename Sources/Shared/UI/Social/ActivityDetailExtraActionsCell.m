@@ -23,10 +23,12 @@
 
 @synthesize socialActivity = _socialActivity;
 @synthesize likeButton = _likeButton;
+@synthesize likeActivityIndicatorView = _likeActivityIndicatorView;
 
 - (void)dealloc {
     [_socialActivity release];
     [_likeButton release];
+    [_likeActivityIndicatorView release];
     [super dealloc];
 }
 
@@ -94,6 +96,24 @@
         _likeButton.bounds = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
     }
     return _likeButton;
+}
+
+- (UIActivityIndicatorView *)likeActivityIndicatorView {
+    if (!_likeActivityIndicatorView) {
+        _likeActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
+    return  _likeActivityIndicatorView;
+}
+
+- (void)activityIndicatorToLikeButton {
+    [UIView transitionFromView:self.likeActivityIndicatorView toView:self.likeButton duration:0 options:UIViewAnimationOptionTransitionNone completion:NULL];
+}
+
+- (void)likeButtonToActivityIndicator {
+    self.likeActivityIndicatorView.frame = self.likeButton.frame;
+    [self.likeActivityIndicatorView sizeToFit];
+    [self.likeActivityIndicatorView startAnimating];
+    [UIView transitionFromView:self.likeButton toView:self.likeActivityIndicatorView duration:0 options:UIViewAnimationOptionTransitionNone completion:NULL];
 }
 
 @end

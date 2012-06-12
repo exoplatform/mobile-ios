@@ -10,11 +10,13 @@
 #import "ActivityDetailViewController.h"
 
 @class ActivityStreamBrowseViewController;
+@class ActivityDetailLikeTableViewCell;
 
 @interface ActivityDetailViewController_iPhone : ActivityDetailViewController {
 
 }
 
 @property (nonatomic, retain) UITableViewCell *noCommentCell;
+@property (nonatomic, retain) ActivityDetailLikeTableViewCell *likeViewCell;
 
 @end

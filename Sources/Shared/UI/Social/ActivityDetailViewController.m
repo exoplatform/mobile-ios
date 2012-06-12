@@ -42,7 +42,6 @@
 @synthesize iconType = _iconType;
 @synthesize socialActivity = _socialActivity;
 @synthesize activityDetailCell = _activityDetailCell;
-@synthesize activityLikesCell = _activityLikesCell;
 @synthesize tblvActivityDetail = _tblvActivityDetail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,7 +60,6 @@
 {
     [_tblvActivityDetail release];
     [_navigation release];
-    [_activityLikesCell release];
     [_activityDetailCell release];
     
     [_txtvMsgComposer release];
@@ -409,12 +407,15 @@
         
         [self finishLoadingAllDataForActivityDetails];
         //SocialLikeActivityProxy
-    }else{
-        if (_activityAction == 2){
+    }else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) {
+        if (_activityAction == 2) {
             self.socialActivity.liked = YES;
-        } else if (_activityAction == 3){
+            self.socialActivity.totalNumberOfLikes++;
+        } else if (_activityAction == 3) {
             self.socialActivity.liked = NO;
+            self.socialActivity.totalNumberOfLikes--;
         }
+        [self didFinishedLikeAction];
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
                                                                                                              andNumberOfLikes:4];
         socialActivityDetailsProxy.delegate = self;
@@ -431,18 +432,24 @@
         alertMessage = Localize(@"GettingActionCannotBeCompleted");
     else if(_activityAction == 1)
         alertMessage = Localize(@"UpdatingActionCannotBeCompleted");
-    else
+    else {
         alertMessage = Localize(@"LikingActionCannotBeCompleted");
+        [self didFailedLikeAction];
+    }
     
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
      
     [alertView show];
 }
 
+#pragma mark - like/unlike management
+- (void)didFailedLikeAction {}
+
+- (void)didFinishedLikeAction {}
+
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
-    [self displayHudLoader];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
     

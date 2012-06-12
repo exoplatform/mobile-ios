@@ -13,7 +13,6 @@
 #import "eXoViewController.h"
 
 @class ActivityDetailMessageTableViewCell;
-@class ActivityDetailLikeTableViewCell;
 @class SocialActivity;
 @class SocialUserProfile;
 
@@ -25,9 +24,6 @@
     
     IBOutlet UITableView*                   _tblvActivityDetail;
 //    IBOutlet UINavigationBar*               _navigationBar;
-    
-    //Cell for the like part of the screen
-    ActivityDetailLikeTableViewCell*        _cellForLikes;
         
     BOOL                                    _currentUserLikeThisActivity;
     
@@ -53,11 +49,17 @@
 @property (retain) NSString *iconType;
 @property (nonatomic, retain) SocialActivity *socialActivity;
 @property (nonatomic, retain) ActivityDetailMessageTableViewCell *activityDetailCell;
-@property (nonatomic, retain) ActivityDetailLikeTableViewCell *activityLikesCell;
 @property (nonatomic, retain) UITableView *tblvActivityDetail;
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
 - (void)finishLoadingAllDataForActivityDetails;
+
+/* 
+ Methods for managing the like/unlike actions
+ The derived classs can override these method for particular behavior
+ */
+- (void)didFinishedLikeAction;
+- (void)didFailedLikeAction;
 
 @end

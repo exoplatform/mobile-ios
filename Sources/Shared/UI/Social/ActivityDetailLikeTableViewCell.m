@@ -25,6 +25,7 @@
 
 @interface ActivityDetailLikeTableViewCell () 
 
+@property (retain, nonatomic) UIActivityIndicatorView *indicatorForLikeButton;
 @property (nonatomic, retain) NSMutableArray *likerAvatarImageViews;
 - (void)reloadAvatarViews;
 - (UIImage *)imageOfThreePointsWithSize:(CGSize)imageSize;
@@ -40,6 +41,7 @@
 @synthesize btnLike=_btnLike, delegate=_delegate;
 @synthesize likerAvatarImageViews = _likerAvatarImageViews;
 @synthesize myAccessoryView = _myAccessoryView;
+@synthesize indicatorForLikeButton = _indicatorForLikeButton;
 
 - (void)dealloc
 {
@@ -48,6 +50,7 @@
     [_socialActivity release];
     [_likerAvatarImageViews release];
     [_myAccessoryView release];
+    [_indicatorForLikeButton release];
     [super dealloc];
 }
 
@@ -98,7 +101,7 @@
     self.myAccessoryView.frame = CGRectMake(contentBounds.size.width - kLeftRightMargin - accessorySize.width, secondLineY + (secondLineHeight - accessorySize.height) / 2, accessorySize.width, accessorySize.height);
     
     /* ### Configure liked button ### */
-    _btnLike.frame = CGRectMake(contentBounds.size.width - kLeftRightMargin - self.myAccessoryView.bounds.size.width - kPadding - likeButtonSize.width, secondLineY + (secondLineHeight - likeButtonSize.height) / 2, likeButtonSize.width, likeButtonSize.height); // The like button is on the right bottom corner of the content view
+    _btnLike.frame = CGRectMake(contentBounds.size.width - kLeftRightMargin - self.myAccessoryView.bounds.size.width - kPadding - likeButtonSize.width, secondLineY + (secondLineHeight - likeButtonSize.height) / 2, likeButtonSize.width, likeButtonSize.height); // The like button is on the right bottom corner of the content view    
     /* ##### */
     
     /* ### Configure avatar view ### */
@@ -223,12 +226,31 @@
     [self reloadAvatarViews];
 }
 
+#pragma mark - like/dislike management
 
 -(void)btnLikeAction:(UIButton *)sender
 {
     if([_delegate respondsToSelector:@selector(likeDislikeActivity:)])
         [_delegate likeDislikeActivity:self.socialActivity.activityId];
     
+}
+
+- (UIActivityIndicatorView *)indicatorForLikeButton {
+    if (!_indicatorForLikeButton) {
+        _indicatorForLikeButton = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    }
+    return _indicatorForLikeButton;
+}
+
+- (void)likeButtonToActivityIndicator {
+    self.indicatorForLikeButton.frame = self.btnLike.frame;
+    [self.indicatorForLikeButton sizeToFit];
+    [self.indicatorForLikeButton startAnimating];
+    [UIView transitionFromView:self.btnLike toView:self.indicatorForLikeButton duration:0 options:UIViewAnimationOptionTransitionNone completion:NULL];
+}
+
+- (void)activityIndicatorToLikeButton {
+    [UIView transitionFromView:self.indicatorForLikeButton toView:self.btnLike duration:0 options:UIViewAnimationOptionTransitionNone completion:NULL];
 }
 
 @end
