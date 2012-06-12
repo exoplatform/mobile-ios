@@ -25,11 +25,14 @@ typedef enum {
 @property (nonatomic, retain) SocialActivity *socialActivity;
 @property (nonatomic, retain) ActivityLikersViewController *likersViewController;
 @property (nonatomic, retain) EmptyView *emptyView;
+@property (nonatomic, retain) UIButton *commentButton;
+@property (nonatomic, retain) UIView *infoContainer;
 
 // this method is used to update value for subviews
 - (void)updateSubViews;
 - (void)updateTabLabels;
 - (void)selectTab:(ActivityAdvancedInfoCellTab)selectedTab;
+- (void)jumpToLastCommentIfExist;
 
 
 @end

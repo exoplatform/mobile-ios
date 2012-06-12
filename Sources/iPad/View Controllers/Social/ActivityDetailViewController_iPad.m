@@ -116,9 +116,15 @@
 
 - (void)finishLoadingAllDataForActivityDetails {
     [super finishLoadingAllDataForActivityDetails];
+    [self.tblvActivityDetail reloadData];
     [self.extraActionsCell updateSubViews];
-    [self.advancedInfoController updateSubViews];
     [self.advancedInfoController updateTabLabels];
+    
+    //if comment tableview scroll at bottom
+    if(isPostComment){
+        [self.advancedInfoController jumpToLastCommentIfExist];
+        isPostComment = NO;
+    }
 }
 
 #pragma mark - UIWebViewDelegateMethod 
@@ -201,7 +207,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.contentView addSubview:self.advancedInfoController.view];
         }
-        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height - self.tblvActivityDetail.sectionFooterHeight;
+        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
         CGRect frame = CGRectZero;
         frame.size.height = height;
         frame.size.width = self.tblvActivityDetail.bounds.size.width;
@@ -217,7 +223,7 @@
     if (indexPath.section == 1) {
         return self.extraActionsCell.frame.size.height;
     } else if (indexPath.section == 2) {
-        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height - self.tblvActivityDetail.sectionFooterHeight;
+        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
         return height;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -237,6 +243,7 @@
 - (ActivityDetailAdvancedInfoController_iPad *)advancedInfoController {
     if (!_advancedInfoController) {
         _advancedInfoController = [[ActivityDetailAdvancedInfoController_iPad alloc] init];
+        [_advancedInfoController.commentButton addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
     }
     return _advancedInfoController;
 }

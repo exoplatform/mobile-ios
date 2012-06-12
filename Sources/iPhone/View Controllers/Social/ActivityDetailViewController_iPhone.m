@@ -95,6 +95,22 @@
     
     
 }
+
+- (void)finishLoadingAllDataForActivityDetails {
+    [super finishLoadingAllDataForActivityDetails];
+    [_tblvActivityDetail reloadData];
+    
+    //if comment tableview scroll at bottom
+    if(isPostComment){
+        if([self.socialActivity.comments count] > 0){
+            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:2] 
+                                       atScrollPosition:UITableViewScrollPositionBottom 
+                                               animated:YES];
+        }
+        isPostComment = NO;
+    }
+}
+
 #pragma mark - Loader Management
 - (void)updateHudPosition {
     //Default implementation

@@ -356,18 +356,6 @@
     //Hide the loader
     [self hideLoader:YES];
     
-    [_tblvActivityDetail reloadData];
-    
-    //if comment tableview scroll at bottom
-    if(isPostComment){
-        if([self.socialActivity.comments count] > 0){
-            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:2] 
-                                       atScrollPosition:UITableViewScrollPositionBottom 
-                                               animated:YES];
-        }
-        isPostComment = NO;
-    }
-   
     
     [self updateActivityInActivityStream];
 }

@@ -19,14 +19,26 @@
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellBottomMargin 10.0
 #define kAdvancedCellTabBarHeight 60.0
+#define kCommentButtonHeight 50.0
 
+#pragma mark - Customize JMSelectionView & JMTabItem
+
+#define kTriangleHeight 10.0
 @interface CustomTabItem : JMTabItem
 
 @end
 
 @implementation CustomTabItem 
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize newSize = [super sizeThatFits:size];
+    newSize.height += kTriangleHeight;
+    return newSize;
+}
+
 - (void)drawRect:(CGRect)rect {
+    CGRect contentRect = rect;
+    contentRect.size.height -= kTriangleHeight;
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIColor * shadowColor = [UIColor blackColor];
     CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 1.0f, [shadowColor CGColor]);
@@ -43,7 +55,7 @@
     [kTabItemTextColor set];
     
     CGFloat heightTitle = [self.title sizeWithFont:kTabItemFont].height;
-    CGFloat titleYOffset = (self.bounds.size.height - heightTitle) / 2;
+    CGFloat titleYOffset = (contentRect.size.height - heightTitle) / 2;
     [self.title drawAtPoint:CGPointMake(xOffset, titleYOffset) withFont:kTabItemFont];
     
     CGContextRestoreGState(context);
@@ -55,15 +67,14 @@
 
 @end
 
-#define kTriangleHeight 8.0
 @implementation CustomSelectionView 
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.layer.shadowOffset = CGSizeMake(0, -3.0);
-        self.layer.shadowRadius = 0.;
-        self.layer.shadowColor = [[UIColor whiteColor] CGColor];
-        self.layer.shadowOpacity = 0;
+        self.layer.shadowOffset = CGSizeMake(10.0f, 10.0f);
+        self.layer.shadowRadius = 5.0f;
+        self.layer.shadowColor = [[UIColor blackColor] CGColor];
+        self.layer.shadowOpacity = 0.7f;
         self.clipsToBounds = NO;
     }
     return self;
@@ -103,25 +114,6 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     CGContextAddPath(context, shapePath);
     CGContextFillPath(context);
     
-    // draw Shadow
-    CGContextSaveGState(context);
-    float offset = 20.;
-    CGRect largerRect = CGRectInset(squareRect, -offset, -offset);
-    largerRect.size.height -= offset;
-    CGMutablePathRef largerPath = createCommentShapeForRect(largerRect, 8.);
-    CGPathAddPath(largerPath, NULL, shapePath);
-    CGContextAddPath(context, shapePath);
-    CGContextClip(context);
-    
-    
-    UIColor * shadowColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1];
-    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 8.0f, [shadowColor CGColor]);
-    [shadowColor setFill];   
-    
-    CGContextAddPath(context, largerPath);
-    CGContextEOFillPath(context);
-    CGContextRestoreGState(context);
-    // ------
     
     CGRect borderRect = CGRectMake(rect.origin.x + borderWidth / 2, rect.origin.y + borderWidth / 2, rect.size.width - borderWidth, rect.size.height - borderWidth);
     CGPathRef borderPath = createCommentShapeForRect(borderRect, 8.);
@@ -132,12 +124,12 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     
     CGPathRelease(shapePath);
     CGPathRelease(borderPath);
-    CGPathRelease(largerPath);
     CGContextRestoreGState(context);
 }
 
 @end
 
+#pragma mark - ActivityDetailAdvancedInfoController_iPad implementation
 
 static NSString *kTabType = @"kTapType";
 static NSString *kTabTitle = @"kTapTitle";
@@ -159,6 +151,8 @@ static NSString *kTabItem = @"kTabItem";
 @synthesize socialActivity = _socialActivity;
 @synthesize likersViewController = _likersViewController;
 @synthesize emptyView = _emptyView;
+@synthesize commentButton = _commentButton;
+@synthesize infoContainer = _infoContainer;
 
 - (void)dealloc {
     [_tabView release];
@@ -166,6 +160,8 @@ static NSString *kTabItem = @"kTabItem";
     [_socialActivity release];
     [_likersViewController release];
     [_emptyView release];
+    [_commentButton release];
+    [_infoContainer release];
     [_dataSourceArray release];
     [super dealloc];
 }
@@ -173,6 +169,9 @@ static NSString *kTabItem = @"kTabItem";
 - (void)didReceiveMemoryWarning {
     self.emptyView = nil;
     self.likersViewController = nil;
+    self.infoView = nil;
+    self.tabView = nil;
+    self.commentButton = nil;
     [super didReceiveMemoryWarning];
 }
 
@@ -211,7 +210,7 @@ static NSString *kTabItem = @"kTabItem";
     }
     
     [self.view addSubview:self.tabView];
-    [self.view addSubview:self.infoView];
+    [self.view addSubview:self.infoContainer];
     [self selectTab:ActivityAdvancedInfoCellTabComment];
 }
 
@@ -233,6 +232,7 @@ static NSString *kTabItem = @"kTabItem";
         _tabView.delegate = self;
         [_tabView setBackgroundLayer:nil];
         [_tabView setSelectionView:[[[CustomSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
+        [_tabView setItemPadding:CGSizeMake(16.0, 7.0)];
     }
     return _tabView;
 }
@@ -242,10 +242,8 @@ static NSString *kTabItem = @"kTabItem";
         _infoView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _infoView.delegate = self;
         _infoView.dataSource = self;
-        [_infoView.layer setCornerRadius:10.0];
-        [_infoView.layer setMasksToBounds:YES];
-        [_infoView setBackgroundColor:[UIColor colorWithRed:220./255 green:220./255 blue:220./255 alpha:1]];
-
+        _infoView.backgroundColor = [UIColor clearColor];
+        
     }
     return _infoView;
 }
@@ -264,6 +262,31 @@ static NSString *kTabItem = @"kTabItem";
     return _emptyView;
 }
 
+- (UIButton *)commentButton {
+    if (!_commentButton) {
+        _commentButton = [[UIButton alloc] init];
+        _commentButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+        UIImage *backgroundImage = [UIImage imageNamed:@"SocialYourCommentButtonBg"];
+        backgroundImage = [backgroundImage stretchableImageWithLeftCapWidth:backgroundImage.size.width / 2 topCapHeight:backgroundImage.size.height / 2];
+        [_commentButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+        [_commentButton setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
+        [_commentButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.]];
+    }
+    return _commentButton;
+}
+
+- (UIView *)infoContainer {
+    if (!_infoContainer) {
+        _infoContainer = [[UIView alloc] init];
+        [_infoContainer.layer setCornerRadius:10.0];
+        [_infoContainer.layer setMasksToBounds:YES];
+        [_infoContainer setBackgroundColor:[UIColor colorWithRed:220./255 green:220./255 blue:220./255 alpha:1]];
+        [_infoContainer addSubview:self.infoView];
+        [_infoContainer addSubview:self.commentButton];
+    }
+    return _infoContainer;
+}
+
 - (void)setSocialActivity:(SocialActivity *)socialActivity {
     [socialActivity retain];
     [_socialActivity release];
@@ -273,6 +296,12 @@ static NSString *kTabItem = @"kTabItem";
 }
 
 #pragma mark - controller methods 
+- (void)jumpToLastCommentIfExist {
+    if([self.socialActivity.comments count] > 0){
+        [self.infoView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
+
 - (void)selectTab:(ActivityAdvancedInfoCellTab)selectedTab {
     [self.tabView setSelectedIndex:selectedTab];
 }
@@ -306,8 +335,10 @@ static NSString *kTabItem = @"kTabItem";
     infoFrame.size.height = viewBounds.size.height - kAdvancedCellBottomMargin - infoFrame.origin.y;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.5];
-    self.infoView.frame = infoFrame;
+    self.infoContainer.frame = infoFrame;
     [UIView commitAnimations];
+    self.infoView.frame = CGRectMake(0, 0, infoFrame.size.width, infoFrame.size.height - kCommentButtonHeight);
+    self.commentButton.frame = CGRectMake(0, infoFrame.size.height - kCommentButtonHeight, infoFrame.size.width, kCommentButtonHeight);
     [self.infoView reloadData];
     
 }
