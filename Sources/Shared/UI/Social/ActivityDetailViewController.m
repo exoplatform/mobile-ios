@@ -43,6 +43,7 @@
 @synthesize socialActivity = _socialActivity;
 @synthesize activityDetailCell = _activityDetailCell;
 @synthesize tblvActivityDetail = _tblvActivityDetail;
+@synthesize refreshHeaderView = _refreshHeaderView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -116,13 +117,11 @@
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
     
     //Add the pull to refresh header
-    if (_refreshHeaderView == nil) {
+    if (self.refreshHeaderView == nil) {
 		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityDetail.bounds.size.height, self.view.frame.size.width, _tblvActivityDetail.bounds.size.height)];
-		view.delegate = self;
-		[_tblvActivityDetail addSubview:view];
-		_refreshHeaderView = view;
-		[view release];
+		self.refreshHeaderView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityDetail.bounds.size.height, self.view.frame.size.width, _tblvActivityDetail.bounds.size.height)] autorelease];
+		self.refreshHeaderView.delegate = self;
+		[_tblvActivityDetail addSubview:self.refreshHeaderView];
         _reloading = FALSE;
         
 	}

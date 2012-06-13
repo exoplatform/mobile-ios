@@ -17,6 +17,8 @@
 
 
 #define kAdvancedCellLeftRightMargin 20.0
+#define kAdvancedCellLeftRightPadding 1.0
+#define kAdvancedCellBottomPadding 7.0
 #define kAdvancedCellBottomMargin 10.0
 #define kAdvancedCellTabBarHeight 60.0
 #define kCommentButtonHeight 50.0
@@ -71,7 +73,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.layer.shadowOffset = CGSizeMake(10.0f, 10.0f);
+        self.layer.shadowOffset = CGSizeMake(4.0f, 4.0f);
         self.layer.shadowRadius = 5.0f;
         self.layer.shadowColor = [[UIColor blackColor] CGColor];
         self.layer.shadowOpacity = 0.7f;
@@ -128,6 +130,49 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
 }
 
 @end
+
+#pragma mark - Custom View for activity detail info 
+@interface InfoContainerView : UIView 
+
+@end
+
+@implementation InfoContainerView
+
+- (id)init {
+    if (self = [super init]) {
+        self.backgroundColor = [UIColor clearColor];
+        self.layer.cornerRadius = 7.0;
+        self.layer.masksToBounds = YES;
+        self.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+        self.layer.shadowRadius = 5.0f;
+        self.layer.shadowColor = [[UIColor blackColor] CGColor];
+        self.layer.shadowOpacity = 0.7f;
+        self.clipsToBounds = NO;
+    }
+    return self;
+}
+
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    UIBezierPath *contentPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:7.0];
+    CGContextAddPath(context, contentPath.CGPath);
+    CGContextClip(context);
+    CGRect contentRect = CGRectInset(rect, 0.5, 0.5);
+    
+    CGContextSetFillColorWithColor(context, [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal"]].CGColor);
+    CGContextFillRect(context, contentRect);
+
+    UIImage *borderImg = [UIImage imageNamed:@"activity-detail-info-container-bg"];
+    borderImg = [borderImg stretchableImageWithLeftCapWidth:borderImg.size.width/2 topCapHeight:borderImg.size.height/2];
+    [borderImg drawInRect:rect];
+    
+    CGContextRestoreGState(context);
+}
+
+@end
+
 
 #pragma mark - ActivityDetailAdvancedInfoController_iPad implementation
 
@@ -210,7 +255,7 @@ static NSString *kTabItem = @"kTabItem";
     }
     
     [self.view addSubview:self.tabView];
-    [self.view addSubview:self.infoContainer];
+    [self.view insertSubview:self.infoContainer belowSubview:self.tabView];
     [self selectTab:ActivityAdvancedInfoCellTabComment];
 }
 
@@ -266,21 +311,26 @@ static NSString *kTabItem = @"kTabItem";
     if (!_commentButton) {
         _commentButton = [[UIButton alloc] init];
         _commentButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-        UIImage *backgroundImage = [UIImage imageNamed:@"SocialYourCommentButtonBg"];
+        UIImage *backgroundImage = [UIImage imageNamed:@"activity-detail-comment-textfield-bg"];
         backgroundImage = [backgroundImage stretchableImageWithLeftCapWidth:backgroundImage.size.width / 2 topCapHeight:backgroundImage.size.height / 2];
         [_commentButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+        UIImage *selectedImg = [UIImage imageNamed:@"activity-detail-comment-textfield-bg-selected"];
+        selectedImg = [selectedImg stretchableImageWithLeftCapWidth:selectedImg.size.width/2 topCapHeight:selectedImg.size.height/2];
+        [_commentButton setBackgroundImage:selectedImg forState:UIControlStateHighlighted];
         [_commentButton setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
-        [_commentButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.]];
+        [_commentButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:15.]];
+        _commentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        _commentButton.contentEdgeInsets = UIEdgeInsetsMake(0, 30., 0, 0);
+        
     }
     return _commentButton;
 }
 
 - (UIView *)infoContainer {
     if (!_infoContainer) {
-        _infoContainer = [[UIView alloc] init];
-        [_infoContainer.layer setCornerRadius:10.0];
-        [_infoContainer.layer setMasksToBounds:YES];
-        [_infoContainer setBackgroundColor:[UIColor colorWithRed:220./255 green:220./255 blue:220./255 alpha:1]];
+        _infoContainer = [[InfoContainerView alloc] init];
+        _infoContainer.autoresizesSubviews = YES;
+
         [_infoContainer addSubview:self.infoView];
         [_infoContainer addSubview:self.commentButton];
     }
@@ -330,15 +380,15 @@ static NSString *kTabItem = @"kTabItem";
     self.tabView.frame = CGRectMake(0, 0, viewBounds.size.width, kAdvancedCellTabBarHeight);
     CGRect infoFrame = CGRectZero;
     infoFrame.origin.x = kAdvancedCellLeftRightMargin;
-    infoFrame.origin.y = self.tabView.frame.origin.y + self.tabView.frame.size.height;
+    infoFrame.origin.y = self.tabView.frame.origin.y + self.tabView.frame.size.height - kTriangleHeight;
     infoFrame.size.width = viewBounds.size.width - kAdvancedCellLeftRightMargin * 2;
     infoFrame.size.height = viewBounds.size.height - kAdvancedCellBottomMargin - infoFrame.origin.y;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.5];
     self.infoContainer.frame = infoFrame;
     [UIView commitAnimations];
-    self.infoView.frame = CGRectMake(0, 0, infoFrame.size.width, infoFrame.size.height - kCommentButtonHeight);
-    self.commentButton.frame = CGRectMake(0, infoFrame.size.height - kCommentButtonHeight, infoFrame.size.width, kCommentButtonHeight);
+    self.infoView.frame = CGRectMake(kAdvancedCellLeftRightPadding, 0, infoFrame.size.width - kAdvancedCellLeftRightPadding * 2, infoFrame.size.height - kCommentButtonHeight - kAdvancedCellBottomPadding);
+    self.commentButton.frame = CGRectMake(kAdvancedCellLeftRightPadding, infoFrame.size.height - kCommentButtonHeight - kAdvancedCellBottomPadding, infoFrame.size.width - kAdvancedCellLeftRightPadding * 2, kCommentButtonHeight);
     [self.infoView reloadData];
     
 }
