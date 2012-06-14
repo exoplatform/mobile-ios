@@ -17,7 +17,7 @@
 #define kLikersViewTopBottomMargin 10.0
 #define kLikersViewLeftRightMargin 10.0
 #define kLikersViewPadding 10.0
-#define kLikersViewColumns 3
+#define kLikersViewColumns (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 4 : 3)
 #define kNoLikerViewTag 100
 
 

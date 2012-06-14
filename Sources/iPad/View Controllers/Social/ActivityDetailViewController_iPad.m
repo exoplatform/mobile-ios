@@ -117,11 +117,11 @@
 - (void)finishLoadingAllDataForActivityDetails {
     [super finishLoadingAllDataForActivityDetails];
     [self.tblvActivityDetail reloadData];
-    [self.extraActionsCell updateSubViews];
     [self.advancedInfoController updateTabLabels];
     
     //if comment tableview scroll at bottom
     if(isPostComment){
+        [self.advancedInfoController reloadInfoContainerWithAnimated:NO];
         [self.advancedInfoController jumpToLastCommentIfExist];
         isPostComment = NO;
     }
@@ -196,6 +196,21 @@
     return 3;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        [self.extraActionsCell updateSubViews];
+    } else if (indexPath.section == 2) {
+        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
+        CGRect frame = CGRectZero;
+        frame.size.height = height;
+        frame.size.width = self.tblvActivityDetail.bounds.size.width;
+        self.advancedInfoController.view.frame = frame;
+        [self.advancedInfoController updateSubViews];
+    } else {
+        [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kIdentifierActivityDetailAdvancedInfoTableViewCell = @"ActivityDetailAdvancedInfoTableViewCell";
     if (indexPath.section == 1) {
@@ -207,12 +222,6 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.contentView addSubview:self.advancedInfoController.view];
         }
-        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
-        CGRect frame = CGRectZero;
-        frame.size.height = height;
-        frame.size.width = self.tblvActivityDetail.bounds.size.width;
-        self.advancedInfoController.view.frame = frame;
-        [self.advancedInfoController updateSubViews];
         return cell;
     } else {
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -223,8 +232,7 @@
     if (indexPath.section == 1) {
         return self.extraActionsCell.frame.size.height;
     } else if (indexPath.section == 2) {
-        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
-        return height;
+        return self.advancedInfoController.view.frame.size.height;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -236,6 +244,7 @@
     if (!_extraActionsCell) {
         _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
         [_extraActionsCell.likeButton addTarget:self action:@selector(likeDislike:) forControlEvents:UIControlEventTouchUpInside];
+        [_extraActionsCell.commentButton addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
     }
     return _extraActionsCell;
 }

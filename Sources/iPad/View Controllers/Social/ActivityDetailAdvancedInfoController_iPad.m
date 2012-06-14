@@ -332,7 +332,7 @@ static NSString *kTabItem = @"kTabItem";
         _infoContainer.autoresizesSubviews = YES;
 
         [_infoContainer addSubview:self.infoView];
-        [_infoContainer addSubview:self.commentButton];
+        [_infoContainer insertSubview:self.commentButton belowSubview:self.infoView];
     }
     return _infoContainer;
 }
@@ -347,7 +347,7 @@ static NSString *kTabItem = @"kTabItem";
 
 #pragma mark - controller methods 
 - (void)jumpToLastCommentIfExist {
-    if([self.socialActivity.comments count] > 0){
+    if(_selectedTab == ActivityAdvancedInfoCellTabComment && [self.socialActivity.comments count] > 0){
         [self.infoView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
 }
@@ -387,13 +387,39 @@ static NSString *kTabItem = @"kTabItem";
     [UIView setAnimationDuration:.5];
     self.infoContainer.frame = infoFrame;
     [UIView commitAnimations];
-    self.infoView.frame = CGRectMake(kAdvancedCellLeftRightPadding, 0, infoFrame.size.width - kAdvancedCellLeftRightPadding * 2, infoFrame.size.height - kCommentButtonHeight - kAdvancedCellBottomPadding);
-    self.commentButton.frame = CGRectMake(kAdvancedCellLeftRightPadding, infoFrame.size.height - kCommentButtonHeight - kAdvancedCellBottomPadding, infoFrame.size.width - kAdvancedCellLeftRightPadding * 2, kCommentButtonHeight);
-    [self.infoView reloadData];
     
+    [self reloadInfoContainerWithAnimated:NO];
+}
+
+- (void)reloadInfoContainerWithAnimated:(BOOL)animated {
+    CGRect infoFrame = self.infoContainer.frame;
+    if (_selectedTab == ActivityAdvancedInfoCellTabComment) {
+        self.infoView.frame = CGRectMake(kAdvancedCellLeftRightPadding, 0, infoFrame.size.width - kAdvancedCellLeftRightPadding * 2, infoFrame.size.height - kCommentButtonHeight - kAdvancedCellBottomPadding);
+        self.commentButton.frame = CGRectMake(kAdvancedCellLeftRightPadding, infoFrame.size.height - kCommentButtonHeight - kAdvancedCellBottomPadding, infoFrame.size.width - kAdvancedCellLeftRightPadding * 2, kCommentButtonHeight);
+        
+        [self.infoView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:(animated ? UITableViewRowAnimationLeft : UITableViewRowAnimationNone)];
+    } else if (_selectedTab == ActivityAdvancedInfoCellTabLike) {
+        self.infoView.frame = CGRectMake(kAdvancedCellLeftRightPadding, 0, infoFrame.size.width - kAdvancedCellLeftRightPadding * 2, infoFrame.size.height - kAdvancedCellBottomPadding);
+        self.commentButton.frame = CGRectZero;
+        [self.infoView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:(animated ? UITableViewRowAnimationRight : UITableViewRowAnimationNone)];
+    }
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_selectedTab == ActivityAdvancedInfoCellTabComment && self.socialActivity.totalNumberOfComments == 0) {
+        [self.emptyView removeFromSuperview];
+        [cell.contentView addSubview:self.emptyView];
+        self.emptyView.frame = self.infoView.bounds;
+        self.emptyView.frame = self.infoView.bounds;
+    } else if (_selectedTab == ActivityAdvancedInfoCellTabLike) {
+        CGRect likerRect = CGRectZero;
+        likerRect.size.width = self.infoView.frame.size.width;
+        likerRect.size.height = self.infoView.frame.size.height;
+        self.likersViewController.view.frame = likerRect;
+        [self.likersViewController updateLikerViews];
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
     static NSString *kIdentifierActivityDetailLikersTableViewCell = @"ActivityDetailLikersTableViewCell";
@@ -404,9 +430,7 @@ static NSString *kTabItem = @"kTabItem";
             if (cell == nil) {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailEmptyViewCell] autorelease];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                [cell.contentView addSubview:self.emptyView];
             }
-            self.emptyView.frame = self.infoView.bounds;
             return cell;
         }
         ActivityDetailCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
@@ -431,11 +455,7 @@ static NSString *kTabItem = @"kTabItem";
             self.likersViewController.view.backgroundColor = [UIColor clearColor];
             [self.likersViewController updateListOfLikers];
         }
-        CGRect likerRect = CGRectZero;
-        likerRect.size.width = self.infoView.frame.size.width;
-        likerRect.size.height = self.infoView.frame.size.height;
-        self.likersViewController.view.frame = likerRect;
-        [self.likersViewController updateLikerViews];
+
         return cell;
     }
     return nil;
@@ -477,7 +497,7 @@ static NSString *kTabItem = @"kTabItem";
 #pragma mark - JMTabViewDelegate 
 - (void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
     _selectedTab = [[[_dataSourceArray objectAtIndex:itemIndex] valueForKey:kTabType] intValue];
-    [self.infoView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
+    [self reloadInfoContainerWithAnimated:YES];
 }
 
 @end

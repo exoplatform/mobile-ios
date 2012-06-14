@@ -12,6 +12,7 @@
 #define kExtraActionsCellTopMargin 30.0
 #define kExtraActionsCellBottomMargin 10.0
 #define kExtraActionsCellLeftRightMargin 20.0
+#define kExtraActionsCellPadding 10.0
 
 @interface ActivityDetailExtraActionsCell ()
 
@@ -23,11 +24,13 @@
 
 @synthesize socialActivity = _socialActivity;
 @synthesize likeButton = _likeButton;
+@synthesize commentButton = _commentButton;
 @synthesize likeActivityIndicatorView = _likeActivityIndicatorView;
 
 - (void)dealloc {
     [_socialActivity release];
     [_likeButton release];
+    [_commentButton release];
     [_likeActivityIndicatorView release];
     [super dealloc];
 }
@@ -38,6 +41,7 @@
     self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.likeButton];
+    [self.contentView addSubview:self.commentButton];
     
     CGRect viewFrame = CGRectZero;
     viewFrame.size.width = [UIScreen mainScreen].bounds.size.width;
@@ -67,6 +71,7 @@
     likeButtonFrame.origin.x = kExtraActionsCellLeftRightMargin;
     likeButtonFrame.origin.y = kExtraActionsCellTopMargin;
     self.likeButton.frame = likeButtonFrame;
+    self.commentButton.frame = CGRectOffset(likeButtonFrame, likeButtonFrame.size.width + kExtraActionsCellPadding, 0);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -96,6 +101,16 @@
         _likeButton.bounds = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
     }
     return _likeButton;
+}
+
+- (UIButton *)commentButton {
+    if (!_commentButton) {
+        _commentButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        UIImage *image = [UIImage imageNamed:@"activity-detail-action-comment"];
+        [_commentButton setBackgroundImage:image forState:UIControlStateNormal];
+        _commentButton.bounds = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
+    }
+    return _commentButton;
 }
 
 - (UIActivityIndicatorView *)likeActivityIndicatorView {
