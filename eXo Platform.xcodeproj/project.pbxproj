@@ -1691,6 +1691,7 @@
 		A6B61A8C15774B07006C3526 /* AvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarView.m; sourceTree = "<group>"; };
 		A6B8CF1F1580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailAdvancedInfoController_iPad.h; path = Social/ActivityDetailAdvancedInfoController_iPad.h; sourceTree = "<group>"; };
 		A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailAdvancedInfoController_iPad.m; path = Social/ActivityDetailAdvancedInfoController_iPad.m; sourceTree = "<group>"; };
+		A6BD12CD158B4A4D00D6A058 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		A6C929F9157E1DE9002E160B /* activity-detail-background-pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-background-pattern.png"; sourceTree = "<group>"; };
 		A6D1EDF2158841A100C05F03 /* activity-info-container-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-info-container-bg.png"; sourceTree = "<group>"; };
 		A6D1EDF4158846AD00C05F03 /* activity-detail-comment-textfield-bg-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-comment-textfield-bg-selected.png"; sourceTree = "<group>"; };
@@ -3544,6 +3545,7 @@
 		894734A01337139800B0AD11 /* 3-part */ = {
 			isa = PBXGroup;
 			children = (
+				A6BD12CD158B4A4D00D6A058 /* Logging.h */,
 				A69B0481157F0DCF003DDFDF /* JMTabView */,
 				8958E65514A9B7D300580EEB /* TouchXml */,
 				46FE84D91469893A000F1FE0 /* UIImage+Resize */,
@@ -4972,6 +4974,14 @@
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=0",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -5051,6 +5061,14 @@
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=0",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -5235,6 +5253,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=1",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -5263,6 +5289,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=0",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
