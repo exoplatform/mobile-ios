@@ -12,7 +12,7 @@
 #define kExtraActionsCellTopMargin 30.0
 #define kExtraActionsCellBottomMargin 10.0
 #define kExtraActionsCellLeftRightMargin 20.0
-#define kExtraActionsCellPadding 10.0
+#define kExtraActionsCellPadding 15.0
 
 @interface ActivityDetailExtraActionsCell ()
 

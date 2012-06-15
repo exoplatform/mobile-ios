@@ -496,8 +496,11 @@ static NSString *kTabItem = @"kTabItem";
 }
 #pragma mark - JMTabViewDelegate 
 - (void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
-    _selectedTab = [[[_dataSourceArray objectAtIndex:itemIndex] valueForKey:kTabType] intValue];
-    [self reloadInfoContainerWithAnimated:YES];
+    ActivityAdvancedInfoCellTab selectedTab = [[[_dataSourceArray objectAtIndex:itemIndex] valueForKey:kTabType] intValue];
+    if (_selectedTab != selectedTab) {
+        _selectedTab = selectedTab;
+        [self reloadInfoContainerWithAnimated:YES];
+    }
 }
 
 @end
