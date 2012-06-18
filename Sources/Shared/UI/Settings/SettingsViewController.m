@@ -11,7 +11,6 @@
 //#import "eXoWebViewController.h"
 #import "ServerPreferencesManager.h"
 #import "ServerManagerViewController.h"
-#import "ContainerCell.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
