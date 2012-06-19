@@ -7,7 +7,7 @@
 //
 
 #import "SocialProxy.h"
-
+#import "SocialRestConfiguration.h"
 
 
 /**
@@ -37,7 +37,16 @@ static NSString *urlEncode(id object) {
 
 @synthesize delegate;
 
+- (void)dealloc {
+    delegate = nil;
+    [[RKRequestQueue sharedQueue] cancelRequestsWithDelegate:self];
+    [super dealloc];
+}
 
+- (NSString *)createPath {
+    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
+    return [NSString stringWithFormat:@"api/social/%@/%@", socialConfig.restVersion, socialConfig.portalContainerName];
+}
 
 - (NSString*)URLEncodedString:(NSDictionary *)dictForParam {
 	NSMutableArray *parts = [NSMutableArray array];
@@ -73,6 +82,11 @@ static NSString *urlEncode(id object) {
 - (NSData*)HTTPBody {
     NSDictionary *dict = [[NSDictionary alloc] init];
 	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+#pragma mark - RKObjectLoaderDelegate implementation
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
+
 }
 
 @end

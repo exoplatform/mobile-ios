@@ -21,33 +21,19 @@
 
 - (void)dealloc 
 {
-    delegate = nil;
-    [[RKRequestQueue sharedQueue] cancelAllRequests];
-    
     [super dealloc];
 }
 
-//Helper to create the base URL
-- (NSString *)createBaseURL 
-{
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    NSLog(@"%@", [NSString stringWithFormat:@"%@/%@/api/social/version/",[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN],socialConfig.restContextName]);
-    //http://{domain_name}/{rest_context_name}/api/social/version/latest.json
-    return [NSString stringWithFormat:@"%@/%@/api/social/version/",[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN],socialConfig.restContextName];
-    
-}
 
-//Helper to create the path to get the ressources
 - (NSString *)createPath{
-    return @"latest.json"; 
+    return [NSString stringWithFormat:@"api/social/version/latest.json"]; 
 }
 
 
 #pragma mark - Call methods
 
 - (void) getVersion{
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialVersion class]];
     [mapping mapKeyPath:@"version" toAttribute:@"version"]; 
@@ -57,13 +43,12 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    NSLog(@"Loaded payload Version: %@", [response bodyAsString]);
+    LogDebug(@"Loaded payload Version: %@", [response bodyAsString]);
 }
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-	//NSLog(@"Loaded statuses: %@", objects);    
     SocialVersion *version = [[objects objectAtIndex:0]retain];
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     socialConfig.restVersion = version.version;

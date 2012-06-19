@@ -43,12 +43,21 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
 static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
 static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
-@interface ActivityStreamBrowseViewController (PrivateMethods)
+@interface ActivityStreamBrowseViewController ()
+
+@property (nonatomic, retain) SocialActivityStreamProxy *socialActivityStreamProxy;
+@property (nonatomic, retain) SocialRestProxy *socialRestProxy;
+@property (nonatomic, retain) SocialUserProfileProxy *userProfileProxy;
 - (void)loadImagesForOnscreenRows;
 @end
 
 
 @implementation ActivityStreamBrowseViewController
+
+@synthesize socialUserProfile = _socialUserProfile;
+@synthesize socialActivityStreamProxy = _socialActivityStreamProxy;
+@synthesize socialRestProxy = _socialRestProxy;
+@synthesize userProfileProxy = _userProfileProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -104,6 +113,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_indexpathSelectedActivity release];
+
+    // release proxies
+    [_socialActivityStreamProxy release];
+    [_socialRestProxy release];
+    [_userProfileProxy release];
     
     [super dealloc];
 }
@@ -187,6 +201,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)viewDidUnload
 {
     [_refreshHeaderView release]; _refreshHeaderView =nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -573,13 +588,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [self displayHudLoader];
     
-    SocialRestProxy *socialRest = [[SocialRestProxy alloc] init];
-    socialRest.delegate = [self retain];
-    [socialRest getVersion];
-//    SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-//    socialUserProfile.delegate = [self retain];
-//    [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username]; 
-    
+    self.socialRestProxy = [[[SocialRestProxy alloc] init] autorelease];
+    self.socialRestProxy.delegate = self;
+    [self.socialRestProxy getVersion];    
 }
 
 
@@ -590,19 +601,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     _reloading = YES;
 
     [self startLoadingActivityStream];
-    
-    /*
-    if(_arrActivityStreams == nil || [_arrActivityStreams count] == 0)
-    {
-        [self startLoadingActivityStream];
-    }
-    else
-    {
-        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
-        socialActivityStreamProxy.delegate = self;
-        [socialActivityStreamProxy updateActivityStreamSinceActivity:[_arrActivityStreams objectAtIndex:0]];    
-    }
-    */
 }
 
 - (void)finishLoadingAllDataForActivityStream {
@@ -651,23 +649,20 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     //If proxy is king of class SocialUserProfileProxy, then we can start the request for retrieve SocialActivityStream
-    if([proxy isKindOfClass:[SocialRestProxy class]]){
-        SocialUserProfileProxy* socialUserProfile = [[SocialUserProfileProxy alloc] init];
-        socialUserProfile.delegate = [self retain];
-        [socialUserProfile getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username];
-    } else if ([proxy isKindOfClass:[SocialUserProfileProxy class]]) 
-    {
-        _socialUserProfile = [[(SocialUserProfileProxy *)proxy userProfile] retain];
-        SocialActivityStreamProxy* socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] initWithSocialUserProfile:_socialUserProfile];
-        socialActivityStreamProxy.delegate = [self retain];
-        [socialActivityStreamProxy getActivityStreams];
+    if(proxy == self.socialRestProxy){
+        self.userProfileProxy = [[[SocialUserProfileProxy alloc] init] autorelease];
+        self.userProfileProxy.delegate = self;
+        [self.userProfileProxy getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username];
+    } else if (proxy == self.userProfileProxy) {
+        self.socialUserProfile = [(SocialUserProfileProxy *)proxy userProfile];
+        self.socialActivityStreamProxy = [[[SocialActivityStreamProxy alloc] initWithSocialUserProfile:self.socialUserProfile] autorelease];
+        self.socialActivityStreamProxy.delegate = self;
+        [self.socialActivityStreamProxy getActivityStreams];
     }
-    else if ([proxy isKindOfClass:[SocialActivityStreamProxy class]]) 
+    else if (proxy == self.socialActivityStreamProxy) 
     {
-        SocialActivityStreamProxy* socialActivityStreamProxy = (SocialActivityStreamProxy *)proxy;
-        
         //We have to check if the request for ActivityStream was an update request or not
-        if (socialActivityStreamProxy.isUpdateRequest) {                
+        if (self.socialActivityStreamProxy.isUpdateRequest) {                
             //We need to update the postedTime of all previous activities
             [self addTimeToActivities:_dateOfLastUpdate];
         }
@@ -675,16 +670,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         //Retrieve all activities
         //Start preparing data
         
-        for (int i = 0; i < [socialActivityStreamProxy.arrActivityStreams count]; i++) 
+        for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
-            SocialActivity *socialActivityStream = [socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
+            SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream convertHTMLEncoding];
             [socialActivityStream getActivityType];
             [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
             [_arrActivityStreams addObject:socialActivityStream];
-            
-            NSLog(@"type:%@", socialActivityStream.type);
         }
         
         //All informations has been retrieved we can now display them

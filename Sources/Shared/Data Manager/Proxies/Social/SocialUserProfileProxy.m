@@ -25,30 +25,23 @@
 }
 
 - (void)dealloc {
-    [_userProfile release]; _userProfile = nil;
+    [_userProfile release];
+    [[RKRequestQueue sharedQueue] cancelRequestsWithDelegate:self];
     [super dealloc];
 }
 
 #pragma mark - helper methods
 
-//Helper to create the base URL
-- (NSString *)createBaseURL {
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/identity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
-}
-
-
 //Helper to create the path to get the ressources
 - (NSString *)createPath:(NSString *)userIdentity {
-    return [NSString stringWithFormat:@"%@.json",userIdentity]; 
+    return [NSString stringWithFormat:@"%@/identity/%@.json", [super createPath], userIdentity]; 
 }
 
 
 //Helper to create the path to get the ressources
 - (NSString *)createPathForUsername:(NSString *)username {
     
-    return [NSString stringWithFormat:@"organization/%@.json",username]; 
+    return [NSString stringWithFormat:@"%@/identity/organization/%@.json", [super createPath], username]; 
 }
 
 
@@ -58,9 +51,7 @@
 - (void) getUserProfileFromUsername:(NSString *)username {
     
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
-    
+    RKObjectManager* manager = [RKObjectManager sharedManager];    
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
     [mapping mapKeyPathsToAttributes:
      @"id",@"identity",
@@ -77,7 +68,7 @@
 #pragma mark - RKObjectLoaderDelegate methods
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    LogDebug(@"Loaded payload: %@", [response bodyAsString]);
 }
 
 

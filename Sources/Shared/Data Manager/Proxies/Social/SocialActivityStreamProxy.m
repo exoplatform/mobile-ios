@@ -32,36 +32,20 @@
 - (void)dealloc 
 {
     delegate = nil;
-    [[RKRequestQueue sharedQueue] cancelAllRequests];
+    [[RKRequestQueue sharedQueue] cancelRequestsWithDelegate:self];
 
-    [_socialUserProfile release]; _socialUserProfile = nil;
-    [_arrActivityStreams release]; _arrActivityStreams = nil;
+    [_socialUserProfile release];
+    [_arrActivityStreams release];
     [super dealloc];
 }
 
 
 #pragma mark - helper methods
 
-//Helper to create the base URL
-- (NSString *)createBaseURL 
-{
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    
-    
-    NSLog(@"%@",[NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName]);
-    
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity_stream/",socialConfig.domainName,socialConfig.restContextName,socialConfig.restVersion,socialConfig.portalContainerName];
-
-}
-
-
-
 //Helper to create the path to get the ressources
 - (NSString *)createPath 
 {    
-    NSLog(@"%@", [NSString stringWithFormat:@"feed.json",_socialUserProfile.identity]);
-    
-    return @"feed.json"; 
+    return [NSString stringWithFormat:@"%@/activity_stream/%@", [super createPath], @"feed.json"]; 
 }
 
 
@@ -69,8 +53,7 @@
 
 - (void) getActivityStreams 
 {
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:
@@ -111,8 +94,7 @@
 
     _isUpdateRequest = YES;
     
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:

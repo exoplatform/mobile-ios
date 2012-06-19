@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "NSDictionary+RKRequestSerialization.h"
+#import <RestKit/RestKit.h>
 
 @protocol SocialProxyDelegate;
 
 
-@interface SocialProxy : NSObject {
+@interface SocialProxy : NSObject <RKObjectLoaderDelegate> {
     
     id<SocialProxyDelegate> delegate;
     
@@ -20,7 +21,7 @@
 
 @property (nonatomic, assign) id<SocialProxyDelegate> delegate;
 
-
+- (NSString *)createPath;
 - (NSString*)URLEncodedString:(NSDictionary *)dictForParam;
 
 @end

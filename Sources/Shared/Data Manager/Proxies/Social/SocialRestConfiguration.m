@@ -8,6 +8,7 @@
 
 #import "SocialRestConfiguration.h"
 #import "defines.h"
+#import <RestKit/RestKit.h>
 
 
 @implementation SocialRestConfiguration
@@ -60,9 +61,17 @@
                                   (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD],
                                   @"@",
                                   domainWithoutHttp];
-    
+    [self initRKOjectManagerIfNotExist];
 }
 
+- (NSString *)createBaseUrl {
+    return [NSString stringWithFormat:@"%@/%@/", self.domainNameWithCredentials, self.restContextName];
+}
+
+- (void)initRKOjectManagerIfNotExist {
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseUrl]];
+    [RKObjectManager setSharedManager:manager];
+}
 
 
 - (id) init

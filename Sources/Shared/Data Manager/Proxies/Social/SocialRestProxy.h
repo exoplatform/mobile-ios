@@ -12,7 +12,7 @@
 #import "SocialProxy.h"
 #import "SocialRestConfiguration.h"
 
-@interface SocialRestProxy : SocialProxy <RKObjectLoaderDelegate>{
+@interface SocialRestProxy : SocialProxy {
     
 }
 - (void)getVersion;

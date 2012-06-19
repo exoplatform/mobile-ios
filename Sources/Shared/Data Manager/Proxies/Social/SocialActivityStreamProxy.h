@@ -14,7 +14,7 @@
 
 @class SocialUserProfileProxy;
 
-@interface SocialActivityStreamProxy : SocialProxy <RKObjectLoaderDelegate>{
+@interface SocialActivityStreamProxy : SocialProxy {
     
     SocialUserProfile*          _socialUserProfile;
     
