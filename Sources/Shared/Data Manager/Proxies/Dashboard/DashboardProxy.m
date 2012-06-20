@@ -31,7 +31,9 @@
 - (void) dealloc {
         
     _delegate = nil;
+    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [_gadgetsProxy release];
+    [_setOfDashboardsToRetrieveGadgets release];
     [super dealloc];
 }
 

@@ -26,7 +26,6 @@
 
 - (void)dealloc {
     [_userProfile release];
-    [[RKRequestQueue sharedQueue] cancelRequestsWithDelegate:self];
     [super dealloc];
 }
 

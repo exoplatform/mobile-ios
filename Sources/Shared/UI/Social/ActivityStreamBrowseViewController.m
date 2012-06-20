@@ -21,7 +21,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MessageComposerViewController.h"
 #import "ActivityDetailViewController_iPhone.h"
-#import "SocialIdentityProxy.h"
 #import "SocialActivityStreamProxy.h"
 #import "SocialUserProfileProxy.h"
 #import "SocialLikeActivityProxy.h"
@@ -48,6 +47,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @property (nonatomic, retain) SocialActivityStreamProxy *socialActivityStreamProxy;
 @property (nonatomic, retain) SocialRestProxy *socialRestProxy;
 @property (nonatomic, retain) SocialUserProfileProxy *userProfileProxy;
+@property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
+
 - (void)loadImagesForOnscreenRows;
 @end
 
@@ -58,6 +59,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @synthesize socialActivityStreamProxy = _socialActivityStreamProxy;
 @synthesize socialRestProxy = _socialRestProxy;
 @synthesize userProfileProxy = _userProfileProxy;
+@synthesize likeActivityProxy = _likeActivityProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -118,6 +120,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [_socialActivityStreamProxy release];
     [_socialRestProxy release];
     [_userProfileProxy release];
+    [_likeActivityProxy release];
     
     [super dealloc];
 }
@@ -549,18 +552,18 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
     //NSLog(@"%@")//SocialLikeActivityProxy
-    SocialLikeActivityProxy *likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
-    likeDislikeActProxy.delegate = self;
+    self.likeActivityProxy = [[[SocialLikeActivityProxy alloc] init] autorelease];
+    self.likeActivityProxy.delegate = self;
     
     if(!isLike)
     {
         _activityAction = 2;
-        [likeDislikeActProxy likeActivity:activity];
+        [self.likeActivityProxy likeActivity:activity];
     }
     else
     {
         _activityAction = 3;
-        [likeDislikeActProxy dislikeActivity:activity];
+        [self.likeActivityProxy dislikeActivity:activity];
     }
 }
 
@@ -683,8 +686,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         //All informations has been retrieved we can now display them
         [self finishLoadingAllDataForActivityStream];
     } 
-    else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) 
+    else if (proxy == self.likeActivityProxy) 
     {
+        self.likeActivityProxy = nil;
         [self startLoadingActivityStream];
     }
     

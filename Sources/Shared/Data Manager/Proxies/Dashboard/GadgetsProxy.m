@@ -48,7 +48,7 @@
 
 -(void)dealloc {
     
-    [[RKRequestQueue sharedQueue] cancelAllRequests];
+    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [_dashboard release];
     _delegate = nil;
 

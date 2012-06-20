@@ -38,6 +38,8 @@
 @interface ActivityDetailViewController ()
 
 @property (nonatomic, retain) SocialActivityDetailsProxy *activityDetailsProxy;
+@property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
+
 
 @end
 
@@ -49,6 +51,7 @@
 @synthesize tblvActivityDetail = _tblvActivityDetail;
 @synthesize refreshHeaderView = _refreshHeaderView;
 @synthesize activityDetailsProxy = _activityDetailsProxy;
+@synthesize likeActivityProxy = _likeActivityProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +67,9 @@
 
 - (void)dealloc
 {
+    [_activityDetailsProxy release];
+    [_likeActivityProxy release];
+    
     [_tblvActivityDetail release];
     [_navigation release];
     [_activityDetailCell release];
@@ -76,7 +82,6 @@
     
     [_socialActivity release];
     
-    [_activityDetailsProxy release];
         
     [super dealloc];
 }
@@ -401,7 +406,7 @@
         
         [self finishLoadingAllDataForActivityDetails];
         //SocialLikeActivityProxy
-    }else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) {
+    }else if (proxy == self.likeActivityProxy) {
         if (_activityAction == 2) {
             self.socialActivity.liked = YES;
             self.socialActivity.totalNumberOfLikes++;
@@ -444,18 +449,18 @@
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
-    SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
-    likeDislikeActProxy.delegate = self;
+    self.likeActivityProxy = [[[SocialLikeActivityProxy alloc] init] autorelease];
+    self.likeActivityProxy.delegate = self;
     
     if(self.socialActivity.liked)
     {
         _activityAction = 3;
-        [likeDislikeActProxy dislikeActivity:activity];
+        [self.likeActivityProxy dislikeActivity:activity];
     }
     else
     {
         _activityAction = 2;
-        [likeDislikeActProxy likeActivity:activity];
+        [self.likeActivityProxy likeActivity:activity];
     }
 }
 
