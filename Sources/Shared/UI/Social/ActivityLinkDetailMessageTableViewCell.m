@@ -141,8 +141,6 @@
     [_htmlLinkTitle release];
     _htmlLinkTitle = nil;
     
-    _webViewComment = nil;
-    
     [super dealloc];
 }
 

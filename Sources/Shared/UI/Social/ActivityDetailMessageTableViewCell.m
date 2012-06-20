@@ -62,7 +62,10 @@
     self.lbMessage = nil;
     self.lbDate = nil;
     self.lbName = nil;
+    self.webViewForContent.delegate = nil;
     self.webViewForContent = nil;
+    self.webViewComment.delegate = nil;
+    self.webViewComment = nil;
     self.imgvAvatar = nil;
     [super dealloc];
 }
