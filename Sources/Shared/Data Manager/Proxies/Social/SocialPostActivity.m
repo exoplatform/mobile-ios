@@ -36,21 +36,9 @@
 
 #pragma mark - helper methods
 
-//Helper to create the base URL
-- (NSString *)createBaseURL {
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    
-    //http://demo:gtn@localhost:8080/rest/private/api/social/v1/portal/activity/1ed7c4c9c0a8012636585a573a15c26e
-    
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
-    //return @"http://john:gtn@localhost:8080/rest-socialdemo/private/api/social/v1-alpha1/socialdemo/identity/";
-    
-}
-
-
 //Helper to create the path to get the ressources
-- (NSString *)createPath:(NSString *)activityId {
-    return [NSString stringWithFormat:@"activity.json",activityId]; 
+- (NSString *)createPath {
+    return [NSString stringWithFormat:@"%@/activity.json", [super createPath]]; 
 }
 
 
@@ -60,15 +48,14 @@
     }
     
     
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     manager.serializationMIMEType = RKMIMETypeJSON;
 
     RKObjectRouter* router = [[RKObjectRouter new] autorelease];
     manager.router = router;
     
     // Send POST requests for instances of SocialActivity to '/activity.json'
-    [router routeClass:[SocialActivity class] toResourcePath:@"activity.json" forMethod:RKRequestMethodPOST];
+    [router routeClass:[SocialActivity class] toResourcePath:[self createPath] forMethod:RKRequestMethodPOST];
     
     // Let's create an SocialActivity
     SocialActivity *activity = [[SocialActivity alloc] init];
@@ -147,7 +134,7 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    LogDebug(@"Loaded payload: %@", [response bodyAsString]);
 }
 
 

@@ -32,8 +32,6 @@
 - (void)dealloc 
 {
     delegate = nil;
-    [[RKRequestQueue sharedQueue] cancelRequestsWithDelegate:self];
-
     [_socialUserProfile release];
     [_arrActivityStreams release];
     [super dealloc];
@@ -137,7 +135,7 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    //NSLog(@"Loaded payload Avtivity Stream: %@", [response bodyAsString]);
+    LogDebug(@"Loaded payload Avtivity Stream: %@", [response bodyAsString]);
 }
 
 

@@ -31,13 +31,6 @@
 
 #pragma mark - helper methods
 
-//Helper to create the base URL
-- (NSString *)createBaseURL {
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
-}
-
 
 #pragma mark - Call methods
 
@@ -48,15 +41,14 @@
     }
     
     
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     manager.serializationMIMEType = RKMIMETypeJSON;
     
     RKObjectRouter* router = [[RKObjectRouter new] autorelease];
     manager.router = router;
     
     // Send POST requests for instances of SocialActivityDetails to '/activity.json'
-    [router routeClass:[SocialComment class] toResourcePath:[NSString stringWithFormat:@"%@/comment.json",activityIdentity] forMethod:RKRequestMethodPOST];
+    [router routeClass:[SocialComment class] toResourcePath:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] forMethod:RKRequestMethodPOST];
     
     // Let's create an SocialActivityDetails
     SocialComment* commentToPost = [[SocialComment alloc] init];

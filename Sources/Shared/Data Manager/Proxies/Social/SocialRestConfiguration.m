@@ -14,7 +14,6 @@
 @implementation SocialRestConfiguration
 
 @synthesize domainName = _domainName;
-@synthesize domainNameWithCredentials = _domainNameWithCredentials;
 @synthesize restVersion =  _restVersion;
 @synthesize restContextName = _restContextName;
 @synthesize portalContainerName = _portalContainerName;
@@ -56,20 +55,18 @@
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer
     domainWithoutHttp = [domainWithoutHttp stringByReplacingOccurrencesOfString:@"/portal" withString:@""];
-    _domainNameWithCredentials = [[NSString alloc] initWithFormat:@"http://%@:%@%@%@",
-                                  (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME],
-                                  (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD],
-                                  @"@",
-                                  domainWithoutHttp];
     [self initRKOjectManagerIfNotExist];
 }
 
 - (NSString *)createBaseUrl {
-    return [NSString stringWithFormat:@"%@/%@/", self.domainNameWithCredentials, self.restContextName];
+    return [NSString stringWithFormat:@"%@/%@/private/", self.domainName, self.restContextName];
 }
 
 - (void)initRKOjectManagerIfNotExist {
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseUrl]];
+    manager.client.username = self.username;
+    manager.client.password = self.password;
+    manager.client.forceBasicAuthentication = YES;
     [RKObjectManager setSharedManager:manager];
 }
 
@@ -85,7 +82,6 @@
 - (void) dealloc
 {
 	[_domainName release];
-    [_domainNameWithCredentials release];
     [_portalContainerName release];
     [_restContextName release];
     [_restVersion release];

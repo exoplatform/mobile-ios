@@ -69,7 +69,7 @@
         RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];  
         [RKObjectManager setSharedManager:manager];
     } else {
-        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:_dashboard.link] retain];
+        [RKObjectManager sharedManager].client = [RKClient clientWithBaseURL:_dashboard.link];
     }
     RKObjectManager* manager = [RKObjectManager sharedManager];
 

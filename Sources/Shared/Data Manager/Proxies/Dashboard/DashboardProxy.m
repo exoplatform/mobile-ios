@@ -40,10 +40,7 @@
 
 //Helper to create the base URL
 - (NSString *)createBaseURL {    
-    
-    NSLog(@"ddd == %@",[NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainNameWithCredentials,kRestContextName]);
-    
-    return [NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainNameWithCredentials,kRestContextName]; 
+    return [NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainName,kRestContextName]; 
 }
 
 
@@ -57,15 +54,9 @@
         RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
         [RKObjectManager setSharedManager:manager];
     } else {
-        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:[self createBaseURL]] retain];
-//        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:[self createBaseURL] username:@"demo" password:@"gtn"] retain];
+        [RKObjectManager sharedManager].client = [RKClient clientWithBaseURL:[self createBaseURL]];
     }
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    
-//    if([RKObjectManager sharedManager].client.username == nil) {
-//       [RKObjectManager sharedManager].client.username = @"demo";
-//       [RKObjectManager sharedManager].client.password = @"gtn";
-//    }
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[DashboardItem class]];
     [mapping mapKeyPathsToAttributes:

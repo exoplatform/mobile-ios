@@ -35,7 +35,11 @@
 
 #define NUMBER_OF_COMMENT_TO_LOAD 30
 
+@interface ActivityDetailViewController ()
 
+@property (nonatomic, retain) SocialActivityDetailsProxy *activityDetailsProxy;
+
+@end
 
 @implementation ActivityDetailViewController
 
@@ -44,6 +48,7 @@
 @synthesize activityDetailCell = _activityDetailCell;
 @synthesize tblvActivityDetail = _tblvActivityDetail;
 @synthesize refreshHeaderView = _refreshHeaderView;
+@synthesize activityDetailsProxy = _activityDetailsProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,6 +75,8 @@
     [_dateOfLastUpdate release];
     
     [_socialActivity release];
+    
+    [_activityDetailsProxy release];
         
     [super dealloc];
 }
@@ -363,9 +370,9 @@
 - (void)startLoadingActivityDetail
 {
     _reloading = YES;
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD andNumberOfLikes:4];
-    socialActivityDetailsProxy.delegate = self;
-    [socialActivityDetailsProxy getActivityDetail:self.socialActivity.activityId];
+    self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD andNumberOfLikes:4] autorelease];
+    self.activityDetailsProxy.delegate = self;
+    [self.activityDetailsProxy getActivityDetail:self.socialActivity.activityId];
     
 }
 
@@ -381,7 +388,7 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy 
 {
-    if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) {
+    if (proxy == self.activityDetailsProxy) {
         SocialActivity *socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         self.socialActivity.likedByIdentities = socialActivityDetails.likedByIdentities;
         self.socialActivity.comments = socialActivityDetails.comments;
@@ -403,10 +410,10 @@
             self.socialActivity.totalNumberOfLikes--;
         }
         [self didFinishedLikeAction];
-        SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
-                                                                                                             andNumberOfLikes:4];
-        socialActivityDetailsProxy.delegate = self;
-        [socialActivityDetailsProxy getActivityDetail:self.socialActivity.activityId];
+        self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
+                                                                                                             andNumberOfLikes:4] autorelease];
+        self.activityDetailsProxy.delegate = self;
+        [self.activityDetailsProxy getActivityDetail:self.socialActivity.activityId];
     }
 }
 

@@ -170,7 +170,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [[SocialRestConfiguration sharedInstance] initRKOjectManagerIfNotExist];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];    
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     

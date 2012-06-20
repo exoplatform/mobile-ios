@@ -39,7 +39,8 @@ static NSString *urlEncode(id object) {
 
 - (void)dealloc {
     delegate = nil;
-    [[RKRequestQueue sharedQueue] cancelRequestsWithDelegate:self];
+
+    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [super dealloc];
 }
 

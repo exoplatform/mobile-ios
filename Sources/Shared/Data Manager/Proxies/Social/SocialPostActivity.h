@@ -10,7 +10,7 @@
 #import <RestKit/RestKit.h>
 #import "SocialProxy.h"
 
-@interface SocialPostActivity : SocialProxy <RKObjectLoaderDelegate>{
+@interface SocialPostActivity : SocialProxy {
     
     NSString* _text;
 }
