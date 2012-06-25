@@ -271,7 +271,10 @@
     <string>News</string>
     <key>Details</key>
     <string>Details</string>
-    
+    <key>comments(%d)</key>
+    <string>Comments(%d)</string>
+    <key>likes(%d)</key>
+    <string>Likes(%d)</string>
     <key>YourComment</key>
     <string>Your comment</string>
     <key>GettingActivity</key>

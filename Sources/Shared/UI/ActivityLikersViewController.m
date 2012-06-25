@@ -17,7 +17,7 @@
 #define kLikersViewTopBottomMargin 10.0
 #define kLikersViewLeftRightMargin 10.0
 #define kLikersViewPadding 10.0
-#define kLikersViewColumns 3
+#define kLikersViewColumns (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 4 : 3)
 #define kNoLikerViewTag 100
 
 
@@ -27,10 +27,8 @@
 @property (nonatomic, retain) NSMutableArray *nameLabels;
 @property (nonatomic, retain) EmptyView *noLikerView;
 
-- (void)updateLikerViews;
 - (AvatarView *)newAvatarView;
 - (UILabel *)newNameLabel;
-- (void)updateListOfLikers;
 
 @end
 
@@ -66,9 +64,8 @@
 }
 
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView {
+    [super loadView];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     scrollView.backgroundColor = EXO_BACKGROUND_COLOR;
     scrollView.scrollEnabled = YES;
@@ -76,8 +73,10 @@
     self.view = [scrollView autorelease];
     
     [self.view addSubview:self.likersHeader];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
     [self updateLikerViews];
-    [self updateListOfLikers];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -101,13 +100,6 @@
         [_noLikerView setTag:kNoLikerViewTag];
     }
     return _noLikerView;
-}
-
-- (void)setSocialActivity:(SocialActivity *)socialActivity {
-    [_socialActivity release];
-    _socialActivity = [socialActivity retain];
-    
-    [self updateLikerViews];
 }
 
 - (UILabel *)likersHeader {

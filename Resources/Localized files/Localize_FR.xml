@@ -245,7 +245,10 @@
     <string>Details loaded</string>
     <key>ActivityDetails</key>
     <string>Activity Details</string>
-    
+    <key>comments(%d)</key>
+    <string>Comments(%d)</string>
+    <key>likes(%d)</key>
+    <string>Likes(%d)</string>
     <key>Error</key>
     <string>Error</string>
     <key>Posted</key>

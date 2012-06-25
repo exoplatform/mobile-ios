@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "ActivityDetailViewController.h"
 
-@interface ActivityDetailViewController_iPad : ActivityDetailViewController {
-    
-}
+@class ActivityDetailExtraActionsCell;
+@class ActivityDetailAdvancedInfoController_iPad;
+
+@interface ActivityDetailViewController_iPad : ActivityDetailViewController 
+
+@property (nonatomic, retain) ActivityDetailExtraActionsCell *extraActionsCell;
+@property (nonatomic, retain) ActivityDetailAdvancedInfoController_iPad *advancedInfoController;
+
+- (IBAction)likeDislike:(id)sender;
 
 @end

@@ -21,7 +21,6 @@
         imagename = imageName;
         UIImage *image = [UIImage imageNamed:imageName];
         imageView = [[UIImageView alloc] initWithImage:image];
-        imageView.frame = CGRectMake(frame.size.width/2 - image.size.width/2, frame.size.height/2 - image.size.height/2 - 20, image.size.width, image.size.height);
         imageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin| UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
         [self addSubview:imageView];
         
@@ -55,6 +54,12 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGRect frame = self.frame;
+    imageView.frame = CGRectMake(frame.size.width/2 - imageView.image.size.width/2, frame.size.height/2 - imageView.image.size.height/2 - 20, imageView.image.size.width, imageView.image.size.height);
+    label.frame = CGRectMake(0, imageView.frame.origin.y + imageView.frame.size.height + distance, frame.size.width, 40);
+}
 
 - (void)changeOrientation{
     UIImage *image = [UIImage imageNamed:imagename];

@@ -28,9 +28,11 @@
 @implementation ActivityDetailViewController_iPhone
 
 @synthesize noCommentCell = _noCommentCell;
+@synthesize likeViewCell = _likeViewCell;
 
 - (void)dealloc {
     [_noCommentCell release];
+    [_likeViewCell release];
     [super dealloc];
 }
 
@@ -45,6 +47,15 @@
         [_noCommentCell.contentView addSubview:emptyView];
     }
     return _noCommentCell;
+}
+
+- (ActivityDetailLikeTableViewCell *)likeViewCell {
+    if (!_likeViewCell) {
+        _likeViewCell = [[ActivityDetailLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];    
+        _likeViewCell.selectionStyle = UITableViewCellSelectionStyleGray;
+        _likeViewCell.delegate = self;
+    }
+    return _likeViewCell;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,6 +95,22 @@
     
     
 }
+
+- (void)finishLoadingAllDataForActivityDetails {
+    [super finishLoadingAllDataForActivityDetails];
+    [_tblvActivityDetail reloadData];
+    
+    //if comment tableview scroll at bottom
+    if(isPostComment){
+        if([self.socialActivity.comments count] > 0){
+            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:2] 
+                                       atScrollPosition:UITableViewScrollPositionBottom 
+                                               animated:YES];
+        }
+        isPostComment = NO;
+    }
+}
+
 #pragma mark - Loader Management
 - (void)updateHudPosition {
     //Default implementation
@@ -144,22 +171,13 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *kIdentifierActivityDetailLikeTableViewCell = @"ActivityDetailLikeTableViewCell";
     static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
-    if (indexPath.section == 1) {
-        ActivityDetailLikeTableViewCell* cell = (ActivityDetailLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikeTableViewCell];
-        
-        if (cell == nil) 
-        {
-            cell = [[[ActivityDetailLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kIdentifierActivityDetailLikeTableViewCell] autorelease];    
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            cell.delegate = self;
-        }
-        cell.socialActivity = self.socialActivity;
-        
-        return cell;
+    if (indexPath.section == 1) {        
+        self.likeViewCell.socialActivity = self.socialActivity;
+        return self.likeViewCell;
     } else if (indexPath.section == 2) {
         if (self.socialActivity.totalNumberOfComments == 0) {
+            self.likeViewCell.socialActivity = self.socialActivity;
             return self.noCommentCell;
         } else {
             ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
@@ -200,10 +218,28 @@
         ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
         likersView.socialActivity = self.socialActivity;
         likersView.view.title = [NSString stringWithFormat:Localize(@"numOfLikers"), self.socialActivity.totalNumberOfLikes];
+        [likersView updateListOfLikers];
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:likersView animated:YES];
     } else {
         [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
+}
+
+#pragma mark - like/dislike management
+- (void)likeDislikeActivity:(NSString *)activity {
+    [super likeDislikeActivity:activity];
+    [self.likeViewCell likeButtonToActivityIndicator];
+}
+
+- (void)didFinishedLikeAction {
+    [super didFinishedLikeAction];
+    [self.likeViewCell activityIndicatorToLikeButton];
+    [self.likeViewCell setUserLikeThisActivity:self.likeViewCell.socialActivity.liked];
+}
+
+- (void)didFailedLikeAction {
+    [self.likeViewCell activityIndicatorToLikeButton];
+    [super didFailedLikeAction];
 }
 
 @end

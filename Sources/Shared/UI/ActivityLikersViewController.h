@@ -17,4 +17,7 @@
 @property (nonatomic, retain) SocialActivity *socialActivity;
 @property (nonatomic, retain) UILabel *likersHeader;
 
+- (void)updateLikerViews;
+- (void)updateListOfLikers;
+
 @end

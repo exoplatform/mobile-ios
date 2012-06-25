@@ -16,14 +16,27 @@
 #import "LanguageHelper.h"
 #import "EmptyView.h"
 #import "ActivityHelper.h"
+#import "ActivityDetailExtraActionsCell.h"
+#import "ActivityDetailAdvancedInfoController_iPad.h"
+#import "CustomBackgroundView.h"
+
+#define kMinimumAdvancedInfoCellHeight 400.0
 
 @implementation ActivityDetailViewController_iPad
 
+@synthesize extraActionsCell = _extraActionsCell;
+@synthesize advancedInfoController = _advancedInfoController;
+
+- (void)dealloc {
+    [_extraActionsCell release];
+    [_advancedInfoController release];
+    [super dealloc];
+}
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-
+        
     }
     return self;
 }
@@ -33,7 +46,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
+    self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
+}
+
+#pragma mark - like/dislike management
+- (void)likeDislike:(id)sender {
+    [self.extraActionsCell likeButtonToActivityIndicator];
+    [self likeDislikeActivity:self.socialActivity.activityId];
+}
+
+- (void)didFinishedLikeAction {
+    [self.extraActionsCell activityIndicatorToLikeButton];
+    [self.extraActionsCell updateSubViews];
+    [self.advancedInfoController updateTabLabels];
+}
+
+- (void)didFailedLikeAction {
+    [self.extraActionsCell activityIndicatorToLikeButton];
 }
 
 - (void)onBtnMessageComposer
@@ -79,6 +109,25 @@
     self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
 }
 
+#pragma mark - overriden 
+- (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile {
+    self.extraActionsCell.socialActivity = socialActivityStream;
+    self.advancedInfoController.socialActivity = socialActivityStream;
+    [super setSocialActivityStream:socialActivityStream andCurrentUserProfile:currentUserProfile];
+}
+
+- (void)finishLoadingAllDataForActivityDetails {
+    [super finishLoadingAllDataForActivityDetails];
+    [self.tblvActivityDetail reloadData];
+    [self.advancedInfoController updateTabLabels];
+    
+    //if comment tableview scroll at bottom
+    if(isPostComment){
+        [self.advancedInfoController reloadInfoContainerWithAnimated:NO];
+        [self.advancedInfoController jumpToLastCommentIfExist];
+        isPostComment = NO;
+    }
+}
 
 #pragma mark - UIWebViewDelegateMethod 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -140,6 +189,77 @@
     }
 }
 
+#pragma mark - UITableViewDelegate 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        [self.extraActionsCell updateSubViews];
+    } else if (indexPath.section == 2) {
+        float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
+        CGRect frame = CGRectZero;
+        frame.size.height = height > kMinimumAdvancedInfoCellHeight ? height : kMinimumAdvancedInfoCellHeight;
+        frame.size.width = self.tblvActivityDetail.bounds.size.width;
+        self.advancedInfoController.view.frame = frame;
+        [self.advancedInfoController updateSubViews];
+    } else {
+        [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *kIdentifierActivityDetailAdvancedInfoTableViewCell = @"ActivityDetailAdvancedInfoTableViewCell";
+    if (indexPath.section == 1) {
+        return self.extraActionsCell;
+    } else if (indexPath.section == 2) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailAdvancedInfoTableViewCell];
+        if (!cell) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailAdvancedInfoTableViewCell] autorelease];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell.contentView addSubview:self.advancedInfoController.view];
+        }
+        return cell;
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return self.extraActionsCell.frame.size.height;
+    } else if (indexPath.section == 2) {
+        return self.advancedInfoController.view.frame.size.height;
+    } else {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+#pragma mark - cell initialization
+
+- (ActivityDetailExtraActionsCell *)extraActionsCell {
+    if (!_extraActionsCell) {
+        _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
+        [_extraActionsCell.likeButton addTarget:self action:@selector(likeDislike:) forControlEvents:UIControlEventTouchUpInside];
+        [_extraActionsCell.commentButton addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _extraActionsCell;
+}
+
+- (ActivityDetailAdvancedInfoController_iPad *)advancedInfoController {
+    if (!_advancedInfoController) {
+        _advancedInfoController = [[ActivityDetailAdvancedInfoController_iPad alloc] init];
+        [_advancedInfoController.commentButton addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _advancedInfoController;
+}
 
 @end
+
+
+

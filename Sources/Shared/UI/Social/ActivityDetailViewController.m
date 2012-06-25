@@ -42,7 +42,8 @@
 @synthesize iconType = _iconType;
 @synthesize socialActivity = _socialActivity;
 @synthesize activityDetailCell = _activityDetailCell;
-@synthesize activityLikesCell = _activityLikesCell;
+@synthesize tblvActivityDetail = _tblvActivityDetail;
+@synthesize refreshHeaderView = _refreshHeaderView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,7 +61,6 @@
 {
     [_tblvActivityDetail release];
     [_navigation release];
-    [_activityLikesCell release];
     [_activityDetailCell release];
     
     [_txtvMsgComposer release];
@@ -117,13 +117,11 @@
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
     
     //Add the pull to refresh header
-    if (_refreshHeaderView == nil) {
+    if (self.refreshHeaderView == nil) {
 		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityDetail.bounds.size.height, self.view.frame.size.width, _tblvActivityDetail.bounds.size.height)];
-		view.delegate = self;
-		[_tblvActivityDetail addSubview:view];
-		_refreshHeaderView = view;
-		[view release];
+		self.refreshHeaderView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityDetail.bounds.size.height, self.view.frame.size.width, _tblvActivityDetail.bounds.size.height)] autorelease];
+		self.refreshHeaderView.delegate = self;
+		[_tblvActivityDetail addSubview:self.refreshHeaderView];
         _reloading = FALSE;
         
 	}
@@ -157,41 +155,6 @@
 }
 
 
-// Specific method to retrieve the height of the cell
-// This method override the inherited one.
-- (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text
-{
-    CGRect rectTableView = tableView.frame;
-    float fWidth = 0;
-    float fHeight = 0;
-    
-    if (rectTableView.size.width > 320) 
-    {
-        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
-    }
-    else
-    {
-        fWidth = rectTableView.size.width - 100;
-    }
-    
-    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
-    
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    
-    if (theSize.height < 30) 
-    {
-        fHeight = 100;
-    }
-    else
-    {
-        fHeight = 75 + theSize.height;
-    }
-    
-    return fHeight;
-}
-
-
-
 #pragma mark - Table view Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -222,7 +185,7 @@
     if (indexPath.section == 2) 
     {
         SocialComment* comment = [self.socialActivity.comments objectAtIndex:indexPath.row];
-        n = [self getHeighSizeForTableView:tableView andText:comment.text];
+        n = [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];
 
     }
     return n;
@@ -392,18 +355,6 @@
     //Hide the loader
     [self hideLoader:YES];
     
-    [_tblvActivityDetail reloadData];
-    
-    //if comment tableview scroll at bottom
-    if(isPostComment){
-        if([self.socialActivity.comments count] > 0){
-            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:2] 
-                                       atScrollPosition:UITableViewScrollPositionBottom 
-                                               animated:YES];
-        }
-        isPostComment = NO;
-    }
-   
     
     [self updateActivityInActivityStream];
 }
@@ -443,12 +394,15 @@
         
         [self finishLoadingAllDataForActivityDetails];
         //SocialLikeActivityProxy
-    }else{
-        if (_activityAction == 2){
+    }else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) {
+        if (_activityAction == 2) {
             self.socialActivity.liked = YES;
-        } else if (_activityAction == 3){
+            self.socialActivity.totalNumberOfLikes++;
+        } else if (_activityAction == 3) {
             self.socialActivity.liked = NO;
+            self.socialActivity.totalNumberOfLikes--;
         }
+        [self didFinishedLikeAction];
         SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
                                                                                                              andNumberOfLikes:4];
         socialActivityDetailsProxy.delegate = self;
@@ -465,18 +419,24 @@
         alertMessage = Localize(@"GettingActionCannotBeCompleted");
     else if(_activityAction == 1)
         alertMessage = Localize(@"UpdatingActionCannotBeCompleted");
-    else
+    else {
         alertMessage = Localize(@"LikingActionCannotBeCompleted");
+        [self didFailedLikeAction];
+    }
     
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
      
     [alertView show];
 }
 
+#pragma mark - like/unlike management
+- (void)didFailedLikeAction {}
+
+- (void)didFinishedLikeAction {}
+
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
-    [self displayHudLoader];
     SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
     likeDislikeActProxy.delegate = self;
     
