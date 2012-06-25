@@ -208,7 +208,7 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    LogDebug(@"Loaded payload ActivityDetail: %@", [response bodyAsString]);
+    LogTrace(@"Loaded payload ActivityDetail: %@", [response bodyAsString]);
 }
 
 

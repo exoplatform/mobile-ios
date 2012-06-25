@@ -63,6 +63,12 @@
 }
 
 - (void)initRKOjectManagerIfNotExist {
+    // Remove all of cookies before using RestKit due to the below authentication can't take affect if the cookie is available. The detail is described here https://github.com/RestKit/RestKit/pull/755 In the new version of RestKit, the issue is fixed, thus this block of code can be removed  
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    // -------
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseUrl]];
     manager.client.username = self.username;
     manager.client.password = self.password;

@@ -135,7 +135,7 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    LogDebug(@"Loaded payload Avtivity Stream: %@", [response bodyAsString]);
+    LogTrace(@"Loaded payload Avtivity Stream: %@", [response bodyAsString]);
 }
 
 
