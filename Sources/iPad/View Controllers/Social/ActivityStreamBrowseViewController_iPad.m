@@ -71,7 +71,6 @@
 }
 
 - (void)updateHudPosition {
-    NSLog(@"self.view.frame.height : %2f",self.view.frame.size.height);
     self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
 }
 

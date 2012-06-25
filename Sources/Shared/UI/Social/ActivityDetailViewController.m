@@ -35,7 +35,13 @@
 
 #define NUMBER_OF_COMMENT_TO_LOAD 30
 
+@interface ActivityDetailViewController ()
 
+@property (nonatomic, retain) SocialActivityDetailsProxy *activityDetailsProxy;
+@property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
+
+
+@end
 
 @implementation ActivityDetailViewController
 
@@ -44,6 +50,8 @@
 @synthesize activityDetailCell = _activityDetailCell;
 @synthesize tblvActivityDetail = _tblvActivityDetail;
 @synthesize refreshHeaderView = _refreshHeaderView;
+@synthesize activityDetailsProxy = _activityDetailsProxy;
+@synthesize likeActivityProxy = _likeActivityProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +67,9 @@
 
 - (void)dealloc
 {
+    [_activityDetailsProxy release];
+    [_likeActivityProxy release];
+    
     [_tblvActivityDetail release];
     [_navigation release];
     [_activityDetailCell release];
@@ -70,6 +81,7 @@
     [_dateOfLastUpdate release];
     
     [_socialActivity release];
+    
         
     [super dealloc];
 }
@@ -363,9 +375,9 @@
 - (void)startLoadingActivityDetail
 {
     _reloading = YES;
-    SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD andNumberOfLikes:4];
-    socialActivityDetailsProxy.delegate = self;
-    [socialActivityDetailsProxy getActivityDetail:self.socialActivity.activityId];
+    self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD andNumberOfLikes:4] autorelease];
+    self.activityDetailsProxy.delegate = self;
+    [self.activityDetailsProxy getActivityDetail:self.socialActivity.activityId];
     
 }
 
@@ -381,7 +393,7 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy 
 {
-    if ([proxy isKindOfClass:[SocialActivityDetailsProxy class]]) {
+    if (proxy == self.activityDetailsProxy) {
         SocialActivity *socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         self.socialActivity.likedByIdentities = socialActivityDetails.likedByIdentities;
         self.socialActivity.comments = socialActivityDetails.comments;
@@ -394,7 +406,7 @@
         
         [self finishLoadingAllDataForActivityDetails];
         //SocialLikeActivityProxy
-    }else if ([proxy isKindOfClass:[SocialLikeActivityProxy class]]) {
+    }else if (proxy == self.likeActivityProxy) {
         if (_activityAction == 2) {
             self.socialActivity.liked = YES;
             self.socialActivity.totalNumberOfLikes++;
@@ -403,10 +415,10 @@
             self.socialActivity.totalNumberOfLikes--;
         }
         [self didFinishedLikeAction];
-        SocialActivityDetailsProxy* socialActivityDetailsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
-                                                                                                             andNumberOfLikes:4];
-        socialActivityDetailsProxy.delegate = self;
-        [socialActivityDetailsProxy getActivityDetail:self.socialActivity.activityId];
+        self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
+                                                                                                             andNumberOfLikes:4] autorelease];
+        self.activityDetailsProxy.delegate = self;
+        [self.activityDetailsProxy getActivityDetail:self.socialActivity.activityId];
     }
 }
 
@@ -437,18 +449,18 @@
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
-    SocialLikeActivityProxy* likeDislikeActProxy = [[SocialLikeActivityProxy alloc] init];
-    likeDislikeActProxy.delegate = self;
+    self.likeActivityProxy = [[[SocialLikeActivityProxy alloc] init] autorelease];
+    self.likeActivityProxy.delegate = self;
     
     if(self.socialActivity.liked)
     {
         _activityAction = 3;
-        [likeDislikeActProxy dislikeActivity:activity];
+        [self.likeActivityProxy dislikeActivity:activity];
     }
     else
     {
         _activityAction = 2;
-        [likeDislikeActProxy likeActivity:activity];
+        [self.likeActivityProxy likeActivity:activity];
     }
 }
 

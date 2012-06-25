@@ -117,10 +117,9 @@
     _lbTitle.html = html;
     [_lbTitle sizeToFit];
     
-    NSLog(@"%@", socialActivityStream.body );
     _lbMessage.html = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     [_lbMessage sizeToFit];
-    NSLog(@"%@", [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]);
+
     //Set the position of Title
     CGRect tmpFrame = _lbTitle.frame;
     tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;

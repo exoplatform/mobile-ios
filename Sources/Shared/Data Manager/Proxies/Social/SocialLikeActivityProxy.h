@@ -10,10 +10,11 @@
 #import <RestKit/RestKit.h>
 #import "SocialProxy.h"
 
-@interface SocialLikeActivityProxy : SocialProxy <RKObjectLoaderDelegate> {
+@interface SocialLikeActivityProxy : SocialProxy {
     
 }
 
+- (NSString *)createPathWithActivityId:(NSString *)activityId;
 -(void)likeActivity:(NSString *)activity;
 -(void)dislikeActivity:(NSString *)activity;
 

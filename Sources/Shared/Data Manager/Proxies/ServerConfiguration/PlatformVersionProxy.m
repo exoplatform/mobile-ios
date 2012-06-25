@@ -60,7 +60,7 @@
 #pragma mark - RKObjectLoaderDelegate methods
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
 }
 
 

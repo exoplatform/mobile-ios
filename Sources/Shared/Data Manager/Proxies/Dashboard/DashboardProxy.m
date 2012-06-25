@@ -31,7 +31,9 @@
 - (void) dealloc {
         
     _delegate = nil;
+    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [_gadgetsProxy release];
+    [_setOfDashboardsToRetrieveGadgets release];
     [super dealloc];
 }
 
@@ -40,10 +42,7 @@
 
 //Helper to create the base URL
 - (NSString *)createBaseURL {    
-    
-    NSLog(@"ddd == %@",[NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainNameWithCredentials,kRestContextName]);
-    
-    return [NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainNameWithCredentials,kRestContextName]; 
+    return [NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainName,kRestContextName]; 
 }
 
 
@@ -57,15 +56,9 @@
         RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
         [RKObjectManager setSharedManager:manager];
     } else {
-        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:[self createBaseURL]] retain];
-//        [RKObjectManager sharedManager].client = [[RKClient clientWithBaseURL:[self createBaseURL] username:@"demo" password:@"gtn"] retain];
+        [RKObjectManager sharedManager].client = [RKClient clientWithBaseURL:[self createBaseURL]];
     }
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    
-//    if([RKObjectManager sharedManager].client.username == nil) {
-//       [RKObjectManager sharedManager].client.username = @"demo";
-//       [RKObjectManager sharedManager].client.password = @"gtn";
-//    }
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[DashboardItem class]];
     [mapping mapKeyPathsToAttributes:
@@ -83,12 +76,12 @@
 #pragma mark - RKObjectLoaderDelegate methods
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
 }
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    NSLog(@"Loaded statuses: %@", objects);    
+    LogTrace(@"Loaded statuses: %@", objects);    
     //We receive the response from the server
     
     //Store dahsboards collected

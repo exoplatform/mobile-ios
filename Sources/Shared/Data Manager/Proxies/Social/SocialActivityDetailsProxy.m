@@ -54,30 +54,20 @@
 
 - (void) dealloc {
     [_activityIdentity release];
+    [_socialActivityDetails release];
     [super dealloc];
 }
 
 
 #pragma mark - helper methods
 
-//Helper to create the base URL
-- (NSString *)createBaseURL {
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    
-    //http://demo:gtn@localhost:8080/rest/private/api/social/v1/portal/activity/1ed7c4c9c0a8012636585a573a15c26e
-//    NSLog(@"%@", [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]);
-    
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName];     
-}
-
-
 //Helper to create the path to get the ressources
 - (NSString *)createPath:(NSString *)activityId {
-    return [NSString stringWithFormat:@"%@.json",activityId]; 
+    return [NSString stringWithFormat:@"%@/activity/%@.json", [super createPath], activityId]; 
 }
 
 - (NSString *)createLikeResourcePath:(NSString *)activityId {
-    return [NSString stringWithFormat:@"%@/likes.json", activityId];
+    return [NSString stringWithFormat:@"%@/activity/%@/likes.json", [super createPath], activityId];
 }
 
 
@@ -123,8 +113,7 @@
 
 - (void)getActivityDetail:(NSString *)activityId{
     
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:
@@ -193,15 +182,13 @@
     [mapping mapKeyPath:@"likedByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likedByIdentitiesMapping];
     
      
-    NSLog(@"--------%@",[NSString stringWithFormat:@"%@%@?%@",[self createBaseURL], [self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]);
     [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] 
                          objectMapping:mapping delegate:self];
     
 }
 
 - (void)getLikers:(NSString *)activityId {
-    RKObjectManager *manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager *manager = [RKObjectManager sharedManager];
     
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mapping mapKeyPathsToAttributes:@"totalNumberOfLikes", @"totalNumberOfLikes", nil];
@@ -221,7 +208,7 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    //NSLog(@"Loaded payload ActivityDetail: %@", [response bodyAsString]);
+    LogTrace(@"Loaded payload ActivityDetail: %@", [response bodyAsString]);
 }
 
 

@@ -37,7 +37,6 @@
 }
 
 - (void)setHudPosition {
-    NSLog(@"%@", NSStringFromCGPoint(CGPointMake(self.view.center.x, self.view.center.y-70)));
     _hudChat.center = CGPointMake(self.view.center.x, self.view.center.y-70);
 }
 

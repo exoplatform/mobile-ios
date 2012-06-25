@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSMutableArray *avatarViews;
 @property (nonatomic, retain) NSMutableArray *nameLabels;
 @property (nonatomic, retain) EmptyView *noLikerView;
+@property (nonatomic, retain) SocialActivityDetailsProxy *activityDetailsProxy;
 
 - (AvatarView *)newAvatarView;
 - (UILabel *)newNameLabel;
@@ -39,8 +40,10 @@
 @synthesize nameLabels = _nameLabels;
 @synthesize likersHeader = _likersHeader;
 @synthesize noLikerView = _noLikerView;
+@synthesize activityDetailsProxy = _activityDetailsProxy;
 
 - (void)dealloc {
+    [_activityDetailsProxy release];
     [_socialActivity release];
     [_avatarViews release];
     [_nameLabels release];
@@ -191,9 +194,9 @@
 }
 
 - (void)updateListOfLikers {
-    SocialActivityDetailsProxy *activityProxy = [[SocialActivityDetailsProxy alloc] init];
-    activityProxy.delegate = self;
-    [activityProxy getLikers:self.socialActivity.activityId];
+    self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] init] autorelease];
+    self.activityDetailsProxy.delegate = self;
+    [self.activityDetailsProxy getLikers:self.socialActivity.activityId];
 }
 
 #pragma mark - SocialProxyDelegate 
@@ -201,6 +204,7 @@
     SocialActivityDetailsProxy *activityProxy = (SocialActivityDetailsProxy *)proxy;
     self.socialActivity.likedByIdentities = activityProxy.socialActivityDetails.likedByIdentities;
     [self updateLikerViews];
+    self.activityDetailsProxy = nil;
 }
 
 - (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {

@@ -12,7 +12,7 @@
 
 @class SocialActivity;
 
-@interface SocialActivityDetailsProxy : SocialProxy <RKObjectLoaderDelegate> {
+@interface SocialActivityDetailsProxy : SocialProxy {
     
     NSString*   _activityIdentity;
     int         _numberOfComments;

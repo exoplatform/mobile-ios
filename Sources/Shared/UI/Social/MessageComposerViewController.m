@@ -36,6 +36,8 @@
 
 @property (nonatomic, readonly) UIButton *attPhotoButton;
 @property(nonatomic, readonly) UIImageView *photoFrameView;
+@property (nonatomic, retain) SocialPostActivity *postActivityProxy;
+@property (nonatomic, retain) SocialPostCommentProxy *postCommentProxy;
 
 - (UIImagePickerController *)getPicker:(UIImagePickerControllerSourceType)sourceType;
 
@@ -51,6 +53,8 @@
 @synthesize attPhotoView = _attPhotoView;
 @synthesize photoFrameView = _photoFrameView;
 @synthesize attPhotoButton = _attPhotoButton;
+@synthesize postActivityProxy = _postActivityProxy;
+@synthesize postCommentProxy = _postCommentProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,6 +66,8 @@
 
 - (void)dealloc
 {    
+    [_postActivityProxy release];
+    [_postCommentProxy release];
     [_strActivityID release];
     [_tblvActivityDetail release];
     [btnSend release];
@@ -311,7 +317,6 @@
                 [dateFormatter release];
 
                 fileAttachName = [NSString stringWithFormat:@"MobileImage_%@.png", fileAttachName];
-                NSLog(@"%@", fileAttachName);
                 
                 fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
                 
@@ -334,18 +339,18 @@
         {
             [self displayHudLoader];
             
-            SocialPostActivity* actPost = [[SocialPostActivity alloc] init];
-            actPost.delegate = self;
+            self.postActivityProxy = [[[SocialPostActivity alloc] init] autorelease];
+            self.postActivityProxy.delegate = self;
 
-            [actPost postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName];            
+            [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName];            
         }
         else
         {
             [self displayHudLoader];
             
-            SocialPostCommentProxy *actComment = [[SocialPostCommentProxy alloc] init];
-            actComment.delegate = self;
-            [actComment postComment:_txtvMessageComposer.text forActivity:_strActivityID];
+            self.postCommentProxy = [[[SocialPostCommentProxy alloc] init] autorelease];
+            self.postCommentProxy.delegate = self;
+            [self.postCommentProxy postComment:_txtvMessageComposer.text forActivity:_strActivityID];
             
         }
         

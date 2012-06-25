@@ -447,7 +447,6 @@
 		7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */; };
 		7CE656BA1394D2D200F088A1 /* ChatWindowViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */; };
 		7CE656BB1394D2D200F088A1 /* MessengerViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */; };
-		7CE839AD1344848100FF5B7A /* ContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE839AC1344848100FF5B7A /* ContainerCell.m */; };
 		7CE85B0713C46D0C00A219EB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0413C46D0C00A219EB /* MobileCoreServices.framework */; };
 		7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0513C46D0C00A219EB /* CoreData.framework */; };
 		7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */; };
@@ -1438,8 +1437,6 @@
 		7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController_iPhone.m; sourceTree = "<group>"; };
 		7CE656B81394D2D200F088A1 /* MessengerViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController_iPhone.h; sourceTree = "<group>"; };
 		7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController_iPhone.m; sourceTree = "<group>"; };
-		7CE839AB1344848100FF5B7A /* ContainerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerCell.h; sourceTree = "<group>"; };
-		7CE839AC1344848100FF5B7A /* ContainerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerCell.m; sourceTree = "<group>"; };
 		7CE85B0413C46D0C00A219EB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7CE85B0513C46D0C00A219EB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1691,6 +1688,7 @@
 		A6B61A8C15774B07006C3526 /* AvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarView.m; sourceTree = "<group>"; };
 		A6B8CF1F1580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailAdvancedInfoController_iPad.h; path = Social/ActivityDetailAdvancedInfoController_iPad.h; sourceTree = "<group>"; };
 		A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailAdvancedInfoController_iPad.m; path = Social/ActivityDetailAdvancedInfoController_iPad.m; sourceTree = "<group>"; };
+		A6BD12CD158B4A4D00D6A058 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		A6C929F9157E1DE9002E160B /* activity-detail-background-pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-background-pattern.png"; sourceTree = "<group>"; };
 		A6D1EDF2158841A100C05F03 /* activity-info-container-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-info-container-bg.png"; sourceTree = "<group>"; };
 		A6D1EDF4158846AD00C05F03 /* activity-detail-comment-textfield-bg-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-comment-textfield-bg-selected.png"; sourceTree = "<group>"; };
@@ -3544,6 +3542,7 @@
 		894734A01337139800B0AD11 /* 3-part */ = {
 			isa = PBXGroup;
 			children = (
+				A6BD12CD158B4A4D00D6A058 /* Logging.h */,
 				A69B0481157F0DCF003DDFDF /* JMTabView */,
 				8958E65514A9B7D300580EEB /* TouchXml */,
 				46FE84D91469893A000F1FE0 /* UIImage+Resize */,
@@ -3732,8 +3731,6 @@
 				46ADAC6614028054005ABA79 /* Authenticate */,
 				462B62A413DEF76C0050FCBC /* ServerConfiguration */,
 				46371C8D13C5973000CD2035 /* Social */,
-				7CE839AB1344848100FF5B7A /* ContainerCell.h */,
-				7CE839AC1344848100FF5B7A /* ContainerCell.m */,
 			);
 			path = Proxies;
 			sourceTree = "<group>";
@@ -4618,7 +4615,6 @@
 				7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */,
 				7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */,
 				7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */,
-				7CE839AD1344848100FF5B7A /* ContainerCell.m in Sources */,
 				7CF562A1135590350008DD21 /* TouchView.m in Sources */,
 				7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */,
 				7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */,
@@ -4972,6 +4968,14 @@
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=0",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -5051,6 +5055,14 @@
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=0",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -5235,6 +5247,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=1",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=0",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -5263,6 +5283,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOGGING_ENABLED=0",
+					"LOGGING_INCLUDE_CODE_LOCATION=1",
+					"LOGGING_LEVEL_DEBUG=1",
+					"LOGGING_LEVEL_ERROR=1",
+					"LOGGING_LEVEL_INFO=1",
+					"LOGGING_LEVEL_TRACE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

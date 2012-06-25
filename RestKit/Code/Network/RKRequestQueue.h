@@ -105,6 +105,20 @@
 - (void)cancelRequestsWithDelegate:(NSObject<RKRequestDelegate>*)delegate;
 
 /**
+ Aborts all requests with a given delegate by nullifying the delegate
+ reference and canceling the request.
+ 
+ Useful when an object that acts as the delegate for one or more requests
+ is being deallocated and all outstanding requests should be canceled
+ without generating any further delegate callbacks.
+ 
+ @param delegate The object acting as the delegate for all enqueued requests that are to be aborted.
+ @Note 
+    Added by Le Thanh Quang on June 20, 2012 to fix https://jira.exoplatform.org/browse/MOB-1151
+ */
+- (void)abortRequestsWithDelegate:(id<RKRequestDelegate>)delegate;
+
+/**
  * Cancel all active or pending requests.
  */
 - (void)cancelAllRequests;

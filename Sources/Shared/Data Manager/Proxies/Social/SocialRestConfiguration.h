@@ -16,7 +16,6 @@
 @interface SocialRestConfiguration : NSObject {
     
     NSString* _domainName;
-    NSString* _domainNameWithCredentials;
     NSString* _portalContainerName;
     NSString* _restContextName;
     NSString* _restVersion;
@@ -27,7 +26,6 @@
 
 
 @property (retain, nonatomic) NSString* domainName;
-@property (retain, nonatomic) NSString* domainNameWithCredentials;
 @property (retain, nonatomic) NSString* portalContainerName;
 @property (retain, nonatomic) NSString* restContextName;
 @property (retain, nonatomic) NSString* restVersion;
@@ -38,6 +36,8 @@
 
 + (SocialRestConfiguration*)sharedInstance;
 - (void)updateDatas; //Method can be used to update datas after authentication
+- (void)initRKOjectManagerIfNotExist;
+- (NSString *)createBaseUrl;
 
 
 @end

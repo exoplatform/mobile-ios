@@ -51,9 +51,7 @@
     
     int fHeight = theSize.height + nbBR * 10;
 
-    
-    NSLog(@"text :%@   height:%d",text,fHeight);
-        
+            
     return fHeight;
 }
 
@@ -85,9 +83,7 @@
     
     int fHeight = theSize.height + nbBR * 10;
     
-    
-    NSLog(@"text :%@   height:%d",text,fHeight);
-    
+        
     return fHeight;
 }
 

@@ -16,17 +16,9 @@
 
 #pragma mark - helper methods
 
-//Helper to create the base URL
-- (NSString *)createBaseURL {
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    
-    return [NSString stringWithFormat:@"%@/%@/private/api/social/%@/%@/activity/", socialConfig.domainNameWithCredentials, socialConfig.restContextName,socialConfig.restVersion, socialConfig.portalContainerName]; 
-}
-
 - (void) configureObjectManagerForActivity:(NSString *)activityIdentity {
     
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     manager.serializationMIMEType = RKMIMETypeJSON;
     
     
@@ -43,11 +35,14 @@
     
 }
 
+- (NSString *)createPathWithActivityId:(NSString *)activityId {
+    return [NSString stringWithFormat:@"%@/activity/%@/like.json", [super createPath], activityId]; 
+}
+
 
 -(void)likeActivity:(NSString *)activity {
     
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     manager.serializationMIMEType = RKMIMETypeJSON;
     
     
@@ -55,7 +50,7 @@
     manager.router = router;
     
     // Send POST requests for instances of SocialLike to '/like.json'
-    [router routeClass:[SocialLike class] toResourcePath:[NSString stringWithFormat:@"%@/like.json",activity] forMethod:RKRequestMethodPOST];
+    [router routeClass:[SocialLike class] toResourcePath:[self createPathWithActivityId:activity] forMethod:RKRequestMethodPOST];
     
     
     // Let's create an SocialActivityDetails
@@ -83,8 +78,7 @@
 
 -(void)dislikeActivity:(NSString *)activity {
     
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
-    [RKObjectManager setSharedManager:manager];
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     manager.serializationMIMEType = RKMIMETypeJSON;
     
     
@@ -92,7 +86,7 @@
     manager.router = router;
     
     // Send POST requests for instances of SocialLike to '/like.json'
-    [router routeClass:[SocialLike class] toResourcePath:[NSString stringWithFormat:@"%@/like.json",activity] forMethod:RKRequestMethodDELETE];
+    [router routeClass:[SocialLike class] toResourcePath:[self createPathWithActivityId:activity] forMethod:RKRequestMethodDELETE];
     
     
     // Let's create an SocialActivityDetails
@@ -124,7 +118,7 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    LogDebug(@"Loaded payload: %@", [response bodyAsString]);
 }
 
 

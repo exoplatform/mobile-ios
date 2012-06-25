@@ -40,7 +40,7 @@
 @property (retain, nonatomic) IBOutlet UIButton* btnComment;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
 @property (retain, nonatomic) SocialActivity*  socialActivytyStream;
-@property (retain, nonatomic) ActivityStreamBrowseViewController* delegate;
+@property (assign, nonatomic) ActivityStreamBrowseViewController* delegate;
 
 @property (retain, nonatomic) IBOutlet UIImageView*  imgType;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;

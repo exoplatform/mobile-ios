@@ -92,7 +92,7 @@
     ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
     
     
-    [_revealView.contentView setRootView:_activityStreamBrowseViewController_iPhone.view];
+    [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
     [_activityStreamBrowseViewController_iPhone release];
     [_revealView revealSidebar:NO];
     
@@ -409,8 +409,8 @@
                 ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
                 
                 
-                [_revealView.contentView setRootView:_activityStreamBrowseViewController_iPhone.view];
-                //[_activityStreamBrowseViewController_iPhone release];
+                [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
+                [_activityStreamBrowseViewController_iPhone release];
                 [_revealView revealSidebar:NO];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
