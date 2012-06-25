@@ -20,6 +20,8 @@
 #import "ActivityDetailAdvancedInfoController_iPad.h"
 #import "CustomBackgroundView.h"
 
+#define kMinimumAdvancedInfoCellHeight 400.0
+
 @implementation ActivityDetailViewController_iPad
 
 @synthesize extraActionsCell = _extraActionsCell;
@@ -202,7 +204,7 @@
     } else if (indexPath.section == 2) {
         float height = self.tblvActivityDetail.bounds.size.height - self.extraActionsCell.frame.origin.y - self.extraActionsCell.frame.size.height;
         CGRect frame = CGRectZero;
-        frame.size.height = height;
+        frame.size.height = height > kMinimumAdvancedInfoCellHeight ? height : kMinimumAdvancedInfoCellHeight;
         frame.size.width = self.tblvActivityDetail.bounds.size.width;
         self.advancedInfoController.view.frame = frame;
         [self.advancedInfoController updateSubViews];
