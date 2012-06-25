@@ -149,7 +149,6 @@
         _htmlLinkDescription.frame = rect;
     }
     
-    NSLog(@"%@", NSStringFromCGRect(_htmlLinkMessage.frame));
     _htmlLinkMessage.html = [NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
     
     [_htmlLinkMessage sizeToFit];
@@ -187,7 +186,6 @@
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     rect.size.height = heigthForTTLabel;
     _htmlLinkDescription.frame = rect;
-    NSLog(@"%@", NSStringFromCGRect(rect));
     
     rect = _htmlLinkMessage.frame;
     rect.origin.y = _htmlLinkDescription.frame.size.height + _htmlLinkDescription.frame.origin.y;
@@ -204,7 +202,6 @@
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     rect.size.height = heigthForTTLabel;
     _htmlLinkMessage.frame = rect;
-    NSLog(@"%@", NSStringFromCGRect(rect));
     
 }
 

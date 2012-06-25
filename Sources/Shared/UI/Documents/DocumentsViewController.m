@@ -257,7 +257,6 @@ static NSString *PRIVATE_GROUP = @"Private";
         rect.size.height += cell.frame.size.height;
     }
     self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
-    NSLog(@"view :%@ HUD:%@", NSStringFromCGRect(self.view.frame),NSStringFromCGPoint(self.hudLoadWaiting.center));
 }
 
 

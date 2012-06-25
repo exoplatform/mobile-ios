@@ -317,7 +317,6 @@
                 [dateFormatter release];
 
                 fileAttachName = [NSString stringWithFormat:@"MobileImage_%@.png", fileAttachName];
-                NSLog(@"%@", fileAttachName);
                 
                 fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
                 
