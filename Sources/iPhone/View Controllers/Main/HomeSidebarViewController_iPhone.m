@@ -29,7 +29,7 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorRef startColor = [UIColor colorWithRed:40./255 green:40./255 blue:40./255 alpha:1].CGColor;
-    CGColorRef endColor = [UIColor colorWithRed:23./255 green:23./255 blue:23./255 alpha:1].CGColor;
+    CGColorRef endColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1].CGColor;
 
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -333,35 +333,32 @@
            
             cell.clipsToBounds = YES;
             
-            UIView* bgView = [[UIView alloc] init];
-            bgView.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.25f];
-            cell.selectedBackgroundView = bgView;
-            [bgView release];
+            UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"]];
+            cell.selectedBackgroundView = imageView;
+            [imageView release];
             
             cell.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
             cell.textLabel.shadowOffset = CGSizeMake(0, 2);
             cell.textLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
             
             cell.imageView.contentMode = UIViewContentModeCenter;
-            
-            UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 1)];
-            topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
-            [cell.textLabel.superview addSubview:topLine];
+            cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]] autorelease];
+            // Generate the top and bottom separator lines
+            UIImage *lineImg = [UIImage imageNamed:@"HomeFeatureSeparator.png"];
+            lineImg = [lineImg stretchableImageWithLeftCapWidth:(lineImg.size.width / 2) topCapHeight:0];
+            UIImageView *topLine = [[UIImageView alloc] initWithImage:lineImg];
+            topLine.frame = CGRectMake(0, 0, cell.bounds.size.width, lineImg.size.height);
+            topLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+            [cell addSubview:topLine];
             [topLine release];
             
-            UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, kMenuTableViewCellHeight, 270, 1)];
-            bottomLine.backgroundColor = [UIColor colorWithWhite:0 alpha:0.25];
-            [cell.textLabel.superview addSubview:bottomLine];
+            UIImageView *bottomLine = [[UIImageView alloc] initWithImage:lineImg];
+            bottomLine.frame = CGRectMake(0, cell.bounds.size.height - lineImg.size.height, cell.bounds.size.width, lineImg.size.height);
+            bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+            [cell addSubview:bottomLine];
             [bottomLine release];
             
-            cell.textLabel.textColor = [UIColor whiteColor]; 
-
-
-            /*
-            cell.textLabel.textColor = [UIColor whiteColor]; 
-            cell.textLabel.shadowColor = [UIColor darkGrayColor];
-            cell.textLabel.shadowOffset = CGSizeMake(0.,1.);
-            cell.textLabel.font = [UIFont systemFontOfSize:16.];*/
+            cell.textLabel.textColor = [UIColor whiteColor];
         }
         cell.textLabel.text = Localize([(id <JTTableViewCellModal>)object title]);
         

@@ -49,15 +49,15 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3    
     //Configuring the Navigation Bar for iOS 5
     if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar-FullWidth.png"] 
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavbarBg.png"] 
                                            forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
 
-        [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:113./255]];
+        [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:40./255 green:90./255 blue:132./255 alpha:1.]];
     }
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
-        [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar-FullWidth.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-        [[UIToolbar appearance] setTintColor:[UIColor darkGrayColor]];
+        [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"NavbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+        [[UIToolbar appearance] setTintColor:[UIColor colorWithRed:40./255 green:90./255 blue:132./255 alpha:1.]];
     }
     
 #endif
