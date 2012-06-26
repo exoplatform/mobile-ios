@@ -68,9 +68,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         // Custom initialization
         // Create a custom logout button    
         UIButton *tmpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *barButtonImage = [UIImage imageNamed:@"SocialPostActivityButton.png"];
+        UIImage *barButtonImage = [UIImage imageNamed:@"NavbarComposeButton.png"];
         tmpButton.frame = CGRectMake(0, 0, barButtonImage.size.width, barButtonImage.size.height);
-        [tmpButton setImage:[UIImage imageNamed:@"SocialPostActivityButton.png"] forState:UIControlStateNormal];
+        [tmpButton setImage:barButtonImage forState:UIControlStateNormal];
         [tmpButton addTarget:self action:@selector(onBbtnPost) forControlEvents: UIControlEventTouchUpInside];
         _bbtnPost = [[UIBarButtonItem alloc] initWithCustomView:tmpButton];
         [self.navigationItem setRightBarButtonItem:_bbtnPost];

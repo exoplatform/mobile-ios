@@ -20,7 +20,37 @@
 #import "AppDelegate_iPhone.h"
 
 
+@interface UIFooterView : UIView 
 
+@end
+
+@implementation UIFooterView 
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorRef startColor = [UIColor colorWithRed:40./255 green:40./255 blue:40./255 alpha:1].CGColor;
+    CGColorRef endColor = [UIColor colorWithRed:23./255 green:23./255 blue:23./255 alpha:1].CGColor;
+
+    // draw gradient 
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGFloat locations[] = { 0.0, 1.0 };
+    NSArray *colors = [NSArray arrayWithObjects:(id) startColor, (id) endColor, nil];
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    
+    CGContextSaveGState(context);
+    CGContextAddRect(context, rect);
+    CGContextClip(context);
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CGContextRestoreGState(context);
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorSpace);
+    
+}
+
+@end
 
 
 @interface HomeSidebarViewController_iPhone (UITableView) <JTTableViewDatasourceDelegate>
@@ -73,6 +103,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // set background color 
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"activity-detail-background-pattern.png"]];
     
     // Create a default style RevealSidebarView
     _revealView = [[JTRevealSidebarView defaultViewWithFrame:self.view.bounds] retain];
@@ -81,7 +113,7 @@
     _revealView.contentView.navigationBar.delegate = self;
     // Setup a view to be the rootView of the sidebar
     UITableView *tableView = [[[UITableView alloc] initWithFrame:_revealView.sidebarView.bounds] autorelease];
-    tableView.backgroundColor = [UIColor colorWithRed:84./255 green:84./255 blue:84./255 alpha:1.];
+    tableView.backgroundColor = [UIColor clearColor];
     tableView.delegate   = _datasource;
     tableView.dataSource = _datasource;
     tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -100,7 +132,7 @@
     
     //Add the footer of the View
     //For Settings and Logout
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width,60)];
+    UIFooterView *footer = [[UIFooterView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width,60)];
     
     // Create the button
     UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -146,9 +178,9 @@
     
     // Create a custom Menu button    
     UIButton *tmpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *barButtonImage = [UIImage imageNamed:@"MenuButton.png"];
+    UIImage *barButtonImage = [UIImage imageNamed:@"NavbarMenuButton.png"];
     tmpButton.frame = CGRectMake(0, 0, barButtonImage.size.width, barButtonImage.size.height);
-    [tmpButton setImage:[UIImage imageNamed:@"MenuButton.png"] forState:UIControlStateNormal];
+    [tmpButton setImage:barButtonImage forState:UIControlStateNormal];
     [tmpButton addTarget:self action:@selector(toggleButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
     _revealView.contentView.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:tmpButton] autorelease];
     

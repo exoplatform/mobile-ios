@@ -169,8 +169,6 @@
 		461BFAB4141F4D14009844F6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461BFAB3141F4D14009844F6 /* SettingsViewController.m */; };
 		462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A613DEF7970050FCBC /* PlatformServerVersion.m */; };
 		462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */; };
-		462E95B013F150D00027E093 /* SocialPostActivityButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 462E95AF13F150D00027E093 /* SocialPostActivityButton@2x.png */; };
-		462E95B213F150DB0027E093 /* SocialPostActivityButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 462E95B113F150DB0027E093 /* SocialPostActivityButton.png */; };
 		4633E6E7141BB094002A47F4 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6E6141BB094002A47F4 /* GadgetDisplayViewController.m */; };
 		4633E6EA141BB0FC002A47F4 /* DocumentDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6E9141BB0FB002A47F4 /* DocumentDisplayViewController.m */; };
 		4633E6EE141BB919002A47F4 /* DocumentDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6EC141BB918002A47F4 /* DocumentDisplayViewController_iPad.m */; };
@@ -248,8 +246,6 @@
 		46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A08CD91447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib */; };
 		46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */; };
 		46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */; };
-		46A0C14D1474065600258901 /* MenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A0C14C1474065600258901 /* MenuButton@2x.png */; };
-		46A0C14F1474066200258901 /* MenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A0C14E1474066200258901 /* MenuButton.png */; };
 		46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2739613D7FBAE00A5C29D /* NSString+MD5.m */; };
 		46A3E5DD13F01AB900F606B4 /* SocialYourCommentButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */; };
 		46A3E5DF13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */; };
@@ -594,6 +590,10 @@
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
 		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
 		A61E3FE0152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */; };
+		A622268A15996526003FAC28 /* NavbarComposeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A622268915996526003FAC28 /* NavbarComposeButton.png */; };
+		A622268C15996539003FAC28 /* NavbarComposeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A622268B15996539003FAC28 /* NavbarComposeButton@2x.png */; };
+		A622269A15996D99003FAC28 /* NavbarMenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A622269915996D99003FAC28 /* NavbarMenuButton.png */; };
+		A622269C15996DB1003FAC28 /* NavbarMenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A622269B15996DB1003FAC28 /* NavbarMenuButton@2x.png */; };
 		A62433DC1578D2DA007D67CC /* ActivityAvatarShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = A62433DB1578D2DA007D67CC /* ActivityAvatarShadow.png */; };
 		A62433DE1578D2E2007D67CC /* ActivityAvatarShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A62433DD1578D2E2007D67CC /* ActivityAvatarShadow@2x.png */; };
 		A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */; };
@@ -1059,8 +1059,6 @@
 		462B62A613DEF7970050FCBC /* PlatformServerVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformServerVersion.m; sourceTree = "<group>"; };
 		462B62A813DEF9B20050FCBC /* PlatformVersionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformVersionProxy.h; sourceTree = "<group>"; };
 		462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformVersionProxy.m; sourceTree = "<group>"; };
-		462E95AF13F150D00027E093 /* SocialPostActivityButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialPostActivityButton@2x.png"; sourceTree = "<group>"; };
-		462E95B113F150DB0027E093 /* SocialPostActivityButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialPostActivityButton.png; sourceTree = "<group>"; };
 		4633E6E5141BB094002A47F4 /* GadgetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GadgetDisplayViewController.h; path = Dashboard/GadgetDisplayViewController.h; sourceTree = "<group>"; };
 		4633E6E6141BB094002A47F4 /* GadgetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GadgetDisplayViewController.m; path = Dashboard/GadgetDisplayViewController.m; sourceTree = "<group>"; };
 		4633E6E8141BB0FB002A47F4 /* DocumentDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentDisplayViewController.h; path = Documents/DocumentDisplayViewController.h; sourceTree = "<group>"; };
@@ -1165,8 +1163,6 @@
 		46A08CDC144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDisplayViewController_iPad.h; path = Social/ActivityLinkDisplayViewController_iPad.h; sourceTree = "<group>"; };
 		46A08CDD144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkDisplayViewController_iPad.m; path = Social/ActivityLinkDisplayViewController_iPad.m; sourceTree = "<group>"; };
 		46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDisplayViewController_iPad.xib; path = Social/ActivityLinkDisplayViewController_iPad.xib; sourceTree = "<group>"; };
-		46A0C14C1474065600258901 /* MenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuButton@2x.png"; path = "Home/@2x/MenuButton@2x.png"; sourceTree = "<group>"; };
-		46A0C14E1474066200258901 /* MenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuButton.png; path = "Home/@1x/MenuButton.png"; sourceTree = "<group>"; };
 		46A2739513D7FBAE00A5C29D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		46A2739613D7FBAE00A5C29D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialYourCommentButtonBg.png; sourceTree = "<group>"; };
@@ -1644,6 +1640,10 @@
 		A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePreviewViewController.xib; path = Social/ImagePreviewViewController.xib; sourceTree = "<group>"; };
 		A61E3FDE152AD7A500110F4B /* UIToolbar+eXoCustomIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+eXoCustomIphone.h"; sourceTree = "<group>"; };
 		A61E3FDF152AD7A500110F4B /* UIToolbar+eXoCustomIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+eXoCustomIphone.m"; sourceTree = "<group>"; };
+		A622268915996526003FAC28 /* NavbarComposeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavbarComposeButton.png; sourceTree = "<group>"; };
+		A622268B15996539003FAC28 /* NavbarComposeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavbarComposeButton@2x.png"; sourceTree = "<group>"; };
+		A622269915996D99003FAC28 /* NavbarMenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavbarMenuButton.png; sourceTree = "<group>"; };
+		A622269B15996DB1003FAC28 /* NavbarMenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavbarMenuButton@2x.png"; sourceTree = "<group>"; };
 		A62433DB1578D2DA007D67CC /* ActivityAvatarShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ActivityAvatarShadow.png; sourceTree = "<group>"; };
 		A62433DD1578D2E2007D67CC /* ActivityAvatarShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityAvatarShadow@2x.png"; sourceTree = "<group>"; };
 		A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SocialAttachedImageBorder.png; path = Resources/Images/Shared/Social/SocialAttachedImageBorder.png; sourceTree = SOURCE_ROOT; };
@@ -2443,9 +2443,9 @@
 		46A03AA213A8E0EF00E71AF9 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				A622268915996526003FAC28 /* NavbarComposeButton.png */,
 				A62433DB1578D2DA007D67CC /* ActivityAvatarShadow.png */,
 				A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */,
-				462E95B113F150DB0027E093 /* SocialPostActivityButton.png */,
 				46A3E5DC13F01AB900F606B4 /* SocialYourCommentButtonBg.png */,
 				46A03AA413A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png */,
 				46A03AA513A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png */,
@@ -2473,9 +2473,9 @@
 		46A03AAC13A8E0EF00E71AF9 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				A622268B15996539003FAC28 /* NavbarComposeButton@2x.png */,
 				A62433DD1578D2E2007D67CC /* ActivityAvatarShadow@2x.png */,
 				A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */,
-				462E95AF13F150D00027E093 /* SocialPostActivityButton@2x.png */,
 				46A3E5DE13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png */,
 				46A03AAE13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg@2x.png */,
 				46A03AAF13A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg@2x.png */,
@@ -2617,7 +2617,7 @@
 		46BF6E471379640600D1E1A5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
-				46A0C14E1474066200258901 /* MenuButton.png */,
+				A622269915996D99003FAC28 /* NavbarMenuButton.png */,
 				46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */,
 				46CAF7491379907B0017C959 /* HomeActivityStreamsIconiPhone.png */,
 				46CAF74B1379907B0017C959 /* HomeChatIconiPhone.png */,
@@ -2632,7 +2632,7 @@
 		46BF6E481379641000D1E1A5 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
-				46A0C14C1474065600258901 /* MenuButton@2x.png */,
+				A622269B15996DB1003FAC28 /* NavbarMenuButton@2x.png */,
 				461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */,
 				46CAF76113799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png */,
 				46CAF755137990880017C959 /* HomeActivityStreamsIconiPhone@2x.png */,
@@ -4370,8 +4370,6 @@
 				46A9375213F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png in Resources */,
 				46A9375413F03656009D41DA /* SocialActivityDetailDislikeButton.png in Resources */,
 				7C3DF00613F1212700640BDB /* PhotoActionViewController.xib in Resources */,
-				462E95B013F150D00027E093 /* SocialPostActivityButton@2x.png in Resources */,
-				462E95B213F150DB0027E093 /* SocialPostActivityButton.png in Resources */,
 				46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */,
 				89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */,
 				46C805DF1410D96600E7263F /* FileFolderActionsViewController_iPhone.xib in Resources */,
@@ -4498,8 +4496,6 @@
 				1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */,
 				890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */,
 				1FD91DC1147109A200DBDED0 /* ActivityAnswerTableViewCell.xib in Resources */,
-				46A0C14D1474065600258901 /* MenuButton@2x.png in Resources */,
-				46A0C14F1474066200258901 /* MenuButton.png in Resources */,
 				8989B06614735C9700EEBD7C /* gadgetPlaceHolder.png in Resources */,
 				8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */,
 				1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */,
@@ -4534,6 +4530,10 @@
 				A6D1EDF91588877100C05F03 /* bgGlobal.png in Resources */,
 				A6E34F7D1589C921005BE94F /* activity-detail-info-container-bg.png in Resources */,
 				A68FDEA01589E01800ED1C8D /* activity-detail-action-comment.png in Resources */,
+				A622268A15996526003FAC28 /* NavbarComposeButton.png in Resources */,
+				A622268C15996539003FAC28 /* NavbarComposeButton@2x.png in Resources */,
+				A622269A15996D99003FAC28 /* NavbarMenuButton.png in Resources */,
+				A622269C15996DB1003FAC28 /* NavbarMenuButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
