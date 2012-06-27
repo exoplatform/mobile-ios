@@ -15,7 +15,7 @@ const float kPatternHeight = 120.;
 
 void DrawPatternCellCallback(void *info, CGContextRef context)
 {
-    UIImage *image = [UIImage imageNamed:@"activity-detail-background-pattern"];
+    UIImage *image = [UIImage imageNamed:@"HomeMenuBg.png"];
     CGContextDrawImage(context, CGRectMake(0, 0, kPatternWidth, kPatternHeight), image.CGImage);
     
 }

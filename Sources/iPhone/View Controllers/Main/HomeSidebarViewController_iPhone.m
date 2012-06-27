@@ -104,7 +104,7 @@
 {
     [super viewDidLoad];
     // set background color 
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"activity-detail-background-pattern.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]];
     
     // Create a default style RevealSidebarView
     _revealView = [[JTRevealSidebarView defaultViewWithFrame:self.view.bounds] retain];
