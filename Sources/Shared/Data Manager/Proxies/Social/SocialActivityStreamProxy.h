@@ -16,18 +16,14 @@
 
 @interface SocialActivityStreamProxy : SocialProxy {
     
-    SocialUserProfile*          _socialUserProfile;
-    
     NSArray*                    _arrActivityStreams;
     
     BOOL                        _isUpdateRequest;
 }
 
-@property (nonatomic, retain) SocialUserProfile* socialUserProfile;
 @property (nonatomic, retain) NSArray* arrActivityStreams;
 @property (readonly) BOOL isUpdateRequest;
 
-- (id)initWithSocialUserProfile:(SocialUserProfile*)aSocialUserProfile;
 - (void)getActivityStreams;
 - (void)updateActivityStreamSinceActivity:(SocialActivity *)activity;
 

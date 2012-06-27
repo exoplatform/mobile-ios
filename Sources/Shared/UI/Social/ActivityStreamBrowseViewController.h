@@ -46,7 +46,7 @@
         
 }
 
-@property (nonatomic, retain) SocialUserProfile *socialUserProfile;
+//@property (nonatomic, retain) SocialUserProfile *socialUserProfile;
 - (NSString *)getIconForType:(NSString *)type;
 - (void)emptyState;
 - (void)startLoadingActivityStream;

@@ -18,7 +18,9 @@
 #import "SettingsViewController.h"
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
+#import "UserProfileViewController.h"
 
+#define kUserProfileViewHeight 70.0
 
 @interface UIFooterView : UIView 
 
@@ -52,8 +54,8 @@
 
 @end
 
-
 @interface HomeSidebarViewController_iPhone (UITableView) <JTTableViewDatasourceDelegate>
+
 @end
 
 
@@ -61,10 +63,14 @@
 
 @synthesize contentNavigationItem;
 @synthesize contentNavigationBar;
+@synthesize tableView = _tableView;
+@synthesize userProfileViewController = _userProfileViewController;
 
 - (void)dealloc {
     [_viewControllers release];
     [_revealView release];
+    [_tableView release];
+    [_userProfileViewController release];
     [super dealloc];
 }
 
@@ -111,15 +117,33 @@
 
     // This hack to handle the navigation actions.
     _revealView.contentView.navigationBar.delegate = self;
-    // Setup a view to be the rootView of the sidebar
-    UITableView *tableView = [[[UITableView alloc] initWithFrame:_revealView.sidebarView.bounds] autorelease];
-    tableView.backgroundColor = [UIColor clearColor];
-    tableView.delegate   = _datasource;
-    tableView.dataSource = _datasource;
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [_revealView.sidebarView pushView:tableView animated:NO];
     
+    CGRect sidebarBounds = _revealView.sidebarView.bounds;
+    UIView *containerView = [[[UIView alloc] initWithFrame:sidebarBounds] autorelease];
+    containerView.backgroundColor = [UIColor clearColor];
+
+    [_revealView.sidebarView pushView:containerView animated:NO];
+    
+    CGRect profileFrame = CGRectZero;
+    profileFrame.size.width = sidebarBounds.size.width;
+    profileFrame.size.height = kUserProfileViewHeight;
+    if (!_userProfileViewController) {
+        _userProfileViewController = [[UserProfileViewController alloc] initWithFrame:profileFrame];
+    }
+    _userProfileViewController.username = [SocialRestConfiguration sharedInstance].username;
+    [_userProfileViewController startUpdateCurrentUserProfile];
+    [containerView addSubview:_userProfileViewController.view];
+    
+    // Setup a view to be the rootView of the sidebar
+    CGRect tableFrame = CGRectOffset(sidebarBounds, 0, profileFrame.size.height);
+    tableFrame.size.height -= profileFrame.size.height;
+    self.tableView = [[[UITableView alloc] initWithFrame:tableFrame] autorelease];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.delegate   = _datasource;
+    self.tableView.dataSource = _datasource;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [containerView addSubview:self.tableView];
     //Add the ActivityStream as main view
     ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
     
@@ -234,13 +258,12 @@
 #pragma - Settings Delegate Methods
 
 -(void)doneWithSettings {
-    UITableView *tableView = (UITableView *)[_revealView.sidebarView topView];
     // Reload menu view by setting changes
-    [tableView reloadData];
+    [self.tableView reloadData];
     // Jump to last selected menu item
-    [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     // Update title for content view by selected menu item
-    _revealView.contentView.navigationItem.title = [[[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0]] textLabel] text];
+    _revealView.contentView.navigationItem.title = [[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0]] textLabel] text];
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -486,8 +509,8 @@
 }
 
 - (void)datasource:(JTTableViewDatasource *)datasource sectionsDidChanged:(NSArray *)oldSections {
-    [(UITableView *)[_revealView.sidebarView topView] reloadData];
-    [(UITableView *)[_revealView.sidebarView topView] selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
 
 @end
