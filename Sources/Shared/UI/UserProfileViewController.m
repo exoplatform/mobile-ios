@@ -10,6 +10,7 @@
 #import "SocialUserProfileProxy.h"
 #import "SocialRestConfiguration.h"
 #import "AvatarView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface UserProfileView : UIView 
 
@@ -21,7 +22,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorRef startColor = [UIColor colorWithRed:40./255 green:40./255 blue:40./255 alpha:1].CGColor;
     CGColorRef endColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1].CGColor;
-    
+
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
@@ -79,8 +80,9 @@
 
 - (void)loadView {
     self.view = [[[UserProfileView alloc] initWithFrame:_viewFrame] autorelease];
+    self.view.layer.borderWidth = 1.0;
+    self.view.layer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeFeatureSeparator.png"]].CGColor;
     CGRect viewBounds = self.view.bounds;
-    
     float avatarHeight = viewBounds.size.height - kUserProfileViewTopBottomMargin * 2;
     self.avatarView = [[[AvatarView alloc] init] autorelease];
     self.avatarView.frame = CGRectMake(kUserProfileViewLefRightMargin, kUserProfileViewTopBottomMargin, avatarHeight, avatarHeight);
