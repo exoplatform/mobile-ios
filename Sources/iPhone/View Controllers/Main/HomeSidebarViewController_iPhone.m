@@ -139,13 +139,13 @@
     tableFrame.size.height -= profileFrame.size.height;
     self.tableView = [[[UITableView alloc] initWithFrame:tableFrame] autorelease];
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.layer.borderColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeFeatureSeparator.png"]].CGColor;
-    self.tableView.layer.borderWidth = 1.0;
+//    self.tableView.layer.borderColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeFeatureSeparator.png"]].CGColor;
+//    self.tableView.layer.borderWidth = 1.0;
+    self.tableView.rowHeight = [UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"].size.height;
     self.tableView.delegate   = _datasource;
     self.tableView.dataSource = _datasource;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeFeatureSeparator.png"]];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [containerView addSubview:self.tableView];
     //Add the ActivityStream as main view
     ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
@@ -354,6 +354,7 @@
         static NSString *cellIdentifier = @"titleCell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
            
@@ -363,7 +364,7 @@
             bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"]];
             cell.selectedBackgroundView = bgView;
             [bgView release];
-            
+            cell.backgroundColor = [UIColor clearColor];
             cell.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
             cell.textLabel.shadowOffset = CGSizeMake(0, 2);
             cell.textLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
@@ -371,7 +372,30 @@
             cell.imageView.contentMode = UIViewContentModeCenter;
             cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]] autorelease];            
             cell.textLabel.textColor = [UIColor whiteColor];
+            
+            // add bottom line
+            UIImage *lineImg = [UIImage imageNamed:@"HomeFeatureSeparator.png"];
+            lineImg = [lineImg stretchableImageWithLeftCapWidth:(lineImg.size.width / 2) topCapHeight:0];
+            UIImageView *bottomLine = [[UIImageView alloc] initWithImage:lineImg];
+            bottomLine.frame = CGRectMake(0, cell.bounds.size.height - lineImg.size.height, cell.bounds.size.width, lineImg.size.height);
+            bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+            [cell addSubview:bottomLine];
+            [bottomLine release];
         }
+        if ([[datasource.sections objectAtIndex:0] indexOfObject:object] == 0) {
+            // Generate the top separator line for the first cell 
+            UIImage *lineImg = [UIImage imageNamed:@"HomeFeatureSeparator.png"];
+            lineImg = [lineImg stretchableImageWithLeftCapWidth:(lineImg.size.width / 2) topCapHeight:0];
+            UIImageView *topLine = [[UIImageView alloc] initWithImage:lineImg];
+            topLine.tag = 999;
+            topLine.frame = CGRectMake(0, 0, cell.bounds.size.width, lineImg.size.height);
+            topLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+            [cell addSubview:topLine];
+            [topLine release];
+        } else {
+            [[cell viewWithTag:999] removeFromSuperview];
+        }
+        
         cell.textLabel.text = Localize([(id <JTTableViewCellModal>)object title]);
         
         
