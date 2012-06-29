@@ -606,11 +606,11 @@
 		A65F2816152C0C6F003E6C94 /* SocialAttachedImageBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2815152C0C6F003E6C94 /* SocialAttachedImageBorder.png */; };
 		A65F2818152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */; };
 		A661D86D157EFEB800CCF870 /* CustomBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = A661D86C157EFEB800CCF870 /* CustomBackgroundView.m */; };
+		A666915B159D9EE7006B9B2C /* NavbarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A666915A159D9EE7006B9B2C /* NavbarBackButton.png */; };
+		A666915D159D9EF9006B9B2C /* NavbarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A666915C159D9EF9006B9B2C /* NavbarBackButton@2x.png */; };
+		A68A31D9159D9DB1003A50E8 /* NavbarActionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A68A31D8159D9DB1003A50E8 /* NavbarActionButton.png */; };
+		A68A31DB159D9DC5003A50E8 /* NavbarActionButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A68A31DA159D9DC5003A50E8 /* NavbarActionButton@2x.png */; };
 		A68FDEA01589E01800ED1C8D /* activity-detail-action-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = A68FDE9F1589E01800ED1C8D /* activity-detail-action-comment.png */; };
-		A69A3407159C4AB100F31BC5 /* NavbarActionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A69A3406159C4AB100F31BC5 /* NavbarActionButton.png */; };
-		A69A3409159C4C2400F31BC5 /* NavbarActionButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A69A3408159C4C2400F31BC5 /* NavbarActionButton@2x.png */; };
-		A69A340B159C4C3A00F31BC5 /* NavbarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A69A340A159C4C3A00F31BC5 /* NavbarBackButton.png */; };
-		A69A340D159C4C4700F31BC5 /* NavbarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A69A340C159C4C4700F31BC5 /* NavbarBackButton@2x.png */; };
 		A69B049D157F0F1C003DDFDF /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B0496157F0F1C003DDFDF /* UIColor+Hex.m */; };
 		A69B049E157F0F1C003DDFDF /* UIView+InnerShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B0498157F0F1C003DDFDF /* UIView+InnerShadow.m */; };
 		A69B049F157F0F1C003DDFDF /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B049A157F0F1C003DDFDF /* UIView+Positioning.m */; };
@@ -1668,11 +1668,11 @@
 		A65F2817152C0C88003E6C94 /* SocialAttachedImageBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SocialAttachedImageBorder@2x.png"; path = "Resources/Images/Shared/Social/SocialAttachedImageBorder@2x.png"; sourceTree = SOURCE_ROOT; };
 		A661D86B157EFEB800CCF870 /* CustomBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBackgroundView.h; sourceTree = "<group>"; };
 		A661D86C157EFEB800CCF870 /* CustomBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBackgroundView.m; sourceTree = "<group>"; };
+		A666915A159D9EE7006B9B2C /* NavbarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavbarBackButton.png; sourceTree = "<group>"; };
+		A666915C159D9EF9006B9B2C /* NavbarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavbarBackButton@2x.png"; sourceTree = "<group>"; };
+		A68A31D8159D9DB1003A50E8 /* NavbarActionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavbarActionButton.png; sourceTree = "<group>"; };
+		A68A31DA159D9DC5003A50E8 /* NavbarActionButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavbarActionButton@2x.png"; sourceTree = "<group>"; };
 		A68FDE9F1589E01800ED1C8D /* activity-detail-action-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-detail-action-comment.png"; sourceTree = "<group>"; };
-		A69A3406159C4AB100F31BC5 /* NavbarActionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavbarActionButton.png; sourceTree = "<group>"; };
-		A69A3408159C4C2400F31BC5 /* NavbarActionButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavbarActionButton@2x.png"; sourceTree = "<group>"; };
-		A69A340A159C4C3A00F31BC5 /* NavbarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavbarBackButton.png; sourceTree = "<group>"; };
-		A69A340C159C4C4700F31BC5 /* NavbarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavbarBackButton@2x.png"; sourceTree = "<group>"; };
 		A69B0495157F0F1C003DDFDF /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		A69B0496157F0F1C003DDFDF /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		A69B0497157F0F1C003DDFDF /* UIView+InnerShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InnerShadow.h"; sourceTree = "<group>"; };
@@ -2589,8 +2589,8 @@
 		46BF6E401379639300D1E1A5 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
-				A69A340C159C4C4700F31BC5 /* NavbarBackButton@2x.png */,
-				A69A3408159C4C2400F31BC5 /* NavbarActionButton@2x.png */,
+				A666915C159D9EF9006B9B2C /* NavbarBackButton@2x.png */,
+				A68A31DA159D9DC5003A50E8 /* NavbarActionButton@2x.png */,
 				A65EAFBC159B024400E598E0 /* HomeMenuFeatureSelectedBg@2x.png */,
 				A62226B11599C8EB003FAC28 /* HomeFeatureAccessory@2x.png */,
 				A62226AD1599C146003FAC28 /* HomeFeatureSeparator@2x.png */,
@@ -2613,8 +2613,8 @@
 		46BF6E411379639800D1E1A5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
-				A69A340A159C4C3A00F31BC5 /* NavbarBackButton.png */,
-				A69A3406159C4AB100F31BC5 /* NavbarActionButton.png */,
+				A666915A159D9EE7006B9B2C /* NavbarBackButton.png */,
+				A68A31D8159D9DB1003A50E8 /* NavbarActionButton.png */,
 				A65EAFBA159B022300E598E0 /* HomeMenuFeatureSelectedBg.png */,
 				A62226AF1599C8E3003FAC28 /* HomeFeatureAccessory.png */,
 				A62226AB1599C13F003FAC28 /* HomeFeatureSeparator.png */,
@@ -4571,10 +4571,10 @@
 				A65EAFB9159AFBDF00E598E0 /* HomeMenuBg@2x.png in Resources */,
 				A65EAFBB159B022300E598E0 /* HomeMenuFeatureSelectedBg.png in Resources */,
 				A65EAFBD159B024400E598E0 /* HomeMenuFeatureSelectedBg@2x.png in Resources */,
-				A69A3407159C4AB100F31BC5 /* NavbarActionButton.png in Resources */,
-				A69A3409159C4C2400F31BC5 /* NavbarActionButton@2x.png in Resources */,
-				A69A340B159C4C3A00F31BC5 /* NavbarBackButton.png in Resources */,
-				A69A340D159C4C4700F31BC5 /* NavbarBackButton@2x.png in Resources */,
+				A68A31D9159D9DB1003A50E8 /* NavbarActionButton.png in Resources */,
+				A68A31DB159D9DC5003A50E8 /* NavbarActionButton@2x.png in Resources */,
+				A666915B159D9EE7006B9B2C /* NavbarBackButton.png in Resources */,
+				A666915D159D9EF9006B9B2C /* NavbarBackButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
