@@ -16,7 +16,7 @@
 {
     UIImage *image = [UIImage imageNamed:@"NavbarBg.png"];
     [image drawAsPatternInRect:rect];
-    [self setTintColor:[UIColor colorWithRed:40./255 green:90./255 blue:132./255 alpha:1.]];
+    [self setTintColor:[UIColor colorWithRed:70.6/255 green:119./255 blue:154./255 alpha:1.]];
 }
 
 

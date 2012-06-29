@@ -370,7 +370,6 @@
             cell.textLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
             
             cell.imageView.contentMode = UIViewContentModeCenter;
-            cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]] autorelease];            
             cell.textLabel.textColor = [UIColor whiteColor];
             
             // add bottom line
@@ -397,7 +396,12 @@
         }
         
         cell.textLabel.text = Localize([(id <JTTableViewCellModal>)object title]);
-        
+        // set accessory view for cells except Setting cell
+        if ([(JTTableViewCellModalSimpleType *)object type] == eXoSettings) {
+            cell.accessoryView = nil;
+        } else {
+            cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]] autorelease];
+        }
         
         switch ([(JTTableViewCellModalSimpleType *)object type]) {
             case eXoActivityStream:
@@ -414,6 +418,7 @@
                 break;
             case eXoSettings:
             {
+                
                 cell.imageView.image = [UIImage imageNamed:@"HomeSettingsIconiPhone.png"];
 
             }

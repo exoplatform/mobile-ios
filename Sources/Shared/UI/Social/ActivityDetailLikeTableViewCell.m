@@ -183,6 +183,7 @@
         [imageView setImageURL:[NSURL URLWithString:user.avatarUrl]];
         i++;
     }
+    [self setNeedsLayout];
 }
 
 // create image for the text "..."
