@@ -12,11 +12,15 @@
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
 #import "UserProfileViewController.h"
+#import "ActivityStreamBrowseViewController_iPad.h"
+#import "DocumentsViewController_iPad.h"
+#import "DashboardViewController_iPad.h"
+
 
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
 
-#define kHeightForFooter 60
+#define kHeightForFooter 60.0
 #define kMenuViewHeaderHeight 70.0
 
 #define kMenuCellMargin 5.0
@@ -139,6 +143,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 
@@ -172,15 +177,13 @@
 -(void)showSettings {
 
     // Settings
-    if (_iPadSettingViewController == nil)
-    {
-        _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
-        _iPadSettingViewController.settingsDelegate = self;
-    }    
-    [_iPadSettingViewController startRetrieve];
+    SettingsViewController_iPad *iPadSettingViewController = [[[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    iPadSettingViewController.settingsDelegate = self;
+   
+    [iPadSettingViewController startRetrieve];
     if (_modalNavigationSettingViewController == nil) 
     {
-        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:iPadSettingViewController];
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
         
@@ -268,41 +271,38 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger index = indexPath.row;
+    _intIndex = indexPath.row;
+    NSInteger index = _intIndex;
     
     if(!_isCompatibleWithSocial){
         index += 1;
     }
     switch (index) {
-        case 0:
+        case 0: {
             //Activity Stream
-            _activityViewController = [[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil];
+            ActivityStreamBrowseViewController_iPad *activityViewController = [[[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil] autorelease];
             
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityViewController 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
-            
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:activityViewController invokeByController:self isStackStartView:TRUE];
             
             break;
-        case 1:
+        }
+        case 1: {
             // files
-            _documentsViewController = [[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil];
-            _documentsViewController.isRoot = YES;
-            _documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_documentsViewController 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
+            DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
+            documentsViewController.isRoot = YES;
+            documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];
             
             break;
-        case 2:
+        }
+        case 2: {
             // dashboard
-            _dashboardViewController_iPad = [[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil];
+            DashboardViewController_iPad *dashboardViewController_iPad = [[[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil] autorelease];
             
             
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_dashboardViewController_iPad 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:dashboardViewController_iPad invokeByController:self isStackStartView:TRUE];
             break;
+        }
         default:
             break;
     }
@@ -328,10 +328,6 @@
 	[_cellContents release];
     [_tableView release];
     [_userProfileViewController release];
-    [_documentsViewController release];
-    [_activityViewController release];
-    [_dashboardViewController_iPad release];
-    [_iPadSettingViewController release];
     [_modalNavigationSettingViewController release];
     
     [super dealloc];
@@ -348,8 +344,10 @@
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
     //[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
     [_tableView reloadData];
-    [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
+    [_tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
 }
 
 
