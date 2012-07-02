@@ -341,9 +341,6 @@
 		46E91D971393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D931393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png */; };
 		46E91D981393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D941393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png */; };
 		46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D951393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png */; };
-		46E96E5C138370A30085DCB6 /* glow.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E96E3B138370A30085DCB6 /* glow.png */; };
-		46E96E5D138370A30085DCB6 /* MenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E3D138370A30085DCB6 /* MenuHeaderView.m */; };
-		46E96E5E138370A30085DCB6 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E3F138370A30085DCB6 /* MenuTableViewCell.m */; };
 		46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E41138370A30085DCB6 /* MenuViewController.m */; };
 		46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E43138370A30085DCB6 /* MenuWatermarkFooter.m */; };
 		46E96E61138370A30085DCB6 /* NSDate+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E45138370A30085DCB6 /* NSDate+Formatting.m */; };
@@ -1298,11 +1295,6 @@
 		46E91D931393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellMiddleSelected@2x.png"; path = "Global/@2x/CustomBackgroundForCellMiddleSelected@2x.png"; sourceTree = "<group>"; };
 		46E91D941393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellSingleSelected@2x.png"; path = "Global/@2x/CustomBackgroundForCellSingleSelected@2x.png"; sourceTree = "<group>"; };
 		46E91D951393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomBackgroundForCellTopSelected@2x.png"; path = "Global/@2x/CustomBackgroundForCellTopSelected@2x.png"; sourceTree = "<group>"; };
-		46E96E3B138370A30085DCB6 /* glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glow.png; sourceTree = "<group>"; };
-		46E96E3C138370A30085DCB6 /* MenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuHeaderView.h; sourceTree = "<group>"; };
-		46E96E3D138370A30085DCB6 /* MenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuHeaderView.m; sourceTree = "<group>"; };
-		46E96E3E138370A30085DCB6 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
-		46E96E3F138370A30085DCB6 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
 		46E96E40138370A30085DCB6 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		46E96E41138370A30085DCB6 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		46E96E42138370A30085DCB6 /* MenuWatermarkFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuWatermarkFooter.h; sourceTree = "<group>"; };
@@ -2870,11 +2862,6 @@
 		46E96E30138370A30085DCB6 /* CascadeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				46E96E3B138370A30085DCB6 /* glow.png */,
-				46E96E3C138370A30085DCB6 /* MenuHeaderView.h */,
-				46E96E3D138370A30085DCB6 /* MenuHeaderView.m */,
-				46E96E3E138370A30085DCB6 /* MenuTableViewCell.h */,
-				46E96E3F138370A30085DCB6 /* MenuTableViewCell.m */,
 				46E96E40138370A30085DCB6 /* MenuViewController.h */,
 				46E96E41138370A30085DCB6 /* MenuViewController.m */,
 				46E96E42138370A30085DCB6 /* MenuWatermarkFooter.h */,
@@ -4307,7 +4294,6 @@
 				7C2234BE13810E07006F847E /* CustomBackgroundForCellMiddle@2x.png in Resources */,
 				7C2234BF13810E07006F847E /* CustomBackgroundForCellSingle@2x.png in Resources */,
 				7C2234C013810E07006F847E /* CustomBackgroundForCellTop@2x.png in Resources */,
-				46E96E5C138370A30085DCB6 /* glow.png in Resources */,
 				461931541385529D00EEB664 /* HomeBubbleBackground@2x.png in Resources */,
 				46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */,
 				46DA10AA1386CE98008DA976 /* ActivityStreamIpadIcon.png in Resources */,
@@ -4672,8 +4658,6 @@
 				46616C83137C750500D53D3D /* SSDrawingUtilities.m in Sources */,
 				46616C84137C750500D53D3D /* UIView+SSToolkitAdditions.m in Sources */,
 				46616C87137C754900D53D3D /* UIImage+SSToolkitAdditions.m in Sources */,
-				46E96E5D138370A30085DCB6 /* MenuHeaderView.m in Sources */,
-				46E96E5E138370A30085DCB6 /* MenuTableViewCell.m in Sources */,
 				46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */,
 				46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */,
 				46E96E61138370A30085DCB6 /* NSDate+Formatting.m in Sources */,

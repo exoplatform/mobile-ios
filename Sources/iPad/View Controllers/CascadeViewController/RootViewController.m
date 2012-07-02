@@ -83,11 +83,6 @@
 	leftMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
 	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height) isCompatibleWithSocial: _isCompatibleWithSocial];
-    
-    
-	[menuViewController.view setBackgroundColor:[UIColor clearColor]];
-	[menuViewController viewWillAppear:FALSE];
-	[menuViewController viewDidAppear:FALSE];
 	[leftMenuView addSubview:menuViewController.view];
 	
 	rightSlideView = [[UIView alloc] initWithFrame:CGRectMake(leftMenuView.frame.size.width, 0, rootView.frame.size.width - leftMenuView.frame.size.width, rootView.frame.size.height)];
@@ -206,6 +201,7 @@
 
 
 - (void)dealloc {
+    
     [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
