@@ -14,16 +14,14 @@
 
 @implementation SocialActivityStreamProxy
 
-@synthesize socialUserProfile = _socialUserProfile;
 @synthesize arrActivityStreams = _arrActivityStreams;
 @synthesize isUpdateRequest = _isUpdateRequest;
 
 
-- (id)initWithSocialUserProfile:(SocialUserProfile*)aSocialUserProfile
+- (id)init
 {
     if ((self = [super init])) 
     { 
-        _socialUserProfile = [aSocialUserProfile retain];
         _isUpdateRequest = NO;
     } 
     return self;
@@ -32,7 +30,6 @@
 - (void)dealloc 
 {
     delegate = nil;
-    [_socialUserProfile release];
     [_arrActivityStreams release];
     [super dealloc];
 }

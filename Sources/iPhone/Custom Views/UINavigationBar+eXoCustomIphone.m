@@ -14,12 +14,9 @@
 
 - (void) drawRect:(CGRect)rect
 {
-        UIImage *image = [UIImage imageNamed:@"NavBarIphone.png"];
-        [image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [self setTintColor:[UIColor colorWithRed:112./255 
-                                                                          green:112./255 
-                                                                           blue:112./255 
-                                                                          alpha:1.]];
+    UIImage *image = [UIImage imageNamed:@"NavbarBg.png"];
+    [image drawAsPatternInRect:rect];
+    [self setTintColor:[UIColor colorWithRed:70.6/255 green:119./255 blue:154./255 alpha:1.]];
 }
 
 

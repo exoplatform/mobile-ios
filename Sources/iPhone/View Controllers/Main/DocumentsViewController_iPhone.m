@@ -112,7 +112,7 @@
     [super contentDirectoryIsRetrieved];
     // not the root level
     if(!isRoot && self.actionVisibleOnFolder) {
-        UIImage *image = [UIImage imageNamed:@"DocumentNavigationBarActionButton.png"];
+        UIImage *image = [UIImage imageNamed:@"NavbarDocumentActionButton.png"];
         UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
         [bt setImage:image forState:UIControlStateNormal];
         bt.frame = CGRectMake(0, 0, image.size.width, image.size.height);

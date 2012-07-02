@@ -19,6 +19,7 @@ typedef enum {
 
 @class JTRevealSidebarView;
 @class JTTableViewDatasource;
+@class UserProfileViewController;
 
 @interface HomeSidebarViewController_iPhone : UIViewController <JTNavigationBarDelegate, SettingsDelegateProcotol> {
     JTRevealSidebarView *_revealView;
@@ -29,6 +30,8 @@ typedef enum {
 
 @property (nonatomic, readonly) UINavigationItem *contentNavigationItem;
 @property (nonatomic, readonly) JTNavigationBar *contentNavigationBar;
+@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, readonly) UserProfileViewController *userProfileViewController;
 
 // Navigation management 
 - (void)setContentNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated;

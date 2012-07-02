@@ -46,7 +46,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 @property (nonatomic, retain) SocialActivityStreamProxy *socialActivityStreamProxy;
 @property (nonatomic, retain) SocialRestProxy *socialRestProxy;
-@property (nonatomic, retain) SocialUserProfileProxy *userProfileProxy;
 @property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
 
 - (void)loadImagesForOnscreenRows;
@@ -55,10 +54,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 @implementation ActivityStreamBrowseViewController
 
-@synthesize socialUserProfile = _socialUserProfile;
+//@synthesize socialUserProfile = _socialUserProfile;
 @synthesize socialActivityStreamProxy = _socialActivityStreamProxy;
 @synthesize socialRestProxy = _socialRestProxy;
-@synthesize userProfileProxy = _userProfileProxy;
 @synthesize likeActivityProxy = _likeActivityProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -68,9 +66,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         // Custom initialization
         // Create a custom logout button    
         UIButton *tmpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *barButtonImage = [UIImage imageNamed:@"SocialPostActivityButton.png"];
+        UIImage *barButtonImage = [UIImage imageNamed:@"NavbarComposeButton.png"];
         tmpButton.frame = CGRectMake(0, 0, barButtonImage.size.width, barButtonImage.size.height);
-        [tmpButton setImage:[UIImage imageNamed:@"SocialPostActivityButton.png"] forState:UIControlStateNormal];
+        [tmpButton setImage:barButtonImage forState:UIControlStateNormal];
         [tmpButton addTarget:self action:@selector(onBbtnPost) forControlEvents: UIControlEventTouchUpInside];
         _bbtnPost = [[UIBarButtonItem alloc] initWithCustomView:tmpButton];
         [self.navigationItem setRightBarButtonItem:_bbtnPost];
@@ -119,7 +117,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     // release proxies
     [_socialActivityStreamProxy release];
     [_socialRestProxy release];
-    [_userProfileProxy release];
     [_likeActivityProxy release];
     
     [super dealloc];
@@ -653,16 +650,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     //If proxy is king of class SocialUserProfileProxy, then we can start the request for retrieve SocialActivityStream
     if(proxy == self.socialRestProxy){
-        self.userProfileProxy = [[[SocialUserProfileProxy alloc] init] autorelease];
-        self.userProfileProxy.delegate = self;
-        [self.userProfileProxy getUserProfileFromUsername:[SocialRestConfiguration sharedInstance].username];
-    } else if (proxy == self.userProfileProxy) {
-        self.socialUserProfile = [(SocialUserProfileProxy *)proxy userProfile];
-        self.socialActivityStreamProxy = [[[SocialActivityStreamProxy alloc] initWithSocialUserProfile:self.socialUserProfile] autorelease];
+        self.socialActivityStreamProxy = [[[SocialActivityStreamProxy alloc] init] autorelease];
         self.socialActivityStreamProxy.delegate = self;
         [self.socialActivityStreamProxy getActivityStreams];
-    }
-    else if (proxy == self.socialActivityStreamProxy) 
+    } else if (proxy == self.socialActivityStreamProxy) 
     {
         //We have to check if the request for ActivityStream was an update request or not
         if (self.socialActivityStreamProxy.isUpdateRequest) {                
