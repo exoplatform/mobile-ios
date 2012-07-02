@@ -42,6 +42,37 @@
 
 @end
 
+@interface FooterView : UIView
+
+@end
+
+@implementation FooterView
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorRef startColor = [UIColor colorWithRed:40./255 green:40./255 blue:40./255 alpha:1].CGColor;
+    CGColorRef endColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1].CGColor;
+    
+    // draw gradient 
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGFloat locations[] = { 0.0, 1.0 };
+    NSArray *colors = [NSArray arrayWithObjects:(id) startColor, (id) endColor, nil];
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    
+    CGContextSaveGState(context);
+    CGContextAddRect(context, rect);
+    CGContextClip(context);
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CGContextRestoreGState(context);
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorSpace);
+}
+
+@end
+
 @interface MenuViewController () {
     CGRect _viewFrame;
 }
@@ -92,13 +123,14 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.rowHeight = [UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"].size.height;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:_tableView];
 
     //Add the footer of the View
     //For Settings and Logout
-    _footer = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height - kHeightForFooter,self.view.frame.size.width, kHeightForFooter)];
-    [self.view addSubview:_footer];
-    
+    UIView *footer = [[[FooterView alloc] initWithFrame:CGRectMake(0,viewBounds.size.height - kHeightForFooter,viewBounds.size.width, kHeightForFooter)] autorelease];
+    footer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:footer];
     // Create the button
     UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonLogout.frame = CGRectMake(15, 10, 39, 42);
@@ -114,7 +146,7 @@
     
     [buttonLogout addSubview:imageView];
     
-    [_footer addSubview:buttonLogout];
+    [footer addSubview:buttonLogout];
     
     
     // Create the button
@@ -131,12 +163,12 @@
     [buttonSettings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     
     
-    [_footer addSubview:buttonSettings];
+    [footer addSubview:buttonSettings];
     
     
     UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 1)];
     topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
-    [_footer addSubview:topLine];
+    [footer addSubview:topLine];
     [topLine release];
     
 }
@@ -157,12 +189,14 @@
     [super viewDidAppear:animated];
 }
 
-- (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    _footer.frame = CGRectMake(0,self.view.frame.size.height-kHeightForFooter,self.view.frame.size.width,kHeightForFooter);
-}
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
 	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.userProfileViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

@@ -24,7 +24,6 @@
 
     int                             _intIndex;
     
-    UIView*                         _footer; 
     BOOL                            _isCompatibleWithSocial;
     
 }
@@ -33,6 +32,5 @@
 @property (nonatomic, retain) UserProfileViewController *userProfileViewController;
 
 - (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
-- (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 @end
