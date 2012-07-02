@@ -67,7 +67,7 @@
 //#define ACTIVITY_DETAIL_UPDATING_TITLE      @"Updating activity detail"
 
 
-#define EXO_BACKGROUND_COLOR                [UIColor colorWithRed:220./255 green:220./255 blue:220./255  alpha:1.]
+#define EXO_BACKGROUND_COLOR                [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]]
 
 #define DOCUMENT_JCR_PATH_REST              @"/rest/private/jcr/repository/collaboration"
 #define DOCUMENT_DRIVE_PATH_REST            @"/portal/rest/managedocument/getDrives?driveType="
