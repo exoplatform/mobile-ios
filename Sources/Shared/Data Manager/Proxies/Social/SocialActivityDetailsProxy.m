@@ -74,7 +74,7 @@
 //Helper to add Parameters to the request
 //Conform to the RestKit Documentation
 - (NSDictionary*)createParamDictionary {
-    NSMutableDictionary *dicForParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dicForParams = [[[NSMutableDictionary alloc] init] autorelease];
     
     BOOL hasParams = NO;
     

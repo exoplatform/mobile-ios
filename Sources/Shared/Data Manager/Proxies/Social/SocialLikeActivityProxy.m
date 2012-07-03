@@ -54,7 +54,7 @@
     
     
     // Let's create an SocialActivityDetails
-    SocialLike* likeToPost = [[SocialLike alloc] init];
+    SocialLike* likeToPost = [[[SocialLike alloc] init] autorelease];
     likeToPost.like = YES;
     
     //Register our mappings with the provider FOR SERIALIZATION
@@ -90,7 +90,7 @@
     
     
     // Let's create an SocialActivityDetails
-    SocialLike* likeToPost = [[SocialLike alloc] init];
+    SocialLike* likeToPost = [[[SocialLike alloc] init] autorelease];
     likeToPost.like = NO;
     
     //Register our mappings with the provider FOR SERIALIZATION

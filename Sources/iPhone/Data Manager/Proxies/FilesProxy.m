@@ -163,7 +163,7 @@
     NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     
     // Initialize the array of files
-    NSMutableArray *folderArray = [[NSMutableArray alloc] init];
+    NSMutableArray *folderArray = [[[NSMutableArray alloc] init] autorelease];
 	
     // Create URL for getting data
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", domain, DOCUMENT_FILE_PATH_REST, file.driveName, DOCUMENT_WORKSPACE_NAME, file.workspaceName, DOCUMENT_CURRENT_FOLDER, file.currentFolder];

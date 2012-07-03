@@ -24,9 +24,16 @@
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
 
+@interface AuthenticateViewController ()
+
+@property (nonatomic, retain) PlatformVersionProxy *plfVersionProxy;
+
+@end
+
 @implementation AuthenticateViewController
 @synthesize scrollView = _scrollView;
 @synthesize activeField = _activeField;
+@synthesize plfVersionProxy = _plfVersionProxy;
 
 @synthesize hud = _hud;
 
@@ -460,8 +467,8 @@
 	[userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
     
     //The login has successed we need to check the version of Platform
-    PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
-    [plfVersionProxy retrievePlatformInformations];
+    self.plfVersionProxy = [[[PlatformVersionProxy alloc] initWithDelegate:self] autorelease];
+    [self.plfVersionProxy retrievePlatformInformations];
     
 }
 
@@ -535,6 +542,7 @@
 - (void)dealloc 
 {
     [self unRegisterForKeyboardNotifications];
+    [_plfVersionProxy release];
 	[_txtfUsername release];
 	[_txtfPassword release];
     [_hud release];

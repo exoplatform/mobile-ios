@@ -101,7 +101,8 @@
 
 
 - (void) dealloc {
-    _delegate = nil;
+    _delegate = nil;    
+    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [super dealloc];
 }
 

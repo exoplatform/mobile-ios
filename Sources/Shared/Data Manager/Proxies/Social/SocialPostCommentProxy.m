@@ -83,6 +83,7 @@
         
     // Send a POST to /articles to create the remote instance
     [manager postObject:commentToPost mapResponseWith:socialCommentMapping delegate:self];  
+    [commentToPost release];
 }
 
 

@@ -47,6 +47,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @property (nonatomic, retain) SocialActivityStreamProxy *socialActivityStreamProxy;
 @property (nonatomic, retain) SocialRestProxy *socialRestProxy;
 @property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
+@property (nonatomic, retain) NSMutableArray *arrayOfSectionsTitle;
+@property (nonatomic, retain) NSMutableDictionary *sortedActivities;
+@property (nonatomic, retain) NSDate *dateOfLastUpdate;
+@property (nonatomic, retain) NSMutableArray *arrActivityStreams;
 
 - (void)loadImagesForOnscreenRows;
 @end
@@ -58,6 +62,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @synthesize socialActivityStreamProxy = _socialActivityStreamProxy;
 @synthesize socialRestProxy = _socialRestProxy;
 @synthesize likeActivityProxy = _likeActivityProxy;
+@synthesize arrayOfSectionsTitle = _arrayOfSectionsTitle;
+@synthesize sortedActivities = _sortedActivities;
+@synthesize dateOfLastUpdate = _dateOfLastUpdate;
+@synthesize arrActivityStreams = _arrActivityStreams;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,16 +85,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         _bIsPostClicked = NO;
         _activityAction = 0;
         
-        _arrActivityStreams = [[NSMutableArray alloc] init];
-        _arrayOfType = [[NSMutableArray alloc] init]; 
+        self.arrActivityStreams = [[[NSMutableArray alloc] init] autorelease];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    
-    _tblvActivityStream = nil ;
+    _tblvActivityStream = nil;
     
     [_arrayOfSectionsTitle release];
     _arrayOfSectionsTitle = nil;
@@ -191,7 +197,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 	}
     
     //Set the last update date at now 
-    _dateOfLastUpdate = [[NSDate date]retain];
+    self.dateOfLastUpdate = [NSDate date];
     
     //Load all activities of the user
     [self startLoadingActivityStream];
@@ -237,14 +243,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)sortActivities 
 {
-    _arrayOfSectionsTitle = [[NSMutableArray alloc] init];
+    self.arrayOfSectionsTitle = [[[NSMutableArray alloc] init] autorelease];
     
-    _sortedActivities =[[NSMutableDictionary alloc] init];
+    self.sortedActivities = [[[NSMutableDictionary alloc] init] autorelease];
     
     NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"postedTime"
                                                                     ascending:NO] autorelease];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    _arrActivityStreams = [[NSMutableArray alloc] initWithArray:[_arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]];
+    self.arrActivityStreams = [[[NSMutableArray alloc] initWithArray:[self.arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]] autorelease];
     
     //Browse each activities
     for (SocialActivity *a in _arrActivityStreams) {
@@ -262,7 +268,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             // if the array not yet exist, we create it
             if (arrayOfToday == nil) {
                 //create the array
-                arrayOfToday = [[NSMutableArray alloc] init];
+                arrayOfToday = [[[NSMutableArray alloc] init] autorelease];
                 //set it into the dictonary
                 [_sortedActivities setObject:arrayOfToday forKey:@"Today"];
                 
@@ -281,7 +287,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             // if the array not yet exist, we create it
             if (arrayOfCurrentKeys == nil) {
                 //create the array
-                arrayOfCurrentKeys = [[NSMutableArray alloc] init];
+                arrayOfCurrentKeys = [[[NSMutableArray alloc] init] autorelease];
                 //set it into the dictonary
                 [_sortedActivities setObject:arrayOfCurrentKeys forKey:a.postedTimeInWords];
                 
@@ -626,7 +632,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //We have retreive new datas from API
     //Set the last update date at now 
-    _dateOfLastUpdate = [[NSDate date] retain];
+    self.dateOfLastUpdate = [NSDate date];
     
     //Ask the controller to sort activities
     [self sortActivities];
@@ -648,7 +654,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    //If proxy is king of class SocialUserProfileProxy, then we can start the request for retrieve SocialActivityStream
     if(proxy == self.socialRestProxy){
         self.socialActivityStreamProxy = [[[SocialActivityStreamProxy alloc] init] autorelease];
         self.socialActivityStreamProxy.delegate = self;

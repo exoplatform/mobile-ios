@@ -186,9 +186,10 @@
 		return @"ERROR";
 	}
 	
-	_username = [username copy];
-	_password = [password copy];
-	_domainName = [domain copy];
+    
+	self.username = username;
+	self.password = password;
+	self.domainName = domain;
     
 	if ([_domainName hasSuffix:@"/"]) {
 		_domainName = [_domainName substringToIndex:[_domainName length]-1];
@@ -225,7 +226,7 @@
 	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
 	[loginRequest setHTTPShouldHandleCookies:NO];
 	
-	NSDictionary* postDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
+	NSDictionary* postDictionary = [NSMutableDictionary dictionaryWithCapacity:2];
 	[postDictionary setValue:username forKey:@"j_username"];
 	[postDictionary setValue:password forKey:@"j_password"];
 	DataProcess* dataProcess = [DataProcess instance];

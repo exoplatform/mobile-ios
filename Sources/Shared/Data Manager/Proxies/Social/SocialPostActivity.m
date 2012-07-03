@@ -126,7 +126,7 @@
     
     // Send a POST to /articles to create the remote instance
     [manager postObject:activity mapResponseWith:mappingForResponse delegate:self];    
-    
+    [activity release];
 }
 
 

@@ -154,7 +154,7 @@
 - (NSMutableArray*)parseConfiguration:(NSData*)data withBSystemSever:(BOOL)bSystemServer
 {
     NSError* error;
-    NSMutableArray* arrServerList = [[NSMutableArray alloc] init];
+    NSMutableArray* arrServerList = [[[NSMutableArray alloc] init] autorelease];
     CXMLDocument* doc = [[CXMLDocument alloc] initWithData:data options:0 error:&error];
     if(doc != nil) 
     {
@@ -185,13 +185,14 @@
             }
         }
     }
+    [doc release];
     return arrServerList;
 }
 
 //Read the file with name
 - (NSData*)readFileWithName:(NSString*)strFileName
 {    
-    NSData* data = [[NSData alloc] init];
+    NSData* data = nil;
     NSFileManager* fileManager = [NSFileManager defaultManager];
     BOOL bExist = NO;
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

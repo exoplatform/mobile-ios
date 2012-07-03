@@ -24,7 +24,6 @@
 {
     IBOutlet UITableView*                   _tblvActivityStream;
     
-    NSMutableArray*                          _arrayOfType;
     NSMutableArray*                         _arrayOfSectionsTitle;
     NSMutableDictionary*                    _sortedActivities;
     ActivityDetailViewController*           _activityDetailViewController;
@@ -46,7 +45,6 @@
         
 }
 
-//@property (nonatomic, retain) SocialUserProfile *socialUserProfile;
 - (NSString *)getIconForType:(NSString *)type;
 - (void)emptyState;
 - (void)startLoadingActivityStream;

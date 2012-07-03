@@ -20,7 +20,10 @@
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 #define kHeightForSectionHeader 40
 
-@interface DashboardViewController (PrivateMethods)
+@interface DashboardViewController ()
+
+@property (nonatomic, retain) NSDate  *dateOfLastUpdate;
+
 @end
 
 
@@ -28,6 +31,7 @@
 
 
 @synthesize _arrDashboard;
+@synthesize dateOfLastUpdate = _dateOfLastUpdate;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,9 +64,6 @@
     
     [_refreshHeaderView release];
     _refreshHeaderView = nil;
-    
-    [_dateOfLastUpdate release];
-    _dateOfLastUpdate = nil;
     
     [_dashboardProxy release];
     _dashboardProxy = nil;
@@ -103,6 +104,7 @@
     //background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     //_tblGadgets.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     //[background release];
+    _tblGadgets.backgroundView = nil;
     _tblGadgets.backgroundColor = [UIColor clearColor];
         
     //Start the loader
@@ -125,7 +127,7 @@
 	}
     
     //Set the last update date at now 
-    _dateOfLastUpdate = [[NSDate date]retain];
+    self.dateOfLastUpdate = [NSDate date];
 
 }
 
@@ -307,13 +309,13 @@
     
     _reloading = NO;
     //Set the last update date at now 
-    _dateOfLastUpdate = [[NSDate date] retain];
+    self.dateOfLastUpdate = [NSDate date];
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblGadgets];
     
     
     _reloading = NO;
     //Set the last update date at now 
-    _dateOfLastUpdate = [[NSDate date] retain];
+    self.dateOfLastUpdate = [NSDate date];
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblGadgets];
     
     

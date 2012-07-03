@@ -39,7 +39,7 @@
 
 @property (nonatomic, retain) SocialActivityDetailsProxy *activityDetailsProxy;
 @property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
-
+@property (nonatomic, retain) NSDate *dateOfLastUpdate;
 
 @end
 
@@ -52,6 +52,7 @@
 @synthesize refreshHeaderView = _refreshHeaderView;
 @synthesize activityDetailsProxy = _activityDetailsProxy;
 @synthesize likeActivityProxy = _likeActivityProxy;
+@synthesize dateOfLastUpdate = _dateOfLastUpdate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -109,7 +110,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     //Set the last update date at now 
-    _dateOfLastUpdate = [[NSDate date]retain];
+    self.dateOfLastUpdate = [NSDate date];
     
 	[self.view addSubview:self.hudLoadWaiting.view];
     
@@ -362,7 +363,7 @@
     
     //We have retreive new datas from API
     //Set the last update date at now 
-    _dateOfLastUpdate = [[NSDate date] retain];
+    self.dateOfLastUpdate = [NSDate date];
     
     //Hide the loader
     [self hideLoader:YES];
@@ -402,7 +403,7 @@
         
         [self.socialActivity convertToPostedTimeInWords];
         //Set the last update date at now 
-        _dateOfLastUpdate = [[NSDate date]retain];
+        self.dateOfLastUpdate = [NSDate date];
         
         [self finishLoadingAllDataForActivityDetails];
         //SocialLikeActivityProxy
