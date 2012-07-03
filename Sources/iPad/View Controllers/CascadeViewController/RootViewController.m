@@ -76,21 +76,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	rootView = [[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+	UIViewExt *rootView = [[[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] autorelease];
 	rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
 	[rootView setBackgroundColor:[UIColor clearColor]];
 	
-	leftMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)];
+	UIView *leftMenuView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)] autorelease];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
 	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height) isCompatibleWithSocial: _isCompatibleWithSocial];
-    
-    
-	[menuViewController.view setBackgroundColor:[UIColor clearColor]];
-	[menuViewController viewWillAppear:FALSE];
-	[menuViewController viewDidAppear:FALSE];
+    menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
 	[leftMenuView addSubview:menuViewController.view];
 	
-	rightSlideView = [[UIView alloc] initWithFrame:CGRectMake(leftMenuView.frame.size.width, 0, rootView.frame.size.width - leftMenuView.frame.size.width, rootView.frame.size.height)];
+	UIView *rightSlideView = [[[UIView alloc] initWithFrame:CGRectMake(leftMenuView.frame.size.width, 0, rootView.frame.size.width - leftMenuView.frame.size.width, rootView.frame.size.height)] autorelease];
 	rightSlideView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
 	stackScrollViewController = [[StackScrollViewController alloc] init];	
 	[stackScrollViewController.view setFrame:CGRectMake(0, 0, rightSlideView.frame.size.width, rightSlideView.frame.size.height)];
@@ -169,14 +165,13 @@
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	[menuViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	[menuViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];    
 	[stackScrollViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 -(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)durations{
     self.duration = durations;
     self.interfaceOrient = toInterfaceOrientation;
-    [menuViewController setPositionsForOrientation:toInterfaceOrientation];
     //Add the background image when no content
     UIImage *imageBg;
     CGRect frameForBgImage;
@@ -206,8 +201,11 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+    [menuViewController release];
+    [stackScrollViewController release];
+    [imageForBackground release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 @end

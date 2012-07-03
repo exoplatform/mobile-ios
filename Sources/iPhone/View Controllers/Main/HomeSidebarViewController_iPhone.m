@@ -487,12 +487,8 @@
                 break;
             case eXoDashboard:
             {
-                DashboardViewController_iPhone *dashboardController = [[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil];
-                //[self.navigationController pushViewController:dashboardController animated:YES];
-                //[dashboardController release];
-                
-                [_revealView.contentView setRootView:dashboardController.view];
-                //[dashboardController release];
+                DashboardViewController_iPhone *dashboardController = [[[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil] autorelease];
+                [self setRootViewController:dashboardController animated:NO];
                 [_revealView revealSidebar:NO];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
@@ -512,10 +508,9 @@
                 break;
             case eXoDocuments:
             {
-                DocumentsViewController_iPhone *documentsViewController = [[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil];
+                DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
                 documentsViewController.isRoot = YES;
-                [_revealView.contentView setRootView:documentsViewController.view];
-                //[documentsViewController release];
+                [self setRootViewController:documentsViewController animated:NO];
                 [_revealView revealSidebar:NO];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }

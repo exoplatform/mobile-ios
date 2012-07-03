@@ -15,10 +15,6 @@
 @class UIViewExt;
 
 @interface RootViewController : UIViewController {
-	UIViewExt* rootView;
-	UIView* leftMenuView;
-	UIView* rightSlideView;
-	
 	MenuViewController* menuViewController;
 	StackScrollViewController* stackScrollViewController;
     

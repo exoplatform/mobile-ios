@@ -50,7 +50,12 @@
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavbarBg.png"] 
                                            forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
-        [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:113./255 green:113./255 blue:113./255 alpha:113./255]];
+        UIImage *barButton = [UIImage imageNamed:@"NavbarBackButton.png"];
+        barButton = [barButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
+        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        UIImage *barActionButton = [UIImage imageNamed:@"NavbarActionButton.png"];
+        barActionButton = [barActionButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
+        [[UIBarButtonItem appearance] setBackgroundImage:barActionButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
         [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"NavbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
@@ -79,13 +84,7 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
-    
-    if (rootViewController == nil){
-        rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
-    } else {
-        [rootViewController resetComponent];
-    }
-    
+    self.rootViewController = [[[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial] autorelease];
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromLeft
@@ -97,10 +96,7 @@
 }
 
 
--(void)backToAuthenticate{
-
-    //[[ChatProxy sharedInstance] disconnect];
-    
+-(void)backToAuthenticate{    
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];

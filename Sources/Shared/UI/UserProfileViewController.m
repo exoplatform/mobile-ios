@@ -93,13 +93,14 @@
     CGRect labelFrame = CGRectZero;
     labelFrame.origin.x = _avatarView.frame.origin.x + _avatarView.frame.size.width + kUserProfileViewLefRightPadding;
     labelFrame.origin.y = (viewBounds.size.height - labelHeight) / 2;
-    labelFrame.size.width = viewBounds.size.width - labelFrame.origin.x;
+    labelFrame.size.width = viewBounds.size.width - labelFrame.origin.x - kUserProfileViewLefRightMargin;
     labelFrame.size.height = labelHeight;
     self.fullNameLabel = [[[UILabel alloc] initWithFrame:labelFrame] autorelease];
     self.fullNameLabel.font = font;
     self.fullNameLabel.textColor = [UIColor whiteColor];
     self.fullNameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
     self.fullNameLabel.backgroundColor = [UIColor clearColor];
+    self.fullNameLabel.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:self.fullNameLabel];
     
 }

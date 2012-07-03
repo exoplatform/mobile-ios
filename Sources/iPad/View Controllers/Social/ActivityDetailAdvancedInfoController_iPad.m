@@ -111,7 +111,7 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     CGRect squareRect = CGRectOffset(rect, borderWidth, borderWidth);
     squareRect.size.width -= borderWidth * 2;
     squareRect.size.height -= borderWidth * 2;
-    CGContextSetFillColorWithColor(context, [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern-button"]].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern-ipad-tab.png"]].CGColor);
     CGPathRef shapePath = createCommentShapeForRect(squareRect, 8.);
     CGContextAddPath(context, shapePath);
     CGContextFillPath(context);

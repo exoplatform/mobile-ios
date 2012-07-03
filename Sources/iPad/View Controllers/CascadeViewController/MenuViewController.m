@@ -9,18 +9,79 @@
 #import "MenuViewController.h"
 #import "RootViewController.h"
 #import "StackScrollViewController.h"
-#import "MenuTableViewCell.h"
-#import "MenuHeaderView.h"
-#import "MenuWatermarkFooter.h"
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
+#import "UserProfileViewController.h"
+#import "ActivityStreamBrowseViewController_iPad.h"
+#import "DocumentsViewController_iPad.h"
+#import "DashboardViewController_iPad.h"
+
 
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
 
-#define kHeightForFooter 60
+#define kHeightForFooter 60.0
+#define kMenuViewHeaderHeight 70.0
+
+#define kMenuCellMargin 5.0
+@interface MenuTableViewCell : UITableViewCell 
+
+@end
+
+@implementation MenuTableViewCell
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGRect imgViewFrame = CGRectInset(self.imageView.frame, kMenuCellMargin, kMenuCellMargin);
+    imgViewFrame.origin.x -= kMenuCellMargin;
+    self.imageView.frame = imgViewFrame;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    CGRect textFrame = CGRectOffset(self.textLabel.frame, -kMenuCellMargin, 0);
+    self.textLabel.frame = textFrame;
+}
+
+@end
+
+@interface FooterView : UIView
+
+@end
+
+@implementation FooterView
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorRef startColor = [UIColor colorWithRed:40./255 green:40./255 blue:40./255 alpha:1].CGColor;
+    CGColorRef endColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1].CGColor;
+    
+    // draw gradient 
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGFloat locations[] = { 0.0, 1.0 };
+    NSArray *colors = [NSArray arrayWithObjects:(id) startColor, (id) endColor, nil];
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    
+    CGContextSaveGState(context);
+    CGContextAddRect(context, rect);
+    CGContextClip(context);
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CGContextRestoreGState(context);
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorSpace);
+}
+
+@end
+
+@interface MenuViewController () {
+    CGRect _viewFrame;
+}
+
+@end
 
 @implementation MenuViewController
+
+@synthesize userProfileViewController = _userProfileViewController;
 
 @synthesize tableView = _tableView, isCompatibleWithSocial = _isCompatibleWithSocial;
 
@@ -31,113 +92,90 @@
 - (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial {
     self = [super init];
     if (self) {
-		[self.view setFrame:frame];
-        
-        self.view.backgroundColor = [UIColor clearColor]; 
-        
+        _viewFrame = frame;
         _isCompatibleWithSocial = compatibleWithSocial;
-		
-		_menuHeader = [[MenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 70) andTitleImage:[UIImage imageNamed:@"eXoLogoNavigationBariPhone.png"]];
-		_menuHeader.imageView.image = [UIImage imageNamed:@"eXoLogoNavigationBariPhone@2x.png"];
-		//_menuHeader.textLabel.text = @"everywhere, anytime";
-		
 		_cellContents = [[NSMutableArray alloc] init];
-        
-        //TODO Localize this strings
+
         if(_isCompatibleWithSocial){
             [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
         }
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
-//        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
-		
-		_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-		_tableView.delegate = self;
-		_tableView.dataSource = self;
-		_tableView.backgroundColor = [UIColor clearColor];
-		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        
-        MenuWatermarkFooter *footerView = [[[MenuWatermarkFooter alloc] initWithFrame:CGRectMake(0, 0, 200, 80)] autorelease];
-        
-		_tableView.tableFooterView = footerView;
-        
-        [self.view addSubview:_tableView];
-        
-        
-        
-        //Add the footer of the View
-        //For Settings and Logout
-        _footer = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-kHeightForFooter,self.view.frame.size.width,kHeightForFooter)];
-        [self.view addSubview:_footer];
-        
-        // Create the button
-        UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
-        buttonLogout.frame = CGRectMake(15, 10, 39, 42);
-        buttonLogout.showsTouchWhenHighlighted = YES;
-        
-        // Now load the image and create the image view
-        UIImage *image = [UIImage imageNamed:@"Ipad_logout.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
-        [imageView setImage:image];
-        
-        //// Create the label and set its text
-        //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(2,3,39,42)];
-        //[label setText:@"Settings"];
-        
-        // Put it all together
-        //[button addSubview:label];
-        
-        [buttonLogout addTarget:[AppDelegate_iPad instance] action:@selector(backToAuthenticate) forControlEvents:UIControlEventTouchUpInside];
-
-        
-        [buttonLogout addSubview:imageView];
-        
-        [_footer addSubview:buttonLogout];
-        
-        
-        // Create the button
-        UIButton *buttonSettings = [UIButton buttonWithType:UIButtonTypeCustom];
-        buttonSettings.frame = CGRectMake(152, 12, 39, 42);
-        buttonSettings.showsTouchWhenHighlighted = YES;
-        
-        // Now load the image and create the image view
-        UIImage *imageSettings = [UIImage imageNamed:@"Ipad_setting.png"];
-        UIImageView *imageViewSettings = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
-        [imageViewSettings setImage:imageSettings];
-        
-        [buttonSettings addSubview:imageViewSettings];
-        [buttonSettings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-
-        
-        [_footer addSubview:buttonSettings];
-        
-        
-        UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 1)];
-		topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
-		[_footer addSubview:topLine];
-		[topLine release];
-        
-        
-        //Button for settings 
-        //UIButton *roundedButtonType = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-        //[roundedButtonType setImageEdgeInsets:UIEdgeInsetsMake(-10.00, 5.00, -5.00, 0.00)];
-        //[roundedButtonType setImage:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Ipad_logout.png"]] forState:UIControlStateNormal] ;
-        //roundedButtonType.frame = CGRectMake(6, 10, roundedButtonType.frame.size.width,  roundedButtonType.frame.size.height);
-        
-        //[_footer addSubview:roundedButtonType];
-        
-        
-        
-        
-        _intIndex = -1;
-	}
+    }
     return self;
+}
+
+- (void)loadView {
+    UIView *view = [[[UIView alloc] initWithFrame:_viewFrame] autorelease];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]];
+    self.view = view;
+    
+    CGRect viewBounds = self.view.bounds;
+    self.userProfileViewController = [[[UserProfileViewController alloc] initWithFrame:CGRectMake(0, 0, viewBounds.size.width, kMenuViewHeaderHeight)] autorelease];
+    self.userProfileViewController.username = [SocialRestConfiguration sharedInstance].username;
+    [self.userProfileViewController startUpdateCurrentUserProfile];
+    [self.view addSubview:self.userProfileViewController.view];
+    
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kMenuViewHeaderHeight, viewBounds.size.width, viewBounds.size.height - kMenuViewHeaderHeight - kHeightForFooter) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.rowHeight = [UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"].size.height;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [self.view addSubview:_tableView];
+
+    //Add the footer of the View
+    //For Settings and Logout
+    UIView *footer = [[[FooterView alloc] initWithFrame:CGRectMake(0,viewBounds.size.height - kHeightForFooter,viewBounds.size.width, kHeightForFooter)] autorelease];
+    footer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:footer];
+    // Create the button
+    UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonLogout.frame = CGRectMake(15, 10, 39, 42);
+    buttonLogout.showsTouchWhenHighlighted = YES;
+    
+    // Now load the image and create the image view
+    UIImage *image = [UIImage imageNamed:@"Ipad_logout.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
+    [imageView setImage:image];
+    
+    [buttonLogout addTarget:[AppDelegate_iPad instance] action:@selector(backToAuthenticate) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [buttonLogout addSubview:imageView];
+    
+    [footer addSubview:buttonLogout];
+    
+    
+    // Create the button
+    UIButton *buttonSettings = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonSettings.frame = CGRectMake(152, 12, 39, 42);
+    buttonSettings.showsTouchWhenHighlighted = YES;
+    
+    // Now load the image and create the image view
+    UIImage *imageSettings = [UIImage imageNamed:@"Ipad_setting.png"];
+    UIImageView *imageViewSettings = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
+    [imageViewSettings setImage:imageSettings];
+    
+    [buttonSettings addSubview:imageViewSettings];
+    [buttonSettings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [footer addSubview:buttonSettings];
+    
+    
+    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 1)];
+    topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
+    [footer addSubview:topLine];
+    [topLine release];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor clearColor];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 
@@ -151,16 +189,14 @@
     [super viewDidAppear:animated];
 }
 
-- (void)setPositionsForOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    _footer.frame = CGRectMake(0,self.view.frame.size.height-kHeightForFooter,self.view.frame.size.width,kHeightForFooter);
-    if (_messengerViewController) 
-    {
-        [_messengerViewController changeOrientation:interfaceOrientation];
-    }
-}
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
 	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.userProfileViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -175,15 +211,13 @@
 -(void)showSettings {
 
     // Settings
-    if (_iPadSettingViewController == nil)
-    {
-        _iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
-        _iPadSettingViewController.settingsDelegate = self;
-    }    
-    [_iPadSettingViewController startRetrieve];
+    SettingsViewController_iPad *iPadSettingViewController = [[[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    iPadSettingViewController.settingsDelegate = self;
+   
+    [iPadSettingViewController startRetrieve];
     if (_modalNavigationSettingViewController == nil) 
     {
-        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:iPadSettingViewController];
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
         
@@ -215,100 +249,93 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
-    MenuTableViewCell *cell = (MenuTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MenuTableViewCell *cell = (MenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[MenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.clipsToBounds = YES;
+        cell.indentationLevel = 1;
+        cell.backgroundColor = [UIColor clearColor];
+        
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+        cell.textLabel.shadowOffset = CGSizeMake(0, 2);
+        cell.textLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
+        cell.textLabel.textColor = [UIColor whiteColor];
+
+        cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]] autorelease];
+        
+        // selected background view 
+        UIView* bgView = [[UIView alloc] init];
+        bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"]];
+        cell.selectedBackgroundView = bgView;
+        [bgView release];
+        
+        // add bottom line
+        UIImage *lineImg = [UIImage imageNamed:@"HomeFeatureSeparator.png"];
+        lineImg = [lineImg stretchableImageWithLeftCapWidth:(lineImg.size.width / 2) topCapHeight:0];
+        UIImageView *bottomLine = [[UIImageView alloc] initWithImage:lineImg];
+        bottomLine.frame = CGRectMake(0, cell.bounds.size.height - lineImg.size.height, cell.bounds.size.width, lineImg.size.height);
+        bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+        [cell addSubview:bottomLine];
+        [bottomLine release];
+        
+    }
+    
+    if (indexPath.row == 0) {
+        // Generate the top separator line for the first cell 
+        UIImage *lineImg = [UIImage imageNamed:@"HomeFeatureSeparator.png"];
+        lineImg = [lineImg stretchableImageWithLeftCapWidth:(lineImg.size.width / 2) topCapHeight:0];
+        UIImageView *topLine = [[UIImageView alloc] initWithImage:lineImg];
+        topLine.tag = 999;
+        topLine.frame = CGRectMake(0, 0, cell.bounds.size.width, lineImg.size.height);
+        [cell addSubview:topLine];
+        [topLine release];
+        
+    } else {
+        [[cell viewWithTag:999] removeFromSuperview];
+        
     }
     
 	cell.textLabel.text = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
 	cell.imageView.image = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellImage];
-	
-	//cell.glowView.hidden = indexPath.row != 3;
-    
-    if (indexPath.row == _intIndex) 
-    {
-        cell.glowView.hidden = NO;
-    }
-    else
-    {
-        cell.glowView.hidden = YES;
-    }
-
     return cell;
 }
-
 
 #pragma mark -
 #pragma mark Table view delegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return kMenuTableViewCellHeight;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-	return 70;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-	return _menuHeader;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     _intIndex = indexPath.row;
-    NSInteger index = indexPath.row;
-    [tableView reloadData];
+    NSInteger index = _intIndex;
     
-    [_messengerViewController disconnect];
     if(!_isCompatibleWithSocial){
         index += 1;
     }
     switch (index) {
-        case 0:
+        case 0: {
             //Activity Stream
-            _activityViewController = [[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil];
+            ActivityStreamBrowseViewController_iPad *activityViewController = [[[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil] autorelease];
             
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityViewController 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
-            
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:activityViewController invokeByController:self isStackStartView:TRUE];
             
             break;
-        case 1:
+        }
+        case 1: {
             // files
-            _documentsViewController = [[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil];
-            _documentsViewController.isRoot = YES;
-            _documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_documentsViewController 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
+            DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
+            documentsViewController.isRoot = YES;
+            documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];
             
             break;
-        case 2:
+        }
+        case 2: {
             // dashboard
-            _dashboardViewController_iPad = [[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil];
+            DashboardViewController_iPad *dashboardViewController_iPad = [[[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil] autorelease];
             
             
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_dashboardViewController_iPad 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:dashboardViewController_iPad invokeByController:self isStackStartView:TRUE];
             break;
-        
-        case 3:
-            // messenger
-            if (_messengerViewController == nil) 
-            {
-                _messengerViewController = [[MessengerViewController_iPad alloc] initWithNibName:@"MessengerViewController_iPad" bundle:nil];
-            }
-            
-            
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_messengerViewController 
-                                                                                   invokeByController:self 
-                                                                                     isStackStartView:TRUE];
-            break;
+        }
         default:
             break;
     }
@@ -331,9 +358,11 @@
 
 
 - (void)dealloc {
-	[_menuHeader release];
 	[_cellContents release];
     [_tableView release];
+    [_userProfileViewController release];
+    [_modalNavigationSettingViewController release];
+    
     [super dealloc];
 }
 
@@ -348,8 +377,10 @@
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
     //[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
     [_tableView reloadData];
-    [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
+    [_tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
 }
 
 
