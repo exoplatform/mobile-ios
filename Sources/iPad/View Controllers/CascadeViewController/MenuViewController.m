@@ -274,7 +274,7 @@
         lineImg = [lineImg stretchableImageWithLeftCapWidth:(lineImg.size.width / 2) topCapHeight:0];
         UIImageView *bottomLine = [[UIImageView alloc] initWithImage:lineImg];
         bottomLine.frame = CGRectMake(0, cell.bounds.size.height - lineImg.size.height, cell.bounds.size.width, lineImg.size.height);
-        bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+        bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         [cell addSubview:bottomLine];
         [bottomLine release];
         
@@ -287,7 +287,6 @@
         UIImageView *topLine = [[UIImageView alloc] initWithImage:lineImg];
         topLine.tag = 999;
         topLine.frame = CGRectMake(0, 0, cell.bounds.size.width, lineImg.size.height);
-        topLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         [cell addSubview:topLine];
         [topLine release];
         
