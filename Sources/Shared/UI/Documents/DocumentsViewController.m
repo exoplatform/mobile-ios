@@ -112,10 +112,10 @@ static NSString *PRIVATE_GROUP = @"Private";
         NSArray *sharedDrives = [_filesProxy getDrives:SHARED_GROUP];
         
         if([personalDrives count] > 0)
-            [_dicContentOfFolder setValue:[personalDrives copy] forKey:PERSONAL_GROUP];
+            [_dicContentOfFolder setValue:personalDrives forKey:PERSONAL_GROUP];
         
         if([sharedDrives count] > 0)
-            [_dicContentOfFolder setValue:[sharedDrives copy] forKey:SHARED_GROUP];
+            [_dicContentOfFolder setValue:sharedDrives forKey:SHARED_GROUP];
         
     }
     else {
