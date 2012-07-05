@@ -22,6 +22,7 @@
 
 
 #pragma mark - Constants
+static NSString *GENERAL_GROUP = @"general";
 static NSString *PERSONAL_GROUP = @"personal";
 static NSString *SHARED_GROUP = @"group";
 static NSString *PUBLIC_DRIVE = @"Public";
@@ -39,7 +40,6 @@ static NSString *PRIVATE_GROUP = @"Private";
 - (void)setTitleForFilesViewController;
 - (void)contentDirectoryIsRetrieved;
 - (void)hideActionsPanel;
-- (void)hideFileFolderActionsController;
 
 @end
 
@@ -110,19 +110,23 @@ static NSString *PRIVATE_GROUP = @"Private";
         
         NSArray *personalDrives = [_filesProxy getDrives:PERSONAL_GROUP];
         NSArray *sharedDrives = [_filesProxy getDrives:SHARED_GROUP];
+        NSArray *generalDrives = [_filesProxy getDrives:GENERAL_GROUP];
+        
         
         if([personalDrives count] > 0)
             [_dicContentOfFolder setValue:personalDrives forKey:PERSONAL_GROUP];
         
+        if ([generalDrives count] > 0) 
+            [_dicContentOfFolder setValue:generalDrives forKey:GENERAL_GROUP];
+        
         if([sharedDrives count] > 0)
             [_dicContentOfFolder setValue:sharedDrives forKey:SHARED_GROUP];
-        
     }
     else {
                 
-        NSArray *folderContet = [_filesProxy getContentOfFolder:_rootFile];
-        if([folderContet count] > 0)
-            [_dicContentOfFolder setValue:[folderContet copy] forKey:_rootFile.name];
+        NSArray *folderContent = [_filesProxy getContentOfFolder:_rootFile];
+        if([folderContent count] > 0)
+            [_dicContentOfFolder setValue:[[folderContent copy] autorelease] forKey:_rootFile.name];
     }
     
     [pool release];
@@ -175,9 +179,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     
 }
 
-- (void)hideFileFolderActionsController {
-    [_fileFolderActionsController release]; _fileFolderActionsController = nil;
-}
+- (void)hideFileFolderActionsController {}
 
 - (BOOL)supportActionsForItem:(File *)item ofGroup:(NSString *)driveGroup {
     /*

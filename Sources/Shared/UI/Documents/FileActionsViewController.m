@@ -188,7 +188,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon"];
 			titleLabel.text = _strTakePicture;
-			if(!_file.isFolder)
+            // Check to support Add Photo action for "canAddChild" folder
+			if(!_file.isFolder || !_file.canAddChild)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -198,6 +199,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
             imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon"];
 			titleLabel.text = _strCopy;
+            // Check to support Copy action for folder
 			if(_file.isFolder)
 			{
 				titleLabel.textColor = [UIColor grayColor];
@@ -209,7 +211,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon"];
 			titleLabel.text = _strMove;
-			if(_file.isFolder)
+            // Check to support Cut action for "canRemove" folder
+			if(_file.isFolder || !_file.canRemove)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -219,7 +222,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon"];
 			titleLabel.text = _strPaste;
-			if(fileActionMode <= 0 || !_file.isFolder)
+            // Check to support Past action for "canAddChild" folder
+			if(fileActionMode <= 0 || !_file.isFolder || !_file.canAddChild)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -229,7 +233,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 		{
 			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon"];
 			titleLabel.text = _strDelete;
-			if(!_deleteFolderEnable)
+            // Check to support Delete action for "canRemove" folder/file
+			if(!_deleteFolderEnable || !_file.canRemove)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -239,7 +244,8 @@ static short fileActionMode = 0;//1:copy, 2:move
         {
             imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon"];
             titleLabel.text = _strNewFolder;
-			if(!_file.isFolder || !_createFolderEnable)
+            // Check to support AddFolder action for "canAddChild" folder
+			if(!_file.isFolder || !_file.canAddChild)
 			{
 				titleLabel.textColor = [UIColor grayColor];
 				cell.userInteractionEnabled = NO;
@@ -249,6 +255,7 @@ static short fileActionMode = 0;//1:copy, 2:move
         {
             imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupRenameIcon"];
             titleLabel.text = _strRenameFolder;
+            // Check to support Rename action for folder
 			if(!_file.isFolder || !_renameFileEnable)
 			{
 				titleLabel.textColor = [UIColor grayColor];

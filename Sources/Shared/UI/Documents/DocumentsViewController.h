@@ -32,8 +32,6 @@
         
     NSString *_stringForUploadPhoto;
     
-    FileFolderActionsViewController *_fileFolderActionsController;
-    
     UITableView*   _tblFiles;
 
     CGRect displayActionDialogAtRect;

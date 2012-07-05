@@ -218,7 +218,7 @@
                                                 file:fileToApplyAction 
                                                 enableDeleteThisFolder:YES
                                                 enableCreateFolder:NO
-                                                enableRenameFile:YES
+                                                enableRenameFile:(_rootFile.canAddChild && fileToApplyAction.canRemove)
                                                 delegate:self];
     
     
@@ -276,14 +276,15 @@
 
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {
     
-    _fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
-    [_fileFolderActionsController setIsNewFolder:createNewFolder];
-    [_fileFolderActionsController setNameInputStr:@""];
-    [_fileFolderActionsController setFocusOnTextFieldName];
-    _fileFolderActionsController.fileToApplyAction = fileToApplyAction;
-    _fileFolderActionsController.delegate = self;
+    FileFolderActionsViewController_iPhone *fileFolderActionsController = [[FileFolderActionsViewController_iPhone alloc] initWithNibName:@"FileFolderActionsViewController_iPhone" bundle:nil];
+    [fileFolderActionsController setIsNewFolder:createNewFolder];
+    [fileFolderActionsController setNameInputStr:@""];
+    [fileFolderActionsController setFocusOnTextFieldName];
+    fileFolderActionsController.fileToApplyAction = fileToApplyAction;
+    fileFolderActionsController.delegate = self;
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_fileFolderActionsController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:fileFolderActionsController];
+    [fileFolderActionsController release];
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 

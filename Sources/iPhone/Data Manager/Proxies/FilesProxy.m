@@ -194,7 +194,8 @@
         file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
         file.isFolder = YES;
 		file.path = [self fullURLofFile:[[resultElement attributeForName:@"path"] stringValue]];
-        
+        file.canAddChild = [[[resultElement attributeForName:@"canAddChild"] stringValue] isEqualToString:@"true"];
+        file.canRemove = [[[resultElement attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"];
         // Add the file to the global Array so that the view can access it.
         [folderArray addObject:file];
         [file release];
@@ -213,7 +214,7 @@
         file.isFolder = NO;
         file.path = [self fullURLofFile:[[resultElement attributeForName:@"path"] stringValue]];
         file.nodeType = [[resultElement attributeForName:@"nodeType"] stringValue];
-		
+		file.canRemove = [[[resultElement attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"]; 
         // Add the file to the global Array so that the view can access it.
         [folderArray addObject:file];
         [file release];

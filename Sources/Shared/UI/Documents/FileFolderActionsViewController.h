@@ -37,7 +37,7 @@
 	
 }
 
-@property (retain, nonatomic) id<FileFolderActionsProtocol> delegate;
+@property (assign, nonatomic) id<FileFolderActionsProtocol> delegate;
 @property (nonatomic, retain) File *fileToApplyAction;
 
 

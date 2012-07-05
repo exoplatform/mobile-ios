@@ -137,17 +137,7 @@
     NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];
     fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
     
-    FileActionsViewController* fileActionsViewController = 
-            [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                    bundle:nil 
-                                                    file:fileToApplyAction 
-                                                    enableDeleteThisFolder:YES
-                                                    enableCreateFolder:NO
-                                                    enableRenameFile:YES
-                                                    delegate:self];
-    
-    
-    
+    FileActionsViewController *fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" bundle:nil file:fileToApplyAction enableDeleteThisFolder:YES enableCreateFolder:NO enableRenameFile:(_rootFile.canAddChild && fileToApplyAction.canRemove) delegate:self];
     
     UITableViewCell *cell = [_tblFiles cellForRowAtIndexPath:indexPath];
     CGRect frame = cell.accessoryView.frame;
@@ -160,8 +150,7 @@
 	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
 	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
-	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];		
-    
+	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     
     [fileActionsViewController release];
 }
@@ -265,28 +254,25 @@
     [_actionPopoverController dismissPopoverAnimated:YES];
     _navigation.topItem.rightBarButtonItem.enabled = YES;
     
-    _fileFolderActionsController = [[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil];
+    FileFolderActionsViewController_iPad *fileFolderActionsController = [[[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil] autorelease];
     //[_optionsViewController setDelegate:self];
-    [_fileFolderActionsController setIsNewFolder:createNewFolder];
-    [_fileFolderActionsController setNameInputStr:@""];
-    [_fileFolderActionsController setFocusOnTextFieldName];
-    _fileFolderActionsController.fileToApplyAction = fileToApplyAction;
-    _fileFolderActionsController.delegate = self;
+    [fileFolderActionsController setIsNewFolder:createNewFolder];
+    [fileFolderActionsController setNameInputStr:@""];
+    [fileFolderActionsController setFocusOnTextFieldName];
+    fileFolderActionsController.fileToApplyAction = fileToApplyAction;
+    fileFolderActionsController.delegate = self;
     
     //Display the UIPopoverController
-	_fileFolderActionsPopoverController = [[UIPopoverController alloc] initWithContentViewController:_fileFolderActionsController];
-    _fileFolderActionsPopoverController.delegate = self;
-	[_fileFolderActionsPopoverController setPopoverContentSize:CGSizeMake(320, 140) animated:YES];
-    
-    if(createNewFolder || displayActionDialogAtRect.size.width == 0)
+    if (!_fileFolderActionsPopoverController) {
+        _fileFolderActionsPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileFolderActionsController];
+        _fileFolderActionsPopoverController.delegate = self;
+        [_fileFolderActionsPopoverController setPopoverContentSize:CGSizeMake(320, 140) animated:YES];        
+    }
+    _fileFolderActionsPopoverController.contentViewController = fileFolderActionsController;
+    if(displayActionDialogAtRect.size.width == 0)
         [_fileFolderActionsPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     else
 		[_fileFolderActionsPopoverController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
-    
-    
-    [_fileFolderActionsController release];
-
-
 }
 
 
