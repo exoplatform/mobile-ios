@@ -28,9 +28,9 @@
 {
 	self = [super initWithNibName:nibName bundle:nibBundle];
     if(self){
-        _url = [defaultURL retain];
+        _url = [defaultURL copy];
         [_webView setDelegate:self];
-        self.titleForActivityLink = [[_url absoluteString] retain];
+        self.titleForActivityLink = [_url absoluteString];
     }
 	return self;
 }

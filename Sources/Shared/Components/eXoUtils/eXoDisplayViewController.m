@@ -50,10 +50,8 @@
 
     if(_url != nil)
 	{
-		NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-		[request setURL:_url]; 
+        NSURLRequest* request = [NSURLRequest requestWithURL:_url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];	
         [_webView loadRequest:request];
-        [request release];
     }
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"FullScreen" style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)];
@@ -217,7 +215,7 @@
 
 - (void)setUrl:(NSURL*)url
 {
-	_url = [url retain];
+	_url = [url copy];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -227,6 +225,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
     [self hideLoader:NO];
+    [[NSURLCache sharedURLCache] removeCachedResponseForRequest:webView.request];
     NSLog(@"%@\n %@",[error description], [[error userInfo] description]);
     //add empty view to the view 
     NSUInteger statusCode = [error code];
@@ -244,16 +243,12 @@
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
     [self hideLoader:YES];
+    [[NSURLCache sharedURLCache] removeCachedResponseForRequest:aWebView.request];
 }
 
 // Start loading animation
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
-//    EmptyView *emptyview = (EmptyView *)[self.view viewWithTag:TAG_EMPTY];
-//    if(emptyview != nil){
-//        [emptyview removeFromSuperview];
-//    }
-    
 }
 
 @end

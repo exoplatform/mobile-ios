@@ -23,10 +23,10 @@
     NSString* _domainName;
 }
 
-@property (nonatomic, retain) NSString* username;
-@property (nonatomic, retain) NSString* password;
-@property (nonatomic, retain) NSString* firstLoginContent;
-@property (nonatomic, retain) NSString* domainName;
+@property (nonatomic, copy) NSString* username;
+@property (nonatomic, copy) NSString* password;
+@property (nonatomic, copy) NSString* firstLoginContent;
+@property (nonatomic, copy) NSString* domainName;
 
 
 + (AuthenticateProxy*)sharedInstance;

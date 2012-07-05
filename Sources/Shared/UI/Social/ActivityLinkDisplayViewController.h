@@ -13,7 +13,7 @@
     
     NSString *titleForActivityLink;
 }
-@property (retain) NSString *titleForActivityLink;
+@property (nonatomic, copy) NSString *titleForActivityLink;
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;
 
 @end

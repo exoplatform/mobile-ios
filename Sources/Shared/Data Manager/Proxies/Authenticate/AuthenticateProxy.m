@@ -246,7 +246,7 @@
 		return @"ERROR";
 	}
 	
-	_firstLoginContent = [[[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding] retain];
+	self.firstLoginContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
     
 	NSRange rgCheck = [_firstLoginContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
