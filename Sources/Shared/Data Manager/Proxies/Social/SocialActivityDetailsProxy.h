@@ -32,6 +32,8 @@
 
 // helper methods
 - (NSString *)createLikeResourcePath:(NSString *)activityId;
+// create comment resource path 
+- (NSString *)createCommentsResourcePath:(NSString *)activityId;
 
 //Use this constructor when you want to set a particular value for the number of comment wanted
 -(id)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes;
@@ -40,6 +42,8 @@
 - (void)getActivityDetail:(NSString *)activityId;
 // Get all of likers 
 - (void)getLikers:(NSString *)activityId;
+// Get all of comments
+- (void)getAllOfComments:(NSString *)activityId;
 
 
 @end

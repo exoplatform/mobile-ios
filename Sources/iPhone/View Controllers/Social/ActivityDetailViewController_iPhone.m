@@ -96,20 +96,24 @@
     
 }
 
-- (void)finishLoadingAllDataForActivityDetails {
-    [super finishLoadingAllDataForActivityDetails];
-    [_tblvActivityDetail reloadData];
-    
+- (void)finishLoadingAllLikers {
+    [super finishLoadingAllLikers];
+    // reload likers view
+    [self.tblvActivityDetail reloadData];
+}
+
+- (void)finishLoadingAllComments {
+    [super finishLoadingAllComments];
     //if comment tableview scroll at bottom
+    [_tblvActivityDetail reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
     if(isPostComment){
         if([self.socialActivity.comments count] > 0){
-            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:2] 
-                                       atScrollPosition:UITableViewScrollPositionBottom 
-                                               animated:YES];
+            [_tblvActivityDetail scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.socialActivity.comments count] - 1 inSection:2] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
         isPostComment = NO;
     }
 }
+
 
 #pragma mark - Loader Management
 - (void)updateHudPosition {
@@ -191,7 +195,6 @@
                 //Create a cell, need to do some configurations
                 [cell configureCell];
                 cell.width = tableView.frame.size.width;
-                cell.webViewForContent.delegate = self;
             }
             
             SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
@@ -218,7 +221,6 @@
         ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
         likersView.socialActivity = self.socialActivity;
         likersView.view.title = [NSString stringWithFormat:Localize(@"numOfLikers"), self.socialActivity.totalNumberOfLikes];
-        [likersView updateListOfLikers];
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:likersView animated:YES];
     } else {
         [super tableView:tableView didSelectRowAtIndexPath:indexPath];

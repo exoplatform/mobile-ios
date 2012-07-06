@@ -296,6 +296,7 @@ static NSString *kTabItem = @"kTabItem";
 - (ActivityLikersViewController *)likersViewController {
     if (!_likersViewController) {
         _likersViewController = [[ActivityLikersViewController alloc] init];
+        _likersViewController.view.backgroundColor = [UIColor clearColor];
     }
     return _likersViewController;
 }
@@ -372,6 +373,7 @@ static NSString *kTabItem = @"kTabItem";
                 break;
         }
         tabItem.title = [NSString stringWithFormat:Localize([tabData objectForKey:kTabTitle]), number];
+        [tabItem setNeedsDisplay];
     }
 }
 
@@ -451,11 +453,8 @@ static NSString *kTabItem = @"kTabItem";
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailLikersTableViewCell] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [cell.contentView addSubview:self.likersViewController.view];            
-            self.likersViewController.view.backgroundColor = [UIColor clearColor];
-            [self.likersViewController updateListOfLikers];
         }
-
+        [cell.contentView addSubview:self.likersViewController.view];
         return cell;
     }
     return nil;

@@ -70,6 +70,9 @@
     return [NSString stringWithFormat:@"%@/activity/%@/likes.json", [super createPath], activityId];
 }
 
+- (NSString *)createCommentsResourcePath:(NSString *)activityId {
+    return [NSString stringWithFormat:@"%@/activity/%@/comments.json", [super createPath], activityId];
+}
 
 //Helper to add Parameters to the request
 //Conform to the RestKit Documentation
@@ -202,6 +205,32 @@
      nil];
     [mapping mapKeyPath:@"likesByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likesByIdentitiesMapping];
     [manager loadObjectsAtResourcePath:[self createLikeResourcePath:activityId] objectMapping:mapping delegate:self];
+}
+
+- (void)getAllOfComments:(NSString *)activityId {
+    RKObjectManager *manager = [RKObjectManager sharedManager];
+    
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
+    [mapping mapKeyPath:@"totalNumberOfComments" toAttribute:@"totalNumberOfComments"];
+    // SocialComment mapping
+    RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
+    [socialCommentMapping mapKeyPathsToAttributes:@"createdAt",@"createdAt",
+            @"text",@"text",
+            @"postedTime",@"postedTime",
+            @"id",@"identityId",
+     nil];
+    RKObjectMapping* commentPosterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [commentPosterProfileMapping mapKeyPathsToAttributes:
+        @"id",@"identity",
+        @"remoteId",@"remoteId",
+        @"providerId",@"providerId",
+        @"profile.avatarUrl",@"avatarUrl",
+        @"profile.fullName",@"fullName",
+     nil];
+    [socialCommentMapping mapKeyPath:@"posterIdentity" toRelationship:@"userProfile" withObjectMapping:commentPosterProfileMapping];
+    
+    [mapping mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
+    [manager loadObjectsAtResourcePath:[self createCommentsResourcePath:activityId] objectMapping:mapping delegate:self];
 }
 
 #pragma mark - RKObjectLoaderDelegate methods

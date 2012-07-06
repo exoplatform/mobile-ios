@@ -46,7 +46,8 @@
 
 - (void)dealloc
 {
-    
+    self.webViewForContent.delegate = nil;
+    [self.webViewForContent stopLoading];
     self.webViewForContent = nil;
     self.lbDate = nil;
     self.lbName = nil;

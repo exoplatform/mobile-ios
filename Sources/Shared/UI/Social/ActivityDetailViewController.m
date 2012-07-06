@@ -37,7 +37,8 @@
 
 @interface ActivityDetailViewController ()
 
-@property (nonatomic, retain) SocialActivityDetailsProxy *activityDetailsProxy;
+@property (nonatomic, retain) SocialActivityDetailsProxy *getCommentsProxy;
+@property (nonatomic, retain) SocialActivityDetailsProxy *getLikersProxy;
 @property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
 @property (nonatomic, retain) NSDate *dateOfLastUpdate;
 
@@ -50,7 +51,8 @@
 @synthesize activityDetailCell = _activityDetailCell;
 @synthesize tblvActivityDetail = _tblvActivityDetail;
 @synthesize refreshHeaderView = _refreshHeaderView;
-@synthesize activityDetailsProxy = _activityDetailsProxy;
+@synthesize getCommentsProxy = _getCommentsProxy;
+@synthesize getLikersProxy = _getLikersProxy;
 @synthesize likeActivityProxy = _likeActivityProxy;
 @synthesize dateOfLastUpdate = _dateOfLastUpdate;
 
@@ -68,9 +70,12 @@
 
 - (void)dealloc
 {
-    [_activityDetailsProxy release];
+    [_getCommentsProxy release];
+    [_getLikersProxy release];
     [_likeActivityProxy release];
     
+    _tblvActivityDetail.delegate = nil;
+    _tblvActivityDetail.dataSource = nil;
     [_tblvActivityDetail release];
     [_navigation release];
     [_activityDetailCell release];
@@ -346,9 +351,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];
 }
 
-
-
-- (void)finishLoadingAllDataForActivityDetails {
+- (void)finishLoadingAllComments {
     //Prevent any reloading status
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityDetail];
@@ -364,22 +367,25 @@
     //We have retreive new datas from API
     //Set the last update date at now 
     self.dateOfLastUpdate = [NSDate date];
-    
-    //Hide the loader
-    [self hideLoader:YES];
-    
-    
+        
     [self updateActivityInActivityStream];
+}
+
+- (void)finishLoadingAllLikers {
+    
 }
 
 #pragma - Proxy Management
 - (void)startLoadingActivityDetail
 {
     _reloading = YES;
-    self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD andNumberOfLikes:4] autorelease];
-    self.activityDetailsProxy.delegate = self;
-    [self.activityDetailsProxy getActivityDetail:self.socialActivity.activityId];
-    
+    self.getCommentsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0] autorelease];
+    self.getCommentsProxy.delegate = self;
+    [self.getCommentsProxy getAllOfComments:self.socialActivity.activityId];
+    // Refresh list of likers 
+    self.getLikersProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0] autorelease];
+    self.getLikersProxy.delegate = self;
+    [self.getLikersProxy getLikers:self.socialActivity.activityId];
 }
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile *)currentUserProfile
@@ -394,32 +400,38 @@
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy 
 {
-    if (proxy == self.activityDetailsProxy) {
+    if (proxy == self.getCommentsProxy) {
         SocialActivity *socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
-        self.socialActivity.likedByIdentities = socialActivityDetails.likedByIdentities;
         self.socialActivity.comments = socialActivityDetails.comments;
         self.socialActivity.totalNumberOfComments = socialActivityDetails.totalNumberOfComments;
-        self.socialActivity.totalNumberOfLikes = socialActivityDetails.totalNumberOfLikes;
-        
+        self.getCommentsProxy = nil;
         [self.socialActivity convertToPostedTimeInWords];
         //Set the last update date at now 
         self.dateOfLastUpdate = [NSDate date];
         
-        [self finishLoadingAllDataForActivityDetails];
+        [self finishLoadingAllComments];
         //SocialLikeActivityProxy
     }else if (proxy == self.likeActivityProxy) {
         if (_activityAction == 2) {
             self.socialActivity.liked = YES;
             self.socialActivity.totalNumberOfLikes++;
+            NSMutableArray *newArray = [NSMutableArray arrayWithArray:self.socialActivity.likedByIdentities];
+            [newArray addObject:self.socialActivity.posterIdentity];
         } else if (_activityAction == 3) {
             self.socialActivity.liked = NO;
             self.socialActivity.totalNumberOfLikes--;
         }
         [self didFinishedLikeAction];
-        self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:NUMBER_OF_COMMENT_TO_LOAD 
-                                                                                                             andNumberOfLikes:4] autorelease];
-        self.activityDetailsProxy.delegate = self;
-        [self.activityDetailsProxy getActivityDetail:self.socialActivity.activityId];
+        self.likeActivityProxy = nil;
+        // Refresh list of likers 
+        self.getLikersProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0] autorelease];
+        self.getLikersProxy.delegate = self;
+        [self.getLikersProxy getLikers:self.socialActivity.activityId];
+    } else if (proxy == self.getLikersProxy) {
+        self.socialActivity.totalNumberOfLikes = self.getLikersProxy.socialActivityDetails.totalNumberOfLikes;
+        self.socialActivity.likedByIdentities = self.getLikersProxy.socialActivityDetails.likedByIdentities;
+        [self finishLoadingAllLikers];
+        self.getLikersProxy = nil;
     }
 }
 

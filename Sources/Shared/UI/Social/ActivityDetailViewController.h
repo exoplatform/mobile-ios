@@ -54,8 +54,9 @@
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream andCurrentUserProfile:(SocialUserProfile*)currentUserProfile;
 - (void)likeDislikeActivity:(NSString *)activity;
-- (void)finishLoadingAllDataForActivityDetails;
 
+- (void)finishLoadingAllComments;
+- (void)finishLoadingAllLikers;
 /* 
  Methods for managing the like/unlike actions
  The derived classs can override these method for particular behavior

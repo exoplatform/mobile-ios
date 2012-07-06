@@ -116,18 +116,28 @@
     [super setSocialActivityStream:socialActivityStream andCurrentUserProfile:currentUserProfile];
 }
 
-- (void)finishLoadingAllDataForActivityDetails {
-    [super finishLoadingAllDataForActivityDetails];
-    [self.tblvActivityDetail reloadData];
+- (void)finishLoadingAllComments {
+    [super finishLoadingAllComments];
     [self.advancedInfoController updateTabLabels];
-    
-    //if comment tableview scroll at bottom
-    if(isPostComment){
+    if (self.advancedInfoController.tabView.selectedIndex == ActivityAdvancedInfoCellTabComment) {
+        //if comment tableview scroll at bottom
         [self.advancedInfoController reloadInfoContainerWithAnimated:NO];
-        [self.advancedInfoController jumpToLastCommentIfExist];
-        isPostComment = NO;
+        if(isPostComment) {
+            [self.advancedInfoController jumpToLastCommentIfExist];
+            isPostComment = NO;
+        }
+        
     }
 }
+
+- (void)finishLoadingAllLikers {
+    [super finishLoadingAllLikers];
+    [self.advancedInfoController updateTabLabels];
+    if (self.advancedInfoController.tabView.selectedIndex == ActivityAdvancedInfoCellTabLike) {
+        [self.advancedInfoController reloadInfoContainerWithAnimated:NO];
+    }
+}
+
 
 #pragma mark - UIWebViewDelegateMethod 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
