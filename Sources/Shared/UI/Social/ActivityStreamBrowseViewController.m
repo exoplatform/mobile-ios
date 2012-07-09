@@ -355,7 +355,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderNormalBg.png"];
-    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:Localize(@"Today"])) {
+    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:Localize(@"Today")]) {
         imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderHighlightedBg.png"];
         headerLabel.textColor = [UIColor colorWithRed:21./255 green:94./255 blue:173./255 alpha:1.];
     }

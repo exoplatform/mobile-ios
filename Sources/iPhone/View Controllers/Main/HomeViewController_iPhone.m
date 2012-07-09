@@ -170,7 +170,7 @@
         [_activityStreamBrowseViewController_iPhone release];
     }
     
-    if ([item.title isEqualToString:Localize(@"Chat"])) 
+    if ([item.title isEqualToString:Localize(@"Chat")]) 
     {
         //Start the Chat
         MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil];

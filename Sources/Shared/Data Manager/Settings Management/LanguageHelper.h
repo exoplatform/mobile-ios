@@ -7,23 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "LocalizationSystem.h"
 
 //Define a macro for faster coding Localizable
-#define Localize(_str) [[LanguageHelper sharedInstance]getLocalizableStringForKey:_str]
-
-
+#define Localize(key) AMLocalizedString(key, @"")
 
 @interface LanguageHelper : NSObject {
-    
-    NSDictionary* _dictLocalize;	//Language dictionary
-    
+    // The international map which contains "English", "French" consequently
+    NSArray* _international;
 }
 
 
 + (LanguageHelper *)sharedInstance;
 - (void)loadLocalizableStringsForCurrentLanguage;
-- (NSString *)getLocalizableStringForKey:(NSString *)key;
 - (void)changeToLanguage:(int)languageWanted;
 - (int)getSelectedLanguage;
 
