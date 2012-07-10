@@ -52,7 +52,7 @@
 #pragma mark - LanguageHelper Methods
 
 - (void)loadLocalizableStringsForCurrentLanguage {
-    LocalizationSetLanguage([_international objectAtIndex:[self getSelectedLanguage]]);
+    [self changeToLanguage:[self getSelectedLanguage]];
 }
 
 - (void)changeToLanguage:(int)languageWanted {
@@ -65,7 +65,8 @@
 
 - (int)getSelectedLanguage {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	return [[userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE] intValue];
+    NSString *selectedLang = [userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE];
+	return selectedLang ? [selectedLang intValue] : 0;
 }
 
 @end

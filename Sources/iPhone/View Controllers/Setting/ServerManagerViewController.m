@@ -73,7 +73,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     [super viewDidLoad];
 
     //TODO localize this title
-	self.title = Localize(@"Server List");
+	self.title = Localize(@"ServerList");
     
     
     //Set the background Color of the view

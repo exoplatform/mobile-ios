@@ -32,7 +32,7 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
+    [super application:application didFinishLaunchingWithOptions:launchOptions];
     //Add Crashlytics
     [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
     
