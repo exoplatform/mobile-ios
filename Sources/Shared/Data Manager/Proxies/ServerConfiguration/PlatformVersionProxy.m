@@ -13,7 +13,6 @@
 
 @implementation PlatformVersionProxy
 
-@synthesize isPlatformCompatibleWithSocialFeatures=_isPlatformCompatibleWithSocialFeatures;
 @synthesize delegate = _delegate;
 
 
@@ -31,7 +30,7 @@
 //Helper to create the base URL
 - (NSString *)createBaseURL {  
     NSString *domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
-    return !domainName || [domainName length] == 0 ? nil : [NSString stringWithFormat:@"%@/%@/%@/",domainName, kPortalContainerName, kRestContextName]; 
+    return [NSString stringWithFormat:@"%@/%@/",domainName, kRestContextName]; 
 }
 
 
@@ -40,7 +39,7 @@
 
 - (void)retrievePlatformInformations {
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
     [RKObjectManager setSharedManager:manager];
         
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
@@ -55,6 +54,28 @@
     [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];          
 }
 
+- (void)authenticateAndGetPlatformInfoWithUsername:(NSString *)username password:(NSString *)password {
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookiesForURL:[NSURL URLWithString:manager.client.baseURL]]) {
+        [storage deleteCookie:cookie];
+    }
+    manager.client.forceBasicAuthentication = YES;
+    manager.client.username = username;
+    manager.client.password = password;
+    [RKObjectManager setSharedManager:manager];
+    
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
+    [mapping mapKeyPathsToAttributes:
+     @"platformVersion",@"platformVersion",
+     @"platformRevision",@"platformRevision",
+     @"platformBuildNumber",@"platformBuildNumber",
+     @"isMobileCompliant",@"isMobileCompliant",
+     @"platformEdition",@"platformEdition",
+     nil];
+    
+    [manager loadObjectsAtResourcePath:@"private/platform/info" objectMapping:mapping delegate:self];
+}
 
 
 #pragma mark - RKObjectLoaderDelegate methods
@@ -72,43 +93,31 @@
     PlatformServerVersion *platformServerVersion = [[objects objectAtIndex:0] retain];
 
     NSRange aRange = [platformServerVersion.platformVersion rangeOfString:@"3.5"];
+    BOOL isPlatformCompatibleWithSocialFeatures = YES;
     if (aRange.location == NSNotFound) {
         //Version is not compatible with social features
-        _isPlatformCompatibleWithSocialFeatures = NO;
-    } else {
-        //Version is compatible with social features
-        _isPlatformCompatibleWithSocialFeatures = YES;
+        isPlatformCompatibleWithSocialFeatures = NO;
     }
     
     //We need to prevent the caller.
     if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
-        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
+        [_delegate platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
     }
 
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-	// The url doesn't exist, the server is not compatible
-    _isPlatformCompatibleWithSocialFeatures = NO;
-    
-    //We need to prevent the caller
-    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
-        [_delegate platformVersionCompatibleWithSocialFeatures:_isPlatformCompatibleWithSocialFeatures withServerInformation:nil];
+	// Authenticate failed
+    if (_delegate && [_delegate respondsToSelector:@selector(authenticateFailedWithError:)]) {
+        [_delegate authenticateFailedWithError:error];
     }
 
 }
 
-
-
 - (void) dealloc {
-    _delegate = nil;    
+    _delegate = nil;
     [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [super dealloc];
 }
-
-
-
-
-
 
 @end

@@ -15,23 +15,20 @@
 
 
 @interface PlatformVersionProxy : NSObject<RKObjectLoaderDelegate> {
-    
-    BOOL _isPlatformCompatibleWithSocialFeatures;
-    
+        
     id<PlatformVersionProxyDelegate> _delegate;
-
-    
 }
 
-@property (nonatomic) BOOL isPlatformCompatibleWithSocialFeatures;
-@property (nonatomic, retain) id<PlatformVersionProxyDelegate> delegate;
+@property (nonatomic, assign) id<PlatformVersionProxyDelegate> delegate;
 
 -(id)initWithDelegate:(id<PlatformVersionProxyDelegate>)delegate;
 - (void)retrievePlatformInformations;
+- (void)authenticateAndGetPlatformInfoWithUsername:(NSString *)username password:(NSString *)password;
 
 @end
 
 
 @protocol PlatformVersionProxyDelegate<NSObject>
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;	
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;
+- (void)authenticateFailedWithError:(NSError *)error;
 @end

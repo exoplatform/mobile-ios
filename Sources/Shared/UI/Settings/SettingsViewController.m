@@ -150,6 +150,8 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     self.title = Localize(@"Settings");
 }
 
+#pragma mark - PlatformVersionProxyDelegate
+
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
      NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion){
@@ -164,6 +166,10 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     }
     bVersionServer = YES;
     [self.tableView reloadData];
+}
+
+- (void)authenticateFailedWithError:(NSError *)error {
+    
 }
 
 

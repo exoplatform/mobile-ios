@@ -331,9 +331,7 @@
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
-    
-    
-    
+    [super platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     //Setup Version Platfrom and Application
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){
