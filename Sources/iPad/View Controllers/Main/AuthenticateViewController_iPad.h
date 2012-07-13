@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "SSHUDView.h"
-#import "PlatformVersionProxy.h"
 #import "SettingsViewController_iPad.h"
 #import "AuthenticateViewController.h"
 

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SSHUDView.h"
-#import "PlatformVersionProxy.h"
+#import "LoginProxy.h"
 #import "ServerPreferencesManager.h"
 
 //Login page
-@interface AuthenticateViewController : UIViewController <PlatformVersionProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
+@interface AuthenticateViewController : UIViewController <LoginProxyDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> 
 {
 	NSString*                   _strBSuccessful;	//Login status
 	BOOL                        _bRememberMe;	//Remember

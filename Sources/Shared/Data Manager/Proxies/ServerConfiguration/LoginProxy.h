@@ -1,9 +1,9 @@
 //
-//  PlatformVersionProxy.h
+//  LoginProxy.h
 //  eXo Platform
 //
-//  Created by Stévan Le Meur on 26/07/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Le Thanh Quang on 26/07/11.
+//  Copyright 2011 eXo Platform. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,24 +11,24 @@
 #import "PlatformServerVersion.h"
 #import "SocialRestConfiguration.h"
 
-@protocol PlatformVersionProxyDelegate;
+@protocol LoginProxyDelegate;
 
 
-@interface PlatformVersionProxy : NSObject<RKObjectLoaderDelegate> {
+@interface LoginProxy : NSObject<RKObjectLoaderDelegate> {
         
-    id<PlatformVersionProxyDelegate> _delegate;
+    id<LoginProxyDelegate> _delegate;
 }
 
-@property (nonatomic, assign) id<PlatformVersionProxyDelegate> delegate;
+@property (nonatomic, assign) id<LoginProxyDelegate> delegate;
 
--(id)initWithDelegate:(id<PlatformVersionProxyDelegate>)delegate;
+-(id)initWithDelegate:(id<LoginProxyDelegate>)delegate;
 - (void)retrievePlatformInformations;
 - (void)authenticateAndGetPlatformInfoWithUsername:(NSString *)username password:(NSString *)password;
 
 @end
 
 
-@protocol PlatformVersionProxyDelegate<NSObject>
+@protocol LoginProxyDelegate<NSObject>
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;
 - (void)authenticateFailedWithError:(NSError *)error;
 @end

@@ -44,7 +44,7 @@
 	self = [super init];
     if (self) 
     {        
-        _selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
+        self.selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     }	
 	return self;
 }

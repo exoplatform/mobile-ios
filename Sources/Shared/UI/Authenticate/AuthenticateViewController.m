@@ -24,14 +24,14 @@
 
 @interface AuthenticateViewController ()
 
-@property (nonatomic, retain) PlatformVersionProxy *plfVersionProxy;
+@property (nonatomic, retain) LoginProxy *loginProxy;
 
 @end
 
 @implementation AuthenticateViewController
 @synthesize scrollView = _scrollView;
 @synthesize activeField = _activeField;
-@synthesize plfVersionProxy = _plfVersionProxy;
+@synthesize loginProxy = _loginProxy;
 
 @synthesize hud = _hud;
 
@@ -455,9 +455,9 @@
     NSString* username = [_txtfUsername text];
 	NSString* password = [_txtfPassword text];
     
-    self.plfVersionProxy = [[[PlatformVersionProxy alloc] initWithDelegate:self] autorelease];
+    self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self] autorelease];
     
-    [self.plfVersionProxy authenticateAndGetPlatformInfoWithUsername:username password:password];
+    [self.loginProxy authenticateAndGetPlatformInfoWithUsername:username password:password];
 
 }
 
@@ -489,7 +489,7 @@
 - (void)dealloc 
 {
     [self unRegisterForKeyboardNotifications];
-    [_plfVersionProxy release];
+    [_loginProxy release];
 	[_txtfUsername release];
 	[_txtfPassword release];
     [_hud release];

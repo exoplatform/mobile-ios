@@ -1,22 +1,22 @@
 //
-//  PlatformVersionProxy.m
+//  LoginProxy.m
 //  eXo Platform
 //
-//  Created by Stévan Le Meur on 26/07/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Le Thanh Quang on 26/07/11.
+//  Copyright 2011 eXo Platform. All rights reserved.
 //
 
-#import "PlatformVersionProxy.h"
+#import "LoginProxy.h"
 #import "ServerPreferencesManager.h"
 #import "defines.h"
 
 
-@implementation PlatformVersionProxy
+@implementation LoginProxy
 
 @synthesize delegate = _delegate;
 
 
--(id)initWithDelegate:(id<PlatformVersionProxyDelegate>)delegate {
+-(id)initWithDelegate:(id<LoginProxyDelegate>)delegate {
     if ((self = [super init])) {
         _delegate = delegate;
     }

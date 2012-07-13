@@ -113,7 +113,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 }
 
 -(void)retrievePlatformVersion{
-    PlatformVersionProxy* plfVersionProxy = [[PlatformVersionProxy alloc] initWithDelegate:self];
+    LoginProxy* plfVersionProxy = [[LoginProxy alloc] initWithDelegate:self];
     [plfVersionProxy retrievePlatformInformations];
 }
 

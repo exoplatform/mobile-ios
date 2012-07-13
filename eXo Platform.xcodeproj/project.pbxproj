@@ -166,7 +166,7 @@
 		46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 46193155138552A600EEB664 /* HomeBubbleBackground.png */; };
 		461BFAB4141F4D14009844F6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461BFAB3141F4D14009844F6 /* SettingsViewController.m */; };
 		462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A613DEF7970050FCBC /* PlatformServerVersion.m */; };
-		462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */; };
+		462B62AA13DEF9B20050FCBC /* LoginProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A913DEF9B20050FCBC /* LoginProxy.m */; };
 		4633E6E7141BB094002A47F4 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6E6141BB094002A47F4 /* GadgetDisplayViewController.m */; };
 		4633E6EA141BB0FC002A47F4 /* DocumentDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6E9141BB0FB002A47F4 /* DocumentDisplayViewController.m */; };
 		4633E6EE141BB919002A47F4 /* DocumentDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6EC141BB918002A47F4 /* DocumentDisplayViewController_iPad.m */; };
@@ -1065,8 +1065,8 @@
 		461BFAB3141F4D14009844F6 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Settings/SettingsViewController.m; sourceTree = "<group>"; };
 		462B62A513DEF7970050FCBC /* PlatformServerVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformServerVersion.h; sourceTree = "<group>"; };
 		462B62A613DEF7970050FCBC /* PlatformServerVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformServerVersion.m; sourceTree = "<group>"; };
-		462B62A813DEF9B20050FCBC /* PlatformVersionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformVersionProxy.h; sourceTree = "<group>"; };
-		462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformVersionProxy.m; sourceTree = "<group>"; };
+		462B62A813DEF9B20050FCBC /* LoginProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginProxy.h; sourceTree = "<group>"; };
+		462B62A913DEF9B20050FCBC /* LoginProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProxy.m; sourceTree = "<group>"; };
 		4633E6E5141BB094002A47F4 /* GadgetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GadgetDisplayViewController.h; path = Dashboard/GadgetDisplayViewController.h; sourceTree = "<group>"; };
 		4633E6E6141BB094002A47F4 /* GadgetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GadgetDisplayViewController.m; path = Dashboard/GadgetDisplayViewController.m; sourceTree = "<group>"; };
 		4633E6E8141BB0FB002A47F4 /* DocumentDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentDisplayViewController.h; path = Documents/DocumentDisplayViewController.h; sourceTree = "<group>"; };
@@ -2172,8 +2172,8 @@
 			children = (
 				8958E67914A9CE1C00580EEB /* ServerPreferencesManager.h */,
 				8958E67A14A9CE1C00580EEB /* ServerPreferencesManager.m */,
-				462B62A813DEF9B20050FCBC /* PlatformVersionProxy.h */,
-				462B62A913DEF9B20050FCBC /* PlatformVersionProxy.m */,
+				462B62A813DEF9B20050FCBC /* LoginProxy.h */,
+				462B62A913DEF9B20050FCBC /* LoginProxy.m */,
 			);
 			path = ServerConfiguration;
 			sourceTree = "<group>";
@@ -4723,7 +4723,7 @@
 				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
-				462B62AA13DEF9B20050FCBC /* PlatformVersionProxy.m in Sources */,
+				462B62AA13DEF9B20050FCBC /* LoginProxy.m in Sources */,
 				46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
