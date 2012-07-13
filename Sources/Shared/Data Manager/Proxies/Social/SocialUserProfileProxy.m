@@ -65,29 +65,12 @@
 
 
 #pragma mark - RKObjectLoaderDelegate methods
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    LogDebug(@"Loaded payload: %@", [response bodyAsString]);
-}
-
-
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
     //We receive the response from the server
     //We need to prevent the caller.
     _userProfile = [[objects objectAtIndex:0] retain];
     [[SocialUserProfileCache sharedInstance] addInCache:_userProfile forIdentity:_userProfile.identity];
-    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
-        [delegate proxyDidFinishLoading:self];
-    }
+    [super objectLoader:objectLoader didLoadObjects:objects];
 }
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    
-    if (delegate && [delegate respondsToSelector:@selector(proxy: didFailWithError:)]) {
-        [delegate proxy:self didFailWithError:error];
-    }
-}
-
-
 
 @end

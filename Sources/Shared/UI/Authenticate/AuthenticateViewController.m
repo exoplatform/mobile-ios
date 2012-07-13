@@ -309,6 +309,8 @@
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:_txtfUsername.text forKey:EXO_PREFERENCE_USERNAME];
         [userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
+        [RKObjectManager sharedManager].client.forceBasicAuthentication = NO;
+
     }
 }
 

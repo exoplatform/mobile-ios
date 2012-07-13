@@ -40,29 +40,14 @@
     [manager loadObjectsAtResourcePath:[self createPath] objectMapping:mapping delegate:self];   
 }
 #pragma mark - RKObjectLoaderDelegate methods
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
-{
-    LogDebug(@"Loaded payload Version: %@", [response bodyAsString]);
-}
-
-
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-    SocialVersion *version = [[objects objectAtIndex:0]retain];
+    SocialVersion *version = [objects objectAtIndex:0];
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     socialConfig.restVersion = version.version;
     
-    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
-        [delegate proxyDidFinishLoading:self];
-    }
+    [super objectLoader:objectLoader didLoadObjects:objects];
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error 
-{
-    if (delegate && [delegate respondsToSelector:@selector(proxy: didFailWithError:)]) {
-        [delegate proxy:self didFailWithError:error];
-    }
-}
 
 @end

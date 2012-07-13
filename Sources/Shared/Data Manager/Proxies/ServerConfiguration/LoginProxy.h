@@ -21,9 +21,12 @@
 
 @property (nonatomic, assign) id<LoginProxyDelegate> delegate;
 
++ (void)doLogout;
 -(id)initWithDelegate:(id<LoginProxyDelegate>)delegate;
 - (void)retrievePlatformInformations;
 - (void)authenticateAndGetPlatformInfoWithUsername:(NSString *)username password:(NSString *)password;
+
+
 
 @end
 

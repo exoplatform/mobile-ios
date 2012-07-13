@@ -36,7 +36,6 @@
 
 + (SocialRestConfiguration*)sharedInstance;
 - (void)updateDatas; //Method can be used to update datas after authentication
-- (void)initRKOjectManagerIfNotExist;
 - (NSString *)createBaseUrl;
 
 

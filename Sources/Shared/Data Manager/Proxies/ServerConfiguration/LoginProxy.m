@@ -24,6 +24,35 @@
 }
 
 
++ (void)doLogout {
+    // Remove Cookies
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    // reset the credentials cache...
+    NSDictionary *credentialsDict = [[NSURLCredentialStorage sharedCredentialStorage] allCredentials];
+    
+    if ([credentialsDict count] > 0) {
+        // the credentialsDict has NSURLProtectionSpace objs as keys and dicts of userName => NSURLCredential
+        NSEnumerator *protectionSpaceEnumerator = [credentialsDict keyEnumerator];
+        id urlProtectionSpace;
+        
+        // iterate over all NSURLProtectionSpaces
+        while (urlProtectionSpace = [protectionSpaceEnumerator nextObject]) {
+            NSEnumerator *userNameEnumerator = [[credentialsDict objectForKey:urlProtectionSpace] keyEnumerator];
+            id userName;
+            
+            // iterate over all usernames for this protectionspace, which are the keys for the actual NSURLCredentials
+            while (userName = [userNameEnumerator nextObject]) {
+                NSURLCredential *cred = [[credentialsDict objectForKey:urlProtectionSpace] objectForKey:userName];
+                LogDebug(@"credential to be removed: %@", cred);
+                [[NSURLCredentialStorage sharedCredentialStorage] removeCredential:cred forProtectionSpace:urlProtectionSpace];
+            }
+        }
+    }
+}
 
 #pragma mark - helper methods
 
@@ -55,14 +84,15 @@
 }
 
 - (void)authenticateAndGetPlatformInfoWithUsername:(NSString *)username password:(NSString *)password {
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
+    NSString *baseURL = [self createBaseURL];
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (NSHTTPCookie *cookie in [storage cookiesForURL:[NSURL URLWithString:manager.client.baseURL]]) {
+    for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
-    manager.client.forceBasicAuthentication = YES;
-    manager.client.username = username;
-    manager.client.password = password;
+    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:baseURL];
+    manager.client.username = [NSString stringWithFormat:@"%@", username];
+    manager.client.password = [NSString stringWithFormat:@"%@", password];
+    manager.client.cachePolicy = RKRequestCachePolicyNone;
     [RKObjectManager setSharedManager:manager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
@@ -74,7 +104,7 @@
      @"platformEdition",@"platformEdition",
      nil];
     
-    [manager loadObjectsAtResourcePath:@"private/platform/info" objectMapping:mapping delegate:self];
+    [manager loadObjectsAtResourcePath:@"private/platform/info#" objectMapping:mapping delegate:self];
 }
 
 

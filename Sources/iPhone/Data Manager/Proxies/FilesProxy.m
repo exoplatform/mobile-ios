@@ -15,6 +15,12 @@
 #import "TouchXML.h"
 #import "defines.h"
 
+@interface FilesProxy ()
+
+- (NSData *)sendSynchronizedHTTPRequest:(NSMutableURLRequest *)request;
+
+@end
+
 @implementation FilesProxy
 
 @synthesize _isWorkingWithMultipeUserLevel, _strUserRepository;
@@ -76,6 +82,28 @@
 	
 }
 
+- (NSData *)sendSynchronizedHTTPRequest:(NSMutableURLRequest *)request {
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication) {
+        // re-authenticate when timeout
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+        NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+        CFHTTPMessageRef dummyRequest = CFHTTPMessageCreateRequest(kCFAllocatorDefault, (CFStringRef)request.HTTPMethod, (CFURLRef)request.URL, kCFHTTPVersion1_1);
+        CFHTTPMessageAddAuthentication(dummyRequest, nil, (CFStringRef)username, (CFStringRef)password,kCFHTTPAuthenticationSchemeBasic, FALSE);
+        CFStringRef authorizationString = CFHTTPMessageCopyHeaderFieldValue(dummyRequest, CFSTR("Authorization"));
+        [request setValue:(NSString *)authorizationString forHTTPHeaderField:@"Authorization"];
+        CFRelease(dummyRequest);
+        CFRelease(authorizationString);
+        data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    }
+    if (error) {
+        LogDebug(@"HTTP request failed: %@", error);
+    }
+    return data;
+}
 
 #pragma mark -
 #pragma NSObject Methods
@@ -127,9 +155,13 @@
 	
     // Create URL for getting data
     NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName]];
-	
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:url];
+    NSData *data = [self sendSynchronizedHTTPRequest:request];
+    [request release];
+    
     // Create a new parser object based on the TouchXML "CXMLDocument" class
-    CXMLDocument *parser = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:nil] autorelease];
+    CXMLDocument *parser = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
 	
     // Create a new Array object to be used with the looping of the results from the parser
     NSArray *resultNodes = NULL;
