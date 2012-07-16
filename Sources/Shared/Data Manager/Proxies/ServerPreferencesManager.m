@@ -24,6 +24,8 @@
 
 @synthesize selectedServerIndex = _selectedServerIndex;
 @synthesize selectedDomain = _selectedDomain;
+@synthesize username = _username;
+@synthesize password = _password;
 
 + (ServerPreferencesManager*)sharedInstance
 {
@@ -45,6 +47,7 @@
     if (self) 
     {        
         self.selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
+        [self reloadUsernamePassword];
     }	
 	return self;
 }
@@ -53,6 +56,8 @@
 {
     [_selectedDomain release];
 	[_arrServerList release];
+    [_username release];
+    [_password release];
 	[super dealloc];
 }
 
@@ -315,6 +320,20 @@
         [self loadServerList];
     }
     return _arrServerList;
+}
+#pragma mark - username & password management 
+- (void)persistUsernameAndPasswod {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.username forKey:EXO_PREFERENCE_USERNAME];
+    [userDefaults setObject:self.password forKey:EXO_PREFERENCE_PASSWORD];
+}
+
+- (void)reloadUsernamePassword {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    self.username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+    self.username = self.username ? self.username : @"";
+    self.password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+    self.password = self.password ? self.password : @"";
 }
 
 #pragma mark - getters & setters 

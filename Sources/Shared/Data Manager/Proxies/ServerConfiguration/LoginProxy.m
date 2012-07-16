@@ -103,7 +103,7 @@
      @"isMobileCompliant",@"isMobileCompliant",
      @"platformEdition",@"platformEdition",
      nil];
-    
+    // add '#' into the link to prevent caching result
     [manager loadObjectsAtResourcePath:@"private/platform/info#" objectMapping:mapping delegate:self];
 }
 
@@ -120,7 +120,7 @@
     //We receive the response from the server
     //We now need to check if the version can run social features or not and set properties
     
-    PlatformServerVersion *platformServerVersion = [[objects objectAtIndex:0] retain];
+    PlatformServerVersion *platformServerVersion = [objects objectAtIndex:0];
 
     NSRange aRange = [platformServerVersion.platformVersion rangeOfString:@"3.5"];
     BOOL isPlatformCompatibleWithSocialFeatures = YES;

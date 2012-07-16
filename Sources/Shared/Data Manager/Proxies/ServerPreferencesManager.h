@@ -28,6 +28,8 @@
 
 @property (nonatomic, assign) int selectedServerIndex;
 @property (nonatomic, readonly) NSString *selectedDomain;
+@property (nonatomic, copy) NSString *username;
+@property (nonatomic, copy) NSString *password;
 
 + (ServerPreferencesManager*)sharedInstance;
 - (NSMutableArray *)serverList;
@@ -45,4 +47,8 @@
 - (void)writeDeletedSystemConfiguration:(NSMutableArray*)arrDeletedSystemServerList;
 - (BOOL)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList;
 - (BOOL)writeData:(NSData*)data toFile:(NSString*)strFileName;
+// Save username and password to the user preference.
+- (void)persistUsernameAndPasswod;
+// Reload username and password from user preference
+- (void)reloadUsernamePassword;
 @end

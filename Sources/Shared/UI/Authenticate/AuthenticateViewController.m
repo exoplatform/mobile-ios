@@ -117,8 +117,8 @@
 	
 	if(_bRememberMe || _bAutoLogin)
 	{
-		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+		NSString* username = [[ServerPreferencesManager sharedInstance] username];
+		NSString* password = [[ServerPreferencesManager sharedInstance] password];
 		if(username)
 		{
 			[_txtfUsername setText:username];
@@ -166,9 +166,8 @@
 - (void)viewDidUnload 
 {
     [self setScrollView:nil];
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	
-	NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]; 
+	NSString* username = [[ServerPreferencesManager sharedInstance] username];
 	if(username)
 	{
 		[_txtfUsername setText:username];
@@ -306,11 +305,9 @@
     // Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
     if (compatibleWithSocial) {
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:_txtfUsername.text forKey:EXO_PREFERENCE_USERNAME];
-        [userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
-        [RKObjectManager sharedManager].client.forceBasicAuthentication = NO;
-
+        [ServerPreferencesManager sharedInstance].username = _txtfUsername.text;
+        [ServerPreferencesManager sharedInstance].password = _txtfPassword.text;
+        [[ServerPreferencesManager sharedInstance] persistUsernameAndPasswod];
     }
 }
 

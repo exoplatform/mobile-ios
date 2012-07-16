@@ -9,7 +9,7 @@
 #import "SocialRestConfiguration.h"
 #import "defines.h"
 #import <RestKit/RestKit.h>
-
+#import "ServerPreferencesManager.h"
 
 @implementation SocialRestConfiguration
 
@@ -40,12 +40,12 @@
 
 
 - (void)updateDatas {
-    _domainName = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] copy];
-    _restContextName = [kRestContextName copy];
-    _restVersion = [kRestVersion copy];
-    _portalContainerName = [kPortalContainerName copy];
-    _username = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME] copy];
-    _password = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD] copy];
+    self.domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    self.restContextName = kRestContextName;
+    self.restVersion = kRestVersion;
+    self.portalContainerName = kPortalContainerName;
+    self.username = [[ServerPreferencesManager sharedInstance] username];
+    self.password = [[ServerPreferencesManager sharedInstance] password];
     
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer

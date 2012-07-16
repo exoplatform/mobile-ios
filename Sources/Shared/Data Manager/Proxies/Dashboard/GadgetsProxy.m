@@ -8,7 +8,7 @@
 
 #import "GadgetsProxy.h"
 #import "GadgetItem.h"
-
+#import "ServerPreferencesManager.h"
 
 @interface GadgetsProxy () 
 
@@ -63,8 +63,8 @@
 - (void)retrieveGadgets {
     // Load the object model via RestKit
     self.manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];
-
-        
+    self.manager.client.username = [NSString stringWithFormat:@"%@", [ServerPreferencesManager sharedInstance].username];
+    self.manager.client.password = [NSString stringWithFormat:@"%@", [ServerPreferencesManager sharedInstance].password];    
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[GadgetItem class]];
     [mapping mapKeyPathsToAttributes:
      @"gadgetUrl",@"gadgetUrl",
@@ -81,13 +81,11 @@
 #pragma mark - RKObjectLoaderDelegate methods
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
 }
 
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    NSLog(@"Loaded statuses: %@", objects);
-    
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {    
     //Add gadgets into the dashboard
     _dashboard.arrayOfGadgets = objects;
     

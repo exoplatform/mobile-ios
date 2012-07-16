@@ -25,12 +25,12 @@
 }
 
 
-@property (retain, nonatomic) NSString* domainName;
-@property (retain, nonatomic) NSString* portalContainerName;
-@property (retain, nonatomic) NSString* restContextName;
-@property (retain, nonatomic) NSString* restVersion;
-@property (retain, nonatomic) NSString* username;
-@property (retain, nonatomic) NSString* password;
+@property (copy, nonatomic) NSString* domainName;
+@property (copy, nonatomic) NSString* portalContainerName;
+@property (copy, nonatomic) NSString* restContextName;
+@property (copy, nonatomic) NSString* restVersion;
+@property (copy, nonatomic) NSString* username;
+@property (copy, nonatomic) NSString* password;
 
 
 

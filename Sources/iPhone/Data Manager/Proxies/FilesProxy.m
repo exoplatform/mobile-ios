@@ -14,6 +14,7 @@
 #import "AuthenticateProxy.h"
 #import "TouchXML.h"
 #import "defines.h"
+#import "ServerPreferencesManager.h"
 
 @interface FilesProxy ()
 
@@ -88,9 +89,8 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication) {
         // re-authenticate when timeout
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-        NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+        NSString *username = [[ServerPreferencesManager sharedInstance] username];
+        NSString *password = [[ServerPreferencesManager sharedInstance] password];
         CFHTTPMessageRef dummyRequest = CFHTTPMessageCreateRequest(kCFAllocatorDefault, (CFStringRef)request.HTTPMethod, (CFURLRef)request.URL, kCFHTTPVersion1_1);
         CFHTTPMessageAddAuthentication(dummyRequest, nil, (CFStringRef)username, (CFStringRef)password,kCFHTTPAuthenticationSchemeBasic, FALSE);
         CFStringRef authorizationString = CFHTTPMessageCopyHeaderFieldValue(dummyRequest, CFSTR("Authorization"));
@@ -258,11 +258,9 @@
 
 - (void)creatUserRepositoryHomeUrl
 {
-   
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString* domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-    NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-    NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+    NSString* domain = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    NSString *username = [[ServerPreferencesManager sharedInstance] username];
+    NSString *password = [[ServerPreferencesManager sharedInstance] password];
     
     NSString *urlForUserRepo = [NSString stringWithFormat:@"%@%@/Users", domain, DOCUMENT_JCR_PATH_REST];
     
@@ -312,9 +310,8 @@
 	source = [DataProcess encodeUrl:source];
 	destination = [DataProcess encodeUrl:destination];
 	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-	NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+    NSString *username = [[ServerPreferencesManager sharedInstance] username];
+    NSString *password = [[ServerPreferencesManager sharedInstance] password];
 	
 	NSHTTPURLResponse* response;
 	NSError* error;
@@ -416,9 +413,8 @@
         
         [request setHTTPMethod:@"MKCOL"];
         
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-        NSString *password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+        NSString *username = [[ServerPreferencesManager sharedInstance] username];
+        NSString *password = [[ServerPreferencesManager sharedInstance] password];
         
         NSString *s = @"Basic ";
         NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
