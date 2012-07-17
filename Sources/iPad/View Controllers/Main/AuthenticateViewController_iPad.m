@@ -139,10 +139,10 @@
     _interfaceOrientation = interfaceOrientation;
     
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
-        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]]];
+        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
         [_vContainer setFrame:CGRectMake(227, 230, 569, 460)];
 	} else {
-        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]]];
+        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
         [_vContainer setFrame:CGRectMake(100, 400, 569, 460)];
 	}
     
