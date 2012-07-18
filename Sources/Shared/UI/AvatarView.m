@@ -9,19 +9,53 @@
 #import "AvatarView.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface InnerShadowView : UIView
+
+@end
+
+@implementation InnerShadowView
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    float radius = self.layer.cornerRadius;
+    float shadowOffset = 20.0;
+    CGPathRef visiblePath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:radius].CGPath;
+
+    CGRect shadowRect = CGRectInset(rect, -shadowOffset, -shadowOffset);
+
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, shadowRect);
+    CGPathAddPath(path, NULL, visiblePath);
+    CGPathCloseSubpath(path);
+    
+    CGContextAddPath(context, visiblePath); 
+    CGContextClip(context);
+    
+    UIColor * shadowColor = [UIColor blackColor];
+    CGContextSaveGState(context);
+    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 0.0f), 8.0f, [shadowColor CGColor]);
+    [[UIColor whiteColor] setFill];   
+    
+    CGContextSaveGState(context);   
+
+    CGContextAddPath(context, path);
+    CGContextEOFillPath(context);
+    
+    CGPathRelease(path);    
+    CGContextRestoreGState(context);
+}
+
+@end
+
 @interface AvatarView ()
 
-@property (nonatomic, retain) CALayer *innerShadowLayer;
 - (void)configureAvatar;
 
 @end
 
 @implementation AvatarView
 
-@synthesize innerShadowLayer = _innerShadowLayer;
-
 - (void)dealloc {
-    [_innerShadowLayer release];
     [super dealloc];
 }
 
@@ -48,8 +82,8 @@
 
 - (void)configureAvatar {
     //Add the CornerRadius
-    [[self layer] setCornerRadius:5.5];
-    [[self layer] setMasksToBounds:YES];
+    [[self layer] setCornerRadius:6.0];
+    self.clipsToBounds = YES;
     
     //Add the border
     [[self layer] setBorderColor:[UIColor whiteColor].CGColor];
@@ -58,17 +92,11 @@
     self.placeholderImage = [UIImage imageNamed:@"default-avatar"];
     
     //Add the inner shadow
-    self.innerShadowLayer = [CALayer layer];
-    self.innerShadowLayer.contents = (id)[UIImage imageNamed: @"ActivityAvatarShadow"].CGImage;
-    self.innerShadowLayer.contentsCenter = CGRectMake(10.0f/21.0f, 10.0f/21.0f, 1.0f/21.0f, 1.0f/21.0f);
-    self.innerShadowLayer.frame = CGRectMake(borderWidth, borderWidth, self.bounds.size.width - 2 * borderWidth, self.bounds.size.height - 2 * borderWidth);
-    [self.layer addSublayer:self.innerShadowLayer];
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    float borderWidth = self.layer.borderWidth;
-    self.innerShadowLayer.frame = CGRectMake(borderWidth, borderWidth, self.bounds.size.width - 2 * borderWidth, self.bounds.size.height - 2 * borderWidth);
+    InnerShadowView *innerShadowView = [[InnerShadowView alloc] initWithFrame:self.bounds];
+    innerShadowView.backgroundColor = [UIColor clearColor];
+    innerShadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self addSubview:innerShadowView];
+    [innerShadowView release];
 }
 
 @end

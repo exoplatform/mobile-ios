@@ -18,10 +18,11 @@
 
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellLeftRightPadding 1.0
-#define kAdvancedCellBottomPadding 7.0
+#define kAdvancedCellBottomPadding 5.0
 #define kAdvancedCellBottomMargin 10.0
 #define kAdvancedCellTabBarHeight 60.0
 #define kCommentButtonHeight 50.0
+#define kInfoViewCornerRadius 8.0
 
 #pragma mark - Customize JMSelectionView & JMTabItem
 
@@ -141,7 +142,7 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
 - (id)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
-        self.layer.cornerRadius = 7.0;
+        self.layer.cornerRadius = kInfoViewCornerRadius;
         self.layer.masksToBounds = YES;
         self.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
         self.layer.shadowRadius = 5.0f;
@@ -164,7 +165,7 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     CGContextSetFillColorWithColor(context, [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal"]].CGColor);
     CGContextFillRect(context, contentRect);
 
-    UIImage *borderImg = [UIImage imageNamed:@"activity-detail-info-container-bg"];
+    UIImage *borderImg = [UIImage imageNamed:@"activity-detail-info-container-bg.png"];
     borderImg = [borderImg stretchableImageWithLeftCapWidth:borderImg.size.width/2 topCapHeight:borderImg.size.height/2];
     [borderImg drawInRect:rect];
     
@@ -288,6 +289,7 @@ static NSString *kTabItem = @"kTabItem";
         _infoView.delegate = self;
         _infoView.dataSource = self;
         _infoView.backgroundColor = [UIColor clearColor];
+        _infoView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
     }
     return _infoView;
@@ -297,6 +299,8 @@ static NSString *kTabItem = @"kTabItem";
     if (!_likersViewController) {
         _likersViewController = [[ActivityLikersViewController alloc] init];
         _likersViewController.view.backgroundColor = [UIColor clearColor];
+        _likersViewController.view.layer.cornerRadius = kInfoViewCornerRadius;
+        _likersViewController.view.clipsToBounds = YES;
     }
     return _likersViewController;
 }

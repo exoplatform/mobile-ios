@@ -23,25 +23,6 @@
 #define kHeightForFooter 60.0
 #define kMenuViewHeaderHeight 70.0
 
-#define kMenuCellMargin 5.0
-@interface MenuTableViewCell : UITableViewCell 
-
-@end
-
-@implementation MenuTableViewCell
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGRect imgViewFrame = CGRectInset(self.imageView.frame, kMenuCellMargin, kMenuCellMargin);
-    imgViewFrame.origin.x -= kMenuCellMargin;
-    self.imageView.frame = imgViewFrame;
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    CGRect textFrame = CGRectOffset(self.textLabel.frame, -kMenuCellMargin, 0);
-    self.textLabel.frame = textFrame;
-}
-
-@end
-
 @interface FooterView : UIView
 
 @end
@@ -249,9 +230,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
-    MenuTableViewCell *cell = (MenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[MenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.clipsToBounds = YES;
         cell.indentationLevel = 1;
         cell.backgroundColor = [UIColor clearColor];
