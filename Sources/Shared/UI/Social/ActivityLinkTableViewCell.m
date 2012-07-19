@@ -164,7 +164,7 @@
     if (url && url.host && url.scheme){
         self.imgvAttach.hidden = NO;
         rect = self.imgvAttach.frame;
-        self.imgvAttach.placeholderImage = [UIImage imageNamed:@"ActivityTypeDocument.png"];
+        self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
         rect.origin.y = _htmlActivityMessage.frame.size.height + _htmlActivityMessage.frame.origin.y + 5;
         rect.origin.x = (width > 320)? (width/3 + 60) : (width/3 + 40);

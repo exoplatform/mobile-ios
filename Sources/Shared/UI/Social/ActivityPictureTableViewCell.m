@@ -105,7 +105,7 @@
             
             _lbFileName.text = [socialActivityStream.templateParams valueForKey:@"DOCNAME"];
 
-            self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
+            self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
@@ -152,7 +152,7 @@
             _lbFileName.text = @"";
             [_lbFileName sizeToFit];
             
-            self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
+            self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSString *strURL = [NSString stringWithFormat:@"%@/portal/rest/jcr/%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"contenLink"]];

@@ -82,7 +82,7 @@
     
     _lbName.text = title;
     
-    _imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
+    _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     NSString *htmlStr = nil;

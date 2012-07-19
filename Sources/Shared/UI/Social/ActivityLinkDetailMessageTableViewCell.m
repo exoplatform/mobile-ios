@@ -99,7 +99,7 @@
     NSURL *url = [NSURL URLWithString:[_templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
         rect = self.imgvAttach.frame;
-        self.imgvAttach.placeholderImage = [UIImage imageNamed:@"DocumentIconForUnknown.png"];
+        self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[[_templateParams valueForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
         rect.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 50);
