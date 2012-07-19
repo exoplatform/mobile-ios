@@ -168,12 +168,7 @@
     [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
     
-    //Need to remove Cookies
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies]) {
-        [storage deleteCookie:cookie];
-    }
+    [LoginProxy doLogout];
 }
 
 @end

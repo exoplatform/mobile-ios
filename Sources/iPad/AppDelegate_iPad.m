@@ -102,6 +102,9 @@
 	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
     
+    // execute Logout
+    [LoginProxy doLogout];
+    
     //Display the eXoMobileView Controller
     [UIView transitionWithView:self.window
                       duration:1
@@ -112,13 +115,6 @@
                     completion:^(BOOL finished){
                     }];
     
-    
-    //Need to remove Cookies
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies]) {
-        [storage deleteCookie:cookie];
-    }
 }
 
 

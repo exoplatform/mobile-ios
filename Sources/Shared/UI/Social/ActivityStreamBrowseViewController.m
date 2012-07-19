@@ -176,7 +176,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[SocialRestConfiguration sharedInstance] initRKOjectManagerIfNotExist];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];    
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
@@ -668,7 +667,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         //Retrieve all activities
         //Start preparing data
-        
         for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];

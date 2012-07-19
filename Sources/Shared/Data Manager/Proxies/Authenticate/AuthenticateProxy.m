@@ -9,7 +9,7 @@
 #import "AuthenticateProxy.h"
 #import "defines.h"
 #import "DataProcess.h"
-
+#import "ServerPreferencesManager.h"
 
 
 @interface AuthenticateProxy (PrivateMethods)
@@ -52,9 +52,9 @@
 {
     if ((self = [super init])) 
     {
-        _domainName = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] copy];
-        _username = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME] copy];
-        _password = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD] copy];
+        _domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
+        _username = [[ServerPreferencesManager sharedInstance] username];
+        _password = [[ServerPreferencesManager sharedInstance] password];
         
     }	
 	return self;

@@ -13,10 +13,8 @@
 #import "DataProcess.h"
 #import "NSString+HTML.h"
 #import "SSHUDView.h"
-#import "AuthenticateProxy.h"
 #import "LanguageHelper.h"
 #import "URLAnalyzer.h"
-
 
 
 //Define for cells of the Server Selection Panel
@@ -26,14 +24,14 @@
 
 @interface AuthenticateViewController ()
 
-@property (nonatomic, retain) PlatformVersionProxy *plfVersionProxy;
+@property (nonatomic, retain) LoginProxy *loginProxy;
 
 @end
 
 @implementation AuthenticateViewController
 @synthesize scrollView = _scrollView;
 @synthesize activeField = _activeField;
-@synthesize plfVersionProxy = _plfVersionProxy;
+@synthesize loginProxy = _loginProxy;
 
 @synthesize hud = _hud;
 
@@ -119,8 +117,8 @@
 	
 	if(_bRememberMe || _bAutoLogin)
 	{
-		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+		NSString* username = [[ServerPreferencesManager sharedInstance] username];
+		NSString* password = [[ServerPreferencesManager sharedInstance] password];
 		if(username)
 		{
 			[_txtfUsername setText:username];
@@ -168,9 +166,8 @@
 - (void)viewDidUnload 
 {
     [self setScrollView:nil];
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	
-	NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]; 
+	NSString* username = [[ServerPreferencesManager sharedInstance] username];
 	if(username)
 	{
 		[_txtfUsername setText:username];
@@ -303,12 +300,32 @@
     return _hud;
 }
 
-#pragma mark PlatformServer
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
-    
+#pragma mark - PlatformVersionProxyDelegate 
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+    // Remake the screen interactions enabled
+    self.view.userInteractionEnabled = YES;
+    if (compatibleWithSocial) {
+        [ServerPreferencesManager sharedInstance].username = _txtfUsername.text;
+        [ServerPreferencesManager sharedInstance].password = _txtfPassword.text;
+        [[ServerPreferencesManager sharedInstance] persistUsernameAndPasswod];
+    }
 }
 
-#pragma UITableView Utils
+- (void)authenticateFailedWithError:(NSError *)error {
+    [self view].userInteractionEnabled = YES;
+    [self.hud failAndDismissWithTitle:Localize(@"Error")];
+    
+    if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication) {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"WrongUserNamePassword") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [alert show];        
+    } else {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"NetworkConnection") message:Localize(@"NetworkConnectionFailed") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [alert show];
+    }
+}
+
+
+#pragma mark - UITableView Utils
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -330,7 +347,7 @@
              [UIImage imageNamed:@"AuthenticateCheckmarkiPadOn.png"]] autorelease];
 }
 
-#pragma UITableView Delegate
+#pragma mark - UITableView Delegate & DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -421,7 +438,7 @@
     [_tbvlServerList reloadData];
 }
 
-
+#pragma mark - authentication process 
 - (void)doSignIn
 {
     [self hitAtView:nil];
@@ -434,8 +451,13 @@
 	[_txtfUsername resignFirstResponder];
 	[_txtfPassword resignFirstResponder];
 	
-    [NSThread detachNewThreadSelector:@selector(startSignInProgress) toTarget:self withObject:nil];
+    NSString* username = [_txtfUsername text];
+	NSString* password = [_txtfPassword text];
     
+    self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self] autorelease];
+    
+    [self.loginProxy authenticateAndGetPlatformInfoWithUsername:username password:password];
+
 }
 
 - (IBAction)onSignInBtn:(id)sender
@@ -458,82 +480,6 @@
 	}
 }
 
-- (void)signInSuccesfully
-{    
-	
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    
-	[userDefaults setObject:_txtfUsername.text forKey:EXO_PREFERENCE_USERNAME];
-	[userDefaults setObject:_txtfPassword.text forKey:EXO_PREFERENCE_PASSWORD];
-    
-    //The login has successed we need to check the version of Platform
-    self.plfVersionProxy = [[[PlatformVersionProxy alloc] initWithDelegate:self] autorelease];
-    [self.plfVersionProxy retrievePlatformInformations];
-    
-}
-
-- (void)signInFailed
-{
-	[self view].userInteractionEnabled = YES;
-    [self.hud failAndDismissWithTitle:Localize(@"Error")];
-    
-}
-
-
-- (void)startSignInProgress
-{
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-	NSString* username = [_txtfUsername text];
-	NSString* password = [_txtfPassword text];
-    
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:username forKey:EXO_PREFERENCE_USERNAME];
-	[userDefaults setObject:password forKey:EXO_PREFERENCE_PASSWORD];	
-	
-	_strBSuccessful = [[AuthenticateProxy sharedInstance] sendAuthenticateRequest:[ServerPreferencesManager sharedInstance].selectedDomain username:username password:password];
-    
-    //SLM : Remake the screen interactions enabled
-    self.view.userInteractionEnabled = YES;
-    
-    
-	
-	if(_strBSuccessful == @"YES")
-	{
-        //Todo need to be localized
-		[self performSelectorOnMainThread:@selector(signInSuccesfully) withObject:nil waitUntilDone:NO];
-	}
-	else if(_strBSuccessful == @"NO")
-	{
-        
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-                                                        message:Localize(@"WrongUserNamePassword")
-                                                       delegate:self 
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-		[alert show];
-		[alert release];
-		
-		[self performSelectorOnMainThread:@selector(signInFailed) withObject:nil waitUntilDone:NO];		
-	}
-	else if(_strBSuccessful == @"ERROR")
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"NetworkConnection")
-                                                        message:Localize(@"NetworkConnectionFailed")
-                                                       delegate:self 
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-		[alert show];
-		[alert release];
-		
-		[self performSelectorOnMainThread:@selector(signInFailed) withObject:nil waitUntilDone:NO];
-	}
-	
-    
-	[pool release];
-    
-}
-
 - (IBAction)onSettingBtn
 {
     
@@ -542,7 +488,7 @@
 - (void)dealloc 
 {
     [self unRegisterForKeyboardNotifications];
-    [_plfVersionProxy release];
+    [_loginProxy release];
 	[_txtfUsername release];
 	[_txtfPassword release];
     [_hud release];

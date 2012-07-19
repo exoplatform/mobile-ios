@@ -186,16 +186,14 @@
 
 - (void)setPreferenceValues
 {
-	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-
-	NSString *strUsername = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]; 
+	NSString *strUsername = [[ServerPreferencesManager sharedInstance] username];
 	if(strUsername)
 	{
 		[_txtfUsername setText:strUsername];
 		[_txtfUsername resignFirstResponder];
 	}
 	
-	NSString* strPassword = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]; 
+	NSString* strPassword = [[ServerPreferencesManager sharedInstance] password]; 
 	if(strPassword)
 	{
 		[_txtfPassword setText:strPassword];
@@ -331,9 +329,7 @@
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
-    
-    
-    
+    [super platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     //Setup Version Platfrom and Application
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){

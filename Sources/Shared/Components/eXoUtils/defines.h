@@ -70,8 +70,8 @@
 #define EXO_BACKGROUND_COLOR                [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]]
 
 #define DOCUMENT_JCR_PATH_REST              @"/rest/private/jcr/repository/collaboration"
-#define DOCUMENT_DRIVE_PATH_REST            @"/portal/rest/managedocument/getDrives?driveType="
-#define DOCUMENT_FILE_PATH_REST             @"/portal/rest/managedocument/getFoldersAndFiles?driveName="
+#define DOCUMENT_DRIVE_PATH_REST            @"/rest/private/managedocument/getDrives?driveType="
+#define DOCUMENT_FILE_PATH_REST             @"/rest/private/managedocument/getFoldersAndFiles?driveName="
 #define DOCUMENT_WORKSPACE_NAME             @"&workspaceName="
 #define DOCUMENT_CURRENT_FOLDER             @"&currentFolder=" 
 

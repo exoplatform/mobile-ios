@@ -8,17 +8,21 @@
 
 #import "GadgetsProxy.h"
 #import "GadgetItem.h"
+#import "ServerPreferencesManager.h"
 
+@interface GadgetsProxy () 
 
-@interface GadgetsProxy (privateMethods) 
+@property (nonatomic, retain) RKObjectManager *manager;
+
 - (void)retrieveGadgets;
+
 @end
 
 
 @implementation GadgetsProxy
 
 @synthesize dashboard = _dashboard, delegate=_delegate;
-
+@synthesize manager = _manager;
 
 -(id)initWithDashboardItem:(DashboardItem *)dashboardItem andDelegate:(id<GadgetsProxyDelegate>)delegateForProxy {
 
@@ -51,29 +55,16 @@
     [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [_dashboard release];
     _delegate = nil;
-
+    [_manager release];
     [super dealloc];
 }
 
-
-
-
-
-
-
 #pragma mark - Call methods
-
 - (void)retrieveGadgets {
     // Load the object model via RestKit
-    if ([RKObjectManager sharedManager] == nil) {
-        RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];  
-        [RKObjectManager setSharedManager:manager];
-    } else {
-        [RKObjectManager sharedManager].client = [RKClient clientWithBaseURL:_dashboard.link];
-    }
-    RKObjectManager* manager = [RKObjectManager sharedManager];
-
-        
+    self.manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];
+    self.manager.client.username = [NSString stringWithFormat:@"%@", [ServerPreferencesManager sharedInstance].username];
+    self.manager.client.password = [NSString stringWithFormat:@"%@", [ServerPreferencesManager sharedInstance].password];    
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[GadgetItem class]];
     [mapping mapKeyPathsToAttributes:
      @"gadgetUrl",@"gadgetUrl",
@@ -82,7 +73,7 @@
      @"gadgetDescription",@"gadgetDescription",
      nil];
     
-    [manager loadObjectsAtResourcePath:@"" objectMapping:mapping delegate:self];          
+    [self.manager loadObjectsAtResourcePath:@"" objectMapping:mapping delegate:self];          
 }
 
 
@@ -90,13 +81,11 @@
 #pragma mark - RKObjectLoaderDelegate methods
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    NSLog(@"Loaded payload: %@", [response bodyAsString]);
+    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
 }
 
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    NSLog(@"Loaded statuses: %@", objects);
-    
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {    
     //Add gadgets into the dashboard
     _dashboard.arrayOfGadgets = objects;
     
@@ -106,8 +95,7 @@
     }
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-	//Error to retrieve 
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {    
     //Need to prevent the delegate
     if (_delegate && [_delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
         [_delegate proxy:self didFailWithError:error];

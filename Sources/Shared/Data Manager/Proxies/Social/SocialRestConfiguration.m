@@ -9,7 +9,7 @@
 #import "SocialRestConfiguration.h"
 #import "defines.h"
 #import <RestKit/RestKit.h>
-
+#import "ServerPreferencesManager.h"
 
 @implementation SocialRestConfiguration
 
@@ -40,12 +40,12 @@
 
 
 - (void)updateDatas {
-    _domainName = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] copy];
-    _restContextName = [kRestContextName copy];
-    _restVersion = [kRestVersion copy];
-    _portalContainerName = [kPortalContainerName copy];
-    _username = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_USERNAME] copy];
-    _password = [(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_PASSWORD] copy];
+    self.domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    self.restContextName = kRestContextName;
+    self.restVersion = kRestVersion;
+    self.portalContainerName = kPortalContainerName;
+    self.username = [[ServerPreferencesManager sharedInstance] username];
+    self.password = [[ServerPreferencesManager sharedInstance] password];
     
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer
@@ -55,27 +55,11 @@
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer
     domainWithoutHttp = [domainWithoutHttp stringByReplacingOccurrencesOfString:@"/portal" withString:@""];
-    [self initRKOjectManagerIfNotExist];
 }
 
 - (NSString *)createBaseUrl {
     return [NSString stringWithFormat:@"%@/%@/private/", self.domainName, self.restContextName];
 }
-
-- (void)initRKOjectManagerIfNotExist {
-    // Remove all of cookies before using RestKit due to the below authentication can't take affect if the cookie is available. The detail is described here https://github.com/RestKit/RestKit/pull/755 In the new version of RestKit, the issue is fixed, thus this block of code can be removed  
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (NSHTTPCookie *cookie in [storage cookies]) {
-        [storage deleteCookie:cookie];
-    }
-    // -------
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseUrl]];
-    manager.client.username = self.username;
-    manager.client.password = self.password;
-    manager.client.forceBasicAuthentication = YES;
-    [RKObjectManager setSharedManager:manager];
-}
-
 
 - (id) init
 {

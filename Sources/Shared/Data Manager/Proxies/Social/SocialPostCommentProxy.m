@@ -86,27 +86,4 @@
     [commentToPost release];
 }
 
-
-#pragma mark - RKObjectLoaderDelegate methods
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
-{
-    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-}
-
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
-{
-    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
-        [delegate proxyDidFinishLoading:self];
-    }
-}
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error 
-{
-    if (delegate && [delegate respondsToSelector:@selector(proxy: didFailWithError:)]) {
-        [delegate proxy:self didFailWithError:error];
-    }
-}
-
 @end

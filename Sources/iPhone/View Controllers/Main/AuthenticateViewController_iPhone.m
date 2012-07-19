@@ -66,7 +66,7 @@
 }
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
-    
+    [super platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil){
         //Setup Version Platfrom and Application
@@ -77,7 +77,6 @@
             [self.hud completeAndDismissWithTitle:Localize(@"Success")];
             AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
             appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-            //[appDelegate performSelector:@selector(showHomeViewController) withObject:nil afterDelay:1.0];
             [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
         } else {
             [self.hud failAndDismissWithTitle:Localize(@"Error")];

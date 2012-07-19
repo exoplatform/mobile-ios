@@ -51,13 +51,6 @@
 
 - (void)retrieveDashboards {
     // Load the object model via RestKit
-    
-    if ([RKObjectManager sharedManager] == nil) {
-        RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];  
-        [RKObjectManager setSharedManager:manager];
-    } else {
-        [RKObjectManager sharedManager].client = [RKClient clientWithBaseURL:[self createBaseURL]];
-    }
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[DashboardItem class]];
@@ -95,8 +88,6 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-	// The url doesn't exist, the server is not compatible
-    
     //We need to prevent the caller
     if (_delegate && [_delegate respondsToSelector:@selector(dashboardProxy:didFailWithError:)]) {
         [_delegate dashboardProxy:self didFailWithError:error];

@@ -46,7 +46,7 @@ static NSString *urlEncode(id object) {
 
 - (NSString *)createPath {
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    return [NSString stringWithFormat:@"api/social/%@/%@", socialConfig.restVersion, socialConfig.portalContainerName];
+    return [NSString stringWithFormat:@"private/api/social/%@/%@", socialConfig.restVersion, socialConfig.portalContainerName];
 }
 
 - (NSString*)URLEncodedString:(NSDictionary *)dictForParam {
@@ -86,8 +86,21 @@ static NSString *urlEncode(id object) {
 }
 
 #pragma mark - RKObjectLoaderDelegate implementation
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
+{
+    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
+}
 
+- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
+    if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
+        [delegate proxyDidFinishLoading:self];
+    }
+}
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {    
+    if (delegate && [delegate respondsToSelector:@selector(proxy: didFailWithError:)]) {
+        [delegate proxy:self didFailWithError:error];
+    }
 }
 
 @end
