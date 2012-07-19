@@ -308,8 +308,6 @@
 		46CCF2CA14580FD00039CEAC /* GadgetsProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CCF2C914580FD00039CEAC /* GadgetsProxy.m */; };
 		46D97B3013742B7F00F71E82 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B2F13742B7F00F71E82 /* Default.png */; };
 		46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D97B3113742B8B00F71E82 /* Default@2x.png */; };
-		46DA10A31386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA10891386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png */; };
-		46DA10A41386CE98008DA976 /* AuthenticateCheckmarkiPadOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA108A1386CE98008DA976 /* AuthenticateCheckmarkiPadOn.png */; };
 		46DA10A51386CE98008DA976 /* AuthenticateCredentialsIconIpadOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA108B1386CE98008DA976 /* AuthenticateCredentialsIconIpadOff.png */; };
 		46DA10A61386CE98008DA976 /* AuthenticateCredentialsIconIpadOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA108C1386CE98008DA976 /* AuthenticateCredentialsIconIpadOn.png */; };
 		46DA10A71386CE98008DA976 /* AuthenticateServersIconIpadOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DA108D1386CE98008DA976 /* AuthenticateServersIconIpadOff.png */; };
@@ -1262,8 +1260,6 @@
 		46CCF2C914580FD00039CEAC /* GadgetsProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GadgetsProxy.m; path = Dashboard/GadgetsProxy.m; sourceTree = "<group>"; };
 		46D97B2F13742B7F00F71E82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Splashscreen/@1x/Default.png"; sourceTree = "<group>"; };
 		46D97B3113742B8B00F71E82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Splashscreen/@2x/Default@2x.png"; sourceTree = "<group>"; };
-		46DA10891386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateCheckmarkiPadOff.png; sourceTree = "<group>"; };
-		46DA108A1386CE98008DA976 /* AuthenticateCheckmarkiPadOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateCheckmarkiPadOn.png; sourceTree = "<group>"; };
 		46DA108B1386CE98008DA976 /* AuthenticateCredentialsIconIpadOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateCredentialsIconIpadOff.png; sourceTree = "<group>"; };
 		46DA108C1386CE98008DA976 /* AuthenticateCredentialsIconIpadOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateCredentialsIconIpadOn.png; sourceTree = "<group>"; };
 		46DA108D1386CE98008DA976 /* AuthenticateServersIconIpadOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateServersIconIpadOff.png; sourceTree = "<group>"; };
@@ -2767,8 +2763,6 @@
 		46DA10881386CE98008DA976 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
-				46DA10891386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png */,
-				46DA108A1386CE98008DA976 /* AuthenticateCheckmarkiPadOn.png */,
 				46DA108B1386CE98008DA976 /* AuthenticateCredentialsIconIpadOff.png */,
 				46DA108C1386CE98008DA976 /* AuthenticateCredentialsIconIpadOn.png */,
 				46DA108D1386CE98008DA976 /* AuthenticateServersIconIpadOff.png */,
@@ -4199,8 +4193,6 @@
 				8947346A13370F5000B0AD11 /* RightVertical.png in Resources */,
 				8947346B13370F5000B0AD11 /* Send.png in Resources */,
 				8947346C13370F5000B0AD11 /* SendBtn.png in Resources */,
-				46DA10A31386CE98008DA976 /* AuthenticateCheckmarkiPadOff.png in Resources */,
-				46DA10A41386CE98008DA976 /* AuthenticateCheckmarkiPadOn.png in Resources */,
 				46DA10A51386CE98008DA976 /* AuthenticateCredentialsIconIpadOff.png in Resources */,
 				46DA10A61386CE98008DA976 /* AuthenticateCredentialsIconIpadOn.png in Resources */,
 				46DA10A71386CE98008DA976 /* AuthenticateServersIconIpadOff.png in Resources */,

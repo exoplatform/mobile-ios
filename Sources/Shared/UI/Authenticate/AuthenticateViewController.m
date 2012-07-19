@@ -328,23 +328,16 @@
 #pragma mark - UITableView Utils
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    // Uses the same image for iPhone and iPad
         return [[[UIImageView alloc] initWithImage:
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
-    
-    
-    return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOff.png"]] autorelease];
 }
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    // Uses the same image for iPhone and iPad
         return [[[UIImageView alloc] initWithImage:
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
-    
-    return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPadOn.png"]] autorelease];
 }
 
 #pragma mark - UITableView Delegate & DataSource
