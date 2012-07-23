@@ -33,7 +33,6 @@
     NSMutableArray*                         _arrActivityStreams;
     
     BOOL                                    _bIsPostClicked;
-    SocialUserProfile*                      _socialUserProfile;
     
     //Refresh Management
     EGORefreshTableHeaderView*              _refreshHeaderView;
@@ -47,6 +46,7 @@
 }
 
 @property (nonatomic, retain) ActivityStreamTabbar *filterTabbar;
+@property (nonatomic, retain) SocialUserProfile *userProfile;
 
 - (NSString *)getIconForType:(NSString *)type;
 - (void)emptyState;

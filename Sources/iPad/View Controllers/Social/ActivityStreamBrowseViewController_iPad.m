@@ -166,7 +166,7 @@
     _indexpathSelectedActivity = [indexPath copy];
 
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
-                                     andCurrentUserProfile:_socialUserProfile];
+                                     andCurrentUserProfile:self.userProfile];
 
         
     

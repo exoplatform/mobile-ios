@@ -16,7 +16,7 @@
 
 @synthesize arrActivityStreams = _arrActivityStreams;
 @synthesize isUpdateRequest = _isUpdateRequest;
-
+@synthesize userProfile = _userProfile;
 
 - (id)init
 {
@@ -31,6 +31,7 @@
 {
     delegate = nil;
     [_arrActivityStreams release];
+    [_userProfile release];
     [super dealloc];
 }
 
@@ -43,10 +44,30 @@
     return [NSString stringWithFormat:@"%@/activity_stream/%@", [super createPath], @"feed.json"]; 
 }
 
+- (NSString *)createPathForType:(ActivityStreamProxyActivityType)activityType {
+    NSString *lastPath = nil;
+    switch (activityType) {
+        case ActivityStreamProxyActivityTypeAllUpdates:
+            lastPath = @"feed.json";
+            break;
+        case ActivityStreamProxyActivityTypeMyConnections:
+            lastPath = @"connections.json";
+            break;
+        case ActivityStreamProxyActivityTypeMySpaces:
+            lastPath = @"spaces.json";            
+            break;
+        case ActivityStreamProxyActivityTypeMyStatus:
+            lastPath = [NSString stringWithFormat:@"%@.json", self.userProfile.identity];
+            break;
+        default:
+            break;
+    }
+    return [NSString stringWithFormat:@"%@/activity_stream/%@", [super createPath], lastPath];
+}
 
 #pragma mark - Call methods
 
-- (void) getActivityStreams 
+- (void) getActivityStreams:(ActivityStreamProxyActivityType)activitytype
 {
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
@@ -82,7 +103,7 @@
     
     
     //[manager registerClass:[SocialActivity class] forElementNamed:@"activities"];
-    [manager loadObjectsAtResourcePath:[self createPath] delegate:self];   
+    [manager loadObjectsAtResourcePath:[self createPathForType:activitytype] delegate:self];   
 }
 
 - (void)updateActivityStreamSinceActivity:(SocialActivity *)activity {

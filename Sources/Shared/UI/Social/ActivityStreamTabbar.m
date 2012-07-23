@@ -162,4 +162,8 @@
     }
 }
 
+- (void)selectTabItem:(ActivityStreamTabItem)selectedTabItem {
+    [self.tabView setSelectedIndex:selectedTabItem];
+}
+
 @end

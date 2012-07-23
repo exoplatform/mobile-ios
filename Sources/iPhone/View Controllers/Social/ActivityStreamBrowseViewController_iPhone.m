@@ -105,7 +105,7 @@
     _activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
     _activityDetailViewController.iconType = [self getIconForType:socialActivityStream.type];
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
-                                     andCurrentUserProfile:_socialUserProfile];
+                                     andCurrentUserProfile:self.userProfile];
     
     //[self.navigationController pushViewController:_activityDetailViewController animated:YES];
     

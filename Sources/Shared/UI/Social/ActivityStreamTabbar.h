@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JMTabView.h"
 
-enum {
+typedef enum {
   ActivityStreamTabItemAllUpdate = 0,
   ActivityStreamTabItemMyConnections = 1,
   ActivityStreamTabItemMySpaces = 2,
@@ -23,5 +23,7 @@ enum {
 @property (nonatomic, retain) JMTabView *tabView;
 // enable or diable translucent effect
 - (void)translucentView:(BOOL)translucent;
+
+- (void)selectTabItem:(ActivityStreamTabItem)selectedTabItem;
 
 @end
