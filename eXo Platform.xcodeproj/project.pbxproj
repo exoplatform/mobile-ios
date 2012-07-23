@@ -347,6 +347,10 @@
 		46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */; };
 		46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */; };
 		46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */; };
+		57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203215B6B7B800BF902F /* CredentialsViewController.m */; };
+		57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203515B6B7C800BF902F /* ServerListViewController.m */; };
+		57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */; };
+		57C5203A15B6B85A00BF902F /* ServerListViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
@@ -615,10 +619,6 @@
 		A6B54E53157DBEA6005BFFCD /* activity-detail-action-like.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B54E51157DBEA5005BFFCD /* activity-detail-action-like.png */; };
 		A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B61A8C15774B07006C3526 /* AvatarView.m */; };
 		A6B8CF211580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */; };
-		A6FB0B5D15B51D54004F958C /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5915B51D54004F958C /* Default-Landscape~ipad.png */; };
-		A6FB0B5E15B51D54004F958C /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5A15B51D54004F958C /* Default-Landscape@2x~ipad.png */; };
-		A6FB0B5F15B51D54004F958C /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5B15B51D54004F958C /* Default-Portrait~ipad.png */; };
-		A6FB0B6015B51D54004F958C /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5C15B51D54004F958C /* Default-Portrait@2x~ipad.png */; };
 		A6FB0B6915B523AB004F958C /* AuthenticateCredentialsIconIpadOff.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B6115B523A9004F958C /* AuthenticateCredentialsIconIpadOff.png */; };
 		A6FB0B6A15B523AB004F958C /* AuthenticateCredentialsIconIpadOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B6215B523A9004F958C /* AuthenticateCredentialsIconIpadOff@2x.png */; };
 		A6FB0B6B15B523AB004F958C /* AuthenticateCredentialsIconIpadOn.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B6315B523A9004F958C /* AuthenticateCredentialsIconIpadOn.png */; };
@@ -1332,6 +1332,12 @@
 		46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
 		46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "UIImage+Resize/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "UIImage+Resize/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		57C5203115B6B7B700BF902F /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
+		57C5203215B6B7B800BF902F /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
+		57C5203415B6B7C700BF902F /* ServerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerListViewController.h; sourceTree = "<group>"; };
+		57C5203515B6B7C800BF902F /* ServerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerListViewController.m; sourceTree = "<group>"; };
+		57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController_iPad.xib; sourceTree = "<group>"; };
+		57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPad.xib; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerEditingViewController.xib; path = ../../iPhone/NIB/ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerEditingViewController.h; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.h"; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerEditingViewController.m; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.m"; sourceTree = "<group>"; };
@@ -3101,6 +3107,10 @@
 				8909439A142204BC003A18BB /* AuthenticateServerCell.xib */,
 				8911F5531420C7540093F2BD /* AuthenticateViewController.h */,
 				8911F5541420C7540093F2BD /* AuthenticateViewController.m */,
+				57C5203115B6B7B700BF902F /* CredentialsViewController.h */,
+				57C5203215B6B7B800BF902F /* CredentialsViewController.m */,
+				57C5203415B6B7C700BF902F /* ServerListViewController.h */,
+				57C5203515B6B7C800BF902F /* ServerListViewController.m */,
 			);
 			path = Authenticate;
 			sourceTree = "<group>";
@@ -3361,6 +3371,8 @@
 				8947335E13370B1900B0AD11 /* AuthenticateViewController_iPad.h */,
 				8947335F13370B1900B0AD11 /* AuthenticateViewController_iPad.m */,
 				8937A3371338993900D8B474 /* AuthenticateViewController_iPad.xib */,
+				57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */,
+				57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -4581,10 +4593,6 @@
 				A6745B0E15A296C600340D7A /* pattern-ipad-tab@2x.png in Resources */,
 				A63B4BC215A2DD2000AFF6AB /* HomeMenuFeatureSelectedBg~ipad.png in Resources */,
 				A63B4BC415A2DD3700AFF6AB /* HomeMenuFeatureSelectedBg@2x~ipad.png in Resources */,
-				A6FB0B5D15B51D54004F958C /* Default-Landscape~ipad.png in Resources */,
-				A6FB0B5E15B51D54004F958C /* Default-Landscape@2x~ipad.png in Resources */,
-				A6FB0B5F15B51D54004F958C /* Default-Portrait~ipad.png in Resources */,
-				A6FB0B6015B51D54004F958C /* Default-Portrait@2x~ipad.png in Resources */,
 				A6FB0B6915B523AB004F958C /* AuthenticateCredentialsIconIpadOff.png in Resources */,
 				A6FB0B6A15B523AB004F958C /* AuthenticateCredentialsIconIpadOff@2x.png in Resources */,
 				A6FB0B6B15B523AB004F958C /* AuthenticateCredentialsIconIpadOn.png in Resources */,
@@ -4624,6 +4632,8 @@
 				A6FCDF5315B7C05C00128EA6 /* 11-x@2x.png in Resources */,
 				A6FCDF5415B7C05C00128EA6 /* 19-check.png in Resources */,
 				A6FCDF5515B7C05C00128EA6 /* 19-check@2x.png in Resources */,
+				57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */,
+				57C5203A15B6B85A00BF902F /* ServerListViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4874,6 +4884,8 @@
 				A69B04B2157F103D003DDFDF /* BarBackgroundLayer.m in Sources */,
 				A6B8CF211580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m in Sources */,
 				A65EAF4A159AB64400E598E0 /* UserProfileViewController.m in Sources */,
+				57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */,
+				57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
