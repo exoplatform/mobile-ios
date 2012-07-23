@@ -19,6 +19,7 @@
 
 @class ActivityDetailViewController;
 @class SocialUserProfile;
+@class ActivityStreamTabbar;
 
 @interface ActivityStreamBrowseViewController : eXoViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate>
 {
@@ -44,6 +45,8 @@
     
         
 }
+
+@property (nonatomic, retain) ActivityStreamTabbar *filterTabbar;
 
 - (NSString *)getIconForType:(NSString *)type;
 - (void)emptyState;

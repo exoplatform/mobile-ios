@@ -33,6 +33,9 @@
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "SocialRestProxy.h"
+#import "ActivityStreamTabbar.h"
+
+#define kStreamTabbarHeight 40.0
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
@@ -66,6 +69,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @synthesize sortedActivities = _sortedActivities;
 @synthesize dateOfLastUpdate = _dateOfLastUpdate;
 @synthesize arrActivityStreams = _arrActivityStreams;
+@synthesize filterTabbar = _filterTabbar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -93,6 +97,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)dealloc
 {
     _tblvActivityStream = nil;
+    [_filterTabbar release];
     
     [_arrayOfSectionsTitle release];
     _arrayOfSectionsTitle = nil;
@@ -183,11 +188,17 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     self.title = Localize(@"News");
     
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
+    _tblvActivityStream.scrollsToTop = YES;
+    _tblvActivityStream.contentInset = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
+    
+    self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kStreamTabbarHeight)] autorelease];
+    [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		
 		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityStream.bounds.size.height, self.view.frame.size.width, _tblvActivityStream.bounds.size.height)];
 		view.delegate = self;
+        view.originalContentInset = _tblvActivityStream.contentInset;
 		[_tblvActivityStream addSubview:view];
 		_refreshHeaderView = view;
 		[view release];
@@ -583,9 +594,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //Nothing keep the default position of the HUD
 }
 
-
-#pragma mark - Social Proxy 
-#pragma mark Management
+#pragma mark - activity stream management
 
 - (void)startLoadingActivityStream {
     
@@ -649,8 +658,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [emptyView release];
 }
 
-#pragma -
-#pragma mark Proxies Delegate Methods
+#pragma mark - Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     if(proxy == self.socialRestProxy){
@@ -706,8 +714,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [alertView show];
 }
 
-#pragma mark -
-#pragma mark MessageComposer Methods
+#pragma mark - MessageComposer Methods
 - (void)messageComposerDidSendData {
     [self updateActivityStream];
 }
@@ -752,15 +759,17 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self loadImagesForOnscreenRows];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-	
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > 0) {
+        [self.filterTabbar translucentView:YES];
+    } else {
+        [self.filterTabbar translucentView:NO];
+    }
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     //[self loadImagesForOnscreenRows];
 }
-
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
+         
+#pragma mark - EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	
