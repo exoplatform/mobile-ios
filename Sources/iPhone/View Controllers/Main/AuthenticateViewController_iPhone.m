@@ -30,17 +30,17 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if(_bAutoLogin)
+    if(_credViewController.bAutoLogin)
     {
-        _vContainer.alpha = 1;
-        [self onSignInBtn:nil];
+       // _vContainer.alpha = 1;
+        [_credViewController onSignInBtn:nil];
     }
     else
     {
         //Start the animation to display the loginView
         [UIView animateWithDuration:0.5 
                          animations:^{
-                             _vContainer.alpha = 1;
+         //                    _vContainer.alpha = 1;
                          }
          ];
     }    
@@ -109,15 +109,15 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == _txtfUsername) 
+    if (textField == _credViewController.txtfUsername) 
     {
-        [_txtfPassword becomeFirstResponder];
+        [_credViewController.txtfPassword becomeFirstResponder];
     }
     else
     {    
-        [_txtfPassword resignFirstResponder];
+        [_credViewController.txtfPassword resignFirstResponder];
                 
-        [self onSignInBtn:nil];
+        [_credViewController onSignInBtn:nil];
     }    
 	return YES;
 }
@@ -126,8 +126,8 @@
 
 - (void)doneWithSettings {
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    [_tbvlServerList reloadData];
+    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    [_servListViewController.tbvlServerList reloadData];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

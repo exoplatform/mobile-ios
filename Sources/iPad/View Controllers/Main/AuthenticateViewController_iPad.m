@@ -44,31 +44,41 @@
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
     
-    [self signInAnimation:_bAutoLogin];
+    [self signInAnimation:_credViewController.bAutoLogin];
 
 }
 
 - (void)signInAnimation:(int)animationMode
 {
-    _vContainer.alpha = 0;
+    //_vContainer.alpha = 0;
     
     if(animationMode == 1)//Auto signIn
     {
-        _vContainer.alpha = 1;
+     //   _vContainer.alpha = 1;
         [self onSignInBtn:nil];
     }
     else if(animationMode == 0)//Normal signIn
     {
         [UIView beginAnimations:nil context:nil];  
         [UIView setAnimationDuration:1.0];  
-        _vContainer.alpha = 1;
+    //    _vContainer.alpha = 1;
         [UIView commitAnimations];   
     }
     else//just show signIn screen
     {
-        _vContainer.alpha = 1;
+     //   _vContainer.alpha = 1;
     }
 }
+
+-(void) initTabViews {
+    _credViewController = [[CredentialsViewController alloc] initWithNibName:@"CredentialsViewController_iPad" bundle:nil];
+    _credViewController.authViewController = self;
+    //_credViewController.view.backgroundColor = [UIColor clearColor];
+    
+    _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPad" bundle:nil];
+    //_servListViewController.view.backgroundColor = [UIColor clearColor];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
@@ -76,48 +86,47 @@
     
     [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
-    self.view.backgroundColor = [UIColor clearColor];
     //Stevan UI fixes
-    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] 
-                              stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
+//    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] 
+//                              stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
     
     
-    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
-                                     stretchableImageWithLeftCapWidth:10 
-                                     topCapHeight:10] forState:UIControlStateNormal];
+   // [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
+   //                                  stretchableImageWithLeftCapWidth:10 
+//                                     topCapHeight:10] forState:UIControlStateNormal];
+//    
+//    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
+//                                     stretchableImageWithLeftCapWidth:10 
+//                                     topCapHeight:10] forState:UIControlStateSelected];
+//
+//    
+//    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
+//                                        stretchableImageWithLeftCapWidth:10 
+//                                        topCapHeight:10] forState:UIControlStateNormal];
+//    
+//    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
+//                                        stretchableImageWithLeftCapWidth:10 
+//                                        topCapHeight:10] forState:UIControlStateSelected];
     
-    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
-                                     stretchableImageWithLeftCapWidth:10 
-                                     topCapHeight:10] forState:UIControlStateSelected];
-
-    
-    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
-                                        stretchableImageWithLeftCapWidth:10 
-                                        topCapHeight:10] forState:UIControlStateNormal];
-    
-    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
-                                        stretchableImageWithLeftCapWidth:10 
-                                        topCapHeight:10] forState:UIControlStateSelected];
-    
-    [_txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
+    [_credViewController.txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
     
-    [_txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
+    [_credViewController.txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
 
     
-    [_tbvlServerList setHidden:YES];
-    [_vAccountView setHidden:NO];
-
-    _vAccountView.backgroundColor = [UIColor clearColor];
-    _vServerListView.backgroundColor = [UIColor clearColor];
-    _btnServerList.backgroundColor = [UIColor clearColor];
-    _btnAccount.backgroundColor = [UIColor clearColor];
+//[_servListViewController.tbvlServerList setHidden:YES];
+//    [_vAccountView setHidden:NO];
+//
+//    _vAccountView.backgroundColor = [UIColor clearColor];
+//    _vServerListView.backgroundColor = [UIColor clearColor];
+//    _btnServerList.backgroundColor = [UIColor clearColor];
+//    _btnAccount.backgroundColor = [UIColor clearColor];
     
     //Set the state of the first selected tab
-    [_btnAccount setSelected:YES];
+//    [_btnAccount setSelected:YES];
     
     //Add the background image for the settings button
     [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
@@ -126,10 +135,10 @@
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     
     //Add the background image for the login button
-    [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
+    [_credViewController.btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
-    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     
 }
 
@@ -139,11 +148,9 @@
     _interfaceOrientation = interfaceOrientation;
     
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
-        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
-        [_vContainer setFrame:CGRectMake(227, 230, 569, 460)];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
 	} else {
-        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
-        [_vContainer setFrame:CGRectMake(100, 400, 569, 460)];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
 	}
     
 }
@@ -189,15 +196,15 @@
 	NSString *strUsername = [[ServerPreferencesManager sharedInstance] username];
 	if(strUsername)
 	{
-		[_txtfUsername setText:strUsername];
-		[_txtfUsername resignFirstResponder];
+		[_credViewController.txtfUsername setText:strUsername];
+		[_credViewController.txtfUsername resignFirstResponder];
 	}
 	
 	NSString* strPassword = [[ServerPreferencesManager sharedInstance] password]; 
 	if(strPassword)
 	{
-		[_txtfPassword setText:strPassword];
-		[_txtfPassword resignFirstResponder];
+		[_credViewController.txtfPassword setText:strPassword];
+		[_credViewController.txtfPassword resignFirstResponder];
 	}
 }
 
@@ -279,10 +286,10 @@
 
 - (IBAction)onSignInBtn:(id)sender
 {
-	[_txtfUsername resignFirstResponder];
-	[_txtfPassword resignFirstResponder];
+	[_credViewController.txtfUsername resignFirstResponder];
+	[_credViewController.txtfPassword resignFirstResponder];
 	
-	if([_txtfUsername.text isEqualToString:@""])
+	if([_credViewController.txtfUsername.text isEqualToString:@""])
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
 														message:Localize(@"UserNameEmpty")
@@ -303,13 +310,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     //[super textFieldShouldReturn:textField];
-    if (textField == _txtfUsername) 
+    if (textField == _credViewController.txtfUsername) 
     {
-        [_txtfPassword becomeFirstResponder];
+        [_credViewController.txtfPassword becomeFirstResponder];
     }
     else
     {    
-        [_txtfPassword resignFirstResponder];
+        [_credViewController.txtfPassword resignFirstResponder];
        
         [self onSignInBtn:nil];
     }    
@@ -321,8 +328,8 @@
 {
 	if([view class] != [UITextField class])
 	{
-		[_txtfUsername resignFirstResponder];
-		[_txtfPassword resignFirstResponder];
+		[_credViewController.txtfUsername resignFirstResponder];
+		[_credViewController.txtfPassword resignFirstResponder];
 	} else {
         
     }
@@ -381,11 +388,11 @@
 
 -(void)doneWithSettings {
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue]; 
-    [self signInAnimation:_bAutoLogin];
-    [_tbvlServerList reloadData];
+    _credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue]; 
+    [self signInAnimation:_credViewController.bAutoLogin];
+    [_servListViewController.tbvlServerList reloadData];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }
 

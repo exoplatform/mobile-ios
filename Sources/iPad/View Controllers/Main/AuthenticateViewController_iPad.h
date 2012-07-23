@@ -24,7 +24,7 @@
     
     UIInterfaceOrientation      _interfaceOrientation;
     
-    IBOutlet UIImageView*       _panelBackground;
+  //  IBOutlet UIImageView*       _panelBackground;
 }
 
 //@property (nonatomic, retain) NSDictionary* _dictLocalize;
