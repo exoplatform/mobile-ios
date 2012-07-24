@@ -10,9 +10,9 @@
 #import "ServerPreferencesManager.h"
 
 
-@interface ServerListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-    
+@interface ServerListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+
 @property (nonatomic, retain) IBOutlet UITableView*  tbvlServerList;
-    
+@property (nonatomic, retain) IBOutlet UIImageView*  panelBackground;
 
 @end

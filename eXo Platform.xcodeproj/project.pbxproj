@@ -346,6 +346,8 @@
 		46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */; };
 		46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */; };
 		46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */; };
+		579D50A915BD6689002F5D16 /* AuthTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50A815BD6689002F5D16 /* AuthTabItem.m */; };
+		579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */; };
 		57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203215B6B7B800BF902F /* CredentialsViewController.m */; };
 		57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203515B6B7C800BF902F /* ServerListViewController.m */; };
 		57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */; };
@@ -1336,6 +1338,10 @@
 		46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
 		46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "UIImage+Resize/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "UIImage+Resize/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		579D50A715BD6689002F5D16 /* AuthTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthTabItem.h; sourceTree = "<group>"; };
+		579D50A815BD6689002F5D16 /* AuthTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthTabItem.m; sourceTree = "<group>"; };
+		579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSelectionView.h; sourceTree = "<group>"; };
+		579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthSelectionView.m; sourceTree = "<group>"; };
 		57C5203115B6B7B700BF902F /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
 		57C5203215B6B7B800BF902F /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
 		57C5203415B6B7C700BF902F /* ServerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerListViewController.h; sourceTree = "<group>"; };
@@ -3130,6 +3136,10 @@
 				57C5203215B6B7B800BF902F /* CredentialsViewController.m */,
 				57C5203415B6B7C700BF902F /* ServerListViewController.h */,
 				57C5203515B6B7C800BF902F /* ServerListViewController.m */,
+				579D50A715BD6689002F5D16 /* AuthTabItem.h */,
+				579D50A815BD6689002F5D16 /* AuthTabItem.m */,
+				579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */,
+				579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */,
 			);
 			path = Authenticate;
 			sourceTree = "<group>";
@@ -4904,6 +4914,8 @@
 				A6A0276D15B936CB0090342B /* ActivityStreamTabbar.m in Sources */,
 				57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */,
 				57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */,
+				579D50A915BD6689002F5D16 /* AuthTabItem.m in Sources */,
+				579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

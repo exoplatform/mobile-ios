@@ -13,6 +13,7 @@
 #import "SSHUDView.h"
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
+#import "AuthTabItem.h"
 
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
@@ -49,13 +50,11 @@
 }
 
 - (void)signInAnimation:(int)animationMode
-{
-    //_vContainer.alpha = 0;
-    
+{    
     if(animationMode == 1)//Auto signIn
     {
      //   _vContainer.alpha = 1;
-        [self onSignInBtn:nil];
+        //[self onSignInBtn:nil];
     }
     else if(animationMode == 0)//Normal signIn
     {
@@ -70,13 +69,26 @@
     }
 }
 
--(void) initTabViews {
+-(void) initTabsAndViews {
+    // Creating the sub view controllers
     _credViewController = [[CredentialsViewController alloc] initWithNibName:@"CredentialsViewController_iPad" bundle:nil];
     _credViewController.authViewController = self;
-    //_credViewController.view.backgroundColor = [UIColor clearColor];
     
     _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPad" bundle:nil];
-    //_servListViewController.view.backgroundColor = [UIColor clearColor];
+    
+    // Initializing the Tab items and adding them to the Tab view
+    AuthTabItem * tabItemCredentials = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff"]];
+    tabItemCredentials.alternateIcon = [UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn"];
+    [self.tabView addTabItem:tabItemCredentials];
+    
+    AuthTabItem * tabItemServerList = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIpadOff"]];
+    tabItemServerList.alternateIcon = [UIImage imageNamed:@"AuthenticateServersIconIpadOn"];
+    [self.tabView addTabItem:tabItemServerList];
+    
+    // Position the tabs just above the subviews
+    [self.tabView setFrame:CGRectMake(200, 408, 100, 30)];
+    //[_credViewController.view setFrame:CGRectMake(0, 438, self.view.bounds.size.width, 200)];
+
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -87,27 +99,11 @@
     [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
     //Stevan UI fixes
-//    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] 
-//                              stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
+    _credViewController.panelBackground.image = 
+        [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
     
-    
-   // [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
-   //                                  stretchableImageWithLeftCapWidth:10 
-//                                     topCapHeight:10] forState:UIControlStateNormal];
-//    
-//    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
-//                                     stretchableImageWithLeftCapWidth:10 
-//                                     topCapHeight:10] forState:UIControlStateSelected];
-//
-//    
-//    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
-//                                        stretchableImageWithLeftCapWidth:10 
-//                                        topCapHeight:10] forState:UIControlStateNormal];
-//    
-//    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
-//                                        stretchableImageWithLeftCapWidth:10 
-//                                        topCapHeight:10] forState:UIControlStateSelected];
-    
+    _servListViewController.panelBackground.image = 
+         [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
     [_credViewController.txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
@@ -116,44 +112,55 @@
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
 
-    
-//[_servListViewController.tbvlServerList setHidden:YES];
-//    [_vAccountView setHidden:NO];
-//
-//    _vAccountView.backgroundColor = [UIColor clearColor];
-//    _vServerListView.backgroundColor = [UIColor clearColor];
-//    _btnServerList.backgroundColor = [UIColor clearColor];
-//    _btnAccount.backgroundColor = [UIColor clearColor];
-    
-    //Set the state of the first selected tab
-//    [_btnAccount setSelected:YES];
-    
     //Add the background image for the settings button
-    [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
+    /*[_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                       stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];*/
     
     //Add the background image for the login button
-    [_credViewController.btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
+    /*[_credViewController.btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
-    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    
-}
+    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];*/
+    }
 
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     _interfaceOrientation = interfaceOrientation;
     
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
+
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation))
+    {
+        // Landscape orientation
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
-	} else {
+        [self.tabView setFrame:CGRectMake(340, 315, 100, 30)];
+        [_credViewController.view setFrame:
+         CGRectMake(self.view.center.x-_credViewController.view.bounds.size.height/2, 365, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
+        [_servListViewController.view setFrame:
+         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.height/2, 365, _servListViewController.view.bounds.size.width, _servListViewController.view.bounds.size.height)];	
+        [_btnSettings setFrame:
+         CGRectMake(402, 650, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
+    } 
+    else
+    {
+        // Portrait orientation
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
+        [self.tabView setFrame:CGRectMake(180, 400, 100, 30)];
+        [_credViewController.view setFrame:
+          CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2, 450, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
+        [_servListViewController.view setFrame:
+         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2, 450, _servListViewController.view.bounds.size.width, _servListViewController.view.bounds.size.height)];
+        [_btnSettings setFrame:
+         CGRectMake(274, 750, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
 	}
     
-}
+    NSLog(@"view (x,y,w,h): %f %f %f %f", self.view.frame.origin.x,
+          self.view.frame.origin.y,
+          self.view.frame.size.width,
+          self.view.frame.size.height);
+    }
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -212,20 +219,6 @@
 {
 	_dictLocalize = [_delegate getLocalization];
 	_intSelectedLanguage = [_delegate getSelectedLanguage];
-	/*
-	[_lbHostInstruction setText:[_dictLocalize objectForKey:@"DomainHeader"]];
-	[_lbHost setText:[_dictLocalize objectForKey:@"DomainCellTitle"]];
-	[_lbAccountInstruction setText:[_dictLocalize objectForKey:@"AccountHeader"]];
-	[_lbRememberMe setText:[_dictLocalize objectForKey:@"RememberMe"]];
-	[_lbAutoSignIn setText:[_dictLocalize objectForKey:@"AutoLogin"]];
-	[_btnSignIn setTitle:[_dictLocalize objectForKey:@"SignInButton"] forState:UIControlStateNormal];
-	[_btnSetting setTitle:[_dictLocalize objectForKey:@"Language"] forState:UIControlStateNormal];
-	[_lbSigningInStatus setText:[_dictLocalize objectForKey:@"SigningIn"]];
-						   
-	[_settingViewController localize];
-    */ 
-   
-   
 }
 
 - (void)setSelectedLanguage:(int)languageId
@@ -284,56 +277,7 @@
     
 }
 
-- (IBAction)onSignInBtn:(id)sender
-{
-	[_credViewController.txtfUsername resignFirstResponder];
-	[_credViewController.txtfPassword resignFirstResponder];
-	
-	if([_credViewController.txtfUsername.text isEqualToString:@""])
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-														message:Localize(@"UserNameEmpty")
-													   delegate:self 
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles: nil];
-		[alert show];
-		[alert release];
-	}
-	else
-	{		
-		[self doSignIn];
-	}
-}
-
 #pragma mark - TextField delegate 
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    //[super textFieldShouldReturn:textField];
-    if (textField == _credViewController.txtfUsername) 
-    {
-        [_credViewController.txtfPassword becomeFirstResponder];
-    }
-    else
-    {    
-        [_credViewController.txtfPassword resignFirstResponder];
-       
-        [self onSignInBtn:nil];
-    }    
-    
-	return YES;
-}
-
-- (void)hitAtView:(UIView*) view
-{
-	if([view class] != [UITextField class])
-	{
-		[_credViewController.txtfUsername resignFirstResponder];
-		[_credViewController.txtfPassword resignFirstResponder];
-	} else {
-        
-    }
-}
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
     [super platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
@@ -375,14 +319,6 @@
     [userDefaults synchronize];
 }
 
-
-
-#pragma UITableView Delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return kHeightForServerCell;
-}
 
 #pragma - SettingsDelegate methods
 
