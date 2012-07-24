@@ -35,7 +35,7 @@
 #import "SocialRestProxy.h"
 #import "ActivityStreamTabbar.h"
 
-#define kStreamTabbarHeight 30.0
+#define kStreamTabbarHeight 40.0
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
@@ -45,7 +45,9 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
 static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
 static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
-@interface ActivityStreamBrowseViewController () <JMTabViewDelegate>
+@interface ActivityStreamBrowseViewController () <JMTabViewDelegate> {
+    ActivityStreamTabItem _selectedTabItem;
+}
 
 @property (nonatomic, retain) SocialActivityStreamProxy *socialActivityStreamProxy;
 @property (nonatomic, retain) SocialRestProxy *socialRestProxy;
@@ -57,6 +59,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @property (nonatomic, retain) NSMutableArray *arrActivityStreams;
 
 - (void)loadImagesForOnscreenRows;
+- (void)callProxiesToReloadActivityStream;
+
 @end
 
 
@@ -172,6 +176,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
     } else if (proxy == self.userProfileProxy) { 
         self.userProfile = self.userProfileProxy.userProfile;
+        self.userProfileProxy = nil;
         if (self.filterTabbar.tabView.selectedIndex == ActivityStreamTabItemMyStatus) {
             self.socialActivityStreamProxy.userProfile = self.userProfile;
             // reload my status after getting user profile
@@ -226,6 +231,27 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [alertView show];
 }
 
+- (void)callProxiesToReloadActivityStream {
+    // reset activity stream proxy
+    self.socialActivityStreamProxy = nil;
+    if (_selectedTabItem == ActivityStreamTabItemAllUpdate) {
+        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
+    } else if (_selectedTabItem == ActivityStreamTabItemMyConnections) {
+        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamTabItemMyConnections];
+    } else if (_selectedTabItem == ActivityStreamTabItemMySpaces) {
+        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMySpaces];
+    } else if (_selectedTabItem == ActivityStreamTabItemMyStatus) {
+        if (self.userProfile == nil)
+            // To get my status activities, get user profile first
+            [self.userProfileProxy getUserProfileFromUsername:[ServerPreferencesManager sharedInstance].username];
+        else {
+            self.socialActivityStreamProxy.userProfile = self.userProfile;
+            [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
+        }
+        
+    }
+}
+
 #pragma mark - Update Acitivity From ActivityDetail
 -(void)updateActivity{
     //ActivityBasicTableViewCell *cell;
@@ -271,7 +297,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
     _tblvActivityStream.scrollsToTop = YES;
     _tblvActivityStream.contentInset = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
-
+    _tblvActivityStream.scrollIndicatorInsets = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
     // filter tab bar
     self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kStreamTabbarHeight)] autorelease];
     self.filterTabbar.tabView.delegate = self;
@@ -404,23 +430,21 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)clearActivityData
 {
     [_arrActivityStreams removeAllObjects];
+    [_arrayOfSectionsTitle removeAllObjects];
 }
 
 #pragma mark - JMTabviewDelegate 
 
 - (void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
-    // reset activity stream proxy
-    self.socialActivityStreamProxy = nil;
-    if (itemIndex == ActivityStreamTabItemAllUpdate) {
-        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
-    } else if (itemIndex == ActivityStreamTabItemMyConnections) {
-        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamTabItemMyConnections];
-    } else if (itemIndex == ActivityStreamTabItemMySpaces) {
-        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMySpaces];
-    } else if (itemIndex == ActivityStreamTabItemMyStatus) {
-        // To get my status activities, get user profile first
-        [self.userProfileProxy getUserProfileFromUsername:[ServerPreferencesManager sharedInstance].username];
+    if (!_reloading && _selectedTabItem == itemIndex) {
+        return;
+    } else {
+        _selectedTabItem = itemIndex;
     }
+    [self clearActivityData];
+    [_tblvActivityStream reloadData];
+    [self displayHudLoader];
+    [self callProxiesToReloadActivityStream];
 }
 
 
@@ -710,12 +734,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 
 - (void)updateActivityStream {
-    
-    [self displayHudLoader];
-    
     _reloading = YES;
-
-    [self startLoadingActivityStream];
+    [self callProxiesToReloadActivityStream];
 }
 
 - (void)finishLoadingAllDataForActivityStream {
@@ -745,8 +765,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Ask the controller to sort activities
     [self sortActivities];
-    
     [_tblvActivityStream reloadData];
+//    [_tblvActivityStream scrollRectToVisible:CGRectMake(0, 0, 1., 1.) animated:YES];
     
 }
 

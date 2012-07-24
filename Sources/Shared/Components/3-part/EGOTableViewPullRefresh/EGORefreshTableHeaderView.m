@@ -199,7 +199,10 @@
 		offset = MIN(offset, 60);
         UIEdgeInsets newContentInsets = self.originalContentInset;
         newContentInsets.top += offset;
+        [UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.2];
 		scrollView.contentInset = newContentInsets;
+		[UIView commitAnimations];
 		
 	} else if (scrollView.isDragging) {
 		
@@ -214,7 +217,7 @@
 			[self setState:EGOOPullRefreshPulling];
 		}
 		
-		if (scrollView.contentInset.top != 0) {
+		if (scrollView.contentInset.top != self.originalContentInset.top) {
 			scrollView.contentInset = self.originalContentInset;
 		}
 		
@@ -236,25 +239,25 @@
 		}
 		
 		[self setState:EGOOPullRefreshLoading];
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.2];
-        UIEdgeInsets newContentInsets = self.originalContentInset;
-        newContentInsets.top += 60.0f;
-		scrollView.contentInset = newContentInsets;
-		[UIView commitAnimations];
+//		[UIView beginAnimations:nil context:NULL];
+//		[UIView setAnimationDuration:0.2];
+//        UIEdgeInsets newContentInsets = self.originalContentInset;
+//        newContentInsets.top += 60.0f;
+//		scrollView.contentInset = newContentInsets;
+//		[UIView commitAnimations];
 		
 	}
 	
 }
 
 - (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {	
+	[self setState:EGOOPullRefreshNormal];
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
 	[scrollView setContentInset:self.originalContentInset];
 	[UIView commitAnimations];
 	
-	[self setState:EGOOPullRefreshNormal];
 
 }
 
