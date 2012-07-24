@@ -22,9 +22,11 @@
 @implementation ServerListViewController
 
 @synthesize tbvlServerList = _tbvlServerList;
+@synthesize panelBackground = _panelBackground;
 
 -(void) dealloc {
     [_tbvlServerList release];
+    [_panelBackground release];
     [super dealloc];
 }
 

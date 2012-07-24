@@ -14,20 +14,13 @@
 @class ServerObj;
 
 //Login page
-@interface AuthenticateViewController_iPad : AuthenticateViewController <SettingsDelegateProcotol> {
-	
-	id										_delegate;
-       
-    
-    UINavigationController*                 _modalNavigationSettingViewController;
-    SettingsViewController_iPad*            _iPadSettingViewController;
-    
-    UIInterfaceOrientation      _interfaceOrientation;
-    
-  //  IBOutlet UIImageView*       _panelBackground;
+@interface AuthenticateViewController_iPad : AuthenticateViewController <SettingsDelegateProcotol>
+{
+	id							     _delegate;
+    UINavigationController*          _modalNavigationSettingViewController;
+    SettingsViewController_iPad*     _iPadSettingViewController;
+    UIInterfaceOrientation           _interfaceOrientation;
 }
-
-//@property (nonatomic, retain) NSDictionary* _dictLocalize;
 
 - (void)setDelegate:(id)delegate;	//Set delegate
 - (void)setPreferenceValues;	//Set prefrrences
@@ -35,10 +28,7 @@
 - (int)getSelectedLanguage;	//Get current language
 - (NSDictionary*)getLocalization;	//Get language dictionary
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
-
 - (void)signInAnimation:(int)animationMode;
-
-- (IBAction)onSignInBtn:(id)sender;	//Login action
 - (IBAction)onSettingBtn:(id)sender;	//Setting action
 
 @end

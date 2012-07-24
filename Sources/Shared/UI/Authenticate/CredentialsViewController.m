@@ -23,6 +23,7 @@
 @synthesize btnLogin = _btnLogin;
 @synthesize bAutoLogin = _bAutoLogin;
 @synthesize authViewController = _authViewController;
+@synthesize panelBackground = _panelBackground;
 
 -(void)dealloc {
     [_activeField release];
@@ -30,6 +31,7 @@
     [_txtfUsername release];
     [_btnLogin release];
     [_authViewController release];
+    [_panelBackground release];
     [super dealloc];
 }
 
@@ -46,11 +48,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    //Add the background image for the login button
+    // Add the background image for the login button
     [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                          forState:UIControlStateNormal];
     [self.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    
+    /* Add tap gesture to dismiss keyboard */
+    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
+    [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
+    [self.view addGestureRecognizer:tapGesure];
 }
 
 - (void)viewDidUnload
@@ -112,48 +119,11 @@
 }
 
 #pragma mark - Keyboard management
-/*- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)unRegisterForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)keyboardWasShown:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    // Get the size of the keyboard.
-    CGSize keyboardSize = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size;
-    
-    // Adjust the bottom content inset of your scroll view by the keyboard height.
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-    CGRect aRect = [self.view convertRect:self.view.frame fromView:nil];
-    
-    aRect.size.height -= keyboardSize.height;
-    
-    CGPoint fieldPoint = CGPointMake(_vContainer.frame.origin.x + _txtfPassword.frame.origin.x + _vAccountView.frame.origin.x, _vContainer.frame.origin.y + _txtfPassword.frame.origin.y + _vAccountView.frame.origin.y);
-    
-    // Scroll the target text field into view.
-    if (!CGRectContainsPoint(aRect, fieldPoint)) {
-        CGPoint scrollPoint = CGPointMake(0.0, fieldPoint.y - keyboardSize.height);
-        [self.scrollView setContentOffset:scrollPoint animated:YES];
-        
-    }
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    self.scrollView.contentInset = UIEdgeInsetsZero;
-    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
-    [self.scrollView setContentOffset:CGPointZero animated:YES];
-}
-
 - (void)dismissKeyboard {
-    [self.activeField resignFirstResponder];
+    [self.txtfUsername resignFirstResponder];
+    [self.txtfPassword resignFirstResponder];
 }
-*/
+
 #pragma mark - TextField delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.activeField = textField;
@@ -175,7 +145,7 @@
 		[alert show];
 		[alert release];
         
-        [self.authViewController hitAtView:self.view];
+        //[self.authViewController hitAtView:self.view];
 	}
 	else
 	{		
