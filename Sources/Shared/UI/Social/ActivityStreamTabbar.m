@@ -130,27 +130,23 @@
         [self addSubview:backgroundView];
         
         self.tabView = [[[JMTabView alloc] initWithFrame:CGRectInset(self.bounds, kFilterTabLeftRightPadding, kFilterTabTopBottomPadding)] autorelease];
+        [self initData];
         [self.tabView setSelectionView:[[[CustomActivityFilterSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
         [self.tabView setBackgroundLayer:nil];
         [self.tabView setItemSpacing:2.];
+        CGRect contentRect = self.tabView.bounds;
+        float itemWidth = (contentRect.size.width - kFilterTabItemSeparateSpace * (_listOfItems.count - 1)) / (_listOfItems.count);
+        for (NSDictionary *dict in _listOfItems) {
+            CustomFilterItem *item = [dict objectForKey:kActivityStreamTabItem];
+            item.itemSize = CGSizeMake(itemWidth, contentRect.size.height);
+        }
         [self insertSubview:self.tabView aboveSubview:backgroundView];
-        [self initData];
         
     }
     return self;
 }
 
 #pragma mark - view management
-- (void)layoutSubviews {
-    CGRect contentRect = CGRectInset(self.bounds, kFilterTabLeftRightPadding, kFilterTabTopBottomPadding);
-    self.tabView.frame = contentRect;
-    float itemWidth = (contentRect.size.width - kFilterTabItemSeparateSpace * (_listOfItems.count - 1)) / (_listOfItems.count);
-    for (NSDictionary *dict in _listOfItems) {
-        CustomFilterItem *item = [dict objectForKey:kActivityStreamTabItem];
-        item.itemSize = CGSizeMake(itemWidth, contentRect.size.height);
-        [item setNeedsDisplay];
-    }
-}
 
 - (void)translucentView:(BOOL)translucent {
     

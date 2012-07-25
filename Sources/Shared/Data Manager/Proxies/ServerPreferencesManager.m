@@ -12,6 +12,13 @@
 #import "CXMLElement.h"
 #import "defines.h"
 
+/*
+ * Key of User Preference to save selected stream tab order. The value is less than 0 means that user doesn't want us to remember selected tab. 
+ */
+#define EXO_SELECTED_STREAM                 @"selected_stream"
+
+//=====================================================================
+
 @implementation ServerObj
 @synthesize _strServerName;
 @synthesize _strServerUrl;
@@ -26,6 +33,8 @@
 @synthesize selectedDomain = _selectedDomain;
 @synthesize username = _username;
 @synthesize password = _password;
+@synthesize selectedSocialStream = _selectedSocialStream;
+@synthesize rememberSelectedSocialStream = _rememberSelectedSocialStream;
 
 + (ServerPreferencesManager*)sharedInstance
 {
@@ -48,6 +57,7 @@
     {        
         self.selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
         [self reloadUsernamePassword];
+        _selectedSocialStream = -1;
     }	
 	return self;
 }
@@ -362,5 +372,37 @@
     }
     return [[_selectedDomain copy] autorelease];
 }
+
+- (BOOL)rememberSelectedSocialStream {
+    // we define the option of remembering selected social stream is false if "EXO_SELECTED_STREAM" is saved and less than 0
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *selectedStream = [userDefaults objectForKey:EXO_SELECTED_STREAM];
+    return !(selectedStream && [selectedStream intValue] < 0);
+}
+
+- (void)setRememberSelectedSocialStream:(BOOL)rememberSelectedSocialStream {
+    int selected = rememberSelectedSocialStream ? _selectedSocialStream : -1;
+    NSString *selectedTab = [NSString stringWithFormat:@"%d", selected]; 
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:selectedTab forKey:EXO_SELECTED_STREAM];
+}
+
+- (void)setSelectedSocialStream:(int)selectedSocialStream {
+    _selectedSocialStream = selectedSocialStream;
+    if (self.rememberSelectedSocialStream) {
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:[NSString stringWithFormat:@"%d", selectedSocialStream] forKey:EXO_SELECTED_STREAM];
+    }
+}
+
+- (int)selectedSocialStream {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    if (_selectedSocialStream < 0) {
+        self.selectedSocialStream = self.rememberSelectedSocialStream ? [[userDefaults objectForKey:EXO_SELECTED_STREAM] intValue] : 0;
+        return _selectedSocialStream;
+    }
+    return self.rememberSelectedSocialStream ? _selectedSocialStream : 0;
+}
+
 
 @end

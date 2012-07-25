@@ -95,7 +95,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         _bIsPostClicked = NO;
         _activityAction = 0;
-        
+        _selectedTabItem = -1;
         self.arrActivityStreams = [[[NSMutableArray alloc] init] autorelease];
     }
     return self;
@@ -173,7 +173,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
     if(proxy == self.socialRestProxy){
-        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
+        [self.socialActivityStreamProxy getActivityStreams:_selectedTabItem];
     } else if (proxy == self.userProfileProxy) { 
         self.userProfile = self.userProfileProxy.userProfile;
         self.userProfileProxy = nil;
@@ -208,7 +208,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     else if (proxy == self.likeActivityProxy) 
     {
         self.likeActivityProxy = nil;
-        [self startLoadingActivityStream];
+        [self updateActivityStream];
     }
     
 }
@@ -301,6 +301,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     // filter tab bar
     self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kStreamTabbarHeight)] autorelease];
     self.filterTabbar.tabView.delegate = self;
+    [self.filterTabbar selectTabItem:[ServerPreferencesManager sharedInstance].selectedSocialStream];
     [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
@@ -317,10 +318,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Set the last update date at now 
     self.dateOfLastUpdate = [NSDate date];
-    
-    //Load all activities of the user
-    [self startLoadingActivityStream];
-    
+        
 }
 
 - (void)viewDidUnload
@@ -441,6 +439,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     } else {
         _selectedTabItem = itemIndex;
     }
+    [ServerPreferencesManager sharedInstance].selectedSocialStream = itemIndex;
     [self clearActivityData];
     [_tblvActivityStream reloadData];
     [self displayHudLoader];

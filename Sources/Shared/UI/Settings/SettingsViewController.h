@@ -28,10 +28,13 @@
 	
 	UISwitch*                       rememberMe;
 	UISwitch*                       autoLogin;
+    UISwitch*                       _rememberSelectedStream;
 	
     ServerManagerViewController*    _serverManagerViewController;
     
     id<SettingsDelegateProcotol>    _settingsDelegate;
+    
+    NSArray                         *_listOfSections;
     
 }
 

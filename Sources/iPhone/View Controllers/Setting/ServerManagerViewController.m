@@ -348,8 +348,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 - (BOOL)deleteServerObjAtIndex:(int)index
 {
     ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
-    ServerObj* deletedServerObj = [serverPrefManager.serverList objectAtIndex:index];
-    
+    ServerObj* deletedServerObj = [[serverPrefManager.serverList objectAtIndex:index] retain];
+
     [serverPrefManager.serverList removeObjectAtIndex:index];
     int currentIndex = serverPrefManager.selectedServerIndex;
     if ([serverPrefManager.serverList count] > 0) {
@@ -380,7 +380,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     {
         [serverPrefManager writeUserConfiguration:arrTmp];
     }
-    
+    [deletedServerObj release];
     [arrTmp release];
     
     [serverPrefManager loadServerList]; // reload list of servers
