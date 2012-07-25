@@ -10,7 +10,9 @@
 #import "AppDelegate_iPhone.h"
 #import "defines.h"
 #import "LanguageHelper.h"
+#import "AuthTabItem.h"
 
+#define scrollHeight 80
 
 @implementation AuthenticateViewController_iPhone
 
@@ -26,6 +28,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Position the tabs just above the subviews
+    [self.tabView setFrame:CGRectMake(50, 180, 100, 30)];
+    // Position the views and allow them to be resized properly when the orientation changes
+    [_credViewController.view setFrame:
+     CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2, 215, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
+    [_credViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    [_servListViewController.view setFrame:
+     CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2, 215, _servListViewController.view.bounds.size.width, _servListViewController.view.bounds.size.height)];
+    [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    // Position the settings btn at the bottom
+    //[_btnSettings setFrame:
+     //CGRectMake(0, 400, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
+    [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+
+}
+
+-(void) initTabsAndViews {
+    // Creating the sub view controllers
+    _credViewController = [[CredentialsViewController alloc] initWithNibName:@"CredentialsViewController_iPhone" bundle:nil];
+    _credViewController.authViewController = self;
+    
+    _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPhone" bundle:nil];
+    
+    // Initializing the Tab items and adding them to the Tab view
+    AuthTabItem * tabItemCredentials = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOff"]];
+    tabItemCredentials.alternateIcon = [UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOn"];
+    [self.tabView addTabItem:tabItemCredentials];
+    
+    AuthTabItem * tabItemServerList = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOff"]];
+    tabItemServerList.alternateIcon = [UIImage imageNamed:@"AuthenticateServersIconIphoneOn"];
+    [self.tabView addTabItem:tabItemServerList];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -43,9 +79,38 @@
          //                    _vContainer.alpha = 1;
                          }
          ];
-    }    
-
+    }
 }
+
+#pragma mark Keyboard management
+- (void)keyboardWillHide:(NSNotification *)notif {
+        [self setViewMovedUp:NO];
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notif{
+        [self setViewMovedUp:YES];
+}
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    CGRect viewRect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        viewRect.origin.y -= scrollHeight;
+    }
+    else
+    {
+        viewRect.origin.y = 0;
+    }
+    self.view.frame = viewRect;
+    [UIView commitAnimations];
+}
+
 
 
 - (IBAction)onSettingBtn

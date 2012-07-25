@@ -28,7 +28,6 @@ typedef enum {
     IBOutlet UIButton*          _btnSettings;
     CredentialsViewController * _credViewController;
     ServerListViewController * _servListViewController;
-        
     NSDictionary*				_dictLocalize;	//Language dictionary
 	int							_intSelectedLanguage;	//Language index
 }

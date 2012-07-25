@@ -19,11 +19,7 @@
 
 #pragma mark Authenticate View Controller
 
-//Define for cells of the Server Selection Panel
-/*#define kHeightForServerCell 44
-#define kTagInCellForServerNameLabel 10
-#define kTagInCellForServerURLLabel 20
-*/
+
 @interface AuthenticateViewController ()
 
 @property (nonatomic, retain) LoginProxy *loginProxy;
@@ -111,11 +107,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //Hide the Navigation Bar
+    // Hide the Navigation Bar
     self.navigationController.navigationBarHidden = YES;
     
-	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];		
+	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];
+	
+    // Notifies when the keyboard is shown/hidden
+    // Selectors must be implemented in _iPhone and _iPad subclasses
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
 
+-(void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
@@ -132,7 +137,6 @@
 
 
 #pragma mark - Keyboard management
-
 - (void)dismissKeyboard {
     [_credViewController dismissKeyboard];
 }
