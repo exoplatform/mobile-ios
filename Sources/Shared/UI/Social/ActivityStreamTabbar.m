@@ -133,7 +133,8 @@
         [self initData];
         [self.tabView setSelectionView:[[[CustomActivityFilterSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
         [self.tabView setBackgroundLayer:nil];
-        [self.tabView setItemSpacing:2.];
+        float itemSpacing = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 10 : 2;
+        [self.tabView setItemSpacing:itemSpacing];
         CGRect contentRect = self.tabView.bounds;
         float itemWidth = (contentRect.size.width - kFilterTabItemSeparateSpace * (_listOfItems.count - 1)) / (_listOfItems.count);
         for (NSDictionary *dict in _listOfItems) {

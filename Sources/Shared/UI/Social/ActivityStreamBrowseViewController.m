@@ -33,7 +33,6 @@
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "SocialRestProxy.h"
-#import "ActivityStreamTabbar.h"
 
 #define kStreamTabbarHeight 40.0
 
@@ -45,9 +44,7 @@ static NSString* kCellIdentifierLink = @"ActivityLinkCell";
 static NSString* kCellIdentifierAnswer = @"ActivityAnswerCell";
 static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
-@interface ActivityStreamBrowseViewController () <JMTabViewDelegate> {
-    ActivityStreamTabItem _selectedTabItem;
-}
+@interface ActivityStreamBrowseViewController ()
 
 @property (nonatomic, retain) SocialActivityStreamProxy *socialActivityStreamProxy;
 @property (nonatomic, retain) SocialRestProxy *socialRestProxy;
@@ -299,7 +296,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     _tblvActivityStream.contentInset = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
     _tblvActivityStream.scrollIndicatorInsets = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
     // filter tab bar
-    self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kStreamTabbarHeight)] autorelease];
+    CGRect activityStreamFrame = _tblvActivityStream.frame;
+    self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)] autorelease];
     self.filterTabbar.tabView.delegate = self;
     [self.filterTabbar selectTabItem:[ServerPreferencesManager sharedInstance].selectedSocialStream];
     [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];

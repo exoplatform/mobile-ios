@@ -172,6 +172,9 @@
     
 }
 
-
+- (void)clearActivityData {
+    [super clearActivityData];
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
+}
 
 @end
