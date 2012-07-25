@@ -18,6 +18,7 @@
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
+#define scrollHeight 80
 
 @implementation AuthenticateViewController_iPad
 
@@ -85,10 +86,7 @@
     tabItemServerList.alternateIcon = [UIImage imageNamed:@"AuthenticateServersIconIpadOn"];
     [self.tabView addTabItem:tabItemServerList];
     
-    // Position the tabs just above the subviews
-    [self.tabView setFrame:CGRectMake(200, 408, 100, 30)];
-    //[_credViewController.view setFrame:CGRectMake(0, 438, self.view.bounds.size.width, 200)];
-
+    
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -96,6 +94,20 @@
 {
     [super viewDidLoad];
     
+    // Position the tabs just above the subviews
+    [self.tabView setFrame:CGRectMake(180, 400, 100, 30)];
+    // Position the views and allow them to be resized properly when the orientation changes
+    [_credViewController.view setFrame:
+     CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2, 450, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
+    [_credViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    [_servListViewController.view setFrame:
+     CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2, 450, _servListViewController.view.bounds.size.width, _servListViewController.view.bounds.size.height)];
+    [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    // Position the settings btn at the bottom
+    [_btnSettings setFrame:
+     CGRectMake(274, 750, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
+    [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+
     [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
     //Stevan UI fixes
@@ -111,19 +123,7 @@
     [_credViewController.txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
-
-    //Add the background image for the settings button
-    /*[_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
-                                      stretchableImageWithLeftCapWidth:10 topCapHeight:10]
-                            forState:UIControlStateNormal];
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];*/
-    
-    //Add the background image for the login button
-    /*[_credViewController.btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
-                                   stretchableImageWithLeftCapWidth:10 topCapHeight:10]
-                            forState:UIControlStateNormal];
-    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];*/
-    }
+}
 
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -135,32 +135,23 @@
     {
         // Landscape orientation
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
-        [self.tabView setFrame:CGRectMake(340, 315, 100, 30)];
-        [_credViewController.view setFrame:
-         CGRectMake(self.view.center.x-_credViewController.view.bounds.size.height/2, 365, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
-        [_servListViewController.view setFrame:
-         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.height/2, 365, _servListViewController.view.bounds.size.width, _servListViewController.view.bounds.size.height)];	
+        [self.tabView setFrame:CGRectMake(340, 250, 100, 30)];
+        [_credViewController.view setFrame:CGRectMake(_credViewController.view.frame.origin.x, 300, _credViewController.view.frame.size.width, _credViewController.view.frame.size.height)];
+        [_servListViewController.view setFrame:CGRectMake(_servListViewController.view.frame.origin.x, 300, _servListViewController.view.frame.size.width, _servListViewController.view.frame.size.height)];
         [_btnSettings setFrame:
-         CGRectMake(402, 650, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
+         CGRectMake(_btnSettings.frame.origin.x, 600, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
     } 
     else
     {
         // Portrait orientation
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
         [self.tabView setFrame:CGRectMake(180, 400, 100, 30)];
-        [_credViewController.view setFrame:
-          CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2, 450, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
-        [_servListViewController.view setFrame:
-         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2, 450, _servListViewController.view.bounds.size.width, _servListViewController.view.bounds.size.height)];
+        [_credViewController.view setFrame:CGRectMake(_credViewController.view.frame.origin.x, 450, _credViewController.view.frame.size.width, _credViewController.view.frame.size.height)];
+        [_servListViewController.view setFrame:CGRectMake(_servListViewController.view.frame.origin.x, 450, _servListViewController.view.frame.size.width, _servListViewController.view.frame.size.height)];
         [_btnSettings setFrame:
-         CGRectMake(274, 750, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
-	}
-    
-    NSLog(@"view (x,y,w,h): %f %f %f %f", self.view.frame.origin.x,
-          self.view.frame.origin.y,
-          self.view.frame.size.width,
-          self.view.frame.size.height);
+         CGRectMake(_btnSettings.frame.origin.x, 750, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
     }
+}
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -331,5 +322,32 @@
     [_servListViewController.tbvlServerList reloadData];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark Keyboard management
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    if (movedUp)
+    {
+        CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y+scrollHeight);
+        [(UIScrollView*)self.view setContentOffset:destPoint animated:YES];
+    }
+    else
+    {  
+        CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y-scrollHeight);
+        [(UIScrollView*)self.view setContentOffset:destPoint animated:YES];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notif {
+    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]))
+      [self setViewMovedUp:NO];
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notif{
+    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]))
+     [self setViewMovedUp:YES];
+}
+
 
 @end

@@ -352,6 +352,8 @@
 		57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203515B6B7C800BF902F /* ServerListViewController.m */; };
 		57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */; };
 		57C5203A15B6B85A00BF902F /* ServerListViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */; };
+		57ED5A1415BFEA8E0007C49F /* CredentialsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */; };
+		57ED5A1615BFEA9F0007C49F /* ServerListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
@@ -1348,6 +1350,8 @@
 		57C5203515B6B7C800BF902F /* ServerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerListViewController.m; sourceTree = "<group>"; };
 		57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController_iPad.xib; sourceTree = "<group>"; };
 		57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPad.xib; sourceTree = "<group>"; };
+		57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController_iPhone.xib; sourceTree = "<group>"; };
+		57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPhone.xib; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerEditingViewController.xib; path = ../../iPhone/NIB/ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerEditingViewController.h; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.h"; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerEditingViewController.m; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.m"; sourceTree = "<group>"; };
@@ -3462,6 +3466,8 @@
 				46CAF73D13798D230017C959 /* HomeStyleSheet.m */,
 				46EA0E8C147264B100F42855 /* HomeSidebarViewController_iPhone.h */,
 				46EA0E8D147264B100F42855 /* HomeSidebarViewController_iPhone.m */,
+				57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */,
+				57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -4660,6 +4666,8 @@
 				A6B83FA415BCFF700083C1B8 /* activity-stream-filter-item-active-state@2x.png in Resources */,
 				57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */,
 				57C5203A15B6B85A00BF902F /* ServerListViewController_iPad.xib in Resources */,
+				57ED5A1415BFEA8E0007C49F /* CredentialsViewController_iPhone.xib in Resources */,
+				57ED5A1615BFEA9F0007C49F /* ServerListViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
