@@ -78,14 +78,13 @@
     _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPad" bundle:nil];
     
     // Initializing the Tab items and adding them to the Tab view
-    AuthTabItem * tabItemCredentials = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff"]];
-    tabItemCredentials.alternateIcon = [UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn"];
+    AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn"] device:DeviceIpad];
     [self.tabView addTabItem:tabItemCredentials];
     
-    AuthTabItem * tabItemServerList = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIpadOff"]];
-    tabItemServerList.alternateIcon = [UIImage imageNamed:@"AuthenticateServersIconIpadOn"];
+    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIpadOn"] device:DeviceIpad];
     [self.tabView addTabItem:tabItemServerList];
     
+    //AuthenticateCredentialsIconIpadOn Off
     
 }
 
@@ -94,8 +93,6 @@
 {
     [super viewDidLoad];
     
-    // Position the tabs just above the subviews
-    [self.tabView setFrame:CGRectMake(180, 400, 100, 30)];
     // Position the views and allow them to be resized properly when the orientation changes
     [_credViewController.view setFrame:
      CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2, 450, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
@@ -135,7 +132,8 @@
     {
         // Landscape orientation
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
-        [self.tabView setFrame:CGRectMake(340, 250, 100, 30)];
+        // Position the tabs just above the subviews
+        [self.tabView setFrame:CGRectMake(310, 227, 180, 76)];
         [_credViewController.view setFrame:CGRectMake(_credViewController.view.frame.origin.x, 300, _credViewController.view.frame.size.width, _credViewController.view.frame.size.height)];
         [_servListViewController.view setFrame:CGRectMake(_servListViewController.view.frame.origin.x, 300, _servListViewController.view.frame.size.width, _servListViewController.view.frame.size.height)];
         [_btnSettings setFrame:
@@ -145,7 +143,8 @@
     {
         // Portrait orientation
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
-        [self.tabView setFrame:CGRectMake(180, 400, 100, 30)];
+        // Position the tabs just above the subviews
+        [self.tabView setFrame:CGRectMake(180, 377, 180, 76)];
         [_credViewController.view setFrame:CGRectMake(_credViewController.view.frame.origin.x, 450, _credViewController.view.frame.size.width, _credViewController.view.frame.size.height)];
         [_servListViewController.view setFrame:CGRectMake(_servListViewController.view.frame.origin.x, 450, _servListViewController.view.frame.size.width, _servListViewController.view.frame.size.height)];
         [_btnSettings setFrame:

@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     // Position the tabs just above the subviews
-    [self.tabView setFrame:CGRectMake(50, 180, 100, 30)];
+    [self.tabView setFrame:CGRectMake(40, 180, 110, 30)];
     // Position the views and allow them to be resized properly when the orientation changes
     [_credViewController.view setFrame:
      CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2, 215, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
@@ -53,14 +53,11 @@
     _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPhone" bundle:nil];
     
     // Initializing the Tab items and adding them to the Tab view
-    AuthTabItem * tabItemCredentials = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOff"]];
-    tabItemCredentials.alternateIcon = [UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOn"];
+    AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOn"] device:DeviceIphone];
     [self.tabView addTabItem:tabItemCredentials];
     
-    AuthTabItem * tabItemServerList = [[AuthTabItem alloc] initWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOff"]];
-    tabItemServerList.alternateIcon = [UIImage imageNamed:@"AuthenticateServersIconIphoneOn"];
+    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOn"] device:DeviceIphone];
     [self.tabView addTabItem:tabItemServerList];
-    
     
 }
 

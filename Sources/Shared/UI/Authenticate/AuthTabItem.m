@@ -14,34 +14,49 @@
 
 @synthesize alternateIcon = _alternateIcon;
 
+
 -(void) dealloc {
     [_alternateIcon release];
     [super dealloc];
 }
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize newSize;
+    if (_device == DeviceIpad)
+        newSize = CGSizeMake(80, 76);
+    else if (_device == DeviceIphone) {
+        newSize = CGSizeMake(50, 48);
+    }
+    return newSize;
+}
+
 - (void)drawRect:(CGRect)rect {
-    //  CGRect contentRect = rect;
     CGContextRef context = UIGraphicsGetCurrentContext();
-    //    UIColor * shadowColor = [UIColor blackColor];
-    //    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 1.0f, [shadowColor CGColor]);
-    CGContextSaveGState(context);   
-    
-    CGFloat xOffset = self.padding.width;
-    
+    CGContextSaveGState(context);
     if (self.icon && self.alternateIcon)
     {
         UIImage * iconImage = (self.highlighted || [self isSelectedTabItem]) ? self.alternateIcon : self.icon;
-        [iconImage drawAtPoint:CGPointMake(xOffset, self.padding.height)];
-        xOffset += [iconImage size].width + kTabItemIconMargin;
+        CGFloat xOffset = (rect.size.width-iconImage.size.width)/2;
+        CGFloat yOffset = (rect.size.height-iconImage.size.height)/2;
+        [iconImage drawAtPoint:CGPointMake(xOffset, yOffset)];
+        //xOffset += [iconImage size].width + kTabItemIconMargin;
     }
     
     [kTabItemTextColor set];
     
-    //    CGFloat heightTitle = [self.title sizeWithFont:kTabItemFont].height;
-    //    CGFloat titleYOffset = (contentRect.size.height - heightTitle) / 2;
-    //    [self.title drawAtPoint:CGPointMake(xOffset, titleYOffset) withFont:kTabItemFont];
-    
     CGContextRestoreGState(context);
+}
+
+- (void)setDeviceType:(DeviceType) deviceType {
+    _device = deviceType;
+}
+
++ (AuthTabItem *)tabItemWithTitle:(NSString *)title icon:(UIImage *)icon alternateIcon:(UIImage *)alternativeIcon device:(DeviceType)deviceType;
+{
+    AuthTabItem * tabItem = [[[AuthTabItem alloc] initWithTitle:title icon:icon] autorelease];
+    tabItem.alternateIcon = alternativeIcon;
+    [tabItem setDeviceType:deviceType];
+    return tabItem;
 }
 
 @end
