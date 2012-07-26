@@ -199,11 +199,7 @@
 		offset = MIN(offset, 60);
         UIEdgeInsets newContentInsets = self.originalContentInset;
         newContentInsets.top += offset;
-        [UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.2];
-		scrollView.contentInset = newContentInsets;
-		[UIView commitAnimations];
-		
+		scrollView.contentInset = newContentInsets;		
 	} else if (scrollView.isDragging) {
 		
 		BOOL _loading = NO;
@@ -239,12 +235,12 @@
 		}
 		
 		[self setState:EGOOPullRefreshLoading];
-//		[UIView beginAnimations:nil context:NULL];
-//		[UIView setAnimationDuration:0.2];
-//        UIEdgeInsets newContentInsets = self.originalContentInset;
-//        newContentInsets.top += 60.0f;
-//		scrollView.contentInset = newContentInsets;
-//		[UIView commitAnimations];
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.2];
+        UIEdgeInsets newContentInsets = self.originalContentInset;
+        newContentInsets.top += 60.0f;
+		scrollView.contentInset = newContentInsets;
+		[UIView commitAnimations];
 		
 	}
 	
