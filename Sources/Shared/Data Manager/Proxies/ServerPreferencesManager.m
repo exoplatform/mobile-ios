@@ -15,7 +15,7 @@
 /*
  * Key of User Preference to save selected stream tab order. The value is less than 0 means that user doesn't want us to remember selected tab. 
  */
-#define EXO_SELECTED_STREAM                 @"selected_stream"
+#define EXO_SELECTED_STREAM                 [NSString stringWithFormat:@"%@_%@_selected_stream", self.selectedDomain, self.username]
 
 //=====================================================================
 
@@ -401,7 +401,7 @@
         self.selectedSocialStream = self.rememberSelectedSocialStream ? [[userDefaults objectForKey:EXO_SELECTED_STREAM] intValue] : 0;
         return _selectedSocialStream;
     }
-    return self.rememberSelectedSocialStream ? _selectedSocialStream : 0;
+    return self.rememberSelectedSocialStream ? [[userDefaults objectForKey:EXO_SELECTED_STREAM] intValue] : 0;
 }
 
 
