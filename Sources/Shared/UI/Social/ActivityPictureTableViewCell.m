@@ -12,6 +12,7 @@
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
+#import "ServerPreferencesManager.h"
 
 #define MAX_HEIGHT_FILE_NAME 32
 
@@ -107,8 +108,15 @@
 
             self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
             
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            NSString *strURL = [NSString stringWithFormat:@"%@%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"DOCLINK"]];
+            NSString *imagePath = [socialActivityStream.templateParams valueForKey:@"DOCLINK"];
+            // Using the thumbnail image instead of real one. Suppose that the image path format is "/{rest context name}/jcr/{relative path}"
+            // The link for thumbnail image is in the format "/{rest context name}/thumbnailImage/large/{relative path}"
+            NSRange range = [imagePath rangeOfString:@"jcr"];
+            if (range.location != NSNotFound) {
+                imagePath = [imagePath substringFromIndex:range.location + range.length];
+                imagePath = [NSString stringWithFormat:@"/rest/thumbnailImage/large%@", imagePath];
+            }
+            NSString *strURL = [NSString stringWithFormat:@"%@%@", [ServerPreferencesManager sharedInstance].selectedDomain, imagePath];
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
             
@@ -151,11 +159,15 @@
             
             _lbFileName.text = @"";
             [_lbFileName sizeToFit];
-            
-            self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
+            if ([[socialActivityStream.templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
+                self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
+            } else {
+                self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
+            }
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            NSString *strURL = [NSString stringWithFormat:@"%@/portal/rest/jcr/%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"contenLink"]];
+            // The link for thumbnail image is in the format "/{rest context name}/thumbnailImage/large/{relative path}"
+            NSString *strURL = [NSString stringWithFormat:@"%@/rest/thumbnailImage/large/%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"contenLink"]];
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
             

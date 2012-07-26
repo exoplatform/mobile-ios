@@ -89,7 +89,15 @@
     NSDictionary *_templateParams = self.socialActivity.templateParams;
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DOC:{
-            _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [_templateParams valueForKey:@"DOCLINK"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            NSString *imgPath = [_templateParams valueForKey:@"DOCLINK"];
+            // Using the thumbnail image instead of real one. Suppose that the image path format is "/{rest context name}/jcr/{relative path}"
+            // The link for thumbnail image is in the format "/{rest context name}/thumbnailImage/large/{relative path}"
+            NSRange range = [imgPath rangeOfString:@"jcr"];
+            if (range.location != NSNotFound) {
+                imgPath = [imgPath substringFromIndex:(range.location + range.length)];
+                imgPath = [NSString stringWithFormat:@"/rest/thumbnailImage/large%@", imgPath];
+            }
+            _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN],  imgPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"MESSAGE"]?[[_templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText]:@""]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
@@ -99,7 +107,17 @@
         }
             break;
         case ACTIVITY_CONTENTS_SPACE:{
-            _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            // check the mimetype of the document
+            if ([[_templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
+                self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
+            } else {
+                self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
+            }
+            
+            // Using the thumbnail image instead of real one. Suppose that value format of contentLink is "/{repository name}/{workspace name}/{relative path}"
+            // The link for thumbnail image is in the format "/{rest context name}/thumbnailImage/large/{relative path}"
+            _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/rest/thumbnailImage/large/%@", [_templateParams valueForKey:@"contenLink"]]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            
             [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><a href=\"%@\">%@</a> was created by <a>%@</a> state : %@</body></html>", [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]],[_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"], [_templateParams valueForKey:@"state"]]
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];

@@ -138,9 +138,8 @@
     CGRect tableFrame = CGRectOffset(sidebarBounds, 0, profileFrame.size.height);
     tableFrame.size.height -= profileFrame.size.height;
     self.tableView = [[[UITableView alloc] initWithFrame:tableFrame] autorelease];
+    self.tableView.scrollsToTop = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
-//    self.tableView.layer.borderColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeFeatureSeparator.png"]].CGColor;
-//    self.tableView.layer.borderWidth = 1.0;
     self.tableView.rowHeight = [UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"].size.height;
     self.tableView.delegate   = _datasource;
     self.tableView.dataSource = _datasource;
