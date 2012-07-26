@@ -19,6 +19,7 @@
 
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
+static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformationCellIdentifier";
@@ -41,15 +42,45 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 #define kTagInCellForServerVersion 400
 
 @interface SettingsViewController (PrivateMethods)
+
 -(void)setNavigationBarLabels;
+- (void)doInit;
+- (void)rememberStreamChanged:(id)sender;
+
 @end
 
 
-
+static NSString *settingViewSectionTitleKey = @"section title";
+static NSString *settingViewRowsKey = @"row title";
 
 @implementation SettingsViewController
 
 @synthesize settingsDelegate = _settingsDelegate;
+
+- (void)doInit {
+    _listOfSections = [[NSArray arrayWithObjects:
+                        [NSDictionary dictionaryWithKeysAndObjects:
+                            settingViewSectionTitleKey, @"SignInButton", 
+                            settingViewRowsKey, [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil],
+                         nil],
+                        [NSDictionary dictionaryWithKeysAndObjects:
+                         settingViewSectionTitleKey, @"Social", 
+                         settingViewRowsKey, [NSArray arrayWithObjects:@"KeepSelectedStream", nil],
+                         nil],
+                        [NSDictionary dictionaryWithKeysAndObjects:
+                         settingViewSectionTitleKey, @"Language", 
+                         settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
+                         nil], 
+                        [NSDictionary dictionaryWithKeysAndObjects:
+                         settingViewSectionTitleKey, @"ServerList", 
+                         settingViewRowsKey, [NSArray arrayWithObjects:@"ServerModify", nil],
+                         nil], 
+                        [NSDictionary dictionaryWithKeysAndObjects:
+                         settingViewSectionTitleKey, @"ApplicationsInformation", 
+                         settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
+                         nil], 
+                        nil] retain];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -58,12 +89,15 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     if (self) 
 	{
 		
+        [self doInit];
 		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         rememberMe.tag = kTagForSwitchRememberMe;
         
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
         
+        _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
+        [_rememberSelectedStream addTarget:self action:@selector(rememberStreamChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return self;
 }
@@ -73,6 +107,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 {
     [rememberMe release];
     [autoLogin release];
+    [_rememberSelectedStream release];
     [super dealloc];
 }
 
@@ -234,13 +269,15 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     [_settingsDelegate doneWithSettings];    
 }
 
-
+- (void)rememberStreamChanged:(id)sender {
+    [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream = _rememberSelectedStream.on;
+}
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 4;
+    return [_listOfSections count];
 }
 
 
@@ -269,37 +306,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
     
 	// If you want to align the header text as centered
 	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
-    
-    switch (section) 
-	{
-		case 0:
-		{
-			headerLabel.text = Localize(@"SignInButton");
-			break;
-		}
-			
-		case 1:
-		{
-			headerLabel.text = Localize(@"Language");
-			break;
-		}
-			
-		case 2:
-		{
-			headerLabel.text = Localize(@"ServerList");
-			break;
-		}
-            
-        case 3:
-		{
-			headerLabel.text = Localize(@"ApplicationsInformation");
-			break;
-		}   
-			
-		default:
-			break;
-            
-	}
+    headerLabel.text = Localize([[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionTitleKey]);
     
 	[customView addSubview:headerLabel];
     [headerLabel release];
@@ -314,22 +321,12 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
     int numofRows = 0;
-	if(section == 0)
-	{
-		numofRows = 2;
-	}	
-	if(section == 1)
-	{	
-		numofRows = 2;
-	}	
-	if(section == 2)
+	if(section == 3)
 	{	
 		numofRows = [[ServerPreferencesManager sharedInstance].serverList count] + 1;
-	}
-    if(section == 3)
-	{	
-		numofRows = 3;
-	}
+	} else {
+        numofRows = [[[_listOfSections objectAtIndex:section] objectForKey:settingViewRowsKey] count];
+    }
     
 	return numofRows;
 }
@@ -341,8 +338,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float fHeight = 44.0;
-    return fHeight;
+    return 44.0;
 }
 
 
@@ -353,7 +349,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CustomBackgroundForCell_iPhone *cell;
-    
+
     switch (indexPath.section) 
     {
         case 0:
@@ -372,25 +368,35 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
             //Remove previous UISwith
             [[cell viewWithTag:kTagForSwitchRememberMe] removeFromSuperview];
             [[cell viewWithTag:kTagForSwitchRememberMe] removeFromSuperview];
-            
-            
+                        
             if(indexPath.row == 0)
             {
-                cell.textLabel.text = Localize(@"RememberMe");
                 rememberMe.on = bRememberMe;
                 cell.accessoryView = rememberMe;
             }
             else 
             {
-                cell.textLabel.text = Localize(@"AutoLogin");
                 autoLogin.on = bAutoLogin;
                 cell.accessoryView = autoLogin;
             }
             break;
             
         }
-            
-        case 1: 
+        case 1: {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierSocial];
+            if(cell == nil) 
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLogin] autorelease];
+                
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            _rememberSelectedStream.on = [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream;
+            cell.accessoryView = _rememberSelectedStream;
+        }
+            break;
+        case 2: 
         {
             
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLanguage];
@@ -407,12 +413,10 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
             if(indexPath.row == 0)
             {
                 cell.imageView.image = [UIImage imageNamed:@"EN.gif"];                
-                cell.textLabel.text = Localize(@"English");
             }
             else
             {
                 cell.imageView.image = [UIImage imageNamed:@"FR.gif"];
-                cell.textLabel.text = Localize(@"French");
             }
             
             //Put the checkmark
@@ -428,7 +432,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
             break;
         }
             
-        case 2:
+        case 3:
         {
             cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
             if (cell == nil) {
@@ -466,11 +470,10 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
             {
                 
                 cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"] autorelease];
-                
+                cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:0]);
                 [cell.textLabel setTextAlignment:UITextAlignmentCenter];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.textLabel.backgroundColor = [UIColor clearColor];
-                cell.textLabel.text = Localize(@"ServerModify");
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
             }
             
@@ -480,7 +483,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
         }
             
             
-        case 3:
+        case 4:
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServerInformation];
             if(cell == nil) {
@@ -500,15 +503,12 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
                
             //Create an image streachable images for background
             if(indexPath.row == 0){
-                cell.textLabel.text = Localize(@"ServerVersion");
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_SERVER];
             }
             if(indexPath.row == 1){
-                cell.textLabel.text = Localize(@"ApplicationEdition");
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_EDITION_SERVER];
             }
             if(indexPath.row == 2){
-                cell.textLabel.text = Localize(@"ApplicationVersion");
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
             }
             break;
@@ -517,7 +517,10 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
         default:
             break;
     }
+    if (indexPath.section != 3) {
+        cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:indexPath.row]);
     
+    }
     //Customize the cell background
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
@@ -528,7 +531,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     
-	if(indexPath.section == 1)
+	if(indexPath.section == 2)
 	{
 		int selectedLanguage = indexPath.row;
         
@@ -542,7 +545,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
         [self reloadSettingsWithUpdate];
 	}
     
-	else if(indexPath.section == 2)
+	else if(indexPath.section == 3)
 	{
         if (indexPath.row == [[ServerPreferencesManager sharedInstance].serverList count]) 
         {
@@ -551,7 +554,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
             [self.navigationController pushViewController:_serverManagerViewController animated:YES];
         }
 	}
-	else if(indexPath.section == 3)
+	else if(indexPath.section == 4)
     {
         //		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
         //		[self.navigationController pushViewController:userGuideController animated:YES];

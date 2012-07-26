@@ -31,6 +31,18 @@
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;
 
+/*
+ * @Getter: Return 0 if user doesn't choose to remember selected stream, else return value read at the user preference property "selected_stream"
+ * @Setter: if user doesn't choose to remember selected stream, keep this value temporary to reserve for method "setrememberSelectedSocialStream:". Else the value is saved to "selected_stream". 
+ */
+@property (nonatomic, assign) int selectedSocialStream;
+
+/*
+ * @Getter: Returns true if the user preference property "selected_stream" doesn't exist or its value is greater than 0, else return false.
+ * @Setter: If it's set true, value kepted by "setSelectedSocialStream:" is used to saved into "selected_stream", else a negative number is saved.
+ */
+@property (nonatomic, assign) BOOL rememberSelectedSocialStream;
+
 + (ServerPreferencesManager*)sharedInstance;
 - (NSMutableArray *)serverList;
 - (void)loadServerList;
@@ -51,4 +63,5 @@
 - (void)persistUsernameAndPasswod;
 // Reload username and password from user preference
 - (void)reloadUsernamePassword;
+
 @end

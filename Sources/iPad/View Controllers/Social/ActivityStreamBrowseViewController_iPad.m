@@ -166,12 +166,15 @@
     _indexpathSelectedActivity = [indexPath copy];
 
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
-                                     andCurrentUserProfile:_socialUserProfile];
+                                     andCurrentUserProfile:self.userProfile];
 
         
     
 }
 
-
+- (void)clearActivityData {
+    [super clearActivityData];
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
+}
 
 @end

@@ -37,7 +37,6 @@
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
-    
     //Add Crashlytics
     [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
     
@@ -73,6 +72,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption {
+    [super application:application didFinishLaunchingWithOptions:launchOption];
     [self applicationDidFinishLaunching:application];
     return YES;
 }

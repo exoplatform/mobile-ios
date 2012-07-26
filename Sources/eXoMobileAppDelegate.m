@@ -7,6 +7,7 @@
 //
 
 #import "eXoMobileAppDelegate.h"
+#import "LanguageHelper.h"
 
 @implementation eXoMobileAppDelegate
 
@@ -17,9 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
-    // Override point for customization after application launch.
-    
-    // Add the navigation controller's view to the window and display.
+    [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
 
     return YES;
 }

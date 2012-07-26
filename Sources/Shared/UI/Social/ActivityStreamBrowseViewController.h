@@ -14,13 +14,14 @@
 #import "EGOImageView.h"
 #import "SocialPictureAttach.h"
 #import "eXoViewController.h"
+#import "ActivityStreamTabbar.h"
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 @class ActivityDetailViewController;
 @class SocialUserProfile;
 
-@interface ActivityStreamBrowseViewController : eXoViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate>
+@interface ActivityStreamBrowseViewController : eXoViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate, JMTabViewDelegate>
 {
     IBOutlet UITableView*                   _tblvActivityStream;
     
@@ -32,7 +33,6 @@
     NSMutableArray*                         _arrActivityStreams;
     
     BOOL                                    _bIsPostClicked;
-    SocialUserProfile*                      _socialUserProfile;
     
     //Refresh Management
     EGORefreshTableHeaderView*              _refreshHeaderView;
@@ -41,9 +41,12 @@
     
     NSIndexPath*                            _indexpathSelectedActivity;
     BOOL                                    _activityAction;
-    
+    ActivityStreamTabItem                   _selectedTabItem;
         
 }
+
+@property (nonatomic, retain) ActivityStreamTabbar *filterTabbar;
+@property (nonatomic, retain) SocialUserProfile *userProfile;
 
 - (NSString *)getIconForType:(NSString *)type;
 - (void)emptyState;

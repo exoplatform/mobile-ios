@@ -12,6 +12,13 @@
 #import "SocialUserProfile.h"
 #import "SocialActivity.h"
 
+typedef enum {
+  ActivityStreamProxyActivityTypeAllUpdates = 0,
+  ActivityStreamProxyActivityTypeMyConnections, 
+  ActivityStreamProxyActivityTypeMySpaces,
+  ActivityStreamProxyActivityTypeMyStatus
+} ActivityStreamProxyActivityType;
+
 @class SocialUserProfileProxy;
 
 @interface SocialActivityStreamProxy : SocialProxy {
@@ -23,9 +30,11 @@
 
 @property (nonatomic, retain) NSArray* arrActivityStreams;
 @property (readonly) BOOL isUpdateRequest;
+@property (nonatomic, retain) SocialUserProfile *userProfile;
 
-- (void)getActivityStreams;
+- (void)getActivityStreams:(ActivityStreamProxyActivityType)activitytype;
 - (void)updateActivityStreamSinceActivity:(SocialActivity *)activity;
+- (NSString *)createPathForType:(ActivityStreamProxyActivityType)activityType;
 
 @end
 

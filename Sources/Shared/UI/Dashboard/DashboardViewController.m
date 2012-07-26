@@ -405,8 +405,7 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-	
-//	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
 }
 
 

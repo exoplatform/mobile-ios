@@ -34,6 +34,8 @@
 #import "ActivityHelper.h"
 #import "SocialRestProxy.h"
 
+#define kStreamTabbarHeight 40.0
+
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
 static NSString* kCellIdentifierForum = @"ActivityForumCell";
@@ -47,12 +49,15 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @property (nonatomic, retain) SocialActivityStreamProxy *socialActivityStreamProxy;
 @property (nonatomic, retain) SocialRestProxy *socialRestProxy;
 @property (nonatomic, retain) SocialLikeActivityProxy *likeActivityProxy;
+@property (nonatomic, retain) SocialUserProfileProxy *userProfileProxy;
 @property (nonatomic, retain) NSMutableArray *arrayOfSectionsTitle;
 @property (nonatomic, retain) NSMutableDictionary *sortedActivities;
 @property (nonatomic, retain) NSDate *dateOfLastUpdate;
 @property (nonatomic, retain) NSMutableArray *arrActivityStreams;
 
 - (void)loadImagesForOnscreenRows;
+- (void)callProxiesToReloadActivityStream;
+
 @end
 
 
@@ -62,10 +67,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @synthesize socialActivityStreamProxy = _socialActivityStreamProxy;
 @synthesize socialRestProxy = _socialRestProxy;
 @synthesize likeActivityProxy = _likeActivityProxy;
+@synthesize userProfileProxy = _userProfileProxy;
 @synthesize arrayOfSectionsTitle = _arrayOfSectionsTitle;
 @synthesize sortedActivities = _sortedActivities;
 @synthesize dateOfLastUpdate = _dateOfLastUpdate;
 @synthesize arrActivityStreams = _arrActivityStreams;
+@synthesize filterTabbar = _filterTabbar;
+@synthesize userProfile = _userProfile;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -84,7 +92,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         _bIsPostClicked = NO;
         _activityAction = 0;
-        
+        _selectedTabItem = -1;
         self.arrActivityStreams = [[[NSMutableArray alloc] init] autorelease];
     }
     return self;
@@ -93,6 +101,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)dealloc
 {
     _tblvActivityStream = nil;
+    [_filterTabbar release];
+    [_userProfile release];
     
     [_arrayOfSectionsTitle release];
     _arrayOfSectionsTitle = nil;
@@ -124,6 +134,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [_socialActivityStreamProxy release];
     [_socialRestProxy release];
     [_likeActivityProxy release];
+    [_userProfileProxy release];
     
     [super dealloc];
 }
@@ -138,6 +149,104 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 -(void)showHudForUpload{
     
+}
+
+#pragma mark - Proxy management
+- (SocialActivityStreamProxy *)socialActivityStreamProxy {
+    if (!_socialActivityStreamProxy) {
+        _socialActivityStreamProxy = [[SocialActivityStreamProxy alloc] init];
+        _socialActivityStreamProxy.delegate = self;
+    }
+    return _socialActivityStreamProxy;
+}
+
+- (SocialUserProfileProxy *)userProfileProxy {
+    if (!_userProfileProxy) {
+        _userProfileProxy = [[SocialUserProfileProxy alloc] init];
+        _userProfileProxy.delegate = self;
+    }
+    return _userProfileProxy;
+}
+
+- (void)proxyDidFinishLoading:(SocialProxy *)proxy {
+    if(proxy == self.socialRestProxy){
+        [self.socialActivityStreamProxy getActivityStreams:_selectedTabItem];
+    } else if (proxy == self.userProfileProxy) { 
+        self.userProfile = self.userProfileProxy.userProfile;
+        self.userProfileProxy = nil;
+        if (self.filterTabbar.tabView.selectedIndex == ActivityStreamTabItemMyStatus) {
+            self.socialActivityStreamProxy.userProfile = self.userProfile;
+            // reload my status after getting user profile
+            [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
+        }
+    } else if (proxy == self.socialActivityStreamProxy) {
+        //We have to check if the request for ActivityStream was an update request or not
+        if (self.socialActivityStreamProxy.isUpdateRequest) {                
+            //We need to update the postedTime of all previous activities
+            [self addTimeToActivities:_dateOfLastUpdate];
+        }
+        
+        //Retrieve all activities
+        //Start preparing data
+        [_arrActivityStreams removeAllObjects];
+        for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
+        {
+            SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
+            [socialActivityStream convertToPostedTimeInWords];
+            [socialActivityStream convertHTMLEncoding];
+            [socialActivityStream getActivityType];
+            [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
+            [_arrActivityStreams addObject:socialActivityStream];
+        }
+        
+        //All informations has been retrieved we can now display them
+        [self finishLoadingAllDataForActivityStream];
+    } 
+    else if (proxy == self.likeActivityProxy) 
+    {
+        self.likeActivityProxy = nil;
+        [self updateActivityStream];
+    }
+    
+}
+
+-(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
+{
+    NSString *alertMessages = nil;
+    
+    if(_activityAction == 0)
+        alertMessages = Localize(@"GettingActionCannotBeCompleted");
+    else if(_activityAction == 1)
+        alertMessages = Localize(@"UpdatingActionCannotBeCompleted");
+    else if (_activityAction == 2)
+        alertMessages = Localize(@"LikingActionCannotBeCompleted");
+    else 
+        alertMessages = Localize(@"UnLikeActionCannotBeCompleted");
+    
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    
+    [alertView show];
+}
+
+- (void)callProxiesToReloadActivityStream {
+    // reset activity stream proxy
+    self.socialActivityStreamProxy = nil;
+    if (_selectedTabItem == ActivityStreamTabItemAllUpdate) {
+        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
+    } else if (_selectedTabItem == ActivityStreamTabItemMyConnections) {
+        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamTabItemMyConnections];
+    } else if (_selectedTabItem == ActivityStreamTabItemMySpaces) {
+        [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMySpaces];
+    } else if (_selectedTabItem == ActivityStreamTabItemMyStatus) {
+        if (self.userProfile == nil)
+            // To get my status activities, get user profile first
+            [self.userProfileProxy getUserProfileFromUsername:[ServerPreferencesManager sharedInstance].username];
+        else {
+            self.socialActivityStreamProxy.userProfile = self.userProfile;
+            [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
+        }
+        
+    }
 }
 
 #pragma mark - Update Acitivity From ActivityDetail
@@ -183,11 +292,21 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     self.title = Localize(@"News");
     
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
+    _tblvActivityStream.scrollsToTop = YES;
+    _tblvActivityStream.contentInset = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
+    _tblvActivityStream.scrollIndicatorInsets = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
+    // filter tab bar
+    CGRect activityStreamFrame = _tblvActivityStream.frame;
+    self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)] autorelease];
+    self.filterTabbar.tabView.delegate = self;
+    [self.filterTabbar selectTabItem:[ServerPreferencesManager sharedInstance].selectedSocialStream];
+    [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		
 		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityStream.bounds.size.height, self.view.frame.size.width, _tblvActivityStream.bounds.size.height)];
 		view.delegate = self;
+        view.originalContentInset = _tblvActivityStream.contentInset;
 		[_tblvActivityStream addSubview:view];
 		_refreshHeaderView = view;
 		[view release];
@@ -197,10 +316,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Set the last update date at now 
     self.dateOfLastUpdate = [NSDate date];
-    
-    //Load all activities of the user
-    [self startLoadingActivityStream];
-    
+        
 }
 
 - (void)viewDidUnload
@@ -310,7 +426,24 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)clearActivityData
 {
     [_arrActivityStreams removeAllObjects];
+    [_arrayOfSectionsTitle removeAllObjects];
 }
+
+#pragma mark - JMTabviewDelegate 
+
+- (void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
+    if (!_reloading && _selectedTabItem == itemIndex) {
+        return;
+    } else {
+        _selectedTabItem = itemIndex;
+    }
+    [ServerPreferencesManager sharedInstance].selectedSocialStream = itemIndex;
+    [self clearActivityData];
+    [_tblvActivityStream reloadData];
+    [self displayHudLoader];
+    [self callProxiesToReloadActivityStream];
+}
+
 
 #pragma mark - Table view Methods
 
@@ -355,7 +488,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderNormalBg.png"];
-    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:Localize(@"Today"])) {
+    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:Localize(@"Today")]) {
         imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderHighlightedBg.png"];
         headerLabel.textColor = [UIColor colorWithRed:21./255 green:94./255 blue:173./255 alpha:1.];
     }
@@ -583,9 +716,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //Nothing keep the default position of the HUD
 }
 
-
-#pragma mark - Social Proxy 
-#pragma mark Management
+#pragma mark - activity stream management
 
 - (void)startLoadingActivityStream {
     
@@ -600,12 +731,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 
 - (void)updateActivityStream {
-    
-    [self displayHudLoader];
-    
     _reloading = YES;
-
-    [self startLoadingActivityStream];
+    [self callProxiesToReloadActivityStream];
 }
 
 - (void)finishLoadingAllDataForActivityStream {
@@ -635,8 +762,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Ask the controller to sort activities
     [self sortActivities];
-    
     [_tblvActivityStream reloadData];
+//    [_tblvActivityStream scrollRectToVisible:CGRectMake(0, 0, 1., 1.) animated:YES];
     
 }
 
@@ -649,65 +776,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [emptyView release];
 }
 
-#pragma -
-#pragma mark Proxies Delegate Methods
-
-- (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    if(proxy == self.socialRestProxy){
-        self.socialActivityStreamProxy = [[[SocialActivityStreamProxy alloc] init] autorelease];
-        self.socialActivityStreamProxy.delegate = self;
-        [self.socialActivityStreamProxy getActivityStreams];
-    } else if (proxy == self.socialActivityStreamProxy) 
-    {
-        //We have to check if the request for ActivityStream was an update request or not
-        if (self.socialActivityStreamProxy.isUpdateRequest) {                
-            //We need to update the postedTime of all previous activities
-            [self addTimeToActivities:_dateOfLastUpdate];
-        }
-        
-        //Retrieve all activities
-        //Start preparing data
-        for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
-        {
-            SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
-            [socialActivityStream convertToPostedTimeInWords];
-            [socialActivityStream convertHTMLEncoding];
-            [socialActivityStream getActivityType];
-            [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
-            [_arrActivityStreams addObject:socialActivityStream];
-        }
-        
-        //All informations has been retrieved we can now display them
-        [self finishLoadingAllDataForActivityStream];
-    } 
-    else if (proxy == self.likeActivityProxy) 
-    {
-        self.likeActivityProxy = nil;
-        [self startLoadingActivityStream];
-    }
-    
-}
-
--(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
-{
-    NSString *alertMessages = nil;
-    
-    if(_activityAction == 0)
-        alertMessages = Localize(@"GettingActionCannotBeCompleted");
-    else if(_activityAction == 1)
-        alertMessages = Localize(@"UpdatingActionCannotBeCompleted");
-    else if (_activityAction == 2)
-        alertMessages = Localize(@"LikingActionCannotBeCompleted");
-    else 
-        alertMessages = Localize(@"UnLikeActionCannotBeCompleted");
-    
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    
-    [alertView show];
-}
-
-#pragma mark -
-#pragma mark MessageComposer Methods
+#pragma mark - MessageComposer Methods
 - (void)messageComposerDidSendData {
     [self updateActivityStream];
 }
@@ -752,15 +821,17 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self loadImagesForOnscreenRows];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-	
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > 0) {
+        [self.filterTabbar translucentView:YES];
+    } else {
+        [self.filterTabbar translucentView:NO];
+    }
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     //[self loadImagesForOnscreenRows];
 }
-
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
+         
+#pragma mark - EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	

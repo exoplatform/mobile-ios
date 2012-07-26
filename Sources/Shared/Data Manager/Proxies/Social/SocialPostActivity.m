@@ -21,7 +21,7 @@
 -(id)init {
     if ((self=[super init])) {
         //Default behavior
-        _text = @"";
+        _text = [@"" retain];
     }
     return self;
 }
@@ -44,7 +44,7 @@
 
 -(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName {
     if (message != nil) {
-        _text = message;
+        self.text = message;
     }
     
     
