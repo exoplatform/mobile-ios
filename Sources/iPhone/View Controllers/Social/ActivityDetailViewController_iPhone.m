@@ -98,8 +98,9 @@
 
 - (void)finishLoadingAllLikers {
     [super finishLoadingAllLikers];
+    [_tblvActivityDetail reloadData];
     // reload likers view
-    [self.tblvActivityDetail reloadData];
+    [self.likeViewCell reloadAvatarViews:YES];
 }
 
 - (void)finishLoadingAllComments {
@@ -177,11 +178,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kIdentifierActivityDetailCommentTableViewCell = @"ActivityDetailCommentTableViewCell";
     if (indexPath.section == 1) {        
-        self.likeViewCell.socialActivity = self.socialActivity;
         return self.likeViewCell;
     } else if (indexPath.section == 2) {
         if (self.socialActivity.totalNumberOfComments == 0) {
-            self.likeViewCell.socialActivity = self.socialActivity;
             return self.noCommentCell;
         } else {
             ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
@@ -242,6 +241,12 @@
 - (void)didFailedLikeAction {
     [self.likeViewCell activityIndicatorToLikeButton];
     [super didFailedLikeAction];
+}
+
+#pragma mark - overriden
+- (void)setSocialActivity:(SocialActivity *)socialActivity {
+    [super setSocialActivity:socialActivity];
+    self.likeViewCell.socialActivity = socialActivity;
 }
 
 @end

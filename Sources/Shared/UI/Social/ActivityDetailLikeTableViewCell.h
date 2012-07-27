@@ -25,5 +25,6 @@
 - (void)setUserLikeThisActivity:(BOOL)userLikeThisActivity;
 - (void)likeButtonToActivityIndicator;
 - (void)activityIndicatorToLikeButton;
+- (void)reloadAvatarViews:(BOOL)animateIfNeeded;
 
 @end

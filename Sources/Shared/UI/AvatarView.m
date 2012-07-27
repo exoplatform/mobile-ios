@@ -8,6 +8,7 @@
 
 #import "AvatarView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SocialUserProfile.h"
 
 @interface InnerShadowView : UIView
 
@@ -55,7 +56,10 @@
 
 @implementation AvatarView
 
+@synthesize userProfile = _userProfile;
+
 - (void)dealloc {
+    [_userProfile release];
     [super dealloc];
 }
 
@@ -78,6 +82,13 @@
         [self configureAvatar];
     }
     return self;
+}
+
+- (void)setUserProfile:(SocialUserProfile *)userProfile {
+    [userProfile retain];
+    [_userProfile release];
+    _userProfile = userProfile;
+    self.imageURL = [NSURL URLWithString:_userProfile.avatarUrl];
 }
 
 - (void)configureAvatar {

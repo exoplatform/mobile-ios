@@ -8,6 +8,10 @@
 
 #import "EGOImageView.h"
 
+@class SocialUserProfile;
+
 @interface AvatarView : EGOImageView
+
+@property (nonatomic, retain) SocialUserProfile *userProfile;
 
 @end

@@ -27,10 +27,9 @@
 
 @property (retain, nonatomic) UIActivityIndicatorView *indicatorForLikeButton;
 @property (nonatomic, retain) NSMutableArray *likerAvatarImageViews;
-- (void)reloadAvatarViews;
 - (UIImage *)imageOfThreePointsWithSize:(CGSize)imageSize;
 - (AvatarView *)newAvatarView;
-
+- (void)adjustAvatarViewFrames:(BOOL)animate;
 
 @end
 
@@ -91,12 +90,9 @@
     }
     CGSize accessorySize = self.myAccessoryView.imageView.image.size;
     CGSize likeButtonSize = self.btnLike.imageView.image.size;
-    
-    
     float secondLineHeight = self.socialActivity.totalNumberOfLikes > 0 ? avatarHeight : MAX(accessorySize.height, likeButtonSize.height);
     
     float secondLineY = contentBounds.size.height - kBottomMargin - secondLineHeight;
-    
     /* ##### */
     self.myAccessoryView.frame = CGRectMake(contentBounds.size.width - kLeftRightMargin - accessorySize.width, secondLineY + (secondLineHeight - accessorySize.height) / 2, accessorySize.width, accessorySize.height);
     
@@ -104,27 +100,47 @@
     _btnLike.frame = CGRectMake(contentBounds.size.width - kLeftRightMargin - self.myAccessoryView.bounds.size.width - kPadding - likeButtonSize.width, secondLineY + (secondLineHeight - likeButtonSize.height) / 2, likeButtonSize.width, likeButtonSize.height); // The like button is on the right bottom corner of the content view    
     /* ##### */
     
-    /* ### Configure avatar view ### */
+    [self adjustAvatarViewFrames:NO];
+    
+}
+
+- (void)adjustAvatarViewFrames:(BOOL)animate {
+    CGRect contentBounds = self.contentView.bounds;
+    float avatarHeight = (contentBounds.size.height - (kTopMargin + kBottomMargin) - self.lbMessage.bounds.size.height - kPadding);
+
     int i = 0;
     for (EGOImageView *avatarView in self.likerAvatarImageViews) {
         // the avatar view is putted consequently on the left bottom corner of the content view
-        avatarView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
+        if (animate) {
+            [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^(void) {
+                avatarView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
+            } completion:NULL];
+        } else {
+            avatarView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
+        }
         i++;
     }
     /* ##### */
     
-        /* ### Configure three point view ### */
-        EGOImageView *threePointView = (EGOImageView *)[self.contentView viewWithTag:kThreePointAvatarTag];
-        if (!threePointView) {
-            threePointView = [self newAvatarView];
-            threePointView.image = [self imageOfThreePointsWithSize:CGSizeMake(avatarHeight, avatarHeight)];
-            [threePointView setTag:kThreePointAvatarTag];
-            [self.contentView addSubview:threePointView];
-        }
-    if (self.socialActivity.totalNumberOfLikes > kNumberOfDisplayedAvatars) {
-        threePointView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
-    } else {
+    /* ### Configure three point view ### */
+    EGOImageView *threePointView = (EGOImageView *)[self.contentView viewWithTag:kThreePointAvatarTag];
+    if (!threePointView) {
+        threePointView = [self newAvatarView];
+        [threePointView setTag:kThreePointAvatarTag];
+        [self.contentView addSubview:threePointView];
+    }
+    threePointView.image = [self imageOfThreePointsWithSize:CGSizeMake(avatarHeight, avatarHeight)];
+    if (self.socialActivity.totalNumberOfLikes <= kNumberOfDisplayedAvatars && self.socialActivity.totalNumberOfLikes == i) {
         [threePointView setHidden:YES];
+    } else {
+        [threePointView setHidden:NO];
+        if (animate) {
+            [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^(void) {
+                threePointView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
+            } completion:NULL];
+        } else {
+            threePointView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
+        }
     }
     /* ##### */
 }
@@ -162,28 +178,50 @@
     AvatarView *imageView = [[[AvatarView alloc] init] autorelease];
     // Update the CornerRadius
     [[imageView layer] setMasksToBounds:YES];
-    // Update the border color
-//    [[imageView layer] setBorderColor:[UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor];
-    
     return imageView;
 }
 
-- (void)reloadAvatarViews {
-    for (EGOImageView *avatarView in _likerAvatarImageViews) {
-        [avatarView removeFromSuperview];
-    }
-    [_likerAvatarImageViews removeAllObjects];
+- (void)reloadAvatarViews:(BOOL)animateIfNeeded {
+    self.lbMessage.text = [NSString stringWithFormat:Localize(@"likeThisActivity"), _socialActivity.totalNumberOfLikes];
+    // Just animate if the number of image views is changed.
+    BOOL animate = animateIfNeeded;
     
+    NSMutableArray *arrayOfAvts = [NSMutableArray arrayWithArray:_likerAvatarImageViews];
+    [_likerAvatarImageViews removeAllObjects];
+        
     int i = 0;
     for (SocialUserProfile *user in self.socialActivity.likedByIdentities) {
         if (i == kNumberOfDisplayedAvatars) break;
-        EGOImageView *imageView = [self newAvatarView];
-        [_likerAvatarImageViews addObject:imageView];
-        [self.contentView addSubview:imageView]; // add the avatar view to the content view
-        [imageView setImageURL:[NSURL URLWithString:user.avatarUrl]];
+        AvatarView *imageView = nil;
+        for (AvatarView *avtView in arrayOfAvts) {
+            if ([user.remoteId isEqualToString:avtView.userProfile.remoteId]) {
+                imageView = avtView;
+                [arrayOfAvts removeObject:avtView];
+                break;
+            }
+        }
+        
+        if (!imageView) {
+            imageView = [self newAvatarView];
+            imageView.userProfile = user;
+            [self.contentView addSubview:imageView]; // add the avatar view to the content view
+        }
+        if (imageView != nil)
+            [_likerAvatarImageViews addObject:imageView];
+        
         i++;
     }
-    [self setNeedsLayout];
+    
+    for (EGOImageView *avatarView in arrayOfAvts) {
+        if (animate) {
+            [UIView animateWithDuration:0.3 animations:^{avatarView.alpha = 0.0;} 
+                             completion:^(BOOL finished){ [avatarView removeFromSuperview]; }];
+        } else {
+            [avatarView removeFromSuperview];
+        }
+    }
+    
+    [self adjustAvatarViewFrames:animate];
 }
 
 // create image for the text "..."
@@ -222,9 +260,8 @@
     [_socialActivity release];
     _socialActivity = [socialActivity retain];
     
-    self.lbMessage.text = [NSString stringWithFormat:Localize(@"likeThisActivity"), _socialActivity.totalNumberOfLikes];
     [self setUserLikeThisActivity:_socialActivity.liked];
-    [self reloadAvatarViews];
+    [self reloadAvatarViews:NO];
 }
 
 #pragma mark - like/dislike management
