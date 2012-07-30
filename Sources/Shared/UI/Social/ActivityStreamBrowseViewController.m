@@ -348,14 +348,20 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = UITextAlignmentRight;
 	headerLabel.frame = CGRectMake(0.0, 0.0, _tblvActivityStream.frame.size.width-5, kHeightForSectionHeader);
-    headerLabel.text = [_arrayOfSectionsTitle objectAtIndex:section];
+    NSString *headerTitle = [_arrayOfSectionsTitle objectAtIndex:section];
+    if ([headerTitle isEqualToString:@"Today"]) {
+        headerLabel.text = Localize([_arrayOfSectionsTitle objectAtIndex:section]);
+    } else {
+        SocialActivity *firstAct = [[_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:section]] objectAtIndex:0];
+        headerLabel.text = [[NSDate dateWithTimeIntervalSince1970:firstAct.postedTime/1000] distanceOfTimeInWords:[NSDate date]];
+    }
     
     CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblvActivityStream.frame.size.width-5, CGFLOAT_MAX) 
                                       lineBreakMode:UILineBreakModeWordWrap];
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderNormalBg.png"];
-    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:Localize(@"Today")]) {
+    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:@"Today"]) {
         imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderHighlightedBg.png"];
         headerLabel.textColor = [UIColor colorWithRed:21./255 green:94./255 blue:173./255 alpha:1.];
     }

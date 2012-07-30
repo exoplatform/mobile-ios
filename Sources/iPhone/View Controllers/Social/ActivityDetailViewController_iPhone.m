@@ -62,9 +62,6 @@
     [super viewWillAppear:animated];
     self.view.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];
-
-
-    
 }
 
 
@@ -72,7 +69,11 @@
     [super viewDidLoad];
     
     self.view.title = self.title;
-
+    [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:23];
+    _btnMsgComposer.backgroundColor = [UIColor clearColor];
+    [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
+    [_btnMsgComposer setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
 }
 
 

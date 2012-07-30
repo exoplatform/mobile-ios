@@ -121,8 +121,8 @@
 
     [_htmlTitle sizeToFit];
     
-    NSString *startTime = [[NSDate date] dateWithTimeInterval:[[socialActivityStream.templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText]];
-    NSString *endTime = [[NSDate date] dateWithTimeInterval:[[socialActivityStream.templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText]];
+    NSString *startTime = [[NSDate dateWithTimeIntervalSince1970:[[[socialActivityStream.templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
+    NSString *endTime = [[NSDate dateWithTimeIntervalSince1970:[[[socialActivityStream.templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
     
     _lbMessage.html = [NSString stringWithFormat:@"%@: %@\n%@: %@\n%@: %@\n%@: %@",Localize(@"Description"), [[socialActivityStream.templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText], Localize(@"Location"),[[socialActivityStream.templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText], Localize(@"StartTime"), startTime, Localize(@"EndTime"), endTime];
     

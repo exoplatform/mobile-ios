@@ -161,7 +161,7 @@
     _tblGadgets.scrollEnabled = NO;
     
     //add empty view to the view 
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadgetError")];
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
     [self.view insertSubview:emptyView aboveSubview:_tblGadgets];
     [emptyView release];
 }
