@@ -27,7 +27,7 @@
 "NetworkConnection" = "Erreur de connexion";
 "Authorization" = "L'authentification a échoué";
 "WrongUserNamePassword" = "Nom d'utilisateur ou mot de passe incorrect";
-"NetworkConnectionFailed" = "Connexion au serveur échouée, vérifiez son URL";
+"InvalidServer" = "Connexion au serveur échouée, vérifiez son URL";
 "UserNameEmpty" = "Veuillez entrer un nom d'utilisateur";
 "ServerList" = "Liste des Serveurs";
 "NewServer" = "Nouveau Serveur";

@@ -26,7 +26,7 @@
 "NetworkConnection" = "Connection Error";
 "Authorization" = "Login Failed";
 "WrongUserNamePassword" = "Incorrect username/password combination.";
-"NetworkConnectionFailed" = "Invalid server name";
+"InvalidServer" = "Invalid server name";
 "UserNameEmpty" = "Incorrect username.";
 "ServerList" = "Server list";
 "NewServer" = "New Server";
