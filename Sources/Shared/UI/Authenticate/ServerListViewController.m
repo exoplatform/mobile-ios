@@ -40,6 +40,7 @@
 }
 
 #pragma mark - UITableView Utils
+
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {        return [[[UIImageView alloc] initWithImage:
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];

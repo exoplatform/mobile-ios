@@ -126,7 +126,6 @@
 }
 
 
-
 - (IBAction)onSettingBtn
 {
     if (_settingsViewController == nil) {

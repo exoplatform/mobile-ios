@@ -19,7 +19,6 @@
 
 #pragma mark - Authenticate View Controller
 
-
 @interface AuthenticateViewController ()
 
 @property (nonatomic, retain) LoginProxy *loginProxy;

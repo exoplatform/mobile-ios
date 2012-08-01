@@ -71,10 +71,10 @@
     _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPad" bundle:nil];
     
     // Initializing the Tab items and adding them to the Tab view
-    AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn"]]; // device:DeviceIpad];
+    AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn"]];
     [self.tabView addTabItem:tabItemCredentials];
     
-    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIpadOn"]]; // device:DeviceIpad];
+    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIpadOn"]];
     [self.tabView addTabItem:tabItemServerList];
 }
 
@@ -87,6 +87,7 @@
     [_credViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
     [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
     [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+
     [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
     //Stevan UI fixes
@@ -148,7 +149,7 @@
     {
         // Portrait orientation
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
-
+        
         // Position the tabs
         [self.tabView setFrame:
          CGRectMake((self.view.center.x-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
@@ -178,7 +179,7 @@
          CGRectMake(self.view.center.x-_btnSettings.bounds.size.width/2,      // at the center
                     absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
                     _btnSettings.bounds.size.width,
-                    _btnSettings.bounds.size.height)];        
+                    _btnSettings.bounds.size.height)];
     }
 }
 
