@@ -62,6 +62,9 @@
     // Make sure the Textfield Delegate methods are called upon events on the 2 text fields
     [self.txtfPassword setDelegate:self];
     [self.txtfUsername setDelegate:self];
+    // Display localized placeholder text
+    [self.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
+    [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
 }
 
 - (void)viewDidUnload

@@ -360,6 +360,8 @@
 -(void)doneWithSettings {
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
+    [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue]; 
     [self signInAnimation:_credViewController.bAutoLogin];

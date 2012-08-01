@@ -205,6 +205,8 @@
 - (void)doneWithSettings {
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
+    [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     [_servListViewController.tbvlServerList reloadData];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
