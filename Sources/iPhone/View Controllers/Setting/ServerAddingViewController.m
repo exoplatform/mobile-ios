@@ -54,12 +54,13 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = Localize(@"NewServer");
-    _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+    [_txtfServerName release];
+    _txtfServerName = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
     
-    
-	_txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+    [_txtfServerUrl release];
+	_txtfServerUrl = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
     [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
     //Customize the style of the texfield
     _txtfServerUrl.font = [UIFont fontWithName:@"Helvetica" size:14.0];
@@ -133,9 +134,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure
 {
-    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(120, 14, 190, 21)];
+    UITextField* textField = [[[UITextField alloc] initWithFrame:CGRectMake(120, 14, 190, 21)] autorelease];
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.autoresizingMask =  UIViewAutoresizingFlexibleWidth;
-    textField.placeholder = @"Required";
+    textField.placeholder = Localize(@"Required");
     textField.secureTextEntry = secure;
     textField.keyboardType = UIKeyboardTypeASCIICapable;
     textField.returnKeyType = UIReturnKeyDone;
@@ -146,7 +148,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     textField.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     textField.adjustsFontSizeToFitWidth = YES;
     textField.textColor = [UIColor grayColor];
-    
     return textField;
 }
 
@@ -206,31 +207,43 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     return 2;
 }
 
+#define kServerAddCellTextLabelTag 10
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
     CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone*)[tableView  dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
     if(cell == nil){
         cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+        CGRect cellBounds = cell.bounds;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UILabel *textLabel = [[[UILabel alloc] init] autorelease];
+        textLabel.backgroundColor = [UIColor clearColor];
+        textLabel.textColor = [UIColor darkGrayColor];
+        textLabel.adjustsFontSizeToFitWidth = YES;
+        textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        textLabel.frame = CGRectMake(cell.indentationWidth, 0, cellBounds.size.width / 3, cellBounds.size.height);
+        textLabel.tag = kServerAddCellTextLabelTag;
+        [cell.contentView addSubview:textLabel];
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UILabel *textLabel = (UILabel *)[cell viewWithTag:kServerAddCellTextLabelTag];
+    
     if(indexPath.row == 0)
     {
         //TODO localize the label
-        cell.textLabel.text = Localize(@"ServerName");
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-
+        textLabel.text = Localize(@"ServerName");
+        _txtfServerName.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
+        _txtfServerName.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
         [cell.contentView addSubview:_txtfServerName];
     }
     else
     {
         //TODO localize this label
-        cell.textLabel.text = Localize(@"ServerUrl");
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-        
+        textLabel.text = Localize(@"ServerUrl");
+        _txtfServerUrl.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
+        _txtfServerUrl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
         [cell.contentView addSubview:_txtfServerUrl];
     }
     

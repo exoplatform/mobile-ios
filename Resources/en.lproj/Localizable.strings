@@ -148,3 +148,7 @@
 "general"="general";
 "personal"="personal";
 "group"="group";
+
+"Required"="Required";
+"Fullscreen"="Fullscreen";
+"Close"="Close";

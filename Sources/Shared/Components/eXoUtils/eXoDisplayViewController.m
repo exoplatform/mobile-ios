@@ -54,7 +54,7 @@
         [_webView loadRequest:request];
     }
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"FullScreen" style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)];
+        _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)];
     }
 }
 
@@ -65,7 +65,7 @@
 
     navigationBar = [[UINavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
-                                                        initWithTitle:@"Close" 
+                                                        initWithTitle:Localize(@"Close") 
                                                         style:UIBarButtonItemStylePlain 
                                                         target:self 
                                                         action:@selector(close)];
