@@ -12,7 +12,11 @@
 #import "LanguageHelper.h"
 #import "AuthTabItem.h"
 
-#define scrollHeight 80
+#define scrollHeight 80 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+#define tabViewsTopMargin 6 /* the top margin of the views under the tabs */
+#define tabsHeightAndLeftMargin 30 /* the height and left margin of the tabs */
+#define tabsWidth 110 /* defines the width of the clickable area */
+#define tabsY 180 /* distance from the top of the screen to the top of the tabs */
 
 @implementation AuthenticateViewController_iPhone
 
@@ -30,19 +34,34 @@
     [super viewDidLoad];
     
     // Position the tabs just above the subviews
-    [self.tabView setFrame:CGRectMake(40, 180, 110, 30)];
+    [self.tabView setFrame:
+     CGRectMake((self.view.center.x-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
+                tabsY,
+                tabsWidth,
+                tabsHeightAndLeftMargin)];
     // Position the views and allow them to be resized properly when the orientation changes
     [_credViewController.view setFrame:
-     CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2, 215, _credViewController.view.bounds.size.width, _credViewController.view.bounds.size.height)];
+     CGRectMake(self.view.center.x-_credViewController.view.bounds.size.width/2,
+                self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin,
+                _credViewController.view.bounds.size.width,
+                _credViewController.view.bounds.size.height)];
     [_credViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    
     [_servListViewController.view setFrame:
-     CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2, 215, _servListViewController.view.bounds.size.width, _servListViewController.view.bounds.size.height)];
+     CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
+                self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin,
+                _servListViewController.view.bounds.size.width,
+                _servListViewController.view.bounds.size.height)];
     [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
     // Position the settings btn at the bottom
-    //[_btnSettings setFrame:
-     //CGRectMake(0, 400, _btnSettings.bounds.size.width, _btnSettings.bounds.size.height)];
     [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
 
+    //Stevan UI fixes
+    _credViewController.panelBackground.image = 
+    [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
+    
+    _servListViewController.panelBackground.image = 
+    [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
 }
 
 -(void) initTabsAndViews {
@@ -53,10 +72,10 @@
     _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPhone" bundle:nil];
     
     // Initializing the Tab items and adding them to the Tab view
-    AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOn"] device:DeviceIphone];
+    AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOn"]];
     [self.tabView addTabItem:tabItemCredentials];
     
-    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOn"] device:DeviceIphone];
+    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOn"]];
     [self.tabView addTabItem:tabItemServerList];
     
 }
@@ -65,29 +84,27 @@
     [super viewWillAppear:animated];
     if(_credViewController.bAutoLogin)
     {
-       // _vContainer.alpha = 1;
         [_credViewController onSignInBtn:nil];
     }
     else
     {
         //Start the animation to display the loginView
         [UIView animateWithDuration:0.5 
-                         animations:^{
-         //                    _vContainer.alpha = 1;
-                         }
+                animations:^{}
          ];
     }
 }
 
-#pragma mark Keyboard management
-- (void)keyboardWillHide:(NSNotification *)notif {
-        [self setViewMovedUp:NO];
-}
+#pragma mark - Keyboard management
 
-
-- (void)keyboardDidShow:(NSNotification *)notif{
+-(void)manageKeyboard:(NSNotification *) notif {
+    if (notif.name == UIKeyboardDidShowNotification) {
         [self setViewMovedUp:YES];
+    } else if (notif.name == UIKeyboardWillHideNotification) {
+        [self setViewMovedUp:NO];
+    }
 }
+
 -(void)setViewMovedUp:(BOOL)movedUp
 {
     [UIView beginAnimations:nil context:NULL];

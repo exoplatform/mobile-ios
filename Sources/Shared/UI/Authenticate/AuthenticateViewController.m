@@ -17,7 +17,7 @@
 #import "URLAnalyzer.h"
 #import "AuthSelectionView.h"
 
-#pragma mark Authenticate View Controller
+#pragma mark - Authenticate View Controller
 
 
 @interface AuthenticateViewController ()
@@ -34,10 +34,8 @@
 
 - (void)dealloc 
 {
-    //[self unRegisterForKeyboardNotifications];
     [_loginProxy release];
     [_hud release];
-    //  [_scrollView release];
     [super dealloc];	
 }
 
@@ -47,7 +45,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
 	{
-		//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
         _strBSuccessful = [[NSString alloc] init];
         
     }
@@ -113,9 +110,9 @@
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];
 	
     // Notifies when the keyboard is shown/hidden
-    // Selectors must be implemented in _iPhone and _iPad subclasses
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    // Selector must be implemented in _iPhone and _iPad subclasses
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
@@ -138,6 +135,7 @@
 
 #pragma mark - Keyboard management
 - (void)dismissKeyboard {
+    // Handled by the CredentialsViewController where the text fields are defined
     [_credViewController dismissKeyboard];
 }
 
@@ -179,7 +177,6 @@
 #pragma mark - authentication process 
 - (void)doSignIn
 {
-   // [self hitAtView:nil];
     // active hud loading 
     self.hud.textLabel.text = Localize(@"Loading");
     [self.hud setLoading:YES];
@@ -198,17 +195,15 @@
 
 }
 
-#pragma mark JMTabView protocol implementation
+#pragma mark - JMTabView protocol implementation
 
 -(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
     if (itemIndex == AuthenticateTabItemCredentials) {
         _credViewController.view.hidden = NO;
         _servListViewController.view.hidden = YES;
-        NSLog(@"Displaying the Credentials view");
     } else if (itemIndex == AuthenticateTabItemServerList) {
         _credViewController.view.hidden = YES;
         _servListViewController.view.hidden = NO;
-        NSLog(@"Displaying the Server List view");
     }
 }
 

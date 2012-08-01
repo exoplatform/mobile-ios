@@ -58,6 +58,10 @@
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
+    
+    // Make sure the Textfield Delegate methods are called upon events on the 2 text fields
+    [self.txtfPassword setDelegate:self];
+    [self.txtfUsername setDelegate:self];
 }
 
 - (void)viewDidUnload
@@ -133,6 +137,20 @@
     self.activeField = nil;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.txtfUsername) 
+    {
+        [self.txtfPassword becomeFirstResponder];
+    }
+    else
+    {    
+        [self.txtfPassword resignFirstResponder];        
+        [self onSignInBtn:nil];
+    }    
+	return YES;
+}
+
 - (IBAction)onSignInBtn:(id)sender
 {
 	if([self.txtfUsername.text isEqualToString:@""])
@@ -144,9 +162,7 @@
 											  otherButtonTitles: nil];
 		[alert show];
 		[alert release];
-        
-        //[self.authViewController hitAtView:self.view];
-	}
+    }
 	else
 	{		
 		[self.authViewController doSignIn];

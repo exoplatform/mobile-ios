@@ -34,11 +34,12 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 -(void)viewWillAppear:(BOOL)animated {
     [_tbvlServerList reloadData];
 }
 
-#pragma UITableView Utils
+#pragma mark - UITableView Utils
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {        return [[[UIImageView alloc] initWithImage:
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
@@ -49,7 +50,7 @@
                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
 }
 
-#pragma UITableView Delegate
+#pragma mark - UITableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

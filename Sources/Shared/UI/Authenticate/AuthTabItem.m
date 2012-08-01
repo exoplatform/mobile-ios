@@ -20,14 +20,9 @@
     [super dealloc];
 }
 
+// Set the dimension of the tabs for the iPhone (50x48) and the iPad (80x73)
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize newSize;
-    if (_device == DeviceIpad)
-        newSize = CGSizeMake(80, 76);
-    else if (_device == DeviceIphone) {
-        newSize = CGSizeMake(50, 48);
-    }
-    return newSize;
+    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(80., 73.) : CGSizeMake(50., 48.);
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -36,26 +31,18 @@
     if (self.icon && self.alternateIcon)
     {
         UIImage * iconImage = (self.highlighted || [self isSelectedTabItem]) ? self.alternateIcon : self.icon;
+        // Position the image at the center
         CGFloat xOffset = (rect.size.width-iconImage.size.width)/2;
         CGFloat yOffset = (rect.size.height-iconImage.size.height)/2;
         [iconImage drawAtPoint:CGPointMake(xOffset, yOffset)];
-        //xOffset += [iconImage size].width + kTabItemIconMargin;
     }
-    
-    [kTabItemTextColor set];
-    
     CGContextRestoreGState(context);
 }
 
-- (void)setDeviceType:(DeviceType) deviceType {
-    _device = deviceType;
-}
-
-+ (AuthTabItem *)tabItemWithTitle:(NSString *)title icon:(UIImage *)icon alternateIcon:(UIImage *)alternativeIcon device:(DeviceType)deviceType;
++ (AuthTabItem *)tabItemWithTitle:(NSString *)title icon:(UIImage *)icon alternateIcon:(UIImage *)alternativeIcon;
 {
     AuthTabItem * tabItem = [[[AuthTabItem alloc] initWithTitle:title icon:icon] autorelease];
     tabItem.alternateIcon = alternativeIcon;
-    [tabItem setDeviceType:deviceType];
     return tabItem;
 }
 
