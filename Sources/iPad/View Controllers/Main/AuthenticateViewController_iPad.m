@@ -372,8 +372,6 @@
 #pragma mark - Keyboard management
 
 - (void)manageKeyboard:(NSNotification *) notif {
-    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]))
-    {
         NSDictionary *info = [notif userInfo];
         // Get the size of the keyboard, before and after the animation
         CGFloat keyboardHeightBefore = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size.height;
@@ -398,7 +396,6 @@
             if (CGRectContainsPoint(aRect, fieldPoint))
                 [self moveDown];
         }
-    }
 }
 
 - (void)moveUp {
@@ -407,8 +404,7 @@
 }
 
 - (void)moveDown {
-    CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y-scrollHeight);
-    [(UIScrollView*)self.view setContentOffset:destPoint animated:YES];
+    [(UIScrollView*)self.view setContentOffset:CGPointZero animated:YES];
 }
 
 
