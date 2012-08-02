@@ -36,6 +36,7 @@ typedef enum {
 @property (nonatomic, retain) JMTabView *tabView;
 
 - (void)doSignIn;	//Login progress
+- (CredentialsViewController*) credentialsViewController;
 - (void) initTabsAndViews;
 
 // method for managing keyboard behaviours

@@ -49,9 +49,11 @@
     
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
-    
-    [self signInAnimation:_credViewController.bAutoLogin];
+}
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self signInAnimation:_credViewController.bAutoLogin];
 }
 
 - (void)signInAnimation:(int)animationMode
@@ -61,6 +63,8 @@
         [UIView beginAnimations:nil context:nil];  
         [UIView setAnimationDuration:1.0];  
         [UIView commitAnimations];   
+    } else if (animationMode == 1) {
+        [_credViewController onSignInBtn:nil];
     }
 }
 

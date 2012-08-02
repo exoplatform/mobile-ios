@@ -8,7 +8,6 @@
 
 #import "SettingsViewController.h"
 #import "defines.h"
-//#import "eXoWebViewController.h"
 #import "ServerPreferencesManager.h"
 #import "ServerManagerViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
@@ -90,11 +89,17 @@ static NSString *settingViewRowsKey = @"row title";
 	{
 		
         [self doInit];
+        // Create the Remember Me switch component
 		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         rememberMe.tag = kTagForSwitchRememberMe;
-        
+        // Call the method enableDisableAutoLogin when the value of the switch changes
+        [rememberMe addTarget:self action:@selector(enableDisableAutoLogin:) forControlEvents:UIControlEventValueChanged];
+        // Create the Auto Login switch component
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
+        // Observe notifications when a server is added or deleted, and call enableDisableAutoLogin
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
         
         _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         [_rememberSelectedStream addTarget:self action:@selector(rememberStreamChanged:) forControlEvents:UIControlEventValueChanged];
@@ -132,9 +137,24 @@ static NSString *settingViewRowsKey = @"row title";
         [self.tableView deselectRowAtIndexPath:selection animated:YES];   
 }
 
+// Enable the AutoLogin switch only if
+// - the Remember Me switch is turned ON
+// and
+// - 1 server is selected
+-(void)enableDisableAutoLogin:(id)sender {
+    NSString* selDomain = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    if (rememberMe.on && selDomain != nil)
+        autoLogin.enabled = YES;
+    else {
+        autoLogin.enabled = NO;
+        autoLogin.on = NO;
+    }
+}
+
 -(void)startRetrieve {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    if(![[userDefaults objectForKey:EXO_IS_USER_LOGGED] boolValue]){
+    NSString* selDomain = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    if(![[userDefaults objectForKey:EXO_IS_USER_LOGGED] boolValue] && selDomain != nil){
         bVersionServer = NO;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(retrievePlatformVersion)]];
@@ -144,7 +164,6 @@ static NSString *settingViewRowsKey = @"row title";
     } else {
         bVersionServer = YES;
     }
-    
 }
 
 -(void)retrievePlatformVersion{
@@ -249,7 +268,11 @@ static NSString *settingViewRowsKey = @"row title";
     //Load Settings informations
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+    rememberMe.on = bRememberMe;
     bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+    autoLogin.on = bAutoLogin;
+    // Enable the switch only if Remember Me is turned ON
+    [self enableDisableAutoLogin:nil];
 }
 
 
@@ -376,7 +399,8 @@ static NSString *settingViewRowsKey = @"row title";
             }
             else 
             {
-                autoLogin.on = bAutoLogin;
+                if (autoLogin.enabled)
+                    autoLogin.on = bAutoLogin;
                 cell.accessoryView = autoLogin;
             }
             break;

@@ -45,6 +45,6 @@
 -(void)loadSettingsInformations;
 -(void)saveSettingsInformations;
 -(void)reloadSettingsWithUpdate;
-
+-(void)enableDisableAutoLogin:(id)sender;
 
 @end

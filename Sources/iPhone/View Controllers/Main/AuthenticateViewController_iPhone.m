@@ -82,17 +82,19 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if(_credViewController.bAutoLogin)
-    {
-        [_credViewController onSignInBtn:nil];
-    }
-    else
+    if(!_credViewController.bAutoLogin)
     {
         //Start the animation to display the loginView
         [UIView animateWithDuration:0.5 
-                animations:^{}
+                         animations:^{}
          ];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (_credViewController.bAutoLogin)
+        [_credViewController onSignInBtn:nil];
 }
 
 #pragma mark - Keyboard management

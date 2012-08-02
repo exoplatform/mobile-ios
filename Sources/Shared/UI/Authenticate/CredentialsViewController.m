@@ -26,6 +26,7 @@
 @synthesize panelBackground = _panelBackground;
 
 -(void)dealloc {
+    _bAutoLoginIsDisabled = NO;
     [_activeField release];
     [_txtfPassword release];
     [_txtfUsername release];
@@ -39,7 +40,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // custom actions
+        // By defaut, Auto Login is not disabled, i.e
+        // - if it is ON, user will be signed in automatically
+        // - if it is OFF, user will stay on the Authenticate page
+        _bAutoLoginIsDisabled = NO;
     }
     return self;
 }
@@ -98,11 +102,14 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
 	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
 	self.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-	
-	if(_bRememberMe || self.bAutoLogin)
+    // If Auto Login is disabled, we set the Auto Login variable to NO
+    // but we don't save this value in the user settings
+    if (_bAutoLoginIsDisabled)
+        self.bAutoLogin = NO;
+	    
+	if(_bRememberMe && self.bAutoLogin)
 	{
 		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
 		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
@@ -123,6 +130,10 @@
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
 	}
+}
+
+-(void) disableAutoLogin:(BOOL)autoLogin {
+    _bAutoLoginIsDisabled = autoLogin;
 }
 
 #pragma mark - Keyboard management

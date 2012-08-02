@@ -247,7 +247,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
        return NO;
     
-    //Check if the server has been existed
+    //Check if the server already exists
     BOOL bExist = NO;
     for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
     {
@@ -264,7 +264,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     if (!bExist) 
     {
-        
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
         serverObj._strServerName = strServerName;
@@ -278,7 +277,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         [serverObj release];
         [serverPrefManager loadServerList]; // reload list of servers
         [_tbvlServerList reloadData];
-    }   
+    }
+    
+    // If this is the only server: select it automatically
+    if ([serverPrefManager.serverList count] == 1)
+        [serverPrefManager setSelectedServerIndex:0];
+    
     return YES;
 }
 
@@ -385,6 +389,10 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     [serverPrefManager loadServerList]; // reload list of servers
     [_tbvlServerList reloadData];
+    
+    // If there is the only 1 remaining server: select it automatically
+    if ([serverPrefManager.serverList count] == 1)
+        [serverPrefManager setSelectedServerIndex:0];
     
     return YES;
 }

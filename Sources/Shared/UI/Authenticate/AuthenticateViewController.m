@@ -45,7 +45,6 @@
     if (self) 
 	{
         _strBSuccessful = [[NSString alloc] init];
-        
     }
     return self;
 }
@@ -132,6 +131,8 @@
 }
 
 
+
+
 #pragma mark - Keyboard management
 - (void)dismissKeyboard {
     // Handled by the CredentialsViewController where the text fields are defined
@@ -191,7 +192,10 @@
     self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self] autorelease];
     
     [self.loginProxy authenticateAndGetPlatformInfoWithUsername:username password:password];
+}
 
+- (CredentialsViewController*) credentialsViewController {
+    return _credViewController;
 }
 
 #pragma mark - JMTabView protocol implementation

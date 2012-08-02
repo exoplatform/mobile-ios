@@ -11,6 +11,7 @@
 @interface CredentialsViewController : UIViewController <UITextFieldDelegate>
 {
     BOOL                         _bRememberMe;	// Remember
+    BOOL                        _bAutoLoginIsDisabled; //Disable Auto Login to sign out but doesn't update the Auto Login setting
 }
 
 @property (nonatomic, retain)  IBOutlet UIImageView*       panelBackground; 
@@ -23,5 +24,7 @@
 
 - (IBAction)onSignInBtn:(id)sender;	//Login action
 - (void) dismissKeyboard;
+- (void)disableAutoLogin:(BOOL)autoLogin;
+
 
 @end

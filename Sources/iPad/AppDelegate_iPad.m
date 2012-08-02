@@ -98,8 +98,9 @@
 
 -(void)backToAuthenticate{    
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
+    // Disable Auto Login so user won't be signed in automatically after
+    [[viewController credentialsViewController] disableAutoLogin:YES];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
     
     // execute Logout

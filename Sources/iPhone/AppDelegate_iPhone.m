@@ -157,15 +157,16 @@
 
 - (void)onBtnSigtOutDelegate {
     
+    // Disable Auto Login so user won't be signed in automatically after
+    [[_authenticateViewController credentialsViewController] disableAutoLogin:YES];
+    
     //[[ChatProxy sharedInstance] disconnect];
     
     window.rootViewController = navigationController;
     
-    
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
     [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
     
     [LoginProxy doLogout];

@@ -128,7 +128,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     
     _strServerUrl = [URLAnalyzer parserURL:[[_txtfServerUrl text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
-    if ([_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl]) [self.navigationController popViewControllerAnimated:YES];
+    if ([_delegate addServerObjWithServerName:_strServerName andServerUrl:_strServerUrl]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_SERVER_ADDED object:self];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure
