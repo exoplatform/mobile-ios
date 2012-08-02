@@ -33,6 +33,13 @@
 
 @implementation CustomTabItem 
 
+- (id)initWithTitle:(NSString *)title icon:(UIImage *)icon {
+    if (self = [super initWithTitle:title icon:icon]) {
+        self.showsTouchWhenHighlighted = YES;
+    }
+    return self;
+}
+
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize newSize = [super sizeThatFits:size];
     newSize.height += kTriangleHeight;

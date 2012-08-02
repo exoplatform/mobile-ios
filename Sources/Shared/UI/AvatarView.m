@@ -99,4 +99,13 @@
     [innerShadowView release];
 }
 
+- (void)imageLoaderDidLoad:(NSNotification *)notification {
+    [super imageLoaderDidLoad:notification];
+    // Animate display of avatar
+    self.alpha = 0.3;
+    [UIView animateWithDuration:0.5 animations:^(void) {
+        self.alpha = 1.0;
+    }];
+}
+
 @end
