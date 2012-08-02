@@ -78,7 +78,7 @@
     
 	UIViewExt *rootView = [[[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] autorelease];
 	rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
-	[rootView setBackgroundColor:[UIColor clearColor]];
+	[rootView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]]];
 	
 	UIView *leftMenuView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)] autorelease];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
@@ -94,12 +94,7 @@
 	[stackScrollViewController viewWillAppear:FALSE];
 	[stackScrollViewController viewDidAppear:FALSE];
 	[rightSlideView addSubview:stackScrollViewController.view];
-    //rightSlideView.backgroundColor = [UIColor colorWithRed:242./255 green:242./255 blue:242./255 alpha:1.];
     rightSlideView.backgroundColor = [UIColor clearColor];
-    
-    
-    
-    
     
     //Add the background image when no content
     UIImage *imageBg;

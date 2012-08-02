@@ -88,7 +88,7 @@
 
 - (void)loadView {
     UIView *view = [[[UIView alloc] initWithFrame:_viewFrame] autorelease];
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]];
+    view.backgroundColor = [UIColor clearColor];
     self.view = view;
     
     CGRect viewBounds = self.view.bounds;
