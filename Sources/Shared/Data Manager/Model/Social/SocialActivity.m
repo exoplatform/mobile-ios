@@ -101,7 +101,7 @@
 }
 
 - (void)convertToPostedTimeInWords {
-   self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:self.postedTime]; 
+   self.postedTimeInWords = [[NSDate dateWithTimeIntervalSince1970:self.postedTime/1000] distanceOfTimeInWords:[NSDate date]]; 
 }
 
 - (void)convertHTMLEncoding {

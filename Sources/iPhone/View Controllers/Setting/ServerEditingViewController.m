@@ -30,10 +30,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     if (self) {
         // Custom initialization
         _serverObj = [[ServerObj alloc] init];
-        _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+        _txtfServerName = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
         [_txtfServerName setReturnKeyType:UIReturnKeyNext];
         _txtfServerName.delegate = self;
-        _txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO];
+        _txtfServerUrl = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
         [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
         _txtfServerUrl.delegate = self;
         _intIndex = -1;
@@ -236,29 +236,37 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     return 2;
 }
 
+#define kServerEditCellTextlabelTag 10
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone*)[tableView  dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
     if(cell == nil){
         cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        CGRect cellBounds = cell.bounds;
+        UILabel *textLabel = [[[UILabel alloc] init] autorelease];
+        textLabel.backgroundColor = [UIColor clearColor];
+        textLabel.textColor = [UIColor darkGrayColor];
+        textLabel.adjustsFontSizeToFitWidth = YES;
+        textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        textLabel.frame = CGRectMake(cell.indentationWidth, 0, cellBounds.size.width / 3, cellBounds.size.height);
+        textLabel.tag = kServerEditCellTextlabelTag;
+        [cell.contentView addSubview:textLabel];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:kServerEditCellTextlabelTag];
     if(indexPath.row == 0)
     {
-        cell.textLabel.text = Localize(@"ServerName");
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-        
+        textLabel.text = Localize(@"ServerName");
+        _txtfServerName.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
+        _txtfServerName.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [cell.contentView addSubview:_txtfServerName];
     }
     else
     {
-        cell.textLabel.text = Localize(@"ServerUrl");
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-    
+        textLabel.text = Localize(@"ServerUrl");    
+        _txtfServerUrl.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
+        _txtfServerUrl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [cell.contentView addSubview:_txtfServerUrl];
     }
 

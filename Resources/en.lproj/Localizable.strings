@@ -119,3 +119,41 @@
 "My Spaces"="My Spaces";
 "My Status"="My Status";
 "KeepSelectedStream"="Remember my filter";
+
+"DashboardsCannotBeRetrieved"="Cannot retrieve the dashboards";
+"FolderNameAlreadyExist"="This folder already exists";
+"FolderNameEmpty"="The folder name is empty";
+"Disconnect"="Disconnect";
+
+/* Date message converter */
+"Today"="Today";
+"DateFmt"="%1$@%2$@%3$@%4$@"; // Order of the message: modifier - number - measure - direction
+"DateFmt ago"="ago";
+"DateFmt from now"="from now";
+"DateFmt Less than"="Less than ";
+"DateFmt About"="About ";
+"DateFmt Over"="Over ";
+"DateFmt Almost"="Almost ";
+"DateFmt seconds"=" seconds ";
+"DateFmt minute"=" minute ";
+"DateFmt minutes"=" minutes ";
+"DateFmt hour"=" hour ";
+"DateFmt hours"=" hours ";
+"DateFmt day"=" day ";
+"DateFmt days"=" days ";
+"DateFmt month"=" month ";
+"DateFmt months"=" months ";
+"DateFmt year"=" year ";
+"DateFmt years"=" years ";
+
+"Pull down to refresh..."="Pull down to refresh...";
+"Release to refresh..."="Release to refresh...";
+"Last Updated: %@"="Last Updated: %@";
+
+"general"="general";
+"personal"="personal";
+"group"="group";
+
+"Required"="Required";
+"Fullscreen"="Fullscreen";
+"Close"="Close";

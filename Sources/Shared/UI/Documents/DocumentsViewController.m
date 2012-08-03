@@ -412,7 +412,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = UITextAlignmentCenter;
 
-    headerLabel.text = [[_dicContentOfFolder allKeys] objectAtIndex:section];
+    headerLabel.text = Localize([[_dicContentOfFolder allKeys] objectAtIndex:section]);
     
     CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblFiles.frame.size.width-5, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     
@@ -534,7 +534,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 - (void)showErrorForFileAction:(NSString *)errorMessage {
     [self hideLoader:NO];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:errorMessage delegate:self 
-                                          cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                          cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
     
@@ -679,7 +679,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
             
@@ -789,7 +789,7 @@ static NSString *PRIVATE_GROUP = @"Private";
                 bExist = YES;
                                 
                 UIAlertView* alert = [[UIAlertView alloc] 
-                                      initWithTitle:Localize(@"Info Message")
+                                      initWithTitle:Localize(@"MessageInfo")
                                       message: Localize(@"FolderNameAlreadyExist")
                                       delegate:self 
                                       cancelButtonTitle:@"OK" 
@@ -823,7 +823,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     else 
     {
         UIAlertView* alert = [[UIAlertView alloc] 
-                              initWithTitle:Localize(@"Info Message")
+                              initWithTitle:Localize(@"MessageInfo")
                               message: Localize(@"FolderNameEmpty")
                               delegate:self 
                               cancelButtonTitle:@"OK" 
@@ -885,7 +885,7 @@ static NSString *PRIVATE_GROUP = @"Private";
                 bExist = YES;
                 
                 UIAlertView* alert = [[UIAlertView alloc] 
-                                      initWithTitle:Localize(@"Info Message")
+                                      initWithTitle:Localize(@"MessageInfo")
                                       message: Localize(@"FolderNameAlreadyExist")
                                       delegate:self 
                                       cancelButtonTitle:@"OK" 
@@ -922,7 +922,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     else 
     {
         UIAlertView* alert = [[UIAlertView alloc] 
-                              initWithTitle:Localize(@"Info Message")
+                              initWithTitle:Localize(@"MessageInfo")
                               message: Localize(@"FolderNameEmpty")
                               delegate:self 
                               cancelButtonTitle:@"OK" 

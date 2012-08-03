@@ -33,7 +33,7 @@
         self.nbComments = _numberOfComments;
 //        self.postedTimeInWords = [[NSDate date] distanceOfTimeInWords:[[NSDate date] dateByAddingTimeInterval:postedTime]];
 
-        self.postedTimeInWords = [[NSDate date] distanceOfTimeInWordsWithTimeInterval:postedTime];
+        self.postedTimeInWords = [[NSDate dateWithTimeIntervalSince1970:postedTime/1000] distanceOfTimeInWords];
 
     }
     return self;

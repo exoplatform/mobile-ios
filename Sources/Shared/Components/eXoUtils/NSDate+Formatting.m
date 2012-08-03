@@ -20,6 +20,8 @@
 
 
 #import "NSDate+Formatting.h"
+// Add exo language helper system
+#import "LanguageHelper.h"
 
 #define SECONDS_PER_MINUTE 60.0
 #define SECONDS_PER_HOUR   3600.0
@@ -50,24 +52,24 @@
 }
 
 - (NSString *)distanceOfTimeInWords:(NSDate *)date {
-  NSString *Ago      = NSLocalizedString(@"ago", @"Denotes past dates");
-  NSString *FromNow  = NSLocalizedString(@"from now", @"Denotes future dates");
-  NSString *LessThan = NSLocalizedString(@"Less than", @"Indicates a less-than number");
-  NSString *About    = NSLocalizedString(@"About", @"Indicates an approximate number");
-  NSString *Over     = NSLocalizedString(@"Over", @"Indicates an exceeding number");
-  NSString *Almost   = NSLocalizedString(@"Almost", @"Indicates an approaching number");
-  //NSString *Second   = NSLocalizedString(@"second", @"One second in time");
-  NSString *Seconds  = NSLocalizedString(@"seconds", @"More than one second in time");
-  NSString *Minute   = NSLocalizedString(@"minute", @"One minute in time");
-  NSString *Minutes  = NSLocalizedString(@"minutes", @"More than one minute in time");
-  NSString *Hour     = NSLocalizedString(@"hour", @"One hour in time");
-  NSString *Hours    = NSLocalizedString(@"hours", @"More than one hour in time");
-  NSString *Day      = NSLocalizedString(@"day", @"One day in time");
-  NSString *Days     = NSLocalizedString(@"days", @"More than one day in time");
-  NSString *Month    = NSLocalizedString(@"month", @"One month in time");
-  NSString *Months   = NSLocalizedString(@"months", @"More than one month in time");
-  NSString *Year     = NSLocalizedString(@"year", @"One year in time");
-  NSString *Years    = NSLocalizedString(@"years", @"More than one year in time");
+    NSString *Ago      = Localize(@"DateFmt ago"); // "Denotes past dates"
+	NSString *FromNow  = Localize(@"DateFmt from now"); // @"Denotes future dates"
+	NSString *LessThan = Localize(@"DateFmt Less than"); // "Indicates a less-than number"
+	NSString *About    = Localize(@"DateFmt About"); //"Indicates an approximate number"
+	NSString *Over     = Localize(@"DateFmt Over"); //"Indicates an exceeding number"
+	NSString *Almost   = Localize(@"DateFmt Almost"); //"Indicates an approaching number"
+	//NSString *Second   = NSLocalizedString(@"second", @"One second in time");
+	NSString *Seconds  = Localize(@"DateFmt seconds"); // "More than one second in time"
+	NSString *Minute   = Localize(@"DateFmt minute"); //"One minute in time"
+	NSString *Minutes  = Localize(@"DateFmt minutes"); //"More than one minute in time"
+	NSString *Hour     = Localize(@"DateFmt hour"); //"One hour in time"
+	NSString *Hours    = Localize(@"DateFmt hours"); //"More than one hour in time"
+	NSString *Day      = Localize(@"DateFmt day"); //"One day in time"
+	NSString *Days     = Localize(@"DateFmt days"); //"More than one day in time"
+	NSString *Month    = Localize(@"DateFmt month"); //"One month in time"
+	NSString *Months   = Localize(@"DateFmt months"); //"More than one month in time"
+	NSString *Year     = Localize(@"DateFmt year"); // "One year in time"
+	NSString *Years    = Localize(@"DateFmt years"); //"More than one year in time"
   
   NSTimeInterval since = [self timeIntervalSinceDate:date];
   NSString *direction = since <= 0.0 ? Ago : FromNow;
@@ -163,10 +165,8 @@
       }
       break;
   }
-  if ([modifier length] > 0) {
-    modifier = [modifier stringByAppendingString:@" "];
-  }
-  return [NSString stringWithFormat:@"%@%d %@ %@", modifier, number, measure, direction];
+    
+  return [[NSString stringWithFormat:Localize(@"DateFmt"), modifier, [NSString stringWithFormat:@"%d", number], measure, direction] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 @end

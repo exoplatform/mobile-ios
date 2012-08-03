@@ -166,18 +166,17 @@
     buttonLogout.showsTouchWhenHighlighted = YES;
     
     UIButton *disconnectLabel = [UIButton buttonWithType:UIButtonTypeCustom];
-    disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + 7, 15, 80, 34);
-    
     [disconnectLabel setTitle:Localize(@"Disconnect") forState:UIControlStateNormal];
-
+    disconnectLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
     disconnectLabel.showsTouchWhenHighlighted = YES;
     [disconnectLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [disconnectLabel setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25] forState:UIControlStateNormal];
-    
     disconnectLabel.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
     [disconnectLabel.titleLabel setTextAlignment:UITextAlignmentLeft];
-
     [disconnectLabel addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    CGSize disLabelSize = [disconnectLabel.titleLabel.text sizeWithFont:disconnectLabel.titleLabel.font];
+    disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + 7, 15, disLabelSize.width, 34);
     [footer addSubview:disconnectLabel];
 
     

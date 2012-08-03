@@ -320,7 +320,6 @@
 		46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E91D951393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png */; };
 		46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E41138370A30085DCB6 /* MenuViewController.m */; };
 		46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E43138370A30085DCB6 /* MenuWatermarkFooter.m */; };
-		46E96E61138370A30085DCB6 /* NSDate+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E45138370A30085DCB6 /* NSDate+Formatting.m */; };
 		46E96E62138370A30085DCB6 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E47138370A30085DCB6 /* RootViewController.m */; };
 		46E96E63138370A30085DCB6 /* RoundedUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E49138370A30085DCB6 /* RoundedUITableView.m */; };
 		46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E96E4D138370A30085DCB6 /* StackScrollViewController.m */; };
@@ -1298,8 +1297,6 @@
 		46E96E41138370A30085DCB6 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		46E96E42138370A30085DCB6 /* MenuWatermarkFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuWatermarkFooter.h; sourceTree = "<group>"; };
 		46E96E43138370A30085DCB6 /* MenuWatermarkFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuWatermarkFooter.m; sourceTree = "<group>"; };
-		46E96E44138370A30085DCB6 /* NSDate+Formatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Formatting.h"; sourceTree = "<group>"; };
-		46E96E45138370A30085DCB6 /* NSDate+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatting.m"; sourceTree = "<group>"; };
 		46E96E46138370A30085DCB6 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		46E96E47138370A30085DCB6 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		46E96E48138370A30085DCB6 /* RoundedUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedUITableView.h; sourceTree = "<group>"; };
@@ -2916,8 +2913,6 @@
 				46E96E41138370A30085DCB6 /* MenuViewController.m */,
 				46E96E42138370A30085DCB6 /* MenuWatermarkFooter.h */,
 				46E96E43138370A30085DCB6 /* MenuWatermarkFooter.m */,
-				46E96E44138370A30085DCB6 /* NSDate+Formatting.h */,
-				46E96E45138370A30085DCB6 /* NSDate+Formatting.m */,
 				46E96E46138370A30085DCB6 /* RootViewController.h */,
 				46E96E47138370A30085DCB6 /* RootViewController.m */,
 				46E96E48138370A30085DCB6 /* RoundedUITableView.h */,
@@ -4739,7 +4734,6 @@
 				46616C87137C754900D53D3D /* UIImage+SSToolkitAdditions.m in Sources */,
 				46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */,
 				46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */,
-				46E96E61138370A30085DCB6 /* NSDate+Formatting.m in Sources */,
 				46E96E62138370A30085DCB6 /* RootViewController.m in Sources */,
 				46E96E63138370A30085DCB6 /* RoundedUITableView.m in Sources */,
 				46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */,

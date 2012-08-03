@@ -128,12 +128,6 @@
    // self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     _tblvActivityDetail.backgroundColor = EXO_BACKGROUND_COLOR;
     
-    
-    [_btnMsgComposer addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *strechBg = [[UIImage imageNamed:@"SocialYourCommentButtonBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:23];
-    _btnMsgComposer.backgroundColor = [UIColor clearColor];
-    [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
-    
     //Add the pull to refresh header
     if (self.refreshHeaderView == nil) {
 		

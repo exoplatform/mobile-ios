@@ -52,7 +52,7 @@
 "ServerName" = "Nom du serveur";
 "ServerUrl" = "URL du serveur";
 "InvalidUrl" = "URL invalide";
-"Loading" = "Chargement";
+"Loading" = "Chargement...";
 "FileError" = "Erreur fichier";
 "CameraNotAvailable" = "Aucun appareil photo disponible";
 "TakeAPicture" = "Prendre une photo";
@@ -120,3 +120,41 @@
 "My Spaces"="Mes espaces";
 "My Status"="Mon statut";
 "KeepSelectedStream"="Garder mon filtre";
+
+"DashboardsCannotBeRetrieved"="Impossible de récupérer les dashboards";
+"FolderNameAlreadyExist"="Ce dossier existe déjà";
+"FolderNameEmpty"="Le nom du dossier ne peut être vide";
+"Disconnect"="Déconnecter";
+
+/* Date message converter */
+"Today"="Aujourd'hui";
+"DateFmt"="%4$@%1$@%2$@%3$@"; // Order of the message: direction - modifier - number - measure
+"DateFmt ago"="Il y a ";
+"DateFmt from now"="Dans ";
+"DateFmt Less than"="Moins de ";
+"DateFmt About"="environ ";
+"DateFmt Over"="";
+"DateFmt Almost"="presque";
+"DateFmt seconds"=" secondes";
+"DateFmt minute"=" minute";
+"DateFmt minutes"=" minutes";
+"DateFmt hour"=" heure";
+"DateFmt hours"=" heures";
+"DateFmt day"=" jour";
+"DateFmt days"=" jours";
+"DateFmt month"=" mois";
+"DateFmt months"=" mois";
+"DateFmt year"=" an";
+"DateFmt years"=" ans";
+
+"Pull down to refresh..."="Tirez pour rafraîchir...";
+"Release to refresh..."="Relâchez pour rafraîchir...";
+"Last Updated: %@"="Dernière mise à jour: %@";
+
+"general"="général";
+"personal"="personnel";
+"group"="groupe";
+
+"Required"="Requis";
+"Fullscreen"="Plein-écran";
+"Close"="Fermer";

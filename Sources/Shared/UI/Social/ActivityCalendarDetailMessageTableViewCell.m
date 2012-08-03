@@ -100,8 +100,8 @@
     
     _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[_templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
     
-    NSString *startTime = [[NSDate date] dateWithTimeInterval:[[_templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText]];
-    NSString *endTime = [[NSDate date] dateWithTimeInterval:[[_templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText]];
+    NSString *startTime = [[NSDate dateWithTimeIntervalSince1970:[[[_templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
+    NSString *endTime = [[NSDate dateWithTimeIntervalSince1970:[[[_templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
     
     _htmlMessage.html = [NSString stringWithFormat:@"%@: %@\n%@: %@\n%@: %@\n%@: %@\n",Localize(@"Description"), [[_templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText], Localize(@"Location"),[[_templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText], Localize(@"StartTime"), startTime, Localize(@"EndTime"), endTime];
 
