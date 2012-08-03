@@ -33,6 +33,7 @@
 
 - (void)dealloc 
 {
+    _bAutoLoginIsDisabled = NO;
     [_loginProxy release];
     [_hud release];
     [super dealloc];	
@@ -45,6 +46,10 @@
     if (self) 
 	{
         _strBSuccessful = [[NSString alloc] init];
+        // By defaut, Auto Login is not disabled, i.e
+        // - if it is ON, user will be signed in automatically
+        // - if it is OFF, user will stay on the Authenticate page
+        _bAutoLoginIsDisabled = NO;
     }
     return self;
 }
@@ -111,11 +116,75 @@
     // Selector must be implemented in _iPhone and _iPad subclasses
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardWillHideNotification object:nil];
+    
+    // Handle user parameters
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	_credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+	_credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+
+    // If Auto Login is disabled, we set the Auto Login variable to NO
+    // but we don't save this value in the user settings
+    if ([self autoLoginIsDisabled])
+        _credViewController.bAutoLogin = NO;
+    
+    NSString* username = _credViewController.txtfUsername.text;
+    NSString* password = _credViewController.txtfPassword.text;
+    NSString* storedUsername = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+    NSString* storedPassword = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+    // If the values in the username/password textfields has changed,
+    // and the user has just signed out of the application
+    // we keep the new value of the text fields
+	if((![username isEqualToString:storedUsername] || ![password isEqualToString:storedPassword]) && _bAutoLoginIsDisabled)
+	{
+		[self setUsernamePassword:username :password];
+	}
+    // If we remember the username/password, and it's the first start of the application
+    // we display the stored username and password
+    if (_credViewController.bRememberMe && !_bAutoLoginIsDisabled)
+	{
+        [self setUsernamePassword:storedUsername :storedPassword];
+        //[userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+	}
+}
+
+-(void) doneWithSettings {
+    // Called when the Settings popup is closed
+    // Updates the variables with the new values
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
+    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
+    [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+    [_servListViewController.tbvlServerList reloadData];
+    
+    _credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+    [_credViewController signInAnimation:_credViewController.bAutoLogin];
+}
+
+-(void) setUsernamePassword:(NSString*)username :(NSString*)password {    
+    if(username)
+    {
+        [_credViewController.txtfUsername setText:username];
+    }
+    
+    if(password)
+    {
+        [_credViewController.txtfPassword setText:password];
+    }
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) disableAutoLogin:(BOOL)autoLogin {
+    _bAutoLoginIsDisabled = autoLogin;
+}
+
+-(BOOL) autoLoginIsDisabled {
+    return _bAutoLoginIsDisabled;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 

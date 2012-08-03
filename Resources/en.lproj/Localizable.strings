@@ -27,7 +27,9 @@
 "Authorization" = "Login Failed";
 "WrongUserNamePassword" = "Incorrect username/password combination.";
 "NetworkConnectionFailed" = "Invalid server name";
-"UserNameEmpty" = "Incorrect username.";
+"UserNameEmpty" = "Incorrect username";
+"PasswordEmpty" = "Incorrect password";
+"SelectedDomainEmpty" = "No server specified";
 "ServerList" = "Server list";
 "NewServer" = "New Server";
 "ServerModify" = "Modify server";

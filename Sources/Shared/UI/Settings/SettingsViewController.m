@@ -123,12 +123,6 @@ static NSString *settingViewRowsKey = @"row title";
     [self reloadSettingsWithUpdate];
 }
 
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[self saveSettingsInformations];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     // Unselect the selected row if any
@@ -281,6 +275,10 @@ static NSString *settingViewRowsKey = @"row title";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:[NSString stringWithFormat:@"%d", rememberMe.on] forKey:EXO_REMEMBER_ME];
 	[userDefaults setObject:[NSString stringWithFormat:@"%d", autoLogin.on] forKey:EXO_AUTO_LOGIN];
+    if (!rememberMe.on) {
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
+    }
 }
 
 
@@ -289,6 +287,7 @@ static NSString *settingViewRowsKey = @"row title";
 
 //Method to done clicked settings
 - (void)doneAction {
+    [self saveSettingsInformations];
     [_settingsDelegate doneWithSettings];    
 }
 

@@ -93,7 +93,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (_credViewController.bAutoLogin)
+    if (_credViewController.bAutoLogin && ![self autoLoginIsDisabled])
         [_credViewController onSignInBtn:nil];
 }
 
@@ -205,11 +205,7 @@
 #pragma mark - Settings Delegate methods
 
 - (void)doneWithSettings {
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
-    [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
-    [_servListViewController.tbvlServerList reloadData];
+    [super doneWithSettings];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

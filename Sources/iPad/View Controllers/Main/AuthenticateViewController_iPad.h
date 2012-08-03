@@ -28,7 +28,6 @@
 - (int)getSelectedLanguage;	//Get current language
 - (NSDictionary*)getLocalization;	//Get language dictionary
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
-- (void)signInAnimation:(int)animationMode;
 - (IBAction)onSettingBtn:(id)sender;	//Setting action
 
 @end

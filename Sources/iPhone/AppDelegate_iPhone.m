@@ -158,7 +158,7 @@
 - (void)onBtnSigtOutDelegate {
     
     // Disable Auto Login so user won't be signed in automatically after
-    [[_authenticateViewController credentialsViewController] disableAutoLogin:YES];
+    [_authenticateViewController disableAutoLogin:YES];
     
     //[[ChatProxy sharedInstance] disconnect];
     
