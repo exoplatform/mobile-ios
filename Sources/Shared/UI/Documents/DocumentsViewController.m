@@ -534,7 +534,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 - (void)showErrorForFileAction:(NSString *)errorMessage {
     [self hideLoader:NO];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:errorMessage delegate:self 
-                                          cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                          cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
     
@@ -679,7 +679,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
             
