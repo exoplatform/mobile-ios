@@ -219,7 +219,7 @@
                                                             enableRenameFile:NO
                                                             delegate:self];
     
-    
+    fileToApplyAction = _rootFile;
     //Create the Popover to display potential actions to the user
     _actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     //set its size

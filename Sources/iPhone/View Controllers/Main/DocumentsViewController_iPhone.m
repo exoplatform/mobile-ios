@@ -258,10 +258,8 @@
                                                 enableCreateFolder:YES
                                                 enableRenameFile:NO
                                                 delegate:self];
-        
-        
-    
-    _actionsViewController.fileToApplyAction = _rootFile ;
+
+    fileToApplyAction = _rootFile;
     
     self.popoverClass = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     [_actionsViewController release];

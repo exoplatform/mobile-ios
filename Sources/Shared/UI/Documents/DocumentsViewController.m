@@ -809,7 +809,7 @@ static NSString *PRIVATE_GROUP = @"Private";
                 newFolderName = [DataProcess encodeUrl:newFolderName];
             }
             
-            NSString* strNewFolderPath = [FilesProxy urlForFileAction:[_rootFile.path stringByAppendingPathComponent:newFolderName]];
+            NSString* strNewFolderPath = [FilesProxy urlForFileAction:[fileToApplyAction.path stringByAppendingPathComponent:newFolderName]];
             NSLog(@"%@", strNewFolderPath);
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(createNewFolderInBackground:)]];
