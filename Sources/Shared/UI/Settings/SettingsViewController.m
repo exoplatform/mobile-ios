@@ -113,6 +113,8 @@ static NSString *settingViewRowsKey = @"row title";
     [rememberMe release];
     [autoLogin release];
     [_rememberSelectedStream release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
     [super dealloc];
 }
 
@@ -279,6 +281,7 @@ static NSString *settingViewRowsKey = @"row title";
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
     }
+    [userDefaults synchronize];
 }
 
 

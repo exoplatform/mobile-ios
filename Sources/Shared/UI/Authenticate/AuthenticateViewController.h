@@ -31,6 +31,8 @@ typedef enum {
     NSDictionary*				_dictLocalize;	//Language dictionary
 	int							_intSelectedLanguage;	//Language index
     BOOL                        _bAutoLoginIsDisabled; //Disable Auto Login to sign out but doesn't update the Auto Login setting
+    NSString*                   _tempUsername; // Username and Password that have been
+    NSString*                   _tempPassword; // typed by the user
 }
 
 @property (nonatomic, readonly) SSHUDView *hud; // display loading
@@ -41,8 +43,8 @@ typedef enum {
 - (void) initTabsAndViews;
 - (void)disableAutoLogin:(BOOL)autoLogin;
 - (BOOL)autoLoginIsDisabled;
-- (void)setUsernamePassword:(NSString*)username :(NSString*)password;
 - (void)doneWithSettings;
+- (void)saveTempUsernamePassword;
 
 // method for managing keyboard behaviours
 - (void)dismissKeyboard;

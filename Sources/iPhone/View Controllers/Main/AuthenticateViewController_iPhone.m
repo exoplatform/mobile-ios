@@ -62,6 +62,7 @@
     
     _servListViewController.panelBackground.image = 
     [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
+
 }
 
 -(void) initTabsAndViews {
@@ -78,17 +79,6 @@
     AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOn"]];
     [self.tabView addTabItem:tabItemServerList];
     
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if(!_credViewController.bAutoLogin)
-    {
-        //Start the animation to display the loginView
-        [UIView animateWithDuration:0.5 
-                         animations:^{}
-         ];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

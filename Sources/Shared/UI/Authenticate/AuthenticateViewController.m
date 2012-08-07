@@ -33,9 +33,10 @@
 
 - (void)dealloc 
 {
-    _bAutoLoginIsDisabled = NO;
     [_loginProxy release];
     [_hud release];
+    [_tempUsername release];
+    [_tempPassword release];
     [super dealloc];	
 }
 
@@ -46,23 +47,15 @@
     if (self) 
 	{
         _strBSuccessful = [[NSString alloc] init];
-        // By defaut, Auto Login is not disabled, i.e
-        // - if it is ON, user will be signed in automatically
-        // - if it is OFF, user will stay on the Authenticate page
-        _bAutoLoginIsDisabled = NO;
     }
     return self;
 }
 
+#pragma mark - View Lifecycle
+
 - (void)loadView 
 {
 	[super loadView];
-}
-
--(void) initTabsAndViews {
-    // empty, must be overriden in _iPad and _iPhone children classes
-    // - create the JMView
-    // - create views for each tab, using the relevant NIB
 }
 
 - (void)viewDidLoad 
@@ -101,8 +94,10 @@
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Do not cancel touch processes on subviews
     [self.view addGestureRecognizer:tapGesure];
+    
+    // Init username and password text fields
+    [self initUsernameAndPassword];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -117,66 +112,111 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardWillHideNotification object:nil];
     
-    // Handle user parameters
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	_credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
 	_credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-
     // If Auto Login is disabled, we set the Auto Login variable to NO
     // but we don't save this value in the user settings
-    if ([self autoLoginIsDisabled])
+    // We also refresh the username and password
+    if ([self autoLoginIsDisabled]) {
         _credViewController.bAutoLogin = NO;
-    
-    NSString* username = _credViewController.txtfUsername.text;
-    NSString* password = _credViewController.txtfPassword.text;
-    NSString* storedUsername = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-    NSString* storedPassword = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-    // If the values in the username/password textfields has changed,
-    // and the user has just signed out of the application
-    // we keep the new value of the text fields
-	if((![username isEqualToString:storedUsername] || ![password isEqualToString:storedPassword]) && _bAutoLoginIsDisabled)
-	{
-		[self setUsernamePassword:username :password];
-	}
-    // If we remember the username/password, and it's the first start of the application
-    // we display the stored username and password
-    if (_credViewController.bRememberMe && !_bAutoLoginIsDisabled)
-	{
-        [self setUsernamePassword:storedUsername :storedPassword];
-        //[userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
-	}
+        [self updateUsernameAndPasswordAfterLogout];
+    }
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // This variable exists only to prevent from Auto Login
+    // automatically after the user has signed out
+    // If this method is called, it means the user is not signed in
+    // so we can re-enable the Auto Login option
+    _bAutoLoginIsDisabled = NO;
+}
+
+
 -(void) doneWithSettings {
-    // Called when the Settings popup is closed
+    // Called when the Settings popup is closed when the user is signed out
     // Updates the variables with the new values
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
     [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
     [_servListViewController.tbvlServerList reloadData];
-    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];    
     _credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
     [_credViewController signInAnimation:_credViewController.bAutoLogin];
-}
-
--(void) setUsernamePassword:(NSString*)username :(NSString*)password {    
-    if(username)
-    {
-        [_credViewController.txtfUsername setText:username];
-    }
     
-    if(password)
-    {
-        [_credViewController.txtfPassword setText:password];
+    if (!_credViewController.bAutoLogin) {
+        // Update the value of the text fields if we don't auto login
+        [self updateUsernameAndPassordAfterSettings];
     }
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) initTabsAndViews {
+    // empty, must be overriden in _iPad and _iPhone children classes
+    // - create the JMView
+    // - create views for each tab, using the relevant NIB
+}
+
+#pragma mark - Username Password textfields management
+
+-(void) saveTempUsernamePassword {
+    [_tempUsername release];
+    _tempUsername = [_credViewController.txtfUsername.text copy];
+    [_tempPassword release];
+    _tempPassword = [_credViewController.txtfPassword.text copy];
+}
+
+// Called when the application starts
+-(void) initUsernameAndPassword {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	_credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+    if (_credViewController.bRememberMe) {
+        // Display the saved username and password if we have to
+        [_credViewController.txtfUsername setText:[userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
+        [_credViewController.txtfPassword setText:[userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
+    }
+    // Save the original values to detect if they change later
+    [self saveTempUsernamePassword];
+}
+
+// Refresh username and password values after settings are saved
+-(void) updateUsernameAndPassordAfterSettings {
+    NSString* currentUsername = _credViewController.txtfUsername.text;
+    NSString* currentPassword = _credViewController.txtfPassword.text;
+    // Only if the original values have not changed
+    if ([currentUsername isEqualToString:_tempUsername] &&
+        [currentPassword isEqualToString:_tempPassword]) {
+        // Set the stored values only if Remember Me is ON
+        if (_credViewController.bRememberMe) {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [_credViewController.txtfUsername setText:
+                [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
+            [_credViewController.txtfPassword setText:
+                [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
+        } else {
+            [_credViewController.txtfUsername setText:@""];
+            [_credViewController.txtfPassword setText:@""];
+        }
+        // Save the new values to detect if they change again later
+        [self saveTempUsernamePassword];
+    }
+}
+
+// Refresh username and password values after the user has signed out
+-(void) updateUsernameAndPasswordAfterLogout {
+    if (!_credViewController.bRememberMe) {
+        [_credViewController.txtfUsername setText:@""];
+        [_credViewController.txtfPassword setText:@""];
+    }
+    // Save the new values to detect if they change again later
+    [self saveTempUsernamePassword];
 }
 
 -(void) disableAutoLogin:(BOOL)autoLogin {
