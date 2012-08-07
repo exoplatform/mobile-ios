@@ -208,10 +208,13 @@
     NSArray *resultNodes = NULL;
 	
     // MOB-1117 Update the folder path if it's unavailable. This case occurs when the folder is a drive and its path is not provided by other API methods before.
-    if (!file.path) {
-        resultNodes = [parser nodesForXPath:@"//Folder" error:nil];
-        file.path = [self fullURLofFile:[[[resultNodes objectAtIndex:0] attributeForName:@"path"] stringValue]];
-    }
+    CXMLElement *folderElm = [[parser nodesForXPath:@"//Folder" error:nil] objectAtIndex:0];
+    file.path = [self fullURLofFile:[[folderElm attributeForName:@"path"] stringValue]];
+    // MOB-1253 update values for the folder.
+    file.canRemove = [[[folderElm attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"];
+    file.canAddChild = [[[folderElm attributeForName:@"canAddChild"] stringValue] isEqualToString:@"true"];
+    file.hasChild = [[[folderElm attributeForName:@"hasChild"] stringValue] isEqualToString:@"true"];
+    // -----
     
     // Set the resultNodes Array to contain an object for every instance of an  node file/folder data
     resultNodes = [parser nodesForXPath:@"//Folder/Folders/Folder" error:nil];

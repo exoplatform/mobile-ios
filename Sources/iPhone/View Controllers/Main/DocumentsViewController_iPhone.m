@@ -179,7 +179,7 @@
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:newViewControllerForFilesBrowsing animated:YES];
         //[self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
-        //[newViewControllerForFilesBrowsing release];
+        [newViewControllerForFilesBrowsing release];
 	}
 	else
 	{
