@@ -165,7 +165,7 @@ static short fileActionMode = 0;//1:copy, 2:move
             [cell addSubview:titleLabel];
             [titleLabel release];
             
-            UIImageView* imgViewFileAction = [[UIImageView alloc] initWithFrame:CGRectMake(12.0, 8.0, 25, 25)];
+            UIImageView* imgViewFileAction = [[UIImageView alloc] initWithFrame:CGRectMake(12.5, 8.0, 25, 25)];
             imgViewFileAction.tag = kTagForCellSubviewImageView;
             [cell addSubview:imgViewFileAction];
             [imgViewFileAction release];
