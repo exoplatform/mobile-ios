@@ -287,13 +287,15 @@ static short fileActionMode = 0;//1:copy, 2:move
 		else if(row == 1)
 		{
             fileActionMode = 1;
-			copyMoveFile = _file;
+            [copyMoveFile release];
+			copyMoveFile = [_file retain];
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
 		else if(row == 2)
 		{
 			fileActionMode = 2;
-			copyMoveFile = _file;
+            [copyMoveFile release];
+			copyMoveFile = [_file retain];
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
 		else if(row == 3)
@@ -310,7 +312,8 @@ static short fileActionMode = 0;//1:copy, 2:move
                                       toDestination:[_file.path stringByAppendingPathComponent:[copyMoveFile.path lastPathComponent]]];
 				
 			}
-            
+            [copyMoveFile release];
+            copyMoveFile = nil;
             fileActionMode = 0;
 			
 		}
