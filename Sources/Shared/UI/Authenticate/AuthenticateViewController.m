@@ -33,6 +33,7 @@
 
 - (void)dealloc 
 {
+    [_tabView release];
     [_loginProxy release];
     [_hud release];
     [super dealloc];	
@@ -45,6 +46,7 @@
     if (self) 
 	{
         _strBSuccessful = [[NSString alloc] init];
+        _selectedTabIndex = 0;
         
     }
     return self;
@@ -197,12 +199,15 @@
 #pragma mark - JMTabView protocol implementation
 
 -(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
-    if (itemIndex == AuthenticateTabItemCredentials) {
-        _credViewController.view.hidden = NO;
-        _servListViewController.view.hidden = YES;
-    } else if (itemIndex == AuthenticateTabItemServerList) {
-        _credViewController.view.hidden = YES;
-        _servListViewController.view.hidden = NO;
+    if (itemIndex != _selectedTabIndex) {
+        if (itemIndex == AuthenticateTabItemCredentials) {
+            _credViewController.view.hidden = NO;
+            _servListViewController.view.hidden = YES;
+        } else if (itemIndex == AuthenticateTabItemServerList) {
+            _credViewController.view.hidden = YES;
+            _servListViewController.view.hidden = NO;
+        }
+        _selectedTabIndex = itemIndex;
     }
 }
 

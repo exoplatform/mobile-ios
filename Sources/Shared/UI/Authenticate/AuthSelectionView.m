@@ -11,9 +11,6 @@
 @implementation AuthSelectionView
 
 - (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-    
     [[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] stretchableImageWithLeftCapWidth:15                                                                                    topCapHeight:15] drawInRect:rect];
 }
 

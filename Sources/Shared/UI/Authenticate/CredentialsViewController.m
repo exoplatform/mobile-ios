@@ -26,7 +26,6 @@
 @synthesize panelBackground = _panelBackground;
 
 -(void)dealloc {
-    [_activeField release];
     [_txtfPassword release];
     [_txtfUsername release];
     [_btnLogin release];

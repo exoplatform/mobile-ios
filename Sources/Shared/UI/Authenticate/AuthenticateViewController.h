@@ -30,6 +30,7 @@ typedef enum {
     ServerListViewController * _servListViewController;
     NSDictionary*				_dictLocalize;	//Language dictionary
 	int							_intSelectedLanguage;	//Language index
+    int                         _selectedTabIndex;
 }
 
 @property (nonatomic, readonly) SSHUDView *hud; // display loading

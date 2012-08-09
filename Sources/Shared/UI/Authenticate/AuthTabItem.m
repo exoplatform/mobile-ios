@@ -10,6 +10,12 @@
 #import "defines.h"
 #import "JMTabConstants.h"
 
+// Tabs dimensions of iPad (80x73) and iPhone (53x48)
+#define iPadCellWidth 80.
+#define iPadCellHeight 73.
+#define iPhoneCellWidth 53.
+#define iPhoneCellHeight 48.
+
 @implementation AuthTabItem
 
 @synthesize alternateIcon = _alternateIcon;
@@ -22,12 +28,10 @@
 
 // Set the dimension of the tabs for the iPhone (50x48) and the iPad (80x73)
 - (CGSize)sizeThatFits:(CGSize)size {
-    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(80., 73.) : CGSizeMake(50., 48.);
+    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(iPadCellWidth, iPadCellHeight) : CGSizeMake(iPhoneCellWidth, iPhoneCellHeight);
 }
 
 - (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
     if (self.icon && self.alternateIcon)
     {
         UIImage * iconImage = (self.highlighted || [self isSelectedTabItem]) ? self.alternateIcon : self.icon;
@@ -36,7 +40,6 @@
         CGFloat yOffset = (rect.size.height-iconImage.size.height)/2;
         [iconImage drawAtPoint:CGPointMake(xOffset, yOffset)];
     }
-    CGContextRestoreGState(context);
 }
 
 + (AuthTabItem *)tabItemWithTitle:(NSString *)title icon:(UIImage *)icon alternateIcon:(UIImage *)alternativeIcon;
