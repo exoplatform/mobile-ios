@@ -15,8 +15,14 @@
 
 
 static NSString *kCellIdentifier = @"MyIdentifier";
-#define kTagForCellSubviewTitleLabel 222
-#define kTagForCellSubviewImageView 333
+//#define kTagForCellSubviewTitleLabel 222
+//#define kTagForCellSubviewImageView 333
+#define cellTextLabelX 50
+#define cellTextLabelY 10
+#define cellTextLabelWidth 150
+#define cellTextLabelHeight 20
+#define cellImageY 8
+#define cellImageWidthAndHeight 25
 
 static File *copyMoveFile;
 static short fileActionMode = 0;//1:copy, 2:move
@@ -158,17 +164,15 @@ static short fileActionMode = 0;//1:copy, 2:move
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier]autorelease];
         
         if(section == 0) {
-            UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50.0, 10.0, 150.0, 20.0)];
-            titleLabel.tag = kTagForCellSubviewTitleLabel;
-            titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-            titleLabel.backgroundColor = [UIColor clearColor];
-            [cell addSubview:titleLabel];
-            [titleLabel release];
+            [cell.textLabel setFrame:CGRectMake(cellTextLabelX, cellTextLabelY, cellTextLabelWidth, cellTextLabelHeight)];
+            [cell.textLabel setFont:[UIFont fontWithName:@"Helvetica" size:15.0]];
+            [cell.textLabel setBackgroundColor:[UIColor clearColor]];
             
-            UIImageView* imgViewFileAction = [[UIImageView alloc] initWithFrame:CGRectMake(12.5, 8.0, 25, 25)];
-            imgViewFileAction.tag = kTagForCellSubviewImageView;
-            [cell addSubview:imgViewFileAction];
-            [imgViewFileAction release];
+            [cell.imageView setFrame:CGRectMake(
+                            (cellTextLabelX-cellImageWidthAndHeight)/2,
+                            cellImageY,
+                            cellImageWidthAndHeight,
+                            cellImageWidthAndHeight)];
         }else {
             
             UIButton* tmpButton = [[UIButton alloc] initWithFrame:[cell frame]];
@@ -179,8 +183,8 @@ static short fileActionMode = 0;//1:copy, 2:move
         }
     }
     
-	UILabel *titleLabel = (UILabel *)[cell viewWithTag:kTagForCellSubviewTitleLabel];
-	UIImageView *imgViewFileAction = (UIImageView* )[cell viewWithTag:kTagForCellSubviewImageView];
+    UILabel *titleLabel = cell.textLabel;
+    UIImageView *imgViewFileAction = cell.imageView;
     
 	if(section == 0)
 	{
