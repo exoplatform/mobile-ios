@@ -472,18 +472,17 @@
     float fWidth = 0;
     float fHeight = 0;
     
-    if (rectTableView.size.width > 320) 
-    {
-        fWidth = rectTableView.size.width - 85; //fmargin = 85 will be defined as a constant.
-    }
-    else
-    {
-        fWidth = rectTableView.size.width - 100;
+    fWidth = rectTableView.size.width - 100;
+    
+    NSArray *textLines = [text componentsSeparatedByString:@"<br />"];
+    NSMutableString *pseudoDisplayedText = [NSMutableString string];
+    for (NSString *line in textLines) {
+        [pseudoDisplayedText appendString:[line stringByConvertingHTMLToPlainText]];
+        [pseudoDisplayedText appendString:@"\n"];
     }
     
-    NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
     
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize theSize = [pseudoDisplayedText sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     
     if (theSize.height < 30) 
     {
@@ -496,7 +495,5 @@
     
     return fHeight;
 }
-
-
 
 @end

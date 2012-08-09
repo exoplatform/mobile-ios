@@ -18,7 +18,7 @@ typedef enum {
     ActivityAdvancedInfoCellTabLike = 1
 } ActivityAdvancedInfoCellTab;
 
-@interface ActivityDetailAdvancedInfoController_iPad : UIViewController <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ActivityDetailAdvancedInfoController_iPad : UIViewController <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate>
 
 @property (nonatomic, retain) JMTabView *tabView;
 @property (nonatomic, retain) UITableView *infoView;

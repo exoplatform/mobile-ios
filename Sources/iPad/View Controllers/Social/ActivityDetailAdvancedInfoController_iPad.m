@@ -14,7 +14,10 @@
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
 #import "EmptyView.h"
-
+#import "ActivityLinkDisplayViewController_iPad.h"
+#import "AppDelegate_iPad.h"
+#import "RootViewController.h"
+#import "StackScrollViewController.h"
 
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellLeftRightPadding 1.0
@@ -454,6 +457,7 @@ static NSString *kTabItem = @"kTabItem";
             //Create a cell, need to do some configurations
             [cell configureCell];
             cell.width = tableView.frame.size.width;
+            cell.extraDelegateForWebView = self;
         }
         SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
         [cell setSocialComment:socialComment];
@@ -511,6 +515,25 @@ static NSString *kTabItem = @"kTabItem";
         _selectedTab = selectedTab;
         [self reloadInfoContainerWithAnimated:YES];
     }
+}
+
+#pragma mark - UIWebViewDelegate
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    //CAPTURE USER LINK-CLICK.
+    if(navigationType == UIWebViewNavigationTypeLinkClicked){
+        
+        ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] 
+                                                                         initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
+                                                                         bundle:nil 
+                                                                         url:[request URL]];
+		
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
+        
+        [linkWebViewController release];
+        return NO;
+    }
+    
+    return YES;   
 }
 
 @end
