@@ -46,7 +46,7 @@
 "ApplicationEdition" = "Application Edition";
 "ApplicationVersion" = "Application Version";
 "MessageInfo" = "Message Info";
-"MessageErrorServer" = "You cannot add a server with an empty name or url";
+"MessageErrorServer" = "You cannot add a server with an empty name or URL";
 "MessageErrorExist" = "This server does not exist.";
 "ServerName" = "Server Name";
 "ServerUrl" = "Server Url";

@@ -41,7 +41,9 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 
 #define kTagInCellForServerVersion 400
 
-@interface SettingsViewController (PrivateMethods)
+@interface SettingsViewController ()
+
+@property (nonatomic, retain) LoginProxy* plfVersionProxy;
 
 -(void)setNavigationBarLabels;
 - (void)doInit;
@@ -56,6 +58,7 @@ static NSString *settingViewRowsKey = @"row title";
 @implementation SettingsViewController
 
 @synthesize settingsDelegate = _settingsDelegate;
+@synthesize plfVersionProxy = _plfVersionProxy;
 
 - (void)doInit {
     _listOfSections = [[NSArray arrayWithObjects:
@@ -105,6 +108,7 @@ static NSString *settingViewRowsKey = @"row title";
 
 - (void)dealloc
 {
+    [_plfVersionProxy release];
     [rememberMe release];
     [autoLogin release];
     [_rememberSelectedStream release];
@@ -148,8 +152,8 @@ static NSString *settingViewRowsKey = @"row title";
 }
 
 -(void)retrievePlatformVersion{
-    LoginProxy* plfVersionProxy = [[LoginProxy alloc] initWithDelegate:self];
-    [plfVersionProxy retrievePlatformInformations];
+    self.plfVersionProxy = [[[LoginProxy alloc] initWithDelegate:self] autorelease];
+    [self.plfVersionProxy retrievePlatformInformations];
 }
 
 - (void)viewDidLoad 

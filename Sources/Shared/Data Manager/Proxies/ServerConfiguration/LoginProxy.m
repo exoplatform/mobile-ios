@@ -59,7 +59,7 @@
 //Helper to create the base URL
 - (NSString *)createBaseURL {  
     NSString *domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
-    return [NSString stringWithFormat:@"%@/%@/",domainName, kRestContextName]; 
+    return domainName ? [NSString stringWithFormat:@"%@/%@/",domainName, kRestContextName] : nil;
 }
 
 

@@ -179,7 +179,7 @@
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:newViewControllerForFilesBrowsing animated:YES];
         //[self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
-        //[newViewControllerForFilesBrowsing release];
+        [newViewControllerForFilesBrowsing release];
 	}
 	else
 	{
@@ -258,10 +258,8 @@
                                                 enableCreateFolder:YES
                                                 enableRenameFile:NO
                                                 delegate:self];
-        
-        
-    
-    _actionsViewController.fileToApplyAction = _rootFile ;
+
+    fileToApplyAction = _rootFile;
     
     self.popoverClass = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     [_actionsViewController release];

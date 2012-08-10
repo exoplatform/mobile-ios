@@ -36,7 +36,7 @@
 + (NSString*)stringEncodedWithBase64:(NSString*)str;
 + (NSString *)urlForFileAction:(NSString *)url;
 
-- (NSString *)fullURLofFile:(NSString *)path;
+- (void)calculateAbsPath:(NSString *)relativePath forItem:(File *)item;
 - (NSArray*)getDrives:(NSString*)driveName;
 - (NSArray*)getContentOfFolder:(File *)file;
 

@@ -135,11 +135,9 @@
 }
 
 
-- (NSString *)fullURLofFile:(NSString *)path {
-    
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-    return [NSString stringWithFormat:@"%@%@%@", domain, DOCUMENT_JCR_PATH_REST, path];
+- (void)calculateAbsPath:(NSString *)relativePath forItem:(File *)item {
+    NSString *domain = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    item.path = [NSString stringWithFormat:@"%@%@%@%@%@", domain, DOCUMENT_JCR_PATH_REST, @"repository/", item.workspaceName, relativePath];
 }
 
 #pragma mark -
@@ -207,11 +205,14 @@
     // Create a new Array object to be used with the looping of the results from the parser
     NSArray *resultNodes = NULL;
 	
+    // MOB-1253 update values for the folder.
+    CXMLElement *folderElm = [[parser nodesForXPath:@"//Folder" error:nil] objectAtIndex:0];
+    file.canRemove = [[[folderElm attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"];
+    file.canAddChild = [[[folderElm attributeForName:@"canAddChild"] stringValue] isEqualToString:@"true"];
+    file.hasChild = [[[folderElm attributeForName:@"hasChild"] stringValue] isEqualToString:@"true"];
     // MOB-1117 Update the folder path if it's unavailable. This case occurs when the folder is a drive and its path is not provided by other API methods before.
-    if (!file.path) {
-        resultNodes = [parser nodesForXPath:@"//Folder" error:nil];
-        file.path = [self fullURLofFile:[[[resultNodes objectAtIndex:0] attributeForName:@"path"] stringValue]];
-    }
+    [self calculateAbsPath:[[folderElm attributeForName:@"path"] stringValue] forItem:file];
+    // -----
     
     // Set the resultNodes Array to contain an object for every instance of an  node file/folder data
     resultNodes = [parser nodesForXPath:@"//Folder/Folders/Folder" error:nil];
@@ -225,9 +226,9 @@
         file.driveName = [[resultElement attributeForName:@"driveName"] stringValue];
         file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
         file.isFolder = YES;
-		file.path = [self fullURLofFile:[[resultElement attributeForName:@"path"] stringValue]];
         file.canAddChild = [[[resultElement attributeForName:@"canAddChild"] stringValue] isEqualToString:@"true"];
         file.canRemove = [[[resultElement attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"];
+        [self calculateAbsPath:[[resultElement attributeForName:@"path"] stringValue] forItem:file];
         // Add the file to the global Array so that the view can access it.
         [folderArray addObject:file];
         [file release];
@@ -244,7 +245,7 @@
         file.driveName = [[resultElement attributeForName:@"driveName"] stringValue];
         file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
         file.isFolder = NO;
-        file.path = [self fullURLofFile:[[resultElement attributeForName:@"path"] stringValue]];
+        [self calculateAbsPath:[[resultElement attributeForName:@"path"] stringValue] forItem:file];
         file.nodeType = [[resultElement attributeForName:@"nodeType"] stringValue];
 		file.canRemove = [[[resultElement attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"]; 
         // Add the file to the global Array so that the view can access it.
@@ -262,7 +263,7 @@
     NSString *username = [[ServerPreferencesManager sharedInstance] username];
     NSString *password = [[ServerPreferencesManager sharedInstance] password];
     
-    NSString *urlForUserRepo = [NSString stringWithFormat:@"%@%@/Users", domain, DOCUMENT_JCR_PATH_REST];
+    NSString *urlForUserRepo = [NSString stringWithFormat:@"%@%@repository/collaboration/Users", domain, DOCUMENT_JCR_PATH_REST];
     
     NSMutableString *urlStr = [[NSMutableString alloc] initWithString:urlForUserRepo];
     

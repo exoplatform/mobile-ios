@@ -56,8 +56,14 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
 - (void)dealloc {
     
     [_path release];
-    _path = nil;
-    
+    [_name release];
+    [_currentFolder release];
+    [_driveName release];
+    [_workspaceName release];
+    [_nodeType release];
+    [_creator release];
+    [_dateCreated release];
+    [_dateModified release];
     [super dealloc];
 }
 
