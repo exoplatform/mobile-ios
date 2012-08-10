@@ -264,6 +264,7 @@
     if (!_advancedInfoController) {
         _advancedInfoController = [[ActivityDetailAdvancedInfoController_iPad alloc] init];
         [_advancedInfoController.commentButton addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
+        _advancedInfoController.delegateToProcessClickAction = self;
     }
     return _advancedInfoController;
 }

@@ -18,7 +18,7 @@ typedef enum {
     ActivityAdvancedInfoCellTabLike = 1
 } ActivityAdvancedInfoCellTab;
 
-@interface ActivityDetailAdvancedInfoController_iPad : UIViewController <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate>
+@interface ActivityDetailAdvancedInfoController_iPad : UIViewController <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) JMTabView *tabView;
 @property (nonatomic, retain) UITableView *infoView;
@@ -27,6 +27,7 @@ typedef enum {
 @property (nonatomic, retain) EmptyView *emptyView;
 @property (nonatomic, retain) UIButton *commentButton;
 @property (nonatomic, retain) UIView *infoContainer;
+@property (nonatomic, assign) id<UIWebViewDelegate> delegateToProcessClickAction;
 
 // this method is used to update value for subviews
 - (void)updateSubViews;
