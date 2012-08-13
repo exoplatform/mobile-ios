@@ -36,6 +36,9 @@
 @synthesize password = _password;
 @synthesize selectedSocialStream = _selectedSocialStream;
 @synthesize rememberSelectedSocialStream = _rememberSelectedSocialStream;
+@synthesize currentRepository = _currentRepository;
+@synthesize defaultWorkspace = _defaultWorkspace;
+@synthesize userHomeJcrPath = _userHomeJcrPath;
 
 + (ServerPreferencesManager*)sharedInstance
 {
@@ -78,6 +81,9 @@
 	[_arrServerList release];
     [_username release];
     [_password release];
+    [_currentRepository release];
+    [_defaultWorkspace release];
+    [_userHomeJcrPath release];
 	[super dealloc];
 }
 
@@ -399,5 +405,40 @@
     return self.rememberSelectedSocialStream ? [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_SELECTED_STREAM] intValue] : 0;
 }
 
+- (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath {
+    [repositoryName retain];
+    [_currentRepository release];
+    _currentRepository = repositoryName ? repositoryName : [@"repository" retain];
+    [defaultWorkspace retain];
+    [_defaultWorkspace release];
+    _defaultWorkspace = defaultWorkspace ? defaultWorkspace : [@"collaboration" retain];
+    [userHomePath retain];
+    [_userHomeJcrPath release];
+    _userHomeJcrPath = userHomePath ? userHomePath : [[self makeUserHomePath:self.username] retain];
+}
+
+- (NSString *)makeUserHomePath:(NSString *)username; 
+{
+    NSMutableString *path = [NSMutableString stringWithString:@"/Users"];
+    
+    int length = [username length];
+    
+    int numberOfUserLevel = length < 4 ?  2 : 3;
+    
+    for(int i = 1; i <= numberOfUserLevel; i++)
+    {
+        NSMutableString *userNameLevel = [NSMutableString stringWithString:[username substringToIndex:i]];
+        
+        for(int j = 1; j <= 3; j++)
+        {
+            [userNameLevel appendString:@"_"];
+        }
+        
+        [path appendFormat:@"/%@", userNameLevel];        
+    }
+    
+    [path appendFormat:@"/%@", username];
+    return path;
+}
 
 @end

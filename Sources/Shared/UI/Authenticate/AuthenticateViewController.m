@@ -308,6 +308,7 @@
         [ServerPreferencesManager sharedInstance].username = _txtfUsername.text;
         [ServerPreferencesManager sharedInstance].password = _txtfPassword.text;
         [[ServerPreferencesManager sharedInstance] persistUsernameAndPasswod];
+        [[ServerPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
     }
 }
 

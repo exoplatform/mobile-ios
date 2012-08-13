@@ -78,6 +78,9 @@
      @"platformBuildNumber",@"platformBuildNumber",
      @"isMobileCompliant",@"isMobileCompliant",
      @"platformEdition",@"platformEdition",
+     @"currentRepoName",@"currentRepoName",
+     @"defaultWorkSpaceName",@"defaultWorkSpaceName",
+     @"userHomeNodePath",@"userHomeNodePath",
      nil];
     
     [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];          
@@ -102,6 +105,9 @@
      @"platformBuildNumber",@"platformBuildNumber",
      @"isMobileCompliant",@"isMobileCompliant",
      @"platformEdition",@"platformEdition",
+     @"currentRepoName",@"currentRepoName",
+     @"defaultWorkSpaceName",@"defaultWorkSpaceName",
+     @"userHomeNodePath",@"userHomeNodePath",
      nil];
     // add '#' into the link to prevent caching result
     [manager loadObjectsAtResourcePath:@"private/platform/info#" objectMapping:mapping delegate:self];

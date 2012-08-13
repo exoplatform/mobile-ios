@@ -9,6 +9,7 @@
 #import "SocialPostActivity.h"
 #import "SocialActivity.h"
 #import "SocialRestConfiguration.h"
+#import "ServerPreferencesManager.h"
 #import "defines.h"
 
 
@@ -68,14 +69,13 @@
     
     //Attach file
     if(fileURL != nil) {
-        
+        ServerPreferencesManager *serverPM = [ServerPreferencesManager sharedInstance];
         activity.type = @"DOC_ACTIVITY"; 
         
-        NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr/repository/collaboration"];
-        NSString* docLink = [NSString stringWithFormat:@"/portal/rest/%@",
-                             [fileURL substringFromIndex:rangeOfDocLink.location]];
+        NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr"];
+        NSString* docLink = [NSString stringWithFormat:@"/rest/%@", [fileURL substringFromIndex:rangeOfDocLink.location]];
 
-        NSString* docPath = [fileURL substringFromIndex:rangeOfDocLink.location + rangeOfDocLink.length];
+        NSString* docPath = [fileURL substringFromIndex:[fileURL rangeOfString:serverPM.userHomeJcrPath].location];
         
         activity.title = [NSString stringWithFormat:@"Shared a document <a href=\"%@\">%@</a>\"", docLink, fileName];
         
@@ -85,8 +85,8 @@
         [activity setKeyForTemplateParams:@"DOCPATH" value:docPath];
         [activity setKeyForTemplateParams:@"MESSAGE" value:message];
         [activity setKeyForTemplateParams:@"DOCLINK" value:docLink];
-        [activity setKeyForTemplateParams:@"WORKSPACE" value:@"collaboration"];
-        [activity setKeyForTemplateParams:@"REPOSITORY" value:@"repository"];
+        [activity setKeyForTemplateParams:@"WORKSPACE" value:serverPM.defaultWorkspace];
+        [activity setKeyForTemplateParams:@"REPOSITORY" value:serverPM.currentRepository];
         [activity setKeyForTemplateParams:@"DOCNAME" value:fileName];
         
         [activitySimpleMapping mapKeyPath:@"type" toAttribute:@"type"];

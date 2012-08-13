@@ -25,4 +25,8 @@
 
 @property (nonatomic, retain)NSString* isMobileCompliant; // 
 @property (nonatomic, retain)NSString* platformEdition; //
+@property (nonatomic, retain) NSString *currentRepoName;
+@property (nonatomic, retain) NSString *defaultWorkSpaceName;
+@property (nonatomic, retain) NSString *userHomeNodePath;
+
 @end
