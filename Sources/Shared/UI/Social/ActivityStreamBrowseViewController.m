@@ -34,7 +34,7 @@
 #import "ActivityHelper.h"
 #import "SocialRestProxy.h"
 
-#define kStreamTabbarHeight 40.0
+#define kStreamTabbarHeight 30.0
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
