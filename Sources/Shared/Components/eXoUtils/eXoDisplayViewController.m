@@ -15,6 +15,7 @@
 
 #define TAG_WEBVIEW 10000
 #define TAG_VIEW 10001
+#define activityIndicatorX 10.
 
 @interface eXoDisplayViewController (PrivateMethods)
 
@@ -41,10 +42,16 @@
 {
     [super viewDidLoad];
     
-    //Add the loader
-    [self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
+    // Add the loader indicator
+    _loadingIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    // Position on the navigation bar
+    [_navigation addSubview:_loadingIndicator];
+    [_loadingIndicator setFrame:CGRectMake(activityIndicatorX,
+                                           _navigation.center.y-_loadingIndicator.frame.size.height/2,
+                                           _loadingIndicator.frame.size.width, 
+                                           _loadingIndicator.frame.size.height)];
+    [_loadingIndicator startAnimating];
     
-    [self displayHudLoader];
     _webView.delegate = self;
     _webView.opaque = NO;
 
@@ -224,7 +231,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
-    [self hideLoader:NO];
+    [_loadingIndicator stopAnimating];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:webView.request];
     NSLog(@"%@\n %@",[error description], [[error userInfo] description]);
     //add empty view to the view 
@@ -242,7 +249,7 @@
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
-    [self hideLoader:YES];
+    [_loadingIndicator stopAnimating];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:aWebView.request];
 }
 

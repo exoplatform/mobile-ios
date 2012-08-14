@@ -20,6 +20,7 @@
     CGRect rect;
     UINavigationController *navigationBar;
     //eXoFullScreenView *viewController;
+    UIActivityIndicatorView* _loadingIndicator;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView* _webView;
