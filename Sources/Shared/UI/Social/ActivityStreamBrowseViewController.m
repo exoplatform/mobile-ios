@@ -34,7 +34,7 @@
 #import "ActivityHelper.h"
 #import "SocialRestProxy.h"
 
-#define kStreamTabbarHeight 30.0
+#define kStreamTabbarHeight (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 35. : 30.)
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
