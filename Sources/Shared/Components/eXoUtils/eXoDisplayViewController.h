@@ -24,6 +24,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView* _webView;
+@property (nonatomic, retain) UIActivityIndicatorView* loadingIndicator;
 
 - (void)setUrl:(NSURL*)url;	//Set gadget URL
 

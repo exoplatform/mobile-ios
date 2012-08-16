@@ -10,12 +10,13 @@
 #import "EmptyView.h"
 #import "defines.h"
 #import "AppDelegate_iPad.h"
+#import "AppDelegate_iPhone.h"
 #import "RootViewController.h"
 
 
 #define TAG_WEBVIEW 10000
 #define TAG_VIEW 10001
-#define activityIndicatorX 10.
+#define activityIndicatorRightMargin 10.
 
 @interface eXoDisplayViewController (PrivateMethods)
 
@@ -25,6 +26,7 @@
 @implementation eXoDisplayViewController
 
 @synthesize _webView;
+@synthesize loadingIndicator = _loadingIndicator;
 
 // custom init method to allow URL to be passed
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle 
@@ -42,16 +44,6 @@
 {
     [super viewDidLoad];
     
-    // Add the loader indicator
-    _loadingIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    // Position on the navigation bar
-    [_navigation addSubview:_loadingIndicator];
-    [_loadingIndicator setFrame:CGRectMake(activityIndicatorX,
-                                           _navigation.center.y-_loadingIndicator.frame.size.height/2,
-                                           _loadingIndicator.frame.size.width, 
-                                           _loadingIndicator.frame.size.height)];
-    [_loadingIndicator startAnimating];
-    
     _webView.delegate = self;
     _webView.opaque = NO;
 
@@ -60,12 +52,7 @@
         NSURLRequest* request = [NSURLRequest requestWithURL:_url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];	
         [_webView loadRequest:request];
     }
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)];
-    }
-    
-    // Observe the change language notif to update the labels
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+
 }
 
 -(void)fullScreen {
@@ -154,16 +141,44 @@
                                               _webView.alpha = 1;
                                           } 
                                           completion:^(BOOL finished){
-                                              
+                                              [self stopLoadingAnimation];
                                           }];
-
                      }];
+}
 
-    
+// Stop the animation on the activity indicator
+- (void)stopLoadingAnimation{
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) {
+        // Fullscreen feature is available only on iPad
+        // So we must display the fullscreen button instead of the indicator
+        _navigation.topItem.rightBarButtonItem = nil;
+        _navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)] autorelease];
+    } else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) {
+        // On iPhone we just remove the indicator
+        JTNavigationBar* _iPhoneNavBar = [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar;
+        _iPhoneNavBar.topItem.rightBarButtonItem = nil;
+    }
+    // Stop the animation
+    [self.loadingIndicator stopAnimating];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // Add the loader indicator
+    self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    // Position the indicator at the right of the navigation bar
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        _navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator] autorelease];
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        JTNavigationBar* _iPhoneNavBar = [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar;
+        _iPhoneNavBar.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator] autorelease];
+    }
+    // Start the animation
+    [self.loadingIndicator startAnimating];
 }
 
 - (void)viewDidUnload
@@ -182,7 +197,8 @@
 
 - (void)dealloc 
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+
+    [_loadingIndicator release];
     [_url release];
     [_webView setDelegate:nil];
     [_webView stopLoading];
@@ -235,7 +251,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
-    [_loadingIndicator stopAnimating];
+    [self stopLoadingAnimation];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:webView.request];
     NSLog(@"%@\n %@",[error description], [[error userInfo] description]);
     //add empty view to the view 
@@ -253,13 +269,8 @@
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
-    [_loadingIndicator stopAnimating];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:aWebView.request];
-}
-
-// Start loading animation
-- (void)webViewDidStartLoad:(UIWebView *)webView 
-{
+    [self stopLoadingAnimation];
 }
 
 #pragma mark - change language management
