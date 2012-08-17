@@ -804,10 +804,6 @@ static NSString *PRIVATE_GROUP = @"Private";
         {
             //TODO Localize this string
             [self displayHudLoader];
-            if(!_rootFile.isFolder) {
-                newFolderName = [newFolderName stringByEncodingHTMLEntities];
-                newFolderName = [DataProcess encodeUrl:newFolderName];
-            }
             
             NSString* strNewFolderPath = [FilesProxy urlForFileAction:[fileToApplyAction.path stringByAppendingPathComponent:newFolderName]];
             NSLog(@"%@", strNewFolderPath);
@@ -901,10 +897,6 @@ static NSString *PRIVATE_GROUP = @"Private";
         {
             //TODO Localize this string
             [self displayHudLoader];
-            if(!_rootFile.isFolder) {
-                newFolderName = [newFolderName stringByEncodingHTMLEntities];
-                newFolderName = [DataProcess encodeUrl:newFolderName];
-            }
             
             NSString *strRenamePath = [FilesProxy urlForFileAction:[_rootFile.path stringByAppendingPathComponent:newFolderName]];
             NSString *strSource = [FilesProxy urlForFileAction:folderToRename.path];

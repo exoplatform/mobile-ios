@@ -71,9 +71,7 @@
 }
 
 + (NSString *)urlForFileAction:(NSString *)url
-{
-	url = [DataProcess encodeUrl:url];
-	
+{	
 	NSRange range;
 	range = [url rangeOfString:@"http://"];
 	if(range.length == 0)
@@ -276,8 +274,8 @@
     NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
 
     
-	source = [DataProcess encodeUrl:source];
-	destination = [DataProcess encodeUrl:destination];
+	source = [source stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	destination = [destination stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
     NSString *username = [[ServerPreferencesManager sharedInstance] username];
     NSString *password = [[ServerPreferencesManager sharedInstance] password];
