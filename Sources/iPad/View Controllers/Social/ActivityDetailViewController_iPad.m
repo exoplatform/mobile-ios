@@ -269,6 +269,16 @@
     return _advancedInfoController;
 }
 
+#pragma mark - change language management
+
+- (void) updateLabelsWithNewLanguage{
+    [super updateLabelsWithNewLanguage];
+    _navigation.topItem.title = Localize(@"Details");
+    [self.advancedInfoController updateLabelsWithNewLanguage];
+    [_tblvActivityDetail reloadData];
+    [self.view setNeedsDisplay];
+}
+
 @end
 
 

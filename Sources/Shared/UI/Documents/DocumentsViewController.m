@@ -231,6 +231,8 @@ static NSString *PRIVATE_GROUP = @"Private";
     [_tblFiles release];
     _tblFiles = nil;
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
     [super dealloc];
 }
 
@@ -327,6 +329,9 @@ static NSString *PRIVATE_GROUP = @"Private";
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
     }
+    
+    // Observe the change language notif to update the labels
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 - (void)viewDidUnload
@@ -1046,6 +1051,15 @@ static NSString *PRIVATE_GROUP = @"Private";
 {  
     [picker dismissModalViewControllerAnimated:YES];  
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+}
+
+#pragma mark - change language management
+
+- (void) updateLabelsWithNewLanguage{
+    // The names of the sections
+    [_tblFiles reloadData];
+    // Redraw
+    [self.view setNeedsDisplay];
 }
 
 @end

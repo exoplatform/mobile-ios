@@ -70,6 +70,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [_getCommentsProxy release];
     [_getLikersProxy release];
     [_likeActivityProxy release];
@@ -137,6 +138,8 @@
         _reloading = FALSE;
         
 	}
+    // Observe the change language notif to update the labels
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -532,8 +535,7 @@
 	
 }
 
-#pragma mark - 
-#pragma mark UIAlertViewDelegate method
+#pragma mark - UIAlertViewDelegate method
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -549,7 +551,14 @@
     }
 }
 
+#pragma mark - change language management
 
+- (void)updateLabelsWithNewLanguage{
+    [super updateLabelsWithNewLanguage];
+    // Update the labels of the activity
+    [self.activityDetailCell updateLabelsWithNewLanguage];
+    [self.view setNeedsDisplay];
+}
 
 
 

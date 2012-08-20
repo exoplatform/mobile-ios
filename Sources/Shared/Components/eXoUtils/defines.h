@@ -34,6 +34,7 @@
 #define EXO_PREFERENCE_EDITION_SERVER       @"edition_server"
 #define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
+#define EXO_NOTIFICATION_CHANGE_LANGUAGE    @"notification-change-language"
 
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"

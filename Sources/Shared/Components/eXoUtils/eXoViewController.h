@@ -32,5 +32,7 @@
 - (void)hideLoader:(BOOL)successful;
 // Hide Hud Load view immediately
 - (void)hideLoaderImmediately:(BOOL)successful;
+// Update labels when the language changes
+- (void)updateLabelsWithNewLanguage;
 
 @end

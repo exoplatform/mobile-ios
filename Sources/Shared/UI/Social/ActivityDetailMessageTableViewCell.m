@@ -132,7 +132,15 @@
         }
             break;
     }
-    
+}
+
+#pragma mark - change language management
+- (void)updateLabelsWithNewLanguage{
+    // The date in words
+    _lbDate.text = self.socialActivity.postedTimeInWords;
+    // Calling the setter with the same values will reset all the properties,
+    // including the labels localized in the new language
+    [self setSocialActivityDetail:self.socialActivity];
 }
 
 

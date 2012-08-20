@@ -547,6 +547,9 @@ static NSString *settingViewRowsKey = @"row title";
         
         //Finally reload the content of the screen
         [self reloadSettingsWithUpdate];
+        
+        //Notify the language change
+        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_CHANGE_LANGUAGE object:self];
 	}
     
 	else if(indexPath.section == 3)

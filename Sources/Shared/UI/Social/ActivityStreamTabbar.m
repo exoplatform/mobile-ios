@@ -174,4 +174,24 @@
     [self.tabView didSelectItemAtIndex:selectedTabItem];
 }
 
+#pragma mark - language change management
+
+- (void)updateLabelsWithNewLanguage {
+    for(int i=0; i<_listOfItems.count; i++) {
+        // Update the title of each tab
+        NSDictionary *dict = [_listOfItems objectAtIndex:i];
+        CustomFilterItem* item = [dict objectForKey:kActivityStreamTabItem];
+        if (i == ActivityStreamTabItemAllUpdate) {
+            item.title = Localize(@"All Updates");
+        } else if (i == ActivityStreamTabItemMyConnections) {
+            item.title = Localize(@"My Connections");
+        } else if (i == ActivityStreamTabItemMySpaces) {
+            item.title = Localize(@"My Spaces");
+        } else if (i == ActivityStreamTabItemMyStatus) {
+            item.title = Localize(@"My Status");
+        }
+        [item setNeedsDisplay];
+    }
+}
+
 @end
