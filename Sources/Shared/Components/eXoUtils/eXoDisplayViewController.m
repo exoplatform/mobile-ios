@@ -242,6 +242,7 @@
 
 - (void)setUrl:(NSURL*)url
 {
+    [_url release];
 	_url = [url copy];
 }
 
@@ -252,8 +253,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
     [self stopLoadingAnimation];
-    [[NSURLCache sharedURLCache] removeCachedResponseForRequest:webView.request];
-    NSLog(@"%@\n %@",[error description], [[error userInfo] description]);
+    LogDebug(@"%@\n %@",[error description], [[error userInfo] description]);
     //add empty view to the view 
     NSUInteger statusCode = [error code];
 	if(!(statusCode >= 200 && statusCode < 300))
@@ -269,8 +269,7 @@
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
-    [[NSURLCache sharedURLCache] removeCachedResponseForRequest:aWebView.request];
-    [self stopLoadingAnimation];
+    [self hideLoader:YES];
 }
 
 #pragma mark - change language management
