@@ -35,5 +35,6 @@ typedef enum {
 - (void)selectTab:(ActivityAdvancedInfoCellTab)selectedTab;
 - (void)jumpToLastCommentIfExist;
 - (void)reloadInfoContainerWithAnimated:(BOOL)animated;
+- (void)updateLabelsWithNewLanguage;
 
 @end

@@ -231,6 +231,8 @@ static NSString *PRIVATE_GROUP = @"Private";
     [_tblFiles release];
     _tblFiles = nil;
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
     [super dealloc];
 }
 
@@ -327,6 +329,9 @@ static NSString *PRIVATE_GROUP = @"Private";
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
     }
+    
+    // Observe the change language notif to update the labels
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 - (void)viewDidUnload
@@ -499,9 +504,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     }
     
     //Set the file name
-    cell.textLabel.text = [URLAnalyzer decodeURL:file.name]; 
-    
-    
+    cell.textLabel.text = [file.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];; 
     
     return cell;
     
@@ -804,10 +807,6 @@ static NSString *PRIVATE_GROUP = @"Private";
         {
             //TODO Localize this string
             [self displayHudLoader];
-            if(!_rootFile.isFolder) {
-                newFolderName = [newFolderName stringByEncodingHTMLEntities];
-                newFolderName = [DataProcess encodeUrl:newFolderName];
-            }
             
             NSString* strNewFolderPath = [FilesProxy urlForFileAction:[fileToApplyAction.path stringByAppendingPathComponent:newFolderName]];
             NSLog(@"%@", strNewFolderPath);
@@ -901,10 +900,6 @@ static NSString *PRIVATE_GROUP = @"Private";
         {
             //TODO Localize this string
             [self displayHudLoader];
-            if(!_rootFile.isFolder) {
-                newFolderName = [newFolderName stringByEncodingHTMLEntities];
-                newFolderName = [DataProcess encodeUrl:newFolderName];
-            }
             
             NSString *strRenamePath = [FilesProxy urlForFileAction:[_rootFile.path stringByAppendingPathComponent:newFolderName]];
             NSString *strSource = [FilesProxy urlForFileAction:folderToRename.path];
@@ -1046,6 +1041,15 @@ static NSString *PRIVATE_GROUP = @"Private";
 {  
     [picker dismissModalViewControllerAnimated:YES];  
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+}
+
+#pragma mark - change language management
+
+- (void) updateLabelsWithNewLanguage{
+    // The names of the sections
+    [_tblFiles reloadData];
+    // Redraw
+    [self.view setNeedsDisplay];
 }
 
 @end

@@ -157,6 +157,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 
@@ -343,27 +344,34 @@
     [_tableView release];
     [_userProfileViewController release];
     [_modalNavigationSettingViewController release];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [super dealloc];
 }
 
 #pragma mark - Settings Delegate methods
 
 -(void)doneWithSettings {
-    //TODO Localize this strings
+    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - change language management
+
+- (void)updateLabelsWithNewLanguage{
+    // Save the selected menu
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    // Remove the menu items...
     [_cellContents removeAllObjects];
+    // ...and add them again, the new language is automatically applied
     if(_isCompatibleWithSocial){
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
     }
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
-    //[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
-    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    // Redraw the table
     [_tableView reloadData];
+    // Reselect the previously selected menu item
     [_tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
 }
-
 
 @end
 

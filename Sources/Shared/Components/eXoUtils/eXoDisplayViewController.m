@@ -63,6 +63,9 @@
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)];
     }
+    
+    // Observe the change language notif to update the labels
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 -(void)fullScreen {
@@ -179,6 +182,7 @@
 
 - (void)dealloc 
 {
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [_url release];
     [_webView setDelegate:nil];
     [_webView stopLoading];
@@ -256,6 +260,13 @@
 // Start loading animation
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
+}
+
+#pragma mark - change language management
+
+- (void)updateLabelsWithNewLanguage{
+    _navigation.topItem.rightBarButtonItem.title = Localize(@"Fullscreen");
+    [self.view setNeedsDisplay];
 }
 
 @end

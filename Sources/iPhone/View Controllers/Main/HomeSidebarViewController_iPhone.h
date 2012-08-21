@@ -26,6 +26,7 @@ typedef enum {
     JTTableViewDatasource *_datasource;
     JTTableRowTypes rowType;
     NSMutableArray *_viewControllers;
+    UIButton *_disconnectLabel; //need a variable to update the label when the language changes
 }
 
 @property (nonatomic, readonly) UINavigationItem *contentNavigationItem;
@@ -38,6 +39,6 @@ typedef enum {
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated;
 - (void)setRootViewController:(UIViewController *)viewController animated:(BOOL)animated;
-
+- (void)updateLabelsWithNewLanguage;
 
 @end

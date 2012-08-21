@@ -17,4 +17,5 @@
 }
 - (id)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content;
 - (void)changeOrientation;
+- (void)setLabelContent:(NSString*)content;
 @end

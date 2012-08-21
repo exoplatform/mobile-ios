@@ -45,6 +45,10 @@
 
 }
 
+- (void)dashboardProxyDidFinish:(DashboardProxy *)proxy {
+    [super dashboardProxyDidFinish:proxy];
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
+}
 
 - (void)updateHudPosition {
     self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);

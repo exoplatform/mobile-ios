@@ -53,5 +53,6 @@
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail;
 - (void)updateSizeToFitSubViews;
+- (void)updateLabelsWithNewLanguage;
 
 @end

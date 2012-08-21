@@ -518,4 +518,21 @@ static NSString *kTabItem = @"kTabItem";
     }
 }
 
+#pragma mark - change language management
+
+- (void)updateLabelsWithNewLanguage{
+    // The titles of the tabs (comments and likes)
+    [self updateTabLabels];
+    [self selectTab:_selectedTab];
+    // The date of each comment
+    for (SocialComment *c in self.socialActivity.comments) {
+        [c convertToPostedTimeInWords];
+    }
+    [self.infoView reloadData];
+    // The add comment button at the bottom
+    [_commentButton setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
+    // The empty view label (no comment or like)
+    [self.emptyView setLabelContent:Localize(@"NoComment")];
+}
+
 @end

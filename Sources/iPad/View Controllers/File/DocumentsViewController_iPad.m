@@ -123,6 +123,7 @@
     if(_actionPopoverController != nil){
         [_actionPopoverController release];
     }
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [super dealloc];
 }
 
@@ -347,6 +348,13 @@
     if(emptyview != nil){
         [emptyview changeOrientation];
     }
+}
+
+# pragma mark - change language management
+- (void) updateLabelsWithNewLanguage{
+    [super updateLabelsWithNewLanguage];
+    // Title of the view
+    _navigation.topItem.title = Localize(@"Documents") ;
 }
 
 @end
