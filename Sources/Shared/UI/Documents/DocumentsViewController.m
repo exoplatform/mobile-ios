@@ -499,9 +499,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     }
     
     //Set the file name
-    cell.textLabel.text = [URLAnalyzer decodeURL:file.name]; 
-    
-    
+    cell.textLabel.text = [file.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];; 
     
     return cell;
     
