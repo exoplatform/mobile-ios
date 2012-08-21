@@ -656,16 +656,26 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 }
 
 - (void) removeViewFromController:(UIViewController*)controller {
-    
     int index = [viewControllersStack indexOfObject:controller];
     
-    for(int i = [viewControllersStack count] - 1; i > index; i--) {
-        
-        UIViewController *newerController = (UIViewController*) [viewControllersStack objectAtIndex:i];
-        
-        [newerController.view removeFromSuperview];
-        [viewControllersStack removeObjectAtIndex:i];
-    }    
+    if (index != NSNotFound) {
+        [controller retain];
+        UIViewController *invokingController = index > 0 ? [viewControllersStack objectAtIndex:(index - 1)] : nil;
+        [self addViewInSlider:controller invokeByController:invokingController isStackStartView:(index == 0)];
+        [controller release];
+    }
+}
+
+- (void)popViewController:(UIViewController *)viewController {
+    int index = [viewControllersStack indexOfObject:viewController];
+    
+    if (index != NSNotFound) {
+        UIViewController *parentViewController = index > 0 ? [viewControllersStack objectAtIndex:(index - 1)] : nil;
+        [parentViewController retain];
+        UIViewController *invokingViewController = index > 1 ? [viewControllersStack objectAtIndex:(index - 2)] : nil;
+        [self addViewInSlider:parentViewController invokeByController:invokingViewController isStackStartView:(index == 1)];
+        [parentViewController release];
+    }
 }
 
 - (void)addViewInSlider:(UIViewController*)controller invokeByController:(UIViewController*)invokeByController isStackStartView:(BOOL)isStackStartView{

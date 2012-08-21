@@ -205,7 +205,7 @@
     UIButton *bt = (UIButton *)sender;
     //Retrieve in the button, the tag with information corresponding to the indexPath of the touched cell
     //Use Modulo to retrieve the section information.
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag%1000 inSection:bt.tag/1000];
+    NSIndexPath *indexPath = [self indexPathFromTagNumber:bt.tag];
     if (self.popoverController) {
         self.popoverController = nil;
     } 

@@ -67,5 +67,9 @@
 // This method is called when user chooses add new photo to the document. The derived classes should reinstall this method for apropriate display
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker;
 
+// Utility methods 
+- (NSInteger)tagNumberFromIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathFromTagNumber:(NSInteger)tagNumber;
+
 
 @end

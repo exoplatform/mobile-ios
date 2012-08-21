@@ -483,7 +483,7 @@ static NSString *PRIVATE_GROUP = @"Private";
         
         //Provide to the button, the tag corresponding to the indexPath
         //Use Modulo to provide the section information.
-        buttonAccessory.tag = 1000 * indexPath.section + indexPath.row;
+        buttonAccessory.tag = [self tagNumberFromIndexPath:indexPath];
         
         //Increase the size of the button, to make it easier to touch
         buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
@@ -1050,6 +1050,15 @@ static NSString *PRIVATE_GROUP = @"Private";
     [_tblFiles reloadData];
     // Redraw
     [self.view setNeedsDisplay];
+}
+
+#pragma mark - Utility methods
+- (NSInteger)tagNumberFromIndexPath:(NSIndexPath *)indexPath {
+    return 1234 + 1000 * indexPath.section + indexPath.row;
+}
+
+- (NSIndexPath *)indexPathFromTagNumber:(NSInteger)tagNumber {
+    return [NSIndexPath indexPathForRow:(tagNumber - 1234)%1000 inSection:(tagNumber - 1234)/1000];
 }
 
 @end

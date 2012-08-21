@@ -70,6 +70,7 @@
 
 - (void) addViewInSlider:(UIViewController*)controller invokeByController:(UIViewController*)invokeByController isStackStartView:(BOOL)isStackStartView;
 - (void) removeViewFromController:(UIViewController*)controller;
+- (void)popViewController:(UIViewController *)viewController;
 - (void)bounceBack:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context;
 
 @property (nonatomic, retain) UIView* slideViews;
