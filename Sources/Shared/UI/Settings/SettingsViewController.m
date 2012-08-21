@@ -263,7 +263,10 @@ static NSString *settingViewRowsKey = @"row title";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
     bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-    _showPrivateDrive.on = [[userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE] boolValue];
+    if ([userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE] == nil)
+        _showPrivateDrive.on = YES; // Show private drive by default
+    else
+        _showPrivateDrive.on = [[userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE] boolValue];
 }
 
 
