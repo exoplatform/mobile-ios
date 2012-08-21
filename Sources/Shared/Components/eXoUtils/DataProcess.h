@@ -19,7 +19,6 @@
 
 + (NSMutableArray*)parseData:(NSData*)data;	//Parsing data
 + (NSString *)decodeUrl:(NSString *)urlString;	//Decode URL
-+ (NSString *)encodeUrl:(NSString *)urlString;	//Encode URL
 
 - (NSString*)escapeString:(NSString*)str withEncoding:(NSStringEncoding)encoding;	//Replace some spacial charactors
 - (NSData*)formatDictData:(NSDictionary*)dictData WithEncoding:(NSStringEncoding)encoding;	//Get data from dictionary
