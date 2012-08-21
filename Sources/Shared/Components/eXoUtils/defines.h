@@ -33,8 +33,10 @@
 #define EXO_PREFERENCE_VERSION_SERVER       @"version_server"
 #define EXO_PREFERENCE_EDITION_SERVER       @"edition_server"
 #define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
+#define EXO_PREFERENCE_SHOW_PRIVATE_DRIVE   @"show-private-drive"
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
 #define EXO_NOTIFICATION_CHANGE_LANGUAGE    @"notification-change-language"
+#define EXO_NOTIFICATION_SHOW_PRIVATE_DRIVE @"notification-show-private-drive"
 
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"
@@ -72,6 +74,7 @@
 
 #define DOCUMENT_JCR_PATH_REST              @"/rest/private/jcr/"
 #define DOCUMENT_DRIVE_PATH_REST            @"/rest/private/managedocument/getDrives?driveType="
+#define DOCUMENT_DRIVE_SHOW_PRIVATE_OPT     @"&showPrivate="
 #define DOCUMENT_FILE_PATH_REST             @"/rest/private/managedocument/getFoldersAndFiles?driveName="
 #define DOCUMENT_WORKSPACE_NAME             @"&workspaceName="
 #define DOCUMENT_CURRENT_FOLDER             @"&currentFolder=" 

@@ -20,6 +20,7 @@
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
+static NSString *CellIdentifierDocuments = @"CellIdentifierDocuments";
 static NSString *CellIdentifierLanguage = @"CellIdentifierLanguage";
 static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformationCellIdentifier";
@@ -71,6 +72,10 @@ static NSString *settingViewRowsKey = @"row title";
                          settingViewRowsKey, [NSArray arrayWithObjects:@"KeepSelectedStream", nil],
                          nil],
                         [NSDictionary dictionaryWithKeysAndObjects:
+                         settingViewSectionTitleKey, @"Documents", 
+                         settingViewRowsKey, [NSArray arrayWithObjects:@"ShowPrivateDrive", nil],
+                         nil],
+                        [NSDictionary dictionaryWithKeysAndObjects:
                          settingViewSectionTitleKey, @"Language", 
                          settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
                          nil], 
@@ -101,6 +106,9 @@ static NSString *settingViewRowsKey = @"row title";
         
         _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         [_rememberSelectedStream addTarget:self action:@selector(rememberStreamChanged:) forControlEvents:UIControlEventValueChanged];
+        
+        _showPrivateDrive = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
+        [_showPrivateDrive addTarget:self action:@selector(showPrivateDriveDidChange:) forControlEvents:UIControlEventValueChanged];
     }
     return self;
 }
@@ -112,6 +120,7 @@ static NSString *settingViewRowsKey = @"row title";
     [rememberMe release];
     [autoLogin release];
     [_rememberSelectedStream release];
+    [_showPrivateDrive release];
     [super dealloc];
 }
 
@@ -254,6 +263,7 @@ static NSString *settingViewRowsKey = @"row title";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
     bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+    _showPrivateDrive.on = [[userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE] boolValue];
 }
 
 
@@ -275,6 +285,12 @@ static NSString *settingViewRowsKey = @"row title";
 
 - (void)rememberStreamChanged:(id)sender {
     [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream = _rememberSelectedStream.on;
+}
+
+- (void)showPrivateDriveDidChange:(id)sender {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:(_showPrivateDrive.on) ? @"true" : @"false"
+                     forKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE];
 }
 
 #pragma mark Table view methods
@@ -325,7 +341,7 @@ static NSString *settingViewRowsKey = @"row title";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
     int numofRows = 0;
-	if(section == 3)
+	if(section == 4)
 	{	
 		numofRows = [[ServerPreferencesManager sharedInstance].serverList count] + 1;
 	} else {
@@ -356,6 +372,7 @@ static NSString *settingViewRowsKey = @"row title";
 
     switch (indexPath.section) 
     {
+        // Login section (Remember Me and Auto Login)
         case 0:
         {
             
@@ -386,6 +403,7 @@ static NSString *settingViewRowsKey = @"row title";
             break;
             
         }
+        // Social section (Remember selected stream filter)
         case 1: {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierSocial];
             if(cell == nil) 
@@ -400,7 +418,22 @@ static NSString *settingViewRowsKey = @"row title";
             cell.accessoryView = _rememberSelectedStream;
         }
             break;
-        case 2: 
+        // Documents section
+        case 2:
+        {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierDocuments];
+            if (cell == nil) {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierDocuments]
+                        autorelease];
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            cell.accessoryView = _showPrivateDrive;
+            break;
+        }
+        // Languages section
+        case 3: 
         {
             
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLanguage];
@@ -435,8 +468,8 @@ static NSString *settingViewRowsKey = @"row title";
             }
             break;
         }
-            
-        case 3:
+        // Servers list section
+        case 4:
         {
             cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
             if (cell == nil) {
@@ -485,9 +518,8 @@ static NSString *settingViewRowsKey = @"row title";
             
             break;
         }
-            
-            
-        case 4:
+        // Platform server info section
+        case 5:
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServerInformation];
             if(cell == nil) {
@@ -521,7 +553,7 @@ static NSString *settingViewRowsKey = @"row title";
         default:
             break;
     }
-    if (indexPath.section != 3) {
+    if (indexPath.section != 4) {
         cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:indexPath.row]);
     
     }
@@ -535,7 +567,7 @@ static NSString *settingViewRowsKey = @"row title";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     
-	if(indexPath.section == 2)
+	if(indexPath.section == 3)
 	{
 		int selectedLanguage = indexPath.row;
         
@@ -552,7 +584,7 @@ static NSString *settingViewRowsKey = @"row title";
         [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_CHANGE_LANGUAGE object:self];
 	}
     
-	else if(indexPath.section == 3)
+	else if(indexPath.section == 4)
 	{
         if (indexPath.row == [[ServerPreferencesManager sharedInstance].serverList count]) 
         {
@@ -561,7 +593,7 @@ static NSString *settingViewRowsKey = @"row title";
             [self.navigationController pushViewController:_serverManagerViewController animated:YES];
         }
 	}
-	else if(indexPath.section == 4)
+	else if(indexPath.section == 5)
     {
         //		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
         //		[self.navigationController pushViewController:userGuideController animated:YES];

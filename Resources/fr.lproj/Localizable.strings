@@ -120,6 +120,7 @@
 "My Spaces"="Mes espaces";
 "My Status"="Mon statut";
 "KeepSelectedStream"="Garder mon filtre";
+"ShowPrivateDrive"="Afficher le lecteur privé";
 
 "DashboardsCannotBeRetrieved"="Impossible de récupérer les dashboards";
 "FolderNameAlreadyExist"="Ce dossier existe déjà";

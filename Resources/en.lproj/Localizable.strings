@@ -119,6 +119,7 @@
 "My Spaces"="My Spaces";
 "My Status"="My Status";
 "KeepSelectedStream"="Remember my filter";
+"ShowPrivateDrive"="Show private drive";
 
 "DashboardsCannotBeRetrieved"="Cannot retrieve the dashboards";
 "FolderNameAlreadyExist"="This folder already exists";

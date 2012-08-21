@@ -54,6 +54,11 @@
 
 @end
 
+// = Interface for private method
+@interface MenuViewController (PrivateMethods)
+- (void)initAndSelectDocumentsViewController;
+@end
+
 @interface MenuViewController () {
     CGRect _viewFrame;
 }
@@ -293,7 +298,7 @@
         index += 1;
     }
     switch (index) {
-        case 0: {
+        case EXO_ACTIVITY_STREAM_ROW: {
             //Activity Stream
             ActivityStreamBrowseViewController_iPad *activityViewController = [[[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil] autorelease];
             
@@ -301,16 +306,15 @@
             
             break;
         }
-        case 1: {
+        case EXO_DOCUMENTS_ROW: {
             // files
-            DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
-            documentsViewController.isRoot = YES;
-            documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];
+            // Same code is used at the end of the method doneWithSettings
+            // Hence it's put in the separate method initAndSelectDocumentsViewController
+            [self initAndSelectDocumentsViewController];
             
             break;
         }
-        case 2: {
+        case EXO_DASHBOARD_ROW: {
             // dashboard
             DashboardViewController_iPad *dashboardViewController_iPad = [[[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil] autorelease];
             
@@ -348,9 +352,21 @@
     [super dealloc];
 }
 
+- (void)initAndSelectDocumentsViewController {
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
+    documentsViewController.isRoot = YES;
+    documentsViewController.title = [[_cellContents objectAtIndex:selectedIndex.row] objectForKey:kCellText];
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];
+}
+
 #pragma mark - Settings Delegate methods
 
 -(void)doneWithSettings {
+    // Reload the Documents page it is currently selected
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    if (selectedIndex.row == EXO_DOCUMENTS_ROW)
+        [self initAndSelectDocumentsViewController];
     [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
 }
 

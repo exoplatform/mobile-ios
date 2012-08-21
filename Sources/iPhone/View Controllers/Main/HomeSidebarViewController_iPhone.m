@@ -58,6 +58,13 @@
 
 @end
 
+// = Interface for private method
+@interface HomeSidebarViewController_iPhone (PrivateMethods)
+
+- (void)initAndSelectDocumentsViewController;
+
+@end
+
 
 @implementation HomeSidebarViewController_iPhone
 
@@ -268,7 +275,17 @@
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     // Update title for content view by selected menu item
     _revealView.contentView.navigationItem.title = [[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0]] textLabel] text];
+    // Reload the Documents page it is currently selected
+    if (rowType == eXoDocuments) {
+        [self initAndSelectDocumentsViewController];
+    }
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)initAndSelectDocumentsViewController {
+    DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
+    documentsViewController.isRoot = YES;
+    [self setRootViewController:documentsViewController animated:NO];
 }
 
 #pragma mark Helper
@@ -525,9 +542,9 @@
                 break;
             case eXoDocuments:
             {
-                DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
-                documentsViewController.isRoot = YES;
-                [self setRootViewController:documentsViewController animated:NO];
+                // Same code is used at the end of the method doneWithSettings
+                // Hence it's put in the separate method initAndSelectDocumentsViewController
+                [self initAndSelectDocumentsViewController];
                 [_revealView revealSidebar:NO];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }

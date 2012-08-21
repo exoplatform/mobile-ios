@@ -29,6 +29,7 @@
 	UISwitch*                       rememberMe;
 	UISwitch*                       autoLogin;
     UISwitch*                       _rememberSelectedStream;
+    UISwitch*                       _showPrivateDrive;
 	
     ServerManagerViewController*    _serverManagerViewController;
     
