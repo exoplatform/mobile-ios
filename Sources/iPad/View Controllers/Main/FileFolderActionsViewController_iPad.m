@@ -13,10 +13,10 @@
 - (void)updateUI
 {        
     if(_isNewFolder) {
-		self.title = Localize(@"NewFolderTitle");
+		_navigation.topItem.title = Localize(@"NewFolderTitle");
 	}
 	else {
-		self.title = Localize(@"RenameTitle");	
+		_navigation.topItem.title = Localize(@"RenameTitle");	
 	}
     
     _navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"OK") style:UIBarButtonItemStyleDone target:self action:@selector(OKBtn)];

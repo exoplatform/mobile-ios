@@ -158,3 +158,6 @@
 "Required"="Requis";
 "Fullscreen"="Plein-écran";
 "Close"="Fermer";
+
+"Cannot move file to its location"="Impossible de copier le fichier au même emplacement";
+"Cannot transfer file"="Impossible de transférer le fichier";

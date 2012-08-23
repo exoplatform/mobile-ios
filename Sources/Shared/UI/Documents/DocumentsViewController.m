@@ -536,7 +536,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 - (void)showErrorForFileAction:(NSString *)errorMessage {
     [self hideLoader:NO];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:errorMessage delegate:self 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:Localize(errorMessage) delegate:self 
                                           cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -971,7 +971,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             }
             else
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture") message:Localize(@"CameraNotAvailable") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
                 [alert show];
                 [alert release];
             }

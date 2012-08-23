@@ -68,7 +68,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     // Do any additional setup after loading the view from its nib.
     self.title = Localize(@"ServerModify");
     //_bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
-    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnDone)]; //It will be localized later
+    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnDone)]; //It will be localized later
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
     
         
@@ -86,7 +86,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton"]
                                     stretchableImageWithLeftCapWidth:5 topCapHeight:5]
                           forState:UIControlStateNormal];
-    [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
+    [_btnDelete setTitle:Localize(@"Delete") forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     
     

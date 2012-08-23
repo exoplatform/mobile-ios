@@ -157,3 +157,6 @@
 "Required"="Required";
 "Fullscreen"="Fullscreen";
 "Close"="Close";
+
+"Cannot move file to its location"="Cannot move the file to the same location";
+"Cannot transfer file"="Cannot transfer the file";

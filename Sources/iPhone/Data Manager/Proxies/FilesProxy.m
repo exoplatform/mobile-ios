@@ -321,7 +321,7 @@
 			
             //Put the label into the error
             // TODO Localize this label
-            errorMessage = [NSString stringWithFormat:@"Can not move file to its location"];
+            errorMessage = [NSString stringWithFormat:@"Cannot move file to its location"];
              
             [request release];
             
@@ -341,7 +341,7 @@
 	{
         //Put the label into the error
         // TODO Localize this label
-        errorMessage = [NSString stringWithFormat:@"Can not transfer file"];
+        errorMessage = [NSString stringWithFormat:@"Cannot transfer file"];
         
         return errorMessage;
 		        
