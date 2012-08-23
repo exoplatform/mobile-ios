@@ -155,11 +155,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder];
     
-    _strServerName = [[_txtfServerName text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    _strServerUrl = [URLAnalyzer parserURL:[[_txtfServerUrl text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    
-    if ([_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl]) [self.navigationController popViewControllerAnimated:YES];
+    if ([_delegate editServerObjAtIndex:_intIndex withSeverName:[_txtfServerName text] andServerUrl:[_txtfServerUrl text]]) [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)onBtnDelete
