@@ -30,8 +30,6 @@
 	UISwitch*                       autoLogin;
     UISwitch*                       _rememberSelectedStream;
     UISwitch*                       _showPrivateDrive;
-	
-    ServerManagerViewController*    _serverManagerViewController;
     
     id<SettingsDelegateProcotol>    _settingsDelegate;
     

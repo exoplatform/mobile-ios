@@ -177,10 +177,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    //[userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
     ServerPreferencesManager *serverPrefManager = [ServerPreferencesManager sharedInstance];
-    if([[userDefaults valueForKey:EXO_IS_USER_LOGGED] boolValue]){
+    if(serverPrefManager.isUserLogged){
         if(serverPrefManager.selectedServerIndex != indexPath.row){
             ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:indexPath.row];
             

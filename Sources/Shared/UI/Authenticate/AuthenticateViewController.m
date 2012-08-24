@@ -133,8 +133,7 @@
 	{
 		[_txtfUsername setText:@""];
 		[_txtfPassword setText:@""];
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+        [ServerPreferencesManager sharedInstance].isUserLogged = NO;
 	}
     
     [_tbvlServerList reloadData];

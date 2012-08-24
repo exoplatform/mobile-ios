@@ -53,8 +53,17 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 @end
 
 
+static NSString *settingViewSectionIdKey = @"section id";
 static NSString *settingViewSectionTitleKey = @"section title";
 static NSString *settingViewRowsKey = @"row title";
+typedef enum {
+  SettingViewControllerSectionLogin = 1,
+  SettingViewControllerSectionSocial = 2,
+  SettingViewControllerSectionDocument = 3,
+  SettingViewControllerSectionLanguage = 4,
+  SettingViewControllerSectionServerList = 5,
+  SettingViewControllerSectionAppsInfo = 6
+} SettingViewControllerSection;
 
 @implementation SettingsViewController
 
@@ -62,32 +71,58 @@ static NSString *settingViewRowsKey = @"row title";
 @synthesize plfVersionProxy = _plfVersionProxy;
 
 - (void)doInit {
-    _listOfSections = [[NSArray arrayWithObjects:
-                        [NSDictionary dictionaryWithKeysAndObjects:
-                            settingViewSectionTitleKey, @"SignInButton", 
-                            settingViewRowsKey, [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil],
-                         nil],
-                        [NSDictionary dictionaryWithKeysAndObjects:
-                         settingViewSectionTitleKey, @"Social", 
-                         settingViewRowsKey, [NSArray arrayWithObjects:@"KeepSelectedStream", nil],
-                         nil],
-                        [NSDictionary dictionaryWithKeysAndObjects:
-                         settingViewSectionTitleKey, @"Documents", 
-                         settingViewRowsKey, [NSArray arrayWithObjects:@"ShowPrivateDrive", nil],
-                         nil],
-                        [NSDictionary dictionaryWithKeysAndObjects:
-                         settingViewSectionTitleKey, @"Language", 
-                         settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
-                         nil], 
-                        [NSDictionary dictionaryWithKeysAndObjects:
-                         settingViewSectionTitleKey, @"ServerList", 
-                         settingViewRowsKey, [NSArray arrayWithObjects:@"ServerModify", nil],
-                         nil], 
-                        [NSDictionary dictionaryWithKeysAndObjects:
-                         settingViewSectionTitleKey, @"ApplicationsInformation", 
-                         settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
-                         nil], 
-                        nil] retain];
+    if ([ServerPreferencesManager sharedInstance].isUserLogged) {
+        _listOfSections = [[NSArray arrayWithObjects:
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
+                             settingViewSectionTitleKey, @"SignInButton", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil],
+                             nil],
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionSocial],
+                             settingViewSectionTitleKey, @"Social", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"KeepSelectedStream", nil],
+                             nil],
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionDocument],
+                             settingViewSectionTitleKey, @"Documents", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"ShowPrivateDrive", nil],
+                             nil],
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
+                             settingViewSectionTitleKey, @"Language", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
+                             nil], 
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
+                             settingViewSectionTitleKey, @"ServerList", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerModify", nil],
+                             nil], 
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
+                             settingViewSectionTitleKey, @"ApplicationsInformation", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
+                             nil], 
+                            nil] retain];
+    } else {        
+        _listOfSections = [[NSArray arrayWithObjects:
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
+                             settingViewSectionTitleKey, @"Language", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
+                             nil], 
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
+                             settingViewSectionTitleKey, @"ServerList", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerModify", nil],
+                             nil], 
+                            [NSDictionary dictionaryWithKeysAndObjects:
+                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
+                             settingViewSectionTitleKey, @"ApplicationsInformation", 
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
+                             nil], 
+                            nil] retain];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -146,8 +181,7 @@ static NSString *settingViewRowsKey = @"row title";
 }
 
 -(void)startRetrieve {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    if(![[userDefaults objectForKey:EXO_IS_USER_LOGGED] boolValue]){
+    if(![ServerPreferencesManager sharedInstance].isUserLogged){
         bVersionServer = NO;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(retrievePlatformVersion)]];
@@ -344,7 +378,7 @@ static NSString *settingViewRowsKey = @"row title";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
     int numofRows = 0;
-	if(section == 4)
+	if([[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
 	{	
 		numofRows = [[ServerPreferencesManager sharedInstance].serverList count] + 1;
 	} else {
@@ -372,11 +406,10 @@ static NSString *settingViewRowsKey = @"row title";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CustomBackgroundForCell_iPhone *cell;
-
-    switch (indexPath.section) 
+    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    switch (sectionId) 
     {
-        // Login section (Remember Me and Auto Login)
-        case 0:
+        case SettingViewControllerSectionLogin:
         {
             
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
@@ -406,8 +439,8 @@ static NSString *settingViewRowsKey = @"row title";
             break;
             
         }
-        // Social section (Remember selected stream filter)
-        case 1: {
+        case SettingViewControllerSectionSocial: 
+        {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierSocial];
             if(cell == nil) 
             {
@@ -419,10 +452,9 @@ static NSString *settingViewRowsKey = @"row title";
             }
             _rememberSelectedStream.on = [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream;
             cell.accessoryView = _rememberSelectedStream;
-        }
             break;
-        // Documents section
-        case 2:
+        }
+        case SettingViewControllerSectionDocument:
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierDocuments];
             if (cell == nil) {
@@ -435,8 +467,7 @@ static NSString *settingViewRowsKey = @"row title";
             cell.accessoryView = _showPrivateDrive;
             break;
         }
-        // Languages section
-        case 3: 
+        case SettingViewControllerSectionLanguage: 
         {
             
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLanguage];
@@ -471,8 +502,7 @@ static NSString *settingViewRowsKey = @"row title";
             }
             break;
         }
-        // Servers list section
-        case 4:
+        case SettingViewControllerSectionServerList:
         {
             cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
             if (cell == nil) {
@@ -521,8 +551,7 @@ static NSString *settingViewRowsKey = @"row title";
             
             break;
         }
-        // Platform server info section
-        case 5:
+        case SettingViewControllerSectionAppsInfo:
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServerInformation];
             if(cell == nil) {
@@ -556,7 +585,7 @@ static NSString *settingViewRowsKey = @"row title";
         default:
             break;
     }
-    if (indexPath.section != 4) {
+    if (sectionId != SettingViewControllerSectionServerList) {
         cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:indexPath.row]);
     
     }
@@ -569,8 +598,8 @@ static NSString *settingViewRowsKey = @"row title";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    
-	if(indexPath.section == 3)
+    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+	if (sectionId == SettingViewControllerSectionLanguage)
 	{
 		int selectedLanguage = indexPath.row;
         
@@ -587,19 +616,13 @@ static NSString *settingViewRowsKey = @"row title";
         [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_CHANGE_LANGUAGE object:self];
 	}
     
-	else if(indexPath.section == 4)
+	else if (sectionId == SettingViewControllerSectionServerList)
 	{
         if (indexPath.row == [[ServerPreferencesManager sharedInstance].serverList count]) 
         {
-            _serverManagerViewController = [[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil];
-            
+                ServerManagerViewController *_serverManagerViewController = [[[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil] autorelease];
             [self.navigationController pushViewController:_serverManagerViewController animated:YES];
         }
-	}
-	else if(indexPath.section == 5)
-    {
-        //		eXoWebViewController *userGuideController = [[eXoWebViewController alloc] initWithNibAndUrl:@"eXoWebViewController" bundle:nil url:nil];
-        //		[self.navigationController pushViewController:userGuideController animated:YES];
 	}
     
 }

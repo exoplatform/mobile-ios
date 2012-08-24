@@ -49,6 +49,7 @@
 @property (nonatomic, readonly) NSString *defaultWorkspace;
 /* home user jcr path. Return nil if cannot retrieve it from the server */
 @property (nonatomic, readonly) NSString *userHomeJcrPath;
+@property (nonatomic, assign) BOOL isUserLogged;
 
 + (ServerPreferencesManager*)sharedInstance;
 - (NSMutableArray *)serverList;

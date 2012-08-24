@@ -39,6 +39,7 @@
 @synthesize currentRepository = _currentRepository;
 @synthesize defaultWorkspace = _defaultWorkspace;
 @synthesize userHomeJcrPath = _userHomeJcrPath;
+@synthesize isUserLogged = _isUserLogged;
 
 + (ServerPreferencesManager*)sharedInstance
 {
@@ -71,6 +72,8 @@
         } else {
             _rememberSelectedSocialStream = [rememberMyStream boolValue];
         }
+        // At the startup time, the user is always unsigned.
+        _isUserLogged = NO;
     }	
 	return self;
 }
