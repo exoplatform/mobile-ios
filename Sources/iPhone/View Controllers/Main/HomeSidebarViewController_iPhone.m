@@ -223,9 +223,7 @@
 }
 
 -(void)logout {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
-    [userDefaults synchronize];
+    [ServerPreferencesManager sharedInstance].autoLogin = NO;
     [[AppDelegate_iPhone instance] onBtnSigtOutDelegate];
 }
 

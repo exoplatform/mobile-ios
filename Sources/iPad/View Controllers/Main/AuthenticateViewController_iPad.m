@@ -382,8 +382,7 @@
 -(void)doneWithSettings {
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
     [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue]; 
+    _bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin; 
     [self signInAnimation:_bAutoLogin];
     [_tbvlServerList reloadData];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];

@@ -109,11 +109,9 @@
     self.navigationController.navigationBarHidden = YES;
     
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
-	
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+	    
+	_bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+	_bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
 	
 	if(_bRememberMe || _bAutoLogin)
 	{

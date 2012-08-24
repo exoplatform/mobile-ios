@@ -97,8 +97,7 @@
 
 -(void)backToAuthenticate{    
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
+    [ServerPreferencesManager sharedInstance].autoLogin = NO;
     [ServerPreferencesManager sharedInstance].isUserLogged = NO;
     
     // execute Logout

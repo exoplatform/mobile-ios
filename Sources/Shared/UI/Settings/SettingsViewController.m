@@ -56,6 +56,7 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 static NSString *settingViewSectionIdKey = @"section id";
 static NSString *settingViewSectionTitleKey = @"section title";
 static NSString *settingViewRowsKey = @"row title";
+
 typedef enum {
   SettingViewControllerSectionLogin = 1,
   SettingViewControllerSectionSocial = 2,
@@ -286,29 +287,22 @@ typedef enum {
 }
 
 -(void)autoLoginChange {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", autoLogin.on] forKey:EXO_AUTO_LOGIN];
-    [userDefaults synchronize];
+    [ServerPreferencesManager sharedInstance].autoLogin = autoLogin.on;
 }
 
 
 -(void)loadSettingsInformations {
     //Load Settings informations
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-    bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-    if ([userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE] == nil)
-        _showPrivateDrive.on = YES; // Show private drive by default
-    else
-        _showPrivateDrive.on = [[userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE] boolValue];
+    bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+    bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+    _showPrivateDrive.on = [ServerPreferencesManager sharedInstance].showPrivateDrive;
 }
 
 
 - (void)saveSettingsInformations {
     //Save settings informations
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:[NSString stringWithFormat:@"%d", rememberMe.on] forKey:EXO_REMEMBER_ME];
-	[userDefaults setObject:[NSString stringWithFormat:@"%d", autoLogin.on] forKey:EXO_AUTO_LOGIN];
+    [ServerPreferencesManager sharedInstance].rememberMe = rememberMe.on;
+    [ServerPreferencesManager sharedInstance].autoLogin = autoLogin.on;
 }
 
 
@@ -325,9 +319,7 @@ typedef enum {
 }
 
 - (void)showPrivateDriveDidChange:(id)sender {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:(_showPrivateDrive.on) ? @"true" : @"false"
-                     forKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE];
+    [ServerPreferencesManager sharedInstance].showPrivateDrive = _showPrivateDrive.on;
 }
 
 #pragma mark Table view methods

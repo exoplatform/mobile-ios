@@ -143,16 +143,15 @@
 
 - (NSArray*)getDrives:(NSString*)driveName {
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
-    NSString *showPrivate = [userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE];
+    NSString *domain = [ServerPreferencesManager sharedInstance].selectedDomain;
+    BOOL showPrivate = [ServerPreferencesManager sharedInstance].showPrivateDrive;
     
 
     // Initialize the array of files
     NSMutableArray *folderArray = [[[NSMutableArray alloc] init] autorelease];
 	
     // Create URL for getting data
-    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName, DOCUMENT_DRIVE_SHOW_PRIVATE_OPT, showPrivate]];
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName, DOCUMENT_DRIVE_SHOW_PRIVATE_OPT, showPrivate ? @"true" : @"false"]];
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     NSData *data = [self sendSynchronizedHTTPRequest:request];

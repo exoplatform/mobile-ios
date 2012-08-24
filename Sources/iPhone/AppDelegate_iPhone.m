@@ -162,8 +162,7 @@
     
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
+    [ServerPreferencesManager sharedInstance].autoLogin = NO;
     [ServerPreferencesManager sharedInstance].isUserLogged = NO;
     
     [LoginProxy doLogout];
