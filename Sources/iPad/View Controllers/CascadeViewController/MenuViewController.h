@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h> 
 #import "SettingsViewController_iPad.h"
 
+#define EXO_ACTIVITY_STREAM_ROW 0
+#define EXO_DOCUMENTS_ROW 1
+#define EXO_DASHBOARD_ROW 2
 
 @class UserProfileViewController;
 
@@ -32,5 +35,6 @@
 @property (nonatomic, retain) UserProfileViewController *userProfileViewController;
 
 - (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
+- (void) updateLabelsWithNewLanguage;
 
 @end

@@ -47,7 +47,7 @@
 "ApplicationVersion" = "Application Version";
 "MessageInfo" = "Message Info";
 "MessageErrorServer" = "You cannot add a server with an empty name or URL";
-"MessageErrorExist" = "This server does not exist.";
+"MessageErrorExist" = "This server already exists";
 "ServerName" = "Server Name";
 "ServerUrl" = "Server Url";
 "InvalidUrl" = "Invalid Url";
@@ -119,6 +119,7 @@
 "My Spaces"="My Spaces";
 "My Status"="My Status";
 "KeepSelectedStream"="Remember my filter";
+"ShowPrivateDrive"="Show private drive";
 
 "DashboardsCannotBeRetrieved"="Cannot retrieve the dashboards";
 "FolderNameAlreadyExist"="This folder already exists";
@@ -157,3 +158,6 @@
 "Required"="Required";
 "Fullscreen"="Fullscreen";
 "Close"="Close";
+
+"Cannot move file to its location"="Cannot move the file to the same location";
+"Cannot transfer file"="Cannot transfer the file";

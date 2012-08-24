@@ -107,4 +107,12 @@
     [self.hudLoadWaiting hide];
 }
 
+#pragma mark - change language management
+- (void) updateLabelsWithNewLanguage {
+    // Nothing here.
+    // This method is overriden in subclasses where labels have
+    // to be updated when the language changes.
+    // E.g. ActivityStreamBrowseViewController.m
+}
+
 @end

@@ -71,9 +71,7 @@
 }
 
 + (NSString *)urlForFileAction:(NSString *)url
-{
-	url = [DataProcess encodeUrl:url];
-	
+{	
 	NSRange range;
 	range = [url rangeOfString:@"http://"];
 	if(range.length == 0)
@@ -137,7 +135,7 @@
 
 - (void)calculateAbsPath:(NSString *)relativePath forItem:(File *)item {
     NSString *domain = [[ServerPreferencesManager sharedInstance] selectedDomain];
-    item.path = [NSString stringWithFormat:@"%@%@%@%@%@", domain, DOCUMENT_JCR_PATH_REST, @"repository/", item.workspaceName, relativePath];
+    item.path = [NSString stringWithFormat:@"%@%@%@/%@%@", domain, DOCUMENT_JCR_PATH_REST, [ServerPreferencesManager sharedInstance].currentRepository, item.workspaceName, relativePath];
 }
 
 #pragma mark -
@@ -145,14 +143,15 @@
 
 - (NSArray*)getDrives:(NSString*)driveName {
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
+    NSString *domain = [ServerPreferencesManager sharedInstance].selectedDomain;
+    BOOL showPrivate = [ServerPreferencesManager sharedInstance].showPrivateDrive;
+    
 
     // Initialize the array of files
-    NSMutableArray *folderArray = [[[NSMutableArray alloc] init] autorelease];	
+    NSMutableArray *folderArray = [[[NSMutableArray alloc] init] autorelease];
 	
     // Create URL for getting data
-    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName]];
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName, DOCUMENT_DRIVE_SHOW_PRIVATE_OPT, showPrivate ? @"true" : @"false"]];
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     NSData *data = [self sendSynchronizedHTTPRequest:request];
@@ -259,43 +258,11 @@
 
 - (void)creatUserRepositoryHomeUrl
 {
-    NSString* domain = [[ServerPreferencesManager sharedInstance] selectedDomain];
-    NSString *username = [[ServerPreferencesManager sharedInstance] username];
-    NSString *password = [[ServerPreferencesManager sharedInstance] password];
+    ServerPreferencesManager *serverPM = [ServerPreferencesManager sharedInstance];
     
-    NSString *urlForUserRepo = [NSString stringWithFormat:@"%@%@repository/collaboration/Users", domain, DOCUMENT_JCR_PATH_REST];
+    NSString *urlForUserRepo = [NSString stringWithFormat:@"%@%@%@/%@%@", serverPM.selectedDomain, DOCUMENT_JCR_PATH_REST, serverPM.currentRepository, serverPM.defaultWorkspace, serverPM.userHomeJcrPath];
     
-    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:urlForUserRepo];
-    
-    int length = [username length];
-    
-    int numberOfUserLevel = 2;
-    if(length >= 4)
-        numberOfUserLevel = 3;
-    
-    for(int i = 1; i <= numberOfUserLevel; i++)
-    {
-        NSMutableString *userNameLevel = [[NSMutableString alloc] initWithString:[username substringToIndex:i]];
-        
-        for(int j = 1; j <= 3; j++)
-        {
-            [userNameLevel appendString:@"_"];
-        }
-        
-        [urlStr appendFormat:@"/%@", userNameLevel];
-        
-        [userNameLevel release];
-    }
-    
-    [urlStr appendFormat:@"/%@", username];
-    
-    self._isWorkingWithMultipeUserLevel = [[AuthenticateProxy sharedInstance] isReachabilityURL:urlStr userName:username password:password];
-    
-    if(_isWorkingWithMultipeUserLevel)    
-        self._strUserRepository = [NSString stringWithString:urlStr];
-    else
-        self._strUserRepository = [NSString stringWithFormat:@"%@/%@", urlForUserRepo, username];
-    
+    self._strUserRepository = [NSString stringWithString:urlForUserRepo];    
 }
 
 - (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
@@ -308,14 +275,14 @@
     NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
 
     
-	source = [DataProcess encodeUrl:source];
-	destination = [DataProcess encodeUrl:destination];
+	source = [source stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	destination = [destination stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
     NSString *username = [[ServerPreferencesManager sharedInstance] username];
     NSString *password = [[ServerPreferencesManager sharedInstance] password];
 	
-	NSHTTPURLResponse* response;
-	NSError* error;
+	NSHTTPURLResponse* response = nil;
+	NSError* error = nil;
     
     //Message for error
     NSString *errorMessage;
@@ -355,7 +322,7 @@
 			
             //Put the label into the error
             // TODO Localize this label
-            errorMessage = [NSString stringWithFormat:@"Can not move file to its location"];
+            errorMessage = [NSString stringWithFormat:@"Cannot move file to its location"];
              
             [request release];
             
@@ -375,7 +342,7 @@
 	{
         //Put the label into the error
         // TODO Localize this label
-        errorMessage = [NSString stringWithFormat:@"Can not transfer file"];
+        errorMessage = [NSString stringWithFormat:@"Cannot transfer file"];
         
         return errorMessage;
 		        

@@ -21,6 +21,7 @@
 @synthesize imgvMessageBg=_imgvMessageBg;
 @synthesize imgvCellBg = _imgvCellBg;
 @synthesize webViewForContent = _webViewForContent;
+@synthesize extraDelegateForWebView;
 @synthesize width;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -108,26 +109,35 @@
     _lbName.text = [socialComment.userProfile.fullName copy];
     
     
-    NSString *text = [[socialComment.text stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",text?text:@""];
+    NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialComment.text ? socialComment.text : @""];
     
     [_webViewForContent loadHTMLString:htmlStr ? htmlStr :@""
                                baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
      ];
-    //Set the position of web
-    CGSize theSize = [text sizeWithFont:kFontForTitle 
-                      constrainedToSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
     
-    _webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    CGRect tmpFrame = _webViewForContent.frame;
-    tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height;
-    tmpFrame.size.height = theSize.height + 10;
-    _webViewForContent.frame = tmpFrame;
     
-    _lbDate.text = [socialComment.postedTimeInWords copy];
+    _lbDate.text = socialComment.postedTimeInWords;
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    CGRect frame = webView.frame;
+    frame.size.height = 1;
+    webView.frame = frame;
+    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
+    frame.size = fittingSize;
+    frame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height;
+    frame.size.height += 10.;
+    webView.frame = frame;
+
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if ([self.extraDelegateForWebView respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
+        return [self.extraDelegateForWebView webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    } else {
+        return NO;
+    }
+}
 
 @end
  

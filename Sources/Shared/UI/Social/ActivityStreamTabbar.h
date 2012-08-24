@@ -26,4 +26,6 @@ typedef enum {
 
 - (void)selectTabItem:(ActivityStreamTabItem)selectedTabItem;
 
+- (void)updateLabelsWithNewLanguage;
+
 @end

@@ -291,12 +291,12 @@ static short fileActionMode = 0;//1:copy, 2:move
 			{
                 
                 [fileActionsDelegate copyFileSource:copyMoveFile.path
-                                      toDestination:[_file.path stringByAppendingPathComponent:[copyMoveFile.path lastPathComponent]]];
+                                      toDestination:[NSString stringWithFormat:@"%@/%@", _file.path, [copyMoveFile.path lastPathComponent]]];
 			}
 			else
 			{	
                 [fileActionsDelegate moveFileSource:copyMoveFile.path
-                                      toDestination:[_file.path stringByAppendingPathComponent:[copyMoveFile.path lastPathComponent]]];
+                                      toDestination:[NSString stringWithFormat:@"%@/%@", _file.path, [copyMoveFile.path lastPathComponent]]];
 				
 			}
             [copyMoveFile release];

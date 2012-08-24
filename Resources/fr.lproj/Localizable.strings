@@ -68,8 +68,8 @@
 "likeThisActivity" = "%d aiment l'activité";
 "NoOneLikeThis" = "Personne n'aime cela pour le moment";
 "ActivityDetails" = "Détails de l'activité";
-"comments(%d)" = "Comments(%d)";
-"likes(%d)" = "aimes(%d)";
+"comments(%d)" = "Commentaires (%d)";
+"likes(%d)" = "Personnes qui aiment (%d)";
 "Error" = "Erreur";
 "MessageComposer" = "Message Composer !";
 "NoMessageComment" = "Aucun message pour votre commentaire";
@@ -109,7 +109,7 @@
 "Location" = "Lieu";
 "StartTime" = "Date de début";
 "EndTime" = "Date de fin";
-"NoComment" = "Persone n'a commenté, soyez le premier";
+"NoComment" = "Personne n'a commenté, soyez le premier";
 "SpecialCharacters" = "Les caractères spéciaux ne sont pas autorisés";
 "OK" = "OK";
 "Image Preview" = "Image Sélectionnée";
@@ -120,6 +120,7 @@
 "My Spaces"="Mes espaces";
 "My Status"="Mon statut";
 "KeepSelectedStream"="Garder mon filtre";
+"ShowPrivateDrive"="Afficher le lecteur privé";
 
 "DashboardsCannotBeRetrieved"="Impossible de récupérer les dashboards";
 "FolderNameAlreadyExist"="Ce dossier existe déjà";
@@ -158,3 +159,6 @@
 "Required"="Requis";
 "Fullscreen"="Plein-écran";
 "Close"="Fermer";
+
+"Cannot move file to its location"="Impossible de copier le fichier au même emplacement";
+"Cannot transfer file"="Impossible de transférer le fichier";

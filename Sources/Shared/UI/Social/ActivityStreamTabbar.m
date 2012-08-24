@@ -13,11 +13,11 @@
 #define kFilterTabTopBottomPadding 5.0
 #define kFilterTabLeftRightPadding 10.0
 #define kFilterTabItemSeparateSpace 0.0
-#define kFilterTabItemPadding 4.0
+#define kFilterTabItemPadding (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 25. : 8.0)
 
 #define kActivityStreamTabItemTitle @"item title"
 #define kActivityStreamTabItem @"custom JMItem"
-#define kActivityStreamTabItemFont [UIFont systemFontOfSize:11.]
+#define kActivityStreamTabItemFont (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? [UIFont systemFontOfSize:11.] : [UIFont systemFontOfSize:10.])
 
 @interface CustomFilterItem : JMTabItem
 
@@ -43,8 +43,6 @@
 
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    UIColor *shadowColor = [UIColor blackColor];
-    CGContextSetShadowWithColor(context, CGSizeMake(0, 1.0), 0.2f, shadowColor.CGColor);
     CGContextSaveGState(context);
     UIColor *textColor = self.isSelectedTabItem ? [UIColor colorWithRed:84./255 green:84./255 blue:84./255 alpha:1.] : [UIColor colorWithRed:122./255 green:122./255 blue:122./255 alpha:1.];
     [textColor set];
@@ -133,9 +131,9 @@
         [self initData];
         [self.tabView setSelectionView:[[[CustomActivityFilterSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
         [self.tabView setBackgroundLayer:nil];
-        float itemSpacing = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 10 : 2;
-        [self.tabView setItemSpacing:itemSpacing];
         CGRect contentRect = self.tabView.bounds;
+        float itemSpacing = (contentRect.size.width - [self calculateItemSpacing]) / ([_listOfItems count] - 1);
+        [self.tabView setItemSpacing:itemSpacing];
         float itemWidth = (contentRect.size.width - kFilterTabItemSeparateSpace * (_listOfItems.count - 1)) / (_listOfItems.count);
         for (NSDictionary *dict in _listOfItems) {
             CustomFilterItem *item = [dict objectForKey:kActivityStreamTabItem];
@@ -145,6 +143,17 @@
         
     }
     return self;
+}
+
+- (float)calculateItemSpacing; 
+{
+    float itemsWidth = 0;
+    for (NSDictionary *itemData in _listOfItems) {
+        NSString *title = Localize([itemData objectForKey:kActivityStreamTabItemTitle]);
+        CGSize titleSize = [title sizeWithFont:kActivityStreamTabItemFont];
+        itemsWidth += titleSize.width + kFilterTabItemPadding * 2;
+    }
+    return itemsWidth;
 }
 
 #pragma mark - view management
@@ -163,6 +172,26 @@
 - (void)selectTabItem:(ActivityStreamTabItem)selectedTabItem {
     [self.tabView setSelectedIndex:selectedTabItem];
     [self.tabView didSelectItemAtIndex:selectedTabItem];
+}
+
+#pragma mark - language change management
+
+- (void)updateLabelsWithNewLanguage {
+    for(int i=0; i<_listOfItems.count; i++) {
+        // Update the title of each tab
+        NSDictionary *dict = [_listOfItems objectAtIndex:i];
+        CustomFilterItem* item = [dict objectForKey:kActivityStreamTabItem];
+        if (i == ActivityStreamTabItemAllUpdate) {
+            item.title = Localize(@"All Updates");
+        } else if (i == ActivityStreamTabItemMyConnections) {
+            item.title = Localize(@"My Connections");
+        } else if (i == ActivityStreamTabItemMySpaces) {
+            item.title = Localize(@"My Spaces");
+        } else if (i == ActivityStreamTabItemMyStatus) {
+            item.title = Localize(@"My Status");
+        }
+        [item setNeedsDisplay];
+    }
 }
 
 @end

@@ -54,6 +54,11 @@
 
 @end
 
+// = Interface for private method
+@interface MenuViewController (PrivateMethods)
+- (void)initAndSelectDocumentsViewController;
+@end
+
 @interface MenuViewController () {
     CGRect _viewFrame;
 }
@@ -157,6 +162,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 
@@ -292,7 +298,7 @@
         index += 1;
     }
     switch (index) {
-        case 0: {
+        case EXO_ACTIVITY_STREAM_ROW: {
             //Activity Stream
             ActivityStreamBrowseViewController_iPad *activityViewController = [[[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil] autorelease];
             
@@ -300,16 +306,15 @@
             
             break;
         }
-        case 1: {
+        case EXO_DOCUMENTS_ROW: {
             // files
-            DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
-            documentsViewController.isRoot = YES;
-            documentsViewController.title = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];
+            // Same code is used at the end of the method doneWithSettings
+            // Hence it's put in the separate method initAndSelectDocumentsViewController
+            [self initAndSelectDocumentsViewController];
             
             break;
         }
-        case 2: {
+        case EXO_DASHBOARD_ROW: {
             // dashboard
             DashboardViewController_iPad *dashboardViewController_iPad = [[[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil] autorelease];
             
@@ -343,27 +348,46 @@
     [_tableView release];
     [_userProfileViewController release];
     [_modalNavigationSettingViewController release];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [super dealloc];
+}
+
+- (void)initAndSelectDocumentsViewController {
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
+    documentsViewController.isRoot = YES;
+    documentsViewController.title = [[_cellContents objectAtIndex:selectedIndex.row] objectForKey:kCellText];
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];
 }
 
 #pragma mark - Settings Delegate methods
 
 -(void)doneWithSettings {
-    //TODO Localize this strings
+    // Reload the Documents page it is currently selected
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    if (selectedIndex.row == EXO_DOCUMENTS_ROW)
+        [self initAndSelectDocumentsViewController];
+    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - change language management
+
+- (void)updateLabelsWithNewLanguage{
+    // Save the selected menu
+    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    // Remove the menu items...
     [_cellContents removeAllObjects];
+    // ...and add them again, the new language is automatically applied
     if(_isCompatibleWithSocial){
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
     }
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
     [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
-    //[_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ChatIPadIcon.png"], kCellImage, Localize(@"Chat"), kCellText, nil]];
-    NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
+    // Redraw the table
     [_tableView reloadData];
+    // Reselect the previously selected menu item
     [_tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
 }
-
 
 @end
 

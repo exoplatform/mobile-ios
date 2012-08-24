@@ -16,7 +16,14 @@
  * Key of User Preference to save selected stream tab order. it contains domain name and username to distinguish amongs users.
  */
 #define EXO_SELECTED_STREAM                 [NSString stringWithFormat:@"%@_%@_selected_stream", self.selectedDomain, self.username]
-#define EXO_REMEMBER_MY_STREAM              @"remember_my_stream"
+#define EXO_REMEMBER_MY_STREAM              [NSString stringWithFormat:@"%@_%@_remember_my_stream", self.selectedDomain, self.username]
+/*
+ * Keys for login settings
+ */
+#define EXO_REMEMBER_ME                     @"remember_me"
+#define EXO_AUTO_LOGIN                      @"auto_login"
+/* key for showing prive drive */
+#define EXO_PREFERENCE_SHOW_PRIVATE_DRIVE   [NSString stringWithFormat:@"%@_%@_show_private_drive", self.selectedDomain, self.username]
 
 //=====================================================================
 
@@ -34,8 +41,15 @@
 @synthesize selectedDomain = _selectedDomain;
 @synthesize username = _username;
 @synthesize password = _password;
-@synthesize selectedSocialStream = _selectedSocialStream;
-@synthesize rememberSelectedSocialStream = _rememberSelectedSocialStream;
+@synthesize currentRepository = _currentRepository;
+@synthesize defaultWorkspace = _defaultWorkspace;
+@synthesize userHomeJcrPath = _userHomeJcrPath;
+@synthesize selectedSocialStream;
+@synthesize rememberSelectedSocialStream;
+@synthesize isUserLogged = _isUserLogged;
+@synthesize autoLogin;
+@synthesize rememberMe;
+@synthesize showPrivateDrive;
 
 + (ServerPreferencesManager*)sharedInstance
 {
@@ -58,16 +72,9 @@
     {        
         self.selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
         [self reloadUsernamePassword];
-        
-        _selectedSocialStream = -1;
-        
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *rememberMyStream = [userDefaults objectForKey:EXO_REMEMBER_MY_STREAM];
-        if (!rememberMyStream) {
-            self.rememberSelectedSocialStream = YES;
-        } else {
-            _rememberSelectedSocialStream = [rememberMyStream boolValue];
-        }
+                
+        // At the startup time, the user is always unsigned.
+        _isUserLogged = NO;
     }	
 	return self;
 }
@@ -78,6 +85,9 @@
 	[_arrServerList release];
     [_username release];
     [_password release];
+    [_currentRepository release];
+    [_defaultWorkspace release];
+    [_userHomeJcrPath release];
 	[super dealloc];
 }
 
@@ -383,21 +393,92 @@
     return [[_selectedDomain copy] autorelease];
 }
 
-- (void)setRememberSelectedSocialStream:(BOOL)rememberSelectedSocialStream {
-    _rememberSelectedSocialStream = rememberSelectedSocialStream;
-    NSString *rememberMyStream = [NSString stringWithFormat:@"%d", rememberSelectedSocialStream]; 
+- (BOOL)rememberSelectedSocialStream {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:rememberMyStream forKey:EXO_REMEMBER_MY_STREAM];
+    NSString *value = [userDefaults objectForKey:EXO_REMEMBER_MY_STREAM];
+    return value ? [value boolValue] : YES;
 }
 
-- (void)setSelectedSocialStream:(int)selectedSocialStream {
+- (void)setRememberSelectedSocialStream:(BOOL)agree {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", selectedSocialStream] forKey:EXO_SELECTED_STREAM];
+    [userDefaults setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_REMEMBER_MY_STREAM];
+}
+
+- (void)setSelectedSocialStream:(int)selectedIndex {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSString stringWithFormat:@"%d", selectedIndex] forKey:EXO_SELECTED_STREAM];
 }
 
 - (int)selectedSocialStream {
     return self.rememberSelectedSocialStream ? [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_SELECTED_STREAM] intValue] : 0;
 }
 
+- (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath {
+    [repositoryName retain];
+    [_currentRepository release];
+    _currentRepository = repositoryName ? repositoryName : [@"repository" retain];
+    [defaultWorkspace retain];
+    [_defaultWorkspace release];
+    _defaultWorkspace = defaultWorkspace ? defaultWorkspace : [@"collaboration" retain];
+    [userHomePath retain];
+    [_userHomeJcrPath release];
+    _userHomeJcrPath = userHomePath ? userHomePath : [[self makeUserHomePath:self.username] retain];
+}
+
+- (NSString *)makeUserHomePath:(NSString *)username; 
+{
+    NSMutableString *path = [NSMutableString stringWithString:@"/Users"];
+    
+    int length = [username length];
+    
+    int numberOfUserLevel = length < 4 ?  2 : 3;
+    
+    for(int i = 1; i <= numberOfUserLevel; i++)
+    {
+        NSMutableString *userNameLevel = [NSMutableString stringWithString:[username substringToIndex:i]];
+        
+        for(int j = 1; j <= 3; j++)
+        {
+            [userNameLevel appendString:@"_"];
+        }
+        
+        [path appendFormat:@"/%@", userNameLevel];        
+    }
+    
+    [path appendFormat:@"/%@", username];
+    return path;
+}
+
+#pragma mark - Login management
+- (BOOL)autoLogin {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *value = [userDefaults objectForKey:EXO_AUTO_LOGIN];
+    return value ? [value boolValue] : NO;
+}
+
+- (void)setAutoLogin:(BOOL)agree {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_AUTO_LOGIN];
+}
+
+- (BOOL)rememberMe {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *value = [userDefaults objectForKey:EXO_REMEMBER_ME];
+    return value ? [value boolValue] : NO;
+}
+
+- (void)setRememberMe:(BOOL)agree {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_REMEMBER_ME];
+}
+
+#pragma mark - Document setting management
+- (BOOL)showPrivateDrive {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *value = [userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE];
+    return value ? [value boolValue] : YES;
+}
+
+- (void)setShowPrivateDrive:(BOOL)agree {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE];
+}
 
 @end

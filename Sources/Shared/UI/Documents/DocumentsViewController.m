@@ -231,6 +231,8 @@ static NSString *PRIVATE_GROUP = @"Private";
     [_tblFiles release];
     _tblFiles = nil;
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
     [super dealloc];
 }
 
@@ -327,6 +329,9 @@ static NSString *PRIVATE_GROUP = @"Private";
         //Start the request to load file content
         [self performSelectorInBackground:@selector(startRetrieveDirectoryContent) withObject:nil];
     }
+    
+    // Observe the change language notif to update the labels
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 - (void)viewDidUnload
@@ -478,7 +483,7 @@ static NSString *PRIVATE_GROUP = @"Private";
         
         //Provide to the button, the tag corresponding to the indexPath
         //Use Modulo to provide the section information.
-        buttonAccessory.tag = 1000 * indexPath.section + indexPath.row;
+        buttonAccessory.tag = [self tagNumberFromIndexPath:indexPath];
         
         //Increase the size of the button, to make it easier to touch
         buttonAccessory.frame = CGRectMake(0, 0, 50.0, 50.0);
@@ -499,9 +504,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     }
     
     //Set the file name
-    cell.textLabel.text = [URLAnalyzer decodeURL:file.name]; 
-    
-    
+    cell.textLabel.text = [file.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];; 
     
     return cell;
     
@@ -533,7 +536,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 - (void)showErrorForFileAction:(NSString *)errorMessage {
     [self hideLoader:NO];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:errorMessage delegate:self 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:Localize(errorMessage) delegate:self 
                                           cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -804,10 +807,6 @@ static NSString *PRIVATE_GROUP = @"Private";
         {
             //TODO Localize this string
             [self displayHudLoader];
-            if(!_rootFile.isFolder) {
-                newFolderName = [newFolderName stringByEncodingHTMLEntities];
-                newFolderName = [DataProcess encodeUrl:newFolderName];
-            }
             
             NSString* strNewFolderPath = [FilesProxy urlForFileAction:[fileToApplyAction.path stringByAppendingPathComponent:newFolderName]];
             NSLog(@"%@", strNewFolderPath);
@@ -901,10 +900,6 @@ static NSString *PRIVATE_GROUP = @"Private";
         {
             //TODO Localize this string
             [self displayHudLoader];
-            if(!_rootFile.isFolder) {
-                newFolderName = [newFolderName stringByEncodingHTMLEntities];
-                newFolderName = [DataProcess encodeUrl:newFolderName];
-            }
             
             NSString *strRenamePath = [FilesProxy urlForFileAction:[_rootFile.path stringByAppendingPathComponent:newFolderName]];
             NSString *strSource = [FilesProxy urlForFileAction:folderToRename.path];
@@ -976,7 +971,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             }
             else
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a picture" message:@"Camera is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture") message:Localize(@"CameraNotAvailable") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
                 [alert show];
                 [alert release];
             }
@@ -1046,6 +1041,24 @@ static NSString *PRIVATE_GROUP = @"Private";
 {  
     [picker dismissModalViewControllerAnimated:YES];  
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
+}
+
+#pragma mark - change language management
+
+- (void) updateLabelsWithNewLanguage{
+    // The names of the sections
+    [_tblFiles reloadData];
+    // Redraw
+    [self.view setNeedsDisplay];
+}
+
+#pragma mark - Utility methods
+- (NSInteger)tagNumberFromIndexPath:(NSIndexPath *)indexPath {
+    return 1234 + 1000 * indexPath.section + indexPath.row;
+}
+
+- (NSIndexPath *)indexPathFromTagNumber:(NSInteger)tagNumber {
+    return [NSIndexPath indexPathForRow:(tagNumber - 1234)%1000 inSection:(tagNumber - 1234)/1000];
 }
 
 @end

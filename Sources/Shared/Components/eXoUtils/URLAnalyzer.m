@@ -13,6 +13,9 @@
 
 + (NSString *)parserURL:(NSString *)urlStr
 {
+    //Put in lowercase to make checks easier
+    urlStr = [urlStr lowercaseString];
+    
     //Check if the given url is null
     if(urlStr == nil || [urlStr length] == 0)
         return nil;

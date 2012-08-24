@@ -27,6 +27,7 @@ typedef enum {
 @property (nonatomic, retain) EmptyView *emptyView;
 @property (nonatomic, retain) UIButton *commentButton;
 @property (nonatomic, retain) UIView *infoContainer;
+@property (nonatomic, assign) id<UIWebViewDelegate> delegateToProcessClickAction;
 
 // this method is used to update value for subviews
 - (void)updateSubViews;
@@ -34,5 +35,6 @@ typedef enum {
 - (void)selectTab:(ActivityAdvancedInfoCellTab)selectedTab;
 - (void)jumpToLastCommentIfExist;
 - (void)reloadInfoContainerWithAnimated:(BOOL)animated;
+- (void)updateLabelsWithNewLanguage;
 
 @end

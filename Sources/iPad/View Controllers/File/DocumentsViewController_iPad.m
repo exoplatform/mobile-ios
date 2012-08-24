@@ -75,17 +75,8 @@
 - (void)deleteCurentFileView {
     // This method will remove this view and reload its parent view. 
     StackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
-    NSMutableArray *viewControllersStack = stackScrollVC.viewControllersStack;
-    DocumentsViewController *parentController = [[viewControllersStack objectAtIndex:viewControllersStack.count - 2] retain];
-    if (viewControllersStack.count == 2) {
-        // if parent view is the start view, reassign it in the stack
-        [stackScrollVC addViewInSlider:parentController invokeByController:nil isStackStartView:YES];
-    } else {
-        // if parent view is not the start view, remove the views from the grand parent view and reattach the parent view
-        DocumentsViewController *grandController = [viewControllersStack objectAtIndex:viewControllersStack.count - 3];
-        [stackScrollVC removeViewFromController:grandController];
-        [stackScrollVC addViewInSlider:parentController invokeByController:grandController isStackStartView:NO];
-    }
+    DocumentsViewController *parentController = [[stackScrollVC.viewControllersStack objectAtIndex:stackScrollVC.viewControllersStack.count - 2] retain];
+    [stackScrollVC removeViewFromController:parentController];
     // Reload the content of the parent view.
     [parentController startRetrieveDirectoryContent];
     [parentController release];
@@ -123,6 +114,7 @@
     if(_actionPopoverController != nil){
         [_actionPopoverController release];
     }
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [super dealloc];
 }
 
@@ -132,7 +124,7 @@
     UIButton *bt = (UIButton *)sender;
     //Retrieve in the button, the tag with information corresponding to the indexPath of the touched cell
     //Use Modulo to retrieve the section information.
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.tag%1000 inSection:bt.tag/1000];
+    NSIndexPath *indexPath = [self indexPathFromTagNumber:bt.tag];
     
     NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];
     fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
@@ -347,6 +339,13 @@
     if(emptyview != nil){
         [emptyview changeOrientation];
     }
+}
+
+# pragma mark - change language management
+- (void) updateLabelsWithNewLanguage{
+    [super updateLabelsWithNewLanguage];
+    // Title of the view
+    _navigation.topItem.title = Localize(@"Documents") ;
 }
 
 @end

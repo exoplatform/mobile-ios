@@ -68,7 +68,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     // Do any additional setup after loading the view from its nib.
     self.title = Localize(@"ServerModify");
     //_bbtnEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onBbtnEdit)];
-    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnDone)]; //It will be localized later
+    _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStylePlain target:self action:@selector(onBbtnDone)]; //It will be localized later
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
     
         
@@ -86,7 +86,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton"]
                                     stretchableImageWithLeftCapWidth:5 topCapHeight:5]
                           forState:UIControlStateNormal];
-    [_btnDelete setTitle:@"Delete" forState:UIControlStateNormal];
+    [_btnDelete setTitle:Localize(@"Delete") forState:UIControlStateNormal];
     [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -155,11 +155,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder];
     
-    _strServerName = [[_txtfServerName text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    _strServerUrl = [URLAnalyzer parserURL:[[_txtfServerUrl text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    
-    if ([_delegate editServerObjAtIndex:_intIndex withSeverName:_strServerName andServerUrl:_strServerUrl]) [self.navigationController popViewControllerAnimated:YES];
+    if ([_delegate editServerObjAtIndex:_intIndex withSeverName:[_txtfServerName text] andServerUrl:[_txtfServerUrl text]]) [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)onBtnDelete

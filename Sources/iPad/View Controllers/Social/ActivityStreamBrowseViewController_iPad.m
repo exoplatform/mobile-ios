@@ -23,13 +23,14 @@
 
 @implementation ActivityStreamBrowseViewController_iPad
 
+- (void)dealloc{
+    [super dealloc];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
-    
-    _navigation.topItem.title = Localize(@"News");
 }
 
 // Specific method to retrieve the height of the cell
@@ -175,6 +176,13 @@
 - (void)clearActivityData {
     [super clearActivityData];
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
+}
+
+#pragma mark - change language management
+
+- (void)updateLabelsWithNewLanguage{
+    [super updateLabelsWithNewLanguage];
+    _navigation.topItem.title = Localize(@"News");
 }
 
 @end

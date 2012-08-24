@@ -14,7 +14,10 @@
 #import "ActivityHelper.h"
 #import "LanguageHelper.h"
 #import "EmptyView.h"
-
+#import "ActivityLinkDisplayViewController_iPad.h"
+#import "AppDelegate_iPad.h"
+#import "RootViewController.h"
+#import "StackScrollViewController.h"
 
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellLeftRightPadding 1.0
@@ -206,6 +209,7 @@ static NSString *kTabItem = @"kTabItem";
 @synthesize emptyView = _emptyView;
 @synthesize commentButton = _commentButton;
 @synthesize infoContainer = _infoContainer;
+@synthesize delegateToProcessClickAction = _delegateToProcessClickAction;
 
 - (void)dealloc {
     [_tabView release];
@@ -454,6 +458,7 @@ static NSString *kTabItem = @"kTabItem";
             //Create a cell, need to do some configurations
             [cell configureCell];
             cell.width = tableView.frame.size.width;
+            cell.extraDelegateForWebView = self.delegateToProcessClickAction;
         }
         SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
         [cell setSocialComment:socialComment];
@@ -511,6 +516,23 @@ static NSString *kTabItem = @"kTabItem";
         _selectedTab = selectedTab;
         [self reloadInfoContainerWithAnimated:YES];
     }
+}
+
+#pragma mark - change language management
+
+- (void)updateLabelsWithNewLanguage{
+    // The titles of the tabs (comments and likes)
+    [self updateTabLabels];
+    [self selectTab:_selectedTab];
+    // The date of each comment
+    for (SocialComment *c in self.socialActivity.comments) {
+        [c convertToPostedTimeInWords];
+    }
+    [self.infoView reloadData];
+    // The add comment button at the bottom
+    [_commentButton setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
+    // The empty view label (no comment or like)
+    [self.emptyView setLabelContent:Localize(@"NoComment")];
 }
 
 @end

@@ -264,8 +264,19 @@
     if (!_advancedInfoController) {
         _advancedInfoController = [[ActivityDetailAdvancedInfoController_iPad alloc] init];
         [_advancedInfoController.commentButton addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
+        _advancedInfoController.delegateToProcessClickAction = self;
     }
     return _advancedInfoController;
+}
+
+#pragma mark - change language management
+
+- (void) updateLabelsWithNewLanguage{
+    [super updateLabelsWithNewLanguage];
+    _navigation.topItem.title = Localize(@"Details");
+    [self.advancedInfoController updateLabelsWithNewLanguage];
+    [_tblvActivityDetail reloadData];
+    [self.view setNeedsDisplay];
 }
 
 @end

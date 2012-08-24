@@ -29,8 +29,7 @@
 	UISwitch*                       rememberMe;
 	UISwitch*                       autoLogin;
     UISwitch*                       _rememberSelectedStream;
-	
-    ServerManagerViewController*    _serverManagerViewController;
+    UISwitch*                       _showPrivateDrive;
     
     id<SettingsDelegateProcotol>    _settingsDelegate;
     

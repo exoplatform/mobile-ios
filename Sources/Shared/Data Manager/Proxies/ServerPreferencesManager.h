@@ -43,6 +43,22 @@
  */
 @property (nonatomic, assign) BOOL rememberSelectedSocialStream;
 
+/* current jcr repository. Return "repository" if cannot retrieve it from the server */
+@property (nonatomic, readonly) NSString *currentRepository;
+/* default jcr workspace. Return "collaboration" if cannot retrieve it from the server */
+@property (nonatomic, readonly) NSString *defaultWorkspace;
+/* home user jcr path. Return nil if cannot retrieve it from the server */
+@property (nonatomic, readonly) NSString *userHomeJcrPath;
+
+/* 
+ login info
+ */
+@property (nonatomic, assign) BOOL isUserLogged;
+@property (nonatomic, assign) BOOL rememberMe;
+@property (nonatomic, assign) BOOL autoLogin;
+
+@property (nonatomic, assign) BOOL showPrivateDrive;
+
 + (ServerPreferencesManager*)sharedInstance;
 - (NSMutableArray *)serverList;
 - (void)loadServerList;
@@ -63,5 +79,6 @@
 - (void)persistUsernameAndPasswod;
 // Reload username and password from user preference
 - (void)reloadUsernamePassword;
+- (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath;
 
 @end

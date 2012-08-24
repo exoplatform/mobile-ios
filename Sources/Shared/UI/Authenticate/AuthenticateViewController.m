@@ -109,11 +109,9 @@
     self.navigationController.navigationBarHidden = YES;
     
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
-	
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-	_bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+	    
+	_bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+	_bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
 	
 	if(_bRememberMe || _bAutoLogin)
 	{
@@ -133,8 +131,7 @@
 	{
 		[_txtfUsername setText:@""];
 		[_txtfPassword setText:@""];
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+        [ServerPreferencesManager sharedInstance].isUserLogged = NO;
 	}
     
     [_tbvlServerList reloadData];
@@ -308,6 +305,7 @@
         [ServerPreferencesManager sharedInstance].username = _txtfUsername.text;
         [ServerPreferencesManager sharedInstance].password = _txtfPassword.text;
         [[ServerPreferencesManager sharedInstance] persistUsernameAndPasswod];
+        [[ServerPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
     }
 }
 

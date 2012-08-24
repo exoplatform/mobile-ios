@@ -82,8 +82,7 @@
     [[SocialRestConfiguration sharedInstance] updateDatas];
 
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
+    [ServerPreferencesManager sharedInstance].isUserLogged = YES;
     self.rootViewController = [[[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial] autorelease];
     [UIView transitionWithView:self.window
                       duration:1
@@ -98,9 +97,8 @@
 
 -(void)backToAuthenticate{    
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
-    [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+    [ServerPreferencesManager sharedInstance].autoLogin = NO;
+    [ServerPreferencesManager sharedInstance].isUserLogged = NO;
     
     // execute Logout
     [LoginProxy doLogout];

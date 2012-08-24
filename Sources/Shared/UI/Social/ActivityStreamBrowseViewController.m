@@ -34,7 +34,7 @@
 #import "ActivityHelper.h"
 #import "SocialRestProxy.h"
 
-#define kStreamTabbarHeight 40.0
+#define kStreamTabbarHeight (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 35. : 30.)
 
 static NSString* kCellIdentifier = @"ActivityCell";
 static NSString* kCellIdentifierPicture = @"ActivityPictureCell";
@@ -288,8 +288,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];    
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
-    
-    self.title = Localize(@"News");
+    _navigation.topItem.title = Localize(@"News");
     
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
     _tblvActivityStream.scrollsToTop = YES;
@@ -317,6 +316,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //Set the last update date at now 
     self.dateOfLastUpdate = [NSDate date];
         
+    // Observe the change language notif to update the labels
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 - (void)viewDidUnload
@@ -876,6 +877,19 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         [self.navigationController popViewControllerAnimated:YES];
     }
     
+}
+
+#pragma mark - change language management
+- (void)updateLabelsWithNewLanguage {
+    // The activity filter tabs bar
+    [_filterTabbar updateLabelsWithNewLanguage];
+    [_filterTabbar selectTabItem:_selectedTabItem];
+    // The list of activities
+    [_tblvActivityStream reloadData];
+    for (SocialActivity *a in _arrActivityStreams) {
+        [a convertToPostedTimeInWords];
+    }
+    [self.view setNeedsDisplay];
 }
 
 @end

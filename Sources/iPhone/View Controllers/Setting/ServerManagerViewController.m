@@ -177,10 +177,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    //[userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
     ServerPreferencesManager *serverPrefManager = [ServerPreferencesManager sharedInstance];
-    if([[userDefaults valueForKey:EXO_IS_USER_LOGGED] boolValue]){
+    if(serverPrefManager.isUserLogged){
         if(serverPrefManager.selectedServerIndex != indexPath.row){
             ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:indexPath.row];
             
@@ -205,6 +203,26 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 #pragma - ServerManagerProtocol Methods
 
+// Check if the server already exists (both name and URL, ignoring the case)
+// Ignore the index of the server you are currently editing
+// Ignore -1 to compare with all the existing servers
+- (BOOL)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index {
+    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+    for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
+    {
+        if (index==i)continue; // ignore the server specified by index
+        ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:i];
+        NSString* tmpServName = [tmpServerObj._strServerName lowercaseString];
+        NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
+        if ([tmpServName isEqualToString:[strServerName lowercaseString]] ||
+            [tmpServURL isEqualToString:[strServerUrl lowercaseString]])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
  
     NSCharacterSet *invalidCharSet = [NSCharacterSet characterSetWithCharactersInString:chars];
@@ -215,26 +233,42 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 -(BOOL) checkServerInfo:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl {
  
-    //Check first message lenght for empty parameters
-    if ([strServerName length] == 0){
+    //Check if the server name is null or empty
+    if (strServerName == nil || [strServerName length] == 0){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
     }
-    
+    // Check if the name contains some forbidden characters: & < > " '
     if ([self nameContainSpecialCharacter:strServerName inSet:@"&<>\"'"]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
     }
-    
+    // Check if the server URL is null
     if(strServerUrl == nil) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
+    } else {
+        // Check if the server URL is valid :
+        // - characters & < > " ' ! ; \ | ( ) { } [ ] , * % are forbidden
+        // - URL must start with http or https
+        // - scheme and host must not be null or empty
+        NSURL* tmpUrl = [NSURL URLWithString:strServerUrl];
+        if ([self nameContainSpecialCharacter:strServerUrl inSet:@"&<>\"'!;\\|(){}[],*%"] ||
+            tmpUrl == nil || tmpUrl.scheme == nil || tmpUrl.host == nil ||
+            (![[tmpUrl.scheme lowercaseString] isEqualToString:@"http"] &&
+             ![[tmpUrl.scheme lowercaseString] isEqualToString:@"https"]
+            ) || tmpUrl.host.length == 0) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            return NO;
+        }
     }
     
     return YES;
@@ -242,33 +276,32 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
-    
-    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
-   if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
+    if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
+        ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
+        strServerUrl = [NSString stringWithFormat:@"http://%@", strServerUrl];
+    }   
+    // Check whether the name and URL are correctly formed
+    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
        return NO;
+ 
+    // If the name and URL are well formed, we remove some unnecessary characters
+    NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
-    //Check if the server has been existed
-    BOOL bExist = NO;
-    for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
-    {
-        ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:i];
-        if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
-        {
-            bExist = YES;
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-            return NO;
-        }
+    // Check whether the name and URL already exists, ignoring case
+    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:-1]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
     }
-    
-    if (!bExist) 
+    else
     {
-        
+        ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
-        serverObj._strServerName = strServerName;
-        serverObj._strServerUrl = strServerUrl;    
+        serverObj._strServerName = cleanServerName;
+        serverObj._strServerUrl = cleanServerUrl;    
         serverObj._bSystemServer = NO;
         
         //Add the server in configuration
@@ -284,36 +317,29 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
-    
+    // Check whether the name and URL are correctly formed
     if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
         return NO;
 
-    BOOL bExist = NO;
-    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
-    ServerObj* serverObjEdited = [serverPrefManager.serverList objectAtIndex:index];
+    // If the name and URL are well formed, we remove some unnecessary characters
+    NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
-    ServerObj* tmpServerObj;
-    for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
-    {
-        if(index == i)
-            continue;
-        
-        tmpServerObj = [serverPrefManager.serverList objectAtIndex:i];
-        if ([tmpServerObj._strServerName isEqualToString:strServerName]) 
-        {
-            bExist = YES;
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-            return NO;
-        }
+    // Check whether the name and URL already exists, ignoring case and the server under edit
+    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
     }
-    
-    if (!bExist) 
+    else
     {
+        ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+        ServerObj* serverObjEdited = [serverPrefManager.serverList objectAtIndex:index];
+        ServerObj* tmpServerObj;
         
-        serverObjEdited._strServerName = strServerName;
-        serverObjEdited._strServerUrl = strServerUrl;
+        serverObjEdited._strServerName = cleanServerName;
+        serverObjEdited._strServerUrl = cleanServerUrl;
         
         [serverPrefManager.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
         

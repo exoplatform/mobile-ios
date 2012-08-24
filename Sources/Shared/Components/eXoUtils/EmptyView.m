@@ -67,6 +67,10 @@
     label.frame = CGRectMake(0, self.frame.size.height/2 - image.size.height/2 + distance, self.frame.size.width, 40);
 }
 
+- (void)setLabelContent:(NSString*)content {
+    label.text = content;
+}
+
 - (void)dealloc
 {
     [label release];

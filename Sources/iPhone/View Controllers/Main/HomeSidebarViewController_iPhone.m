@@ -58,6 +58,13 @@
 
 @end
 
+// = Interface for private method
+@interface HomeSidebarViewController_iPhone (PrivateMethods)
+
+- (void)initAndSelectDocumentsViewController;
+
+@end
+
 
 @implementation HomeSidebarViewController_iPhone
 
@@ -67,6 +74,7 @@
 @synthesize userProfileViewController = _userProfileViewController;
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [_viewControllers release];
     [_revealView release];
     [_tableView release];
@@ -165,19 +173,19 @@
     buttonLogout.frame = CGRectMake(6, 15, 31, 34);
     buttonLogout.showsTouchWhenHighlighted = YES;
     
-    UIButton *disconnectLabel = [UIButton buttonWithType:UIButtonTypeCustom];
-    [disconnectLabel setTitle:Localize(@"Disconnect") forState:UIControlStateNormal];
-    disconnectLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    _disconnectLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_disconnectLabel setTitle:Localize(@"Disconnect") forState:UIControlStateNormal];
+    _disconnectLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     
-    disconnectLabel.showsTouchWhenHighlighted = YES;
-    [disconnectLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [disconnectLabel setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25] forState:UIControlStateNormal];
-    disconnectLabel.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    [disconnectLabel.titleLabel setTextAlignment:UITextAlignmentLeft];
-    [disconnectLabel addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    CGSize disLabelSize = [disconnectLabel.titleLabel.text sizeWithFont:disconnectLabel.titleLabel.font];
-    disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + 7, 15, disLabelSize.width, 34);
-    [footer addSubview:disconnectLabel];
+    _disconnectLabel.showsTouchWhenHighlighted = YES;
+    [_disconnectLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_disconnectLabel setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25] forState:UIControlStateNormal];
+    _disconnectLabel.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    [_disconnectLabel.titleLabel setTextAlignment:UITextAlignmentLeft];
+    [_disconnectLabel addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    CGSize disLabelSize = [_disconnectLabel.titleLabel.text sizeWithFont:_disconnectLabel.titleLabel.font];
+    _disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + 7, 15, disLabelSize.width, 34);
+    [footer addSubview:_disconnectLabel];
 
     
     // Now load the image and create the image view
@@ -210,12 +218,12 @@
     _revealView.contentView.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:tmpButton] autorelease];
     
     [self.view addSubview:_revealView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 -(void)logout {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
-    [userDefaults synchronize];
+    [ServerPreferencesManager sharedInstance].autoLogin = NO;
     [[AppDelegate_iPhone instance] onBtnSigtOutDelegate];
 }
 
@@ -265,7 +273,17 @@
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     // Update title for content view by selected menu item
     _revealView.contentView.navigationItem.title = [[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0]] textLabel] text];
+    // Reload the Documents page it is currently selected
+    if (rowType == eXoDocuments) {
+        [self initAndSelectDocumentsViewController];
+    }
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)initAndSelectDocumentsViewController {
+    DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
+    documentsViewController.isRoot = YES;
+    [self setRootViewController:documentsViewController animated:NO];
 }
 
 #pragma mark Helper
@@ -324,7 +342,23 @@
     [_revealView.contentView willPopNavigationItemAnimated:animated];
 }
 
+
+#pragma mark - change language management
+
+- (void)updateLabelsWithNewLanguage {
+    // Update the label of the button
+    [_disconnectLabel setTitle:Localize(@"Disconnect") forState:UIControlStateNormal];
+    // Calculate the new size and apply it
+    CGSize disLabelSize = [_disconnectLabel.titleLabel.text sizeWithFont:_disconnectLabel.titleLabel.font];
+    _disconnectLabel.frame = CGRectMake(_disconnectLabel.frame.origin.x,
+                                        _disconnectLabel.frame.origin.y,
+                                        disLabelSize.width,
+                                        _disconnectLabel.frame.size.height);
+}
+
 @end
+
+#pragma mark -
 
 
 @implementation HomeSidebarViewController_iPhone (UITableView)
@@ -506,9 +540,9 @@
                 break;
             case eXoDocuments:
             {
-                DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
-                documentsViewController.isRoot = YES;
-                [self setRootViewController:documentsViewController animated:NO];
+                // Same code is used at the end of the method doneWithSettings
+                // Hence it's put in the separate method initAndSelectDocumentsViewController
+                [self initAndSelectDocumentsViewController];
                 [_revealView revealSidebar:NO];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
@@ -523,5 +557,6 @@
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowType inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
+
 
 @end

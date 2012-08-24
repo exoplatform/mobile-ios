@@ -195,6 +195,7 @@
                 //Create a cell, need to do some configurations
                 [cell configureCell];
                 cell.width = tableView.frame.size.width;
+                cell.extraDelegateForWebView = self;
             }
             
             SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];

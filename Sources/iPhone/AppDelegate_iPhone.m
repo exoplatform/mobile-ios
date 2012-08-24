@@ -88,8 +88,7 @@
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
+    [ServerPreferencesManager sharedInstance].isUserLogged = YES;
     
     _homeSidebarViewController_iPhone = [[HomeSidebarViewController_iPhone alloc] initWithNibName:nil bundle:nil];
     
@@ -116,8 +115,7 @@
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"YES" forKey:EXO_IS_USER_LOGGED];
+    [ServerPreferencesManager sharedInstance].isUserLogged = YES;
     
     [_homeViewController_iPhone release];
     _homeViewController_iPhone = nil;   
@@ -164,9 +162,8 @@
     
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"NO" forKey:EXO_AUTO_LOGIN];
-    [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
+    [ServerPreferencesManager sharedInstance].autoLogin = NO;
+    [ServerPreferencesManager sharedInstance].isUserLogged = NO;
     
     [LoginProxy doLogout];
 }

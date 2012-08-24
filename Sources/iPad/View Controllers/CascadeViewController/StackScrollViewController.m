@@ -656,16 +656,31 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 }
 
 - (void) removeViewFromController:(UIViewController*)controller {
-    
+    // Remove all view controllers from specified view controller to top of the stack (except it)
     int index = [viewControllersStack indexOfObject:controller];
     
-    for(int i = [viewControllersStack count] - 1; i > index; i--) {
-        
-        UIViewController *newerController = (UIViewController*) [viewControllersStack objectAtIndex:i];
-        
-        [newerController.view removeFromSuperview];
-        [viewControllersStack removeObjectAtIndex:i];
-    }    
+    if (index != NSNotFound) {
+        [controller retain];
+        UIViewController *invokingController = index > 0 ? [viewControllersStack objectAtIndex:(index - 1)] : nil;
+        // Add the specified view controller again to pop all views above it in the stack
+        [self addViewInSlider:controller invokeByController:invokingController isStackStartView:(index == 0)];
+        [controller release];
+    }
+}
+
+- (void)popViewController:(UIViewController *)viewController {
+    int index = [viewControllersStack indexOfObject:viewController];
+    
+    if (index != NSNotFound) {
+        // get the parent view if it's avaiable
+        UIViewController *parentViewController = index > 0 ? [viewControllersStack objectAtIndex:(index - 1)] : nil;
+        // retain the parent view to be ensured that it isn't deallocated before kept by the stack.
+        [parentViewController retain];
+        UIViewController *invokingViewController = index > 1 ? [viewControllersStack objectAtIndex:(index - 2)] : nil;
+        // To pop the view controller, add its parent view controller again to renew the stack.
+        [self addViewInSlider:parentViewController invokeByController:invokingViewController isStackStartView:(index == 1)];
+        [parentViewController release];
+    }
 }
 
 - (void)addViewInSlider:(UIViewController*)controller invokeByController:(UIViewController*)invokeByController isStackStartView:(BOOL)isStackStartView{
