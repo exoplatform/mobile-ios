@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _navigation.topItem.title = self.title;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
 }
 
