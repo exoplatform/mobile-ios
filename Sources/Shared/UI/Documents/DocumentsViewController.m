@@ -527,6 +527,10 @@ static NSString *PRIVATE_GROUP = @"Private";
     
 }
 
+- (void)removeFileViewsFromMe;
+{
+}
+
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
     
 }
@@ -558,8 +562,10 @@ static NSString *PRIVATE_GROUP = @"Private";
     if([urlFileToDelete isEqualToString:_rootFile.path]) {
         [self deleteCurentFileView];
     }
-    else
+    else {
+        [self removeFileViewsFromMe];
         [self startRetrieveDirectoryContent];
+    }
     
 }
 

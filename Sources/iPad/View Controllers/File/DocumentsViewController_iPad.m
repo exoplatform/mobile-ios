@@ -82,6 +82,10 @@
     [parentController release];
 }
 
+- (void)removeFileViewsFromMe {
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
+}
+
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
     picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
