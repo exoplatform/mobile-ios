@@ -15,9 +15,9 @@
 #import "URLAnalyzer.h"
 #import "LanguageHelper.h"
 #import "defines.h"
+#import "SettingsViewController.h"
 
 static NSString *ServerObjCellIdentifier = @"ServerObj";
-
 
 @implementation ServerEditingViewController
 
@@ -162,7 +162,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 {
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder]; 
-    if ([_delegate deleteServerObjAtIndex:_intIndex]) [self.navigationController popViewControllerAnimated:YES];
+    if ([_delegate deleteServerObjAtIndex:_intIndex]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_SERVER_DELETED object:self];
+        [self.navigationController popViewControllerAnimated:YES];   
+    }
 }
 
 #pragma mark TextField methods

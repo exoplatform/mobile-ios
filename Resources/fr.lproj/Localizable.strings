@@ -18,7 +18,7 @@
 "Delete" = "Supprimer";
 "Settings" = "Réglages";
 "RememberMe" = "Se souvenir de moi";
-"AutoLogin" = "Automatique";
+"AutoLogin" = "Connexion Automatique";
 "Language" = "Langues";
 "English" = "Anglais (English)";
 "French" = "Français (French)";
@@ -29,6 +29,8 @@
 "WrongUserNamePassword" = "Nom d'utilisateur ou mot de passe incorrect";
 "InvalidServer" = "Connexion au serveur échouée, vérifiez son URL";
 "UserNameEmpty" = "Veuillez entrer un nom d'utilisateur";
+"PasswordEmpty" = "Veuillez entrer un mot de passe";
+"SelectedDomainEmpty" = "Veuillez choisir un serveur";
 "ServerList" = "Liste des Serveurs";
 "NewServer" = "Nouveau Serveur";
 "ServerModify" = "Modifier le serveur";

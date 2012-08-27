@@ -22,6 +22,7 @@
 @synthesize txtfPassword = _txtfPassword;
 @synthesize btnLogin = _btnLogin;
 @synthesize bAutoLogin = _bAutoLogin;
+@synthesize bRememberMe = _bRememberMe;
 @synthesize authViewController = _authViewController;
 @synthesize panelBackground = _panelBackground;
 
@@ -38,7 +39,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // custom actions
+
     }
     return self;
 }
@@ -95,33 +96,17 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-	_bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-	self.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
-	
-	if(_bRememberMe || self.bAutoLogin)
-	{
-		NSString* username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-		NSString* password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-		if(username)
-		{
-			[self.txtfUsername setText:username];
-		}
-		
-		if(password)
-		{
-			[self.txtfPassword setText:password];
-		}
-	}
-	else 
-	{
-		[self.txtfUsername setText:@""];
-		[self.txtfPassword setText:@""];
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:@"NO" forKey:EXO_IS_USER_LOGGED];
-	}
+
+- (void)signInAnimation:(int)animationMode
+{    
+    if(animationMode == 0) //Normal signIn
+    {
+        [UIView beginAnimations:nil context:nil];  
+        [UIView setAnimationDuration:1.0];  
+        [UIView commitAnimations];   
+    } else if (animationMode == 1) {
+        [self onSignInBtn:nil];
+    }
 }
 
 #pragma mark - Keyboard management
@@ -141,7 +126,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == self.txtfUsername) 
+    if (textField == self.txtfUsername)
     {
         [self.txtfPassword becomeFirstResponder];
     }
@@ -155,20 +140,39 @@
 
 - (IBAction)onSignInBtn:(id)sender
 {
-	if([self.txtfUsername.text isEqualToString:@""])
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-														message:Localize(@"UserNameEmpty")
-													   delegate:self 
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles: nil];
+    NSMutableString* errorMessage = [[[NSMutableString alloc] initWithString:@""] autorelease];
+    BOOL shouldSignIn = YES;
+    
+    if ([self.txtfUsername.text isEqualToString:@""]) {
+        shouldSignIn = NO;
+        [errorMessage appendString:@"\n"];
+        [errorMessage appendString:Localize(@"UserNameEmpty")];
+    }
+        
+    if ([self.txtfPassword.text isEqualToString:@""]) {
+        shouldSignIn = NO;
+        [errorMessage appendString:@"\n"];
+        [errorMessage appendString:Localize(@"PasswordEmpty")];
+    }
+    
+    if ([[ServerPreferencesManager sharedInstance] selectedDomain] == nil) {
+        shouldSignIn = NO;
+        [errorMessage appendString:@"\n"];
+        [errorMessage appendString:Localize(@"SelectedDomainEmpty")];
+    }
+        
+	if (shouldSignIn) {
+		[self.authViewController doSignIn];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] 
+                              initWithTitle:Localize(@"Authorization") 
+                              message:errorMessage
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil];
 		[alert show];
 		[alert release];
     }
-	else
-	{		
-		[self.authViewController doSignIn];
-	}
 }
 
 @end

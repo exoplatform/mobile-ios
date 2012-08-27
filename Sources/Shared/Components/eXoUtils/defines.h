@@ -36,6 +36,8 @@
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
 #define EXO_NOTIFICATION_CHANGE_LANGUAGE    @"notification-change-language"
 #define EXO_NOTIFICATION_SHOW_PRIVATE_DRIVE @"notification-show-private-drive"
+#define EXO_NOTIFICATION_SERVER_ADDED       @"notification-server-added"
+#define EXO_NOTIFICATION_SERVER_DELETED     @"notification-server-deleted"
 
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"

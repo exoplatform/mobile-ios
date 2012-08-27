@@ -31,13 +31,21 @@ typedef enum {
     NSDictionary*				_dictLocalize;	//Language dictionary
 	int							_intSelectedLanguage;	//Language index
     int                         _selectedTabIndex;
+    BOOL                        _bAutoLoginIsDisabled; //Disable Auto Login to sign out but doesn't update the Auto Login setting
+    NSString*                   _tempUsername; // Username and Password that have been
+    NSString*                   _tempPassword; // typed by the user
 }
 
 @property (nonatomic, readonly) SSHUDView *hud; // display loading
 @property (nonatomic, retain) JMTabView *tabView;
 
 - (void)doSignIn;	//Login progress
+- (CredentialsViewController*) credentialsViewController;
 - (void) initTabsAndViews;
+- (void)disableAutoLogin:(BOOL)autoLogin;
+- (BOOL)autoLoginIsDisabled;
+- (void)doneWithSettings;
+- (void)saveTempUsernamePassword;
 
 // method for managing keyboard behaviours
 - (void)dismissKeyboard;

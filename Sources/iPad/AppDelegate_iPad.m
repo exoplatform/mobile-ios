@@ -99,6 +99,8 @@
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
     [ServerPreferencesManager sharedInstance].autoLogin = NO;
     [ServerPreferencesManager sharedInstance].isUserLogged = NO;
+    // Disable Auto Login so user won't be signed in automatically after
+    [viewController disableAutoLogin:YES];
     
     // execute Logout
     [LoginProxy doLogout];

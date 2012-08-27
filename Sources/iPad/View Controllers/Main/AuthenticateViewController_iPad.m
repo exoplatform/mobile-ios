@@ -49,20 +49,13 @@
     
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
-    
-    [self signInAnimation:_credViewController.bAutoLogin];
-
 }
 
-- (void)signInAnimation:(int)animationMode
-{    
-   if(animationMode == 0)//Normal signIn
-    {
-        [UIView beginAnimations:nil context:nil];  
-        [UIView setAnimationDuration:1.0];  
-        [UIView commitAnimations];   
-    }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_credViewController signInAnimation:(_credViewController.bAutoLogin && ![self autoLoginIsDisabled])];
 }
+
 
 -(void) initTabsAndViews {
     // Creating the sub view controllers
@@ -358,14 +351,7 @@
 #pragma - SettingsDelegate methods
 
 -(void)doneWithSettings {
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
-    [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue]; 
-    [self signInAnimation:_credViewController.bAutoLogin];
-    [_servListViewController.tbvlServerList reloadData];
+    [super doneWithSettings];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }
 

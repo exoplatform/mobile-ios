@@ -287,6 +287,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     // If the name and URL are well formed, we remove some unnecessary characters
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
     
     // Check whether the name and URL already exists, ignoring case
     if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:-1]) {
@@ -297,7 +298,6 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     }
     else
     {
-        ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
         serverObj._strServerName = cleanServerName;
@@ -311,7 +311,12 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         [serverObj release];
         [serverPrefManager loadServerList]; // reload list of servers
         [_tbvlServerList reloadData];
-    }   
+    }
+    
+    // If this is the only server: select it automatically
+    if ([serverPrefManager.serverList count] == 1)
+        [serverPrefManager setSelectedServerIndex:0];
+    
     return YES;
 }
 
@@ -411,6 +416,10 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     
     [serverPrefManager loadServerList]; // reload list of servers
     [_tbvlServerList reloadData];
+    
+    // If there is the only 1 remaining server: select it automatically
+    if ([serverPrefManager.serverList count] == 1)
+        [serverPrefManager setSelectedServerIndex:0];
     
     return YES;
 }

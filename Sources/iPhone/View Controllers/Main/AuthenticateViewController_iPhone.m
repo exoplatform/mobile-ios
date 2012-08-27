@@ -62,6 +62,7 @@
     
     _servListViewController.panelBackground.image = 
     [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
+
 }
 
 -(void) initTabsAndViews {
@@ -80,19 +81,10 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if(_credViewController.bAutoLogin)
-    {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (_credViewController.bAutoLogin && ![self autoLoginIsDisabled])
         [_credViewController onSignInBtn:nil];
-    }
-    else
-    {
-        //Start the animation to display the loginView
-        [UIView animateWithDuration:0.5 
-                animations:^{}
-         ];
-    }
 }
 
 #pragma mark - Keyboard management
@@ -203,11 +195,7 @@
 #pragma mark - Settings Delegate methods
 
 - (void)doneWithSettings {
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
-    [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
-    [_servListViewController.tbvlServerList reloadData];
+    [super doneWithSettings];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

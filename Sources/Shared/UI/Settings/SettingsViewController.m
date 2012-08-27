@@ -8,7 +8,6 @@
 
 #import "SettingsViewController.h"
 #import "defines.h"
-//#import "eXoWebViewController.h"
 #import "ServerPreferencesManager.h"
 #import "ServerManagerViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
@@ -134,11 +133,17 @@ typedef enum {
 	{
 		
         [self doInit];
+        // Create the Remember Me switch component
 		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         rememberMe.tag = kTagForSwitchRememberMe;
-        
+        // Call the method enableDisableAutoLogin when the value of the switch changes
+        [rememberMe addTarget:self action:@selector(enableDisableAutoLogin:) forControlEvents:UIControlEventValueChanged];
+        // Create the Auto Login switch component
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
+        // Observe notifications when a server is added or deleted, and call enableDisableAutoLogin
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
         
         _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         [_rememberSelectedStream addTarget:self action:@selector(rememberStreamChanged:) forControlEvents:UIControlEventValueChanged];
@@ -157,6 +162,8 @@ typedef enum {
     [autoLogin release];
     [_rememberSelectedStream release];
     [_showPrivateDrive release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
     [super dealloc];
 }
 
@@ -167,18 +174,26 @@ typedef enum {
     [self reloadSettingsWithUpdate];
 }
 
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[self saveSettingsInformations];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     // Unselect the selected row if any
     NSIndexPath*	selection = [self.tableView indexPathForSelectedRow];
     if (selection)
         [self.tableView deselectRowAtIndexPath:selection animated:YES];   
+}
+
+// Enable the AutoLogin switch only if
+// - the Remember Me switch is turned ON
+// and
+// - 1 server is selected
+-(void)enableDisableAutoLogin:(id)sender {
+    NSString* selDomain = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    if (rememberMe.on && selDomain != nil)
+        autoLogin.enabled = YES;
+    else {
+        autoLogin.enabled = NO;
+        autoLogin.on = NO;
+    }
 }
 
 -(void)startRetrieve {
@@ -192,7 +207,6 @@ typedef enum {
     } else {
         bVersionServer = YES;
     }
-    
 }
 
 -(void)retrievePlatformVersion{
@@ -294,8 +308,13 @@ typedef enum {
 -(void)loadSettingsInformations {
     //Load Settings informations
     bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+    rememberMe.on = bRememberMe;
     bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+    autoLogin.on = bAutoLogin;
     _showPrivateDrive.on = [ServerPreferencesManager sharedInstance].showPrivateDrive;
+
+    // Enable the switch only if Remember Me is turned ON
+    [self enableDisableAutoLogin:nil];
 }
 
 
@@ -303,6 +322,13 @@ typedef enum {
     //Save settings informations
     [ServerPreferencesManager sharedInstance].rememberMe = rememberMe.on;
     [ServerPreferencesManager sharedInstance].autoLogin = autoLogin.on;
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (!rememberMe.on) {
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
+    }
+    [userDefaults synchronize];
 }
 
 
@@ -311,6 +337,7 @@ typedef enum {
 
 //Method to done clicked settings
 - (void)doneAction {
+    [self saveSettingsInformations];
     [_settingsDelegate doneWithSettings];    
 }
 
@@ -425,7 +452,8 @@ typedef enum {
             }
             else 
             {
-                autoLogin.on = bAutoLogin;
+                if (autoLogin.enabled)
+                    autoLogin.on = bAutoLogin;
                 cell.accessoryView = autoLogin;
             }
             break;
