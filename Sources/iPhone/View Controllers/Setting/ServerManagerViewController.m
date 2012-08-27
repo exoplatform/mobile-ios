@@ -317,6 +317,10 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
+    if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
+        ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
+        strServerUrl = [NSString stringWithFormat:@"http://%@", strServerUrl];
+    }   
     // Check whether the name and URL are correctly formed
     if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
         return NO;
