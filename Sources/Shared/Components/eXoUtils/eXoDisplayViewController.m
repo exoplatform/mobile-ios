@@ -269,7 +269,7 @@
 // Stop loading animation
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
-    [self hideLoader:YES];
+    [self stopLoadingAnimation];
 }
 
 #pragma mark - change language management
