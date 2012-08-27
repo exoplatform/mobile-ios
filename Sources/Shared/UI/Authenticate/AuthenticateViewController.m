@@ -15,12 +15,9 @@
 #import "SSHUDView.h"
 #import "LanguageHelper.h"
 #import "URLAnalyzer.h"
+#import "AuthSelectionView.h"
 
-
-//Define for cells of the Server Selection Panel
-#define kHeightForServerCell 44
-#define kTagInCellForServerNameLabel 10
-#define kTagInCellForServerURLLabel 20
+#pragma mark - Authenticate View Controller
 
 @interface AuthenticateViewController ()
 
@@ -29,19 +26,27 @@
 @end
 
 @implementation AuthenticateViewController
-@synthesize scrollView = _scrollView;
-@synthesize activeField = _activeField;
-@synthesize loginProxy = _loginProxy;
 
+@synthesize loginProxy = _loginProxy;
+@synthesize tabView = _tabView;
 @synthesize hud = _hud;
+
+- (void)dealloc 
+{
+    [_tabView release];
+    [_loginProxy release];
+    [_hud release];
+    [super dealloc];	
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
 	{
-		//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
         _strBSuccessful = [[NSString alloc] init];
+        _selectedTabIndex = 0;
         
     }
     return self;
@@ -52,100 +57,67 @@
 	[super loadView];
 }
 
+-(void) initTabsAndViews {
+    // empty, must be overriden in _iPad and _iPhone children classes
+    // - create the JMView
+    // - create views for each tab, using the relevant NIB
+}
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NavbarBg.png"]]];
-        
     }
+     
+    // Initializing the Tab view
+    self.tabView = [[JMTabView alloc] initWithFrame:CGRectZero];
+    self.tabView.delegate = self;
+    [self.tabView setBackgroundLayer:nil];
+    [self.tabView setSelectionView:[[[AuthSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
     
-    self.scrollView.contentSize = self.view.frame.size;
+    // Initializing the tabs and corresponding sub views
+    [self initTabsAndViews];
     
-    _vContainer.backgroundColor = [UIColor clearColor];
-    [_vContainer viewWithTag:1].backgroundColor = [UIColor clearColor];
-    
-    
-    //Set Alpha for all subviews to make a small animation
-    _vContainer.alpha = 0;
-    
-    _tbvlServerList.hidden = YES;
-    
-    _vAccountView.backgroundColor = [UIColor clearColor];
-    _vServerListView.backgroundColor = [UIColor clearColor];
-    _btnServerList.backgroundColor = [UIColor clearColor];
-    _btnAccount.backgroundColor = [UIColor clearColor];
-    
-    
-    //Set the state of the first selected tab
-    [_btnAccount setSelected:YES];
+    // Adding the views to the main view
+    [self.view addSubview:self.tabView];    
+    [self.view insertSubview:_credViewController.view belowSubview:self.tabView];
+    [self.view insertSubview:_servListViewController.view belowSubview:self.tabView];
+    self.tabView.selectedIndex = AuthenticateTabItemCredentials;
+    _servListViewController.view.hidden = YES;
     
     //Add the background image for the settings button
     [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
-                                      stretchableImageWithLeftCapWidth:10 topCapHeight:10]
+                            stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    
-    
-    //Add the background image for the login button
-    [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
-                                   stretchableImageWithLeftCapWidth:10 topCapHeight:10]
-                         forState:UIControlStateNormal];
-    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    
+
     _strBSuccessful = @"NO";
 
-    /* Add tap gesture to dismiss keyboard */
+    //Add tap gesture to dismiss keyboard
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Do not cancel touch processes on subviews
     [self.view addGestureRecognizer:tapGesure];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //Hide the Navigation Bar
+    // Hide the Navigation Bar
     self.navigationController.navigationBarHidden = YES;
-    
-	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
-	    
-	_bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
-	_bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];
 	
-	if(_bRememberMe || _bAutoLogin)
-	{
-		NSString* username = [[ServerPreferencesManager sharedInstance] username];
-		NSString* password = [[ServerPreferencesManager sharedInstance] password];
-		if(username)
-		{
-			[_txtfUsername setText:username];
-		}
-		
-		if(password)
-		{
-			[_txtfPassword setText:password];
-		}
-	}
-	else 
-	{
-		[_txtfUsername setText:@""];
-		[_txtfPassword setText:@""];
-        [ServerPreferencesManager sharedInstance].isUserLogged = NO;
-	}
-    
-    [_tbvlServerList reloadData];
+    // Notifies when the keyboard is shown/hidden
+    // Selector must be implemented in _iPhone and _iPad subclasses
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    /* register keyboard notification */
-    [self registerForKeyboardNotifications];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self unRegisterForKeyboardNotifications];
+-(void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
@@ -160,132 +132,13 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidUnload 
-{
-    [self setScrollView:nil];
-	
-	NSString* username = [[ServerPreferencesManager sharedInstance] username];
-	if(username)
-	{
-		[_txtfUsername setText:username];
-	}
-	
-	if (_txtfUsername.text.length == 0 && _txtfPassword.text.length == 0) 
-	{
-		[_txtfUsername becomeFirstResponder];
-	}
-	
-	if (_txtfUsername.text.length > 0)
-	{
-		[_txtfPassword becomeFirstResponder];
-	}
-}
-
-- (IBAction)onHitViewBtn:(id)sender {
-
-    [self hitAtView:self.view];
-    
-}
-
-- (IBAction)onBtnAccount:(id)sender
-{
-    [_btnAccount setSelected:YES];
-    [_btnServerList setSelected:NO];
-
-    //UI Hack
-    [_vContainer bringSubviewToFront:_btnAccount];
-    [_vContainer sendSubviewToBack:_btnServerList];
-
-    _vServerListView.hidden = YES;
-    _vAccountView.hidden = NO;
-}
-
-- (IBAction)onBtnServerList:(id)sender
-{
-    
-    [_btnAccount setSelected:NO];
-    [_btnServerList setSelected:YES];
-
-    //UI Hack
-    [_vContainer bringSubviewToFront:_btnServerList];
-    [_vContainer sendSubviewToBack:_btnAccount];
-
-    _vServerListView.hidden = NO;
-    _vAccountView.hidden = YES;
-    [_tbvlServerList reloadData];
-}
-
-
-- (void)hitAtView:(UIView*) view
-{
-	if([view class] != [UITextField class])
-	{
-		[_txtfUsername resignFirstResponder];
-		[_txtfPassword resignFirstResponder];
-        
-        //Replace the frame at the good position
-        CGRect frameToGo = self.view.frame;
-        frameToGo.origin.y = 0;
-        
-        [UIView animateWithDuration:0.3
-                         animations:^{
-                             self.view.frame = frameToGo;
-                         }
-         ];
-	}
-}
 
 #pragma mark - Keyboard management
-- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)unRegisterForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)keyboardWasShown:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    // Get the size of the keyboard.
-    CGSize keyboardSize = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size;
-    
-    // Adjust the bottom content inset of your scroll view by the keyboard height.
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-    CGRect aRect = [self.view convertRect:self.view.frame fromView:nil];
-    
-    aRect.size.height -= keyboardSize.height;
-    
-    CGPoint fieldPoint = CGPointMake(_vContainer.frame.origin.x + _txtfPassword.frame.origin.x + _vAccountView.frame.origin.x, _vContainer.frame.origin.y + _txtfPassword.frame.origin.y + _vAccountView.frame.origin.y);
-    
-    // Scroll the target text field into view.
-    if (!CGRectContainsPoint(aRect, fieldPoint)) {
-        CGPoint scrollPoint = CGPointMake(0.0, fieldPoint.y - keyboardSize.height);
-        [self.scrollView setContentOffset:scrollPoint animated:YES];
-        
-    }
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    self.scrollView.contentInset = UIEdgeInsetsZero;
-    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
-    [self.scrollView setContentOffset:CGPointZero animated:YES];
-}
-
 - (void)dismissKeyboard {
-    [self.activeField resignFirstResponder];
+    // Handled by the CredentialsViewController where the text fields are defined
+    [_credViewController dismissKeyboard];
 }
 
-#pragma mark - TextField delegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.activeField = textField;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    self.activeField = nil;
-}
 
 #pragma mark - getters & setters
 - (SSHUDView *)hud {
@@ -302,8 +155,8 @@
     // Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
     if (compatibleWithSocial) {
-        [ServerPreferencesManager sharedInstance].username = _txtfUsername.text;
-        [ServerPreferencesManager sharedInstance].password = _txtfPassword.text;
+        [ServerPreferencesManager sharedInstance].username = _credViewController.txtfUsername.text;
+        [ServerPreferencesManager sharedInstance].password = _credViewController.txtfPassword.text;
         [[ServerPreferencesManager sharedInstance] persistUsernameAndPasswod];
         [[ServerPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
     }
@@ -328,128 +181,20 @@
     }
 }
 
-
-#pragma mark - UITableView Utils
--(UIImageView *) makeCheckmarkOffAccessoryView
-{
-    // Uses the same image for iPhone and iPad
-        return [[[UIImageView alloc] initWithImage:
-                 [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
-}
-
--(UIImageView *) makeCheckmarkOnAccessoryView
-{
-    // Uses the same image for iPhone and iPad
-        return [[[UIImageView alloc] initWithImage:
-                 [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
-}
-
-#pragma mark - UITableView Delegate & DataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{	
-    return [[ServerPreferencesManager sharedInstance].serverList count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    return kHeightForServerCell;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //static NSString *CellIdentifier = @"AuthenticateServerCellIdentifier";
-    static NSString *CellNib = @"AuthenticateServerCell";
-    
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellNib];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellNib] autorelease];
-        
-        //Some customize of the cell background :-)
-        [cell setBackgroundColor:[UIColor clearColor]];
-        
-        //Create two streachables images for background states
-        UIImage *imgBgNormal = [[UIImage imageNamed:@"AuthenticateServerCellBgNormal.png"]
-                                stretchableImageWithLeftCapWidth:7 topCapHeight:0];
-        
-        UIImage *imgBgSelected = [[UIImage imageNamed:@"AuthenticateServerCellBgSelected.png"]
-                                  stretchableImageWithLeftCapWidth:7 topCapHeight:0];
-        
-        //Add images to imageView for the backgroundview of the cell
-        UIImageView *ImgVCellBGNormal = [[UIImageView alloc] initWithImage:imgBgNormal];
-        
-        UIImageView *ImgVBGSelected = [[UIImageView alloc] initWithImage:imgBgSelected];
-        
-        //Define the ImageView as background of the cell
-        [cell setBackgroundView:ImgVCellBGNormal];
-        [ImgVCellBGNormal release];
-        
-        //Define the ImageView as background of the cell
-        [cell setSelectedBackgroundView:ImgVBGSelected];
-        [ImgVBGSelected release];
-        
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13.0];
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        cell.textLabel.backgroundColor = [UIColor clearColor];
-        
-        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:11.0];
-        cell.detailTextLabel.textColor = [UIColor grayColor];
-        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-        
-    }
-    
-    
-    if (indexPath.row == [ServerPreferencesManager sharedInstance].selectedServerIndex) 
-    {
-        cell.accessoryView = [self makeCheckmarkOnAccessoryView];
-    }
-    else
-    {
-        cell.accessoryView = [self makeCheckmarkOffAccessoryView];
-    }
-    
-	ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
-    cell.textLabel.text = tmpServerObj._strServerName;
-    cell.detailTextLabel.text = tmpServerObj._strServerUrl;
-    
-	return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [ServerPreferencesManager sharedInstance].selectedServerIndex = indexPath.row;
-    
-    //Invalidate server informations
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
-    [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
-    
-    // Reload the tableview
-    [_tbvlServerList reloadData];
-}
-
 #pragma mark - authentication process 
 - (void)doSignIn
 {
-    [self hitAtView:nil];
     // active hud loading 
     self.hud.textLabel.text = Localize(@"Loading");
     [self.hud setLoading:YES];
     [self.hud show];
 	[self view].userInteractionEnabled = NO;
     
-	[_txtfUsername resignFirstResponder];
-	[_txtfPassword resignFirstResponder];
+	[_credViewController.txtfUsername resignFirstResponder];
+	[_credViewController.txtfPassword resignFirstResponder];
 	
-    NSString* username = [_txtfUsername text];
-	NSString* password = [_txtfPassword text];
+    NSString* username = [_credViewController.txtfUsername text];
+	NSString* password = [_credViewController.txtfPassword text];
     
     self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self] autorelease];
     
@@ -457,40 +202,19 @@
 
 }
 
-- (IBAction)onSignInBtn:(id)sender
-{
-	if([_txtfUsername.text isEqualToString:@""])
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-														message:Localize(@"UserNameEmpty")
-													   delegate:self 
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles: nil];
-		[alert show];
-		[alert release];
-        
-        [self hitAtView:self.view];
-	}
-	else
-	{		
-		[self doSignIn];
-	}
-}
+#pragma mark - JMTabView protocol implementation
 
-- (IBAction)onSettingBtn
-{
-    
-}
-
-- (void)dealloc 
-{
-    [self unRegisterForKeyboardNotifications];
-    [_loginProxy release];
-	[_txtfUsername release];
-	[_txtfPassword release];
-    [_hud release];
-    [_scrollView release];
-    [super dealloc];	
+-(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
+    if (itemIndex != _selectedTabIndex) {
+        if (itemIndex == AuthenticateTabItemCredentials) {
+            _credViewController.view.hidden = NO;
+            _servListViewController.view.hidden = YES;
+        } else if (itemIndex == AuthenticateTabItemServerList) {
+            _credViewController.view.hidden = YES;
+            _servListViewController.view.hidden = NO;
+        }
+        _selectedTabIndex = itemIndex;
+    }
 }
 
 @end

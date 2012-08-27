@@ -162,3 +162,5 @@
 
 "Cannot move file to its location"="Impossible de copier le fichier au même emplacement";
 "Cannot transfer file"="Impossible de transférer le fichier";
+"UsernamePlaceholder"="Utilisateur";
+"PasswordPlaceholder"="Mot de passe";
