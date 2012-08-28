@@ -247,49 +247,39 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         [alert release];
         return NO;
     }
-    // Check if the server URL is null
-    if(strServerUrl == nil) {
+    // Check if the server URL is null or empty
+    if(strServerUrl == nil || [strServerUrl length] == 0) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
-    } else {
-        // Check if the server URL is valid :
-        // - characters & < > " ' ! ; \ | ( ) { } [ ] , * % are forbidden
-        // - URL must start with http or https
-        // - scheme and host must not be null or empty
-        NSURL* tmpUrl = [NSURL URLWithString:strServerUrl];
-        if ([self nameContainSpecialCharacter:strServerUrl inSet:@"&<>\"'!;\\|(){}[],*%"] ||
-            tmpUrl == nil || tmpUrl.scheme == nil || tmpUrl.host == nil ||
-            (![[tmpUrl.scheme lowercaseString] isEqualToString:@"http"] &&
-             ![[tmpUrl.scheme lowercaseString] isEqualToString:@"https"]
-            ) || tmpUrl.host.length == 0) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-            return NO;
-        }
     }
+    // The URL is checked more deeply in URLAnalyzer
     
     return YES;
 }
 
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
-    if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
-        ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
-        strServerUrl = [NSString stringWithFormat:@"http://%@", strServerUrl];
-    }   
-    // Check whether the name and URL are correctly formed
+    // Check whether the name and URL are empty
     if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
        return NO;
  
-    // If the name and URL are well formed, we remove some unnecessary characters
+    // Clean the name
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    // Clean and return a valid URL, or nil if the URL is not valid
+    NSString* validServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    
+    // Check whether the URL is valid
+    if (validServerUrl == nil) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
     
     // Check whether the name and URL already exists, ignoring case
-    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:-1]) {
+    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:validServerUrl ignoringIndex:-1]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
@@ -301,7 +291,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
         serverObj._strServerName = cleanServerName;
-        serverObj._strServerUrl = cleanServerUrl;    
+        serverObj._strServerUrl = validServerUrl;    
         serverObj._bSystemServer = NO;
         
         //Add the server in configuration
@@ -316,21 +306,26 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 }
 
 - (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
-{
-    if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
-        ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
-        strServerUrl = [NSString stringWithFormat:@"http://%@", strServerUrl];
-    }   
+{ 
     // Check whether the name and URL are correctly formed
     if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
         return NO;
 
-    // If the name and URL are well formed, we remove some unnecessary characters
+    // clean the name
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    // Clean and return a valid URL, or nil if the URL is not valid
+    NSString* validServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    
+    // Check whether the URL is valid
+    if (validServerUrl == nil) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
     
     // Check whether the name and URL already exists, ignoring case and the server under edit
-    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index]) {
+    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:validServerUrl ignoringIndex:index]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
@@ -343,7 +338,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         ServerObj* tmpServerObj;
         
         serverObjEdited._strServerName = cleanServerName;
-        serverObjEdited._strServerUrl = cleanServerUrl;
+        serverObjEdited._strServerUrl = validServerUrl;
         
         [serverPrefManager.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
         
