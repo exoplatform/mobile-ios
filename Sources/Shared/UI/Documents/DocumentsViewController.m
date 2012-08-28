@@ -529,6 +529,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 - (void)removeFileViewsFromMe;
 {
+    // This method is used to install specified UI process after a document item is removed in this view
 }
 
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {

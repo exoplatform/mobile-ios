@@ -75,11 +75,15 @@
 - (void)deleteCurentFileView {
     // This method will remove this view and reload its parent view. 
     StackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
-    DocumentsViewController *parentController = [[stackScrollVC.viewControllersStack objectAtIndex:stackScrollVC.viewControllersStack.count - 2] retain];
-    [stackScrollVC removeViewFromController:parentController];
-    // Reload the content of the parent view.
-    [parentController startRetrieveDirectoryContent];
-    [parentController release];
+    int viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
+    if (viewIndex != NSNotFound) {
+        DocumentsViewController *parentController = viewIndex > 0 ? [[stackScrollVC.viewControllersStack objectAtIndex:viewIndex - 1] retain] : nil;
+        [stackScrollVC removeViewFromController:parentController];
+        // Reload the content of the parent view.
+        [parentController startRetrieveDirectoryContent];
+        [parentController release];
+        
+    }
 }
 
 - (void)removeFileViewsFromMe {
