@@ -101,7 +101,7 @@
     [super finishLoadingAllLikers];
     [_tblvActivityDetail reloadData];
     // reload likers view
-    [self.likeViewCell reloadAvatarViews:YES];
+    [self.likeViewCell reloadAvatarViews:NO];
 }
 
 - (void)finishLoadingAllComments {

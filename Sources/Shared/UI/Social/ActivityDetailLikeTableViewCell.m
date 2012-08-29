@@ -130,9 +130,7 @@
         [self.contentView addSubview:threePointView];
     }
     threePointView.image = [self imageOfThreePointsWithSize:CGSizeMake(avatarHeight, avatarHeight)];
-    if (self.socialActivity.totalNumberOfLikes <= kNumberOfDisplayedAvatars && self.socialActivity.totalNumberOfLikes == i) {
-        [threePointView setHidden:YES];
-    } else {
+    if (self.socialActivity.totalNumberOfLikes > kNumberOfDisplayedAvatars && self.likerAvatarImageViews.count == kNumberOfDisplayedAvatars) {
         [threePointView setHidden:NO];
         if (animate) {
             [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^(void) {
@@ -141,6 +139,8 @@
         } else {
             threePointView.frame = CGRectMake(kLeftRightMargin + i * (avatarHeight + kPadding), contentBounds.size.height - kBottomMargin - avatarHeight, avatarHeight, avatarHeight);
         }
+    } else {
+        [threePointView setHidden:YES];
     }
     /* ##### */
 }
@@ -183,45 +183,25 @@
 
 - (void)reloadAvatarViews:(BOOL)animateIfNeeded {
     self.lbMessage.text = [NSString stringWithFormat:Localize(@"likeThisActivity"), _socialActivity.totalNumberOfLikes];
-    // Just animate if the number of image views is changed.
-    BOOL animate = animateIfNeeded;
     
-    NSMutableArray *arrayOfAvts = [NSMutableArray arrayWithArray:_likerAvatarImageViews];
     [_likerAvatarImageViews removeAllObjects];
+    for (EGOImageView *avatarView in _likerAvatarImageViews) {
+        [avatarView removeFromSuperview];
+    }
         
-    int i = 0;
-    for (SocialUserProfile *user in self.socialActivity.likedByIdentities) {
+    for (int i = 0; i < self.socialActivity.totalNumberOfLikes; i++) {
         if (i == kNumberOfDisplayedAvatars) break;
-        AvatarView *imageView = nil;
-        for (AvatarView *avtView in arrayOfAvts) {
-            if ([user.remoteId isEqualToString:avtView.userProfile.remoteId]) {
-                imageView = avtView;
-                [arrayOfAvts removeObject:avtView];
-                break;
-            }
-        }
-        
+        SocialUserProfile *user = i < self.socialActivity.likedByIdentities.count ? [self.socialActivity.likedByIdentities objectAtIndex:i] : nil;
+        AvatarView *imageView = i < [_likerAvatarImageViews count] ? [_likerAvatarImageViews objectAtIndex:i] : nil;
         if (!imageView) {
             imageView = [self newAvatarView];
-            imageView.userProfile = user;
+            [_likerAvatarImageViews addObject:imageView];
             [self.contentView addSubview:imageView]; // add the avatar view to the content view
         }
-        if (imageView != nil)
-            [_likerAvatarImageViews addObject:imageView];
-        
-        i++;
+        imageView.userProfile = user;
     }
     
-    for (EGOImageView *avatarView in arrayOfAvts) {
-        if (animate) {
-            [UIView animateWithDuration:0.3 animations:^{avatarView.alpha = 0.0;} 
-                             completion:^(BOOL finished){ [avatarView removeFromSuperview]; }];
-        } else {
-            [avatarView removeFromSuperview];
-        }
-    }
-    
-    [self adjustAvatarViewFrames:animate];
+    [self adjustAvatarViewFrames:animateIfNeeded];
 }
 
 // create image for the text "..."
