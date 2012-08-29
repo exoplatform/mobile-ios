@@ -261,12 +261,13 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
-    // Check whether the name and URL are empty
-    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
-       return NO;
- 
     // Clean the name
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    // Check whether the name and URL are empty
+    if(![self checkServerInfo:cleanServerName andServerUrl:strServerUrl])
+       return NO;
+
     // Clean and return a valid URL, or nil if the URL is not valid
     NSString* validServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
@@ -307,12 +308,13 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 { 
-    // Check whether the name and URL are correctly formed
-    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
-        return NO;
-
     // clean the name
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    // Check whether the name and URL are correctly formed
+    if(![self checkServerInfo:cleanServerName andServerUrl:strServerUrl])
+        return NO;
+
     // Clean and return a valid URL, or nil if the URL is not valid
     NSString* validServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
