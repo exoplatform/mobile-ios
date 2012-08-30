@@ -423,7 +423,6 @@
 		7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */; };
 		7CEA47B013CE883800F00726 /* SocialActivityStreamProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA47AF13CE883800F00726 /* SocialActivityStreamProxy.m */; };
 		7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */; };
-		7CF562A1135590350008DD21 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF562A0135590350008DD21 /* TouchView.m */; };
 		7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */; };
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
@@ -1450,8 +1449,6 @@
 		7CEA558713C54CAF00FCB43A /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		7CF3646813D6C8300056E509 /* SocialPostCommentProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPostCommentProxy.h; sourceTree = "<group>"; };
 		7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPostCommentProxy.m; sourceTree = "<group>"; };
-		7CF5629F135590350008DD21 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
-		7CF562A0135590350008DD21 /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		7CFD41871361644B00DD86E8 /* HomeViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController_iPhone.h; sourceTree = "<group>"; };
 		7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController_iPhone.m; sourceTree = "<group>"; };
 		7CFEB08613CA95B400D7C9FF /* SocialIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIdentity.h; sourceTree = "<group>"; };
@@ -3737,8 +3734,6 @@
 				1FCC23D3146A72990040989B /* eXoDisplayViewController.m */,
 				1FCC23D4146A72990040989B /* eXoTapDetectingWindow.h */,
 				1FCC23D5146A72990040989B /* eXoTapDetectingWindow.m */,
-				7CF5629F135590350008DD21 /* TouchView.h */,
-				7CF562A0135590350008DD21 /* TouchView.m */,
 				894735091337142200B0AD11 /* defines.h */,
 				8947350A1337142200B0AD11 /* GTMDefines.h */,
 				8947350B1337142200B0AD11 /* GTMNSString+HTML.h */,
@@ -4741,7 +4736,6 @@
 				7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */,
 				7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */,
 				7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */,
-				7CF562A1135590350008DD21 /* TouchView.m in Sources */,
 				7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */,
 				7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */,
 				7C50D4C7136F187B0011280D /* DDXMLDocument.m in Sources */,

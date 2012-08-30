@@ -113,9 +113,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardWillHideNotification object:nil];
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
-	_credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];
+	_credViewController.bRememberMe = [ServerPreferencesManager sharedInstance].autoLogin;
+	_credViewController.bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
     // If Auto Login is disabled, we set the Auto Login variable to NO
     // but we don't save this value in the user settings
     // We also refresh the username and password
@@ -143,9 +142,8 @@
     [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
     [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     [_servListViewController.tbvlServerList reloadData];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _credViewController.bAutoLogin = [[userDefaults objectForKey:EXO_AUTO_LOGIN] boolValue];    
-    _credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+    _credViewController.bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;    
+    _credViewController.bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
     [_credViewController signInAnimation:_credViewController.bAutoLogin];
     
     if (!_credViewController.bAutoLogin) {
@@ -177,7 +175,7 @@
 // Called when the application starts
 -(void) initUsernameAndPassword {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_credViewController.bRememberMe = [[userDefaults objectForKey:EXO_REMEMBER_ME] boolValue];
+	_credViewController.bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
     if (_credViewController.bRememberMe) {
         // Display the saved username and password if we have to
         [_credViewController.txtfUsername setText:[userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
