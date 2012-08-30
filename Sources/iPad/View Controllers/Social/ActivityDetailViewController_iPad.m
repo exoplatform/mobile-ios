@@ -19,6 +19,7 @@
 #import "ActivityDetailExtraActionsCell.h"
 #import "ActivityDetailAdvancedInfoController_iPad.h"
 #import "CustomBackgroundView.h"
+#import "RoundRectView.h"
 
 #define kMinimumAdvancedInfoCellHeight 400.0
 
@@ -36,7 +37,7 @@
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        
+            
     }
     return self;
 }
@@ -46,6 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
+    ((RoundRectView *) self.view).squareCorners = YES;
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
 }

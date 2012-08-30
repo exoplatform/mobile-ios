@@ -16,6 +16,7 @@
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
 #import "EmptyView.h"
+#import "RoundRectView.h"
 
 @implementation DocumentsViewController_iPad
 
@@ -354,6 +355,13 @@
     [super updateLabelsWithNewLanguage];
     // Title of the view
     _navigation.topItem.title = Localize(@"Documents") ;
+}
+
+#pragma  mark - getters & setters 
+- (void)setIsRoot:(BOOL)rootOrNot {
+    isRoot = rootOrNot;
+    if (isRoot) 
+        ((RoundRectView *) self.view).squareCorners = NO;
 }
 
 @end

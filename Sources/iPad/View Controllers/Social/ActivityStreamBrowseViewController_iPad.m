@@ -20,6 +20,7 @@
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "LanguageHelper.h"
+#import "RoundRectView.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
 
@@ -30,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    ((RoundRectView *)self.view).squareCorners = NO;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
 }
 

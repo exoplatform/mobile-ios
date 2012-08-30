@@ -627,6 +627,7 @@
 		A6B83FA315BCFF700083C1B8 /* activity-stream-filter-item-active-state.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B83FA115BCFF700083C1B8 /* activity-stream-filter-item-active-state.png */; };
 		A6B83FA415BCFF700083C1B8 /* activity-stream-filter-item-active-state@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B83FA215BCFF700083C1B8 /* activity-stream-filter-item-active-state@2x.png */; };
 		A6B8CF211580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */; };
+		A6EECFC815EE1E4800A46A4B /* RoundRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EECFC715EE1E4800A46A4B /* RoundRectView.m */; };
 		A6FB0B6915B523AB004F958C /* AuthenticateCredentialsIconIpadOff.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B6115B523A9004F958C /* AuthenticateCredentialsIconIpadOff.png */; };
 		A6FB0B6A15B523AB004F958C /* AuthenticateCredentialsIconIpadOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B6215B523A9004F958C /* AuthenticateCredentialsIconIpadOff@2x.png */; };
 		A6FB0B6B15B523AB004F958C /* AuthenticateCredentialsIconIpadOn.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B6315B523A9004F958C /* AuthenticateCredentialsIconIpadOn.png */; };
@@ -1729,6 +1730,8 @@
 		A6B8CF1F1580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailAdvancedInfoController_iPad.h; path = Social/ActivityDetailAdvancedInfoController_iPad.h; sourceTree = "<group>"; };
 		A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailAdvancedInfoController_iPad.m; path = Social/ActivityDetailAdvancedInfoController_iPad.m; sourceTree = "<group>"; };
 		A6BD12CD158B4A4D00D6A058 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
+		A6EECFC615EE1E4800A46A4B /* RoundRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundRectView.h; sourceTree = "<group>"; };
+		A6EECFC715EE1E4800A46A4B /* RoundRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundRectView.m; sourceTree = "<group>"; };
 		A6FB0B5915B51D54004F958C /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		A6FB0B5A15B51D54004F958C /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		A6FB0B5B15B51D54004F958C /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -3249,7 +3252,6 @@
 		8947301C1336FBC000B0AD11 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				894732361336FFD400B0AD11 /* Custom Views */,
 				894732371336FFD400B0AD11 /* Data Manager */,
 				894732381336FFD400B0AD11 /* View Controllers */,
 				8937A32D1338993800D8B474 /* NIB */,
@@ -3284,13 +3286,6 @@
 				8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		894732361336FFD400B0AD11 /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		894732371336FFD400B0AD11 /* Data Manager */ = {
@@ -3761,6 +3756,8 @@
 				1FCE58E7146238840045FC10 /* eXoTableViewController.m */,
 				1FCCC2F71474ADFF000F03F4 /* eXoFullScreenView.h */,
 				1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */,
+				A6EECFC615EE1E4800A46A4B /* RoundRectView.h */,
+				A6EECFC715EE1E4800A46A4B /* RoundRectView.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -4918,6 +4915,7 @@
 				57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */,
 				579D50A915BD6689002F5D16 /* AuthTabItem.m in Sources */,
 				579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */,
+				A6EECFC815EE1E4800A46A4B /* RoundRectView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 #import "StackScrollViewController.h"
 #import "LanguageHelper.h"
 #import "EGOImageView.h"
+#import "RoundRectView.h"
 
 @implementation DashboardViewController_iPad
 
@@ -22,6 +23,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    ((RoundRectView *) self.view).squareCorners = NO;
     _navigation.topItem.title = Localize(@"Dashboard");
 }
 
