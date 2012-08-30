@@ -35,18 +35,20 @@
     _tblFiles.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
     [_tblFiles setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view addSubview:_tblFiles];
+    [((RoundRectView *) [[self.view subviews] objectAtIndex:0]) addSubview:_tblFiles];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
 	[super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
     //Add the UIBarButtonItem for actions on the NavigationBar of the Controller
     if (_rootFile) {
         _navigation.topItem.title = _rootFile.name;
     } else {
         _navigation.topItem.title = Localize(@"Documents") ;
+        ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
     }
 }
 
@@ -355,13 +357,6 @@
     [super updateLabelsWithNewLanguage];
     // Title of the view
     _navigation.topItem.title = Localize(@"Documents") ;
-}
-
-#pragma  mark - getters & setters 
-- (void)setIsRoot:(BOOL)rootOrNot {
-    isRoot = rootOrNot;
-    if (isRoot) 
-        ((RoundRectView *) self.view).squareCorners = NO;
 }
 
 @end

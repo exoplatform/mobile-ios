@@ -40,31 +40,50 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUINavigationBar" id="148489008">
+					<object class="IBUIView" id="380752832">
 						<reference key="NSNextResponder" ref="406198159"/>
-						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{500, 44}</string>
-						<reference key="NSSuperview" ref="406198159"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSArray" key="IBUIItems">
+						<int key="NSvFlags">274</int>
+						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUINavigationItem" id="324475295">
-								<reference key="IBUINavigationBar" ref="148489008"/>
-								<string key="IBUITitle">Files Application</string>
+							<object class="IBUINavigationBar" id="148489008">
+								<reference key="NSNextResponder" ref="380752832"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrameSize">{500, 44}</string>
+								<reference key="NSSuperview" ref="380752832"/>
+								<reference key="NSWindow"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<object class="NSArray" key="IBUIItems">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<object class="IBUINavigationItem" id="324475295">
+										<reference key="IBUINavigationBar" ref="148489008"/>
+										<string key="IBUITitle">Files Application</string>
+										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+									</object>
+								</object>
 							</object>
 						</object>
+						<string key="NSFrameSize">{500, 600}</string>
+						<reference key="NSSuperview" ref="406198159"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="148489008"/>
+						<string key="NSReuseIdentifierKey">_NS:10</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<object class="NSColorSpace" key="NSCustomColorSpace">
+								<int key="NSID">2</int>
+							</object>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 				</object>
 				<string key="NSFrameSize">{500, 600}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="148489008"/>
+				<reference key="NSNextKeyView" ref="380752832"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC4xMzA3NTk1ODAzIDAuNTA3NjU3MDEgMC42MzIzMTQyNTM4AA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
@@ -116,9 +135,18 @@
 						<reference key="object" ref="406198159"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="148489008"/>
+							<reference ref="380752832"/>
 						</object>
 						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">51</int>
+						<reference key="object" ref="380752832"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="148489008"/>
+						</object>
+						<reference key="parent" ref="406198159"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">27</int>
@@ -127,7 +155,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="324475295"/>
 						</object>
-						<reference key="parent" ref="406198159"/>
+						<reference key="parent" ref="380752832"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">30</int>
@@ -145,9 +173,10 @@
 					<string>-2.CustomClassName</string>
 					<string>-2.IBPluginDependency</string>
 					<string>27.IBPluginDependency</string>
-					<string>3.CustomClassName</string>
 					<string>3.IBPluginDependency</string>
 					<string>30.IBPluginDependency</string>
+					<string>51.CustomClassName</string>
+					<string>51.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -156,8 +185,9 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>RoundRectView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>RoundRectView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -173,7 +203,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">50</int>
+			<int key="maxID">51</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

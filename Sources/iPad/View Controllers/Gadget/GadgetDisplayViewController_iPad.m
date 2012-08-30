@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
     //Set the title of the controller
     _navigation.topItem.title = _gadget.gadgetName;
 }

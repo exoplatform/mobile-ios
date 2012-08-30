@@ -47,7 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    ((RoundRectView *) self.view).squareCorners = YES;
+    self.view.backgroundColor = [UIColor clearColor];
+    ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = YES;
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
 }

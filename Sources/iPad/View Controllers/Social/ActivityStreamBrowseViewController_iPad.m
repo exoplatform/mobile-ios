@@ -31,7 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    ((RoundRectView *)self.view).squareCorners = NO;
+    self.view.backgroundColor = [UIColor clearColor];
+    RoundRectView *containerView = (RoundRectView *) [[self.view subviews] objectAtIndex:0];
+    containerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    containerView.squareCorners = NO;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
 }
 
@@ -72,6 +75,7 @@
         
     return fHeight;
 }
+
 
 - (void)updateHudPosition {
     self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);
