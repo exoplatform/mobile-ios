@@ -85,14 +85,11 @@
     [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                       stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                             forState:UIControlStateNormal];
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    
     
     //Add the background image for the login button
     [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                          forState:UIControlStateNormal];
-    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     
     _strBSuccessful = @"NO";
 
@@ -108,6 +105,10 @@
     //Hide the Navigation Bar
     self.navigationController.navigationBarHidden = YES;
     
+    // Set the labels here rather than in viewDidLoad, so they are set in the 
+    // correct language when the user opens the app and when he signs out
+    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
 	    
 	_bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;

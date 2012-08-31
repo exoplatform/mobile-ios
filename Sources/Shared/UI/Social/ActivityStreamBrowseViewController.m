@@ -288,7 +288,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];    
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
-    _navigation.topItem.title = Localize(@"News");
+    self.title = Localize(@"News");
     
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
     _tblvActivityStream.scrollsToTop = YES;

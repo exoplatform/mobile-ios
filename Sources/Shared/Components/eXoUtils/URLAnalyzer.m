@@ -16,57 +16,46 @@
     //Put in lowercase to make checks easier
     urlStr = [urlStr lowercaseString];
     
-    //Check if the given url is null
+    //Check if the given URL is null
     if(urlStr == nil || [urlStr length] == 0)
         return nil;
     
-    //Remove protocol prefix: "http://", "https://" 
-    NSRange rangeOfProtocol;
-    
-    BOOL isHTTPSURL = NO;
-    
-    rangeOfProtocol = [urlStr rangeOfString:HTTP_PROTOCOL];
-    if(rangeOfProtocol.location == 0)
-        urlStr = [urlStr substringFromIndex:rangeOfProtocol.length];
-    
-    rangeOfProtocol = [urlStr rangeOfString:HTTPS_PROTOCOL];
-    if(rangeOfProtocol.location == 0) {
-        urlStr = [urlStr substringFromIndex:rangeOfProtocol.length];
-        isHTTPSURL = YES;
-    }
-    //Remove all redundant "/" at prefix
-    while([[urlStr substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"])
-    {
-        if([urlStr length] > 1)
-            urlStr = [urlStr substringFromIndex:1];
+    // Check the scheme of the given URL. If it's http:// or https:// do nothing
+    if (![urlStr hasPrefix:HTTP_PROTOCOL] && ![urlStr hasPrefix:HTTPS_PROTOCOL]) {
+        NSRange scheme = [urlStr rangeOfString:@"://"];
+        // If it's not http or https but it contains the characters ://
+        if (scheme.length > 0) {
+        // Replace from the beginning of the URL to the end of the sequence :// with http://
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_PROTOCOL, [urlStr substringFromIndex:scheme.location+scheme.length]];
+        } else {
+        // Otherwise, add http:// at the beginning
+            urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, urlStr];
+        }
     }
     
+    NSURL* tmpUrl = [NSURL URLWithString:urlStr];
+    NSMutableString *validUrl = [NSMutableString stringWithString:@""];
     
-    //Add protocol
-    NSURL *uri;
+    // Check if the url does conforms to the relevant RFCs
+    if (tmpUrl == nil || tmpUrl.scheme == nil || tmpUrl.host == nil)
+        return nil;
     
-    if (!(isHTTPSURL)) {
-        urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, urlStr];
-        uri = [NSURL URLWithString:urlStr];
-        if(uri == nil)
-            urlStr = nil;
-        else
-            urlStr = [NSString stringWithFormat:@"%@%@", HTTP_PROTOCOL, [uri host]];
-    } else {
-        urlStr = [NSString stringWithFormat:@"%@%@", HTTPS_PROTOCOL, urlStr];
-        uri = [NSURL URLWithString:urlStr];
-        if(uri == nil)
-            urlStr = nil;
-        else
-            urlStr = [NSString stringWithFormat:@"%@%@", HTTPS_PROTOCOL, [uri host]];
-    }
-
-    //Add port
-    int port = [[uri port] intValue]; 
+    // Add the scheme, it's already been checked and is either http or https
+    [validUrl appendFormat:@"%@%@", tmpUrl.scheme, @"://"];
+    // Check if the host contains wrong characters & < > " ' ! ; \ | ( ) { } [ ] , * %
+    NSCharacterSet *invalidChars = 
+            [NSCharacterSet characterSetWithCharactersInString:@"&<>\"'!;\\|(){}[],*%"];
+    NSRange range = [tmpUrl.host rangeOfCharacterFromSet:invalidChars];
+    if (range.length == 0)
+        [validUrl appendString:tmpUrl.host];
+    else
+        return nil;
+    // Add the port
+    int port = (tmpUrl.port == nil) ? 0 : [tmpUrl.port intValue];
     if(port > 0)
-        urlStr = [urlStr stringByAppendingFormat:@":%d", port];
+        [validUrl appendFormat:@":%d",port];
     
-    return urlStr;
+    return validUrl;
 }
 
 + (NSString *)enCodeURL:(NSString *)url {
