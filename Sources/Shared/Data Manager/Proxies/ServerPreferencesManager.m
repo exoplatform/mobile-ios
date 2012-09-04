@@ -351,6 +351,14 @@
     }
     return _arrServerList;
 }
+
+// Store the current server/user combination
+// We use this value when the app starts, to retrieve the Remember Me and Auto Login values when the user is not yet signed in
+- (void)saveCurrentServerUsernameCombination {
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSString stringWithFormat:@"%@_%@", self.selectedDomain, self.username] forKey:EXO_LAST_LOGGED_USER];
+}
+
 #pragma mark - username & password management 
 - (void)persistUsernameAndPasswod {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -452,7 +460,14 @@
 #pragma mark - Login management
 - (BOOL)autoLogin {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *value = [userDefaults objectForKey:EXO_AUTO_LOGIN];
+    NSString* value;
+    if (self.isUserLogged) {
+        value = [userDefaults objectForKey:EXO_AUTO_LOGIN];
+    } else {
+        NSString* lastLoggedUserKey = [userDefaults valueForKey:EXO_LAST_LOGGED_USER];
+        value = [userDefaults valueForKey:
+                 [NSString stringWithFormat:@"%@_auto_login", lastLoggedUserKey]];
+    }
     return value ? [value boolValue] : NO;
 }
 
@@ -462,7 +477,14 @@
 
 - (BOOL)rememberMe {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *value = [userDefaults objectForKey:EXO_REMEMBER_ME];
+    NSString *value;
+    if (self.isUserLogged) {
+        value = [userDefaults objectForKey:EXO_REMEMBER_ME];
+    } else {
+        NSString* lastLoggedUserKey = [userDefaults valueForKey:EXO_LAST_LOGGED_USER];
+        value = [userDefaults valueForKey:
+                 [NSString stringWithFormat:@"%@_remember_me", lastLoggedUserKey]];
+    }
     return value ? [value boolValue] : NO;
 }
 
