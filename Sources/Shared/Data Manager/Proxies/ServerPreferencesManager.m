@@ -20,8 +20,8 @@
 /*
  * Keys for login settings
  */
-#define EXO_REMEMBER_ME                     @"remember_me"
-#define EXO_AUTO_LOGIN                      @"auto_login"
+#define EXO_REMEMBER_ME                     [NSString stringWithFormat:@"%@_%@_remember_me", self.selectedDomain, self.username]
+#define EXO_AUTO_LOGIN                      [NSString stringWithFormat:@"%@_%@_auto_login", self.selectedDomain, self.username]
 /* key for showing prive drive */
 #define EXO_PREFERENCE_SHOW_PRIVATE_DRIVE   [NSString stringWithFormat:@"%@_%@_show_private_drive", self.selectedDomain, self.username]
 

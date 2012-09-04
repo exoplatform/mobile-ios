@@ -139,6 +139,7 @@ typedef enum {
         
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
+        [autoLogin addTarget:self action:@selector(autoLoginChange) forControlEvents:UIControlEventValueChanged];
         
         _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         [_rememberSelectedStream addTarget:self action:@selector(rememberStreamChanged:) forControlEvents:UIControlEventValueChanged];
@@ -203,9 +204,6 @@ typedef enum {
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    [autoLogin addTarget:self action:@selector(autoLoginChange) forControlEvents:UIControlEventValueChanged];
-    
     
     //if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
     //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarIphone.png"] forBarMetrics:UIBarMetricsDefault];
@@ -294,7 +292,9 @@ typedef enum {
 -(void)loadSettingsInformations {
     //Load Settings informations
     bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+    rememberMe.on = bRememberMe;
     bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+    autoLogin.on = bAutoLogin;
     _showPrivateDrive.on = [ServerPreferencesManager sharedInstance].showPrivateDrive;
 }
 
@@ -403,7 +403,6 @@ typedef enum {
     {
         case SettingViewControllerSectionLogin:
         {
-            
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
             if(cell == nil) 
             {
@@ -414,22 +413,17 @@ typedef enum {
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             
-            //Remove previous UISwith
-            [[cell viewWithTag:kTagForSwitchRememberMe] removeFromSuperview];
-            [[cell viewWithTag:kTagForSwitchRememberMe] removeFromSuperview];
-                        
+            // No need to set the value of the switch, it is done in loadSettingsInformation
+            // Only set the correct switch in the accessoryView of the cell
             if(indexPath.row == 0)
             {
-                rememberMe.on = bRememberMe;
                 cell.accessoryView = rememberMe;
             }
             else 
             {
-                autoLogin.on = bAutoLogin;
                 cell.accessoryView = autoLogin;
             }
             break;
-            
         }
         case SettingViewControllerSectionSocial: 
         {
@@ -456,6 +450,8 @@ typedef enum {
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
+            // No need to set the value of the switch, it is done in loadSettingsInformation                
+            // Only set the correct switch in the accessoryView of the cell
             cell.accessoryView = _showPrivateDrive;
             break;
         }

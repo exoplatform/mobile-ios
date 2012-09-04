@@ -111,8 +111,16 @@
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
 	    
-	_bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
-	_bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+    // Retrieve Auto Login and Remember Me values of the last user that signed in
+    // Set to NO if they don't exist
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* lastLoggedUserKey = [userDefaults valueForKey:EXO_LAST_LOGGED_USER];
+    NSNumber* rememberMeVal = [userDefaults 
+                              valueForKey:[NSString stringWithFormat:@"%@_remember_me", lastLoggedUserKey]];
+	_bRememberMe = rememberMeVal ? [rememberMeVal boolValue] : NO;
+    NSNumber* autoLoginVal = [userDefaults 
+                              valueForKey:[NSString stringWithFormat:@"%@_auto_login", lastLoggedUserKey]];
+	_bAutoLogin = autoLoginVal ? [autoLoginVal boolValue] : NO;
 	
 	if(_bRememberMe || _bAutoLogin)
 	{
@@ -456,6 +464,10 @@
     
     [self.loginProxy authenticateAndGetPlatformInfoWithUsername:username password:password];
 
+    // Store the current server/user combination
+    // We use this value in ViewWillAppear to retrieve the Remember Me and Auto Login values of this user
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSString stringWithFormat:@"%@_%@", [ServerPreferencesManager sharedInstance].selectedDomain, username] forKey:EXO_LAST_LOGGED_USER];
 }
 
 - (IBAction)onSignInBtn:(id)sender
