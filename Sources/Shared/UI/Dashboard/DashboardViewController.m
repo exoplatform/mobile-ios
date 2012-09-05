@@ -71,6 +71,8 @@
     [_errorForRetrievingDashboard release];
     _errorForRetrievingDashboard = nil;
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [super dealloc];
 }
 
@@ -128,12 +130,14 @@
     
     //Set the last update date at now 
     self.dateOfLastUpdate = [NSDate date];
-
+    // Observe the change language notif to update the labels
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
 }
 
 - (void)viewDidUnload
 {
     [_refreshHeaderView release]; _refreshHeaderView =nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -435,5 +439,12 @@
 	
 }
 
+#pragma mark - language changing management
+- (void)updateLabelsWithNewLanguage {
+    // update label for emptyview
+    [(EmptyView *)[self.view viewWithTag:TAG_EMPTY] setLabelContent:Localize(@"NoGadget")];
+    
+    [super updateLabelsWithNewLanguage];
+}
 
 @end
