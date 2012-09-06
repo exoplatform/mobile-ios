@@ -9,7 +9,6 @@
 #import "File.h"
 #import "FilesProxy.h"
 #import "AuthenticateProxy.h"
-#import "eXo_Constants.h"
 
 @implementation File
 
