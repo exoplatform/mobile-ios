@@ -312,13 +312,29 @@
 }
 
 #pragma mark - navigation view controllers management
+
+- (void)setScrollToTopForViewController:(UIViewController*)viewC withScroll:(BOOL)scroll {
+    if ([viewC isKindOfClass:[ActivityStreamBrowseViewController class]])
+        [(ActivityStreamBrowseViewController*)viewC tblvActivityStream].scrollsToTop = scroll;
+    else if ([viewC isKindOfClass:[DocumentsViewController class]])
+        [(DocumentsViewController*)viewC tblFiles].scrollsToTop = scroll;
+    else if ([viewC isKindOfClass:[DashboardViewController class]])
+        [(DashboardViewController*)viewC tblGadgets].scrollsToTop = scroll;
+}
+
 - (void)setContentNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated {
     [_revealView.contentView setNavigationBarHidden:hidden animated:animated];
 }
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // * the viewcontroller must not be already on the navigation stack
     if ([_viewControllers containsObject:viewController])
         return;
+    // Disable scroll to top on the soon to be hidden view controller
+    UIViewController *lastViewController = [_viewControllers lastObject];
+    [self setScrollToTopForViewController:lastViewController withScroll:NO];
+    // No need to activate the scroll to top on the new view controller, it is by default
+    // Push view controller
     [_viewControllers addObject:viewController];
     [_revealView.contentView pushView:viewController.view animated:animated];
 }
@@ -339,6 +355,11 @@
 #pragma mark - JTNavigationBarDelegate
 - (void)willPopNavigationItemAnimated:(BOOL)animated {
     [_viewControllers removeLastObject];
+    // No need to disable top to scroll on the previous top view controller, it is hidden
+    // Enable scroll to top on the new top view controller
+    UIViewController *topViewController = [_viewControllers lastObject];
+    [self setScrollToTopForViewController:topViewController withScroll:YES];
+    // Pop view controller
     [_revealView.contentView willPopNavigationItemAnimated:animated];
 }
 

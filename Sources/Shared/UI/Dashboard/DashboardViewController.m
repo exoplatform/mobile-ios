@@ -205,6 +205,9 @@
     return CGRectMake(25.0, 11.0, width, kHeightForSectionHeader);
 }
 
+- (UITableView*)tblGadgets{
+    return _tblGadgets;
+}
 
 #pragma mark Table view methods
 

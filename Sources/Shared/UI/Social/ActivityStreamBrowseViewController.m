@@ -783,6 +783,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [emptyView release];
 }
 
+- (UITableView*) tblvActivityStream {
+    return _tblvActivityStream;
+}
+
 #pragma mark - MessageComposer Methods
 - (void)messageComposerDidSendData {
     [self updateActivityStream];

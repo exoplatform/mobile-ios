@@ -41,5 +41,6 @@
 
 - (CGRect)rectOfHeader:(int)width;
 - (void)emptyState;
+- (UITableView*)tblGadgets;
 
 @end

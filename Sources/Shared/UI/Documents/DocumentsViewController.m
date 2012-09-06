@@ -244,6 +244,10 @@ static NSString *PRIVATE_GROUP = @"Private";
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (UITableView*)tblFiles {
+    return _tblFiles;
+}
+
 
 #pragma mark - HUD Management
 

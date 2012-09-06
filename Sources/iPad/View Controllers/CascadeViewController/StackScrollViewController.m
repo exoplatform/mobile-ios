@@ -38,6 +38,9 @@
 
 #import "StackScrollViewController.h"
 #import "UIViewWithShadow.h"
+#import "DocumentsViewController.h"
+#import "DashboardViewController.h"
+#import "ActivityStreamBrowseViewController.h"
 
 const NSInteger SLIDE_VIEWS_MINUS_X_POSITION = -130;
 const NSInteger SLIDE_VIEWS_START_X_POS = 0;
@@ -120,9 +123,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 			[[borderViews viewWithTag:2] setHidden:FALSE];
 			[[borderViews viewWithTag:1] setHidden:FALSE];
 		}
-		
-		
-	}
+    }
 }
 
 
@@ -312,10 +313,12 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	
 	// STATE END	
 	if (recognizer.state == UIGestureRecognizerStateEnded) {
-		
+
 		if ([dragDirection isEqualToString:@"LEFT"]) {
 			if (viewAtRight != nil) {
-				if ([[slideViews subviews] indexOfObject:viewAtLeft] == 0 && !(viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION || viewAtLeft.frame.origin.x == SLIDE_VIEWS_START_X_POS)) {
+				if ([[slideViews subviews] indexOfObject:viewAtLeft] == 0 && !(viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION || viewAtLeft.frame.origin.x == SLIDE_VIEWS_START_X_POS))
+                {
+                // Move panes from |--+----+-| to |-+----+--| (close left menu)
 					[UIView beginAnimations:nil context:NULL];
 					[UIView setAnimationDuration:0.2];
 					[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:nil cache:YES];
@@ -325,7 +328,6 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 						[viewAtRight setFrame:CGRectMake(SLIDE_VIEWS_MINUS_X_POSITION + viewAtLeft.frame.size.width, viewAtRight.frame.origin.y, viewAtRight.frame.size.width,viewAtRight.frame.size.height)];
 					}
 					else{
-						
 						//Drop Card View Animation
 						if ((((UIView*)[[slideViews subviews] objectAtIndex:0]).frame.origin.x+200) >= (self.view.frame.origin.x + ((UIView*)[[slideViews subviews] objectAtIndex:0]).frame.size.width)) {
 							
@@ -365,7 +367,9 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 					}
 					[UIView commitAnimations];
 				}
-				else if (viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION && viewAtRight.frame.origin.x + viewAtRight.frame.size.width > self.view.frame.size.width) {
+				else if (viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION && viewAtRight.frame.origin.x + viewAtRight.frame.size.width > self.view.frame.size.width)
+                {
+                // Move panes from |-+----+--| to |-+--+----|
 					[UIView beginAnimations:nil context:NULL];
 					[UIView setAnimationDuration:0.2];
 					[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:nil cache:YES];
@@ -373,7 +377,9 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 					[viewAtRight setFrame:CGRectMake(self.view.frame.size.width - viewAtRight.frame.size.width, viewAtRight.frame.origin.y, viewAtRight.frame.size.width,viewAtRight.frame.size.height)];						
 					[UIView commitAnimations];						
 				}	
-				else if (viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION && viewAtRight.frame.origin.x + viewAtRight.frame.size.width < self.view.frame.size.width) {
+				else if (viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION && viewAtRight.frame.origin.x + viewAtRight.frame.size.width < self.view.frame.size.width)
+                {
+                // Move panes from |-+--+----| to |-+--+----|
 					[UIView beginAnimations:@"RIGHT-WITH-RIGHT" context:NULL];
 					[UIView setAnimationDuration:0.2];
 					[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:nil cache:YES];
@@ -383,11 +389,13 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 					[UIView setAnimationDidStopSelector:@selector(bounceBack:finished:context:)];
 					[UIView commitAnimations];
 				}
-				else if (viewAtLeft.frame.origin.x > SLIDE_VIEWS_MINUS_X_POSITION) {
+				else if (viewAtLeft.frame.origin.x > SLIDE_VIEWS_MINUS_X_POSITION)
+                {
 					[UIView setAnimationDuration:0.2];
 					[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:nil cache:YES];
 					[UIView setAnimationBeginsFromCurrentState:YES];
 					if ((viewAtLeft.frame.origin.x + viewAtLeft.frame.size.width > self.view.frame.size.width) && viewAtLeft.frame.origin.x < (self.view.frame.size.width - (viewAtLeft.frame.size.width)/2)) {
+                    // Move panes from |-+----+--| to |-+--+----|
 						[UIView beginAnimations:@"LEFT-WITH-LEFT" context:nil];
 						[viewAtLeft setFrame:CGRectMake(self.view.frame.size.width - viewAtLeft.frame.size.width, viewAtLeft.frame.origin.y, viewAtLeft.frame.size.width, viewAtLeft.frame.size.height)];
 						
@@ -395,6 +403,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 						[viewAtRight setFrame:CGRectMake(self.view.frame.size.width, viewAtRight.frame.origin.y, viewAtRight.frame.size.width,viewAtRight.frame.size.height)];						
 					}
 					else {
+                    // Move panes from |-+--+----| to |-+--+----|
 						[UIView beginAnimations:@"LEFT-WITH-RIGHT" context:nil];	
 						[viewAtLeft setFrame:CGRectMake(SLIDE_VIEWS_MINUS_X_POSITION, viewAtLeft.frame.origin.y, viewAtLeft.frame.size.width, viewAtLeft.frame.size.height)];
 						if (positionOfViewAtLeftAtTouchBegan.x + viewAtLeft.frame.size.width <= self.view.frame.size.width) {
@@ -421,10 +430,11 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 				[viewAtLeft setFrame:CGRectMake(SLIDE_VIEWS_START_X_POS, viewAtLeft.frame.origin.y, viewAtLeft.frame.size.width, viewAtLeft.frame.size.height)];
 				[UIView commitAnimations];
 			}
-			
 		}else if ([dragDirection isEqualToString:@"RIGHT"]) {
 			if (viewAtLeft != nil) {
-				if ([[slideViews subviews] indexOfObject:viewAtLeft] == 0 && !(viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION || viewAtLeft.frame.origin.x == SLIDE_VIEWS_START_X_POS)) {
+				if ([[slideViews subviews] indexOfObject:viewAtLeft] == 0 && !(viewAtLeft.frame.origin.x == SLIDE_VIEWS_MINUS_X_POSITION || viewAtLeft.frame.origin.x == SLIDE_VIEWS_START_X_POS))
+                {
+                // Move panes from |-+----+--| to |--+----+-| (display left menu)
 					[UIView beginAnimations:nil context:NULL];
 					[UIView setAnimationDuration:0.2];			
 					[UIView setAnimationBeginsFromCurrentState:YES];
@@ -473,8 +483,11 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 					}
 					[UIView commitAnimations];
 				}
-				else if (viewAtRight.frame.origin.x < self.view.frame.size.width) {
-					if((viewAtRight.frame.origin.x < (viewAtLeft.frame.origin.x + viewAtLeft.frame.size.width)) && viewAtRight.frame.origin.x < (self.view.frame.size.width - (viewAtRight.frame.size.width/2))){
+				else if (viewAtRight.frame.origin.x < self.view.frame.size.width)
+                {
+					if((viewAtRight.frame.origin.x < (viewAtLeft.frame.origin.x + viewAtLeft.frame.size.width)) && viewAtRight.frame.origin.x < (self.view.frame.size.width - (viewAtRight.frame.size.width/2)))
+                    {
+                    // Move panes from |-+--+----| to |-+----+--|
 						[UIView beginAnimations:@"RIGHT-WITH-RIGHT" context:NULL];
 						[UIView setAnimationDuration:0.2];
 						[UIView setAnimationBeginsFromCurrentState:YES];
@@ -484,8 +497,9 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 						[UIView setAnimationDidStopSelector:@selector(bounceBack:finished:context:)];
 						[UIView commitAnimations];
 					}				
-					else{
-						
+					else
+                    {
+                    // Move panes from |-+----+--| to |-+----+--|
 						[UIView beginAnimations:@"RIGHT-WITH-LEFT" context:NULL];
 						[UIView setAnimationDuration:0.2];
 						[UIView setAnimationBeginsFromCurrentState:YES];
@@ -509,7 +523,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 					}
 					
 				}
-			}			
+			}
 		}
 		lastTouchPoint = -1;
 		dragDirection = @"";
@@ -686,6 +700,11 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 - (void)addViewInSlider:(UIViewController*)controller invokeByController:(UIViewController*)invokeByController isStackStartView:(BOOL)isStackStartView{
 	
 	BOOL isContentSizeForMainViewSet = FALSE;
+    
+    // Activate the scroll to top gesture on the newly added controller
+    if (controller) [self setScrollToTopForViewController:controller withScroll:YES];
+    // Disable the scroll to top gesture on the previous controller
+    if (invokeByController) [self setScrollToTopForViewController:invokeByController withScroll:NO];
 	
 	if (isStackStartView) {
 		slideStartPosition = SLIDE_VIEWS_START_X_POS;
@@ -735,6 +754,8 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 		[controller.view addSubview:verticalLineView];
 	}
 	
+    // The ViewController is added here to the stack
+    // Its position is viewControllersStack.count-1
 	[viewControllersStack addObject:controller];
 	if (invokeByController !=nil) {
 		viewXPosition = invokeByController.view.frame.origin.x + invokeByController.view.frame.size.width;			
@@ -745,6 +766,8 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	}
 	[[controller view] setFrame:CGRectMake(viewXPosition, 0, [controller view].frame.size.width, self.view.frame.size.height)];
 	
+    // The view of the controller is tagged with the position of the controller in the stack
+    // It allows to find the controller of a certain view using the view's tag
 	[controller.view setTag:([viewControllersStack count]-1)];
 	[controller viewWillAppear:FALSE];
 	[controller viewDidAppear:FALSE];
@@ -804,6 +827,14 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	}
 }
 
+- (void)setScrollToTopForViewController:(UIViewController*)viewC withScroll:(BOOL)scroll {
+    if ([viewC isKindOfClass:[ActivityStreamBrowseViewController class]])
+        [(ActivityStreamBrowseViewController*)viewC tblvActivityStream].scrollsToTop = scroll;
+    else if ([viewC isKindOfClass:[DocumentsViewController class]])
+        [(DocumentsViewController*)viewC tblFiles].scrollsToTop = scroll;
+    else if ([viewC isKindOfClass:[DashboardViewController class]])
+        [(DashboardViewController*)viewC tblGadgets].scrollsToTop = scroll;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
