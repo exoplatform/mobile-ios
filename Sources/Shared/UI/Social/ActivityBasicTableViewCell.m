@@ -16,8 +16,6 @@
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
 
-
-
 @implementation ActivityBasicTableViewCell
 
 @synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
@@ -118,22 +116,16 @@
         _lbDate.backgroundColor = [UIColor whiteColor];
     } else {
         
-        _lbName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
-
-        
+        _lbName.backgroundColor = SELECTED_CELL_BG_COLOR;
         _htmlMessage.textColor = [UIColor darkGrayColor];
-        _htmlMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _htmlMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         _lbDate.textColor = [UIColor colorWithRed:130./255 green:130./255 blue:130./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,0);
         _lbDate.shadowColor = [UIColor darkGrayColor];
-        _lbDate.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
-        
-        
+        _lbDate.backgroundColor = SELECTED_CELL_BG_COLOR;
         
     }
-    
-    
 }
 
 

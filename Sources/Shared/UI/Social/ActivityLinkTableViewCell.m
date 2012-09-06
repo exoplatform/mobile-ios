@@ -37,16 +37,16 @@
         _htmlActivityMessage.backgroundColor = [UIColor whiteColor];
     } else {
         _htmlLinkDescription.textColor = [UIColor darkGrayColor];
-        _htmlLinkDescription.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _htmlLinkDescription.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         _htmlLinkTitle.textColor = [UIColor darkGrayColor];
-        _htmlLinkTitle.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _htmlLinkTitle.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         _htmlLinkMessage.textColor = [UIColor darkGrayColor];
-        _htmlLinkMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _htmlLinkMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         _htmlActivityMessage.textColor = [UIColor darkGrayColor];
-        _htmlActivityMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _htmlActivityMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
     }
     
     [super configureFonts:highlighted];

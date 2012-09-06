@@ -41,7 +41,7 @@
         
     } else {
         _lbFileName.textColor = [UIColor darkGrayColor];
-        _lbFileName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _lbFileName.backgroundColor = SELECTED_CELL_BG_COLOR;
         
     }
     
