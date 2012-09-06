@@ -316,7 +316,7 @@
 // Called by LoginProxy when login has failed
 - (void)authenticateFailedWithError:(NSError *)error {
     [self view].userInteractionEnabled = YES;
-    [self.hud failAndDismissWithTitle:Localize(@"Error")];
+    [self.hud dismiss];
     
     if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
