@@ -80,5 +80,6 @@
 // Reload username and password from user preference
 - (void)reloadUsernamePassword;
 - (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath;
+- (void)saveCurrentServerUsernameCombination;
 
 @end

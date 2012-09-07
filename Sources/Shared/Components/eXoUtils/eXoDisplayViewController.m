@@ -52,7 +52,6 @@
         NSURLRequest* request = [NSURLRequest requestWithURL:_url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];	
         [_webView loadRequest:request];
     }
-
 }
 
 -(void)fullScreen {
@@ -166,8 +165,7 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)startLoadingAnimation{
     // Add the loader indicator
     self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     // Position the indicator at the right of the navigation bar
@@ -266,7 +264,11 @@
     }
 }
 
-// Stop loading animation
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self startLoadingAnimation];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView 
 {
     [self stopLoadingAnimation];

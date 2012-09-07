@@ -21,6 +21,8 @@
 #define WIDTH_LANDSCAPE_WEBVIEW             800
 #define WIDTH_PORTRAIT_WEBVIEW              550
 
+// Key for storing the combination server_username when we sign-in
+#define EXO_LAST_LOGGED_USER                @"last-logged-user"
 #define EXO_PREFERENCE_USERID				@"userId"
 #define EXO_PREFERENCE_USERNAME				@"username"
 #define EXO_PREFERENCE_PASSWORD				@"password"

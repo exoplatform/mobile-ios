@@ -884,6 +884,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     // The activity filter tabs bar
     [_filterTabbar updateLabelsWithNewLanguage];
     [_filterTabbar selectTabItem:_selectedTabItem];
+    // update empty view labels
+    [(EmptyView *)[self.view viewWithTag:TAG_EMPTY] setLabelContent:Localize(@"NoActivities")];
     // The list of activities
     [_tblvActivityStream reloadData];
     for (SocialActivity *a in _arrActivityStreams) {

@@ -111,6 +111,7 @@
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
 	[[self navigationItem] setTitle:Localize(@"SignInPageTitle")];	
 	    
+    // Retrieve Auto Login and Remember Me values of the last user that signed in, or NO if they don't exist
 	_bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
 	_bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
 	
@@ -299,6 +300,7 @@
 }
 
 #pragma mark - PlatformVersionProxyDelegate 
+// Called by LoginProxy when login is successful
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
     // Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
@@ -308,11 +310,13 @@
         [[ServerPreferencesManager sharedInstance] persistUsernameAndPasswod];
         [[ServerPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
     }
+    // Save the login information (server/username)
+    [[ServerPreferencesManager sharedInstance] saveCurrentServerUsernameCombination];
 }
-
+// Called by LoginProxy when login has failed
 - (void)authenticateFailedWithError:(NSError *)error {
     [self view].userInteractionEnabled = YES;
-    [self.hud failAndDismissWithTitle:Localize(@"Error")];
+    [self.hud dismiss];
     
     if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
@@ -455,7 +459,6 @@
     self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self] autorelease];
     
     [self.loginProxy authenticateAndGetPlatformInfoWithUsername:username password:password];
-
 }
 
 - (IBAction)onSignInBtn:(id)sender
