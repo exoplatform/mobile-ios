@@ -13,7 +13,7 @@
 #import "FileActionsViewController.h"
 #import "FileFolderActionsViewController_iPad.h"
 #import "DocumentDisplayViewController_iPad.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "LanguageHelper.h"
 #import "EmptyView.h"
 #import "RoundRectView.h"
@@ -77,7 +77,7 @@
 
 - (void)deleteCurentFileView {
     // This method will remove this view and reload its parent view. 
-    StackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
+    ExoStackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
     int viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
     if (viewIndex != NSNotFound) {
         DocumentsViewController *parentController = viewIndex > 0 ? [[stackScrollVC.viewControllersStack objectAtIndex:viewIndex - 1] retain] : nil;

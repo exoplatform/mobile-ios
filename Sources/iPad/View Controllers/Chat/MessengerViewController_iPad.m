@@ -9,7 +9,7 @@
 #import "MessengerViewController_iPad.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "ChatWindowViewController_iPhone.h"
 #import "LanguageHelper.h"
 

@@ -8,7 +8,7 @@
 
 #import "MenuViewController.h"
 #import "RootViewController.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
 #import "UserProfileViewController.h"

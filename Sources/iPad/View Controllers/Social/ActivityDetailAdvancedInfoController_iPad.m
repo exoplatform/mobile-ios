@@ -17,7 +17,6 @@
 #import "ActivityLinkDisplayViewController_iPad.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
-#import "StackScrollViewController.h"
 
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellLeftRightPadding 1.0

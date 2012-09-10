@@ -10,7 +10,7 @@
 
 
 #import "MenuViewController.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "eXoFullScreenView.h"
 
 @interface UIViewExt : UIView {} 
@@ -88,7 +88,7 @@
 	
 	UIView *rightSlideView = [[[UIView alloc] initWithFrame:CGRectMake(leftMenuView.frame.size.width, 0, rootView.frame.size.width - leftMenuView.frame.size.width, rootView.frame.size.height)] autorelease];
 	rightSlideView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
-	stackScrollViewController = [[StackScrollViewController alloc] init];	
+	stackScrollViewController = [[ExoStackScrollViewController alloc] init];	
 	[stackScrollViewController.view setFrame:CGRectMake(0, 0, rightSlideView.frame.size.width, rightSlideView.frame.size.height)];
 	[stackScrollViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight];
 	[stackScrollViewController viewWillAppear:FALSE];

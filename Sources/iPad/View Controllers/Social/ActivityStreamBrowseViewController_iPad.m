@@ -13,7 +13,7 @@
 #import "RootViewController.h"
 #import "MessageComposerViewController.h"
 #import "SocialUserProfileCache.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "EGOImageView.h"
 #import "SocialPictureAttach.h"
 #import "DocumentDisplayViewController_iPhone.h"

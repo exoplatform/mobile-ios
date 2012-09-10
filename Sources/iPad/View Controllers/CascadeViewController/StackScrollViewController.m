@@ -38,9 +38,6 @@
 
 #import "StackScrollViewController.h"
 #import "UIViewWithShadow.h"
-#import "DocumentsViewController.h"
-#import "DashboardViewController.h"
-#import "ActivityStreamBrowseViewController.h"
 
 const NSInteger SLIDE_VIEWS_MINUS_X_POSITION = -130;
 const NSInteger SLIDE_VIEWS_START_X_POS = 0;
@@ -700,11 +697,6 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 - (void)addViewInSlider:(UIViewController*)controller invokeByController:(UIViewController*)invokeByController isStackStartView:(BOOL)isStackStartView{
 	
 	BOOL isContentSizeForMainViewSet = FALSE;
-    
-    // Activate the scroll to top gesture on the newly added controller
-    if (controller) [self setScrollToTopForViewController:controller withScroll:YES];
-    // Disable the scroll to top gesture on the previous controller
-    if (invokeByController) [self setScrollToTopForViewController:invokeByController withScroll:NO];
 	
 	if (isStackStartView) {
 		slideStartPosition = SLIDE_VIEWS_START_X_POS;
@@ -827,14 +819,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	}
 }
 
-- (void)setScrollToTopForViewController:(UIViewController*)viewC withScroll:(BOOL)scroll {
-    if ([viewC isKindOfClass:[ActivityStreamBrowseViewController class]])
-        [(ActivityStreamBrowseViewController*)viewC tblvActivityStream].scrollsToTop = scroll;
-    else if ([viewC isKindOfClass:[DocumentsViewController class]])
-        [(DocumentsViewController*)viewC tblFiles].scrollsToTop = scroll;
-    else if ([viewC isKindOfClass:[DashboardViewController class]])
-        [(DashboardViewController*)viewC tblGadgets].scrollsToTop = scroll;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

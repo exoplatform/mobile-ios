@@ -12,7 +12,7 @@
 #import "RootViewController.h"
 #import "ActivityLinkDisplayViewController_iPad.h"
 #import "defines.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "LanguageHelper.h"
 #import "EmptyView.h"
 #import "ActivityHelper.h"

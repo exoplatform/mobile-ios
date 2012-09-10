@@ -12,7 +12,7 @@
 #import "GadgetItem.h"
 #import "DashboardProxy.h"
 #import "RootViewController.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "LanguageHelper.h"
 #import "EGOImageView.h"
 #import "RoundRectView.h"
