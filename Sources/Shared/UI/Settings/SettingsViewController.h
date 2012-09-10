@@ -10,6 +10,7 @@
 #import "LoginProxy.h"
 #import "PlatformServerVersion.h"
 #import "eXoTableViewController.h"
+#import "ServerAddingViewController.h"
 @class ServerManagerViewController;
 @class UserPreferencesManager;
 
@@ -19,7 +20,7 @@
 
 @end
 
-@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate>{
+@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate, ServerManagerProtocol> {
     
     BOOL                            bRememberMe;
 	BOOL                            bAutoLogin;
