@@ -16,6 +16,8 @@
 #import "LanguageHelper.h"
 #import "URLAnalyzer.h"
 #import "AuthSelectionView.h"
+#import "UserPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 
 #pragma mark - Authenticate View Controller
 
@@ -113,8 +115,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
     
-	_credViewController.bRememberMe = [ServerPreferencesManager sharedInstance].autoLogin;
-	_credViewController.bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+	_credViewController.bRememberMe = [UserPreferencesManager sharedInstance].autoLogin;
+	_credViewController.bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;
     // If Auto Login is disabled, we set the Auto Login variable to NO
     // but we don't save this value in the user settings
     // We also refresh the username and password
@@ -142,8 +144,8 @@
     [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
     [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     [_servListViewController.tbvlServerList reloadData];
-    _credViewController.bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;    
-    _credViewController.bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+    _credViewController.bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;    
+    _credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
     [_credViewController signInAnimation:_credViewController.bAutoLogin];
     
     if (!_credViewController.bAutoLogin) {
@@ -175,7 +177,7 @@
 // Called when the application starts
 -(void) initUsernameAndPassword {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_credViewController.bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+	_credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
     if (_credViewController.bRememberMe) {
         // Display the saved username and password if we have to
         [_credViewController.txtfUsername setText:[userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
@@ -263,10 +265,10 @@
     // Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
     if (compatibleWithSocial) {
-        [ServerPreferencesManager sharedInstance].username = _credViewController.txtfUsername.text;
-        [ServerPreferencesManager sharedInstance].password = _credViewController.txtfPassword.text;
-        [[ServerPreferencesManager sharedInstance] persistUsernameAndPasswod];
-        [[ServerPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
+        [UserPreferencesManager sharedInstance].username = _credViewController.txtfUsername.text;
+        [UserPreferencesManager sharedInstance].password = _credViewController.txtfPassword.text;
+        [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+        [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
     }
 }
 

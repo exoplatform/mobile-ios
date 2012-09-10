@@ -14,6 +14,7 @@
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
 #import "AuthTabItem.h"
+#import "UserPreferencesManager.h"
 
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
@@ -228,14 +229,14 @@
 
 - (void)setPreferenceValues
 {
-	NSString *strUsername = [[ServerPreferencesManager sharedInstance] username];
+	NSString *strUsername = [[UserPreferencesManager sharedInstance] username];
 	if(strUsername)
 	{
 		[_credViewController.txtfUsername setText:strUsername];
 		[_credViewController.txtfUsername resignFirstResponder];
 	}
 	
-	NSString* strPassword = [[ServerPreferencesManager sharedInstance] password]; 
+	NSString* strPassword = [[UserPreferencesManager sharedInstance] password]; 
 	if(strPassword)
 	{
 		[_credViewController.txtfPassword setText:strPassword];

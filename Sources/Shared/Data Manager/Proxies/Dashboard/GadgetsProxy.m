@@ -8,7 +8,7 @@
 
 #import "GadgetsProxy.h"
 #import "GadgetItem.h"
-#import "ServerPreferencesManager.h"
+#import "UserPreferencesManager.h"
 
 @interface GadgetsProxy () 
 
@@ -63,8 +63,8 @@
 - (void)retrieveGadgets {
     // Load the object model via RestKit
     self.manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];
-    self.manager.client.username = [NSString stringWithFormat:@"%@", [ServerPreferencesManager sharedInstance].username];
-    self.manager.client.password = [NSString stringWithFormat:@"%@", [ServerPreferencesManager sharedInstance].password];    
+    self.manager.client.username = [NSString stringWithFormat:@"%@", [UserPreferencesManager sharedInstance].username];
+    self.manager.client.password = [NSString stringWithFormat:@"%@", [UserPreferencesManager sharedInstance].password];    
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[GadgetItem class]];
     [mapping mapKeyPathsToAttributes:
      @"gadgetUrl",@"gadgetUrl",

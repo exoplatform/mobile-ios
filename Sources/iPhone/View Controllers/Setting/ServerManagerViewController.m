@@ -7,7 +7,8 @@
 //
 
 #import "ServerManagerViewController.h"
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
+#import "UserPreferencesManager.h"
 #import "ServerAddingViewController.h"
 #import "ServerEditingViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
@@ -135,7 +136,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    return [[ServerPreferencesManager sharedInstance].serverList count];
+    return [[ApplicationPreferencesManager sharedInstance].serverList count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,9 +161,9 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
         cell.detailTextLabel.backgroundColor = [UIColor clearColor]; 
     }
     
-    if (indexPath.row < [[ServerPreferencesManager sharedInstance].serverList count]) 
+    if (indexPath.row < [[ApplicationPreferencesManager sharedInstance].serverList count]) 
     {
-        ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
+        ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
         
         cell.textLabel.text = tmpServerObj._strServerName;
         cell.detailTextLabel.text = tmpServerObj._strServerUrl;
@@ -177,8 +178,8 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    ServerPreferencesManager *serverPrefManager = [ServerPreferencesManager sharedInstance];
-    if(serverPrefManager.isUserLogged){
+    ApplicationPreferencesManager *serverPrefManager = [ApplicationPreferencesManager sharedInstance];
+    if([UserPreferencesManager sharedInstance].isUserLogged){
         if(serverPrefManager.selectedServerIndex != indexPath.row){
             ServerObj* tmpServerObj = [serverPrefManager.serverList objectAtIndex:indexPath.row];
             
@@ -207,7 +208,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 // Ignore the index of the server you are currently editing
 // Ignore -1 to compare with all the existing servers
 - (BOOL)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index {
-    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+    ApplicationPreferencesManager* serverPrefManager = [ApplicationPreferencesManager sharedInstance];
     for (int i = 0; i < [serverPrefManager.serverList count]; i++) 
     {
         if (index==i)continue; // ignore the server specified by index
@@ -287,7 +288,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     // If the name and URL are well formed, we remove some unnecessary characters
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+    ApplicationPreferencesManager* serverPrefManager = [ApplicationPreferencesManager sharedInstance];
     
     // Check whether the name and URL already exists, ignoring case
     if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:-1]) {
@@ -339,7 +340,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
     }
     else
     {
-        ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+        ApplicationPreferencesManager* serverPrefManager = [ApplicationPreferencesManager sharedInstance];
         ServerObj* serverObjEdited = [serverPrefManager.serverList objectAtIndex:index];
         ServerObj* tmpServerObj;
         
@@ -378,7 +379,7 @@ static NSString *CellIdentifierServer = @"AuthenticateServerCellIdentifier";
 
 - (BOOL)deleteServerObjAtIndex:(int)index
 {
-    ServerPreferencesManager* serverPrefManager = [ServerPreferencesManager sharedInstance];
+    ApplicationPreferencesManager* serverPrefManager = [ApplicationPreferencesManager sharedInstance];
     ServerObj* deletedServerObj = [[serverPrefManager.serverList objectAtIndex:index] retain];
 
     [serverPrefManager.serverList removeObjectAtIndex:index];

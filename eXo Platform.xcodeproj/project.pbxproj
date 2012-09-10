@@ -166,7 +166,6 @@
 		46193156138552A700EEB664 /* HomeBubbleBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 46193155138552A600EEB664 /* HomeBubbleBackground.png */; };
 		461BFAB4141F4D14009844F6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461BFAB3141F4D14009844F6 /* SettingsViewController.m */; };
 		462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A613DEF7970050FCBC /* PlatformServerVersion.m */; };
-		462B62AA13DEF9B20050FCBC /* LoginProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 462B62A913DEF9B20050FCBC /* LoginProxy.m */; };
 		4633E6E7141BB094002A47F4 /* GadgetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6E6141BB094002A47F4 /* GadgetDisplayViewController.m */; };
 		4633E6EA141BB0FC002A47F4 /* DocumentDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6E9141BB0FB002A47F4 /* DocumentDisplayViewController.m */; };
 		4633E6EE141BB919002A47F4 /* DocumentDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4633E6EC141BB918002A47F4 /* DocumentDisplayViewController_iPad.m */; };
@@ -354,13 +353,15 @@
 		57ED5A1415BFEA8E0007C49F /* CredentialsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */; };
 		57ED5A1615BFEA9F0007C49F /* ServerListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */; };
 		57FB189915FD7AF0001F5C20 /* ExoStackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB189815FD7AF0001F5C20 /* ExoStackScrollViewController.m */; };
+		57FB19CE15FD9670001F5C20 /* LoginProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB19CB15FD9670001F5C20 /* LoginProxy.m */; };
+		57FB19D215FD96C0001F5C20 /* UserPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB19D115FD96C0001F5C20 /* UserPreferencesManager.m */; };
+		57FB1A6915FDCAF3001F5C20 /* ApplicationPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB1A6715FDCAF3001F5C20 /* ApplicationPreferencesManager.m */; };
 		7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06961F1341953B007F26BB /* ServerEditingViewController.xib */; };
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
 		7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962913419B8D007F26BB /* ServerAddingViewController.m */; };
 		7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */; };
 		7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C07D7501340466B0075BF76 /* ServerManagerViewController.m */; };
-		7C160E6713BAD86A00F6B48E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C160E6613BAD86A00F6B48E /* QuartzCore.framework */; };
 		7C2234B513810DFD006F847E /* CustomBackgroundForCellBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */; };
 		7C2234B613810DFD006F847E /* CustomBackgroundForCellMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */; };
 		7C2234B713810DFD006F847E /* CustomBackgroundForCellSingle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */; };
@@ -552,8 +553,6 @@
 		8958E67414A9BE2800580EEB /* SettingUnitest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958E67314A9BE2800580EEB /* SettingUnitest.m */; };
 		8958E67714A9C82400580EEB /* URLAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958E67614A9C82400580EEB /* URLAnalyzer.m */; };
 		8958E67814A9C82400580EEB /* URLAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958E67614A9C82400580EEB /* URLAnalyzer.m */; };
-		8958E67B14A9CE1C00580EEB /* ServerPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958E67A14A9CE1C00580EEB /* ServerPreferencesManager.m */; };
-		8958E67C14A9CE1C00580EEB /* ServerPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958E67A14A9CE1C00580EEB /* ServerPreferencesManager.m */; };
 		8989B06614735C9700EEBD7C /* gadgetPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 8989B06514735C9700EEBD7C /* gadgetPlaceHolder.png */; };
 		8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8989B06714735CA100EEBD7C /* gadgetPlaceHolder@2x.png */; };
 		8997843D13F53568002E7E1C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997843C13F53568002E7E1C /* Reachability.m */; };
@@ -1089,8 +1088,6 @@
 		461BFAB3141F4D14009844F6 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Settings/SettingsViewController.m; sourceTree = "<group>"; };
 		462B62A513DEF7970050FCBC /* PlatformServerVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformServerVersion.h; sourceTree = "<group>"; };
 		462B62A613DEF7970050FCBC /* PlatformServerVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformServerVersion.m; sourceTree = "<group>"; };
-		462B62A813DEF9B20050FCBC /* LoginProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginProxy.h; sourceTree = "<group>"; };
-		462B62A913DEF9B20050FCBC /* LoginProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProxy.m; sourceTree = "<group>"; };
 		4633E6E5141BB094002A47F4 /* GadgetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GadgetDisplayViewController.h; path = Dashboard/GadgetDisplayViewController.h; sourceTree = "<group>"; };
 		4633E6E6141BB094002A47F4 /* GadgetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GadgetDisplayViewController.m; path = Dashboard/GadgetDisplayViewController.m; sourceTree = "<group>"; };
 		4633E6E8141BB0FB002A47F4 /* DocumentDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentDisplayViewController.h; path = Documents/DocumentDisplayViewController.h; sourceTree = "<group>"; };
@@ -1352,6 +1349,12 @@
 		57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPhone.xib; sourceTree = "<group>"; };
 		57FB189715FD7AF0001F5C20 /* ExoStackScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoStackScrollViewController.h; sourceTree = "<group>"; };
 		57FB189815FD7AF0001F5C20 /* ExoStackScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoStackScrollViewController.m; sourceTree = "<group>"; };
+		57FB19CA15FD9670001F5C20 /* LoginProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginProxy.h; sourceTree = "<group>"; };
+		57FB19CB15FD9670001F5C20 /* LoginProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProxy.m; sourceTree = "<group>"; };
+		57FB19D015FD96C0001F5C20 /* UserPreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferencesManager.h; sourceTree = "<group>"; };
+		57FB19D115FD96C0001F5C20 /* UserPreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesManager.m; sourceTree = "<group>"; };
+		57FB1A6715FDCAF3001F5C20 /* ApplicationPreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPreferencesManager.m; sourceTree = "<group>"; };
+		57FB1A6A15FDCB4A001F5C20 /* ApplicationPreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPreferencesManager.h; sourceTree = "<group>"; };
 		7C06961F1341953B007F26BB /* ServerEditingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerEditingViewController.xib; path = ../../iPhone/NIB/ServerEditingViewController.xib; sourceTree = "<group>"; };
 		7C06962313419582007F26BB /* ServerEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerEditingViewController.h; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.h"; sourceTree = "<group>"; };
 		7C06962413419583007F26BB /* ServerEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerEditingViewController.m; path = "../../iPhone/View Controllers/Setting/ServerEditingViewController.m"; sourceTree = "<group>"; };
@@ -1633,8 +1636,6 @@
 		8958E67314A9BE2800580EEB /* SettingUnitest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingUnitest.m; sourceTree = "<group>"; };
 		8958E67514A9C82400580EEB /* URLAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLAnalyzer.h; sourceTree = "<group>"; };
 		8958E67614A9C82400580EEB /* URLAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzer.m; sourceTree = "<group>"; };
-		8958E67914A9CE1C00580EEB /* ServerPreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerPreferencesManager.h; path = "Sources/Shared/Data Manager/Proxies/ServerPreferencesManager.h"; sourceTree = SOURCE_ROOT; };
-		8958E67A14A9CE1C00580EEB /* ServerPreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerPreferencesManager.m; path = "Sources/Shared/Data Manager/Proxies/ServerPreferencesManager.m"; sourceTree = SOURCE_ROOT; };
 		8989B06514735C9700EEBD7C /* gadgetPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gadgetPlaceHolder.png; sourceTree = "<group>"; };
 		8989B06714735CA100EEBD7C /* gadgetPlaceHolder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gadgetPlaceHolder@2x.png"; sourceTree = "<group>"; };
 		8997843B13F53568002E7E1C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -1804,7 +1805,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */,
-				7C160E6713BAD86A00F6B48E /* QuartzCore.framework in Frameworks */,
 				7CE85B0713C46D0C00A219EB /* MobileCoreServices.framework in Frameworks */,
 				7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */,
 				7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */,
@@ -2226,17 +2226,6 @@
 			children = (
 				462B62A513DEF7970050FCBC /* PlatformServerVersion.h */,
 				462B62A613DEF7970050FCBC /* PlatformServerVersion.m */,
-			);
-			path = ServerConfiguration;
-			sourceTree = "<group>";
-		};
-		462B62A413DEF76C0050FCBC /* ServerConfiguration */ = {
-			isa = PBXGroup;
-			children = (
-				8958E67914A9CE1C00580EEB /* ServerPreferencesManager.h */,
-				8958E67A14A9CE1C00580EEB /* ServerPreferencesManager.m */,
-				462B62A813DEF9B20050FCBC /* LoginProxy.h */,
-				462B62A913DEF9B20050FCBC /* LoginProxy.m */,
 			);
 			path = ServerConfiguration;
 			sourceTree = "<group>";
@@ -2992,6 +2981,19 @@
 				46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */,
 			);
 			name = "UIImage+Resize";
+			sourceTree = "<group>";
+		};
+		57FB19C915FD9670001F5C20 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				57FB1A6A15FDCB4A001F5C20 /* ApplicationPreferencesManager.h */,
+				57FB1A6715FDCAF3001F5C20 /* ApplicationPreferencesManager.m */,
+				57FB19CA15FD9670001F5C20 /* LoginProxy.h */,
+				57FB19CB15FD9670001F5C20 /* LoginProxy.m */,
+				57FB19D015FD96C0001F5C20 /* UserPreferencesManager.h */,
+				57FB19D115FD96C0001F5C20 /* UserPreferencesManager.m */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		7C5053E913E2AF3600FA73CD /* Social */ = {
@@ -3814,11 +3816,11 @@
 		8947352513375EF200B0AD11 /* Proxies */ = {
 			isa = PBXGroup;
 			children = (
+				57FB19C915FD9670001F5C20 /* Configuration */,
 				4608C34A1420921D0054E59C /* Document */,
 				89112725140B9A7800A8851C /* Chat */,
 				46ADAD111403E3C0005ABA79 /* Dashboard */,
 				46ADAC6614028054005ABA79 /* Authenticate */,
-				462B62A413DEF76C0050FCBC /* ServerConfiguration */,
 				46371C8D13C5973000CD2035 /* Social */,
 			);
 			path = Proxies;
@@ -4016,7 +4018,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = eXoPlatform;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "eXo Platform" */;
@@ -4809,7 +4811,6 @@
 				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
-				462B62AA13DEF9B20050FCBC /* LoginProxy.m in Sources */,
 				46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
@@ -4886,7 +4887,6 @@
 				8958E66B14A9B7D300580EEB /* CXMLNode_PrivateExtensions.m in Sources */,
 				8958E66D14A9B7D300580EEB /* CXMLNode_XPathExtensions.m in Sources */,
 				8958E67714A9C82400580EEB /* URLAnalyzer.m in Sources */,
-				8958E67B14A9CE1C00580EEB /* ServerPreferencesManager.m in Sources */,
 				1FCE235F14BA8DCF00ED95AB /* SocialRestProxy.m in Sources */,
 				1FCE236214BA8E4300ED95AB /* SocialVersion.m in Sources */,
 				A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */,
@@ -4916,6 +4916,9 @@
 				579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */,
 				A6EECFC815EE1E4800A46A4B /* RoundRectView.m in Sources */,
 				57FB189915FD7AF0001F5C20 /* ExoStackScrollViewController.m in Sources */,
+				57FB19CE15FD9670001F5C20 /* LoginProxy.m in Sources */,
+				57FB19D215FD96C0001F5C20 /* UserPreferencesManager.m in Sources */,
+				57FB1A6915FDCAF3001F5C20 /* ApplicationPreferencesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4935,7 +4938,6 @@
 				8958E67114A9B81D00580EEB /* AuthenticateUnitest.m in Sources */,
 				8958E67414A9BE2800580EEB /* SettingUnitest.m in Sources */,
 				8958E67814A9C82400580EEB /* URLAnalyzer.m in Sources */,
-				8958E67C14A9CE1C00580EEB /* ServerPreferencesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

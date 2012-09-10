@@ -11,6 +11,8 @@
 #import "CXMLNode.h"
 #import "CXMLElement.h"
 
+#pragma mark - Server Object Interface
+
 @interface ServerObj : NSObject {
     NSString*   _strServerName;
     NSString*   _strServerUrl;
@@ -21,28 +23,18 @@
 @property (nonatomic, retain) NSString* _strServerUrl;
 @end
 
-//======================================================================
-@interface ServerPreferencesManager : NSObject {
+#pragma mark - Application Prefs Interface
+
+@interface ApplicationPreferencesManager : NSObject {
     NSMutableArray*        _arrServerList;
 }
 
+#pragma mark - Properties
+#pragma mark * Server management
 @property (nonatomic, assign) int selectedServerIndex;
 @property (nonatomic, readonly) NSString *selectedDomain;
-@property (nonatomic, copy) NSString *username;
-@property (nonatomic, copy) NSString *password;
 
-/*
- * @Getter: Return 0 if user doesn't choose to remember selected stream, else return value read at the user preference property "selected_stream"
- * @Setter: if user doesn't choose to remember selected stream, keep this value temporary to reserve for method "setrememberSelectedSocialStream:". Else the value is saved to "selected_stream". 
- */
-@property (nonatomic, assign) int selectedSocialStream;
-
-/*
- * @Getter: Returns true if the user preference property "selected_stream" doesn't exist or its value is greater than 0, else return false.
- * @Setter: If it's set true, value kepted by "setSelectedSocialStream:" is used to saved into "selected_stream", else a negative number is saved.
- */
-@property (nonatomic, assign) BOOL rememberSelectedSocialStream;
-
+#pragma mark * JCR storage
 /* current jcr repository. Return "repository" if cannot retrieve it from the server */
 @property (nonatomic, readonly) NSString *currentRepository;
 /* default jcr workspace. Return "collaboration" if cannot retrieve it from the server */
@@ -50,18 +42,14 @@
 /* home user jcr path. Return nil if cannot retrieve it from the server */
 @property (nonatomic, readonly) NSString *userHomeJcrPath;
 
-/* 
- login info
- */
-@property (nonatomic, assign) BOOL isUserLogged;
-@property (nonatomic, assign) BOOL rememberMe;
-@property (nonatomic, assign) BOOL autoLogin;
+#pragma mark - Methods
++ (ApplicationPreferencesManager*)sharedInstance;
 
-@property (nonatomic, assign) BOOL showPrivateDrive;
-
-+ (ServerPreferencesManager*)sharedInstance;
+#pragma mark * Server management
 - (NSMutableArray *)serverList;
 - (void)loadServerList;
+
+#pragma mark * Read/Write data
 - (CXMLNode*) getNode: (CXMLNode*) element withName: (NSString*) name;
 - (NSString*) getNodeValue: (CXMLNode*) node withName: (NSString*) name;
 - (NSMutableArray*)parseConfiguration:(NSData*)data withBSystemSever:(BOOL)bSystemServer;
@@ -70,15 +58,13 @@
 - (NSMutableArray*)loadDeletedSystemConfiguration;
 - (NSMutableArray*)loadUserConfiguration;
 - (NSData*)readFileWithName:(NSString*)strFileName;
-//Saved the deleted system Configuration to the /app/documents
+//Save the deleted system Configuration to the /app/documents
 - (void)writeSystemConfiguration:(NSMutableArray*)arrSystemServerList;
 - (void)writeDeletedSystemConfiguration:(NSMutableArray*)arrDeletedSystemServerList;
 - (BOOL)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList;
 - (BOOL)writeData:(NSData*)data toFile:(NSString*)strFileName;
-// Save username and password to the user preference.
-- (void)persistUsernameAndPasswod;
-// Reload username and password from user preference
-- (void)reloadUsernamePassword;
+
+#pragma mark * JCR storage
 - (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath;
 
 @end

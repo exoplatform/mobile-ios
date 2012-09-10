@@ -9,7 +9,8 @@
 #import "SocialRestConfiguration.h"
 #import "defines.h"
 #import <RestKit/RestKit.h>
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
+#import "UserPreferencesManager.h"
 
 @implementation SocialRestConfiguration
 
@@ -40,12 +41,12 @@
 
 
 - (void)updateDatas {
-    self.domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    self.domainName = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     self.restContextName = kRestContextName;
     self.restVersion = kRestVersion;
     self.portalContainerName = kPortalContainerName;
-    self.username = [[ServerPreferencesManager sharedInstance] username];
-    self.password = [[ServerPreferencesManager sharedInstance] password];
+    self.username = [[UserPreferencesManager sharedInstance] username];
+    self.password = [[UserPreferencesManager sharedInstance] password];
     
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer

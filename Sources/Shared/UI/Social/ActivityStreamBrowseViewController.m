@@ -33,6 +33,7 @@
 #import "LanguageHelper.h"
 #import "ActivityHelper.h"
 #import "SocialRestProxy.h"
+#import "UserPreferencesManager.h"
 
 #define kStreamTabbarHeight (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 35. : 30.)
 
@@ -240,7 +241,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     } else if (_selectedTabItem == ActivityStreamTabItemMyStatus) {
         if (self.userProfile == nil)
             // To get my status activities, get user profile first
-            [self.userProfileProxy getUserProfileFromUsername:[ServerPreferencesManager sharedInstance].username];
+            [self.userProfileProxy getUserProfileFromUsername:[UserPreferencesManager sharedInstance].username];
         else {
             self.socialActivityStreamProxy.userProfile = self.userProfile;
             [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
@@ -298,7 +299,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     CGRect activityStreamFrame = _tblvActivityStream.frame;
     self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)] autorelease];
     self.filterTabbar.tabView.delegate = self;
-    [self.filterTabbar selectTabItem:[ServerPreferencesManager sharedInstance].selectedSocialStream];
+    [self.filterTabbar selectTabItem:[UserPreferencesManager sharedInstance].selectedSocialStream];
     [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
@@ -438,7 +439,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     } else {
         _selectedTabItem = itemIndex;
     }
-    [ServerPreferencesManager sharedInstance].selectedSocialStream = itemIndex;
+    [UserPreferencesManager sharedInstance].selectedSocialStream = itemIndex;
     [self clearActivityData];
     [_tblvActivityStream reloadData];
     [self displayHudLoader];

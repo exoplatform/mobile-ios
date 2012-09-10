@@ -9,7 +9,8 @@
 #import "AuthenticateProxy.h"
 #import "defines.h"
 #import "DataProcess.h"
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
+#import "UserPreferencesManager.h"
 
 
 @interface AuthenticateProxy (PrivateMethods)
@@ -52,9 +53,9 @@
 {
     if ((self = [super init])) 
     {
-        _domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
-        _username = [[ServerPreferencesManager sharedInstance] username];
-        _password = [[ServerPreferencesManager sharedInstance] password];
+        _domainName = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
+        _username = [[UserPreferencesManager sharedInstance] username];
+        _password = [[UserPreferencesManager sharedInstance] password];
         
     }	
 	return self;

@@ -60,7 +60,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {	
-    return [[ServerPreferencesManager sharedInstance].serverList count];
+    return [[ApplicationPreferencesManager sharedInstance].serverList count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,7 +112,7 @@
     }
     
     
-    if (indexPath.row == [ServerPreferencesManager sharedInstance].selectedServerIndex) 
+    if (indexPath.row == [ApplicationPreferencesManager sharedInstance].selectedServerIndex) 
     {
         cell.accessoryView = [self makeCheckmarkOnAccessoryView];
     }
@@ -121,7 +121,7 @@
         cell.accessoryView = [self makeCheckmarkOffAccessoryView];
     }
     
-	ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
+	ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
     cell.textLabel.text = tmpServerObj._strServerName;
     cell.detailTextLabel.text = tmpServerObj._strServerUrl;
     
@@ -131,7 +131,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ServerPreferencesManager sharedInstance].selectedServerIndex = indexPath.row;
+    [ApplicationPreferencesManager sharedInstance].selectedServerIndex = indexPath.row;
     
     //Invalidate server informations
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

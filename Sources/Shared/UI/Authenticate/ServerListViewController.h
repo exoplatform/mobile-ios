@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 
 
 @interface ServerListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>

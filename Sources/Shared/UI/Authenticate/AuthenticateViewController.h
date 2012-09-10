@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SSHUDView.h"
 #import "LoginProxy.h"
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 #import "CredentialsViewController.h"
 #import "ServerListViewController.h"
 #import "JMTabView.h"

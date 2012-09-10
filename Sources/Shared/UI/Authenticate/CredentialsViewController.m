@@ -155,7 +155,7 @@
         [errorMessage appendString:Localize(@"PasswordEmpty")];
     }
     
-    if ([[ServerPreferencesManager sharedInstance] selectedDomain] == nil) {
+    if ([[ApplicationPreferencesManager sharedInstance] selectedDomain] == nil) {
         shouldSignIn = NO;
         [errorMessage appendString:@"\n"];
         [errorMessage appendString:Localize(@"SelectedDomainEmpty")];

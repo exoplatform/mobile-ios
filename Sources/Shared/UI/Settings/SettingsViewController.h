@@ -11,7 +11,7 @@
 #import "PlatformServerVersion.h"
 #import "eXoTableViewController.h"
 @class ServerManagerViewController;
-
+@class UserPreferencesManager;
 
 @protocol SettingsDelegateProcotol
 

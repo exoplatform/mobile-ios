@@ -8,13 +8,14 @@
 
 #import "SettingsViewController.h"
 #import "defines.h"
-#import "ServerPreferencesManager.h"
-#import "ServerManagerViewController.h"
+#import "UserPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
 #import "JTNavigationView.h"
 #import "JTRevealSidebarView.h"
+#import "ServerManagerViewController.h"
 
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
@@ -71,7 +72,7 @@ typedef enum {
 @synthesize plfVersionProxy = _plfVersionProxy;
 
 - (void)doInit {
-    if ([ServerPreferencesManager sharedInstance].isUserLogged) {
+    if ([UserPreferencesManager sharedInstance].isUserLogged) {
         _listOfSections = [[NSArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
@@ -187,7 +188,7 @@ typedef enum {
 // and
 // - 1 server is selected
 -(void)enableDisableAutoLogin:(id)sender {
-    NSString* selDomain = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    NSString* selDomain = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     if (rememberMe.on && selDomain != nil)
         autoLogin.enabled = YES;
     else {
@@ -197,7 +198,7 @@ typedef enum {
 }
 
 -(void)startRetrieve {
-    if(![ServerPreferencesManager sharedInstance].isUserLogged){
+    if(![UserPreferencesManager sharedInstance].isUserLogged){
         bVersionServer = NO;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(retrievePlatformVersion)]];
@@ -301,17 +302,17 @@ typedef enum {
 }
 
 -(void)autoLoginChange {
-    [ServerPreferencesManager sharedInstance].autoLogin = autoLogin.on;
+    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
 }
 
 
 -(void)loadSettingsInformations {
     //Load Settings informations
-    bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+    bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
     rememberMe.on = bRememberMe;
-    bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+    bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;
     autoLogin.on = bAutoLogin;
-    _showPrivateDrive.on = [ServerPreferencesManager sharedInstance].showPrivateDrive;
+    _showPrivateDrive.on = [UserPreferencesManager sharedInstance].showPrivateDrive;
 
     // Enable the switch only if Remember Me is turned ON
     [self enableDisableAutoLogin:nil];
@@ -320,8 +321,8 @@ typedef enum {
 
 - (void)saveSettingsInformations {
     //Save settings informations
-    [ServerPreferencesManager sharedInstance].rememberMe = rememberMe.on;
-    [ServerPreferencesManager sharedInstance].autoLogin = autoLogin.on;
+    [UserPreferencesManager sharedInstance].rememberMe = rememberMe.on;
+    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (!rememberMe.on) {
@@ -342,11 +343,11 @@ typedef enum {
 }
 
 - (void)rememberStreamChanged:(id)sender {
-    [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream = _rememberSelectedStream.on;
+    [UserPreferencesManager sharedInstance].rememberSelectedSocialStream = _rememberSelectedStream.on;
 }
 
 - (void)showPrivateDriveDidChange:(id)sender {
-    [ServerPreferencesManager sharedInstance].showPrivateDrive = _showPrivateDrive.on;
+    [UserPreferencesManager sharedInstance].showPrivateDrive = _showPrivateDrive.on;
 }
 
 #pragma mark Table view methods
@@ -399,7 +400,7 @@ typedef enum {
     int numofRows = 0;
 	if([[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
 	{	
-		numofRows = [[ServerPreferencesManager sharedInstance].serverList count] + 1;
+		numofRows = [[ApplicationPreferencesManager sharedInstance].serverList count] + 1;
 	} else {
         numofRows = [[[_listOfSections objectAtIndex:section] objectForKey:settingViewRowsKey] count];
     }
@@ -470,7 +471,7 @@ typedef enum {
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-            _rememberSelectedStream.on = [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream;
+            _rememberSelectedStream.on = [UserPreferencesManager sharedInstance].rememberSelectedSocialStream;
             cell.accessoryView = _rememberSelectedStream;
             break;
         }
@@ -537,9 +538,9 @@ typedef enum {
                 cell.detailTextLabel.backgroundColor = [UIColor clearColor]; 
             }
             
-            if (indexPath.row < [[ServerPreferencesManager sharedInstance].serverList count]) 
+            if (indexPath.row < [[ApplicationPreferencesManager sharedInstance].serverList count]) 
             {
-                if (indexPath.row == [ServerPreferencesManager sharedInstance].selectedServerIndex) 
+                if (indexPath.row == [ApplicationPreferencesManager sharedInstance].selectedServerIndex) 
                 {
                     cell.accessoryView = [self makeCheckmarkOnAccessoryView];
                 }
@@ -548,7 +549,7 @@ typedef enum {
                     cell.accessoryView = [self makeCheckmarkOffAccessoryView];
                 }
                 
-                ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
+                ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
                 
                 cell.textLabel.text = tmpServerObj._strServerName;
                 cell.detailTextLabel.text = tmpServerObj._strServerUrl;
@@ -638,7 +639,7 @@ typedef enum {
     
 	else if (sectionId == SettingViewControllerSectionServerList)
 	{
-        if (indexPath.row == [[ServerPreferencesManager sharedInstance].serverList count]) 
+        if (indexPath.row == [[ApplicationPreferencesManager sharedInstance].serverList count]) 
         {
                 ServerManagerViewController *_serverManagerViewController = [[[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil] autorelease];
             [self.navigationController pushViewController:_serverManagerViewController animated:YES];

@@ -12,7 +12,7 @@
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 
 #define MAX_HEIGHT_FILE_NAME 32
 
@@ -116,7 +116,7 @@
                 imagePath = [imagePath substringFromIndex:range.location + range.length];
                 imagePath = [NSString stringWithFormat:@"/rest/thumbnailImage/large%@", imagePath];
             }
-            NSString *strURL = [NSString stringWithFormat:@"%@%@", [ServerPreferencesManager sharedInstance].selectedDomain, imagePath];
+            NSString *strURL = [NSString stringWithFormat:@"%@%@", [ApplicationPreferencesManager sharedInstance].selectedDomain, imagePath];
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
             

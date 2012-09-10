@@ -6,26 +6,16 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
+#import "UserPreferencesManager.h"
 #import "CXMLDocument.h"
 #import "CXMLNode.h"
 #import "CXMLElement.h"
 #import "defines.h"
 
-/*
- * Key of User Preference to save selected stream tab order. it contains domain name and username to distinguish amongs users.
- */
-#define EXO_SELECTED_STREAM                 [NSString stringWithFormat:@"%@_%@_selected_stream", self.selectedDomain, self.username]
-#define EXO_REMEMBER_MY_STREAM              [NSString stringWithFormat:@"%@_%@_remember_my_stream", self.selectedDomain, self.username]
-/*
- * Keys for login settings
- */
-#define EXO_REMEMBER_ME                     @"remember_me"
-#define EXO_AUTO_LOGIN                      @"auto_login"
-/* key for showing prive drive */
-#define EXO_PREFERENCE_SHOW_PRIVATE_DRIVE   [NSString stringWithFormat:@"%@_%@_show_private_drive", self.selectedDomain, self.username]
+#define CURRENT_USER_NAME       [UserPreferencesManager sharedInstance].username
 
-//=====================================================================
+#pragma mark - Server Object
 
 @implementation ServerObj
 @synthesize _strServerName;
@@ -33,32 +23,33 @@
 @synthesize _bSystemServer;
 @end
 
+#pragma mark - Application Prefs
 
-//======================================================================
-@implementation ServerPreferencesManager
+@implementation ApplicationPreferencesManager
 
+#pragma mark - Properties
+
+#pragma mark * Server management
 @synthesize selectedServerIndex = _selectedServerIndex;
 @synthesize selectedDomain = _selectedDomain;
-@synthesize username = _username;
-@synthesize password = _password;
+
+#pragma mark * JCR storage
 @synthesize currentRepository = _currentRepository;
 @synthesize defaultWorkspace = _defaultWorkspace;
 @synthesize userHomeJcrPath = _userHomeJcrPath;
-@synthesize selectedSocialStream;
-@synthesize rememberSelectedSocialStream;
-@synthesize isUserLogged = _isUserLogged;
-@synthesize autoLogin;
-@synthesize rememberMe;
-@synthesize showPrivateDrive;
 
-+ (ServerPreferencesManager*)sharedInstance
+
+#pragma mark - Methods
+
+#pragma mark * Lifecyle
++ (ApplicationPreferencesManager*)sharedInstance
 {
-	static ServerPreferencesManager *sharedInstance;
+	static ApplicationPreferencesManager *sharedInstance;
 	@synchronized(self)
 	{
 		if(!sharedInstance)
 		{
-			sharedInstance = [[ServerPreferencesManager alloc] init];
+			sharedInstance = [[ApplicationPreferencesManager alloc] init];
 		}
 		return sharedInstance;
 	}
@@ -71,10 +62,6 @@
     if (self) 
     {        
         self.selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
-        [self reloadUsernamePassword];
-                
-        // At the startup time, the user is always unsigned.
-        _isUserLogged = NO;
     }	
 	return self;
 }
@@ -83,14 +70,13 @@
 {
     [_selectedDomain release];
 	[_arrServerList release];
-    [_username release];
-    [_password release];
     [_currentRepository release];
     [_defaultWorkspace release];
     [_userHomeJcrPath release];
 	[super dealloc];
 }
 
+#pragma mark * Server management
 - (void)loadServerList
 {
     NSError* error;
@@ -162,6 +148,33 @@
     [self writeData:tmpData toFile:@"Test"];
 }
 
+- (void)setSelectedServerIndex:(int)selectedServerIndex {
+    // customize setter of selectedServerIndex
+    int tmpIndex = -1; // default value for selected server index 
+    NSString *tmpDomain = nil; // default value for selected domain
+    if (selectedServerIndex >= 0 && self.serverList.count > 0) {
+        if (selectedServerIndex < [self.serverList count]) {
+            tmpIndex = selectedServerIndex;
+            ServerObj *selectedObj = [self.serverList objectAtIndex:selectedServerIndex];
+            tmpDomain = selectedObj._strServerUrl;
+        }
+    }
+    [_selectedDomain release];
+    _selectedDomain = [tmpDomain retain];
+    _selectedServerIndex = tmpIndex;
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedServerIndex] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+    [userDefaults setObject:_selectedDomain forKey:EXO_PREFERENCE_DOMAIN];
+}
+
+- (NSString *)selectedDomain {
+    if (!_selectedDomain) {
+        _selectedDomain = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+    }
+    return [[_selectedDomain copy] autorelease];
+}
+
+#pragma mark * Read/Write data
 //Load the system Configuration
 - (NSMutableArray*)loadSystemConfiguration
 {
@@ -351,67 +364,8 @@
     }
     return _arrServerList;
 }
-#pragma mark - username & password management 
-- (void)persistUsernameAndPasswod {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:self.username forKey:EXO_PREFERENCE_USERNAME];
-    [userDefaults setObject:self.password forKey:EXO_PREFERENCE_PASSWORD];
-}
 
-- (void)reloadUsernamePassword {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    self.username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-    self.username = self.username ? self.username : @"";
-    self.password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-    self.password = self.password ? self.password : @"";
-}
-
-#pragma mark - getters & setters 
-- (void)setSelectedServerIndex:(int)selectedServerIndex {
-    // customize setter of selectedServerIndex
-    int tmpIndex = -1; // default value for selected server index 
-    NSString *tmpDomain = nil; // default value for selected domain
-    if (selectedServerIndex >= 0 && self.serverList.count > 0) {
-        if (selectedServerIndex < [self.serverList count]) {
-            tmpIndex = selectedServerIndex;
-            ServerObj *selectedObj = [self.serverList objectAtIndex:selectedServerIndex];
-            tmpDomain = selectedObj._strServerUrl;
-        }
-    }
-    [_selectedDomain release];
-    _selectedDomain = [tmpDomain retain];
-    _selectedServerIndex = tmpIndex;
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedServerIndex] forKey:EXO_PREFERENCE_SELECTED_SEVER];
-    [userDefaults setObject:_selectedDomain forKey:EXO_PREFERENCE_DOMAIN];
-}
-
-- (NSString *)selectedDomain {
-    if (!_selectedDomain) {
-        _selectedDomain = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
-    }
-    return [[_selectedDomain copy] autorelease];
-}
-
-- (BOOL)rememberSelectedSocialStream {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *value = [userDefaults objectForKey:EXO_REMEMBER_MY_STREAM];
-    return value ? [value boolValue] : YES;
-}
-
-- (void)setRememberSelectedSocialStream:(BOOL)agree {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_REMEMBER_MY_STREAM];
-}
-
-- (void)setSelectedSocialStream:(int)selectedIndex {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", selectedIndex] forKey:EXO_SELECTED_STREAM];
-}
-
-- (int)selectedSocialStream {
-    return self.rememberSelectedSocialStream ? [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_SELECTED_STREAM] intValue] : 0;
-}
+#pragma mark * JCR storage
 
 - (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath {
     [repositoryName retain];
@@ -422,7 +376,7 @@
     _defaultWorkspace = defaultWorkspace ? defaultWorkspace : [@"collaboration" retain];
     [userHomePath retain];
     [_userHomeJcrPath release];
-    _userHomeJcrPath = userHomePath ? userHomePath : [[self makeUserHomePath:self.username] retain];
+    _userHomeJcrPath = userHomePath ? userHomePath : [[self makeUserHomePath:CURRENT_USER_NAME] retain];
 }
 
 - (NSString *)makeUserHomePath:(NSString *)username; 
@@ -449,36 +403,5 @@
     return path;
 }
 
-#pragma mark - Login management
-- (BOOL)autoLogin {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *value = [userDefaults objectForKey:EXO_AUTO_LOGIN];
-    return value ? [value boolValue] : NO;
-}
-
-- (void)setAutoLogin:(BOOL)agree {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_AUTO_LOGIN];
-}
-
-- (BOOL)rememberMe {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *value = [userDefaults objectForKey:EXO_REMEMBER_ME];
-    return value ? [value boolValue] : NO;
-}
-
-- (void)setRememberMe:(BOOL)agree {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_REMEMBER_ME];
-}
-
-#pragma mark - Document setting management
-- (BOOL)showPrivateDrive {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *value = [userDefaults objectForKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE];
-    return value ? [value boolValue] : YES;
-}
-
-- (void)setShowPrivateDrive:(BOOL)agree {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", agree] forKey:EXO_PREFERENCE_SHOW_PRIVATE_DRIVE];
-}
 
 @end

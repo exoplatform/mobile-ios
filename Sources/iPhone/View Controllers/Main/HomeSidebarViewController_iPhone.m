@@ -19,6 +19,7 @@
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
 #import "UserProfileViewController.h"
+#import "UserPreferencesManager.h"
 
 #define kUserProfileViewHeight 70.0
 
@@ -223,7 +224,7 @@
 }
 
 -(void)logout {
-    [ServerPreferencesManager sharedInstance].autoLogin = NO;
+    [UserPreferencesManager sharedInstance].autoLogin = NO;
     [[AppDelegate_iPhone instance] onBtnSigtOutDelegate];
 }
 
