@@ -193,7 +193,7 @@
 }
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
 }
 // End of the ugly hack
 
@@ -375,7 +375,7 @@
             // If the point is not in the area, we move the view up so it becomes visible
             if (!CGRectContainsPoint(aRect, fieldPoint))
                 [self moveUp];
-        } else if (notif.name == UIKeyboardWillHideNotification) {
+        } else if (notif.name == UIKeyboardDidHideNotification) {
             // Reduce the height of the rect to represent only the area not covered by the keyboard (before it will disappear)
             aRect.size.height -= keyboardHeightBefore;
             // If the point is in the visible area, we move the view down before the keyboard

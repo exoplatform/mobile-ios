@@ -111,7 +111,7 @@
     // Notifies when the keyboard is shown/hidden
     // Selector must be implemented in _iPhone and _iPad subclasses
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
     
 	_credViewController.bRememberMe = [ServerPreferencesManager sharedInstance].autoLogin;
 	_credViewController.bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;

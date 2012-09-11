@@ -92,7 +92,7 @@
 -(void)manageKeyboard:(NSNotification *) notif {
     if (notif.name == UIKeyboardDidShowNotification) {
         [self setViewMovedUp:YES];
-    } else if (notif.name == UIKeyboardWillHideNotification) {
+    } else if (notif.name == UIKeyboardDidHideNotification) {
         [self setViewMovedUp:NO];
     }
 }
