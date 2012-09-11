@@ -1198,7 +1198,6 @@
 		46ABBE8613890BD10077809B /* FilesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesProxy.m; path = "../../../iPhone/Data Manager/Proxies/FilesProxy.m"; sourceTree = "<group>"; };
 		46ABBE8813890C260077809B /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = Documents/File.h; sourceTree = "<group>"; };
 		46ABBE8913890C260077809B /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = File.m; path = Documents/File.m; sourceTree = "<group>"; };
-		46ABBE8C13890D0C0077809B /* eXo_Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eXo_Constants.h; path = Constant/eXo_Constants.h; sourceTree = "<group>"; };
 		46ABBE921389141E0077809B /* DocumentsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController_iPhone.h; path = ../Main/DocumentsViewController_iPhone.h; sourceTree = "<group>"; };
 		46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController_iPhone.m; path = ../Main/DocumentsViewController_iPhone.m; sourceTree = "<group>"; };
 		46ADAD121403E419005ABA79 /* DashboardProxy_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardProxy_old.h; path = Dashboard/DashboardProxy_old.h; sourceTree = "<group>"; };
@@ -2562,7 +2561,6 @@
 		46ABBE8B13890CD00077809B /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				46ABBE8C13890D0C0077809B /* eXo_Constants.h */,
 			);
 			name = Constants;
 			sourceTree = "<group>";

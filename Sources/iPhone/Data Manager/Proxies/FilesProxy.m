@@ -8,7 +8,6 @@
 
 #import "FilesProxy.h"
 #import "NSString+HTML.h"
-#import "eXo_Constants.h"
 #import "DataProcess.h"
 #import "Reachability.h"
 #import "AuthenticateProxy.h"
