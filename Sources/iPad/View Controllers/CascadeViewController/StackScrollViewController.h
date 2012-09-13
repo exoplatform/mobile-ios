@@ -72,6 +72,8 @@
 - (void) removeViewFromController:(UIViewController*)controller;
 - (void)popViewController:(UIViewController *)viewController;
 - (void)bounceBack:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context;
+// set this method public so it can be overridden by ExoStackScrollViewController
+- (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
 
 @property (nonatomic, retain) UIView* slideViews;
 @property (nonatomic, retain) UIView* borderViews;

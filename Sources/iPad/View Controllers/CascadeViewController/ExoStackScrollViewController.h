@@ -8,6 +8,10 @@
 
 #import "StackScrollViewController.h"
 
-@interface ExoStackScrollViewController : StackScrollViewController
+@interface ExoStackScrollViewController : StackScrollViewController {
+    NSInteger   activePaneTag;
+    CGFloat     startDragPosX;
+    BOOL        leftMenuOpened;
+}
 
 @end
