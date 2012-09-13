@@ -150,6 +150,8 @@
 
     
     //Display the UIPopoverController
+    [_actionPopoverController dismissPopoverAnimated:NO];
+    [_actionPopoverController release];
 	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
 	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
@@ -210,7 +212,12 @@
 
 #pragma mark - Panel Actions
 -(void) showActionsPanelFromNavigationBarButton:(id)sender {
-    
+    if (_actionPopoverController.popoverVisible) {
+        [_actionPopoverController dismissPopoverAnimated:YES];
+        [_actionPopoverController release];
+        _actionPopoverController = nil;
+        return;
+    }
     displayActionDialogAtRect = CGRectZero;
     
     //Create the fileActionsView controller
@@ -224,6 +231,8 @@
     
     fileToApplyAction = _rootFile;
     //Create the Popover to display potential actions to the user
+    [_actionPopoverController dismissPopoverAnimated:NO];
+    [_actionPopoverController release];
     _actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     //set its size
 	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
@@ -238,7 +247,7 @@
     [fileActionsViewController release];
     
     //Prevent any new tap on the button
-    _navigation.topItem.rightBarButtonItem.enabled = NO;
+//    _navigation.topItem.rightBarButtonItem.enabled = YES;
 }
 
 -(void) hideActionsPanel {
