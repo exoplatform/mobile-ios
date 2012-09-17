@@ -17,6 +17,7 @@
 #import "JTRevealSidebarView.h"
 #import "URLAnalyzer.h"
 #import "ServerEditingViewController.h"
+#import "ServerAddingViewController.h"
 
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";

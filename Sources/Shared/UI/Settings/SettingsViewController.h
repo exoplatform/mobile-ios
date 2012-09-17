@@ -10,9 +10,13 @@
 #import "LoginProxy.h"
 #import "PlatformServerVersion.h"
 #import "eXoTableViewController.h"
-#import "ServerAddingViewController.h"
-@class ServerManagerViewController;
 @class UserPreferencesManager;
+
+@protocol ServerManagerProtocol <NSObject>
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (BOOL)deleteServerObjAtIndex:(int)index;
+@end
 
 @protocol SettingsDelegateProcotol
 

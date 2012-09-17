@@ -9,7 +9,6 @@
 
 #import "ServerEditingViewController.h"
 #import "ServerAddingViewController.h"
-#import "ServerManagerViewController.h"
 #import "ApplicationPreferencesManager.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "URLAnalyzer.h"

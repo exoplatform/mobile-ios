@@ -360,8 +360,6 @@
 		7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962413419583007F26BB /* ServerEditingViewController.m */; };
 		7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C06962613419B6C007F26BB /* ServerAddingViewController.xib */; };
 		7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C06962913419B8D007F26BB /* ServerAddingViewController.m */; };
-		7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */; };
-		7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C07D7501340466B0075BF76 /* ServerManagerViewController.m */; };
 		7C2234B513810DFD006F847E /* CustomBackgroundForCellBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */; };
 		7C2234B613810DFD006F847E /* CustomBackgroundForCellMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */; };
 		7C2234B713810DFD006F847E /* CustomBackgroundForCellSingle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2234B313810DFC006F847E /* CustomBackgroundForCellSingle.png */; };
@@ -1361,9 +1359,6 @@
 		7C06962613419B6C007F26BB /* ServerAddingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerAddingViewController.xib; path = ../../iPhone/NIB/ServerAddingViewController.xib; sourceTree = "<group>"; };
 		7C06962813419B78007F26BB /* ServerAddingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerAddingViewController.h; path = "../../iPhone/View Controllers/Setting/ServerAddingViewController.h"; sourceTree = "<group>"; };
 		7C06962913419B8D007F26BB /* ServerAddingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerAddingViewController.m; path = "../../iPhone/View Controllers/Setting/ServerAddingViewController.m"; sourceTree = "<group>"; };
-		7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerManagerViewController.xib; path = ../../iPhone/NIB/ServerManagerViewController.xib; sourceTree = "<group>"; };
-		7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerManagerViewController.h; path = "../../iPhone/View Controllers/Setting/ServerManagerViewController.h"; sourceTree = "<group>"; };
-		7C07D7501340466B0075BF76 /* ServerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerManagerViewController.m; path = "../../iPhone/View Controllers/Setting/ServerManagerViewController.m"; sourceTree = "<group>"; };
 		7C160E6613BAD86A00F6B48E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7C2234B113810DFC006F847E /* CustomBackgroundForCellBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellBottom.png; path = "Global/@1x/CustomBackgroundForCellBottom.png"; sourceTree = "<group>"; };
 		7C2234B213810DFC006F847E /* CustomBackgroundForCellMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CustomBackgroundForCellMiddle.png; path = "Global/@1x/CustomBackgroundForCellMiddle.png"; sourceTree = "<group>"; };
@@ -2208,9 +2203,6 @@
 			children = (
 				461BFAB2141F4D14009844F6 /* SettingsViewController.h */,
 				461BFAB3141F4D14009844F6 /* SettingsViewController.m */,
-				7C07D74F1340466B0075BF76 /* ServerManagerViewController.h */,
-				7C07D7501340466B0075BF76 /* ServerManagerViewController.m */,
-				7C07D74C13403B4D0075BF76 /* ServerManagerViewController.xib */,
 				7C06962813419B78007F26BB /* ServerAddingViewController.h */,
 				7C06962913419B8D007F26BB /* ServerAddingViewController.m */,
 				7C06962613419B6C007F26BB /* ServerAddingViewController.xib */,
@@ -4300,7 +4292,6 @@
 				8937A34D1338993900D8B474 /* FileFolderActionsViewController_iPad.xib in Resources */,
 				8937A3621338994400D8B474 /* GadgetDisplayViewController_iPhone.xib in Resources */,
 				8937A3641338994400D8B474 /* MainWindow_iPhone.xib in Resources */,
-				7C07D74D13403B4D0075BF76 /* ServerManagerViewController.xib in Resources */,
 				7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */,
 				7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */,
 				46D97B3013742B7F00F71E82 /* Default.png in Resources */,
@@ -4740,7 +4731,6 @@
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
 				8947351F13375E1900B0AD11 /* main.m in Sources */,
 				8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */,
-				7C07D7511340466B0075BF76 /* ServerManagerViewController.m in Sources */,
 				7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */,
 				7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */,
 				7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */,
