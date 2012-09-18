@@ -717,7 +717,7 @@ typedef enum {
     
 }
 
--(BOOL) checkServerInfo:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl {
+- (BOOL)checkServerInfo:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl {
     
     //Check if the server name is null or empty
     if (strServerName == nil || [strServerName length] == 0){
@@ -760,8 +760,9 @@ typedef enum {
     return YES;
 }
 
-- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
-{
+// Unique private method to add/edit a server, avoids duplicating common code
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl ignoringIndex:(int)index {
+    
     if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
         ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
         strServerUrl = [NSString stringWithFormat:@"http://%@", strServerUrl];
@@ -773,16 +774,18 @@ typedef enum {
     // If the name and URL are well formed, we remove some unnecessary characters
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    ApplicationPreferencesManager* appPrefManager = [ApplicationPreferencesManager sharedInstance];
     
     // Check whether the name and URL already exists, ignoring case
-    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:-1]) {
+    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
     }
-    else
+    
+    ApplicationPreferencesManager* appPrefManager = [ApplicationPreferencesManager sharedInstance];
+    // We don't specify an existing server so it's a new one
+    if (index == -1)
     {
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
@@ -798,34 +801,9 @@ typedef enum {
         [appPrefManager loadServerList]; // reload list of servers
         [self.tableView reloadData];
     }
-    
-    // If this is the only server: select it automatically
-    if ([appPrefManager.serverList count] == 1)
-        [appPrefManager setSelectedServerIndex:0];
-    
-    return YES;
-}
-
-- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
-{
-    // Check whether the name and URL are correctly formed
-    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
-        return NO;
-    
-    // If the name and URL are well formed, we remove some unnecessary characters
-    NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    
-    // Check whether the name and URL already exists, ignoring case and the server under edit
-    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index]) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-        return NO;
-    }
+    // Edit the server specified by index
     else
     {
-        ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
         ServerObj* serverObjEdited = [appPrefManager.serverList objectAtIndex:index];
         ServerObj* tmpServerObj;
         
@@ -856,9 +834,23 @@ typedef enum {
         
         [appPrefManager loadServerList];
         [self.tableView reloadData];
-        
     }
+    
+    // If this is the only server: select it automatically
+    if ([appPrefManager.serverList count] == 1)
+        [appPrefManager setSelectedServerIndex:0];
+    
     return YES;
+}
+
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl ignoringIndex:-1];
+}
+
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl ignoringIndex:index];
 }
 
 - (BOOL)deleteServerObjAtIndex:(int)index;
