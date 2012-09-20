@@ -761,7 +761,7 @@ typedef enum {
 }
 
 // Unique private method to add/edit a server, avoids duplicating common code
-- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl ignoringIndex:(int)index {
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl atIndex:(int)index {
     
     if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
         ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
@@ -845,12 +845,12 @@ typedef enum {
 
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
-    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl ignoringIndex:-1];
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:-1];
 }
 
 - (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
-    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl ignoringIndex:index];
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:index];
 }
 
 - (BOOL)deleteServerObjAtIndex:(int)index;
