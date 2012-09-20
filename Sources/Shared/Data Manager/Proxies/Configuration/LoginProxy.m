@@ -7,7 +7,7 @@
 //
 
 #import "LoginProxy.h"
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 #import "defines.h"
 
 
@@ -58,7 +58,7 @@
 
 //Helper to create the base URL
 - (NSString *)createBaseURL {  
-    NSString *domainName = [[ServerPreferencesManager sharedInstance] selectedDomain];
+    NSString *domainName = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     return domainName ? [NSString stringWithFormat:@"%@/%@/",domainName, kRestContextName] : nil;
 }
 

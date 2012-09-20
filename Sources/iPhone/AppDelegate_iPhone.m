@@ -13,6 +13,7 @@
 #import "FilesProxy.h"
 #import "HomeStyleSheet.h"
 #import <Crashlytics/Crashlytics.h>
+#import "UserPreferencesManager.h"
 
 
 
@@ -88,7 +89,7 @@
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
     
-    [ServerPreferencesManager sharedInstance].isUserLogged = YES;
+    [UserPreferencesManager sharedInstance].isUserLogged = YES;
     
     _homeSidebarViewController_iPhone = [[HomeSidebarViewController_iPhone alloc] initWithNibName:nil bundle:nil];
     
@@ -115,7 +116,7 @@
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
     
-    [ServerPreferencesManager sharedInstance].isUserLogged = YES;
+    [UserPreferencesManager sharedInstance].isUserLogged = YES;
     
     [_homeViewController_iPhone release];
     _homeViewController_iPhone = nil;   
@@ -155,15 +156,18 @@
 
 - (void)onBtnSigtOutDelegate {
     
+    // Disable Auto Login so user won't be signed in automatically after
+    [_authenticateViewController disableAutoLogin:YES];
+    
     //[[ChatProxy sharedInstance] disconnect];
     
     window.rootViewController = navigationController;
     
-    
     //Ask the controller Login to do some things if needed
     //window.rootViewController = authenticateViewController;
-    [ServerPreferencesManager sharedInstance].autoLogin = NO;
-    [ServerPreferencesManager sharedInstance].isUserLogged = NO;
+    [UserPreferencesManager sharedInstance].autoLogin = NO;
+    [UserPreferencesManager sharedInstance].isUserLogged = NO;
+
     
     [LoginProxy doLogout];
 }

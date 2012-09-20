@@ -9,7 +9,7 @@
 #import "SocialPostActivity.h"
 #import "SocialActivity.h"
 #import "SocialRestConfiguration.h"
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 #import "defines.h"
 
 
@@ -69,7 +69,7 @@
     
     //Attach file
     if(fileURL != nil) {
-        ServerPreferencesManager *serverPM = [ServerPreferencesManager sharedInstance];
+        ApplicationPreferencesManager *serverPM = [ApplicationPreferencesManager sharedInstance];
         activity.type = @"DOC_ACTIVITY"; 
         
         NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr"];

@@ -7,7 +7,6 @@
 //
 
 #import "ServerAddingViewController.h"
-#import "ServerManagerViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "URLAnalyzer.h"
 #import "LanguageHelper.h"

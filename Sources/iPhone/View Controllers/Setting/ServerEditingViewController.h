@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ServerManagerViewController.h"
+#import "SettingsViewController.h"
 #import "eXoTableViewController.h"
 
 @class ServerObj;

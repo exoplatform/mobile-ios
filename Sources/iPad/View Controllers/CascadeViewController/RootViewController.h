@@ -10,13 +10,13 @@
 
 
 @class MenuViewController;
-@class StackScrollViewController;
+@class ExoStackScrollViewController;
 
 @class UIViewExt;
 
 @interface RootViewController : UIViewController {
 	MenuViewController* menuViewController;
-	StackScrollViewController* stackScrollViewController;
+	ExoStackScrollViewController* stackScrollViewController;
     
     UIImageView *imageForBackground;
     
@@ -27,7 +27,7 @@
 @property NSTimeInterval duration;
 @property UIInterfaceOrientation interfaceOrient;
 @property (nonatomic, retain) MenuViewController* menuViewController;
-@property (nonatomic, retain) StackScrollViewController* stackScrollViewController;
+@property (nonatomic, retain) ExoStackScrollViewController* stackScrollViewController;
 @property BOOL isCompatibleWithSocial;
 
 

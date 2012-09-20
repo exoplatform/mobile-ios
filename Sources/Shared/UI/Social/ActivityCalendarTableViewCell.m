@@ -35,13 +35,13 @@
         _lbMessage.backgroundColor = [UIColor whiteColor];
     } else {
         _htmlName.textColor = [UIColor darkGrayColor];
-        _htmlName.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _htmlName.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         _htmlTitle.textColor = [UIColor darkGrayColor];
-        _htmlTitle.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _htmlTitle.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         _lbMessage.textColor = [UIColor darkGrayColor];
-        _lbMessage.backgroundColor = [UIColor colorWithRed:240./255 green:240./255 blue:240./255 alpha:1.];
+        _lbMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
         
     }
     

@@ -13,7 +13,8 @@
 #import "AuthenticateProxy.h"
 #import "TouchXML.h"
 #import "defines.h"
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
+#import "UserPreferencesManager.h"
 
 @interface FilesProxy ()
 
@@ -86,8 +87,8 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication) {
         // re-authenticate when timeout
-        NSString *username = [[ServerPreferencesManager sharedInstance] username];
-        NSString *password = [[ServerPreferencesManager sharedInstance] password];
+        NSString *username = [[UserPreferencesManager sharedInstance] username];
+        NSString *password = [[UserPreferencesManager sharedInstance] password];
         CFHTTPMessageRef dummyRequest = CFHTTPMessageCreateRequest(kCFAllocatorDefault, (CFStringRef)request.HTTPMethod, (CFURLRef)request.URL, kCFHTTPVersion1_1);
         CFHTTPMessageAddAuthentication(dummyRequest, nil, (CFStringRef)username, (CFStringRef)password,kCFHTTPAuthenticationSchemeBasic, FALSE);
         CFStringRef authorizationString = CFHTTPMessageCopyHeaderFieldValue(dummyRequest, CFSTR("Authorization"));
@@ -133,8 +134,8 @@
 
 
 - (void)calculateAbsPath:(NSString *)relativePath forItem:(File *)item {
-    NSString *domain = [[ServerPreferencesManager sharedInstance] selectedDomain];
-    item.path = [NSString stringWithFormat:@"%@%@%@/%@%@", domain, DOCUMENT_JCR_PATH_REST, [ServerPreferencesManager sharedInstance].currentRepository, item.workspaceName, relativePath];
+    NSString *domain = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
+    item.path = [NSString stringWithFormat:@"%@%@%@/%@%@", domain, DOCUMENT_JCR_PATH_REST, [ApplicationPreferencesManager sharedInstance].currentRepository, item.workspaceName, relativePath];
 }
 
 #pragma mark -
@@ -142,8 +143,8 @@
 
 - (NSArray*)getDrives:(NSString*)driveName {
     
-    NSString *domain = [ServerPreferencesManager sharedInstance].selectedDomain;
-    BOOL showPrivate = [ServerPreferencesManager sharedInstance].showPrivateDrive;
+    NSString *domain = [ApplicationPreferencesManager sharedInstance].selectedDomain;
+    BOOL showPrivate = [UserPreferencesManager sharedInstance].showPrivateDrive;
     
 
     // Initialize the array of files
@@ -257,7 +258,7 @@
 
 - (void)creatUserRepositoryHomeUrl
 {
-    ServerPreferencesManager *serverPM = [ServerPreferencesManager sharedInstance];
+    ApplicationPreferencesManager *serverPM = [ApplicationPreferencesManager sharedInstance];
     
     NSString *urlForUserRepo = [NSString stringWithFormat:@"%@%@%@/%@%@", serverPM.selectedDomain, DOCUMENT_JCR_PATH_REST, serverPM.currentRepository, serverPM.defaultWorkspace, serverPM.userHomeJcrPath];
     
@@ -277,8 +278,8 @@
 	source = [source stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	destination = [destination stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
-    NSString *username = [[ServerPreferencesManager sharedInstance] username];
-    NSString *password = [[ServerPreferencesManager sharedInstance] password];
+    NSString *username = [[UserPreferencesManager sharedInstance] username];
+    NSString *password = [[UserPreferencesManager sharedInstance] password];
 	
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
@@ -380,8 +381,8 @@
         
         [request setHTTPMethod:@"MKCOL"];
         
-        NSString *username = [[ServerPreferencesManager sharedInstance] username];
-        NSString *password = [[ServerPreferencesManager sharedInstance] password];
+        NSString *username = [[UserPreferencesManager sharedInstance] username];
+        NSString *password = [[UserPreferencesManager sharedInstance] password];
         
         NSString *s = @"Basic ";
         NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];

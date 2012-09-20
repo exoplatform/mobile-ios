@@ -57,6 +57,7 @@
 - (void)contentDirectoryIsRetrieved;
 - (void)askToMakeFolderActions:(BOOL)createNewFolder;
 - (void)hideActionsPanel;
+- (UITableView*)tblFiles;
 
 //Use this method to init the Controller with a root file
 - (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 

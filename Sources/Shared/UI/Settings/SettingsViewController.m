@@ -8,14 +8,16 @@
 
 #import "SettingsViewController.h"
 #import "defines.h"
-//#import "eXoWebViewController.h"
-#import "ServerPreferencesManager.h"
-#import "ServerManagerViewController.h"
+#import "UserPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
 #import "JTNavigationView.h"
 #import "JTRevealSidebarView.h"
+#import "URLAnalyzer.h"
+#import "ServerEditingViewController.h"
+#import "ServerAddingViewController.h"
 
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
@@ -72,7 +74,7 @@ typedef enum {
 @synthesize plfVersionProxy = _plfVersionProxy;
 
 - (void)doInit {
-    if ([ServerPreferencesManager sharedInstance].isUserLogged) {
+    if ([UserPreferencesManager sharedInstance].isUserLogged) {
         _listOfSections = [[NSArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
@@ -97,7 +99,7 @@ typedef enum {
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
                              settingViewSectionTitleKey, @"ServerList", 
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerModify", nil],
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
                              nil], 
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
@@ -115,7 +117,7 @@ typedef enum {
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
                              settingViewSectionTitleKey, @"ServerList", 
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerModify", nil],
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
                              nil], 
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
@@ -134,12 +136,18 @@ typedef enum {
 	{
 		
         [self doInit];
+        // Create the Remember Me switch component
 		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         rememberMe.tag = kTagForSwitchRememberMe;
-        
+        // Call the method enableDisableAutoLogin when the value of the switch changes
+        [rememberMe addTarget:self action:@selector(enableDisableAutoLogin:) forControlEvents:UIControlEventValueChanged];
+        // Create the Auto Login switch component
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
         [autoLogin addTarget:self action:@selector(autoLoginChange) forControlEvents:UIControlEventValueChanged];
+        // Observe notifications when a server is added or deleted, and call enableDisableAutoLogin
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
         
         _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         [_rememberSelectedStream addTarget:self action:@selector(rememberStreamChanged:) forControlEvents:UIControlEventValueChanged];
@@ -158,6 +166,8 @@ typedef enum {
     [autoLogin release];
     [_rememberSelectedStream release];
     [_showPrivateDrive release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
     [super dealloc];
 }
 
@@ -168,12 +178,6 @@ typedef enum {
     [self reloadSettingsWithUpdate];
 }
 
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[self saveSettingsInformations];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     // Unselect the selected row if any
@@ -182,8 +186,22 @@ typedef enum {
         [self.tableView deselectRowAtIndexPath:selection animated:YES];   
 }
 
+// Enable the AutoLogin switch only if
+// - the Remember Me switch is turned ON
+// and
+// - 1 server is selected
+-(void)enableDisableAutoLogin:(id)sender {
+    NSString* selDomain = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
+    if (rememberMe.on && selDomain != nil)
+        autoLogin.enabled = YES;
+    else {
+        autoLogin.enabled = NO;
+        autoLogin.on = NO;
+    }
+}
+
 -(void)startRetrieve {
-    if(![ServerPreferencesManager sharedInstance].isUserLogged){
+    if(![UserPreferencesManager sharedInstance].isUserLogged){
         bVersionServer = NO;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(retrievePlatformVersion)]];
@@ -193,7 +211,6 @@ typedef enum {
     } else {
         bVersionServer = YES;
     }
-    
 }
 
 -(void)retrievePlatformVersion{
@@ -285,24 +302,34 @@ typedef enum {
 }
 
 -(void)autoLoginChange {
-    [ServerPreferencesManager sharedInstance].autoLogin = autoLogin.on;
+    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
 }
 
 
 -(void)loadSettingsInformations {
     //Load Settings informations
-    bRememberMe = [ServerPreferencesManager sharedInstance].rememberMe;
+    bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
     rememberMe.on = bRememberMe;
-    bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin;
+    bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;
     autoLogin.on = bAutoLogin;
-    _showPrivateDrive.on = [ServerPreferencesManager sharedInstance].showPrivateDrive;
+    _showPrivateDrive.on = [UserPreferencesManager sharedInstance].showPrivateDrive;
+
+    // Enable the switch only if Remember Me is turned ON
+    [self enableDisableAutoLogin:nil];
 }
 
 
 - (void)saveSettingsInformations {
     //Save settings informations
-    [ServerPreferencesManager sharedInstance].rememberMe = rememberMe.on;
-    [ServerPreferencesManager sharedInstance].autoLogin = autoLogin.on;
+    [UserPreferencesManager sharedInstance].rememberMe = rememberMe.on;
+    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (!rememberMe.on) {
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
+    }
+    [userDefaults synchronize];
 }
 
 
@@ -311,15 +338,16 @@ typedef enum {
 
 //Method to done clicked settings
 - (void)doneAction {
+    [self saveSettingsInformations];
     [_settingsDelegate doneWithSettings];    
 }
 
 - (void)rememberStreamChanged:(id)sender {
-    [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream = _rememberSelectedStream.on;
+    [UserPreferencesManager sharedInstance].rememberSelectedSocialStream = _rememberSelectedStream.on;
 }
 
 - (void)showPrivateDriveDidChange:(id)sender {
-    [ServerPreferencesManager sharedInstance].showPrivateDrive = _showPrivateDrive.on;
+    [UserPreferencesManager sharedInstance].showPrivateDrive = _showPrivateDrive.on;
 }
 
 #pragma mark Table view methods
@@ -372,7 +400,7 @@ typedef enum {
     int numofRows = 0;
 	if([[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
 	{	
-		numofRows = [[ServerPreferencesManager sharedInstance].serverList count] + 1;
+		numofRows = [[ApplicationPreferencesManager sharedInstance].serverList count] + 1;
 	} else {
         numofRows = [[[_listOfSections objectAtIndex:section] objectForKey:settingViewRowsKey] count];
     }
@@ -436,7 +464,7 @@ typedef enum {
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-            _rememberSelectedStream.on = [ServerPreferencesManager sharedInstance].rememberSelectedSocialStream;
+            _rememberSelectedStream.on = [UserPreferencesManager sharedInstance].rememberSelectedSocialStream;
             cell.accessoryView = _rememberSelectedStream;
             break;
         }
@@ -505,9 +533,9 @@ typedef enum {
                 cell.detailTextLabel.backgroundColor = [UIColor clearColor]; 
             }
             
-            if (indexPath.row < [[ServerPreferencesManager sharedInstance].serverList count]) 
+            if (indexPath.row < [[ApplicationPreferencesManager sharedInstance].serverList count]) 
             {
-                if (indexPath.row == [ServerPreferencesManager sharedInstance].selectedServerIndex) 
+                if (indexPath.row == [ApplicationPreferencesManager sharedInstance].selectedServerIndex) 
                 {
                     cell.accessoryView = [self makeCheckmarkOnAccessoryView];
                 }
@@ -516,13 +544,11 @@ typedef enum {
                     cell.accessoryView = [self makeCheckmarkOffAccessoryView];
                 }
                 
-                ServerObj* tmpServerObj = [[ServerPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
+                ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
                 
                 cell.textLabel.text = tmpServerObj._strServerName;
                 cell.detailTextLabel.text = tmpServerObj._strServerUrl;
                 
-                //Unable selection of the server from Settings
-                [cell setUserInteractionEnabled:NO];
             }
             else
             {
@@ -606,17 +632,266 @@ typedef enum {
     
 	else if (sectionId == SettingViewControllerSectionServerList)
 	{
-        if (indexPath.row == [[ServerPreferencesManager sharedInstance].serverList count]) 
+        if (indexPath.row == [[ApplicationPreferencesManager sharedInstance].serverList count]) 
         {
-                ServerManagerViewController *_serverManagerViewController = [[[ServerManagerViewController alloc] initWithNibName:@"ServerManagerViewController" bundle:nil] autorelease];
-            [self.navigationController pushViewController:_serverManagerViewController animated:YES];
+            ServerAddingViewController* serverAddingViewController = [[ServerAddingViewController alloc] initWithNibName:@"ServerAddingViewController" bundle:nil];
+            [serverAddingViewController setDelegate:self];
+            [self.navigationController pushViewController:serverAddingViewController animated:YES];
+            [serverAddingViewController release];
+        } else {
+            ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
+            if(![UserPreferencesManager sharedInstance].isUserLogged || appPrefManager.selectedServerIndex != indexPath.row) {
+                ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:indexPath.row];
+                
+                ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
+                [serverEditingViewController setDelegate:self];
+                [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+                
+                [self.navigationController pushViewController:serverEditingViewController animated:YES];
+                [serverEditingViewController release];
+            }
         }
 	}
     
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    if (sectionId == SettingViewControllerSectionServerList) {
+        ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
+        return !([UserPreferencesManager sharedInstance].isUserLogged && appPrefManager.selectedServerIndex == indexPath.row) && indexPath.row < [appPrefManager.serverList count];        
+    } else {
+        return NO;
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    if (sectionId == SettingViewControllerSectionServerList) {
+        return UITableViewCellEditingStyleDelete;        
+    } else {
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self deleteServerObjAtIndex:indexPath.row]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_SERVER_DELETED object:self];
+    }
+}
+
+#pragma mark - ServerManagerProtocol
+// Check if the server already exists (both name and URL, ignoring the case)
+// Ignore the index of the server you are currently editing
+// Ignore -1 to compare with all the existing servers
+- (BOOL)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index {
+    ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
+    for (int i = 0; i < [appPrefManager.serverList count]; i++) 
+    {
+        if (index==i)continue; // ignore the server specified by index
+        ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
+        NSString* tmpServName = [tmpServerObj._strServerName lowercaseString];
+        NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
+        if ([tmpServName isEqualToString:[strServerName lowercaseString]] ||
+            [tmpServURL isEqualToString:[strServerUrl lowercaseString]])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 
+- (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
+    
+    NSCharacterSet *invalidCharSet = [NSCharacterSet characterSetWithCharactersInString:chars];
+    NSRange range = [str rangeOfCharacterFromSet:invalidCharSet];
+    return (range.length > 0);
+    
+}
 
+- (BOOL)checkServerInfo:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl {
+    
+    //Check if the server name is null or empty
+    if (strServerName == nil || [strServerName length] == 0){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    // Check if the name contains some forbidden characters: & < > " '
+    if ([self nameContainSpecialCharacter:strServerName inSet:@"&<>\"'"]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    // Check if the server URL is null
+    if(strServerUrl == nil) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    } else {
+        // Check if the server URL is valid :
+        // - characters & < > " ' ! ; \ | ( ) { } [ ] , * % are forbidden
+        // - URL must start with http or https
+        // - scheme and host must not be null or empty
+        NSURL* tmpUrl = [NSURL URLWithString:strServerUrl];
+        if ([self nameContainSpecialCharacter:strServerUrl inSet:@"&<>\"'!;\\|(){}[],*%"] ||
+            tmpUrl == nil || tmpUrl.scheme == nil || tmpUrl.host == nil ||
+            (![[tmpUrl.scheme lowercaseString] isEqualToString:@"http"] &&
+             ![[tmpUrl.scheme lowercaseString] isEqualToString:@"https"]
+             ) || tmpUrl.host.length == 0) {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+                return NO;
+            }
+    }
+    
+    return YES;
+}
+
+// Unique private method to add/edit a server, avoids duplicating common code
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl atIndex:(int)index {
+    
+    if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
+        ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
+        strServerUrl = [NSString stringWithFormat:@"http://%@", strServerUrl];
+    }   
+    // Check whether the name and URL are correctly formed
+    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
+        return NO;
+    
+    // If the name and URL are well formed, we remove some unnecessary characters
+    NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    
+    // Check whether the name and URL already exists, ignoring case
+    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    
+    ApplicationPreferencesManager* appPrefManager = [ApplicationPreferencesManager sharedInstance];
+    // We don't specify an existing server so it's a new one
+    if (index == -1)
+    {
+        //Create the new server
+        ServerObj* serverObj = [[ServerObj alloc] init];
+        serverObj._strServerName = cleanServerName;
+        serverObj._strServerUrl = cleanServerUrl;    
+        serverObj._bSystemServer = NO;
+        
+        //Add the server in configuration
+        NSMutableArray* arrAddedServer = [appPrefManager loadUserConfiguration];
+        [arrAddedServer addObject:serverObj];
+        [appPrefManager writeUserConfiguration:arrAddedServer];
+        [serverObj release];
+        [appPrefManager loadServerList]; // reload list of servers
+        [self.tableView reloadData];
+    }
+    // Edit the server specified by index
+    else
+    {
+        ServerObj* serverObjEdited = [appPrefManager.serverList objectAtIndex:index];
+        ServerObj* tmpServerObj;
+        
+        serverObjEdited._strServerName = cleanServerName;
+        serverObjEdited._strServerUrl = cleanServerUrl;
+        
+        [appPrefManager.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
+        
+        NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < [appPrefManager.serverList count]; i++) 
+        {
+            tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
+            if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer) 
+            {
+                [arrTmp addObject:tmpServerObj];
+            }
+        }
+        
+        if (serverObjEdited._bSystemServer) 
+        {
+            [appPrefManager writeSystemConfiguration:arrTmp];
+        }
+        else
+        {
+            [appPrefManager writeUserConfiguration:arrTmp];
+        }
+        
+        [appPrefManager loadServerList];
+        [self.tableView reloadData];
+    }
+    
+    // If this is the only server: select it automatically
+    if ([appPrefManager.serverList count] == 1)
+        [appPrefManager setSelectedServerIndex:0];
+    
+    return YES;
+}
+
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:-1];
+}
+
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:index];
+}
+
+- (BOOL)deleteServerObjAtIndex:(int)index;
+{
+    ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
+    ServerObj* deletedServerObj = [[appPrefManager.serverList objectAtIndex:index] retain];
+    
+    [appPrefManager.serverList removeObjectAtIndex:index];
+    int currentIndex = appPrefManager.selectedServerIndex;
+    if ([appPrefManager.serverList count] > 0) {
+        if(currentIndex > index) {
+            appPrefManager.selectedServerIndex = currentIndex - 1;
+        } else if (currentIndex == index) {
+            appPrefManager.selectedServerIndex = currentIndex < appPrefManager.serverList.count ? currentIndex : appPrefManager.serverList.count - 1;           
+        }        
+    } else {
+        appPrefManager.selectedServerIndex = -1;
+    }
+    NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [appPrefManager.serverList count]; i++) 
+    {
+        ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
+        if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer) 
+        {
+            [arrTmp addObject:tmpServerObj];
+        }
+    }
+    
+    if (deletedServerObj._bSystemServer) 
+    {
+        [appPrefManager writeSystemConfiguration:arrTmp];
+    }
+    else
+    {
+        [appPrefManager writeUserConfiguration:arrTmp];
+    }
+    [deletedServerObj release];
+    [arrTmp release];
+    
+    [appPrefManager loadServerList]; // reload list of servers
+    [self.tableView reloadData];
+    
+    // If there is the only 1 remaining server: select it automatically
+    if ([appPrefManager.serverList count] == 1)
+        [appPrefManager setSelectedServerIndex:0];
+    
+    return YES;
+}
 
 @end

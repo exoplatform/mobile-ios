@@ -13,14 +13,21 @@
 #import "SSHUDView.h"
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
+#import "AuthTabItem.h"
+#import "UserPreferencesManager.h"
 
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
+#define scrollHeight 100 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+#define tabViewsTopMargin -4 /* the top margin of the views under the tabs */
+#define settingsBtnTopMargin 50 /* the top margin of the settings button */
+#define tabsHeightAndLeftMargin 76 /* the height and left margin of the tabs */
+#define tabsWidth 180 /* defines the width of the clickable area */
+#define tabsY 377 /* distance from the top of the screen to the top of the tabs */
+#define tabsYInLandscape 240 /* same as tabsY but in landscape mode */
 
 @implementation AuthenticateViewController_iPad
-
-//@synthesize _dictLocalize;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -43,109 +50,131 @@
     
     [self.navigationController.navigationItem setLeftBarButtonItem:nil];
     [self.navigationController.navigationBar setHidden:YES];
-    
-    [self signInAnimation:_bAutoLogin];
-
 }
 
-- (void)signInAnimation:(int)animationMode
-{
-    _vContainer.alpha = 0;
-    
-    if(animationMode == 1)//Auto signIn
-    {
-        _vContainer.alpha = 1;
-        [self onSignInBtn:nil];
-    }
-    else if(animationMode == 0)//Normal signIn
-    {
-        [UIView beginAnimations:nil context:nil];  
-        [UIView setAnimationDuration:1.0];  
-        _vContainer.alpha = 1;
-        [UIView commitAnimations];   
-    }
-    else//just show signIn screen
-    {
-        _vContainer.alpha = 1;
-    }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_credViewController signInAnimation:(_credViewController.bAutoLogin && ![self autoLoginIsDisabled])];
 }
+
+
+-(void) initTabsAndViews {
+    // Creating the sub view controllers
+    _credViewController = [[CredentialsViewController alloc] initWithNibName:@"CredentialsViewController_iPad" bundle:nil];
+    _credViewController.authViewController = self;
+    _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPad" bundle:nil];
+    
+    // Initializing the Tab items and adding them to the Tab view
+    AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn"]];
+    [self.tabView addTabItem:tabItemCredentials];
+    
+    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIpadOn"]];
+    [self.tabView addTabItem:tabItemServerList];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
     
+    // Allow the views to be resized properly when the orientation changes
+    [_credViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+
     [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
-    self.view.backgroundColor = [UIColor clearColor];
     //Stevan UI fixes
-    _panelBackground.image = [[UIImage imageNamed:@"AuthenticatePanelBg.png"] 
-                              stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
+    _credViewController.panelBackground.image = 
+        [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
     
-    
-    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
-                                     stretchableImageWithLeftCapWidth:10 
-                                     topCapHeight:10] forState:UIControlStateNormal];
-    
-    [_btnAccount setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
-                                     stretchableImageWithLeftCapWidth:10 
-                                     topCapHeight:10] forState:UIControlStateSelected];
-
-    
-    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOff.png"] 
-                                        stretchableImageWithLeftCapWidth:10 
-                                        topCapHeight:10] forState:UIControlStateNormal];
-    
-    [_btnServerList setBackgroundImage:[[UIImage imageNamed:@"AuthenticatePanelButtonBgOn.png"] 
-                                        stretchableImageWithLeftCapWidth:10 
-                                        topCapHeight:10] forState:UIControlStateSelected];
-    
-    [_txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
+    _servListViewController.panelBackground.image = 
+         [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
+    [_credViewController.txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
     
-    [_txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
+    [_credViewController.txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
-
-    
-    [_tbvlServerList setHidden:YES];
-    [_vAccountView setHidden:NO];
-
-    _vAccountView.backgroundColor = [UIColor clearColor];
-    _vServerListView.backgroundColor = [UIColor clearColor];
-    _btnServerList.backgroundColor = [UIColor clearColor];
-    _btnAccount.backgroundColor = [UIColor clearColor];
-    
-    //Set the state of the first selected tab
-    [_btnAccount setSelected:YES];
-    
-    //Add the background image for the settings button
-    [_btnSettings setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
-                                      stretchableImageWithLeftCapWidth:10 topCapHeight:10]
-                            forState:UIControlStateNormal];
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    
-    //Add the background image for the login button
-    [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
-                                   stretchableImageWithLeftCapWidth:10 topCapHeight:10]
-                            forState:UIControlStateNormal];
-    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    
 }
 
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     _interfaceOrientation = interfaceOrientation;
-    
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) { 
-        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
-        [_vContainer setFrame:CGRectMake(227, 230, 569, 460)];
-	} else {
-        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
-        [_vContainer setFrame:CGRectMake(100, 400, 569, 460)];
-	}
-    
+
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation))
+    {
+        // Landscape orientation
+        // /!\ The coordinates x and y are inverted (e.g. x in landscape = y in portrait)
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
+        // Position the tabs just above the subviews
+        [self.tabView setFrame:
+         CGRectMake((self.view.center.y-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
+                    tabsYInLandscape, /* reduced space between the tabs and the eXo logo */
+                    tabsWidth,
+                    tabsHeightAndLeftMargin)];
+        // Calculate the origin point of the views
+        // - at the center
+        // - with a -4 margin to avoid a space between the tab and the frame
+        CGPoint viewsOrigin = CGPointMake(self.view.center.y-_credViewController.view.bounds.size.width/2,
+                                          self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
+        // Position the views just below the tabs
+        [_credViewController.view setFrame:
+         CGRectMake(viewsOrigin.x, viewsOrigin.y,
+                    _credViewController.view.bounds.size.width,
+                    _credViewController.view.bounds.size.height)];
+        
+        [_servListViewController.view setFrame:
+         CGRectMake(viewsOrigin.x, viewsOrigin.y,
+                    _servListViewController.view.bounds.size.width,
+                    _servListViewController.view.bounds.size.height)];
+        // Position the settings button under the views
+        // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
+        CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
+        [_btnSettings setFrame:
+         CGRectMake(self.view.center.y-_btnSettings.bounds.size.width/2,      // at the center
+                    absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
+                    _btnSettings.bounds.size.width,
+                    _btnSettings.bounds.size.height)];
+    } 
+    else
+    {
+        // Portrait orientation
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
+        
+        // Position the tabs
+        [self.tabView setFrame:
+         CGRectMake((self.view.center.x-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
+                    tabsY,
+                    tabsWidth,
+                    tabsHeightAndLeftMargin)];
+        // Calculate the origin point of the views
+        // - at the center
+        // - with a -4 margin to avoid a space between the tab and the frame
+        CGPoint viewsOrigin = CGPointMake(self.view.center.x-_credViewController.view.bounds.size.width/2,
+                                          self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
+        // Position the views just below the tabs
+        [_credViewController.view setFrame:
+         CGRectMake(viewsOrigin.x, viewsOrigin.y,
+                    _credViewController.view.bounds.size.width,
+                    _credViewController.view.bounds.size.height)];
+
+        [_servListViewController.view setFrame:
+         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
+                    self.tabView.frame.origin.y+self.tabView.frame.size.height-4,
+                    _servListViewController.view.bounds.size.width,
+                    _servListViewController.view.bounds.size.height)];
+        // Position the settings button under the views
+        // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
+        CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
+        [_btnSettings setFrame:
+         CGRectMake(self.view.center.x-_btnSettings.bounds.size.width/2,      // at the center
+                    absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
+                    _btnSettings.bounds.size.width,
+                    _btnSettings.bounds.size.height)];
+    }
 }
 
 
@@ -154,6 +183,20 @@
     _interfaceOrientation = interfaceOrientation;
     return YES;
 }
+
+// An ugly hack:
+// Disable the keyboard notifications before the orientation changes, and re-enable them
+// after the orientation has changed.
+// This way the KeyboardWillHide notification is not sent during the rotation, avoiding
+// a gap at the top of the view.
+-(void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
+}
+// End of the ugly hack
 
 -(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     [self changeOrientation:toInterfaceOrientation];
@@ -186,18 +229,18 @@
 
 - (void)setPreferenceValues
 {
-	NSString *strUsername = [[ServerPreferencesManager sharedInstance] username];
+	NSString *strUsername = [[UserPreferencesManager sharedInstance] username];
 	if(strUsername)
 	{
-		[_txtfUsername setText:strUsername];
-		[_txtfUsername resignFirstResponder];
+		[_credViewController.txtfUsername setText:strUsername];
+		[_credViewController.txtfUsername resignFirstResponder];
 	}
 	
-	NSString* strPassword = [[ServerPreferencesManager sharedInstance] password]; 
+	NSString* strPassword = [[UserPreferencesManager sharedInstance] password]; 
 	if(strPassword)
 	{
-		[_txtfPassword setText:strPassword];
-		[_txtfPassword resignFirstResponder];
+		[_credViewController.txtfPassword setText:strPassword];
+		[_credViewController.txtfPassword resignFirstResponder];
 	}
 }
 
@@ -205,20 +248,6 @@
 {
 	_dictLocalize = [_delegate getLocalization];
 	_intSelectedLanguage = [_delegate getSelectedLanguage];
-	/*
-	[_lbHostInstruction setText:[_dictLocalize objectForKey:@"DomainHeader"]];
-	[_lbHost setText:[_dictLocalize objectForKey:@"DomainCellTitle"]];
-	[_lbAccountInstruction setText:[_dictLocalize objectForKey:@"AccountHeader"]];
-	[_lbRememberMe setText:[_dictLocalize objectForKey:@"RememberMe"]];
-	[_lbAutoSignIn setText:[_dictLocalize objectForKey:@"AutoLogin"]];
-	[_btnSignIn setTitle:[_dictLocalize objectForKey:@"SignInButton"] forState:UIControlStateNormal];
-	[_btnSetting setTitle:[_dictLocalize objectForKey:@"Language"] forState:UIControlStateNormal];
-	[_lbSigningInStatus setText:[_dictLocalize objectForKey:@"SigningIn"]];
-						   
-	[_settingViewController localize];
-    */ 
-   
-   
 }
 
 - (void)setSelectedLanguage:(int)languageId
@@ -277,56 +306,7 @@
     
 }
 
-- (IBAction)onSignInBtn:(id)sender
-{
-	[_txtfUsername resignFirstResponder];
-	[_txtfPassword resignFirstResponder];
-	
-	if([_txtfUsername.text isEqualToString:@""])
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-														message:Localize(@"UserNameEmpty")
-													   delegate:self 
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles: nil];
-		[alert show];
-		[alert release];
-	}
-	else
-	{		
-		[self doSignIn];
-	}
-}
-
 #pragma mark - TextField delegate 
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    //[super textFieldShouldReturn:textField];
-    if (textField == _txtfUsername) 
-    {
-        [_txtfPassword becomeFirstResponder];
-    }
-    else
-    {    
-        [_txtfPassword resignFirstResponder];
-       
-        [self onSignInBtn:nil];
-    }    
-    
-	return YES;
-}
-
-- (void)hitAtView:(UIView*) view
-{
-	if([view class] != [UITextField class])
-	{
-		[_txtfUsername resignFirstResponder];
-		[_txtfPassword resignFirstResponder];
-	} else {
-        
-    }
-}
 
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
     [super platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
@@ -369,23 +349,50 @@
 }
 
 
-
-#pragma UITableView Delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return kHeightForServerCell;
-}
-
 #pragma - SettingsDelegate methods
 
 -(void)doneWithSettings {
-    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
-    [_btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    _bAutoLogin = [ServerPreferencesManager sharedInstance].autoLogin; 
-    [self signInAnimation:_bAutoLogin];
-    [_tbvlServerList reloadData];
+    [super doneWithSettings];
     [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark - Keyboard management
+
+- (void)manageKeyboard:(NSNotification *) notif {
+        NSDictionary *info = [notif userInfo];
+        // Get the size of the keyboard, before and after the animation
+        CGFloat keyboardHeightBefore = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size.height;
+        CGFloat keyboardHeightAfter = [self.view convertRect:[[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:nil].size.height;
+        // Create a rectangle of the size of the entire frame
+        CGRect aRect = [self.view convertRect:self.view.frame fromView:nil];
+        // Create a point at the origin of the password text field component
+        CGPoint fieldPoint = 
+        CGPointMake(_credViewController.view.frame.origin.x + _credViewController.txtfPassword.frame.origin.x,
+                    _credViewController.view.frame.origin.y + _credViewController.txtfPassword.frame.origin.y);
+        
+        if (notif.name == UIKeyboardDidShowNotification) {
+            // Reduce the height of the rect to represent only the area not covered by the keyboard (after it has appeared)
+            aRect.size.height -= keyboardHeightAfter;
+            // If the point is not in the area, we move the view up so it becomes visible
+            if (!CGRectContainsPoint(aRect, fieldPoint))
+                [self moveUp];
+        } else if (notif.name == UIKeyboardDidHideNotification) {
+            // Reduce the height of the rect to represent only the area not covered by the keyboard (before it will disappear)
+            aRect.size.height -= keyboardHeightBefore;
+            // If the point is in the visible area, we move the view down before the keyboard
+            if (CGRectContainsPoint(aRect, fieldPoint))
+                [self moveDown];
+        }
+}
+
+- (void)moveUp {
+    CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y+scrollHeight);
+    [(UIScrollView*)self.view setContentOffset:destPoint animated:YES];
+}
+
+- (void)moveDown {
+    [(UIScrollView*)self.view setContentOffset:CGPointZero animated:YES];
+}
+
 
 @end

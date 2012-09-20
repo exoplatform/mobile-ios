@@ -15,6 +15,7 @@
 #import "ChatProxy.h"
 #import <dispatch/dispatch.h>
 #import <Crashlytics/Crashlytics.h>
+#import "UserPreferencesManager.h"
 
 
 @implementation AppDelegate_iPad
@@ -82,7 +83,7 @@
     [[SocialRestConfiguration sharedInstance] updateDatas];
 
     
-    [ServerPreferencesManager sharedInstance].isUserLogged = YES;
+    [UserPreferencesManager sharedInstance].isUserLogged = YES;
     self.rootViewController = [[[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial] autorelease];
     [UIView transitionWithView:self.window
                       duration:1
@@ -97,8 +98,10 @@
 
 -(void)backToAuthenticate{    
     //Prevent any problems with Autologin, if the user want to go back to the authenticate screen
-    [ServerPreferencesManager sharedInstance].autoLogin = NO;
-    [ServerPreferencesManager sharedInstance].isUserLogged = NO;
+    [UserPreferencesManager sharedInstance].autoLogin = NO;
+    [UserPreferencesManager sharedInstance].isUserLogged = NO;
+    // Disable Auto Login so user won't be signed in automatically after
+    [viewController disableAutoLogin:YES];
     
     // execute Logout
     [LoginProxy doLogout];

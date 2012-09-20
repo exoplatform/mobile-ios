@@ -29,12 +29,15 @@
 #define EXO_PREFERENCE_EXO_USERID			@"exo_user_id"
 #define EXO_PREFERENCE_DOMAIN				@"domain_name"
 #define EXO_PREFERENCE_SELECTED_SEVER		@"selected_server"
+#define EXO_IS_USER_LOGGED                  @"sigin"
 #define EXO_PREFERENCE_VERSION_SERVER       @"version_server"
 #define EXO_PREFERENCE_EDITION_SERVER       @"edition_server"
 #define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
 #define EXO_NOTIFICATION_CHANGE_LANGUAGE    @"notification-change-language"
 #define EXO_NOTIFICATION_SHOW_PRIVATE_DRIVE @"notification-show-private-drive"
+#define EXO_NOTIFICATION_SERVER_ADDED       @"notification-server-added"
+#define EXO_NOTIFICATION_SERVER_DELETED     @"notification-server-deleted"
 
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"
@@ -69,6 +72,7 @@
 
 
 #define EXO_BACKGROUND_COLOR                [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]]
+#define SELECTED_CELL_BG_COLOR              [UIColor colorWithRed:225./255 green:225./255 blue:225./255 alpha:1.]
 
 #define DOCUMENT_JCR_PATH_REST              @"/rest/private/jcr/"
 #define DOCUMENT_DRIVE_PATH_REST            @"/rest/private/managedocument/getDrives?driveType="

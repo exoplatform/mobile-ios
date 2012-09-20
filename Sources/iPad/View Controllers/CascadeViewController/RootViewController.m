@@ -10,7 +10,7 @@
 
 
 #import "MenuViewController.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "eXoFullScreenView.h"
 
 @interface UIViewExt : UIView {} 
@@ -78,7 +78,7 @@
     
 	UIViewExt *rootView = [[[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] autorelease];
 	rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
-	[rootView setBackgroundColor:[UIColor clearColor]];
+	[rootView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]]];
 	
 	UIView *leftMenuView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)] autorelease];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
@@ -88,18 +88,13 @@
 	
 	UIView *rightSlideView = [[[UIView alloc] initWithFrame:CGRectMake(leftMenuView.frame.size.width, 0, rootView.frame.size.width - leftMenuView.frame.size.width, rootView.frame.size.height)] autorelease];
 	rightSlideView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
-	stackScrollViewController = [[StackScrollViewController alloc] init];	
+	stackScrollViewController = [[ExoStackScrollViewController alloc] init];	
 	[stackScrollViewController.view setFrame:CGRectMake(0, 0, rightSlideView.frame.size.width, rightSlideView.frame.size.height)];
 	[stackScrollViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight];
 	[stackScrollViewController viewWillAppear:FALSE];
 	[stackScrollViewController viewDidAppear:FALSE];
 	[rightSlideView addSubview:stackScrollViewController.view];
-    //rightSlideView.backgroundColor = [UIColor colorWithRed:242./255 green:242./255 blue:242./255 alpha:1.];
     rightSlideView.backgroundColor = [UIColor clearColor];
-    
-    
-    
-    
     
     //Add the background image when no content
     UIImage *imageBg;

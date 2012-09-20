@@ -13,9 +13,10 @@
 #import "FileActionsViewController.h"
 #import "FileFolderActionsViewController_iPad.h"
 #import "DocumentDisplayViewController_iPad.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "LanguageHelper.h"
 #import "EmptyView.h"
+#import "RoundRectView.h"
 
 @implementation DocumentsViewController_iPad
 
@@ -34,18 +35,20 @@
     _tblFiles.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
     [_tblFiles setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view addSubview:_tblFiles];
+    [((RoundRectView *) [[self.view subviews] objectAtIndex:0]) addSubview:_tblFiles];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
 	[super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
     //Add the UIBarButtonItem for actions on the NavigationBar of the Controller
     if (_rootFile) {
         _navigation.topItem.title = _rootFile.name;
     } else {
         _navigation.topItem.title = Localize(@"Documents") ;
+        ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
     }
 }
 
@@ -74,12 +77,20 @@
 
 - (void)deleteCurentFileView {
     // This method will remove this view and reload its parent view. 
-    StackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
-    DocumentsViewController *parentController = [[stackScrollVC.viewControllersStack objectAtIndex:stackScrollVC.viewControllersStack.count - 2] retain];
-    [stackScrollVC removeViewFromController:parentController];
-    // Reload the content of the parent view.
-    [parentController startRetrieveDirectoryContent];
-    [parentController release];
+    ExoStackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
+    int viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
+    if (viewIndex != NSNotFound) {
+        DocumentsViewController *parentController = viewIndex > 0 ? [[stackScrollVC.viewControllersStack objectAtIndex:viewIndex - 1] retain] : nil;
+        [stackScrollVC removeViewFromController:parentController];
+        // Reload the content of the parent view.
+        [parentController startRetrieveDirectoryContent];
+        [parentController release];
+        
+    }
+}
+
+- (void)removeFileViewsFromMe {
+    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
 }
 
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
@@ -139,6 +150,8 @@
 
     
     //Display the UIPopoverController
+    [_actionPopoverController dismissPopoverAnimated:NO];
+    [_actionPopoverController release];
 	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
 	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
@@ -199,7 +212,12 @@
 
 #pragma mark - Panel Actions
 -(void) showActionsPanelFromNavigationBarButton:(id)sender {
-    
+    if (_actionPopoverController.popoverVisible) {
+        [_actionPopoverController dismissPopoverAnimated:YES];
+        [_actionPopoverController release];
+        _actionPopoverController = nil;
+        return;
+    }
     displayActionDialogAtRect = CGRectZero;
     
     //Create the fileActionsView controller
@@ -213,6 +231,8 @@
     
     fileToApplyAction = _rootFile;
     //Create the Popover to display potential actions to the user
+    [_actionPopoverController dismissPopoverAnimated:NO];
+    [_actionPopoverController release];
     _actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
     //set its size
 	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
@@ -227,7 +247,7 @@
     [fileActionsViewController release];
     
     //Prevent any new tap on the button
-    _navigation.topItem.rightBarButtonItem.enabled = NO;
+//    _navigation.topItem.rightBarButtonItem.enabled = YES;
 }
 
 -(void) hideActionsPanel {

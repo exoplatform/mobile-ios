@@ -94,15 +94,18 @@
 		_activityView = view;
 		[view release];
         
-        UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-2, frame.size.width, 1.0f)];
-        lineView.backgroundColor = [UIColor whiteColor];
-        lineView.layer.shadowColor = [[UIColor colorWithWhite:0.1f alpha:0.5f] CGColor];
-        lineView.layer.shadowOffset = CGSizeMake(0, 1);
-        [self addSubview: lineView];
-        [lineView release];
+        // Remove the white bottom border that makes the separation between
+        // the "Pull to refresh" area and the main view (Social stream or list of dashboards)
+        // Discussed on:
+        // - https://jira.exoplatform.org/browse/MOB-1205
+        // - http://int.exoplatform.org/portal/g/:spaces:mobile/mobile/local._wiki.WikiPortlet/Mobile_UXP_feedback_and_improvement
+//        UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-2, frame.size.width, 1.0f)];
+//        lineView.backgroundColor = [UIColor whiteColor];
+//        lineView.layer.shadowColor = [[UIColor colorWithWhite:0.1f alpha:0.5f] CGColor];
+//        lineView.layer.shadowOffset = CGSizeMake(0, 1);
+//        [self addSubview: lineView];
+//        [lineView release];
         
-		
-		
 		[self setState:EGOOPullRefreshNormal];
 		
     }

@@ -13,13 +13,14 @@
 #import "RootViewController.h"
 #import "MessageComposerViewController.h"
 #import "SocialUserProfileCache.h"
-#import "StackScrollViewController.h"
+#import "ExoStackScrollViewController.h"
 #import "EGOImageView.h"
 #import "SocialPictureAttach.h"
 #import "DocumentDisplayViewController_iPhone.h"
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "LanguageHelper.h"
+#import "RoundRectView.h"
 
 @implementation ActivityStreamBrowseViewController_iPad
 
@@ -31,6 +32,10 @@
 {
     [super viewDidLoad];
     _navigation.topItem.title = self.title;
+    self.view.backgroundColor = [UIColor clearColor];
+    RoundRectView *containerView = (RoundRectView *) [[self.view subviews] objectAtIndex:0];
+    containerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    containerView.squareCorners = NO;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
 }
 
@@ -71,6 +76,7 @@
         
     return fHeight;
 }
+
 
 - (void)updateHudPosition {
     self.hudLoadWaiting.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)-70);

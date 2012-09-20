@@ -56,6 +56,7 @@
 - (void)sortActivities;
 - (void)clearActivityData;
 - (SocialActivity *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
--(void)showHudForUpload;
+- (void)showHudForUpload;
+- (UITableView*) tblvActivityStream;
 //- (float)getHeightForText:(NSString *)text width:(float)width;
 @end

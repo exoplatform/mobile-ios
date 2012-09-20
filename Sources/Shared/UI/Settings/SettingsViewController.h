@@ -10,8 +10,13 @@
 #import "LoginProxy.h"
 #import "PlatformServerVersion.h"
 #import "eXoTableViewController.h"
-@class ServerManagerViewController;
+@class UserPreferencesManager;
 
+@protocol ServerManagerProtocol <NSObject>
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (BOOL)deleteServerObjAtIndex:(int)index;
+@end
 
 @protocol SettingsDelegateProcotol
 
@@ -19,7 +24,7 @@
 
 @end
 
-@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate>{
+@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate, ServerManagerProtocol> {
     
     BOOL                            bRememberMe;
 	BOOL                            bAutoLogin;
@@ -44,6 +49,6 @@
 -(void)loadSettingsInformations;
 -(void)saveSettingsInformations;
 -(void)reloadSettingsWithUpdate;
-
+-(void)enableDisableAutoLogin:(id)sender;
 
 @end

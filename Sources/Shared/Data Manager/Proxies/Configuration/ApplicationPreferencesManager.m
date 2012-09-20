@@ -1,15 +1,22 @@
 //
 //  Configuration.m
-//  eXoPlatform
+//  eXo Platform
 //
-//  Created by Tran Hoai Son on 3/21/11.
-//  Copyright 2011 home. All rights reserved.
+//  Created by Nguyen Khac Trung on 9/27/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Configuration.h"
+#import "ApplicationPreferencesManager.h"
+#import "UserPreferencesManager.h"
 #import "CXMLDocument.h"
 #import "CXMLNode.h"
 #import "CXMLElement.h"
+#import "defines.h"
+
+#define CURRENT_USER_NAME       [UserPreferencesManager sharedInstance].username
+
+#pragma mark - Server Object
+
 
 @implementation ServerObj
 @synthesize _strServerName;
@@ -17,18 +24,33 @@
 @synthesize _bSystemServer;
 @end
 
+#pragma mark - Application Prefs
 
-//======================================================================
-@implementation Configuration
+@implementation ApplicationPreferencesManager
 
-+ (Configuration*)sharedInstance
+#pragma mark - Properties
+
+#pragma mark * Server management
+@synthesize selectedServerIndex = _selectedServerIndex;
+@synthesize selectedDomain = _selectedDomain;
+
+#pragma mark * JCR storage
+@synthesize currentRepository = _currentRepository;
+@synthesize defaultWorkspace = _defaultWorkspace;
+@synthesize userHomeJcrPath = _userHomeJcrPath;
+
+
+#pragma mark - Methods
+
+#pragma mark * Lifecyle
++ (ApplicationPreferencesManager*)sharedInstance
 {
-	static Configuration *sharedInstance;
+	static ApplicationPreferencesManager *sharedInstance;
 	@synchronized(self)
 	{
 		if(!sharedInstance)
 		{
-			sharedInstance = [[Configuration alloc] init];
+			sharedInstance = [[ApplicationPreferencesManager alloc] init];
 		}
 		return sharedInstance;
 	}
@@ -39,19 +61,24 @@
 {
 	self = [super init];
     if (self) 
-    {
-        _arrServerList = [[NSMutableArray alloc] init];
+    {        
+        self.selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     }	
 	return self;
 }
 
 - (void) dealloc
 {
+    [_selectedDomain release];
 	[_arrServerList release];
+    [_currentRepository release];
+    [_defaultWorkspace release];
+    [_userHomeJcrPath release];
 	[super dealloc];
 }
 
-- (NSMutableArray*)getServerList
+#pragma mark * Server management
+- (void)loadServerList
 {
     NSError* error;
     NSMutableArray* arrSystemServerList;
@@ -67,19 +94,19 @@
     NSString* strAppOldVersion = [userDefault objectForKey:@"prefVersion"];
     NSString* strAppCurrentVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
-    //Load the system configuration
+    //Load the system Configuration
     if ((!strAppOldVersion) || (strAppOldVersion && ([strAppCurrentVersion compare:strAppOldVersion] == NSOrderedAscending)))
     {
-        //copy the defautl configuration to the system configuration in the /app/documents
+        //copy the defautl Configuration to the system Configuration in the /app/documents
         strDefaultConfigPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"xml"];
         strSystemConfigPath = [[paths objectAtIndex:0] stringByAppendingString:@"/SystemConfiguration"];
         [fileManager copyItemAtPath:strDefaultConfigPath toPath:strSystemConfigPath error:&error];
     }
     
-    //Load the system configuration
+    //Load the system Configuration
     arrSystemServerList = [self loadSystemConfiguration];
     
-    //Load the deleted system configuration
+    //Load the deleted system Configuration
     arrDeletedSystemServerList = [self loadDeletedSystemConfiguration];
     
     if ([arrDeletedSystemServerList count] > 0) 
@@ -105,8 +132,9 @@
         }
     }
     
-    //Load the user configuration    
+    //Load the user Configuration    
     arrUserServerList = [self loadUserConfiguration];
+    if (!_arrServerList) _arrServerList = [[NSMutableArray alloc] init];
     [_arrServerList removeAllObjects];
     if ([arrSystemServerList count] > 0) 
     {
@@ -119,10 +147,36 @@
     
     NSData* tmpData = [self createXmlDataWithServerList:_arrServerList];
     [self writeData:tmpData toFile:@"Test"];
-    return _arrServerList;
 }
 
-//Load the system configuration
+- (void)setSelectedServerIndex:(int)selectedServerIndex {
+    // customize setter of selectedServerIndex
+    int tmpIndex = -1; // default value for selected server index 
+    NSString *tmpDomain = nil; // default value for selected domain
+    if (selectedServerIndex >= 0 && self.serverList.count > 0) {
+        if (selectedServerIndex < [self.serverList count]) {
+            tmpIndex = selectedServerIndex;
+            ServerObj *selectedObj = [self.serverList objectAtIndex:selectedServerIndex];
+            tmpDomain = selectedObj._strServerUrl;
+        }
+    }
+    [_selectedDomain release];
+    _selectedDomain = [tmpDomain retain];
+    _selectedServerIndex = tmpIndex;
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedServerIndex] forKey:EXO_PREFERENCE_SELECTED_SEVER];
+    [userDefaults setObject:_selectedDomain forKey:EXO_PREFERENCE_DOMAIN];
+}
+
+- (NSString *)selectedDomain {
+    if (!_selectedDomain) {
+        _selectedDomain = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
+    }
+    return [[_selectedDomain copy] autorelease];
+}
+
+#pragma mark * Read/Write data
+//Load the system Configuration
 - (NSMutableArray*)loadSystemConfiguration
 {
     NSData* data = [self readFileWithName:@"SystemConfiguration"];
@@ -130,7 +184,7 @@
     return arr;
 }
 
-//Load the deleted system configuration
+//Load the deleted system Configuration
 - (NSMutableArray*)loadDeletedSystemConfiguration
 {
     NSData* data = [self readFileWithName:@"DeletedSystemConfiguration"];
@@ -138,7 +192,7 @@
     return arr;
 }
 
-//Load the user configuration
+//Load the user Configuration
 - (NSMutableArray*)loadUserConfiguration
 {
     NSData* data = [self readFileWithName:@"UserConfiguration"];
@@ -149,7 +203,7 @@
 - (NSMutableArray*)parseConfiguration:(NSData*)data withBSystemSever:(BOOL)bSystemServer
 {
     NSError* error;
-    NSMutableArray* arrServerList = [[NSMutableArray alloc] init];
+    NSMutableArray* arrServerList = [[[NSMutableArray alloc] init] autorelease];
     CXMLDocument* doc = [[CXMLDocument alloc] initWithData:data options:0 error:&error];
     if(doc != nil) 
     {
@@ -180,13 +234,14 @@
             }
         }
     }
+    [doc release];
     return arrServerList;
 }
 
 //Read the file with name
 - (NSData*)readFileWithName:(NSString*)strFileName
 {    
-    NSData* data = [[NSData alloc] init];
+    NSData* data = nil;
     NSFileManager* fileManager = [NSFileManager defaultManager];
     BOOL bExist = NO;
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -199,14 +254,16 @@
     return data;
 }
 
-//Saved the system configuration to the /app/documents
+//Saved the system Configuration to the /app/documents
 - (void)writeSystemConfiguration:(NSMutableArray*)arrSystemServerList
 {
+    // update selected server info to userdefault
+    self.selectedServerIndex = self.selectedServerIndex;
     NSData* dataWrite  = [self createXmlDataWithServerList:arrSystemServerList];
     [self writeData:dataWrite toFile:@"SystemConfiguration"];
 }
 
-//Saved the deleted system configuration to the /app/documents
+//Saved the deleted system Configuration to the /app/documents
 - (void)writeDeletedSystemConfiguration:(NSMutableArray*)arrDeletedSystemServerList
 {
     NSData* data = [self readFileWithName:@"DeletedSystemConfiguration"];
@@ -216,21 +273,23 @@
     [self writeData:dataWrite toFile:@"DeletedSystemConfiguration"];
 }
 
-//Saved the user configuration to the /app/documents
-- (void)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList
+//Saved the user Configuration to the /app/documents
+- (BOOL)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList
 {
+    // update selected server info
+    self.selectedServerIndex = self.selectedServerIndex;
     NSData* dataWrite = [self createXmlDataWithServerList:arrUserSystemServerList];
-    [self writeData:dataWrite toFile:@"UserConfiguration"];
+    return [self writeData:dataWrite toFile:@"UserConfiguration"];
 }
-     
-- (void)writeData:(NSData*)data toFile:(NSString*)strFileName
+
+- (BOOL)writeData:(NSData*)data toFile:(NSString*)strFileName
 {
     NSFileManager* fileManager = [NSFileManager defaultManager];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* strFilePath = [[paths objectAtIndex:0] stringByAppendingString:[NSString stringWithFormat:@"/%@",strFileName]];
-    [fileManager createFileAtPath:strFilePath contents:data attributes:nil];
+    return [fileManager createFileAtPath:strFilePath contents:data attributes:nil];
 }
-     
+
 
 //Created the xml string before saving
 - (NSData*)createXmlDataWithServerList:(NSMutableArray*)arrServerList
@@ -242,7 +301,7 @@
         NSString* tmpStr = [NSString stringWithFormat:@"\t\t\t<server name=\"%@\" serverURL=\"%@\"/>\n",tmpServerObj._strServerName, tmpServerObj._strServerUrl];
         strContent = [strContent stringByAppendingString:tmpStr];
     }
-                      
+    
     NSString* strEnd = @"\t\t</Servers>\n\t</xml>\n</plist>";
     strContent = [strContent stringByAppendingString:strEnd];
     NSData* data = [strContent dataUsingEncoding:NSUTF8StringEncoding];
@@ -298,6 +357,51 @@
 		return [child stringValue];
 	}
 	return nil;
+}
+
+- (NSMutableArray *)serverList {
+    if (!_arrServerList) {
+        [self loadServerList];
+    }
+    return _arrServerList;
+}
+
+#pragma mark * JCR storage
+
+- (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath {
+    [repositoryName retain];
+    [_currentRepository release];
+    _currentRepository = repositoryName ? repositoryName : [@"repository" retain];
+    [defaultWorkspace retain];
+    [_defaultWorkspace release];
+    _defaultWorkspace = defaultWorkspace ? defaultWorkspace : [@"collaboration" retain];
+    [userHomePath retain];
+    [_userHomeJcrPath release];
+    _userHomeJcrPath = userHomePath ? userHomePath : [[self makeUserHomePath:CURRENT_USER_NAME] retain];
+}
+
+- (NSString *)makeUserHomePath:(NSString *)username; 
+{
+    NSMutableString *path = [NSMutableString stringWithString:@"/Users"];
+    
+    int length = [username length];
+    
+    int numberOfUserLevel = length < 4 ?  2 : 3;
+    
+    for(int i = 1; i <= numberOfUserLevel; i++)
+    {
+        NSMutableString *userNameLevel = [NSMutableString stringWithString:[username substringToIndex:i]];
+        
+        for(int j = 1; j <= 3; j++)
+        {
+            [userNameLevel appendString:@"_"];
+        }
+        
+        [path appendFormat:@"/%@", userNameLevel];        
+    }
+    
+    [path appendFormat:@"/%@", username];
+    return path;
 }
 
 @end

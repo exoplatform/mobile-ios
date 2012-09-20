@@ -244,6 +244,10 @@ static NSString *PRIVATE_GROUP = @"Private";
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (UITableView*)tblFiles {
+    return _tblFiles;
+}
+
 
 #pragma mark - HUD Management
 
@@ -527,6 +531,11 @@ static NSString *PRIVATE_GROUP = @"Private";
     
 }
 
+- (void)removeFileViewsFromMe;
+{
+    // This method is used to install specified UI process after a document item is removed in this view
+}
+
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
     
 }
@@ -558,8 +567,10 @@ static NSString *PRIVATE_GROUP = @"Private";
     if([urlFileToDelete isEqualToString:_rootFile.path]) {
         [self deleteCurentFileView];
     }
-    else
+    else {
+        [self removeFileViewsFromMe];
         [self startRetrieveDirectoryContent];
+    }
     
 }
 

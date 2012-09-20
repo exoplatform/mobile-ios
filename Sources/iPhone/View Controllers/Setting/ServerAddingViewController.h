@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ServerManagerViewController.h"
 #import "eXoTableViewController.h"
+#import "SettingsViewController.h"
 
 @interface ServerAddingViewController : eXoTableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
