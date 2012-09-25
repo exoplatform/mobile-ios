@@ -87,6 +87,7 @@
 "UpdatingActionCannotBeCompleted" = "Échec du chargement";
 "LikingActionCannotBeCompleted" = "Échec de l'action";
 "UnLikeActionCannotBeCompleted" = "Échec de l'action";
+"LoadMoreActionCannotBeCompleted" = "Impossible de charger plus d'activités";
 "PostingActivity" = "Envoi de l'activité";
 "PostingActionCannotBeCompleted" = "Envoi de l'activité impossible";
 "CommentActivity" = "Envoi du commentaire";

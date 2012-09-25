@@ -16,6 +16,14 @@
 #import "eXoViewController.h"
 #import "ActivityStreamTabbar.h"
 
+typedef enum {
+    ActivityActionLoad     = 0,
+    ActivityActionUpdate   = 1, 
+    ActivityActionLike     = 2,
+    ActivityActionUnlike   = 3,
+    ActivityActionLoadMore = 4
+} ActivityAction;
+
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 @class ActivityDetailViewController;
@@ -40,9 +48,9 @@
     NSDate*                                 _dateOfLastUpdate;
     
     NSIndexPath*                            _indexpathSelectedActivity;
-    BOOL                                    _activityAction;
+    int                                     _activityAction;
     ActivityStreamTabItem                   _selectedTabItem;
-        
+    UIActivityIndicatorView*                _loadingMoreActivitiesIndicator;
 }
 
 @property (nonatomic, retain) ActivityStreamTabbar *filterTabbar;

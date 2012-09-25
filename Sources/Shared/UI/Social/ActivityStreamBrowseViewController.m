@@ -92,7 +92,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         
         _bIsPostClicked = NO;
-        _activityAction = 0;
+        _activityAction = ActivityActionLoad;
         _selectedTabItem = -1;
         self.arrActivityStreams = [[[NSMutableArray alloc] init] autorelease];
     }
@@ -187,9 +187,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [self addTimeToActivities:_dateOfLastUpdate];
         }
         
-        //Retrieve all activities
-        //Start preparing data
-        [_arrActivityStreams removeAllObjects];
+        // Retrieve activities and start preparing data
+        // If the user is loading activities for the 1st time, or updating them, we empty
+        // the array to keep only the 100 newest activities
+        // That means if the user is loading previous activities, we keep the existing ones
+        if (_activityAction==ActivityActionLoad || _activityAction==ActivityActionUpdate)
+        {
+            [_arrActivityStreams removeAllObjects];
+        } 
         for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
@@ -215,18 +220,46 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 {
     NSString *alertMessages = nil;
     
-    if(_activityAction == 0)
+    if(_activityAction == ActivityActionLoad)
         alertMessages = Localize(@"GettingActionCannotBeCompleted");
-    else if(_activityAction == 1)
+    else if(_activityAction == ActivityActionUpdate)
         alertMessages = Localize(@"UpdatingActionCannotBeCompleted");
-    else if (_activityAction == 2)
+    else if (_activityAction == ActivityActionLike)
         alertMessages = Localize(@"LikingActionCannotBeCompleted");
-    else 
+    else if (_activityAction == ActivityActionUnlike)
         alertMessages = Localize(@"UnLikeActionCannotBeCompleted");
+    else if (_activityAction == ActivityActionLoadMore) {
+        alertMessages = Localize(@"LoadMoreActionCannotBeCompleted");
+        if (_loadingMoreActivitiesIndicator!=nil)
+            [_loadingMoreActivitiesIndicator stopAnimating];
+    }
     
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     
     [alertView show];
+}
+
+- (void)callProxiesToLoadActivitiesBefore:(SocialActivity*)activity {    
+    // reset activity stream proxy
+    self.socialActivityStreamProxy = nil;
+    if (_selectedTabItem == ActivityStreamTabItemAllUpdate) {
+        [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeAllUpdates BeforeActivity:activity];
+        
+    } else if (_selectedTabItem == ActivityStreamTabItemMyConnections) {
+        [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamTabItemMyConnections BeforeActivity:activity];
+        
+    } else if (_selectedTabItem == ActivityStreamTabItemMySpaces) {
+        [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMySpaces BeforeActivity:activity];
+        
+    } else if (_selectedTabItem == ActivityStreamTabItemMyStatus) {
+        if (self.userProfile == nil)
+            // To get my status activities, get user profile first
+            [self.userProfileProxy getUserProfileFromUsername:[UserPreferencesManager sharedInstance].username];
+        else {
+            self.socialActivityStreamProxy.userProfile = self.userProfile;
+            [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMyStatus BeforeActivity:activity];
+        }
+    }
 }
 
 - (void)callProxiesToReloadActivityStream {
@@ -319,6 +352,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
     // Observe the change language notif to update the labels
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
+    // The footer view that contains the activity indicator
+    [self setupActivityIndicator];
 }
 
 - (void)viewDidUnload
@@ -664,9 +700,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     return cell;
 }
 
-
-
-
 -(NSString *)getIconForType:(NSString *)type {
     NSString *nameIcon = @"";
     if([type rangeOfString:@"forum"].length > 0){
@@ -700,12 +733,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     if(!isLike)
     {
-        _activityAction = 2;
+        _activityAction = ActivityActionLike;
         [self.likeActivityProxy likeActivity:activity];
     }
     else
     {
-        _activityAction = 3;
+        _activityAction = ActivityActionUnlike;
         [self.likeActivityProxy dislikeActivity:activity];
     }
 }
@@ -724,6 +757,15 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //Nothing keep the default position of the HUD
 }
 
+- (void)setupActivityIndicator {
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, _tblvActivityStream.frame.size.width, 44)]autorelease];
+    footerView.backgroundColor = [UIColor clearColor];
+    _loadingMoreActivitiesIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]autorelease];
+    [footerView addSubview:_loadingMoreActivitiesIndicator];
+    _loadingMoreActivitiesIndicator.center = CGPointMake(footerView.center.x, footerView.center.y);
+    _tblvActivityStream.tableFooterView = footerView;
+}
+
 #pragma mark - activity stream management
 
 - (void)startLoadingActivityStream {
@@ -737,7 +779,19 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self.socialRestProxy getVersion];    
 }
 
+/*
+ * Loads the 100 activities that were published before 'activity'
+ */
+- (void)loadActivitiesBeforeActivity:(SocialActivity*)activity {
+    // Start the ActivityIndicator
+    if (_loadingMoreActivitiesIndicator!=nil)
+        [_loadingMoreActivitiesIndicator startAnimating];
+    [self callProxiesToLoadActivitiesBefore:activity];
+}
 
+/*
+ * Reloads the 100 newest activities
+ */
 - (void)updateActivityStream {
     _reloading = YES;
     [self callProxiesToReloadActivityStream];
@@ -755,6 +809,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Remove the loader
     [self hideLoader:YES];
+    
+    //Stop the activity indicator at the bottom
+    if (_loadingMoreActivitiesIndicator!=nil)
+        [_loadingMoreActivitiesIndicator stopAnimating];
     
     //Prevent any reloading status
     _reloading = NO;
@@ -841,13 +899,24 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     }
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     //[self loadImagesForOnscreenRows];
+    
+    // When the user has reached the bottom of the list, load more activities
+    if (scrollView.contentOffset.y == scrollView.contentSize.height - scrollView.bounds.size.height) {
+        // First we get the last activity of the table
+        NSMutableArray *lastSectionArray = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:_arrayOfSectionsTitle.count-1]];
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:lastSectionArray.count-1 inSection:_tblvActivityStream.numberOfSections-1];
+        _activityAction = ActivityActionLoadMore;
+        SocialActivity* lastActivity = [self getSocialActivityStreamForIndexPath:indexPath];
+        // Then we load the activities before that
+        [self loadActivitiesBeforeActivity:lastActivity];
+    }
 }
          
 #pragma mark - EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	
-    _activityAction = 1;
+    _activityAction = ActivityActionUpdate;
     [self updateActivityStream];	
 }
 
@@ -871,13 +940,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [self hideLoader:NO];
     
-    if(_activityAction == 1)
+    if(_activityAction == ActivityActionUpdate)
     {
         //Prevent any reloading status
         _reloading = NO;
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
     }
-    else if(_activityAction == 0)
+    else if(_activityAction == ActivityActionLoad)
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

@@ -32,8 +32,8 @@ typedef enum {
 @property (readonly) BOOL isUpdateRequest;
 @property (nonatomic, retain) SocialUserProfile *userProfile;
 
+- (void)getActivitiesOfType:(ActivityStreamProxyActivityType)activitytype BeforeActivity:(SocialActivity*)activity;
 - (void)getActivityStreams:(ActivityStreamProxyActivityType)activitytype;
-- (void)updateActivityStreamSinceActivity:(SocialActivity *)activity;
 - (NSString *)createPathForType:(ActivityStreamProxyActivityType)activityType;
 
 @end

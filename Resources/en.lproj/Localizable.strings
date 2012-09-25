@@ -87,6 +87,7 @@
 "UpdatingActionCannotBeCompleted" = "Cannot update the activity";
 "LikingActionCannotBeCompleted" = "Cannot like the activity";
 "UnLikeActionCannotBeCompleted" = "Cannot unlike the activity";
+"LoadMoreActionCannotBeCompleted" = "Cannot load more activities";
 "PostingActivity" = "Post";
 "PostingActionCannotBeCompleted" = "Posting action cannot be completed";
 "CommentActivity" = "Comment";

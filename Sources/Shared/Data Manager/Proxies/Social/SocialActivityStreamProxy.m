@@ -106,10 +106,8 @@
     [manager loadObjectsAtResourcePath:[self createPathForType:activitytype] delegate:self];   
 }
 
-- (void)updateActivityStreamSinceActivity:(SocialActivity *)activity {
-
-    _isUpdateRequest = YES;
-    
+- (void)getActivitiesOfType:(ActivityStreamProxyActivityType)activitytype BeforeActivity:(SocialActivity*)activity {
+        
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
@@ -118,7 +116,6 @@
      @"liked",@"liked",
      @"postedTime",@"postedTime",            
      @"type",@"type",
-     @"posterIdentity",@"posterIdentity",
      @"id",@"activityId",
      @"title",@"title",
      @"body",@"body",
@@ -129,7 +126,7 @@
      nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
-
+    
     
     //Retrieve the UserProfile directly on the activityStream service
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
@@ -142,12 +139,9 @@
      nil];
     [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
     
-    //[manager registerClass:[SocialActivityStream class] forElementNamed:@"activities"];
-    [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"feed.json?since_id=%@",activity.activityId] delegate:self]; 
+    [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?max_id=%@",[self createPathForType:activitytype], activity.activityId] delegate:self]; 
     
 }
-
-
 
 #pragma mark - RKObjectLoaderDelegate methods
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
