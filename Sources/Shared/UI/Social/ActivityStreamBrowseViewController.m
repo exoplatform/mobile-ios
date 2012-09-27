@@ -204,39 +204,57 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
             [_arrActivityStreams addObject:socialActivityStream];
         }
-        
-        //All informations has been retrieved we can now display them
+
+        // All information have been retrieved, we can now display them
         [self finishLoadingAllDataForActivityStream];
+        
     } 
     else if (proxy == self.likeActivityProxy) 
     {
         self.likeActivityProxy = nil;
         [self updateActivityStream];
     }
-    
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
-    NSString *alertMessages = nil;
+    NSMutableString *alertMessages = nil;
     
     if(_activityAction == ActivityActionLoad)
-        alertMessages = Localize(@"GettingActionCannotBeCompleted");
+        alertMessages = [NSMutableString stringWithString:Localize(@"GettingActionCannotBeCompleted")];
     else if(_activityAction == ActivityActionUpdate)
-        alertMessages = Localize(@"UpdatingActionCannotBeCompleted");
+        alertMessages = [NSMutableString stringWithString:Localize(@"UpdatingActionCannotBeCompleted")];
     else if (_activityAction == ActivityActionLike)
-        alertMessages = Localize(@"LikingActionCannotBeCompleted");
+        alertMessages = [NSMutableString stringWithString:Localize(@"LikingActionCannotBeCompleted")];
     else if (_activityAction == ActivityActionUnlike)
-        alertMessages = Localize(@"UnLikeActionCannotBeCompleted");
+        alertMessages = [NSMutableString stringWithString:Localize(@"UnLikeActionCannotBeCompleted")];
     else if (_activityAction == ActivityActionLoadMore) {
-        alertMessages = Localize(@"LoadMoreActionCannotBeCompleted");
+        // Stop the activity indicator after the loading failed
         if (_loadingMoreActivitiesIndicator!=nil)
             [_loadingMoreActivitiesIndicator stopAnimating];
+        // Inform the user that all activities are reloading
+        [self reloadActivitiesAfterError];
     }
-    
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    
-    [alertView show];
+
+// Error codes:    
+//    RKObjectLoaderRemoteSystemError             =   1
+//	  RKRequestBaseURLOfflineError                =   2
+//    RKRequestUnexpectedResponseError            =   3
+//    RKObjectLoaderUnexpectedResponseError       =   4
+
+    if (alertMessages!=nil) {
+
+        if (error.code == RKObjectLoaderUnexpectedResponseError) {
+            [alertMessages appendString:@"\n"];
+            [alertMessages appendString:Localize(@"BadResponse")];
+        } else if(error.code == RKRequestBaseURLOfflineError) {
+            [alertMessages appendString:@"\n"];
+            [alertMessages appendString:Localize(@"NetworkConnection")];
+        }
+
+        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [alertView show];
+    }
 }
 
 - (void)callProxiesToLoadActivitiesBefore:(SocialActivity*)activity {    
@@ -780,6 +798,17 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 }
 
 /*
+ * Informs the user that an error occurred and the activity stream is being reloaded.
+ * Waits for 0.5 second before calling the rest service, if not RestKit will cause
+ * the application to crash ([RKObjectLoader finalizeLoad:error:]: message sent to deallocated instance 0x78a6280).
+ */
+- (void)reloadActivitiesAfterError {
+    _activityAction = ActivityActionUpdate;
+    [self displayHUDLoaderWithMessage:Localize(@"LoadMoreActionCannotBeCompleted")];
+    [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(updateActivityStream) userInfo:nil repeats:NO];
+}
+
+/*
  * Loads the 100 activities that were published before 'activity'
  */
 - (void)loadActivitiesBeforeActivity:(SocialActivity*)activity {
@@ -949,6 +978,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     else if(_activityAction == ActivityActionLoad)
     {
         [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (_activityAction == ActivityActionLoadMore)
+    {
+        _activityAction = ActivityActionUpdate;
+        [self updateActivityStream];
     }
     
 }

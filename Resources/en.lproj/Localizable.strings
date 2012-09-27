@@ -23,6 +23,7 @@
 "English" = "English";
 "French" = "French";
 "Send" = "Send";
+"BadResponse" = "The server returned invalid data.";
 "NetworkConnection" = "Connection Error";
 "Authorization" = "Login Failed";
 "WrongUserNamePassword" = "Incorrect username/password combination.";
@@ -82,12 +83,12 @@
 "likes(%d)" = "Likes(%d)";
 "YourComment" = "Your comment";
 "GettingActivity" = "Getting activity";
-"GettingActionCannotBeCompleted" = "Getting action cannot be completed";
+"GettingActionCannotBeCompleted" = "Cannot load the activity stream.";
 "UpdatingActivity" = "Updating activity";
-"UpdatingActionCannotBeCompleted" = "Cannot update the activity";
-"LikingActionCannotBeCompleted" = "Cannot like the activity";
-"UnLikeActionCannotBeCompleted" = "Cannot unlike the activity";
-"LoadMoreActionCannotBeCompleted" = "Cannot load more activities";
+"UpdatingActionCannotBeCompleted" = "Cannot update the activity stream.";
+"LikingActionCannotBeCompleted" = "Cannot like the activity.";
+"UnLikeActionCannotBeCompleted" = "Cannot unlike the activity.";
+"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
 "PostingActivity" = "Post";
 "PostingActionCannotBeCompleted" = "Posting action cannot be completed";
 "CommentActivity" = "Comment";

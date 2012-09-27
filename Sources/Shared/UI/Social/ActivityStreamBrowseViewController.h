@@ -17,11 +17,11 @@
 #import "ActivityStreamTabbar.h"
 
 typedef enum {
-    ActivityActionLoad     = 0,
-    ActivityActionUpdate   = 1, 
-    ActivityActionLike     = 2,
-    ActivityActionUnlike   = 3,
-    ActivityActionLoadMore = 4
+    ActivityActionLoad       = 0,
+    ActivityActionUpdate     = 1, 
+    ActivityActionLike       = 2,
+    ActivityActionUnlike     = 3,
+    ActivityActionLoadMore   = 4
 } ActivityAction;
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
@@ -51,6 +51,7 @@ typedef enum {
     int                                     _activityAction;
     ActivityStreamTabItem                   _selectedTabItem;
     UIActivityIndicatorView*                _loadingMoreActivitiesIndicator;
+    int                                     _numberOfActivitiesBeforeError;
 }
 
 @property (nonatomic, retain) ActivityStreamTabbar *filterTabbar;

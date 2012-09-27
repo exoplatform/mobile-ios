@@ -67,6 +67,15 @@
 
 #pragma mark - Call methods
 
+/*
+ * Load the 100 most recent activities of the given type:
+ * ActivityStreamProxyActivityTypeAllUpdates    : All updates 
+ * ActivityStreamProxyActivityTypeMyConnections : My connections only
+ * ActivityStreamProxyActivityTypeMySpaces      : My spaces only
+ * ActivityStreamProxyActivityTypeMyStatus      : My statuses only
+ * Maps the JSON properties with the SocialActivity attributes, cf
+ * https://github.com/RestKit/RestKit/blob/master/Docs/Object%20Mapping.md
+ */
 - (void) getActivityStreams:(ActivityStreamProxyActivityType)activitytype
 {
     RKObjectManager* manager = [RKObjectManager sharedManager];
@@ -106,6 +115,10 @@
     [manager loadObjectsAtResourcePath:[self createPathForType:activitytype] delegate:self];   
 }
 
+/*
+ * Loads the 100 activities of the given type that were published before the given activity
+ * Cf method above for explanation of the types and the RK mapping
+ */
 - (void)getActivitiesOfType:(ActivityStreamProxyActivityType)activitytype BeforeActivity:(SocialActivity*)activity {
         
     RKObjectManager* manager = [RKObjectManager sharedManager];

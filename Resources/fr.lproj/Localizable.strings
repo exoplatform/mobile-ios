@@ -24,6 +24,7 @@
 "French" = "Français (French)";
 "Clear" = "Effacer";
 "Send" = "Envoyer";
+"BadResponse" = "Le serveur a renvoyé des données incorrectes.";
 "NetworkConnection" = "Erreur de connexion";
 "Authorization" = "L'authentification a échoué";
 "WrongUserNamePassword" = "Nom d'utilisateur ou mot de passe incorrect";
@@ -82,12 +83,12 @@
 "Details" = "Détails";
 "YourComment" = "Votre commentaire";
 "GettingActivity" = "Chargement de l'activité";
-"GettingActionCannotBeCompleted" = "Échec du chargement";
+"GettingActionCannotBeCompleted" = "Échec du chargement.";
 "UpdatingActivity" = "Mise à jour de l'activité";
-"UpdatingActionCannotBeCompleted" = "Échec du chargement";
-"LikingActionCannotBeCompleted" = "Échec de l'action";
-"UnLikeActionCannotBeCompleted" = "Échec de l'action";
-"LoadMoreActionCannotBeCompleted" = "Impossible de charger plus d'activités";
+"UpdatingActionCannotBeCompleted" = "Échec du chargement.";
+"LikingActionCannotBeCompleted" = "Échec de l'action.";
+"UnLikeActionCannotBeCompleted" = "Échec de l'action.";
+"LoadMoreActionCannotBeCompleted" = "Une erreur s'est produite, les activités se rechargent.";
 "PostingActivity" = "Envoi de l'activité";
 "PostingActionCannotBeCompleted" = "Envoi de l'activité impossible";
 "CommentActivity" = "Envoi du commentaire";
