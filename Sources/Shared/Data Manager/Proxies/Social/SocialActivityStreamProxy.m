@@ -38,7 +38,7 @@
 
 #pragma mark - helper methods
 
-//Helper to create the path to get the ressources
+//Helper to create the path to get the resources
 - (NSString *)createPath 
 {    
     return [NSString stringWithFormat:@"%@/activity_stream/%@", [super createPath], @"feed.json"]; 
@@ -110,9 +110,9 @@
      nil];
     [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
     
-    
-    //[manager registerClass:[SocialActivity class] forElementNamed:@"activities"];
-    [manager loadObjectsAtResourcePath:[self createPathForType:activitytype] delegate:self];   
+    // No need to keep and retain the RKObjectLoader here because we don't need RK if the
+    // request fails, we just display an error dialog
+    [manager loadObjectsAtResourcePath:[self createPathForType:activitytype] delegate:self];
 }
 
 /*
@@ -152,8 +152,12 @@
      nil];
     [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
     
-    [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?max_id=%@",[self createPathForType:activitytype], activity.activityId] delegate:self]; 
-    
+    // Keep and retain the instance of RKObjectLoader, so RK can use it if there is an error
+    // and it needs to make another request to reload all activities
+    // We will release it when the LoadMore request is successful, 
+    // or when the UpdateAfterError request ends (successful or not)
+    // Cf ActivityStreamBrowseViewController:didFinishLoading and :didFailWithError
+    rkLoader = [[manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?max_id=%@",[self createPathForType:activitytype], activity.activityId] delegate:self] retain];
 }
 
 #pragma mark - RKObjectLoaderDelegate methods

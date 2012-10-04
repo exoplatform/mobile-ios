@@ -188,10 +188,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         }
         
         // Retrieve activities and start preparing data
-        // If the user is loading activities for the 1st time, or updating them, we empty
-        // the array to keep only the 100 newest activities
+        // If the user is loading activities for the 1st time, or updating, or reloading them,
+        // we empty the array to keep only the 100 newest activities
         // That means if the user is loading previous activities, we keep the existing ones
-        if (_activityAction==ActivityActionLoad || _activityAction==ActivityActionUpdate)
+        if (_activityAction==ActivityActionLoad || _activityAction==ActivityActionUpdate || _activityAction==ActivityActionUpdateAfterError)
         {
             [_arrActivityStreams removeAllObjects];
         } 
@@ -214,6 +214,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         self.likeActivityProxy = nil;
         [self updateActivityStream];
     }
+    
+    // Release the RKObjectLoader because we don't need RK anymore
+    if (_activityAction==ActivityActionLoadMore || _activityAction==ActivityActionUpdateAfterError)
+        [[proxy RKObjectLoader] release];
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
@@ -232,8 +236,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         // Stop the activity indicator after the loading failed
         if (_loadingMoreActivitiesIndicator!=nil)
             [_loadingMoreActivitiesIndicator stopAnimating];
-        // Inform the user that all activities are reloading
+        // Reload all activities
         [self reloadActivitiesAfterError];
+        // We don't release RKObjectLoader here because we need it for the new RK request
+    } else if (_activityAction == ActivityActionUpdateAfterError) {
+        // Release the RKObjectLoader because we don't need RK anymore
+        [[proxy RKObjectLoader] release];
+        alertMessages = [NSMutableString stringWithString:Localize(@"UpdatingActionCannotBeCompleted")];
     }
 
 // Error codes:    
@@ -257,6 +266,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     }
 }
 
+// Called when the user scrolls down the activity stream. It loads more activities.
 - (void)callProxiesToLoadActivitiesBefore:(SocialActivity*)activity {    
     // reset activity stream proxy
     self.socialActivityStreamProxy = nil;
@@ -280,6 +290,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     }
 }
 
+// Called when the user "pulls to refresh". It loads the 100 newest activities.
 - (void)callProxiesToReloadActivityStream {
     // reset activity stream proxy
     self.socialActivityStreamProxy = nil;
@@ -296,8 +307,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         else {
             self.socialActivityStreamProxy.userProfile = self.userProfile;
             [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
-        }
-        
+        }   
     }
 }
 
@@ -798,14 +808,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 }
 
 /*
- * Informs the user that an error occurred and the activity stream is being reloaded.
- * Waits for 0.5 second before calling the rest service, if not RestKit will cause
- * the application to crash ([RKObjectLoader finalizeLoad:error:]: message sent to deallocated instance 0x78a6280).
+ * Informs the user that an error occurred and reload the activity stream.
  */
 - (void)reloadActivitiesAfterError {
-    _activityAction = ActivityActionUpdate;
+    _activityAction = ActivityActionUpdateAfterError;
     [self displayHUDLoaderWithMessage:Localize(@"LoadMoreActionCannotBeCompleted")];
-    [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(updateActivityStream) userInfo:nil repeats:NO];
+    [self updateActivityStream];
 }
 
 /*

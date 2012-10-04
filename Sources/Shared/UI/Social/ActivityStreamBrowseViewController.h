@@ -17,11 +17,12 @@
 #import "ActivityStreamTabbar.h"
 
 typedef enum {
-    ActivityActionLoad       = 0,
-    ActivityActionUpdate     = 1, 
+    ActivityActionLoad       = 0, // Load activities
+    ActivityActionUpdate     = 1, // Update activities, e.g. with pull to refresh gesture
     ActivityActionLike       = 2,
     ActivityActionUnlike     = 3,
-    ActivityActionLoadMore   = 4
+    ActivityActionLoadMore   = 4, // Load 100 more activities after the displayed ones
+    ActivityActionUpdateAfterError = 5 // if LoadMore fails, reload the activity stream
 } ActivityAction;
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
