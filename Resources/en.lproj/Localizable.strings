@@ -5,97 +5,150 @@
   Created by Le Thanh Quang on 7/9/12.
   Copyright (c) 2012 eXoPlatform. All rights reserved.
 */
-"SignInPageTitle" = "Login Page";
+/*
+ * Authenticate
+ */
+"SignInPageTitle" = "Login page";
 "SignInButton" = "Login";
+"UsernamePlaceholder"="Username";
+"PasswordPlaceholder"="Password";
+
+/* 
+ * Documents
+ */
 "TakePicture" = "Take a picture";
-"NewFolderTitle" = "New Folder";
+"NewFolderTitle" = "New folder";
 "RenameTitle" = "Rename";
 "Copy" = "Copy";
 "Move" = "Cut";
 "Paste" = "Paste";
+"Documents" = "Documents";
+"TakeAPicture" = "Take a picture";
+"AttachedPhoto" = "Attached photo";
+"AddAPhoto" = "Add a photo";
+"PhotoLibrary" = "Photo library";
+// Drives types
+"general"="general";
+"personal"="personal";
+"group"="group";
+
+/*
+ * General
+ */
 "Cancel" = "Cancel";
 "DoneButton" = "Done";
 "Delete" = "Delete";
+"Success" = "Success";
+"Home" = "Home";
+"Loading" = "Loading...";
+"LoadingURL" = "Loading URL";
+"OK" = "OK";
+"Disconnect"="Disconnect";
+"Pull down to refresh..."="Pull down to refresh...";
+"Release to refresh..."="Release to refresh...";
+"Last Updated: %@"="Last updated: %@";
+"Required"="Required";
+"Fullscreen"="Fullscreen";
+"Close"="Close";
+
+/*
+ * Settings
+ */
 "Settings" = "Settings";
 "RememberMe" = "Remember me";
 "AutoLogin" = "Auto login";
-"Language" = "Language";
+"KeepSelectedStream"="Remember my filter";
+"ShowPrivateDrive"="Show my private drive";
+"Language" = "Languages";
 "English" = "English";
 "French" = "French";
 "Send" = "Send";
+"ServerList" = "Server list";
+"NewServer" = "New server";
+"ServerModify" = "Modify server";
+"ApplicationsInformation" = "Application information";
+"ServerVersion" = "Server version";
+"ApplicationEdition" = "Application edition";
+"ApplicationVersion" = "Server version";
+"ServerName" = "Server name";
+"ServerUrl" = "Server URL";
+
+/*
+ * Errors & Warnings
+ */
 "BadResponse" = "The server returned invalid data.";
-"NetworkConnection" = "Connection Error";
-"Authorization" = "Login Failed";
-"WrongUserNamePassword" = "Incorrect username/password combination.";
+"NetworkConnection" = "Connection error";
+"Authorization" = "Login failed";
+"WrongUserNamePassword" = "Incorrect username/password combination";
 "InvalidServer" = "Invalid server name";
 "NetworkConnectionFailed" = "Invalid server name";
 "UserNameEmpty" = "Incorrect username";
 "PasswordEmpty" = "Incorrect password";
 "SelectedDomainEmpty" = "No server specified";
-"ServerList" = "Server list";
-"NewServer" = "New Server";
-"ServerModify" = "Modify server";
-"EmptyFolder" = "The content of this folder is empty";
+"EmptyFolder" = "This folder is empty";
 "UnreadableFile" = "This file cannot be opened on the application";
-"NoFriends" = "Your chat buddies list is empty";
 "NoActivities" = "No activity has been posted on your activity stream";
-"NoGadget" = "You haven't got any gadgets on your Apps";
-"Home" = "Home";
-"Chat" = "Chat";
-"Documents" = "Documents";
-"Dashboard" = "Apps";
-"Success" = "Success...";
-"ApplicationsInformation" = "Applications Information";
-"ServerVersion" = "Server Version";
-"ApplicationEdition" = "Application Edition";
-"ApplicationVersion" = "Application Version";
-"MessageInfo" = "Message Info";
+"NoGadget" = "You have no gadgets in your Apps";
+"MessageInfo" = "Information";
 "MessageErrorServer" = "You cannot add a server with an empty name or URL";
 "MessageErrorExist" = "This server already exists";
-"ServerName" = "Server Name";
-"ServerUrl" = "Server Url";
-"InvalidUrl" = "Invalid Url";
-"Loading" = "Loading...";
-"FileError" = "File error";
-"CameraNotAvailable" = "The camera is not available.";
-"TakeAPicture" = "Take a picture";
-"AttachedPhoto" = "Attached photo";
-"ChatApplication" = "Chat Application";
-"AddAPhoto" = "Add a photo";
-"PhotoLibrary" = "Photo library";
-"UpdatingChat" = "Updating Chat";
-"ChatUpdated" = "Chat updated";
-"ConnectToChatServer" = "Connect To Chat Server";
+"InvalidUrl" = "Invalid URL";
+"FileError" = "Error";
+"CameraNotAvailable" = "The camera is not available";
 "GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"Error" = "Error";
+"NoMessageComment" = "You must enter some text to comment";
+"NoMessagePosting" = "You must enter some text to post";
+"GettingActionCannotBeCompleted" = "You cannot get activities";
+"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"PostingActionCannotBeCompleted" = "You cannot post a message";
+"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"NotCompliant" = "The application can not run on the Platform edition";
+"SpecialCharacters" = "Special characters are not allowed";
+"DashboardsCannotBeRetrieved"="Cannot retrieve the dashboards";
+"FolderNameAlreadyExist"="This folder already exists";
+"FolderNameEmpty"="The folder name is empty";
+"Cannot move file to its location"="Cannot move the file to the same location";
+"Cannot transfer file"="Cannot transfer the file";
+
+/*
+ * Deprecated
+ */
+"Chat" = "Chat";
+"NoFriends" = "Your chat buddies list is empty";
+"ChatApplication" = "Chat application";
+"UpdatingChat" = "Updating chat";
+"ChatUpdated" = "Chat updated";
+"ConnectToChatServer" = "Connect to chat server";
+
+/*
+ * Apps
+ */
+"Dashboard" = "Apps";
+
+/*
+ * Activity stream
+ */
 "numOfLikers" = "%d likers";
 "likeThisActivity" = "%d people like this";
 "NoOneLikeThis" = "No one likes this";
-"ActivityDetails" = "Activity Details";
-"Error" = "Error";
-"MessageComposer" = "Message Composer";
-"NoMessageComment" = "You must enter some text to comment";
-"NoMessagePosting" = "You must enter some text to post";
-"LoadingURL" = "Loading URL";
-"ActivityStream" = "Activity Stream";
+"ActivityDetails" = "Activity details";
+"MessageComposer" = "Message composer";
+"ActivityStream" = "Activity stream";
 "News" = "News";
 "Details" = "Details";
 "comments(%d)" = "Comments(%d)";
 "likes(%d)" = "Likes(%d)";
 "YourComment" = "Your comment";
 "GettingActivity" = "Getting activity";
-"GettingActionCannotBeCompleted" = "Cannot load the activity stream.";
 "UpdatingActivity" = "Updating activity";
-"UpdatingActionCannotBeCompleted" = "Cannot update the activity stream.";
-"LikingActionCannotBeCompleted" = "Cannot like the activity.";
-"UnLikeActionCannotBeCompleted" = "Cannot unlike the activity.";
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
 "PostingActivity" = "Post";
-"PostingActionCannotBeCompleted" = "Posting action cannot be completed";
 "CommentActivity" = "Comment";
-"CommentActionCannotBeCompleted" = "Comment action cannot be completed";
 "GettingActivityDetail" = "Getting activity detail";
 "UpdatingActivityDetail" = "Updating activity detail";
-"NotCompliant" = "The application can not run on the Platform edition";
 "EditWiki" = "has edited the Wiki page:";
 "CreateWiki" = "has created the Wiki page:";
 "NewPost" = "has added a new post:";
@@ -111,27 +164,20 @@
 "TaskUpdated" = "has just updated the task:";
 "Description" = "Description";
 "Location" = "Location";
-"StartTime" = "Start Time";
-"EndTime" = "End Time";
+"StartTime" = "Start time";
+"EndTime" = "End time";
 "NoComment" = "No one has commented, be the first one";
-"SpecialCharacters" = "Special characters are not allowed";
-"OK" = "OK";
-"Image Preview" = "Image Preview";
+"Image Preview" = "Image preview";
 "Change" = "Change";
 "Remove" = "Remove";
-"All Updates"="All Updates";
-"My Connections"="My Connections";
-"My Spaces"="My Spaces";
-"My Status"="My Status";
-"KeepSelectedStream"="Remember my filter";
-"ShowPrivateDrive"="Show private drive";
+"All Updates"="All updates";
+"My Connections"="My connections";
+"My Spaces"="My spaces";
+"My Status"="My status";
 
-"DashboardsCannotBeRetrieved"="Cannot retrieve the dashboards";
-"FolderNameAlreadyExist"="This folder already exists";
-"FolderNameEmpty"="The folder name is empty";
-"Disconnect"="Disconnect";
-
-/* Date message converter */
+/*
+ * Date message converter
+ */
 "Today"="Today";
 "DateFmt"="%1$@%2$@%3$@%4$@"; // Order of the message: modifier - number - measure - direction
 "DateFmt ago"="ago";
@@ -151,20 +197,3 @@
 "DateFmt months"=" months ";
 "DateFmt year"=" year ";
 "DateFmt years"=" years ";
-
-"Pull down to refresh..."="Pull down to refresh...";
-"Release to refresh..."="Release to refresh...";
-"Last Updated: %@"="Last Updated: %@";
-
-"general"="general";
-"personal"="personal";
-"group"="group";
-
-"Required"="Required";
-"Fullscreen"="Fullscreen";
-"Close"="Close";
-
-"Cannot move file to its location"="Cannot move the file to the same location";
-"Cannot transfer file"="Cannot transfer the file";
-"UsernamePlaceholder"="Username";
-"PasswordPlaceholder"="Password";

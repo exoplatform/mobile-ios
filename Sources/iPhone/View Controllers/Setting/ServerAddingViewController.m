@@ -66,7 +66,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     _txtfServerUrl.adjustsFontSizeToFitWidth = YES;
 	_txtfServerUrl.delegate = self;
     
-    _bbtnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onBbtnDone)];
+    _bbtnDone = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStyleDone target:self action:@selector(onBbtnDone)];
     //[_bbtnDone setEnabled:NO];
     [self.navigationItem setRightBarButtonItem:_bbtnDone];
     
