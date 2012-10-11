@@ -52,7 +52,7 @@ typedef enum {
     int                                     _activityAction;
     ActivityStreamTabItem                   _selectedTabItem;
     UIActivityIndicatorView*                _loadingMoreActivitiesIndicator;
-    int                                     _numberOfActivitiesBeforeError;
+    SocialActivity*                         _lastActivity;
 }
 
 @property (nonatomic, retain) ActivityStreamTabbar *filterTabbar;

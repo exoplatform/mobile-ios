@@ -178,7 +178,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         if (self.filterTabbar.tabView.selectedIndex == ActivityStreamTabItemMyStatus) {
             self.socialActivityStreamProxy.userProfile = self.userProfile;
             // reload my status after getting user profile
-            [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
+            if (_activityAction == ActivityActionLoadMore)
+                [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMyStatus BeforeActivity:_lastActivity];
+            else
+                [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
         }
     } else if (proxy == self.socialActivityStreamProxy) {
         //We have to check if the request for ActivityStream was an update request or not
@@ -208,21 +211,22 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         // All information have been retrieved, we can now display them
         [self finishLoadingAllDataForActivityStream];
         
+        // Release the RKObjectLoader because we don't need RK anymore
+        if (_activityAction==ActivityActionLoadMore || _activityAction==ActivityActionUpdateAfterError)
+            [[proxy RKObjectLoader] release];
+        _lastActivity = nil;
     } 
     else if (proxy == self.likeActivityProxy) 
     {
         self.likeActivityProxy = nil;
         [self updateActivityStream];
     }
-    
-    // Release the RKObjectLoader because we don't need RK anymore
-    if (_activityAction==ActivityActionLoadMore || _activityAction==ActivityActionUpdateAfterError)
-        [[proxy RKObjectLoader] release];
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
     NSMutableString *alertMessages = nil;
+    _lastActivity = nil;
     
     if(_activityAction == ActivityActionLoad)
         alertMessages = [NSMutableString stringWithString:Localize(@"GettingActionCannotBeCompleted")];
@@ -280,10 +284,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMySpaces BeforeActivity:activity];
         
     } else if (_selectedTabItem == ActivityStreamTabItemMyStatus) {
-        if (self.userProfile == nil)
+        if (self.userProfile == nil) {
             // To get my status activities, get user profile first
+            _lastActivity = activity;
             [self.userProfileProxy getUserProfileFromUsername:[UserPreferencesManager sharedInstance].username];
-        else {
+        } else {
             self.socialActivityStreamProxy.userProfile = self.userProfile;
             [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMyStatus BeforeActivity:activity];
         }
@@ -311,7 +316,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     }
 }
 
-#pragma mark - Update Acitivity From ActivityDetail
+#pragma mark - Update Activity From ActivityDetail
 -(void)updateActivity{
     //ActivityBasicTableViewCell *cell;
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:_indexpathSelectedActivity];
