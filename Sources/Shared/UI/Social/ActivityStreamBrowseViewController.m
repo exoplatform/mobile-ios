@@ -191,10 +191,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         }
         
         // Retrieve activities and start preparing data
-        // If the user is loading activities for the 1st time, or updating, or reloading them,
-        // we empty the array to keep only the 100 newest activities
-        // That means if the user is loading previous activities, we keep the existing ones
-        if (_activityAction==ActivityActionLoad || _activityAction==ActivityActionUpdate || _activityAction==ActivityActionUpdateAfterError)
+        // If the user is loading more activities (when he reaches the bottom of the list)
+        // we DO NOT empty the current list of activities.
+        // For any other action (cf enum ActivityAction) we reload the stream entirely
+        if (_activityAction!=ActivityActionLoadMore)
         {
             [_arrActivityStreams removeAllObjects];
         } 
