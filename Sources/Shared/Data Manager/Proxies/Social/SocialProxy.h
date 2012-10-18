@@ -16,6 +16,7 @@
 @interface SocialProxy : NSObject <RKObjectLoaderDelegate> {
     
     id<SocialProxyDelegate> delegate;
+    RKObjectLoader* rkLoader;
     
 }
 
@@ -23,6 +24,7 @@
 
 - (NSString *)createPath;
 - (NSString*)URLEncodedString:(NSDictionary *)dictForParam;
+- (RKObjectLoader*)RKObjectLoader;
 
 @end
 

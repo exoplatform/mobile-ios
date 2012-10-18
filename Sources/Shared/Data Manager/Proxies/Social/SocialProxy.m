@@ -85,6 +85,10 @@ static NSString *urlEncode(id object) {
 	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
 }
 
+- (RKObjectLoader*)RKObjectLoader {
+    return rkLoader;
+}
+
 #pragma mark - RKObjectLoaderDelegate implementation
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {

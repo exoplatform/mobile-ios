@@ -92,7 +92,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         
         _bIsPostClicked = NO;
-        _activityAction = 0;
+        _activityAction = ActivityActionLoad;
         _selectedTabItem = -1;
         self.arrActivityStreams = [[[NSMutableArray alloc] init] autorelease];
     }
@@ -178,7 +178,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         if (self.filterTabbar.tabView.selectedIndex == ActivityStreamTabItemMyStatus) {
             self.socialActivityStreamProxy.userProfile = self.userProfile;
             // reload my status after getting user profile
-            [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
+            if (_activityAction == ActivityActionLoadMore)
+                [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMyStatus BeforeActivity:_lastActivity];
+            else
+                [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
         }
     } else if (proxy == self.socialActivityStreamProxy) {
         //We have to check if the request for ActivityStream was an update request or not
@@ -187,9 +190,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [self addTimeToActivities:_dateOfLastUpdate];
         }
         
-        //Retrieve all activities
-        //Start preparing data
-        [_arrActivityStreams removeAllObjects];
+        // Retrieve activities and start preparing data
+        // If the user is loading more activities (when he reaches the bottom of the list)
+        // we DO NOT empty the current list of activities.
+        // For any other action (cf enum ActivityAction) we reload the stream entirely
+        if (_activityAction!=ActivityActionLoadMore)
+        {
+            [_arrActivityStreams removeAllObjects];
+        } 
         for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
@@ -199,36 +207,95 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
             [_arrActivityStreams addObject:socialActivityStream];
         }
-        
-        //All informations has been retrieved we can now display them
+
+        // All information have been retrieved, we can now display them
         [self finishLoadingAllDataForActivityStream];
+        
+        // Release the RKObjectLoader because we don't need RK anymore
+        if (_activityAction==ActivityActionLoadMore || _activityAction==ActivityActionUpdateAfterError)
+            [[proxy RKObjectLoader] release];
+        _lastActivity = nil;
     } 
     else if (proxy == self.likeActivityProxy) 
     {
         self.likeActivityProxy = nil;
         [self updateActivityStream];
     }
-    
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
-    NSString *alertMessages = nil;
+    NSMutableString *alertMessages = nil;
+    _lastActivity = nil;
     
-    if(_activityAction == 0)
-        alertMessages = Localize(@"GettingActionCannotBeCompleted");
-    else if(_activityAction == 1)
-        alertMessages = Localize(@"UpdatingActionCannotBeCompleted");
-    else if (_activityAction == 2)
-        alertMessages = Localize(@"LikingActionCannotBeCompleted");
-    else 
-        alertMessages = Localize(@"UnLikeActionCannotBeCompleted");
-    
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    
-    [alertView show];
+    if(_activityAction == ActivityActionLoad)
+        alertMessages = [NSMutableString stringWithString:Localize(@"GettingActionCannotBeCompleted")];
+    else if(_activityAction == ActivityActionUpdate)
+        alertMessages = [NSMutableString stringWithString:Localize(@"UpdatingActionCannotBeCompleted")];
+    else if (_activityAction == ActivityActionLike)
+        alertMessages = [NSMutableString stringWithString:Localize(@"LikingActionCannotBeCompleted")];
+    else if (_activityAction == ActivityActionUnlike)
+        alertMessages = [NSMutableString stringWithString:Localize(@"UnLikeActionCannotBeCompleted")];
+    else if (_activityAction == ActivityActionLoadMore) {
+        // Stop the activity indicator after the loading failed
+        if (_loadingMoreActivitiesIndicator!=nil)
+            [_loadingMoreActivitiesIndicator stopAnimating];
+        // Reload all activities
+        [self reloadActivitiesAfterError];
+        // We don't release RKObjectLoader here because we need it for the new RK request
+    } else if (_activityAction == ActivityActionUpdateAfterError) {
+        // Release the RKObjectLoader because we don't need RK anymore
+        [[proxy RKObjectLoader] release];
+        alertMessages = [NSMutableString stringWithString:Localize(@"UpdatingActionCannotBeCompleted")];
+    }
+
+// Error codes:    
+//    RKObjectLoaderRemoteSystemError             =   1
+//	  RKRequestBaseURLOfflineError                =   2
+//    RKRequestUnexpectedResponseError            =   3
+//    RKObjectLoaderUnexpectedResponseError       =   4
+
+    if (alertMessages!=nil) {
+
+        if (error.code == RKObjectLoaderUnexpectedResponseError) {
+            [alertMessages appendString:@"\n"];
+            [alertMessages appendString:Localize(@"BadResponse")];
+        } else if(error.code == RKRequestBaseURLOfflineError) {
+            [alertMessages appendString:@"\n"];
+            [alertMessages appendString:Localize(@"NetworkConnection")];
+        }
+
+        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [alertView show];
+    }
 }
 
+// Called when the user scrolls down the activity stream. It loads more activities.
+- (void)callProxiesToLoadActivitiesBefore:(SocialActivity*)activity {    
+    // reset activity stream proxy
+    self.socialActivityStreamProxy = nil;
+    if (_selectedTabItem == ActivityStreamTabItemAllUpdate) {
+        [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeAllUpdates BeforeActivity:activity];
+        
+    } else if (_selectedTabItem == ActivityStreamTabItemMyConnections) {
+        [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamTabItemMyConnections BeforeActivity:activity];
+        
+    } else if (_selectedTabItem == ActivityStreamTabItemMySpaces) {
+        [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMySpaces BeforeActivity:activity];
+        
+    } else if (_selectedTabItem == ActivityStreamTabItemMyStatus) {
+        if (self.userProfile == nil) {
+            // To get my status activities, get user profile first
+            _lastActivity = activity;
+            [self.userProfileProxy getUserProfileFromUsername:[UserPreferencesManager sharedInstance].username];
+        } else {
+            self.socialActivityStreamProxy.userProfile = self.userProfile;
+            [self.socialActivityStreamProxy getActivitiesOfType:ActivityStreamProxyActivityTypeMyStatus BeforeActivity:activity];
+        }
+    }
+}
+
+// Called when the user "pulls to refresh". It loads the 100 newest activities.
 - (void)callProxiesToReloadActivityStream {
     // reset activity stream proxy
     self.socialActivityStreamProxy = nil;
@@ -245,12 +312,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         else {
             self.socialActivityStreamProxy.userProfile = self.userProfile;
             [self.socialActivityStreamProxy getActivityStreams:ActivityStreamProxyActivityTypeMyStatus];
-        }
-        
+        }   
     }
 }
 
-#pragma mark - Update Acitivity From ActivityDetail
+#pragma mark - Update Activity From ActivityDetail
 -(void)updateActivity{
     //ActivityBasicTableViewCell *cell;
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:_indexpathSelectedActivity];
@@ -319,6 +385,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
     // Observe the change language notif to update the labels
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
+    // The footer view that contains the activity indicator
+    [self setupActivityIndicator];
 }
 
 - (void)viewDidUnload
@@ -664,9 +733,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     return cell;
 }
 
-
-
-
 -(NSString *)getIconForType:(NSString *)type {
     NSString *nameIcon = @"";
     if([type rangeOfString:@"forum"].length > 0){
@@ -700,12 +766,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     if(!isLike)
     {
-        _activityAction = 2;
+        _activityAction = ActivityActionLike;
         [self.likeActivityProxy likeActivity:activity];
     }
     else
     {
-        _activityAction = 3;
+        _activityAction = ActivityActionUnlike;
         [self.likeActivityProxy dislikeActivity:activity];
     }
 }
@@ -724,6 +790,15 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //Nothing keep the default position of the HUD
 }
 
+- (void)setupActivityIndicator {
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, _tblvActivityStream.frame.size.width, 44)]autorelease];
+    footerView.backgroundColor = [UIColor clearColor];
+    _loadingMoreActivitiesIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]autorelease];
+    [footerView addSubview:_loadingMoreActivitiesIndicator];
+    _loadingMoreActivitiesIndicator.center = CGPointMake(footerView.center.x, footerView.center.y);
+    _tblvActivityStream.tableFooterView = footerView;
+}
+
 #pragma mark - activity stream management
 
 - (void)startLoadingActivityStream {
@@ -737,7 +812,28 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self.socialRestProxy getVersion];    
 }
 
+/*
+ * Informs the user that an error occurred and reload the activity stream.
+ */
+- (void)reloadActivitiesAfterError {
+    _activityAction = ActivityActionUpdateAfterError;
+    [self displayHUDLoaderWithMessage:Localize(@"LoadMoreActionCannotBeCompleted")];
+    [self updateActivityStream];
+}
 
+/*
+ * Loads the 100 activities that were published before 'activity'
+ */
+- (void)loadActivitiesBeforeActivity:(SocialActivity*)activity {
+    // Start the ActivityIndicator
+    if (_loadingMoreActivitiesIndicator!=nil)
+        [_loadingMoreActivitiesIndicator startAnimating];
+    [self callProxiesToLoadActivitiesBefore:activity];
+}
+
+/*
+ * Reloads the 100 newest activities
+ */
 - (void)updateActivityStream {
     _reloading = YES;
     [self callProxiesToReloadActivityStream];
@@ -755,6 +851,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     //Remove the loader
     [self hideLoader:YES];
+    
+    //Stop the activity indicator at the bottom
+    if (_loadingMoreActivitiesIndicator!=nil)
+        [_loadingMoreActivitiesIndicator stopAnimating];
     
     //Prevent any reloading status
     _reloading = NO;
@@ -841,13 +941,24 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     }
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     //[self loadImagesForOnscreenRows];
+    
+    // When the user has reached the bottom of the list, load more activities
+    if (scrollView.contentOffset.y == scrollView.contentSize.height - scrollView.bounds.size.height) {
+        // First we get the last activity of the table
+        NSMutableArray *lastSectionArray = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:_arrayOfSectionsTitle.count-1]];
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:lastSectionArray.count-1 inSection:_tblvActivityStream.numberOfSections-1];
+        _activityAction = ActivityActionLoadMore;
+        SocialActivity* lastActivity = [self getSocialActivityStreamForIndexPath:indexPath];
+        // Then we load the activities before that
+        [self loadActivitiesBeforeActivity:lastActivity];
+    }
 }
          
 #pragma mark - EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	
-    _activityAction = 1;
+    _activityAction = ActivityActionUpdate;
     [self updateActivityStream];	
 }
 
@@ -871,15 +982,20 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [self hideLoader:NO];
     
-    if(_activityAction == 1)
+    if(_activityAction == ActivityActionUpdate)
     {
         //Prevent any reloading status
         _reloading = NO;
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_tblvActivityStream];
     }
-    else if(_activityAction == 0)
+    else if(_activityAction == ActivityActionLoad)
     {
         [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (_activityAction == ActivityActionLoadMore)
+    {
+        _activityAction = ActivityActionUpdate;
+        [self updateActivityStream];
     }
     
 }
