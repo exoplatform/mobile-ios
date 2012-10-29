@@ -19,6 +19,10 @@
 #define kActivityStreamTabItem @"custom JMItem"
 #define kActivityStreamTabItemFont (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? [UIFont systemFontOfSize:11.] : [UIFont systemFontOfSize:10.])
 
+@interface ActivityStreamTabbar (PrivateMethods)
+- (float)calculateItemSpacing; 
+@end
+
 @interface CustomFilterItem : JMTabItem
 
 @property (nonatomic) CGSize itemSize;
