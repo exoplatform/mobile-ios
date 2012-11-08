@@ -12,7 +12,6 @@
 #import "defines.h"
 #import "FilesProxy.h"
 #import "HomeStyleSheet.h"
-#import "ChatProxy.h"
 #import <dispatch/dispatch.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"

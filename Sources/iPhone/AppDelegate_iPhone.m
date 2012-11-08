@@ -9,7 +9,6 @@
 #import "AppDelegate_iPhone.h"
 
 #import "defines.h"
-#import "ChatProxy.h"
 #import "FilesProxy.h"
 #import "HomeStyleSheet.h"
 #import <Crashlytics/Crashlytics.h>
@@ -158,8 +157,6 @@
     
     // Disable Auto Login so user won't be signed in automatically after
     [_authenticateViewController disableAutoLogin:YES];
-    
-    //[[ChatProxy sharedInstance] disconnect];
     
     window.rootViewController = navigationController;
     

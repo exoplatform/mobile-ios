@@ -115,16 +115,6 @@
 "Cannot transfer file"="Impossible de transférer le fichier";
 
 /*
- * Deprecated
- */
-"Chat" = "Chat";
-"NoFriends" = "Votre liste de contacts est vide";
-"ChatApplication" = "Application Chat";
-"UpdatingChat" = "Mise à jour du chat";
-"ChatUpdated" = "Chat mis à jour";
-"ConnectToChatServer" = "Chargement de vos apps";
-
-/*
  * Apps
  */
 "Dashboard" = "Apps";

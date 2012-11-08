@@ -149,13 +149,6 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Overriden to allow any orientation.
-    
-    NSArray *arr = [stackScrollViewController viewControllersStack];
-    if([arr count] == 2)
-    {
-        //ChatWindowViewController_iPad *chatWindowViewController = [arr objectAtIndex:1];
-        //[chatWindowViewController changeOrientation:interfaceOrientation];
-    }
     return YES;
 }
 
