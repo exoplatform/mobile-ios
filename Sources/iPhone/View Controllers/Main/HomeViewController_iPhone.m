@@ -25,7 +25,6 @@
 #import "ActivityStreamBrowseViewController_iPhone.h"
 #import "DashboardViewController_iPhone.h"
 #import "SettingsViewController.h"
-#import "MessengerViewController_iPhone.h"
 #import "FilesProxy.h"
 
 #import "LanguageHelper.h"
@@ -129,10 +128,7 @@
     TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"News")
                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                        URL:@"tt://activityStream" canDelete:NO] autorelease];
-    
-//    TTLauncherItem *chatItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Chat")
-//                                                                image:@"bundle://HomeChatIconiPhone.png"
-//                                                                  URL:@"tt://chat" canDelete:NO] autorelease];
+
     
     TTLauncherItem *documentItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Documents")
                                                                     image:@"bundle://HomeDocumentsIconiPhone.png"
@@ -168,14 +164,6 @@
         ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
         [self.navigationController pushViewController:_activityStreamBrowseViewController_iPhone animated:YES];
         [_activityStreamBrowseViewController_iPhone release];
-    }
-    
-    if ([item.title isEqualToString:Localize(@"Chat")]) 
-    {
-        //Start the Chat
-        MessengerViewController_iPhone *messengerViewController_iPhone = [[MessengerViewController_iPhone alloc] initWithNibName:@"MessengerViewController_iPhone" bundle:nil];
-        [self.navigationController pushViewController:messengerViewController_iPhone animated:YES];
-        [messengerViewController_iPhone release];
     }
     
     if ([item.title isEqualToString:Localize(@"Documents")]) 

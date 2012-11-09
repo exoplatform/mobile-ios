@@ -115,16 +115,6 @@
 "Cannot transfer file"="Cannot transfer the file";
 
 /*
- * Deprecated
- */
-"Chat" = "Chat";
-"NoFriends" = "Your chat buddies list is empty";
-"ChatApplication" = "Chat application";
-"UpdatingChat" = "Updating chat";
-"ChatUpdated" = "Chat updated";
-"ConnectToChatServer" = "Connect to chat server";
-
-/*
  * Apps
  */
 "Dashboard" = "Apps";

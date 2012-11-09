@@ -276,9 +276,6 @@
 		46C6B550138D108D0079C514 /* Ipad_exo_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C6B54B138D108D0079C514 /* Ipad_exo_black.png */; };
 		46C805DE1410D96600E7263F /* FileFolderActionsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C805DC1410D96600E7263F /* FileFolderActionsViewController_iPhone.m */; };
 		46C805DF1410D96600E7263F /* FileFolderActionsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C805DD1410D96600E7263F /* FileFolderActionsViewController_iPhone.xib */; };
-		46C81F79141656CA0042AF64 /* MessageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C81F75141656CA0042AF64 /* MessageContentViewController.m */; };
-		46C81F7A141656CA0042AF64 /* MessageContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C81F76141656CA0042AF64 /* MessageContentViewController.xib */; };
-		46C81F7B141656CA0042AF64 /* MessengerWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C81F78141656CA0042AF64 /* MessengerWindowViewController.m */; };
 		46CAF6B913797B590017C959 /* HomeLogoutiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6B713797B590017C959 /* HomeLogoutiPhone.png */; };
 		46CAF6BD13797D320017C959 /* HomeLogoutiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */; };
 		46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CAF73D13798D230017C959 /* HomeStyleSheet.m */; };
@@ -418,10 +415,6 @@
 		7CE0132513B1A62C00F16971 /* SocialActivityDetailLikeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */; };
 		7CE0132713B1A9EA00F16971 /* SocialActivityDetailCommentBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132613B1A9E800F16971 /* SocialActivityDetailCommentBg.png */; };
 		7CE0132913B1AA3300F16971 /* SocialActivityDetailCommentBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE0132813B1AA3300F16971 /* SocialActivityDetailCommentBg@2x.png */; };
-		7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */; };
-		7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */; };
-		7CE656BA1394D2D200F088A1 /* ChatWindowViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */; };
-		7CE656BB1394D2D200F088A1 /* MessengerViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */; };
 		7CE85B0713C46D0C00A219EB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0413C46D0C00A219EB /* MobileCoreServices.framework */; };
 		7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0513C46D0C00A219EB /* CoreData.framework */; };
 		7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */; };
@@ -432,42 +425,17 @@
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
-		890FF79F1447D5E3001320A5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FF79E1447D5E3001320A5 /* Message.m */; };
-		89112716140B7DC800A8851C /* ChatBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */; };
-		89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */; };
-		8911271A140B7F2A00A8851C /* MessengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112719140B7F2A00A8851C /* MessengerViewController.m */; };
-		89112720140B8BF000A8851C /* eXoChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911271D140B8BF000A8851C /* eXoChatUser.m */; };
-		89112724140B913600A8851C /* ChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112723140B913600A8851C /* ChatUser.m */; };
-		89112728140B9A8E00A8851C /* ChatProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89112727140B9A8E00A8851C /* ChatProxy.m */; };
 		8911F5551420C7540093F2BD /* AuthenticateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8911F5541420C7540093F2BD /* AuthenticateViewController.m */; };
-		892D9899143EE61200749A4C /* ChatContactAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D988A143EE61200749A4C /* ChatContactAvailable.png */; };
-		892D989A143EE61200749A4C /* ChatContactAway.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D988B143EE61200749A4C /* ChatContactAway.png */; };
-		892D989B143EE61200749A4C /* ChatContactBusy.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D988C143EE61200749A4C /* ChatContactBusy.png */; };
-		892D989C143EE61200749A4C /* ChatContactCellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D988D143EE61200749A4C /* ChatContactCellSeparator.png */; };
-		892D989D143EE61200749A4C /* ChatContactNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D988E143EE61200749A4C /* ChatContactNotAvailable.png */; };
-		892D989E143EE61200749A4C /* ChatDiscussionBuddyMessageBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D988F143EE61200749A4C /* ChatDiscussionBuddyMessageBg.png */; };
-		892D989F143EE61200749A4C /* ChatDiscussionUserMessageBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9890143EE61200749A4C /* ChatDiscussionUserMessageBg.png */; };
-		892D98A0143EE61200749A4C /* ChatContactAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9892143EE61200749A4C /* ChatContactAvailable@2x.png */; };
-		892D98A1143EE61200749A4C /* ChatContactAway@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9893143EE61200749A4C /* ChatContactAway@2x.png */; };
-		892D98A2143EE61200749A4C /* ChatContactBusy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9894143EE61200749A4C /* ChatContactBusy@2x.png */; };
-		892D98A3143EE61200749A4C /* ChatContactCellSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9895143EE61200749A4C /* ChatContactCellSeparator@2x.png */; };
-		892D98A4143EE61200749A4C /* ChatContactNotAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9896143EE61200749A4C /* ChatContactNotAvailable@2x.png */; };
-		892D98A5143EE61200749A4C /* ChatDiscussionBuddyMessageBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9897143EE61200749A4C /* ChatDiscussionBuddyMessageBg@2x.png */; };
-		892D98A6143EE61200749A4C /* ChatDiscussionUserMessageBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 892D9898143EE61200749A4C /* ChatDiscussionUserMessageBg@2x.png */; };
 		8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937A32913387F1D00D8B474 /* NSString+HTML.m */; };
 		8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */; };
-		8937A3401338993900D8B474 /* ChatWindowViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A32F1338993900D8B474 /* ChatWindowViewController_iPad.xib */; };
 		8937A3441338993900D8B474 /* DocumentsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3331338993900D8B474 /* DocumentsViewController_iPad.xib */; };
 		8937A3451338993900D8B474 /* GadgetDisplayViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3341338993900D8B474 /* GadgetDisplayViewController_iPad.xib */; };
 		8937A3481338993900D8B474 /* AuthenticateViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3371338993900D8B474 /* AuthenticateViewController_iPad.xib */; };
 		8937A34A1338993900D8B474 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3391338993900D8B474 /* MainWindow_iPad.xib */; };
-		8937A34B1338993900D8B474 /* MessengerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33A1338993900D8B474 /* MessengerViewController_iPad.xib */; };
 		8937A34D1338993900D8B474 /* FileFolderActionsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A33C1338993900D8B474 /* FileFolderActionsViewController_iPad.xib */; };
 		8937A3621338994400D8B474 /* GadgetDisplayViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A3581338994400D8B474 /* GadgetDisplayViewController_iPhone.xib */; };
 		8937A3641338994400D8B474 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */; };
 		894731EB1336FBC000B0AD11 /* Configuration.xml in Resources */ = {isa = PBXBuildFile; fileRef = 894731191336FBC000B0AD11 /* Configuration.xml */; };
-		8947336913370B1900B0AD11 /* ChatWindowViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947333F13370B1900B0AD11 /* ChatWindowViewController_iPad.m */; };
-		8947336A13370B1900B0AD11 /* MessengerViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334113370B1900B0AD11 /* MessengerViewController_iPad.m */; };
 		8947336F13370B1900B0AD11 /* DocumentsViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947334D13370B1900B0AD11 /* DocumentsViewController_iPad.m */; };
 		8947337213370B1900B0AD11 /* GadgetDisplayViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335413370B1900B0AD11 /* GadgetDisplayViewController_iPad.m */; };
 		8947337713370B1900B0AD11 /* AuthenticateViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947335F13370B1900B0AD11 /* AuthenticateViewController_iPad.m */; };
@@ -478,27 +446,6 @@
 		894733AE13370B4500B0AD11 /* AuthenticateViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947339A13370B4500B0AD11 /* AuthenticateViewController_iPhone.m */; };
 		894733B713370C3600B0AD11 /* AppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 894733B613370C3600B0AD11 /* AppDelegate_iPad.m */; };
 		894733BA13370C9800B0AD11 /* AppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */; };
-		8947345D13370F5000B0AD11 /* bl.png in Resources */ = {isa = PBXBuildFile; fileRef = 894733FB13370F4F00B0AD11 /* bl.png */; };
-		8947345E13370F5000B0AD11 /* BottomHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 894733FC13370F4F00B0AD11 /* BottomHorizontal.png */; };
-		8947345F13370F5000B0AD11 /* br.png in Resources */ = {isa = PBXBuildFile; fileRef = 894733FD13370F4F00B0AD11 /* br.png */; };
-		8947346013370F5000B0AD11 /* chatnamebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 894733FE13370F4F00B0AD11 /* chatnamebackground.png */; };
-		8947346113370F5000B0AD11 /* LeftVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 894733FF13370F4F00B0AD11 /* LeftVertical.png */; };
-		8947346213370F5000B0AD11 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340013370F4F00B0AD11 /* me.png */; };
-		8947346313370F5000B0AD11 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340113370F4F00B0AD11 /* more.png */; };
-		8947346413370F5000B0AD11 /* newmessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340213370F4F00B0AD11 /* newmessage.png */; };
-		8947346513370F5000B0AD11 /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340313370F4F00B0AD11 /* notification.png */; };
-		8947346613370F5000B0AD11 /* offlineicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340413370F4F00B0AD11 /* offlineicon.png */; };
-		8947346713370F5000B0AD11 /* offlineuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340513370F4F00B0AD11 /* offlineuser.png */; };
-		8947346813370F5000B0AD11 /* onlineicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340613370F4F00B0AD11 /* onlineicon.png */; };
-		8947346913370F5000B0AD11 /* onlineuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340713370F4F00B0AD11 /* onlineuser.png */; };
-		8947346A13370F5000B0AD11 /* RightVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340813370F4F00B0AD11 /* RightVertical.png */; };
-		8947346B13370F5000B0AD11 /* Send.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340913370F5000B0AD11 /* Send.png */; };
-		8947346C13370F5000B0AD11 /* SendBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340A13370F5000B0AD11 /* SendBtn.png */; };
-		8947346D13370F5000B0AD11 /* TextInput.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340B13370F5000B0AD11 /* TextInput.png */; };
-		8947346E13370F5000B0AD11 /* tl.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340C13370F5000B0AD11 /* tl.png */; };
-		8947346F13370F5000B0AD11 /* TopHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340D13370F5000B0AD11 /* TopHorizontal.png */; };
-		8947347013370F5000B0AD11 /* tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340E13370F5000B0AD11 /* tr.png */; };
-		8947347113370F5000B0AD11 /* you.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947340F13370F5000B0AD11 /* you.png */; };
 		8947348C13370F5000B0AD11 /* EN.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8947342C13370F5000B0AD11 /* EN.gif */; };
 		8947348D13370F5000B0AD11 /* FR.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8947342D13370F5000B0AD11 /* FR.gif */; };
 		8947348E13370F5000B0AD11 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947342F13370F5000B0AD11 /* Icon-72.png */; };
@@ -513,21 +460,6 @@
 		8947349713370F5000B0AD11 /* DefaultPortlet.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947343913370F5000B0AD11 /* DefaultPortlet.png */; };
 		8947349813370F5000B0AD11 /* PortletsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8947343A13370F5000B0AD11 /* PortletsIcon.png */; };
 		894734ED1337139800B0AD11 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734B41337139800B0AD11 /* AsyncSocket.m */; };
-		894734F41337139800B0AD11 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734C61337139800B0AD11 /* NSDataAdditions.m */; };
-		894734F51337139800B0AD11 /* NSXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734C81337139800B0AD11 /* NSXMLElementAdditions.m */; };
-		894734F61337139800B0AD11 /* XMPPPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734CB1337139800B0AD11 /* XMPPPing.m */; };
-		894734F71337139800B0AD11 /* XMPPTransports.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734CD1337139800B0AD11 /* XMPPTransports.m */; };
-		894734F81337139800B0AD11 /* LibIDN.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734D11337139800B0AD11 /* LibIDN.m */; };
-		894734F91337139800B0AD11 /* MulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734D31337139800B0AD11 /* MulticastDelegate.m */; };
-		894734FA1337139800B0AD11 /* XMPPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734D71337139800B0AD11 /* XMPPClient.m */; };
-		894734FB1337139800B0AD11 /* XMPPElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734D91337139800B0AD11 /* XMPPElement.m */; };
-		894734FC1337139800B0AD11 /* XMPPIQ.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734DB1337139800B0AD11 /* XMPPIQ.m */; };
-		894734FD1337139800B0AD11 /* XMPPJID.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734DD1337139800B0AD11 /* XMPPJID.m */; };
-		894734FE1337139800B0AD11 /* XMPPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734DF1337139800B0AD11 /* XMPPMessage.m */; };
-		894734FF1337139800B0AD11 /* XMPPPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E11337139800B0AD11 /* XMPPPresence.m */; };
-		894735001337139800B0AD11 /* XMPPResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E31337139800B0AD11 /* XMPPResource.m */; };
-		894735011337139800B0AD11 /* XMPPStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E51337139800B0AD11 /* XMPPStream.m */; };
-		894735021337139800B0AD11 /* XMPPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 894734E71337139800B0AD11 /* XMPPUser.m */; };
 		894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947350C1337142200B0AD11 /* GTMNSString+HTML.m */; };
 		8947351F13375E1900B0AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947351E13375E1900B0AD11 /* main.m */; };
 		8958E60B14A9885900580EEB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8958E60A14A9885900580EEB /* SenTestingKit.framework */; };
@@ -1246,11 +1178,6 @@
 		46C805DB1410D96600E7263F /* FileFolderActionsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFolderActionsViewController_iPhone.h; sourceTree = "<group>"; };
 		46C805DC1410D96600E7263F /* FileFolderActionsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFolderActionsViewController_iPhone.m; sourceTree = "<group>"; };
 		46C805DD1410D96600E7263F /* FileFolderActionsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileFolderActionsViewController_iPhone.xib; sourceTree = "<group>"; };
-		46C81F74141656CA0042AF64 /* MessageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageContentViewController.h; sourceTree = "<group>"; };
-		46C81F75141656CA0042AF64 /* MessageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageContentViewController.m; sourceTree = "<group>"; };
-		46C81F76141656CA0042AF64 /* MessageContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageContentViewController.xib; sourceTree = "<group>"; };
-		46C81F77141656CA0042AF64 /* MessengerWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerWindowViewController.h; sourceTree = "<group>"; };
-		46C81F78141656CA0042AF64 /* MessengerWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerWindowViewController.m; sourceTree = "<group>"; };
 		46CAF6B713797B590017C959 /* HomeLogoutiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeLogoutiPhone.png; path = "Home/@1x/HomeLogoutiPhone.png"; sourceTree = "<group>"; };
 		46CAF6BB13797D320017C959 /* HomeLogoutiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeLogoutiPhone@2x.png"; path = "Home/@2x/HomeLogoutiPhone@2x.png"; sourceTree = "<group>"; };
 		46CAF73C13798D230017C959 /* HomeStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStyleSheet.h; sourceTree = "<group>"; };
@@ -1439,12 +1366,6 @@
 		7CE0132413B1A62C00F16971 /* SocialActivityDetailLikeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailLikeButton.png; sourceTree = "<group>"; };
 		7CE0132613B1A9E800F16971 /* SocialActivityDetailCommentBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityDetailCommentBg.png; sourceTree = "<group>"; };
 		7CE0132813B1AA3300F16971 /* SocialActivityDetailCommentBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialActivityDetailCommentBg@2x.png"; sourceTree = "<group>"; };
-		7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatWindowViewController_iPhone.xib; path = ../../NIB/ChatWindowViewController_iPhone.xib; sourceTree = "<group>"; };
-		7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessengerViewController_iPhone.xib; path = ../../NIB/MessengerViewController_iPhone.xib; sourceTree = "<group>"; };
-		7CE656B61394D2D200F088A1 /* ChatWindowViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController_iPhone.h; sourceTree = "<group>"; };
-		7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController_iPhone.m; sourceTree = "<group>"; };
-		7CE656B81394D2D200F088A1 /* MessengerViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController_iPhone.h; sourceTree = "<group>"; };
-		7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController_iPhone.m; sourceTree = "<group>"; };
 		7CE85B0413C46D0C00A219EB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7CE85B0513C46D0C00A219EB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7CE85B0613C46D0C00A219EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1461,51 +1382,18 @@
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
 		890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardTableViewCell.xib; path = Dashboard/DashboardTableViewCell.xib; sourceTree = "<group>"; };
-		890FF79D1447D5E3001320A5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		890FF79E1447D5E3001320A5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		89112713140B7DC800A8851C /* ChatBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBasicTableViewCell.h; sourceTree = "<group>"; };
-		89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBasicTableViewCell.m; sourceTree = "<group>"; };
-		89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatBasicTableViewCell.xib; sourceTree = "<group>"; };
-		89112718140B7F2A00A8851C /* MessengerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController.h; sourceTree = "<group>"; };
-		89112719140B7F2A00A8851C /* MessengerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController.m; sourceTree = "<group>"; };
-		8911271C140B8BF000A8851C /* eXoChatUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoChatUser.h; sourceTree = "<group>"; };
-		8911271D140B8BF000A8851C /* eXoChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoChatUser.m; sourceTree = "<group>"; };
-		89112722140B913600A8851C /* ChatUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUser.h; sourceTree = "<group>"; };
-		89112723140B913600A8851C /* ChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
-		89112726140B9A8E00A8851C /* ChatProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProxy.h; sourceTree = "<group>"; };
-		89112727140B9A8E00A8851C /* ChatProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProxy.m; sourceTree = "<group>"; };
 		8911F5531420C7540093F2BD /* AuthenticateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateViewController.h; sourceTree = "<group>"; };
 		8911F5541420C7540093F2BD /* AuthenticateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateViewController.m; sourceTree = "<group>"; };
-		892D988A143EE61200749A4C /* ChatContactAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatContactAvailable.png; sourceTree = "<group>"; };
-		892D988B143EE61200749A4C /* ChatContactAway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatContactAway.png; sourceTree = "<group>"; };
-		892D988C143EE61200749A4C /* ChatContactBusy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatContactBusy.png; sourceTree = "<group>"; };
-		892D988D143EE61200749A4C /* ChatContactCellSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatContactCellSeparator.png; sourceTree = "<group>"; };
-		892D988E143EE61200749A4C /* ChatContactNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatContactNotAvailable.png; sourceTree = "<group>"; };
-		892D988F143EE61200749A4C /* ChatDiscussionBuddyMessageBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatDiscussionBuddyMessageBg.png; sourceTree = "<group>"; };
-		892D9890143EE61200749A4C /* ChatDiscussionUserMessageBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatDiscussionUserMessageBg.png; sourceTree = "<group>"; };
-		892D9892143EE61200749A4C /* ChatContactAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatContactAvailable@2x.png"; sourceTree = "<group>"; };
-		892D9893143EE61200749A4C /* ChatContactAway@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatContactAway@2x.png"; sourceTree = "<group>"; };
-		892D9894143EE61200749A4C /* ChatContactBusy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatContactBusy@2x.png"; sourceTree = "<group>"; };
-		892D9895143EE61200749A4C /* ChatContactCellSeparator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatContactCellSeparator@2x.png"; sourceTree = "<group>"; };
-		892D9896143EE61200749A4C /* ChatContactNotAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatContactNotAvailable@2x.png"; sourceTree = "<group>"; };
-		892D9897143EE61200749A4C /* ChatDiscussionBuddyMessageBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatDiscussionBuddyMessageBg@2x.png"; sourceTree = "<group>"; };
-		892D9898143EE61200749A4C /* ChatDiscussionUserMessageBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatDiscussionUserMessageBg@2x.png"; sourceTree = "<group>"; };
 		8937A32913387F1D00D8B474 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		8937A32B13387F9300D8B474 /* DefaultConfiguration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultConfiguration.xml; sourceTree = "<group>"; };
-		8937A32F1338993900D8B474 /* ChatWindowViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatWindowViewController_iPad.xib; path = ../../NIB/ChatWindowViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A3331338993900D8B474 /* DocumentsViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentsViewController_iPad.xib; path = ../../NIB/DocumentsViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A3341338993900D8B474 /* GadgetDisplayViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GadgetDisplayViewController_iPad.xib; path = ../../NIB/GadgetDisplayViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A3371338993900D8B474 /* AuthenticateViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AuthenticateViewController_iPad.xib; path = ../../NIB/AuthenticateViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A3391338993900D8B474 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
-		8937A33A1338993900D8B474 /* MessengerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessengerViewController_iPad.xib; path = ../../NIB/MessengerViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A33C1338993900D8B474 /* FileFolderActionsViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileFolderActionsViewController_iPad.xib; path = ../../NIB/FileFolderActionsViewController_iPad.xib; sourceTree = "<group>"; };
 		8937A3581338994400D8B474 /* GadgetDisplayViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GadgetDisplayViewController_iPhone.xib; path = ../../NIB/GadgetDisplayViewController_iPhone.xib; sourceTree = "<group>"; };
 		8937A35A1338994400D8B474 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		894731191336FBC000B0AD11 /* Configuration.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Configuration.xml; sourceTree = "<group>"; };
-		8947333E13370B1900B0AD11 /* ChatWindowViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindowViewController_iPad.h; sourceTree = "<group>"; };
-		8947333F13370B1900B0AD11 /* ChatWindowViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatWindowViewController_iPad.m; sourceTree = "<group>"; };
-		8947334013370B1900B0AD11 /* MessengerViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessengerViewController_iPad.h; sourceTree = "<group>"; };
-		8947334113370B1900B0AD11 /* MessengerViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessengerViewController_iPad.m; sourceTree = "<group>"; };
 		8947334C13370B1900B0AD11 /* DocumentsViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentsViewController_iPad.h; sourceTree = "<group>"; };
 		8947334D13370B1900B0AD11 /* DocumentsViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentsViewController_iPad.m; sourceTree = "<group>"; };
 		8947335313370B1900B0AD11 /* GadgetDisplayViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GadgetDisplayViewController_iPad.h; sourceTree = "<group>"; };
@@ -1526,27 +1414,6 @@
 		894733B613370C3600B0AD11 /* AppDelegate_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPad.m; sourceTree = "<group>"; };
 		894733B813370C9800B0AD11 /* AppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPhone.h; sourceTree = "<group>"; };
 		894733B913370C9800B0AD11 /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPhone.m; sourceTree = "<group>"; };
-		894733FB13370F4F00B0AD11 /* bl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bl.png; sourceTree = "<group>"; };
-		894733FC13370F4F00B0AD11 /* BottomHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomHorizontal.png; sourceTree = "<group>"; };
-		894733FD13370F4F00B0AD11 /* br.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = br.png; sourceTree = "<group>"; };
-		894733FE13370F4F00B0AD11 /* chatnamebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatnamebackground.png; sourceTree = "<group>"; };
-		894733FF13370F4F00B0AD11 /* LeftVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftVertical.png; sourceTree = "<group>"; };
-		8947340013370F4F00B0AD11 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
-		8947340113370F4F00B0AD11 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
-		8947340213370F4F00B0AD11 /* newmessage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newmessage.png; sourceTree = "<group>"; };
-		8947340313370F4F00B0AD11 /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
-		8947340413370F4F00B0AD11 /* offlineicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offlineicon.png; sourceTree = "<group>"; };
-		8947340513370F4F00B0AD11 /* offlineuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offlineuser.png; sourceTree = "<group>"; };
-		8947340613370F4F00B0AD11 /* onlineicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onlineicon.png; sourceTree = "<group>"; };
-		8947340713370F4F00B0AD11 /* onlineuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onlineuser.png; sourceTree = "<group>"; };
-		8947340813370F4F00B0AD11 /* RightVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightVertical.png; sourceTree = "<group>"; };
-		8947340913370F5000B0AD11 /* Send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Send.png; sourceTree = "<group>"; };
-		8947340A13370F5000B0AD11 /* SendBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendBtn.png; sourceTree = "<group>"; };
-		8947340B13370F5000B0AD11 /* TextInput.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextInput.png; sourceTree = "<group>"; };
-		8947340C13370F5000B0AD11 /* tl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tl.png; sourceTree = "<group>"; };
-		8947340D13370F5000B0AD11 /* TopHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopHorizontal.png; sourceTree = "<group>"; };
-		8947340E13370F5000B0AD11 /* tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tr.png; sourceTree = "<group>"; };
-		8947340F13370F5000B0AD11 /* you.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = you.png; sourceTree = "<group>"; };
 		8947342C13370F5000B0AD11 /* EN.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = EN.gif; sourceTree = "<group>"; };
 		8947342D13370F5000B0AD11 /* FR.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FR.gif; sourceTree = "<group>"; };
 		8947342F13370F5000B0AD11 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -1564,39 +1431,6 @@
 		894734B11337139800B0AD11 /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
 		894734B31337139800B0AD11 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		894734B41337139800B0AD11 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
-		894734C51337139800B0AD11 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
-		894734C61337139800B0AD11 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
-		894734C71337139800B0AD11 /* NSXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSXMLElementAdditions.h; sourceTree = "<group>"; };
-		894734C81337139800B0AD11 /* NSXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLElementAdditions.m; sourceTree = "<group>"; };
-		894734CA1337139800B0AD11 /* XMPPPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPPing.h; sourceTree = "<group>"; };
-		894734CB1337139800B0AD11 /* XMPPPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPing.m; sourceTree = "<group>"; };
-		894734CC1337139800B0AD11 /* XMPPTransports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPTransports.h; sourceTree = "<group>"; };
-		894734CD1337139800B0AD11 /* XMPPTransports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPTransports.m; sourceTree = "<group>"; };
-		894734CF1337139800B0AD11 /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
-		894734D01337139800B0AD11 /* LibIDN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibIDN.h; sourceTree = "<group>"; };
-		894734D11337139800B0AD11 /* LibIDN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibIDN.m; sourceTree = "<group>"; };
-		894734D21337139800B0AD11 /* MulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MulticastDelegate.h; sourceTree = "<group>"; };
-		894734D31337139800B0AD11 /* MulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MulticastDelegate.m; sourceTree = "<group>"; };
-		894734D41337139800B0AD11 /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
-		894734D51337139800B0AD11 /* XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPP.h; sourceTree = "<group>"; };
-		894734D61337139800B0AD11 /* XMPPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPClient.h; sourceTree = "<group>"; };
-		894734D71337139800B0AD11 /* XMPPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPClient.m; sourceTree = "<group>"; };
-		894734D81337139800B0AD11 /* XMPPElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPElement.h; sourceTree = "<group>"; };
-		894734D91337139800B0AD11 /* XMPPElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPElement.m; sourceTree = "<group>"; };
-		894734DA1337139800B0AD11 /* XMPPIQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPIQ.h; sourceTree = "<group>"; };
-		894734DB1337139800B0AD11 /* XMPPIQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPIQ.m; sourceTree = "<group>"; };
-		894734DC1337139800B0AD11 /* XMPPJID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPJID.h; sourceTree = "<group>"; };
-		894734DD1337139800B0AD11 /* XMPPJID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPJID.m; sourceTree = "<group>"; };
-		894734DE1337139800B0AD11 /* XMPPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPMessage.h; sourceTree = "<group>"; };
-		894734DF1337139800B0AD11 /* XMPPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPMessage.m; sourceTree = "<group>"; };
-		894734E01337139800B0AD11 /* XMPPPresence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPPresence.h; sourceTree = "<group>"; };
-		894734E11337139800B0AD11 /* XMPPPresence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPresence.m; sourceTree = "<group>"; };
-		894734E21337139800B0AD11 /* XMPPResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPResource.h; sourceTree = "<group>"; };
-		894734E31337139800B0AD11 /* XMPPResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPResource.m; sourceTree = "<group>"; };
-		894734E41337139800B0AD11 /* XMPPStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPStream.h; sourceTree = "<group>"; };
-		894734E51337139800B0AD11 /* XMPPStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStream.m; sourceTree = "<group>"; };
-		894734E61337139800B0AD11 /* XMPPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPUser.h; sourceTree = "<group>"; };
-		894734E71337139800B0AD11 /* XMPPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPUser.m; sourceTree = "<group>"; };
 		894735091337142200B0AD11 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
 		8947350A1337142200B0AD11 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		8947350B1337142200B0AD11 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
@@ -3144,81 +2978,6 @@
 			path = Authenticate;
 			sourceTree = "<group>";
 		};
-		89112712140B7DC800A8851C /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				8921D6A5140DE02E00885EF8 /* ChatWindows */,
-				89112718140B7F2A00A8851C /* MessengerViewController.h */,
-				89112719140B7F2A00A8851C /* MessengerViewController.m */,
-				89112713140B7DC800A8851C /* ChatBasicTableViewCell.h */,
-				89112714140B7DC800A8851C /* ChatBasicTableViewCell.m */,
-				89112715140B7DC800A8851C /* ChatBasicTableViewCell.xib */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		8911271B140B8B5F00A8851C /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				8911271C140B8BF000A8851C /* eXoChatUser.h */,
-				8911271D140B8BF000A8851C /* eXoChatUser.m */,
-				89112722140B913600A8851C /* ChatUser.h */,
-				89112723140B913600A8851C /* ChatUser.m */,
-				890FF79D1447D5E3001320A5 /* Message.h */,
-				890FF79E1447D5E3001320A5 /* Message.m */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		89112725140B9A7800A8851C /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				89112726140B9A8E00A8851C /* ChatProxy.h */,
-				89112727140B9A8E00A8851C /* ChatProxy.m */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		8921D6A5140DE02E00885EF8 /* ChatWindows */ = {
-			isa = PBXGroup;
-			children = (
-				46C81F74141656CA0042AF64 /* MessageContentViewController.h */,
-				46C81F75141656CA0042AF64 /* MessageContentViewController.m */,
-				46C81F76141656CA0042AF64 /* MessageContentViewController.xib */,
-				46C81F77141656CA0042AF64 /* MessengerWindowViewController.h */,
-				46C81F78141656CA0042AF64 /* MessengerWindowViewController.m */,
-			);
-			path = ChatWindows;
-			sourceTree = "<group>";
-		};
-		892D9889143EE61200749A4C /* @1x */ = {
-			isa = PBXGroup;
-			children = (
-				892D988A143EE61200749A4C /* ChatContactAvailable.png */,
-				892D988B143EE61200749A4C /* ChatContactAway.png */,
-				892D988C143EE61200749A4C /* ChatContactBusy.png */,
-				892D988D143EE61200749A4C /* ChatContactCellSeparator.png */,
-				892D988E143EE61200749A4C /* ChatContactNotAvailable.png */,
-				892D988F143EE61200749A4C /* ChatDiscussionBuddyMessageBg.png */,
-				892D9890143EE61200749A4C /* ChatDiscussionUserMessageBg.png */,
-			);
-			path = "@1x";
-			sourceTree = "<group>";
-		};
-		892D9891143EE61200749A4C /* @2x */ = {
-			isa = PBXGroup;
-			children = (
-				892D9892143EE61200749A4C /* ChatContactAvailable@2x.png */,
-				892D9893143EE61200749A4C /* ChatContactAway@2x.png */,
-				892D9894143EE61200749A4C /* ChatContactBusy@2x.png */,
-				892D9895143EE61200749A4C /* ChatContactCellSeparator@2x.png */,
-				892D9896143EE61200749A4C /* ChatContactNotAvailable@2x.png */,
-				892D9897143EE61200749A4C /* ChatDiscussionBuddyMessageBg@2x.png */,
-				892D9898143EE61200749A4C /* ChatDiscussionUserMessageBg@2x.png */,
-			);
-			path = "@2x";
-			sourceTree = "<group>";
-		};
 		89300A6C1336EF6200804D3B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3300,7 +3059,6 @@
 			children = (
 				46A03A1813A7952400E71AF9 /* Social */,
 				46E96E30138370A30085DCB6 /* CascadeViewController */,
-				8947333D13370B1900B0AD11 /* Chat */,
 				8947334713370B1900B0AD11 /* File */,
 				8947334E13370B1900B0AD11 /* Gadget */,
 				4608C4CD1420F7FD0054E59C /* Settings */,
@@ -3336,25 +3094,11 @@
 			isa = PBXGroup;
 			children = (
 				7CAB42D413A7689F00CED7A3 /* Social */,
-				8947337C13370B4500B0AD11 /* Chat */,
 				8947338613370B4500B0AD11 /* File */,
 				8947338D13370B4500B0AD11 /* Gadget */,
 				8947339613370B4500B0AD11 /* Main */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		8947333D13370B1900B0AD11 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				8947333E13370B1900B0AD11 /* ChatWindowViewController_iPad.h */,
-				8947333F13370B1900B0AD11 /* ChatWindowViewController_iPad.m */,
-				8937A32F1338993900D8B474 /* ChatWindowViewController_iPad.xib */,
-				8947334013370B1900B0AD11 /* MessengerViewController_iPad.h */,
-				8947334113370B1900B0AD11 /* MessengerViewController_iPad.m */,
-				8937A33A1338993900D8B474 /* MessengerViewController_iPad.xib */,
-			);
-			path = Chat;
 			sourceTree = "<group>";
 		};
 		8947334713370B1900B0AD11 /* File */ = {
@@ -3396,19 +3140,6 @@
 				57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		8947337C13370B4500B0AD11 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				7CE656B61394D2D200F088A1 /* ChatWindowViewController_iPhone.h */,
-				7CE656B71394D2D200F088A1 /* ChatWindowViewController_iPhone.m */,
-				7CE656B21394D2C100F088A1 /* ChatWindowViewController_iPhone.xib */,
-				7CE656B81394D2D200F088A1 /* MessengerViewController_iPhone.h */,
-				7CE656B91394D2D200F088A1 /* MessengerViewController_iPhone.m */,
-				7CE656B31394D2C100F088A1 /* MessengerViewController_iPhone.xib */,
-			);
-			path = Chat;
 			sourceTree = "<group>";
 		};
 		8947338613370B4500B0AD11 /* File */ = {
@@ -3503,7 +3234,6 @@
 				1FCD3A1B143AA05700C814C5 /* Dashboard */,
 				46E91D831393DAC100A35D5A /* Settings */,
 				460736D3137C2F1C00D77DB9 /* Authenticate */,
-				894733FA13370F4F00B0AD11 /* Chat */,
 				8947341113370F5000B0AD11 /* File */,
 				8947342B13370F5000B0AD11 /* Flags */,
 				8947342E13370F5000B0AD11 /* iCon */,
@@ -3512,36 +3242,6 @@
 				8947343813370F5000B0AD11 /* Portlets */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		894733FA13370F4F00B0AD11 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				892D9889143EE61200749A4C /* @1x */,
-				892D9891143EE61200749A4C /* @2x */,
-				894733FB13370F4F00B0AD11 /* bl.png */,
-				894733FC13370F4F00B0AD11 /* BottomHorizontal.png */,
-				894733FD13370F4F00B0AD11 /* br.png */,
-				894733FE13370F4F00B0AD11 /* chatnamebackground.png */,
-				894733FF13370F4F00B0AD11 /* LeftVertical.png */,
-				8947340013370F4F00B0AD11 /* me.png */,
-				8947340113370F4F00B0AD11 /* more.png */,
-				8947340213370F4F00B0AD11 /* newmessage.png */,
-				8947340313370F4F00B0AD11 /* notification.png */,
-				8947340413370F4F00B0AD11 /* offlineicon.png */,
-				8947340513370F4F00B0AD11 /* offlineuser.png */,
-				8947340613370F4F00B0AD11 /* onlineicon.png */,
-				8947340713370F4F00B0AD11 /* onlineuser.png */,
-				8947340813370F4F00B0AD11 /* RightVertical.png */,
-				8947340913370F5000B0AD11 /* Send.png */,
-				8947340A13370F5000B0AD11 /* SendBtn.png */,
-				8947340B13370F5000B0AD11 /* TextInput.png */,
-				8947340C13370F5000B0AD11 /* tl.png */,
-				8947340D13370F5000B0AD11 /* TopHorizontal.png */,
-				8947340E13370F5000B0AD11 /* tr.png */,
-				8947340F13370F5000B0AD11 /* you.png */,
-			);
-			path = Chat;
 			sourceTree = "<group>";
 		};
 		8947341113370F5000B0AD11 /* File */ = {
@@ -3612,7 +3312,6 @@
 				461BFAB1141F4CD9009844F6 /* Settings */,
 				890F75CD141EF6AA004D35FE /* Authenticate */,
 				46F87F81140BD6870077BE15 /* Documents */,
-				89112712140B7DC800A8851C /* Chat */,
 				46ADAEE2140688F5005ABA79 /* Dashboard */,
 				46A03A1913A79F0C00E71AF9 /* Social */,
 				A65EAF48159AB64300E598E0 /* UserProfileViewController.h */,
@@ -3634,7 +3333,6 @@
 				7CFD41061361367D00DD86E8 /* KissXML */,
 				894734AC1337139800B0AD11 /* libidn */,
 				894734B21337139800B0AD11 /* TCP */,
-				894734C31337139800B0AD11 /* XMPP */,
 			);
 			path = "3-part";
 			sourceTree = "<group>";
@@ -3656,70 +3354,6 @@
 				894734B41337139800B0AD11 /* AsyncSocket.m */,
 			);
 			path = TCP;
-			sourceTree = "<group>";
-		};
-		894734C31337139800B0AD11 /* XMPP */ = {
-			isa = PBXGroup;
-			children = (
-				894734C41337139800B0AD11 /* Categories */,
-				894734C91337139800B0AD11 /* Extensions */,
-				894734CE1337139800B0AD11 /* Utilities */,
-				894734D51337139800B0AD11 /* XMPP.h */,
-				894734D61337139800B0AD11 /* XMPPClient.h */,
-				894734D71337139800B0AD11 /* XMPPClient.m */,
-				894734D81337139800B0AD11 /* XMPPElement.h */,
-				894734D91337139800B0AD11 /* XMPPElement.m */,
-				894734DA1337139800B0AD11 /* XMPPIQ.h */,
-				894734DB1337139800B0AD11 /* XMPPIQ.m */,
-				894734DC1337139800B0AD11 /* XMPPJID.h */,
-				894734DD1337139800B0AD11 /* XMPPJID.m */,
-				894734DE1337139800B0AD11 /* XMPPMessage.h */,
-				894734DF1337139800B0AD11 /* XMPPMessage.m */,
-				894734E01337139800B0AD11 /* XMPPPresence.h */,
-				894734E11337139800B0AD11 /* XMPPPresence.m */,
-				894734E21337139800B0AD11 /* XMPPResource.h */,
-				894734E31337139800B0AD11 /* XMPPResource.m */,
-				894734E41337139800B0AD11 /* XMPPStream.h */,
-				894734E51337139800B0AD11 /* XMPPStream.m */,
-				894734E61337139800B0AD11 /* XMPPUser.h */,
-				894734E71337139800B0AD11 /* XMPPUser.m */,
-			);
-			path = XMPP;
-			sourceTree = "<group>";
-		};
-		894734C41337139800B0AD11 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				894734C51337139800B0AD11 /* NSDataAdditions.h */,
-				894734C61337139800B0AD11 /* NSDataAdditions.m */,
-				894734C71337139800B0AD11 /* NSXMLElementAdditions.h */,
-				894734C81337139800B0AD11 /* NSXMLElementAdditions.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		894734C91337139800B0AD11 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				894734CA1337139800B0AD11 /* XMPPPing.h */,
-				894734CB1337139800B0AD11 /* XMPPPing.m */,
-				894734CC1337139800B0AD11 /* XMPPTransports.h */,
-				894734CD1337139800B0AD11 /* XMPPTransports.m */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		894734CE1337139800B0AD11 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				894734CF1337139800B0AD11 /* idn-int.h */,
-				894734D01337139800B0AD11 /* LibIDN.h */,
-				894734D11337139800B0AD11 /* LibIDN.m */,
-				894734D21337139800B0AD11 /* MulticastDelegate.h */,
-				894734D31337139800B0AD11 /* MulticastDelegate.m */,
-				894734D41337139800B0AD11 /* stringprep.h */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		894734E81337139800B0AD11 /* eXoUtils */ = {
@@ -3799,7 +3433,6 @@
 			isa = PBXGroup;
 			children = (
 				4608C349142092030054E59C /* Document */,
-				8911271B140B8B5F00A8851C /* Chat */,
 				46ADAEE6140699A3005ABA79 /* Dashboard */,
 				462B62A313DEF7600050FCBC /* ServerConfiguration */,
 				46371C8913C5972000CD2035 /* Social */,
@@ -3812,7 +3445,6 @@
 			children = (
 				57FB19C915FD9670001F5C20 /* Configuration */,
 				4608C34A1420921D0054E59C /* Document */,
-				89112725140B9A7800A8851C /* Chat */,
 				46ADAD111403E3C0005ABA79 /* Dashboard */,
 				46ADAC6614028054005ABA79 /* Authenticate */,
 				46371C8D13C5973000CD2035 /* Social */,
@@ -4249,28 +3881,7 @@
 			files = (
 				320B6C86F11D9990244A9731 /* Three20.bundle in Resources */,
 				894731EB1336FBC000B0AD11 /* Configuration.xml in Resources */,
-				8947345D13370F5000B0AD11 /* bl.png in Resources */,
-				8947345E13370F5000B0AD11 /* BottomHorizontal.png in Resources */,
-				8947345F13370F5000B0AD11 /* br.png in Resources */,
-				8947346013370F5000B0AD11 /* chatnamebackground.png in Resources */,
-				8947346113370F5000B0AD11 /* LeftVertical.png in Resources */,
-				8947346213370F5000B0AD11 /* me.png in Resources */,
-				8947346313370F5000B0AD11 /* more.png in Resources */,
-				8947346413370F5000B0AD11 /* newmessage.png in Resources */,
-				8947346513370F5000B0AD11 /* notification.png in Resources */,
-				8947346613370F5000B0AD11 /* offlineicon.png in Resources */,
-				8947346713370F5000B0AD11 /* offlineuser.png in Resources */,
-				8947346813370F5000B0AD11 /* onlineicon.png in Resources */,
-				8947346913370F5000B0AD11 /* onlineuser.png in Resources */,
-				8947346A13370F5000B0AD11 /* RightVertical.png in Resources */,
-				8947346B13370F5000B0AD11 /* Send.png in Resources */,
-				8947346C13370F5000B0AD11 /* SendBtn.png in Resources */,
 				46DA10A91386CE98008DA976 /* AuthenticateSettingsIconIpad.png in Resources */,
-				8947346D13370F5000B0AD11 /* TextInput.png in Resources */,
-				8947346E13370F5000B0AD11 /* tl.png in Resources */,
-				8947346F13370F5000B0AD11 /* TopHorizontal.png in Resources */,
-				8947347013370F5000B0AD11 /* tr.png in Resources */,
-				8947347113370F5000B0AD11 /* you.png in Resources */,
 				8947348C13370F5000B0AD11 /* EN.gif in Resources */,
 				8947348D13370F5000B0AD11 /* FR.gif in Resources */,
 				8947348E13370F5000B0AD11 /* Icon-72.png in Resources */,
@@ -4285,12 +3896,10 @@
 				8947349713370F5000B0AD11 /* DefaultPortlet.png in Resources */,
 				8947349813370F5000B0AD11 /* PortletsIcon.png in Resources */,
 				8937A32C13387F9400D8B474 /* DefaultConfiguration.xml in Resources */,
-				8937A3401338993900D8B474 /* ChatWindowViewController_iPad.xib in Resources */,
 				8937A3441338993900D8B474 /* DocumentsViewController_iPad.xib in Resources */,
 				8937A3451338993900D8B474 /* GadgetDisplayViewController_iPad.xib in Resources */,
 				8937A3481338993900D8B474 /* AuthenticateViewController_iPad.xib in Resources */,
 				8937A34A1338993900D8B474 /* MainWindow_iPad.xib in Resources */,
-				8937A34B1338993900D8B474 /* MessengerViewController_iPad.xib in Resources */,
 				8937A34D1338993900D8B474 /* FileFolderActionsViewController_iPad.xib in Resources */,
 				8937A3621338994400D8B474 /* GadgetDisplayViewController_iPhone.xib in Resources */,
 				8937A3641338994400D8B474 /* MainWindow_iPhone.xib in Resources */,
@@ -4376,8 +3985,6 @@
 				46E91D971393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png in Resources */,
 				46E91D981393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png in Resources */,
 				46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */,
-				7CE656B41394D2C100F088A1 /* ChatWindowViewController_iPhone.xib in Resources */,
-				7CE656B51394D2C100F088A1 /* MessengerViewController_iPhone.xib in Resources */,
 				46A03A2113A7A39000E71AF9 /* ActivityStreamBrowseViewController_iPad.xib in Resources */,
 				46A03A2D13A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib in Resources */,
 				46A03AB713A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png in Resources */,
@@ -4436,9 +4043,7 @@
 				46A9375413F03656009D41DA /* SocialActivityDetailDislikeButton.png in Resources */,
 				7C3DF00613F1212700640BDB /* PhotoActionViewController.xib in Resources */,
 				46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */,
-				89112717140B7DC800A8851C /* ChatBasicTableViewCell.xib in Resources */,
 				46C805DF1410D96600E7263F /* FileFolderActionsViewController_iPhone.xib in Resources */,
-				46C81F7A141656CA0042AF64 /* MessageContentViewController.xib in Resources */,
 				4633E6EF141BB919002A47F4 /* DocumentDisplayViewController_iPad.xib in Resources */,
 				4633E6F4141BBE80002A47F4 /* DocumentDisplayViewController_iPhone.xib in Resources */,
 				8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */,
@@ -4516,20 +4121,6 @@
 				1FD0C406143BF146002F40A7 /* IconForNoContact@2x.png in Resources */,
 				1FD0C407143BF146002F40A7 /* IconForNoGadgets@2x.png in Resources */,
 				1FD0C408143BF146002F40A7 /* IconForUnreadableFile@2x.png in Resources */,
-				892D9899143EE61200749A4C /* ChatContactAvailable.png in Resources */,
-				892D989A143EE61200749A4C /* ChatContactAway.png in Resources */,
-				892D989B143EE61200749A4C /* ChatContactBusy.png in Resources */,
-				892D989C143EE61200749A4C /* ChatContactCellSeparator.png in Resources */,
-				892D989D143EE61200749A4C /* ChatContactNotAvailable.png in Resources */,
-				892D989E143EE61200749A4C /* ChatDiscussionBuddyMessageBg.png in Resources */,
-				892D989F143EE61200749A4C /* ChatDiscussionUserMessageBg.png in Resources */,
-				892D98A0143EE61200749A4C /* ChatContactAvailable@2x.png in Resources */,
-				892D98A1143EE61200749A4C /* ChatContactAway@2x.png in Resources */,
-				892D98A2143EE61200749A4C /* ChatContactBusy@2x.png in Resources */,
-				892D98A3143EE61200749A4C /* ChatContactCellSeparator@2x.png in Resources */,
-				892D98A4143EE61200749A4C /* ChatContactNotAvailable@2x.png in Resources */,
-				892D98A5143EE61200749A4C /* ChatDiscussionBuddyMessageBg@2x.png in Resources */,
-				892D98A6143EE61200749A4C /* ChatDiscussionUserMessageBg@2x.png in Resources */,
 				1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */,
 				46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */,
 				46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */,
@@ -4706,8 +4297,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8947336913370B1900B0AD11 /* ChatWindowViewController_iPad.m in Sources */,
-				8947336A13370B1900B0AD11 /* MessengerViewController_iPad.m in Sources */,
 				8947336F13370B1900B0AD11 /* DocumentsViewController_iPad.m in Sources */,
 				8947337213370B1900B0AD11 /* GadgetDisplayViewController_iPad.m in Sources */,
 				8947337713370B1900B0AD11 /* AuthenticateViewController_iPad.m in Sources */,
@@ -4719,21 +4308,6 @@
 				894733B713370C3600B0AD11 /* AppDelegate_iPad.m in Sources */,
 				894733BA13370C9800B0AD11 /* AppDelegate_iPhone.m in Sources */,
 				894734ED1337139800B0AD11 /* AsyncSocket.m in Sources */,
-				894734F41337139800B0AD11 /* NSDataAdditions.m in Sources */,
-				894734F51337139800B0AD11 /* NSXMLElementAdditions.m in Sources */,
-				894734F61337139800B0AD11 /* XMPPPing.m in Sources */,
-				894734F71337139800B0AD11 /* XMPPTransports.m in Sources */,
-				894734F81337139800B0AD11 /* LibIDN.m in Sources */,
-				894734F91337139800B0AD11 /* MulticastDelegate.m in Sources */,
-				894734FA1337139800B0AD11 /* XMPPClient.m in Sources */,
-				894734FB1337139800B0AD11 /* XMPPElement.m in Sources */,
-				894734FC1337139800B0AD11 /* XMPPIQ.m in Sources */,
-				894734FD1337139800B0AD11 /* XMPPJID.m in Sources */,
-				894734FE1337139800B0AD11 /* XMPPMessage.m in Sources */,
-				894734FF1337139800B0AD11 /* XMPPPresence.m in Sources */,
-				894735001337139800B0AD11 /* XMPPResource.m in Sources */,
-				894735011337139800B0AD11 /* XMPPStream.m in Sources */,
-				894735021337139800B0AD11 /* XMPPUser.m in Sources */,
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
 				8947351F13375E1900B0AD11 /* main.m in Sources */,
 				8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */,
@@ -4770,8 +4344,6 @@
 				46C6B521138CA87F0079C514 /* ATMProgressLayer.m in Sources */,
 				46C6B522138CA87F0079C514 /* ATMSoundFX.m in Sources */,
 				46C6B523138CA87F0079C514 /* ATMTextLayer.m in Sources */,
-				7CE656BA1394D2D200F088A1 /* ChatWindowViewController_iPhone.m in Sources */,
-				7CE656BB1394D2D200F088A1 /* MessengerViewController_iPhone.m in Sources */,
 				468035DE139D0C0500B1DAE4 /* MockSocial_Activity.m in Sources */,
 				7CAB436813A76A7800CED7A3 /* EGOCache.m in Sources */,
 				7CAB436913A76A7800CED7A3 /* EGOImageButton.m in Sources */,
@@ -4813,17 +4385,10 @@
 				8997843D13F53568002E7E1C /* Reachability.m in Sources */,
 				46ADAD141403E419005ABA79 /* DashboardProxy_old.m in Sources */,
 				46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */,
-				89112716140B7DC800A8851C /* ChatBasicTableViewCell.m in Sources */,
-				8911271A140B7F2A00A8851C /* MessengerViewController.m in Sources */,
-				89112720140B8BF000A8851C /* eXoChatUser.m in Sources */,
-				89112724140B913600A8851C /* ChatUser.m in Sources */,
-				89112728140B9A8E00A8851C /* ChatProxy.m in Sources */,
 				46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */,
 				46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */,
 				46EC3596140FDE150083FA07 /* FileFolderActionsViewController.m in Sources */,
 				46C805DE1410D96600E7263F /* FileFolderActionsViewController_iPhone.m in Sources */,
-				46C81F79141656CA0042AF64 /* MessageContentViewController.m in Sources */,
-				46C81F7B141656CA0042AF64 /* MessengerWindowViewController.m in Sources */,
 				4633E6E7141BB094002A47F4 /* GadgetDisplayViewController.m in Sources */,
 				4633E6EA141BB0FC002A47F4 /* DocumentDisplayViewController.m in Sources */,
 				4633E6EE141BB919002A47F4 /* DocumentDisplayViewController_iPad.m in Sources */,
@@ -4841,7 +4406,6 @@
 				46A08CD61447501300D53314 /* ActivityLinkDisplayViewController.m in Sources */,
 				46A08CDA1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m in Sources */,
 				46A08CDF144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.m in Sources */,
-				890FF79F1447D5E3001320A5 /* Message.m in Sources */,
 				1FCDDB6F14481ED100846232 /* ActivityPictureDetailMessageTableViewCell.m in Sources */,
 				46CCF22D14571BEF0039CEAC /* DashboardProxy.m in Sources */,
 				46CCF23014571E720039CEAC /* DashboardItem.m in Sources */,
