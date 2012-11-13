@@ -5,7 +5,6 @@
 //  Created by Stévan Le Meur on 29/08/11.
 //  Copyright 2011 eXo Platform. All rights reserved.
 //
-
 #import "DocumentsViewController.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "FileFolderActionsViewController_iPhone.h"
@@ -15,7 +14,6 @@
 #import "EmptyView.h"
 #import "defines.h"
 #import "AppDelegate_iPhone.h"
-
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -56,7 +54,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 @synthesize parentController = _parentController, isRoot;
 @synthesize actionVisibleOnFolder = _actionVisibleOnFolder;
 @synthesize popoverPhotoLibraryController = _popoverPhotoLibraryController;
-
+@synthesize popoverSharingFileController = _popoverSharingFileController;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -79,10 +77,10 @@ static NSString *PRIVATE_GROUP = @"Private";
 }
 
 - (void)createTableViewWithStyle:(UITableViewStyle)style {
-
+    
     CGRect rectOfSelf = self.view.frame;
     CGRect rectForTableView = CGRectMake(0, 0, rectOfSelf.size.width, rectOfSelf.size.height - 44);
-
+    
     _tblFiles = [[UITableView alloc] initWithFrame:rectForTableView style:style];
     _tblFiles.delegate = self;
     _tblFiles.dataSource = self;
@@ -102,7 +100,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 -(void)startRetrieveDirectoryContent {
     
     NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
-//    
+    //    
     if (_filesProxy == nil) _filesProxy = [FilesProxy sharedInstance];
     [_dicContentOfFolder removeAllObjects];
     
@@ -123,7 +121,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             [_dicContentOfFolder setValue:sharedDrives forKey:SHARED_GROUP];
     }
     else {
-                
+        
         NSArray *folderContent = [_filesProxy getContentOfFolder:_rootFile];
         if([folderContent count] > 0)
             [_dicContentOfFolder setValue:[[folderContent copy] autorelease] forKey:_rootFile.name];
@@ -185,7 +183,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     /*
      This method is installed as a workaround for bug about action buttons on drive folders. 
      A folder is not action-able if: 
-        + Its currentFolder is empty or nil.
+     + Its currentFolder is empty or nil.
      */
     NSMutableArray *exceptDrives = [NSMutableArray array];
     if ([driveGroup isEqualToString:PERSONAL_GROUP] && !isRoot) {
@@ -211,7 +209,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 - (void)dealloc
 {
-     
+    
     [_dicContentOfFolder release];
     _dicContentOfFolder = nil;
     
@@ -301,22 +299,22 @@ static NSString *PRIVATE_GROUP = @"Private";
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     //_tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
     /*
-    UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
-    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    _tblFiles.backgroundView = background;
-    [background release];
+     UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
+     background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+     _tblFiles.backgroundView = background;
+     [background release];
      */  
-
-//  [[NSNotificationCenter defaultCenter] addObserver:self 
-//                                           selector:@selector(updateData:)        
-//                                               name:@"updateData" 
-//                                             object:nil];
+    
+    //  [[NSNotificationCenter defaultCenter] addObserver:self 
+    //                                           selector:@selector(updateData:)        
+    //                                               name:@"updateData" 
+    //                                             object:nil];
     
     
     //Hack for the tableview backgroung
     [_tblFiles setBackgroundView:nil];
     [_tblFiles setBackgroundView:[[[UIView alloc] init] autorelease]];
-  
+    
     if (_rootFile) {
         self.title = _rootFile.name;
     } else {
@@ -363,8 +361,8 @@ static NSString *PRIVATE_GROUP = @"Private";
 {
     [super viewWillDisappear:animated];
     //Release the loader
-//    [_hudFolder hide];
-//    _hudFolder = nil;
+    //    [_hudFolder hide];
+    //    _hudFolder = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -407,7 +405,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 {
     if([_dicContentOfFolder count] <= 1)
         return nil;
-        
+    
     // create the parent view that will hold header Label
 	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 10.0, _tblFiles.frame.size.width-5, kHeightForSectionHeader)];
 	
@@ -420,7 +418,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = UITextAlignmentCenter;
-
+    
     headerLabel.text = Localize([[_dicContentOfFolder allKeys] objectAtIndex:section]);
     
     CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblFiles.frame.size.width-5, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
@@ -460,7 +458,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     
     static NSString *kCellIdentifier = @"CellIdentifierForFiles";
     
-
+    
     CustomBackgroundForCell_iPhone *cell =  (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     if(cell == nil) {
         cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
@@ -470,11 +468,11 @@ static NSString *PRIVATE_GROUP = @"Private";
         cell.textLabel.backgroundColor = [UIColor whiteColor];
         //cell.textLabel.contentMode = UIViewAutoresizingFlexibleWidth;
     }
-
+    
     //Customize the cell background
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
-
-
+    
+    
     //Retrieve the correct file corresponding to the indexPath
     File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
@@ -576,7 +574,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 //Method needed to retrieve the delete action
 -(void)deleteFile:(NSString *)urlFileToDelete {
-        
+    
     //TODO Localize this string
     [self displayHudLoader];
     
@@ -676,6 +674,12 @@ static NSString *PRIVATE_GROUP = @"Private";
     [self showActionSheetForPhotoAttachment];
 }
 
+-(void)askToShareFile:(NSString *)url
+{
+    _stringForSharedFile = url;
+    [self showActionSheetForSharingFile];
+}
+
 - (void)askToAddAPicture:(NSString *)urlDestination photoAlbum:(BOOL)photoAlbum {
     
     _stringForUploadPhoto = urlDestination;
@@ -701,7 +705,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             thePicker = nil;
         }
 	}
-
+    
     if(thePicker) {
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             //[self.navigationController presentModalViewController:thePicker animated:YES];  
@@ -717,21 +721,21 @@ static NSString *PRIVATE_GROUP = @"Private";
             self.popoverPhotoLibraryController.delegate = self;
             [self.popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
             
-
+            
             if(displayActionDialogAtRect.size.width == 0) {
                 
                 //present the popover from the rightBarButtonItem of the navigationBar
                 [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
-                                                 permittedArrowDirections:UIPopoverArrowDirectionUp 
-                                                                 animated:YES];
-             
-
+                                                           permittedArrowDirections:UIPopoverArrowDirectionUp 
+                                                                           animated:YES];
+                
+                
             }
             else {
                 [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];    
                 
             }
-                
+            
             displayActionDialogAtRect = CGRectZero;
         }
         
@@ -792,7 +796,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             
             return;
         }
-
+        
         NSArray *arrFileFolder = nil;
         if([[_dicContentOfFolder allValues] count] > 0)
             arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
@@ -801,7 +805,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             if([newFolderName isEqualToString:file.name])
             {
                 bExist = YES;
-                                
+                
                 UIAlertView* alert = [[UIAlertView alloc] 
                                       initWithTitle:Localize(@"MessageInfo")
                                       message: Localize(@"FolderNameAlreadyExist")
@@ -827,7 +831,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             [invocation setSelector:@selector(createNewFolderInBackground:)];
             [invocation setArgument:&strNewFolderPath atIndex:2];
             [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO]; 
-
+            
         }
     }
     else 
@@ -846,7 +850,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 //Method to call the rename action of the proxy
 - (void)renameFolderInBackground:(NSString *)newFolderUrl forFolder:(NSString *)folderToRenameUrl {
-
+    
     NSString *errorMessage = [_filesProxy fileAction:kFileProtocolForMove source:folderToRenameUrl destination:newFolderUrl data:nil];
     
     //Hide the action Panel
@@ -880,14 +884,14 @@ static NSString *PRIVATE_GROUP = @"Private";
             
             return;
         }
-
+        
         
         BOOL bExist = NO;
         
         NSArray *arrFileFolder = nil;
         if([[_dicContentOfFolder allValues] count] > 0)
             arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
-
+        
         
         for (File* file in arrFileFolder) {
             if([newFolderName isEqualToString:file.name])
@@ -902,7 +906,7 @@ static NSString *PRIVATE_GROUP = @"Private";
                                       otherButtonTitles:nil, nil];
                 [alert show];
                 [alert release];
-
+                
                 
                 break;
             }
@@ -914,7 +918,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             
             NSString *strRenamePath = [FilesProxy urlForFileAction:[_rootFile.path stringByAppendingPathComponent:newFolderName]];
             NSString *strSource = [FilesProxy urlForFileAction:folderToRename.path];
-
+            
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(renameFolderInBackground:forFolder:)]];
             [invocation setTarget:self];
@@ -968,35 +972,47 @@ static NSString *PRIVATE_GROUP = @"Private";
 #pragma mark - ActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex < 2)
-    {
-        UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
-        thePicker.delegate = self;
-//        thePicker.allowsEditing = YES;
-        
-        if(buttonIndex == 0)//Take a photo
-        {
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
-            {  
-                thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            }
-            else
+    switch (actionSheet.tag) {
+        case 1:
+            if(buttonIndex < 2)
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture") message:Localize(@"CameraNotAvailable") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
-                [alert show];
-                [alert release];
+                UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
+                thePicker.delegate = self;
+                //        thePicker.allowsEditing = YES;
+                
+                if(buttonIndex == 0)//Take a photo
+                {
+                    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
+                    {  
+                        thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    }
+                    else
+                    {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture") message:Localize(@"CameraNotAvailable") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
+                        [alert show];
+                        [alert release];
+                    }
+                }
+                else
+                {
+                    thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;            
+                }
+                
+                [self showImagePickerForAddPhotoAction:thePicker];
+                [thePicker release];
             }
-        }
-        else
-        {
-            thePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;            
-        }
-        
-        [self showImagePickerForAddPhotoAction:thePicker];
-        [thePicker release];
+            break;
+        case 2:
+            NSLog(@"Action sheet for sharing file");
+            if(buttonIndex < 2) {
+                [self initMailApp:buttonIndex];
+            }
+            
+            break;
     }
     
 }
+
 
 
 #pragma mark - UIImagePickerDelegate
@@ -1072,4 +1088,61 @@ static NSString *PRIVATE_GROUP = @"Private";
     return [NSIndexPath indexPathForRow:(tagNumber - 1234)%1000 inSection:(tagNumber - 1234)/1000];
 }
 
+#pragma mark - MOB-1344 Share document by mail
+- (void) showActionSheetForSharingFile {
+}
+// notify user to configure mail on the device.
+-(void)launchMailAppOnDevice {
+	NSString *error1 = Localize(@"No Mail Account!");
+	NSString *error2 = Localize(@"Please check the login status in the Mail app and try again.");
+	UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:error1 message:error2
+													   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[AlertView show];
+	[AlertView release];
+    
+}
+
+-(void)initMailApp:(int)buttonIndex{
+	Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+	if (mailClass != nil) {
+		// We must always check whether the current device is configured for sending emails
+		if ([mailClass canSendMail]) {
+			[self displayComposerSheet:buttonIndex];
+		}
+		else {
+			[self launchMailAppOnDevice];
+		}
+	}
+	else {
+		[self launchMailAppOnDevice];
+	}
+    
+}
+
+-(void)displayComposerSheet:(int)buttonIndex {
+    
+	MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+	mailComposer.mailComposeDelegate = self;
+    
+    NSString *msgBody = [NSString stringWithFormat:@"%@ <a href=\"%@\">%@</a>",Localize(@"I want to share this file"),_stringForSharedFile,fileToApplyAction.name] ;
+    NSString *mailSubject = Localize(@"Mail subject");
+    NSLog(@"%@",fileToApplyAction.path);
+
+    [mailComposer setSubject:mailSubject];
+    [mailComposer setMessageBody:msgBody isHTML:YES];
+
+	//share by link
+    if(buttonIndex == 0) {
+    } else if(buttonIndex == 1) { //share by attachment
+        NSData *fileData = [NSData dataWithContentsOfURL:[NSURL URLWithString: fileToApplyAction.path]];
+        [mailComposer addAttachmentData:fileData mimeType:fileToApplyAction.nodeType fileName:fileToApplyAction.name];
+    }
+	[self showMailComposerForSharingAction:mailComposer];
+    [mailComposer release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    
+}
 @end

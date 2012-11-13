@@ -136,7 +136,7 @@
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:picker animated:YES];
 }
 
-#pragma mark -
+
 #pragma mark WEPopoverControllerDelegate implementation
 
 - (void)popoverControllerDidDismissPopover:(WEPopoverController *)thePopoverController {
@@ -186,11 +186,7 @@
 		
         NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
-		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc] 
-                                                                       initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
-                                                                                  bundle:nil 
-                                                                                    url:urlOfTheFileToOpen
-                                                                                fileName:fileToBrowse.name];        
+		DocumentDisplayViewController_iPhone* fileWebViewController = [[DocumentDisplayViewController_iPhone alloc]                            initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"                                                                                  bundle:nil                                                                                     url:urlOfTheFileToOpen                                                                                fileName:fileToBrowse.name];      
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:fileWebViewController animated:YES];
 		//[self.navigationController pushViewController:fileWebViewController animated:YES];    
@@ -323,11 +319,11 @@
 - (void)showActionSheetForPhotoAttachment
 {    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto") delegate:self cancelButtonTitle:Localize(@"Cancel") destructiveButtonTitle:nil  otherButtonTitles:Localize(@"TakeAPicture"), Localize(@"PhotoLibrary"), nil, nil];
+    actionSheet.tag = 1; // tag for add photo action sheet
     [actionSheet showInView:self.view];
     
     [actionSheet release];
 }
- 
 
 #pragma mark - ActionSheet Delegate
 
@@ -350,6 +346,56 @@
 }
 
 
+#pragma mark - MOB-1344 Share document by mail
 
+- (void) showActionSheetForSharingFile 
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"ShareFileBy") delegate:self cancelButtonTitle:Localize(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:Localize(@"ShareFileByLink"),Localize(@"ShareFileByAttachment"),nil, nil];
+    actionSheet.tag = 2; // tag for sharing file action sheet
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+
+- (void)showMailComposerForSharingAction:(MFMailComposeViewController *)mailComposer {
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:mailComposer animated:YES];
+}
+
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+	NSString *er1 = Localize(@"Mailing cancelled");
+	NSString *er2 = Localize(@"Mail saved");
+	NSString *er3 = Localize(@"Mail sent");
+	NSString *er4 = Localize(@"Mailing failed");
+	NSString *er5 = Localize(@"Mail not sent");
+    
+	NSString *alertTitle;
+	// Notifies users about errors associated with the interface
+	switch (result) {
+		case MFMailComposeResultCancelled:
+			alertTitle = er1;
+			break;
+		case MFMailComposeResultSaved:
+			alertTitle = er2;
+			break;
+		case MFMailComposeResultSent:
+			alertTitle = er3;
+			break;
+		case MFMailComposeResultFailed:
+			alertTitle = er4;
+			break;
+		default:
+			alertTitle = er5;
+			break;
+	}
+	
+    [controller dismissModalViewControllerAnimated:YES];
+	
+    UIAlertView *resultAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[resultAlert show];
+	[resultAlert release];
+    
+}
 
 @end

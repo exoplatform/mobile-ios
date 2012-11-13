@@ -269,6 +269,7 @@
         [UserPreferencesManager sharedInstance].password = _credViewController.txtfPassword.text;
         [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
         [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
+        NSLog(@"Repo: %@", platformServerVersion.currentRepoName);
     }
 }
 

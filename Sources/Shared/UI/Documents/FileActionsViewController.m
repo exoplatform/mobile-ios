@@ -30,9 +30,9 @@ static short fileActionMode = 0;//1:copy, 2:move
 //Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
                  file:(File *)fileForActions 
-                enableDeleteThisFolder:(BOOL)enableDeleteFolder
-                enableCreateFolder:(BOOL)enableCreateFolder
-                enableRenameFile:(BOOL)enableRenameFile
+enableDeleteThisFolder:(BOOL)enableDeleteFolder
+   enableCreateFolder:(BOOL)enableCreateFolder
+     enableRenameFile:(BOOL)enableRenameFile
              delegate:(id<FileActionsProtocol>)actionsDelegate
 {
     
@@ -56,6 +56,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		_strCancel = [Localize(@"Cancel") copy];
         _strNewFolder = [Localize(@"NewFolderTitle") copy];
         _strRenameFolder = [Localize(@"RenameTitle") copy];
+        _strShare = [Localize(@"ShareFile") copy];
         
         self.view.backgroundColor = [UIColor whiteColor];
     }
@@ -134,14 +135,12 @@ static short fileActionMode = 0;//1:copy, 2:move
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 40;
+	return 35;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if(section == 0)
-		return 7;
-	return 1;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -171,85 +170,89 @@ static short fileActionMode = 0;//1:copy, 2:move
     
 	if(section == 0)
 	{
-		if(row == 0)
-		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon"];
-			titleLabel.text = _strTakePicture;
-            // Check to support Add Photo action for "canAddChild" folder
-			if(!_file.isFolder || !_file.canAddChild)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-		}
-		else if(row == 1)
-		{
-            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon"];
-			titleLabel.text = _strCopy;
-            // Check to support Copy action for folder
-			if(_file.isFolder)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-			
-		}
-		else if(row == 2)
-		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon"];
-			titleLabel.text = _strMove;
-            // Check to support Cut action for "canRemove" folder
-			if(_file.isFolder || !_file.canRemove)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-		}
-		else if(row == 3)
-		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon"];
-			titleLabel.text = _strPaste;
-            // Check to support Past action for "canAddChild" folder
-			if(fileActionMode <= 0 || !_file.isFolder || !_file.canAddChild)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-		}
-		else if(row == 4)
-		{
-			imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon"];
-			titleLabel.text = _strDelete;
-            // Check to support Delete action for "canRemove" folder/file
-			if(!_deleteFolderEnable || !_file.canRemove)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-		}
-        else if(row == 5)
-        {
-            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon"];
-            titleLabel.text = _strNewFolder;
-            // Check to support AddFolder action for "canAddChild" folder
-			if(!_file.isFolder || !_file.canAddChild)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
+        switch (row) {
+            case 0:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPhotoIcon"];
+                titleLabel.text = _strTakePicture;
+                // Check to support Add Photo action for "canAddChild" folder
+                if(!_file.isFolder || !_file.canAddChild)
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+                break;
+            case 1:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCopyIcon"];
+                titleLabel.text = _strCopy;
+                // Check to support Copy action for folder
+                if(_file.isFolder)
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+                break;
+            case 2:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupCutIcon"];
+                titleLabel.text = _strMove;
+                // Check to support Cut action for "canRemove" folder
+                if(_file.isFolder || !_file.canRemove)
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+                break;
+            case 3:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupPasteIcon"];
+                titleLabel.text = _strPaste;
+                // Check to support Past action for "canAddChild" folder
+                if(fileActionMode <= 0 || !_file.isFolder || !_file.canAddChild)
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+                break;
+            case 4:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupDeleteIcon"];
+                titleLabel.text = _strDelete;
+                // Check to support Delete action for "canRemove" folder/file
+                if(!_deleteFolderEnable || !_file.canRemove)
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+                break;
+            case 5:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupAddFolderIcon"];
+                titleLabel.text = _strNewFolder;
+                // Check to support AddFolder action for "canAddChild" folder
+                if(!_file.isFolder || !_file.canAddChild)
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+                break;
+            case 6:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupRenameIcon"];
+                titleLabel.text = _strRenameFolder;
+                // Check to support Rename action for folder
+                if(!_file.isFolder || !_renameFileEnable)
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+                break;
+            case 7:
+                imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupShareIcon"];
+                titleLabel.text = _strShare;
+                if(_file.isFolder) 
+                {
+                    titleLabel.textColor = [UIColor grayColor];
+                    cell.userInteractionEnabled = NO;
+                }
+            default:
+                break;
         }
-        else 
-        {
-            imgViewFileAction.image = [UIImage imageNamed:@"DocumentActionPopupRenameIcon"];
-            titleLabel.text = _strRenameFolder;
-            // Check to support Rename action for folder
-			if(!_file.isFolder || !_renameFileEnable)
-			{
-				titleLabel.textColor = [UIColor grayColor];
-				cell.userInteractionEnabled = NO;
-			}
-        }
-	}
+    }
     
     UIView *view = [[UIView alloc] initWithFrame:cell.frame];
     view.backgroundColor = [UIColor lightGrayColor];
@@ -307,7 +310,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 		else if (row == 4)
 		{            
 			[fileActionsDelegate deleteFile:_file.path];
-
+            
 		}
         else if (row == 5)
         {
@@ -317,6 +320,10 @@ static short fileActionMode = 0;//1:copy, 2:move
         else if (row == 6)
         {
             [fileActionsDelegate askToMakeFolderActions:NO];
+        }
+        else if (row == 7)
+        {
+            [fileActionsDelegate askToShareFile:_file.path];
         }
 	}
 }

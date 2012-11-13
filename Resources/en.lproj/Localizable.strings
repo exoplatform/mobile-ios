@@ -22,11 +22,27 @@
 "Copy" = "Copy";
 "Move" = "Cut";
 "Paste" = "Paste";
+"ShareFile" = "Share";
 "Documents" = "Documents";
 "TakeAPicture" = "Take a picture";
 "AttachedPhoto" = "Attached photo";
 "AddAPhoto" = "Add a photo";
 "PhotoLibrary" = "Photo library";
+"Mailing cancelled" = "Mailing cancelled";
+"Mail saved" = "Mail saved";
+"Mail sent" = "Mail sent";
+"Mailing failed" = "Mailing failed";
+"Mail not sent" = "Mail not sent";
+// for file sharing by mail action
+"ShareFileBy" = "Share file with link or attachment?";
+"ShareFileByLink" = "Link";
+"ShareFileByAttachment" = "Attachment";
+"No Mail Account!" = "No Mail Account!";
+"Please check the login status in the Mail app and try again." = "Please check the login status in the Mail app and try again.";
+"Mail subject" = "File sharing";
+"I want to share this file" = "I want to share file: ";
+"The link to the file is" = "The link to the file is: ";
+"Find in attachment" = "You can find in attachment";
 // Drives types
 "general"="general";
 "personal"="personal";

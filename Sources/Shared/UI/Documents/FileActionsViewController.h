@@ -32,7 +32,7 @@
 //(panel to renanme or create a new folder)
 -(void)askToMakeFolderActions:(BOOL)createNewFolder;
 -(void)askToAddPhoto:(NSString*)url;
-
+-(void)askToShareFile:(NSString*)url;
 @end
 
 
@@ -53,7 +53,7 @@
 	NSString *_strCancel;	//Cancel
     NSString *_strNewFolder; //NewFolder
     NSString *_strRenameFolder; //RenameFolder
-	
+	NSString *_strShare; //Share file
 	BOOL _deleteFolderEnable;	//Enable folder deleting
     BOOL _createFolderEnable;	//Enable folder creating
     BOOL _renameFileEnable;	//Enable folder renaming

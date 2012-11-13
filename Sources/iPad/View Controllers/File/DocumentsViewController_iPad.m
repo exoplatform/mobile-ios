@@ -28,7 +28,7 @@
     
     CGRect rectOfSelf = self.view.frame;
     CGRect rectForTableView = CGRectMake(0, 44, rectOfSelf.size.width, rectOfSelf.size.height - 44);
-
+    
     _tblFiles = [[UITableView alloc] initWithFrame:rectForTableView style:style];
     _tblFiles.delegate = self;
     _tblFiles.dataSource = self;
@@ -147,7 +147,7 @@
     frame.origin.x += 20;
     
     displayActionDialogAtRect = frame;
-
+    
     
     //Display the UIPopoverController
     [_actionPopoverController dismissPopoverAnimated:NO];
@@ -194,12 +194,9 @@
 	}
 	else
 	{
-         NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
-		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"
-                                                                                               bundle:nil 
-                                                                                                  url:urlOfTheFileToOpen
-                                                                                             fileName:fileToBrowse.name];
+		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"                                                                                                                      bundle:nil                                                                                                                               url:urlOfTheFileToOpen                                                                                                                          fileName:fileToBrowse.name];
 		
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:contentViewController invokeByController:self isStackStartView:FALSE];
         
@@ -221,13 +218,7 @@
     displayActionDialogAtRect = CGRectZero;
     
     //Create the fileActionsView controller
-    FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
-                                                            bundle:nil 
-                                                            file:_rootFile 
-                                                            enableDeleteThisFolder:YES
-                                                            enableCreateFolder:YES
-                                                            enableRenameFile:NO
-                                                            delegate:self];
+    FileActionsViewController* fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController"                                                                                                        bundle:nil                                                                                                          file:_rootFile                                                                                        enableDeleteThisFolder:YES                                                                                           enableCreateFolder:YES                                                                                             enableRenameFile:NO                                                                                                     delegate:self];
     
     fileToApplyAction = _rootFile;
     //Create the Popover to display potential actions to the user
@@ -247,7 +238,7 @@
     [fileActionsViewController release];
     
     //Prevent any new tap on the button
-//    _navigation.topItem.rightBarButtonItem.enabled = YES;
+    //    _navigation.topItem.rightBarButtonItem.enabled = YES;
 }
 
 -(void) hideActionsPanel {
@@ -305,13 +296,13 @@
     //Release the _actionPopoverController
     [_actionPopoverController release];
     _actionPopoverController = nil;
-
+    
 }
- 
+
 - (void)showActionSheetForPhotoAttachment
 {
     [_actionPopoverController dismissPopoverAnimated:YES];
- 
+    
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto")
                                                              delegate:self 
@@ -319,8 +310,8 @@
                                                destructiveButtonTitle:nil 
                                                     otherButtonTitles:Localize(@"TakeAPicture"), 
                                   Localize(@"PhotoLibrary"), nil];
+    actionSheet.tag = 1;
     
-
     if(displayActionDialogAtRect.size.width == 0) {
         
         //present the popover from the rightBarButtonItem of the navigationBar        
@@ -368,4 +359,72 @@
     _navigation.topItem.title = Localize(@"Documents") ;
 }
 
+
+#pragma mark - MOB-1344 Share document by mail
+- (void)showActionSheetForSharingFile {
+    
+    [_actionPopoverController dismissPopoverAnimated:YES];
+
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"ShareFileBy") delegate:self cancelButtonTitle:Localize(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:Localize(@"ShareFileByLink"),Localize(@"ShareFileByAttachment"),nil, nil];
+    actionSheet.tag = 2; // tag for sharing file action sheet
+    
+    if(displayActionDialogAtRect.size.width == 0) {
+        
+        //present the popover from the rightBarButtonItem of the navigationBar        
+        [actionSheet showFromBarButtonItem:_navigation.topItem.rightBarButtonItem animated:YES];
+    }
+    else {
+        [actionSheet showFromRect:displayActionDialogAtRect inView:_tblFiles animated:YES];
+    }
+
+
+}
+- (void)showMailComposerForSharingAction:(MFMailComposeViewController *)mailComposer {
+    mailComposer.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    mailComposer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    mailComposer.modalPresentationStyle = UIModalPresentationFormSheet;
+    self.popoverSharingFileController = [[[UIPopoverController alloc] initWithContentViewController:mailComposer] autorelease];    
+    self.popoverSharingFileController.delegate = self;
+    
+    if(displayActionDialogAtRect.size.width == 0) {
+        //present the popover from the rightBarButtonItem of the navigationBar
+        [self.popoverSharingFileController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    } else {
+        [self.popoverSharingFileController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
+    }
+    
+}
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    NSString *er1 = NSLocalizedString(@"Mailing cancelled", nil);
+	NSString *er2 = NSLocalizedString(@"Mail saved",nil);
+	NSString *er3 = NSLocalizedString(@"Mail sent", nil);
+	NSString *er4 = NSLocalizedString(@"Mailing failed", nil);
+	NSString *er5 = NSLocalizedString(@"Mail not sent", nil);
+    
+	NSString *alertTitle;
+	// Notifies users about errors associated with the interface
+	switch (result) {
+		case MFMailComposeResultCancelled:
+			alertTitle = er1;
+			break;
+		case MFMailComposeResultSaved:
+			alertTitle = er2;
+			break;
+		case MFMailComposeResultSent:
+			alertTitle = er3;
+			break;
+		case MFMailComposeResultFailed:
+			alertTitle = er4;
+			break;
+		default:
+			alertTitle = er5;
+			break;
+	}
+    [controller dismissModalViewControllerAnimated:YES];
+    [self.popoverSharingFileController dismissPopoverAnimated:YES];
+    
+    UIAlertView *resultAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[resultAlert show];
+	[resultAlert release];
+}
 @end

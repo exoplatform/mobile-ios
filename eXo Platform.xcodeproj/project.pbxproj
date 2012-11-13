@@ -429,6 +429,9 @@
 		7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */; };
 		7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */; };
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
+		7DEF623B1643AE88002FC172 /* DocumentActionPopupShareIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DEF623A1643AE88002FC172 /* DocumentActionPopupShareIcon.png */; };
+		7DEF623D1643AEA8002FC172 /* DocumentActionPopupShareIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DEF623C1643AEA8002FC172 /* DocumentActionPopupShareIcon@2x.png */; };
+		7DEF623F1643C9A8002FC172 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DEF623E1643C9A8002FC172 /* MessageUI.framework */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1458,6 +1461,9 @@
 		7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController_iPhone.m; sourceTree = "<group>"; };
 		7CFEB08613CA95B400D7C9FF /* SocialIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIdentity.h; sourceTree = "<group>"; };
 		7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentity.m; sourceTree = "<group>"; };
+		7DEF623A1643AE88002FC172 /* DocumentActionPopupShareIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DocumentActionPopupShareIcon.png; sourceTree = "<group>"; };
+		7DEF623C1643AEA8002FC172 /* DocumentActionPopupShareIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DocumentActionPopupShareIcon@2x.png"; sourceTree = "<group>"; };
+		7DEF623E1643C9A8002FC172 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -1784,6 +1790,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DEF623F1643C9A8002FC172 /* MessageUI.framework in Frameworks */,
 				46F6344414549DBC00BB57D4 /* libRestKitCoreData.a in Frameworks */,
 				46F6344514549DBC00BB57D4 /* libRestKitJSONParserJSONKit.a in Frameworks */,
 				46F6344614549DBC00BB57D4 /* libRestKitNetwork.a in Frameworks */,
@@ -1836,6 +1843,7 @@
 		1FCD39BD143A9A6B00C814C5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				7DEF623A1643AE88002FC172 /* DocumentActionPopupShareIcon.png */,
 				A62227471599CC0F003FAC28 /* NavbarDocumentActionButton.png */,
 				1FCD39BE143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon.png */,
 				1FCD39BF143A9A6B00C814C5 /* DocumentActionPopupBackground.png */,
@@ -1866,6 +1874,7 @@
 		1FCD39D5143A9A6B00C814C5 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				7DEF623C1643AEA8002FC172 /* DocumentActionPopupShareIcon@2x.png */,
 				A622274B1599CC48003FAC28 /* NavbarDocumentActionButton@2x.png */,
 				1FCD39D6143A9A6B00C814C5 /* DocumentActionPopupAddFolderIcon@2x.png */,
 				1FCD39D7143A9A6B00C814C5 /* DocumentActionPopupBackground@2x.png */,
@@ -2037,6 +2046,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				7DEF623E1643C9A8002FC172 /* MessageUI.framework */,
 				8947351C13375E1800B0AD11 /* Other Sources */,
 				89300A6C1336EF6200804D3B /* Sources */,
 				894733BB13370D7C00B0AD11 /* Resources */,
@@ -4661,6 +4671,8 @@
 				57A07117160FF48C002E2BAC /* Default-Landscape@2x~ipad.png in Resources */,
 				57A07118160FF48F002E2BAC /* Default-Portrait~ipad.png in Resources */,
 				57A07119160FF492002E2BAC /* Default-Portrait@2x~ipad.png in Resources */,
+				7DEF623B1643AE88002FC172 /* DocumentActionPopupShareIcon.png in Resources */,
+				7DEF623D1643AEA8002FC172 /* DocumentActionPopupShareIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

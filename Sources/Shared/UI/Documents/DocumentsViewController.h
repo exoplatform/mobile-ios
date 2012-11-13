@@ -14,11 +14,13 @@
 #import "eXoViewController.h"
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 #define kHeightForSectionHeader 40
 
-@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate> {
+@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate> {
     
     DocumentsViewController *_parentController;
     File *_rootFile;
@@ -32,11 +34,15 @@
         
     NSString *_stringForUploadPhoto;
     
+    NSString *_stringForSharedFile;
+    
     UITableView*   _tblFiles;
 
     CGRect displayActionDialogAtRect;
     
     UIPopoverController *_popoverPhotoLibraryController;
+    
+    UIPopoverController *_popoverSharingFileController;
     
     BOOL isRoot;
     BOOL stop;
@@ -45,6 +51,7 @@
 // Follow the Apple convention, the child view should keep a weak reference to parent only.
 @property(nonatomic, assign) DocumentsViewController *parentController;
 @property(nonatomic, retain) UIPopoverController *popoverPhotoLibraryController;
+@property(nonatomic, retain) UIPopoverController *popoverSharingFileController;
 @property (nonatomic, assign) BOOL actionVisibleOnFolder;
 @property BOOL isRoot;
 
@@ -53,6 +60,7 @@
 
 -(void)emptyState;
 - (void)showActionSheetForPhotoAttachment;
+-(void)showActionSheetForSharingFile;
 - (void)startRetrieveDirectoryContent;
 - (void)contentDirectoryIsRetrieved;
 - (void)askToMakeFolderActions:(BOOL)createNewFolder;
@@ -72,5 +80,8 @@
 - (NSInteger)tagNumberFromIndexPath:(NSIndexPath *)indexPath;
 - (NSIndexPath *)indexPathFromTagNumber:(NSInteger)tagNumber;
 
-
+// methods for sharing file:
+-(void)initMailApp:(int)buttonIndex;
+- (void)showMailComposerForSharingAction:(MFMailComposeViewController *)mailComposer;
+-(void)displayComposerSheet:(int)buttonIndex;
 @end
