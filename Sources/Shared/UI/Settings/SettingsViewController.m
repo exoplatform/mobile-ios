@@ -192,7 +192,8 @@ typedef enum {
         [self.tableView deselectRowAtIndexPath:selection animated:YES];   
 }
 
-
+// enables autoLogin switch if and only if rememberMe switch
+// is on and server is selected.
 -(void)enableDisableAutoLogin:(id)sender {
     NSString* selDomain = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     if (rememberMe.on && selDomain != nil) {
@@ -312,16 +313,15 @@ typedef enum {
 }
 
 - (void)rememberMeDidChange:(id)sender {
+    [self enableDisableAutoLogin:self];
     [UserPreferencesManager sharedInstance].rememberMe = rememberMe.on;
     if (!rememberMe.on) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
         [userDefaults synchronize];
-        [self enableDisableAutoLogin:self];
     } else {
         [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
-        [self enableDisableAutoLogin:self];
     }
 
 }

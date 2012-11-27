@@ -162,9 +162,6 @@
     
     window.rootViewController = navigationController;
     
-    //Ask the controller Login to do some things if needed
-    //window.rootViewController = authenticateViewController;
-//    [UserPreferencesManager sharedInstance].autoLogin = NO;
     [UserPreferencesManager sharedInstance].isUserLogged = NO;
 
     
