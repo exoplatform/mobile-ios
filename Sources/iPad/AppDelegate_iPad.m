@@ -100,8 +100,10 @@
     [UserPreferencesManager sharedInstance].autoLogin = NO;
     [UserPreferencesManager sharedInstance].isUserLogged = NO;
     // Disable Auto Login so user won't be signed in automatically after
-    [viewController disableAutoLogin:YES];
-    
+    if(![UserPreferencesManager sharedInstance].rememberMe) {
+        [viewController disableAutoLogin:YES];
+    }
+
     // execute Logout
     [LoginProxy doLogout];
     

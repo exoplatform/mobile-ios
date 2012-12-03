@@ -50,7 +50,10 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 
 -(void)setNavigationBarLabels;
 - (void)doInit;
-- (void)rememberStreamChanged:(id)sender;
+- (void) rememberMeDidChange:(id)sender;
+- (void) showPrivateDriveDidChange:(id)sender;
+- (void) rememberStreamDidChange:(id)sender;
+- (void) autoLoginDidChange;
 
 @end
 
@@ -140,17 +143,17 @@ typedef enum {
 		rememberMe = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         rememberMe.tag = kTagForSwitchRememberMe;
         // Call the method enableDisableAutoLogin when the value of the switch changes
-        [rememberMe addTarget:self action:@selector(enableDisableAutoLogin:) forControlEvents:UIControlEventValueChanged];
+        [rememberMe addTarget:self action:@selector(rememberMeDidChange:) forControlEvents:UIControlEventValueChanged];
         // Create the Auto Login switch component
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
-        [autoLogin addTarget:self action:@selector(autoLoginChange) forControlEvents:UIControlEventValueChanged];
+        [autoLogin addTarget:self action:@selector(autoLoginDidChange) forControlEvents:UIControlEventValueChanged];
         // Observe notifications when a server is added or deleted, and call enableDisableAutoLogin
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
         
         _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
-        [_rememberSelectedStream addTarget:self action:@selector(rememberStreamChanged:) forControlEvents:UIControlEventValueChanged];
+        [_rememberSelectedStream addTarget:self action:@selector(rememberStreamDidChange:) forControlEvents:UIControlEventValueChanged];
         
         _showPrivateDrive = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         [_showPrivateDrive addTarget:self action:@selector(showPrivateDriveDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -175,7 +178,10 @@ typedef enum {
 #pragma mark - View lifecycle
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self reloadSettingsWithUpdate];
+
+    [self setNavigationBarLabels];
+    [self.tableView reloadData];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -186,20 +192,17 @@ typedef enum {
         [self.tableView deselectRowAtIndexPath:selection animated:YES];   
 }
 
-// Enable the AutoLogin switch only if
-// - the Remember Me switch is turned ON
-// and
-// - 1 server is selected
+// enables autoLogin switch if and only if rememberMe switch
+// is on and server is selected.
 -(void)enableDisableAutoLogin:(id)sender {
     NSString* selDomain = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
-    if (rememberMe.on && selDomain != nil)
+    if (rememberMe.on && selDomain != nil) {
         autoLogin.enabled = YES;
-    else {
+    } else {
         autoLogin.enabled = NO;
         autoLogin.on = NO;
     }
 }
-
 -(void)startRetrieve {
     if(![UserPreferencesManager sharedInstance].isUserLogged){
         bVersionServer = NO;
@@ -227,7 +230,6 @@ typedef enum {
     //}
     
     
-    [self loadSettingsInformations];
     
     //Set the background Color of the view
     //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
@@ -294,60 +296,38 @@ typedef enum {
     self.navigationItem.rightBarButtonItem.title = Localize(@"DoneButton");
 }
 
-
--(void)reloadSettingsWithUpdate {
-    [self loadSettingsInformations];
-    [self setNavigationBarLabels];
-    [self.tableView reloadData];
-}
-
--(void)autoLoginChange {
-    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
-}
-
-
--(void)loadSettingsInformations {
-    //Load Settings informations
-    bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
-    rememberMe.on = bRememberMe;
-    bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;
-    autoLogin.on = bAutoLogin;
-    _showPrivateDrive.on = [UserPreferencesManager sharedInstance].showPrivateDrive;
-
-    // Enable the switch only if Remember Me is turned ON
-    [self enableDisableAutoLogin:nil];
-}
-
-
-- (void)saveSettingsInformations {
-    //Save settings informations
-    [UserPreferencesManager sharedInstance].rememberMe = rememberMe.on;
-    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (!rememberMe.on) {
-        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
-        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
-    }
-    [userDefaults synchronize];
-}
-
-
-
 #pragma - Actions Methods 
 
 //Method to done clicked settings
 - (void)doneAction {
-    [self saveSettingsInformations];
     [_settingsDelegate doneWithSettings];    
 }
 
-- (void)rememberStreamChanged:(id)sender {
+#pragma mark - Listeners for switches
+- (void)rememberStreamDidChange:(id)sender {
     [UserPreferencesManager sharedInstance].rememberSelectedSocialStream = _rememberSelectedStream.on;
 }
 
 - (void)showPrivateDriveDidChange:(id)sender {
     [UserPreferencesManager sharedInstance].showPrivateDrive = _showPrivateDrive.on;
+}
+
+- (void)rememberMeDidChange:(id)sender {
+    [self enableDisableAutoLogin:self];
+    [UserPreferencesManager sharedInstance].rememberMe = rememberMe.on;
+    if (!rememberMe.on) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_PASSWORD];
+        [userDefaults synchronize];
+    } else {
+        [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+    }
+
+}
+
+-(void)autoLoginDidChange {
+    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
 }
 
 #pragma mark Table view methods
@@ -445,10 +425,17 @@ typedef enum {
             // Only set the correct switch in the accessoryView of the cell
             if(indexPath.row == 0)
             {
+                rememberMe.on = [UserPreferencesManager sharedInstance].rememberMe;
                 cell.accessoryView = rememberMe;
             }
             else 
             {
+                if ([UserPreferencesManager sharedInstance].rememberMe) {
+                    autoLogin.enabled = YES;
+                    autoLogin.on = [UserPreferencesManager sharedInstance].autoLogin;
+                } else {
+                    autoLogin.enabled = NO;
+                }
                 cell.accessoryView = autoLogin;
             }
             break;
@@ -478,8 +465,7 @@ typedef enum {
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-            // No need to set the value of the switch, it is done in loadSettingsInformation                
-            // Only set the correct switch in the accessoryView of the cell
+            _showPrivateDrive.on = [UserPreferencesManager sharedInstance].showPrivateDrive;
             cell.accessoryView = _showPrivateDrive;
             break;
         }
@@ -620,11 +606,10 @@ typedef enum {
         //Save the language
         [[LanguageHelper sharedInstance] changeToLanguage:selectedLanguage];
         
-        //Save other settings (autologin, rememberme)
-        [self saveSettingsInformations];
         
         //Finally reload the content of the screen
-        [self reloadSettingsWithUpdate];
+        [self setNavigationBarLabels];
+        [self.tableView reloadData];
         
         //Notify the language change
         [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_CHANGE_LANGUAGE object:self];

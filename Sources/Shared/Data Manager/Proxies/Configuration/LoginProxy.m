@@ -10,7 +10,6 @@
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
 
-
 @implementation LoginProxy
 
 @synthesize delegate = _delegate;

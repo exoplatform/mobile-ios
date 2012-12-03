@@ -26,8 +26,6 @@
 
 @interface SettingsViewController : eXoTableViewController <LoginProxyDelegate, ServerManagerProtocol> {
     
-    BOOL                            bRememberMe;
-	BOOL                            bAutoLogin;
     BOOL                            bVersionServer;
 	NSString*                       languageStr;
 	
@@ -46,9 +44,6 @@
 
 
 -(void)startRetrieve;
--(void)loadSettingsInformations;
--(void)saveSettingsInformations;
--(void)reloadSettingsWithUpdate;
 -(void)enableDisableAutoLogin:(id)sender;
 
 @end

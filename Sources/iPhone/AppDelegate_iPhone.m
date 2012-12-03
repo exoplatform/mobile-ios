@@ -156,13 +156,12 @@
 - (void)onBtnSigtOutDelegate {
     
     // Disable Auto Login so user won't be signed in automatically after
-    [_authenticateViewController disableAutoLogin:YES];
+    if(![UserPreferencesManager sharedInstance].rememberMe) {
+        [_authenticateViewController disableAutoLogin:YES];
+    }
     
     window.rootViewController = navigationController;
     
-    //Ask the controller Login to do some things if needed
-    //window.rootViewController = authenticateViewController;
-    [UserPreferencesManager sharedInstance].autoLogin = NO;
     [UserPreferencesManager sharedInstance].isUserLogged = NO;
 
     
