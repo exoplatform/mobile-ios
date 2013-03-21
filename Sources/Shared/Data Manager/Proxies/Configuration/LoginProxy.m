@@ -126,11 +126,14 @@
     //We now need to check if the version can run social features or not and set properties
     
     PlatformServerVersion *platformServerVersion = [objects objectAtIndex:0];
-
-    NSRange aRange = [platformServerVersion.platformVersion rangeOfString:@"3.5"];
+    
+    // get the 3 first chars of version, ex: 3.5, 4.0
+    NSString *shortVersionStr = [platformServerVersion.platformVersion substringToIndex:3];
+    float shortVersion = [shortVersionStr floatValue];
+    
     BOOL isPlatformCompatibleWithSocialFeatures = YES;
-    if (aRange.location == NSNotFound) {
-        //Version is not compatible with social features
+    
+    if(shortVersion < 3.5) { // if version is before 3.5, plf is not compliant with social
         isPlatformCompatibleWithSocialFeatures = NO;
     }
     
@@ -138,7 +141,6 @@
     if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
         [_delegate platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
     }
-
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {

@@ -62,6 +62,7 @@
         default:
             break;
     }
+
     return [NSString stringWithFormat:@"%@/activity_stream/%@", [super createPath], lastPath];
 }
 

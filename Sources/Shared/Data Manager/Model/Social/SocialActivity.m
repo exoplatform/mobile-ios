@@ -54,22 +54,24 @@
 }
 
 - (void)getActivityType {
+    /* in plf 4, there is just activity for creating action
+     * updating actions add comments to the activity.
+     */
     if ([_type rangeOfString:@"ks-wiki"].length > 0) {
-        if ([[_templateParams valueForKey:@"act_key"] isEqualToString:@"add_page"]) {
-            _activityType = ACTIVITY_WIKI_ADD_PAGE;
-        } else if ([[_templateParams valueForKey:@"act_key"] isEqualToString:@"update_page"]) {
+        _activityType = ACTIVITY_WIKI_ADD_PAGE;
+        if ([[_templateParams valueForKey:@"act_key"] isEqualToString:@"update_page"]) {
             _activityType = ACTIVITY_WIKI_MODIFY_PAGE;
         }
     } else if ([_type rangeOfString:@"LINK_ACTIVITY"].length > 0) {
         _activityType = ACTIVITY_LINK;
     } else if ([_type rangeOfString:@"DOC_ACTIVITY"].length > 0) {
         _activityType = ACTIVITY_DOC;
-    } else if ([_type rangeOfString:@"contents:spaces"].length > 0) {
+    } else if ([_type rangeOfString:@"contents:spaces"].length > 0
+               || [_type rangeOfString:@"files:spaces"].length > 0) { // in plf4, uploading file has activity type: files:spaces
         _activityType = ACTIVITY_CONTENTS_SPACE;
     } else if ([_type rangeOfString:@"ks-forum"].length > 0) {
-        if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddTopic"]) {
-            _activityType = ACTIVITY_FORUM_CREATE_TOPIC;
-        } else if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"UpdatePost"]) {
+        _activityType = ACTIVITY_FORUM_CREATE_TOPIC;
+        if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"UpdatePost"]) {
             _activityType = ACTIVITY_FORUM_UPDATE_POST;
         } else if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AddPost"]) {
             _activityType = ACTIVITY_FORUM_CREATE_POST;
@@ -77,9 +79,9 @@
             _activityType = ACTIVITY_FORUM_UPDATE_TOPIC;
         }//
     } else if ([_type rangeOfString:@"ks-answer"].length > 0) {//
-        if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionAdd"]) {
-            _activityType = ACTIVITY_ANSWER_ADD_QUESTION;
-        } else if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionUpdate"]) {
+        _activityType = ACTIVITY_ANSWER_ADD_QUESTION;
+
+        if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"QuestionUpdate"]) {
             _activityType = ACTIVITY_ANSWER_UPDATE_QUESTION;
         } else if ([[_templateParams valueForKey:@"ActivityType"] isEqualToString:@"AnswerAdd"]) {
             _activityType = ACTIVITY_ANSWER_QUESTION;

@@ -101,7 +101,11 @@
     [_htmlName sizeToFit];
     
     //Set the position of Title
-    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
+    float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+    // in plf 4, no Name in template params, it's the title of ActivityStream
+    NSString *title = plfVersion >= 4.0 ? socialActivityStream.title : [socialActivityStream.templateParams valueForKey:@"Name"];
+    
+    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[title stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
     
     [_htmlTitle sizeToFit];
     

@@ -84,7 +84,8 @@
     
     _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    
+    float plfVersion = [[userDefault valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+
     NSString *htmlStr = nil;
     NSDictionary *_templateParams = self.socialActivity.templateParams;
     switch (self.socialActivity.activityType) {
@@ -117,16 +118,24 @@
             // Using the thumbnail image instead of real one. Suppose that value format of contentLink is "/{repository name}/{workspace name}/{relative path}"
             // The link for thumbnail image is in the format "/{rest context name}/thumbnailImage/large/{relative path}"
             _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/rest/thumbnailImage/large/%@", [_templateParams valueForKey:@"contenLink"]]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            
-            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><a href=\"%@\">%@</a> was created by <a>%@</a> state : %@</body></html>", [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]],[_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"], [_templateParams valueForKey:@"state"]]
+             
+            if(plfVersion >= 4.0) { // plf4 : no state
+                htmlStr = [NSString stringWithFormat:@"<a href=\"%@\">%@</a> was created by <a>%@</a>", [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]], [_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"]];
+            } else {
+                htmlStr = [NSString stringWithFormat:@"<a href=\"%@\">%@</a> was created by <a>%@</a> state: %@", [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]], [_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"], [_templateParams valueForKey:@"state"]];
+            }
+                        
+            NSString *htmlForWebView = [NSString stringWithFormat:@"<html><head><style>body {background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link {color: #115EAD; text-decoration: none; font-weight: bold;} a {color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", htmlStr];
+            [_webViewForContent loadHTMLString:htmlForWebView
                                        baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
              ];
-            htmlStr = [NSString stringWithFormat:@"%@ was created by %@ state : %@", [_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"], [_templateParams valueForKey:@"state"]];
+            
             _lbFileName.text = @"";
         }
             break;
     }
-    htmlStr = [htmlStr stringByConvertingHTMLToPlainText];
+    
+    htmlStr = [htmlStr stringByStrippingTags];
     
     theSize = [htmlStr sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
                                      lineBreakMode:UILineBreakModeWordWrap];

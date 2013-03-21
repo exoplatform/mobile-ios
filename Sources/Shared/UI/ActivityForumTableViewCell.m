@@ -95,9 +95,18 @@
             break;
         case ACTIVITY_FORUM_CREATE_TOPIC:
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewTopic")];
-            html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
-            break; 
+            
+            float plfVersion = [[[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+            
+            if(plfVersion >= 4.0) { // plf 4 and later: TopicName is not in template params, it is title of socialActivityStream
+                html = [NSString stringWithFormat:@"<a>%@</a>",
+                        [[socialActivityStream.title stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            } else {
+                html = [NSString stringWithFormat:@"<a>%@</a>",
+                        [[[socialActivityStream.templateParams valueForKey:@"TopicName" ] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            }
+            
+            break;
         case ACTIVITY_FORUM_UPDATE_TOPIC:
             _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdateTopic")];
             html = [NSString stringWithFormat:@"<a>%@</a>", 

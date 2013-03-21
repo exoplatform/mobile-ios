@@ -100,7 +100,7 @@
     switch (socialActivityStream.activityType) {
         case ACTIVITY_DOC:{
             html = [[[socialActivityStream.templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-        
+            
             _htmlMessage.html = html?html:@"";
             [_htmlMessage sizeToFit];
             
@@ -152,8 +152,14 @@
         }
             break;
         case ACTIVITY_CONTENTS_SPACE:{
-            html = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a> state : %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"], [socialActivityStream.templateParams valueForKey:@"state"]];
-
+            
+            float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+            if(plfVersion >= 4.0) { // in plf 4, no state in template params.
+                html = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a>", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"]];
+            } else {
+                html = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a> state: %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"], [socialActivityStream.templateParams valueForKey:@"state"]];
+            }
+            
             _htmlMessage.html = [NSString stringWithFormat:@"<p>%@</p>", html?html:@""];
             [_htmlMessage sizeToFit];
             

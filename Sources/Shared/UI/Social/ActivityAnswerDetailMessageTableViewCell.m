@@ -89,10 +89,19 @@
     
     //Set the position of web
     //Title
-    [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [[_templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText]]
-                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-     ];
-    CGSize theSize = [[[_templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText] sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
+    
+    float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+    // in plf 4, there is no "Name" in template params, we take the title of activity instead.
+    if(plfVersion >= 4.0) {
+        [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [socialActivityDetail.title stringByConvertingHTMLToPlainText]]
+                                   baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+         ];
+    } else {
+        [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [[_templateParams valueForKey:@"Name" ] stringByConvertingHTMLToPlainText]] baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+         ];
+    }
+    
+    CGSize theSize = [[[_templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText] sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
                                      lineBreakMode:UILineBreakModeWordWrap];
     
     tmpFrame = _webViewForContent.frame;
