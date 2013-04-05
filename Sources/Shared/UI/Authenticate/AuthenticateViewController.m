@@ -98,7 +98,8 @@
     [tapGesure setCancelsTouchesInView:NO]; // Do not cancel touch processes on subviews
     [self.view addGestureRecognizer:tapGesure];
     
-    // Init username and password text fields
+    // Init username and password text
+    
     [self initUsernameAndPassword];
 }
 
@@ -331,6 +332,11 @@
     }
 }
 
+#pragma mark - Update labels
+- (void) updateLabelAfterLogOut
+{
+    [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
+}
 @end
 
 

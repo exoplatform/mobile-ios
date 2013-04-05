@@ -159,6 +159,7 @@
     if(![UserPreferencesManager sharedInstance].rememberMe) {
         [_authenticateViewController disableAutoLogin:YES];
     }
+    [_authenticateViewController updateLabelAfterLogOut];
     
     window.rootViewController = navigationController;
     
