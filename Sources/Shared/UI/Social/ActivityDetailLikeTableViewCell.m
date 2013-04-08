@@ -184,11 +184,12 @@
 - (void)reloadAvatarViews:(BOOL)animateIfNeeded {
     self.lbMessage.text = [NSString stringWithFormat:Localize(@"likeThisActivity"), _socialActivity.totalNumberOfLikes];
     
-    [_likerAvatarImageViews removeAllObjects];
-    for (EGOImageView *avatarView in _likerAvatarImageViews) {
+    for (EGOImageView *avatarView in _likerAvatarImageViews) { // reset the view of avatars of likers
         [avatarView removeFromSuperview];
     }
-        
+    
+    [_likerAvatarImageViews removeAllObjects]; // reset the list of avatars of likers
+    
     for (int i = 0; i < self.socialActivity.totalNumberOfLikes; i++) {
         if (i == kNumberOfDisplayedAvatars) break;
         SocialUserProfile *user = i < self.socialActivity.likedByIdentities.count ? [self.socialActivity.likedByIdentities objectAtIndex:i] : nil;
