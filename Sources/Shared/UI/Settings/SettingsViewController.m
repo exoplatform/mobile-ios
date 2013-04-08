@@ -78,7 +78,7 @@ typedef enum {
 
 - (void)doInit {
     if ([UserPreferencesManager sharedInstance].isUserLogged) {
-        _listOfSections = [[NSArray arrayWithObjects:
+        _listOfSections = [[NSMutableArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
                              settingViewSectionTitleKey, @"SignInButton", 
@@ -110,8 +110,16 @@ typedef enum {
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
                              nil], 
                             nil] retain];
+        
+        
+        float plfVersion = [[[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+        
+        //PLF 4: dont show 'Show my private drive' in settings, cf: MOB-1425
+        if(plfVersion >= 4.0) {
+            [_listOfSections removeObjectAtIndex:2];
+        }
     } else {        
-        _listOfSections = [[NSArray arrayWithObjects:
+        _listOfSections = [[NSMutableArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
                              settingViewSectionTitleKey, @"Language", 

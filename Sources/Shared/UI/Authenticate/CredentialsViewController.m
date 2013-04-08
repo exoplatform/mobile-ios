@@ -32,6 +32,7 @@
     [_btnLogin release];
     [_authViewController release];
     [_panelBackground release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 
@@ -52,7 +53,7 @@
     [_btnLogin setBackgroundImage:[[UIImage imageNamed:@"AuthenticateButtonBgStrechable.png"]
                                    stretchableImageWithLeftCapWidth:10 topCapHeight:10]
                          forState:UIControlStateNormal];
-    [self.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    
     
     /* Add tap gesture to dismiss keyboard */
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
@@ -62,9 +63,12 @@
     // Make sure the Textfield Delegate methods are called upon events on the 2 text fields
     [self.txtfPassword setDelegate:self];
     [self.txtfUsername setDelegate:self];
-    // Display localized placeholder text
-    [self.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
-    [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
+    
+    [self localizeLabel];
+    
+    // re-localize label when user changes language
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(localizeLabel) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+
 }
 
 - (void)viewDidUnload
@@ -173,6 +177,15 @@
 		[alert show];
 		[alert release];
     }
+}
+
+- (void)localizeLabel
+{
+    [self.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
+    // Display localized placeholder text
+    [self.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
+    [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
+
 }
 
 @end
