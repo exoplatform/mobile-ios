@@ -36,7 +36,7 @@
     
     id<SettingsDelegateProcotol>    _settingsDelegate;
     
-    NSArray                         *_listOfSections;
+    NSMutableArray                  *_listOfSections;
     
 }
 
