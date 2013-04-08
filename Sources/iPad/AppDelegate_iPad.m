@@ -104,6 +104,8 @@
         [viewController disableAutoLogin:YES];
     }
 
+    [viewController updateLabelAfterLogOut];
+    
     // execute Logout
     [LoginProxy doLogout];
     
