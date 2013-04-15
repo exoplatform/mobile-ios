@@ -17,6 +17,6 @@
 
     SettingsViewController* _settingsViewController;
 }
-
+@property (nonatomic, retain) IBOutlet UIImageView *backgroundImage;
 
 @end

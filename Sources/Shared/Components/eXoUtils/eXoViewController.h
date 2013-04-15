@@ -34,5 +34,6 @@
 - (void)hideLoaderImmediately:(BOOL)successful;
 // Update labels when the language changes
 - (void)updateLabelsWithNewLanguage;
-
+// Checks if the screen is 4 inches (iPhone 5)
++ (BOOL) isHighScreen;
 @end

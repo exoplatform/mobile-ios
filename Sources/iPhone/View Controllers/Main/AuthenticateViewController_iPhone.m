@@ -11,7 +11,7 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 #import "AuthTabItem.h"
-
+#import "eXoViewController.h"
 #define scrollHeight 80 /* how much should we scroll up/down when the keyboard is displayed/hidden */
 #define tabViewsTopMargin 6 /* the top margin of the views under the tabs */
 #define tabsHeightAndLeftMargin 30 /* the height and left margin of the tabs */
@@ -19,19 +19,24 @@
 #define tabsY 180 /* distance from the top of the screen to the top of the tabs */
 
 @implementation AuthenticateViewController_iPhone
-
+@synthesize backgroundImage = _backgroundImage;
 
 #pragma mark - Object Management
 -(void)dealloc {
     
     [_settingsViewController release];
     _settingsViewController = nil;
-    
+    [_backgroundImage release];
     [super dealloc];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if([eXoViewController isHighScreen]) {
+        [_backgroundImage setImage:[UIImage imageNamed:@"Default-568h"]];
+    } else {
+        [_backgroundImage setImage:[UIImage imageNamed:@"Default"]];
+    }
     
     // Position the tabs just above the subviews
     [self.tabView setFrame:

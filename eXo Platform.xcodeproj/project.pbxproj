@@ -341,7 +341,6 @@
 		46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */; };
 		46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */; };
 		46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */; };
-		5744FF01166DFF1F0095248D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5744FF00166DFF1F0095248D /* Default-568h@2x.png */; };
 		579D50A915BD6689002F5D16 /* AuthTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50A815BD6689002F5D16 /* AuthTabItem.m */; };
 		579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */; };
 		57A07116160FF47E002E2BAC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5915B51D54004F958C /* Default-Landscape~ipad.png */; };
@@ -423,6 +422,7 @@
 		7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF3646913D6C8300056E509 /* SocialPostCommentProxy.m */; };
 		7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */; };
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
+		7D67133B171BF8D600B8EB93 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1264,7 +1264,6 @@
 		46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
 		46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "UIImage+Resize/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "UIImage+Resize/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		5744FF00166DFF1F0095248D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		579D50A715BD6689002F5D16 /* AuthTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthTabItem.h; sourceTree = "<group>"; };
 		579D50A815BD6689002F5D16 /* AuthTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthTabItem.m; sourceTree = "<group>"; };
 		579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSelectionView.h; sourceTree = "<group>"; };
@@ -1380,6 +1379,7 @@
 		7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController_iPhone.m; sourceTree = "<group>"; };
 		7CFEB08613CA95B400D7C9FF /* SocialIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIdentity.h; sourceTree = "<group>"; };
 		7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentity.m; sourceTree = "<group>"; };
+		7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Splashscreen/@2x/Default-568h@2x.png"; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -2123,7 +2123,7 @@
 		464AD0481374263C003A4083 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
-				5744FF00166DFF1F0095248D /* Default-568h@2x.png */,
+				7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */,
 				46D97B3113742B8B00F71E82 /* Default@2x.png */,
 			);
 			name = "@2x";
@@ -4253,7 +4253,7 @@
 				57A07117160FF48C002E2BAC /* Default-Landscape@2x~ipad.png in Resources */,
 				57A07118160FF48F002E2BAC /* Default-Portrait~ipad.png in Resources */,
 				57A07119160FF492002E2BAC /* Default-Portrait@2x~ipad.png in Resources */,
-				5744FF01166DFF1F0095248D /* Default-568h@2x.png in Resources */,
+				7D67133B171BF8D600B8EB93 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
