@@ -8,7 +8,7 @@
 
 #import "SSHUDWindow.h"
 #import "UIImage+SSToolkitAdditions.h"
-
+#import "SSDrawingUtilities.h"
 static SSHUDWindow *kHUDWindow = nil;
 
 @implementation SSHUDWindow
@@ -42,16 +42,13 @@ static SSHUDWindow *kHUDWindow = nil;
 	if (_hidesVignette) {
 		return;
 	}
-	
-	NSString *imageName = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"SSVignetteiPad.png" : @"SSVignetteiPhone.png";
-	UIImage *image = [UIImage imageNamed:imageName];
-	
-    //UIImage *image = [UIImage imageNamed:imageName bundle:kSSToolkitBundleName];
-	
-	CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-	[image drawInRect:CGRectMake(roundf((screenSize.width - image.size.width) / 2.0f), 
-								 roundf((screenSize.height - image.size.height) / 2.0f), 
-								 image.size.width, image.size.height)];	
+    //apply https://github.com/soffes/sstoolkit/commit/4554f2c65af117402d3d326322389072f1304f47
+    //to Draw SSHUDView's vingette with CoreGraphics
+    //it will fix problem with iPhone 5 which is described at https://github.com/soffes/sstoolkit/issues/145
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGGradientRef gradient = SSGradientWithColors([UIColor colorWithWhite:0.0f alpha:0.1f], [UIColor colorWithWhite:0.0f alpha:0.5f]);
+    CGPoint centerPoint  = CGPointMake(self.bounds.size.width / 2.0 , self.bounds.size.height / 2.0);
+    CGContextDrawRadialGradient(context, gradient, centerPoint, 0.0f, centerPoint, fmaxf(self.bounds.size.width, self.bounds.size.height) / 2.0f, kCGGradientDrawsAfterEndLocation);
 }
 
 

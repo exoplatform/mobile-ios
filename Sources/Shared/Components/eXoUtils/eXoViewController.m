@@ -115,4 +115,12 @@
     // E.g. ActivityStreamBrowseViewController.m
 }
 
+#pragma mark - screen resolution checking
++ (BOOL) isHighScreen {
+    UIDevice *device = [UIDevice currentDevice];
+    if([device userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return [UIScreen mainScreen].bounds.size.height == 568;
+    }
+    return NO;
+}
 @end
