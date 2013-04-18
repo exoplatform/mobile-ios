@@ -187,9 +187,6 @@
 		4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3813CDC54D00328E41 /* SocialUserProfile.m */; };
 		46616C7A137C729400D53D3D /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C74137C729400D53D3D /* SSHUDView.m */; };
 		46616C7B137C729400D53D3D /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C76137C729400D53D3D /* SSHUDWindow.m */; };
-		46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C77137C729400D53D3D /* SSVignetteiPad.png */; };
-		46616C7D137C729400D53D3D /* SSVignetteiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C78137C729400D53D3D /* SSVignetteiPhone.png */; };
-		46616C7E137C729400D53D3D /* SSVignetteiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46616C79137C729400D53D3D /* SSVignetteiPhone@2x.png */; };
 		46616C83137C750500D53D3D /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C80137C750500D53D3D /* SSDrawingUtilities.m */; };
 		46616C84137C750500D53D3D /* UIView+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C82137C750500D53D3D /* UIView+SSToolkitAdditions.m */; };
 		46616C87137C754900D53D3D /* UIImage+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46616C86137C754900D53D3D /* UIImage+SSToolkitAdditions.m */; };
@@ -1056,9 +1053,6 @@
 		46616C74137C729400D53D3D /* SSHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDView.m; sourceTree = "<group>"; };
 		46616C75137C729400D53D3D /* SSHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHUDWindow.h; sourceTree = "<group>"; };
 		46616C76137C729400D53D3D /* SSHUDWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHUDWindow.m; sourceTree = "<group>"; };
-		46616C77137C729400D53D3D /* SSVignetteiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSVignetteiPad.png; sourceTree = "<group>"; };
-		46616C78137C729400D53D3D /* SSVignetteiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSVignetteiPhone.png; sourceTree = "<group>"; };
-		46616C79137C729400D53D3D /* SSVignetteiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SSVignetteiPhone@2x.png"; sourceTree = "<group>"; };
 		46616C7F137C750500D53D3D /* SSDrawingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDrawingUtilities.h; sourceTree = "<group>"; };
 		46616C80137C750500D53D3D /* SSDrawingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDrawingUtilities.m; sourceTree = "<group>"; };
 		46616C81137C750500D53D3D /* UIView+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSToolkitAdditions.h"; sourceTree = "<group>"; };
@@ -2210,9 +2204,6 @@
 				46616C82137C750500D53D3D /* UIView+SSToolkitAdditions.m */,
 				46616C85137C754900D53D3D /* UIImage+SSToolkitAdditions.h */,
 				46616C86137C754900D53D3D /* UIImage+SSToolkitAdditions.m */,
-				46616C77137C729400D53D3D /* SSVignetteiPad.png */,
-				46616C78137C729400D53D3D /* SSVignetteiPhone.png */,
-				46616C79137C729400D53D3D /* SSVignetteiPhone@2x.png */,
 			);
 			path = HUD;
 			sourceTree = "<group>";
@@ -3959,9 +3950,6 @@
 				460736EF137C2F1C00D77DB9 /* AuthenticateServerCellBgNormal@2x.png in Resources */,
 				460736F0137C2F1C00D77DB9 /* AuthenticateServerCellBgSelected@2x.png in Resources */,
 				460736F1137C2F1C00D77DB9 /* AuthenticateTextfield@2x.png in Resources */,
-				46616C7C137C729400D53D3D /* SSVignetteiPad.png in Resources */,
-				46616C7D137C729400D53D3D /* SSVignetteiPhone.png in Resources */,
-				46616C7E137C729400D53D3D /* SSVignetteiPhone@2x.png in Resources */,
 				7C2234B513810DFD006F847E /* CustomBackgroundForCellBottom.png in Resources */,
 				7C2234B613810DFD006F847E /* CustomBackgroundForCellMiddle.png in Resources */,
 				7C2234B713810DFD006F847E /* CustomBackgroundForCellSingle.png in Resources */,
