@@ -29,5 +29,4 @@
 - (NSDictionary*)getLocalization;	//Get language dictionary
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation;	//Change device orientation
 - (IBAction)onSettingBtn:(id)sender;	//Setting action
-
 @end

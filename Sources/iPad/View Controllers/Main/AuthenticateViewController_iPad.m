@@ -27,6 +27,10 @@
 #define tabsY 377 /* distance from the top of the screen to the top of the tabs */
 #define tabsYInLandscape 240 /* same as tabsY but in landscape mode */
 
+@interface AuthenticateViewController_iPad()
+- (void)positionSubViewsAtFirstLoad;
+@end
+
 @implementation AuthenticateViewController_iPad
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -82,8 +86,8 @@
     [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
     [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
 
-    [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-
+//    [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    [self positionSubViewsAtFirstLoad];
     //Stevan UI fixes
     _credViewController.panelBackground.image = 
         [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
@@ -99,11 +103,10 @@
                                   topCapHeight:10]];
 }
 
-
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     _interfaceOrientation = interfaceOrientation;
-
+    
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation))
     {
         // Landscape orientation
@@ -392,6 +395,54 @@
 
 - (void)moveDown {
     [(UIScrollView*)self.view setContentOffset:CGPointZero animated:YES];
+}
+
+/* positions the tab view, credential view and the setting button when the view controller is loaded */
+- (void)positionSubViewsAtFirstLoad
+{
+    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    NSString *imageName;
+    int distanceTabAndLogo;
+    if(UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+        imageName = @"Default-Landscape.png";
+        distanceTabAndLogo = tabsYInLandscape;
+    } else {
+        imageName = @"Default-Portrait.png";
+        distanceTabAndLogo = tabsY;
+    }
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:imageName]]];
+    [imageName release];
+    // Position the tabs
+    [self.tabView setFrame:
+     CGRectMake((self.view.center.x-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
+                distanceTabAndLogo,
+                tabsWidth,
+                tabsHeightAndLeftMargin)];
+    // Calculate the origin point of the views
+    // - at the center
+    // - with a -4 margin to avoid a space between the tab and the frame
+    CGPoint viewsOrigin = CGPointMake(self.view.center.x-_credViewController.view.bounds.size.width/2,
+                                      self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
+    // Position the views just below the tabs
+    [_credViewController.view setFrame:
+     CGRectMake(viewsOrigin.x, viewsOrigin.y,
+                _credViewController.view.bounds.size.width,
+                _credViewController.view.bounds.size.height)];
+    
+    [_servListViewController.view setFrame:
+     CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
+                self.tabView.frame.origin.y+self.tabView.frame.size.height-4,
+                _servListViewController.view.bounds.size.width,
+                _servListViewController.view.bounds.size.height)];
+    // Position the settings button under the views
+    // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
+    CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
+    [_btnSettings setFrame:
+     CGRectMake(self.view.center.x-_btnSettings.bounds.size.width/2,      // at the center
+                absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
+                _btnSettings.bounds.size.width,
+                _btnSettings.bounds.size.height)];
 }
 
 
