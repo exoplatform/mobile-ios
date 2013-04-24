@@ -14,7 +14,7 @@
 @protocol LoginProxyDelegate;
 
 
-@interface LoginProxy : NSObject<RKObjectLoaderDelegate> {
+@interface LoginProxy : NSObject<RKObjectLoaderDelegate, NSURLConnectionDataDelegate> {
         
     id<LoginProxyDelegate> _delegate;
 }
@@ -23,10 +23,10 @@
 
 + (void)doLogout;
 -(id)initWithDelegate:(id<LoginProxyDelegate>)delegate;
-- (void)retrievePlatformInformations;
-- (void)authenticateAndGetPlatformInfoWithUsername:(NSString *)username password:(NSString *)password;
-
-
+- (void)retrievePlatformInformations; // get public platform infos to fill in settings view when user is not signed in
+- (void)getPlatformInfoAfterAuthenticate; //get private infos after authenticating and then switch to activity stream
+- (void)authenticate;
+- (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password;
 
 @end
 

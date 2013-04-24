@@ -10,10 +10,17 @@
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
 
+@interface LoginProxy()
+//private variables
+@property (nonatomic,retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
+
+@end
 @implementation LoginProxy
 
 @synthesize delegate = _delegate;
-
+@synthesize username;
+@synthesize password;
 
 -(id)initWithDelegate:(id<LoginProxyDelegate>)delegate {
     if ((self = [super init])) {
@@ -21,7 +28,15 @@
     }
     return self;
 }
-
+-(id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)userName password:(NSString *)passWord
+{
+    if((self = [super init])) {
+        _delegate = delegate;
+        self.username = userName;
+        self.password = passWord;
+    }
+    return self;
+}
 
 + (void)doLogout {
     // Remove Cookies
@@ -85,16 +100,27 @@
     [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];          
 }
 
-- (void)authenticateAndGetPlatformInfoWithUsername:(NSString *)username password:(NSString *)password {
+#pragma mark Methods for authentication
+- (void)authenticate
+{
+    NSString *dest = [NSString stringWithFormat:@"%@/rest/private/",[[ApplicationPreferencesManager sharedInstance] selectedDomain]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:dest] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10.0];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self] ;
+    
+    [connection start];
+}
+
+- (void)getPlatformInfoAfterAuthenticate {
     NSString *baseURL = [self createBaseURL];
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
     RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:baseURL];
-    manager.client.username = [NSString stringWithFormat:@"%@", username];
-    manager.client.password = [NSString stringWithFormat:@"%@", password];
+    manager.client.username = self.username;
+    manager.client.password = self.password;
     manager.client.cachePolicy = RKRequestCachePolicyNone;
+
     [RKObjectManager setSharedManager:manager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
@@ -110,6 +136,7 @@
      nil];
     // add '#' into the link to prevent caching result
     [manager loadObjectsAtResourcePath:@"private/platform/info#" objectMapping:mapping delegate:self];
+    
 }
 
 
@@ -154,7 +181,36 @@
 - (void) dealloc {
     _delegate = nil;
     [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
+    [self.username release];
+    [self.password release];
     [super dealloc];
+}
+
+#pragma mark NSURLConnection delegate methods
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if([challenge previousFailureCount] == 0) {
+        NSLog(@"1.received challenge for authentication");
+        
+        NSURLCredential *credential = [NSURLCredential credentialWithUser:self.username password:self.password persistence:NSURLCredentialPersistenceNone];
+        [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+        
+    } else {
+        NSLog(@"login failed");
+        //alert to user that he entered incorrect username/password
+        [self.delegate authenticateFailedWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUserCancelledAuthentication userInfo:nil]];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"2.received response, login successfully");
+    [self getPlatformInfoAfterAuthenticate];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"Error when authenticating:%@",[error localizedDescription]);
+    [self.delegate authenticateFailedWithError:error];
 }
 
 @end
