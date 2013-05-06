@@ -22,7 +22,7 @@ typedef enum {
 
 //Login page
 
-@interface AuthenticateViewController : UIViewController <LoginProxyDelegate, JMTabViewDelegate> 
+@interface AuthenticateViewController : UIViewController <LoginProxyDelegate, JMTabViewDelegate, UIAlertViewDelegate>
 {
 	NSString*                   _strBSuccessful;	//Login status
     IBOutlet UIButton*          _btnSettings;

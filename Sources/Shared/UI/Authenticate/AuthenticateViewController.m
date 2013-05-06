@@ -276,8 +276,9 @@
 // Called by LoginProxy when login has failed
 - (void)authenticateFailedWithError:(NSError *)error {
     [self view].userInteractionEnabled = YES;
-    [self.hud dismiss];
-    
+    //MOB-1453: bug caused by https://github.com/soffes/sstoolkit/issues/147
+    //workaround: dismiss hud after clicking OK in alert, in a delegate method
+    [self.hud setHidden:YES];
     if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
         [alert show];
@@ -336,6 +337,13 @@
 - (void) updateLabelAfterLogOut
 {
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
+}
+
+#pragma mark UIAlertViewDelegate method
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.hud dismiss];
+    [self.hud setHidden:NO];
 }
 @end
 
