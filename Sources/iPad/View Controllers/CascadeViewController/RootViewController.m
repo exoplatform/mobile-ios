@@ -56,7 +56,10 @@
 
 @end
 
-@implementation RootViewController
+@implementation RootViewController {
+    BOOL willFixLaunchInLandscape; // see MOB-1457
+    float runningiOSVersion;
+}
 @synthesize menuViewController, stackScrollViewController, isCompatibleWithSocial = _isCompatibleWithSocial;
 
 @synthesize duration, interfaceOrient;
@@ -75,6 +78,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    willFixLaunchInLandscape = YES;
+    runningiOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
     
 	UIViewExt *rootView = [[[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] autorelease];
 	rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
@@ -128,11 +134,17 @@
     [menuViewController tableView:menuViewController.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    //UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    //[self willAnimateRotationToInterfaceOrientation:self.interfaceOrient duration:duration];
+// MOB-1457: willAnimateRotationToInterfaceOrientation is not called when the app is launched in
+// iOS 6. It causes an UI bug if starting app in landscape mode. We need to call it manually in
+// viewWillLayoutSubviews method.
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+        if(willFixLaunchInLandscape && (runningiOSVersion >= 6.0)) {
+        [self willAnimateRotationToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:duration];
+        willFixLaunchInLandscape = NO; // only need to fix 1 time, when the app is launched.
+    }
 }
 
 -(void)changeOrientation:(NSNotification *)notification{
