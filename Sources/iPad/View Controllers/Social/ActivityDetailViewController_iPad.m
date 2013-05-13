@@ -22,7 +22,7 @@
 #import "RoundRectView.h"
 
 #define kMinimumAdvancedInfoCellHeight 400.0
-
+#define kAdvancedInfoCellHeight 760.0
 @implementation ActivityDetailViewController_iPad
 
 @synthesize extraActionsCell = _extraActionsCell;
@@ -246,6 +246,9 @@
     if (indexPath.section == 1) {
         return self.extraActionsCell.frame.size.height;
     } else if (indexPath.section == 2) {
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) { //workaround for MOB-1461
+            return kAdvancedInfoCellHeight;
+        }
         return self.advancedInfoController.view.frame.size.height;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
