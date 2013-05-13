@@ -85,7 +85,7 @@
     [mapping mapKeyPathsToAttributes:
      @"identityId",@"identityId",
      @"liked",@"liked",
-     @"postedTime",@"postedTime",            
+     @"postedTime",@"postedTime",
      @"type",@"type",
      @"id",@"activityId",
      @"title",@"title",
@@ -96,6 +96,7 @@
      @"totalNumberOfLikes",@"totalNumberOfLikes",
      @"templateParams", @"templateParams",
      @"activityStream", @"activityStream",
+     @"lastUpdated",@"lastUpdated",
     nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
@@ -137,6 +138,7 @@
      @"titleId",@"titleId",
      @"templateParams", @"templateParams",
      @"activityStream", @"activityStream",
+     @"lastUpdated", @"lastUpdated",
      nil];
     
     [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
