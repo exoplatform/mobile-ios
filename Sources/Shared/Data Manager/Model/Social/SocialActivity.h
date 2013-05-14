@@ -18,6 +18,7 @@
 @property (nonatomic, assign) int totalNumberOfLikes;
 @property BOOL liked;
 @property double postedTime;
+@property double lastUpdated;
 @property CGFloat cellHeight;
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSDictionary* activityStream;

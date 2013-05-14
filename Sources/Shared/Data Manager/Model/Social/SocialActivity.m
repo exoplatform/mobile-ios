@@ -19,6 +19,7 @@
 @synthesize totalNumberOfComments = _totalNumberOfComments;
 @synthesize liked = _liked;
 @synthesize postedTime = _postedTime;
+@synthesize lastUpdated = _lastUpdated;
 @synthesize cellHeight = _cellHeight;
 @synthesize type = _type;
 @synthesize activityStream = _activityStream;
