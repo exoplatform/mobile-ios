@@ -169,7 +169,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
 #pragma mark - Table view Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
