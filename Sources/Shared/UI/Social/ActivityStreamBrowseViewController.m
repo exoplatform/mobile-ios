@@ -58,6 +58,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)loadImagesForOnscreenRows;
 - (void)callProxiesToReloadActivityStream;
+- (BOOL)shoudAutoLoadMore;
 
 @end
 
@@ -432,9 +433,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     self.arrayOfSectionsTitle = [[[NSMutableArray alloc] init] autorelease];
     
     self.sortedActivities = [[[NSMutableDictionary alloc] init] autorelease];
+    float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
     
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"postedTime"
+    //from Plf 4, the activities are sorted by last updated time
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:(plfVersion < 4) ? @"postedTime" : @"lastUpdated"
                                                                     ascending:NO] autorelease];
+    
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     self.arrActivityStreams = [[[NSMutableArray alloc] initWithArray:[self.arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]] autorelease];
     
@@ -916,7 +920,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     }
 }
 
-#pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
 // Load images for all onscreen rows when scrolling is finished
@@ -943,14 +946,17 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     //[self loadImagesForOnscreenRows];
     
     // When the user has reached the bottom of the list, load more activities
+       
     if (scrollView.contentOffset.y == scrollView.contentSize.height - scrollView.bounds.size.height) {
-        // First we get the last activity of the table
-        NSMutableArray *lastSectionArray = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:_arrayOfSectionsTitle.count-1]];
-        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:lastSectionArray.count-1 inSection:_tblvActivityStream.numberOfSections-1];
-        _activityAction = ActivityActionLoadMore;
-        SocialActivity* lastActivity = [self getSocialActivityStreamForIndexPath:indexPath];
-        // Then we load the activities before that
-        [self loadActivitiesBeforeActivity:lastActivity];
+        if([self shoudAutoLoadMore]) {
+            // First we get the last activity of the table
+            NSMutableArray *lastSectionArray = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:_arrayOfSectionsTitle.count-1]];
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:lastSectionArray.count-1 inSection:_tblvActivityStream.numberOfSections-1];
+            _activityAction = ActivityActionLoadMore;
+            SocialActivity* lastActivity = [self getSocialActivityStreamForIndexPath:indexPath];
+            // Then we load the activities before that
+            [self loadActivitiesBeforeActivity:lastActivity];
+        }
     }
 }
          
@@ -1014,5 +1020,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     }
     [self.view setNeedsDisplay];
 }
+
+#pragma mark - auto load more helpers
+- (BOOL)shoudAutoLoadMore
+{
+    NSString *plfVersion = [[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER];
+    
+    //no auto load more for plf 4.0.0
+    return [plfVersion rangeOfString:@"4.0.0"].location == NSNotFound; }
 
 @end

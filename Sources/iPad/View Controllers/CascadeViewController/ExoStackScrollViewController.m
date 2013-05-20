@@ -90,7 +90,9 @@
                 // Ensure we don't move more panes than there are left to move
                 if (activePaneTag < nbOfPanesMoved) nbOfPanesMoved--;
                 // Set the scrollsToTop property
-                [self setScrollToTopForViewController:[viewControllersStack objectAtIndex:activePaneTag] withScroll:NO];
+                if(activePaneTag < [viewControllersStack count]) { //MOB-1459: avoid out of bound exception
+                    [self setScrollToTopForViewController:[viewControllersStack objectAtIndex:activePaneTag] withScroll:NO];
+                }
                 [self setScrollToTopForViewController:[viewControllersStack objectAtIndex:activePaneTag-nbOfPanesMoved] withScroll:YES];
             }
             // Check whether the left menu was opened by the gesture

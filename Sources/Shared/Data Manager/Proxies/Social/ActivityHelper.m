@@ -371,7 +371,7 @@
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
             }
-            fHeight += h - 20;
+            fHeight += h;
         }
             break;
         case ACTIVITY_ANSWER_ADD_QUESTION:

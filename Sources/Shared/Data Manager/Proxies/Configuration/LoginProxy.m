@@ -190,13 +190,11 @@
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     if([challenge previousFailureCount] == 0) {
-        NSLog(@"1.received challenge for authentication");
         
         NSURLCredential *credential = [NSURLCredential credentialWithUser:self.username password:self.password persistence:NSURLCredentialPersistenceNone];
         [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
         
     } else {
-        NSLog(@"login failed");
         //alert to user that he entered incorrect username/password
         [self.delegate authenticateFailedWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUserCancelledAuthentication userInfo:nil]];
     }
@@ -204,12 +202,10 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    NSLog(@"2.received response, login successfully");
     [self getPlatformInfoAfterAuthenticate];
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"Error when authenticating:%@",[error localizedDescription]);
     [self.delegate authenticateFailedWithError:error];
 }
 

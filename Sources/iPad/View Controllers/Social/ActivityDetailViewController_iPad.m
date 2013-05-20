@@ -199,9 +199,11 @@
     if(emptyview != nil){
         [emptyview changeOrientation];
     }
+    [self.tblvActivityDetail reloadData];
+    
 }
 
-#pragma mark - UITableViewDelegate 
+#pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
