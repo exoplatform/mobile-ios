@@ -158,6 +158,8 @@
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _hud = nil; // release here so it will be re-init next login to avoid orientation issue in MOB-1452
+    [_hud release];
 }
 
 -(void) initTabsAndViews {
