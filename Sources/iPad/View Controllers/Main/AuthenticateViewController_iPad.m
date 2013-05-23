@@ -28,7 +28,6 @@
 #define tabsYInLandscape 240 /* same as tabsY but in landscape mode */
 
 @interface AuthenticateViewController_iPad()
-- (void)positionSubViewsAtFirstLoad;
 @end
 
 @implementation AuthenticateViewController_iPad
@@ -86,8 +85,6 @@
     [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
     [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
 
-//    [self changeOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-    [self positionSubViewsAtFirstLoad];
     //Stevan UI fixes
     _credViewController.panelBackground.image = 
         [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
@@ -101,6 +98,15 @@
     [_credViewController.txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
+}
+- (void)viewWillLayoutSubviews
+{
+    //in iOS 5, changeOrientation is called automatically by willAnimateRotationToInterfaceOrientation
+    //iOS 6:need to call changeOrientation manually
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
+        [self changeOrientation:[UIApplication sharedApplication].statusBarOrientation];
+    }
+
 }
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -396,54 +402,5 @@
 - (void)moveDown {
     [(UIScrollView*)self.view setContentOffset:CGPointZero animated:YES];
 }
-
-/* positions the tab view, credential view and the setting button when the view controller is loaded */
-- (void)positionSubViewsAtFirstLoad
-{
-    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-    NSString *imageName;
-    int distanceTabAndLogo;
-    if(UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-        imageName = @"Default-Landscape.png";
-        distanceTabAndLogo = tabsYInLandscape;
-    } else {
-        imageName = @"Default-Portrait.png";
-        distanceTabAndLogo = tabsY;
-    }
-    
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:imageName]]];
-    [imageName release];
-    // Position the tabs
-    [self.tabView setFrame:
-     CGRectMake((self.view.center.x-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
-                distanceTabAndLogo,
-                tabsWidth,
-                tabsHeightAndLeftMargin)];
-    // Calculate the origin point of the views
-    // - at the center
-    // - with a -4 margin to avoid a space between the tab and the frame
-    CGPoint viewsOrigin = CGPointMake(self.view.center.x-_credViewController.view.bounds.size.width/2,
-                                      self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
-    // Position the views just below the tabs
-    [_credViewController.view setFrame:
-     CGRectMake(viewsOrigin.x, viewsOrigin.y,
-                _credViewController.view.bounds.size.width,
-                _credViewController.view.bounds.size.height)];
-    
-    [_servListViewController.view setFrame:
-     CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
-                self.tabView.frame.origin.y+self.tabView.frame.size.height-4,
-                _servListViewController.view.bounds.size.width,
-                _servListViewController.view.bounds.size.height)];
-    // Position the settings button under the views
-    // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
-    CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
-    [_btnSettings setFrame:
-     CGRectMake(self.view.center.x-_btnSettings.bounds.size.width/2,      // at the center
-                absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
-                _btnSettings.bounds.size.width,
-                _btnSettings.bounds.size.height)];
-}
-
 
 @end
