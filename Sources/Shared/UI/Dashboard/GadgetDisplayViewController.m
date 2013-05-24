@@ -44,5 +44,17 @@
     self.title = _gadget.gadgetName;
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [super webViewDidFinishLoad:webView];
+    
+    //add the meta tag named 'viewport' to take the full device-width for webview to display gadgets (MOB-1420)
+    NSString* js = @"var meta = document.createElement('meta'); " \
+                    "meta.setAttribute( 'name', 'viewport' ); " \
+                    "meta.setAttribute( 'content', 'initial-scale = 1.0, user-scalable = yes' ); " \
+                    "document.getElementsByTagName('head')[0].appendChild(meta)";
+    
+    [webView stringByEvaluatingJavaScriptFromString: js];
+}
 
 @end

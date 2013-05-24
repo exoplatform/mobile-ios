@@ -11,7 +11,7 @@
 #import "eXoDisplayViewController.h"
 
 //Display gadget content
-@interface GadgetDisplayViewController : eXoDisplayViewController{
+@interface GadgetDisplayViewController : eXoDisplayViewController {
 	GadgetItem* _gadget;	//Gadget 
 }
 
