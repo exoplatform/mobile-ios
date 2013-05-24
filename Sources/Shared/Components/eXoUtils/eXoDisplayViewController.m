@@ -46,7 +46,7 @@
     [_webView setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
     _webView.delegate = self;
     _webView.opaque = NO;
-
+    [_webView setScalesPageToFit:YES];
     if(_url != nil)
 	{
         NSURLRequest* request = [NSURLRequest requestWithURL:_url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];	
