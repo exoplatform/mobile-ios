@@ -64,7 +64,6 @@
 #endif
     
     window.rootViewController = viewController;
-	[window addSubview:viewController.view];
     [window makeKeyAndVisible];
                 
     return YES;
