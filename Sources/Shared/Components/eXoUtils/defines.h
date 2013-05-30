@@ -92,3 +92,5 @@
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
+//iPhone 5 screen height minus the navigation bar and status bar: 568 - 44 - 20 = 504
+#define iPHONE_5_SCREEN_HEIGH_MINUS_NAV_AND_STATUS_BAR 504
