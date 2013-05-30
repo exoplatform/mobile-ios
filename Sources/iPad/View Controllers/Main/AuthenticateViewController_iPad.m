@@ -101,11 +101,9 @@
 }
 - (void)viewWillLayoutSubviews
 {
-    //in iOS 5, changeOrientation is called automatically by willAnimateRotationToInterfaceOrientation
-    //iOS 6:need to call changeOrientation manually
-    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        [self changeOrientation:[UIApplication sharedApplication].statusBarOrientation];
-    }
+    //in iOS 6, willAnimateRotationToInterfaceOrientation is not called when the view is appeared
+    //need to call changeOrientation manually in this method.
+    [self changeOrientation:[UIApplication sharedApplication].statusBarOrientation];
 
 }
 
