@@ -14,7 +14,8 @@
 #import "LanguageHelper.h"
 #import "FileActionsViewController.h"
 #import "AppDelegate_iPhone.h"
-
+#import "eXoViewController.h"
+#import "defines.h"
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -50,13 +51,17 @@
     currentPopoverCellIndex = -1;
     
     self.view.title = self.title;
-    
     if (self.actionVisibleOnFolder) {
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     } else {
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = nil;
     }
-    
+
+    if([eXoViewController isHighScreen]) {
+        CGRect tmpFrame = self.tblFiles.frame;
+        tmpFrame.size.height = iPHONE_5_SCREEN_HEIGH_MINUS_NAV_AND_STATUS_BAR;
+        self.tblFiles.frame = tmpFrame;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {    
@@ -64,6 +69,7 @@
     NSIndexPath*	selection = [_tblFiles indexPathForSelectedRow];
     if (selection)
         [_tblFiles deselectRowAtIndexPath:selection animated:YES];
+
 }
 
 
