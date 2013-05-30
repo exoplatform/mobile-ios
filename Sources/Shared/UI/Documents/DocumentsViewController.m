@@ -89,6 +89,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
     [_tblFiles setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:_tblFiles];
+    
 }
 
 -(void)stopRetrieveData{
@@ -316,7 +317,6 @@ static NSString *PRIVATE_GROUP = @"Private";
     //Hack for the tableview backgroung
     [_tblFiles setBackgroundView:nil];
     [_tblFiles setBackgroundView:[[[UIView alloc] init] autorelease]];
-  
     if (_rootFile) {
         self.title = _rootFile.name;
     } else {

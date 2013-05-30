@@ -19,7 +19,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
-
     return YES;
 }
 
