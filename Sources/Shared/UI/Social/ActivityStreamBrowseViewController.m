@@ -60,10 +60,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)callProxiesToReloadActivityStream;
 - (BOOL)shoudAutoLoadMore;
 
+
 @end
 
 
-@implementation ActivityStreamBrowseViewController
+@implementation ActivityStreamBrowseViewController {
+    float plfVersion;
+}
 
 //@synthesize socialUserProfile = _socialUserProfile;
 @synthesize socialActivityStreamProxy = _socialActivityStreamProxy;
@@ -202,7 +205,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
             SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
+            
             [socialActivityStream convertToPostedTimeInWords];
+            [socialActivityStream convertToUpdatedTimeInWords];
             [socialActivityStream convertHTMLEncoding];
             [socialActivityStream getActivityType];
             [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
@@ -353,6 +358,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];    
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
@@ -418,12 +426,18 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)addTimeToActivities:(NSDate*)dateOfLastUpdate 
 {
     int intervalBetweenNowAndLastUpdate = [dateOfLastUpdate timeIntervalSinceNow];
+    
     //Browse each activities
     for (SocialActivity *a in _arrActivityStreams) {
-        a.postedTime += intervalBetweenNowAndLastUpdate;
-        
-        //Change the value of the label displayed
-        [a convertToPostedTimeInWords];
+        if(plfVersion < 4) {
+            a.postedTime += intervalBetweenNowAndLastUpdate;
+            //Change the value of the label displayed
+            [a convertToPostedTimeInWords];
+        } else {
+            a.lastUpdated += intervalBetweenNowAndLastUpdate;
+            //Change the value of the label displayed
+            [a convertToUpdatedTimeInWords];
+        }
     }
 }
 
@@ -433,7 +447,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     self.arrayOfSectionsTitle = [[[NSMutableArray alloc] init] autorelease];
     
     self.sortedActivities = [[[NSMutableDictionary alloc] init] autorelease];
-    float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
     
     //from Plf 4, the activities are sorted by last updated time
     NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:(plfVersion < 4) ? @"postedTime" : @"lastUpdated"
@@ -446,10 +459,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     for (SocialActivity *a in _arrActivityStreams) {
         
         //Check activities of today
-        long postedTimeInSecond = round(a.postedTime/1000);
+        long timeInSecond = plfVersion < 4 ? round(a.postedTime/1000) : round(a.lastUpdated/1000);
         long timeIntervalNow = [[NSDate date] timeIntervalSince1970];
         
-        int time = (timeIntervalNow - postedTimeInSecond);
+        int time = (timeIntervalNow - timeInSecond);
         
         if (time < 86400) {
             //Search the current array of activities for today
@@ -472,17 +485,17 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         else
         {
             //Search the current array of activities for current key
-            NSMutableArray *arrayOfCurrentKeys = [_sortedActivities objectForKey:a.postedTimeInWords];
+            NSMutableArray *arrayOfCurrentKeys = [_sortedActivities objectForKey:(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords];
             
             // if the array not yet exist, we create it
             if (arrayOfCurrentKeys == nil) {
                 //create the array
                 arrayOfCurrentKeys = [[[NSMutableArray alloc] init] autorelease];
                 //set it into the dictonary
-                [_sortedActivities setObject:arrayOfCurrentKeys forKey:a.postedTimeInWords];
+                [_sortedActivities setObject:arrayOfCurrentKeys forKey:(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords];
                 
                 //set the key to the array of sections title 
-                [_arrayOfSectionsTitle addObject:a.postedTimeInWords];
+                [_arrayOfSectionsTitle addObject:(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords];
             } 
             
             //finally add the object to the array
@@ -1017,6 +1030,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [_tblvActivityStream reloadData];
     for (SocialActivity *a in _arrActivityStreams) {
         [a convertToPostedTimeInWords];
+        [a convertToUpdatedTimeInWords];
     }
     [self.view setNeedsDisplay];
 }
@@ -1024,9 +1038,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 #pragma mark - auto load more helpers
 - (BOOL)shoudAutoLoadMore
 {
-    NSString *plfVersion = [[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER];
+    NSString *plfVersionStr = [[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER];
     
     //no auto load more for plf 4.0.0
-    return [plfVersion rangeOfString:@"4.0.0"].location == NSNotFound; }
+    return [plfVersionStr rangeOfString:@"4.0.0"].location == NSNotFound; }
 
 @end

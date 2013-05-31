@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSArray* comments;
 
 @property (nonatomic, retain) NSString* postedTimeInWords;
+@property (nonatomic, retain) NSString* updatedTimeInWords;
 @property (nonatomic, retain) NSDictionary* templateParams; 
 @property int           activityType;
 
@@ -41,5 +42,6 @@
 - (void)convertHTMLEncoding;
 - (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value;
 - (void)cellHeightCalculationForWidth:(CGFloat)fWidth;
+- (void)convertToUpdatedTimeInWords;
 
 @end
