@@ -123,6 +123,7 @@
  * Activity stream
  */
 "numOfLikers" = "%d likers";
+"numOfLiker" = "%d liker";
 "likeThisActivity" = "%d people like this";
 "NoOneLikeThis" = "No one likes this";
 "ActivityDetails" = "Activity details";

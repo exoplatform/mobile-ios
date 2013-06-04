@@ -122,7 +122,8 @@
 /*
  * Activity stream
  */
-"numOfLikers" = "%d aime(s)";
+"numOfLikers" = "%d aimes";
+"numOfLiker" = "%d aime";
 "likeThisActivity" = "%d aiment l'activité";
 "NoOneLikeThis" = "Personne n'aime cela pour le moment";
 "ActivityDetails" = "Détails de l'activité";
