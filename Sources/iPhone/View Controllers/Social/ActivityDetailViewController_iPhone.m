@@ -221,7 +221,7 @@
     if (indexPath.section == 1) {        
         ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
         likersView.socialActivity = self.socialActivity;
-        NSString *likerLabel = (self.socialActivity.totalNumberOfLikes < 1) ? @"numOfLiker" : @"numOfLikers";
+        NSString *likerLabel = (self.socialActivity.totalNumberOfLikes <= 1) ? @"numOfLiker" : @"numOfLikers";
         likersView.view.title = [NSString stringWithFormat:Localize(likerLabel), self.socialActivity.totalNumberOfLikes];
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:likersView animated:YES];
     } else {
