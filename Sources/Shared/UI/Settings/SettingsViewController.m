@@ -323,6 +323,7 @@ typedef enum {
 - (void)rememberMeDidChange:(id)sender {
     [self enableDisableAutoLogin:self];
     [UserPreferencesManager sharedInstance].rememberMe = rememberMe.on;
+    [UserPreferencesManager sharedInstance].autoLogin = autoLogin.on;
     if (!rememberMe.on) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_USERNAME];
