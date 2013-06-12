@@ -8,7 +8,8 @@
 
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
-
+#import "ApplicationPreferencesManager.h"
+#import "AuthenticateViewController.h"
 @implementation eXoMobileAppDelegate
 
 
@@ -30,6 +31,15 @@
      */
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    ApplicationPreferencesManager *appPrefManage = [ApplicationPreferencesManager sharedInstance];
+    [appPrefManage loadReceivedUrlToPreference:url];
+    //in case receiving URL when the app is already opened, need to call this to have the up-to-date
+    //server list and username filled.
+    [self.window.rootViewController viewDidAppear:YES];
+    return YES;
+}
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     /*

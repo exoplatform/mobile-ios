@@ -134,6 +134,9 @@
     // If this method is called, it means the user is not signed in
     // so we can re-enable the Auto Login option
     _bAutoLoginIsDisabled = NO;
+    
+    [self autoFillReceivedUserName];
+    [_servListViewController.tbvlServerList reloadData]; //reload the server list
 }
 
 
@@ -347,6 +350,17 @@
 {
     [self.hud dismiss];
     [self.hud setHidden:NO];
+}
+
+// auto fill the username when the app receives a request from the browser
+- (void)autoFillReceivedUserName
+{
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_USER_NAME_FROM_URL];
+    if(username != NULL && [username length] > 0) {
+        _credViewController.txtfUsername.text = username;
+        _credViewController.txtfPassword.text = @"";
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:EXO_CLOUD_USER_NAME_FROM_URL];//just fill the first time receiving username
+    }
 }
 @end
 

@@ -12,7 +12,8 @@
 #import "CXMLNode.h"
 #import "CXMLElement.h"
 #import "defines.h"
-
+#import "LanguageHelper.h"
+#import "URLAnalyzer.h"
 #define CURRENT_USER_NAME       [UserPreferencesManager sharedInstance].username
 
 #pragma mark - Server Object
@@ -404,4 +405,163 @@
     return path;
 }
 
+
+#pragma mark - Server Manager
+// Check if the server already exists (both name and URL, ignoring the case)
+// Ignore the index of the server you are currently editing
+// Ignore -1 to compare with all the existing servers
+- (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index {
+    
+    for (int i = 0; i < [self.serverList count]; i++)
+    {
+        if (index==i)continue; // ignore the server specified by index
+        ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
+        NSString* tmpServName = [tmpServerObj._strServerName lowercaseString];
+        NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
+        if ([tmpServName isEqualToString:[strServerName lowercaseString]] ||
+            [tmpServURL isEqualToString:[strServerUrl lowercaseString]])
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Unique private method to add/edit a server, avoids duplicating common code
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl atIndex:(int)index {
+    
+    // We don't specify an existing server so it's a new one
+    if (index == -1)
+    {
+        //Create the new server
+        ServerObj* serverObj = [[ServerObj alloc] init];
+        serverObj._strServerName = strServerName;
+        serverObj._strServerUrl = strServerUrl;
+        serverObj._bSystemServer = NO;
+        
+        //Add the server in configuration
+        NSMutableArray* arrAddedServer = [self loadUserConfiguration];
+        [arrAddedServer addObject:serverObj];
+        [self writeUserConfiguration:arrAddedServer];
+        [serverObj release];
+        [self loadServerList]; // reload list of servers
+    }
+    // Edit the server specified by index
+    else
+    {
+        ServerObj* serverObjEdited = [self.serverList objectAtIndex:index];
+        ServerObj* tmpServerObj;
+        
+        serverObjEdited._strServerName = strServerName;
+        serverObjEdited._strServerUrl = strServerUrl;
+        
+        [self.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
+        
+        NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < [self.serverList count]; i++)
+        {
+            tmpServerObj = [self.serverList objectAtIndex:i];
+            if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer)
+            {
+                [arrTmp addObject:tmpServerObj];
+            }
+        }
+        
+        if (serverObjEdited._bSystemServer)
+        {
+            [self writeSystemConfiguration:arrTmp];
+        }
+        else
+        {
+            [self writeUserConfiguration:arrTmp];
+        }
+        
+        [self loadServerList];
+    }
+    
+    // If this is the only server: select it automatically
+    if ([self.serverList count] == 1)
+        [self setSelectedServerIndex:0];
+    
+    return YES;
+}
+
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:-1];
+}
+
+- (BOOL)deleteServerObjAtIndex:(int)index
+{
+    ServerObj* deletedServerObj = [[self.serverList objectAtIndex:index] retain];
+    
+    [self.serverList removeObjectAtIndex:index];
+    int currentIndex = self.selectedServerIndex;
+    if ([self.serverList count] > 0) {
+        if(currentIndex > index) {
+            self.selectedServerIndex = currentIndex - 1;
+        } else if (currentIndex == index) {
+            self.selectedServerIndex = currentIndex < self.serverList.count ? currentIndex : self.serverList.count - 1;
+        }
+    } else {
+        self.selectedServerIndex = -1;
+    }
+    NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [self.serverList count]; i++)
+    {
+        ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
+        if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer)
+        {
+            [arrTmp addObject:tmpServerObj];
+        }
+    }
+    
+    if (deletedServerObj._bSystemServer)
+    {
+        [self writeSystemConfiguration:arrTmp];
+    }
+    else
+    {
+        [self writeUserConfiguration:arrTmp];
+    }
+    [deletedServerObj release];
+    [arrTmp release];
+    
+    [self loadServerList]; // reload list of servers
+    
+    // If there is the only 1 remaining server: select it automatically
+    if ([self.serverList count] == 1)
+        [self setSelectedServerIndex:0];
+    
+    return YES;
+}
+
+#pragma mark Utils
+
+//get information given in an url request from the browser, and load to application preference
+//the url is in form: exomobile://username=xxx?serverUrl=yyy
+//get the username to fill to Authenticate view
+//get the server url to save to the server list and set it to be selected
+- (void)loadReceivedUrlToPreference:(NSURL *)url
+{
+    NSString *username = [[url host] substringFromIndex:[@"username=" length]];
+    //keep the username for later use
+    [[NSUserDefaults standardUserDefaults] setObject:username forKey:EXO_CLOUD_USER_NAME_FROM_URL];
+    
+    NSString *serverLink = [[url query] substringFromIndex:[@"serverUrl=" length]];
+    
+    NSURL *serverURL = [NSURL URLWithString:serverLink];
+    NSString *serverName = [serverURL host];
+
+    int serverIndex = [self checkServerAlreadyExistsWithName:serverName andURL:serverLink ignoringIndex:-1];
+    
+    if(serverIndex > -1) { //if the server is already exist, just set it to be selected
+        [self setSelectedServerIndex:serverIndex];
+    } else { //otherwise, add a new server to server list, and set it to be selected
+        [self addEditServerWithServerName:serverName andServerUrl:serverLink atIndex:-1];
+        [self setSelectedServerIndex:[self.serverList count] - 1];
+    }
+}
 @end

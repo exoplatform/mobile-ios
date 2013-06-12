@@ -674,26 +674,6 @@ typedef enum {
 }
 
 #pragma mark - ServerManagerProtocol
-// Check if the server already exists (both name and URL, ignoring the case)
-// Ignore the index of the server you are currently editing
-// Ignore -1 to compare with all the existing servers
-- (BOOL)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index {
-    ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    for (int i = 0; i < [appPrefManager.serverList count]; i++) 
-    {
-        if (index==i)continue; // ignore the server specified by index
-        ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
-        NSString* tmpServName = [tmpServerObj._strServerName lowercaseString];
-        NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
-        if ([tmpServName isEqualToString:[strServerName lowercaseString]] ||
-            [tmpServURL isEqualToString:[strServerUrl lowercaseString]])
-        {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 
 - (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
     
@@ -761,70 +741,20 @@ typedef enum {
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
-    // Check whether the name and URL already exists, ignoring case
-    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index]) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-        return NO;
+    ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
+    if(index == -1) {
+        // Check whether the name and URL already exists, ignoring case
+        if ([appPrefManager checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index] > -1) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            return NO;
+        }
     }
     
-    ApplicationPreferencesManager* appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    // We don't specify an existing server so it's a new one
-    if (index == -1)
-    {
-        //Create the new server
-        ServerObj* serverObj = [[ServerObj alloc] init];
-        serverObj._strServerName = cleanServerName;
-        serverObj._strServerUrl = cleanServerUrl;    
-        serverObj._bSystemServer = NO;
-        
-        //Add the server in configuration
-        NSMutableArray* arrAddedServer = [appPrefManager loadUserConfiguration];
-        [arrAddedServer addObject:serverObj];
-        [appPrefManager writeUserConfiguration:arrAddedServer];
-        [serverObj release];
-        [appPrefManager loadServerList]; // reload list of servers
-        [self.tableView reloadData];
-    }
-    // Edit the server specified by index
-    else
-    {
-        ServerObj* serverObjEdited = [appPrefManager.serverList objectAtIndex:index];
-        ServerObj* tmpServerObj;
-        
-        serverObjEdited._strServerName = cleanServerName;
-        serverObjEdited._strServerUrl = cleanServerUrl;
-        
-        [appPrefManager.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
-        
-        NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i < [appPrefManager.serverList count]; i++) 
-        {
-            tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
-            if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer) 
-            {
-                [arrTmp addObject:tmpServerObj];
-            }
-        }
-        
-        if (serverObjEdited._bSystemServer) 
-        {
-            [appPrefManager writeSystemConfiguration:arrTmp];
-        }
-        else
-        {
-            [appPrefManager writeUserConfiguration:arrTmp];
-        }
-        
-        [appPrefManager loadServerList];
-        [self.tableView reloadData];
-    }
+    [appPrefManager addEditServerWithServerName:cleanServerName andServerUrl:cleanServerUrl atIndex:index];
     
-    // If this is the only server: select it automatically
-    if ([appPrefManager.serverList count] == 1)
-        [appPrefManager setSelectedServerIndex:0];
+    [self.tableView reloadData];
     
     return YES;
 }
@@ -842,48 +772,8 @@ typedef enum {
 - (BOOL)deleteServerObjAtIndex:(int)index;
 {
     ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    ServerObj* deletedServerObj = [[appPrefManager.serverList objectAtIndex:index] retain];
-    
-    [appPrefManager.serverList removeObjectAtIndex:index];
-    int currentIndex = appPrefManager.selectedServerIndex;
-    if ([appPrefManager.serverList count] > 0) {
-        if(currentIndex > index) {
-            appPrefManager.selectedServerIndex = currentIndex - 1;
-        } else if (currentIndex == index) {
-            appPrefManager.selectedServerIndex = currentIndex < appPrefManager.serverList.count ? currentIndex : appPrefManager.serverList.count - 1;           
-        }        
-    } else {
-        appPrefManager.selectedServerIndex = -1;
-    }
-    NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < [appPrefManager.serverList count]; i++) 
-    {
-        ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
-        if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer) 
-        {
-            [arrTmp addObject:tmpServerObj];
-        }
-    }
-    
-    if (deletedServerObj._bSystemServer) 
-    {
-        [appPrefManager writeSystemConfiguration:arrTmp];
-    }
-    else
-    {
-        [appPrefManager writeUserConfiguration:arrTmp];
-    }
-    [deletedServerObj release];
-    [arrTmp release];
-    
-    [appPrefManager loadServerList]; // reload list of servers
+    [appPrefManager deleteServerObjAtIndex:index];
     [self.tableView reloadData];
-    
-    // If there is the only 1 remaining server: select it automatically
-    if ([appPrefManager.serverList count] == 1)
-        [appPrefManager setSelectedServerIndex:0];
-    
     return YES;
 }
 
