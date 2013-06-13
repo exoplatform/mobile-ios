@@ -420,6 +420,12 @@
 		7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */; };
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
 		7D67133B171BF8D600B8EB93 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */; };
+		7D993C411769A9080035835F /* gadgets.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C3E1769A9080035835F /* gadgets.png */; };
+		7D993C431769A9080035835F /* activity-stream.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C401769A9080035835F /* activity-stream.png */; };
+		7D993C451769CFA80035835F /* documents.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C441769CFA80035835F /* documents.png */; };
+		7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA017697D0A001CA575 /* WelcomeViewController.m */; };
+		7DB91BA617697D6E001CA575 /* WelcomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */; };
+		7DB91BA717697D6E001CA575 /* WelcomeViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1374,6 +1380,14 @@
 		7CFEB08613CA95B400D7C9FF /* SocialIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIdentity.h; sourceTree = "<group>"; };
 		7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentity.m; sourceTree = "<group>"; };
 		7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Splashscreen/@2x/Default-568h@2x.png"; sourceTree = "<group>"; };
+		7D993C3E1769A9080035835F /* gadgets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gadgets.png; sourceTree = "<group>"; };
+		7D993C401769A9080035835F /* activity-stream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-stream.png"; sourceTree = "<group>"; };
+		7D993C441769CFA80035835F /* documents.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = documents.png; sourceTree = "<group>"; };
+		7DB91B9F17697D0A001CA575 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		7DB91BA017697D0A001CA575 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		7DB91BA317697D6E001CA575 /* WelcomeViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController_iPhone.h; sourceTree = "<group>"; };
+		7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController_iPhone.m; sourceTree = "<group>"; };
+		7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController_iPhone.xib; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -2954,6 +2968,35 @@
 			path = Sources/Shared/Classes/KissXML;
 			sourceTree = SOURCE_ROOT;
 		};
+		7D993C2C1769A8E50035835F /* CloudScreenShot */ = {
+			isa = PBXGroup;
+			children = (
+				7D993C441769CFA80035835F /* documents.png */,
+				7D993C3E1769A9080035835F /* gadgets.png */,
+				7D993C401769A9080035835F /* activity-stream.png */,
+			);
+			path = CloudScreenShot;
+			sourceTree = "<group>";
+		};
+		7DB91B9E17697CE4001CA575 /* CloudSignup */ = {
+			isa = PBXGroup;
+			children = (
+				7DB91B9F17697D0A001CA575 /* WelcomeViewController.h */,
+				7DB91BA017697D0A001CA575 /* WelcomeViewController.m */,
+			);
+			path = CloudSignup;
+			sourceTree = "<group>";
+		};
+		7DB91BA217697D3D001CA575 /* CloudSignup */ = {
+			isa = PBXGroup;
+			children = (
+				7DB91BA317697D6E001CA575 /* WelcomeViewController_iPhone.h */,
+				7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */,
+				7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */,
+			);
+			path = CloudSignup;
+			sourceTree = "<group>";
+		};
 		890F75CD141EF6AA004D35FE /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
@@ -3087,6 +3130,7 @@
 		8947323B1336FFE400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7DB91BA217697D3D001CA575 /* CloudSignup */,
 				7CAB42D413A7689F00CED7A3 /* Social */,
 				8947338613370B4500B0AD11 /* File */,
 				8947338D13370B4500B0AD11 /* Gadget */,
@@ -3222,6 +3266,7 @@
 		894733F913370F4F00B0AD11 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				7D993C2C1769A8E50035835F /* CloudScreenShot */,
 				A65EAFB6159AFBDF00E598E0 /* HomeMenuBg.png */,
 				A65EAFB7159AFBDF00E598E0 /* HomeMenuBg@2x.png */,
 				1FD0C3F2143BF146002F40A7 /* EmptyScreens */,
@@ -3302,6 +3347,7 @@
 		8947349F1337125D00B0AD11 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7DB91B9E17697CE4001CA575 /* CloudSignup */,
 				A661D86A157EFE5400CCF870 /* Custom Views */,
 				461BFAB1141F4CD9009844F6 /* Settings */,
 				890F75CD141EF6AA004D35FE /* Authenticate */,
@@ -4242,6 +4288,10 @@
 				57A07118160FF48F002E2BAC /* Default-Portrait~ipad.png in Resources */,
 				57A07119160FF492002E2BAC /* Default-Portrait@2x~ipad.png in Resources */,
 				7D67133B171BF8D600B8EB93 /* Default-568h@2x.png in Resources */,
+				7DB91BA717697D6E001CA575 /* WelcomeViewController_iPhone.xib in Resources */,
+				7D993C411769A9080035835F /* gadgets.png in Resources */,
+				7D993C431769A9080035835F /* activity-stream.png in Resources */,
+				7D993C451769CFA80035835F /* documents.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4471,6 +4521,8 @@
 				57FB19CE15FD9670001F5C20 /* LoginProxy.m in Sources */,
 				57FB19D215FD96C0001F5C20 /* UserPreferencesManager.m in Sources */,
 				57FB1A6915FDCAF3001F5C20 /* ApplicationPreferencesManager.m in Sources */,
+				7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */,
+				7DB91BA617697D6E001CA575 /* WelcomeViewController_iPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@
 #import "HomeStyleSheet.h"
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
-
+#import "WelcomeViewController_iPhone.h"
 
 
 @implementation AppDelegate_iPhone
@@ -65,8 +65,9 @@
     }
     
 #endif
+    WelcomeViewController_iPhone *welcomeViewController = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
     
-    window.rootViewController = navigationController;
+    window.rootViewController = welcomeViewController;
 	[window makeKeyAndVisible];
     
 }
