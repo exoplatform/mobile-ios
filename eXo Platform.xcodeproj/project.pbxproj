@@ -423,6 +423,28 @@
 		7D993C411769A9080035835F /* gadgets.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C3E1769A9080035835F /* gadgets.png */; };
 		7D993C431769A9080035835F /* activity-stream.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C401769A9080035835F /* activity-stream.png */; };
 		7D993C451769CFA80035835F /* documents.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C441769CFA80035835F /* documents.png */; };
+		7D993C63176ABB410035835F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C62176ABB410035835F /* SignUpViewController.m */; };
+		7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */; };
+		7D993C79176ABB5E0035835F /* SignUpViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C77176ABB5E0035835F /* SignUpViewController_iPhone.xib */; };
+		7D993C7C176AC7920035835F /* AlreadyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C7B176AC7920035835F /* AlreadyAccountViewController.m */; };
+		7D993C80176AC9E90035835F /* AlreadyAccountViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C7E176AC9E80035835F /* AlreadyAccountViewController_iPhone.m */; };
+		7D993C81176AC9E90035835F /* AlreadyAccountViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C7F176AC9E90035835F /* AlreadyAccountViewController_iPhone.xib */; };
+		7D993C86176ACA290035835F /* WelcomeViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C84176ACA290035835F /* WelcomeViewController_iPad.m */; };
+		7D993C87176ACA290035835F /* WelcomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C85176ACA290035835F /* WelcomeViewController_iPad.xib */; };
+		7D993C8B176ACA3C0035835F /* SignUpViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C89176ACA3C0035835F /* SignUpViewController_iPad.m */; };
+		7D993C8C176ACA3C0035835F /* SignUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C8A176ACA3C0035835F /* SignUpViewController_iPad.xib */; };
+		7D993C90176ACA500035835F /* AlreadyAccountViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C8E176ACA500035835F /* AlreadyAccountViewController_iPad.m */; };
+		7D993C91176ACA500035835F /* AlreadyAccountViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C8F176ACA500035835F /* AlreadyAccountViewController_iPad.xib */; };
+		7D993CCF176AFC5D0035835F /* MailInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CCE176AFC5D0035835F /* MailInputViewController.m */; };
+		7D993CD3176AFD010035835F /* MailInputViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CD1176AFD000035835F /* MailInputViewController_iPhone.m */; };
+		7D993CD4176AFD010035835F /* MailInputViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993CD2176AFD000035835F /* MailInputViewController_iPhone.xib */; };
+		7D993CD8176AFD210035835F /* MailInputViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CD6176AFD210035835F /* MailInputViewController_iPad.m */; };
+		7D993CD9176AFD210035835F /* MailInputViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993CD7176AFD210035835F /* MailInputViewController_iPad.xib */; };
+		7D993CDC176AFEDD0035835F /* GreetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CDB176AFEDD0035835F /* GreetingViewController.m */; };
+		7D993CE0176AFEF90035835F /* GreetingViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CDE176AFEF80035835F /* GreetingViewController_iPhone.m */; };
+		7D993CE1176AFEF90035835F /* GreetingViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993CDF176AFEF90035835F /* GreetingViewController_iPhone.xib */; };
+		7D993CE5176AFF130035835F /* GreetingViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CE3176AFF130035835F /* GreetingViewController_iPad.m */; };
+		7D993CE6176AFF130035835F /* GreetingViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993CE4176AFF130035835F /* GreetingViewController_iPad.xib */; };
 		7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA017697D0A001CA575 /* WelcomeViewController.m */; };
 		7DB91BA617697D6E001CA575 /* WelcomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */; };
 		7DB91BA717697D6E001CA575 /* WelcomeViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */; };
@@ -1383,6 +1405,41 @@
 		7D993C3E1769A9080035835F /* gadgets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gadgets.png; sourceTree = "<group>"; };
 		7D993C401769A9080035835F /* activity-stream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-stream.png"; sourceTree = "<group>"; };
 		7D993C441769CFA80035835F /* documents.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = documents.png; sourceTree = "<group>"; };
+		7D993C61176ABB410035835F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		7D993C62176ABB410035835F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		7D993C75176ABB5E0035835F /* SignUpViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPhone.h; sourceTree = "<group>"; };
+		7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController_iPhone.m; sourceTree = "<group>"; };
+		7D993C77176ABB5E0035835F /* SignUpViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController_iPhone.xib; sourceTree = "<group>"; };
+		7D993C7A176AC7920035835F /* AlreadyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlreadyAccountViewController.h; sourceTree = "<group>"; };
+		7D993C7B176AC7920035835F /* AlreadyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlreadyAccountViewController.m; sourceTree = "<group>"; };
+		7D993C7D176AC9E80035835F /* AlreadyAccountViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlreadyAccountViewController_iPhone.h; sourceTree = "<group>"; };
+		7D993C7E176AC9E80035835F /* AlreadyAccountViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlreadyAccountViewController_iPhone.m; sourceTree = "<group>"; };
+		7D993C7F176AC9E90035835F /* AlreadyAccountViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlreadyAccountViewController_iPhone.xib; sourceTree = "<group>"; };
+		7D993C83176ACA290035835F /* WelcomeViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController_iPad.h; sourceTree = "<group>"; };
+		7D993C84176ACA290035835F /* WelcomeViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController_iPad.m; sourceTree = "<group>"; };
+		7D993C85176ACA290035835F /* WelcomeViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController_iPad.xib; sourceTree = "<group>"; };
+		7D993C88176ACA3C0035835F /* SignUpViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPad.h; sourceTree = "<group>"; };
+		7D993C89176ACA3C0035835F /* SignUpViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController_iPad.m; sourceTree = "<group>"; };
+		7D993C8A176ACA3C0035835F /* SignUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController_iPad.xib; sourceTree = "<group>"; };
+		7D993C8D176ACA500035835F /* AlreadyAccountViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlreadyAccountViewController_iPad.h; sourceTree = "<group>"; };
+		7D993C8E176ACA500035835F /* AlreadyAccountViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlreadyAccountViewController_iPad.m; sourceTree = "<group>"; };
+		7D993C8F176ACA500035835F /* AlreadyAccountViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlreadyAccountViewController_iPad.xib; sourceTree = "<group>"; };
+		7D993CCD176AFC5D0035835F /* MailInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailInputViewController.h; sourceTree = "<group>"; };
+		7D993CCE176AFC5D0035835F /* MailInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailInputViewController.m; sourceTree = "<group>"; };
+		7D993CD0176AFCFF0035835F /* MailInputViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailInputViewController_iPhone.h; sourceTree = "<group>"; };
+		7D993CD1176AFD000035835F /* MailInputViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailInputViewController_iPhone.m; sourceTree = "<group>"; };
+		7D993CD2176AFD000035835F /* MailInputViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailInputViewController_iPhone.xib; sourceTree = "<group>"; };
+		7D993CD5176AFD210035835F /* MailInputViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailInputViewController_iPad.h; sourceTree = "<group>"; };
+		7D993CD6176AFD210035835F /* MailInputViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailInputViewController_iPad.m; sourceTree = "<group>"; };
+		7D993CD7176AFD210035835F /* MailInputViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailInputViewController_iPad.xib; sourceTree = "<group>"; };
+		7D993CDA176AFEDC0035835F /* GreetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetingViewController.h; sourceTree = "<group>"; };
+		7D993CDB176AFEDD0035835F /* GreetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetingViewController.m; sourceTree = "<group>"; };
+		7D993CDD176AFEF80035835F /* GreetingViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetingViewController_iPhone.h; sourceTree = "<group>"; };
+		7D993CDE176AFEF80035835F /* GreetingViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetingViewController_iPhone.m; sourceTree = "<group>"; };
+		7D993CDF176AFEF90035835F /* GreetingViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GreetingViewController_iPhone.xib; sourceTree = "<group>"; };
+		7D993CE2176AFF120035835F /* GreetingViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetingViewController_iPad.h; sourceTree = "<group>"; };
+		7D993CE3176AFF130035835F /* GreetingViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetingViewController_iPad.m; sourceTree = "<group>"; };
+		7D993CE4176AFF130035835F /* GreetingViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GreetingViewController_iPad.xib; sourceTree = "<group>"; };
 		7DB91B9F17697D0A001CA575 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		7DB91BA017697D0A001CA575 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		7DB91BA317697D6E001CA575 /* WelcomeViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController_iPhone.h; sourceTree = "<group>"; };
@@ -2978,11 +3035,41 @@
 			path = CloudScreenShot;
 			sourceTree = "<group>";
 		};
+		7D993C82176AC9F80035835F /* CloudSignup */ = {
+			isa = PBXGroup;
+			children = (
+				7D993C83176ACA290035835F /* WelcomeViewController_iPad.h */,
+				7D993C84176ACA290035835F /* WelcomeViewController_iPad.m */,
+				7D993C85176ACA290035835F /* WelcomeViewController_iPad.xib */,
+				7D993C88176ACA3C0035835F /* SignUpViewController_iPad.h */,
+				7D993C89176ACA3C0035835F /* SignUpViewController_iPad.m */,
+				7D993C8A176ACA3C0035835F /* SignUpViewController_iPad.xib */,
+				7D993C8D176ACA500035835F /* AlreadyAccountViewController_iPad.h */,
+				7D993C8E176ACA500035835F /* AlreadyAccountViewController_iPad.m */,
+				7D993C8F176ACA500035835F /* AlreadyAccountViewController_iPad.xib */,
+				7D993CD5176AFD210035835F /* MailInputViewController_iPad.h */,
+				7D993CD6176AFD210035835F /* MailInputViewController_iPad.m */,
+				7D993CD7176AFD210035835F /* MailInputViewController_iPad.xib */,
+				7D993CE2176AFF120035835F /* GreetingViewController_iPad.h */,
+				7D993CE3176AFF130035835F /* GreetingViewController_iPad.m */,
+				7D993CE4176AFF130035835F /* GreetingViewController_iPad.xib */,
+			);
+			path = CloudSignup;
+			sourceTree = "<group>";
+		};
 		7DB91B9E17697CE4001CA575 /* CloudSignup */ = {
 			isa = PBXGroup;
 			children = (
 				7DB91B9F17697D0A001CA575 /* WelcomeViewController.h */,
 				7DB91BA017697D0A001CA575 /* WelcomeViewController.m */,
+				7D993C61176ABB410035835F /* SignUpViewController.h */,
+				7D993C62176ABB410035835F /* SignUpViewController.m */,
+				7D993C7A176AC7920035835F /* AlreadyAccountViewController.h */,
+				7D993C7B176AC7920035835F /* AlreadyAccountViewController.m */,
+				7D993CCD176AFC5D0035835F /* MailInputViewController.h */,
+				7D993CCE176AFC5D0035835F /* MailInputViewController.m */,
+				7D993CDA176AFEDC0035835F /* GreetingViewController.h */,
+				7D993CDB176AFEDD0035835F /* GreetingViewController.m */,
 			);
 			path = CloudSignup;
 			sourceTree = "<group>";
@@ -2993,6 +3080,18 @@
 				7DB91BA317697D6E001CA575 /* WelcomeViewController_iPhone.h */,
 				7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */,
 				7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */,
+				7D993C75176ABB5E0035835F /* SignUpViewController_iPhone.h */,
+				7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */,
+				7D993C77176ABB5E0035835F /* SignUpViewController_iPhone.xib */,
+				7D993C7D176AC9E80035835F /* AlreadyAccountViewController_iPhone.h */,
+				7D993C7E176AC9E80035835F /* AlreadyAccountViewController_iPhone.m */,
+				7D993C7F176AC9E90035835F /* AlreadyAccountViewController_iPhone.xib */,
+				7D993CD0176AFCFF0035835F /* MailInputViewController_iPhone.h */,
+				7D993CD1176AFD000035835F /* MailInputViewController_iPhone.m */,
+				7D993CD2176AFD000035835F /* MailInputViewController_iPhone.xib */,
+				7D993CDD176AFEF80035835F /* GreetingViewController_iPhone.h */,
+				7D993CDE176AFEF80035835F /* GreetingViewController_iPhone.m */,
+				7D993CDF176AFEF90035835F /* GreetingViewController_iPhone.xib */,
 			);
 			path = CloudSignup;
 			sourceTree = "<group>";
@@ -3094,6 +3193,7 @@
 		894732381336FFD400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7D993C82176AC9F80035835F /* CloudSignup */,
 				46A03A1813A7952400E71AF9 /* Social */,
 				46E96E30138370A30085DCB6 /* CascadeViewController */,
 				8947334713370B1900B0AD11 /* File */,
@@ -4292,6 +4392,15 @@
 				7D993C411769A9080035835F /* gadgets.png in Resources */,
 				7D993C431769A9080035835F /* activity-stream.png in Resources */,
 				7D993C451769CFA80035835F /* documents.png in Resources */,
+				7D993C79176ABB5E0035835F /* SignUpViewController_iPhone.xib in Resources */,
+				7D993C81176AC9E90035835F /* AlreadyAccountViewController_iPhone.xib in Resources */,
+				7D993C87176ACA290035835F /* WelcomeViewController_iPad.xib in Resources */,
+				7D993C8C176ACA3C0035835F /* SignUpViewController_iPad.xib in Resources */,
+				7D993C91176ACA500035835F /* AlreadyAccountViewController_iPad.xib in Resources */,
+				7D993CD4176AFD010035835F /* MailInputViewController_iPhone.xib in Resources */,
+				7D993CD9176AFD210035835F /* MailInputViewController_iPad.xib in Resources */,
+				7D993CE1176AFEF90035835F /* GreetingViewController_iPhone.xib in Resources */,
+				7D993CE6176AFF130035835F /* GreetingViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4523,6 +4632,19 @@
 				57FB1A6915FDCAF3001F5C20 /* ApplicationPreferencesManager.m in Sources */,
 				7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */,
 				7DB91BA617697D6E001CA575 /* WelcomeViewController_iPhone.m in Sources */,
+				7D993C63176ABB410035835F /* SignUpViewController.m in Sources */,
+				7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */,
+				7D993C7C176AC7920035835F /* AlreadyAccountViewController.m in Sources */,
+				7D993C80176AC9E90035835F /* AlreadyAccountViewController_iPhone.m in Sources */,
+				7D993C86176ACA290035835F /* WelcomeViewController_iPad.m in Sources */,
+				7D993C8B176ACA3C0035835F /* SignUpViewController_iPad.m in Sources */,
+				7D993C90176ACA500035835F /* AlreadyAccountViewController_iPad.m in Sources */,
+				7D993CCF176AFC5D0035835F /* MailInputViewController.m in Sources */,
+				7D993CD3176AFD010035835F /* MailInputViewController_iPhone.m in Sources */,
+				7D993CD8176AFD210035835F /* MailInputViewController_iPad.m in Sources */,
+				7D993CDC176AFEDD0035835F /* GreetingViewController.m in Sources */,
+				7D993CE0176AFEF90035835F /* GreetingViewController_iPhone.m in Sources */,
+				7D993CE5176AFF130035835F /* GreetingViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

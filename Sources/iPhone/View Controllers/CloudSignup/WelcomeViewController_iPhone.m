@@ -9,6 +9,9 @@
 #import "WelcomeViewController_iPhone.h"
 #import "AuthenticateViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
+#import "SignUpViewController_iPhone.h"
+#import "AlreadyAccountViewController_iPhone.h"
+
 @interface WelcomeViewController_iPhone ()
 
 @end
@@ -65,11 +68,28 @@
                     }];
 }
 
+
+- (void)signup:(id)sender
+{
+    SignUpViewController_iPhone *signupViewController = [[[SignUpViewController_iPhone alloc] initWithNibName:@"SignUpViewController_iPhone" bundle:nil] autorelease];
+    signupViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentModalViewController:signupViewController animated:YES];
+
+}
+
+- (void)login:(id)sender
+{
+    AlreadyAccountViewController_iPhone *alreadyAccountViewController = [[[AlreadyAccountViewController_iPhone alloc] initWithNibName:@"AlreadyAccountViewController_iPhone" bundle:nil] autorelease];
+    alreadyAccountViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentModalViewController:alreadyAccountViewController animated:YES];
+}
+
+#pragma mark ScrollViewDelegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth/2) / pageWidth) + 1;
     self.pageControl.currentPage = page;
-
 }
+
 @end

@@ -65,9 +65,17 @@
     }
     
 #endif
-    WelcomeViewController_iPhone *welcomeViewController = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
     
-    window.rootViewController = welcomeViewController;
+    BOOL accountConfigured = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+    
+    if(accountConfigured) { //if one account is configured, display Authenticate screen
+        window.rootViewController = navigationController;
+    } else {//otherwise display sign up screen
+        WelcomeViewController_iPhone *welcomeViewController = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
+        
+        window.rootViewController = welcomeViewController;
+    }
+    
 	[window makeKeyAndVisible];
     
 }

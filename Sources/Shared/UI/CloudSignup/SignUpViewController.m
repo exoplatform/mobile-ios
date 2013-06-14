@@ -1,20 +1,18 @@
 //
-//  WelcomeViewController.m
+//  SignUpViewController.m
 //  eXo Platform
 //
-//  Created by vietnq on 6/13/13.
+//  Created by vietnq on 6/14/13.
 //  Copyright (c) 2013 eXoPlatform. All rights reserved.
 //
 
-#import "WelcomeViewController.h"
 #import "SignUpViewController.h"
-@interface WelcomeViewController ()
+@interface SignUpViewController ()
 
 @end
 
-@implementation WelcomeViewController
-
-@synthesize loginButton, signupButton, pageControl, scrollView;
+@implementation SignUpViewController
+@synthesize cancelButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,28 +38,14 @@
 - (void)dealloc
 {
     [super dealloc];
-    [loginButton release];
-    [signupButton release];
-    [scrollView release];
-    [pageControl release];
+    [cancelButton release];
+    [mailInputViewController release];
+    [greetingViewController release];
 }
 
-- (void)skipCloudSignup:(id)sender
+- (void)cancel:(id)sender
 {
-    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)login:(id)sender
-{
-    
-}
-
-- (void)signup:(id)sender
-{
-    
-}
-- (void)scrollViewDidEndScroll:(UIScrollView *)scrollView
-{
-    
-}
 @end

@@ -16,5 +16,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *signupButton;
 
 - (IBAction)skipCloudSignup:(id)sender;
-
+- (IBAction)signup:(id)sender;
+- (IBAction)login:(id)sender;
 @end
