@@ -7,6 +7,8 @@
 //
 
 #import "AlreadyAccountViewController_iPhone.h"
+#import "AppDelegate_iPhone.h"
+#import "OnPremiseViewController_iPhone.h"
 
 @interface AlreadyAccountViewController_iPhone ()
 
@@ -27,6 +29,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Get started";
+    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
+    self.navigationItem.rightBarButtonItem = button;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,4 +42,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)connectToOnPremise:(id)sender
+{
+    
+    OnPremiseViewController_iPhone *onPremiseViewController = [[OnPremiseViewController_iPhone alloc] initWithNibName:@"OnPremiseViewController_iPhone" bundle:nil];
+    
+    [self.navigationController pushViewController:onPremiseViewController animated:YES];
+}
 @end

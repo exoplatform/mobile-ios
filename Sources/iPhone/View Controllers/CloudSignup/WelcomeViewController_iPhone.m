@@ -79,9 +79,13 @@
 
 - (void)login:(id)sender
 {
-    AlreadyAccountViewController_iPhone *alreadyAccountViewController = [[[AlreadyAccountViewController_iPhone alloc] initWithNibName:@"AlreadyAccountViewController_iPhone" bundle:nil] autorelease];
-    alreadyAccountViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentModalViewController:alreadyAccountViewController animated:YES];
+    AlreadyAccountViewController_iPhone *alreadyAccountViewController = [[AlreadyAccountViewController_iPhone alloc] initWithNibName:@"AlreadyAccountViewController_iPhone" bundle:nil];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:alreadyAccountViewController];
+   
+    navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    [self presentModalViewController:navigationController animated:YES];
 }
 
 #pragma mark ScrollViewDelegate methods

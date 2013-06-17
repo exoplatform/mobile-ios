@@ -1,18 +1,18 @@
 //
-//  AlreadyAccountViewController_iPad.m
+//  OnPremiseViewController_iPhone.m
 //  eXo Platform
 //
-//  Created by vietnq on 6/14/13.
+//  Created by vietnq on 6/17/13.
 //  Copyright (c) 2013 eXoPlatform. All rights reserved.
 //
 
-#import "AlreadyAccountViewController_iPad.h"
+#import "OnPremiseViewController_iPhone.h"
 
-@interface AlreadyAccountViewController_iPad ()
+@interface OnPremiseViewController_iPhone ()
 
 @end
 
-@implementation AlreadyAccountViewController_iPad
+@implementation OnPremiseViewController_iPhone
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

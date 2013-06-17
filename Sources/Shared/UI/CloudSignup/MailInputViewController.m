@@ -7,7 +7,8 @@
 //
 
 #import "MailInputViewController.h"
-
+#import "CloudUtils.h"
+#import "ExoCloudProxy.h"
 @interface MailInputViewController ()
 
 @end
@@ -47,20 +48,16 @@
 
 - (void)createAccount:(id)sender
 {
-    if([self mailIsCorrect:self.mailTf.text]) {
-        [self showGreeting];
+    if([CloudUtils checkEmailFormat:self.mailTf.text]) {
+        ExoCloudProxy *cloudProxy = [ExoCloudProxy sharedInstance];
+        CloudResponse cloudResponse = [cloudProxy signUpWithEmail:self.mailTf.text];
+        [self handleCloudResponse:cloudResponse];
+    
     } else {
         self.errorLabel.text = @"Incorrect email format";
     }
 }
-// check if a given mail is in correct format
-- (BOOL)mailIsCorrect:(NSString *)email
-{
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]{2,}\\.[A-Za-z]{2,6}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    
-    return [emailTest evaluateWithObject:email];
-}
+
 
 - (void)showGreeting
 {
@@ -70,4 +67,14 @@
         greetingView.hidden = NO;
     }];
 }
+
+- (void)handleCloudResponse:(CloudResponse)cloudResponse
+{
+    if(cloudResponse == EMAIL_SENT) {
+        [self showGreeting];
+    } else {
+        NSLog(@"sign up failed");
+    }
+}
+
 @end

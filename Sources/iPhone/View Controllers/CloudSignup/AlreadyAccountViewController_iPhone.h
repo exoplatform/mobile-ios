@@ -9,5 +9,4 @@
 #import "AlreadyAccountViewController.h"
 
 @interface AlreadyAccountViewController_iPhone : AlreadyAccountViewController
-
 @end

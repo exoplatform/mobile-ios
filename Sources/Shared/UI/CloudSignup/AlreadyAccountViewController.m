@@ -13,6 +13,7 @@
 @end
 
 @implementation AlreadyAccountViewController
+@synthesize passwordTf, emailTf, errorLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.errorLabel.text = @"";
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,8 +37,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [emailTf release];
+    [passwordTf release];
+    [errorLabel release];
+}
+
 - (void)cancel:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)login:(id)sender
+{
+    
+}
+
+- (void)connectToOnPremise:(id)sender
+{
+    
 }
 @end
