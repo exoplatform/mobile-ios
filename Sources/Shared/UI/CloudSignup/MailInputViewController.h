@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MailInputViewController : UIViewController
+#import "ExoCloudProxy.h"
+#import "SSHUDView.h"
+@class SignUpViewController;
+@interface MailInputViewController : UIViewController<ExoCloudProxyDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UITextField *mailTf;
 @property (nonatomic, retain) IBOutlet UILabel *errorLabel;
-
+@property (nonatomic, retain) SSHUDView *hud;
 - (IBAction)createAccount:(id)sender;
 @end
