@@ -7,6 +7,7 @@
 //
 
 #import "AlreadyAccountViewController.h"
+#import "ExoCloudProxy.h"
 
 @interface AlreadyAccountViewController ()
 
@@ -53,7 +54,8 @@
 
 - (void)login:(id)sender
 {
-    
+    ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] initWithDelegate:self andEmail:self.emailTf.text];
+    [cloudProxy checkTenantStatus];
 }
 
 - (void)connectToOnPremise:(id)sender
@@ -64,7 +66,16 @@
 #pragma mark ExoCloudProxyDelegate methods
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email
 {
-    
+    switch (response) {
+        case TENANT_ONLINE:
+            [proxy checkUserExistance];
+            break;
+        case USER_EXISTED:
+            NSLog(@"user exit in delegate");
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error
@@ -72,4 +83,15 @@
     
 }
 
+
+#pragma mark LoginProxyDelegate methods
+- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
+{
+    
+}
+
+- (void)authenticateFailedWithError:(NSError *)error
+{
+    
+}
 @end

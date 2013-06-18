@@ -72,16 +72,14 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)createAccount:(id)sender
 {
     if([CloudUtils checkEmailFormat:self.mailTf.text]) {
-        ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] init];
-        cloudProxy.delegate = self;
-        cloudProxy.email = self.mailTf.text;
-        
+        ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] initWithDelegate:self andEmail:self.mailTf.text];
+                
         [self.mailTf resignFirstResponder];
         self.hud.textLabel.text = Localize(@"Loading");
         [self.hud setLoading:YES];
         [self.hud show];
         
-        [cloudProxy signUpWithEmail:self.mailTf.text];
+        [cloudProxy signUp];
     } else {
         self.errorLabel.text = @"Incorrect email format";
     }
@@ -141,18 +139,15 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 
 - (void)redirectToLoginScreen:(NSString *)email;
 {
-    
-    UIViewController *welcomeView = self.parentViewController.presentingViewController;
-    
-    if([welcomeView isMemberOfClass:[WelcomeViewController class]]) {
-        WelcomeViewController *welcomeView = (WelcomeViewController *)welcomeView;
+    UIViewController *presentingVC = self.parentViewController.presentingViewController;
+    if([presentingVC isKindOfClass:[WelcomeViewController class]]) {
+        WelcomeViewController *welcomeView = (WelcomeViewController *)presentingVC;
         welcomeView.receivedEmail = email;
         welcomeView.shouldDisplayLoginView = YES;
         [self.parentViewController dismissModalViewControllerAnimated:NO];
-    } else {
-        //TO-DO:handle the case user start the sign up from setting view
-        // and he enters a configured email
     }
+    //TO-DO: start sign up from setting view
+        
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

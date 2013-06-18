@@ -9,12 +9,24 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    EMAIL_SENT = 1,
-    ACCOUNT_CREATED,
+    EMAIL_SENT = 1, //validation email sent
+    ACCOUNT_CREATED, //account confirmed
     NUMBER_OF_USERS_EXCEED,
-    TENANT_SUSPENDED,
-    EMAIL_BLACKLISTED
+    EMAIL_BLACKLISTED,
+    TENANT_RESUMING,
+    TENANT_NOT_EXIST,
+    TENANT_ONLINE,
+    USER_EXISTED,
+    USER_NOT_EXISTED
 } CloudResponse;
+
+typedef enum
+{
+    CHECK_USER_EXIST = 1,
+    CHECK_TENANT_STATUS,
+    SIGN_UP
+} CloudRequest;
+
 @class ExoCloudProxy;
 
 @protocol ExoCloudProxyDelegate <NSObject>
@@ -24,12 +36,13 @@ typedef enum {
 @end
 
 @interface ExoCloudProxy : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
-    NSString *serverUrl;
-    id<ExoCloudProxyDelegate> _delegate;
+
 }
+
 @property (nonatomic, retain) id<ExoCloudProxyDelegate> delegate;
 @property (nonatomic, retain) NSString *email;
-- (id)initWithServerUrl:(NSString *)serverurl;
-- (void)signUpWithEmail:(NSString *)emailAddress;
-- (CloudResponse)loginWithEmail:(NSString *)emailAddress password:(NSString *)password;
+- (id)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email;
+- (void)signUp;
+- (void)checkTenantStatus;
+- (void)checkUserExistance;
 @end

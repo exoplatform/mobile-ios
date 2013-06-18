@@ -102,14 +102,6 @@
     _homeSidebarViewController_iPhone = [[HomeSidebarViewController_iPhone alloc] initWithNibName:nil bundle:nil];
     
     window.rootViewController = _homeSidebarViewController_iPhone;
-    
-    //[_homeViewControllerSidebar_iPhone setDelegate:self];
-    
-    //_homeViewController_iPhone._isCompatibleWithSocial = _isCompatibleWithSocial;
-    
-    //[self.navigationController pushViewController:_homeViewController_iPhone animated:YES];
-    
-    
 }
 
 

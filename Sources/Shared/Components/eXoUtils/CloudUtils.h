@@ -10,4 +10,7 @@
 
 @interface CloudUtils : NSObject
 +(BOOL) checkEmailFormat:(NSString *)mail;
++(NSString *)serverUrlByEmail:(NSString *)email;
++(NSString *)usernameByEmail:(NSString *)email;
++(NSString *)tenantByEmail:(NSString *)email;
 @end

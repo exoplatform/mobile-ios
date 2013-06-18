@@ -19,4 +19,22 @@
     
     return [emailTest evaluateWithObject:mail];
 }
+
++ (NSString *)serverUrlByEmail:(NSString *)email
+{
+    //TO-DO
+    return nil;
+}
+
++ (NSString *)usernameByEmail:(NSString *)email
+{
+    //TO-DO
+    return nil;
+}
+
++ (NSString *)tenantByEmail:(NSString *)email
+{
+    //TO-DO
+    return nil;
+}
 @end

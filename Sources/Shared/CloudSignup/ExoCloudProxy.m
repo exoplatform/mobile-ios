@@ -10,7 +10,11 @@
 
 //NSString const *EXO_CLOUD_URL = @"http://wks-acc.exoplatform.org";
 static NSString *EXO_CLOUD_URL = @"http://cloud-workspaces.com";
-static NSString *EXO_CLOUD_SIGNUP_REST_PATH = @"/rest/cloud-admin/cloudworkspaces/tenant-service/signup";
+static NSString *EXO_CLOUD_TENANT_SERVICE_PATH = @"rest/cloud-admin/cloudworkspaces/tenant-service";
+static NSString *EXO_CLOUD_SIGNUP_REST_PATH = @"signup";
+static NSString *EXO_CLOUD_TENANT_STATUS_REST_PATH = @"status";
+static NSString *EXO_CLOUD_USER_EXIST_REST_PATH = @"isuserexist";
+
 static NSString *EXO_CLOUD_TRY_AGAIN_PATH = @"/tryagain.jsp";
 static NSString *EXO_CLOUD_RESUMING_PATH = @"/resuming.jsp";
 static NSString *EXO_CLOUD_LOGIN_PATH = @"/";
@@ -22,41 +26,59 @@ static NSString *EXO_CLOUD_USER_EXIST_REST_BODY = @"true";
 static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
 
 @implementation ExoCloudProxy {
-    CloudResponse cloudResponse;
+    CloudRequest cloudRequest;
 }
 @synthesize delegate = _delegate;
 @synthesize email = _email;
 
-- (id)initWithServerUrl:(NSString *)aServerUrl
+- (id)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email
 {
     if((self = [super init])) {
-        serverUrl = aServerUrl;
+        self.email = email;
+        self.delegate = delegate;
     }
     return self;
 }
 
-- (CloudResponse)loginWithEmail:(NSString *)emailAddress password:(NSString *)password
-{
-    return EMAIL_SENT;
-}
 
-- (void)signUpWithEmail:(NSString *)emailAddress
+- (void)signUp
 {
-    NSString *encodedEmail = [emailAddress stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    cloudRequest = SIGN_UP;
+    NSString *encodedEmail = [self.email stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
     NSString *postString = [NSString stringWithFormat:@"user-mail=%@", encodedEmail];
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSMutableURLRequest *cloudRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[self signUpRestUrl]]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[self signUpRestUrl]]];
 
-    [cloudRequest setHTTPBody:postData];
-    [cloudRequest setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    [request setHTTPMethod:@"POST"];
     
-    NSURLConnection *connectinon = [NSURLConnection connectionWithRequest:cloudRequest delegate:self];
+    NSURLConnection *connectinon = [NSURLConnection connectionWithRequest:request delegate:self];
         
     [connectinon start];
 }
 
+- (void)checkTenantStatus
+{
+    cloudRequest = CHECK_TENANT_STATUS;
+    NSString *requestLink = [NSString stringWithFormat:@"%@/%@",[self tenantStatusRestUrl], @"exoplatform"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestLink]];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [connection start];
+}
+
+- (void)checkUserExistance
+{
+    cloudRequest = CHECK_USER_EXIST;
+    NSString *requestLink = [NSString stringWithFormat:@"%@/%@/%@", [self userExistRestUrl], @"exoplatform",@"vietnq"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestLink]];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [connection start];
+    
+}
 #pragma mark NSURLConnectionDelegate methods
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
@@ -67,21 +89,33 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     NSString *responseBody = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] lowercaseString];
-    if([responseBody isEqualToString:EXO_CLOUD_TENANT_RESUMING_REST_BODY]) {
-        NSLog(@"tenant resuming");
-    } else if([responseBody isEqualToString:EXO_CLOUD_TENANT_ONLINE_REST_BODY]) {
-        NSLog(@"tenant online");
-    } else if([responseBody isEqualToString:EXO_CLOUD_USER_EXIST_REST_BODY]) {
-        NSLog(@"user exist");
-    } else if([responseBody isEqualToString:EXO_CLOUD_USER_NOT_EXIST_REST_BODY]) {
-        NSLog(@"user not exist");
+    if([responseBody length] > 0) {
+        if([responseBody isEqualToString:EXO_CLOUD_TENANT_RESUMING_REST_BODY]) {
+            NSLog(@"tenant resuming");
+            [_delegate cloudProxy:self handleCloudResponse:TENANT_RESUMING forEmail:self.email];
+        } else if([responseBody isEqualToString:EXO_CLOUD_TENANT_ONLINE_REST_BODY]) {
+            NSLog(@"tenant online");
+            [_delegate cloudProxy:self handleCloudResponse:TENANT_ONLINE forEmail:self.email];
+        } else if([responseBody isEqualToString:EXO_CLOUD_USER_EXIST_REST_BODY]) {
+            NSLog(@"user exist");
+            [_delegate cloudProxy:self handleCloudResponse:USER_EXISTED forEmail:self.email];
+        } else if([responseBody isEqualToString:EXO_CLOUD_USER_NOT_EXIST_REST_BODY]) {
+            NSLog(@"user not exist");
+            [_delegate cloudProxy:self handleCloudResponse:USER_NOT_EXISTED forEmail:self.email];
+        }
+        [connection cancel];
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-    NSLog(@"status code: %u", httpResponse.statusCode);
+    
+    //the tenant is not exist
+    if(cloudRequest == CHECK_TENANT_STATUS && httpResponse.statusCode == 404) {
+        NSLog(@"tenant not exist");
+        [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_EXIST forEmail:nil];
+    }
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
@@ -89,7 +123,7 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
     if(response) {
         NSString *path = [[request URL] path];
         if([EXO_CLOUD_RESUMING_PATH isEqualToString:path]) {
-            [_delegate cloudProxy:self handleCloudResponse: TENANT_SUSPENDED forEmail:self.email];
+            [_delegate cloudProxy:self handleCloudResponse: TENANT_RESUMING forEmail:self.email];
         } else if([EXO_CLOUD_TRY_AGAIN_PATH isEqualToString:path]) {
             [_delegate cloudProxy:self handleCloudResponse: EMAIL_BLACKLISTED forEmail:self.email];
         } else if([EXO_CLOUD_LOGIN_PATH isEqualToString:path]) {
@@ -103,8 +137,9 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finish loading");
-    [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
+    if(cloudRequest == SIGN_UP) {
+        [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
+    }
 }
 
 - (void)dealloc
@@ -117,6 +152,16 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
 #pragma mark Cloud rest service url
 - (NSString *)signUpRestUrl
 {
-    return [NSString stringWithFormat:@"%@%@", EXO_CLOUD_URL, EXO_CLOUD_SIGNUP_REST_PATH];
+    return [NSString stringWithFormat:@"%@/%@/%@", EXO_CLOUD_URL, EXO_CLOUD_TENANT_SERVICE_PATH,EXO_CLOUD_SIGNUP_REST_PATH];
+}
+
+- (NSString *)tenantStatusRestUrl
+{
+    return [NSString stringWithFormat:@"%@/%@/%@", EXO_CLOUD_URL, EXO_CLOUD_TENANT_SERVICE_PATH, EXO_CLOUD_TENANT_STATUS_REST_PATH];
+}
+
+- (NSString *)userExistRestUrl
+{
+    return [NSString stringWithFormat:@"%@/%@/%@", EXO_CLOUD_URL, EXO_CLOUD_TENANT_SERVICE_PATH, EXO_CLOUD_USER_EXIST_REST_PATH];
 }
 @end
