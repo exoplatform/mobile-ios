@@ -18,7 +18,7 @@
 #import "URLAnalyzer.h"
 #import "ServerEditingViewController.h"
 #import "ServerAddingViewController.h"
-
+#import "SignUpViewController_iPhone.h"
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
@@ -61,14 +61,14 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 static NSString *settingViewSectionIdKey = @"section id";
 static NSString *settingViewSectionTitleKey = @"section title";
 static NSString *settingViewRowsKey = @"row title";
-
 typedef enum {
-  SettingViewControllerSectionLogin = 1,
-  SettingViewControllerSectionSocial = 2,
-  SettingViewControllerSectionDocument = 3,
-  SettingViewControllerSectionLanguage = 4,
-  SettingViewControllerSectionServerList = 5,
-  SettingViewControllerSectionAppsInfo = 6
+    SettingViewControllerSectionLogin = 1,
+    SettingViewControllerSectionSocial = 2,
+    SettingViewControllerSectionDocument = 3,
+    SettingViewControllerSectionLanguage = 4,
+    SettingViewControllerSectionServerList = 5,
+    SettingViewControllerSectionAppsInfo = 6,
+    SettingViewControllerCloudAssistant = 7
 } SettingViewControllerSection;
 
 @implementation SettingsViewController
@@ -81,34 +81,35 @@ typedef enum {
         _listOfSections = [[NSMutableArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
-                             settingViewSectionTitleKey, @"SignInButton", 
+                             settingViewSectionTitleKey, @"SignInButton",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionSocial],
-                             settingViewSectionTitleKey, @"Social", 
+                             settingViewSectionTitleKey, @"Social",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"KeepSelectedStream", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionDocument],
-                             settingViewSectionTitleKey, @"Documents", 
+                             settingViewSectionTitleKey, @"Documents",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ShowPrivateDrive", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
-                             settingViewSectionTitleKey, @"Language", 
+                             settingViewSectionTitleKey, @"Language",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
-                             settingViewSectionTitleKey, @"ServerList", 
+                             settingViewSectionTitleKey, @"ServerList",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
-                             settingViewSectionTitleKey, @"ApplicationsInformation", 
+                             settingViewSectionTitleKey, @"ApplicationsInformation",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
-                             nil], 
+                             nil],
+                            [NSDictionary dictionaryWithKeysAndObjects:settingViewSectionIdKey,[NSString stringWithFormat:@"%d",SettingViewControllerCloudAssistant],settingViewSectionTitleKey,@"eXoCloudConfigurationAssistant", settingViewRowsKey, [NSArray arrayWithObjects:@"StartTheConfigurationAssistant", nil],nil],
                             nil] retain];
         
         
@@ -118,23 +119,24 @@ typedef enum {
         if(plfVersion >= 4.0) {
             [_listOfSections removeObjectAtIndex:2];
         }
-    } else {        
+    } else {
         _listOfSections = [[NSMutableArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
-                             settingViewSectionTitleKey, @"Language", 
+                             settingViewSectionTitleKey, @"Language",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
-                             settingViewSectionTitleKey, @"ServerList", 
+                             settingViewSectionTitleKey, @"ServerList",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
-                             settingViewSectionTitleKey, @"ApplicationsInformation", 
+                             settingViewSectionTitleKey, @"ApplicationsInformation",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
-                             nil], 
+                             nil],
+                            [NSDictionary dictionaryWithKeysAndObjects:settingViewSectionIdKey,[NSString stringWithFormat:@"%d",SettingViewControllerCloudAssistant],settingViewSectionTitleKey,@"eXoCloudConfigurationAssistant", settingViewRowsKey, [NSArray arrayWithObjects:@"StartTheConfigurationAssistant", nil], nil],
                             nil] retain];
     }
 }
@@ -232,23 +234,6 @@ typedef enum {
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    //if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarIphone.png"] forBarMetrics:UIBarMetricsDefault];
-    //}
-    
-    
-    
-    //Set the background Color of the view
-    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //backgroundView.frame = self.view.frame;
-    //self.tableView.backgroundView = backgroundView;
-    //[backgroundView release];
-    
-    
-    
-    //self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     
     self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
     
@@ -417,6 +402,20 @@ typedef enum {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
     switch (sectionId) 
     {
+        case SettingViewControllerCloudAssistant:
+        {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+            if(cell == nil)
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
+                
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            }
+            break;
+        }
+        
         case SettingViewControllerSectionLogin:
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
@@ -607,7 +606,13 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
-	if (sectionId == SettingViewControllerSectionLanguage)
+    if(sectionId == SettingViewControllerCloudAssistant) {
+        SignUpViewController_iPhone *signupView = [[SignUpViewController_iPhone alloc] initWithNibName:@"SignUpViewController_iPhone" bundle:nil];
+        signupView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentModalViewController:signupView animated:YES];
+    }
+    
+	else if (sectionId == SettingViewControllerSectionLanguage)
 	{
 		int selectedLanguage = indexPath.row;
         

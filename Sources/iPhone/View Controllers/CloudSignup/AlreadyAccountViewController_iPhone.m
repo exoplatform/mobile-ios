@@ -30,12 +30,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Get started";
+    self.errorLabel.text = @"";
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
     self.navigationItem.rightBarButtonItem = button;
-    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //if the view is redirect from sign up view, auto fill the email entered in sign up view
+    if(self.autoFilledEmail != nil) {
+        self.emailTf.text = self.autoFilledEmail;
+        self.autoFilledEmail = nil; //reset for the next appearance
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

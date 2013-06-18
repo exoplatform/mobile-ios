@@ -11,7 +11,7 @@
 #import "AuthenticateViewController_iPhone.h"
 #import "HomeViewController_iPhone.h"
 #import "HomeSidebarViewController_iPhone.h"
-
+#import "WelcomeViewController_iPhone.h"
 //App delegate
 @interface AppDelegate_iPhone : eXoMobileAppDelegate <UIAlertViewDelegate> {
     IBOutlet UIWindow*					window;
@@ -34,6 +34,7 @@
 @property (nonatomic, retain) IBOutlet HomeSidebarViewController_iPhone* homeSidebarViewController_iPhone;
 @property BOOL isCompatibleWithSocial;
 
+@property (nonatomic, retain) WelcomeViewController_iPhone *welcomeViewController;
 +(AppDelegate_iPhone*)instance;
 
 

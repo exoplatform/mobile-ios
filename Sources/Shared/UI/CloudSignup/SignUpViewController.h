@@ -14,6 +14,6 @@
     MailInputViewController *mailInputViewController;
     GreetingViewController *greetingViewController;
 }
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *cancelButton;
+
 - (IBAction)cancel:(id)sender;
 @end

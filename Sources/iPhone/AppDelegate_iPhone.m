@@ -24,7 +24,7 @@
 @synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
 @synthesize homeSidebarViewController_iPhone = _homeSidebarViewController_iPhone;
-
+@synthesize welcomeViewController = _welcomeViewController;
 
 + (AppDelegate_iPhone *) instance {
     return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];    
@@ -71,9 +71,9 @@
     if(accountConfigured) { //if one account is configured, display Authenticate screen
         window.rootViewController = navigationController;
     } else {//otherwise display sign up screen
-        WelcomeViewController_iPhone *welcomeViewController = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
+        _welcomeViewController = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
         
-        window.rootViewController = welcomeViewController;
+        window.rootViewController = _welcomeViewController;
     }
     
 	[window makeKeyAndVisible];
@@ -155,6 +155,9 @@
     {
         [_homeViewController_iPhone release];
     }
+    
+    [_welcomeViewController release];
+    _welcomeViewController = nil;
     
     [window release];
     window = nil;

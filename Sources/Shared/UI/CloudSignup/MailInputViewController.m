@@ -12,12 +12,19 @@
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
 #import "AlreadyAccountViewController_iPhone.h"
+#import "WelcomeViewController_iPhone.h"
+
+int const ALERT_VIEW_ALREADY_ACCOUNT_TAG = 1000;
+int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 
 @interface MailInputViewController ()
 
 @end
 
-@implementation MailInputViewController
+@implementation MailInputViewController {
+    NSString *emailAddress;
+}
+
 @synthesize errorLabel = _errorLabel;
 @synthesize mailTf = _mailTf;
 @synthesize hud = _hud;
@@ -67,6 +74,7 @@
     if([CloudUtils checkEmailFormat:self.mailTf.text]) {
         ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] init];
         cloudProxy.delegate = self;
+        cloudProxy.email = self.mailTf.text;
         
         [self.mailTf resignFirstResponder];
         self.hud.textLabel.text = Localize(@"Loading");
@@ -80,19 +88,22 @@
 }
 
 #pragma mark Handle response from cloud signup service
-- (void)handleCloudResponse:(CloudResponse)response
+- (void)cloudProxy:(ExoCloudProxy *)proxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email
 {
-    [self.hud dismiss];
 
     switch (response) {
         case EMAIL_SENT:
+            [self.hud dismiss];
             [self showGreeting];
             break;
         case EMAIL_BLACKLISTED:
             NSLog(@"email blacklisted");
             break;
         case ACCOUNT_CREATED: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Already configured" message:@"Redirect to login screen" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [self.hud setHidden:YES];
+            emailAddress = email;
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:Localize(@"AccountAlreadyExists") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert setTag:ALERT_VIEW_ALREADY_ACCOUNT_TAG];
             [alert show];
             break;
         }
@@ -105,9 +116,12 @@
     }
 }
 
-- (void)handleError:(NSError *)error
+- (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error
 {
+    [self.hud setHidden:YES];
     NSLog(@"%@", [error description]);
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"CloudServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    [alert show];
 }
 
 - (void)showGreeting
@@ -117,21 +131,37 @@
     greetingView.hidden = NO;
     self.view.hidden = YES;
     [UIView transitionFromView:self.view toView:greetingView duration:0.8f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
-        
+        // change the title of cancel button to OK
+        UINavigationBar *navigationBar = (UINavigationBar *)[self.parentViewController.view viewWithTag:SIGNUP_NAVIGATION_BAR_TAG];
+        UINavigationItem *navigationItem = (UINavigationItem *) [[navigationBar items] objectAtIndex:0];
+        UIBarButtonItem *button = navigationItem.rightBarButtonItem;
+        button.title = @"OK";
     }];
 }
 
-- (void)redirectToLoginScreen
+- (void)redirectToLoginScreen:(NSString *)email;
 {
-    AlreadyAccountViewController_iPhone *viewController = [[AlreadyAccountViewController_iPhone alloc] initWithNibName:@"AlreadyAccountViewController_iPhone" bundle:nil];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
-    [self.parentViewController presentModalViewController:navigationController animated:YES];
+    UIViewController *welcomeView = self.parentViewController.presentingViewController;
+    
+    if([welcomeView isMemberOfClass:[WelcomeViewController class]]) {
+        WelcomeViewController *welcomeView = (WelcomeViewController *)welcomeView;
+        welcomeView.receivedEmail = email;
+        welcomeView.shouldDisplayLoginView = YES;
+        [self.parentViewController dismissModalViewControllerAnimated:NO];
+    } else {
+        //TO-DO:handle the case user start the sign up from setting view
+        // and he enters a configured email
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self redirectToLoginScreen];
+    [self.hud setHidden:NO];
+    [self.hud dismiss];
+    
+    if(alertView.tag == ALERT_VIEW_ALREADY_ACCOUNT_TAG) {
+        [self redirectToLoginScreen:emailAddress];
+    }
 }
 @end

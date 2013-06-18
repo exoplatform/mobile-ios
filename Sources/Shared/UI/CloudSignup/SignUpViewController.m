@@ -12,8 +12,6 @@
 @end
 
 @implementation SignUpViewController
-@synthesize cancelButton;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,7 +36,6 @@
 - (void)dealloc
 {
     [super dealloc];
-    [cancelButton release];
     [mailInputViewController release];
     [greetingViewController release];
 }

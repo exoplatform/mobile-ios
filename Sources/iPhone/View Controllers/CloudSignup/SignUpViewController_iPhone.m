@@ -33,6 +33,7 @@
     
     greetingViewController = [[GreetingViewController_iPhone alloc] initWithNibName:@"GreetingViewController_iPhone" bundle:nil] ;
     
+    [self addChildViewController:mailInputViewController];
     
     UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(0, 120, 320, 160)] autorelease];
     

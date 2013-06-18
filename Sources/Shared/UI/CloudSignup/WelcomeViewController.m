@@ -14,7 +14,7 @@
 
 @implementation WelcomeViewController
 
-@synthesize loginButton, signupButton, pageControl, scrollView;
+@synthesize loginButton, signupButton, pageControl, scrollView, shouldDisplayLoginView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +31,12 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(shouldDisplayLoginView) {
+        
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -44,6 +50,9 @@
     [signupButton release];
     [scrollView release];
     [pageControl release];
+    if(self.receivedEmail) {
+        [self.receivedEmail release];
+    }
 }
 
 - (void)skipCloudSignup:(id)sender

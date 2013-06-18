@@ -15,10 +15,12 @@ typedef enum {
     TENANT_SUSPENDED,
     EMAIL_BLACKLISTED
 } CloudResponse;
+@class ExoCloudProxy;
+
 @protocol ExoCloudProxyDelegate <NSObject>
 
-- (void)handleCloudResponse:(CloudResponse)response;
-- (void)handleError:(NSError *)error;
+-(void)cloudProxy:(ExoCloudProxy *)proxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email;
+- (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error;
 @end
 
 @interface ExoCloudProxy : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
@@ -26,6 +28,7 @@ typedef enum {
     id<ExoCloudProxyDelegate> _delegate;
 }
 @property (nonatomic, retain) id<ExoCloudProxyDelegate> delegate;
+@property (nonatomic, retain) NSString *email;
 - (id)initWithServerUrl:(NSString *)serverurl;
 - (void)signUpWithEmail:(NSString *)emailAddress;
 - (CloudResponse)loginWithEmail:(NSString *)emailAddress password:(NSString *)password;
