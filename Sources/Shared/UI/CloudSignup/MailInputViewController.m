@@ -13,6 +13,7 @@
 #import "AppDelegate_iPhone.h"
 #import "AlreadyAccountViewController_iPhone.h"
 #import "WelcomeViewController_iPhone.h"
+#import "LanguageHelper.h"
 
 int const ALERT_VIEW_ALREADY_ACCOUNT_TAG = 1000;
 int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
@@ -81,7 +82,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         
         [cloudProxy signUp];
     } else {
-        self.errorLabel.text = @"Incorrect email format";
+        self.errorLabel.text = Localize(@"IncorrectEmailFormat");
     }
 }
 
@@ -89,26 +90,37 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email
 {
 
+    [self.hud setHidden:YES];
     switch (response) {
         case EMAIL_SENT:
             [self.hud dismiss];
             [self showGreeting];
             break;
         case EMAIL_BLACKLISTED:
+        {
             NSLog(@"email blacklisted");
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"EmailIsBlacklisted") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [alert show];
             break;
+        }
+            
         case ACCOUNT_CREATED: {
             [self.hud setHidden:YES];
             emailAddress = email;
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:Localize(@"AccountAlreadyExists") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"AccountAlreadyExists") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert setTag:ALERT_VIEW_ALREADY_ACCOUNT_TAG];
             [alert show];
             break;
         }
             
         case NUMBER_OF_USERS_EXCEED:
+        {
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"NumberOfUsersExceed") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [alert show];
             NSLog(@"number of users exceed");
             break;
+        }
+           
         default:
             break;
     }

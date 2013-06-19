@@ -8,7 +8,8 @@
 
 #import "AlreadyAccountViewController.h"
 #import "ExoCloudProxy.h"
-
+#import "CloudUtils.h"
+#import "LanguageHelper.h"
 @interface AlreadyAccountViewController ()
 
 @end
@@ -54,8 +55,12 @@
 
 - (void)login:(id)sender
 {
-    ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] initWithDelegate:self andEmail:self.emailTf.text];
-    [cloudProxy checkTenantStatus];
+    if([CloudUtils checkEmailFormat:self.emailTf.text]) {
+        ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] initWithDelegate:self andEmail:self.emailTf.text];
+        [cloudProxy checkTenantStatus];//check the tenant status first
+    } else {
+        self.errorLabel.text = Localize(@"IncorrectEmailFormat");
+    }
 }
 
 - (void)connectToOnPremise:(id)sender
@@ -68,10 +73,22 @@
 {
     switch (response) {
         case TENANT_ONLINE:
+            //if the tenant is online, check user existance
             [proxy checkUserExistance];
             break;
+        case TENANT_RESUMING:
+            //TO-DO
+            break;
+        case TENANT_NOT_EXIST:
+            //TO-DO
+            break;
         case USER_EXISTED:
+            //if user existed, login the user
             NSLog(@"user exit in delegate");
+            //TO-DO
+            break;
+        case USER_NOT_EXISTED:
+            //TO-DO
             break;
         default:
             break;
@@ -80,18 +97,18 @@
 
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error
 {
-    
+    //TO-DO
 }
 
 
 #pragma mark LoginProxyDelegate methods
 - (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
-    
+    //TO-DO
 }
 
 - (void)authenticateFailedWithError:(NSError *)error
 {
-    
+    //TO-DO
 }
 @end

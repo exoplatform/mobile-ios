@@ -50,9 +50,7 @@
     [signupButton release];
     [scrollView release];
     [pageControl release];
-    if(self.receivedEmail) {
-        [self.receivedEmail release];
-    }
+    [self.receivedEmail release];
 }
 
 - (void)skipCloudSignup:(id)sender

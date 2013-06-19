@@ -32,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture.jpg"]];
+    
     // Do any additional setup after loading the view from its nib.
     CGRect frame;
     
@@ -47,6 +50,8 @@
         [self.scrollView addSubview:imageView];
     }
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height);
+    
+
 }
 
 
@@ -93,6 +98,7 @@
     
     if(self.receivedEmail) {
         alreadyAccountViewController.autoFilledEmail = self.receivedEmail;
+        self.receivedEmail = nil;//reset
     }
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:alreadyAccountViewController];

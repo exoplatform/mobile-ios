@@ -8,8 +8,9 @@
 
 #import "ExoCloudProxy.h"
 
-//NSString const *EXO_CLOUD_URL = @"http://wks-acc.exoplatform.org";
-static NSString *EXO_CLOUD_URL = @"http://cloud-workspaces.com";
+static NSString *EXO_CLOUD_URL = @"http://wks-acc.exoplatform.org";
+//static NSString *EXO_CLOUD_URL = @"http://cloud-workspaces.com";
+//static NSString *EXO_CLOUD_URL = @"http://exoplatform.net";
 static NSString *EXO_CLOUD_TENANT_SERVICE_PATH = @"rest/cloud-admin/cloudworkspaces/tenant-service";
 static NSString *EXO_CLOUD_SIGNUP_REST_PATH = @"signup";
 static NSString *EXO_CLOUD_TENANT_STATUS_REST_PATH = @"status";

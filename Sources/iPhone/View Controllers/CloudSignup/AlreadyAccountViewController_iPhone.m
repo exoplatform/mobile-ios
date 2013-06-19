@@ -42,7 +42,6 @@
     //if the view is redirect from sign up view, auto fill the email entered in sign up view
     if(self.autoFilledEmail != nil) {
         self.emailTf.text = self.autoFilledEmail;
-        self.autoFilledEmail = nil; //reset for the next appearance
     }
 }
 - (void)didReceiveMemoryWarning

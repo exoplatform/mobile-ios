@@ -444,6 +444,12 @@
 		7DCA4F38176EB654002694D5 /* OnPremiseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCA4F36176EB653002694D5 /* OnPremiseViewController_iPhone.xib */; };
 		7DCA4F3F176EC8F4002694D5 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DCA4F3E176EC8F4002694D5 /* checkmark.png */; };
 		7DCA4F4E176F00FA002694D5 /* ExoCloudProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F4D176F00FA002694D5 /* ExoCloudProxy.m */; };
+		7DFC778D177160760069D9CD /* bg_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7DFC7787177160760069D9CD /* bg_texture.jpg */; };
+		7DFC778E177160760069D9CD /* btn_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFC7788177160760069D9CD /* btn_blue.png */; };
+		7DFC778F177160760069D9CD /* btn_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFC7789177160760069D9CD /* btn_grey.png */; };
+		7DFC7790177160760069D9CD /* btn_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7DFC778A177160760069D9CD /* btn_texture.jpg */; };
+		7DFC7791177160760069D9CD /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFC778B177160760069D9CD /* circle.png */; };
+		7DFC7792177160760069D9CD /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFC778C177160760069D9CD /* logo.png */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1436,6 +1442,12 @@
 		7DCA4F3E176EC8F4002694D5 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		7DCA4F4C176F00FA002694D5 /* ExoCloudProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCloudProxy.h; sourceTree = "<group>"; };
 		7DCA4F4D176F00FA002694D5 /* ExoCloudProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCloudProxy.m; sourceTree = "<group>"; };
+		7DFC7787177160760069D9CD /* bg_texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_texture.jpg; sourceTree = "<group>"; };
+		7DFC7788177160760069D9CD /* btn_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_blue.png; sourceTree = "<group>"; };
+		7DFC7789177160760069D9CD /* btn_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_grey.png; sourceTree = "<group>"; };
+		7DFC778A177160760069D9CD /* btn_texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = btn_texture.jpg; sourceTree = "<group>"; };
+		7DFC778B177160760069D9CD /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		7DFC778C177160760069D9CD /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -3019,6 +3031,7 @@
 		7D993C2C1769A8E50035835F /* CloudScreenShot */ = {
 			isa = PBXGroup;
 			children = (
+				7DFC7786177160760069D9CD /* retina_size */,
 				7DCA4F3E176EC8F4002694D5 /* checkmark.png */,
 				7D993C441769CFA80035835F /* documents.png */,
 				7D993C3E1769A9080035835F /* gadgets.png */,
@@ -3159,6 +3172,19 @@
 				7DCA4F4D176F00FA002694D5 /* ExoCloudProxy.m */,
 			);
 			path = CloudSignup;
+			sourceTree = "<group>";
+		};
+		7DFC7786177160760069D9CD /* retina_size */ = {
+			isa = PBXGroup;
+			children = (
+				7DFC7787177160760069D9CD /* bg_texture.jpg */,
+				7DFC7788177160760069D9CD /* btn_blue.png */,
+				7DFC7789177160760069D9CD /* btn_grey.png */,
+				7DFC778A177160760069D9CD /* btn_texture.jpg */,
+				7DFC778B177160760069D9CD /* circle.png */,
+				7DFC778C177160760069D9CD /* logo.png */,
+			);
+			path = retina_size;
 			sourceTree = "<group>";
 		};
 		890F75CD141EF6AA004D35FE /* Authenticate */ = {
@@ -4464,6 +4490,12 @@
 				7D993CE1176AFEF90035835F /* GreetingViewController_iPhone.xib in Resources */,
 				7DCA4F38176EB654002694D5 /* OnPremiseViewController_iPhone.xib in Resources */,
 				7DCA4F3F176EC8F4002694D5 /* checkmark.png in Resources */,
+				7DFC778D177160760069D9CD /* bg_texture.jpg in Resources */,
+				7DFC778E177160760069D9CD /* btn_blue.png in Resources */,
+				7DFC778F177160760069D9CD /* btn_grey.png in Resources */,
+				7DFC7790177160760069D9CD /* btn_texture.jpg in Resources */,
+				7DFC7791177160760069D9CD /* circle.png in Resources */,
+				7DFC7792177160760069D9CD /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
