@@ -12,6 +12,9 @@
 #import "SignUpViewController_iPhone.h"
 #import "AlreadyAccountViewController_iPhone.h"
 
+int const static SWIPED_SCREEN_SHOT_WIDTH = 250;
+int const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
+
 @interface WelcomeViewController_iPhone ()
 
 @end
@@ -35,23 +38,30 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture.jpg"]];
     
+        
     // Do any additional setup after loading the view from its nib.
+    
+    //insert images to scroll view
     CGRect frame;
+    UIImageView *imageView;
     
     images = [NSArray arrayWithObjects:@"activity-stream",@"documents",@"gadgets", nil];
     
+    float initX = (self.scrollView.frame.size.width - SWIPED_SCREEN_SHOT_WIDTH)/2;
+    
     for(int i = 0; i < [images count]; i++) {
         
-        UIImage *image = [UIImage imageNamed:[images objectAtIndex:i]];
-        frame = CGRectMake(self.scrollView.frame.size.width * i, 0 , self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = image;
+        frame = CGRectMake(self.scrollView.frame.size.width * i + initX, 0 , SWIPED_SCREEN_SHOT_WIDTH, SWIPED_SCREEN_SHOT_HEIGHT);
+        imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = [UIImage imageNamed:[images objectAtIndex:i]];
         
         [self.scrollView addSubview:imageView];
     }
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height);
     
-
+    [self configureSkipButton];
+    [self configure:self.signupButton withTitle:@"Sign Up" andSubtitle:@"Create an account"];
+    [self configure:self.loginButton withTitle:@"Log In" andSubtitle:@"Already an account"];
 }
 
 

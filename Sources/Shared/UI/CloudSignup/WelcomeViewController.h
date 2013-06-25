@@ -14,6 +14,7 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) IBOutlet UIButton *signupButton;
+@property (nonatomic, retain) IBOutlet UIButton *skipButton;
 // if YES, auto switch to login page, this is used in case when user enters an email that
 // is already configured in sign up form, the sign up view will redirect to login view
 // the mechanism is dismiss the sign up view first, and display the login view in
@@ -24,4 +25,8 @@
 - (IBAction)skipCloudSignup:(id)sender;
 - (IBAction)signup:(id)sender;
 - (IBAction)login:(id)sender;
+
+//configure the skip button
+- (void)configureSkipButton;
+- (void)configure:(UIButton *)button withTitle:(NSString *)title andSubtitle:(NSString *)subTitle;
 @end
