@@ -140,47 +140,16 @@
     
 }
 
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
-    [super platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    if(platformServerVersion != nil){
-        //Setup Version Platfrom and Application
-        
-        [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
-        [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
-        if([platformServerVersion.isMobileCompliant boolValue]){
-            [self.hud completeAndDismissWithTitle:Localize(@"Success")];
-            AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
-            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-            [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
-        } else {
-            [self.hud failAndDismissWithTitle:Localize(@"Error")];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
-                                                            message:Localize(@"NotCompliant") 
-                                                           delegate:nil 
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-        }
-        
-    } else {
-        [self.hud failAndDismissWithTitle:Localize(@"Error")];
-        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
-        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
-                                                        message:Localize(@"NotCompliant") 
-                                                       delegate:nil 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-        
-    }
-    [userDefaults synchronize];
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+    [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
+    
+    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
+    AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
+    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+    [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
 }
 
-#pragma mark - TextField delegate 
+#pragma mark - TextField delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

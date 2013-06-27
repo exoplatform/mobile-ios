@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginProxy.h"
+#import "SSHUDView.h"
+@interface OnPremiseViewController : UIViewController <LoginProxyDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
-@interface OnPremiseViewController : UIViewController
 @property (nonatomic, retain) IBOutlet UITextField *serverUrlTf;
 @property (nonatomic, retain) IBOutlet UITextField *usernameTf;
 @property (nonatomic, retain) IBOutlet UITextField *passwordTf;
-
+@property (nonatomic, retain) SSHUDView *hud;
 - (IBAction)login:(id)sender;
 @end

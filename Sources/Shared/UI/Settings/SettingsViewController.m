@@ -244,9 +244,9 @@ typedef enum {
 }
 
 #pragma mark - PlatformVersionProxyDelegate
-
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
-     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion){
         //Setup Version Platfrom and Application
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
@@ -261,7 +261,8 @@ typedef enum {
     [self.tableView reloadData];
 }
 
-- (void)authenticateFailedWithError:(NSError *)error {
+- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
+{
     
 }
 

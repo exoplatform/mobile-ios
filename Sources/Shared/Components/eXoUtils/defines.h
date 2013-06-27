@@ -54,23 +54,6 @@
 #define SPECIAL_CHAR_NAME_SET                    @"[]/\\&~?*|<>\";:+()$%@#!"
 #define SPECIAL_CHAR_URL_SET                    @"[]\\&~?*|<>\";+"
 
-
-//#define ACTIVITY_GETTING_TITLE              @"Getting activity"
-//#define ACTIVITY_GETTING_MESSAGE_ERROR      @"Getting action cannot be completed"
-//#define ACTIVITY_UPDATING_TITLE             @"Updating activity"
-//#define ACTIVITY_UPDATING_MESSAGE_ERROR     @"Updating action cannot be completed"
-//#define ACTIVITY_LIKING_TITLE               @"Liking activity"
-//#define ACTIVITY_LIKING_MESSAGE_ERROR       @"Liking action cannot be completed"
-//
-//#define ACTIVITY_POSTING_TITLE              @"Posting activity"
-//#define ACTIVITY_POSTING_MESSAGE_ERROR      @"Posting action cannot be completed"
-//#define ACTIVITY_COMMENT_TITLE              @"Comment activity"
-//#define ACTIVITY_COMMENT_MESSAGE_ERROR      @"Comment action cannot be completed"
-//
-//#define ACTIVITY_DETAIL_GETTING_TITLE       @"Getting activity detail"
-//#define ACTIVITY_DETAIL_UPDATING_TITLE      @"Updating activity detail"
-
-
 #define EXO_BACKGROUND_COLOR                [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]]
 #define SELECTED_CELL_BG_COLOR              [UIColor colorWithRed:225./255 green:225./255 blue:225./255 alpha:1.]
 
@@ -94,5 +77,15 @@
 
 //iPhone 5 screen height minus the navigation bar and status bar: 568 - 44 - 20 = 504
 #define iPHONE_5_SCREEN_HEIGH_MINUS_NAV_AND_STATUS_BAR 504
+
+//eXo cloud sign up
 #define EXO_CLOUD_USER_NAME_FROM_URL @"exo_cloud_user_name_from_url"
 #define EXO_CLOUD_ACCOUNT_CONFIGURED @"exo_cloud_account_configured"
+#define EXO_NOT_COMPILANT_ERROR_DOMAIN @"exo_not_compliant"
+
+//#define EXO_CLOUD_URL  @"http://exoplatform.net"
+//#define EXO_CLOUD_HOST @"exoplatform.net"
+#define EXO_CLOUD_TENANT_SERVICE_PATH @"rest/cloud-admin/cloudworkspaces/tenant-service"
+
+#define EXO_CLOUD_HOST @"wks-acc.exoplatform.org"
+#define EXO_CLOUD_URL @"http://wks-acc.exoplatform.org"

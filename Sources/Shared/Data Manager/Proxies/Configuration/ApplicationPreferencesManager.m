@@ -552,9 +552,14 @@
     
     NSString *serverLink = [[url query] substringFromIndex:[@"serverUrl=" length]];
     
+    [self addAndSetSelectedServer:serverLink];
+}
+
+- (void)addAndSetSelectedServer:(NSString *)serverLink
+{
     NSURL *serverURL = [NSURL URLWithString:serverLink];
     NSString *serverName = [serverURL host];
-
+    
     int serverIndex = [self checkServerAlreadyExistsWithName:serverName andURL:serverLink ignoringIndex:-1];
     
     if(serverIndex > -1) { //if the server is already exist, just set it to be selected

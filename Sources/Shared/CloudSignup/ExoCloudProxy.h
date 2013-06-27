@@ -31,8 +31,8 @@ typedef enum
 
 @protocol ExoCloudProxyDelegate <NSObject>
 
--(void)cloudProxy:(ExoCloudProxy *)proxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email;
-- (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error;
+-(void)cloudProxy:(ExoCloudProxy *)cloudProxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email;
+- (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error;
 @end
 
 @interface ExoCloudProxy : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
@@ -41,8 +41,12 @@ typedef enum
 
 @property (nonatomic, retain) id<ExoCloudProxyDelegate> delegate;
 @property (nonatomic, retain) NSString *email;
+@property (nonatomic, retain) NSString *tenantName;
+@property (nonatomic, retain) NSString *username;
+
 - (id)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email;
 - (void)signUp;
 - (void)checkTenantStatus;
 - (void)checkUserExistance;
+- (void)getUserMailInfo;
 @end

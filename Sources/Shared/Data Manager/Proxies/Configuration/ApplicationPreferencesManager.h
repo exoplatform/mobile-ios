@@ -76,4 +76,5 @@
 
 #pragma mark * Utils
 - (void) loadReceivedUrlToPreference:(NSURL *)url;
+- (void) addAndSetSelectedServer:(NSString *)serverLink;
 @end

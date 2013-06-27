@@ -9,6 +9,7 @@
 #import "AlreadyAccountViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
 #import "OnPremiseViewController_iPhone.h"
+#import "AppDelegate_iPhone.h"
 
 @interface AlreadyAccountViewController_iPhone ()
 
@@ -30,7 +31,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Get started";
-    self.errorLabel.text = @"";
+    self.mailErrorLabel.hidden = YES;
+    self.passwordErrorLabel.hidden = YES;
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
     self.navigationItem.rightBarButtonItem = button;
@@ -57,5 +59,17 @@
     OnPremiseViewController_iPhone *onPremiseViewController = [[OnPremiseViewController_iPhone alloc] initWithNibName:@"OnPremiseViewController_iPhone" bundle:nil];
     
     [self.navigationController pushViewController:onPremiseViewController animated:YES];
+}
+
+#pragma mark LoginProxyDelegate methods
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
+{
+    [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
+    
+    //show activity stream
+    AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
+    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+    [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
+
 }
 @end

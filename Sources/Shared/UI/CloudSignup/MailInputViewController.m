@@ -29,6 +29,8 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 @synthesize errorLabel = _errorLabel;
 @synthesize mailTf = _mailTf;
 @synthesize hud = _hud;
+@synthesize instructionLabel = _instructionLabel;
+@synthesize createButton = _createButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +47,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.errorLabel.text = @"";
+    self.mailTf.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +62,8 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     [_errorLabel release];
     [_mailTf release];
     [_hud release];
+    [_instructionLabel release];
+    [_createButton release];
 }
 
 - (SSHUDView *)hud {
@@ -98,7 +103,6 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
             break;
         case EMAIL_BLACKLISTED:
         {
-            NSLog(@"email blacklisted");
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"EmailIsBlacklisted") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
             break;
@@ -117,7 +121,6 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         {
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"NumberOfUsersExceed") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
-            NSLog(@"number of users exceed");
             break;
         }
            
@@ -129,7 +132,6 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error
 {
     [self.hud setHidden:YES];
-    NSLog(@"%@", [error description]);
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"CloudServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     [alert show];
 }
@@ -170,5 +172,13 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     if(alertView.tag == ALERT_VIEW_ALREADY_ACCOUNT_TAG) {
         [self redirectToLoginScreen:emailAddress];
     }
+}
+
+#pragma mark UITextFieldDelegate methods
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self createAccount:nil];
+    return YES;
 }
 @end

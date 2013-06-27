@@ -9,6 +9,8 @@
 #import "LoginProxy.h"
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
+#import "CloudUtils.h"
+#import "UserPreferencesManager.h"
 
 @interface LoginProxy()
 //private variables
@@ -19,12 +21,24 @@
 @implementation LoginProxy
 
 @synthesize delegate = _delegate;
-@synthesize username;
-@synthesize password;
+@synthesize username = _username;
+@synthesize password = _password;
+@synthesize serverUrl = _serverUrl;
+- (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl
+{
+    if((self = [super init])) {
+        self.delegate = delegate;
+        self.username = username;
+        self.password = password;
+        self.serverUrl = serverUrl;
+    }
+return self;
+}
 
 -(id)initWithDelegate:(id<LoginProxyDelegate>)delegate {
     if ((self = [super init])) {
         _delegate = delegate;
+        self.serverUrl = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     }
     return self;
 }
@@ -34,6 +48,7 @@
         _delegate = delegate;
         self.username = userName;
         self.password = passWord;
+        self.serverUrl = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     }
     return self;
 }
@@ -72,8 +87,7 @@
 
 //Helper to create the base URL
 - (NSString *)createBaseURL {  
-    NSString *domainName = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
-    return domainName ? [NSString stringWithFormat:@"%@/%@/",domainName, kRestContextName] : nil;
+    return self.serverUrl ? [NSString stringWithFormat:@"%@/%@/",self.serverUrl, kRestContextName] : nil;
 }
 
 
@@ -103,7 +117,7 @@
 #pragma mark Methods for authentication
 - (void)authenticate
 {
-    NSString *dest = [NSString stringWithFormat:@"%@/rest/private/",[[ApplicationPreferencesManager sharedInstance] selectedDomain]];
+    NSString *dest = [NSString stringWithFormat:@"%@/rest/private/",self.serverUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:dest] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10.0];
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self] ;
     
@@ -153,27 +167,40 @@
     //We now need to check if the version can run social features or not and set properties
     
     PlatformServerVersion *platformServerVersion = [objects objectAtIndex:0];
-    
-    // get the 3 first chars of version, ex: 3.5, 4.0
-    NSString *shortVersionStr = [platformServerVersion.platformVersion substringToIndex:3];
-    float shortVersion = [shortVersionStr floatValue];
-    
-    BOOL isPlatformCompatibleWithSocialFeatures = YES;
-    
-    if(shortVersion < 3.5) { // if version is before 3.5, plf is not compliant with social
-        isPlatformCompatibleWithSocialFeatures = NO;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if(platformServerVersion != nil && [platformServerVersion.isMobileCompliant boolValue]) {
+        // get the 3 first chars of version, ex: 3.5, 4.0
+        NSString *shortVersionStr = [platformServerVersion.platformVersion substringToIndex:3];
+        float shortVersion = [shortVersionStr floatValue];
+        
+        BOOL isPlatformCompatibleWithSocialFeatures = (shortVersion < 3.5) ? NO : YES;
+        
+        if(isPlatformCompatibleWithSocialFeatures) {
+            [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+            [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
+        }
+        
+        [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
+        
+        //We need to prevent the caller.
+        if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
+            [_delegate loginProxy:self platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
+        }
+    } else {
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
+        
+        NSError *error = [[NSError alloc] initWithDomain:EXO_NOT_COMPILANT_ERROR_DOMAIN code:nil userInfo:nil];
+        [self.delegate loginProxy:self authenticateFailedWithError:error];
     }
-    
-    //We need to prevent the caller.
-    if (_delegate && [_delegate respondsToSelector:@selector(platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
-        [_delegate platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
-    }
+    [userDefaults synchronize];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
 	// Authenticate failed
-    if (_delegate && [_delegate respondsToSelector:@selector(authenticateFailedWithError:)]) {
-        [_delegate authenticateFailedWithError:error];
+    if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
+        [_delegate loginProxy:self authenticateFailedWithError:error];
     }
 
 }
@@ -183,6 +210,7 @@
     [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [self.username release];
     [self.password release];
+    [self.serverUrl release];
     [super dealloc];
 }
 
@@ -196,7 +224,7 @@
         
     } else {
         //alert to user that he entered incorrect username/password
-        [self.delegate authenticateFailedWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUserCancelledAuthentication userInfo:nil]];
+        [self.delegate loginProxy:self authenticateFailedWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUserCancelledAuthentication userInfo:nil]];
     }
 }
 
@@ -206,7 +234,7 @@
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [self.delegate authenticateFailedWithError:error];
+    [self.delegate loginProxy:self authenticateFailedWithError:error];
 }
 
 @end

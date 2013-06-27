@@ -268,18 +268,13 @@
 
 #pragma mark - PlatformVersionProxyDelegate 
 // Called by LoginProxy when login is successful
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
     // Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
-    if (compatibleWithSocial) {
-        [UserPreferencesManager sharedInstance].username = _credViewController.txtfUsername.text;
-        [UserPreferencesManager sharedInstance].password = _credViewController.txtfPassword.text;
-        [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
-        [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
-    }
 }
+
 // Called by LoginProxy when login has failed
-- (void)authenticateFailedWithError:(NSError *)error {
+- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error {
     [self view].userInteractionEnabled = YES;
     //MOB-1453: bug caused by https://github.com/soffes/sstoolkit/issues/147
     //workaround: dismiss hud after clicking OK in alert, in a delegate method
@@ -294,10 +289,16 @@
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"WrongUserNamePassword") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     } else if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) { //error getting platform info by restkit
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    } else if([error.domain isEqualToString:EXO_NOT_COMPILANT_ERROR_DOMAIN]) {
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Error")
+                                           message:Localize(@"NotCompliant")
+                                          delegate:nil
+                                 cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] autorelease];
+
     } else {
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     }
-    
     [alert show];
 }
 

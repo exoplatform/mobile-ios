@@ -70,12 +70,12 @@
     
     if(accountConfigured) { //if one account is configured, display Authenticate screen
         window.rootViewController = navigationController;
-    } else {//otherwise display sign up screen
+    } else {
         _welcomeViewController = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
-        
         window.rootViewController = _welcomeViewController;
+        
     }
-    
+
 	[window makeKeyAndVisible];
     
 }

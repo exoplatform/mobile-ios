@@ -7,7 +7,7 @@
 //
 
 #import "CloudUtils.h"
-
+#import "defines.h"
 @implementation CloudUtils
 
 // check if a given mail is in correct format
@@ -20,21 +20,15 @@
     return [emailTest evaluateWithObject:mail];
 }
 
-+ (NSString *)serverUrlByEmail:(NSString *)email
-{
-    //TO-DO
-    return nil;
-}
 
 + (NSString *)usernameByEmail:(NSString *)email
 {
-    //TO-DO
-    return nil;
+    return [email substringToIndex:[email rangeOfString:@"@"].location];
 }
 
-+ (NSString *)tenantByEmail:(NSString *)email
++ (NSString *)serverUrlByTenant:(NSString *)tenantName
 {
-    //TO-DO
-    return nil;
+    return  [NSString stringWithFormat:@"http://%@.%@",tenantName, EXO_CLOUD_HOST];
 }
+
 @end

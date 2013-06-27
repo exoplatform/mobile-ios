@@ -15,7 +15,6 @@
 @end
 
 @implementation SignUpViewController_iPhone
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,13 +28,32 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self configureBanner];
+    [self insertBodyPanel];
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+// the panel that contains the input view and greeting view
+// the input view is displayed first, then after receiving validation email
+// the greeting view is displayed with a flip animation
+- (void) insertBodyPanel
+{
     mailInputViewController = [[MailInputViewController_iPhone alloc] initWithNibName:@"MailInputViewController_iPhone" bundle:nil];
     
     greetingViewController = [[GreetingViewController_iPhone alloc] initWithNibName:@"GreetingViewController_iPhone" bundle:nil] ;
     
     [self addChildViewController:mailInputViewController];
     
-    UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(0, 120, 320, 160)] autorelease];
+    UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 160)] autorelease]; //the view that contains mail input and greeting view
     
     [viewContainer addSubview:mailInputViewController.view];
     [viewContainer addSubview:greetingViewController.view];
@@ -44,12 +62,12 @@
     greetingViewController.view.hidden = YES;
     
     [self.view addSubview:viewContainer];
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (void) configureBanner
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UIView *banner = [self.view viewWithTag:100]; //the tag for the banner is 100
+    banner.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture.jpg"]];
 }
-
 @end

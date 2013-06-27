@@ -75,10 +75,9 @@
 					<object class="IBUIButton" id="844321170">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{111, 437}, {99, 18}}</string>
+						<string key="NSFrame">{{111, 432}, {99, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -227,8 +226,8 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Your eXo intranet, any where at any time!</string>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC45MzEwNDYxOTU3IDAuOTE2MjA3MjQ3NyAwLjkwMDM1Mjg1NjYAA</bytes>
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -587,25 +586,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">WelcomeViewController_iPhone</string>
 					<string key="superclassName">WelcomeViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="login:">id</string>
-						<string key="signup:">id</string>
-						<string key="skipCloudSignup:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="login:">
-							<string key="name">login:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="signup:">
-							<string key="name">signup:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="skipCloudSignup:">
-							<string key="name">skipCloudSignup:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/WelcomeViewController_iPhone.h</string>

@@ -9,5 +9,4 @@
 #import "MailInputViewController.h"
 
 @interface MailInputViewController_iPhone : MailInputViewController
-
 @end
