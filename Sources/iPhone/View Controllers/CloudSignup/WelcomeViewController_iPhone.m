@@ -82,15 +82,18 @@ int const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
 
 -(void)skipCloudSignup:(id)sender
 {
-    
-    AppDelegate_iPhone *appDelegate = [AppDelegate_iPhone instance];
-    [UIView transitionFromView:appDelegate.window.rootViewController.view
-                        toView:appDelegate.navigationController.view
-                      duration:0.8f
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    completion:^(BOOL finished){
-                        appDelegate.window.rootViewController = appDelegate.navigationController;
-                    }];
+    if(self.shouldBackToSetting) {
+        [self dismissModalViewControllerAnimated:YES];
+    } else {
+        AppDelegate_iPhone *appDelegate = [AppDelegate_iPhone instance];
+        [UIView transitionFromView:appDelegate.window.rootViewController.view
+                            toView:appDelegate.navigationController.view
+                          duration:0.8f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        completion:^(BOOL finished){
+                            appDelegate.window.rootViewController = appDelegate.navigationController;
+                        }];
+    }
 }
 
 

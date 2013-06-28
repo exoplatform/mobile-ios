@@ -12,4 +12,5 @@
 +(BOOL) checkEmailFormat:(NSString *)mail;
 +(NSString *)usernameByEmail:(NSString *)email;
 + (NSString *)serverUrlByTenant:(NSString *)tenantName;
++ (NSString *)correctServerUrl:(NSString *)inputtedUrl;
 @end

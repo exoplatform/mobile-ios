@@ -27,7 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.createButton.userInteractionEnabled = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,15 +35,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if([string length] > 0) {
-        self.createButton.userInteractionEnabled = YES;
-        
-    } else {
-        self.createButton.userInteractionEnabled = NO;
-    }
-    return YES;
-}
 @end

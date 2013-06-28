@@ -19,6 +19,8 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 @synthesize _txtfServerName;
 @synthesize _txtfServerUrl;
+@synthesize usernameTf = _usernameTf;
+@synthesize passwordTf = _passwordTf;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +37,8 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_strServerUrl release];
     [_txtfServerName release];
     [_txtfServerUrl release];
+    [_usernameTf release];
+    [_passwordTf release];
     [super dealloc];
 }
 
@@ -53,18 +57,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = Localize(@"NewServer");
-    [_txtfServerName release];
-    _txtfServerName = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
-    [_txtfServerName setReturnKeyType:UIReturnKeyNext];
-	_txtfServerName.delegate = self;
-    
-    [_txtfServerUrl release];
-	_txtfServerUrl = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
-    [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
-    //Customize the style of the texfield
-    _txtfServerUrl.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-    _txtfServerUrl.adjustsFontSizeToFitWidth = YES;
-	_txtfServerUrl.delegate = self;
+    [self initTextFields];
     
     _bbtnDone = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStyleDone target:self action:@selector(onBbtnDone)];
     //[_bbtnDone setEnabled:NO];
@@ -123,16 +116,19 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 {
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder];
-    
-    if ([_delegate addServerObjWithServerName:[_txtfServerName text] andServerUrl:[_txtfServerUrl text]]) [self.navigationController popViewControllerAnimated:YES];
+    [_usernameTf resignFirstResponder];
+    [_passwordTf resignFirstResponder];
+    if ([_delegate addServerObjWithServerName:[_txtfServerName text] andServerUrl:[_txtfServerUrl text]]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
-+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure
++ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure andRequired:(BOOL)isRequired
 {
     UITextField* textField = [[[UITextField alloc] initWithFrame:CGRectMake(120, 14, 190, 21)] autorelease];
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.autoresizingMask =  UIViewAutoresizingFlexibleWidth;
-    textField.placeholder = Localize(@"Required");
+    textField.placeholder = isRequired ? Localize(@"Required") : Localize(@"Optional");
     textField.secureTextEntry = secure;
     textField.keyboardType = UIKeyboardTypeASCIICapable;
     textField.returnKeyType = UIReturnKeyDone;
@@ -157,20 +153,18 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 {
     // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
     
-    if (theTextField == _txtfServerName) 
-    {
+    if (theTextField == _txtfServerName) {
         [_txtfServerUrl becomeFirstResponder];
-    }
-    else
-    {    
-        [_txtfServerUrl resignFirstResponder];
+    } else if(theTextField == _txtfServerUrl) {
+        [_usernameTf becomeFirstResponder];
+    } else if(theTextField == _usernameTf) {
+        [_passwordTf becomeFirstResponder];
+    } else {
+        [_passwordTf resignFirstResponder];
         _strServerName = [[_txtfServerName text] retain];
         _strServerUrl = [[_txtfServerUrl text] retain];
         [self onBbtnDone];
-    }    
-    
-    _strServerName = [[_txtfServerName text] retain];
-    _strServerUrl = [[_txtfServerUrl text] retain];
+    }
     return YES;
 }
 
@@ -186,12 +180,16 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 #pragma mark Table view methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 1;
+    return 2;
 }
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	NSString* tmpStr = @"";
+    if(section == 1) {
+        tmpStr = @"Your credentials";
+    }
 	return tmpStr;
 }
 
@@ -225,23 +223,35 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     
     UILabel *textLabel = (UILabel *)[cell viewWithTag:kServerAddCellTextLabelTag];
     
-    if(indexPath.row == 0)
-    {
-        //TODO localize the label
-        textLabel.text = Localize(@"ServerName");
-        _txtfServerName.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
-        _txtfServerName.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-        [cell.contentView addSubview:_txtfServerName];
+    if(indexPath.section == 0) {
+        if(indexPath.row == 0)
+        {
+            //TODO localize the label
+            textLabel.text = Localize(@"ServerName");
+            [self configureTextFields:_txtfServerName withTextLabel:textLabel inCell:cell];
+        }
+        else
+        {
+            //TODO localize this label
+            textLabel.text = Localize(@"ServerUrl");
+            [self configureTextFields:_txtfServerUrl withTextLabel:textLabel inCell:cell];
+        }
+
+    } else {
+        if(indexPath.row == 0)
+        {
+            //TODO localize the label
+            textLabel.text = Localize(@"Username");
+            [self configureTextFields:_usernameTf withTextLabel:textLabel inCell:cell];
+        }
+        else
+        {
+            //TODO localize this label
+            textLabel.text = Localize(@"Password");
+            [self configureTextFields:_passwordTf withTextLabel:textLabel inCell:cell];
+        }
     }
-    else
-    {
-        //TODO localize this label
-        textLabel.text = Localize(@"ServerUrl");
-        _txtfServerUrl.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
-        _txtfServerUrl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-        [cell.contentView addSubview:_txtfServerUrl];
-    }
-    
+        
 
     [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
 
@@ -250,5 +260,41 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 }
 
+#pragma mark Text fields helper
+- (void) initTextFields
+{
+    [_txtfServerName release];
+    _txtfServerName = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES] retain];
+    [_txtfServerName setReturnKeyType:UIReturnKeyNext];
+	_txtfServerName.delegate = self;
+    
+    [_txtfServerUrl release];
+	_txtfServerUrl = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES] retain];
+    [_txtfServerUrl setReturnKeyType:UIReturnKeyNext];
+    //Customize the style of the texfield
+    _txtfServerUrl.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    _txtfServerUrl.adjustsFontSizeToFitWidth = YES;
+	_txtfServerUrl.delegate = self;
+    
+    // credentials text fields
+    [_usernameTf release];
+    _usernameTf = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:NO] retain];
+    [_usernameTf setReturnKeyType:UIReturnKeyNext];
+	_usernameTf.delegate = self;
+    
+    
+    [_passwordTf release];
+    _passwordTf = [[ServerAddingViewController textInputFieldForCellWithSecure:YES andRequired:NO] retain];
+    [_passwordTf setReturnKeyType:UIReturnKeyDone];
+	_passwordTf.delegate = self;
+}
+
+
+- (void)configureTextFields:(UITextField *)tf withTextLabel:(UILabel *)textLabel inCell:(UITableViewCell *)cell
+{
+    tf.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
+    tf.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
+    [cell.contentView addSubview:tf];
+}
 @end
 

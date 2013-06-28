@@ -48,6 +48,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 	// Do any additional setup after loading the view.
     self.errorLabel.text = @"";
     self.mailTf.delegate = self;
+    self.createButton.userInteractionEnabled = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,4 +182,17 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     [self createAccount:nil];
     return YES;
 }
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if([string length] > 0) {
+        self.createButton.userInteractionEnabled = YES;
+    } else {
+        if(range.location == 0) {//delete all the text, disable create button
+            self.createButton.userInteractionEnabled = NO;
+        }
+    }
+    return YES;
+}
+
 @end

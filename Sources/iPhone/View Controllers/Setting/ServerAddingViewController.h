@@ -24,9 +24,12 @@
 
 @property (nonatomic, retain) UITextField* _txtfServerName;
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
+//cloud sign up - link credentials to server
+@property (nonatomic, retain) UITextField *usernameTf;
+@property (nonatomic, retain) UITextField *passwordTf;
 
 - (void)setDelegate:(id<ServerManagerProtocol>)delegate;
-+ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure;
++ (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure andRequired:(BOOL)isRequired;
 
 @end
 

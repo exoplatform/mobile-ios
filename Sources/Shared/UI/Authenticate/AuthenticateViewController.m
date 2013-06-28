@@ -135,6 +135,7 @@
     // so we can re-enable the Auto Login option
     _bAutoLoginIsDisabled = NO;
     
+    //cloud sign-up, auto fill username and reload server list when the app is opened by an url
     [self autoFillReceivedUserName];
     [_servListViewController.tbvlServerList reloadData]; //reload the server list
 }

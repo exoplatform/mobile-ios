@@ -17,6 +17,7 @@
 @implementation WelcomeViewController
 
 @synthesize skipButton, loginButton, signupButton, pageControl, scrollView, shouldDisplayLoginView, receivedEmail;
+@synthesize shouldBackToSetting;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

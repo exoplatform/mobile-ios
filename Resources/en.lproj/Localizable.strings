@@ -48,6 +48,7 @@
 "Release to refresh..."="Release to refresh...";
 "Last Updated: %@"="Last updated: %@";
 "Required"="Required";
+"Optional"="Optional";
 "Fullscreen"="Fullscreen";
 "Close"="Close";
 
@@ -203,3 +204,5 @@
 "IncorrectEmailFormat"="Incorrect email format";
 "TenantNotExist"="Tenant does not exist";
 "TenantResuming"="We are resuming your intranet. Please come back later ";
+"Username"="Username";
+"Password"="Password";

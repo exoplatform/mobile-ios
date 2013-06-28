@@ -46,7 +46,12 @@
     //show activity stream
     AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.hud completeAndDismissWithTitle:Localize(@"Success")];
+
+        [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
+        
+    }];
 }
 
 @end

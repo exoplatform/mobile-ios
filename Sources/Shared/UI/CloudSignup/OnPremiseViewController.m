@@ -10,7 +10,7 @@
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
-
+#import "CloudUtils.h"
 @interface OnPremiseViewController ()
 
 @end
@@ -18,6 +18,7 @@
 @implementation OnPremiseViewController
 @synthesize usernameTf, serverUrlTf, passwordTf;
 @synthesize hud = _hud;
+@synthesize loginButton = _loginButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +34,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self configTextFields];
+    self.loginButton.userInteractionEnabled = NO;
    
 }
 
@@ -43,6 +45,7 @@
     [self.usernameTf release];
     [self.serverUrlTf release];
     [_hud release];
+    [_loginButton release];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -55,7 +58,7 @@
     [self dismissKeyboards];
     [self.hud show];
 
-    LoginProxy *loginProxy = [[LoginProxy alloc] initWithDelegate:self username:self.usernameTf.text password:self.passwordTf.text serverUrl:self.serverUrlTf.text];
+    LoginProxy *loginProxy = [[LoginProxy alloc] initWithDelegate:self username:self.usernameTf.text password:self.passwordTf.text serverUrl:[CloudUtils correctServerUrl:self.serverUrlTf.text]];
     [loginProxy authenticate];
 }
 
@@ -119,12 +122,28 @@
     } else if(textField == self.usernameTf) {
         [self.passwordTf becomeFirstResponder];
     } else if(textField == self.passwordTf) {
-        [self login:nil];
+        if(self.passwordTf.text.length > 0 && self.serverUrlTf.text.length > 0 && self.usernameTf.text.length > 0) {
+            [self login:nil];
+        }
     }
     return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if([string length] > 0) {
+        if(self.passwordTf.text.length > 0 && self.serverUrlTf.text.length > 0 && self.usernameTf.text.length > 0) {
+            self.loginButton.userInteractionEnabled = YES;
+        }
+    } else {
+        if(range.location == 0) {//delete all the text, disable login button
+            self.loginButton.userInteractionEnabled = NO;
+        }
+    }
+    return YES;
+}
 #pragma mark UIAlertViewDelegate method
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.hud.hidden = NO;

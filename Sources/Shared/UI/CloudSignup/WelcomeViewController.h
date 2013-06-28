@@ -22,6 +22,7 @@
 @property (nonatomic, assign) BOOL shouldDisplayLoginView;
 // the received email from the sign up view when user enters an already configured email
 @property (nonatomic, retain) NSString *receivedEmail;
+@property (nonatomic, assign) BOOL shouldBackToSetting;
 - (IBAction)skipCloudSignup:(id)sender;
 - (IBAction)signup:(id)sender;
 - (IBAction)login:(id)sender;

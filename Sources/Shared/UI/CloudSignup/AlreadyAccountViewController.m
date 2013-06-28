@@ -22,6 +22,7 @@
 @implementation AlreadyAccountViewController
 @synthesize passwordTf, emailTf, mailErrorLabel, passwordErrorLabel, autoFilledEmail;
 @synthesize hud = _hud;
+@synthesize loginButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +37,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self configElements];
     
 }
 
@@ -54,6 +56,7 @@
     [self.autoFilledEmail release];
     [self.passwordErrorLabel release];
     [_hud release];
+    [self.loginButton release];
 }
 
 - (void)cancel:(id)sender
@@ -133,7 +136,7 @@
 #pragma mark LoginProxyDelegate methods
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
-    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
+//    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
     
     //add the server url to server list
     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
@@ -159,15 +162,47 @@
     return _hud;
 }
 
+#pragma mark UIAlertViewDelegate methods
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.hud dismiss];
     self.hud.hidden = NO;
 }
 
+#pragma mark UITextFieldDelegate methods
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if([string length] > 0) {
+        if(self.passwordTf.text.length > 0 && self.emailTf.text.length > 0) {
+            self.loginButton.userInteractionEnabled = YES;
+        }
+    } else {
+        if(range.location == 0) {//delete all the text, disable login button
+            self.loginButton.userInteractionEnabled = NO;
+        }
+    }
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.passwordTf) {
+        [self login:nil];
+    }
+    return YES;
+}
+#pragma mark Utils
 - (void)dismissKeyboards
 {
     [self.emailTf resignFirstResponder];
     [self.passwordTf resignFirstResponder];
+}
+
+- (void)configElements
+{
+    self.loginButton.userInteractionEnabled = NO;
+    self.emailTf.delegate = self;
+    self.passwordTf.delegate = self;
 }
 @end

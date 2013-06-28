@@ -10,13 +10,15 @@
 #import "ExoCloudProxy.h"
 #import "SSHUDView.h"
 #import "LoginProxy.h"
-@interface AlreadyAccountViewController : UIViewController<ExoCloudProxyDelegate,LoginProxyDelegate, UIAlertViewDelegate>
+#import "LanguageHelper.h"
+@interface AlreadyAccountViewController : UIViewController<ExoCloudProxyDelegate,LoginProxyDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, retain) IBOutlet UITextField *emailTf;
 @property (nonatomic, retain) IBOutlet UITextField *passwordTf;
 @property (nonatomic, retain) IBOutlet UILabel *mailErrorLabel;
 @property (nonatomic, retain) IBOutlet UILabel *passwordErrorLabel;
 @property (nonatomic, retain) NSString *autoFilledEmail;
 @property (nonatomic, retain) SSHUDView *hud;
+@property (nonatomic, retain) IBOutlet UIButton *loginButton;
 - (IBAction)cancel:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)connectToOnPremise:(id)sender;

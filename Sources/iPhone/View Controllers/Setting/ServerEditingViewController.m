@@ -29,10 +29,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     if (self) {
         // Custom initialization
         _serverObj = [[ServerObj alloc] init];
-        _txtfServerName = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
+        _txtfServerName = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES] retain];
         [_txtfServerName setReturnKeyType:UIReturnKeyNext];
         _txtfServerName.delegate = self;
-        _txtfServerUrl = [[ServerAddingViewController textInputFieldForCellWithSecure:NO] retain];
+        _txtfServerUrl = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES] retain];
         [_txtfServerUrl setReturnKeyType:UIReturnKeyDone];
         _txtfServerUrl.delegate = self;
         _intIndex = -1;

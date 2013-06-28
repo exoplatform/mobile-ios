@@ -31,4 +31,28 @@
     return  [NSString stringWithFormat:@"http://%@.%@",tenantName, EXO_CLOUD_HOST];
 }
 
++ (NSString *)correctServerUrl:(NSString *)inputtedUrl
+{
+    NSString *correctUrl = inputtedUrl;
+    
+    int httpInd = [inputtedUrl rangeOfString:@"http"].location;
+    
+    if(httpInd == NSNotFound || httpInd > 0) {
+        correctUrl = [NSString stringWithFormat:@"http://%@", inputtedUrl];
+    }
+    
+    int httpwwwInd = [correctUrl rangeOfString:@"http://www."].location;
+    int httpswwwInd = [correctUrl rangeOfString:@"https://www."].location;
+    
+    if(httpwwwInd == 0) {
+        correctUrl = [NSString stringWithFormat:@"http://%@", [correctUrl substringFromIndex:[@"http://www." length]]];
+    }
+    
+    if(httpswwwInd == 0) {
+        correctUrl = [NSString stringWithFormat:@"https://%@", [correctUrl substringFromIndex:[@"https://www." length]]];
+
+    }
+    
+    return correctUrl;
+}
 @end
