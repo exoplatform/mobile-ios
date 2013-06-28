@@ -23,6 +23,8 @@
 @synthesize _strServerName;
 @synthesize _strServerUrl;
 @synthesize _bSystemServer;
+@synthesize username = _username;
+@synthesize password = _password;
 @end
 
 #pragma mark - Application Prefs
@@ -227,6 +229,8 @@
                         ServerObj* serverObj = [[ServerObj alloc] init];
                         serverObj._strServerName = [self getNodeValue:tmpNode withName:@"name"];
                         serverObj._strServerUrl = [self getNodeValue:tmpNode withName:@"serverURL"];
+                        serverObj.username = [self getNodeValue:tmpNode withName:@"username"];
+                        serverObj.password = [self getNodeValue:tmpNode withName:@"password"];
                         serverObj._bSystemServer = bSystemServer;
                         [arrServerList addObject:serverObj];
                         [serverObj release];
@@ -299,7 +303,7 @@
     for (int i = 0; i < [arrServerList count]; i++) 
     {
         ServerObj* tmpServerObj = [arrServerList objectAtIndex:i];
-        NSString* tmpStr = [NSString stringWithFormat:@"\t\t\t<server name=\"%@\" serverURL=\"%@\"/>\n",tmpServerObj._strServerName, tmpServerObj._strServerUrl];
+        NSString* tmpStr = [NSString stringWithFormat:@"\t\t\t<server name=\"%@\" serverURL=\"%@\" username=\"%@\" password=\"%@\" />\n" ,tmpServerObj._strServerName, tmpServerObj._strServerUrl, tmpServerObj.username, tmpServerObj.password];
         strContent = [strContent stringByAppendingString:tmpStr];
     }
     
@@ -428,7 +432,7 @@
 }
 
 // Unique private method to add/edit a server, avoids duplicating common code
-- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl atIndex:(int)index {
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password atIndex:(int)index {
     
     // We don't specify an existing server so it's a new one
     if (index == -1)
@@ -438,6 +442,8 @@
         serverObj._strServerName = strServerName;
         serverObj._strServerUrl = strServerUrl;
         serverObj._bSystemServer = NO;
+        serverObj.username = username;
+        serverObj.password = password;
         
         //Add the server in configuration
         NSMutableArray* arrAddedServer = [self loadUserConfiguration];
@@ -454,6 +460,8 @@
         
         serverObjEdited._strServerName = strServerName;
         serverObjEdited._strServerUrl = strServerUrl;
+        serverObjEdited.username = username;
+        serverObjEdited.password = password;
         
         [self.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
         
@@ -489,7 +497,7 @@
 
 - (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
 {
-    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:-1];
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl  withUsername:nil andPassword:nil atIndex:-1];
 }
 
 - (BOOL)deleteServerObjAtIndex:(int)index
@@ -565,7 +573,7 @@
     if(serverIndex > -1) { //if the server is already exist, just set it to be selected
         [self setSelectedServerIndex:serverIndex];
     } else { //otherwise, add a new server to server list, and set it to be selected
-        [self addEditServerWithServerName:serverName andServerUrl:serverLink atIndex:-1];
+        [self addEditServerWithServerName:serverName andServerUrl:serverLink withUsername:nil andPassword:nil atIndex:-1];
         [self setSelectedServerIndex:[self.serverList count] - 1];
     }
 }

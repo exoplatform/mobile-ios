@@ -118,7 +118,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerUrl resignFirstResponder];
     [_usernameTf resignFirstResponder];
     [_passwordTf resignFirstResponder];
-    if ([_delegate addServerObjWithServerName:[_txtfServerName text] andServerUrl:[_txtfServerUrl text]]) {
+    if ([_delegate addServerObjWithServerName:[_txtfServerName text] andServerUrl:[_txtfServerUrl text] withUsername:_usernameTf.text andPassword:_passwordTf.text]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

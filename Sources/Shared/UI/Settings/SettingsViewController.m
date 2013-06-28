@@ -19,6 +19,7 @@
 #import "ServerEditingViewController.h"
 #import "ServerAddingViewController.h"
 #import "SignUpViewController_iPhone.h"
+#import "WelcomeViewController_iPhone.h"
 
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
@@ -607,10 +608,11 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    
     if(sectionId == SettingViewControllerCloudAssistant) {
-        SignUpViewController_iPhone *signupView = [[SignUpViewController_iPhone alloc] initWithNibName:@"SignUpViewController_iPhone" bundle:nil];
-        signupView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:signupView animated:YES];
+        WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
+        welcomeVC.shouldBackToSetting = YES;
+        [self presentModalViewController:welcomeVC animated:YES];
     }
     
 	else if (sectionId == SettingViewControllerSectionLanguage)
@@ -651,7 +653,6 @@ typedef enum {
             }
         }
 	}
-    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -733,7 +734,7 @@ typedef enum {
 }
 
 // Unique private method to add/edit a server, avoids duplicating common code
-- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl atIndex:(int)index {
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password  atIndex:(int)index {
     
     if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
         ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
@@ -758,21 +759,21 @@ typedef enum {
         }
     }
     
-    [appPrefManager addEditServerWithServerName:cleanServerName andServerUrl:cleanServerUrl atIndex:index];
+    [appPrefManager addEditServerWithServerName:cleanServerName andServerUrl:cleanServerUrl withUsername:username andPassword:password atIndex:index];
     
     [self.tableView reloadData];
     
     return YES;
 }
 
-- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password
 {
-    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:-1];
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl withUsername:username andPassword:password atIndex:-1];
 }
 
-- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password
 {
-    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:index];
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl withUsername:username andPassword:password atIndex:index];
 }
 
 - (BOOL)deleteServerObjAtIndex:(int)index;
