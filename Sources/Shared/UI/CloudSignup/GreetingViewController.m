@@ -7,7 +7,7 @@
 //
 
 #import "GreetingViewController.h"
-
+#import <QuartzCore/QuartzCore.h>
 @interface GreetingViewController ()
 
 @end
@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.view.layer.masksToBounds = NO;
+    self.view.layer.cornerRadius = 8;
+    self.view.layer.shadowOpacity = 0.5;
 }
 
 - (void)didReceiveMemoryWarning

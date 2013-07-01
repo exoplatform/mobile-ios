@@ -7,7 +7,6 @@
 //
 
 #import "MailInputViewController_iPhone.h"
-
 @interface MailInputViewController_iPhone ()
 
 @end

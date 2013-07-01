@@ -14,6 +14,8 @@
 #import "AlreadyAccountViewController_iPhone.h"
 #import "WelcomeViewController_iPhone.h"
 #import "LanguageHelper.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 int const ALERT_VIEW_ALREADY_ACCOUNT_TAG = 1000;
 int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
@@ -49,6 +51,10 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     self.errorLabel.text = @"";
     self.mailTf.delegate = self;
     self.createButton.userInteractionEnabled = NO;
+    
+    self.view.layer.masksToBounds = NO;
+    self.view.layer.cornerRadius = 8; 
+    self.view.layer.shadowOpacity = 0.5;
 }
 
 - (void)didReceiveMemoryWarning

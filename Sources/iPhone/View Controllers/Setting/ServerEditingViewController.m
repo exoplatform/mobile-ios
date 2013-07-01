@@ -220,7 +220,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 {
 	NSString* tmpStr = @"";
     if(section == 1) {
-        tmpStr = @"Your credentials";
+        tmpStr = Localize(@"Your credentials");
     }
 	return tmpStr;
 }
@@ -271,13 +271,13 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         {
             //TODO localize the label
             textLabel.text = Localize(@"ServerName");
-            [self configureTextFields:_txtfServerName withTextLabel:textLabel inCell:cell];
+            [self configureTextField:_txtfServerName withTextLabel:textLabel inCell:cell];
         }
         else
         {
             //TODO localize this label
             textLabel.text = Localize(@"ServerUrl");
-            [self configureTextFields:_txtfServerUrl withTextLabel:textLabel inCell:cell];
+            [self configureTextField:_txtfServerUrl withTextLabel:textLabel inCell:cell];
         }
         
     } else {
@@ -285,13 +285,13 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         {
             //TODO localize the label
             textLabel.text = Localize(@"Username");
-            [self configureTextFields:_usernameTf withTextLabel:textLabel inCell:cell];
+            [self configureTextField:_usernameTf withTextLabel:textLabel inCell:cell];
         }
         else
         {
             //TODO localize this label
             textLabel.text = Localize(@"Password");
-            [self configureTextFields:_passwordTf withTextLabel:textLabel inCell:cell];
+            [self configureTextField:_passwordTf withTextLabel:textLabel inCell:cell];
         }
     }
 
@@ -330,7 +330,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 }
 
 
-- (void)configureTextFields:(UITextField *)tf withTextLabel:(UILabel *)textLabel inCell:(UITableViewCell *)cell
+- (void)configureTextField:(UITextField *)tf withTextLabel:(UILabel *)textLabel inCell:(UITableViewCell *)cell
 {
     tf.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
     tf.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;

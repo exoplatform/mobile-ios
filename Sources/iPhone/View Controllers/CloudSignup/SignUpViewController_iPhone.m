@@ -28,7 +28,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self configureBanner];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture.jpg"]];
+    
     [self insertBodyPanel];
 }
 
@@ -53,7 +54,7 @@
     
     [self addChildViewController:mailInputViewController];
     
-    UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 160)] autorelease]; //the view that contains mail input and greeting view
+    UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 280, 280)] autorelease]; //the view that contains mail input and greeting view
     
     [viewContainer addSubview:mailInputViewController.view];
     [viewContainer addSubview:greetingViewController.view];
@@ -65,9 +66,4 @@
     
 }
 
-- (void) configureBanner
-{
-    UIView *banner = [self.view viewWithTag:100]; //the tag for the banner is 100
-    banner.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture.jpg"]];
-}
 @end

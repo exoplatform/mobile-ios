@@ -71,7 +71,6 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [self.hud completeAndDismissWithTitle:Localize(@"Success")];
         [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
-
     }];
 }
 @end
