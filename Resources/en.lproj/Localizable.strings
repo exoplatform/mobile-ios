@@ -201,7 +201,7 @@
 "eXoCloudConfigurationAssistant"="eXo Cloud sign-up assistant";
 "EmailIsBlacklisted"="Free emails are not allowed to sign up";
 "NumberOfUsersExceed"="Number of users are exceeded. Please contact your administrator";
-"IncorrectEmailFormat"="Incorrect email format";
+"IncorrectEmailFormat"="Please enter a valid email address";
 "TenantNotExist"="Tenant does not exist";
 "TenantResuming"="We are resuming your intranet. Please come back later ";
 "Username"="Username";

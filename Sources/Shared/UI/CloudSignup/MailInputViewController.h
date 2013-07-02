@@ -16,5 +16,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *errorLabel;
 @property (nonatomic, retain) SSHUDView *hud;
 @property (nonatomic, retain) IBOutlet UIButton *createButton;
+@property (nonatomic, retain) IBOutlet UIImageView *warningIcon;
 - (IBAction)createAccount:(id)sender;
 @end

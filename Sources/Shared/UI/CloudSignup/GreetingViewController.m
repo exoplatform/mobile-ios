@@ -8,6 +8,7 @@
 
 #import "GreetingViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "defines.h"
 @interface GreetingViewController ()
 
 @end
@@ -29,7 +30,7 @@
 	// Do any additional setup after loading the view.
     self.view.layer.masksToBounds = NO;
     self.view.layer.cornerRadius = 8;
-    self.view.layer.shadowOpacity = 0.5;
+    self.view.backgroundColor = UIColorFromRGB(0xF0F0F0);
 }
 
 - (void)didReceiveMemoryWarning

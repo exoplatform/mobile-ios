@@ -36,7 +36,7 @@ int const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
         
     // Do any additional setup after loading the view from its nib.

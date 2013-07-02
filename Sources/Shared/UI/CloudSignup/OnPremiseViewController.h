@@ -17,5 +17,6 @@
 @property (nonatomic, retain) IBOutlet UITextField *passwordTf;
 @property (nonatomic, retain) SSHUDView *hud;
 @property (nonatomic, retain) IBOutlet UIButton *loginButton;
+@property (nonatomic, retain) IBOutlet UIView *containerView;
 - (IBAction)login:(id)sender;
 @end

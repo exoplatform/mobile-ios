@@ -11,6 +11,9 @@
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
 #import "CloudUtils.h"
+#import <QuartzCore/QuartzCore.h>
+#import "CloudViewUtils.h"
+#import "defines.h"
 @interface OnPremiseViewController ()
 
 @end
@@ -19,6 +22,7 @@
 @synthesize usernameTf, serverUrlTf, passwordTf;
 @synthesize hud = _hud;
 @synthesize loginButton = _loginButton;
+@synthesize  containerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,8 +38,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self configTextFields];
-    self.loginButton.userInteractionEnabled = NO;
-   
+    self.loginButton.enabled = NO;
+    self.containerView.layer.masksToBounds = NO;
+    self.containerView.layer.cornerRadius = 8;
+    self.containerView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
+    [CloudViewUtils configureButton:self.loginButton withBackground:@"blue_btn"];
+    [CloudViewUtils configureTextField:self.serverUrlTf withIcon:@"icon_link"];
+    [CloudViewUtils configureTextField:self.usernameTf withIcon:@"icon_mail"];
+    [CloudViewUtils configureTextField:self.passwordTf withIcon:@"icon_lock"];
+    /* Add tap gesture to dismiss keyboard */
+    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
+    [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
+    [self.view addGestureRecognizer:tapGesure];
+
+    // Notifies when the keyboard is shown/hidden
+    // Selector must be implemented in _iPhone and _iPad subclasses
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
+
+    
 }
 
 - (void)dealloc
@@ -46,6 +69,7 @@
     [self.serverUrlTf release];
     [_hud release];
     [_loginButton release];
+    [self.containerView release];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -133,11 +157,11 @@
 {
     if([string length] > 0) {
         if(self.passwordTf.text.length > 0 && self.serverUrlTf.text.length > 0 && self.usernameTf.text.length > 0) {
-            self.loginButton.userInteractionEnabled = YES;
+            self.loginButton.enabled = YES;
         }
     } else {
         if(range.location == 0) {//delete all the text, disable login button
-            self.loginButton.userInteractionEnabled = NO;
+            self.loginButton.enabled = NO;
         }
     }
     return YES;
@@ -157,6 +181,37 @@
     self.serverUrlTf.delegate = self;
     self.usernameTf.delegate = self;
 }
+
+#pragma mark - Keyboard management
+
+-(void)manageKeyboard:(NSNotification *) notif {
+    if (notif.name == UIKeyboardDidShowNotification) {
+        [self setViewMovedUp:YES];
+    } else if (notif.name == UIKeyboardDidHideNotification) {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    CGRect viewRect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        viewRect.origin.y -= scrollHeight;
+    }
+    else
+    {
+        viewRect.origin.y = 0;
+    }
+    self.view.frame = viewRect;
+    [UIView commitAnimations];
+}
+
 - (void) dismissKeyboards
 {
     [self.passwordTf resignFirstResponder];

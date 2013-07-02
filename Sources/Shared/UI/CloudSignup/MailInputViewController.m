@@ -15,6 +15,8 @@
 #import "WelcomeViewController_iPhone.h"
 #import "LanguageHelper.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CloudViewUtils.h"
+#import "defines.h"
 
 
 int const ALERT_VIEW_ALREADY_ACCOUNT_TAG = 1000;
@@ -33,6 +35,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 @synthesize hud = _hud;
 @synthesize instructionLabel = _instructionLabel;
 @synthesize createButton = _createButton;
+@synthesize warningIcon = _warningIcon;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,13 +51,22 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.errorLabel.text = @"";
     self.mailTf.delegate = self;
-    self.createButton.userInteractionEnabled = NO;
+    
+    [self.createButton setEnabled:NO];
     
     self.view.layer.masksToBounds = NO;
-    self.view.layer.cornerRadius = 8; 
-    self.view.layer.shadowOpacity = 0.5;
+    self.view.layer.cornerRadius = 8;
+    self.view.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    [CloudViewUtils configureTextField:self.mailTf withIcon:@"icon_mail"];
+    [CloudViewUtils configureButton:self.createButton withBackground:@"blue_btn"];
+    
+    self.errorLabel.text = Localize(@"IncorrectEmailFormat");
+
+    self.errorLabel.hidden = YES;
+    self.warningIcon.hidden = YES;
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,6 +83,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     [_hud release];
     [_instructionLabel release];
     [_createButton release];
+    [_warningIcon release];
 }
 
 - (SSHUDView *)hud {
@@ -94,7 +107,8 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         
         [cloudProxy signUp];
     } else {
-        self.errorLabel.text = Localize(@"IncorrectEmailFormat");
+        self.errorLabel.hidden = NO;
+        self.warningIcon.hidden = NO;
     }
 }
 
@@ -130,7 +144,13 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
             [alert show];
             break;
         }
-           
+        
+        case TENANT_RESUMING:
+        {
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantResuming") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [alert show];
+            break;
+        }
         default:
             break;
     }
@@ -192,10 +212,10 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if([string length] > 0) {
-        self.createButton.userInteractionEnabled = YES;
+        self.createButton.enabled = YES;
     } else {
         if(range.location == 0) {//delete all the text, disable create button
-            self.createButton.userInteractionEnabled = NO;
+            self.createButton.enabled = NO;
         }
     }
     return YES;

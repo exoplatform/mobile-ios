@@ -12,7 +12,7 @@
 #import "LanguageHelper.h"
 #import "AuthTabItem.h"
 #import "eXoViewController.h"
-#define scrollHeight 80 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+
 #define tabViewsTopMargin 6 /* the top margin of the views under the tabs */
 #define tabsHeightAndLeftMargin 30 /* the height and left margin of the tabs */
 #define tabsWidth 110 /* defines the width of the clickable area */

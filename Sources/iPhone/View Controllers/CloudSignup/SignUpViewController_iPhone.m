@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
     [self insertBodyPanel];
 }
@@ -54,7 +54,7 @@
     
     [self addChildViewController:mailInputViewController];
     
-    UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 280, 280)] autorelease]; //the view that contains mail input and greeting view
+    UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 280, 250)] autorelease]; //the view that contains mail input and greeting view
     
     [viewContainer addSubview:mailInputViewController.view];
     [viewContainer addSubview:greetingViewController.view];

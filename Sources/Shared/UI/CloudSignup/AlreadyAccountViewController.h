@@ -19,6 +19,8 @@
 @property (nonatomic, retain) NSString *autoFilledEmail;
 @property (nonatomic, retain) SSHUDView *hud;
 @property (nonatomic, retain) IBOutlet UIButton *loginButton;
+@property (nonatomic, retain) IBOutlet UIButton *onpremiseButton;
+@property (nonatomic, retain) IBOutlet UIView *containerView;
 - (IBAction)cancel:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)connectToOnPremise:(id)sender;
