@@ -12,8 +12,8 @@
 #import "SignUpViewController_iPhone.h"
 #import "AlreadyAccountViewController_iPhone.h"
 
-int const static SWIPED_SCREEN_SHOT_WIDTH = 250;
-int const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
+float const static SWIPED_SCREEN_SHOT_WIDTH = 220;
+float const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
 
 @interface WelcomeViewController_iPhone ()
 
@@ -37,7 +37,6 @@ int const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
-    
         
     // Do any additional setup after loading the view from its nib.
     
@@ -60,11 +59,17 @@ int const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height);
     
     [self configureSkipButton];
-    [self configure:self.signupButton withTitle:@"Sign Up" andSubtitle:@"Create an account"];
-    [self configure:self.loginButton withTitle:@"Log In" andSubtitle:@"Already an account"];
+    [CloudViewUtils configure:self.signupButton withTitle:@"Sign Up" andSubtitle:@"Create an account"];
+    [CloudViewUtils configure:self.loginButton withTitle:@"Log In" andSubtitle:@"Already an account"];
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    CGRect scrollViewFrame = self.scrollView.frame;
+    scrollViewFrame.origin.y = self.blurryBg.frame.origin.y;
+    self.scrollView.frame = scrollViewFrame;
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     

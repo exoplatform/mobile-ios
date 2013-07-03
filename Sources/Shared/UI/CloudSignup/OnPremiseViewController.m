@@ -37,17 +37,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self configTextFields];
-    self.loginButton.enabled = NO;
+    
+    [self configElements];
+    
     self.containerView.layer.masksToBounds = NO;
     self.containerView.layer.cornerRadius = 8;
     self.containerView.backgroundColor = UIColorFromRGB(0xF0F0F0);
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
-    [CloudViewUtils configureButton:self.loginButton withBackground:@"blue_btn"];
-    [CloudViewUtils configureTextField:self.serverUrlTf withIcon:@"icon_link"];
-    [CloudViewUtils configureTextField:self.usernameTf withIcon:@"icon_mail"];
-    [CloudViewUtils configureTextField:self.passwordTf withIcon:@"icon_lock"];
+    
     /* Add tap gesture to dismiss keyboard */
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
@@ -57,8 +55,6 @@
     // Selector must be implemented in _iPhone and _iPad subclasses
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
-
-    
 }
 
 - (void)dealloc
@@ -130,7 +126,7 @@
     
     //add the server url to server list
     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
-    [appPref addAndSetSelectedServer:proxy.serverUrl];
+    [appPref addAndSetSelectedServer:proxy.serverUrl withName:@"My intranet"];
     
     //1 account is already configured, next time starting app, display authenticate screen
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
@@ -175,13 +171,20 @@
 }
 
 #pragma mark Utils
-- (void)configTextFields
+
+- (void) configElements
 {
     self.passwordTf.delegate = self;
     self.serverUrlTf.delegate = self;
     self.usernameTf.delegate = self;
+    
+    [CloudViewUtils configureTextField:self.serverUrlTf withIcon:@"icon_link"];
+    [CloudViewUtils configureTextField:self.usernameTf withIcon:@"icon_mail"];
+    [CloudViewUtils configureTextField:self.passwordTf withIcon:@"icon_lock"];
+    
+    self.loginButton.enabled = NO;
+    [CloudViewUtils configureButton:self.loginButton withBackground:@"blue_btn"];
 }
-
 #pragma mark - Keyboard management
 
 -(void)manageKeyboard:(NSNotification *) notif {

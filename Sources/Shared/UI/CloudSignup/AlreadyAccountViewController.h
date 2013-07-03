@@ -15,12 +15,12 @@
 @property (nonatomic, retain) IBOutlet UITextField *emailTf;
 @property (nonatomic, retain) IBOutlet UITextField *passwordTf;
 @property (nonatomic, retain) IBOutlet UILabel *mailErrorLabel;
-@property (nonatomic, retain) IBOutlet UILabel *passwordErrorLabel;
 @property (nonatomic, retain) NSString *autoFilledEmail;
 @property (nonatomic, retain) SSHUDView *hud;
 @property (nonatomic, retain) IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) IBOutlet UIButton *onpremiseButton;
 @property (nonatomic, retain) IBOutlet UIView *containerView;
+@property (nonatomic, retain) IBOutlet UIImageView *warningIcon;
 - (IBAction)cancel:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)connectToOnPremise:(id)sender;

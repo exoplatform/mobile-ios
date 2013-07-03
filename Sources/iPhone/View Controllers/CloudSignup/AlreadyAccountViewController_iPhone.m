@@ -29,12 +29,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Get started";
-    self.mailErrorLabel.hidden = YES;
-    self.passwordErrorLabel.hidden = YES;
-    
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
-    self.navigationItem.rightBarButtonItem = button;
 }
 
 - (void)viewDidAppear:(BOOL)animated

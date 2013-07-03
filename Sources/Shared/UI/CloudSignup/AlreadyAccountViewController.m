@@ -13,19 +13,23 @@
 #import "LanguageHelper.h"
 #import "LoginProxy.h"
 #import "UserPreferencesManager.h"
-#import "defines.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CloudViewUtils.h"
+#import "defines.h"
+
+#define scrollUp 60; //scroll up when the keyboard appears
+
 @interface AlreadyAccountViewController ()
 
 @end
 
 @implementation AlreadyAccountViewController
-@synthesize passwordTf, emailTf, mailErrorLabel, passwordErrorLabel, autoFilledEmail;
+@synthesize passwordTf, emailTf, mailErrorLabel, autoFilledEmail;
 @synthesize hud = _hud;
 @synthesize loginButton;
 @synthesize containerView = _containerView;
 @synthesize onpremiseButton;
+@synthesize warningIcon = _warningIcon;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,15 +44,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.title = @"Get started";
+    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
+    self.navigationItem.rightBarButtonItem = button;
+    [button release];
+    
     [self configElements];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
+    
     self.containerView.layer.cornerRadius = 8.0f;
     self.containerView.layer.masksToBounds = NO;
     self.containerView.backgroundColor = UIColorFromRGB(0xF0F0F0);
-    [CloudViewUtils configureButton:self.onpremiseButton withBackground:@"white_btn"];
-    [CloudViewUtils configureButton:self.loginButton withBackground:@"blue_btn"];
-    [CloudViewUtils configureTextField:self.emailTf withIcon:@"icon_mail"];
-    [CloudViewUtils configureTextField:self.passwordTf withIcon:@"icon_lock"];
+    
     /* Add tap gesture to dismiss keyboard */
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
@@ -58,9 +68,6 @@
     // Selector must be implemented in _iPhone and _iPad subclasses
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
-
-
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,15 +79,14 @@
 - (void)dealloc
 {
     [super dealloc];
-    [self.emailTf release];
-    [self.passwordTf release];
-    [self.mailErrorLabel release];
-    [self.autoFilledEmail release];
-    [self.passwordErrorLabel release];
+    [emailTf release];
+    [mailErrorLabel release];
+    [autoFilledEmail release];
     [_hud release];
-    [self.loginButton release];
-    [self.containerView release];
-    [self.onpremiseButton release];
+    [loginButton release];
+    [_containerView release];
+    [onpremiseButton release];
+    [_warningIcon release];
 }
 
 - (void)cancel:(id)sender
@@ -90,6 +96,10 @@
 
 - (void)login:(id)sender
 {
+    // hide the error message
+    self.warningIcon.hidden = YES;
+    self.mailErrorLabel.hidden = YES;
+    
     [self dismissKeyboards];
     if([CloudUtils checkEmailFormat:self.emailTf.text]) {
         [self.hud show];
@@ -98,6 +108,7 @@
         [cloudProxy getUserMailInfo];//get info about username, tenant name, tenant status first
     } else {
         self.mailErrorLabel.hidden = NO;
+        self.warningIcon.hidden = NO;
     }
 }
 
@@ -116,14 +127,14 @@
             break;
         case TENANT_RESUMING: {
             self.hud.hidden = YES;
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantResuming") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"TenantResuming") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
             break;
         }
         case TENANT_NOT_EXIST: {
             self.hud.hidden = YES;
             //TO-DO
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantNotExist") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"TenantNotExist") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
             break;
         }
@@ -140,8 +151,9 @@
         }
             
         case USER_NOT_EXISTED:
-            [self.hud dismiss];
-            self.mailErrorLabel.hidden = NO;
+            self.hud.hidden = YES;
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"UserNotExist") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [alert show];
             break;
         default:
             break;
@@ -151,9 +163,8 @@
 - (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error
 {
     //TO-DO:server not available
-    NSLog(@"%@", [error localizedDescription]);
     self.hud.hidden = YES;
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"CloudServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"CloudServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     [alert show];
 }
 
@@ -164,7 +175,7 @@
     
     //add the server url to server list
     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
-    [appPref addAndSetSelectedServer:proxy.serverUrl];
+    [appPref addAndSetSelectedServer:proxy.serverUrl withName:nil];
     
     //1 account is already configured, next time starting app, display authenticate screen
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
@@ -173,7 +184,8 @@
 - (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
 {
     [self.hud dismiss];
-    self.passwordErrorLabel.hidden = NO;
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"IncorrectPassword") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    [alert show];
 }
 
 
@@ -213,6 +225,8 @@
 {
     if(textField == self.passwordTf) {
         [self login:nil];
+    } else {
+        [self.passwordTf becomeFirstResponder];
     }
     return YES;
 }
@@ -223,6 +237,17 @@
     self.loginButton.enabled = NO;
     self.emailTf.delegate = self;
     self.passwordTf.delegate = self;
+    
+    self.mailErrorLabel.text = Localize(@"IncorrectEmailFormat");
+    self.mailErrorLabel.hidden = YES;
+    self.warningIcon.hidden = YES;
+    
+    [CloudViewUtils configureButton:self.onpremiseButton withBackground:@"white_btn"];
+    [CloudViewUtils configureButton:self.loginButton withBackground:@"blue_btn"];
+    
+    [CloudViewUtils configureTextField:self.emailTf withIcon:@"icon_mail"];
+    [CloudViewUtils configureTextField:self.passwordTf withIcon:@"icon_lock"];
+    [CloudViewUtils setTitleForButton:self.onpremiseButton with1stLine:@"Connect to an" and2ndLine:@"On Premise Installation"];
 }
 
 #pragma mark - Keyboard management
@@ -245,7 +270,7 @@
     if (movedUp)
     {
         // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        viewRect.origin.y -= scrollHeight;
+        viewRect.origin.y -= scrollUp;
     }
     else
     {

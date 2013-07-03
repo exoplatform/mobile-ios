@@ -442,8 +442,8 @@
         serverObj._strServerName = strServerName;
         serverObj._strServerUrl = strServerUrl;
         serverObj._bSystemServer = NO;
-        serverObj.username = username;
-        serverObj.password = password;
+        serverObj.username = username ? username : @"";
+        serverObj.password = password ? password : @"";
         
         //Add the server in configuration
         NSMutableArray* arrAddedServer = [self loadUserConfiguration];
@@ -560,13 +560,16 @@
     
     NSString *serverLink = [[url query] substringFromIndex:[@"serverUrl=" length]];
     
-    [self addAndSetSelectedServer:serverLink];
+    [self addAndSetSelectedServer:serverLink withName:nil];
 }
 
-- (void)addAndSetSelectedServer:(NSString *)serverLink
+- (void)addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName
 {
     NSURL *serverURL = [NSURL URLWithString:serverLink];
-    NSString *serverName = [serverURL host];
+    
+    if(serverName == nil) {
+        serverName = [serverURL host];
+    }
     
     int serverIndex = [self checkServerAlreadyExistsWithName:serverName andURL:serverLink ignoringIndex:-1];
     

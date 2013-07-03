@@ -79,6 +79,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
     [_btnDelete setFrame:CGRectMake(marginLeft, 10, self.navigationController.view.frame.size.width - marginLeft*2, 44)];
 
+        
     [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton"]
                                     stretchableImageWithLeftCapWidth:5 topCapHeight:5]
                           forState:UIControlStateNormal];
@@ -150,9 +151,18 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     _serverObj._bSystemServer = serverObj._bSystemServer;
     [_txtfServerName setText:_serverObj._strServerName];
     [_txtfServerUrl setText:_serverObj._strServerUrl];
-    _usernameTf.text = serverObj.username;
-    _passwordTf.text = serverObj.password;
     
+    if([serverObj.username length] > 0) {
+        _usernameTf.text = serverObj.username;
+    } else {
+        [_usernameTf setPlaceholder:Localize(@"Optional")];
+    }
+    
+    if([serverObj.password length] > 0) {
+        _passwordTf.text = serverObj.password;
+    } else {
+        [_passwordTf setPlaceholder:Localize(@"Optional")];
+    }
     
     _intIndex = index;
 }
@@ -228,16 +238,20 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 44.0;
+    if(section == 1) {
+        return 44.0;
+    }
+    return 10.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
-    [view addSubview:_btnDelete];
-    
-    return view;
-    
+    if(section == 1) { //add the delete button at the bottom of the table view
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
+        [view addSubview:_btnDelete];
+        return view;
+    }
+    return nil;
 }
 
 

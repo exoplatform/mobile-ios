@@ -759,6 +759,9 @@ typedef enum {
         }
     }
     
+    username = [username length] > 0 ? username : @"";
+    password = [password length] > 0 ? password : @"";
+    
     [appPrefManager addEditServerWithServerName:cleanServerName andServerUrl:cleanServerUrl withUsername:username andPassword:password atIndex:index];
     
     [self.tableView reloadData];

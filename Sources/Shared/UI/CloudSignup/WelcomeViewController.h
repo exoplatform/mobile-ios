@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CloudViewUtils.h"
 
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate>
 
@@ -15,6 +16,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) IBOutlet UIButton *signupButton;
 @property (nonatomic, retain) IBOutlet UIButton *skipButton;
+@property (nonatomic, retain) IBOutlet UIImageView *blurryBg;
 // if YES, auto switch to login page, this is used in case when user enters an email that
 // is already configured in sign up form, the sign up view will redirect to login view
 // the mechanism is dismiss the sign up view first, and display the login view in
@@ -29,5 +31,4 @@
 
 //configure the skip button
 - (void)configureSkipButton;
-- (void)configure:(UIButton *)button withTitle:(NSString *)title andSubtitle:(NSString *)subTitle;
 @end
