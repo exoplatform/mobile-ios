@@ -16,13 +16,12 @@ float const static SWIPED_SCREEN_SHOT_WIDTH = 220;
 float const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
 
 @interface WelcomeViewController_iPhone ()
-
 @end
 
 @implementation WelcomeViewController_iPhone {
     NSArray *images;
 }
-
+@synthesize captions;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,30 +35,20 @@ float const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
 {
     [super viewDidLoad];
     
+    images = [NSArray arrayWithObjects:@"activity-stream",@"documents",@"gadgets", nil];
+
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
         
     // Do any additional setup after loading the view from its nib.
     
     //insert images to scroll view
-    CGRect frame;
-    UIImageView *imageView;
     
-    images = [NSArray arrayWithObjects:@"activity-stream",@"documents",@"gadgets", nil];
-    
-    float initX = (self.scrollView.frame.size.width - SWIPED_SCREEN_SHOT_WIDTH)/2;
-    
-    for(int i = 0; i < [images count]; i++) {
-        
-        frame = CGRectMake(self.scrollView.frame.size.width * i + initX, 0 , SWIPED_SCREEN_SHOT_WIDTH, SWIPED_SCREEN_SHOT_HEIGHT);
-        imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:[images objectAtIndex:i]];
-        
-        [self.scrollView addSubview:imageView];
-    }
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height);
+    [self initSwipedElements];
     
     [self configureSkipButton];
+    
     [CloudViewUtils configure:self.signupButton withTitle:@"Sign Up" andSubtitle:@"Create an account"];
+    
     [CloudViewUtils configure:self.loginButton withTitle:@"Log In" andSubtitle:@"Already an account"];
 }
 
@@ -132,6 +121,28 @@ float const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth/2) / pageWidth) + 1;
     self.pageControl.currentPage = page;
+    self.captionLabel.text = [self.captions objectAtIndex:page];
 }
 
+- (void)initSwipedElements
+{
+    CGRect frame;
+    UIImageView *imageView;
+    
+    float initX = (self.scrollView.frame.size.width - SWIPED_SCREEN_SHOT_WIDTH)/2;
+    
+    for(int i = 0; i < [images count]; i++) {
+        
+        frame = CGRectMake(self.scrollView.frame.size.width * i + initX, 0 , SWIPED_SCREEN_SHOT_WIDTH, SWIPED_SCREEN_SHOT_HEIGHT);
+        imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = [UIImage imageNamed:[images objectAtIndex:i]];
+        
+        [self.scrollView addSubview:imageView];
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height);
+    
+    self.pageControl.currentPage = 0;
+    self.captionLabel.text = [self.captions objectAtIndex:0];
+}
 @end

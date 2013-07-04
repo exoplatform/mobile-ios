@@ -19,7 +19,8 @@
 @synthesize skipButton, loginButton, signupButton, pageControl, scrollView, shouldDisplayLoginView, receivedEmail;
 @synthesize shouldBackToSetting;
 @synthesize blurryBg;
-
+@synthesize captionLabel;
+@synthesize captions;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,6 +34,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.captions = [NSArray arrayWithObjects:@"Follow what your connections are sharing", @"Browse and edit your files", @"Interact with your personal dashboards", nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,6 +59,8 @@
     [skipButton release];
     [receivedEmail release];
     [blurryBg release];
+    [captionLabel release];
+    [captions release];
 }
 
 - (void)skipCloudSignup:(id)sender
