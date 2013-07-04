@@ -55,9 +55,7 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
-    self.containerView.layer.cornerRadius = 8.0f;
-    self.containerView.layer.masksToBounds = NO;
-    self.containerView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    [CloudViewUtils adaptCloudForm:self.containerView];
     
     /* Add tap gesture to dismiss keyboard */
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];

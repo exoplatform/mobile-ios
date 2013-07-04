@@ -121,4 +121,25 @@
     return  label;
 }
 
++ (void)adaptCloudForm:(UIView *)view
+{
+    view.layer.masksToBounds = NO;
+    view.layer.cornerRadius = 8;
+    view.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    CGSize viewSize = view.bounds.size;
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPath];
+    [shadowPath moveToPoint:CGPointMake(5, viewSize.height - 5)];
+    [shadowPath addLineToPoint:CGPointMake(viewSize.width - 5, viewSize.height - 5)];
+    [shadowPath addLineToPoint:CGPointMake(viewSize.width - 5, viewSize.height + 10)];
+    [shadowPath addLineToPoint:CGPointMake(viewSize.width / 2, viewSize.height - 3)];
+    [shadowPath addLineToPoint:CGPointMake(5, viewSize.height + 10)];
+    [shadowPath closePath];
+    
+    view.layer.shadowPath = shadowPath.CGPath;
+    view.layer.shadowOffset = CGSizeMake(0,0);
+    view.layer.shadowRadius = 4.0f;
+    view.layer.shadowOpacity = 0.8f;
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+}
 @end

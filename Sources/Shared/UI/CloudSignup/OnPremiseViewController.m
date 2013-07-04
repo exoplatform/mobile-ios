@@ -40,10 +40,9 @@
     
     [self configElements];
     
-    self.containerView.layer.masksToBounds = NO;
-    self.containerView.layer.cornerRadius = 8;
-    self.containerView.backgroundColor = UIColorFromRGB(0xF0F0F0);
-
+    //add rounded corner, shadow for the form container
+    [CloudViewUtils adaptCloudForm:self.containerView];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
     /* Add tap gesture to dismiss keyboard */

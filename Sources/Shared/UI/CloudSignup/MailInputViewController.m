@@ -53,12 +53,10 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.view.layer.masksToBounds = NO;
-    self.view.layer.cornerRadius = 8;
-    self.view.backgroundColor = UIColorFromRGB(0xF0F0F0);
-    
     [self configElements];
     
+    [CloudViewUtils adaptCloudForm:self.view];
+
     /* Add tap gesture to dismiss keyboard */
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews

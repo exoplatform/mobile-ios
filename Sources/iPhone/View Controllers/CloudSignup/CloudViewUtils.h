@@ -13,4 +13,6 @@
 + (void)configureButton:(UIButton *)button withBackground:(NSString *)bgName;
 + (void)configure:(UIButton *)button withTitle:(NSString *)title andSubtitle:(NSString *)subtitle;
 + (void)setTitleForButton:(UIButton *)button with1stLine:(NSString *)line1 and2ndLine:(NSString *)line2;
+//add the rounded corner and shadow for the form container
++ (void)adaptCloudForm:(UIView *)view;
 @end

@@ -9,6 +9,7 @@
 #import "GreetingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "defines.h"
+#import "CloudViewUtils.h"
 @interface GreetingViewController ()
 
 @end
@@ -28,9 +29,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.layer.masksToBounds = NO;
-    self.view.layer.cornerRadius = 8;
-    self.view.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    [CloudViewUtils adaptCloudForm:self.view];
 }
 
 - (void)didReceiveMemoryWarning
