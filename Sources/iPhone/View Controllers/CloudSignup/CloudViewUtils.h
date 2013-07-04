@@ -15,4 +15,6 @@
 + (void)setTitleForButton:(UIButton *)button with1stLine:(NSString *)line1 and2ndLine:(NSString *)line2;
 //add the rounded corner and shadow for the form container
 + (void)adaptCloudForm:(UIView *)view;
+
++ (UIView *)styledLabelWithOrder:(NSString *)order andTitle:(NSString *)title;
 @end

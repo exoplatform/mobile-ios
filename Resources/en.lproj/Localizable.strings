@@ -210,3 +210,5 @@
 "Username"="Username";
 "Password"="Password";
 "Your credentials"="Your credentials";
+"EnterServerUrl"="Enter the URL of your intranet";
+"EnterCredentials"="Enter your credentials and Log in";

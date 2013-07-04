@@ -38,6 +38,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self addInstructions];
+    
     [self configElements];
     
     //add rounded corner, shadow for the form container
@@ -183,6 +185,28 @@
     
     self.loginButton.enabled = NO;
     [CloudViewUtils configureButton:self.loginButton withBackground:@"blue_btn"];
+}
+
+- (void) addInstructions
+{
+    UIView *serverInstruction = [CloudViewUtils styledLabelWithOrder:@"1" andTitle:Localize(@"EnterServerUrl")];
+    UIView *credentialsIntruction = [CloudViewUtils styledLabelWithOrder:@"2" andTitle:Localize(@"EnterCredentials")];
+    
+    CGRect tmpFrame = serverInstruction.frame;
+    tmpFrame.origin.x = 10;
+    tmpFrame.origin.y = 20;
+    serverInstruction.frame = tmpFrame;
+    
+    tmpFrame = credentialsIntruction.frame;
+    tmpFrame.origin.x = 10;
+    tmpFrame.origin.y = 120;
+    credentialsIntruction.frame = tmpFrame;
+    
+    [self.containerView addSubview:serverInstruction];
+    [self.containerView addSubview:credentialsIntruction];
+    
+    [serverInstruction release];
+    [credentialsIntruction release];
 }
 #pragma mark - Keyboard management
 

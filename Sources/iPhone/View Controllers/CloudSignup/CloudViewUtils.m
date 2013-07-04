@@ -13,6 +13,7 @@
 #define EXO_TEXT_FIELD_PADDING_WIDTH 30
 @interface CloudViewUtils()
 +(UILabel *)labelWithText:(NSString *)text andFont:(UIFont *)font andTextColor:(UIColor *)color;
++(CGRect)frameForLabel:(UILabel *)label inRect:(CGRect)rect;
 @end
 
 @implementation CloudViewUtils
@@ -142,4 +143,64 @@
     view.layer.shadowOpacity = 0.8f;
     view.layer.shadowColor = [UIColor blackColor].CGColor;
 }
+
++(CGRect)frameForLabel:(UILabel *)label inRect:(CGRect)rect
+{
+    CGRect frame;
+    frame.origin.x = (rect.size.width - [label.text sizeWithFont:label.font].width) / 2;
+    frame.origin.y = (rect.size.height - [label.text sizeWithFont:label.font].height) / 2;
+    frame.size = CGSizeMake([label.text sizeWithFont:label.font].width, [label.text sizeWithFont:label.font].height);
+    return frame;
+}
+
++ (UIView *)styledLabelWithOrder:(NSString *)order andTitle:(NSString *)title
+{
+    UIImage *orderImage = [UIImage imageNamed:@"number_bg"];
+    UIImage *bgImage = [UIImage imageNamed:@"label"];
+    UIImage *strechtBg = [bgImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    
+    float viewWidth = 260;
+    float viewHeight = orderImage.size.height;
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight)];
+   
+    //the order view: circle with the number inside
+    UIImageView *orderView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, orderImage.size.width, orderImage.size.height)];
+    orderView.image = orderImage;
+    
+    UIFont *orderFont = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    UILabel *orderLabel = [self labelWithText:order andFont:orderFont andTextColor:[UIColor whiteColor]];
+    orderLabel.frame = [self frameForLabel:orderLabel inRect:orderView.frame];
+    
+    [orderView addSubview:orderLabel];
+    
+    float bgY = (viewHeight - bgImage.size.height) / 2;
+    
+    //the background image is overlapped by the circle and it is in the center of the view
+    //its origin x is half of the circle width
+    //its width + its origin x is equals the view's width
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(orderImage.size.width / 2, bgY, viewWidth - orderImage.size.width / 2, bgImage.size.height) ];
+    bgView.image = strechtBg;
+    
+    UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+    UILabel *titleLabel = [self labelWithText:title andFont:titleFont andTextColor:[UIColor darkGrayColor]];
+    
+    titleLabel.frame = [self frameForLabel:titleLabel inRect:view.frame];
+    CGRect tmpFrame = titleLabel.frame;
+    tmpFrame.origin.x = orderImage.size.width + 10;
+    titleLabel.frame = tmpFrame;
+    
+    [view addSubview:bgView];
+    [view addSubview:orderView];
+    [view addSubview:titleLabel];
+    
+    [orderLabel release];
+    [titleLabel release];
+    [bgView release];
+    [orderView release];
+    
+    return view;
+}
+
+
 @end
