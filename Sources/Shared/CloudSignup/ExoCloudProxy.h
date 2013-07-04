@@ -17,7 +17,8 @@ typedef enum {
     TENANT_NOT_EXIST,
     TENANT_ONLINE,
     USER_EXISTED,
-    USER_NOT_EXISTED
+    USER_NOT_EXISTED,
+    TENANT_NOT_READY
 } CloudResponse;
 
 typedef enum

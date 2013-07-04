@@ -113,6 +113,16 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
     //the tenant is not exist
     if(cloudRequest == CHECK_TENANT_STATUS && httpResponse.statusCode == 404) {
         [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_EXIST forEmail:nil];
+        [connection cancel];
+    }
+    
+    if(cloudRequest == SIGN_UP && httpResponse.statusCode == 202) {
+        [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
+        [connection cancel];
+    }
+    if(cloudRequest == SIGN_UP && httpResponse.statusCode == 503) {
+        [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_READY forEmail:nil];
+        [connection cancel];
     }
 }
 

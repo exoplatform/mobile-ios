@@ -205,6 +205,7 @@
 "IncorrectPassword"="Impossible to connect, check your password";
 "UserNotExist"=" No account exists for this email, check your email or signup";
 "TenantNotExist"="Tenant does not exist";
+"TenantNotReady"="Sorry, we cannot process your join request right now, workspace seems not ready. Please, try again later.";
 "TenantResuming"="We are restoring your intranet, please retry in few minutes";
 "Username"="Username";
 "Password"="Password";

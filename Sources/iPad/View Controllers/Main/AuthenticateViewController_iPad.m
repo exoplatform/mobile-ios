@@ -19,7 +19,7 @@
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
-#define scrollHeight 100 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+#define scrollTop 100 /* how much should we scroll up/down when the keyboard is displayed/hidden */
 #define tabViewsTopMargin -4 /* the top margin of the views under the tabs */
 #define settingsBtnTopMargin 50 /* the top margin of the settings button */
 #define tabsHeightAndLeftMargin 76 /* the height and left margin of the tabs */
@@ -362,7 +362,7 @@
 }
 
 - (void)moveUp {
-    CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y+scrollHeight);
+    CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y+scrollTop);
     [(UIScrollView*)self.view setContentOffset:destPoint animated:YES];
 }
 

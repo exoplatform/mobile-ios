@@ -144,6 +144,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
             
         case NUMBER_OF_USERS_EXCEED:
         {
+            [self.hud setHidden:YES];
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"NumberOfUsersExceed") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
             break;
@@ -151,8 +152,17 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         
         case TENANT_RESUMING:
         {
+            [self.hud setHidden:YES];
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantResuming") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
+            break;
+        }
+        case TENANT_NOT_READY:
+        {
+            [self.hud setHidden:YES];
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantNotReady") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [alert show];
+            break;
             break;
         }
         default:
