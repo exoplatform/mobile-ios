@@ -10,10 +10,7 @@
 #import "MailInputViewController.h"
 #import "GreetingViewController.h"
 
-@interface SignUpViewController : UIViewController {
-    MailInputViewController *mailInputViewController;
-    GreetingViewController *greetingViewController;
-}
+@interface SignUpViewController : UIViewController
 @property (nonatomic, retain) IBOutlet UIView *banner;
 - (IBAction)cancel:(id)sender;
 @end

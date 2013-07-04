@@ -37,8 +37,6 @@
 - (void)dealloc
 {
     [super dealloc];
-    [mailInputViewController release];
-    [greetingViewController release];
 }
 
 - (void)cancel:(id)sender

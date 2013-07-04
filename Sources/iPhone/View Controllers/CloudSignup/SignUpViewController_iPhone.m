@@ -48,22 +48,25 @@
 // the greeting view is displayed with a flip animation
 - (void) insertBodyPanel
 {
-    mailInputViewController = [[MailInputViewController_iPhone alloc] initWithNibName:@"MailInputViewController_iPhone" bundle:nil];
+    MailInputViewController_iPhone  *mailInputViewController = [[MailInputViewController_iPhone alloc] initWithNibName:@"MailInputViewController_iPhone" bundle:nil];
     
-    greetingViewController = [[GreetingViewController_iPhone alloc] initWithNibName:@"GreetingViewController_iPhone" bundle:nil] ;
-    
-    [self addChildViewController:mailInputViewController];
-    
-    UIView *viewContainer = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 280, 250)] autorelease]; //the view that contains mail input and greeting view
-    
-    [viewContainer addSubview:mailInputViewController.view];
-    [viewContainer addSubview:greetingViewController.view];
+    GreetingViewController_iPhone *greetingViewController = [[GreetingViewController_iPhone alloc] initWithNibName:@"GreetingViewController_iPhone" bundle:nil] ;
     
     mailInputViewController.view.hidden = NO;
     greetingViewController.view.hidden = YES;
     
+    UIView *viewContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 100, 280, 250)]; //the view that contains mail input and greeting view
+    
+    [viewContainer addSubview:mailInputViewController.view];
+    [viewContainer addSubview:greetingViewController.view];
+    
+    [self addChildViewController:mailInputViewController];
+    
     [self.view addSubview:viewContainer];
     
+    [mailInputViewController release];
+    [greetingViewController release];
+    [viewContainer release];
 }
 
 @end

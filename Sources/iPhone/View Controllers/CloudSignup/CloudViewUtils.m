@@ -67,7 +67,7 @@
         
     float titleWidth = [[titleLabel text] sizeWithFont:titleFont].width;
     float titleX = (button.frame.size.width - titleWidth) / 2;
-    [titleLabel setFrame:CGRectMake(titleX, -10, button.frame.size.width, button.frame.size.height)];
+    [titleLabel setFrame:CGRectMake(titleX, -12, button.frame.size.width, button.frame.size.height)];
     
     [button addSubview:titleLabel];
     
@@ -76,7 +76,7 @@
     
     float subtitleWidth = [[subtitleLabel text] sizeWithFont:subTitleFont].width;
     float subtitleX = (button.frame.size.width - subtitleWidth) / 2;
-    [subtitleLabel setFrame:CGRectMake(subtitleX, 3, button.frame.size.width, button.frame.size.height)];
+    [subtitleLabel setFrame:CGRectMake(subtitleX, 0, button.frame.size.width, button.frame.size.height)];
     
     [button addSubview:subtitleLabel];
     
@@ -84,15 +84,6 @@
     [subtitleLabel release];
 }
 
-+ (UILabel *)labelWithText:(NSString *)text andFont:(UIFont *)font andTextColor:(UIColor *)color
-{
-    UILabel *label = [[UILabel alloc] init];
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = color;
-    label.text = text;
-    label.font = font;
-    return  label;
-}
 
 //set title in 2 lines for a button
 + (void)setTitleForButton:(UIButton *)button with1stLine:(NSString *)line1 and2ndLine:(NSString *)line2
@@ -120,5 +111,14 @@
     [button addSubview:label2];
 }
 
++ (UILabel *)labelWithText:(NSString *)text andFont:(UIFont *)font andTextColor:(UIColor *)color
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = color;
+    label.text = text;
+    label.font = font;
+    return  label;
+}
 
 @end
