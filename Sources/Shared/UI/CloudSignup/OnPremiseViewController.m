@@ -179,7 +179,7 @@
     self.usernameTf.delegate = self;
     
     [CloudViewUtils configureTextField:self.serverUrlTf withIcon:@"icon_link"];
-    [CloudViewUtils configureTextField:self.usernameTf withIcon:@"icon_mail"];
+    [CloudViewUtils configureTextField:self.usernameTf withIcon:@"icon_user"];
     [CloudViewUtils configureTextField:self.passwordTf withIcon:@"icon_lock"];
     
     self.loginButton.enabled = NO;
