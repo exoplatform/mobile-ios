@@ -130,7 +130,9 @@
         _settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         _settingsViewController.settingsDelegate = self;
     }
-    [_settingsViewController startRetrieve];
+    if([[ApplicationPreferencesManager sharedInstance] selectedDomain]) {
+        [_settingsViewController startRetrieve];
+    }
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_settingsViewController];
     

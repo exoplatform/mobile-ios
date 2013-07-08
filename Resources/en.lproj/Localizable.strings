@@ -200,7 +200,7 @@
 "StartTheConfigurationAssistant"="Start the configuration assistant";
 "eXoCloudConfigurationAssistant"="eXo Cloud sign-up assistant";
 "EmailIsBlacklisted"="Free emails are not allowed to sign up";
-"NumberOfUsersExceed"="Number of users are exceeded. Please contact your administrator";
+"NumberOfUsersExceed"="Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator.";
 "IncorrectEmailFormat"="Please enter a valid email address";
 "IncorrectPassword"="Impossible to connect, check your password";
 "UserNotExist"=" No account exists for this email, check your email or signup";

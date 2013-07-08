@@ -16,5 +16,5 @@
 //add the rounded corner and shadow for the form container
 + (void)adaptCloudForm:(UIView *)view;
 
-+ (UIView *)styledLabelWithOrder:(NSString *)order andTitle:(NSString *)title;
++ (UIView *)styledLabelWithOrder:(NSString *)order andTitle:(NSString *)title withWidth:(float)width;
 @end

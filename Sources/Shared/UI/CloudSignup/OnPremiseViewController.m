@@ -38,6 +38,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.title = @"On premise";
+    
     [self addInstructions];
     
     [self configElements];
@@ -51,11 +53,7 @@
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
-
-    // Notifies when the keyboard is shown/hidden
-    // Selector must be implemented in _iPhone and _iPad subclasses
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
+   
 }
 
 - (void)dealloc
@@ -135,6 +133,7 @@
 
 
 #pragma mark UITextFieldDelegate methods
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self dismissKeyboards];
@@ -189,16 +188,17 @@
 
 - (void) addInstructions
 {
-    UIView *serverInstruction = [CloudViewUtils styledLabelWithOrder:@"1" andTitle:Localize(@"EnterServerUrl")];
-    UIView *credentialsIntruction = [CloudViewUtils styledLabelWithOrder:@"2" andTitle:Localize(@"EnterCredentials")];
+    float instructionWidth = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 380 : 260;
+    UIView *serverInstruction = [CloudViewUtils styledLabelWithOrder:@"1" andTitle:Localize(@"EnterServerUrl") withWidth:instructionWidth];
+    UIView *credentialsIntruction = [CloudViewUtils styledLabelWithOrder:@"2" andTitle:Localize(@"EnterCredentials") withWidth:instructionWidth];
     
     CGRect tmpFrame = serverInstruction.frame;
-    tmpFrame.origin.x = 10;
+    tmpFrame.origin.x = self.serverUrlTf.frame.origin.x;
     tmpFrame.origin.y = 20;
     serverInstruction.frame = tmpFrame;
     
     tmpFrame = credentialsIntruction.frame;
-    tmpFrame.origin.x = 10;
+    tmpFrame.origin.x = self.usernameTf.frame.origin.x;
     tmpFrame.origin.y = 120;
     credentialsIntruction.frame = tmpFrame;
     
@@ -209,34 +209,6 @@
     [credentialsIntruction release];
 }
 #pragma mark - Keyboard management
-
--(void)manageKeyboard:(NSNotification *) notif {
-    if (notif.name == UIKeyboardDidShowNotification) {
-        [self setViewMovedUp:YES];
-    } else if (notif.name == UIKeyboardDidHideNotification) {
-        [self setViewMovedUp:NO];
-    }
-}
-
--(void)setViewMovedUp:(BOOL)movedUp
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    CGRect viewRect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        viewRect.origin.y -= scrollHeight;
-    }
-    else
-    {
-        viewRect.origin.y = 0;
-    }
-    self.view.frame = viewRect;
-    [UIView commitAnimations];
-}
 
 - (void) dismissKeyboards
 {

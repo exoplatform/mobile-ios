@@ -34,7 +34,6 @@
 @property (nonatomic, retain) IBOutlet HomeSidebarViewController_iPhone* homeSidebarViewController_iPhone;
 @property BOOL isCompatibleWithSocial;
 
-@property (nonatomic, retain) WelcomeViewController_iPhone *welcomeViewController;
 +(AppDelegate_iPhone*)instance;
 
 

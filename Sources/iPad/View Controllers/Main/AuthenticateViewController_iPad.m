@@ -290,6 +290,7 @@
         _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationPageSheet;
         
     }
+    _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
     
     _modalNavigationSettingViewController.view.superview.autoresizingMask = 
@@ -297,17 +298,17 @@
     UIViewAutoresizingFlexibleBottomMargin;   
     
     
-    _modalNavigationSettingViewController.view.superview.frame = CGRectMake(0,0,
-                                                                            560.0f,
-                                                                            640.0f
-                                                                            );
-    
-    if(self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-    {
-        _modalNavigationSettingViewController.view.superview.center = CGPointMake(768/2, 1024/2 + 10);        
-    }
-    else
-        _modalNavigationSettingViewController.view.superview.center = CGPointMake(1024/2, 768/2 + 10);
+//    _modalNavigationSettingViewController.view.superview.frame = CGRectMake(0,0,
+//                                                                            560.0f,
+//                                                                            640.0f
+//                                                                            );
+//    
+//    if(self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+//    {
+//        _modalNavigationSettingViewController.view.superview.center = CGPointMake(768/2, 1024/2 + 10);        
+//    }
+//    else
+//        _modalNavigationSettingViewController.view.superview.center = CGPointMake(1024/2, 768/2 + 10);
     
 }
 

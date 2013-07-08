@@ -17,8 +17,6 @@
 #import "CloudViewUtils.h"
 #import "defines.h"
 
-#define scrollUp 60; //scroll up when the keyboard appears
-
 @interface AlreadyAccountViewController ()
 
 @end
@@ -61,13 +59,16 @@
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
-    
-    // Notifies when the keyboard is shown/hidden
-    // Selector must be implemented in _iPhone and _iPad subclasses
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //if the view is redirect from sign up view, auto fill the email entered in sign up view
+    if(self.autoFilledEmail != nil) {
+        self.emailTf.text = self.autoFilledEmail;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -169,7 +170,6 @@
 #pragma mark LoginProxyDelegate methods
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
-//    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
     
     //add the server url to server list
     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
@@ -250,37 +250,10 @@
 
 #pragma mark - Keyboard management
 
--(void)manageKeyboard:(NSNotification *) notif {
-    if (notif.name == UIKeyboardDidShowNotification) {
-        [self setViewMovedUp:YES];
-    } else if (notif.name == UIKeyboardDidHideNotification) {
-        [self setViewMovedUp:NO];
-    }
-}
-
--(void)setViewMovedUp:(BOOL)movedUp
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    CGRect viewRect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        viewRect.origin.y -= scrollUp;
-    }
-    else
-    {
-        viewRect.origin.y = 0;
-    }
-    self.view.frame = viewRect;
-    [UIView commitAnimations];
-}
-
 - (void)dismissKeyboards
 {
     [self.emailTf resignFirstResponder];
     [self.passwordTf resignFirstResponder];
 }
+
 @end

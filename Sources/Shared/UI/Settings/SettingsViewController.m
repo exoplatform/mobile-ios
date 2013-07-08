@@ -20,7 +20,8 @@
 #import "ServerAddingViewController.h"
 #import "SignUpViewController_iPhone.h"
 #import "WelcomeViewController_iPhone.h"
-
+#import "WelcomeViewController_iPad.h"
+#import "AppDelegate_iPad.h"
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
 static NSString *CellIdentifierDocuments = @"CellIdentifierDocuments";
@@ -610,9 +611,21 @@ typedef enum {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
     
     if(sectionId == SettingViewControllerCloudAssistant) {
-        WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
-        welcomeVC.shouldBackToSetting = YES;
-        [self presentModalViewController:welcomeVC animated:YES];
+        WelcomeViewController *welcomeVC;
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
+            welcomeVC.shouldBackToSetting = YES;
+            [self presentModalViewController:welcomeVC animated:YES];
+            
+        } else {
+            
+            welcomeVC = [[[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil] autorelease];
+            welcomeVC.shouldBackToSetting = YES;
+            welcomeVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            [self presentModalViewController:welcomeVC animated:YES];
+            
+        }
+        
     }
     
 	else if (sectionId == SettingViewControllerSectionLanguage)

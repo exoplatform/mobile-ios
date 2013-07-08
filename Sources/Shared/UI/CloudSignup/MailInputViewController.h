@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ExoCloudProxy.h"
 #import "SSHUDView.h"
+
 @class SignUpViewController;
 @interface MailInputViewController : UIViewController<ExoCloudProxyDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, retain) IBOutlet UILabel *instructionLabel;
@@ -18,4 +19,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *createButton;
 @property (nonatomic, retain) IBOutlet UIImageView *warningIcon;
 - (IBAction)createAccount:(id)sender;
+-(void)manageKeyboard:(NSNotification *) notif;
+- (void)dismissKeyboards;
 @end

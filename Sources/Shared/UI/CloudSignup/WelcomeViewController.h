@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CloudViewUtils.h"
 
-@interface WelcomeViewController : UIViewController <UIScrollViewDelegate>
+@interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
+    NSArray *images;
+}
 
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;

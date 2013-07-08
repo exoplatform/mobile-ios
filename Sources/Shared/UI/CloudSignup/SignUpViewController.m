@@ -25,6 +25,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
+    
+    [self insertBodyPanel];
+
     
 }
 
@@ -44,4 +48,11 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+// the panel that contains the input view and greeting view
+// the input view is displayed first, then after receiving validation email
+// the greeting view is displayed with a flip animation
+- (void)insertBodyPanel
+{
+    
+}
 @end

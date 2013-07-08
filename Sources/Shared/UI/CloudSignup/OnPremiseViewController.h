@@ -19,4 +19,5 @@
 @property (nonatomic, retain) IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) IBOutlet UIView *containerView;
 - (IBAction)login:(id)sender;
+- (void)dismissKeyboards;
 @end

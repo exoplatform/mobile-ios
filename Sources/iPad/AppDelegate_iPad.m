@@ -63,7 +63,15 @@
     }
 #endif
     
-    window.rootViewController = viewController;
+    BOOL isAccountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+    if(isAccountConfigured) {
+        window.rootViewController = viewController;
+    } else {
+        welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
+        window.rootViewController = welcomeVC;
+        [welcomeVC release];
+    }
+    
     [window makeKeyAndVisible];
                 
     return YES;

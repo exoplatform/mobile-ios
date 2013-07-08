@@ -24,4 +24,6 @@
 - (IBAction)cancel:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)connectToOnPremise:(id)sender;
+- (void)dismissKeyboards;
+
 @end

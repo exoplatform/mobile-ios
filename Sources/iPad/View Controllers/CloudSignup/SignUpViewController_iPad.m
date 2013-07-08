@@ -1,20 +1,21 @@
 //
-//  SignUpViewController_iPhone.m
+//  SignUpViewController_iPad.m
 //  eXo Platform
 //
-//  Created by vietnq on 6/14/13.
+//  Created by vietnq on 7/5/13.
 //  Copyright (c) 2013 eXoPlatform. All rights reserved.
 //
 
-#import "SignUpViewController_iPhone.h"
-#import "MailInputViewController_iPhone.h"
-#import "GreetingViewController_iPhone.h"
+#import "SignUpViewController_iPad.h"
+#import "MailInputViewController_iPad.h"
+#import "GreetingViewController_iPad.h"
 
-@interface SignUpViewController_iPhone ()
+@interface SignUpViewController_iPad ()
 
 @end
 
-@implementation SignUpViewController_iPhone
+@implementation SignUpViewController_iPad
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,33 +31,22 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-
-- (void)dealloc
-{
-    [super dealloc];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
 - (void) insertBodyPanel
 {
-    MailInputViewController_iPhone  *mailInputViewController = [[MailInputViewController_iPhone alloc] initWithNibName:@"MailInputViewController_iPhone" bundle:nil];
+    MailInputViewController_iPad  *mailInputViewController = [[MailInputViewController_iPad alloc] initWithNibName:@"MailInputViewController_iPad" bundle:nil];
     
-    GreetingViewController_iPhone *greetingViewController = [[GreetingViewController_iPhone alloc] initWithNibName:@"GreetingViewController_iPhone" bundle:nil] ;
+    GreetingViewController_iPad *greetingViewController = [[GreetingViewController_iPad alloc] initWithNibName:@"GreetingViewController_iPad" bundle:nil] ;
     
     mailInputViewController.view.hidden = NO;
     greetingViewController.view.hidden = YES;
     
-    UIView *viewContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 100, 280, 250)]; //the view that contains mail input and greeting view
+    UIView *viewContainer = [[UIView alloc] initWithFrame:CGRectMake(40, 100, 460, 420)]; //the view that contains mail input and greeting view
     
     [viewContainer addSubview:mailInputViewController.view];
     [viewContainer addSubview:greetingViewController.view];
@@ -69,5 +59,11 @@
     [greetingViewController release];
     [viewContainer release];
 }
+
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
+}
+
 
 @end

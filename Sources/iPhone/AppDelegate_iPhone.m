@@ -24,7 +24,7 @@
 @synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
 @synthesize homeSidebarViewController_iPhone = _homeSidebarViewController_iPhone;
-@synthesize welcomeViewController = _welcomeViewController;
+//@synthesize welcomeViewController = _welcomeViewController;
 
 + (AppDelegate_iPhone *) instance {
     return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];    
@@ -66,15 +66,17 @@
     
 #endif
     
-    BOOL accountConfigured = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+    BOOL accountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
     
-    if(accountConfigured) { //if one account is configured, display Authenticate screen
-        window.rootViewController = navigationController;
-    } else {
-        _welcomeViewController = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
-        window.rootViewController = _welcomeViewController;
-        
+    if(!accountConfigured) {
+    
+        WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
+        navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
+        [welcomeVC release];
     }
+    navigationController.navigationBarHidden = YES;
+
+    window.rootViewController = navigationController;
 
 	[window makeKeyAndVisible];
     
@@ -148,9 +150,6 @@
         [_homeViewController_iPhone release];
     }
     
-    [_welcomeViewController release];
-    _welcomeViewController = nil;
-    
     [window release];
     window = nil;
     
@@ -164,7 +163,7 @@
         [_authenticateViewController disableAutoLogin:YES];
     }
     [_authenticateViewController updateLabelAfterLogOut];
-    
+    navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController];
     window.rootViewController = navigationController;
     
     [UserPreferencesManager sharedInstance].isUserLogged = NO;

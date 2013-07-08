@@ -18,10 +18,7 @@ float const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
 @interface WelcomeViewController_iPhone ()
 @end
 
-@implementation WelcomeViewController_iPhone {
-    NSArray *images;
-}
-@synthesize captions;
+@implementation WelcomeViewController_iPhone @synthesize captions;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -79,14 +76,11 @@ float const static SWIPED_SCREEN_SHOT_HEIGHT = 280;
     if(self.shouldBackToSetting) {
         [self dismissModalViewControllerAnimated:YES];
     } else {
+
         AppDelegate_iPhone *appDelegate = [AppDelegate_iPhone instance];
-        [UIView transitionFromView:appDelegate.window.rootViewController.view
-                            toView:appDelegate.navigationController.view
-                          duration:0.8f
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        completion:^(BOOL finished){
-                            appDelegate.window.rootViewController = appDelegate.navigationController;
-                        }];
+        AuthenticateViewController_iPhone *authenticateVC = [[AuthenticateViewController_iPhone alloc] initWithNibName:@"AuthenticateViewController_iPhone" bundle:nil];
+        [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:authenticateVC]];
+        [authenticateVC release];
     }
 }
 

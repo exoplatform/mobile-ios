@@ -13,4 +13,5 @@
 @interface SignUpViewController : UIViewController
 @property (nonatomic, retain) IBOutlet UIView *banner;
 - (IBAction)cancel:(id)sender;
+- (void)insertBodyPanel;
 @end

@@ -122,6 +122,7 @@
     return  label;
 }
 
+//adds the rounded corner and shadow for the form container
 + (void)adaptCloudForm:(UIView *)view
 {
     view.layer.masksToBounds = NO;
@@ -132,18 +133,20 @@
     UIBezierPath *shadowPath = [UIBezierPath bezierPath];
     [shadowPath moveToPoint:CGPointMake(5, viewSize.height - 5)];
     [shadowPath addLineToPoint:CGPointMake(viewSize.width - 5, viewSize.height - 5)];
-    [shadowPath addLineToPoint:CGPointMake(viewSize.width - 5, viewSize.height + 10)];
+    [shadowPath addLineToPoint:CGPointMake(viewSize.width - 5, viewSize.height + 8)];
     [shadowPath addLineToPoint:CGPointMake(viewSize.width / 2, viewSize.height - 3)];
-    [shadowPath addLineToPoint:CGPointMake(5, viewSize.height + 10)];
+    [shadowPath addLineToPoint:CGPointMake(5, viewSize.height + 8)];
     [shadowPath closePath];
     
     view.layer.shadowPath = shadowPath.CGPath;
     view.layer.shadowOffset = CGSizeMake(0,0);
-    view.layer.shadowRadius = 4.0f;
+    view.layer.shadowRadius = 5.0f;
     view.layer.shadowOpacity = 0.8f;
     view.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
+
+//returns a frame that is in center of a view for a label
 +(CGRect)frameForLabel:(UILabel *)label inRect:(CGRect)rect
 {
     CGRect frame;
@@ -153,13 +156,14 @@
     return frame;
 }
 
-+ (UIView *)styledLabelWithOrder:(NSString *)order andTitle:(NSString *)title
+
++ (UIView *)styledLabelWithOrder:(NSString *)order andTitle:(NSString *)title withWidth:(float)width
 {
     UIImage *orderImage = [UIImage imageNamed:@"number_bg"];
     UIImage *bgImage = [UIImage imageNamed:@"label"];
     UIImage *strechtBg = [bgImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
     
-    float viewWidth = 260;
+    float viewWidth = width;
     float viewHeight = orderImage.size.height;
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight)];

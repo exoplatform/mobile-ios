@@ -420,6 +420,10 @@
 		7CFD41891361644C00DD86E8 /* HomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD41881361644B00DD86E8 /* HomeViewController_iPhone.m */; };
 		7CFEB08813CA95B400D7C9FF /* SocialIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */; };
 		7D013B9517827A67005F42D2 /* CloudViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D013B9417827A67005F42D2 /* CloudViewUtils.m */; };
+		7D02603817867EEC00C3FA24 /* WelcomeViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02603617867EEC00C3FA24 /* WelcomeViewController_iPad.m */; };
+		7D02603917867EEC00C3FA24 /* WelcomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603717867EEC00C3FA24 /* WelcomeViewController_iPad.xib */; };
+		7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */; };
+		7D02603E1786B58A00C3FA24 /* SignUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */; };
 		7D67133B171BF8D600B8EB93 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */; };
 		7D993C63176ABB410035835F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C62176ABB410035835F /* SignUpViewController.m */; };
 		7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */; };
@@ -466,6 +470,15 @@
 		7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA017697D0A001CA575 /* WelcomeViewController.m */; };
 		7DB91BA617697D6E001CA575 /* WelcomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */; };
 		7DB91BA717697D6E001CA575 /* WelcomeViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */; };
+		7DBB7023178A65B5002B387B /* MailInputViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB7021178A65B5002B387B /* MailInputViewController_iPad.m */; };
+		7DBB7024178A65B5002B387B /* MailInputViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB7022178A65B5002B387B /* MailInputViewController_iPad.xib */; };
+		7DBB7039178A66FD002B387B /* GreetingViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB7037178A66FD002B387B /* GreetingViewController_iPad.m */; };
+		7DBB703A178A66FD002B387B /* GreetingViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB7038178A66FD002B387B /* GreetingViewController_iPad.xib */; };
+		7DBB7048178A7A9D002B387B /* AlreadyAccountViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB7046178A7A9D002B387B /* AlreadyAccountViewController_iPad.m */; };
+		7DBB7049178A7A9D002B387B /* AlreadyAccountViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB7047178A7A9D002B387B /* AlreadyAccountViewController_iPad.xib */; };
+		7DBB704D178A9990002B387B /* OnPremiseViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB704B178A9990002B387B /* OnPremiseViewController_iPad.m */; };
+		7DBB704E178A9990002B387B /* OnPremiseViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB704C178A9990002B387B /* OnPremiseViewController_iPad.xib */; };
+		7DBB7051178AA2D2002B387B /* eXoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB7050178AA2D2002B387B /* eXoNavigationController.m */; };
 		7DCA4F30176EB485002694D5 /* CloudUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F2F176EB485002694D5 /* CloudUtils.m */; };
 		7DCA4F33176EB590002694D5 /* OnPremiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F32176EB590002694D5 /* OnPremiseViewController.m */; };
 		7DCA4F37176EB654002694D5 /* OnPremiseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F35176EB653002694D5 /* OnPremiseViewController_iPhone.m */; };
@@ -1426,6 +1439,12 @@
 		7CFEB08713CA95B400D7C9FF /* SocialIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIdentity.m; sourceTree = "<group>"; };
 		7D013B9317827A67005F42D2 /* CloudViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudViewUtils.h; sourceTree = "<group>"; };
 		7D013B9417827A67005F42D2 /* CloudViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudViewUtils.m; sourceTree = "<group>"; };
+		7D02603517867EEC00C3FA24 /* WelcomeViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController_iPad.h; sourceTree = "<group>"; };
+		7D02603617867EEC00C3FA24 /* WelcomeViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController_iPad.m; sourceTree = "<group>"; };
+		7D02603717867EEC00C3FA24 /* WelcomeViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController_iPad.xib; sourceTree = "<group>"; };
+		7D02603A1786B58A00C3FA24 /* SignUpViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPad.h; sourceTree = "<group>"; };
+		7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController_iPad.m; sourceTree = "<group>"; };
+		7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController_iPad.xib; sourceTree = "<group>"; };
 		7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Splashscreen/@2x/Default-568h@2x.png"; sourceTree = "<group>"; };
 		7D993C61176ABB410035835F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		7D993C62176ABB410035835F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -1482,6 +1501,20 @@
 		7DB91BA317697D6E001CA575 /* WelcomeViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController_iPhone.h; sourceTree = "<group>"; };
 		7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController_iPhone.m; sourceTree = "<group>"; };
 		7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DBB7020178A65B5002B387B /* MailInputViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailInputViewController_iPad.h; sourceTree = "<group>"; };
+		7DBB7021178A65B5002B387B /* MailInputViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailInputViewController_iPad.m; sourceTree = "<group>"; };
+		7DBB7022178A65B5002B387B /* MailInputViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailInputViewController_iPad.xib; sourceTree = "<group>"; };
+		7DBB7036178A66FD002B387B /* GreetingViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetingViewController_iPad.h; sourceTree = "<group>"; };
+		7DBB7037178A66FD002B387B /* GreetingViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetingViewController_iPad.m; sourceTree = "<group>"; };
+		7DBB7038178A66FD002B387B /* GreetingViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GreetingViewController_iPad.xib; sourceTree = "<group>"; };
+		7DBB7045178A7A9D002B387B /* AlreadyAccountViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlreadyAccountViewController_iPad.h; sourceTree = "<group>"; };
+		7DBB7046178A7A9D002B387B /* AlreadyAccountViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlreadyAccountViewController_iPad.m; sourceTree = "<group>"; };
+		7DBB7047178A7A9D002B387B /* AlreadyAccountViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlreadyAccountViewController_iPad.xib; sourceTree = "<group>"; };
+		7DBB704A178A9990002B387B /* OnPremiseViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnPremiseViewController_iPad.h; sourceTree = "<group>"; };
+		7DBB704B178A9990002B387B /* OnPremiseViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnPremiseViewController_iPad.m; sourceTree = "<group>"; };
+		7DBB704C178A9990002B387B /* OnPremiseViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnPremiseViewController_iPad.xib; sourceTree = "<group>"; };
+		7DBB704F178AA2D2002B387B /* eXoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoNavigationController.h; sourceTree = "<group>"; };
+		7DBB7050178AA2D2002B387B /* eXoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoNavigationController.m; sourceTree = "<group>"; };
 		7DCA4F2E176EB485002694D5 /* CloudUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudUtils.h; path = ../Components/eXoUtils/CloudUtils.h; sourceTree = "<group>"; };
 		7DCA4F2F176EB485002694D5 /* CloudUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CloudUtils.m; path = ../Components/eXoUtils/CloudUtils.m; sourceTree = "<group>"; };
 		7DCA4F31176EB590002694D5 /* OnPremiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnPremiseViewController.h; sourceTree = "<group>"; };
@@ -3187,6 +3220,12 @@
 		7DCA4F25176EAF0D002694D5 /* AlreadyAccount */ = {
 			isa = PBXGroup;
 			children = (
+				7DBB7045178A7A9D002B387B /* AlreadyAccountViewController_iPad.h */,
+				7DBB7046178A7A9D002B387B /* AlreadyAccountViewController_iPad.m */,
+				7DBB7047178A7A9D002B387B /* AlreadyAccountViewController_iPad.xib */,
+				7DBB704A178A9990002B387B /* OnPremiseViewController_iPad.h */,
+				7DBB704B178A9990002B387B /* OnPremiseViewController_iPad.m */,
+				7DBB704C178A9990002B387B /* OnPremiseViewController_iPad.xib */,
 			);
 			name = AlreadyAccount;
 			sourceTree = "<group>";
@@ -3194,6 +3233,15 @@
 		7DCA4F26176EAF17002694D5 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				7D02603A1786B58A00C3FA24 /* SignUpViewController_iPad.h */,
+				7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */,
+				7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */,
+				7DBB7020178A65B5002B387B /* MailInputViewController_iPad.h */,
+				7DBB7021178A65B5002B387B /* MailInputViewController_iPad.m */,
+				7DBB7022178A65B5002B387B /* MailInputViewController_iPad.xib */,
+				7DBB7036178A66FD002B387B /* GreetingViewController_iPad.h */,
+				7DBB7037178A66FD002B387B /* GreetingViewController_iPad.m */,
+				7DBB7038178A66FD002B387B /* GreetingViewController_iPad.xib */,
 			);
 			name = Signup;
 			sourceTree = "<group>";
@@ -3201,8 +3249,11 @@
 		7DCA4F27176EAF20002694D5 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				7D02603517867EEC00C3FA24 /* WelcomeViewController_iPad.h */,
+				7D02603617867EEC00C3FA24 /* WelcomeViewController_iPad.m */,
+				7D02603717867EEC00C3FA24 /* WelcomeViewController_iPad.xib */,
 			);
-			name = Welcome;
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		7DCA4F28176EAF6F002694D5 /* Welcome */ = {
@@ -3702,6 +3753,8 @@
 				1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */,
 				A6EECFC615EE1E4800A46A4B /* RoundRectView.h */,
 				A6EECFC715EE1E4800A46A4B /* RoundRectView.m */,
+				7DBB704F178AA2D2002B387B /* eXoNavigationController.h */,
+				7DBB7050178AA2D2002B387B /* eXoNavigationController.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -4598,6 +4651,12 @@
 				7D9B77FA1785C840003F8D19 /* label.png in Resources */,
 				7D9B77FB1785C840003F8D19 /* number_bg.png in Resources */,
 				7D9B77FC1785C840003F8D19 /* separator.png in Resources */,
+				7D02603917867EEC00C3FA24 /* WelcomeViewController_iPad.xib in Resources */,
+				7D02603E1786B58A00C3FA24 /* SignUpViewController_iPad.xib in Resources */,
+				7DBB7024178A65B5002B387B /* MailInputViewController_iPad.xib in Resources */,
+				7DBB703A178A66FD002B387B /* GreetingViewController_iPad.xib in Resources */,
+				7DBB7049178A7A9D002B387B /* AlreadyAccountViewController_iPad.xib in Resources */,
+				7DBB704E178A9990002B387B /* OnPremiseViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4842,6 +4901,13 @@
 				7DCA4F37176EB654002694D5 /* OnPremiseViewController_iPhone.m in Sources */,
 				7DCA4F4E176F00FA002694D5 /* ExoCloudProxy.m in Sources */,
 				7D013B9517827A67005F42D2 /* CloudViewUtils.m in Sources */,
+				7D02603817867EEC00C3FA24 /* WelcomeViewController_iPad.m in Sources */,
+				7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */,
+				7DBB7023178A65B5002B387B /* MailInputViewController_iPad.m in Sources */,
+				7DBB7039178A66FD002B387B /* GreetingViewController_iPad.m in Sources */,
+				7DBB7048178A7A9D002B387B /* AlreadyAccountViewController_iPad.m in Sources */,
+				7DBB704D178A9990002B387B /* OnPremiseViewController_iPad.m in Sources */,
+				7DBB7051178AA2D2002B387B /* eXoNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
