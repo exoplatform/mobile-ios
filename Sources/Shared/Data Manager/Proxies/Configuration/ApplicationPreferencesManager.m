@@ -15,7 +15,8 @@
 #import "LanguageHelper.h"
 #import "URLAnalyzer.h"
 #define CURRENT_USER_NAME       [UserPreferencesManager sharedInstance].username
-
+#define USERNAME_EQUALS @"username="
+#define SERVER_LINK_EQUALS @"serverUrl="
 #pragma mark - Server Object
 
 
@@ -540,7 +541,7 @@
     [self loadServerList]; // reload list of servers
     
     if([self.serverList count] == 0) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
         [[NSUserDefaults standardUserDefaults] synchronize];
     } else if ([self.serverList count] == 1) {
         // If there is the only 1 remaining server: select it automatically
@@ -558,13 +559,43 @@
 //get the server url to save to the server list and set it to be selected
 - (void)loadReceivedUrlToPreference:(NSURL *)url
 {
-    NSString *username = [[url host] substringFromIndex:[@"username=" length]];
+    NSString *host = [url host];
+    NSString *query = [url query];
+    NSString *username = nil, *serverLink = nil;
+    
+    if([host length] > 0) {
+        if([host rangeOfString:USERNAME_EQUALS].location != NSNotFound) {
+            username = [host substringFromIndex:[USERNAME_EQUALS length]];
+        } else {
+            if([host rangeOfString:SERVER_LINK_EQUALS].location != NSNotFound) {
+                serverLink = [host substringFromIndex:[SERVER_LINK_EQUALS length]];
+            }
+        }
+    }
+    
+    if([query length] > 0) {
+        if([query rangeOfString:SERVER_LINK_EQUALS].location != NSNotFound) {
+            serverLink = [query substringFromIndex:[SERVER_LINK_EQUALS length]];
+        } else {
+            if([query rangeOfString:USERNAME_EQUALS].location != NSNotFound) {
+                username = [query substringFromIndex:[USERNAME_EQUALS length]];
+            }
+        }
+    }
+    
+    
     //keep the username for later use
-    [[NSUserDefaults standardUserDefaults] setObject:username forKey:EXO_CLOUD_USER_NAME_FROM_URL];
+    if(username) {
+        [[NSUserDefaults standardUserDefaults] setObject:username forKey:EXO_CLOUD_USER_NAME_FROM_URL];
+    }
+        
+    if(serverLink) {
+        // add server to list and set it to be selected
+        [self addAndSetSelectedServer:serverLink withName:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
-    NSString *serverLink = [[url query] substringFromIndex:[@"serverUrl=" length]];
-    
-    [self addAndSetSelectedServer:serverLink withName:nil];
 }
 
 - (void)addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName

@@ -198,8 +198,6 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         welcomeView.shouldDisplayLoginView = YES;
         [self.parentViewController dismissModalViewControllerAnimated:NO];
     }
-    //TO-DO: start sign up from setting view
-        
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

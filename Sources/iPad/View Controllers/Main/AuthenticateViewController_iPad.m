@@ -281,7 +281,10 @@
         _iPadSettingViewController.settingsDelegate = self;
         
     }
-    [_iPadSettingViewController startRetrieve];
+    if([ApplicationPreferencesManager sharedInstance].selectedDomain) {
+        [_iPadSettingViewController startRetrieve];
+    }
+    
    
     if (_modalNavigationSettingViewController == nil) 
     {
@@ -296,20 +299,6 @@
     _modalNavigationSettingViewController.view.superview.autoresizingMask = 
     UIViewAutoresizingFlexibleTopMargin | 
     UIViewAutoresizingFlexibleBottomMargin;   
-    
-    
-//    _modalNavigationSettingViewController.view.superview.frame = CGRectMake(0,0,
-//                                                                            560.0f,
-//                                                                            640.0f
-//                                                                            );
-//    
-//    if(self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-//    {
-//        _modalNavigationSettingViewController.view.superview.center = CGPointMake(768/2, 1024/2 + 10);        
-//    }
-//    else
-//        _modalNavigationSettingViewController.view.superview.center = CGPointMake(1024/2, 768/2 + 10);
-    
 }
 
 #pragma mark - TextField delegate 

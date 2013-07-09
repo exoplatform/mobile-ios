@@ -59,7 +59,6 @@
     SignUpViewController_iPad *signUpVC = [[[SignUpViewController_iPad alloc] initWithNibName:@"SignUpViewController_iPad" bundle:nil] autorelease];
     signUpVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     signUpVC.modalPresentationStyle = UIModalPresentationFormSheet;
-    [signUpVC setModalInPopover:YES];
     [self presentModalViewController:signUpVC animated:YES];
 }
 

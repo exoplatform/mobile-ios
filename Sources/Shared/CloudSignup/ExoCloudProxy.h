@@ -50,4 +50,5 @@ typedef enum
 - (void)checkTenantStatus;
 - (void)checkUserExistance;
 - (void)getUserMailInfo;
+- (void)createMarketoLead;
 @end

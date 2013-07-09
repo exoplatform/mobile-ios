@@ -64,6 +64,7 @@
 #endif
     
     BOOL isAccountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+    
     if(isAccountConfigured) {
         window.rootViewController = viewController;
     } else {

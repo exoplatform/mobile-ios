@@ -69,11 +69,11 @@
     BOOL accountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
     
     if(!accountConfigured) {
-    
         WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
         [welcomeVC release];
     }
+    
     navigationController.navigationBarHidden = YES;
 
     window.rootViewController = navigationController;
@@ -167,7 +167,6 @@
     window.rootViewController = navigationController;
     
     [UserPreferencesManager sharedInstance].isUserLogged = NO;
-
     
     [LoginProxy doLogout];
 }

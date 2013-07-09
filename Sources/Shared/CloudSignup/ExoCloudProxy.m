@@ -116,13 +116,22 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
         [connection cancel];
     }
     
-    if(cloudRequest == SIGN_UP && httpResponse.statusCode == 202) {
-        [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
-        [connection cancel];
-    }
-    if(cloudRequest == SIGN_UP && httpResponse.statusCode == 503) {
-        [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_READY forEmail:nil];
-        [connection cancel];
+    if(cloudRequest == SIGN_UP) {
+        if(httpResponse.statusCode == 202) {
+            [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
+            [connection cancel];
+            [self createMarketoLead];
+        }
+        if(httpResponse.statusCode == 503) {
+            [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_READY forEmail:nil];
+            [connection cancel];
+        }
+        
+        if(httpResponse.statusCode == 200) {
+            [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
+            [connection cancel];
+            [self createMarketoLead];
+        }
     }
 }
 
@@ -145,9 +154,7 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if(cloudRequest == SIGN_UP) {
-        [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
-    }
+    
 }
 
 - (void)dealloc
@@ -207,4 +214,23 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
     }];
 }
 
+- (void)createMarketoLead
+{
+    NSString *actionLink = @"http://learn.exoplatform.com/index.php/leadCapture/save";
+    NSString *encodedEmail = [self.email stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString *params = [NSString stringWithFormat:@"Email=%@&lpId=1967&subId=46&munchkinId=577-PCT-880&formid=1167&returnLPId=-1", encodedEmail];
+    NSData *payload = [params dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:actionLink]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:payload];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(error) {
+            NSLog(@"creating marketo lead failed");
+        }
+    }];
+    
+}
 @end
