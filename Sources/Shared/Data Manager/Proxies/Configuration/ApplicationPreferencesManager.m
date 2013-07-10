@@ -541,7 +541,7 @@
     [self loadServerList]; // reload list of servers
     
     if([self.serverList count] == 0) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
         [[NSUserDefaults standardUserDefaults] synchronize];
     } else if ([self.serverList count] == 1) {
         // If there is the only 1 remaining server: select it automatically

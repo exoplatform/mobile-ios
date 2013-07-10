@@ -68,7 +68,7 @@
         
     float titleWidth = [[titleLabel text] sizeWithFont:titleFont].width;
     float titleX = (button.frame.size.width - titleWidth) / 2;
-    [titleLabel setFrame:CGRectMake(titleX, -12, button.frame.size.width, button.frame.size.height)];
+    [titleLabel setFrame:CGRectMake(titleX, -7, button.frame.size.width, button.frame.size.height)];
     
     [button addSubview:titleLabel];
     
@@ -79,7 +79,7 @@
     float subtitleX = (button.frame.size.width - subtitleWidth) / 2;
     [subtitleLabel setFrame:CGRectMake(subtitleX, 0, button.frame.size.width, button.frame.size.height)];
     
-    [button addSubview:subtitleLabel];
+//    [button addSubview:subtitleLabel];
     
     [titleLabel  release];
     [subtitleLabel release];

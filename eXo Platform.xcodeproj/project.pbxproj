@@ -424,6 +424,8 @@
 		7D02603917867EEC00C3FA24 /* WelcomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603717867EEC00C3FA24 /* WelcomeViewController_iPad.xib */; };
 		7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */; };
 		7D02603E1786B58A00C3FA24 /* SignUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */; };
+		7D1B3CB3178D083000B36EC4 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1B3CB2178D083000B36EC4 /* screenshot.png */; };
+		7D6534A1178D10BA00C56E50 /* screenshot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6534A0178D10BA00C56E50 /* screenshot2.png */; };
 		7D67133B171BF8D600B8EB93 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */; };
 		7D993C63176ABB410035835F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C62176ABB410035835F /* SignUpViewController.m */; };
 		7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */; };
@@ -437,7 +439,6 @@
 		7D993CDC176AFEDD0035835F /* GreetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CDB176AFEDD0035835F /* GreetingViewController.m */; };
 		7D993CE0176AFEF90035835F /* GreetingViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993CDE176AFEF80035835F /* GreetingViewController_iPhone.m */; };
 		7D993CE1176AFEF90035835F /* GreetingViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993CDF176AFEF90035835F /* GreetingViewController_iPhone.xib */; };
-		7D9B77B51785AA3E003F8D19 /* bg_blurry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77B01785AA3E003F8D19 /* bg_blurry.jpg */; };
 		7D9B77B61785AA3E003F8D19 /* bg_btn_skip.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77B11785AA3E003F8D19 /* bg_btn_skip.png */; };
 		7D9B77B71785AA3E003F8D19 /* btn_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77B21785AA3E003F8D19 /* btn_black.png */; };
 		7D9B77B81785AA3E003F8D19 /* btn_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77B31785AA3E003F8D19 /* btn_blue.png */; };
@@ -479,6 +480,7 @@
 		7DBB704D178A9990002B387B /* OnPremiseViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB704B178A9990002B387B /* OnPremiseViewController_iPad.m */; };
 		7DBB704E178A9990002B387B /* OnPremiseViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB704C178A9990002B387B /* OnPremiseViewController_iPad.xib */; };
 		7DBB7051178AA2D2002B387B /* eXoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB7050178AA2D2002B387B /* eXoNavigationController.m */; };
+		7DC586C8178D0E6E00355F34 /* screenshot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC586C7178D0E6E00355F34 /* screenshot1.png */; };
 		7DCA4F30176EB485002694D5 /* CloudUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F2F176EB485002694D5 /* CloudUtils.m */; };
 		7DCA4F33176EB590002694D5 /* OnPremiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F32176EB590002694D5 /* OnPremiseViewController.m */; };
 		7DCA4F37176EB654002694D5 /* OnPremiseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F35176EB653002694D5 /* OnPremiseViewController_iPhone.m */; };
@@ -1445,6 +1447,8 @@
 		7D02603A1786B58A00C3FA24 /* SignUpViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPad.h; sourceTree = "<group>"; };
 		7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController_iPad.m; sourceTree = "<group>"; };
 		7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController_iPad.xib; sourceTree = "<group>"; };
+		7D1B3CB2178D083000B36EC4 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		7D6534A0178D10BA00C56E50 /* screenshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot2.png; sourceTree = "<group>"; };
 		7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Splashscreen/@2x/Default-568h@2x.png"; sourceTree = "<group>"; };
 		7D993C61176ABB410035835F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		7D993C62176ABB410035835F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -1466,7 +1470,6 @@
 		7D993CDD176AFEF80035835F /* GreetingViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetingViewController_iPhone.h; sourceTree = "<group>"; };
 		7D993CDE176AFEF80035835F /* GreetingViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetingViewController_iPhone.m; sourceTree = "<group>"; };
 		7D993CDF176AFEF90035835F /* GreetingViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GreetingViewController_iPhone.xib; sourceTree = "<group>"; };
-		7D9B77B01785AA3E003F8D19 /* bg_blurry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_blurry.jpg; sourceTree = "<group>"; };
 		7D9B77B11785AA3E003F8D19 /* bg_btn_skip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_btn_skip.png; sourceTree = "<group>"; };
 		7D9B77B21785AA3E003F8D19 /* btn_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_black.png; sourceTree = "<group>"; };
 		7D9B77B31785AA3E003F8D19 /* btn_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_blue.png; sourceTree = "<group>"; };
@@ -1515,6 +1518,7 @@
 		7DBB704C178A9990002B387B /* OnPremiseViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnPremiseViewController_iPad.xib; sourceTree = "<group>"; };
 		7DBB704F178AA2D2002B387B /* eXoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoNavigationController.h; sourceTree = "<group>"; };
 		7DBB7050178AA2D2002B387B /* eXoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoNavigationController.m; sourceTree = "<group>"; };
+		7DC586C7178D0E6E00355F34 /* screenshot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot1.png; sourceTree = "<group>"; };
 		7DCA4F2E176EB485002694D5 /* CloudUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudUtils.h; path = ../Components/eXoUtils/CloudUtils.h; sourceTree = "<group>"; };
 		7DCA4F2F176EB485002694D5 /* CloudUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CloudUtils.m; path = ../Components/eXoUtils/CloudUtils.m; sourceTree = "<group>"; };
 		7DCA4F31176EB590002694D5 /* OnPremiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnPremiseViewController.h; sourceTree = "<group>"; };
@@ -3104,9 +3108,20 @@
 			path = Sources/Shared/Classes/KissXML;
 			sourceTree = SOURCE_ROOT;
 		};
+		7D1B3CB1178D081D00B36EC4 /* Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				7D6534A0178D10BA00C56E50 /* screenshot2.png */,
+				7DC586C7178D0E6E00355F34 /* screenshot1.png */,
+				7D1B3CB2178D083000B36EC4 /* screenshot.png */,
+			);
+			name = Screenshot;
+			sourceTree = "<group>";
+		};
 		7D993C2C1769A8E50035835F /* CloudSignup */ = {
 			isa = PBXGroup;
 			children = (
+				7D1B3CB1178D081D00B36EC4 /* Screenshot */,
 				7D9B77DC1785C840003F8D19 /* @1x */,
 				7D9B77AF1785A94B003F8D19 /* welcome */,
 				7DFD1912177986970053F6F3 /* @2x */,
@@ -3127,7 +3142,6 @@
 		7D9B77AF1785A94B003F8D19 /* welcome */ = {
 			isa = PBXGroup;
 			children = (
-				7D9B77B01785AA3E003F8D19 /* bg_blurry.jpg */,
 				7D9B77B11785AA3E003F8D19 /* bg_btn_skip.png */,
 				7D9B77B21785AA3E003F8D19 /* btn_black.png */,
 				7D9B77B31785AA3E003F8D19 /* btn_blue.png */,
@@ -4621,7 +4635,6 @@
 				7D993CD4176AFD010035835F /* MailInputViewController_iPhone.xib in Resources */,
 				7D993CE1176AFEF90035835F /* GreetingViewController_iPhone.xib in Resources */,
 				7DCA4F38176EB654002694D5 /* OnPremiseViewController_iPhone.xib in Resources */,
-				7D9B77B51785AA3E003F8D19 /* bg_blurry.jpg in Resources */,
 				7D9B77B61785AA3E003F8D19 /* bg_btn_skip.png in Resources */,
 				7D9B77B71785AA3E003F8D19 /* btn_black.png in Resources */,
 				7D9B77B81785AA3E003F8D19 /* btn_blue.png in Resources */,
@@ -4657,6 +4670,9 @@
 				7DBB703A178A66FD002B387B /* GreetingViewController_iPad.xib in Resources */,
 				7DBB7049178A7A9D002B387B /* AlreadyAccountViewController_iPad.xib in Resources */,
 				7DBB704E178A9990002B387B /* OnPremiseViewController_iPad.xib in Resources */,
+				7D1B3CB3178D083000B36EC4 /* screenshot.png in Resources */,
+				7DC586C8178D0E6E00355F34 /* screenshot1.png in Resources */,
+				7D6534A1178D10BA00C56E50 /* screenshot2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

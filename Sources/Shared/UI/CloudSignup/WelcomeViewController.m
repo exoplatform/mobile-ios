@@ -16,10 +16,8 @@
 
 @implementation WelcomeViewController
 
-@synthesize skipButton, loginButton, signupButton, pageControl, scrollView, shouldDisplayLoginView, receivedEmail;
+@synthesize skipButton, pageControl, scrollView, shouldDisplayLoginView, receivedEmail;
 @synthesize shouldBackToSetting;
-@synthesize blurryBg;
-@synthesize captionLabel;
 @synthesize captions;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,14 +50,10 @@
 - (void)dealloc
 {
     [super dealloc];
-    [loginButton release];
-    [signupButton release];
     [scrollView release];
     [pageControl release];
     [skipButton release];
     [receivedEmail release];
-    [blurryBg release];
-    [captionLabel release];
     [captions release];
 }
 
@@ -94,7 +88,6 @@
     [[self.skipButton layer] setBorderWidth:0.3f];
     [[self.skipButton layer] setBorderColor:[UIColor grayColor].CGColor];
     [[self.skipButton layer] setCornerRadius:3.0f];
-
 }
 
 @end

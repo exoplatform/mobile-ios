@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CloudViewUtils.h"
-
+#define WELCOME_BUTTON_CONTAINER_TAG 1000;
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
     NSArray *images;
 }
 
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) IBOutlet UIButton *loginButton;
-@property (nonatomic, retain) IBOutlet UIButton *signupButton;
 @property (nonatomic, retain) IBOutlet UIButton *skipButton;
-@property (nonatomic, retain) IBOutlet UIImageView *blurryBg;
 @property (nonatomic, retain) IBOutlet UILabel *captionLabel;
 @property (nonatomic, retain) NSArray *captions;
 // if YES, auto switch to login page, this is used in case when user enters an email that
