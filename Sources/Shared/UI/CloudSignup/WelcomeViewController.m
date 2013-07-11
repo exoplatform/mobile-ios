@@ -33,6 +33,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.captions = [NSArray arrayWithObjects:@"Follow what your connections are sharing", @"Browse and edit your files", @"Interact with your personal dashboards", nil];
+    [self.view addSubview:[self buttonsContainer]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -88,6 +89,48 @@
     [[self.skipButton layer] setBorderWidth:0.3f];
     [[self.skipButton layer] setBorderColor:[UIColor grayColor].CGColor];
     [[self.skipButton layer] setCornerRadius:3.0f];
+}
+
+- (UIView *)buttonsContainer
+{
+    UIImage *signupBg = [UIImage imageNamed:@"btn_blue"];
+    UIImage *loginBg = [UIImage imageNamed:@"btn_black"];
+    
+    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width/2, signupBg.size.height/2)];
+    [signupButton setImage:signupBg forState:UIControlStateNormal];
+    [signupButton addTarget:self action:@selector(signup:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(signupBg.size.width/2, 0, signupBg.size.width/2, signupBg.size.height/2)];
+    [loginButton setImage:loginBg forState:UIControlStateNormal];
+    [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [CloudViewUtils configure:signupButton withTitle:@"Sign Up" andSubtitle:@"Create an account"];
+    [CloudViewUtils configure:loginButton withTitle:@"Log In" andSubtitle:@"Already an account"];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width/2 + loginBg.size.width/2, signupBg.size.height/2)];
+    
+    UILabel *orLabel = [[UILabel alloc] init];
+    orLabel.text = @"or";
+    orLabel.backgroundColor = [UIColor clearColor];
+    orLabel.font = [UIFont fontWithName:@"Helvetica" size:13];
+    orLabel.textColor = [UIColor whiteColor];
+    orLabel.frame = CGRectMake(view.frame.size.width/2 - 5, view.frame.size.height/2 - 12, 15,10);
+    
+    [view addSubview:signupButton];
+    [view addSubview:loginButton];
+    [view addSubview:orLabel];
+    
+    [orLabel release];
+    [signupButton release];
+    [loginButton release];
+    
+    CGRect frame = view.frame;
+    frame.origin.x = (self.view.frame.size.width - frame.size.width)/2;
+    frame.origin.y = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 880 : 386;
+    view.frame = frame;
+    view.tag = WELCOME_BUTTON_CONTAINER_TAG;
+    
+    return view;
 }
 
 @end

@@ -64,4 +64,9 @@
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
     [appDelegate showHome];
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
 @end

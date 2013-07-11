@@ -40,5 +40,9 @@
     [super dismissKeyboards];
 }
 
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
+}
 
 @end

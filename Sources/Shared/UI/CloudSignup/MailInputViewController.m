@@ -170,7 +170,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error
 {
     [self.hud setHidden:YES];
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"CloudServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     [alert show];
 }
 

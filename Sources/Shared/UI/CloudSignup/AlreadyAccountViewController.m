@@ -161,7 +161,7 @@
 - (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error
 {
     self.hud.hidden = YES;
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"CloudServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     [alert show];
 }
 

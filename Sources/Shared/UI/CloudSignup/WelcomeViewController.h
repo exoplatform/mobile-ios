@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CloudViewUtils.h"
-#define WELCOME_BUTTON_CONTAINER_TAG 1000;
+#define WELCOME_BUTTON_CONTAINER_TAG 1000
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
     NSArray *images;
 }

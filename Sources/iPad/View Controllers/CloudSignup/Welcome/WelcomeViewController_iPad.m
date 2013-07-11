@@ -32,6 +32,21 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewWillLayoutSubviews
+{
+    UIView *buttons = [self.view viewWithTag:WELCOME_BUTTON_CONTAINER_TAG];
+    CGRect frame = buttons.frame;
+    
+    if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        frame.origin.y = 624;
+        frame.origin.x = (1024 - frame.size.width)/2;
+    } else {
+        frame.origin.y = 880;
+        frame.origin.x = (768 - frame.size.width)/2;
+    }
+    
+    buttons.frame = frame;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -57,7 +72,7 @@
 - (void)signup:(id)sender
 {
     SignUpViewController_iPad *signUpVC = [[[SignUpViewController_iPad alloc] initWithNibName:@"SignUpViewController_iPad" bundle:nil] autorelease];
-    signUpVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    signUpVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     signUpVC.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentModalViewController:signUpVC animated:YES];
 }
@@ -68,7 +83,17 @@
     eXoNavigationController *navCon = [[[eXoNavigationController alloc] initWithRootViewController:alreadyVC] autorelease];
     
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
-    navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    navCon.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentModalViewController:navCon animated:YES];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
 }
 @end

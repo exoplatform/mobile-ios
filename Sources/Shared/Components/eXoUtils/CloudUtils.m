@@ -31,6 +31,8 @@
     return  [NSString stringWithFormat:@"http://%@.%@",tenantName, EXO_CLOUD_HOST];
 }
 
+//add http(s):// and remove www in server url
+//the correct form of an exo intranet url is: http(s)://int.exoplatform.org for example
 + (NSString *)correctServerUrl:(NSString *)inputtedUrl
 {
     NSString *correctUrl = inputtedUrl;
