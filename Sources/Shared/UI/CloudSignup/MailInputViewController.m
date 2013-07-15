@@ -55,17 +55,8 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     
     [CloudViewUtils adaptCloudForm:self.view];
 
-    /* Add tap gesture to dismiss keyboard */
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
-    [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
-    [self.view addGestureRecognizer:tapGesure];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.mailTf becomeFirstResponder];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -125,6 +116,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
             break;
         case EMAIL_BLACKLISTED:
         {
+            [self.hud setHidden:YES];
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"EmailIsBlacklisted") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
             break;

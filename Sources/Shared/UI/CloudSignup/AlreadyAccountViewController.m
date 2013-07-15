@@ -55,10 +55,6 @@
     
     [CloudViewUtils adaptCloudForm:self.containerView];
     
-    /* Add tap gesture to dismiss keyboard */
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
-    [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
-    [self.view addGestureRecognizer:tapGesure];
 }
 
 

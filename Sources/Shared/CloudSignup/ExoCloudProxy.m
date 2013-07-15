@@ -20,7 +20,7 @@ static NSString *EXO_CLOUD_TENANT_ONLINE_REST_BODY = @"online";
 static NSString *EXO_CLOUD_TENANT_STOPPED_REST_BODY = @"stopped";
 static NSString *EXO_CLOUD_USER_EXIST_REST_BODY = @"true";
 static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
-
+static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
 @implementation ExoCloudProxy {
     CloudRequest cloudRequest;
 }
@@ -90,7 +90,7 @@ static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
 {
     NSString *responseBody = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] lowercaseString];
     if([responseBody length] > 0) {
-        if([responseBody isEqualToString:EXO_CLOUD_TENANT_RESUMING_REST_BODY] || [responseBody isEqualToString:EXO_CLOUD_TENANT_STOPPED_REST_BODY]) {
+        if([responseBody isEqualToString:EXO_CLOUD_TENANT_RESUMING_REST_BODY] || [responseBody isEqualToString:EXO_CLOUD_TENANT_STOPPED_REST_BODY] || [responseBody isEqualToString:EXO_CLOUD_TENANT_CREATION_FAIL]) {
             [_delegate cloudProxy:self handleCloudResponse:TENANT_RESUMING forEmail:self.email];
             [connection cancel];
         } else if([responseBody isEqualToString:EXO_CLOUD_TENANT_ONLINE_REST_BODY]) {

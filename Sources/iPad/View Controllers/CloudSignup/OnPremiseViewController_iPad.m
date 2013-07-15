@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [self.serverUrlTf becomeFirstResponder];
 }
@@ -48,5 +48,9 @@
     AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
     [appDelegate showHome];
+}
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
 }
 @end

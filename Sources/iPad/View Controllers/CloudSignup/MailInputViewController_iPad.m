@@ -29,16 +29,17 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.mailTf becomeFirstResponder];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dismissKeyboards
-{
-    [super dismissKeyboards];
-}
 
 - (BOOL)disablesAutomaticKeyboardDismissal
 {

@@ -30,9 +30,10 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [self.emailTf becomeFirstResponder];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +48,6 @@
     OnPremiseViewController_iPad *onPremiseViewController = [[OnPremiseViewController_iPad alloc] initWithNibName:@"OnPremiseViewController_iPad" bundle:nil];
     
     [self.navigationController pushViewController:onPremiseViewController animated:YES];
-
 }
 
 #pragma mark LoginProxyDelegate methods
@@ -68,5 +68,10 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
+}
+
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
 }
 @end
