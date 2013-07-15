@@ -76,7 +76,7 @@
 {
     [self dismissKeyboards];
     [self.hud show];
-
+    [LoginProxy doLogout];//clear all credentials cache
     LoginProxy *loginProxy = [[LoginProxy alloc] initWithDelegate:self username:self.usernameTf.text password:self.passwordTf.text serverUrl:[CloudUtils correctServerUrl:self.serverUrlTf.text]];
     [loginProxy authenticate];
 }

@@ -119,6 +119,7 @@ return self;
 {
     NSString *dest = [NSString stringWithFormat:@"%@/rest/private/",self.serverUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:dest] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10.0];
+
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self] ;
     
     [connection start];
