@@ -110,8 +110,19 @@
 
 - (void)initSwipedElements
 {
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, SWIPED_VIEW_WIDTH, SWIPED_VIEW_HEIGHT)];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.scrollEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.delegate = self;
+    
     self.pageControl.numberOfPages = 4;
     self.pageControl.currentPage = 0;
+    CGRect scrollFrame = self.scrollView.frame;
+    scrollFrame.origin.y = 0;
+    self.scrollView.frame = scrollFrame;
+    
     [self.scrollView addSubview:[self logoView]];
     
     for(int i = 0; i < [images count]; i++) {
@@ -123,6 +134,7 @@
         [swipedView release];
     }
     self.scrollView.contentSize = CGSizeMake(SWIPED_VIEW_WIDTH * 4, SWIPED_VIEW_HEIGHT);
+    [self.view addSubview:self.scrollView];
 }
 
 #pragma mark Utils

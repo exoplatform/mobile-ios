@@ -89,6 +89,9 @@
     [[self.skipButton layer] setBorderWidth:0.3f];
     [[self.skipButton layer] setBorderColor:[UIColor grayColor].CGColor];
     [[self.skipButton layer] setCornerRadius:3.0f];
+    CGRect frame = self.skipButton.frame;
+    frame.origin.y = [UIScreen mainScreen].bounds.size.height - 50;
+    self.skipButton.frame = frame;
 }
 
 - (UIView *)buttonsContainer
@@ -126,7 +129,8 @@
     
     CGRect frame = view.frame;
     frame.origin.x = (self.view.frame.size.width - frame.size.width)/2;
-    frame.origin.y = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 880 : 386;
+//    frame.origin.y = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 880 : 386;
+    frame.origin.y = [[UIScreen mainScreen] bounds].size.height - 100;
     view.frame = frame;
     view.tag = WELCOME_BUTTON_CONTAINER_TAG;
     

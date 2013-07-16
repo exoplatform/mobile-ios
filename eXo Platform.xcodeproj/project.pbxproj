@@ -427,6 +427,7 @@
 		7D1B3CB3178D083000B36EC4 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1B3CB2178D083000B36EC4 /* screenshot.png */; };
 		7D6534A1178D10BA00C56E50 /* screenshot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6534A0178D10BA00C56E50 /* screenshot2.png */; };
 		7D67133B171BF8D600B8EB93 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */; };
+		7D6930F31794EF37008CCE72 /* white_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6930F21794EF37008CCE72 /* white_btn.png */; };
 		7D993C63176ABB410035835F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C62176ABB410035835F /* SignUpViewController.m */; };
 		7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */; };
 		7D993C79176ABB5E0035835F /* SignUpViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C77176ABB5E0035835F /* SignUpViewController_iPhone.xib */; };
@@ -1450,6 +1451,7 @@
 		7D1B3CB2178D083000B36EC4 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		7D6534A0178D10BA00C56E50 /* screenshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot2.png; sourceTree = "<group>"; };
 		7D67133A171BF8D600B8EB93 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Splashscreen/@2x/Default-568h@2x.png"; sourceTree = "<group>"; };
+		7D6930F21794EF37008CCE72 /* white_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_btn.png; sourceTree = "<group>"; };
 		7D993C61176ABB410035835F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		7D993C62176ABB410035835F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		7D993C75176ABB5E0035835F /* SignUpViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPhone.h; sourceTree = "<group>"; };
@@ -3154,6 +3156,7 @@
 		7D9B77DC1785C840003F8D19 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				7D6930F21794EF37008CCE72 /* white_btn.png */,
 				7D9B77DD1785C840003F8D19 /* bg_texture.png */,
 				7D9B77DE1785C840003F8D19 /* blue_btn.png */,
 				7D9B77DF1785C840003F8D19 /* icon_check.png */,
@@ -4673,6 +4676,7 @@
 				7D1B3CB3178D083000B36EC4 /* screenshot.png in Resources */,
 				7DC586C8178D0E6E00355F34 /* screenshot1.png in Resources */,
 				7D6534A1178D10BA00C56E50 /* screenshot2.png in Resources */,
+				7D6930F31794EF37008CCE72 /* white_btn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -89,10 +89,10 @@
 //set title in 2 lines for a button
 + (void)setTitleForButton:(UIButton *)button with1stLine:(NSString *)line1 and2ndLine:(NSString *)line2
 {
-    UIFont *titleFont = [UIFont fontWithName:@"Helvetica" size:9];
+    UIFont *titleFont = [UIFont systemFontOfSize:11];
     
-    UILabel *label1 = [CloudViewUtils labelWithText:line1 andFont:titleFont andTextColor:UIColorFromRGB(0x333333)];
-    UILabel *label2 = [CloudViewUtils labelWithText:line2 andFont:titleFont andTextColor:UIColorFromRGB(0x333333)];
+    UILabel *label1 = [CloudViewUtils labelWithText:line1 andFont:titleFont andTextColor:[UIColor darkGrayColor]];
+    UILabel *label2 = [CloudViewUtils labelWithText:line2 andFont:titleFont andTextColor:[UIColor darkGrayColor]];
     
     float width1 = [label1.text sizeWithFont:titleFont].width;
     float height1 = [label1.text sizeWithFont:titleFont].width;
@@ -102,11 +102,11 @@
     
     float buttonWidth = button.frame.size.width;
     
-    CGRect frame1 = CGRectMake((buttonWidth - width1)/2, -18, width1, height1);
-    CGRect frame2 = CGRectMake((buttonWidth - width2)/2, -23, width2, height2);
+    CGRect frame1 = CGRectMake((buttonWidth - width1)/2, -25, width1, height1);
+    CGRect frame2 = CGRectMake((buttonWidth - width2)/2, -35, width2, height2);
     
-    label1.frame = frame1;
-    label2.frame = frame2;
+    label1.frame = CGRectIntegral(frame1);
+    label2.frame = CGRectIntegral(frame2);
     
     [button addSubview:label1];
     [button addSubview:label2];

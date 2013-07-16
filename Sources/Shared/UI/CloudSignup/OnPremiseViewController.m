@@ -106,7 +106,10 @@
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil] autorelease];
         
-    } else {
+    } else if([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"ServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    }
+    else {
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     }
     [alert show];
