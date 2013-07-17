@@ -7,7 +7,7 @@
 //
 
 #import "MailInputViewController_iPhone.h"
-
+#import "eXoViewController.h"
 @interface MailInputViewController_iPhone ()
 
 @end
@@ -34,9 +34,11 @@
     [self.view addGestureRecognizer:tapGesure];
 
     // Notifies when the keyboard is shown/hidden
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
-
+    if(![eXoViewController isHighScreen]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
+    
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

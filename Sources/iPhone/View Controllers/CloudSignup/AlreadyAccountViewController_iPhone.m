@@ -11,6 +11,8 @@
 #import "AppDelegate_iPhone.h"
 #import "OnPremiseViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
+#import "eXoViewController.h"
+
 @interface AlreadyAccountViewController_iPhone ()
 
 @end
@@ -37,9 +39,10 @@
     [self.view addGestureRecognizer:tapGesure];
 
     // Notifies when the keyboard is shown/hidden
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
-
+    if(![eXoViewController isHighScreen]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,10 +70,10 @@
 {
     [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     
-    //show activity stream
+    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
     AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    [appDelegate showHomeSidebarViewController];
+    [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
 }
 
 #pragma mark - Keyboard management

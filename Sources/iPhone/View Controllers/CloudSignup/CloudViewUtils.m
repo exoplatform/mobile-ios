@@ -12,7 +12,6 @@
 
 #define EXO_TEXT_FIELD_PADDING_WIDTH 30
 @interface CloudViewUtils()
-+(UILabel *)labelWithText:(NSString *)text andFont:(UIFont *)font andTextColor:(UIColor *)color;
 +(CGRect)frameForLabel:(UILabel *)label inRect:(CGRect)rect;
 @end
 
@@ -61,7 +60,7 @@
 + (void)configure:(UIButton *)button withTitle:(NSString *)title andSubtitle:(NSString *)subtitle
 {
     
-    UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     UIFont *subTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:8];
     
     UILabel *titleLabel = [CloudViewUtils labelWithText:title andFont:titleFont andTextColor:[UIColor whiteColor]];

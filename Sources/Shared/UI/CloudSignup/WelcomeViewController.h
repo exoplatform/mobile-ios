@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CloudViewUtils.h"
 #define WELCOME_BUTTON_CONTAINER_TAG 1000
+#define SWIPED_VIEW_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768 : 320
+#define SWIPED_VIEW_HEIGHT_iPhone 360
+#define SWIPED_VIEW_HEIGHT_iPad 904
+#define SWIPED_VIEW_HEIGHT_iPhone5 448
+#define SCREENSHOT_Y 40
+#define CAPTION_Y  30
+
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
     NSArray *images;
 }
@@ -32,4 +39,5 @@
 
 //configure the skip button
 - (void)configureSkipButton;
+- (void)initSwipedElements;
 @end

@@ -17,4 +17,7 @@
 + (void)adaptCloudForm:(UIView *)view;
 
 + (UIView *)styledLabelWithOrder:(NSString *)order andTitle:(NSString *)title withWidth:(float)width;
+
++(UILabel *)labelWithText:(NSString *)text andFont:(UIFont *)font andTextColor:(UIColor *)color;
+
 @end

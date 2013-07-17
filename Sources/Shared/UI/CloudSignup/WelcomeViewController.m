@@ -9,7 +9,8 @@
 #import "WelcomeViewController.h"
 #import "SignUpViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "eXoViewController.h"
+#import "LogoSlogan.h"
 @interface WelcomeViewController ()
 
 @end
@@ -32,8 +33,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
+    
+    images = [self screenshots];
     self.captions = [NSArray arrayWithObjects:@"Follow what your connections are sharing", @"Browse and edit your files", @"Interact with your personal dashboards", nil];
+    [self initSwipedElements];
+    [self configureSkipButton];
     [self.view addSubview:[self buttonsContainer]];
+    [self insertSeparatorLine];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,23 +80,48 @@
 {
     
 }
-- (void)scrollViewDidEndScroll:(UIScrollView *)scrollView
+#pragma mark ScrollViewDelegate methods
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth/2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
 }
+
+- (void)initSwipedElements
+{
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, [self swipedViewHeight])];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.scrollEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.delegate = self;
+    
+    self.pageControl.numberOfPages = 4;
+    self.pageControl.currentPage = 0;
+    CGRect scrollFrame = self.scrollView.frame;
+    scrollFrame.origin.y = 0;
+    self.scrollView.frame = scrollFrame;
+    
+    [self.scrollView addSubview:[self logoView]];
+    
+    for(int i = 0; i < [images count]; i++) {
+        UIView *swipedView = [self swipedViewWithCaption:[self.captions objectAtIndex:i] andScreenShot:[images objectAtIndex:i]];
+        CGRect frame = swipedView.frame;
+        frame.origin.x = self.view.frame.size.width * (i+1);
+        swipedView.frame = frame;
+        [self.scrollView addSubview:swipedView];
+        [swipedView release];
+    }
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * ([images count] + 1), self.scrollView.frame.size.height);
+    [self.view addSubview:self.scrollView];
+}
+
 
 - (void)configureSkipButton
 {
     //config the skip button
-    UIImage *originalImage = [UIImage imageNamed:@"bg_btn_skip"];
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);
-    UIImage *stretchableImage = [originalImage resizableImageWithCapInsets:insets];
-    
-    [self.skipButton setBackgroundImage:stretchableImage forState:UIControlStateNormal];
-    
-    [[self.skipButton layer] setBorderWidth:0.3f];
-    [[self.skipButton layer] setBorderColor:[UIColor grayColor].CGColor];
-    [[self.skipButton layer] setCornerRadius:3.0f];
+    [CloudViewUtils configureButton:self.skipButton withBackground:@"btn_skip"];
     CGRect frame = self.skipButton.frame;
     frame.origin.y = [UIScreen mainScreen].bounds.size.height - 50;
     self.skipButton.frame = frame;
@@ -99,18 +132,18 @@
     UIImage *signupBg = [UIImage imageNamed:@"btn_blue"];
     UIImage *loginBg = [UIImage imageNamed:@"btn_black"];
     
-    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width/2, signupBg.size.height/2)];
+    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width, signupBg.size.height)];
     [signupButton setImage:signupBg forState:UIControlStateNormal];
     [signupButton addTarget:self action:@selector(signup:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(signupBg.size.width/2, 0, signupBg.size.width/2, signupBg.size.height/2)];
+    UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(signupBg.size.width, 0, signupBg.size.width, signupBg.size.height)];
     [loginButton setImage:loginBg forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     
     [CloudViewUtils configure:signupButton withTitle:@"Sign Up" andSubtitle:@"Create an account"];
     [CloudViewUtils configure:loginButton withTitle:@"Log In" andSubtitle:@"Already an account"];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width/2 + loginBg.size.width/2, signupBg.size.height/2)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width + loginBg.size.width, signupBg.size.height)];
     
     UILabel *orLabel = [[UILabel alloc] init];
     orLabel.text = @"or";
@@ -129,7 +162,6 @@
     
     CGRect frame = view.frame;
     frame.origin.x = (self.view.frame.size.width - frame.size.width)/2;
-//    frame.origin.y = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 880 : 386;
     frame.origin.y = [[UIScreen mainScreen] bounds].size.height - 100;
     view.frame = frame;
     view.tag = WELCOME_BUTTON_CONTAINER_TAG;
@@ -137,4 +169,92 @@
     return view;
 }
 
+- (void)insertSeparatorLine
+{
+    UIImage *image = [UIImage imageNamed:@"welcome_separator"];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, image.size.height)];
+    imageView.image = image;
+    float imageY = [UIScreen mainScreen].bounds.size.height - 120 - image.size.height;
+    CGRect frame = imageView.frame;
+    frame.origin.y = imageY;
+    imageView.frame = frame;
+    [self.view addSubview:imageView];
+    [imageView release];
+    
+}
+#pragma mark Utils
+- (UIView *)logoView
+{
+    NSString *nibName = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"LogoSlogan_iPad" : @"LogoSlogan_iPhone";
+    NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:nibName
+                                                    owner:self options:nil];
+    LogoSlogan *logoSlogan;
+    for (id object in bundle) {
+        if ([object isKindOfClass:[LogoSlogan class]]) {
+            logoSlogan = (LogoSlogan *)object;
+        }
+    }
+    logoSlogan.backgroundColor = [UIColor clearColor];
+    CGRect frame = logoSlogan.frame;
+    frame.origin.x = (self.view.frame.size.width - logoSlogan.frame.size.width)/2;
+    frame.origin.y = ([self swipedViewHeight] - logoSlogan.frame.size.height)/2 + 30;
+    logoSlogan.frame = frame;
+    return logoSlogan;
+}
+
+- (UIView *)swipedViewWithCaption:(NSString *)caption andScreenShot:(NSString *)imageName
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.scrollView.frame.size.height)];
+    
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREENSHOT_Y, image.size.width, image.size.height)];
+    imageView.image = image;
+    [view addSubview:imageView];
+    [imageView release];
+    
+    UILabel *captionLabel = [[UILabel alloc] init];
+    captionLabel.text = caption;
+    captionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+    captionLabel.backgroundColor = [UIColor clearColor];
+    captionLabel.textColor = [UIColor lightGrayColor];
+    captionLabel.textAlignment = NSTextAlignmentCenter;
+    CGSize labelSize = [captionLabel.text sizeWithFont:captionLabel.font];
+    float captionX = (view.frame.size.width - labelSize.width) / 2;
+    [captionLabel setFrame:CGRectMake(captionX, CAPTION_Y, labelSize.width, labelSize.height)];
+    
+    [view addSubview:captionLabel];
+    [captionLabel release];
+    
+    return view;
+}
+
+- (NSArray *)screenshots
+{
+    NSArray *res = [[NSArray alloc] init];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+    } else {
+        if([eXoViewController isHighScreen]) {
+            res = [NSArray arrayWithObjects:@"iphone5-activity-stream",@"iphone5-documents",@"iphone5-apps", nil];
+        } else {
+            res = [NSArray arrayWithObjects:@"iphone-activity-stream",@"iphone-documents",@"iphone-apps", nil];
+        }
+    }
+    return res;
+}
+
+- (float)swipedViewHeight
+{
+    float height;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        height = SWIPED_VIEW_HEIGHT_iPad;
+    } else {
+        if([eXoViewController isHighScreen]) {
+            height = SWIPED_VIEW_HEIGHT_iPhone5;
+        } else {
+            height = SWIPED_VIEW_HEIGHT_iPhone;
+        }
+    }
+    return height;
+}
 @end

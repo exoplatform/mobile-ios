@@ -32,21 +32,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewWillLayoutSubviews
+- (void)viewDidLayoutSubviews
 {
-    UIView *buttons = [self.view viewWithTag:WELCOME_BUTTON_CONTAINER_TAG];
-    CGRect frame = buttons.frame;
-    
-    if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        frame.origin.y = 624;
-        frame.origin.x = (1024 - frame.size.width)/2;
-    } else {
-        frame.origin.y = 880;
-        frame.origin.x = (768 - frame.size.width)/2;
-    }
-    
-    buttons.frame = frame;
+    self.scrollView.contentSize = CGSizeMake(768 * 4, SWIPED_VIEW_HEIGHT_iPad);
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -59,15 +49,8 @@
         [self dismissModalViewControllerAnimated:YES];
     } else {
         AppDelegate_iPad *appDelegate = [AppDelegate_iPad instance];
-        [UIView transitionFromView:appDelegate.window.rootViewController.view
-                            toView:appDelegate.viewController.view
-                          duration:0.8f
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        completion:^(BOOL finished){
-                            appDelegate.window.rootViewController = appDelegate.viewController;
-                        }];
+        appDelegate.window.rootViewController = appDelegate.viewController;
     }
-
 }
 - (void)signup:(id)sender
 {
@@ -89,11 +72,11 @@
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return YES;
+    return NO;
 }
 @end
