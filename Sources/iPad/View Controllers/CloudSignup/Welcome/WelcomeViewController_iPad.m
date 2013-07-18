@@ -62,6 +62,11 @@
     frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
     self.pageControl.frame = frame;
     
+    UIImageView *imageView = (UIImageView*)[self.view viewWithTag:WELCOME_SEPARATOR_TAG];
+    frame = imageView.frame;
+    frame.origin.y = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 768 - 120 - frame.size.height : 1024 - 120 - frame.size.height;
+    frame.size.width = [self swipedViewWidth];
+    imageView.frame = frame;
 }
 
 - (void)didReceiveMemoryWarning

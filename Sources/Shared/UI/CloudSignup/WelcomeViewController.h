@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CloudViewUtils.h"
 #define WELCOME_BUTTON_CONTAINER_TAG 1000
+#define WELCOME_SEPARATOR_TAG 1001
 #define SWIPED_VIEW_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768 : 320
 #define SWIPED_VIEW_HEIGHT_iPhone 360
 #define SWIPED_VIEW_HEIGHT_PORTRAIT_iPad 904

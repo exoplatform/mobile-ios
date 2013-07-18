@@ -175,9 +175,9 @@
     CGRect frame = imageView.frame;
     frame.origin.y = imageY;
     imageView.frame = frame;
+    imageView.tag = WELCOME_SEPARATOR_TAG;
     [self.view addSubview:imageView];
     [imageView release];
-    
 }
 #pragma mark Utils
 - (UIView *)logoView
