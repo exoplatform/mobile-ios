@@ -28,10 +28,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    /* Add tap gesture to dismiss keyboard */
+    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
+    [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
+    [self.view addGestureRecognizer:tapGesure];
+
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.emailTf becomeFirstResponder];
 
 }
@@ -59,6 +66,7 @@
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
     [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
+    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
     //show activity stream
     AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
@@ -70,8 +78,5 @@
     return YES;
 }
 
-- (BOOL)disablesAutomaticKeyboardDismissal
-{
-    return NO;
-}
+
 @end

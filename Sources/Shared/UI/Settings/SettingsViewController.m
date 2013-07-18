@@ -616,7 +616,6 @@ typedef enum {
             welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
             welcomeVC.shouldBackToSetting = YES;
             [self presentModalViewController:welcomeVC animated:YES];
-            
         } else {
             
             welcomeVC = [[[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil] autorelease];
@@ -625,7 +624,6 @@ typedef enum {
             [self presentModalViewController:welcomeVC animated:YES];
             
         }
-        
     }
     
 	else if (sectionId == SettingViewControllerSectionLanguage)

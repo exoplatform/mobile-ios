@@ -11,6 +11,7 @@
 #import "AlreadyAccountViewController_iPad.h"
 #import "eXoNavigationController.h"
 #import "AppDelegate_iPad.h"
+#import "defines.h"
 @interface WelcomeViewController_iPad ()
 
 @end
@@ -34,7 +35,33 @@
 
 - (void)viewDidLayoutSubviews
 {
-    self.scrollView.contentSize = CGSizeMake(768 * 4, SWIPED_VIEW_HEIGHT_iPad);
+    if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_LSCP_IPAD * 4, SCR_HEIGHT_LSCP_IPAD - 100);
+    } else {
+        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_PRTR_IPAD * 4, SCR_HEIGHT_PRTR_IPAD - 100);
+    }
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    [self repositionSwipedElements];
+    
+    UIView *buttons = [self.view viewWithTag:WELCOME_BUTTON_CONTAINER_TAG];
+    CGRect frame = buttons.frame;
+    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
+    frame.origin.y = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 768-100:1024-100;
+    buttons.frame = frame;
+    
+    frame = self.skipButton.frame;
+    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
+    frame.origin.y = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 768-50:1024-50;
+    self.skipButton.frame = frame;
+    
+    frame = self.pageControl.frame;
+    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
+    self.pageControl.frame = frame;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,11 +99,36 @@
 
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return NO;
+    return YES;
+}
+
+- (void)repositionSwipedElements
+{
+    
+    images = [self screenshots];
+    CGRect frame = self.scrollView.frame;
+    frame.size.width = [self swipedViewWidth];
+    frame.size.height = [self swipedViewHeight];
+    self.scrollView.frame = frame;
+    for(UIView *view in [self.scrollView subviews]) {
+        [view removeFromSuperview];
+    }
+    
+    [self.scrollView insertSubview:[self logoView] atIndex:0];
+        
+    for(int i = 0; i < [images count]; i++) {
+        
+        UIView *viewiTmp = [self swipedViewWithCaption:[self.captions objectAtIndex:i] andScreenShot:[images objectAtIndex:i]];
+        frame = viewiTmp.frame;
+        frame.origin.x = self.scrollView.frame.size.width * (i+1);
+        viewiTmp.frame = frame;
+        [self.scrollView insertSubview:viewiTmp atIndex:i+1];
+        [viewiTmp release];
+    }
 }
 @end

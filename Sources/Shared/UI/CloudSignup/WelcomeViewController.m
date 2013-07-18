@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "eXoViewController.h"
 #import "LogoSlogan.h"
+#import "defines.h"
 @interface WelcomeViewController ()
 
 @end
@@ -35,8 +36,8 @@
 	// Do any additional setup after loading the view.
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
-    images = [self screenshots];
     self.captions = [NSArray arrayWithObjects:@"Follow what your connections are sharing", @"Browse and edit your files", @"Interact with your personal dashboards", nil];
+    
     [self initSwipedElements];
     [self configureSkipButton];
     [self.view addSubview:[self buttonsContainer]];
@@ -44,12 +45,6 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    if(shouldDisplayLoginView) {
-        
-    }
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -90,7 +85,8 @@
 
 - (void)initSwipedElements
 {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, [self swipedViewHeight])];
+    images = [self screenshots];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, [self swipedViewWidth], [self swipedViewHeight])];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.scrollEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -108,8 +104,9 @@
     for(int i = 0; i < [images count]; i++) {
         UIView *swipedView = [self swipedViewWithCaption:[self.captions objectAtIndex:i] andScreenShot:[images objectAtIndex:i]];
         CGRect frame = swipedView.frame;
-        frame.origin.x = self.view.frame.size.width * (i+1);
+        frame.origin.x = [self swipedViewWidth] * (i+1);
         swipedView.frame = frame;
+        swipedView.tag = i+1;
         [self.scrollView addSubview:swipedView];
         [swipedView release];
     }
@@ -196,15 +193,17 @@
     }
     logoSlogan.backgroundColor = [UIColor clearColor];
     CGRect frame = logoSlogan.frame;
-    frame.origin.x = (self.view.frame.size.width - logoSlogan.frame.size.width)/2;
+    frame.origin.x = ([self swipedViewWidth] - logoSlogan.frame.size.width)/2;
     frame.origin.y = ([self swipedViewHeight] - logoSlogan.frame.size.height)/2 + 30;
     logoSlogan.frame = frame;
+    logoSlogan.tag = FIRST_SWIPED_SCREEN_TAG;
+
     return logoSlogan;
 }
 
 - (UIView *)swipedViewWithCaption:(NSString *)caption andScreenShot:(NSString *)imageName
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.scrollView.frame.size.height)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self swipedViewWidth], [self swipedViewHeight])];
     
     UIImage *image = [UIImage imageNamed:imageName];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREENSHOT_Y, image.size.width, image.size.height)];
@@ -232,7 +231,12 @@
 {
     NSArray *res = [[NSArray alloc] init];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+        if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+            res = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-documents-landscape",@"ipad-apps-landscape", nil];
+        } else {
+            res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+        }
+        
     } else {
         if([eXoViewController isHighScreen]) {
             res = [NSArray arrayWithObjects:@"iphone5-activity-stream",@"iphone5-documents",@"iphone5-apps", nil];
@@ -247,14 +251,22 @@
 {
     float height;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        height = SWIPED_VIEW_HEIGHT_iPad;
+        height = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad : SWIPED_VIEW_HEIGHT_PORTRAIT_iPad;
     } else {
-        if([eXoViewController isHighScreen]) {
-            height = SWIPED_VIEW_HEIGHT_iPhone5;
-        } else {
-            height = SWIPED_VIEW_HEIGHT_iPhone;
-        }
+        height = [eXoViewController isHighScreen] ? SWIPED_VIEW_HEIGHT_iPhone5 : SWIPED_VIEW_HEIGHT_iPhone;
     }
     return height;
 }
+
+- (float)swipedViewWidth
+{
+    float width;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        width = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? SCR_WIDTH_LSCP_IPAD : SCR_WIDTH_PRTR_IPAD;
+    } else {
+        width = 320;
+    }
+    return width;
+}
+
 @end

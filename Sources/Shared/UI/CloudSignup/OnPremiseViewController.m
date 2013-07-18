@@ -117,9 +117,6 @@
 
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
-    self.view.userInteractionEnabled = YES;
-    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
-    
     //add the server url to server list
     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
     [appPref addAndSetSelectedServer:proxy.serverUrl withName:@"My intranet"];

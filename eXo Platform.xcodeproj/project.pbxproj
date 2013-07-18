@@ -475,6 +475,14 @@
 		7D6931D51796882C008CCE72 /* LogoSlogan_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931D41796882C008CCE72 /* LogoSlogan_iPhone.xib */; };
 		7D6931DB17968B21008CCE72 /* LogoSlogan.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6931DA17968B20008CCE72 /* LogoSlogan.m */; };
 		7D6931DD17969FDD008CCE72 /* LogoSlogan_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931DC17969FDD008CCE72 /* LogoSlogan_iPad.xib */; };
+		7D6931E51797D690008CCE72 /* icon_clock_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931DF1797D690008CCE72 /* icon_clock_ipad.png */; };
+		7D6931E61797D690008CCE72 /* icon_clock_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931E01797D690008CCE72 /* icon_clock_ipad@2x.png */; };
+		7D6931E71797D690008CCE72 /* icon_place_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931E11797D690008CCE72 /* icon_place_ipad.png */; };
+		7D6931E81797D690008CCE72 /* icon_place_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931E21797D690008CCE72 /* icon_place_ipad@2x.png */; };
+		7D6931E91797D690008CCE72 /* logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931E31797D690008CCE72 /* logo_ipad.png */; };
+		7D6931EA1797D690008CCE72 /* logo_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931E41797D690008CCE72 /* logo_ipad@2x.png */; };
+		7D6931ED1797D912008CCE72 /* arrow_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931EB1797D912008CCE72 /* arrow_ipad@2x.png */; };
+		7D6931EE1797D912008CCE72 /* arrow_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931EC1797D912008CCE72 /* arrow_ipad.png */; };
 		7D993C63176ABB410035835F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C62176ABB410035835F /* SignUpViewController.m */; };
 		7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */; };
 		7D993C79176ABB5E0035835F /* SignUpViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C77176ABB5E0035835F /* SignUpViewController_iPhone.xib */; };
@@ -1542,6 +1550,14 @@
 		7D6931D917968B20008CCE72 /* LogoSlogan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoSlogan.h; path = "../../../iPhone/View Controllers/CloudSignup/LogoSlogan.h"; sourceTree = "<group>"; };
 		7D6931DA17968B20008CCE72 /* LogoSlogan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoSlogan.m; path = "../../../iPhone/View Controllers/CloudSignup/LogoSlogan.m"; sourceTree = "<group>"; };
 		7D6931DC17969FDD008CCE72 /* LogoSlogan_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogoSlogan_iPad.xib; path = "../../../../iPhone/View Controllers/CloudSignup/LogoSlogan_iPad.xib"; sourceTree = "<group>"; };
+		7D6931DF1797D690008CCE72 /* icon_clock_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_clock_ipad.png; sourceTree = "<group>"; };
+		7D6931E01797D690008CCE72 /* icon_clock_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_clock_ipad@2x.png"; sourceTree = "<group>"; };
+		7D6931E11797D690008CCE72 /* icon_place_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_place_ipad.png; sourceTree = "<group>"; };
+		7D6931E21797D690008CCE72 /* icon_place_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_place_ipad@2x.png"; sourceTree = "<group>"; };
+		7D6931E31797D690008CCE72 /* logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ipad.png; sourceTree = "<group>"; };
+		7D6931E41797D690008CCE72 /* logo_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ipad@2x.png"; sourceTree = "<group>"; };
+		7D6931EB1797D912008CCE72 /* arrow_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_ipad@2x.png"; sourceTree = "<group>"; };
+		7D6931EC1797D912008CCE72 /* arrow_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_ipad.png; sourceTree = "<group>"; };
 		7D993C61176ABB410035835F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		7D993C62176ABB410035835F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		7D993C75176ABB5E0035835F /* SignUpViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPhone.h; sourceTree = "<group>"; };
@@ -3306,6 +3322,7 @@
 		7D6931861796575F008CCE72 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				7D6931DE1797D68D008CCE72 /* ipad */,
 				7D69318717965763008CCE72 /* @1x */,
 				7D69319117965763008CCE72 /* @2x */,
 			);
@@ -3342,6 +3359,21 @@
 				7D69319A17965763008CCE72 /* welcome_separator@2x.png */,
 			);
 			path = "@2x";
+			sourceTree = "<group>";
+		};
+		7D6931DE1797D68D008CCE72 /* ipad */ = {
+			isa = PBXGroup;
+			children = (
+				7D6931EB1797D912008CCE72 /* arrow_ipad@2x.png */,
+				7D6931EC1797D912008CCE72 /* arrow_ipad.png */,
+				7D6931DF1797D690008CCE72 /* icon_clock_ipad.png */,
+				7D6931E01797D690008CCE72 /* icon_clock_ipad@2x.png */,
+				7D6931E11797D690008CCE72 /* icon_place_ipad.png */,
+				7D6931E21797D690008CCE72 /* icon_place_ipad@2x.png */,
+				7D6931E31797D690008CCE72 /* logo_ipad.png */,
+				7D6931E41797D690008CCE72 /* logo_ipad@2x.png */,
+			);
+			path = ipad;
 			sourceTree = "<group>";
 		};
 		7D993C2C1769A8E50035835F /* CloudSignup */ = {
@@ -4934,6 +4966,14 @@
 				7D6931C117965763008CCE72 /* welcome_separator@2x.png in Resources */,
 				7D6931D51796882C008CCE72 /* LogoSlogan_iPhone.xib in Resources */,
 				7D6931DD17969FDD008CCE72 /* LogoSlogan_iPad.xib in Resources */,
+				7D6931E51797D690008CCE72 /* icon_clock_ipad.png in Resources */,
+				7D6931E61797D690008CCE72 /* icon_clock_ipad@2x.png in Resources */,
+				7D6931E71797D690008CCE72 /* icon_place_ipad.png in Resources */,
+				7D6931E81797D690008CCE72 /* icon_place_ipad@2x.png in Resources */,
+				7D6931E91797D690008CCE72 /* logo_ipad.png in Resources */,
+				7D6931EA1797D690008CCE72 /* logo_ipad@2x.png in Resources */,
+				7D6931ED1797D912008CCE72 /* arrow_ipad@2x.png in Resources */,
+				7D6931EE1797D912008CCE72 /* arrow_ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -94,7 +94,6 @@
     // hide the error message
     self.warningIcon.hidden = YES;
     self.mailErrorLabel.hidden = YES;
-    
     [self dismissKeyboards];
     if([CloudUtils checkEmailFormat:self.emailTf.text]) {
         [self.hud show];

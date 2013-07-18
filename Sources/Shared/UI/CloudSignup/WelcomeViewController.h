@@ -11,11 +11,12 @@
 #define WELCOME_BUTTON_CONTAINER_TAG 1000
 #define SWIPED_VIEW_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768 : 320
 #define SWIPED_VIEW_HEIGHT_iPhone 360
-#define SWIPED_VIEW_HEIGHT_iPad 904
+#define SWIPED_VIEW_HEIGHT_PORTRAIT_iPad 904
+#define SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad 648
 #define SWIPED_VIEW_HEIGHT_iPhone5 448
-#define SCREENSHOT_Y 40
+#define SCREENSHOT_Y 30
 #define CAPTION_Y  30
-
+#define FIRST_SWIPED_SCREEN_TAG 0
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
     NSArray *images;
 }
@@ -40,4 +41,9 @@
 //configure the skip button
 - (void)configureSkipButton;
 - (void)initSwipedElements;
+- (float)swipedViewWidth;
+- (float)swipedViewHeight;
+- (UIView *)swipedViewWithCaption:(NSString *)caption andScreenShot:(NSString *)imageName;
+- (UIView *)logoView;
+- (NSArray *)screenshots;
 @end

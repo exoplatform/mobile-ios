@@ -30,8 +30,9 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.serverUrlTf becomeFirstResponder];
 }
 - (void)didReceiveMemoryWarning
@@ -44,13 +45,14 @@
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
     [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
+    
+    self.view.userInteractionEnabled = YES;
+    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
+
     //show activity stream
     AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;
     [appDelegate showHome];
 }
-- (BOOL)disablesAutomaticKeyboardDismissal
-{
-    return NO;
-}
+
 @end

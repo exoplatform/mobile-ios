@@ -55,6 +55,9 @@
 {
     [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     
+    self.view.userInteractionEnabled = YES;
+    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
+
     //show activity stream
     AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
     
