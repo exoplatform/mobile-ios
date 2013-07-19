@@ -12,6 +12,7 @@
 #import "eXoViewController.h"
 #import "LogoSlogan.h"
 #import "defines.h"
+#import "eXoViewController.h"
 @interface WelcomeViewController ()
 
 @end
@@ -85,7 +86,9 @@
 
 - (void)initSwipedElements
 {
-    images = [self screenshots];
+    
+    self.pageControl.numberOfPages = 4;
+    self.pageControl.currentPage = 0;
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, [self swipedViewWidth], [self swipedViewHeight])];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.scrollEnabled = YES;
@@ -93,13 +96,13 @@
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.delegate = self;
     
-    self.pageControl.numberOfPages = 4;
-    self.pageControl.currentPage = 0;
     CGRect scrollFrame = self.scrollView.frame;
     scrollFrame.origin.y = 0;
     self.scrollView.frame = scrollFrame;
     
     [self.scrollView addSubview:[self logoView]];
+    
+    images = [self screenshots];
     
     for(int i = 0; i < [images count]; i++) {
         UIView *swipedView = [self swipedViewWithCaption:[self.captions objectAtIndex:i] andScreenShot:[images objectAtIndex:i]];
@@ -120,7 +123,7 @@
     //config the skip button
     [CloudViewUtils configureButton:self.skipButton withBackground:@"btn_skip"];
     CGRect frame = self.skipButton.frame;
-    frame.origin.y = [UIScreen mainScreen].bounds.size.height - 50;
+    frame.origin.y = [self applicationViewHeight] - SKIP_BUTTON_BOTTOM_Y_iPhone;
     self.skipButton.frame = frame;
 }
 
@@ -159,7 +162,12 @@
     
     CGRect frame = view.frame;
     frame.origin.x = (self.view.frame.size.width - frame.size.width)/2;
-    frame.origin.y = [[UIScreen mainScreen] bounds].size.height - 100;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        frame.origin.y = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad;
+    } else {
+        frame.origin.y = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPhone;
+    }
+    
     view.frame = frame;
     view.tag = WELCOME_BUTTON_CONTAINER_TAG;
     
@@ -171,7 +179,13 @@
     UIImage *image = [UIImage imageNamed:@"welcome_separator"];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, image.size.height)];
     imageView.image = image;
-    float imageY = [UIScreen mainScreen].bounds.size.height - 120 - image.size.height;
+    float imageY;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        imageY = [self applicationViewHeight] - SEPARATOR_LINE_BOTTOM_Y_iPad - image.size.height;
+    } else {
+        imageY = [self applicationViewHeight] - SEPARATOR_LINE_BOTTOM_Y_iPhone - image.size.height;
+    }
+    
     CGRect frame = imageView.frame;
     frame.origin.y = imageY;
     imageView.frame = frame;
@@ -193,8 +207,8 @@
     }
     logoSlogan.backgroundColor = [UIColor clearColor];
     CGRect frame = logoSlogan.frame;
-    frame.origin.x = ([self swipedViewWidth] - logoSlogan.frame.size.width)/2;
-    frame.origin.y = ([self swipedViewHeight] - logoSlogan.frame.size.height)/2 + 30;
+    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
+    frame.origin.y = ([self swipedViewHeight] - frame.size.height)/2 + 30;
     logoSlogan.frame = frame;
     logoSlogan.tag = FIRST_SWIPED_SCREEN_TAG;
 
@@ -206,16 +220,16 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self swipedViewWidth], [self swipedViewHeight])];
     
     UIImage *image = [UIImage imageNamed:imageName];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREENSHOT_Y, image.size.width, image.size.height)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? SCREENSHOT_Y + 10 : SCREENSHOT_Y, image.size.width, image.size.height)];
     imageView.image = image;
     [view addSubview:imageView];
     [imageView release];
     
     UILabel *captionLabel = [[UILabel alloc] init];
     captionLabel.text = caption;
-    captionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+    captionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 20 : 13];
     captionLabel.backgroundColor = [UIColor clearColor];
-    captionLabel.textColor = [UIColor lightGrayColor];
+    captionLabel.textColor = [UIColor whiteColor];
     captionLabel.textAlignment = NSTextAlignmentCenter;
     CGSize labelSize = [captionLabel.text sizeWithFont:captionLabel.font];
     float captionX = (view.frame.size.width - labelSize.width) / 2;
@@ -269,4 +283,13 @@
     return width;
 }
 
+- (float)applicationViewHeight {
+    float height;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        height =  UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? SCR_HEIGHT_LSCP_IPAD : SCR_HEIGHT_PRTR_IPAD;
+    } else {
+        height =  [eXoViewController isHighScreen] ? iPHONE_5_SCREEN_HEIGHT : iPHONE_SCREEN_HEIGH;
+    }
+    return height;
+}
 @end

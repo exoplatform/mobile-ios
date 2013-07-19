@@ -78,6 +78,8 @@
 //iPhone 5 screen height minus the navigation bar and status bar: 568 - 44 - 20 = 504
 #define iPHONE_5_SCREEN_HEIGH_MINUS_NAV_AND_STATUS_BAR 504
 
+#define iPHONE_5_SCREEN_HEIGHT 548
+#define iPHONE_SCREEN_HEIGH 460
 //eXo cloud sign up
 #define EXO_CLOUD_USER_NAME_FROM_URL @"exo_cloud_user_name_from_url"
 #define EXO_CLOUD_ACCOUNT_CONFIGURED @"exo_cloud_account_configured"

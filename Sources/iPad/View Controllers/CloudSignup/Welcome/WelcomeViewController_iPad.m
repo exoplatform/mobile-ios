@@ -36,37 +36,16 @@
 - (void)viewDidLayoutSubviews
 {
     if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_LSCP_IPAD * 4, SCR_HEIGHT_LSCP_IPAD - 100);
+        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_LSCP_IPAD * 4, SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad);
     } else {
-        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_PRTR_IPAD * 4, SCR_HEIGHT_PRTR_IPAD - 100);
+        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_PRTR_IPAD * 4, SWIPED_VIEW_HEIGHT_PORTRAIT_iPad);
     }
 }
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    [self repositionSwipedElements];
-    
-    UIView *buttons = [self.view viewWithTag:WELCOME_BUTTON_CONTAINER_TAG];
-    CGRect frame = buttons.frame;
-    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
-    frame.origin.y = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 768-100:1024-100;
-    buttons.frame = frame;
-    
-    frame = self.skipButton.frame;
-    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
-    frame.origin.y = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 768-50:1024-50;
-    self.skipButton.frame = frame;
-    
-    frame = self.pageControl.frame;
-    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
-    self.pageControl.frame = frame;
-    
-    UIImageView *imageView = (UIImageView*)[self.view viewWithTag:WELCOME_SEPARATOR_TAG];
-    frame = imageView.frame;
-    frame.origin.y = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 768 - 120 - frame.size.height : 1024 - 120 - frame.size.height;
-    frame.size.width = [self swipedViewWidth];
-    imageView.frame = frame;
+    [self repositionButtonsAndSeparator:[UIApplication sharedApplication].statusBarOrientation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,28 +91,90 @@
     return YES;
 }
 
-- (void)repositionSwipedElements
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    
-    images = [self screenshots];
+    [self repositionSwipedElements:toInterfaceOrientation];
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+- (void)repositionSwipedElements:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        images = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-documents-landscape",@"ipad-apps-landscape", nil];
+    } else {
+        images = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+    }
+
     CGRect frame = self.scrollView.frame;
-    frame.size.width = [self swipedViewWidth];
-    frame.size.height = [self swipedViewHeight];
+    CGSize size = [self swipedSizeForOrientation:toInterfaceOrientation];
+    frame.size = size;
     self.scrollView.frame = frame;
-    for(UIView *view in [self.scrollView subviews]) {
-        [view removeFromSuperview];
+    
+    UIView *logoslogan = [self.scrollView viewWithTag:FIRST_SWIPED_SCREEN_TAG];
+    
+    if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        [logoslogan setFrame:CGRectMake(262,74,500,500)];
+    } else {
+        [logoslogan setFrame:CGRectMake(134, 202, 500, 500)];
     }
     
-    [self.scrollView insertSubview:[self logoView] atIndex:0];
-        
+    UIView *swipedView;
     for(int i = 0; i < [images count]; i++) {
-        
-        UIView *viewiTmp = [self swipedViewWithCaption:[self.captions objectAtIndex:i] andScreenShot:[images objectAtIndex:i]];
-        frame = viewiTmp.frame;
+        swipedView = [self.scrollView viewWithTag:i+1];
+        frame = swipedView.frame;
         frame.origin.x = self.scrollView.frame.size.width * (i+1);
-        viewiTmp.frame = frame;
-        [self.scrollView insertSubview:viewiTmp atIndex:i+1];
-        [viewiTmp release];
+        frame.size = self.scrollView.frame.size;
+        swipedView.frame = frame;
+        
+        for(UIView *tmpView in [swipedView subviews]) {
+            if([tmpView isKindOfClass:UIImageView.class]) {
+                UIImage *screenshot = [UIImage imageNamed:[images objectAtIndex:i]];
+                UIImageView *imageView = (UIImageView *)tmpView;
+                frame = imageView.frame;
+                frame.size = screenshot.size;
+                imageView.frame = frame;
+                imageView.image = screenshot;
+            }
+            if([tmpView isKindOfClass:UILabel.class]) {
+                UILabel *caption = (UILabel *)tmpView;
+                frame = caption.frame;
+                frame.origin.x = (swipedView.frame.size.width - frame.size.width)/2;
+                caption.frame = frame;
+            }
+        }
     }
+    //move scrollview to current page
+    [self.scrollView setContentOffset:CGPointMake(self.pageControl.currentPage * [self swipedSizeForOrientation:toInterfaceOrientation].width, self.scrollView.contentOffset.y)];
+}
+
+- (void)repositionButtonsAndSeparator:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    //reposition the buttons and the separator line
+    UIView *buttons = [self.view viewWithTag:WELCOME_BUTTON_CONTAINER_TAG];
+    CGRect frame = buttons.frame;
+    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
+    frame.origin.y = UIInterfaceOrientationIsLandscape(toInterfaceOrientation) ? SCR_HEIGHT_LSCP_IPAD - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad : SCR_HEIGHT_PRTR_IPAD - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad;
+    buttons.frame = frame;
+    
+    frame = self.skipButton.frame;
+    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
+    frame.origin.y = UIInterfaceOrientationIsLandscape(toInterfaceOrientation) ? SCR_HEIGHT_LSCP_IPAD - SKIP_BUTTON_BOTTOM_Y_iPad : SCR_HEIGHT_PRTR_IPAD - SKIP_BUTTON_BOTTOM_Y_iPad;
+    self.skipButton.frame = frame;
+    
+    frame = self.pageControl.frame;
+    frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
+    self.pageControl.frame = frame;
+    
+    UIImageView *imageView = (UIImageView*)[self.view viewWithTag:WELCOME_SEPARATOR_TAG];
+    frame = imageView.frame;
+    frame.origin.y = UIInterfaceOrientationIsLandscape(toInterfaceOrientation) ? SCR_HEIGHT_LSCP_IPAD - SEPARATOR_LINE_BOTTOM_Y_iPad - frame.size.height : SCR_HEIGHT_PRTR_IPAD - SEPARATOR_LINE_BOTTOM_Y_iPad - frame.size.height;
+    frame.size.width = [self swipedViewWidth];
+    imageView.frame = frame;
+}
+
+
+- (CGSize)swipedSizeForOrientation:(UIInterfaceOrientation)orientation
+{
+    return UIInterfaceOrientationIsLandscape(orientation) ? CGSizeMake(SCR_WIDTH_LSCP_IPAD,SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad) : CGSizeMake(SCR_WIDTH_PRTR_IPAD, SWIPED_VIEW_HEIGHT_PORTRAIT_iPad);
 }
 @end

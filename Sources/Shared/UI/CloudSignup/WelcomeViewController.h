@@ -10,14 +10,22 @@
 #import "CloudViewUtils.h"
 #define WELCOME_BUTTON_CONTAINER_TAG 1000
 #define WELCOME_SEPARATOR_TAG 1001
+#define FIRST_SWIPED_SCREEN_TAG 1002
+
 #define SWIPED_VIEW_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768 : 320
 #define SWIPED_VIEW_HEIGHT_iPhone 360
 #define SWIPED_VIEW_HEIGHT_PORTRAIT_iPad 904
 #define SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad 648
 #define SWIPED_VIEW_HEIGHT_iPhone5 448
 #define SCREENSHOT_Y 30
-#define CAPTION_Y  30
-#define FIRST_SWIPED_SCREEN_TAG 0
+#define CAPTION_Y  28
+#define SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad 100
+#define SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPhone 100
+#define SKIP_BUTTON_BOTTOM_Y_iPad 50
+#define SKIP_BUTTON_BOTTOM_Y_iPhone 50
+#define SEPARATOR_LINE_BOTTOM_Y_iPad 120
+#define SEPARATOR_LINE_BOTTOM_Y_iPhone 100
+
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
     NSArray *images;
 }
