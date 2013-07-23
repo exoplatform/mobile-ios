@@ -18,7 +18,7 @@
 @end
 
 @implementation WelcomeViewController
-
+@synthesize delegate;
 @synthesize skipButton, pageControl, scrollView, shouldDisplayLoginView, receivedEmail;
 @synthesize shouldBackToSetting;
 @synthesize captions;

@@ -614,14 +614,15 @@ typedef enum {
         WelcomeViewController *welcomeVC;
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
-            welcomeVC.shouldBackToSetting = YES;
-            [self presentModalViewController:welcomeVC animated:YES];
+            welcomeVC.delegate = self;
         } else {
-            welcomeVC = [[[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil] autorelease];
-            welcomeVC.shouldBackToSetting = YES;
+            welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
             welcomeVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-            [self presentModalViewController:welcomeVC animated:YES];
         }
+        
+        welcomeVC.shouldBackToSetting = YES;
+        [self presentModalViewController:welcomeVC animated:YES];
+        [welcomeVC release];
     }
     
 	else if (sectionId == SettingViewControllerSectionLanguage)
@@ -796,4 +797,8 @@ typedef enum {
     return YES;
 }
 
+- (void)didSkipSignUp
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

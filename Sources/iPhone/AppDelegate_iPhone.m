@@ -68,6 +68,10 @@
     
     BOOL accountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
     
+    if([[ApplicationPreferencesManager sharedInstance].serverList count] > 0) {
+        accountConfigured = YES; // case upgrade, there were already servers
+    }
+    
     if(!accountConfigured) {
         WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
@@ -89,6 +93,15 @@
 }
 
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    [super application:application handleOpenURL:url];
+    
+    navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController];
+    
+    window.rootViewController = navigationController;
+    return YES;
+}
 
 - (void)showHomeSidebarViewController {
     // Login is successfully

@@ -197,8 +197,8 @@
 "ServerNotAvailable"="Impossible to connect to your intranet, please check its URL or contact your administrator";
 "AccountAlreadyExists"="An account already exist for this email, you will be redirect to the login screen";
 "NumberUsersExceed"=" Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
-"StartTheConfigurationAssistant"="Start the configuration assistant";
-"eXoCloudConfigurationAssistant"="eXo Cloud sign-up assistant";
+"StartTheConfigurationAssistant"="Start the sign-up assistant";
+"eXoCloudConfigurationAssistant"="eXo";
 "EmailIsBlacklisted"="Free emails are not allowed to sign up";
 "NumberOfUsersExceed"="Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator.";
 "IncorrectEmailFormat"="Please enter a valid email address";

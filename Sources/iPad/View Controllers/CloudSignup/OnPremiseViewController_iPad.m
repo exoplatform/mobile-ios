@@ -48,11 +48,26 @@
     
     self.view.userInteractionEnabled = YES;
     [self.hud completeAndDismissWithTitle:Localize(@"Success")];
-    [self dismissModalViewControllerAnimated:NO];
-    //show activity stream
-    AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
-    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    [appDelegate showHome];
+    
+    // go the deepest presenting view controller to dismiss modal view
+    // to avoid bug of presenting an active modal view
+    WelcomeViewController_iPad *welcomeVC = (WelcomeViewController_iPad *)self.navigationController.presentingViewController;
+    if(welcomeVC.shouldBackToSetting) {
+        [welcomeVC.presentingViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
+            //show activity stream
+            AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+            [appDelegate showHome];
+        }];
+        
+    } else {
+        [welcomeVC dismissViewControllerAnimated:NO completion:^{
+            //show activity stream
+            AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+            [appDelegate showHome];
+        }];
+    }
 }
 
 @end

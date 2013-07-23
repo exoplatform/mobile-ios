@@ -10,6 +10,8 @@
 #import "LoginProxy.h"
 #import "PlatformServerVersion.h"
 #import "eXoTableViewController.h"
+#import "WelcomeViewController.h"
+
 @class UserPreferencesManager;
 
 @protocol ServerManagerProtocol <NSObject>
@@ -24,7 +26,7 @@
 
 @end
 
-@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate, ServerManagerProtocol> {
+@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate, ServerManagerProtocol, WelcomeViewControllerDelegate> {
     
     BOOL                            bVersionServer;
 	NSString*                       languageStr;

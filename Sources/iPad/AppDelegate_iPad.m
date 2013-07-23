@@ -65,6 +65,10 @@
     
     BOOL isAccountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
     
+    if([[ApplicationPreferencesManager sharedInstance].serverList count] > 0) {
+        isAccountConfigured = YES; // case upgrade, there were already servers
+    }
+    
     if(isAccountConfigured) {
         window.rootViewController = viewController;
     } else {
@@ -78,7 +82,12 @@
     return YES;
 }
 
-
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    [super application:application handleOpenURL:url];
+    self.window.rootViewController = viewController;
+    return YES;
+}
 
 -(void)showHome
 {
@@ -121,15 +130,12 @@
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromRight
-                    animations:^{ 
+                    animations:^{
                         self.window.rootViewController = viewController;
                     }
                     completion:^(BOOL finished){
                     }];
-    
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*

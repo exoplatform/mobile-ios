@@ -36,7 +36,6 @@
 @property BOOL isCompatibleWithSocial;
 
 
-
 -(void)showHome;
 -(void)backToAuthenticate;
 

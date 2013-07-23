@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "WelcomeViewController_iPad.h"
 
 @interface SettingsViewController_iPad : SettingsViewController {
     

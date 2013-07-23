@@ -57,7 +57,7 @@
 - (void)skipCloudSignup:(id)sender
 {
     if(self.shouldBackToSetting) {
-        [self dismissModalViewControllerAnimated:YES];
+        [self.delegate didSkipSignUp];
     } else {
         AppDelegate_iPad *appDelegate = [AppDelegate_iPad instance];
         appDelegate.window.rootViewController = appDelegate.viewController;

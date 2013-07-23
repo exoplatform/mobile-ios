@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CloudViewUtils.h"
+
 #define WELCOME_BUTTON_CONTAINER_TAG 1000
 #define WELCOME_SEPARATOR_TAG 1001
 #define FIRST_SWIPED_SCREEN_TAG 1002
@@ -26,10 +27,17 @@
 #define SEPARATOR_LINE_BOTTOM_Y_iPad 120
 #define SEPARATOR_LINE_BOTTOM_Y_iPhone 100
 
+@protocol WelcomeViewControllerDelegate
+
+- (void)didSkipSignUp;
+
+@end
+
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
     NSArray *images;
 }
 
+@property (assign) id<WelcomeViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIButton *skipButton;

@@ -590,12 +590,13 @@
     }
         
     if(serverLink) {
+        //encode server link
+        serverLink = [serverLink stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         // add server to list and set it to be selected
         [self addAndSetSelectedServer:serverLink withName:nil];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    
 }
 
 - (void)addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName
