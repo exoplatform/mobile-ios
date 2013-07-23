@@ -24,7 +24,6 @@
 @synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
 @synthesize homeSidebarViewController_iPhone = _homeSidebarViewController_iPhone;
-//@synthesize welcomeViewController = _welcomeViewController;
 
 + (AppDelegate_iPhone *) instance {
     return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];    
@@ -97,7 +96,7 @@
 {
     [super application:application handleOpenURL:url];
     
-    navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController]; //display authenticate screen
     
     window.rootViewController = navigationController;
     return YES;

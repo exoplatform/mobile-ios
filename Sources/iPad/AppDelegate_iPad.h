@@ -33,6 +33,7 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet AuthenticateViewController_iPad *viewController;
 @property (nonatomic, retain) RootViewController *rootViewController;
+@property (nonatomic, retain) WelcomeViewController_iPad *welcomeVC;
 @property BOOL isCompatibleWithSocial;
 
 

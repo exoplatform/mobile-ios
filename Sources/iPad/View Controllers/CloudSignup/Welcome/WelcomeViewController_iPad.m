@@ -65,10 +65,10 @@
 }
 - (void)signup:(id)sender
 {
-    SignUpViewController_iPad *signUpVC = [[[SignUpViewController_iPad alloc] initWithNibName:@"SignUpViewController_iPad" bundle:nil] autorelease];
+    SignUpViewController_iPad *signUpVC = [[SignUpViewController_iPad alloc] initWithNibName:@"SignUpViewController_iPad" bundle:nil];
     //need a navigation controller to fix some bugs related to keyboard
-    eXoNavigationController *navCon = [[[eXoNavigationController alloc] initWithRootViewController:signUpVC] autorelease];
-    
+    eXoNavigationController *navCon = [[eXoNavigationController alloc] initWithRootViewController:signUpVC];
+    [signUpVC release];
     navCon.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentModalViewController:navCon animated:YES];

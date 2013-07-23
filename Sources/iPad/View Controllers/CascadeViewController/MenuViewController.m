@@ -204,7 +204,7 @@
     [iPadSettingViewController startRetrieve];
     if (_modalNavigationSettingViewController == nil) 
     {
-        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:iPadSettingViewController];
+        _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:iPadSettingViewController];
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
         

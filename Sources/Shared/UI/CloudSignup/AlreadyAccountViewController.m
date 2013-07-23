@@ -216,8 +216,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if(textField == self.passwordTf) {
+        [textField resignFirstResponder];
         [self login:nil];
     } else {
+        [textField resignFirstResponder];
         [self.passwordTf becomeFirstResponder];
     }
     return YES;

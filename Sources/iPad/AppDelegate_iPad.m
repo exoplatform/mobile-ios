@@ -20,6 +20,7 @@
 @implementation AppDelegate_iPad
 
 @synthesize window, viewController, rootViewController, isCompatibleWithSocial=_isCompatibleWithSocial;
+@synthesize welcomeVC;
 
 + (AppDelegate_iPad *) instance {
     return (AppDelegate_iPad *) [[UIApplication sharedApplication] delegate];
@@ -63,6 +64,7 @@
     }
 #endif
     
+    
     BOOL isAccountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
     
     if([[ApplicationPreferencesManager sharedInstance].serverList count] > 0) {
@@ -74,7 +76,6 @@
     } else {
         welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
         window.rootViewController = welcomeVC;
-        [welcomeVC release];
     }
     
     [window makeKeyAndVisible];
@@ -85,7 +86,7 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     [super application:application handleOpenURL:url];
-    self.window.rootViewController = viewController;
+    self.window.rootViewController = viewController;// display authenticate screen
     return YES;
 }
 
@@ -171,6 +172,7 @@
 
 - (void)dealloc {
     [rootViewController release];
+    [welcomeVC release];
     [window release];
     [super dealloc];
 }

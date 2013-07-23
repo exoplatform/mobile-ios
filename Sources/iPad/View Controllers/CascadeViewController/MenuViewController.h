@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h> 
 #import "SettingsViewController_iPad.h"
+#import "eXoNavigationController.h"
 
 #define EXO_ACTIVITY_STREAM_ROW 0
 #define EXO_DOCUMENTS_ROW 1
@@ -21,7 +22,7 @@
 	UITableView*  _tableView;
 	NSMutableArray* _cellContents;
 
-    UINavigationController*         _modalNavigationSettingViewController;
+    eXoNavigationController*         _modalNavigationSettingViewController;
     
 	int									_intSelectedLanguage;
 

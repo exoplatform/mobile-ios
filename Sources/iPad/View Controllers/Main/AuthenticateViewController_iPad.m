@@ -289,18 +289,16 @@
    
     if (_modalNavigationSettingViewController == nil) 
     {
-     _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+     _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:_iPadSettingViewController];
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationPageSheet;
-        
+        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     }
-    _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     
     [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
     
-    _modalNavigationSettingViewController.view.superview.autoresizingMask = 
-    UIViewAutoresizingFlexibleTopMargin | 
-    UIViewAutoresizingFlexibleBottomMargin;   
+//    _modalNavigationSettingViewController.view.superview.autoresizingMask = 
+//    UIViewAutoresizingFlexibleTopMargin | 
+//    UIViewAutoresizingFlexibleBottomMargin;   
 }
 
 #pragma mark - TextField delegate 
