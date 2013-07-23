@@ -11,8 +11,6 @@
 #import "ExoCloudProxy.h"
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
-#import "AlreadyAccountViewController_iPhone.h"
-#import "WelcomeViewController_iPhone.h"
 #import "LanguageHelper.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CloudViewUtils.h"
@@ -174,22 +172,22 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     self.view.hidden = YES;
     [UIView transitionFromView:self.view toView:greetingView duration:0.8f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
         // change the title of cancel button to OK
-        UINavigationBar *navigationBar = (UINavigationBar *)[self.parentViewController.view viewWithTag:SIGNUP_NAVIGATION_BAR_TAG];
-        UINavigationItem *navigationItem = (UINavigationItem *) [[navigationBar items] objectAtIndex:0];
-        UIBarButtonItem *button = navigationItem.rightBarButtonItem;
-        button.title = @"OK";
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            UINavigationItem *navigationItem = self.parentViewController.navigationItem;
+            UIBarButtonItem *button = navigationItem.rightBarButtonItem;
+            button.title = @"OK";
+        } else {
+            UINavigationBar *navigationBar = (UINavigationBar *)[self.parentViewController.view viewWithTag:SIGNUP_NAVIGATION_BAR_TAG];
+            UINavigationItem *navigationItem = (UINavigationItem *) [[navigationBar items] objectAtIndex:0];
+            UIBarButtonItem *button = navigationItem.rightBarButtonItem;
+            button.title = @"OK";
+        }
     }];
 }
 
 - (void)redirectToLoginScreen:(NSString *)email;
 {
-    UIViewController *presentingVC = self.parentViewController.presentingViewController;
-    if([presentingVC isKindOfClass:[WelcomeViewController class]]) {
-        WelcomeViewController *welcomeView = (WelcomeViewController *)presentingVC;
-        welcomeView.receivedEmail = email;
-        welcomeView.shouldDisplayLoginView = YES;
-        [self.parentViewController dismissModalViewControllerAnimated:NO];
-    }
+    
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

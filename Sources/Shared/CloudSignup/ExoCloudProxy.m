@@ -120,7 +120,7 @@ static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
         if(httpResponse.statusCode == 202) {
             [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
             [connection cancel];
-            [self createMarketoLead];
+//            [self createMarketoLead];
         }
         if(httpResponse.statusCode == 503) {
             [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_READY forEmail:nil];
@@ -130,7 +130,7 @@ static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
         if(httpResponse.statusCode == 200) {
             [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
             [connection cancel];
-            [self createMarketoLead];
+//            [self createMarketoLead];
         }
     }
 }

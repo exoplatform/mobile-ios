@@ -48,7 +48,7 @@
     
     self.view.userInteractionEnabled = YES;
     [self.hud completeAndDismissWithTitle:Localize(@"Success")];
-
+    [self dismissModalViewControllerAnimated:NO];
     //show activity stream
     AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     appDelegate.isCompatibleWithSocial = compatibleWithSocial;

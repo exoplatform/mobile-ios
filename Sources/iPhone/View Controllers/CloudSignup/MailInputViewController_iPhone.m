@@ -8,6 +8,8 @@
 
 #import "MailInputViewController_iPhone.h"
 #import "eXoViewController.h"
+#import "AlreadyAccountViewController_iPhone.h"
+#import "WelcomeViewController_iPhone.h"
 @interface MailInputViewController_iPhone ()
 
 @end
@@ -52,6 +54,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)redirectToLoginScreen:(NSString *)email
+{
+    UIViewController *presentingVC = self.parentViewController.presentingViewController;
+    if([presentingVC isKindOfClass:[WelcomeViewController class]]) {
+        WelcomeViewController *welcomeView = (WelcomeViewController *)presentingVC;
+        welcomeView.receivedEmail = email;
+        welcomeView.shouldDisplayLoginView = YES;
+        [self.parentViewController dismissModalViewControllerAnimated:NO];
+    }
+}
 
 -(void)manageKeyboard:(NSNotification *) notif {
     if (notif.name == UIKeyboardDidShowNotification) {

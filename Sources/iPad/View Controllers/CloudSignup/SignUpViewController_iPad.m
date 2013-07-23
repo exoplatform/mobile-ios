@@ -29,6 +29,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Sign Up";
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    self.navigationItem.rightBarButtonItem = button;
+    [button release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,7 +50,7 @@
     mailInputViewController.view.hidden = NO;
     greetingViewController.view.hidden = YES;
     
-    UIView *viewContainer = [[UIView alloc] initWithFrame:CGRectMake(40, 100, 460, 420)]; //the view that contains mail input and greeting view
+    UIView *viewContainer = [[UIView alloc] initWithFrame:CGRectMake(40, 56, 460, 420)]; //the view that contains mail input and greeting view
     
     [viewContainer addSubview:mailInputViewController.view];
     [viewContainer addSubview:greetingViewController.view];
@@ -65,8 +69,4 @@
     return NO;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
 @end

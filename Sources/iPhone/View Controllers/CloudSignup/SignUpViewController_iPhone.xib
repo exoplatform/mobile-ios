@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -50,7 +50,7 @@
 						<array key="IBUIItems">
 							<object class="IBUINavigationItem" id="82903214">
 								<reference key="IBUINavigationBar" ref="947910936"/>
-								<string key="IBUITitle">Get started</string>
+								<string key="IBUITitle">Sign Up</string>
 								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="838543484">
 									<string key="IBUITitle">Cancel</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -199,13 +199,20 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="containerView">UIView</string>
 						<string key="emailTf">UITextField</string>
 						<string key="loginButton">UIButton</string>
 						<string key="mailErrorLabel">UILabel</string>
+						<string key="onpremiseButton">UIButton</string>
 						<string key="passwordErrorLabel">UILabel</string>
 						<string key="passwordTf">UITextField</string>
+						<string key="warningIcon">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="containerView">
+							<string key="name">containerView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="emailTf">
 							<string key="name">emailTf</string>
 							<string key="candidateClassName">UITextField</string>
@@ -218,6 +225,10 @@
 							<string key="name">mailErrorLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="onpremiseButton">
+							<string key="name">onpremiseButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="passwordErrorLabel">
 							<string key="name">passwordErrorLabel</string>
 							<string key="candidateClassName">UILabel</string>
@@ -225,6 +236,10 @@
 						<object class="IBToOneOutletInfo" key="passwordTf">
 							<string key="name">passwordTf</string>
 							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="warningIcon">
+							<string key="name">warningIcon</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

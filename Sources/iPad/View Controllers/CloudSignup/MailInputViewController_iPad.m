@@ -7,7 +7,8 @@
 //
 
 #import "MailInputViewController_iPad.h"
-
+#import "AlreadyAccountViewController_iPad.h"
+#import "WelcomeViewController_iPad.h"
 @interface MailInputViewController_iPad ()
 
 @end
@@ -46,4 +47,10 @@
     return NO;
 }
 
+- (void)redirectToLoginScreen:(NSString *)email
+{
+    AlreadyAccountViewController_iPad *alreadyVC = [[AlreadyAccountViewController_iPad alloc] initWithNibName:@"AlreadyAccountViewController_iPad" bundle:nil];
+    alreadyVC.autoFilledEmail = email;
+    [self.parentViewController.navigationController pushViewController:alreadyVC animated:YES];
+}
 @end

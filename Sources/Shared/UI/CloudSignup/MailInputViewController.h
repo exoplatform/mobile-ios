@@ -21,4 +21,5 @@
 - (IBAction)createAccount:(id)sender;
 -(void)manageKeyboard:(NSNotification *) notif;
 - (void)dismissKeyboards;
+- (void)redirectToLoginScreen:(NSString *)email;
 @end

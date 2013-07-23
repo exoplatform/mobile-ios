@@ -174,8 +174,6 @@
     [super doneWithSettings];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
-
-
 @end
 
 

@@ -29,11 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    /* Add tap gesture to dismiss keyboard */
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
-    [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
-    [self.view addGestureRecognizer:tapGesure];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -58,25 +53,20 @@
 }
 
 #pragma mark LoginProxyDelegate methods
-- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
-{
-    
-}
+
 
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
     [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     [self.hud completeAndDismissWithTitle:Localize(@"Success")];
-    //show activity stream
-    AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
-    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    [appDelegate showHome];
+    
+//    [self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO completion:^{
+        //show activity stream
+        AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+        appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+        [appDelegate showHome];
+    }];
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
-
 
 @end

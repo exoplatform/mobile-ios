@@ -43,7 +43,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @"Get started";
+    self.title = @"Log In";
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
     self.navigationItem.rightBarButtonItem = button;
@@ -94,8 +94,9 @@
     // hide the error message
     self.warningIcon.hidden = YES;
     self.mailErrorLabel.hidden = YES;
-    [self dismissKeyboards];
+    
     if([CloudUtils checkEmailFormat:self.emailTf.text]) {
+        [self dismissKeyboards];
         [self.hud show];
 
         ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] initWithDelegate:self andEmail:self.emailTf.text];
@@ -174,7 +175,7 @@
 
 - (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
 {
-    [self.hud dismiss];
+    self.hud.hidden = YES;
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"IncorrectPassword") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     [alert show];
 }

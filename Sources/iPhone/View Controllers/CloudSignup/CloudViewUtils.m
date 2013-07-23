@@ -60,7 +60,7 @@
 + (void)configure:(UIButton *)button withTitle:(NSString *)title andSubtitle:(NSString *)subtitle
 {
     
-    UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 18 : 16 ];
     UIFont *subTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:8];
     
     UILabel *titleLabel = [CloudViewUtils labelWithText:title andFont:titleFont andTextColor:[UIColor whiteColor]];

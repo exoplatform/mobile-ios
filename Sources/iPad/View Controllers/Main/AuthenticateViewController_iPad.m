@@ -288,7 +288,7 @@
    
     if (_modalNavigationSettingViewController == nil) 
     {
-        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+     _modalNavigationSettingViewController = [[[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController] autorelease];
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationPageSheet;
         

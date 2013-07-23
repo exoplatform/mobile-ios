@@ -617,12 +617,10 @@ typedef enum {
             welcomeVC.shouldBackToSetting = YES;
             [self presentModalViewController:welcomeVC animated:YES];
         } else {
-            
             welcomeVC = [[[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil] autorelease];
             welcomeVC.shouldBackToSetting = YES;
             welcomeVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentModalViewController:welcomeVC animated:YES];
-            
         }
     }
     
