@@ -204,9 +204,10 @@
 "IncorrectEmailFormat"="Please enter a valid email address";
 "IncorrectPassword"="Impossible to connect, check your password";
 "UserNotExist"=" No account exists for this email, check your email or signup";
-"TenantNotExist"="Tenant does not exist";
+"TenantNotExist"="No intranet found. Please check your email or sign up.";
 "TenantNotReady"="Sorry, we cannot process your join request right now, workspace seems not ready. Please, try again later.";
 "TenantResuming"="We are restoring your intranet, please retry in few minutes";
+"TenantCreation"="We are creating your intranet. Please come back when you receive our welcome email";
 "Username"="Username";
 "Password"="Password";
 "Your credentials"="Your credentials";

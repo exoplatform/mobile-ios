@@ -144,7 +144,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
             [alert show];
             break;
         }
-        case TENANT_NOT_READY:
+        case SERVICE_UNAVAILABLE:
         {
             [self.hud setHidden:YES];
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantNotReady") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];

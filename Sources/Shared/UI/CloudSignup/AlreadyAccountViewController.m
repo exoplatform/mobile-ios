@@ -116,6 +116,11 @@
 - (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email
 {
     switch (response) {
+        case TENANT_CREATION: {
+            self.hud.hidden = YES;
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"TenantCreation") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [alert show];
+        }
         case TENANT_ONLINE:
             //if the tenant is online, check user existance
             [cloudProxy checkUserExistance];

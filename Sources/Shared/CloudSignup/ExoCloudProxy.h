@@ -11,14 +11,15 @@
 typedef enum {
     EMAIL_SENT = 1, //validation email sent
     ACCOUNT_CREATED, //account confirmed
-    NUMBER_OF_USERS_EXCEED,
-    EMAIL_BLACKLISTED,
-    TENANT_RESUMING,
-    TENANT_NOT_EXIST,
-    TENANT_ONLINE,
+    NUMBER_OF_USERS_EXCEED, //maximum number of users is reached
+    EMAIL_BLACKLISTED,//the email is blacklisted (public email like gmail, yahoo)
+    TENANT_RESUMING, //tenant is being stopped/resumed
+    TENANT_NOT_EXIST, //tenant does not exist
+    TENANT_ONLINE, 
     USER_EXISTED,
     USER_NOT_EXISTED,
-    TENANT_NOT_READY
+    SERVICE_UNAVAILABLE,
+    TENANT_CREATION //tenant is being created or waiting for creation
 } CloudResponse;
 
 typedef enum

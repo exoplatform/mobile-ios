@@ -15,12 +15,17 @@ static NSString *EXO_CLOUD_RESUMING_PATH = @"/resuming.jsp";
 static NSString *EXO_CLOUD_LOGIN_PATH = @"/";
 
 //constants for the response body of cloud rest service
-static NSString *EXO_CLOUD_TENANT_RESUMING_REST_BODY = @"starting";
-static NSString *EXO_CLOUD_TENANT_ONLINE_REST_BODY = @"online";
-static NSString *EXO_CLOUD_TENANT_STOPPED_REST_BODY = @"stopped";
-static NSString *EXO_CLOUD_USER_EXIST_REST_BODY = @"true";
-static NSString *EXO_CLOUD_USER_NOT_EXIST_REST_BODY = @"false";
-static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
+
+static NSString *USER_EXIST_RESPONSE = @"true";
+static NSString *USER_NOT_EXIST_RESPONSE = @"false";
+static NSString *TENANT_RESUMING_RESPONSE = @"starting";
+static NSString *TENANT_ONLINE_RESPONSE = @"online";
+static NSString *TENANT_CREATION_FAIL_RESPONSE=@"creation_fail";
+static NSString *TENANT_STOPPED_RESPONSE = @"stopped";
+static NSString *TENANT_CREATION_RESPONSE = @"creation";
+static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
+
+
 @implementation ExoCloudProxy {
     CloudRequest cloudRequest;
 }
@@ -48,12 +53,12 @@ static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[self signUpRestUrl]]];
-
+    
     [request setHTTPBody:postData];
     [request setHTTPMethod:@"POST"];
     
     NSURLConnection *connectinon = [NSURLConnection connectionWithRequest:request delegate:self];
-        
+    
     [connectinon start];
 }
 
@@ -66,7 +71,6 @@ static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
     [request setHTTPMethod:@"GET"];
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     [connection start];
-    
 }
 
 - (void)checkUserExistance
@@ -90,17 +94,20 @@ static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
 {
     NSString *responseBody = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] lowercaseString];
     if([responseBody length] > 0) {
-        if([responseBody isEqualToString:EXO_CLOUD_TENANT_RESUMING_REST_BODY] || [responseBody isEqualToString:EXO_CLOUD_TENANT_STOPPED_REST_BODY] || [responseBody isEqualToString:EXO_CLOUD_TENANT_CREATION_FAIL]) {
+        if([responseBody isEqualToString:TENANT_RESUMING_RESPONSE] || [responseBody isEqualToString:TENANT_STOPPED_RESPONSE] || [responseBody isEqualToString:TENANT_CREATION_FAIL_RESPONSE]) {
             [_delegate cloudProxy:self handleCloudResponse:TENANT_RESUMING forEmail:self.email];
             [connection cancel];
-        } else if([responseBody isEqualToString:EXO_CLOUD_TENANT_ONLINE_REST_BODY]) {
+        } else if([responseBody isEqualToString:TENANT_ONLINE_RESPONSE]) {
             [_delegate cloudProxy:self handleCloudResponse:TENANT_ONLINE forEmail:self.email];
             [connection cancel];
-        } else if([responseBody isEqualToString:EXO_CLOUD_USER_EXIST_REST_BODY]) {
+        } else if([responseBody isEqualToString:USER_EXIST_RESPONSE]) {
             [_delegate cloudProxy:self handleCloudResponse:USER_EXISTED forEmail:self.email];
             [connection cancel];
-        } else if([responseBody isEqualToString:EXO_CLOUD_USER_NOT_EXIST_REST_BODY]) {
+        } else if([responseBody isEqualToString:USER_NOT_EXIST_RESPONSE]) {
             [_delegate cloudProxy:self handleCloudResponse:USER_NOT_EXISTED forEmail:self.email];
+            [connection cancel];
+        } else if([responseBody isEqualToString:TENANT_CREATION_RESPONSE] || [responseBody isEqualToString:TENANT_WAITING_CREATION_RESPONSE]) {
+            [_delegate cloudProxy:self handleCloudResponse:TENANT_CREATION forEmail:self.email];
             [connection cancel];
         }
     }
@@ -110,29 +117,51 @@ static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
 {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
     
-    //the tenant is not exist
-    if(cloudRequest == CHECK_TENANT_STATUS && httpResponse.statusCode == 404) {
-        [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_EXIST forEmail:nil];
-        [connection cancel];
+    switch (cloudRequest) {
+        case CHECK_TENANT_STATUS: {
+            switch (httpResponse.statusCode) {
+                case 404: {
+                    [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_EXIST forEmail:nil];
+                    [connection cancel];
+                    break;
+                }
+                case 503 : {
+                    [_delegate cloudProxy:self handleCloudResponse:SERVICE_UNAVAILABLE forEmail:nil];
+                    [connection cancel];
+                    break;
+                }
+                default:
+                    break;
+            }
+            break;
+        }
+        case SIGN_UP: {
+            switch(httpResponse.statusCode) {
+                case 202: {
+                    [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
+                    [connection cancel];
+                    //            [self createMarketoLead];
+                    break;
+                }
+                case 503 : {
+                    [_delegate cloudProxy:self handleCloudResponse:SERVICE_UNAVAILABLE forEmail:nil];
+                    [connection cancel];
+                    break;
+                }
+                    
+                case 200 :  {
+                    [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
+                    [connection cancel];
+                    //            [self createMarketoLead];
+                    break;
+                }
+            }
+            break;
+        }
+        default:
+            break;
     }
     
-    if(cloudRequest == SIGN_UP) {
-        if(httpResponse.statusCode == 202) {
-            [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
-            [connection cancel];
-//            [self createMarketoLead];
-        }
-        if(httpResponse.statusCode == 503) {
-            [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_READY forEmail:nil];
-            [connection cancel];
-        }
-        
-        if(httpResponse.statusCode == 200) {
-            [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
-            [connection cancel];
-//            [self createMarketoLead];
-        }
-    }
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
@@ -145,7 +174,7 @@ static NSString *EXO_CLOUD_TENANT_CREATION_FAIL=@"creation_fail";
             [_delegate cloudProxy:self handleCloudResponse: EMAIL_BLACKLISTED forEmail:self.email];
         } else if([EXO_CLOUD_LOGIN_PATH isEqualToString:path]) {
             [_delegate cloudProxy:self handleCloudResponse: ACCOUNT_CREATED forEmail:self.email];
-        }
+        } 
         [connection cancel];
         return nil;
     }
