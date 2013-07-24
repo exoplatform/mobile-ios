@@ -116,10 +116,15 @@
 - (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email
 {
     switch (response) {
+        case SERVICE_UNAVAILABLE: {
+            self.hud.hidden = YES;
+            [self showAlert:@"ServiceUnavailable"];
+            break;
+        }
         case TENANT_CREATION: {
             self.hud.hidden = YES;
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"TenantCreation") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
+            [self showAlert:@"TenantCreation"];
+            break;
         }
         case TENANT_ONLINE:
             //if the tenant is online, check user existance
@@ -127,14 +132,12 @@
             break;
         case TENANT_RESUMING: {
             self.hud.hidden = YES;
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"TenantResuming") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
+            [self showAlert:@"TenantResuming"];
             break;
         }
         case TENANT_NOT_EXIST: {
             self.hud.hidden = YES;
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"TenantNotExist") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
+            [self showAlert:@"TenantNotExist"];
             break;
         }
             
@@ -151,8 +154,7 @@
             
         case USER_NOT_EXISTED:
             self.hud.hidden = YES;
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"UserNotExist") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
+            [self showAlert:@"UserNotExist"];
             break;
         default:
             break;
@@ -162,8 +164,7 @@
 - (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error
 {
     self.hud.hidden = YES;
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    [alert show];
+    [self showAlert:@"NetworkConnection"];
 }
 
 #pragma mark LoginProxyDelegate methods
@@ -181,8 +182,7 @@
 - (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
 {
     self.hud.hidden = YES;
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"IncorrectPassword") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    [alert show];
+    [self showAlert:@"IncorrectPassword"];
 }
 
 
@@ -257,4 +257,9 @@
     [self.passwordTf resignFirstResponder];
 }
 
+- (void)showAlert:(NSString *)message
+{
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    [alert show];
+}
 @end

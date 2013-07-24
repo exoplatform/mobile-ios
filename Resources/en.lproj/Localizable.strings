@@ -199,13 +199,13 @@
 "NumberUsersExceed"=" Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
 "StartTheConfigurationAssistant"="Start the sign-up assistant";
 "eXoCloudConfigurationAssistant"="eXo";
+"ServiceUnavailable"="Sorry, we cannot process your join request right now, workspace seems not ready. Please try again later" ;
 "EmailIsBlacklisted"="Free emails are not allowed to sign up";
 "NumberOfUsersExceed"="Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator.";
 "IncorrectEmailFormat"="Please enter a valid email address";
 "IncorrectPassword"="Impossible to connect, check your password";
 "UserNotExist"=" No account exists for this email, check your email or signup";
 "TenantNotExist"="No intranet found. Please check your email or sign up.";
-"TenantNotReady"="Sorry, we cannot process your join request right now, workspace seems not ready. Please, try again later.";
 "TenantResuming"="We are restoring your intranet, please retry in few minutes";
 "TenantCreation"="We are creating your intranet. Please come back when you receive our welcome email";
 "Username"="Username";

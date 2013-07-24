@@ -115,8 +115,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         case EMAIL_BLACKLISTED:
         {
             [self.hud setHidden:YES];
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"EmailIsBlacklisted") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
+            [self showAlert:@"EmailIsBlacklisted"];
             break;
         }
             
@@ -132,24 +131,20 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         case NUMBER_OF_USERS_EXCEED:
         {
             [self.hud setHidden:YES];
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"NumberOfUsersExceed") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
+            [self showAlert:@"NumberOfUsersExceed"];
             break;
         }
         
         case TENANT_RESUMING:
         {
             [self.hud setHidden:YES];
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantResuming") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
+            [self showAlert:@"TenantResuming"];
             break;
         }
         case SERVICE_UNAVAILABLE:
         {
             [self.hud setHidden:YES];
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"TenantNotReady") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
-            break;
+            [self showAlert:@"ServiceUnavailable"];
             break;
         }
         default:
@@ -160,8 +155,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error
 {
     [self.hud setHidden:YES];
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    [alert show];
+    [self showAlert:@"NetworkConnection"];
 }
 
 - (void)showGreeting
@@ -246,5 +240,11 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
     [self.mailTf resignFirstResponder];
 }
 
+- (void)showAlert:(NSString *)message
+{
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    [alert show];
+
+}
 
 @end
