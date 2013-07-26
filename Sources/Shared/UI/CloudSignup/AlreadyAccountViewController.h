@@ -15,6 +15,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *emailTf;
 @property (nonatomic, retain) IBOutlet UITextField *passwordTf;
 @property (nonatomic, retain) IBOutlet UILabel *mailErrorLabel;
+//auto fill email if redirected from sign up screen
 @property (nonatomic, retain) NSString *autoFilledEmail;
 @property (nonatomic, retain) SSHUDView *hud;
 @property (nonatomic, retain) IBOutlet UIButton *loginButton;

@@ -19,7 +19,7 @@
 
 @implementation WelcomeViewController
 @synthesize delegate;
-@synthesize skipButton, pageControl, scrollView, shouldDisplayLoginView, receivedEmail;
+@synthesize skipButton, pageControl, scrollView;
 @synthesize shouldBackToSetting;
 @synthesize captions;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,7 +58,6 @@
     [scrollView release];
     [pageControl release];
     [skipButton release];
-    [receivedEmail release];
     [captions release];
 }
 

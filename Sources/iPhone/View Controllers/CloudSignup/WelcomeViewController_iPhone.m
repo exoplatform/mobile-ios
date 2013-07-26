@@ -32,15 +32,6 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    
-    if(self.shouldDisplayLoginView) {
-        [self login:nil];
-        self.shouldDisplayLoginView = NO;
-    }
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -72,11 +63,6 @@
 - (void)login:(id)sender
 {
     AlreadyAccountViewController_iPhone *alreadyAccountViewController = [[AlreadyAccountViewController_iPhone alloc] initWithNibName:@"AlreadyAccountViewController_iPhone" bundle:nil];
-    
-    if(self.receivedEmail) {
-        alreadyAccountViewController.autoFilledEmail = self.receivedEmail;
-        self.receivedEmail = nil;//reset
-    }
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:alreadyAccountViewController];
    

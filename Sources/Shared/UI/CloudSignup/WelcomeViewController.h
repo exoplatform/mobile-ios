@@ -43,13 +43,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *skipButton;
 @property (nonatomic, retain) IBOutlet UILabel *captionLabel;
 @property (nonatomic, retain) NSArray *captions;
-// if YES, auto switch to login page, this is used in case when user enters an email that
-// is already configured in sign up form, the sign up view will redirect to login view
-// the mechanism is dismiss the sign up view first, and display the login view in
-// when Welcome view appears (WelcomeViewController#viewDidAppear)
-@property (nonatomic, assign) BOOL shouldDisplayLoginView;
-// the received email from the sign up view when user enters an already configured email
-@property (nonatomic, retain) NSString *receivedEmail;
 @property (nonatomic, assign) BOOL shouldBackToSetting;
 - (IBAction)skipCloudSignup:(id)sender;
 - (IBAction)signup:(id)sender;

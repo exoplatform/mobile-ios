@@ -57,12 +57,15 @@
 - (void)redirectToLoginScreen:(NSString *)email
 {
     UIViewController *presentingVC = self.parentViewController.presentingViewController;
-    if([presentingVC isKindOfClass:[WelcomeViewController class]]) {
-        WelcomeViewController *welcomeView = (WelcomeViewController *)presentingVC;
-        welcomeView.receivedEmail = email;
-        welcomeView.shouldDisplayLoginView = YES;
-        [self.parentViewController dismissModalViewControllerAnimated:NO];
-    }
+    
+    AlreadyAccountViewController_iPhone *alreadyVC = [[AlreadyAccountViewController_iPhone alloc] initWithNibName:@"AlreadyAccountViewController_iPhone" bundle:nil];
+    alreadyVC.autoFilledEmail = email;
+    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:alreadyVC];
+    [alreadyVC release];
+    
+    [self.parentViewController dismissViewControllerAnimated:NO completion:^{
+        [presentingVC presentModalViewController:navCon animated:YES];
+    }];
 }
 
 -(void)manageKeyboard:(NSNotification *) notif {

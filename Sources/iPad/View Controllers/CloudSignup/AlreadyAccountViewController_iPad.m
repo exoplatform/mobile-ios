@@ -34,8 +34,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.emailTf becomeFirstResponder];
-
 }
 
 - (void)didReceiveMemoryWarning
