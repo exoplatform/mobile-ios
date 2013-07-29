@@ -128,14 +128,25 @@
 
 - (UIView *)buttonsContainer
 {
-    UIImage *signupBg = [UIImage imageNamed:@"btn_blue"];
-    UIImage *loginBg = [UIImage imageNamed:@"btn_black"];
+    UIImage *signupBg = [UIImage imageNamed:@"btn_signup"];
+    UIImage *loginBg = [UIImage imageNamed:@"btn_login"];
+    float containerY = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPhone;
+    float orLabelSize = 13;
+    float orLabelYMinus = 5; //justify to be vertically center in the container
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        signupBg = [UIImage imageNamed:@"btn_signup_ipad"];
+        loginBg = [UIImage imageNamed:@"btn_login_ipad"];
+        containerY = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad;
+        orLabelSize = 20;
+        orLabelYMinus = 10;
+    }
     
     UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width, signupBg.size.height)];
     [signupButton setImage:signupBg forState:UIControlStateNormal];
     [signupButton addTarget:self action:@selector(signup:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(signupBg.size.width, 0, signupBg.size.width, signupBg.size.height)];
+    UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(signupBg.size.width, 0, loginBg.size.width, loginBg.size.height)];
     [loginButton setImage:loginBg forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -147,9 +158,13 @@
     UILabel *orLabel = [[UILabel alloc] init];
     orLabel.text = @"or";
     orLabel.backgroundColor = [UIColor clearColor];
-    orLabel.font = [UIFont fontWithName:@"Helvetica" size:13];
+    orLabel.font = [UIFont fontWithName:@"Helvetica" size:orLabelSize];
     orLabel.textColor = [UIColor whiteColor];
-    orLabel.frame = CGRectMake(view.frame.size.width/2 - 5, view.frame.size.height/2 - 12, 15,10);
+    CGSize size = [orLabel.text sizeWithFont:orLabel.font];
+    CGRect frame = CGRectMake(0,0,size.width, size.width);
+    frame.origin.x = (view.frame.size.width - size.width)/2 + 1;
+    frame.origin.y = (view.frame.size.height - size.height)/2 - orLabelYMinus;
+    orLabel.frame = frame;
     
     [view addSubview:signupButton];
     [view addSubview:loginButton];
@@ -159,15 +174,11 @@
     [signupButton release];
     [loginButton release];
     
-    CGRect frame = view.frame;
+    frame = view.frame;
     frame.origin.x = (self.view.frame.size.width - frame.size.width)/2;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        frame.origin.y = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad;
-    } else {
-        frame.origin.y = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPhone;
-    }
-    
+    frame.origin.y = containerY;
     view.frame = frame;
+    
     view.tag = WELCOME_BUTTON_CONTAINER_TAG;
     
     return view;
@@ -207,7 +218,13 @@
     logoSlogan.backgroundColor = [UIColor clearColor];
     CGRect frame = logoSlogan.frame;
     frame.origin.x = ([self swipedViewWidth] - frame.size.width)/2;
-    frame.origin.y = ([self swipedViewHeight] - frame.size.height)/2 + 30;
+    frame.origin.y = ([self swipedViewHeight] - frame.size.height)/2;
+    
+    //iPhone
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        frame.origin.y = frame.origin.y + 30;
+    }
+    
     logoSlogan.frame = frame;
     logoSlogan.tag = FIRST_SWIPED_SCREEN_TAG;
 

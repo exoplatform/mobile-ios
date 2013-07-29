@@ -59,15 +59,20 @@
 
 + (void)configure:(UIButton *)button withTitle:(NSString *)title andSubtitle:(NSString *)subtitle
 {
-    
-    UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 18 : 16 ];
+    float titleFontSize = 16;
+    float titleXMinus = 7;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        titleFontSize = 25;
+        titleXMinus = 12;
+    }
+    UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:titleFontSize ];
     UIFont *subTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:8];
     
     UILabel *titleLabel = [CloudViewUtils labelWithText:title andFont:titleFont andTextColor:[UIColor whiteColor]];
         
     float titleWidth = [[titleLabel text] sizeWithFont:titleFont].width;
     float titleX = (button.frame.size.width - titleWidth) / 2;
-    [titleLabel setFrame:CGRectMake(titleX, -7, button.frame.size.width, button.frame.size.height)];
+    [titleLabel setFrame:CGRectMake(titleX, -titleXMinus, button.frame.size.width, button.frame.size.height)];
     
     [button addSubview:titleLabel];
     
