@@ -221,26 +221,23 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     NSString *requestLink = [NSString stringWithFormat:@"%@/%@", [self usermailInfoRestUrl], self.email];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestLink]];
     [request setHTTPMethod:@"GET"];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
-        if(error) {
-            [self.delegate cloudProxy:self handleError:error];
-        } else {
-            NSError *jsonError = nil;
-            NSDictionary *dict = [NSJSONSerialization
-                                  JSONObjectWithData:data
-                                  options:0
-                                  error:&error];
-            if(jsonError) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURLResponse *response;
+        NSError *error;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if(!data) {
+            NSLog(@"%@", [error description]);
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate cloudProxy:self handleError:error];
-            } else {
-                self.username = [dict objectForKey:@"username"];
-                self.tenantName = [dict objectForKey:@"tenant"];
+            });
+        } else {
+            [self parseMailInfoResponse:data];
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self checkTenantStatus];
-            }
+            });
         }
-    }];
+    });
 }
 
 - (void)createMarketoLead
@@ -255,11 +252,40 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     [request setHTTPBody:payload];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURLResponse *response;
+        NSError *error;
+        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         if(error) {
             NSLog(@"creating marketo lead failed");
         }
-    }];
+    });
+}
+
+//parse the response from user mail info rest service to get username and tenant name
+//the response has form: {"username":"john","tenant":"exoplatform"}
+//NSJSONSerialization is not available in iOS 4.3, so we must manually parse the response
+- (void)parseMailInfoResponse:(NSData *)data
+{
+    NSString *infoString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    infoString = [infoString stringByReplacingOccurrencesOfString:@"{" withString:@""];
+    infoString = [infoString stringByReplacingOccurrencesOfString:@"}" withString:@""];
+    infoString = [infoString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     
+    NSRange range = [infoString rangeOfString:@","];
+    if(range.location != NSNotFound) {
+        NSString *userPart = [infoString substringToIndex:range.location];
+        NSString *tenantPart = [infoString substringFromIndex:range.location + 1];
+        NSRange usernameRange = [userPart rangeOfString:@"username:"];
+        NSRange tenantRange = [tenantPart rangeOfString:@"tenant:"];
+        
+        if(usernameRange.location != NSNotFound) {
+            self.username = [userPart substringFromIndex:[userPart rangeOfString:@"username:"].location + [@"username:" length]];
+            
+        }
+        if(tenantRange.location != NSNotFound) {
+            self.tenantName = [tenantPart substringFromIndex:[tenantPart rangeOfString:@"tenant:"].location + [@"tenant:" length]];
+        }
+    }
 }
 @end
