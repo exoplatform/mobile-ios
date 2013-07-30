@@ -77,13 +77,21 @@
 - (void)dealloc
 {
     [super dealloc];
+    emailTf = nil;
     [emailTf release];
+    mailErrorLabel = nil;
     [mailErrorLabel release];
+    autoFilledEmail = nil;
     [autoFilledEmail release];
+    _hud = nil;
     [_hud release];
+    loginButton = nil;
     [loginButton release];
+    _containerView = nil;
     [_containerView release];
+    onpremiseButton = nil;
     [onpremiseButton release];
+    _warningIcon = nil;
     [_warningIcon release];
 }
 

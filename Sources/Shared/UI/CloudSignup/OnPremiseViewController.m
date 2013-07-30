@@ -53,12 +53,15 @@
 - (void)dealloc
 {
     [super dealloc];
-    [self.passwordTf release];
-    [self.usernameTf release];
-    [self.serverUrlTf release];
+    [passwordTf release];
+    [usernameTf release];
+    [serverUrlTf release];
+   
+    _hud = nil;
     [_hud release];
+    
     [_loginButton release];
-    [self.containerView release];
+    [containerView release];
 }
 - (void)didReceiveMemoryWarning
 {
