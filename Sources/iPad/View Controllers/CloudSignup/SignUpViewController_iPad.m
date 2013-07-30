@@ -59,9 +59,9 @@
     
     [self.view addSubview:viewContainer];
     
-//    [mailInputViewController release];
-//    [greetingViewController release];
-//    [viewContainer release];
+    [mailInputViewController release];
+    [greetingViewController release];
+    [viewContainer release];
 }
 
 - (BOOL)disablesAutomaticKeyboardDismissal

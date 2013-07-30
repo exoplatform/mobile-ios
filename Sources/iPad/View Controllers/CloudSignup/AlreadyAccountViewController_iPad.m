@@ -58,27 +58,25 @@
     [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     [self.hud completeAndDismissWithTitle:Localize(@"Success")];
     
-    AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
-    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-    
-    UINavigationController *navCon = self.navigationController;
-    WelcomeViewController_iPad *welcomeVC;
     // go the deepest presenting view controller to dismiss modal view
     // to avoid bug of presenting an active modal view
-    //note: on ios 4.3, there is no presentingViewController, it's parentViewController
-    if([navCon respondsToSelector:@selector(presentingViewController)]) {
-        welcomeVC = (WelcomeViewController_iPad *)navCon.presentingViewController;
-    } else {
-        welcomeVC = (WelcomeViewController_iPad *)navCon.parentViewController;
-    }
+    WelcomeViewController_iPad *welcomeVC = (WelcomeViewController_iPad *)self.navigationController.presentingViewController;
     if(welcomeVC.shouldBackToSetting) {
-        if([welcomeVC respondsToSelector:@selector(presentingViewController)]) {
-            [welcomeVC.presentingViewController.presentingViewController dismissModalViewControllerAnimated:NO];
-        } else {
-            [welcomeVC.parentViewController.parentViewController dismissModalViewControllerAnimated:NO];
-        }
-        [welcomeVC dismissModalViewControllerAnimated:NO];
+        [welcomeVC.presentingViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
+            //show activity stream
+            AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+            [appDelegate showHome];
+        }];
+        
+    } else {
+        [welcomeVC dismissViewControllerAnimated:NO completion:^{
+            //show activity stream
+            AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+            [appDelegate showHome];
+        }];
     }
-    [appDelegate showHome];}
+}
 
 @end
