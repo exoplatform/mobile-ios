@@ -105,84 +105,48 @@
     //in iOS 6, willAnimateRotationToInterfaceOrientation is not called when the view is appeared
     //need to call changeOrientation manually in this method.
     [self changeOrientation:[UIApplication sharedApplication].statusBarOrientation];
-
 }
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     _interfaceOrientation = interfaceOrientation;
     
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation))
-    {
-        // Landscape orientation
-        // /!\ The coordinates x and y are inverted (e.g. x in landscape = y in portrait)
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
-        // Position the tabs just above the subviews
-        [self.tabView setFrame:
-         CGRectMake((self.view.center.y-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
-                    tabsYInLandscape, /* reduced space between the tabs and the eXo logo */
-                    tabsWidth,
-                    tabsHeightAndLeftMargin)];
-        // Calculate the origin point of the views
-        // - at the center
-        // - with a -4 margin to avoid a space between the tab and the frame
-        CGPoint viewsOrigin = CGPointMake(self.view.center.y-_credViewController.view.bounds.size.width/2,
-                                          self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
-        // Position the views just below the tabs
-        [_credViewController.view setFrame:
-         CGRectMake(viewsOrigin.x, viewsOrigin.y,
-                    _credViewController.view.bounds.size.width,
-                    _credViewController.view.bounds.size.height)];
-        
-        [_servListViewController.view setFrame:
-         CGRectMake(viewsOrigin.x, viewsOrigin.y,
-                    _servListViewController.view.bounds.size.width,
-                    _servListViewController.view.bounds.size.height)];
-        // Position the settings button under the views
-        // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
-        CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
-        [_btnSettings setFrame:
-         CGRectMake(self.view.center.y-_btnSettings.bounds.size.width/2,      // at the center
-                    absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
-                    _btnSettings.bounds.size.width,
-                    _btnSettings.bounds.size.height)];
-    } 
-    else
-    {
-        // Portrait orientation
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
-        
-        // Position the tabs
-        [self.tabView setFrame:
-         CGRectMake((self.view.center.x-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
-                    tabsY,
-                    tabsWidth,
-                    tabsHeightAndLeftMargin)];
-        // Calculate the origin point of the views
-        // - at the center
-        // - with a -4 margin to avoid a space between the tab and the frame
-        CGPoint viewsOrigin = CGPointMake(self.view.center.x-_credViewController.view.bounds.size.width/2,
-                                          self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
-        // Position the views just below the tabs
-        [_credViewController.view setFrame:
-         CGRectMake(viewsOrigin.x, viewsOrigin.y,
-                    _credViewController.view.bounds.size.width,
-                    _credViewController.view.bounds.size.height)];
+    UIImage *bgPattern = [UIImage imageNamed:@"Default-Portrait.png"];
+    float screenWidth = SCR_WIDTH_PRTR_IPAD;
+    //coordinate of container of the tab, credentials view
+    float containerY = tabsY;
+    float containerX;
+    CGRect frame = CGRectZero;
 
-        [_servListViewController.view setFrame:
-         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
-                    self.tabView.frame.origin.y+self.tabView.frame.size.height-4,
-                    _servListViewController.view.bounds.size.width,
-                    _servListViewController.view.bounds.size.height)];
-        // Position the settings button under the views
-        // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
-        CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
-        [_btnSettings setFrame:
-         CGRectMake(self.view.center.x-_btnSettings.bounds.size.width/2,      // at the center
-                    absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
-                    _btnSettings.bounds.size.width,
-                    _btnSettings.bounds.size.height)];
+    if(UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+        bgPattern = [UIImage imageNamed:@"Default-Landscape.png"];
+        screenWidth = SCR_WIDTH_LSCP_IPAD;
+        containerY = tabsYInLandscape;
     }
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:bgPattern]];
+    containerX = (screenWidth - _credViewController.view.bounds.size.width)/2;
+    //position the tabs
+    frame.origin.x =  containerX + tabsHeightAndLeftMargin;
+    frame.origin.y = containerY;
+    frame.size = CGSizeMake(tabsWidth, tabsHeightAndLeftMargin);
+    self.tabView.frame = frame;
+    
+    //position the text fields (credentials view)
+    frame.origin.x = containerX;
+    frame.origin.y = containerY + tabsHeightAndLeftMargin + tabViewsTopMargin;
+    frame.size = _credViewController.view.bounds.size;
+    _credViewController.view.frame = frame;
+    
+    //position the servers list view
+    frame.size = _servListViewController.view.bounds.size;
+    _servListViewController.view.frame = frame;
+    
+    //position the setting button
+    frame.origin.x = (screenWidth - _btnSettings.bounds.size.width)/2;
+    frame.origin.y = _credViewController.view.frame.origin.y + _credViewController.view.frame.size.height + settingsBtnTopMargin;
+    frame.size = _btnSettings.bounds.size;
+    _btnSettings.frame = frame;
 }
 
 
@@ -295,10 +259,6 @@
     }
     
     [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
-    
-//    _modalNavigationSettingViewController.view.superview.autoresizingMask = 
-//    UIViewAutoresizingFlexibleTopMargin | 
-//    UIViewAutoresizingFlexibleBottomMargin;   
 }
 
 #pragma mark - TextField delegate 

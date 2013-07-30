@@ -609,19 +609,23 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
-    
+    eXoMobileAppDelegate *appDelegate;
     if(sectionId == SettingViewControllerCloudAssistant) {
         WelcomeViewController *welcomeVC;
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
             welcomeVC.delegate = self;
+            appDelegate = [AppDelegate_iPad instance];
         } else {
             welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
             welcomeVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            appDelegate = [AppDelegate_iPhone instance];
         }
         
         welcomeVC.shouldBackToSetting = YES;
-        [self presentModalViewController:welcomeVC animated:YES];
+//        [self presentModalViewController:welcomeVC animated:YES];
+        [self dismissModalViewControllerAnimated:NO];
+        [appDelegate.window.rootViewController presentModalViewController:welcomeVC animated:YES];
         [welcomeVC release];
     }
     

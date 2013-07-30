@@ -37,7 +37,7 @@
 	// Do any additional setup after loading the view.
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
-    self.captions = [NSArray arrayWithObjects:@"Follow what your connections are sharing", @"Browse and edit your files", @"Interact with your personal dashboards", nil];
+    self.captions = [NSArray arrayWithObjects:@"Follow what your connections are sharing", @"Activity in details", @"Browse and edit your files", @"Interact with your personal dashboards", nil];
     
     [self initSwipedElements];
     [self configureSkipButton];
@@ -85,8 +85,8 @@
 
 - (void)initSwipedElements
 {
-    
-    self.pageControl.numberOfPages = 4;
+    images = [self screenshots];
+    self.pageControl.numberOfPages = [images count] + 1;
     self.pageControl.currentPage = 0;
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, [self swipedViewWidth], [self swipedViewHeight])];
     self.scrollView.pagingEnabled = YES;
@@ -100,8 +100,6 @@
     self.scrollView.frame = scrollFrame;
     
     [self.scrollView addSubview:[self logoView]];
-    
-    images = [self screenshots];
     
     for(int i = 0; i < [images count]; i++) {
         UIView *swipedView = [self swipedViewWithCaption:[self.captions objectAtIndex:i] andScreenShot:[images objectAtIndex:i]];
@@ -236,14 +234,14 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self swipedViewWidth], [self swipedViewHeight])];
     
     UIImage *image = [UIImage imageNamed:imageName];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? SCREENSHOT_Y + 10 : SCREENSHOT_Y, image.size.width, image.size.height)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? SCREENSHOT_Y_iPad : SCREENSHOT_Y, image.size.width, image.size.height)];
     imageView.image = image;
     [view addSubview:imageView];
     [imageView release];
     
     UILabel *captionLabel = [[UILabel alloc] init];
     captionLabel.text = caption;
-    captionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 20 : 13];
+    captionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 23 : 13];
     captionLabel.backgroundColor = [UIColor clearColor];
     captionLabel.textColor = [UIColor whiteColor];
     captionLabel.textAlignment = NSTextAlignmentCenter;
@@ -262,16 +260,16 @@
     NSArray *res = [[NSArray alloc] init];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-            res = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-documents-landscape",@"ipad-apps-landscape", nil];
+            res = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape",@"ipad-documents-landscape",@"ipad-apps-landscape", nil];
         } else {
-            res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+            res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
         }
         
     } else {
         if([eXoViewController isHighScreen]) {
-            res = [NSArray arrayWithObjects:@"iphone5-activity-stream",@"iphone5-documents",@"iphone5-apps", nil];
+            res = [NSArray arrayWithObjects:@"iphone5-activity-stream",@"iphone5-activity-details",@"iphone5-documents",@"iphone5-apps", nil];
         } else {
-            res = [NSArray arrayWithObjects:@"iphone-activity-stream",@"iphone-documents",@"iphone-apps", nil];
+            res = [NSArray arrayWithObjects:@"iphone-activity-stream",@"iphone-activity-details", @"iphone-documents",@"iphone-apps", nil];
         }
     }
     return res;

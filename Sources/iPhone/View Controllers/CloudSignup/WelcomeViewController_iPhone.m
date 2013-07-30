@@ -57,7 +57,6 @@
     SignUpViewController_iPhone *signupViewController = [[[SignUpViewController_iPhone alloc] initWithNibName:@"SignUpViewController_iPhone" bundle:nil] autorelease];
     signupViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentModalViewController:signupViewController animated:YES];
-
 }
 
 - (void)login:(id)sender

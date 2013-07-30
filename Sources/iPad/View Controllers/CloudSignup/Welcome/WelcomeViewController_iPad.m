@@ -36,9 +36,9 @@
 - (void)viewDidLayoutSubviews
 {
     if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_LSCP_IPAD * 4, SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad);
+        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_LSCP_IPAD * 5, SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad);
     } else {
-        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_PRTR_IPAD * 4, SWIPED_VIEW_HEIGHT_PORTRAIT_iPad);
+        self.scrollView.contentSize = CGSizeMake(SCR_WIDTH_PRTR_IPAD * 5, SWIPED_VIEW_HEIGHT_PORTRAIT_iPad);
     }
 }
 
@@ -56,10 +56,11 @@
 
 - (void)skipCloudSignup:(id)sender
 {
+    AppDelegate_iPad *appDelegate = [AppDelegate_iPad instance];
+
     if(self.shouldBackToSetting) {
-        [self.delegate didSkipSignUp];
+        [self dismissModalViewControllerAnimated:YES];
     } else {
-        AppDelegate_iPad *appDelegate = [AppDelegate_iPad instance];
         appDelegate.window.rootViewController = appDelegate.viewController;
     }
 }
@@ -104,9 +105,9 @@
 - (void)repositionSwipedElements:(UIInterfaceOrientation)toInterfaceOrientation
 {
     if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        images = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-documents-landscape",@"ipad-apps-landscape", nil];
+        images = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-documents-landscape",@"ipad-apps-landscape", nil];
     } else {
-        images = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+        images = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait", @"ipad-documents-portrait",@"ipad-apps-portrait", nil];
     }
 
     CGRect frame = self.scrollView.frame;

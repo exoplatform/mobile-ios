@@ -14,17 +14,20 @@
 #define FIRST_SWIPED_SCREEN_TAG 1002
 
 #define SWIPED_VIEW_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768 : 320
+/* size for the swiped area */
 #define SWIPED_VIEW_HEIGHT_iPhone 360
 #define SWIPED_VIEW_HEIGHT_PORTRAIT_iPad 904
 #define SWIPED_VIEW_HEIGHT_LANDSCAPE_iPad 648
 #define SWIPED_VIEW_HEIGHT_iPhone5 448
-#define SCREENSHOT_Y 30
-#define CAPTION_Y  28
-#define SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad 148
+/* coordinate Y of elements */
+#define SCREENSHOT_Y 45
+#define SCREENSHOT_Y_iPad 45
+#define CAPTION_Y  30
+#define SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad 135
 #define SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPhone 100
-#define SKIP_BUTTON_BOTTOM_Y_iPad 50
+#define SKIP_BUTTON_BOTTOM_Y_iPad 45
 #define SKIP_BUTTON_BOTTOM_Y_iPhone 50
-#define SEPARATOR_LINE_BOTTOM_Y_iPad 150
+#define SEPARATOR_LINE_BOTTOM_Y_iPad 140
 #define SEPARATOR_LINE_BOTTOM_Y_iPhone 100
 
 @protocol WelcomeViewControllerDelegate
