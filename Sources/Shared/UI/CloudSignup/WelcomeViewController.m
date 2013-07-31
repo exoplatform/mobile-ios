@@ -129,15 +129,15 @@
     UIImage *signupBg = [UIImage imageNamed:@"btn_signup"];
     UIImage *loginBg = [UIImage imageNamed:@"btn_login"];
     float containerY = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPhone;
-    float orLabelSize = 13;
-    float orLabelYMinus = 5; //justify to be vertically center in the container
+    float orLabelSize = 12;
+    float orLabelYMinus = 24; //justify to be vertically center in the container
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         signupBg = [UIImage imageNamed:@"btn_signup_ipad"];
         loginBg = [UIImage imageNamed:@"btn_login_ipad"];
         containerY = [self applicationViewHeight] - SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad;
-        orLabelSize = 20;
-        orLabelYMinus = 10;
+        orLabelSize = 22;
+        orLabelYMinus = 43;
     }
     
     UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, signupBg.size.width, signupBg.size.height)];
@@ -160,8 +160,8 @@
     orLabel.textColor = [UIColor whiteColor];
     CGSize size = [orLabel.text sizeWithFont:orLabel.font];
     CGRect frame = CGRectMake(0,0,size.width, size.width);
-    frame.origin.x = (view.frame.size.width - size.width)/2 + 1;
-    frame.origin.y = (view.frame.size.height - size.height)/2 - orLabelYMinus;
+    frame.origin.x = signupBg.size.width - size.width/2 + 1;
+    frame.origin.y = (view.frame.size.height - orLabelYMinus - orLabel.frame.size.height)/2;
     orLabel.frame = frame;
     
     [view addSubview:signupButton];
