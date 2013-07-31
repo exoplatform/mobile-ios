@@ -272,9 +272,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         UILabel *textLabel = [[[UILabel alloc] init] autorelease];
         textLabel.backgroundColor = [UIColor clearColor];
         textLabel.textColor = [UIColor darkGrayColor];
-        textLabel.adjustsFontSizeToFitWidth = YES;
         textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-        textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         textLabel.frame = CGRectMake(cell.indentationWidth, 0, cellBounds.size.width / 3, cellBounds.size.height);
         textLabel.tag = kServerEditCellTextlabelTag;
         [cell.contentView addSubview:textLabel];
@@ -283,13 +281,11 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     if(indexPath.section == 0) {
         if(indexPath.row == 0)
         {
-            //TODO localize the label
             textLabel.text = Localize(@"ServerName");
             [self configureTextField:_txtfServerName withTextLabel:textLabel inCell:cell];
         }
         else
         {
-            //TODO localize this label
             textLabel.text = Localize(@"ServerUrl");
             [self configureTextField:_txtfServerUrl withTextLabel:textLabel inCell:cell];
         }
@@ -297,13 +293,11 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     } else {
         if(indexPath.row == 0)
         {
-            //TODO localize the label
             textLabel.text = Localize(@"Username");
             [self configureTextField:_usernameTf withTextLabel:textLabel inCell:cell];
         }
         else
         {
-            //TODO localize this label
             textLabel.text = Localize(@"Password");
             [self configureTextField:_passwordTf withTextLabel:textLabel inCell:cell];
         }
@@ -327,7 +321,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerUrl setReturnKeyType:UIReturnKeyNext];
     //Customize the style of the texfield
     _txtfServerUrl.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-    _txtfServerUrl.adjustsFontSizeToFitWidth = YES;
 	_txtfServerUrl.delegate = self;
     
     // credentials text fields
@@ -346,8 +339,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (void)configureTextField:(UITextField *)tf withTextLabel:(UILabel *)textLabel inCell:(UITableViewCell *)cell
 {
-    tf.frame = CGRectMake(textLabel.frame.origin.x + textLabel.frame.size.width + 2., textLabel.frame.origin.y, cell.bounds.size.width - textLabel.frame.origin.x - textLabel.frame.size.width - 2., textLabel.frame.size.height);
-    tf.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
     [cell.contentView addSubview:tf];
 }
 @end

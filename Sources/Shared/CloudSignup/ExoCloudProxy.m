@@ -260,6 +260,5 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
             NSLog(@"creating marketo lead failed");
         }
     }];
-    
 }
 @end
