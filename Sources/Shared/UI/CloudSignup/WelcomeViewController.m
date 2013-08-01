@@ -37,7 +37,7 @@
 	// Do any additional setup after loading the view.
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
-    self.captions = [NSArray arrayWithObjects:@"Follow what your connections are sharing", @"Activity in details", @"Browse and edit your files", @"Interact with your personal dashboards", nil];
+    self.captions = [NSArray arrayWithObjects:@"Activity streams", @"Comments and likes", @" Personal dashboards", @"Files management", nil];
     
     [self initSwipedElements];
     [self configureSkipButton];
@@ -260,16 +260,16 @@
     NSArray *res = [[NSArray alloc] init];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-            res = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape",@"ipad-documents-landscape",@"ipad-apps-landscape", nil];
+            res = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-apps-landscape", @"ipad-documents-landscape", nil];
         } else {
-            res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait",@"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+            res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait",@"ipad-apps-portrait",@"ipad-documents-portrait", nil];
         }
         
     } else {
         if([eXoViewController isHighScreen]) {
-            res = [NSArray arrayWithObjects:@"iphone5-activity-stream",@"iphone5-activity-details",@"iphone5-documents",@"iphone5-apps", nil];
+            res = [NSArray arrayWithObjects:@"iphone5-activity-stream",@"iphone5-activity-details", @"iphone5-apps", @"iphone5-documents", nil];
         } else {
-            res = [NSArray arrayWithObjects:@"iphone-activity-stream",@"iphone-activity-details", @"iphone-documents",@"iphone-apps", nil];
+            res = [NSArray arrayWithObjects:@"iphone-activity-stream",@"iphone-activity-details", @"iphone-apps", @"iphone-documents", nil];
         }
     }
     return res;

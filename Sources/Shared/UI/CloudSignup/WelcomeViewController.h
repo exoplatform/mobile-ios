@@ -22,7 +22,7 @@
 /* coordinate Y of elements */
 #define SCREENSHOT_Y 45
 #define SCREENSHOT_Y_iPad 45
-#define CAPTION_Y  30
+#define CAPTION_Y  32
 #define SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPad 135
 #define SIGNUP_LOGIN_BUTTON_BOTTOM_Y_iPhone 100
 #define SKIP_BUTTON_BOTTOM_Y_iPad 45

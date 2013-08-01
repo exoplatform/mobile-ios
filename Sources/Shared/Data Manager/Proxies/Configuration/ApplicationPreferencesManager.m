@@ -423,7 +423,7 @@
         ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
         NSString* tmpServName = [tmpServerObj._strServerName lowercaseString];
         NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
-        if ([tmpServName isEqualToString:[strServerName lowercaseString]] ||
+        if ([tmpServName isEqualToString:[strServerName lowercaseString]] &&
             [tmpServURL isEqualToString:[strServerUrl lowercaseString]])
         {
             return i;

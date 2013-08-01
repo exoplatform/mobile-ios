@@ -105,9 +105,9 @@
 - (void)repositionSwipedElements:(UIInterfaceOrientation)toInterfaceOrientation
 {
     if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        images = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-documents-landscape",@"ipad-apps-landscape", nil];
+        images = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-apps-landscape", @"ipad-documents-landscape", nil];
     } else {
-        images = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait", @"ipad-documents-portrait",@"ipad-apps-portrait", nil];
+        images = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait", @"ipad-apps-portrait", @"ipad-documents-portrait", nil];
     }
 
     CGRect frame = self.scrollView.frame;
