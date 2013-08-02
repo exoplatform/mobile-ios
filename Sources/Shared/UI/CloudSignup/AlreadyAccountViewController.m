@@ -184,7 +184,7 @@
     
     //add the server url to server list
     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
-    [appPref addAndSetSelectedServer:proxy.serverUrl withName:nil];
+    [appPref addAndSetSelectedServer:proxy.serverUrl withName:Localize(@"My intranet")];
     
     //1 account is already configured, next time starting app, display authenticate screen
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];

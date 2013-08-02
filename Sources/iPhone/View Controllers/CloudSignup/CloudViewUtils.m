@@ -66,8 +66,6 @@
         titleXMinus = 12;
     }
     UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:titleFontSize ];
-    UIFont *subTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:8];
-    
     UILabel *titleLabel = [CloudViewUtils labelWithText:title andFont:titleFont andTextColor:[UIColor whiteColor]];
         
     float titleWidth = [[titleLabel text] sizeWithFont:titleFont].width;
@@ -75,18 +73,19 @@
     [titleLabel setFrame:CGRectMake(titleX, -titleXMinus, button.frame.size.width, button.frame.size.height)];
     
     [button addSubview:titleLabel];
+    [titleLabel  release];
     
+    /*
+    UIFont *subTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:8];
     UILabel *subtitleLabel = [CloudViewUtils labelWithText:subtitle andFont:subTitleFont andTextColor:[UIColor whiteColor]];
-    
     
     float subtitleWidth = [[subtitleLabel text] sizeWithFont:subTitleFont].width;
     float subtitleX = (button.frame.size.width - subtitleWidth) / 2;
     [subtitleLabel setFrame:CGRectMake(subtitleX, 0, button.frame.size.width, button.frame.size.height)];
     
-//    [button addSubview:subtitleLabel];
-    
-    [titleLabel  release];
+    [button addSubview:subtitleLabel];
     [subtitleLabel release];
+     */
 }
 
 

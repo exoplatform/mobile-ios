@@ -122,7 +122,7 @@
 {
     //add the server url to server list
     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
-    [appPref addAndSetSelectedServer:proxy.serverUrl withName:@"My intranet"];
+    [appPref addAndSetSelectedServer:proxy.serverUrl withName:Localize(@"My intranet")];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
 }
 
