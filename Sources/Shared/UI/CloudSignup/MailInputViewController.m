@@ -147,6 +147,12 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
             [self showAlert:@"ServiceUnavailable"];
             break;
         }
+        case INTERNAL_SERVER_ERROR:
+        {
+            [self.hud setHidden:YES];
+            [self showAlert:@"SignupInternalServerError"];
+            break;
+        }
         default:
             break;
     }

@@ -19,7 +19,8 @@ typedef enum {
     USER_EXISTED,
     USER_NOT_EXISTED,
     SERVICE_UNAVAILABLE,
-    TENANT_CREATION //tenant is being created or waiting for creation
+    TENANT_CREATION, //tenant is being created or waiting for creation
+    INTERNAL_SERVER_ERROR //internal server error, 
 } CloudResponse;
 
 typedef enum

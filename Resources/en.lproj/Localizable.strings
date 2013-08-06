@@ -80,7 +80,7 @@
 "BadResponse" = "The server returned invalid data.";
 "NetworkConnection" = "Connection error";
 "Authorization" = "Login failed";
-"WrongUserNamePassword" = "Incorrect username/password combination";
+"WrongUserNamePassword" = "Impossible to connect, check your username and password";
 "InvalidServer" = "Invalid server name";
 "NetworkConnectionFailed" = "Invalid server name";
 "UserNameEmpty" = "Incorrect username";
@@ -195,22 +195,23 @@
  * Cloud sign up assistant 
  */
 "ServerNotAvailable"="Impossible to connect to your intranet, please check its URL or contact your administrator";
-"AccountAlreadyExists"="An account already exist for this email, you will be redirect to the login screen";
+"AccountAlreadyExists"="An account already exists for this email, you will be redirected to the login screen";
 "NumberUsersExceed"=" Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
 "StartTheConfigurationAssistant"="Start the sign-up assistant";
 "eXoCloudConfigurationAssistant"="eXo";
 "ServiceUnavailable"="Sorry, we cannot process your join request right now, workspace seems not ready. Please try again later" ;
-"EmailIsBlacklisted"="Free emails are not allowed to sign up";
-"NumberOfUsersExceed"="Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator.";
+"EmailIsBlacklisted"="Please use your company email to sign up";
+"NumberOfUsersExceed"="Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
 "IncorrectEmailFormat"="Please enter a valid email address";
 "IncorrectPassword"="Impossible to connect, check your password";
 "UserNotExist"=" No account exists for this email, check your email or signup";
-"TenantNotExist"="No intranet found. Please check your email or sign up.";
+"TenantNotExist"="No account exists for this email, check your email or signup";
 "TenantResuming"="We are restoring your intranet, please retry in few minutes";
 "TenantCreation"="We are creating your intranet. Please come back when you receive our welcome email";
 "Username"="Username";
 "Password"="Password";
 "Your credentials"="Your credentials";
 "EnterServerUrl"="Enter the URL of your intranet";
-"EnterCredentials"="Enter your credentials and Log in";
+"EnterCredentials"="Enter your credentials and Log In";
 "My intranet"="My intranet";
+"SignupInternalServerError"="The maximum number of users has been reached for your intranet, please contact your administrator";

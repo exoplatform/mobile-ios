@@ -155,8 +155,13 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
                     //            [self createMarketoLead];
                     break;
                 }
+                case 500: {
+                    [_delegate cloudProxy:self handleCloudResponse:INTERNAL_SERVER_ERROR forEmail:self.email];
+                    break;
+                }
+                default:
+                    break;
             }
-            break;
         }
         default:
             break;
