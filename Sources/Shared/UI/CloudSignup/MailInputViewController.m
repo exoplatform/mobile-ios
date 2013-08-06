@@ -55,6 +55,11 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.mailTf becomeFirstResponder];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -43,11 +43,6 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.mailTf becomeFirstResponder];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

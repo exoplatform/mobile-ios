@@ -30,11 +30,6 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.mailTf becomeFirstResponder];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -70,7 +70,7 @@
     //need a navigation controller to fix some bugs related to keyboard
     eXoNavigationController *navCon = [[eXoNavigationController alloc] initWithRootViewController:signUpVC];
     [signUpVC release];
-    navCon.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentModalViewController:navCon animated:YES];
 }
@@ -82,7 +82,8 @@
     eXoNavigationController *navCon = [[[eXoNavigationController alloc] initWithRootViewController:alreadyVC] autorelease];
     
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
-    navCon.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+
     [self presentModalViewController:navCon animated:YES];
 }
 
