@@ -55,6 +55,12 @@
 
     }
     
-    return correctUrl;
+    NSString *urlRegEx =
+    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    if ([urlTest evaluateWithObject:correctUrl]) {
+        return correctUrl;
+    }
+    return nil;
 }
 @end

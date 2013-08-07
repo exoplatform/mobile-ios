@@ -22,6 +22,7 @@
 #import "WelcomeViewController_iPhone.h"
 #import "WelcomeViewController_iPad.h"
 #import "AppDelegate_iPad.h"
+#import "CloudUtils.h"
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
 static NSString *CellIdentifierDocuments = @"CellIdentifierDocuments";
@@ -727,21 +728,12 @@ typedef enum {
         [alert release];
         return NO;
     } else {
-        // Check if the server URL is valid :
-        // - characters & < > " ' ! ; \ | ( ) { } [ ] , * % are forbidden
-        // - URL must start with http or https
-        // - scheme and host must not be null or empty
-        NSURL* tmpUrl = [NSURL URLWithString:strServerUrl];
-        if ([self nameContainSpecialCharacter:strServerUrl inSet:@"&<>\"'!;\\|(){}[],*%"] ||
-            tmpUrl == nil || tmpUrl.scheme == nil || tmpUrl.host == nil ||
-            (![[tmpUrl.scheme lowercaseString] isEqualToString:@"http"] &&
-             ![[tmpUrl.scheme lowercaseString] isEqualToString:@"https"]
-             ) || tmpUrl.host.length == 0) {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alert show];
-                [alert release];
-                return NO;
-            }
+        if (![CloudUtils correctServerUrl:strServerUrl]) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            return NO;
+        }
     }
     
     return YES;

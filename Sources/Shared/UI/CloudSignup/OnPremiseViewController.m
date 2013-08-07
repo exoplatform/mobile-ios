@@ -14,6 +14,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CloudViewUtils.h"
 #import "defines.h"
+
+#define kAlertViewTag 1000
 @interface OnPremiseViewController ()
 
 @end
@@ -74,11 +76,19 @@
 
 - (void)login:(id)sender
 {
-    [self dismissKeyboards];
-    [self.hud show];
+    
     [LoginProxy doLogout];//clear all credentials cache
-    LoginProxy *loginProxy = [[LoginProxy alloc] initWithDelegate:self username:self.usernameTf.text password:self.passwordTf.text serverUrl:[CloudUtils correctServerUrl:self.serverUrlTf.text]];
-    [loginProxy authenticate];
+    NSString *correctUrl = [CloudUtils correctServerUrl:self.serverUrlTf.text];
+    
+    if(correctUrl) {
+        [self dismissKeyboards];
+        [self.hud show];
+        LoginProxy *loginProxy = [[LoginProxy alloc] initWithDelegate:self username:self.usernameTf.text password:self.passwordTf.text serverUrl:correctUrl];
+        [loginProxy authenticate];
+    } else {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"Please enter a valid url" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [alert show];
+    }
 }
 
 - (SSHUDView *)hud {
@@ -118,6 +128,7 @@
     else {
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     }
+    alert.tag = kAlertViewTag;
     [alert show];
 }
 
@@ -164,8 +175,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    self.hud.hidden = NO;
-    [self.hud dismiss];
+    if(alertView.tag == kAlertViewTag) {
+        self.hud.hidden = NO;
+        [self.hud dismiss];
+    }
 }
 
 #pragma mark Utils
