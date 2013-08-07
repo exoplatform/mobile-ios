@@ -81,8 +81,8 @@
 "NetworkConnection" = "Connection error";
 "Authorization" = "Login failed";
 "WrongUserNamePassword" = "Impossible to connect, check your username and password";
-"InvalidServer" = "Invalid server name";
-"NetworkConnectionFailed" = "Invalid server name";
+"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
 "UserNameEmpty" = "Incorrect username";
 "PasswordEmpty" = "Incorrect password";
 "SelectedDomainEmpty" = "No server specified";
