@@ -46,8 +46,11 @@
     
     //add rounded corner, shadow for the form container
     [CloudViewUtils adaptCloudForm:self.containerView];
-    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
+    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    self.navigationItem.rightBarButtonItem = button;
+    [button release];
 }
 
 - (void)dealloc
@@ -212,4 +215,8 @@
     [self.usernameTf resignFirstResponder];
 }
 
+- (void)cancel
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
 @end

@@ -157,7 +157,7 @@
 					<object class="IBUIImageView" id="491556124">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{60, 441}, {57, 35}}</string>
+						<string key="NSFrame">{{113, 441}, {57, 35}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="941097135"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -171,7 +171,7 @@
 					<object class="IBUILabel" id="941097135">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{135, 441}, {299, 28}}</string>
+						<string key="NSFrame">{{188, 441}, {200, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -180,7 +180,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Swipe to see what you can do</string>
+						<string key="IBUIText">Swipe to learn more</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45MzEwNDYxOTU3IDAuOTE2MjA3MjQ3NyAwLjkwMDM1Mjg1NjYAA</bytes>
@@ -323,18 +323,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">431</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">LogoSlogan</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/LogoSlogan.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

@@ -204,7 +204,6 @@
 						<string key="loginButton">UIButton</string>
 						<string key="mailErrorLabel">UILabel</string>
 						<string key="onpremiseButton">UIButton</string>
-						<string key="passwordErrorLabel">UILabel</string>
 						<string key="passwordTf">UITextField</string>
 						<string key="warningIcon">UIImageView</string>
 					</dictionary>
@@ -228,10 +227,6 @@
 						<object class="IBToOneOutletInfo" key="onpremiseButton">
 							<string key="name">onpremiseButton</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="passwordErrorLabel">
-							<string key="name">passwordErrorLabel</string>
-							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="passwordTf">
 							<string key="name">passwordTf</string>

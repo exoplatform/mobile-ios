@@ -163,7 +163,7 @@
 					<object class="IBUIImageView" id="736136025">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{56, 230}, {30, 20}}</string>
+						<string key="NSFrame">{{85, 231}, {30, 20}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="744258307"/>
@@ -178,7 +178,7 @@
 					<object class="IBUILabel" id="744258307">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{94, 229}, {170, 21}}</string>
+						<string key="NSFrame">{{123, 229}, {113, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -188,7 +188,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Swipe to see what you can do</string>
+						<string key="IBUIText">Swipe to learn more</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45MzEwNDYxOTU3IDAuOTE2MjA3MjQ3NyAwLjkwMDM1Mjg1NjYAA</bytes>
