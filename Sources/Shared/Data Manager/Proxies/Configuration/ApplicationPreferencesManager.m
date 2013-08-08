@@ -410,7 +410,6 @@
     return path;
 }
 
-
 #pragma mark - Server Manager
 // Check if the server already exists (both name and URL, ignoring the case)
 // Ignore the index of the server you are currently editing
@@ -421,10 +420,8 @@
     {
         if (index==i)continue; // ignore the server specified by index
         ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
-        NSString* tmpServName = [tmpServerObj._strServerName lowercaseString];
         NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
-        if ([tmpServName isEqualToString:[strServerName lowercaseString]] &&
-            [tmpServURL isEqualToString:[strServerUrl lowercaseString]])
+        if ([tmpServURL isEqualToString:[strServerUrl lowercaseString]])
         {
             return i;
         }

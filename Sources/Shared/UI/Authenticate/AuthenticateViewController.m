@@ -202,16 +202,7 @@
     if ([currentUsername isEqualToString:_tempUsername] &&
         [currentPassword isEqualToString:_tempPassword]) {
         // Set the stored values only if Remember Me is ON
-        if (_credViewController.bRememberMe) {
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [_credViewController.txtfUsername setText:
-                [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
-            [_credViewController.txtfPassword setText:
-                [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
-        } else {
-            [_credViewController.txtfUsername setText:@""];
-            [_credViewController.txtfPassword setText:@""];
-        }
+        [self fillCredentials];
         // Save the new values to detect if they change again later
         [self saveTempUsernamePassword];
     }
@@ -333,6 +324,7 @@
         if (itemIndex == AuthenticateTabItemCredentials) {
             _credViewController.view.hidden = NO;
             _servListViewController.view.hidden = YES;
+            [self fillCredentials];
         } else if (itemIndex == AuthenticateTabItemServerList) {
             _credViewController.view.hidden = YES;
             _servListViewController.view.hidden = NO;
@@ -340,7 +332,21 @@
         _selectedTabIndex = itemIndex;
     }
 }
-
+// fills username - password
+- (void)fillCredentials
+{
+    _credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
+    if (_credViewController.bRememberMe) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [_credViewController.txtfUsername setText:
+         [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
+        [_credViewController.txtfPassword setText:
+         [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
+    } else {
+        [_credViewController.txtfUsername setText:@""];
+        [_credViewController.txtfPassword setText:@""];
+    }
+}
 #pragma mark - Update labels
 - (void) updateLabelAfterLogOut
 {
