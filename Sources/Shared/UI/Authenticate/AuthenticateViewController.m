@@ -183,13 +183,7 @@
 
 // Called when the application starts
 -(void) initUsernameAndPassword {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
-    if (_credViewController.bRememberMe) {
-        // Display the saved username and password if we have to
-        [_credViewController.txtfUsername setText:[userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
-        [_credViewController.txtfPassword setText:[userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
-    }
+    [self fillCredentials];
     // Save the original values to detect if they change later
     [self saveTempUsernamePassword];
 }

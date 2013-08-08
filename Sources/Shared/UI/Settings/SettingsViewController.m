@@ -320,7 +320,6 @@ typedef enum {
     } else {
         [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
     }
-
 }
 
 -(void)autoLoginDidChange {

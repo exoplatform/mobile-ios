@@ -176,11 +176,13 @@ return self;
         
         BOOL isPlatformCompatibleWithSocialFeatures = (shortVersion < 3.5) ? NO : YES;
         
-        if(isPlatformCompatibleWithSocialFeatures) {
-            [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
-            [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
+        if(self.username) { //only need when authenticating, it means self.username is not nil
+            if(isPlatformCompatibleWithSocialFeatures) {
+                [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+                [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
+            }
         }
-        
+                
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         
