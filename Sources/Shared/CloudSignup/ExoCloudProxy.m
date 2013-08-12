@@ -25,9 +25,11 @@ static NSString *TENANT_STOPPED_RESPONSE = @"stopped";
 static NSString *TENANT_CREATION_RESPONSE = @"creation";
 static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 
-
+//response when signup for a tenant which reached the limit of users
+#define ACCOUNT_BEING_PROCESSED_RESPONSE [NSString stringWithFormat:@"the request to create or join a workspace from %@ has already been submitted. it is currently being processed. please wait for the creation to be completed, or use another email.",self.email]
 @implementation ExoCloudProxy {
     CloudRequest cloudRequest;
+    int statusCode;
 }
 @synthesize delegate = _delegate;
 @synthesize email = _email;
@@ -109,6 +111,9 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
         } else if([responseBody isEqualToString:TENANT_CREATION_RESPONSE] || [responseBody isEqualToString:TENANT_WAITING_CREATION_RESPONSE]) {
             [_delegate cloudProxy:self handleCloudResponse:TENANT_CREATION forEmail:self.email];
             [connection cancel];
+        } else if([responseBody isEqualToString:ACCOUNT_BEING_PROCESSED_RESPONSE] && statusCode == 500) {
+            [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:self.email];
+            [connection cancel];
         }
     }
 }
@@ -116,10 +121,10 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-    
+    statusCode = httpResponse.statusCode;
     switch (cloudRequest) {
         case CHECK_TENANT_STATUS: {
-            switch (httpResponse.statusCode) {
+            switch (statusCode) {
                 case 404: {
                     [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_EXIST forEmail:nil];
                     [connection cancel];
@@ -155,10 +160,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
                     //            [self createMarketoLead];
                     break;
                 }
-                case 500: {
-                    [_delegate cloudProxy:self handleCloudResponse:INTERNAL_SERVER_ERROR forEmail:self.email];
-                    break;
-                }
+                
                 default:
                     break;
             }
