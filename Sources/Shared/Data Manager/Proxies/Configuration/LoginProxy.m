@@ -11,7 +11,8 @@
 #import "defines.h"
 #import "CloudUtils.h"
 #import "UserPreferencesManager.h"
-
+#import "AlreadyAccountViewController.h"
+#import "OnPremiseViewController.h"
 @interface LoginProxy()
 //private variables
 @property (nonatomic,retain) NSString *username;
@@ -178,6 +179,12 @@ return self;
         
         if(self.username) { //only need when authenticating, it means self.username is not nil
             if(isPlatformCompatibleWithSocialFeatures) {
+                if([_delegate isKindOfClass:[AlreadyAccountViewController class]] || [_delegate isKindOfClass:[OnPremiseViewController class]]) {
+                    //add the server url to server list
+                    ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
+                    [appPref addAndSetSelectedServer:self.serverUrl withName:@"My intranet"];
+                }
+                
                 [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
                 [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
             }
@@ -205,7 +212,6 @@ return self;
     if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
         [_delegate loginProxy:self authenticateFailedWithError:error];
     }
-
 }
 
 - (void) dealloc {

@@ -123,6 +123,7 @@
     }
 
     [viewController updateLabelAfterLogOut];
+    [viewController autoFillCredentials];
     
     // execute Logout
     [LoginProxy doLogout];

@@ -50,4 +50,5 @@ typedef enum {
 // method for managing keyboard behaviours
 - (void)dismissKeyboard;
 - (void)updateLabelAfterLogOut;
+- (void)autoFillCredentials;
 @end

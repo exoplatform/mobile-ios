@@ -175,6 +175,7 @@
         [_authenticateViewController disableAutoLogin:YES];
     }
     [_authenticateViewController updateLabelAfterLogOut];
+    [_authenticateViewController autoFillCredentials];
     navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController];
     window.rootViewController = navigationController;
     

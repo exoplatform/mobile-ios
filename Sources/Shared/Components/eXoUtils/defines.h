@@ -24,11 +24,8 @@
 // selected domain
 #define SELECTED_DOMAIN                     [ApplicationPreferencesManager sharedInstance].selectedDomain
 
-/* key for showing prive drive */
-#define EXO_PREFERENCE_SHOW_PRIVATE_DRIVE   [NSString stringWithFormat:@"%@_%@_show_private_drive", SELECTED_DOMAIN, self.username]
-
 // Key for storing the combination server_username when we sign-in
-#define EXO_LAST_LOGGED_USER                @"last-logged-user"
+#define EXO_LAST_LOGGED_USER                [NSString stringWithFormat:@"%@_last_logged_user",SELECTED_DOMAIN]
 #define EXO_PREFERENCE_USERID				@"userId"
 #define EXO_PREFERENCE_USERNAME				[NSString stringWithFormat:@"%@_username",SELECTED_DOMAIN]
 #define EXO_PREFERENCE_PASSWORD				[NSString stringWithFormat:@"%@_password",SELECTED_DOMAIN]

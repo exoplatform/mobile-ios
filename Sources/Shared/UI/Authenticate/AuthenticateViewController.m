@@ -116,14 +116,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
     
-	_credViewController.bRememberMe = [UserPreferencesManager sharedInstance].autoLogin;
 	_credViewController.bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;
     // If Auto Login is disabled, we set the Auto Login variable to NO
     // but we don't save this value in the user settings
     // We also refresh the username and password
     if ([self autoLoginIsDisabled]) {
         _credViewController.bAutoLogin = NO;
-        [self updateUsernameAndPasswordAfterLogout];
+        [self autoFillCredentials];
+        [self saveTempUsernamePassword];
     }
 }
 
@@ -150,7 +150,6 @@
     [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     [_servListViewController.tbvlServerList reloadData];
     _credViewController.bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;    
-    _credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
     [_credViewController signInAnimation:_credViewController.bAutoLogin];
     
     if (!_credViewController.bAutoLogin) {
@@ -183,7 +182,7 @@
 
 // Called when the application starts
 -(void) initUsernameAndPassword {
-    [self fillCredentials];
+    [self autoFillCredentials];
     // Save the original values to detect if they change later
     [self saveTempUsernamePassword];
 }
@@ -196,20 +195,10 @@
     if ([currentUsername isEqualToString:_tempUsername] &&
         [currentPassword isEqualToString:_tempPassword]) {
         // Set the stored values only if Remember Me is ON
-        [self fillCredentials];
+        [self autoFillCredentials];
         // Save the new values to detect if they change again later
         [self saveTempUsernamePassword];
     }
-}
-
-// Refresh username and password values after the user has signed out
--(void) updateUsernameAndPasswordAfterLogout {
-    if (!_credViewController.bRememberMe) {
-        [_credViewController.txtfUsername setText:@""];
-        [_credViewController.txtfPassword setText:@""];
-    }
-    // Save the new values to detect if they change again later
-    [self saveTempUsernamePassword];
 }
 
 -(void) disableAutoLogin:(BOOL)autoLogin {
@@ -255,6 +244,7 @@
 #pragma mark - PlatformVersionProxyDelegate 
 // Called by LoginProxy when login is successful
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+    
     // Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
 }
@@ -318,7 +308,7 @@
         if (itemIndex == AuthenticateTabItemCredentials) {
             _credViewController.view.hidden = NO;
             _servListViewController.view.hidden = YES;
-            [self fillCredentials];
+            [self autoFillCredentials];
         } else if (itemIndex == AuthenticateTabItemServerList) {
             _credViewController.view.hidden = YES;
             _servListViewController.view.hidden = NO;
@@ -326,11 +316,10 @@
         _selectedTabIndex = itemIndex;
     }
 }
-// fills username - password
-- (void)fillCredentials
+// fills username - password if there is remembered credentials
+- (void)autoFillCredentials
 {
-    _credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
-    if (_credViewController.bRememberMe) {
+    if ([self rememberLastUser]) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [_credViewController.txtfUsername setText:
          [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
@@ -340,6 +329,15 @@
         [_credViewController.txtfUsername setText:@""];
         [_credViewController.txtfPassword setText:@""];
     }
+}
+
+- (BOOL)rememberLastUser
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastUser = [userDefaults stringForKey:EXO_LAST_LOGGED_USER];
+    NSString *tmpKey = [NSString stringWithFormat:@"%@_%@_remember_me",SELECTED_DOMAIN,lastUser];
+    NSString *value = [userDefaults objectForKey:tmpKey];
+    return value ? [value boolValue] : NO;
 }
 #pragma mark - Update labels
 - (void) updateLabelAfterLogOut

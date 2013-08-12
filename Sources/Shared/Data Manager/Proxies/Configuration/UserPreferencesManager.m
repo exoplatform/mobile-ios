@@ -23,6 +23,9 @@
 #define EXO_REMEMBER_ME                     [NSString stringWithFormat:@"%@_%@_remember_me",SELECTED_DOMAIN,self.username]
 #define EXO_AUTO_LOGIN                      [NSString stringWithFormat:@"%@_%@_auto_login",SELECTED_DOMAIN,self.username]
 
+/* key for showing prive drive */
+#define EXO_PREFERENCE_SHOW_PRIVATE_DRIVE   [NSString stringWithFormat:@"%@_%@_show_private_drive", SELECTED_DOMAIN, self.username]
+
 #pragma mark - Constants
 
 @implementation UserPreferencesManager
@@ -86,6 +89,7 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:self.username forKey:EXO_PREFERENCE_USERNAME];
     [userDefaults setObject:self.password forKey:EXO_PREFERENCE_PASSWORD];
+    [userDefaults setObject:self.username forKey:EXO_LAST_LOGGED_USER];
 }
 
 - (void)reloadUsernamePassword {

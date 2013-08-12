@@ -92,7 +92,6 @@
 	{
 		[self.txtfPassword becomeFirstResponder];
 	}
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
