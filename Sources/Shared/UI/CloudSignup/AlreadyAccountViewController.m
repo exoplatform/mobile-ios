@@ -175,7 +175,7 @@
 - (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error
 {
     self.hud.hidden = YES;
-    [self showAlert:@"NetworkConnection"];
+    [self showAlert:@"NetworkConnectionFailed"];
 }
 
 #pragma mark LoginProxyDelegate methods

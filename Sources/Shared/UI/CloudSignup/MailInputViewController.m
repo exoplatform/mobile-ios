@@ -166,7 +166,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)cloudProxy:(ExoCloudProxy *)proxy handleError:(NSError *)error
 {
     [self.hud setHidden:YES];
-    [self showAlert:@"NetworkConnection"];
+    [self showAlert:@"NetworkConnectionFailed"];
 }
 
 - (void)showGreeting
