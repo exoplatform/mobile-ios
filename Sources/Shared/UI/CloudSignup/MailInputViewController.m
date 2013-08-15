@@ -69,11 +69,17 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)dealloc
 {
     [super dealloc];
+     _errorLabel = nil;
     [_errorLabel release];
+   _mailTf = nil;
     [_mailTf release];
+    _hud = nil;
     [_hud release];
+    _instructionLabel = nil;
     [_instructionLabel release];
+    _createButton = nil;
     [_createButton release];
+    _warningIcon = nil;
     [_warningIcon release];
 }
 

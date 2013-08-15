@@ -202,7 +202,7 @@
 "ServiceUnavailable"="Impossible to connect to your intranet, please check its URL or contact your administrator" ;
 "EmailIsBlacklisted"="Please use your company email to sign up";
 "NumberOfUsersExceed"="Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
-"IncorrectEmailFormat"="Please enter a valid email address";
+"IncorrectEmailFormat"="Please input a valid email address";
 "IncorrectPassword"="Impossible to connect, check your password";
 "UserNotExist"=" No account exists for this email, check your email or signup";
 "TenantNotExist"="No account exists for this email, check your email or signup";
