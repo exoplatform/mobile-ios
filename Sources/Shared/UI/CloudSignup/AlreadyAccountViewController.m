@@ -213,7 +213,10 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if([string length] > 0) {
-        if(self.passwordTf.text.length > 0 && self.emailTf.text.length > 0) {
+        if(textField == self.emailTf && [self.passwordTf.text length] > 0) {
+            self.loginButton.enabled = YES;
+        }
+        if(textField == self.passwordTf && [self.emailTf.text length] > 0) {
             self.loginButton.enabled = YES;
         }
     } else {
