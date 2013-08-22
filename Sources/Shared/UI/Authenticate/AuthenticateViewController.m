@@ -18,6 +18,7 @@
 #import "AuthSelectionView.h"
 #import "UserPreferencesManager.h"
 #import "ApplicationPreferencesManager.h"
+#import "CloudUtils.h"
 
 #pragma mark - Authenticate View Controller
 
@@ -289,12 +290,23 @@
     
 	[_credViewController.txtfUsername resignFirstResponder];
 	[_credViewController.txtfPassword resignFirstResponder];
-	
+    
     NSString* username = [_credViewController.txtfUsername text];
-	NSString* password = [_credViewController.txtfPassword text];
+    NSString* password = [_credViewController.txtfPassword text];
     
     self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self username:username password:password] autorelease];
-    [self.loginProxy authenticate];
+    
+	NSString *selectedServer = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
+    NSString *tenantName = [CloudUtils tenantFromServerUrl:selectedServer];
+    //if the selected server is a cloud tenant, check the tenant status first
+    if(tenantName) {
+        ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] init];
+        cloudProxy.delegate = self;
+        cloudProxy.tenantName = tenantName;
+        [cloudProxy checkTenantStatus];
+    } else {
+        [self.loginProxy authenticate];
+    }
 }
 
 - (CredentialsViewController*) credentialsViewController {
@@ -350,6 +362,8 @@
 {
     [self.hud dismiss];
     [self.hud setHidden:NO];
+    [self view].userInteractionEnabled = YES;
+
 }
 
 // auto fill the username when the app receives a request from the browser
@@ -362,6 +376,49 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:EXO_CLOUD_USER_NAME_FROM_URL];//just fill the first time receiving username
     }
 }
+
+#pragma mark ExoCloudProxyDelegate methods
+- (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email
+{
+    switch (response) {
+        case SERVICE_UNAVAILABLE: {
+            self.hud.hidden = YES;
+            [self showAlert:@"ServiceUnavailable"];
+            break;
+        }
+        case TENANT_CREATION: {
+            self.hud.hidden = YES;
+            [self showAlert:@"TenantCreation"];
+            break;
+        }
+        case TENANT_ONLINE:
+            //if the tenant is online, request the LoginProxy to login
+            [self.loginProxy authenticate];
+            break;
+        case TENANT_RESUMING: {
+            self.hud.hidden = YES;
+            [self showAlert:@"TenantResuming"];
+            break;
+        }
+        case TENANT_NOT_EXIST: {
+            self.hud.hidden = YES;
+            [self showAlert:@"ServerNotAvailable"];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error
+{
+    self.hud.hidden = YES;
+    [self showAlert:@"NetworkConnectionFailed"];
+}
+
+- (void)showAlert:(NSString *)message
+{
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    [alert show];
+}
 @end
-
-

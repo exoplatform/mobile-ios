@@ -13,6 +13,7 @@
 #import "CredentialsViewController.h"
 #import "ServerListViewController.h"
 #import "JMTabView.h"
+#import "ExoCloudProxy.h"
 
 typedef enum {
     AuthenticateTabItemCredentials = 0,
@@ -22,7 +23,7 @@ typedef enum {
 
 //Login page
 
-@interface AuthenticateViewController : UIViewController <LoginProxyDelegate, JMTabViewDelegate, UIAlertViewDelegate>
+@interface AuthenticateViewController : UIViewController <LoginProxyDelegate, JMTabViewDelegate, UIAlertViewDelegate, ExoCloudProxyDelegate>
 {
 	NSString*                   _strBSuccessful;	//Login status
     IBOutlet UIButton*          _btnSettings;

@@ -71,4 +71,19 @@
     
 }
 
+//gets the tenant name from server url, returns nil if not exist
+//the cloud tenant is in form: http://abc.exoplatform.net
+//so if the url contains cloud host (exoplatform.net), returns 'abc' as tenant name
++ (NSString *)tenantFromServerUrl:(NSString *)serverUrl
+{
+    NSRange range1 = [serverUrl rangeOfString:EXO_CLOUD_HOST];
+    NSRange range2 = [serverUrl rangeOfString:@"http://"];
+    
+    if(range1.location == NSNotFound || range2.location == NSNotFound) {
+        return nil;
+    }
+    
+    NSRange range = NSMakeRange([@"http://" length], range1.location - [@"http://" length] - 1);
+    return [serverUrl substringWithRange:range];
+}
 @end

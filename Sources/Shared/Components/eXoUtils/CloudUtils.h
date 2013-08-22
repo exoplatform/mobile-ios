@@ -14,4 +14,5 @@
 + (NSString *)serverUrlByTenant:(NSString *)tenantName;
 + (NSString *)correctServerUrl:(NSString *)inputtedUrl;
 + (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars;
++ (NSString *)tenantFromServerUrl:(NSString *)serverUrl;
 @end
