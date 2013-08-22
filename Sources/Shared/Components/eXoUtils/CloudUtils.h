@@ -13,4 +13,5 @@
 +(NSString *)usernameByEmail:(NSString *)email;
 + (NSString *)serverUrlByTenant:(NSString *)tenantName;
 + (NSString *)correctServerUrl:(NSString *)inputtedUrl;
++ (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars;
 @end

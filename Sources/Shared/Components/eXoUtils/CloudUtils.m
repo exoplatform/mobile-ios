@@ -31,34 +31,44 @@
     return  [NSString stringWithFormat:@"http://%@.%@",tenantName, EXO_CLOUD_HOST];
 }
 
-//add http(s):// and remove www in server url
-//the correct form of an exo intranet url is: http(s)://int.exoplatform.org for example
+//returns a correct server url for ex: http://int.exoplatform.org
+//return nil if the url is not well formed
 + (NSString *)correctServerUrl:(NSString *)inputtedUrl
 {
+    if([inputtedUrl length] == 0) {
+        return nil;
+    }
+    //url can't contain some special characters
+    //url can't end with a '.' for ex: abc.
+    //url can't contain a sequence of more than 1 '.' for ex: abc...
+    if(([self nameContainSpecialCharacter:inputtedUrl inSet:@"&<>\"'!;\\|(){}[],*%"])
+       || ([inputtedUrl rangeOfString:@"."].location == [inputtedUrl length] - 1)
+       || ([inputtedUrl rangeOfString:@".."].location != NSNotFound)) {
+        return nil;
+    }
+    
     NSString *correctUrl = inputtedUrl;
     
-    int httpInd = [inputtedUrl rangeOfString:@"http"].location;
-    
-    if(httpInd == NSNotFound || httpInd > 0) {
-        correctUrl = [NSString stringWithFormat:@"http://%@", inputtedUrl];
+    //add the prefix
+    if (![[inputtedUrl lowercaseString] hasPrefix:@"http://"] &&
+        ![[inputtedUrl lowercaseString] hasPrefix:@"https://"]) {
+        correctUrl = [NSString stringWithFormat:@"http://%@", correctUrl];
     }
     
-    int httpwwwInd = [correctUrl rangeOfString:@"http://www."].location;
-    int httpswwwInd = [correctUrl rangeOfString:@"https://www."].location;
+    NSURL* tmpUrl = [NSURL URLWithString:correctUrl];
     
-    if(httpwwwInd == 0) {
-        correctUrl = [NSString stringWithFormat:@"http://%@", [correctUrl substringFromIndex:[@"http://www." length]]];
-    }
-    
-    if(httpswwwInd == 0) {
-        correctUrl = [NSString stringWithFormat:@"https://%@", [correctUrl substringFromIndex:[@"https://www." length]]];
-
-    }
-    
-    NSURL *url = [NSURL URLWithString:correctUrl];
-    if(url && url.scheme && url.host) {
-            return correctUrl;
+    if(tmpUrl && tmpUrl.scheme && tmpUrl.host) {
+        return correctUrl;
     }
     return nil;
 }
+
++ (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
+    
+    NSCharacterSet *invalidCharSet = [NSCharacterSet characterSetWithCharactersInString:chars];
+    NSRange range = [str rangeOfCharacterFromSet:invalidCharSet];
+    return (range.length > 0);
+    
+}
+
 @end
