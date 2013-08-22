@@ -77,13 +77,18 @@
 + (NSString *)tenantFromServerUrl:(NSString *)serverUrl
 {
     NSRange range1 = [serverUrl rangeOfString:EXO_CLOUD_HOST];
-    NSRange range2 = [serverUrl rangeOfString:@"http://"];
-    
-    if(range1.location == NSNotFound || range2.location == NSNotFound) {
+        
+    if(range1.location == NSNotFound) {
         return nil;
     }
     
-    NSRange range = NSMakeRange([@"http://" length], range1.location - [@"http://" length] - 1);
+    NSString *prefix = @"http://";
+    
+    if([serverUrl hasPrefix:@"https"]) {
+        prefix = @"https://";
+    }
+    
+    NSRange range = NSMakeRange([prefix length], range1.location - [prefix length] - 1);
     return [serverUrl substringWithRange:range];
 }
 @end
