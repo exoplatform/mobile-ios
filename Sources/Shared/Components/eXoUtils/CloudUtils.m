@@ -76,9 +76,9 @@
 //so if the url contains cloud host (exoplatform.net), returns 'abc' as tenant name
 + (NSString *)tenantFromServerUrl:(NSString *)serverUrl
 {
-    NSRange range1 = [serverUrl rangeOfString:EXO_CLOUD_HOST];
+    NSRange cloudHostRange = [serverUrl rangeOfString:EXO_CLOUD_HOST];
         
-    if(range1.location == NSNotFound) {
+    if(cloudHostRange.location == NSNotFound) {
         return nil;
     }
     
@@ -88,7 +88,10 @@
         prefix = @"https://";
     }
     
-    NSRange range = NSMakeRange([prefix length], range1.location - [prefix length] - 1);
-    return [serverUrl substringWithRange:range];
+    if(cloudHostRange.location - [prefix length] > 0) {
+        NSRange range = NSMakeRange([prefix length], cloudHostRange.location - [prefix length] - 1);
+        return [serverUrl substringWithRange:range];
+    }
+    return nil;
 }
 @end

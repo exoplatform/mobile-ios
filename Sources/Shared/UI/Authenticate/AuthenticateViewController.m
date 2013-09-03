@@ -297,13 +297,18 @@
     self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self username:username password:password] autorelease];
     
 	NSString *selectedServer = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
-    NSString *tenantName = [CloudUtils tenantFromServerUrl:selectedServer];
-    //if the selected server is a cloud tenant, check the tenant status first
-    if(tenantName) {
-        ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] init];
-        cloudProxy.delegate = self;
-        cloudProxy.tenantName = tenantName;
-        [cloudProxy checkTenantStatus];
+    if([selectedServer rangeOfString:EXO_CLOUD_HOST].location != NSNotFound) {
+        NSString *tenantName = [CloudUtils tenantFromServerUrl:selectedServer];
+        //if the selected server is a cloud tenant, check the tenant status first
+        if(tenantName) {
+            ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] init];
+            cloudProxy.delegate = self;
+            cloudProxy.tenantName = tenantName;
+            [cloudProxy checkTenantStatus];
+        } else {
+            self.hud.hidden = YES;
+            [self showAlert:@"NoTenantName"];
+        }
     } else {
         [self.loginProxy authenticate];
     }
