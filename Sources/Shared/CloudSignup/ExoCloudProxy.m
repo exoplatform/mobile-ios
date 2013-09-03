@@ -145,7 +145,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
                 case 202: {
                     [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
                     [connection cancel];
-                    //            [self createMarketoLead];
+                    [self createMarketoLead];
                     break;
                 }
                 case 503 : {
@@ -157,7 +157,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
                 case 200 :  {
                     [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
                     [connection cancel];
-                    //            [self createMarketoLead];
+                    [self createMarketoLead];
                     break;
                 }
                 
