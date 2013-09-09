@@ -212,7 +212,7 @@
 "Password"="Password";
 "Your credentials"="Your credentials";
 "EnterServerUrl"="Enter the URL of your intranet";
-"EnterCredentials"="Enter your credentials and Log In";
+"EnterCredentials"="Enter your credentials and Login";
 "My intranet"="My intranet";
 "SignupInternalServerError"="The maximum number of users has been reached for your intranet, please contact your administrator";
 "NoTenantName"="There is no tenant name";

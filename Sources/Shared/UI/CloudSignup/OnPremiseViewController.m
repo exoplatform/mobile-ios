@@ -40,7 +40,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @"On premise";
+    self.title = @"On Premise";
     
     [self addInstructions];
     

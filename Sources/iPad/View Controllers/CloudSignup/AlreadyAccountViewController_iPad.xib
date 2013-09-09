@@ -54,7 +54,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">Enter your credentials and login</string>
+								<string key="IBUIText">Enter your credentials and Login</string>
 								<object class="NSColor" key="IBUITextColor" id="263629777">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
@@ -206,6 +206,7 @@
 								<int key="NSvFlags">294</int>
 								<string key="NSFrame">{{230, 240}, {150, 34}}</string>
 								<reference key="NSSuperview" ref="307572720"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
