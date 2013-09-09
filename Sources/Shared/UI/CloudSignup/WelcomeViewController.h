@@ -38,6 +38,7 @@
 
 @interface WelcomeViewController : UIViewController <UIScrollViewDelegate> {
     NSArray *images;
+    BOOL scrollingLocked; //flag to lock the call to scrollViewDidScroll to avoid paging problem (MOB-1572)
 }
 
 @property (assign) id<WelcomeViewControllerDelegate> delegate;

@@ -99,10 +99,15 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [self repositionSwipedElements:toInterfaceOrientation];
+    scrollingLocked = YES;
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self repositionSwipedElements:toInterfaceOrientation];
 }
 
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    scrollingLocked = NO;
+}
 - (void)repositionSwipedElements:(UIInterfaceOrientation)toInterfaceOrientation
 {
     if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {

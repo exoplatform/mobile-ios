@@ -14,7 +14,6 @@
 #import "defines.h"
 #import "eXoViewController.h"
 @interface WelcomeViewController ()
-
 @end
 
 @implementation WelcomeViewController
@@ -78,6 +77,9 @@
 #pragma mark ScrollViewDelegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if(scrollingLocked) {
+        return;
+    }
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth/2) / pageWidth) + 1;
     self.pageControl.currentPage = page;
@@ -110,7 +112,7 @@
         [self.scrollView addSubview:swipedView];
         [swipedView release];
     }
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * ([images count] + 1), self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * self.pageControl.numberOfPages , self.scrollView.frame.size.height);
     [self.view addSubview:self.scrollView];
 }
 
