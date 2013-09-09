@@ -111,7 +111,7 @@
         [self.hud show];
 
         ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] initWithDelegate:self andEmail:self.emailTf.text];
-        [cloudProxy getUserMailInfo];//get info about username, tenant name, tenant status first
+        [cloudProxy getInfoForMail:self.emailTf.text andCreateLead:NO];//get info about username, tenant name, tenant status first
     } else {
         self.mailErrorLabel.hidden = NO;
         self.warningIcon.hidden = NO;

@@ -145,7 +145,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
                 case 202: {
                     [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
                     [connection cancel];
-                    [self createMarketoLead];
+                    [self getInfoForMail:self.email andCreateLead:YES];
                     break;
                 }
                 case 503 : {
@@ -157,7 +157,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
                 case 200 :  {
                     [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
                     [connection cancel];
-                    [self createMarketoLead];
+                    [self getInfoForMail:self.email andCreateLead:YES];
                     break;
                 }
                 
@@ -223,9 +223,9 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     return [NSString stringWithFormat:@"%@/%@/%@", EXO_CLOUD_URL, EXO_CLOUD_TENANT_SERVICE_PATH, @"usermailinfo"];
 }
 
-- (void) getUserMailInfo
+- (void) getInfoForMail:(NSString *)email andCreateLead:(BOOL)createLead
 {
-    NSString *requestLink = [NSString stringWithFormat:@"%@/%@", [self usermailInfoRestUrl], self.email];
+    NSString *requestLink = [NSString stringWithFormat:@"%@/%@", [self usermailInfoRestUrl], email];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestLink]];
     [request setHTTPMethod:@"GET"];
     
@@ -244,17 +244,22 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
             } else {
                 self.username = [dict objectForKey:@"username"];
                 self.tenantName = [dict objectForKey:@"tenant"];
-                [self checkTenantStatus];
+                if(createLead) {
+                    //create marketo lead when signing up
+                    [self createLeadForEmail:self.email andTenant:self.tenantName];
+                } else {
+                   [self checkTenantStatus]; 
+                }
             }
         }
     }];
 }
 
-- (void)createMarketoLead
+- (void)createLeadForEmail:(NSString *)email andTenant:(NSString *)tenant
 {
     NSString *actionLink = @"http://learn.exoplatform.com/index.php/leadCapture/save";
-    NSString *encodedEmail = [self.email stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSString *params = [NSString stringWithFormat:@"Email=%@&lpId=1967&subId=46&munchkinId=577-PCT-880&formid=1167&returnLPId=-1", encodedEmail];
+    NSString *encodedEmail = [email stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString *params = [NSString stringWithFormat:@"Email=%@&lpId=1967&subId=46&munchkinId=577-PCT-880&formid=1167&returnLPId=-1&eXo_Cloud_Tenant_Name_c=%@", encodedEmail, tenant];
     NSData *payload = [params dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:actionLink]];
@@ -262,9 +267,9 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     [request setHTTPBody:payload];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(error) {
-            NSLog(@"creating marketo lead failed");
+          NSLog(@"create marketo lead failed for email: %@", email);    
         }
     }];
 }

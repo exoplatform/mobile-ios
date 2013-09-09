@@ -51,6 +51,5 @@ typedef enum
 - (void)signUp;
 - (void)checkTenantStatus;
 - (void)checkUserExistance;
-- (void)getUserMailInfo;
-- (void)createMarketoLead;
+- (void)getInfoForMail:(NSString *)email andCreateLead:(BOOL)createLead;
 @end
