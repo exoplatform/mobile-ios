@@ -223,6 +223,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     return [NSString stringWithFormat:@"%@/%@/%@", EXO_CLOUD_URL, EXO_CLOUD_TENANT_SERVICE_PATH, @"usermailinfo"];
 }
 
+//gets username, tenant name from email address by requesting a rest service from cloud
+//if createLead=true, create a marketo lead for given email and tenant name
 - (void) getInfoForMail:(NSString *)email andCreateLead:(BOOL)createLead
 {
     NSString *requestLink = [NSString stringWithFormat:@"%@/%@", [self usermailInfoRestUrl], email];
@@ -248,6 +250,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
                     //create marketo lead when signing up
                     [self createLeadForEmail:self.email andTenant:self.tenantName];
                 } else {
+                    //then check tenant status before logging in
                    [self checkTenantStatus]; 
                 }
             }
@@ -259,7 +262,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 {
     NSString *actionLink = @"http://learn.exoplatform.com/index.php/leadCapture/save";
     NSString *encodedEmail = [email stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSString *params = [NSString stringWithFormat:@"Email=%@&lpId=1967&subId=46&munchkinId=577-PCT-880&formid=1167&returnLPId=-1&eXo_Cloud_Tenant_Name_c=%@", encodedEmail, tenant];
+    NSString *params = [NSString stringWithFormat:@"Email=%@&lpId=1967&subId=46&munchkinId=577-PCT-880&formid=1167&returnLPId=-1&eXo_Cloud_Tenant_Name__c=%@", encodedEmail, tenant];
     NSData *payload = [params dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:actionLink]];
