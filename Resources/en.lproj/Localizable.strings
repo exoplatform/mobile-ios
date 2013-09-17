@@ -5,186 +5,349 @@
   Created by Le Thanh Quang on 7/9/12.
   Copyright (c) 2012 eXoPlatform. All rights reserved.
 */
+
 /*
  * Authenticate
  */
+
 "SignInPageTitle" = "Login page";
+
 "SignInButton" = "Login";
-"UsernamePlaceholder"="Username";
-"PasswordPlaceholder"="Password";
+
+"UsernamePlaceholder" = "Username";
+
+"PasswordPlaceholder" = "Password";
+
 
 /* 
  * Documents
  */
+
 "TakePicture" = "Take a picture";
+
 "NewFolderTitle" = "New folder";
+
 "RenameTitle" = "Rename";
+
 "Copy" = "Copy";
+
 "Move" = "Cut";
+
 "Paste" = "Paste";
+
 "Documents" = "Documents";
+
 "TakeAPicture" = "Take a picture";
+
 "AttachedPhoto" = "Attached photo";
+
 "AddAPhoto" = "Add a photo";
+
 "PhotoLibrary" = "Photo library";
+
 // Drives types
-"general"="general";
-"personal"="personal";
-"group"="group";
+
+"general" = "general";
+
+"personal" = "personal";
+
+"group" = "group";
+
 
 /*
  * General
  */
+
 "Cancel" = "Cancel";
+
 "DoneButton" = "Done";
+
 "Delete" = "Delete";
+
 "Success" = "Success";
+
 "Home" = "Home";
+
 "Loading" = "Loading...";
+
 "LoadingURL" = "Loading URL";
+
 "OK" = "OK";
-"Disconnect"="Disconnect";
-"Pull down to refresh..."="Pull down to refresh...";
-"Release to refresh..."="Release to refresh...";
-"Last Updated: %@"="Last updated: %@";
-"Required"="Required";
-"Fullscreen"="Fullscreen";
-"Close"="Close";
+
+"Disconnect" = "Disconnect";
+
+"Pull down to refresh..." = "Pull down to refresh...";
+
+"Release to refresh..." = "Release to refresh...";
+
+"Last Updated: %@" = "Last updated: %@";
+
+"Required" = "Required";
+
+"Fullscreen" = "Fullscreen";
+
+"Close" = "Close";
+
 
 /*
  * Settings
  */
+
 "Settings" = "Settings";
+
 "RememberMe" = "Remember me";
+
 "AutoLogin" = "Auto login";
-"KeepSelectedStream"="Remember my filter";
-"ShowPrivateDrive"="Show my private drive";
+
+"KeepSelectedStream" = "Remember my filter";
+
+"ShowPrivateDrive" = "Show my private drive";
+
 "Language" = "Languages";
+
 "English" = "English";
+
 "French" = "French";
+
 "Send" = "Send";
+
 "ServerList" = "Server list";
+
 "NewServer" = "New server";
+
 "ServerModify" = "Modify server";
+
 "ApplicationsInformation" = "Application information";
+
 "ServerVersion" = "Server version";
+
 "ApplicationEdition" = "Application edition";
+
 "ApplicationVersion" = "Application version";
+
 "ServerName" = "Server name";
+
 "ServerUrl" = "Server URL";
+
 
 /*
  * Errors & Warnings
  */
+
 "BadResponse" = "The server returned invalid data.";
+
 "NetworkConnection" = "Connection error";
+
 "Authorization" = "Login failed";
+
 "WrongUserNamePassword" = "Incorrect username/password combination";
+
 "InvalidServer" = "Invalid server name";
+
 "NetworkConnectionFailed" = "Invalid server name";
+
 "UserNameEmpty" = "Incorrect username";
+
 "PasswordEmpty" = "Incorrect password";
+
 "SelectedDomainEmpty" = "No server specified";
+
 "EmptyFolder" = "This folder is empty";
+
 "UnreadableFile" = "This file cannot be opened on the application";
+
 "NoActivities" = "No activity has been posted on your activity stream";
+
 "NoGadget" = "You have no gadgets in your Apps";
+
 "MessageInfo" = "Information";
+
 "MessageErrorServer" = "You cannot add a server with an empty name or URL";
+
 "MessageErrorExist" = "This server already exists";
+
 "InvalidUrl" = "Invalid URL";
+
 "FileError" = "Error";
+
 "CameraNotAvailable" = "The camera is not available";
+
 "GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+
 "Error" = "Error";
+
 "NoMessageComment" = "You must enter some text to comment";
+
 "NoMessagePosting" = "You must enter some text to post";
+
 "GettingActionCannotBeCompleted" = "You cannot get activities";
+
 "UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+
 "LikingActionCannotBeCompleted" = "You cannot like the activity";
+
 "UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+
 "PostingActionCannotBeCompleted" = "You cannot post a message";
+
 "CommentActionCannotBeCompleted" = "You cannot post a comment";
+
 "LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+
 "NotCompliant" = "The application can not run on the Platform edition";
+
 "SpecialCharacters" = "Special characters are not allowed";
-"DashboardsCannotBeRetrieved"="Cannot retrieve the dashboards";
-"FolderNameAlreadyExist"="This folder already exists";
-"FolderNameEmpty"="The folder name is empty";
-"Cannot move file to its location"="Cannot move the file to the same location";
-"Cannot transfer file"="Cannot transfer the file";
+
+"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+
+"FolderNameAlreadyExist" = "This folder already exists";
+
+"FolderNameEmpty" = "The folder name is empty";
+
+"Cannot move file to its location" = "Cannot move the file to the same location";
+
+"Cannot transfer file" = "Cannot transfer the file";
+
 
 /*
  * Apps
  */
+
 "Dashboard" = "Apps";
+
 
 /*
  * Activity stream
  */
+
 "numOfLikers" = "%d likers";
+
 "numOfLiker" = "%d liker";
+
 "likeThisActivity" = "%d people like this";
+
 "NoOneLikeThis" = "No one likes this";
+
 "ActivityDetails" = "Activity details";
+
 "MessageComposer" = "Message composer";
+
 "ActivityStream" = "Activity stream";
+
 "News" = "News";
+
 "Details" = "Details";
+
 "comments(%d)" = "Comments(%d)";
+
 "likes(%d)" = "Likes(%d)";
+
 "YourComment" = "Your comment";
+
 "GettingActivity" = "Getting activity";
+
 "UpdatingActivity" = "Updating activity";
+
 "PostingActivity" = "Post";
+
 "CommentActivity" = "Comment";
+
 "GettingActivityDetail" = "Getting activity detail";
+
 "UpdatingActivityDetail" = "Updating activity detail";
+
 "EditWiki" = "has edited the Wiki page:";
+
 "CreateWiki" = "has created the Wiki page:";
+
 "NewPost" = "has added a new post:";
+
 "UpdatePost" = "has updated a post:";
+
 "NewTopic" = "has posted a new topic:";
+
 "UpdateTopic" = "has updated a topic:";
+
 "UpdateQuestion" = "has updated the question:";
+
 "Answered" = "has answered to the question:";
+
 "Asked" = "has asked:";
+
 "EventAdded" = "added an event:";
+
 "EventUpdated" = "has just updated the event:";
+
 "TaskAdded" = "added a task:";
+
 "TaskUpdated" = "has just updated the task:";
+
 "Description" = "Description";
+
 "Location" = "Location";
+
 "StartTime" = "Start time";
+
 "EndTime" = "End time";
+
 "NoComment" = "No one has commented, be the first one";
+
 "Image Preview" = "Image preview";
+
 "Change" = "Change";
+
 "Remove" = "Remove";
-"All Updates"="All updates";
-"My Connections"="My connections";
-"My Spaces"="My spaces";
-"My Status"="My status";
+
+"All Updates" = "All updates";
+
+"My Connections" = "My connections";
+
+"My Spaces" = "My spaces";
+
+"My Status" = "My status";
+
 
 /*
  * Date message converter
  */
-"Today"="Today";
-"DateFmt"="%1$@%2$@%3$@%4$@"; // Order of the message: modifier - number - measure - direction
-"DateFmt ago"="ago";
-"DateFmt from now"="from now";
-"DateFmt Less than"="Less than ";
-"DateFmt About"="About ";
-"DateFmt Over"="Over ";
-"DateFmt Almost"="Almost ";
-"DateFmt seconds"=" seconds ";
-"DateFmt minute"=" minute ";
-"DateFmt minutes"=" minutes ";
-"DateFmt hour"=" hour ";
-"DateFmt hours"=" hours ";
-"DateFmt day"=" day ";
-"DateFmt days"=" days ";
-"DateFmt month"=" month ";
-"DateFmt months"=" months ";
-"DateFmt year"=" year ";
-"DateFmt years"=" years ";
+
+"Today" = "Today";
+
+"DateFmt" = "%1$@%2$@%3$@%4$@";
+
+ // Order of the message: modifier - number - measure - direction
+
+"DateFmt ago" = "ago";
+
+"DateFmt from now" = "from now";
+
+"DateFmt Less than" = "Less than ";
+
+"DateFmt About" = "About ";
+
+"DateFmt Over" = "Over ";
+
+"DateFmt Almost" = "Almost ";
+
+"DateFmt seconds" = " seconds ";
+
+"DateFmt minute" = " minute ";
+
+"DateFmt minutes" = " minutes ";
+
+"DateFmt hour" = " hour ";
+
+"DateFmt hours" = " hours ";
+
+"DateFmt day" = " day ";
+
+"DateFmt days" = " days ";
+
+"DateFmt month" = " month ";
+
+"DateFmt months" = " months ";
+
+"DateFmt year" = " year ";
+
+"DateFmt years" = " years ";
+
