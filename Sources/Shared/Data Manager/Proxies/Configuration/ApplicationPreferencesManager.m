@@ -12,9 +12,11 @@
 #import "CXMLNode.h"
 #import "CXMLElement.h"
 #import "defines.h"
-
+#import "LanguageHelper.h"
+#import "URLAnalyzer.h"
 #define CURRENT_USER_NAME       [UserPreferencesManager sharedInstance].username
-
+#define USERNAME_EQUALS @"username="
+#define SERVER_LINK_EQUALS @"serverUrl="
 #pragma mark - Server Object
 
 
@@ -22,6 +24,8 @@
 @synthesize _strServerName;
 @synthesize _strServerUrl;
 @synthesize _bSystemServer;
+@synthesize username = _username;
+@synthesize password = _password;
 @end
 
 #pragma mark - Application Prefs
@@ -226,6 +230,8 @@
                         ServerObj* serverObj = [[ServerObj alloc] init];
                         serverObj._strServerName = [self getNodeValue:tmpNode withName:@"name"];
                         serverObj._strServerUrl = [self getNodeValue:tmpNode withName:@"serverURL"];
+                        serverObj.username = [self getNodeValue:tmpNode withName:@"username"];
+                        serverObj.password = [self getNodeValue:tmpNode withName:@"password"];
                         serverObj._bSystemServer = bSystemServer;
                         [arrServerList addObject:serverObj];
                         [serverObj release];
@@ -298,7 +304,7 @@
     for (int i = 0; i < [arrServerList count]; i++) 
     {
         ServerObj* tmpServerObj = [arrServerList objectAtIndex:i];
-        NSString* tmpStr = [NSString stringWithFormat:@"\t\t\t<server name=\"%@\" serverURL=\"%@\"/>\n",tmpServerObj._strServerName, tmpServerObj._strServerUrl];
+        NSString* tmpStr = [NSString stringWithFormat:@"\t\t\t<server name=\"%@\" serverURL=\"%@\" username=\"%@\" password=\"%@\" />\n" ,tmpServerObj._strServerName, tmpServerObj._strServerUrl, tmpServerObj.username, tmpServerObj.password];
         strContent = [strContent stringByAppendingString:tmpStr];
     }
     
@@ -404,4 +410,207 @@
     return path;
 }
 
+#pragma mark - Server Manager
+// Check if the server already exists (both name and URL, ignoring the case)
+// Ignore the index of the server you are currently editing
+// Ignore -1 to compare with all the existing servers
+- (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index {
+    
+    for (int i = 0; i < [self.serverList count]; i++)
+    {
+        if (index==i)continue; // ignore the server specified by index
+        ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
+        NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
+        if ([tmpServURL isEqualToString:[strServerUrl lowercaseString]])
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Unique private method to add/edit a server, avoids duplicating common code
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password atIndex:(int)index {
+    
+    // We don't specify an existing server so it's a new one
+    if (index == -1)
+    {
+        //Create the new server
+        ServerObj* serverObj = [[ServerObj alloc] init];
+        serverObj._strServerName = strServerName;
+        serverObj._strServerUrl = strServerUrl;
+        serverObj._bSystemServer = NO;
+        serverObj.username = username ? username : @"";
+        serverObj.password = password ? password : @"";
+        
+        //Add the server in configuration
+        NSMutableArray* arrAddedServer = [self loadUserConfiguration];
+        [arrAddedServer addObject:serverObj];
+        [self writeUserConfiguration:arrAddedServer];
+        [serverObj release];
+        [self loadServerList]; // reload list of servers
+    }
+    // Edit the server specified by index
+    else
+    {
+        ServerObj* serverObjEdited = [self.serverList objectAtIndex:index];
+        ServerObj* tmpServerObj;
+        
+        serverObjEdited._strServerName = strServerName;
+        serverObjEdited._strServerUrl = strServerUrl;
+        serverObjEdited.username = username;
+        serverObjEdited.password = password;
+        
+        [self.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
+        
+        NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < [self.serverList count]; i++)
+        {
+            tmpServerObj = [self.serverList objectAtIndex:i];
+            if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer)
+            {
+                [arrTmp addObject:tmpServerObj];
+            }
+        }
+        
+        if (serverObjEdited._bSystemServer)
+        {
+            [self writeSystemConfiguration:arrTmp];
+        }
+        else
+        {
+            [self writeUserConfiguration:arrTmp];
+        }
+        
+        [self loadServerList];
+    }
+    
+    // If this is the only server: select it automatically
+    if ([self.serverList count] == 1)
+        [self setSelectedServerIndex:0];
+    
+    return YES;
+}
+
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+{
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl  withUsername:nil andPassword:nil atIndex:-1];
+}
+
+- (BOOL)deleteServerObjAtIndex:(int)index
+{
+    ServerObj* deletedServerObj = [[self.serverList objectAtIndex:index] retain];
+    
+    [self.serverList removeObjectAtIndex:index];
+    int currentIndex = self.selectedServerIndex;
+    if ([self.serverList count] > 0) {
+        if(currentIndex > index) {
+            self.selectedServerIndex = currentIndex - 1;
+        } else if (currentIndex == index) {
+            self.selectedServerIndex = currentIndex < self.serverList.count ? currentIndex : self.serverList.count - 1;
+        }
+    } else {
+        self.selectedServerIndex = -1;
+    }
+    NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [self.serverList count]; i++)
+    {
+        ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
+        if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer)
+        {
+            [arrTmp addObject:tmpServerObj];
+        }
+    }
+    
+    if (deletedServerObj._bSystemServer)
+    {
+        [self writeSystemConfiguration:arrTmp];
+    }
+    else
+    {
+        [self writeUserConfiguration:arrTmp];
+    }
+    [deletedServerObj release];
+    [arrTmp release];
+    
+    [self loadServerList]; // reload list of servers
+    
+    if([self.serverList count] == 0) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else if ([self.serverList count] == 1) {
+        // If there is the only 1 remaining server: select it automatically
+        [self setSelectedServerIndex:0];
+
+    }
+    return YES;
+}
+
+#pragma mark Utils
+
+//get information given in an url request from the browser, and load to application preference
+//the url is in form: exomobile://username=xxx?serverUrl=yyy
+//get the username to fill to Authenticate view
+//get the server url to save to the server list and set it to be selected
+- (void)loadReceivedUrlToPreference:(NSURL *)url
+{
+    NSString *host = [url host];
+    NSString *query = [url query];
+    NSString *username = nil, *serverLink = nil;
+    
+    if([host length] > 0) {
+        if([host rangeOfString:USERNAME_EQUALS].location != NSNotFound) {
+            username = [host substringFromIndex:[USERNAME_EQUALS length]];
+        } else {
+            if([host rangeOfString:SERVER_LINK_EQUALS].location != NSNotFound) {
+                serverLink = [host substringFromIndex:[SERVER_LINK_EQUALS length]];
+            }
+        }
+    }
+    
+    if([query length] > 0) {
+        if([query rangeOfString:SERVER_LINK_EQUALS].location != NSNotFound) {
+            serverLink = [query substringFromIndex:[SERVER_LINK_EQUALS length]];
+        } else {
+            if([query rangeOfString:USERNAME_EQUALS].location != NSNotFound) {
+                username = [query substringFromIndex:[USERNAME_EQUALS length]];
+            }
+        }
+    }
+    
+    
+    //keep the username for later use
+    if(username) {
+        [[NSUserDefaults standardUserDefaults] setObject:username forKey:EXO_CLOUD_USER_NAME_FROM_URL];
+    }
+        
+    if(serverLink) {
+        //encode server link
+        serverLink = [serverLink stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        // add server to list and set it to be selected
+        [self addAndSetSelectedServer:serverLink withName:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (void)addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName
+{
+    NSURL *serverURL = [NSURL URLWithString:serverLink];
+    
+    if(serverName == nil) {
+        serverName = [serverURL host];
+    }
+    
+    int serverIndex = [self checkServerAlreadyExistsWithName:serverName andURL:serverLink ignoringIndex:-1];
+    
+    if(serverIndex > -1) { //if the server is already exist, just set it to be selected
+        [self setSelectedServerIndex:serverIndex];
+    } else { //otherwise, add a new server to server list, and set it to be selected
+        [self addEditServerWithServerName:serverName andServerUrl:serverLink withUsername:nil andPassword:nil atIndex:-1];
+        [self setSelectedServerIndex:[self.serverList count] - 1];
+    }
+}
 @end

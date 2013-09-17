@@ -15,11 +15,12 @@
 #import "LanguageHelper.h"
 #import "AuthTabItem.h"
 #import "UserPreferencesManager.h"
+#import "eXoNavigationController.h"
 
 #define kHeightForServerCell 44
 #define kTagInCellForServerNameLabel 10
 #define kTagInCellForServerURLLabel 20
-#define scrollHeight 100 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+#define scrollTop 100 /* how much should we scroll up/down when the keyboard is displayed/hidden */
 #define tabViewsTopMargin -4 /* the top margin of the views under the tabs */
 #define settingsBtnTopMargin 50 /* the top margin of the settings button */
 #define tabsHeightAndLeftMargin 76 /* the height and left margin of the tabs */
@@ -104,84 +105,48 @@
     //in iOS 6, willAnimateRotationToInterfaceOrientation is not called when the view is appeared
     //need to call changeOrientation manually in this method.
     [self changeOrientation:[UIApplication sharedApplication].statusBarOrientation];
-
 }
 
 - (void)changeOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     _interfaceOrientation = interfaceOrientation;
     
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation))
-    {
-        // Landscape orientation
-        // /!\ The coordinates x and y are inverted (e.g. x in landscape = y in portrait)
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Landscape.png"]]];
-        // Position the tabs just above the subviews
-        [self.tabView setFrame:
-         CGRectMake((self.view.center.y-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
-                    tabsYInLandscape, /* reduced space between the tabs and the eXo logo */
-                    tabsWidth,
-                    tabsHeightAndLeftMargin)];
-        // Calculate the origin point of the views
-        // - at the center
-        // - with a -4 margin to avoid a space between the tab and the frame
-        CGPoint viewsOrigin = CGPointMake(self.view.center.y-_credViewController.view.bounds.size.width/2,
-                                          self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
-        // Position the views just below the tabs
-        [_credViewController.view setFrame:
-         CGRectMake(viewsOrigin.x, viewsOrigin.y,
-                    _credViewController.view.bounds.size.width,
-                    _credViewController.view.bounds.size.height)];
-        
-        [_servListViewController.view setFrame:
-         CGRectMake(viewsOrigin.x, viewsOrigin.y,
-                    _servListViewController.view.bounds.size.width,
-                    _servListViewController.view.bounds.size.height)];
-        // Position the settings button under the views
-        // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
-        CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
-        [_btnSettings setFrame:
-         CGRectMake(self.view.center.y-_btnSettings.bounds.size.width/2,      // at the center
-                    absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
-                    _btnSettings.bounds.size.width,
-                    _btnSettings.bounds.size.height)];
-    } 
-    else
-    {
-        // Portrait orientation
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-Portrait.png"]]];
-        
-        // Position the tabs
-        [self.tabView setFrame:
-         CGRectMake((self.view.center.x-_credViewController.view.bounds.size.width/2)+tabsHeightAndLeftMargin,
-                    tabsY,
-                    tabsWidth,
-                    tabsHeightAndLeftMargin)];
-        // Calculate the origin point of the views
-        // - at the center
-        // - with a -4 margin to avoid a space between the tab and the frame
-        CGPoint viewsOrigin = CGPointMake(self.view.center.x-_credViewController.view.bounds.size.width/2,
-                                          self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin);
-        // Position the views just below the tabs
-        [_credViewController.view setFrame:
-         CGRectMake(viewsOrigin.x, viewsOrigin.y,
-                    _credViewController.view.bounds.size.width,
-                    _credViewController.view.bounds.size.height)];
+    UIImage *bgPattern = [UIImage imageNamed:@"Default-Portrait.png"];
+    float screenWidth = SCR_WIDTH_PRTR_IPAD;
+    //coordinate of container of the tab, credentials view
+    float containerY = tabsY;
+    float containerX;
+    CGRect frame = CGRectZero;
 
-        [_servListViewController.view setFrame:
-         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
-                    self.tabView.frame.origin.y+self.tabView.frame.size.height-4,
-                    _servListViewController.view.bounds.size.width,
-                    _servListViewController.view.bounds.size.height)];
-        // Position the settings button under the views
-        // Calculate the origin of the _credViewController in the root view (i.e. absolute origin)
-        CGPoint absPoint = [self.view convertPoint:_credViewController.view.frame.origin toView:self.view];
-        [_btnSettings setFrame:
-         CGRectMake(self.view.center.x-_btnSettings.bounds.size.width/2,      // at the center
-                    absPoint.y+_credViewController.view.frame.size.height+settingsBtnTopMargin, // +50 margin
-                    _btnSettings.bounds.size.width,
-                    _btnSettings.bounds.size.height)];
+    if(UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+        bgPattern = [UIImage imageNamed:@"Default-Landscape.png"];
+        screenWidth = SCR_WIDTH_LSCP_IPAD;
+        containerY = tabsYInLandscape;
     }
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:bgPattern]];
+    containerX = (screenWidth - _credViewController.view.bounds.size.width)/2;
+    //position the tabs
+    frame.origin.x =  containerX + tabsHeightAndLeftMargin;
+    frame.origin.y = containerY;
+    frame.size = CGSizeMake(tabsWidth, tabsHeightAndLeftMargin);
+    self.tabView.frame = frame;
+    
+    //position the text fields (credentials view)
+    frame.origin.x = containerX;
+    frame.origin.y = containerY + tabsHeightAndLeftMargin + tabViewsTopMargin;
+    frame.size = _credViewController.view.bounds.size;
+    _credViewController.view.frame = frame;
+    
+    //position the servers list view
+    frame.size = _servListViewController.view.bounds.size;
+    _servListViewController.view.frame = frame;
+    
+    //position the setting button
+    frame.origin.x = (screenWidth - _btnSettings.bounds.size.width)/2;
+    frame.origin.y = _credViewController.view.frame.origin.y + _credViewController.view.frame.size.height + settingsBtnTopMargin;
+    frame.size = _btnSettings.bounds.size;
+    _btnSettings.frame = frame;
 }
 
 
@@ -281,78 +246,32 @@
         _iPadSettingViewController.settingsDelegate = self;
         
     }
-    [_iPadSettingViewController startRetrieve];
+    if([ApplicationPreferencesManager sharedInstance].selectedDomain) {
+        [_iPadSettingViewController startRetrieve];
+    }
+    
    
     if (_modalNavigationSettingViewController == nil) 
     {
-        _modalNavigationSettingViewController = [[UINavigationController alloc] initWithRootViewController:_iPadSettingViewController];
+     _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:_iPadSettingViewController];
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationPageSheet;
-        
+        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     }
+    
     [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
-    
-    _modalNavigationSettingViewController.view.superview.autoresizingMask = 
-    UIViewAutoresizingFlexibleTopMargin | 
-    UIViewAutoresizingFlexibleBottomMargin;   
-    
-    
-    _modalNavigationSettingViewController.view.superview.frame = CGRectMake(0,0,
-                                                                            560.0f,
-                                                                            640.0f
-                                                                            );
-    
-    if(self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-    {
-        _modalNavigationSettingViewController.view.superview.center = CGPointMake(768/2, 1024/2 + 10);        
-    }
-    else
-        _modalNavigationSettingViewController.view.superview.center = CGPointMake(1024/2, 768/2 + 10);
-    
 }
 
 #pragma mark - TextField delegate 
 
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
-    [super platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
-    //Setup Version Platfrom and Application
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    if(platformServerVersion != nil){
-        
-        
-        [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
-        [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
-        if([platformServerVersion.isMobileCompliant boolValue]){
-            [self.hud completeAndDismissWithTitle:Localize(@"Success")];
-            AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
-            appDelegate.isCompatibleWithSocial = compatibleWithSocial;
-            [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
-        } else {
-            [self.hud failAndDismissWithTitle:Localize(@"Error")];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
-                                                            message:Localize(@"NotCompliant") 
-                                                           delegate:nil 
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-        }
-	
-    } else {
-        [self.hud failAndDismissWithTitle:Localize(@"Error")];
-        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
-        [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error") 
-                                                        message:Localize(@"NotCompliant") 
-                                                       delegate:nil 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }
-    [userDefaults synchronize];
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion{
+    
+    [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
+    
+    [self.hud completeAndDismissWithTitle:Localize(@"Success")];
+    
+    AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+    appDelegate.isCompatibleWithSocial = compatibleWithSocial;
+    [appDelegate performSelector:@selector(showHome) withObject:nil afterDelay:1.0];
 }
 
 
@@ -393,7 +312,7 @@
 }
 
 - (void)moveUp {
-    CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y+scrollHeight);
+    CGPoint destPoint = CGPointMake(self.view.bounds.origin.x, self.view.bounds.origin.y+scrollTop);
     [(UIScrollView*)self.view setContentOffset:destPoint animated:YES];
 }
 

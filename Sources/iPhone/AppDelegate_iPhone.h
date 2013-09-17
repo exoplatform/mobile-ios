@@ -11,7 +11,7 @@
 #import "AuthenticateViewController_iPhone.h"
 #import "HomeViewController_iPhone.h"
 #import "HomeSidebarViewController_iPhone.h"
-
+#import "WelcomeViewController_iPhone.h"
 //App delegate
 @interface AppDelegate_iPhone : eXoMobileAppDelegate <UIAlertViewDelegate> {
     IBOutlet UIWindow*					window;

@@ -18,6 +18,7 @@
 #import "AuthSelectionView.h"
 #import "UserPreferencesManager.h"
 #import "ApplicationPreferencesManager.h"
+#import "CloudUtils.h"
 
 #pragma mark - Authenticate View Controller
 
@@ -116,14 +117,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
     
-	_credViewController.bRememberMe = [UserPreferencesManager sharedInstance].autoLogin;
 	_credViewController.bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;
     // If Auto Login is disabled, we set the Auto Login variable to NO
     // but we don't save this value in the user settings
     // We also refresh the username and password
     if ([self autoLoginIsDisabled]) {
         _credViewController.bAutoLogin = NO;
-        [self updateUsernameAndPasswordAfterLogout];
+        [self autoFillCredentials];
+        [self saveTempUsernamePassword];
     }
 }
 
@@ -134,6 +135,10 @@
     // If this method is called, it means the user is not signed in
     // so we can re-enable the Auto Login option
     _bAutoLoginIsDisabled = NO;
+    
+    //cloud sign-up, auto fill username and reload server list when the app is opened by an url
+    [self autoFillReceivedUserName];
+    [_servListViewController.tbvlServerList reloadData]; //reload the server list
 }
 
 
@@ -146,7 +151,6 @@
     [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     [_servListViewController.tbvlServerList reloadData];
     _credViewController.bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;    
-    _credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
     [_credViewController signInAnimation:_credViewController.bAutoLogin];
     
     if (!_credViewController.bAutoLogin) {
@@ -179,13 +183,7 @@
 
 // Called when the application starts
 -(void) initUsernameAndPassword {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	_credViewController.bRememberMe = [UserPreferencesManager sharedInstance].rememberMe;
-    if (_credViewController.bRememberMe) {
-        // Display the saved username and password if we have to
-        [_credViewController.txtfUsername setText:[userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
-        [_credViewController.txtfPassword setText:[userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
-    }
+    [self autoFillCredentials];
     // Save the original values to detect if they change later
     [self saveTempUsernamePassword];
 }
@@ -198,29 +196,10 @@
     if ([currentUsername isEqualToString:_tempUsername] &&
         [currentPassword isEqualToString:_tempPassword]) {
         // Set the stored values only if Remember Me is ON
-        if (_credViewController.bRememberMe) {
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [_credViewController.txtfUsername setText:
-                [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
-            [_credViewController.txtfPassword setText:
-                [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
-        } else {
-            [_credViewController.txtfUsername setText:@""];
-            [_credViewController.txtfPassword setText:@""];
-        }
+        [self autoFillCredentials];
         // Save the new values to detect if they change again later
         [self saveTempUsernamePassword];
     }
-}
-
-// Refresh username and password values after the user has signed out
--(void) updateUsernameAndPasswordAfterLogout {
-    if (!_credViewController.bRememberMe) {
-        [_credViewController.txtfUsername setText:@""];
-        [_credViewController.txtfPassword setText:@""];
-    }
-    // Save the new values to detect if they change again later
-    [self saveTempUsernamePassword];
 }
 
 -(void) disableAutoLogin:(BOOL)autoLogin {
@@ -265,18 +244,14 @@
 
 #pragma mark - PlatformVersionProxyDelegate 
 // Called by LoginProxy when login is successful
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
+    
     // Remake the screen interactions enabled
     self.view.userInteractionEnabled = YES;
-    if (compatibleWithSocial) {
-        [UserPreferencesManager sharedInstance].username = _credViewController.txtfUsername.text;
-        [UserPreferencesManager sharedInstance].password = _credViewController.txtfPassword.text;
-        [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
-        [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
-    }
 }
+
 // Called by LoginProxy when login has failed
-- (void)authenticateFailedWithError:(NSError *)error {
+- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error {
     [self view].userInteractionEnabled = YES;
     //MOB-1453: bug caused by https://github.com/soffes/sstoolkit/issues/147
     //workaround: dismiss hud after clicking OK in alert, in a delegate method
@@ -291,10 +266,16 @@
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"WrongUserNamePassword") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     } else if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) { //error getting platform info by restkit
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnection") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    } else if([error.domain isEqualToString:EXO_NOT_COMPILANT_ERROR_DOMAIN]) {
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Error")
+                                           message:Localize(@"NotCompliant")
+                                          delegate:nil
+                                 cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] autorelease];
+
     } else {
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
     }
-    
     [alert show];
 }
 
@@ -309,12 +290,28 @@
     
 	[_credViewController.txtfUsername resignFirstResponder];
 	[_credViewController.txtfPassword resignFirstResponder];
-	
+    
     NSString* username = [_credViewController.txtfUsername text];
-	NSString* password = [_credViewController.txtfPassword text];
+    NSString* password = [_credViewController.txtfPassword text];
     
     self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self username:username password:password] autorelease];
-    [self.loginProxy authenticate];
+    
+	NSString *selectedServer = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
+    if([selectedServer rangeOfString:EXO_CLOUD_HOST].location != NSNotFound) {
+        NSString *tenantName = [CloudUtils tenantFromServerUrl:selectedServer];
+        //if the selected server is a cloud tenant, check the tenant status first
+        if(tenantName) {
+            ExoCloudProxy *cloudProxy = [[ExoCloudProxy alloc] init];
+            cloudProxy.delegate = self;
+            cloudProxy.tenantName = tenantName;
+            [cloudProxy checkTenantStatus];
+        } else {
+            self.hud.hidden = YES;
+            [self showAlert:@"NoTenantName"];
+        }
+    } else {
+        [self.loginProxy authenticate];
+    }
 }
 
 - (CredentialsViewController*) credentialsViewController {
@@ -328,6 +325,7 @@
         if (itemIndex == AuthenticateTabItemCredentials) {
             _credViewController.view.hidden = NO;
             _servListViewController.view.hidden = YES;
+            [self autoFillCredentials];
         } else if (itemIndex == AuthenticateTabItemServerList) {
             _credViewController.view.hidden = YES;
             _servListViewController.view.hidden = NO;
@@ -335,7 +333,29 @@
         _selectedTabIndex = itemIndex;
     }
 }
+// fills username - password if there is remembered credentials
+- (void)autoFillCredentials
+{
+    if ([self rememberLastUser]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [_credViewController.txtfUsername setText:
+         [userDefaults objectForKey:EXO_PREFERENCE_USERNAME]];
+        [_credViewController.txtfPassword setText:
+         [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD]];
+    } else {
+        [_credViewController.txtfUsername setText:@""];
+        [_credViewController.txtfPassword setText:@""];
+    }
+}
 
+- (BOOL)rememberLastUser
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastUser = [userDefaults stringForKey:EXO_LAST_LOGGED_USER];
+    NSString *tmpKey = [NSString stringWithFormat:@"%@_%@_remember_me",SELECTED_DOMAIN,lastUser];
+    NSString *value = [userDefaults objectForKey:tmpKey];
+    return value ? [value boolValue] : NO;
+}
 #pragma mark - Update labels
 - (void) updateLabelAfterLogOut
 {
@@ -347,7 +367,63 @@
 {
     [self.hud dismiss];
     [self.hud setHidden:NO];
+    [self view].userInteractionEnabled = YES;
+
+}
+
+// auto fill the username when the app receives a request from the browser
+- (void)autoFillReceivedUserName
+{
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_USER_NAME_FROM_URL];
+    if(username != NULL && [username length] > 0) {
+        _credViewController.txtfUsername.text = username;
+        _credViewController.txtfPassword.text = @"";
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:EXO_CLOUD_USER_NAME_FROM_URL];//just fill the first time receiving username
+    }
+}
+
+#pragma mark ExoCloudProxyDelegate methods
+- (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email
+{
+    switch (response) {
+        case SERVICE_UNAVAILABLE: {
+            self.hud.hidden = YES;
+            [self showAlert:@"ServiceUnavailable"];
+            break;
+        }
+        case TENANT_CREATION: {
+            self.hud.hidden = YES;
+            [self showAlert:@"TenantCreation"];
+            break;
+        }
+        case TENANT_ONLINE:
+            //if the tenant is online, request the LoginProxy to login
+            [self.loginProxy authenticate];
+            break;
+        case TENANT_RESUMING: {
+            self.hud.hidden = YES;
+            [self showAlert:@"TenantResuming"];
+            break;
+        }
+        case TENANT_NOT_EXIST: {
+            self.hud.hidden = YES;
+            [self showAlert:@"ServerNotAvailable"];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error
+{
+    self.hud.hidden = YES;
+    [self showAlert:@"NetworkConnectionFailed"];
+}
+
+- (void)showAlert:(NSString *)message
+{
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    [alert show];
 }
 @end
-
-

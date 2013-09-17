@@ -10,11 +10,13 @@
 #import "LoginProxy.h"
 #import "PlatformServerVersion.h"
 #import "eXoTableViewController.h"
+#import "WelcomeViewController.h"
+
 @class UserPreferencesManager;
 
 @protocol ServerManagerProtocol <NSObject>
-- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
-- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl;
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password;
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password;
 - (BOOL)deleteServerObjAtIndex:(int)index;
 @end
 
@@ -24,7 +26,7 @@
 
 @end
 
-@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate, ServerManagerProtocol> {
+@interface SettingsViewController : eXoTableViewController <LoginProxyDelegate, ServerManagerProtocol, WelcomeViewControllerDelegate> {
     
     BOOL                            bVersionServer;
 	NSString*                       languageStr;

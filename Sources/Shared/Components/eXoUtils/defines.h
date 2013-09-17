@@ -21,11 +21,14 @@
 #define WIDTH_LANDSCAPE_WEBVIEW             800
 #define WIDTH_PORTRAIT_WEBVIEW              550
 
+// selected domain
+#define SELECTED_DOMAIN                     [ApplicationPreferencesManager sharedInstance].selectedDomain
+
 // Key for storing the combination server_username when we sign-in
-#define EXO_LAST_LOGGED_USER                @"last-logged-user"
+#define EXO_LAST_LOGGED_USER                [NSString stringWithFormat:@"%@_last_logged_user",SELECTED_DOMAIN]
 #define EXO_PREFERENCE_USERID				@"userId"
-#define EXO_PREFERENCE_USERNAME				@"username"
-#define EXO_PREFERENCE_PASSWORD				@"password"
+#define EXO_PREFERENCE_USERNAME				[NSString stringWithFormat:@"%@_username",SELECTED_DOMAIN]
+#define EXO_PREFERENCE_PASSWORD				[NSString stringWithFormat:@"%@_password",SELECTED_DOMAIN]
 #define EXO_PREFERENCE_EXO_USERID			@"exo_user_id"
 #define EXO_PREFERENCE_DOMAIN				@"domain_name"
 #define EXO_PREFERENCE_SELECTED_SEVER		@"selected_server"
@@ -54,23 +57,6 @@
 #define SPECIAL_CHAR_NAME_SET                    @"[]/\\&~?*|<>\";:+()$%@#!"
 #define SPECIAL_CHAR_URL_SET                    @"[]\\&~?*|<>\";+"
 
-
-//#define ACTIVITY_GETTING_TITLE              @"Getting activity"
-//#define ACTIVITY_GETTING_MESSAGE_ERROR      @"Getting action cannot be completed"
-//#define ACTIVITY_UPDATING_TITLE             @"Updating activity"
-//#define ACTIVITY_UPDATING_MESSAGE_ERROR     @"Updating action cannot be completed"
-//#define ACTIVITY_LIKING_TITLE               @"Liking activity"
-//#define ACTIVITY_LIKING_MESSAGE_ERROR       @"Liking action cannot be completed"
-//
-//#define ACTIVITY_POSTING_TITLE              @"Posting activity"
-//#define ACTIVITY_POSTING_MESSAGE_ERROR      @"Posting action cannot be completed"
-//#define ACTIVITY_COMMENT_TITLE              @"Comment activity"
-//#define ACTIVITY_COMMENT_MESSAGE_ERROR      @"Comment action cannot be completed"
-//
-//#define ACTIVITY_DETAIL_GETTING_TITLE       @"Getting activity detail"
-//#define ACTIVITY_DETAIL_UPDATING_TITLE      @"Updating activity detail"
-
-
 #define EXO_BACKGROUND_COLOR                [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]]
 #define SELECTED_CELL_BG_COLOR              [UIColor colorWithRed:225./255 green:225./255 blue:225./255 alpha:1.]
 
@@ -94,3 +80,24 @@
 
 //iPhone 5 screen height minus the navigation bar and status bar: 568 - 44 - 20 = 504
 #define iPHONE_5_SCREEN_HEIGH_MINUS_NAV_AND_STATUS_BAR 504
+
+#define iPHONE_5_SCREEN_HEIGHT 548
+#define iPHONE_SCREEN_HEIGH 460
+//eXo cloud sign up
+#define EXO_CLOUD_USER_NAME_FROM_URL @"exo_cloud_user_name_from_url"
+#define EXO_CLOUD_ACCOUNT_CONFIGURED @"exo_cloud_account_configured"
+#define EXO_NOT_COMPILANT_ERROR_DOMAIN @"exo_not_compliant"
+
+#define EXO_CLOUD_URL  @"http://exoplatform.net"
+#define EXO_CLOUD_HOST @"exoplatform.net"
+#define EXO_CLOUD_TENANT_SERVICE_PATH @"rest/cloud-admin/cloudworkspaces/tenant-service"
+//#define EXO_CLOUD_HOST @"netstg.exoplatform.org"
+//#define EXO_CLOUD_URL @"http://netstg.exoplatform.org"
+//#define EXO_CLOUD_HOST @"wks-acc.exoplatform.org"
+//#define EXO_CLOUD_URL @"http://wks-acc.exoplatform.org"
+#define scrollHeight 80 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]

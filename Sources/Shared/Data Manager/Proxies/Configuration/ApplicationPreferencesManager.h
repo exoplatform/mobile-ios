@@ -21,6 +21,8 @@
 @property BOOL _bSystemServer;
 @property (nonatomic, retain) NSString* _strServerName;
 @property (nonatomic, retain) NSString* _strServerUrl;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
 @end
 
 #pragma mark - Application Prefs Interface
@@ -48,6 +50,12 @@
 #pragma mark * Server management
 - (NSMutableArray *)serverList;
 - (void)loadServerList;
+- (BOOL)deleteServerObjAtIndex:(int)index;
+//add a new server or save changes to an existed one
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password atIndex:(int)index;
+//if existed, return the server's index, otherwise return -1
+- (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index;
+
 
 #pragma mark * Read/Write data
 - (CXMLNode*) getNode: (CXMLNode*) element withName: (NSString*) name;
@@ -68,4 +76,7 @@
 - (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath;
 - (void)saveCurrentServerUsernameCombination;
 
+#pragma mark * Utils
+- (void) loadReceivedUrlToPreference:(NSURL *)url;
+- (void) addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName;
 @end

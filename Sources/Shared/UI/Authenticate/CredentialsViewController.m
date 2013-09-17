@@ -92,7 +92,6 @@
 	{
 		[self.txtfPassword becomeFirstResponder];
 	}
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -185,7 +184,6 @@
     // Display localized placeholder text
     [self.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
     [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
-
 }
 
 @end

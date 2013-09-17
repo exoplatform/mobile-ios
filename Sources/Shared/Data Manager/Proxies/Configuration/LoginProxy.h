@@ -20,6 +20,7 @@
 }
 
 @property (nonatomic, assign) id<LoginProxyDelegate> delegate;
+@property (nonatomic, retain) NSString *serverUrl;
 
 + (void)doLogout;
 -(id)initWithDelegate:(id<LoginProxyDelegate>)delegate;
@@ -27,11 +28,11 @@
 - (void)getPlatformInfoAfterAuthenticate; //get private infos after authenticating and then switch to activity stream
 - (void)authenticate;
 - (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password;
-
+- (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl;
 @end
 
-
+@class LoginProxy;
 @protocol LoginProxyDelegate<NSObject>
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;
-- (void)authenticateFailedWithError:(NSError *)error;
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;
+- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error;
 @end

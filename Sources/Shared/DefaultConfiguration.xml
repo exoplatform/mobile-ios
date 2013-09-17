@@ -8,8 +8,6 @@
             <language name="French" ressourceFile="Localize_FR.xml"/>
         </Languages>
         <Servers>
-            <server name="eXo Intranet" serverURL="http://int.exoplatform.org"/>
-            <server name="Your Cloud-workspaces" serverURL="http://yourtenant.cloud-workspaces.com"/>
         </Servers>
     </xml>
 </plist>

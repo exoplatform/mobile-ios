@@ -8,7 +8,7 @@
 
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
-
+#import "ApplicationPreferencesManager.h"
 @implementation eXoMobileAppDelegate
 
 
@@ -30,6 +30,12 @@
      */
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    ApplicationPreferencesManager *appPrefManage = [ApplicationPreferencesManager sharedInstance];
+    [appPrefManage loadReceivedUrlToPreference:url];
+    return YES;
+}
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     /*

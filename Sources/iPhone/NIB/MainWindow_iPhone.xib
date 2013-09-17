@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<int key="IBDocument.SystemTarget">1552</int>
+		<string key="IBDocument.SystemVersion">12E55</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>IBProxyObject</string>
-			<string>IBUINavigationController</string>
-			<string>IBUIViewController</string>
 			<string>IBUICustomObject</string>
-			<string>IBUIWindow</string>
 			<string>IBUINavigationBar</string>
+			<string>IBUINavigationController</string>
 			<string>IBUINavigationItem</string>
+			<string>IBUIViewController</string>
+			<string>IBUIWindow</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -102,6 +102,7 @@
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
 				</object>
+				<bool key="IBUINavigationBarHidden">YES</bool>
 			</object>
 			<object class="IBUINavigationController" id="455575557">
 				<reference key="IBUISimulatedStatusBarMetrics" ref="1065017323"/>
@@ -124,6 +125,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIViewController" id="381268990">
 						<object class="IBUINavigationItem" key="IBUINavigationItem" id="807172009">
+							<reference key="IBUINavigationBar"/>
 							<string key="IBUITitle">Navigation Item</string>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
@@ -304,7 +306,7 @@
 					<string>9.CustomClassName</string>
 					<string>9.IBPluginDependency</string>
 				</object>
-				<object class="NSMutableArray" key="dict.values">
+				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -355,13 +357,15 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>authenticateViewController</string>
+							<string>homeSidebarViewController_iPhone</string>
 							<string>homeViewController_iPhone</string>
 							<string>navigationController</string>
 							<string>window</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>AuthenticateViewController_iPhone</string>
+							<string>HomeSidebarViewController_iPhone</string>
 							<string>HomeViewController_iPhone</string>
 							<string>UINavigationController</string>
 							<string>UIWindow</string>
@@ -372,15 +376,20 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>authenticateViewController</string>
+							<string>homeSidebarViewController_iPhone</string>
 							<string>homeViewController_iPhone</string>
 							<string>navigationController</string>
 							<string>window</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">authenticateViewController</string>
 								<string key="candidateClassName">AuthenticateViewController_iPhone</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">homeSidebarViewController_iPhone</string>
+								<string key="candidateClassName">HomeSidebarViewController_iPhone</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">homeViewController_iPhone</string>
@@ -404,145 +413,15 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AuthenticateViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>onBtnAccount:</string>
-							<string>onBtnServerList:</string>
-							<string>onSettingBtn</string>
-							<string>onSignInBtn:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>onBtnAccount:</string>
-							<string>onBtnServerList:</string>
-							<string>onSettingBtn</string>
-							<string>onSignInBtn:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">onBtnAccount:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">onBtnServerList:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">onSettingBtn</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">onSignInBtn:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-						</object>
-					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>_btnAccount</string>
-							<string>_btnLogin</string>
-							<string>_btnServerList</string>
-							<string>_btnSettings</string>
-							<string>_tbvlServerList</string>
-							<string>_txtfPassword</string>
-							<string>_txtfUsername</string>
-							<string>_vAccountView</string>
-							<string>_vContainer</string>
-							<string>_vLoginView</string>
-							<string>_vServerListView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UITableView</string>
-							<string>UITextField</string>
-							<string>UITextField</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-						</object>
+						<string key="NS.key.0">_btnSettings</string>
+						<string key="NS.object.0">UIButton</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>_btnAccount</string>
-							<string>_btnLogin</string>
-							<string>_btnServerList</string>
-							<string>_btnSettings</string>
-							<string>_tbvlServerList</string>
-							<string>_txtfPassword</string>
-							<string>_txtfUsername</string>
-							<string>_vAccountView</string>
-							<string>_vContainer</string>
-							<string>_vLoginView</string>
-							<string>_vServerListView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_btnAccount</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_btnLogin</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_btnServerList</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_btnSettings</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_tbvlServerList</string>
-								<string key="candidateClassName">UITableView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_txtfPassword</string>
-								<string key="candidateClassName">UITextField</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_txtfUsername</string>
-								<string key="candidateClassName">UITextField</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_vAccountView</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_vContainer</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_vLoginView</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_vServerListView</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
+						<string key="NS.key.0">_btnSettings</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">_btnSettings</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -553,9 +432,28 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AuthenticateViewController_iPhone</string>
 					<string key="superclassName">AuthenticateViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">backgroundImage</string>
+						<string key="NS.object.0">UIImageView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">backgroundImage</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">backgroundImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AuthenticateViewController_iPhone.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">HomeSidebarViewController_iPhone</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HomeSidebarViewController_iPhone.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -580,7 +478,7 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1280" key="NS.object.0"/>
+			<real value="1552" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
@@ -588,6 +486,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

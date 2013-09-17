@@ -18,8 +18,11 @@
 #import "URLAnalyzer.h"
 #import "ServerEditingViewController.h"
 #import "ServerAddingViewController.h"
-
-
+#import "SignUpViewController_iPhone.h"
+#import "WelcomeViewController_iPhone.h"
+#import "WelcomeViewController_iPad.h"
+#import "AppDelegate_iPad.h"
+#import "CloudUtils.h"
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
 static NSString *CellIdentifierDocuments = @"CellIdentifierDocuments";
@@ -61,14 +64,14 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 static NSString *settingViewSectionIdKey = @"section id";
 static NSString *settingViewSectionTitleKey = @"section title";
 static NSString *settingViewRowsKey = @"row title";
-
 typedef enum {
-  SettingViewControllerSectionLogin = 1,
-  SettingViewControllerSectionSocial = 2,
-  SettingViewControllerSectionDocument = 3,
-  SettingViewControllerSectionLanguage = 4,
-  SettingViewControllerSectionServerList = 5,
-  SettingViewControllerSectionAppsInfo = 6
+    SettingViewControllerSectionLogin = 1,
+    SettingViewControllerSectionSocial = 2,
+    SettingViewControllerSectionDocument = 3,
+    SettingViewControllerSectionLanguage = 4,
+    SettingViewControllerSectionServerList = 5,
+    SettingViewControllerSectionAppsInfo = 6,
+    SettingViewControllerCloudAssistant = 7
 } SettingViewControllerSection;
 
 @implementation SettingsViewController
@@ -81,34 +84,35 @@ typedef enum {
         _listOfSections = [[NSMutableArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
-                             settingViewSectionTitleKey, @"SignInButton", 
+                             settingViewSectionTitleKey, @"SignInButton",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionSocial],
-                             settingViewSectionTitleKey, @"Social", 
+                             settingViewSectionTitleKey, @"Social",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"KeepSelectedStream", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionDocument],
-                             settingViewSectionTitleKey, @"Documents", 
+                             settingViewSectionTitleKey, @"Documents",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ShowPrivateDrive", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
-                             settingViewSectionTitleKey, @"Language", 
+                             settingViewSectionTitleKey, @"Language",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
-                             settingViewSectionTitleKey, @"ServerList", 
+                             settingViewSectionTitleKey, @"ServerList",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
-                             settingViewSectionTitleKey, @"ApplicationsInformation", 
+                             settingViewSectionTitleKey, @"ApplicationsInformation",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
-                             nil], 
+                             nil],
+                            [NSDictionary dictionaryWithKeysAndObjects:settingViewSectionIdKey,[NSString stringWithFormat:@"%d",SettingViewControllerCloudAssistant],settingViewSectionTitleKey,@"eXoCloudConfigurationAssistant", settingViewRowsKey, [NSArray arrayWithObjects:@"StartTheConfigurationAssistant", nil],nil],
                             nil] retain];
         
         
@@ -118,23 +122,24 @@ typedef enum {
         if(plfVersion >= 4.0) {
             [_listOfSections removeObjectAtIndex:2];
         }
-    } else {        
+    } else {
         _listOfSections = [[NSMutableArray arrayWithObjects:
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
-                             settingViewSectionTitleKey, @"Language", 
+                             settingViewSectionTitleKey, @"Language",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
-                             settingViewSectionTitleKey, @"ServerList", 
+                             settingViewSectionTitleKey, @"ServerList",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
-                             nil], 
+                             nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
-                             settingViewSectionTitleKey, @"ApplicationsInformation", 
+                             settingViewSectionTitleKey, @"ApplicationsInformation",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
-                             nil], 
+                             nil],
+                            [NSDictionary dictionaryWithKeysAndObjects:settingViewSectionIdKey,[NSString stringWithFormat:@"%d",SettingViewControllerCloudAssistant],settingViewSectionTitleKey,@"eXoCloudConfigurationAssistant", settingViewRowsKey, [NSArray arrayWithObjects:@"StartTheConfigurationAssistant", nil], nil],
                             nil] retain];
     }
 }
@@ -233,23 +238,6 @@ typedef enum {
 {
     [super viewDidLoad];
     
-    //if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarIphone.png"] forBarMetrics:UIBarMetricsDefault];
-    //}
-    
-    
-    
-    //Set the background Color of the view
-    //SLM note : to optimize the appearance, we can initialize the background in the dedicated controller (iPhone or iPad)
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //backgroundView.frame = self.view.frame;
-    //self.tableView.backgroundView = backgroundView;
-    //[backgroundView release];
-    
-    
-    
-    //self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
-    
     self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
     
     //Add the Done button for exit Settings
@@ -259,9 +247,9 @@ typedef enum {
 }
 
 #pragma mark - PlatformVersionProxyDelegate
-
-- (void)platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
-     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion){
         //Setup Version Platfrom and Application
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
@@ -276,7 +264,8 @@ typedef enum {
     [self.tableView reloadData];
 }
 
-- (void)authenticateFailedWithError:(NSError *)error {
+- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
+{
     
 }
 
@@ -332,7 +321,6 @@ typedef enum {
     } else {
         [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
     }
-
 }
 
 -(void)autoLoginDidChange {
@@ -418,6 +406,20 @@ typedef enum {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
     switch (sectionId) 
     {
+        case SettingViewControllerCloudAssistant:
+        {
+            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+            if(cell == nil)
+            {
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
+                
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+                cell.textLabel.textColor = [UIColor darkGrayColor];
+                cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            }
+            break;
+        }
+        
         case SettingViewControllerSectionLogin:
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
@@ -608,7 +610,27 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
-	if (sectionId == SettingViewControllerSectionLanguage)
+    eXoMobileAppDelegate *appDelegate;
+    if(sectionId == SettingViewControllerCloudAssistant) {
+        WelcomeViewController *welcomeVC;
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
+            welcomeVC.delegate = self;
+            appDelegate = [AppDelegate_iPad instance];
+        } else {
+            welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
+            welcomeVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            appDelegate = [AppDelegate_iPhone instance];
+        }
+        
+        welcomeVC.shouldBackToSetting = YES;
+//        [self presentModalViewController:welcomeVC animated:YES];
+        [self dismissModalViewControllerAnimated:NO];
+        [appDelegate.window.rootViewController presentModalViewController:welcomeVC animated:YES];
+        [welcomeVC release];
+    }
+    
+	else if (sectionId == SettingViewControllerSectionLanguage)
 	{
 		int selectedLanguage = indexPath.row;
         
@@ -646,7 +668,6 @@ typedef enum {
             }
         }
 	}
-    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -675,26 +696,6 @@ typedef enum {
 }
 
 #pragma mark - ServerManagerProtocol
-// Check if the server already exists (both name and URL, ignoring the case)
-// Ignore the index of the server you are currently editing
-// Ignore -1 to compare with all the existing servers
-- (BOOL)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index {
-    ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    for (int i = 0; i < [appPrefManager.serverList count]; i++) 
-    {
-        if (index==i)continue; // ignore the server specified by index
-        ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
-        NSString* tmpServName = [tmpServerObj._strServerName lowercaseString];
-        NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
-        if ([tmpServName isEqualToString:[strServerName lowercaseString]] ||
-            [tmpServURL isEqualToString:[strServerUrl lowercaseString]])
-        {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 
 - (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
     
@@ -727,28 +728,19 @@ typedef enum {
         [alert release];
         return NO;
     } else {
-        // Check if the server URL is valid :
-        // - characters & < > " ' ! ; \ | ( ) { } [ ] , * % are forbidden
-        // - URL must start with http or https
-        // - scheme and host must not be null or empty
-        NSURL* tmpUrl = [NSURL URLWithString:strServerUrl];
-        if ([self nameContainSpecialCharacter:strServerUrl inSet:@"&<>\"'!;\\|(){}[],*%"] ||
-            tmpUrl == nil || tmpUrl.scheme == nil || tmpUrl.host == nil ||
-            (![[tmpUrl.scheme lowercaseString] isEqualToString:@"http"] &&
-             ![[tmpUrl.scheme lowercaseString] isEqualToString:@"https"]
-             ) || tmpUrl.host.length == 0) {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alert show];
-                [alert release];
-                return NO;
-            }
+        if (![CloudUtils correctServerUrl:strServerUrl]) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            return NO;
+        }
     }
     
     return YES;
 }
 
 // Unique private method to add/edit a server, avoids duplicating common code
-- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl atIndex:(int)index {
+- (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password  atIndex:(int)index {
     
     if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
         ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
@@ -762,130 +754,47 @@ typedef enum {
     NSString* cleanServerName = [strServerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
-    // Check whether the name and URL already exists, ignoring case
-    if ([self checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index]) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-        return NO;
+    ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
+    if(index == -1) {
+        // Check whether the name and URL already exists, ignoring case
+        if ([appPrefManager checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index] > -1) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            return NO;
+        }
     }
     
-    ApplicationPreferencesManager* appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    // We don't specify an existing server so it's a new one
-    if (index == -1)
-    {
-        //Create the new server
-        ServerObj* serverObj = [[ServerObj alloc] init];
-        serverObj._strServerName = cleanServerName;
-        serverObj._strServerUrl = cleanServerUrl;    
-        serverObj._bSystemServer = NO;
-        
-        //Add the server in configuration
-        NSMutableArray* arrAddedServer = [appPrefManager loadUserConfiguration];
-        [arrAddedServer addObject:serverObj];
-        [appPrefManager writeUserConfiguration:arrAddedServer];
-        [serverObj release];
-        [appPrefManager loadServerList]; // reload list of servers
-        [self.tableView reloadData];
-    }
-    // Edit the server specified by index
-    else
-    {
-        ServerObj* serverObjEdited = [appPrefManager.serverList objectAtIndex:index];
-        ServerObj* tmpServerObj;
-        
-        serverObjEdited._strServerName = cleanServerName;
-        serverObjEdited._strServerUrl = cleanServerUrl;
-        
-        [appPrefManager.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
-        
-        NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i < [appPrefManager.serverList count]; i++) 
-        {
-            tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
-            if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer) 
-            {
-                [arrTmp addObject:tmpServerObj];
-            }
-        }
-        
-        if (serverObjEdited._bSystemServer) 
-        {
-            [appPrefManager writeSystemConfiguration:arrTmp];
-        }
-        else
-        {
-            [appPrefManager writeUserConfiguration:arrTmp];
-        }
-        
-        [appPrefManager loadServerList];
-        [self.tableView reloadData];
-    }
+    username = [username length] > 0 ? username : @"";
+    password = [password length] > 0 ? password : @"";
     
-    // If this is the only server: select it automatically
-    if ([appPrefManager.serverList count] == 1)
-        [appPrefManager setSelectedServerIndex:0];
+    [appPrefManager addEditServerWithServerName:cleanServerName andServerUrl:cleanServerUrl withUsername:username andPassword:password atIndex:index];
+    
+    [self.tableView reloadData];
     
     return YES;
 }
 
-- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+- (BOOL)addServerObjWithServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password
 {
-    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:-1];
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl withUsername:username andPassword:password atIndex:-1];
 }
 
-- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl
+- (BOOL)editServerObjAtIndex:(int)index withSeverName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password
 {
-    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl atIndex:index];
+    return [self addEditServerWithServerName:strServerName andServerUrl:strServerUrl withUsername:username andPassword:password atIndex:index];
 }
 
 - (BOOL)deleteServerObjAtIndex:(int)index;
 {
     ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    ServerObj* deletedServerObj = [[appPrefManager.serverList objectAtIndex:index] retain];
-    
-    [appPrefManager.serverList removeObjectAtIndex:index];
-    int currentIndex = appPrefManager.selectedServerIndex;
-    if ([appPrefManager.serverList count] > 0) {
-        if(currentIndex > index) {
-            appPrefManager.selectedServerIndex = currentIndex - 1;
-        } else if (currentIndex == index) {
-            appPrefManager.selectedServerIndex = currentIndex < appPrefManager.serverList.count ? currentIndex : appPrefManager.serverList.count - 1;           
-        }        
-    } else {
-        appPrefManager.selectedServerIndex = -1;
-    }
-    NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < [appPrefManager.serverList count]; i++) 
-    {
-        ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:i];
-        if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer) 
-        {
-            [arrTmp addObject:tmpServerObj];
-        }
-    }
-    
-    if (deletedServerObj._bSystemServer) 
-    {
-        [appPrefManager writeSystemConfiguration:arrTmp];
-    }
-    else
-    {
-        [appPrefManager writeUserConfiguration:arrTmp];
-    }
-    [deletedServerObj release];
-    [arrTmp release];
-    
-    [appPrefManager loadServerList]; // reload list of servers
+    [appPrefManager deleteServerObjAtIndex:index];
     [self.tableView reloadData];
-    
-    // If there is the only 1 remaining server: select it automatically
-    if ([appPrefManager.serverList count] == 1)
-        [appPrefManager setSelectedServerIndex:0];
-    
     return YES;
 }
 
+- (void)didSkipSignUp
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end
