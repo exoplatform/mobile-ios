@@ -13,7 +13,7 @@
 #import "HomeStyleSheet.h"
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
-
+#import "WelcomeViewController_iPhone.h"
 
 
 @implementation AppDelegate_iPhone
@@ -24,7 +24,6 @@
 @synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
 @synthesize homeSidebarViewController_iPhone = _homeSidebarViewController_iPhone;
-
 
 + (AppDelegate_iPhone *) instance {
     return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];    
@@ -66,7 +65,22 @@
     
 #endif
     
+    BOOL accountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+    
+    if([[ApplicationPreferencesManager sharedInstance].serverList count] > 0) {
+        accountConfigured = YES; // case upgrade, there were already servers
+    }
+    
+    if(!accountConfigured) {
+        WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
+        navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
+        [welcomeVC release];
+    }
+    
+    navigationController.navigationBarHidden = YES;
+
     window.rootViewController = navigationController;
+
 	[window makeKeyAndVisible];
     
 }
@@ -78,6 +92,15 @@
 }
 
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    [super application:application handleOpenURL:url];
+    
+    navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController]; //display authenticate screen
+    
+    window.rootViewController = navigationController;
+    return YES;
+}
 
 - (void)showHomeSidebarViewController {
     // Login is successfully
@@ -93,14 +116,6 @@
     _homeSidebarViewController_iPhone = [[HomeSidebarViewController_iPhone alloc] initWithNibName:nil bundle:nil];
     
     window.rootViewController = _homeSidebarViewController_iPhone;
-    
-    //[_homeViewControllerSidebar_iPhone setDelegate:self];
-    
-    //_homeViewController_iPhone._isCompatibleWithSocial = _isCompatibleWithSocial;
-    
-    //[self.navigationController pushViewController:_homeViewController_iPhone animated:YES];
-    
-    
 }
 
 
@@ -160,11 +175,11 @@
         [_authenticateViewController disableAutoLogin:YES];
     }
     [_authenticateViewController updateLabelAfterLogOut];
-    
+    [_authenticateViewController autoFillCredentials];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController];
     window.rootViewController = navigationController;
     
     [UserPreferencesManager sharedInstance].isUserLogged = NO;
-
     
     [LoginProxy doLogout];
 }

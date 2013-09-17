@@ -20,6 +20,7 @@
 @implementation AppDelegate_iPad
 
 @synthesize window, viewController, rootViewController, isCompatibleWithSocial=_isCompatibleWithSocial;
+@synthesize welcomeVC;
 
 + (AppDelegate_iPad *) instance {
     return (AppDelegate_iPad *) [[UIApplication sharedApplication] delegate];
@@ -63,13 +64,31 @@
     }
 #endif
     
-    window.rootViewController = viewController;
+    
+    BOOL isAccountConfigured = [[NSUserDefaults standardUserDefaults] boolForKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
+    
+    if([[ApplicationPreferencesManager sharedInstance].serverList count] > 0) {
+        isAccountConfigured = YES; // case upgrade, there were already servers
+    }
+    
+    if(isAccountConfigured) {
+        window.rootViewController = viewController;
+    } else {
+        welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
+        window.rootViewController = welcomeVC;
+    }
+    
     [window makeKeyAndVisible];
                 
     return YES;
 }
 
-
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    [super application:application handleOpenURL:url];
+    self.window.rootViewController = viewController;// display authenticate screen
+    return YES;
+}
 
 -(void)showHome
 {
@@ -104,6 +123,7 @@
     }
 
     [viewController updateLabelAfterLogOut];
+    [viewController autoFillCredentials];
     
     // execute Logout
     [LoginProxy doLogout];
@@ -112,15 +132,12 @@
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromRight
-                    animations:^{ 
+                    animations:^{
                         self.window.rootViewController = viewController;
                     }
                     completion:^(BOOL finished){
                     }];
-    
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -156,6 +173,7 @@
 
 - (void)dealloc {
     [rootViewController release];
+    [welcomeVC release];
     [window release];
     [super dealloc];
 }

@@ -10,14 +10,14 @@
 #import "SSHUDView.h"
 #import "SettingsViewController_iPad.h"
 #import "AuthenticateViewController.h"
-
+#import "eXoNavigationController.h"
 @class ServerObj;
 
 //Login page
 @interface AuthenticateViewController_iPad : AuthenticateViewController <SettingsDelegateProcotol>
 {
 	id							     _delegate;
-    UINavigationController*          _modalNavigationSettingViewController;
+    eXoNavigationController*          _modalNavigationSettingViewController;
     SettingsViewController_iPad*     _iPadSettingViewController;
     UIInterfaceOrientation           _interfaceOrientation;
 }

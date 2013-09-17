@@ -10,7 +10,7 @@
 #import "eXoMobileAppDelegate.h"
 
 #import "AuthenticateViewController_iPad.h"
-
+#import "WelcomeViewController_iPad.h"
 
 
 @class RootViewController;
@@ -23,6 +23,8 @@
     
     RootViewController *rootViewController;
     
+    WelcomeViewController_iPad *welcomeVC;
+    
     BOOL _isCompatibleWithSocial;
 
     
@@ -31,8 +33,8 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet AuthenticateViewController_iPad *viewController;
 @property (nonatomic, retain) RootViewController *rootViewController;
+@property (nonatomic, retain) WelcomeViewController_iPad *welcomeVC;
 @property BOOL isCompatibleWithSocial;
-
 
 
 -(void)showHome;

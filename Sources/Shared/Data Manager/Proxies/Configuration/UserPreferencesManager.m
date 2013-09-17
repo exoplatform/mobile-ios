@@ -10,21 +10,23 @@
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
 
-#pragma mark - Constants
+
 /*
  * Key of User Preference to save selected stream tab order. it contains domain name and username to distinguish amongs users.
  */
 
-#define SELECTED_DOMAIN                     [ApplicationPreferencesManager sharedInstance].selectedDomain
 #define EXO_SELECTED_STREAM                 [NSString stringWithFormat:@"%@_%@_selected_stream", SELECTED_DOMAIN, self.username]
 #define EXO_REMEMBER_MY_STREAM              [NSString stringWithFormat:@"%@_%@_remember_my_stream", SELECTED_DOMAIN, self.username]
 /*
  * Keys for login settings
  */
-#define EXO_REMEMBER_ME                     @"remember_me"
-#define EXO_AUTO_LOGIN                      @"auto_login"
+#define EXO_REMEMBER_ME                     [NSString stringWithFormat:@"%@_%@_remember_me",SELECTED_DOMAIN,self.username]
+#define EXO_AUTO_LOGIN                      [NSString stringWithFormat:@"%@_%@_auto_login",SELECTED_DOMAIN,self.username]
+
 /* key for showing prive drive */
 #define EXO_PREFERENCE_SHOW_PRIVATE_DRIVE   [NSString stringWithFormat:@"%@_%@_show_private_drive", SELECTED_DOMAIN, self.username]
+
+#pragma mark - Constants
 
 @implementation UserPreferencesManager
 
@@ -87,6 +89,7 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:self.username forKey:EXO_PREFERENCE_USERNAME];
     [userDefaults setObject:self.password forKey:EXO_PREFERENCE_PASSWORD];
+    [userDefaults setObject:self.username forKey:EXO_LAST_LOGGED_USER];
 }
 
 - (void)reloadUsernamePassword {

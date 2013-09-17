@@ -31,6 +31,8 @@
 
 @property (nonatomic, retain) UITextField* _txtfServerName;
 @property (nonatomic, retain) UITextField* _txtfServerUrl;
+@property (nonatomic, retain) UITextField *usernameTf;
+@property (nonatomic, retain) UITextField *passwordTf;
 
 - (void)setDelegate:(id<ServerManagerProtocol>)delegate;
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index;

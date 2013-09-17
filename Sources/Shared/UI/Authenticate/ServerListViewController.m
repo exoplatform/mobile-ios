@@ -59,7 +59,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{	
+
+{
+    [[ApplicationPreferencesManager sharedInstance] loadServerList];
     return [[ApplicationPreferencesManager sharedInstance].serverList count];
 }
 
