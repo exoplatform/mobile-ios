@@ -338,6 +338,10 @@
 		46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */; };
 		46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */; };
 		46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */; };
+		578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78C17EAD51F00771497 /* Icon-72@2x.png */; };
+		578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78E17EAD51F00771497 /* Icon-ios7-76.png */; };
+		578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78F17EAD51F00771497 /* Icon-ios7-120.png */; };
+		578ED79717EAD61A00771497 /* Icon-ios7-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED79617EAD61A00771497 /* Icon-ios7-76@2x.png */; };
 		579D50A915BD6689002F5D16 /* AuthTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50A815BD6689002F5D16 /* AuthTabItem.m */; };
 		579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */; };
 		57A07116160FF47E002E2BAC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5915B51D54004F958C /* Default-Landscape~ipad.png */; };
@@ -1381,6 +1385,10 @@
 		46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
 		46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "UIImage+Resize/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "UIImage+Resize/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		578ED78C17EAD51F00771497 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		578ED78E17EAD51F00771497 /* Icon-ios7-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76.png"; sourceTree = "<group>"; };
+		578ED78F17EAD51F00771497 /* Icon-ios7-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-120.png"; sourceTree = "<group>"; };
+		578ED79617EAD61A00771497 /* Icon-ios7-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76@2x.png"; sourceTree = "<group>"; };
 		579D50A715BD6689002F5D16 /* AuthTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthTabItem.h; sourceTree = "<group>"; };
 		579D50A815BD6689002F5D16 /* AuthTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthTabItem.m; sourceTree = "<group>"; };
 		579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSelectionView.h; sourceTree = "<group>"; };
@@ -3911,6 +3919,10 @@
 		8947342E13370F5000B0AD11 /* iCon */ = {
 			isa = PBXGroup;
 			children = (
+				578ED79617EAD61A00771497 /* Icon-ios7-76@2x.png */,
+				578ED78C17EAD51F00771497 /* Icon-72@2x.png */,
+				578ED78E17EAD51F00771497 /* Icon-ios7-76.png */,
+				578ED78F17EAD51F00771497 /* Icon-ios7-120.png */,
 				8947342F13370F5000B0AD11 /* Icon-72.png */,
 				8947343013370F5000B0AD11 /* Icon-Small-50.png */,
 				8947343113370F5000B0AD11 /* Icon-Small.png */,
@@ -4997,6 +5009,10 @@
 				7D25EA0A17A7ACD6003E60A0 /* ipad-activity-stream-portrait@2x.png in Resources */,
 				7D25EA0B17A7ACD6003E60A0 /* ipad-apps-portrait@2x.png in Resources */,
 				7D25EA0C17A7ACD6003E60A0 /* ipad-documents-portrait@2x.png in Resources */,
+				578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */,
+				578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */,
+				578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */,
+				578ED79717EAD61A00771497 /* Icon-ios7-76@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5568,7 +5584,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
@@ -5599,7 +5615,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B3366449-19FB-4EB9-A35E-CAF6C167D6BD";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
