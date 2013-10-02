@@ -354,8 +354,4 @@
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.topItem.rightBarButtonItem.enabled = YES;
 
 }
-
-
-
-
 @end

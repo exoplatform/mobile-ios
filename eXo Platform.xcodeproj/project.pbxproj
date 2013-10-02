@@ -428,6 +428,13 @@
 		7D02603917867EEC00C3FA24 /* WelcomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603717867EEC00C3FA24 /* WelcomeViewController_iPad.xib */; };
 		7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */; };
 		7D02603E1786B58A00C3FA24 /* SignUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */; };
+		7D212DF517FA861100AF93D1 /* iOS-SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DF417FA861100AF93D1 /* iOS-SDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		7D212E0017FA892200AF93D1 /* libspeex.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFE17FA892200AF93D1 /* libspeex.ios.a */; };
+		7D212E0117FA892200AF93D1 /* libvpx.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFF17FA892200AF93D1 /* libvpx.ios.a */; };
+		7D212E0B17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0917FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m */; };
+		7D212E0C17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0A17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib */; };
+		7D212E1017FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */; };
+		7D212E1117FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */; };
 		7D25E9DD17A7A6B6003E60A0 /* iphone5-activity-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */; };
 		7D25E9DE17A7A6B6003E60A0 /* iphone5-activity-stream@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9D017A7A6B6003E60A0 /* iphone5-activity-stream@2x.png */; };
 		7D25E9DF17A7A6B6003E60A0 /* iphone5-apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9D117A7A6B6003E60A0 /* iphone5-apps@2x.png */; };
@@ -547,6 +554,15 @@
 		7DCA4F37176EB654002694D5 /* OnPremiseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F35176EB653002694D5 /* OnPremiseViewController_iPhone.m */; };
 		7DCA4F38176EB654002694D5 /* OnPremiseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCA4F36176EB653002694D5 /* OnPremiseViewController_iPhone.xib */; };
 		7DCA4F4E176F00FA002694D5 /* ExoCloudProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F4D176F00FA002694D5 /* ExoCloudProxy.m */; };
+		7DF39B1617F9606A000A3267 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1517F9606A000A3267 /* CoreVideo.framework */; };
+		7DF39B1817F96076000A3267 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1717F96076000A3267 /* GLKit.framework */; };
+		7DF39B1A17F96080000A3267 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1917F96080000A3267 /* CoreMedia.framework */; };
+		7DF39B1C17F960A5000A3267 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1B17F960A5000A3267 /* OpenGLES.framework */; };
+		7DF39B1E17F960BD000A3267 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1D17F960BD000A3267 /* AVFoundation.framework */; };
+		7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */; };
+		7DF39B2217F96E43000A3267 /* HomeCallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B2117F96E43000A3267 /* HomeCallIcon.png */; };
+		7DF39B2C17F9882F000A3267 /* VideoCallViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF39B2A17F9882F000A3267 /* VideoCallViewController_iPhone.m */; };
+		7DF39B2D17F9882F000A3267 /* VideoCallViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B2B17F9882F000A3267 /* VideoCallViewController_iPhone.xib */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1512,6 +1528,15 @@
 		7D02603A1786B58A00C3FA24 /* SignUpViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPad.h; sourceTree = "<group>"; };
 		7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController_iPad.m; sourceTree = "<group>"; };
 		7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController_iPad.xib; sourceTree = "<group>"; };
+		7D212DF417FA861100AF93D1 /* iOS-SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "iOS-SDK.framework"; sourceTree = "<group>"; };
+		7D212DFE17FA892200AF93D1 /* libspeex.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libspeex.ios.a; sourceTree = "<group>"; };
+		7D212DFF17FA892200AF93D1 /* libvpx.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libvpx.ios.a; sourceTree = "<group>"; };
+		7D212E0817FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTabViewController_iPhone.h; sourceTree = "<group>"; };
+		7D212E0917FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTabViewController_iPhone.m; sourceTree = "<group>"; };
+		7D212E0A17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTabViewController_iPhone.xib; sourceTree = "<group>"; };
+		7D212E0D17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController_iPhone.h; sourceTree = "<group>"; };
+		7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController_iPhone.m; sourceTree = "<group>"; };
+		7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentsTabViewController_iPhone.xib; sourceTree = "<group>"; };
 		7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-details@2x.png"; sourceTree = "<group>"; };
 		7D25E9D017A7A6B6003E60A0 /* iphone5-activity-stream@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-stream@2x.png"; sourceTree = "<group>"; };
 		7D25E9D117A7A6B6003E60A0 /* iphone5-apps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-apps@2x.png"; sourceTree = "<group>"; };
@@ -1651,6 +1676,16 @@
 		7DCA4F36176EB653002694D5 /* OnPremiseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnPremiseViewController_iPhone.xib; sourceTree = "<group>"; };
 		7DCA4F4C176F00FA002694D5 /* ExoCloudProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCloudProxy.h; sourceTree = "<group>"; };
 		7DCA4F4D176F00FA002694D5 /* ExoCloudProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCloudProxy.m; sourceTree = "<group>"; };
+		7DF39B1517F9606A000A3267 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		7DF39B1717F96076000A3267 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		7DF39B1917F96080000A3267 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7DF39B1B17F960A5000A3267 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		7DF39B1D17F960BD000A3267 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeCallIcon@2x.png"; sourceTree = "<group>"; };
+		7DF39B2117F96E43000A3267 /* HomeCallIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeCallIcon.png; sourceTree = "<group>"; };
+		7DF39B2917F9882F000A3267 /* VideoCallViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallViewController_iPhone.h; sourceTree = "<group>"; };
+		7DF39B2A17F9882F000A3267 /* VideoCallViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallViewController_iPhone.m; sourceTree = "<group>"; };
+		7DF39B2B17F9882F000A3267 /* VideoCallViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCallViewController_iPhone.xib; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -1890,6 +1925,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D212E0017FA892200AF93D1 /* libspeex.ios.a in Frameworks */,
+				7D212E0117FA892200AF93D1 /* libvpx.ios.a in Frameworks */,
+				7D212DF517FA861100AF93D1 /* iOS-SDK.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				7DF39B1E17F960BD000A3267 /* AVFoundation.framework in Frameworks */,
+				89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */,
+				7DF39B1C17F960A5000A3267 /* OpenGLES.framework in Frameworks */,
+				320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */,
+				7DF39B1A17F96080000A3267 /* CoreMedia.framework in Frameworks */,
+				7DF39B1817F96076000A3267 /* GLKit.framework in Frameworks */,
+				7DF39B1617F9606A000A3267 /* CoreVideo.framework in Frameworks */,
+				46C6B526138CAC2C0079C514 /* AudioToolbox.framework in Frameworks */,
 				46F6344414549DBC00BB57D4 /* libRestKitCoreData.a in Frameworks */,
 				46F6344514549DBC00BB57D4 /* libRestKitJSONParserJSONKit.a in Frameworks */,
 				46F6344614549DBC00BB57D4 /* libRestKitNetwork.a in Frameworks */,
@@ -1897,19 +1944,15 @@
 				46F6344814549DBC00BB57D4 /* libRestKitSupport.a in Frameworks */,
 				46F6344914549DBC00BB57D4 /* libRestKitXMLParserLibxml.a in Frameworks */,
 				46F63426145467E200BB57D4 /* libidn.a in Frameworks */,
-				46C6B526138CAC2C0079C514 /* AudioToolbox.framework in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
 				320A737074758E53BA54BE95 /* libThree20UINavigator.a in Frameworks */,
 				320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */,
 				320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */,
-				320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */,
 				320A5A189C235877202780D5 /* libThree20Network.a in Frameworks */,
 				320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */,
 				7CE85B0713C46D0C00A219EB /* MobileCoreServices.framework in Frameworks */,
 				7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */,
 				7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */,
@@ -2156,6 +2199,12 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D212DF417FA861100AF93D1 /* iOS-SDK.framework */,
+				7DF39B1D17F960BD000A3267 /* AVFoundation.framework */,
+				7DF39B1B17F960A5000A3267 /* OpenGLES.framework */,
+				7DF39B1917F96080000A3267 /* CoreMedia.framework */,
+				7DF39B1717F96076000A3267 /* GLKit.framework */,
+				7DF39B1517F9606A000A3267 /* CoreVideo.framework */,
 				466FD6FC148E5BF5005A1B78 /* Crashlytics.framework */,
 				7CEA558713C54CAF00FCB43A /* RestKit.xcodeproj */,
 				3201088596B4756681693700 /* Three20UICommon.xcodeproj */,
@@ -2454,6 +2503,7 @@
 		46616C70137C729400D53D3D /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				7D212E0217FA893500AF93D1 /* Libraries */,
 				46C6B50B138CA87F0079C514 /* ATMHud */,
 				46616C71137C729400D53D3D /* SSToolKit */,
 			);
@@ -2795,6 +2845,7 @@
 		46BF6E471379640600D1E1A5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				7DF39B2117F96E43000A3267 /* HomeCallIcon.png */,
 				A622269915996D99003FAC28 /* NavbarMenuButton.png */,
 				46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */,
 				46CAF7491379907B0017C959 /* HomeActivityStreamsIconiPhone.png */,
@@ -2810,6 +2861,7 @@
 		46BF6E481379641000D1E1A5 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */,
 				A622269B15996DB1003FAC28 /* NavbarMenuButton@2x.png */,
 				461931531385529D00EEB664 /* HomeBubbleBackground@2x.png */,
 				46CAF76113799D5F0017C959 /* HomeNotificationPanelBgIphone@2x.png */,
@@ -3231,6 +3283,16 @@
 			path = Sources/Shared/Classes/KissXML;
 			sourceTree = SOURCE_ROOT;
 		};
+		7D212E0217FA893500AF93D1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				7D212DFE17FA892200AF93D1 /* libspeex.ios.a */,
+				7D212DFF17FA892200AF93D1 /* libvpx.ios.a */,
+			);
+			name = Libraries;
+			path = ../../Libraries;
+			sourceTree = "<group>";
+		};
 		7D25E9CE17A7A6B6003E60A0 /* iphone5_retina */ = {
 			isa = PBXGroup;
 			children = (
@@ -3590,6 +3652,23 @@
 			path = CloudSignup;
 			sourceTree = "<group>";
 		};
+		7DF39B2317F97BF3000A3267 /* VideoCall */ = {
+			isa = PBXGroup;
+			children = (
+				7DF39B2917F9882F000A3267 /* VideoCallViewController_iPhone.h */,
+				7DF39B2A17F9882F000A3267 /* VideoCallViewController_iPhone.m */,
+				7DF39B2B17F9882F000A3267 /* VideoCallViewController_iPhone.xib */,
+				7D212E0817FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.h */,
+				7D212E0917FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m */,
+				7D212E0A17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib */,
+				7D212E0D17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.h */,
+				7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */,
+				7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */,
+			);
+			name = VideoCall;
+			path = "/Users/vietnq/ios/mobile-ios/Sources/iPhone/View Controllers/VideoCall";
+			sourceTree = "<absolute>";
+		};
 		7DFD1912177986970053F6F3 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
@@ -3745,6 +3824,7 @@
 		8947323B1336FFE400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7DF39B2317F97BF3000A3267 /* VideoCall */,
 				7DB91BA217697D3D001CA575 /* CloudSignup */,
 				7CAB42D413A7689F00CED7A3 /* Social */,
 				8947338613370B4500B0AD11 /* File */,
@@ -5013,6 +5093,11 @@
 				578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */,
 				578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */,
 				578ED79717EAD61A00771497 /* Icon-ios7-76@2x.png in Resources */,
+				7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */,
+				7DF39B2217F96E43000A3267 /* HomeCallIcon.png in Resources */,
+				7DF39B2D17F9882F000A3267 /* VideoCallViewController_iPhone.xib in Resources */,
+				7D212E0C17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib in Resources */,
+				7D212E1117FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5265,6 +5350,9 @@
 				7DBB704D178A9990002B387B /* OnPremiseViewController_iPad.m in Sources */,
 				7DBB7051178AA2D2002B387B /* eXoNavigationController.m in Sources */,
 				7D6931DB17968B21008CCE72 /* LogoSlogan.m in Sources */,
+				7DF39B2C17F9882F000A3267 /* VideoCallViewController_iPhone.m in Sources */,
+				7D212E0B17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m in Sources */,
+				7D212E1017FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5382,11 +5470,14 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/iOS-SDK.framework\"",
+					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
+					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = (
@@ -5427,11 +5518,14 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/iOS-SDK.framework\"",
+					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
+					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5474,7 +5568,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = eXo;
@@ -5514,12 +5608,15 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/iOS-SDK.framework\"",
+					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
+					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5563,7 +5660,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = eXo;
@@ -5603,12 +5700,15 @@
 					Three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/iOS-SDK.framework\"",
+					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
+					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5756,7 +5856,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
@@ -5793,7 +5893,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = eXo;

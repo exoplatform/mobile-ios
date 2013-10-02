@@ -124,7 +124,6 @@
     _launcherView.pager.hidesForSinglePage = YES;
 
     
-    //TODO Localize
     TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"News")
                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                        URL:@"tt://activityStream" canDelete:NO] autorelease];
@@ -141,11 +140,14 @@
     TTLauncherItem *settingItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"Settings")
                                                                    image:@"bundle://HomeSettingsIconiPhone.png"
                                                                      URL:@"tt://setting" canDelete:NO] autorelease];
-    if(_isCompatibleWithSocial)
+    
+    if(_isCompatibleWithSocial) {
         _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
                                                          actStreamItem, documentItem, dashboardItem, settingItem, nil], nil];
-    else
-        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects: documentItem, dashboardItem, settingItem, nil], nil];    
+    } else {
+        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects: documentItem, dashboardItem, settingItem, nil], nil];
+    }
+        
     [self.view addSubview:_launcherView];
 }
 
@@ -195,6 +197,8 @@
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self.navigationController presentModalViewController:navController animated:YES];
     }
+    
+    
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher 

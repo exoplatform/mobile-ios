@@ -20,6 +20,9 @@
 #import "AppDelegate_iPhone.h"
 #import "UserProfileViewController.h"
 #import "UserPreferencesManager.h"
+#import "VideoCallViewController_iPhone.h"
+#import "RecentsTabViewController_iPhone.h"
+#import "ContactsTabViewController_iPhone.h"
 
 #define kUserProfileViewHeight 70.0
 
@@ -297,6 +300,7 @@
           [JTTableViewCellModalSimpleType modalWithTitle:@"News" type:eXoActivityStream],
           [JTTableViewCellModalSimpleType modalWithTitle:@"Documents" type:eXoDocuments],
           [JTTableViewCellModalSimpleType modalWithTitle:@"Dashboard" type:eXoDashboard],
+          [JTTableViewCellModalSimpleType modalWithTitle:@"Call" type:eXoWeemoCall],
           [JTTableViewCellModalSimpleType modalWithTitle:@"Settings" type:eXoSettings],
 
           nil]
@@ -483,6 +487,9 @@
 
             }
                 break;
+            case eXoWeemoCall:
+                cell.imageView.image = [UIImage imageNamed:@"HomeCallIcon.png"];
+                break;
             default:
                 break;
         }
@@ -569,6 +576,16 @@
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
+                
+            case eXoWeemoCall: {
+                VideoCallViewController_iPhone *videoCallVC = [[VideoCallViewController_iPhone alloc] initWithNibName:@"VideoCallViewController_iPhone" bundle:nil];
+                [self setRootViewController:videoCallVC animated:YES];
+                [videoCallVC release];
+                [_revealView revealSidebar:NO];
+                rowType = [(JTTableViewCellModalSimpleType *)object type];
+                
+                break;
+            }
             default:
                 break;
         }

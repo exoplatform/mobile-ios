@@ -15,6 +15,7 @@ typedef enum {
     eXoDocuments = 1,
     eXoDashboard = 2,
     eXoSettings = 3,
+    eXoWeemoCall = 4
 } JTTableRowTypes;
 
 @class JTRevealSidebarView;
