@@ -20,7 +20,7 @@
 #import "AppDelegate_iPhone.h"
 #import "UserProfileViewController.h"
 #import "UserPreferencesManager.h"
-#import "VideoCallViewController_iPhone.h"
+#import "ExoCallViewController_iPhone.h"
 #import "RecentsTabViewController_iPhone.h"
 #import "ContactsTabViewController_iPhone.h"
 
@@ -578,7 +578,7 @@
                 break;
                 
             case eXoWeemoCall: {
-                VideoCallViewController_iPhone *videoCallVC = [[VideoCallViewController_iPhone alloc] initWithNibName:@"VideoCallViewController_iPhone" bundle:nil];
+                ExoCallViewController_iPhone *videoCallVC = [[ExoCallViewController_iPhone alloc] initWithNibName:@"ExoCallViewController_iPhone" bundle:nil];
                 [self setRootViewController:videoCallVC animated:YES];
                 [videoCallVC release];
                 [_revealView revealSidebar:NO];

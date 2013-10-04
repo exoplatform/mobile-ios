@@ -13,6 +13,8 @@
 #import "UserPreferencesManager.h"
 #import "AlreadyAccountViewController.h"
 #import "OnPremiseViewController.h"
+#import "ExoWeemoHandler.h"
+
 @interface LoginProxy()
 //private variables
 @property (nonatomic,retain) NSString *username;
@@ -197,6 +199,11 @@ return self;
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
             [_delegate loginProxy:self platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
         }
+        
+        //connect and authenticate to Weemo cloud
+        [ExoWeemoHandler sharedInstance].userId = self.username;
+        [[ExoWeemoHandler sharedInstance] connect];
+        
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];

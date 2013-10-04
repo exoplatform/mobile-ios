@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ExoWeemoHandler.h"
 @interface eXoMobileAppDelegate : NSObject <UIApplicationDelegate> {
-    
+
     
 }
-
+@property (nonatomic, retain) ExoWeemoHandler *weemoHandler;
 @end
 

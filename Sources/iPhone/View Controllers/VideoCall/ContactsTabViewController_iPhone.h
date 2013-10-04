@@ -10,5 +10,9 @@
 #import "eXoViewController.h"
 
 @interface ContactsTabViewController_iPhone : eXoViewController
+@property (nonatomic, retain) IBOutlet UILabel *uidLabel;
+@property (nonatomic, retain) IBOutlet UILabel *callStatusLabel;
+@property (nonatomic, retain) IBOutlet UITextField *calledIdTf;
 
+- (IBAction)call:(id)sender;
 @end

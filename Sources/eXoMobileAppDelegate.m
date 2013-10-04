@@ -10,13 +10,15 @@
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
 @implementation eXoMobileAppDelegate
-
+@synthesize weemoHandler = _weemoHandler;
 
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    
+    self.weemoHandler = [ExoWeemoHandler sharedInstance];
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
     return YES;
@@ -42,6 +44,7 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+    [[Weemo instance] background];
 }
 
 
@@ -49,6 +52,7 @@
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
+    [[Weemo instance] foreground];
 }
 
 
@@ -79,6 +83,7 @@
 
 - (void)dealloc {
 	[super dealloc];
+    [_weemoHandler release];
 }
 
 
