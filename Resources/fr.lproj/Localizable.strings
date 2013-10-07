@@ -315,7 +315,8 @@
 
 "DateFmt" = "%4$@%1$@%2$@%3$@";
 
- // Order of the message: direction - modifier - number - measure
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
 
 "DateFmt ago" = "Il y a ";
 
