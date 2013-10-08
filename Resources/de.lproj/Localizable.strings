@@ -377,6 +377,7 @@
 /*
  * Cloud sign up assistant 
  */
+
 "ServerNotAvailable" = "Verbindung zu Ihrem Intranet nicht möglich, bitte überprüfen Sie die Adresse oder kontaktieren Sie Ihren Administrator";
 
 "AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
