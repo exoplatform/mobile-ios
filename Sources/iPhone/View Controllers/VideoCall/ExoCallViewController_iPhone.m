@@ -8,7 +8,8 @@
 
 #import "ExoCallViewController_iPhone.h"
 #import "RecentsTabViewController_iPhone.h"
-#import "ContactsTabViewController_iPhone.h"
+#import "DialViewController_iPhone.h"
+#import "PeopleViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
 
 @interface ExoCallViewController_iPhone ()
@@ -25,8 +26,13 @@
         // Custom initialization
         _tabVC = [[UITabBarController alloc] init];
         RecentsTabViewController_iPhone *recentsVC = [[RecentsTabViewController_iPhone alloc] initWithNibName:@"RecentsTabViewController_iPhone" bundle:nil];
-        ContactsTabViewController_iPhone *contactsVC = [[ContactsTabViewController_iPhone alloc] initWithNibName:@"ContactsTabViewController_iPhone" bundle:nil];
-        [_tabVC setViewControllers:[NSArray arrayWithObjects:recentsVC, contactsVC, nil]];
+        
+        PeopleViewController_iPhone *peopleVC = [[PeopleViewController_iPhone alloc] initWithNibName:@"PeopleViewController_iPhone" bundle:nil];
+        
+        DialViewController_iPhone *dialVC = [[DialViewController_iPhone alloc] initWithNibName:@"ContactsTabViewController_iPhone" bundle:nil];
+        
+        [_tabVC setViewControllers:[NSArray arrayWithObjects:recentsVC, peopleVC, dialVC, nil]];
+        
         _tabVC.view.frame = self.view.frame;
         [self.view addSubview:_tabVC.view];
         

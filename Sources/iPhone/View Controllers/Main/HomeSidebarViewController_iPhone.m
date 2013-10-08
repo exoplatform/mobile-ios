@@ -22,7 +22,7 @@
 #import "UserPreferencesManager.h"
 #import "ExoCallViewController_iPhone.h"
 #import "RecentsTabViewController_iPhone.h"
-#import "ContactsTabViewController_iPhone.h"
+#import "DialViewController_iPhone.h"
 
 #define kUserProfileViewHeight 70.0
 

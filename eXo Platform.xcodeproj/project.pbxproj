@@ -429,16 +429,13 @@
 		7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */; };
 		7D02603E1786B58A00C3FA24 /* SignUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */; };
 		7D212DF517FA861100AF93D1 /* iOS-SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DF417FA861100AF93D1 /* iOS-SDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		7D212E0B17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0917FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m */; };
-		7D212E0C17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0A17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib */; };
+		7D212E0B17FAC2CC00AF93D1 /* DialViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0917FAC2CC00AF93D1 /* DialViewController_iPhone.m */; };
+		7D212E0C17FAC2CC00AF93D1 /* DialViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0A17FAC2CC00AF93D1 /* DialViewController_iPhone.xib */; };
 		7D212E1017FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */; };
 		7D212E1117FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */; };
 		7D212E1517FD059900AF93D1 /* ExoWeemoHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E1417FD059900AF93D1 /* ExoWeemoHandler.mm */; };
 		7D212E1617FD1B1300AF93D1 /* libspeex.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFE17FA892200AF93D1 /* libspeex.ios.a */; };
 		7D212E1717FD1B2300AF93D1 /* libvpx.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFF17FA892200AF93D1 /* libvpx.ios.a */; };
-		7D212E2617FEA46700AF93D1 /* ExoWeemoCall in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E2517FEA46700AF93D1 /* ExoWeemoCall */; };
-		7D212E2A17FEB5A600AF93D1 /* VideoCallViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E2817FEB5A300AF93D1 /* VideoCallViewController_iPhone.m */; };
-		7D212E2B17FEB5A600AF93D1 /* VideoCallViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E2917FEB5A500AF93D1 /* VideoCallViewController_iPhone.xib */; };
 		7D25E9DD17A7A6B6003E60A0 /* iphone5-activity-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */; };
 		7D25E9DE17A7A6B6003E60A0 /* iphone5-activity-stream@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9D017A7A6B6003E60A0 /* iphone5-activity-stream@2x.png */; };
 		7D25E9DF17A7A6B6003E60A0 /* iphone5-apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9D117A7A6B6003E60A0 /* iphone5-apps@2x.png */; };
@@ -541,6 +538,51 @@
 		7D9B77FA1785C840003F8D19 /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77EA1785C840003F8D19 /* label.png */; };
 		7D9B77FB1785C840003F8D19 /* number_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77EB1785C840003F8D19 /* number_bg.png */; };
 		7D9B77FC1785C840003F8D19 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77EC1785C840003F8D19 /* separator.png */; };
+		7DAEF1B31802572300E610E1 /* CallViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF1B11802572300E610E1 /* CallViewController_iPhone.m */; };
+		7DAEF1B41802572300E610E1 /* CallViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1B21802572300E610E1 /* CallViewController_iPhone.xib */; };
+		7DAEF2091802745F00E610E1 /* bkgd_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E21802745F00E610E1 /* bkgd_active.png */; };
+		7DAEF20A1802745F00E610E1 /* bkgd_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E31802745F00E610E1 /* bkgd_active@2x.png */; };
+		7DAEF20B1802745F00E610E1 /* bkgd_active@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E41802745F00E610E1 /* bkgd_active@2x~ipad.png */; };
+		7DAEF20C1802745F00E610E1 /* bkgd_active~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E51802745F00E610E1 /* bkgd_active~ipad.png */; };
+		7DAEF20D1802745F00E610E1 /* bkgd_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E61802745F00E610E1 /* bkgd_inactive.png */; };
+		7DAEF20E1802745F00E610E1 /* bkgd_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E71802745F00E610E1 /* bkgd_inactive@2x.png */; };
+		7DAEF20F1802745F00E610E1 /* bkgd_inactive@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E81802745F00E610E1 /* bkgd_inactive@2x~ipad.png */; };
+		7DAEF2101802745F00E610E1 /* bkgd_inactive~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E91802745F00E610E1 /* bkgd_inactive~ipad.png */; };
+		7DAEF2111802745F00E610E1 /* bkgd_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1EA1802745F00E610E1 /* bkgd_red.png */; };
+		7DAEF2121802745F00E610E1 /* bkgd_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1EB1802745F00E610E1 /* bkgd_red@2x.png */; };
+		7DAEF2131802745F00E610E1 /* bkgd_red@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1EC1802745F00E610E1 /* bkgd_red@2x~ipad.png */; };
+		7DAEF2141802745F00E610E1 /* bkgd_red~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1ED1802745F00E610E1 /* bkgd_red~ipad.png */; };
+		7DAEF2151802745F00E610E1 /* button_blue_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1EE1802745F00E610E1 /* button_blue_background.png */; };
+		7DAEF2161802745F00E610E1 /* button_grey_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1EF1802745F00E610E1 /* button_grey_background.png */; };
+		7DAEF2171802745F00E610E1 /* call_hangup.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F01802745F00E610E1 /* call_hangup.png */; };
+		7DAEF2181802745F00E610E1 /* call_hangup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F11802745F00E610E1 /* call_hangup@2x.png */; };
+		7DAEF2191802745F00E610E1 /* call_hangup@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F21802745F00E610E1 /* call_hangup@2x~ipad.png */; };
+		7DAEF21A1802745F00E610E1 /* call_hangup~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F31802745F00E610E1 /* call_hangup~ipad.png */; };
+		7DAEF21B1802745F00E610E1 /* call_HD.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F41802745F00E610E1 /* call_HD.png */; };
+		7DAEF21C1802745F00E610E1 /* call_HD@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F51802745F00E610E1 /* call_HD@2x.png */; };
+		7DAEF21D1802745F00E610E1 /* call_HD@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F61802745F00E610E1 /* call_HD@2x~ipad.png */; };
+		7DAEF21E1802745F00E610E1 /* call_HD~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F71802745F00E610E1 /* call_HD~ipad.png */; };
+		7DAEF21F1802745F00E610E1 /* call_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F81802745F00E610E1 /* call_mute.png */; };
+		7DAEF2201802745F00E610E1 /* call_mute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1F91802745F00E610E1 /* call_mute@2x.png */; };
+		7DAEF2211802745F00E610E1 /* call_mute@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1FA1802745F00E610E1 /* call_mute@2x~ipad.png */; };
+		7DAEF2221802745F00E610E1 /* call_mute~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1FB1802745F00E610E1 /* call_mute~ipad.png */; };
+		7DAEF2231802745F00E610E1 /* call_SD copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1FC1802745F00E610E1 /* call_SD copy.png */; };
+		7DAEF2241802745F00E610E1 /* call_SD.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1FD1802745F00E610E1 /* call_SD.png */; };
+		7DAEF2251802745F00E610E1 /* call_SD@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1FE1802745F00E610E1 /* call_SD@2x.png */; };
+		7DAEF2261802745F00E610E1 /* call_SD@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1FF1802745F00E610E1 /* call_SD@2x~ipad.png */; };
+		7DAEF2271802745F00E610E1 /* call_SD~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2001802745F00E610E1 /* call_SD~ipad.png */; };
+		7DAEF2281802745F00E610E1 /* call_switch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2011802745F00E610E1 /* call_switch.png */; };
+		7DAEF2291802745F00E610E1 /* call_switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2021802745F00E610E1 /* call_switch@2x.png */; };
+		7DAEF22A1802745F00E610E1 /* call_switch@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2031802745F00E610E1 /* call_switch@2x~ipad.png */; };
+		7DAEF22B1802745F00E610E1 /* call_switch~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2041802745F00E610E1 /* call_switch~ipad.png */; };
+		7DAEF22C1802745F00E610E1 /* call_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2051802745F00E610E1 /* call_video.png */; };
+		7DAEF22D1802745F00E610E1 /* call_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2061802745F00E610E1 /* call_video@2x.png */; };
+		7DAEF22E1802745F00E610E1 /* call_video@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2071802745F00E610E1 /* call_video@2x~ipad.png */; };
+		7DAEF22F1802745F00E610E1 /* call_video~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2081802745F00E610E1 /* call_video~ipad.png */; };
+		7DAEF2331803ED4400E610E1 /* PeopleViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF2311803ED4300E610E1 /* PeopleViewController_iPhone.m */; };
+		7DAEF2341803ED4400E610E1 /* PeopleViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2321803ED4400E610E1 /* PeopleViewController_iPhone.xib */; };
+		7DAEF2391803F1D100E610E1 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF2381803F1D000E610E1 /* CallViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		7DAEF23C1803F2F100E610E1 /* WeemoContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF23B1803F2F100E610E1 /* WeemoContact.m */; };
 		7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA017697D0A001CA575 /* WelcomeViewController.m */; };
 		7DB91BA617697D6E001CA575 /* WelcomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */; };
 		7DB91BA717697D6E001CA575 /* WelcomeViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */; };
@@ -1535,18 +1577,14 @@
 		7D212DF417FA861100AF93D1 /* iOS-SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "iOS-SDK.framework"; sourceTree = "<group>"; };
 		7D212DFE17FA892200AF93D1 /* libspeex.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeex.ios.a; path = ../Resources/ThirdPart/Libraries/libspeex.ios.a; sourceTree = "<group>"; };
 		7D212DFF17FA892200AF93D1 /* libvpx.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.ios.a; path = ../Resources/ThirdPart/Libraries/libvpx.ios.a; sourceTree = "<group>"; };
-		7D212E0817FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTabViewController_iPhone.h; sourceTree = "<group>"; };
-		7D212E0917FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTabViewController_iPhone.m; sourceTree = "<group>"; };
-		7D212E0A17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTabViewController_iPhone.xib; sourceTree = "<group>"; };
+		7D212E0817FAC2CC00AF93D1 /* DialViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialViewController_iPhone.h; sourceTree = "<group>"; };
+		7D212E0917FAC2CC00AF93D1 /* DialViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialViewController_iPhone.m; sourceTree = "<group>"; };
+		7D212E0A17FAC2CC00AF93D1 /* DialViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialViewController_iPhone.xib; sourceTree = "<group>"; };
 		7D212E0D17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController_iPhone.h; sourceTree = "<group>"; };
 		7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController_iPhone.m; sourceTree = "<group>"; };
 		7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentsTabViewController_iPhone.xib; sourceTree = "<group>"; };
 		7D212E1317FD059900AF93D1 /* ExoWeemoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoWeemoHandler.h; sourceTree = "<group>"; };
 		7D212E1417FD059900AF93D1 /* ExoWeemoHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ExoWeemoHandler.mm; sourceTree = "<group>"; };
-		7D212E2517FEA46700AF93D1 /* ExoWeemoCall */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ExoWeemoCall; path = "/Users/vietnq/ios/mobile-ios/Resources/Images/Shared/ExoWeemoCall"; sourceTree = "<absolute>"; };
-		7D212E2717FEB5A200AF93D1 /* VideoCallViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallViewController_iPhone.h; sourceTree = "<group>"; };
-		7D212E2817FEB5A300AF93D1 /* VideoCallViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallViewController_iPhone.m; sourceTree = "<group>"; };
-		7D212E2917FEB5A500AF93D1 /* VideoCallViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCallViewController_iPhone.xib; sourceTree = "<group>"; };
 		7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-details@2x.png"; sourceTree = "<group>"; };
 		7D25E9D017A7A6B6003E60A0 /* iphone5-activity-stream@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-stream@2x.png"; sourceTree = "<group>"; };
 		7D25E9D117A7A6B6003E60A0 /* iphone5-apps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-apps@2x.png"; sourceTree = "<group>"; };
@@ -1658,6 +1696,55 @@
 		7D9B77EA1785C840003F8D19 /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		7D9B77EB1785C840003F8D19 /* number_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_bg.png; sourceTree = "<group>"; };
 		7D9B77EC1785C840003F8D19 /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
+		7DAEF1B01802572300E610E1 /* CallViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController_iPhone.h; sourceTree = "<group>"; };
+		7DAEF1B11802572300E610E1 /* CallViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController_iPhone.m; sourceTree = "<group>"; };
+		7DAEF1B21802572300E610E1 /* CallViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DAEF1E21802745F00E610E1 /* bkgd_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd_active.png; sourceTree = "<group>"; };
+		7DAEF1E31802745F00E610E1 /* bkgd_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_active@2x.png"; sourceTree = "<group>"; };
+		7DAEF1E41802745F00E610E1 /* bkgd_active@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_active@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1E51802745F00E610E1 /* bkgd_active~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_active~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1E61802745F00E610E1 /* bkgd_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd_inactive.png; sourceTree = "<group>"; };
+		7DAEF1E71802745F00E610E1 /* bkgd_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_inactive@2x.png"; sourceTree = "<group>"; };
+		7DAEF1E81802745F00E610E1 /* bkgd_inactive@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_inactive@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1E91802745F00E610E1 /* bkgd_inactive~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_inactive~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1EA1802745F00E610E1 /* bkgd_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd_red.png; sourceTree = "<group>"; };
+		7DAEF1EB1802745F00E610E1 /* bkgd_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_red@2x.png"; sourceTree = "<group>"; };
+		7DAEF1EC1802745F00E610E1 /* bkgd_red@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_red@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1ED1802745F00E610E1 /* bkgd_red~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_red~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1EE1802745F00E610E1 /* button_blue_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_blue_background.png; sourceTree = "<group>"; };
+		7DAEF1EF1802745F00E610E1 /* button_grey_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_grey_background.png; sourceTree = "<group>"; };
+		7DAEF1F01802745F00E610E1 /* call_hangup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_hangup.png; sourceTree = "<group>"; };
+		7DAEF1F11802745F00E610E1 /* call_hangup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_hangup@2x.png"; sourceTree = "<group>"; };
+		7DAEF1F21802745F00E610E1 /* call_hangup@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_hangup@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1F31802745F00E610E1 /* call_hangup~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_hangup~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1F41802745F00E610E1 /* call_HD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_HD.png; sourceTree = "<group>"; };
+		7DAEF1F51802745F00E610E1 /* call_HD@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_HD@2x.png"; sourceTree = "<group>"; };
+		7DAEF1F61802745F00E610E1 /* call_HD@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_HD@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1F71802745F00E610E1 /* call_HD~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_HD~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1F81802745F00E610E1 /* call_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_mute.png; sourceTree = "<group>"; };
+		7DAEF1F91802745F00E610E1 /* call_mute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_mute@2x.png"; sourceTree = "<group>"; };
+		7DAEF1FA1802745F00E610E1 /* call_mute@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_mute@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1FB1802745F00E610E1 /* call_mute~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_mute~ipad.png"; sourceTree = "<group>"; };
+		7DAEF1FC1802745F00E610E1 /* call_SD copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_SD copy.png"; sourceTree = "<group>"; };
+		7DAEF1FD1802745F00E610E1 /* call_SD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_SD.png; sourceTree = "<group>"; };
+		7DAEF1FE1802745F00E610E1 /* call_SD@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_SD@2x.png"; sourceTree = "<group>"; };
+		7DAEF1FF1802745F00E610E1 /* call_SD@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_SD@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF2001802745F00E610E1 /* call_SD~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_SD~ipad.png"; sourceTree = "<group>"; };
+		7DAEF2011802745F00E610E1 /* call_switch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_switch.png; sourceTree = "<group>"; };
+		7DAEF2021802745F00E610E1 /* call_switch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_switch@2x.png"; sourceTree = "<group>"; };
+		7DAEF2031802745F00E610E1 /* call_switch@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_switch@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF2041802745F00E610E1 /* call_switch~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_switch~ipad.png"; sourceTree = "<group>"; };
+		7DAEF2051802745F00E610E1 /* call_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_video.png; sourceTree = "<group>"; };
+		7DAEF2061802745F00E610E1 /* call_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_video@2x.png"; sourceTree = "<group>"; };
+		7DAEF2071802745F00E610E1 /* call_video@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_video@2x~ipad.png"; sourceTree = "<group>"; };
+		7DAEF2081802745F00E610E1 /* call_video~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_video~ipad.png"; sourceTree = "<group>"; };
+		7DAEF2301803ED4300E610E1 /* PeopleViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController_iPhone.h; sourceTree = "<group>"; };
+		7DAEF2311803ED4300E610E1 /* PeopleViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController_iPhone.m; sourceTree = "<group>"; };
+		7DAEF2321803ED4400E610E1 /* PeopleViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DAEF2371803F1D000E610E1 /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
+		7DAEF2381803F1D000E610E1 /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
+		7DAEF23A1803F2F100E610E1 /* WeemoContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoContact.h; sourceTree = "<group>"; };
+		7DAEF23B1803F2F100E610E1 /* WeemoContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoContact.m; sourceTree = "<group>"; };
 		7DB91B9F17697D0A001CA575 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		7DB91BA017697D0A001CA575 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		7DB91BA317697D6E001CA575 /* WelcomeViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController_iPhone.h; sourceTree = "<group>"; };
@@ -3308,6 +3395,10 @@
 			children = (
 				7D212E1317FD059900AF93D1 /* ExoWeemoHandler.h */,
 				7D212E1417FD059900AF93D1 /* ExoWeemoHandler.mm */,
+				7DAEF2371803F1D000E610E1 /* CallViewController.h */,
+				7DAEF2381803F1D000E610E1 /* CallViewController.m */,
+				7DAEF23A1803F2F100E610E1 /* WeemoContact.h */,
+				7DAEF23B1803F2F100E610E1 /* WeemoContact.m */,
 			);
 			name = ExoWeemoCall;
 			path = VideoCall;
@@ -3524,6 +3615,52 @@
 			path = "@1x";
 			sourceTree = "<group>";
 		};
+		7DAEF1E11802743200E610E1 /* ExoWeemoCall */ = {
+			isa = PBXGroup;
+			children = (
+				7DAEF1E21802745F00E610E1 /* bkgd_active.png */,
+				7DAEF1E31802745F00E610E1 /* bkgd_active@2x.png */,
+				7DAEF1E41802745F00E610E1 /* bkgd_active@2x~ipad.png */,
+				7DAEF1E51802745F00E610E1 /* bkgd_active~ipad.png */,
+				7DAEF1E61802745F00E610E1 /* bkgd_inactive.png */,
+				7DAEF1E71802745F00E610E1 /* bkgd_inactive@2x.png */,
+				7DAEF1E81802745F00E610E1 /* bkgd_inactive@2x~ipad.png */,
+				7DAEF1E91802745F00E610E1 /* bkgd_inactive~ipad.png */,
+				7DAEF1EA1802745F00E610E1 /* bkgd_red.png */,
+				7DAEF1EB1802745F00E610E1 /* bkgd_red@2x.png */,
+				7DAEF1EC1802745F00E610E1 /* bkgd_red@2x~ipad.png */,
+				7DAEF1ED1802745F00E610E1 /* bkgd_red~ipad.png */,
+				7DAEF1EE1802745F00E610E1 /* button_blue_background.png */,
+				7DAEF1EF1802745F00E610E1 /* button_grey_background.png */,
+				7DAEF1F01802745F00E610E1 /* call_hangup.png */,
+				7DAEF1F11802745F00E610E1 /* call_hangup@2x.png */,
+				7DAEF1F21802745F00E610E1 /* call_hangup@2x~ipad.png */,
+				7DAEF1F31802745F00E610E1 /* call_hangup~ipad.png */,
+				7DAEF1F41802745F00E610E1 /* call_HD.png */,
+				7DAEF1F51802745F00E610E1 /* call_HD@2x.png */,
+				7DAEF1F61802745F00E610E1 /* call_HD@2x~ipad.png */,
+				7DAEF1F71802745F00E610E1 /* call_HD~ipad.png */,
+				7DAEF1F81802745F00E610E1 /* call_mute.png */,
+				7DAEF1F91802745F00E610E1 /* call_mute@2x.png */,
+				7DAEF1FA1802745F00E610E1 /* call_mute@2x~ipad.png */,
+				7DAEF1FB1802745F00E610E1 /* call_mute~ipad.png */,
+				7DAEF1FC1802745F00E610E1 /* call_SD copy.png */,
+				7DAEF1FD1802745F00E610E1 /* call_SD.png */,
+				7DAEF1FE1802745F00E610E1 /* call_SD@2x.png */,
+				7DAEF1FF1802745F00E610E1 /* call_SD@2x~ipad.png */,
+				7DAEF2001802745F00E610E1 /* call_SD~ipad.png */,
+				7DAEF2011802745F00E610E1 /* call_switch.png */,
+				7DAEF2021802745F00E610E1 /* call_switch@2x.png */,
+				7DAEF2031802745F00E610E1 /* call_switch@2x~ipad.png */,
+				7DAEF2041802745F00E610E1 /* call_switch~ipad.png */,
+				7DAEF2051802745F00E610E1 /* call_video.png */,
+				7DAEF2061802745F00E610E1 /* call_video@2x.png */,
+				7DAEF2071802745F00E610E1 /* call_video@2x~ipad.png */,
+				7DAEF2081802745F00E610E1 /* call_video~ipad.png */,
+			);
+			path = ExoWeemoCall;
+			sourceTree = "<group>";
+		};
 		7DB91B9E17697CE4001CA575 /* CloudSignup */ = {
 			isa = PBXGroup;
 			children = (
@@ -3678,15 +3815,18 @@
 				7DF39B2917F9882F000A3267 /* ExoCallViewController_iPhone.h */,
 				7DF39B2A17F9882F000A3267 /* ExoCallViewController_iPhone.m */,
 				7DF39B2B17F9882F000A3267 /* ExoCallViewController_iPhone.xib */,
-				7D212E0817FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.h */,
-				7D212E0917FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m */,
-				7D212E0A17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib */,
+				7D212E0817FAC2CC00AF93D1 /* DialViewController_iPhone.h */,
+				7D212E0917FAC2CC00AF93D1 /* DialViewController_iPhone.m */,
+				7D212E0A17FAC2CC00AF93D1 /* DialViewController_iPhone.xib */,
 				7D212E0D17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.h */,
 				7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */,
 				7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */,
-				7D212E2717FEB5A200AF93D1 /* VideoCallViewController_iPhone.h */,
-				7D212E2817FEB5A300AF93D1 /* VideoCallViewController_iPhone.m */,
-				7D212E2917FEB5A500AF93D1 /* VideoCallViewController_iPhone.xib */,
+				7DAEF1B01802572300E610E1 /* CallViewController_iPhone.h */,
+				7DAEF1B11802572300E610E1 /* CallViewController_iPhone.m */,
+				7DAEF1B21802572300E610E1 /* CallViewController_iPhone.xib */,
+				7DAEF2301803ED4300E610E1 /* PeopleViewController_iPhone.h */,
+				7DAEF2311803ED4300E610E1 /* PeopleViewController_iPhone.m */,
+				7DAEF2321803ED4400E610E1 /* PeopleViewController_iPhone.xib */,
 			);
 			name = ExoWeemoCall;
 			path = "/Users/vietnq/ios/mobile-ios/Sources/iPhone/View Controllers/VideoCall";
@@ -3985,7 +4125,7 @@
 		894733F913370F4F00B0AD11 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				7D212E2517FEA46700AF93D1 /* ExoWeemoCall */,
+				7DAEF1E11802743200E610E1 /* ExoWeemoCall */,
 				7D993C2C1769A8E50035835F /* CloudSignup */,
 				A65EAFB6159AFBDF00E598E0 /* HomeMenuBg.png */,
 				A65EAFB7159AFBDF00E598E0 /* HomeMenuBg@2x.png */,
@@ -5121,10 +5261,49 @@
 				7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */,
 				7DF39B2217F96E43000A3267 /* HomeCallIcon.png in Resources */,
 				7DF39B2D17F9882F000A3267 /* ExoCallViewController_iPhone.xib in Resources */,
-				7D212E0C17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.xib in Resources */,
+				7D212E0C17FAC2CC00AF93D1 /* DialViewController_iPhone.xib in Resources */,
 				7D212E1117FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib in Resources */,
-				7D212E2617FEA46700AF93D1 /* ExoWeemoCall in Resources */,
-				7D212E2B17FEB5A600AF93D1 /* VideoCallViewController_iPhone.xib in Resources */,
+				7DAEF1B41802572300E610E1 /* CallViewController_iPhone.xib in Resources */,
+				7DAEF2091802745F00E610E1 /* bkgd_active.png in Resources */,
+				7DAEF20A1802745F00E610E1 /* bkgd_active@2x.png in Resources */,
+				7DAEF20B1802745F00E610E1 /* bkgd_active@2x~ipad.png in Resources */,
+				7DAEF20C1802745F00E610E1 /* bkgd_active~ipad.png in Resources */,
+				7DAEF20D1802745F00E610E1 /* bkgd_inactive.png in Resources */,
+				7DAEF20E1802745F00E610E1 /* bkgd_inactive@2x.png in Resources */,
+				7DAEF20F1802745F00E610E1 /* bkgd_inactive@2x~ipad.png in Resources */,
+				7DAEF2101802745F00E610E1 /* bkgd_inactive~ipad.png in Resources */,
+				7DAEF2111802745F00E610E1 /* bkgd_red.png in Resources */,
+				7DAEF2121802745F00E610E1 /* bkgd_red@2x.png in Resources */,
+				7DAEF2131802745F00E610E1 /* bkgd_red@2x~ipad.png in Resources */,
+				7DAEF2141802745F00E610E1 /* bkgd_red~ipad.png in Resources */,
+				7DAEF2151802745F00E610E1 /* button_blue_background.png in Resources */,
+				7DAEF2161802745F00E610E1 /* button_grey_background.png in Resources */,
+				7DAEF2171802745F00E610E1 /* call_hangup.png in Resources */,
+				7DAEF2181802745F00E610E1 /* call_hangup@2x.png in Resources */,
+				7DAEF2191802745F00E610E1 /* call_hangup@2x~ipad.png in Resources */,
+				7DAEF21A1802745F00E610E1 /* call_hangup~ipad.png in Resources */,
+				7DAEF21B1802745F00E610E1 /* call_HD.png in Resources */,
+				7DAEF21C1802745F00E610E1 /* call_HD@2x.png in Resources */,
+				7DAEF21D1802745F00E610E1 /* call_HD@2x~ipad.png in Resources */,
+				7DAEF21E1802745F00E610E1 /* call_HD~ipad.png in Resources */,
+				7DAEF21F1802745F00E610E1 /* call_mute.png in Resources */,
+				7DAEF2201802745F00E610E1 /* call_mute@2x.png in Resources */,
+				7DAEF2211802745F00E610E1 /* call_mute@2x~ipad.png in Resources */,
+				7DAEF2221802745F00E610E1 /* call_mute~ipad.png in Resources */,
+				7DAEF2231802745F00E610E1 /* call_SD copy.png in Resources */,
+				7DAEF2241802745F00E610E1 /* call_SD.png in Resources */,
+				7DAEF2251802745F00E610E1 /* call_SD@2x.png in Resources */,
+				7DAEF2261802745F00E610E1 /* call_SD@2x~ipad.png in Resources */,
+				7DAEF2271802745F00E610E1 /* call_SD~ipad.png in Resources */,
+				7DAEF2281802745F00E610E1 /* call_switch.png in Resources */,
+				7DAEF2291802745F00E610E1 /* call_switch@2x.png in Resources */,
+				7DAEF22A1802745F00E610E1 /* call_switch@2x~ipad.png in Resources */,
+				7DAEF22B1802745F00E610E1 /* call_switch~ipad.png in Resources */,
+				7DAEF22C1802745F00E610E1 /* call_video.png in Resources */,
+				7DAEF22D1802745F00E610E1 /* call_video@2x.png in Resources */,
+				7DAEF22E1802745F00E610E1 /* call_video@2x~ipad.png in Resources */,
+				7DAEF22F1802745F00E610E1 /* call_video~ipad.png in Resources */,
+				7DAEF2341803ED4400E610E1 /* PeopleViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5378,10 +5557,13 @@
 				7DBB7051178AA2D2002B387B /* eXoNavigationController.m in Sources */,
 				7D6931DB17968B21008CCE72 /* LogoSlogan.m in Sources */,
 				7DF39B2C17F9882F000A3267 /* ExoCallViewController_iPhone.m in Sources */,
-				7D212E0B17FAC2CC00AF93D1 /* ContactsTabViewController_iPhone.m in Sources */,
+				7D212E0B17FAC2CC00AF93D1 /* DialViewController_iPhone.m in Sources */,
 				7D212E1017FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m in Sources */,
 				7D212E1517FD059900AF93D1 /* ExoWeemoHandler.mm in Sources */,
-				7D212E2A17FEB5A600AF93D1 /* VideoCallViewController_iPhone.m in Sources */,
+				7DAEF1B31802572300E610E1 /* CallViewController_iPhone.m in Sources */,
+				7DAEF2331803ED4400E610E1 /* PeopleViewController_iPhone.m in Sources */,
+				7DAEF2391803F1D100E610E1 /* CallViewController.m in Sources */,
+				7DAEF23C1803F2F100E610E1 /* WeemoContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
