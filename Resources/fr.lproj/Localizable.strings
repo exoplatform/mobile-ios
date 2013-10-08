@@ -10,15 +10,15 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Authentification";
+"SignInPageTitle" = "Login page";
 
-"SignInButton" = "Connexion";
+"SignInButton" = "Login";
 
 "SignInButton_In" = "à";
 
 "UsernamePlaceholder" = "Utilisateur";
 
-"PasswordPlaceholder" = "Mot de passe";
+"PasswordPlaceholder" = "Password";
 
 "Last Login" = "Last login";
 
@@ -30,93 +30,94 @@
  * Documents
  */
 
-"TakePicture" = "Prendre une photo";
+"TakePicture" = "Take a picture";
 
-"NewFolderTitle" = "Nouveau dossier";
+"NewFolderTitle" = "New folder";
 
-"RenameTitle" = "Renommer";
+"RenameTitle" = "Rename";
 
-"Copy" = "Copier";
+"Copy" = "Copy";
 
-"Move" = "Déplacer";
+"Move" = "Cut";
 
-"Paste" = "Coller";
+"Paste" = "Paste";
 
 "Documents" = "Documents";
 
-"TakeAPicture" = "Prendre une photo";
+"TakeAPicture" = "Take a picture";
 
-"AttachedPhoto" = "Photo attachée";
+"AttachedPhoto" = "Attached photo";
 
-"AddAPhoto" = "Ajouter une photo";
+"AddAPhoto" = "Add a photo";
 
-"PhotoLibrary" = "Librarie de photos";
+"PhotoLibrary" = "Photo library";
 
 // Drives types
 
-"general" = "général";
+"general" = "general";
 
-"personal" = "personnel";
+"personal" = "personal";
 
-"group" = "groupe";
+"group" = "group";
 
 
 /*
  * General
  */
 
-"Cancel" = "Annuler";
+"Cancel" = "Cancel";
 
-"DoneButton" = "OK";
+"DoneButton" = "Done";
 
-"Delete" = "Supprimer";
+"Delete" = "Delete";
 
-"Success" = "Succès";
+"Success" = "Success";
 
-"Home" = "Accueil";
+"Home" = "Home";
 
-"Loading" = "Chargement...";
+"Loading" = "Loading...";
 
-"LoadingURL" = "Chargement de l'URL";
+"LoadingURL" = "Loading URL";
 
 "OK" = "Valider";
 
-"Disconnect" = "Déconnecter";
+"Disconnect" = "Disconnect";
 
-"Pull down to refresh..." = "Tirez pour rafraîchir...";
+"Pull down to refresh..." = "Pull down to refresh...";
 
-"Release to refresh..." = "Relâchez pour rafraîchir...";
+"Release to refresh..." = "Release to refresh...";
 
-"Last Updated: %@" = "Dernière mise à jour: %@";
+"Last Updated: %@" = "Last updated: %@";
 
-"Required" = "Requis";
+"Required" = "Required";
 
-"Optional" = "Optionnel";
+"Optional" = "Optional";
 
-"Fullscreen" = "Plein-écran";
+"Fullscreen" = "Fullscreen";
 
-"Close" = "Fermer";
+"Close" = "Close";
+
 
 
 /*
  * Settings
  */
 
-"Settings" = "Réglages";
+"Settings" = "Settings";
 
-"RememberMe" = "Se souvenir de moi";
+"RememberMe" = "Remember me";
 
-"AutoLogin" = "Connexion automatique";
+"AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Garder mon filtre";
+"KeepSelectedStream" = "Remember my filter";
 
-"ShowPrivateDrive" = "Afficher le lecteur privé";
+"ShowPrivateDrive" = "Show my private drive";
 
-"Language" = "Langues";
+"Language" = "Languages";
 
-"English" = "Anglais (English)";
+"English" = "English";
 
-"French" = "Français (French)";
+"French" = "French";
 
 "German" = "Allemand";
 
@@ -134,19 +135,19 @@
 
 "NewServer" = "Nouveau compte";
 
-"ServerModify" = "Modifier le serveur";
+"ServerModify" = "Modify server";
 
-"ApplicationsInformation" = "Informations de l'application";
+"ApplicationsInformation" = "Application information";
 
-"ServerVersion" = "Version du serveur";
+"ServerVersion" = "Server version";
 
-"ApplicationEdition" = "Édition du serveur";
+"ApplicationEdition" = "Application edition";
 
-"ApplicationVersion" = "Version de l'application";
+"ApplicationVersion" = "Application version";
 
-"ServerName" = "Nom du serveur";
+"ServerName" = "Server name";
 
-"ServerUrl" = "URL du serveur";
+"ServerUrl" = "Server URL";
 
 "Social" = "Social";
 
@@ -154,79 +155,79 @@
  * Errors & Warnings
  */
 
-"BadResponse" = "Le serveur a renvoyé des données incorrectes.";
+"BadResponse" = "The server returned invalid data.";
 
-"NetworkConnection" = "Erreur de connexion";
+"NetworkConnection" = "Connection error";
 
-"Authorization" = "L'authentification a échoué";
+"Authorization" = "Login failed";
 
-"WrongUserNamePassword" = "Nom d'utilisateur ou mot de passe incorrect";
+"WrongUserNamePassword" = "Impossible to connect, check your username and password";
 
-"InvalidServer" = "Connexion au serveur impossible, vérifiez son URL";
+"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
 
-"NetworkConnectionFailed" = "Connexion au serveur impossible";
+"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
 
-"UserNameEmpty" = "Veuillez entrer un nom d'utilisateur";
+"UserNameEmpty" = "Incorrect username";
 
-"PasswordEmpty" = "Veuillez entrer un mot de passe";
+"PasswordEmpty" = "Incorrect password";
 
-"SelectedDomainEmpty" = "Veuillez choisir un serveur";
+"SelectedDomainEmpty" = "No server specified";
 
-"EmptyFolder" = "Ce dossier est vide";
+"EmptyFolder" = "This folder is empty";
 
-"UnreadableFile" = "Ce fichier ne peut pas être ouvert depuis l'application";
+"UnreadableFile" = "This file cannot be opened on the application";
 
-"NoActivities" = "Aucune activité n'a encore été postée sur votre flux de news";
+"NoActivities" = "No activity has been posted on your activity stream";
 
-"NoGadget" = "Aucun gadget n'est présent dans vos Apps";
+"NoGadget" = "You have no gadgets in your Apps";
 
-"MessageInfo" = "Message d'information";
+"MessageInfo" = "Information";
 
-"MessageErrorServer" = "Impossible d'ajouter un serveur sans nom ou sans URL";
+"MessageErrorServer" = "You cannot add a server with an empty name or URL";
 
-"MessageErrorExist" = "Ce serveur existe déjà";
+"MessageErrorExist" = "This server already exists";
 
-"InvalidUrl" = "URL invalide";
+"InvalidUrl" = "Invalid URL";
 
-"FileError" = "Erreur";
+"FileError" = "Error";
 
-"CameraNotAvailable" = "Aucun appareil photo n'est disponible";
+"CameraNotAvailable" = "The camera is not available";
 
-"GadgetsCannotBeRetrieved" = "Impossible de charger vos apps";
+"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
 
-"Error" = "Erreur";
+"Error" = "Error";
 
-"NoMessageComment" = "Aucun message pour votre commentaire";
+"NoMessageComment" = "You must enter some text to comment";
 
-"NoMessagePosting" = "Aucun message à envoyer";
+"NoMessagePosting" = "You must enter some text to post";
 
-"GettingActionCannotBeCompleted" = "Échec du chargement";
+"GettingActionCannotBeCompleted" = "You cannot get activities";
 
-"UpdatingActionCannotBeCompleted" = "Échec du chargement";
+"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
 
-"LikingActionCannotBeCompleted" = "Échec de l'action";
+"LikingActionCannotBeCompleted" = "You cannot like the activity";
 
-"UnLikeActionCannotBeCompleted" = "Échec de l'action";
+"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
 
-"PostingActionCannotBeCompleted" = "Envoi de l'activité impossible";
+"PostingActionCannotBeCompleted" = "You cannot post a message";
 
-"CommentActionCannotBeCompleted" = "Échec de l'action";
+"CommentActionCannotBeCompleted" = "You cannot post a comment";
 
-"LoadMoreActionCannotBeCompleted" = "Une erreur s'est produite, les activités se rechargent.";
+"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
 
-"NotCompliant" = "L'application ne peut pas être éxécutée sur cette édition de Platform";
+"NotCompliant" = "The application can not run on the Platform edition";
 
-"SpecialCharacters" = "Les caractères spéciaux ne sont pas autorisés";
+"SpecialCharacters" = "Special characters are not allowed";
 
-"DashboardsCannotBeRetrieved" = "Impossible de récupérer les dashboards";
+"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
 
-"FolderNameAlreadyExist" = "Ce dossier existe déjà";
+"FolderNameAlreadyExist" = "This folder already exists";
 
-"FolderNameEmpty" = "Le nom du dossier ne peut être vide";
+"FolderNameEmpty" = "The folder name is empty";
 
-"Cannot move file to its location" = "Impossible de copier le fichier au même emplacement";
+"Cannot move file to its location" = "Cannot move the file to the same location";
 
-"Cannot transfer file" = "Impossible de transférer le fichier";
+"Cannot transfer file" = "Cannot transfer the file";
 
 
 /*
@@ -240,83 +241,83 @@
  * Activity stream
  */
 
-"numOfLikers" = "%d aimes";
+"numOfLikers" = "%d likers";
 
-"numOfLiker" = "%d aime";
+"numOfLiker" = "%d liker";
 
-"likeThisActivity" = "%d aiment l'activité";
+"likeThisActivity" = "%d people like this";
 
-"NoOneLikeThis" = "Personne n'aime cela pour le moment";
+"NoOneLikeThis" = "No one likes this";
 
-"ActivityDetails" = "Détails de l'activité";
+"ActivityDetails" = "Activity details";
 
-"MessageComposer" = "Composez votre message";
+"MessageComposer" = "Message composer";
 
-"ActivityStream" = "Flux d'activités";
+"ActivityStream" = "Activity stream";
 
-"News" = "Nouvelles";
+"News" = "News";
 
-"Details" = "Détails";
+"Details" = "Details";
 
-"comments(%d)" = "Commentaires (%d)";
+"comments(%d)" = "Comments(%d)";
 
-"likes(%d)" = "Personnes qui aiment (%d)";
+"likes(%d)" = "Likes(%d)";
 
-"YourComment" = "Votre commentaire";
+"YourComment" = "Your comment";
 
-"GettingActivity" = "Chargement de l'activité";
+"GettingActivity" = "Getting activity";
 
-"UpdatingActivity" = "Mise à jour de l'activité";
+"UpdatingActivity" = "Updating activity";
 
-"PostingActivity" = "Envoi de l'activité";
+"PostingActivity" = "Post";
 
-"CommentActivity" = "Envoi du commentaire";
+"CommentActivity" = "Comment";
 
-"GettingActivityDetail" = "Chargement des détails de l'activité";
+"GettingActivityDetail" = "Getting activity detail";
 
-"UpdatingActivityDetail" = "Mise à jour des détails de l'activité";
+"UpdatingActivityDetail" = "Updating activity detail";
 
-"EditWiki" = "a édité la page Wiki:";
+"EditWiki" = "has edited the Wiki page:";
 
-"CreateWiki" = "a créé la page Wiki:";
+"CreateWiki" = "has created the Wiki page:";
 
-"NewPost" = "a ajouté un nouveau post:";
+"NewPost" = "has added a new post:";
 
-"UpdatePost" = "a mis à jour le post:";
+"UpdatePost" = "has updated a post:";
 
-"NewTopic" = "a posté une nouvelle discussion:";
+"NewTopic" = "has posted a new topic:";
 
-"UpdateTopic" = "a mis à jour la discussion:";
+"UpdateTopic" = "has updated a topic:";
 
-"UpdateQuestion" = "a mis à jour la question:";
+"UpdateQuestion" = "has updated the question:";
 
-"Answered" = "a répondu à la question:";
+"Answered" = "has answered to the question:";
 
-"Asked" = "a ajouter la question:";
+"Asked" = "has asked:";
 
-"EventAdded" = "a ajouté l'événement:";
+"EventAdded" = "added an event:";
 
-"EventUpdated" = "a mis à jour l'événement:";
+"EventUpdated" = "has just updated the event:";
 
-"TaskAdded" = "a ajouté la tâche";
+"TaskAdded" = "added a task:";
 
-"TaskUpdated" = "a mis à jour la tâche";
+"TaskUpdated" = "has just updated the task:";
 
 "Description" = "Description";
 
-"Location" = "Lieu";
+"Location" = "Location";
 
-"StartTime" = "Date de début";
+"StartTime" = "Start time";
 
-"EndTime" = "Date de fin";
+"EndTime" = "End time";
 
-"NoComment" = "Personne n'a commenté, soyez le premier";
+"NoComment" = "No one has commented, be the first one";
 
-"Image Preview" = "Image sélectionnée";
+"Image Preview" = "Image preview";
 
-"Change" = "Remplacer";
+"Change" = "Change";
 
-"Remove" = "Supprimer";
+"Remove" = "Remove";
 
 "All Updates" = "Toutes les Activités";
 
@@ -326,51 +327,50 @@
 
 "My Status" = "Mes Activités";
 
-
 /* 
  * Date message converter
  */
 
-"Today" = "Aujourd'hui";
+"Today" = "Today";
 
-"DateFmt" = "%4$@%1$@%2$@%3$@";
+"DateFmt" = "%1$@%2$@%3$@%4$@";
 
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "Il y a ";
+"DateFmt ago" = "ago";
 
-"DateFmt from now" = "Dans ";
+"DateFmt from now" = "from now";
 
-"DateFmt Less than" = "Moins de ";
+"DateFmt Less than" = "Less than ";
 
-"DateFmt About" = "environ ";
+"DateFmt About" = "About ";
 
 "DateFmt Over" = "Sur ";
 
-"DateFmt Almost" = "presque";
+"DateFmt Almost" = "Almost ";
 
-"DateFmt seconds" = " secondes";
+"DateFmt seconds" = " seconds ";
 
 "DateFmt minute" = " minute";
 
 "DateFmt minutes" = " minutes";
 
-"DateFmt hour" = " heure";
+"DateFmt hour" = " hour ";
 
-"DateFmt hours" = " heures";
+"DateFmt hours" = " hours ";
 
-"DateFmt day" = " jour";
+"DateFmt day" = " day ";
 
-"DateFmt days" = " jours";
+"DateFmt days" = " days ";
 
-"DateFmt month" = " mois";
+"DateFmt month" = " month ";
 
-"DateFmt months" = " mois";
+"DateFmt months" = " months ";
 
-"DateFmt year" = " an";
+"DateFmt year" = " year ";
 
-"DateFmt years" = " ans";
+"DateFmt years" = " years ";
 
 
 /*
@@ -382,7 +382,7 @@
 
 "NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
 
-"StartTheConfigurationAssistant" = "Lancer l'assistant de configuration";
+"StartTheConfigurationAssistant" = "Start the sign-up assistant";
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
