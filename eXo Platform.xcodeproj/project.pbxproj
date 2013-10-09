@@ -428,6 +428,8 @@
 		7D02603917867EEC00C3FA24 /* WelcomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603717867EEC00C3FA24 /* WelcomeViewController_iPad.xib */; };
 		7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */; };
 		7D02603E1786B58A00C3FA24 /* SignUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */; };
+		7D111B8C1805364D002903A6 /* CallHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D111B8B1805364D002903A6 /* CallHistory.m */; };
+		7D111BA0180547ED002903A6 /* CallHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D111B9F180547ED002903A6 /* CallHistoryManager.m */; };
 		7D212DF517FA861100AF93D1 /* iOS-SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DF417FA861100AF93D1 /* iOS-SDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		7D212E0B17FAC2CC00AF93D1 /* DialViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0917FAC2CC00AF93D1 /* DialViewController_iPhone.m */; };
 		7D212E0C17FAC2CC00AF93D1 /* DialViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0A17FAC2CC00AF93D1 /* DialViewController_iPhone.xib */; };
@@ -1574,6 +1576,10 @@
 		7D02603A1786B58A00C3FA24 /* SignUpViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPad.h; sourceTree = "<group>"; };
 		7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController_iPad.m; sourceTree = "<group>"; };
 		7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController_iPad.xib; sourceTree = "<group>"; };
+		7D111B8A1805364D002903A6 /* CallHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistory.h; sourceTree = "<group>"; };
+		7D111B8B1805364D002903A6 /* CallHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistory.m; sourceTree = "<group>"; };
+		7D111B9E180547ED002903A6 /* CallHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoryManager.h; sourceTree = "<group>"; };
+		7D111B9F180547ED002903A6 /* CallHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryManager.m; sourceTree = "<group>"; };
 		7D212DF417FA861100AF93D1 /* iOS-SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "iOS-SDK.framework"; sourceTree = "<group>"; };
 		7D212DFE17FA892200AF93D1 /* libspeex.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeex.ios.a; path = ../Resources/ThirdPart/Libraries/libspeex.ios.a; sourceTree = "<group>"; };
 		7D212DFF17FA892200AF93D1 /* libvpx.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.ios.a; path = ../Resources/ThirdPart/Libraries/libvpx.ios.a; sourceTree = "<group>"; };
@@ -3399,6 +3405,10 @@
 				7DAEF2381803F1D000E610E1 /* CallViewController.m */,
 				7DAEF23A1803F2F100E610E1 /* WeemoContact.h */,
 				7DAEF23B1803F2F100E610E1 /* WeemoContact.m */,
+				7D111B8A1805364D002903A6 /* CallHistory.h */,
+				7D111B8B1805364D002903A6 /* CallHistory.m */,
+				7D111B9E180547ED002903A6 /* CallHistoryManager.h */,
+				7D111B9F180547ED002903A6 /* CallHistoryManager.m */,
 			);
 			name = ExoWeemoCall;
 			path = VideoCall;
@@ -5564,6 +5574,8 @@
 				7DAEF2331803ED4400E610E1 /* PeopleViewController_iPhone.m in Sources */,
 				7DAEF2391803F1D100E610E1 /* CallViewController.m in Sources */,
 				7DAEF23C1803F2F100E610E1 /* WeemoContact.m in Sources */,
+				7D111B8C1805364D002903A6 /* CallHistory.m in Sources */,
+				7D111BA0180547ED002903A6 /* CallHistoryManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,8 @@
 /*
  * A view controller for video call
  * This file is copied from the Weemo sample sdk-helper
- * Source: git@github.com:weemo/iOS-SDK.git
+ * (Source: git@github.com:weemo/iOS-SDK.git)
+ * with some modifications. We can completely customize it. 
  */
 @interface CallViewController : UIViewController <WeemoCallDelegate>
 

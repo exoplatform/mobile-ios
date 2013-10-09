@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WeemoContact : NSObject
+@interface WeemoContact : NSObject <NSCoding>
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *displayName;
 - (id)initWithUid:(NSString *)uid andDisplayName:(NSString *)displayName;

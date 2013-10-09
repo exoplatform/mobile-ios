@@ -24,6 +24,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.call = [[Weemo instance] activeCall];
+        self.call.delegate = self;
     }
     return self;
 }

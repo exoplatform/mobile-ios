@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "eXoViewController.h"
-@interface RecentsTabViewController_iPhone : eXoViewController
+@interface RecentsTabViewController_iPhone : eXoViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

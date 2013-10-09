@@ -38,7 +38,7 @@
     // Do any additional setup after loading the view from its nib.
     self.indicator.hidden = YES;
     
-    [self updateViewWithConnectionStatus:[Weemo instance].isAuthenticated];
+    [self updateViewWithConnectionStatus:[Weemo instance].isConnected];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +82,7 @@
         self.uidLabel.text = @"You are not connected";
         self.callButton.enabled = NO;
         self.connectButton.hidden = NO;
-        self.indicator.hidden = NO;
+        self.indicator.hidden = YES;
     }
 }
 @end

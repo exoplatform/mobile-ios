@@ -21,8 +21,24 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super init])) {
+        self.uid = [aDecoder decodeObjectForKey:@"UID"];
+        self.displayName = [aDecoder decodeObjectForKey:@"DisplayName"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.uid forKey:@"UID"];
+    [aCoder encodeObject:self.displayName forKey:@"DisplayName"];
+}
+
 - (void)dealloc
 {
+    [super dealloc];
     [_uid release];
     [_displayName release];
 }

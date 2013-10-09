@@ -10,6 +10,8 @@
 #import "CallViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
 #import "DialViewController_iPhone.h"
+#import "CallHistoryManager.h"
+#import "CallHistory.h"
 
 //the mobile app identifier provided by Weemo
 #define URLReferer @"ecro7etqvzgnmc2e"
@@ -41,7 +43,7 @@
 - (void)connect
 {
     NSLog(@">>>WeemoHandler: starting connecting");
-    NSError *error = nil;
+    NSError *error;
     [Weemo WeemoWithURLReferer:URLReferer andDelegate:self error:&error];
 }
 
@@ -79,11 +81,7 @@
 - (void)createCallView
 {
 	NSLog(@">>>> createCallView");
-	if (self.activeCallVC) {
-        self.activeCallVC.call = [[Weemo instance] activeCall];
-        return;
-    }
-	
+		
     BOOL isIPhone = ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone);
 	NSString *nibName = isIPhone?@"CallViewController_iPhone":@"CallViewController_iPad";
 	
@@ -155,6 +153,8 @@
 {
     if(!error) {
         NSLog(@">>>WeemoHandler: authenticated OK");
+        //TODO: set display name
+        [[Weemo instance] setDisplayName:@"Weemo POC"];
         
         if(self.updatedVC && [self.updatedVC isKindOfClass:[DialViewController_iPhone class]]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -163,7 +163,6 @@
                 [contactsVC updateViewWithConnectionStatus:YES];
             });
         }
-        //TODO: set display name
     } else {
         NSLog(@">>>WeemoHandler: authenticated NOK");
         if(self.updatedVC && [self.updatedVC isKindOfClass:[DialViewController_iPhone class]]) {
@@ -193,10 +192,22 @@
                                                 delegate:self
                                        cancelButtonTitle:@"Pick-up"
                                        otherButtonTitles:@"Deny", nil];
+        
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[incomingCall show];
+            
+            //save call history
+            CallHistory *entry = [[CallHistory alloc] init];
+            entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? @"INCOMING" : @"OUTCOMING";
+            entry.caller = call.contactID;
+            entry.date = [[NSDate alloc] init];
+            
+            CallHistoryManager *historyManager = [CallHistoryManager sharedInstance];
+            [historyManager.history addObject:entry];
+            [historyManager saveHistory];
 		});
-	}
+    }
+
 	[self setCallStatus:[call callStatus]];
 }
 
@@ -207,6 +218,7 @@
 		[self removeCallView];
 		[incomingCall dismissWithClickedButtonIndex:1 animated:YES];
 		incomingCall = nil;
+        
 	});
 }
 
