@@ -10,7 +10,7 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Login page";
+"SignInPageTitle" = "Giriş Sayfası";
 
 "SignInButton" = "Uturum Aç";
 
@@ -23,9 +23,9 @@
  * Documents
  */
 
-"TakePicture" = "Take a picture";
+"TakePicture" = "Resim Çekin";
 
-"NewFolderTitle" = "New folder";
+"NewFolderTitle" = "Yeni Klasör";
 
 "RenameTitle" = "Yeniden Adlandır";
 
@@ -37,19 +37,19 @@
 
 "Documents" = "Belgeler";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "Resim Çekin";
 
-"AttachedPhoto" = "Attached photo";
+"AttachedPhoto" = "Ekli Fotoğraf";
 
-"AddAPhoto" = "Add a photo";
+"AddAPhoto" = "Fotoğraf Ekle";
 
-"PhotoLibrary" = "Photo library";
+"PhotoLibrary" = "Fotoğraf Arşivi";
 
 // Drives types
 
-"general" = "general";
+"general" = "Genel";
 
-"personal" = "personal";
+"personal" = "Kişisel";
 
 "group" = "grup";
 
@@ -64,27 +64,27 @@
 
 "Delete" = "Sil";
 
-"Success" = "Success";
+"Success" = "Başarılı";
 
-"Home" = "Home";
+"Home" = "Ana Sayfa";
 
 "Loading" = "Yükleniyor...";
 
-"LoadingURL" = "Loading URL";
+"LoadingURL" = "URL Yükleniyor";
 
 "OK" = "Tamam";
 
-"Disconnect" = "Bağlantıyı kes";
+"Disconnect" = "Bağlantıyı Kes";
 
-"Pull down to refresh..." = "Pull down to refresh...";
+"Pull down to refresh..." = "Yenilemek için aşağıya çekin...";
 
-"Release to refresh..." = "Release to refresh...";
+"Release to refresh..." = "Yenilemek için bırakın...";
 
-"Last Updated: %@" = "Last updated: %@";
+"Last Updated: %@" = "Son güncelleme: %@";
 
-"Required" = "Required";
+"Required" = "Gerekli";
 
-"Optional" = "Optional";
+"Optional" = "İsteğe Bağlı";
 
 "Fullscreen" = "Tam Ekran";
 
@@ -97,15 +97,15 @@
 
 "Settings" = "Ayarlar";
 
-"RememberMe" = "Remember me";
+"RememberMe" = "Beni hatırla";
 
-"AutoLogin" = "Auto login";
+"AutoLogin" = "Otomatik oturum aç";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "Filtremi hatırla";
 
-"ShowPrivateDrive" = "Show my private drive";
+"ShowPrivateDrive" = "Kişisel sürücümü göster";
 
-"Language" = "Dil";
+"Language" = "Diller";
 
 "English" = "İngilizce";
 
@@ -113,200 +113,200 @@
 
 "Send" = "Gönder";
 
-"ServerList" = "Server list";
+"ServerList" = "Sunucu Listesi";
 
-"NewServer" = "New server";
+"NewServer" = "Yeni sunucu";
 
-"ServerModify" = "Modify server";
+"ServerModify" = "Sunucuyu Değiştir";
 
-"ApplicationsInformation" = "Application information";
+"ApplicationsInformation" = "Uygulama Bilgileri";
 
-"ServerVersion" = "Server version";
+"ServerVersion" = "Sunucu Sürümü";
 
-"ApplicationEdition" = "Application edition";
+"ApplicationEdition" = "Uygulama Sürümü";
 
-"ApplicationVersion" = "Application version";
+"ApplicationVersion" = "Uygulama Sürümü";
 
-"ServerName" = "Server name";
+"ServerName" = "Sunucu adı";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "Sunucu URL'si";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "The server returned invalid data.";
+"BadResponse" = "Sunucu geçersiz veri döndürdü.";
 
-"NetworkConnection" = "Connection error";
+"NetworkConnection" = "Bağlantı hatası";
 
-"Authorization" = "Login failed";
+"Authorization" = "Oturum açma başarısız oldu";
 
-"WrongUserNamePassword" = "Impossible to connect, check your username and password";
+"WrongUserNamePassword" = "Bağlanmak imkansız, kullanıcı adınızı ve şifrenizi kontrol edin";
 
-"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"InvalidServer" = "Intranetinize bağlanmka imkansız, lütfen URL adresini kontrol edin veya yöneticinize başvurun";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "Intranetinize bağlanmka imkansız, lütfen URL adresini kontrol edin veya yöneticinize başvurun";
 
-"UserNameEmpty" = "Incorrect username";
+"UserNameEmpty" = "Hatalı kullanıcı adı";
 
-"PasswordEmpty" = "Incorrect password";
+"PasswordEmpty" = "Hatalı şifre";
 
-"SelectedDomainEmpty" = "No server specified";
+"SelectedDomainEmpty" = "Belirtilen sunucu yok";
 
-"EmptyFolder" = "This folder is empty";
+"EmptyFolder" = "Bu klasör boş";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "Bu dosya uygulamada açılamıyor";
 
-"NoActivities" = "No activity has been posted on your activity stream";
+"NoActivities" = "Etkinlik akışınıza hiçbir etkinlik gönderilmemiş";
 
-"NoGadget" = "You have no gadgets in your Apps";
+"NoGadget" = "Uygulamalarınızda herhangi bir gadget yok";
 
 "MessageInfo" = "Bilgi";
 
-"MessageErrorServer" = "You cannot add a server with an empty name or URL";
+"MessageErrorServer" = "Adı veya URL'si boş bir sunucu ekleyemezsiniz";
 
-"MessageErrorExist" = "This server already exists";
+"MessageErrorExist" = "Bu sunucu zaten var";
 
-"InvalidUrl" = "Invalid URL";
+"InvalidUrl" = "Geçersiz URL";
 
 "FileError" = "Hata";
 
-"CameraNotAvailable" = "The camera is not available";
+"CameraNotAvailable" = "Kamera kullanılamıyor";
 
-"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"GadgetsCannotBeRetrieved" = "Gedgetler alınamıyor";
 
 "Error" = "Hata";
 
-"NoMessageComment" = "You must enter some text to comment";
+"NoMessageComment" = "Yorum yapmak için bir metin girmelisiniz";
 
-"NoMessagePosting" = "You must enter some text to post";
+"NoMessagePosting" = "İleti atmak için bir metin girmelisiniz";
 
-"GettingActionCannotBeCompleted" = "You cannot get activities";
+"GettingActionCannotBeCompleted" = "Etkinlikleri alamzsınız";
 
-"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"UpdatingActionCannotBeCompleted" = "Etkinliği güncelleştiremezsiniz";
 
-"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"LikingActionCannotBeCompleted" = "Etkinliği beğenemezsiniz";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "Etkinliği beğenmedim yapamazsınız";
 
-"PostingActionCannotBeCompleted" = "You cannot post a message";
+"PostingActionCannotBeCompleted" = "İleti gönderemezsiniz";
 
-"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"CommentActionCannotBeCompleted" = "Yorum gönderemezsiniz";
 
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"LoadMoreActionCannotBeCompleted" = "Etkinlikler yeniden yüklenirken bir hata oluştu.";
 
-"NotCompliant" = "The application can not run on the Platform edition";
+"NotCompliant" = "Uygulama platformun bu sürümünde çalıştırılamaz";
 
-"SpecialCharacters" = "Special characters are not allowed";
+"SpecialCharacters" = "Özel karakterlere izin verilmez";
 
-"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+"DashboardsCannotBeRetrieved" = "Panolar alınamıyor";
 
-"FolderNameAlreadyExist" = "This folder already exists";
+"FolderNameAlreadyExist" = "Klasör zaten var";
 
-"FolderNameEmpty" = "The folder name is empty";
+"FolderNameEmpty" = "Klasör adı yok";
 
-"Cannot move file to its location" = "Cannot move the file to the same location";
+"Cannot move file to its location" = "Dosyayı aynı konuma taşıyamazsınız";
 
-"Cannot transfer file" = "Cannot transfer the file";
+"Cannot transfer file" = "Dosya transfer edemez";
 
 
 /*
  * Apps
  */
 
-"Dashboard" = "Apps";
+"Dashboard" = "Uygulamalar";
 
 
 /*
  * Activity stream
  */
 
-"numOfLikers" = "%d likers";
+"numOfLikers" = "%d beğenen";
 
-"numOfLiker" = "%d liker";
+"numOfLiker" = "%d beğenen";
 
-"likeThisActivity" = "%d people like this";
+"likeThisActivity" = "%d kişi bunu beğendi";
 
-"NoOneLikeThis" = "No one likes this";
+"NoOneLikeThis" = "Hiç kimse bunu beğenmemiş";
 
-"ActivityDetails" = "Activity details";
+"ActivityDetails" = "Etkinlik ayrıntıları";
 
-"MessageComposer" = "Message composer";
+"MessageComposer" = "İleti Uluşturucu";
 
-"ActivityStream" = "Activity stream";
+"ActivityStream" = "Etkinlik Akışı";
 
 "News" = "Haberler";
 
 "Details" = "Ayrıntılar";
 
-"comments(%d)" = "Comments(%d)";
+"comments(%d)" = "Yorumlar(%d)";
 
-"likes(%d)" = "Likes(%d)";
+"likes(%d)" = "Beğenenler(%d)";
 
-"YourComment" = "Your comment";
+"YourComment" = "Yorumunuz";
 
-"GettingActivity" = "Getting activity";
+"GettingActivity" = "Etkinlik alınıyor";
 
-"UpdatingActivity" = "Updating activity";
+"UpdatingActivity" = "Etkinlik güncelleştiriliyor";
 
 "PostingActivity" = "Mesaj";
 
 "CommentActivity" = "Yorum";
 
-"GettingActivityDetail" = "Getting activity detail";
+"GettingActivityDetail" = "Etkinlik ayrıntısı alınıyor";
 
-"UpdatingActivityDetail" = "Updating activity detail";
+"UpdatingActivityDetail" = "Etkinlik ayrıntısı güncelleştiriliyor";
 
-"EditWiki" = "has edited the Wiki page:";
+"EditWiki" = "Wiki sayfası düzenledi:";
 
-"CreateWiki" = "has created the Wiki page:";
+"CreateWiki" = "Wiki sayfası oluşturdu:";
 
-"NewPost" = "has added a new post:";
+"NewPost" = "Yeni bir yazı ekledi:";
 
-"UpdatePost" = "has updated a post:";
+"UpdatePost" = "Bir yazıyı güncelledi:";
 
-"NewTopic" = "has posted a new topic:";
+"NewTopic" = "Yeni bir konu yayınladı:";
 
-"UpdateTopic" = "has updated a topic:";
+"UpdateTopic" = "Bir konuyu güncelledi:";
 
-"UpdateQuestion" = "has updated the question:";
+"UpdateQuestion" = "Soru güncelleştirdi:";
 
-"Answered" = "has answered to the question:";
+"Answered" = "Sorusuna yanıt verdi:";
 
-"Asked" = "has asked:";
+"Asked" = "Bir soru sordu:";
 
-"EventAdded" = "added an event:";
+"EventAdded" = "Bir etkinlik ekledi:";
 
-"EventUpdated" = "has just updated the event:";
+"EventUpdated" = "Az önce bir etkinliği güncelledi:";
 
-"TaskAdded" = "added a task:";
+"TaskAdded" = "Bir görev ekledi:";
 
-"TaskUpdated" = "has just updated the task:";
+"TaskUpdated" = "Az önce bir görev güncelledi:";
 
 "Description" = "Açıklama";
 
 "Location" = "Yer";
 
-"StartTime" = "Start time";
+"StartTime" = "Başlangıç Saati";
 
-"EndTime" = "End time";
+"EndTime" = "Bitiş Saati";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "Kimse yorumlamadı , ilk yorumlayan sen ol";
 
-"Image Preview" = "Image preview";
+"Image Preview" = "Resim önizleme";
 
 "Change" = "Değiştir";
 
 "Remove" = "Kaldır";
 
-"All Updates" = "All updates";
+"All Updates" = "Tüm Güncelleştirmeler";
 
-"My Connections" = "My connections";
+"My Connections" = "Bağlantılarım";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "Alanlarım";
 
-"My Status" = "My status";
+"My Status" = "Durumum";
 
 
 /*
@@ -320,84 +320,84 @@
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "ago";
+"DateFmt ago" = "önce";
 
-"DateFmt from now" = "from now";
+"DateFmt from now" = "Şu andan itibaren";
 
-"DateFmt Less than" = "Less than ";
+"DateFmt Less than" = "Daha az ";
 
-"DateFmt About" = "About ";
+"DateFmt About" = "Hakkında ";
 
-"DateFmt Over" = "Over ";
+"DateFmt Over" = "Üzerinde ";
 
-"DateFmt Almost" = "Almost ";
+"DateFmt Almost" = "Neredeyse ";
 
-"DateFmt seconds" = " seconds ";
+"DateFmt seconds" = " saniye ";
 
-"DateFmt minute" = " minute ";
+"DateFmt minute" = " dakika ";
 
-"DateFmt minutes" = " minutes ";
+"DateFmt minutes" = " dakika ";
 
-"DateFmt hour" = " hour ";
+"DateFmt hour" = " saat ";
 
-"DateFmt hours" = " hours ";
+"DateFmt hours" = " saat ";
 
-"DateFmt day" = " day ";
+"DateFmt day" = " gün ";
 
-"DateFmt days" = " days ";
+"DateFmt days" = " gün ";
 
-"DateFmt month" = " month ";
+"DateFmt month" = " ay ";
 
-"DateFmt months" = " months ";
+"DateFmt months" = " ay ";
 
-"DateFmt year" = " year ";
+"DateFmt year" = " yıl ";
 
-"DateFmt years" = " years ";
+"DateFmt years" = " yıl ";
 
 
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "Intranetinize bağlanmka imkansız, lütfen URL adresini kontrol edin veya yöneticinize başvurun";
 
-"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+"AccountAlreadyExists" = "Bu e-posta için bir hesap zaten var, giriş ekranına yönlendirileceksiniz";
 
-"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+"NumberUsersExceed" = " Yeni bir hesap oluşturmak mümkün değil. Intranetiniz için en fazla kullanıcı sayısı ulaşıldı, yöneticinize başvurun";
 
-"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+"StartTheConfigurationAssistant" = "Kayıt yardımcısını başlat";
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "Intranetinize bağlanmka imkansız, lütfen URL adresini kontrol edin veya yöneticinize başvurun";
 
-"EmailIsBlacklisted" = "Please use your company email to sign up";
+"EmailIsBlacklisted" = "Kaydolmak için lütfen kurum e-postasını kullanın";
 
-"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+"NumberOfUsersExceed" = "Yeni bir hesap oluşturmak mümkün değil. Intranetiniz için en fazla kullanıcı sayısı ulaşıldı, yöneticinize başvurun";
 
-"IncorrectEmailFormat" = "Please input a valid email address";
+"IncorrectEmailFormat" = "Lütfen geçerli e-posta adresi girin";
 
-"IncorrectPassword" = "Impossible to connect, check your password";
+"IncorrectPassword" = "Bağlanmak imkansız, şifrenizi kontrol edin";
 
-"UserNotExist" = " No account exists for this email, check your email or signup";
+"UserNotExist" = " Bu e-postanın hesabı yoktur, e-postanızı kontroledin  veya kayıt olun";
 
-"TenantNotExist" = "No account exists for this email, check your email or signup";
+"TenantNotExist" = "Bu e-postanın hesabı yoktur, e-postanızı kontroledin  veya kayıt olun";
 
-"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+"TenantResuming" = "Intranet geri yüklüyoruz,lütfen birkaç dakika içinde yeniden deneyin";
 
-"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+"TenantCreation" = "Intranetinizi oluşturuyoruz. Bizden gelecek olan  hoş geldiniz e-postasını aldığınızda lütfen geri gelin";
 
 "Username" = "Kullanıcı Adı";
 
 "Password" = "Şifre";
 
-"Your credentials" = "Your credentials";
+"Your credentials" = "Kimlik bilgileriniz";
 
-"EnterServerUrl" = "Enter the URL of your intranet";
+"EnterServerUrl" = "Intranet URL'sini girin";
 
-"EnterCredentials" = "Enter your credentials and Login";
+"EnterCredentials" = "Kimlik bilgilerinizi girin  ve oturum açın";
 
-"My intranet" = "My intranet";
+"My intranet" = "Intranetim";
 
-"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+"SignupInternalServerError" = "Intranetiniz için en fazla kullanıcı sayısı ulaşıldı, yöneticinize başvurun";
 
-"NoTenantName" = "There is no tenant name";
+"NoTenantName" = "Kiracı adı yok";
