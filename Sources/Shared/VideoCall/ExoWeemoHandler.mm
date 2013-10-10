@@ -13,12 +13,8 @@
 #import "CallHistoryManager.h"
 #import "CallHistory.h"
 
-//the mobile app identifier provided by Weemo
-#define URLReferer @"ecro7etqvzgnmc2e"
-
 @implementation ExoWeemoHandler {
     UIAlertView *incomingCall;
-    UIViewController *appRootVC;
 }
 @synthesize userId = _userId;
 @synthesize displayName = _displayName;
@@ -42,7 +38,6 @@
 
 - (void)connect
 {
-    NSLog(@">>>WeemoHandler: starting connecting");
     NSError *error;
     [Weemo WeemoWithURLReferer:URLReferer andDelegate:self error:&error];
 }
@@ -57,18 +52,16 @@
 - (void)addCallView
 {
 	NSLog(@">>>> addCallView ");
-	if (!self.activeCallVC) [self createCallView];
+	[self createCallView];
     
-    //TODO: iPad
-    appRootVC = [AppDelegate_iPhone instance].window.rootViewController;
+    UIViewController *rootVC = [AppDelegate_iPhone instance].window.rootViewController;
+    [rootVC addChildViewController:self.activeCallVC];
     
-	if ([[[self.activeCallVC view] superview] isEqual:[appRootVC view]] )
-	{
-		return;
-	}
+    self.activeCallVC.view.frame =  CGRectMake(0., 0., rootVC.view.frame.size.width, rootVC.view.frame.size.height);
     
-	[[self.activeCallVC view] setFrame:CGRectMake(0., 0., [[appRootVC view]frame].size.width, [[appRootVC view] frame].size.height)];
-	[[appRootVC view] addSubview:[self.activeCallVC view]];
+    [rootVC addChildViewController:self.activeCallVC];
+    
+	[rootVC.view addSubview:self.activeCallVC.view];
 }
 
 - (void)removeCallView
@@ -82,16 +75,10 @@
 {
 	NSLog(@">>>> createCallView");
 		
-    BOOL isIPhone = ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone);
-	NSString *nibName = isIPhone?@"CallViewController_iPhone":@"CallViewController_iPad";
-	
     //TODO: iPad
-    self.activeCallVC = [[CallViewController_iPhone alloc] initWithNibName:nibName bundle:nil];
-	self.activeCallVC.call = [[Weemo instance] activeCall];
-	
+    self.activeCallVC = [[CallViewController_iPhone alloc] initWithNibName:@"CallViewController_iPhone" bundle:nil];
+		
     [[[Weemo instance] activeCall] setDelegate:self.activeCallVC];
-	
-    [[AppDelegate_iPhone instance].window.rootViewController addChildViewController:self.activeCallVC];
 }
 
 - (void)setCallStatus:(int)newStatus
@@ -113,7 +100,7 @@
 			{
 				NSLog(@">>>> Call Incoming");
 				[self createCallView];
-				
+				[self addCallView];
 			}break;
 			case CALLSTATUS_ENDED:
 			{
@@ -143,7 +130,6 @@
             });
         }
     } else {
-        NSLog(@">>>WeemoHandler: starting authenticating");
         [[Weemo instance] authenticateWithToken:self.userId andType:USERTYPE_INTERNAL];
     }
     
@@ -152,9 +138,8 @@
 - (void)weemoDidAuthenticate:(NSError *)error
 {
     if(!error) {
-        NSLog(@">>>WeemoHandler: authenticated OK");
         //TODO: set display name
-        [[Weemo instance] setDisplayName:@"Weemo POC"];
+        [[Weemo instance] setDisplayName:self.displayName];
         
         if(self.updatedVC && [self.updatedVC isKindOfClass:[DialViewController_iPhone class]]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -164,7 +149,6 @@
             });
         }
     } else {
-        NSLog(@">>>WeemoHandler: authenticated NOK");
         if(self.updatedVC && [self.updatedVC isKindOfClass:[DialViewController_iPhone class]]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 DialViewController_iPhone *contactsVC = (DialViewController_iPhone *)self.updatedVC;
@@ -172,21 +156,22 @@
                 [contactsVC updateViewWithConnectionStatus:NO];
             });
         }
-        
     }
 }
 
 - (void)weemoDidDisconnect:(NSError *)error
 {
-    NSLog(@">>>>DISCONNECT<<<<<<");
     NSLog(@"%@", [error description]);
 }
 
 - (void)weemoCallCreated:(WeemoCall*)call
 {
 	NSLog(@">>>> Controller callCreated: 0x%X", [call callStatus]);
-	if ([call callStatus] == CALLSTATUS_INCOMING)
-	{
+    
+    [self addToCallHistory:call];
+	
+    if ([call callStatus] == CALLSTATUS_INCOMING) {
+        
 		incomingCall = [[UIAlertView alloc]initWithTitle:@"Incoming Call"
                                                  message:[NSString stringWithFormat:@"%@ is calling", [call contactID]]
                                                 delegate:self
@@ -195,30 +180,20 @@
         
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[incomingCall show];
-            
-            //save call history
-            CallHistory *entry = [[CallHistory alloc] init];
-            entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? @"INCOMING" : @"OUTCOMING";
-            entry.caller = call.contactID;
-            entry.date = [[NSDate alloc] init];
-            
-            CallHistoryManager *historyManager = [CallHistoryManager sharedInstance];
-            [historyManager.history addObject:entry];
-            [historyManager saveHistory];
 		});
+    } else {
+        [self setCallStatus:[call callStatus]];
     }
-
-	[self setCallStatus:[call callStatus]];
 }
 
 
 - (void)weemoCallEnded:(WeemoCall *)call
 {
-	dispatch_async(dispatch_get_main_queue(), ^{
+	
+    dispatch_async(dispatch_get_main_queue(), ^{
 		[self removeCallView];
 		[incomingCall dismissWithClickedButtonIndex:1 animated:YES];
 		incomingCall = nil;
-        
 	});
 }
 
@@ -229,7 +204,7 @@
     } else {
         NSLog(@">>>WeemoHandler: %@ cannot be called", contactID);
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This user is not availble now. Please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"Please check the caller id or try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
         });
     }
@@ -242,8 +217,6 @@
         if (buttonIndex == 0)
         {
             //user took the call
-            [self createCallView];
-            [self addCallView];
             [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
             [[[Weemo instance] activeCall]resume];
         } else {
@@ -254,4 +227,16 @@
     }
 }
 
+- (void) addToCallHistory:(WeemoCall *)call
+{
+    //save call history
+    CallHistory *entry = [[CallHistory alloc] init];
+    entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? @"Incoming" : @"Outcoming";
+    entry.caller = call.contactID;
+    entry.date = [[NSDate alloc] init];
+    
+    CallHistoryManager *historyManager = [CallHistoryManager sharedInstance];
+    [historyManager.history addObject:entry];
+    [historyManager saveHistory];
+}
 @end

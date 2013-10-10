@@ -12,6 +12,5 @@
 
     
 }
-@property (nonatomic, retain) ExoWeemoHandler *weemoHandler;
 @end
 

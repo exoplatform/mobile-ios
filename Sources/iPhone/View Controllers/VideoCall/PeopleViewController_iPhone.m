@@ -84,11 +84,13 @@
 - (void)initPeopleData
 {
     WeemoContact *contact1 = [[[WeemoContact alloc] initWithUid:@"paristote" andDisplayName:@"Philippe Aristote"] autorelease];
+        
+    WeemoContact *contact3 = [[[WeemoContact alloc] initWithUid:@"fdrouet" andDisplayName:@"Frédéric Drouet"] autorelease];
     
-    WeemoContact *contact2 = [[[WeemoContact alloc] initWithUid:@"tuanpham" andDisplayName:@"Pham Tuan"] autorelease];
+    WeemoContact *contact4 = [[[WeemoContact alloc] initWithUid:@"patrice_lamarque" andDisplayName:@"Patrice Lamarque"] autorelease];
     
-    WeemoContact *contact3 = [[[WeemoContact alloc] initWithUid:@"tuna" andDisplayName:@"Nguyen Anh Tu"] autorelease];
+    WeemoContact *contact5 = [[[WeemoContact alloc] initWithUid:@"benjamin_mestrallet" andDisplayName:@"Benjamin Mestrallet"] autorelease];
     
-    self.people = [NSMutableArray arrayWithObjects:contact1, contact2, contact3, nil];
+    self.people = [NSMutableArray arrayWithObjects:contact1, contact3, contact4, contact5, nil];
 }
 @end

@@ -11,7 +11,6 @@
 @interface CallHistoryManager : NSObject
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, retain) NSMutableArray *history;
-- (id) initWithUserId:(NSString *)userId;
 - (void) loadHistory;
 - (void) saveHistory;
 + (CallHistoryManager *)sharedInstance;

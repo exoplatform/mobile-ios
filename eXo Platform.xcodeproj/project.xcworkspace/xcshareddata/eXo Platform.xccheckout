@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A63E065F-0421-41F2-9448-01F89A458189</string>
+	<key>IDESourceControlProjectName</key>
+	<string>eXo Platform</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4AC8B928-7D56-47B3-9083-8226D82CF551</key>
+		<string>ssh://github.com/exoplatform/mobile-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>eXo Platform.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4AC8B928-7D56-47B3-9083-8226D82CF551</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/exoplatform/mobile-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4AC8B928-7D56-47B3-9083-8226D82CF551</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4AC8B928-7D56-47B3-9083-8226D82CF551</string>
+			<key>IDESourceControlWCCName</key>
+			<string>mobile-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -10,6 +10,9 @@
 #import <iOS-SDK/Weemo.h>
 #import "CallViewController.h"
 
+//the mobile app identifier provided by Weemo
+#define URLReferer @"ecro7etqvzgnmc2e"
+
 /*
  * A class to handle weemo call: connecting, authenticating,  
  * create/add/remove video call view controller

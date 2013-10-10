@@ -34,6 +34,16 @@
 	return self;
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self)
+	{
+		[self setCall:[[Weemo instance] activeCall]];
+	}
+	return self;
+}
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
@@ -151,8 +161,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSLog(@">>>> CallViewController: videoProfile: %d", profile);
 		[[self b_profile] setSelected:(profile != 0)];
-        [self.b_profile setImage:[UIImage imageNamed:(profile == 0)?@"call_SD" : @"call_HD"] forState:UIControlStateNormal];
-	});
+    });
 }
 
 - (void)weemoCall:(id)sender videoSource:(int)source

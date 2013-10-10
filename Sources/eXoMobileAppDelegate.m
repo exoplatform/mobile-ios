@@ -10,16 +10,12 @@
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
 @implementation eXoMobileAppDelegate
-@synthesize weemoHandler = _weemoHandler;
-
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    self.weemoHandler = [ExoWeemoHandler sharedInstance];
-    
+        
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
     return YES;
 }
@@ -83,7 +79,6 @@
 
 - (void)dealloc {
 	[super dealloc];
-    [_weemoHandler release];
 }
 
 

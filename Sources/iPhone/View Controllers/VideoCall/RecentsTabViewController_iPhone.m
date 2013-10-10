@@ -17,6 +17,7 @@
 @implementation RecentsTabViewController_iPhone {
     NSMutableArray *history;
 }
+@synthesize tableView = _tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,8 +47,12 @@
 {
     [super viewWillAppear:animated];
     
-    [[CallHistoryManager sharedInstance] loadHistory];
-    history = [CallHistoryManager sharedInstance].history;
+}
+
+-(void)dealloc
+{
+    [super dealloc];
+    [_tableView release];
 }
 #pragma mark UITableViewDataSource, UITableViewDelegate methods
 
@@ -58,6 +63,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [[CallHistoryManager sharedInstance] loadHistory];
+    history = [CallHistoryManager sharedInstance].history;
     return [history count];
 }
 

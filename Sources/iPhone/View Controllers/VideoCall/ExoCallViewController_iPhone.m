@@ -25,14 +25,14 @@
     if (self) {
         // Custom initialization
         _tabVC = [[UITabBarController alloc] init];
-        RecentsTabViewController_iPhone *recentsVC = [[RecentsTabViewController_iPhone alloc] initWithNibName:@"RecentsTabViewController_iPhone" bundle:nil];
+        RecentsTabViewController_iPhone *recentsVC = [[[RecentsTabViewController_iPhone alloc] initWithNibName:@"RecentsTabViewController_iPhone" bundle:nil] autorelease];
         
-        PeopleViewController_iPhone *peopleVC = [[PeopleViewController_iPhone alloc] initWithNibName:@"PeopleViewController_iPhone" bundle:nil];
+        PeopleViewController_iPhone *peopleVC = [[[PeopleViewController_iPhone alloc] initWithNibName:@"PeopleViewController_iPhone" bundle:nil] autorelease];
         
-        DialViewController_iPhone *dialVC = [[DialViewController_iPhone alloc] initWithNibName:@"ContactsTabViewController_iPhone" bundle:nil];
+        DialViewController_iPhone *dialVC = [[[DialViewController_iPhone alloc] initWithNibName:@"DialViewController_iPhone" bundle:nil] autorelease];
         
         [_tabVC setViewControllers:[NSArray arrayWithObjects:recentsVC, peopleVC, dialVC, nil]];
-        
+        _tabVC.delegate = self;
         _tabVC.view.frame = self.view.frame;
         [self.view addSubview:_tabVC.view];
         
@@ -60,4 +60,14 @@
     [_tabVC release];
 }
 
+#pragma mark UITabBarControllerDelegate methods
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if([viewController isKindOfClass:[RecentsTabViewController_iPhone class]]) {
+        RecentsTabViewController_iPhone *recentsVC = (RecentsTabViewController_iPhone *)viewController;
+        
+        [recentsVC.tableView reloadData];
+    }
+}
 @end

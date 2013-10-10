@@ -14,16 +14,8 @@
 - (id)init
 {
     if((self = [super init])) {
-        self.history = [NSMutableArray arrayWithCapacity:20];
-    }
-    return self;
-}
-
-
-- (id)initWithUserId:(NSString *)userId
-{
-    if((self = [super init])) {
-        self.userId = userId;
+        self.userId = [UserPreferencesManager sharedInstance].username;
+        [self loadHistory];
     }
     return self;
 }
@@ -35,8 +27,7 @@
 	{
 		if(!sharedInstance)
 		{
-			NSString *username = [UserPreferencesManager sharedInstance].username; 
-            sharedInstance = [[CallHistoryManager alloc] initWithUserId:username];
+            sharedInstance = [[CallHistoryManager alloc] init];
         }
 		return sharedInstance;
 	}
@@ -63,7 +54,6 @@
         
     } else {
         self.history = [[NSMutableArray alloc]initWithCapacity:20];
-        
     }
 }
 - (NSString *)documentDirectory
@@ -74,7 +64,7 @@
 
 - (NSString *)filePath
 {
-    return [[self documentDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",[NSString stringWithFormat:@"CallHistory_%@", self.userId]]];
+    return [[self documentDirectory] stringByAppendingPathComponent:@"CallHistory.plist"];
 }
 
 @end

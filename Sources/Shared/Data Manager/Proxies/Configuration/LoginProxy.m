@@ -202,6 +202,7 @@ return self;
         
         //connect and authenticate to Weemo cloud
         [ExoWeemoHandler sharedInstance].userId = self.username;
+        [ExoWeemoHandler sharedInstance].displayName = self.username;
         [[ExoWeemoHandler sharedInstance] connect];
         
     } else {

@@ -75,14 +75,12 @@
 {
     if(isConnected) {
         self.uidLabel.text = [NSString stringWithFormat:@"Your uid: %@",[ExoWeemoHandler sharedInstance].userId ];
-        self.callButton.enabled = YES;
-        self.connectButton.hidden = YES;
-        self.indicator.hidden = YES;
     } else {
         self.uidLabel.text = @"You are not connected";
-        self.callButton.enabled = NO;
-        self.connectButton.hidden = NO;
-        self.indicator.hidden = YES;
     }
+    
+    self.callButton.enabled = isConnected;
+    self.connectButton.hidden = isConnected;
+    self.indicator.hidden = isConnected;
 }
 @end
