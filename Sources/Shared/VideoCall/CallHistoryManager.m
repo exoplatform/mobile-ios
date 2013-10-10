@@ -8,6 +8,7 @@
 
 #import "CallHistoryManager.h"
 #import "UserPreferencesManager.h"
+#import "CallHistory.h"
 
 @implementation CallHistoryManager
 
@@ -49,8 +50,16 @@
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        self.history = [unarchiver decodeObjectForKey:[NSString stringWithFormat:@"CallHistory_%@", self.userId]];
+        NSMutableArray *array = [unarchiver decodeObjectForKey:[NSString stringWithFormat:@"CallHistory_%@", self.userId]];
         [unarchiver finishDecoding];
+        
+        //sort the history by time of call
+        self.history = [NSMutableArray arrayWithArray:[array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            CallHistory *history1 = (CallHistory *)obj1;
+            CallHistory *history2 = (CallHistory *)obj2;
+            
+            return [history2.date compare:history1.date];
+        }]];
         
     } else {
         self.history = [[NSMutableArray alloc]initWithCapacity:20];

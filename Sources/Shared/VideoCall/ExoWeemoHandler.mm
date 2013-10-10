@@ -66,9 +66,11 @@
 
 - (void)removeCallView
 {
-	[self.activeCallVC removeFromParentViewController];
-	[self.activeCallVC.view removeFromSuperview];
-	self.activeCallVC = nil;
+    if(self.activeCallVC) {
+        [self.activeCallVC removeFromParentViewController];
+        [self.activeCallVC.view removeFromSuperview];
+        self.activeCallVC = nil;
+    }
 }
 
 - (void)createCallView
@@ -77,7 +79,9 @@
 		
     //TODO: iPad
     self.activeCallVC = [[CallViewController_iPhone alloc] initWithNibName:@"CallViewController_iPhone" bundle:nil];
-		
+	
+    self.activeCallVC.call = [[Weemo instance] activeCall];
+    
     [[[Weemo instance] activeCall] setDelegate:self.activeCallVC];
 }
 

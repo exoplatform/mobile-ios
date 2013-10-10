@@ -21,6 +21,7 @@
 @synthesize call;
 @synthesize v_videoIn;
 @synthesize v_videoOut;
+@synthesize l_caller;
 
 #pragma mark - Controller life cycle
 
@@ -53,15 +54,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[[self call]setDelegate:self];
+	
+    [[self call]setDelegate:self];
 	[[self call]setViewVideoIn:[self v_videoIn]];
 	[[self call]setViewVideoOut:[self v_videoOut]];
+    
+    self.l_caller.text = self.call.contactID;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self resizeView:[self interfaceOrientation]];
+//	[self resizeView:[self interfaceOrientation]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +74,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return UIInterfaceOrientationPortrait;
+}
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)tO duration:(NSTimeInterval)duration
 {
 	[self resizeView:tO];
@@ -88,6 +100,9 @@
 - (IBAction)hangup:(id)sender
 {
 	[[self call]hangup];
+    
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 - (IBAction)profile:(id)sender

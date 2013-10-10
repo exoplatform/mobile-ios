@@ -11,6 +11,7 @@
 #import "DialViewController_iPhone.h"
 #import "PeopleViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
+#import <iOS-SDK/Weemo.h>
 
 @interface ExoCallViewController_iPhone ()
 
@@ -68,6 +69,8 @@
         RecentsTabViewController_iPhone *recentsVC = (RecentsTabViewController_iPhone *)viewController;
         
         [recentsVC.tableView reloadData];
+    } else if([viewController isKindOfClass:[DialViewController_iPhone class]]) {
+        NSLog(@"%@", [Weemo instance].isConnected ? @"Connected" : @"Not connected");
     }
 }
 @end
