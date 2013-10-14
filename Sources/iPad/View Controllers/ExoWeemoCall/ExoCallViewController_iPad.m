@@ -1,19 +1,18 @@
 //
-//  DialViewController_iPhone.m
+//  ExoCallViewController_iPad.m
 //  eXo Platform
 //
-//  Created by vietnq on 10/1/13.
+//  Created by vietnq on 10/14/13.
 //  Copyright (c) 2013 eXoPlatform. All rights reserved.
 //
 
-#import "DialViewController_iPhone.h"
+#import "ExoCallViewController_iPad.h"
 
-@interface DialViewController_iPhone ()
+@interface ExoCallViewController_iPad ()
 
 @end
 
-@implementation DialViewController_iPhone
-
+@implementation ExoCallViewController_iPad
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,4 +35,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+}
 @end

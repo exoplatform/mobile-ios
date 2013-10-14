@@ -15,7 +15,7 @@
 #import "ActivityStreamBrowseViewController_iPad.h"
 #import "DocumentsViewController_iPad.h"
 #import "DashboardViewController_iPad.h"
-
+#import "ExoCallViewController_iPad.h"
 
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
@@ -87,6 +87,8 @@
         }
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
+        //weemo call
+        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"HomeCallIcon.png"], kCellImage, Localize(@"Call"), kCellText, nil]];
     }
     return self;
 }
@@ -322,13 +324,17 @@
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:dashboardViewController_iPad invokeByController:self isStackStartView:TRUE];
             break;
         }
+        
+        case EXO_VIDEO_CALL_ROW: {
+            //video call
+            ExoCallViewController_iPad *callVC = [[[ExoCallViewController_iPad alloc] initWithNibName:@"ExoCallViewController_iPad" bundle:nil] autorelease];
+            
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:callVC invokeByController:self isStackStartView:TRUE];
+            break;
+        }
         default:
             break;
     }
-    
-    
-    //DataViewController *dataViewController = [[DataViewController alloc] initWithFrame:CGRectMake(0, 0, 477, self.view.frame.size.height) squareCorners:NO];
-	//[[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:dataViewController invokeByController:self isStackStartView:TRUE];
 }
 
 

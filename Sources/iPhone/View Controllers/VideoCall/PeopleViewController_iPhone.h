@@ -7,7 +7,6 @@
 //
 
 #import "CallViewController.h"
-#import "eXoViewController.h"
-@interface PeopleViewController_iPhone : eXoViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, retain) NSMutableArray *people;
+#import "PeopleViewController.h"
+@interface PeopleViewController_iPhone : PeopleViewController
 @end

@@ -40,7 +40,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self)
 	{
-		[self setCall:[[Weemo instance] activeCall]];
 	}
 	return self;
 }
@@ -65,7 +64,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-//	[self resizeView:[self interfaceOrientation]];
+	[self resizeView:[self interfaceOrientation]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,10 +98,7 @@
 
 - (IBAction)hangup:(id)sender
 {
-	[[self call]hangup];
-    
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+	[[self call] hangup];
 }
 
 - (IBAction)profile:(id)sender

@@ -11,6 +11,6 @@
 
 @interface CallHistory : NSObject <NSCoding>
 @property (nonatomic, copy) NSString *caller;
-@property (nonatomic, copy) NSString *direction ; //incoming || outcoming
+@property (nonatomic, assign) int direction ; //incoming = 0|| outcoming = 1
 @property (nonatomic, retain) NSDate *date;
 @end

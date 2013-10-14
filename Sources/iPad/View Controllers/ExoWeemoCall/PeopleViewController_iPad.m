@@ -1,19 +1,19 @@
 //
-//  DialViewController_iPhone.m
+//  PeopleViewController_iPad.m
 //  eXo Platform
 //
-//  Created by vietnq on 10/1/13.
+//  Created by vietnq on 10/14/13.
 //  Copyright (c) 2013 eXoPlatform. All rights reserved.
 //
 
-#import "DialViewController_iPhone.h"
+#import "PeopleViewController_iPad.h"
+#import "RoundRectView.h"
 
-@interface DialViewController_iPhone ()
+@interface PeopleViewController_iPad ()
 
 @end
 
-@implementation DialViewController_iPhone
-
+@implementation PeopleViewController_iPad
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +28,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
+    
+    //TODO : Localize
+    _navigation.topItem.title = @"People";
 }
 
 - (void)didReceiveMemoryWarning

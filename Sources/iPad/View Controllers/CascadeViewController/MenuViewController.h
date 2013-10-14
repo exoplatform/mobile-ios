@@ -13,6 +13,7 @@
 #define EXO_ACTIVITY_STREAM_ROW 0
 #define EXO_DOCUMENTS_ROW 1
 #define EXO_DASHBOARD_ROW 2
+#define EXO_VIDEO_CALL_ROW 3
 
 @class UserProfileViewController;
 

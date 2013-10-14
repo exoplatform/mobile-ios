@@ -7,7 +7,7 @@
 //
 
 #import "ExoWeemoHandler.h"
-#import "CallViewController_iPhone.h"
+#import "CallViewController.h"
 #import "AppDelegate_iPhone.h"
 #import "DialViewController_iPhone.h"
 #import "CallHistoryManager.h"
@@ -54,7 +54,8 @@
 	NSLog(@">>>> addCallView ");
 	[self createCallView];
     
-    UIViewController *rootVC = [AppDelegate_iPhone instance].window.rootViewController;
+    UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    
     [rootVC addChildViewController:self.activeCallVC];
     
     self.activeCallVC.view.frame =  CGRectMake(0., 0., rootVC.view.frame.size.width, rootVC.view.frame.size.height);
@@ -62,6 +63,8 @@
     [rootVC addChildViewController:self.activeCallVC];
     
 	[rootVC.view addSubview:self.activeCallVC.view];
+    
+    
 }
 
 - (void)removeCallView
@@ -77,8 +80,8 @@
 {
 	NSLog(@">>>> createCallView");
 		
-    //TODO: iPad
-    self.activeCallVC = [[CallViewController_iPhone alloc] initWithNibName:@"CallViewController_iPhone" bundle:nil];
+    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+    self.activeCallVC = [[CallViewController alloc] initWithNibName:isIpad ? @"CallViewController_iPad" : @"CallViewController_iPhone" bundle:nil];
 	
     self.activeCallVC.call = [[Weemo instance] activeCall];
     
@@ -126,13 +129,7 @@
 {
     if(error) {
         NSLog(@">>>WeemoHandler: %@", [error description]);
-        if(self.updatedVC && [self.updatedVC isKindOfClass:[DialViewController_iPhone class]]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                DialViewController_iPhone *contactsVC = (DialViewController_iPhone *)self.updatedVC;
-                [contactsVC.indicator stopAnimating];
-                [contactsVC updateViewWithConnectionStatus:NO];
-            });
-        }
+        
     } else {
         [[Weemo instance] authenticateWithToken:self.userId andType:USERTYPE_INTERNAL];
     }
@@ -144,22 +141,8 @@
     if(!error) {
         //TODO: set display name
         [[Weemo instance] setDisplayName:self.displayName];
-        
-        if(self.updatedVC && [self.updatedVC isKindOfClass:[DialViewController_iPhone class]]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                DialViewController_iPhone *contactsVC = (DialViewController_iPhone *)self.updatedVC;
-                [contactsVC.indicator stopAnimating];
-                [contactsVC updateViewWithConnectionStatus:YES];
-            });
-        }
     } else {
-        if(self.updatedVC && [self.updatedVC isKindOfClass:[DialViewController_iPhone class]]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                DialViewController_iPhone *contactsVC = (DialViewController_iPhone *)self.updatedVC;
-                [contactsVC.indicator stopAnimating];
-                [contactsVC updateViewWithConnectionStatus:NO];
-            });
-        }
+        NSLog(@"%@", [error description]);
     }
 }
 
@@ -193,7 +176,6 @@
 
 - (void)weemoCallEnded:(WeemoCall *)call
 {
-	
     dispatch_async(dispatch_get_main_queue(), ^{
 		[self removeCallView];
 		[incomingCall dismissWithClickedButtonIndex:1 animated:YES];
@@ -208,7 +190,7 @@
     } else {
         NSLog(@">>>WeemoHandler: %@ cannot be called", contactID);
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"Please check the caller id or try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"Please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
         });
     }
@@ -235,7 +217,7 @@
 {
     //save call history
     CallHistory *entry = [[CallHistory alloc] init];
-    entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? @"Incoming" : @"Outcoming";
+    entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? 0 : 1;
     entry.caller = call.contactID;
     entry.date = [[NSDate alloc] init];
     

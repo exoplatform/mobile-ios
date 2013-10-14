@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "eXoViewController.h"
+#import "ExoCallViewController.h"
 
-@interface ExoCallViewController_iPhone : eXoViewController <UITabBarControllerDelegate>
-@property (nonatomic, retain) UITabBarController *tabVC;
-
+@interface ExoCallViewController_iPhone : ExoCallViewController 
 @end

@@ -25,7 +25,7 @@
 {
     if((self = [super init])) {
         self.caller = [aDecoder decodeObjectForKey:@"Caller"];
-        self.direction = [aDecoder decodeObjectForKey:@"CallDirection"];
+        self.direction = [aDecoder decodeIntForKey:@"CallDirection"];
         self.date = [aDecoder decodeObjectForKey:@"Date"];
     }
     return self;
@@ -34,7 +34,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.caller forKey:@"Caller"];
-    [aCoder encodeObject:self.direction forKey:@"CallDirection"];
+    [aCoder encodeInt:self.direction forKey:@"CallDirection"];
     [aCoder encodeObject:self.date forKey:@"Date"];
 }
 

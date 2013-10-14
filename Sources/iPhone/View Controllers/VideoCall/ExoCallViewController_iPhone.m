@@ -18,24 +18,12 @@
 @end
 
 @implementation ExoCallViewController_iPhone
-@synthesize tabVC = _tabVC;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _tabVC = [[UITabBarController alloc] init];
-        RecentsTabViewController_iPhone *recentsVC = [[[RecentsTabViewController_iPhone alloc] initWithNibName:@"RecentsTabViewController_iPhone" bundle:nil] autorelease];
-        
-        PeopleViewController_iPhone *peopleVC = [[[PeopleViewController_iPhone alloc] initWithNibName:@"PeopleViewController_iPhone" bundle:nil] autorelease];
-        
-        DialViewController_iPhone *dialVC = [[[DialViewController_iPhone alloc] initWithNibName:@"DialViewController_iPhone" bundle:nil] autorelease];
-        
-        [_tabVC setViewControllers:[NSArray arrayWithObjects:recentsVC, peopleVC, dialVC, nil]];
-        _tabVC.delegate = self;
-        _tabVC.view.frame = self.view.frame;
-        [self.view addSubview:_tabVC.view];
         
     }
     return self;
@@ -54,23 +42,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-    _tabVC = nil;
-    [_tabVC release];
-}
 
-#pragma mark UITabBarControllerDelegate methods
-
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-    if([viewController isKindOfClass:[RecentsTabViewController_iPhone class]]) {
-        RecentsTabViewController_iPhone *recentsVC = (RecentsTabViewController_iPhone *)viewController;
-        
-        [recentsVC.tableView reloadData];
-    } else if([viewController isKindOfClass:[DialViewController_iPhone class]]) {
-        NSLog(@"%@", [Weemo instance].isConnected ? @"Connected" : @"Not connected");
-    }
-}
 @end

@@ -1,19 +1,18 @@
 //
-//  DialViewController_iPhone.m
+//  CallViewController_iPad.m
 //  eXo Platform
 //
-//  Created by vietnq on 10/1/13.
+//  Created by vietnq on 10/14/13.
 //  Copyright (c) 2013 eXoPlatform. All rights reserved.
 //
 
-#import "DialViewController_iPhone.h"
+#import "CallViewController_iPad.h"
 
-@interface DialViewController_iPhone ()
+@interface CallViewController_iPad ()
 
 @end
 
-@implementation DialViewController_iPhone
-
+@implementation CallViewController_iPad
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

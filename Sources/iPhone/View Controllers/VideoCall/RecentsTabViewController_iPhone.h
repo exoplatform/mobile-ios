@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "eXoViewController.h"
-@interface RecentsTabViewController_iPhone : eXoViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-
+#import "RecentsTabViewController.h"
+@interface RecentsTabViewController_iPhone : RecentsTabViewController 
 @end
