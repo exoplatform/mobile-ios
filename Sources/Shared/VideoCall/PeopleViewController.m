@@ -91,7 +91,9 @@
     
     WeemoContact *contact5 = [[[WeemoContact alloc] initWithUid:@"benjamin_mestrallet" andDisplayName:@"Benjamin Mestrallet"] autorelease];
     
-    self.people = [NSMutableArray arrayWithObjects:contact1, contact3, contact4, contact5, nil];
+    WeemoContact *contact6 = [[[WeemoContact alloc] initWithUid:@"benjamin_paillereau" andDisplayName:@"Benjamin Paillereau"] autorelease];
+    
+    self.people = [NSMutableArray arrayWithObjects:contact1, contact3, contact4, contact5, contact6, nil];
 }
 
 @end
