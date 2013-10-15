@@ -431,14 +431,7 @@
 		7D0A949F180D294700C83A7A /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A949D180D294700C83A7A /* info.png */; };
 		7D0A94A0180D294700C83A7A /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A949E180D294700C83A7A /* phone.png */; };
 		7D0A94B3180D327300C83A7A /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A94B2180D327300C83A7A /* question.png */; };
-		7D111B8C1805364D002903A6 /* CallHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D111B8B1805364D002903A6 /* CallHistory.m */; };
-		7D111BA0180547ED002903A6 /* CallHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D111B9F180547ED002903A6 /* CallHistoryManager.m */; };
 		7D212DF517FA861100AF93D1 /* iOS-SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DF417FA861100AF93D1 /* iOS-SDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		7D212E0B17FAC2CC00AF93D1 /* DialViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0917FAC2CC00AF93D1 /* DialViewController_iPhone.m */; };
-		7D212E0C17FAC2CC00AF93D1 /* DialViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0A17FAC2CC00AF93D1 /* DialViewController_iPhone.xib */; };
-		7D212E1017FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */; };
-		7D212E1117FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */; };
-		7D212E1517FD059900AF93D1 /* ExoWeemoHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D212E1417FD059900AF93D1 /* ExoWeemoHandler.mm */; };
 		7D212E1617FD1B1300AF93D1 /* libspeex.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFE17FA892200AF93D1 /* libspeex.ios.a */; };
 		7D212E1717FD1B2300AF93D1 /* libvpx.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFF17FA892200AF93D1 /* libvpx.ios.a */; };
 		7D25E9DD17A7A6B6003E60A0 /* iphone5-activity-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */; };
@@ -506,26 +499,6 @@
 		7D6931EA1797D690008CCE72 /* logo_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931E41797D690008CCE72 /* logo_ipad@2x.png */; };
 		7D6931ED1797D912008CCE72 /* arrow_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931EB1797D912008CCE72 /* arrow_ipad@2x.png */; };
 		7D6931EE1797D912008CCE72 /* arrow_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931EC1797D912008CCE72 /* arrow_ipad.png */; };
-		7D7F033E180B916D00D6B49F /* ExoCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F033D180B916D00D6B49F /* ExoCallViewController.m */; };
-		7D7F0352180B92C400D6B49F /* RecentsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F0351180B92C400D6B49F /* RecentsTabViewController.m */; };
-		7D7F0355180B93C800D6B49F /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F0354180B93C800D6B49F /* PeopleViewController.m */; };
-		7D7F0358180B949F00D6B49F /* DialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F0357180B949F00D6B49F /* DialViewController.m */; };
-		7D96B40E180BAD4400841E8C /* DialViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B403180BAD4400841E8C /* DialViewController_iPad.m */; };
-		7D96B40F180BAD4400841E8C /* DialViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B404180BAD4400841E8C /* DialViewController_iPad.xib */; };
-		7D96B410180BAD4400841E8C /* PeopleViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B406180BAD4400841E8C /* PeopleViewController_iPad.m */; };
-		7D96B411180BAD4400841E8C /* PeopleViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B407180BAD4400841E8C /* PeopleViewController_iPad.xib */; };
-		7D96B412180BAD4400841E8C /* RecentsTabViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B409180BAD4400841E8C /* RecentsTabViewController_iPad.m */; };
-		7D96B413180BAD4400841E8C /* RecentsTabViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B40A180BAD4400841E8C /* RecentsTabViewController_iPad.xib */; };
-		7D96B414180BAD4400841E8C /* ExoCallViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B40C180BAD4400841E8C /* ExoCallViewController_iPad.m */; };
-		7D96B415180BAD4400841E8C /* ExoCallViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B40D180BAD4400841E8C /* ExoCallViewController_iPad.xib */; };
-		7D96B419180BE41000841E8C /* CallViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B417180BE40E00841E8C /* CallViewController_iPad.m */; };
-		7D96B41A180BE41000841E8C /* CallViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B418180BE40E00841E8C /* CallViewController_iPad.xib */; };
-		7D96B41D180D1F4A00841E8C /* WeemoAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B41C180D1F4800841E8C /* WeemoAboutViewController.m */; };
-		7D96B41F180D1FB200841E8C /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B41E180D1FB000841E8C /* about.html */; };
-		7D96B423180D1FE000841E8C /* WeemoAboutViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B421180D1FDE00841E8C /* WeemoAboutViewController_iPhone.m */; };
-		7D96B424180D1FE000841E8C /* WeemoAboutViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B422180D1FDF00841E8C /* WeemoAboutViewController_iPhone.xib */; };
-		7D96B428180D200500841E8C /* WeemoAboutViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D96B426180D200300841E8C /* WeemoAboutViewController_iPad.m */; };
-		7D96B429180D200500841E8C /* WeemoAboutViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96B427180D200400841E8C /* WeemoAboutViewController_iPad.xib */; };
 		7D993C63176ABB410035835F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C62176ABB410035835F /* SignUpViewController.m */; };
 		7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */; };
 		7D993C79176ABB5E0035835F /* SignUpViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C77176ABB5E0035835F /* SignUpViewController_iPhone.xib */; };
@@ -563,8 +536,6 @@
 		7D9B77FA1785C840003F8D19 /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77EA1785C840003F8D19 /* label.png */; };
 		7D9B77FB1785C840003F8D19 /* number_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77EB1785C840003F8D19 /* number_bg.png */; };
 		7D9B77FC1785C840003F8D19 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9B77EC1785C840003F8D19 /* separator.png */; };
-		7DAEF1B31802572300E610E1 /* CallViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF1B11802572300E610E1 /* CallViewController_iPhone.m */; };
-		7DAEF1B41802572300E610E1 /* CallViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1B21802572300E610E1 /* CallViewController_iPhone.xib */; };
 		7DAEF2091802745F00E610E1 /* bkgd_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E21802745F00E610E1 /* bkgd_active.png */; };
 		7DAEF20A1802745F00E610E1 /* bkgd_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E31802745F00E610E1 /* bkgd_active@2x.png */; };
 		7DAEF20B1802745F00E610E1 /* bkgd_active@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF1E41802745F00E610E1 /* bkgd_active@2x~ipad.png */; };
@@ -604,10 +575,6 @@
 		7DAEF22D1802745F00E610E1 /* call_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2061802745F00E610E1 /* call_video@2x.png */; };
 		7DAEF22E1802745F00E610E1 /* call_video@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2071802745F00E610E1 /* call_video@2x~ipad.png */; };
 		7DAEF22F1802745F00E610E1 /* call_video~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2081802745F00E610E1 /* call_video~ipad.png */; };
-		7DAEF2331803ED4400E610E1 /* PeopleViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF2311803ED4300E610E1 /* PeopleViewController_iPhone.m */; };
-		7DAEF2341803ED4400E610E1 /* PeopleViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEF2321803ED4400E610E1 /* PeopleViewController_iPhone.xib */; };
-		7DAEF2391803F1D100E610E1 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF2381803F1D000E610E1 /* CallViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		7DAEF23C1803F2F100E610E1 /* WeemoContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEF23B1803F2F100E610E1 /* WeemoContact.m */; };
 		7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA017697D0A001CA575 /* WelcomeViewController.m */; };
 		7DB91BA617697D6E001CA575 /* WelcomeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB91BA417697D6E001CA575 /* WelcomeViewController_iPhone.m */; };
 		7DB91BA717697D6E001CA575 /* WelcomeViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DB91BA517697D6E001CA575 /* WelcomeViewController_iPhone.xib */; };
@@ -625,6 +592,41 @@
 		7DCA4F37176EB654002694D5 /* OnPremiseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F35176EB653002694D5 /* OnPremiseViewController_iPhone.m */; };
 		7DCA4F38176EB654002694D5 /* OnPremiseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCA4F36176EB653002694D5 /* OnPremiseViewController_iPhone.xib */; };
 		7DCA4F4E176F00FA002694D5 /* ExoCloudProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA4F4D176F00FA002694D5 /* ExoCloudProxy.m */; };
+		7DE49EA8180D5EDD00394825 /* CallViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49E97180D5EDD00394825 /* CallViewController_iPad.m */; };
+		7DE49EA9180D5EDD00394825 /* CallViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49E98180D5EDD00394825 /* CallViewController_iPad.xib */; };
+		7DE49EAA180D5EDD00394825 /* DialViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49E9A180D5EDD00394825 /* DialViewController_iPad.m */; };
+		7DE49EAB180D5EDD00394825 /* DialViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49E9B180D5EDD00394825 /* DialViewController_iPad.xib */; };
+		7DE49EAC180D5EDD00394825 /* ExoCallViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49E9D180D5EDD00394825 /* ExoCallViewController_iPad.m */; };
+		7DE49EAD180D5EDD00394825 /* ExoCallViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49E9E180D5EDD00394825 /* ExoCallViewController_iPad.xib */; };
+		7DE49EAE180D5EDD00394825 /* PeopleViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EA0180D5EDD00394825 /* PeopleViewController_iPad.m */; };
+		7DE49EAF180D5EDD00394825 /* PeopleViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EA1180D5EDD00394825 /* PeopleViewController_iPad.xib */; };
+		7DE49EB0180D5EDD00394825 /* RecentsTabViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EA3180D5EDD00394825 /* RecentsTabViewController_iPad.m */; };
+		7DE49EB1180D5EDD00394825 /* RecentsTabViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EA4180D5EDD00394825 /* RecentsTabViewController_iPad.xib */; };
+		7DE49EB2180D5EDD00394825 /* WeemoAboutViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EA6180D5EDD00394825 /* WeemoAboutViewController_iPad.m */; };
+		7DE49EB3180D5EDD00394825 /* WeemoAboutViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EA7180D5EDD00394825 /* WeemoAboutViewController_iPad.xib */; };
+		7DE49EC4180D5EEC00394825 /* CallViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EB6180D5EEC00394825 /* CallViewController_iPhone.m */; };
+		7DE49EC5180D5EEC00394825 /* CallViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EB7180D5EEC00394825 /* CallViewController_iPhone.xib */; };
+		7DE49EC6180D5EEC00394825 /* DialViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EB9180D5EEC00394825 /* DialViewController_iPhone.m */; };
+		7DE49EC7180D5EEC00394825 /* DialViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EBA180D5EEC00394825 /* DialViewController_iPhone.xib */; };
+		7DE49EC8180D5EEC00394825 /* ExoCallViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EBC180D5EEC00394825 /* ExoCallViewController_iPhone.m */; };
+		7DE49EC9180D5EEC00394825 /* ExoCallViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EBD180D5EEC00394825 /* ExoCallViewController_iPhone.xib */; };
+		7DE49ECA180D5EEC00394825 /* PeopleViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EBF180D5EEC00394825 /* PeopleViewController_iPhone.m */; };
+		7DE49ECB180D5EEC00394825 /* PeopleViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EC0180D5EEC00394825 /* PeopleViewController_iPhone.xib */; };
+		7DE49ECC180D5EEC00394825 /* RecentsTabViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EC2180D5EEC00394825 /* RecentsTabViewController_iPhone.m */; };
+		7DE49ECD180D5EEC00394825 /* RecentsTabViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EC3180D5EEC00394825 /* RecentsTabViewController_iPhone.xib */; };
+		7DE49EE7180D5EF800394825 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49ECF180D5EF800394825 /* about.html */; };
+		7DE49EE8180D5EF800394825 /* CallHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49ED1180D5EF800394825 /* CallHistory.m */; };
+		7DE49EE9180D5EF800394825 /* CallHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49ED3180D5EF800394825 /* CallHistoryManager.m */; };
+		7DE49EEA180D5EF800394825 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49ED5180D5EF800394825 /* CallViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		7DE49EEB180D5EF800394825 /* DialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49ED7180D5EF800394825 /* DialViewController.m */; };
+		7DE49EEC180D5EF800394825 /* ExoCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49ED9180D5EF800394825 /* ExoCallViewController.m */; };
+		7DE49EED180D5EF800394825 /* ExoWeemoHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EDB180D5EF800394825 /* ExoWeemoHandler.mm */; };
+		7DE49EEE180D5EF800394825 /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EDD180D5EF800394825 /* PeopleViewController.m */; };
+		7DE49EEF180D5EF800394825 /* RecentsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EDF180D5EF800394825 /* RecentsTabViewController.m */; };
+		7DE49EF0180D5EF800394825 /* WeemoAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE1180D5EF800394825 /* WeemoAboutViewController.m */; };
+		7DE49EF1180D5EF800394825 /* WeemoAboutViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE3180D5EF800394825 /* WeemoAboutViewController_iPhone.m */; };
+		7DE49EF2180D5EF800394825 /* WeemoAboutViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */; };
+		7DE49EF3180D5EF800394825 /* WeemoContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE6180D5EF800394825 /* WeemoContact.m */; };
 		7DF39B1617F9606A000A3267 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1517F9606A000A3267 /* CoreVideo.framework */; };
 		7DF39B1817F96076000A3267 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1717F96076000A3267 /* GLKit.framework */; };
 		7DF39B1A17F96080000A3267 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1917F96080000A3267 /* CoreMedia.framework */; };
@@ -632,8 +634,6 @@
 		7DF39B1E17F960BD000A3267 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1D17F960BD000A3267 /* AVFoundation.framework */; };
 		7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */; };
 		7DF39B2217F96E43000A3267 /* HomeCallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B2117F96E43000A3267 /* HomeCallIcon.png */; };
-		7DF39B2C17F9882F000A3267 /* ExoCallViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF39B2A17F9882F000A3267 /* ExoCallViewController_iPhone.m */; };
-		7DF39B2D17F9882F000A3267 /* ExoCallViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B2B17F9882F000A3267 /* ExoCallViewController_iPhone.xib */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1602,21 +1602,9 @@
 		7D0A949D180D294700C83A7A /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		7D0A949E180D294700C83A7A /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		7D0A94B2180D327300C83A7A /* question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question.png; sourceTree = "<group>"; };
-		7D111B8A1805364D002903A6 /* CallHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistory.h; sourceTree = "<group>"; };
-		7D111B8B1805364D002903A6 /* CallHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistory.m; sourceTree = "<group>"; };
-		7D111B9E180547ED002903A6 /* CallHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoryManager.h; sourceTree = "<group>"; };
-		7D111B9F180547ED002903A6 /* CallHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryManager.m; sourceTree = "<group>"; };
 		7D212DF417FA861100AF93D1 /* iOS-SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "iOS-SDK.framework"; sourceTree = "<group>"; };
 		7D212DFE17FA892200AF93D1 /* libspeex.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeex.ios.a; path = ../Resources/ThirdPart/Libraries/libspeex.ios.a; sourceTree = "<group>"; };
 		7D212DFF17FA892200AF93D1 /* libvpx.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.ios.a; path = ../Resources/ThirdPart/Libraries/libvpx.ios.a; sourceTree = "<group>"; };
-		7D212E0817FAC2CC00AF93D1 /* DialViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialViewController_iPhone.h; sourceTree = "<group>"; };
-		7D212E0917FAC2CC00AF93D1 /* DialViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialViewController_iPhone.m; sourceTree = "<group>"; };
-		7D212E0A17FAC2CC00AF93D1 /* DialViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialViewController_iPhone.xib; sourceTree = "<group>"; };
-		7D212E0D17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController_iPhone.h; sourceTree = "<group>"; };
-		7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController_iPhone.m; sourceTree = "<group>"; };
-		7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentsTabViewController_iPhone.xib; sourceTree = "<group>"; };
-		7D212E1317FD059900AF93D1 /* ExoWeemoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoWeemoHandler.h; sourceTree = "<group>"; };
-		7D212E1417FD059900AF93D1 /* ExoWeemoHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ExoWeemoHandler.mm; sourceTree = "<group>"; };
 		7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-details@2x.png"; sourceTree = "<group>"; };
 		7D25E9D017A7A6B6003E60A0 /* iphone5-activity-stream@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-stream@2x.png"; sourceTree = "<group>"; };
 		7D25E9D117A7A6B6003E60A0 /* iphone5-apps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-apps@2x.png"; sourceTree = "<group>"; };
@@ -1683,38 +1671,6 @@
 		7D6931E41797D690008CCE72 /* logo_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ipad@2x.png"; sourceTree = "<group>"; };
 		7D6931EB1797D912008CCE72 /* arrow_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_ipad@2x.png"; sourceTree = "<group>"; };
 		7D6931EC1797D912008CCE72 /* arrow_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_ipad.png; sourceTree = "<group>"; };
-		7D7F033C180B916D00D6B49F /* ExoCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCallViewController.h; sourceTree = "<group>"; };
-		7D7F033D180B916D00D6B49F /* ExoCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCallViewController.m; sourceTree = "<group>"; };
-		7D7F0350180B92C400D6B49F /* RecentsTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController.h; sourceTree = "<group>"; };
-		7D7F0351180B92C400D6B49F /* RecentsTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController.m; sourceTree = "<group>"; };
-		7D7F0353180B93C700D6B49F /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
-		7D7F0354180B93C800D6B49F /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
-		7D7F0356180B949E00D6B49F /* DialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialViewController.h; sourceTree = "<group>"; };
-		7D7F0357180B949F00D6B49F /* DialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialViewController.m; sourceTree = "<group>"; };
-		7D96B402180BAD4400841E8C /* DialViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialViewController_iPad.h; sourceTree = "<group>"; };
-		7D96B403180BAD4400841E8C /* DialViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialViewController_iPad.m; sourceTree = "<group>"; };
-		7D96B404180BAD4400841E8C /* DialViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialViewController_iPad.xib; sourceTree = "<group>"; };
-		7D96B405180BAD4400841E8C /* PeopleViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController_iPad.h; sourceTree = "<group>"; };
-		7D96B406180BAD4400841E8C /* PeopleViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController_iPad.m; sourceTree = "<group>"; };
-		7D96B407180BAD4400841E8C /* PeopleViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleViewController_iPad.xib; sourceTree = "<group>"; };
-		7D96B408180BAD4400841E8C /* RecentsTabViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController_iPad.h; sourceTree = "<group>"; };
-		7D96B409180BAD4400841E8C /* RecentsTabViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController_iPad.m; sourceTree = "<group>"; };
-		7D96B40A180BAD4400841E8C /* RecentsTabViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentsTabViewController_iPad.xib; sourceTree = "<group>"; };
-		7D96B40B180BAD4400841E8C /* ExoCallViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCallViewController_iPad.h; sourceTree = "<group>"; };
-		7D96B40C180BAD4400841E8C /* ExoCallViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCallViewController_iPad.m; sourceTree = "<group>"; };
-		7D96B40D180BAD4400841E8C /* ExoCallViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExoCallViewController_iPad.xib; sourceTree = "<group>"; };
-		7D96B416180BE40D00841E8C /* CallViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController_iPad.h; sourceTree = "<group>"; };
-		7D96B417180BE40E00841E8C /* CallViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController_iPad.m; sourceTree = "<group>"; };
-		7D96B418180BE40E00841E8C /* CallViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallViewController_iPad.xib; sourceTree = "<group>"; };
-		7D96B41B180D1F4700841E8C /* WeemoAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoAboutViewController.h; sourceTree = "<group>"; };
-		7D96B41C180D1F4800841E8C /* WeemoAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoAboutViewController.m; sourceTree = "<group>"; };
-		7D96B41E180D1FB000841E8C /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
-		7D96B420180D1FDD00841E8C /* WeemoAboutViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeemoAboutViewController_iPhone.h; path = ../../../Shared/VideoCall/WeemoAboutViewController_iPhone.h; sourceTree = "<group>"; };
-		7D96B421180D1FDE00841E8C /* WeemoAboutViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeemoAboutViewController_iPhone.m; path = ../../../Shared/VideoCall/WeemoAboutViewController_iPhone.m; sourceTree = "<group>"; };
-		7D96B422180D1FDF00841E8C /* WeemoAboutViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WeemoAboutViewController_iPhone.xib; path = ../../../Shared/VideoCall/WeemoAboutViewController_iPhone.xib; sourceTree = "<group>"; };
-		7D96B425180D200200841E8C /* WeemoAboutViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoAboutViewController_iPad.h; sourceTree = "<group>"; };
-		7D96B426180D200300841E8C /* WeemoAboutViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoAboutViewController_iPad.m; sourceTree = "<group>"; };
-		7D96B427180D200400841E8C /* WeemoAboutViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeemoAboutViewController_iPad.xib; sourceTree = "<group>"; };
 		7D993C61176ABB410035835F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		7D993C62176ABB410035835F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		7D993C75176ABB5E0035835F /* SignUpViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPhone.h; sourceTree = "<group>"; };
@@ -1760,9 +1716,6 @@
 		7D9B77EA1785C840003F8D19 /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		7D9B77EB1785C840003F8D19 /* number_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_bg.png; sourceTree = "<group>"; };
 		7D9B77EC1785C840003F8D19 /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
-		7DAEF1B01802572300E610E1 /* CallViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController_iPhone.h; sourceTree = "<group>"; };
-		7DAEF1B11802572300E610E1 /* CallViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController_iPhone.m; sourceTree = "<group>"; };
-		7DAEF1B21802572300E610E1 /* CallViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallViewController_iPhone.xib; sourceTree = "<group>"; };
 		7DAEF1E21802745F00E610E1 /* bkgd_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd_active.png; sourceTree = "<group>"; };
 		7DAEF1E31802745F00E610E1 /* bkgd_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_active@2x.png"; sourceTree = "<group>"; };
 		7DAEF1E41802745F00E610E1 /* bkgd_active@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkgd_active@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1802,13 +1755,6 @@
 		7DAEF2061802745F00E610E1 /* call_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_video@2x.png"; sourceTree = "<group>"; };
 		7DAEF2071802745F00E610E1 /* call_video@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_video@2x~ipad.png"; sourceTree = "<group>"; };
 		7DAEF2081802745F00E610E1 /* call_video~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_video~ipad.png"; sourceTree = "<group>"; };
-		7DAEF2301803ED4300E610E1 /* PeopleViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController_iPhone.h; sourceTree = "<group>"; };
-		7DAEF2311803ED4300E610E1 /* PeopleViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController_iPhone.m; sourceTree = "<group>"; };
-		7DAEF2321803ED4400E610E1 /* PeopleViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleViewController_iPhone.xib; sourceTree = "<group>"; };
-		7DAEF2371803F1D000E610E1 /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
-		7DAEF2381803F1D000E610E1 /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
-		7DAEF23A1803F2F100E610E1 /* WeemoContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoContact.h; sourceTree = "<group>"; };
-		7DAEF23B1803F2F100E610E1 /* WeemoContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoContact.m; sourceTree = "<group>"; };
 		7DB91B9F17697D0A001CA575 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		7DB91BA017697D0A001CA575 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		7DB91BA317697D6E001CA575 /* WelcomeViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController_iPhone.h; sourceTree = "<group>"; };
@@ -1837,6 +1783,63 @@
 		7DCA4F36176EB653002694D5 /* OnPremiseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnPremiseViewController_iPhone.xib; sourceTree = "<group>"; };
 		7DCA4F4C176F00FA002694D5 /* ExoCloudProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCloudProxy.h; sourceTree = "<group>"; };
 		7DCA4F4D176F00FA002694D5 /* ExoCloudProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCloudProxy.m; sourceTree = "<group>"; };
+		7DE49E96180D5EDD00394825 /* CallViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController_iPad.h; sourceTree = "<group>"; };
+		7DE49E97180D5EDD00394825 /* CallViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController_iPad.m; sourceTree = "<group>"; };
+		7DE49E98180D5EDD00394825 /* CallViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallViewController_iPad.xib; sourceTree = "<group>"; };
+		7DE49E99180D5EDD00394825 /* DialViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialViewController_iPad.h; sourceTree = "<group>"; };
+		7DE49E9A180D5EDD00394825 /* DialViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialViewController_iPad.m; sourceTree = "<group>"; };
+		7DE49E9B180D5EDD00394825 /* DialViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialViewController_iPad.xib; sourceTree = "<group>"; };
+		7DE49E9C180D5EDD00394825 /* ExoCallViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCallViewController_iPad.h; sourceTree = "<group>"; };
+		7DE49E9D180D5EDD00394825 /* ExoCallViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCallViewController_iPad.m; sourceTree = "<group>"; };
+		7DE49E9E180D5EDD00394825 /* ExoCallViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExoCallViewController_iPad.xib; sourceTree = "<group>"; };
+		7DE49E9F180D5EDD00394825 /* PeopleViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController_iPad.h; sourceTree = "<group>"; };
+		7DE49EA0180D5EDD00394825 /* PeopleViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController_iPad.m; sourceTree = "<group>"; };
+		7DE49EA1180D5EDD00394825 /* PeopleViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleViewController_iPad.xib; sourceTree = "<group>"; };
+		7DE49EA2180D5EDD00394825 /* RecentsTabViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController_iPad.h; sourceTree = "<group>"; };
+		7DE49EA3180D5EDD00394825 /* RecentsTabViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController_iPad.m; sourceTree = "<group>"; };
+		7DE49EA4180D5EDD00394825 /* RecentsTabViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentsTabViewController_iPad.xib; sourceTree = "<group>"; };
+		7DE49EA5180D5EDD00394825 /* WeemoAboutViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoAboutViewController_iPad.h; sourceTree = "<group>"; };
+		7DE49EA6180D5EDD00394825 /* WeemoAboutViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoAboutViewController_iPad.m; sourceTree = "<group>"; };
+		7DE49EA7180D5EDD00394825 /* WeemoAboutViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeemoAboutViewController_iPad.xib; sourceTree = "<group>"; };
+		7DE49EB5180D5EEC00394825 /* CallViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController_iPhone.h; sourceTree = "<group>"; };
+		7DE49EB6180D5EEC00394825 /* CallViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController_iPhone.m; sourceTree = "<group>"; };
+		7DE49EB7180D5EEC00394825 /* CallViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DE49EB8180D5EEC00394825 /* DialViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialViewController_iPhone.h; sourceTree = "<group>"; };
+		7DE49EB9180D5EEC00394825 /* DialViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialViewController_iPhone.m; sourceTree = "<group>"; };
+		7DE49EBA180D5EEC00394825 /* DialViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DE49EBB180D5EEC00394825 /* ExoCallViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCallViewController_iPhone.h; sourceTree = "<group>"; };
+		7DE49EBC180D5EEC00394825 /* ExoCallViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCallViewController_iPhone.m; sourceTree = "<group>"; };
+		7DE49EBD180D5EEC00394825 /* ExoCallViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExoCallViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DE49EBE180D5EEC00394825 /* PeopleViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController_iPhone.h; sourceTree = "<group>"; };
+		7DE49EBF180D5EEC00394825 /* PeopleViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController_iPhone.m; sourceTree = "<group>"; };
+		7DE49EC0180D5EEC00394825 /* PeopleViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DE49EC1180D5EEC00394825 /* RecentsTabViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController_iPhone.h; sourceTree = "<group>"; };
+		7DE49EC2180D5EEC00394825 /* RecentsTabViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController_iPhone.m; sourceTree = "<group>"; };
+		7DE49EC3180D5EEC00394825 /* RecentsTabViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentsTabViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DE49ECF180D5EF800394825 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		7DE49ED0180D5EF800394825 /* CallHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistory.h; sourceTree = "<group>"; };
+		7DE49ED1180D5EF800394825 /* CallHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistory.m; sourceTree = "<group>"; };
+		7DE49ED2180D5EF800394825 /* CallHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoryManager.h; sourceTree = "<group>"; };
+		7DE49ED3180D5EF800394825 /* CallHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryManager.m; sourceTree = "<group>"; };
+		7DE49ED4180D5EF800394825 /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
+		7DE49ED5180D5EF800394825 /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
+		7DE49ED6180D5EF800394825 /* DialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialViewController.h; sourceTree = "<group>"; };
+		7DE49ED7180D5EF800394825 /* DialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialViewController.m; sourceTree = "<group>"; };
+		7DE49ED8180D5EF800394825 /* ExoCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCallViewController.h; sourceTree = "<group>"; };
+		7DE49ED9180D5EF800394825 /* ExoCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCallViewController.m; sourceTree = "<group>"; };
+		7DE49EDA180D5EF800394825 /* ExoWeemoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoWeemoHandler.h; sourceTree = "<group>"; };
+		7DE49EDB180D5EF800394825 /* ExoWeemoHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ExoWeemoHandler.mm; sourceTree = "<group>"; };
+		7DE49EDC180D5EF800394825 /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
+		7DE49EDD180D5EF800394825 /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
+		7DE49EDE180D5EF800394825 /* RecentsTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsTabViewController.h; sourceTree = "<group>"; };
+		7DE49EDF180D5EF800394825 /* RecentsTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsTabViewController.m; sourceTree = "<group>"; };
+		7DE49EE0180D5EF800394825 /* WeemoAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoAboutViewController.h; sourceTree = "<group>"; };
+		7DE49EE1180D5EF800394825 /* WeemoAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoAboutViewController.m; sourceTree = "<group>"; };
+		7DE49EE2180D5EF800394825 /* WeemoAboutViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoAboutViewController_iPhone.h; sourceTree = "<group>"; };
+		7DE49EE3180D5EF800394825 /* WeemoAboutViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoAboutViewController_iPhone.m; sourceTree = "<group>"; };
+		7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeemoAboutViewController_iPhone.xib; sourceTree = "<group>"; };
+		7DE49EE5180D5EF800394825 /* WeemoContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoContact.h; sourceTree = "<group>"; };
+		7DE49EE6180D5EF800394825 /* WeemoContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoContact.m; sourceTree = "<group>"; };
 		7DF39B1517F9606A000A3267 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7DF39B1717F96076000A3267 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		7DF39B1917F96080000A3267 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -1844,9 +1847,6 @@
 		7DF39B1D17F960BD000A3267 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeCallIcon@2x.png"; sourceTree = "<group>"; };
 		7DF39B2117F96E43000A3267 /* HomeCallIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeCallIcon.png; sourceTree = "<group>"; };
-		7DF39B2917F9882F000A3267 /* ExoCallViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoCallViewController_iPhone.h; sourceTree = "<group>"; };
-		7DF39B2A17F9882F000A3267 /* ExoCallViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoCallViewController_iPhone.m; sourceTree = "<group>"; };
-		7DF39B2B17F9882F000A3267 /* ExoCallViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExoCallViewController_iPhone.xib; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -3454,35 +3454,6 @@
 			path = ../../Libraries;
 			sourceTree = "<group>";
 		};
-		7D212E1217FD050600AF93D1 /* ExoWeemoCall */ = {
-			isa = PBXGroup;
-			children = (
-				7D96B41E180D1FB000841E8C /* about.html */,
-				7D212E1317FD059900AF93D1 /* ExoWeemoHandler.h */,
-				7D212E1417FD059900AF93D1 /* ExoWeemoHandler.mm */,
-				7DAEF2371803F1D000E610E1 /* CallViewController.h */,
-				7DAEF2381803F1D000E610E1 /* CallViewController.m */,
-				7DAEF23A1803F2F100E610E1 /* WeemoContact.h */,
-				7DAEF23B1803F2F100E610E1 /* WeemoContact.m */,
-				7D111B8A1805364D002903A6 /* CallHistory.h */,
-				7D111B8B1805364D002903A6 /* CallHistory.m */,
-				7D111B9E180547ED002903A6 /* CallHistoryManager.h */,
-				7D111B9F180547ED002903A6 /* CallHistoryManager.m */,
-				7D7F033C180B916D00D6B49F /* ExoCallViewController.h */,
-				7D7F033D180B916D00D6B49F /* ExoCallViewController.m */,
-				7D7F0350180B92C400D6B49F /* RecentsTabViewController.h */,
-				7D7F0351180B92C400D6B49F /* RecentsTabViewController.m */,
-				7D7F0353180B93C700D6B49F /* PeopleViewController.h */,
-				7D7F0354180B93C800D6B49F /* PeopleViewController.m */,
-				7D7F0356180B949E00D6B49F /* DialViewController.h */,
-				7D7F0357180B949F00D6B49F /* DialViewController.m */,
-				7D96B41B180D1F4700841E8C /* WeemoAboutViewController.h */,
-				7D96B41C180D1F4800841E8C /* WeemoAboutViewController.m */,
-			);
-			name = ExoWeemoCall;
-			path = VideoCall;
-			sourceTree = "<group>";
-		};
 		7D25E9CE17A7A6B6003E60A0 /* iphone5_retina */ = {
 			isa = PBXGroup;
 			children = (
@@ -3651,31 +3622,6 @@
 				7D6931E41797D690008CCE72 /* logo_ipad@2x.png */,
 			);
 			path = ipad;
-			sourceTree = "<group>";
-		};
-		7D7F0359180B9CB300D6B49F /* ExoWeemoCall */ = {
-			isa = PBXGroup;
-			children = (
-				7D96B402180BAD4400841E8C /* DialViewController_iPad.h */,
-				7D96B403180BAD4400841E8C /* DialViewController_iPad.m */,
-				7D96B404180BAD4400841E8C /* DialViewController_iPad.xib */,
-				7D96B405180BAD4400841E8C /* PeopleViewController_iPad.h */,
-				7D96B406180BAD4400841E8C /* PeopleViewController_iPad.m */,
-				7D96B407180BAD4400841E8C /* PeopleViewController_iPad.xib */,
-				7D96B408180BAD4400841E8C /* RecentsTabViewController_iPad.h */,
-				7D96B409180BAD4400841E8C /* RecentsTabViewController_iPad.m */,
-				7D96B40A180BAD4400841E8C /* RecentsTabViewController_iPad.xib */,
-				7D96B40B180BAD4400841E8C /* ExoCallViewController_iPad.h */,
-				7D96B40C180BAD4400841E8C /* ExoCallViewController_iPad.m */,
-				7D96B40D180BAD4400841E8C /* ExoCallViewController_iPad.xib */,
-				7D96B416180BE40D00841E8C /* CallViewController_iPad.h */,
-				7D96B417180BE40E00841E8C /* CallViewController_iPad.m */,
-				7D96B418180BE40E00841E8C /* CallViewController_iPad.xib */,
-				7D96B425180D200200841E8C /* WeemoAboutViewController_iPad.h */,
-				7D96B426180D200300841E8C /* WeemoAboutViewController_iPad.m */,
-				7D96B427180D200400841E8C /* WeemoAboutViewController_iPad.xib */,
-			);
-			path = ExoWeemoCall;
 			sourceTree = "<group>";
 		};
 		7D993C2C1769A8E50035835F /* CloudSignup */ = {
@@ -3916,31 +3862,83 @@
 			path = CloudSignup;
 			sourceTree = "<group>";
 		};
-		7DF39B2317F97BF3000A3267 /* ExoWeemoCall */ = {
+		7DE49E95180D5EDD00394825 /* ExoWeemoCall */ = {
 			isa = PBXGroup;
 			children = (
-				7D96B420180D1FDD00841E8C /* WeemoAboutViewController_iPhone.h */,
-				7D96B421180D1FDE00841E8C /* WeemoAboutViewController_iPhone.m */,
-				7D96B422180D1FDF00841E8C /* WeemoAboutViewController_iPhone.xib */,
-				7DF39B2917F9882F000A3267 /* ExoCallViewController_iPhone.h */,
-				7DF39B2A17F9882F000A3267 /* ExoCallViewController_iPhone.m */,
-				7DF39B2B17F9882F000A3267 /* ExoCallViewController_iPhone.xib */,
-				7D212E0817FAC2CC00AF93D1 /* DialViewController_iPhone.h */,
-				7D212E0917FAC2CC00AF93D1 /* DialViewController_iPhone.m */,
-				7D212E0A17FAC2CC00AF93D1 /* DialViewController_iPhone.xib */,
-				7D212E0D17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.h */,
-				7D212E0E17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m */,
-				7D212E0F17FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib */,
-				7DAEF1B01802572300E610E1 /* CallViewController_iPhone.h */,
-				7DAEF1B11802572300E610E1 /* CallViewController_iPhone.m */,
-				7DAEF1B21802572300E610E1 /* CallViewController_iPhone.xib */,
-				7DAEF2301803ED4300E610E1 /* PeopleViewController_iPhone.h */,
-				7DAEF2311803ED4300E610E1 /* PeopleViewController_iPhone.m */,
-				7DAEF2321803ED4400E610E1 /* PeopleViewController_iPhone.xib */,
+				7DE49E96180D5EDD00394825 /* CallViewController_iPad.h */,
+				7DE49E97180D5EDD00394825 /* CallViewController_iPad.m */,
+				7DE49E98180D5EDD00394825 /* CallViewController_iPad.xib */,
+				7DE49E99180D5EDD00394825 /* DialViewController_iPad.h */,
+				7DE49E9A180D5EDD00394825 /* DialViewController_iPad.m */,
+				7DE49E9B180D5EDD00394825 /* DialViewController_iPad.xib */,
+				7DE49E9C180D5EDD00394825 /* ExoCallViewController_iPad.h */,
+				7DE49E9D180D5EDD00394825 /* ExoCallViewController_iPad.m */,
+				7DE49E9E180D5EDD00394825 /* ExoCallViewController_iPad.xib */,
+				7DE49E9F180D5EDD00394825 /* PeopleViewController_iPad.h */,
+				7DE49EA0180D5EDD00394825 /* PeopleViewController_iPad.m */,
+				7DE49EA1180D5EDD00394825 /* PeopleViewController_iPad.xib */,
+				7DE49EA2180D5EDD00394825 /* RecentsTabViewController_iPad.h */,
+				7DE49EA3180D5EDD00394825 /* RecentsTabViewController_iPad.m */,
+				7DE49EA4180D5EDD00394825 /* RecentsTabViewController_iPad.xib */,
+				7DE49EA5180D5EDD00394825 /* WeemoAboutViewController_iPad.h */,
+				7DE49EA6180D5EDD00394825 /* WeemoAboutViewController_iPad.m */,
+				7DE49EA7180D5EDD00394825 /* WeemoAboutViewController_iPad.xib */,
 			);
-			name = ExoWeemoCall;
-			path = "/Users/vietnq/ios/mobile-ios/Sources/iPhone/View Controllers/VideoCall";
-			sourceTree = "<absolute>";
+			path = ExoWeemoCall;
+			sourceTree = "<group>";
+		};
+		7DE49EB4180D5EEB00394825 /* ExoWeemoCall */ = {
+			isa = PBXGroup;
+			children = (
+				7DE49EB5180D5EEC00394825 /* CallViewController_iPhone.h */,
+				7DE49EB6180D5EEC00394825 /* CallViewController_iPhone.m */,
+				7DE49EB7180D5EEC00394825 /* CallViewController_iPhone.xib */,
+				7DE49EB8180D5EEC00394825 /* DialViewController_iPhone.h */,
+				7DE49EB9180D5EEC00394825 /* DialViewController_iPhone.m */,
+				7DE49EBA180D5EEC00394825 /* DialViewController_iPhone.xib */,
+				7DE49EBB180D5EEC00394825 /* ExoCallViewController_iPhone.h */,
+				7DE49EBC180D5EEC00394825 /* ExoCallViewController_iPhone.m */,
+				7DE49EBD180D5EEC00394825 /* ExoCallViewController_iPhone.xib */,
+				7DE49EBE180D5EEC00394825 /* PeopleViewController_iPhone.h */,
+				7DE49EBF180D5EEC00394825 /* PeopleViewController_iPhone.m */,
+				7DE49EC0180D5EEC00394825 /* PeopleViewController_iPhone.xib */,
+				7DE49EC1180D5EEC00394825 /* RecentsTabViewController_iPhone.h */,
+				7DE49EC2180D5EEC00394825 /* RecentsTabViewController_iPhone.m */,
+				7DE49EC3180D5EEC00394825 /* RecentsTabViewController_iPhone.xib */,
+			);
+			path = ExoWeemoCall;
+			sourceTree = "<group>";
+		};
+		7DE49ECE180D5EF800394825 /* ExoWeemoCall */ = {
+			isa = PBXGroup;
+			children = (
+				7DE49ECF180D5EF800394825 /* about.html */,
+				7DE49ED0180D5EF800394825 /* CallHistory.h */,
+				7DE49ED1180D5EF800394825 /* CallHistory.m */,
+				7DE49ED2180D5EF800394825 /* CallHistoryManager.h */,
+				7DE49ED3180D5EF800394825 /* CallHistoryManager.m */,
+				7DE49ED4180D5EF800394825 /* CallViewController.h */,
+				7DE49ED5180D5EF800394825 /* CallViewController.m */,
+				7DE49ED6180D5EF800394825 /* DialViewController.h */,
+				7DE49ED7180D5EF800394825 /* DialViewController.m */,
+				7DE49ED8180D5EF800394825 /* ExoCallViewController.h */,
+				7DE49ED9180D5EF800394825 /* ExoCallViewController.m */,
+				7DE49EDA180D5EF800394825 /* ExoWeemoHandler.h */,
+				7DE49EDB180D5EF800394825 /* ExoWeemoHandler.mm */,
+				7DE49EDC180D5EF800394825 /* PeopleViewController.h */,
+				7DE49EDD180D5EF800394825 /* PeopleViewController.m */,
+				7DE49EDE180D5EF800394825 /* RecentsTabViewController.h */,
+				7DE49EDF180D5EF800394825 /* RecentsTabViewController.m */,
+				7DE49EE0180D5EF800394825 /* WeemoAboutViewController.h */,
+				7DE49EE1180D5EF800394825 /* WeemoAboutViewController.m */,
+				7DE49EE2180D5EF800394825 /* WeemoAboutViewController_iPhone.h */,
+				7DE49EE3180D5EF800394825 /* WeemoAboutViewController_iPhone.m */,
+				7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */,
+				7DE49EE5180D5EF800394825 /* WeemoContact.h */,
+				7DE49EE6180D5EF800394825 /* WeemoContact.m */,
+			);
+			path = ExoWeemoCall;
+			sourceTree = "<group>";
 		};
 		7DFD1912177986970053F6F3 /* @2x */ = {
 			isa = PBXGroup;
@@ -4038,7 +4036,7 @@
 		894730C01336FBC000B0AD11 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				7D212E1217FD050600AF93D1 /* ExoWeemoCall */,
+				7DE49ECE180D5EF800394825 /* ExoWeemoCall */,
 				7DCA4F2D176EB418002694D5 /* CloudSignup */,
 				8947349D1337125D00B0AD11 /* Components */,
 				8947349E1337125D00B0AD11 /* Data Manager */,
@@ -4061,7 +4059,7 @@
 		894732381336FFD400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7D7F0359180B9CB300D6B49F /* ExoWeemoCall */,
+				7DE49E95180D5EDD00394825 /* ExoWeemoCall */,
 				7D993C82176AC9F80035835F /* CloudSignup */,
 				46A03A1813A7952400E71AF9 /* Social */,
 				46E96E30138370A30085DCB6 /* CascadeViewController */,
@@ -4099,7 +4097,7 @@
 		8947323B1336FFE400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7DF39B2317F97BF3000A3267 /* ExoWeemoCall */,
+				7DE49EB4180D5EEB00394825 /* ExoWeemoCall */,
 				7DB91BA217697D3D001CA575 /* CloudSignup */,
 				7CAB42D413A7689F00CED7A3 /* Social */,
 				8947338613370B4500B0AD11 /* File */,
@@ -5371,10 +5369,6 @@
 				578ED79717EAD61A00771497 /* Icon-ios7-76@2x.png in Resources */,
 				7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */,
 				7DF39B2217F96E43000A3267 /* HomeCallIcon.png in Resources */,
-				7DF39B2D17F9882F000A3267 /* ExoCallViewController_iPhone.xib in Resources */,
-				7D212E0C17FAC2CC00AF93D1 /* DialViewController_iPhone.xib in Resources */,
-				7D212E1117FAC3D900AF93D1 /* RecentsTabViewController_iPhone.xib in Resources */,
-				7DAEF1B41802572300E610E1 /* CallViewController_iPhone.xib in Resources */,
 				7DAEF2091802745F00E610E1 /* bkgd_active.png in Resources */,
 				7DAEF20A1802745F00E610E1 /* bkgd_active@2x.png in Resources */,
 				7DAEF20B1802745F00E610E1 /* bkgd_active@2x~ipad.png in Resources */,
@@ -5414,18 +5408,22 @@
 				7DAEF22D1802745F00E610E1 /* call_video@2x.png in Resources */,
 				7DAEF22E1802745F00E610E1 /* call_video@2x~ipad.png in Resources */,
 				7DAEF22F1802745F00E610E1 /* call_video~ipad.png in Resources */,
-				7DAEF2341803ED4400E610E1 /* PeopleViewController_iPhone.xib in Resources */,
-				7D96B40F180BAD4400841E8C /* DialViewController_iPad.xib in Resources */,
-				7D96B411180BAD4400841E8C /* PeopleViewController_iPad.xib in Resources */,
-				7D96B413180BAD4400841E8C /* RecentsTabViewController_iPad.xib in Resources */,
-				7D96B415180BAD4400841E8C /* ExoCallViewController_iPad.xib in Resources */,
-				7D96B41A180BE41000841E8C /* CallViewController_iPad.xib in Resources */,
-				7D96B41F180D1FB200841E8C /* about.html in Resources */,
-				7D96B424180D1FE000841E8C /* WeemoAboutViewController_iPhone.xib in Resources */,
-				7D96B429180D200500841E8C /* WeemoAboutViewController_iPad.xib in Resources */,
 				7D0A949F180D294700C83A7A /* info.png in Resources */,
 				7D0A94A0180D294700C83A7A /* phone.png in Resources */,
 				7D0A94B3180D327300C83A7A /* question.png in Resources */,
+				7DE49EA9180D5EDD00394825 /* CallViewController_iPad.xib in Resources */,
+				7DE49EAB180D5EDD00394825 /* DialViewController_iPad.xib in Resources */,
+				7DE49EAD180D5EDD00394825 /* ExoCallViewController_iPad.xib in Resources */,
+				7DE49EAF180D5EDD00394825 /* PeopleViewController_iPad.xib in Resources */,
+				7DE49EB1180D5EDD00394825 /* RecentsTabViewController_iPad.xib in Resources */,
+				7DE49EB3180D5EDD00394825 /* WeemoAboutViewController_iPad.xib in Resources */,
+				7DE49EC5180D5EEC00394825 /* CallViewController_iPhone.xib in Resources */,
+				7DE49EC7180D5EEC00394825 /* DialViewController_iPhone.xib in Resources */,
+				7DE49EC9180D5EEC00394825 /* ExoCallViewController_iPhone.xib in Resources */,
+				7DE49ECB180D5EEC00394825 /* PeopleViewController_iPhone.xib in Resources */,
+				7DE49ECD180D5EEC00394825 /* RecentsTabViewController_iPhone.xib in Resources */,
+				7DE49EE7180D5EF800394825 /* about.html in Resources */,
+				7DE49EF2180D5EF800394825 /* WeemoAboutViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5678,28 +5676,28 @@
 				7DBB704D178A9990002B387B /* OnPremiseViewController_iPad.m in Sources */,
 				7DBB7051178AA2D2002B387B /* eXoNavigationController.m in Sources */,
 				7D6931DB17968B21008CCE72 /* LogoSlogan.m in Sources */,
-				7DF39B2C17F9882F000A3267 /* ExoCallViewController_iPhone.m in Sources */,
-				7D212E0B17FAC2CC00AF93D1 /* DialViewController_iPhone.m in Sources */,
-				7D212E1017FAC3D900AF93D1 /* RecentsTabViewController_iPhone.m in Sources */,
-				7D212E1517FD059900AF93D1 /* ExoWeemoHandler.mm in Sources */,
-				7DAEF1B31802572300E610E1 /* CallViewController_iPhone.m in Sources */,
-				7DAEF2331803ED4400E610E1 /* PeopleViewController_iPhone.m in Sources */,
-				7DAEF2391803F1D100E610E1 /* CallViewController.m in Sources */,
-				7DAEF23C1803F2F100E610E1 /* WeemoContact.m in Sources */,
-				7D111B8C1805364D002903A6 /* CallHistory.m in Sources */,
-				7D111BA0180547ED002903A6 /* CallHistoryManager.m in Sources */,
-				7D7F033E180B916D00D6B49F /* ExoCallViewController.m in Sources */,
-				7D7F0352180B92C400D6B49F /* RecentsTabViewController.m in Sources */,
-				7D7F0355180B93C800D6B49F /* PeopleViewController.m in Sources */,
-				7D7F0358180B949F00D6B49F /* DialViewController.m in Sources */,
-				7D96B40E180BAD4400841E8C /* DialViewController_iPad.m in Sources */,
-				7D96B410180BAD4400841E8C /* PeopleViewController_iPad.m in Sources */,
-				7D96B412180BAD4400841E8C /* RecentsTabViewController_iPad.m in Sources */,
-				7D96B414180BAD4400841E8C /* ExoCallViewController_iPad.m in Sources */,
-				7D96B419180BE41000841E8C /* CallViewController_iPad.m in Sources */,
-				7D96B41D180D1F4A00841E8C /* WeemoAboutViewController.m in Sources */,
-				7D96B423180D1FE000841E8C /* WeemoAboutViewController_iPhone.m in Sources */,
-				7D96B428180D200500841E8C /* WeemoAboutViewController_iPad.m in Sources */,
+				7DE49EA8180D5EDD00394825 /* CallViewController_iPad.m in Sources */,
+				7DE49EAA180D5EDD00394825 /* DialViewController_iPad.m in Sources */,
+				7DE49EAC180D5EDD00394825 /* ExoCallViewController_iPad.m in Sources */,
+				7DE49EAE180D5EDD00394825 /* PeopleViewController_iPad.m in Sources */,
+				7DE49EB0180D5EDD00394825 /* RecentsTabViewController_iPad.m in Sources */,
+				7DE49EB2180D5EDD00394825 /* WeemoAboutViewController_iPad.m in Sources */,
+				7DE49EC4180D5EEC00394825 /* CallViewController_iPhone.m in Sources */,
+				7DE49EC6180D5EEC00394825 /* DialViewController_iPhone.m in Sources */,
+				7DE49EC8180D5EEC00394825 /* ExoCallViewController_iPhone.m in Sources */,
+				7DE49ECA180D5EEC00394825 /* PeopleViewController_iPhone.m in Sources */,
+				7DE49ECC180D5EEC00394825 /* RecentsTabViewController_iPhone.m in Sources */,
+				7DE49EE8180D5EF800394825 /* CallHistory.m in Sources */,
+				7DE49EE9180D5EF800394825 /* CallHistoryManager.m in Sources */,
+				7DE49EEA180D5EF800394825 /* CallViewController.m in Sources */,
+				7DE49EEB180D5EF800394825 /* DialViewController.m in Sources */,
+				7DE49EEC180D5EF800394825 /* ExoCallViewController.m in Sources */,
+				7DE49EED180D5EF800394825 /* ExoWeemoHandler.mm in Sources */,
+				7DE49EEE180D5EF800394825 /* PeopleViewController.m in Sources */,
+				7DE49EEF180D5EF800394825 /* RecentsTabViewController.m in Sources */,
+				7DE49EF0180D5EF800394825 /* WeemoAboutViewController.m in Sources */,
+				7DE49EF1180D5EF800394825 /* WeemoAboutViewController_iPhone.m in Sources */,
+				7DE49EF3180D5EF800394825 /* WeemoContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
