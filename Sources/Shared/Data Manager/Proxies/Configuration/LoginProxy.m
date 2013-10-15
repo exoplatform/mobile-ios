@@ -86,7 +86,7 @@ return self;
     }
     
     //disconnect from Weemo
-    [[Weemo instance] disconnect];
+//    [[Weemo instance] disconnect];
 }
 
 #pragma mark - helper methods

@@ -65,14 +65,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotate {
-    return NO;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return UIInterfaceOrientationPortrait;
-}
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)tO duration:(NSTimeInterval)duration
 {
 	[self resizeView:tO];
