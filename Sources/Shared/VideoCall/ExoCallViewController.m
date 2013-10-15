@@ -10,6 +10,7 @@
 #import "RecentsTabViewController.h"
 #import "PeopleViewController.h"
 #import "DialViewController.h"
+#import "WeemoAboutViewController.h"
 
 @interface ExoCallViewController ()
 
@@ -32,8 +33,10 @@
         PeopleViewController *peopleVC = [[[PeopleViewController alloc] initWithNibName:isIpad ? @"PeopleViewController_iPad" : @"PeopleViewController_iPhone" bundle:nil] autorelease];
         
         DialViewController *dialVC = [[[DialViewController alloc] initWithNibName:isIpad ? @"DialViewController_iPad" : @"DialViewController_iPhone" bundle:nil] autorelease];
+        WeemoAboutViewController *aboutVC = [[[WeemoAboutViewController alloc] initWithNibName:isIpad ? @"WeemoAboutViewController_iPad" : @"WeemoAboutViewController_iPhone"  bundle:nil] autorelease];
         
-        [self.tabVC setViewControllers:[NSArray arrayWithObjects:recentsVC, peopleVC, dialVC, nil]];
+        [self.tabVC setViewControllers:[NSArray arrayWithObjects:recentsVC, peopleVC, dialVC, aboutVC, nil]];
+        
         self.tabVC.delegate = self;
         self.tabVC.view.frame = self.view.frame;
         [self.view addSubview:self.tabVC.view];

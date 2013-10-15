@@ -16,6 +16,7 @@
 #import "DocumentsViewController_iPad.h"
 #import "DashboardViewController_iPad.h"
 #import "ExoCallViewController_iPad.h"
+#import <iOS-SDK/Weemo.h>
 
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
@@ -88,7 +89,7 @@
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
         [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
         //weemo call
-        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"HomeCallIcon.png"], kCellImage, Localize(@"Call"), kCellText, nil]];
+        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"phone"], kCellImage, Localize(@"Call"), kCellText, nil]];
     }
     return self;
 }
@@ -327,9 +328,15 @@
         
         case EXO_VIDEO_CALL_ROW: {
             //video call
-            ExoCallViewController_iPad *callVC = [[[ExoCallViewController_iPad alloc] initWithNibName:@"ExoCallViewController_iPad" bundle:nil] autorelease];
-            
-            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:callVC invokeByController:self isStackStartView:TRUE];
+            if([Weemo instance].isAuthenticated) {
+                ExoCallViewController_iPad *callVC = [[[ExoCallViewController_iPad alloc] initWithNibName:@"ExoCallViewController_iPad" bundle:nil] autorelease];
+                
+                [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:callVC invokeByController:self isStackStartView:TRUE];
+                
+            } else {
+                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+                [alert show];
+            }
             break;
         }
         default:

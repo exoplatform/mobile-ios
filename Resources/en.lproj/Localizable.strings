@@ -218,4 +218,21 @@
 "NoTenantName"="There is no tenant name";
 
 /* weemo integration */
+
 "Call" = "Call";
+
+"WeemoNotAuthenticatedTitle" = "Video Call";
+
+"WeemoNotAuthenticatedMessage" = "You are not authenticated to Weemo cloud yet.";
+
+"ContactNotAvailableTitle" = "Not available";
+
+"ContactNotAvailableMessage" = "%@ is not available. Please try again later";
+
+"Incoming Call" = "Incoming Call";
+
+"Pick-up" = "Pick-up";
+
+"Deny" = "Deny";
+
+"Someone is calling" = "%@ is calling";

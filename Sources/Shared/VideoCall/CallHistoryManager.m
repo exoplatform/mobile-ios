@@ -73,7 +73,7 @@
 
 - (NSString *)filePath
 {
-    return [[self documentDirectory] stringByAppendingPathComponent:@"CallHistory.plist"];
+    return [[self documentDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"CallHistory_%@.plist", self.userId]];
 }
 
 @end

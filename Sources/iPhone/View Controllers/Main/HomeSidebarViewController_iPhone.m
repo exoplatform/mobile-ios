@@ -23,6 +23,7 @@
 #import "ExoCallViewController_iPhone.h"
 #import "RecentsTabViewController_iPhone.h"
 #import "DialViewController_iPhone.h"
+#import <iOS-SDK/Weemo.h>
 
 #define kUserProfileViewHeight 70.0
 
@@ -488,7 +489,7 @@
             }
                 break;
             case eXoWeemoCall:
-                cell.imageView.image = [UIImage imageNamed:@"HomeCallIcon.png"];
+                cell.imageView.image = [UIImage imageNamed:@"phone"];
                 break;
             default:
                 break;
@@ -578,11 +579,17 @@
                 break;
                 
             case eXoWeemoCall: {
-                ExoCallViewController_iPhone *videoCallVC = [[ExoCallViewController_iPhone alloc] initWithNibName:@"ExoCallViewController_iPhone" bundle:nil];
-                [self setRootViewController:videoCallVC animated:YES];
-                [videoCallVC release];
-                [_revealView revealSidebar:NO];
-                rowType = [(JTTableViewCellModalSimpleType *)object type];
+                if([Weemo instance].isAuthenticated) {
+                    ExoCallViewController_iPhone *videoCallVC = [[ExoCallViewController_iPhone alloc] initWithNibName:@"ExoCallViewController_iPhone" bundle:nil];
+                    [self setRootViewController:videoCallVC animated:YES];
+                    [videoCallVC release];
+                    [_revealView revealSidebar:NO];
+                    rowType = [(JTTableViewCellModalSimpleType *)object type];
+                } else {
+                    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+                    [alert show];
+                }
+                
                 
                 break;
             }

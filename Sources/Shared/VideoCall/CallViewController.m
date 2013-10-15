@@ -8,6 +8,7 @@
 
 #import "CallViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ExoWeemoHandler.h"
 
 @interface CallViewController ()
 
@@ -31,15 +32,6 @@
 	if (self)
 	{
 		[self setCall:[[Weemo instance] activeCall]];
-	}
-	return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self)
-	{
 	}
 	return self;
 }
@@ -98,7 +90,10 @@
 
 - (IBAction)hangup:(id)sender
 {
+    
 	[[self call] hangup];
+    
+    [[ExoWeemoHandler sharedInstance] removeCallView];
 }
 
 - (IBAction)profile:(id)sender

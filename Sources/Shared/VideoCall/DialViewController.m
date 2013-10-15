@@ -25,7 +25,7 @@
         // Custom initialization
         self.title = @"Dial";
         self.tabBarItem.title = @"Dial";
-        self.tabBarItem.image = [UIImage imageNamed:@"call_video"];
+        self.tabBarItem.image = [UIImage imageNamed:@"phone"];
     }
     return self;
 }

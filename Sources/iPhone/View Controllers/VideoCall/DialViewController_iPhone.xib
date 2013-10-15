@@ -50,7 +50,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
 						<int key="IBUIBorderStyle">3</int>
-						<string key="IBUIPlaceholder">Called person's User ID</string>
+						<string key="IBUIPlaceholder">Enter your contact ID</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
@@ -76,9 +76,8 @@
 					<object class="IBUIButton" id="178054091">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{117, 136}, {86, 44}}</string>
+						<string key="NSFrame">{{117, 139}, {86, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -111,7 +110,7 @@
 					<object class="IBUILabel" id="376528441">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{83, 31}, {155, 21}}</string>
+						<string key="NSFrame">{{36, 32}, {248, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="51481126"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -128,6 +127,7 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
+						<int key="IBUITextAlignment">1</int>
 						<reference key="IBUIFontDescription" ref="593413840"/>
 						<reference key="IBUIFont" ref="702713731"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -222,9 +222,9 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="178054091"/>
 							<reference ref="376528441"/>
 							<reference ref="51481126"/>
+							<reference ref="178054091"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

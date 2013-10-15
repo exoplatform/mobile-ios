@@ -12,6 +12,7 @@
 #import "DialViewController_iPhone.h"
 #import "CallHistoryManager.h"
 #import "CallHistory.h"
+#import "LanguageHelper.h"
 
 @implementation ExoWeemoHandler {
     UIAlertView *incomingCall;
@@ -52,40 +53,50 @@
 - (void)addCallView
 {
 	NSLog(@">>>> addCallView ");
-	[self createCallView];
+	if(!_activeCallVC) {
+        [self createCallView];
+    }
     
     UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     
-    [rootVC addChildViewController:self.activeCallVC];
+    if(_activeCallVC.view.superview == rootVC.view) {
+        return;
+    }
+        
+    _activeCallVC.view.frame =  CGRectMake(0., 0., rootVC.view.frame.size.width, rootVC.view.frame.size.height);
     
-    self.activeCallVC.view.frame =  CGRectMake(0., 0., rootVC.view.frame.size.width, rootVC.view.frame.size.height);
-    
-    [rootVC addChildViewController:self.activeCallVC];
-    
-	[rootVC.view addSubview:self.activeCallVC.view];
+	[rootVC.view addSubview:_activeCallVC.view];
     
     
 }
 
 - (void)removeCallView
 {
-    if(self.activeCallVC) {
-        [self.activeCallVC removeFromParentViewController];
-        [self.activeCallVC.view removeFromSuperview];
-        self.activeCallVC = nil;
-    }
+    [_activeCallVC removeFromParentViewController];
+    [_activeCallVC.view removeFromSuperview];
+    _activeCallVC = nil;
 }
 
 - (void)createCallView
 {
 	NSLog(@">>>> createCallView");
 		
-    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
-    self.activeCallVC = [[CallViewController alloc] initWithNibName:isIpad ? @"CallViewController_iPad" : @"CallViewController_iPhone" bundle:nil];
-	
-    self.activeCallVC.call = [[Weemo instance] activeCall];
+    if(_activeCallVC) {
+        return;
+    }
     
-    [[[Weemo instance] activeCall] setDelegate:self.activeCallVC];
+    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+
+    _activeCallVC = [[CallViewController alloc] initWithNibName:isIpad ? @"CallViewController_iPad" : @"CallViewController_iPhone" bundle:nil];
+	
+    _activeCallVC.call = [[Weemo instance] activeCall];
+    
+    [[[Weemo instance] activeCall] setDelegate:_activeCallVC];
+    
+    UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    
+    [rootVC addChildViewController:_activeCallVC];
+
 }
 
 - (void)setCallStatus:(int)newStatus
@@ -107,7 +118,7 @@
 			{
 				NSLog(@">>>> Call Incoming");
 				[self createCallView];
-				[self addCallView];
+//				[self addCallView];
 			}break;
 			case CALLSTATUS_ENDED:
 			{
@@ -148,7 +159,12 @@
 
 - (void)weemoDidDisconnect:(NSError *)error
 {
-    NSLog(@"%@", [error description]);
+    if(error) {
+      NSLog(@"%@", [error description]);
+    } else {
+        NSLog(@">>>WeemoHandler: weemo did disconnect");
+    }
+    
 }
 
 - (void)weemoCallCreated:(WeemoCall*)call
@@ -159,11 +175,11 @@
 	
     if ([call callStatus] == CALLSTATUS_INCOMING) {
         
-		incomingCall = [[UIAlertView alloc]initWithTitle:@"Incoming Call"
-                                                 message:[NSString stringWithFormat:@"%@ is calling", [call contactID]]
+		incomingCall = [[UIAlertView alloc]initWithTitle:Localize(@"Incoming Call")
+                                                 message:[NSString stringWithFormat:Localize(@"Someone is calling"), [call contactID]]
                                                 delegate:self
-                                       cancelButtonTitle:@"Pick-up"
-                                       otherButtonTitles:@"Deny", nil];
+                                       cancelButtonTitle:Localize(@"Pick-up")
+                                       otherButtonTitles:Localize(@"Deny"), nil];
         
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[incomingCall show];
@@ -190,7 +206,10 @@
     } else {
         NSLog(@">>>WeemoHandler: %@ cannot be called", contactID);
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"Please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            
+            NSString *message = [NSString stringWithFormat:Localize(@"ContactNotAvailableMessage"), contactID];
+            
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
         });
     }
@@ -203,6 +222,8 @@
         if (buttonIndex == 0)
         {
             //user took the call
+            [self createCallView];
+            [self addCallView];
             [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
             [[[Weemo instance] activeCall]resume];
         } else {
