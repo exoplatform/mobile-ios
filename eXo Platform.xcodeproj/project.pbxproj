@@ -5847,7 +5847,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo-Weemo";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -5894,7 +5894,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo-Weemo";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -5985,7 +5985,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo-Weemo";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -6077,7 +6077,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo-Weemo";
 				PROVISIONING_PROFILE = "B3366449-19FB-4EB9-A35E-CAF6C167D6BD";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
