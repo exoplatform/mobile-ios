@@ -24,7 +24,8 @@
 #import "RecentsTabViewController_iPhone.h"
 #import "DialViewController_iPhone.h"
 #import <iOS-SDK/Weemo.h>
-
+#import "ExoWeemoHandler.h"
+#import "ExoWeemoUtils.h"
 #define kUserProfileViewHeight 70.0
 
 @interface UIFooterView : UIView 
@@ -71,7 +72,9 @@
 @end
 
 
-@implementation HomeSidebarViewController_iPhone
+@implementation HomeSidebarViewController_iPhone {
+    UIView *offlineView; //indicator for weemo status in Home Menu
+}
 
 @synthesize contentNavigationItem;
 @synthesize contentNavigationBar;
@@ -225,7 +228,13 @@
     [self.view addSubview:_revealView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
+    //label for weemo status
+    offlineView = [ExoWeemoUtils offlineView];
 }
+
+
+
 
 -(void)logout {
     [UserPreferencesManager sharedInstance].autoLogin = NO;
@@ -251,7 +260,22 @@
 #pragma mark Actions
 
 - (void)toggleButtonPressed:(id)sender {
+    
+    if(![_revealView isSidebarShowing]) {
+        [self updateCellForVideoCall];
+    }
+    
     [_revealView revealSidebar: ! [_revealView isSidebarShowing]];
+}
+
+- (void)updateCellForVideoCall
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]];
+    
+    UIView *label = [cell viewWithTag:OFFLINE_VIEW_TAG];
+    
+    label.hidden = [ExoWeemoHandler sharedInstance].authenticated;
+    cell.userInteractionEnabled = [ExoWeemoHandler sharedInstance].authenticated;
 }
 
 - (void)pushContentView:(id)sender {
@@ -282,6 +306,9 @@
     if (rowType == eXoDocuments) {
         [self initAndSelectDocumentsViewController];
     }
+    
+    [self updateCellForVideoCall];
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -490,6 +517,9 @@
                 break;
             case eXoWeemoCall:
                 cell.imageView.image = [UIImage imageNamed:@"phone"];
+                offlineView.frame = CGRectMake(180,0,80,cell.frame.size.height);
+                [cell addSubview:offlineView];
+                
                 break;
             default:
                 break;
@@ -579,18 +609,19 @@
                 break;
                 
             case eXoWeemoCall: {
-                if([Weemo instance].isAuthenticated) {
+                if([ExoWeemoHandler sharedInstance].authenticated) {
                     ExoCallViewController_iPhone *videoCallVC = [[ExoCallViewController_iPhone alloc] initWithNibName:@"ExoCallViewController_iPhone" bundle:nil];
                     [self setRootViewController:videoCallVC animated:YES];
                     [videoCallVC release];
                     [_revealView revealSidebar:NO];
                     rowType = [(JTTableViewCellModalSimpleType *)object type];
-                } else {
-                    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-                    [alert show];
                 }
-                
-                
+//                } else {
+//                    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+//                    [alert show];
+//                }
+//                
+//                
                 break;
             }
             default:

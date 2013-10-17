@@ -9,6 +9,7 @@
 #import "RecentsTabViewController.h"
 #import "CallHistoryManager.h"
 #import "CallHistory.h"
+#import "UserPreferencesManager.h"
 
 @interface RecentsTabViewController ()
 
@@ -56,25 +57,37 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     [[CallHistoryManager sharedInstance] loadHistory];
+    
     history = [CallHistoryManager sharedInstance].history;
+    
     return [history count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
+    
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellIdentifier"];
     }
+    
+    
     CallHistory *entry = [history objectAtIndex:indexPath.row];
-    cell.textLabel.text = entry.caller;
+    
     NSString *status = entry.direction == 0 ? @"Incoming" : @"Outcoming";
     NSString *dateString = [NSDateFormatter localizedStringFromDate:entry.date
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];
+    
+    cell.textLabel.text = entry.caller;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", status, dateString];
+    
     return cell;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil; //disable select cell temporarily
+}
 
 @end

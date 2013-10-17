@@ -11,12 +11,10 @@
 #import "CallHistory.h"
 
 @implementation CallHistoryManager
-
 - (id)init
 {
     if((self = [super init])) {
-        self.userId = [UserPreferencesManager sharedInstance].username;
-        [self loadHistory];
+
     }
     return self;
 }

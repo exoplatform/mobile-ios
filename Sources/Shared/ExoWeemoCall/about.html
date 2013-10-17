@@ -5,12 +5,11 @@ This is a P.O.C of Weemo Video call integration in eXo iOS application. Weemo SD
 <h3>How it works</h3>
 <ul>
 <li>
-    After authenticating to eXo Platform, user is connected to Weemo cloud using his Platform username
-</li>
+    After authenticating intranet, user is connected to Weemo cloud using his intranet account</li>
 <li>
 To use video call, go to Home menu and select Call.
 </li>
-<li>To call a user, select him in people list or enter manually his eXo Platform username in Dial tab.
+<li>To call a user, select him in people list or enter manually his intranet account in Dial tab.
 </li>
 <li>
 The people list is currently hard-coded. We are waiting for <a href="https://jira.exoplatform.org/browse/SOC-3848">SOC-3848</a> to display user's connections.
@@ -18,17 +17,14 @@ The people list is currently hard-coded. We are waiting for <a href="https://jir
 </ul>
 <h3>Known issues</h3>
 <ul>
-    <li>
-        To receive call, eXo mobile app must be active. TODO: handle incoming call when the app is in background mode.
-    </li>
+    
 <li>
-Weemo SDK does not work well if the connection is bad. It often disconnects automatically and we have no way to catch this event. When you can't call a user and there is no response from the app, please try to log out and login again.
-</li>
+Weemo SDK does not work well if the connection is bad. It often disconnects automatically and we have no way to catch this event. When you can't call a user and there is no response from the app, please try to log out and login again. (You can check the connection status by looking at the app log by using <a href="https://itunes.apple.com/us/app/consolekit/id648875678?mt=8">Consolekit</a> from App store )</li>
 <li>
 Probably because of connection quality, sometime the call is made but there is only voice, the video view is blank.
 </li>
 <li>
-Orientation handling in iPad
+    To receive call, eXo mobile app must be active. TODO: handle incoming call when the app is in background mode.
 </li>
 </ul>
 </body>

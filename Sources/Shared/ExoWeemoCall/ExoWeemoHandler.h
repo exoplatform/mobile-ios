@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <iOS-SDK/Weemo.h>
 #import "CallViewController.h"
+#import "AppDelegate_iPhone.h"
+#import "DialViewController_iPhone.h"
+#import "CallHistoryManager.h"
+#import "CallHistory.h"
+#import "LanguageHelper.h"
 
 //the mobile app identifier provided by Weemo
 #define URLReferer @"ecro7etqvzgnmc2e"
@@ -23,6 +28,7 @@
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, retain) CallViewController *activeCallVC;
 @property (nonatomic, retain) UIViewController *updatedVC;
+@property (nonatomic, assign) BOOL authenticated;
 
 + (ExoWeemoHandler *)sharedInstance;
 - (void) connect;

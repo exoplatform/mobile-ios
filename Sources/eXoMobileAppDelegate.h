@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ExoWeemoHandler.h"
+#import <iOS-SDK/Weemo.h>
+
 @interface eXoMobileAppDelegate : NSObject <UIApplicationDelegate> {
 
     

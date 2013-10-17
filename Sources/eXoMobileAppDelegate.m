@@ -9,6 +9,7 @@
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
+
 @implementation eXoMobileAppDelegate
 
 #pragma mark -

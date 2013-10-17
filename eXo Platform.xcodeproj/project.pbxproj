@@ -627,13 +627,13 @@
 		7DE49EF1180D5EF800394825 /* WeemoAboutViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE3180D5EF800394825 /* WeemoAboutViewController_iPhone.m */; };
 		7DE49EF2180D5EF800394825 /* WeemoAboutViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */; };
 		7DE49EF3180D5EF800394825 /* WeemoContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE6180D5EF800394825 /* WeemoContact.m */; };
+		7DE49F24180FC73F00394825 /* ExoWeemoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49F23180FC73F00394825 /* ExoWeemoUtils.m */; };
 		7DF39B1617F9606A000A3267 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1517F9606A000A3267 /* CoreVideo.framework */; };
 		7DF39B1817F96076000A3267 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1717F96076000A3267 /* GLKit.framework */; };
 		7DF39B1A17F96080000A3267 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1917F96080000A3267 /* CoreMedia.framework */; };
 		7DF39B1C17F960A5000A3267 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1B17F960A5000A3267 /* OpenGLES.framework */; };
 		7DF39B1E17F960BD000A3267 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1D17F960BD000A3267 /* AVFoundation.framework */; };
 		7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */; };
-		7DF39B2217F96E43000A3267 /* HomeCallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B2117F96E43000A3267 /* HomeCallIcon.png */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1840,13 +1840,14 @@
 		7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeemoAboutViewController_iPhone.xib; sourceTree = "<group>"; };
 		7DE49EE5180D5EF800394825 /* WeemoContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoContact.h; sourceTree = "<group>"; };
 		7DE49EE6180D5EF800394825 /* WeemoContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoContact.m; sourceTree = "<group>"; };
+		7DE49F22180FC73F00394825 /* ExoWeemoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoWeemoUtils.h; sourceTree = "<group>"; };
+		7DE49F23180FC73F00394825 /* ExoWeemoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoWeemoUtils.m; sourceTree = "<group>"; };
 		7DF39B1517F9606A000A3267 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7DF39B1717F96076000A3267 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		7DF39B1917F96080000A3267 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7DF39B1B17F960A5000A3267 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		7DF39B1D17F960BD000A3267 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeCallIcon@2x.png"; sourceTree = "<group>"; };
-		7DF39B2117F96E43000A3267 /* HomeCallIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeCallIcon.png; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -3006,7 +3007,6 @@
 		46BF6E471379640600D1E1A5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
-				7DF39B2117F96E43000A3267 /* HomeCallIcon.png */,
 				A622269915996D99003FAC28 /* NavbarMenuButton.png */,
 				46CAF76313799D680017C959 /* HomeNotificationPanelBgIphone.png */,
 				46CAF7491379907B0017C959 /* HomeActivityStreamsIconiPhone.png */,
@@ -3912,19 +3912,28 @@
 		7DE49ECE180D5EF800394825 /* ExoWeemoCall */ = {
 			isa = PBXGroup;
 			children = (
+				7DE49F21180FC6F300394825 /* Model */,
+				7DE49F20180FC6AC00394825 /* ViewControllers */,
 				7DE49ECF180D5EF800394825 /* about.html */,
-				7DE49ED0180D5EF800394825 /* CallHistory.h */,
-				7DE49ED1180D5EF800394825 /* CallHistory.m */,
 				7DE49ED2180D5EF800394825 /* CallHistoryManager.h */,
 				7DE49ED3180D5EF800394825 /* CallHistoryManager.m */,
+				7DE49EDA180D5EF800394825 /* ExoWeemoHandler.h */,
+				7DE49EDB180D5EF800394825 /* ExoWeemoHandler.mm */,
+				7DE49F22180FC73F00394825 /* ExoWeemoUtils.h */,
+				7DE49F23180FC73F00394825 /* ExoWeemoUtils.m */,
+			);
+			path = ExoWeemoCall;
+			sourceTree = "<group>";
+		};
+		7DE49F20180FC6AC00394825 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				7DE49ED4180D5EF800394825 /* CallViewController.h */,
 				7DE49ED5180D5EF800394825 /* CallViewController.m */,
 				7DE49ED6180D5EF800394825 /* DialViewController.h */,
 				7DE49ED7180D5EF800394825 /* DialViewController.m */,
 				7DE49ED8180D5EF800394825 /* ExoCallViewController.h */,
 				7DE49ED9180D5EF800394825 /* ExoCallViewController.m */,
-				7DE49EDA180D5EF800394825 /* ExoWeemoHandler.h */,
-				7DE49EDB180D5EF800394825 /* ExoWeemoHandler.mm */,
 				7DE49EDC180D5EF800394825 /* PeopleViewController.h */,
 				7DE49EDD180D5EF800394825 /* PeopleViewController.m */,
 				7DE49EDE180D5EF800394825 /* RecentsTabViewController.h */,
@@ -3934,10 +3943,19 @@
 				7DE49EE2180D5EF800394825 /* WeemoAboutViewController_iPhone.h */,
 				7DE49EE3180D5EF800394825 /* WeemoAboutViewController_iPhone.m */,
 				7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7DE49F21180FC6F300394825 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DE49ED0180D5EF800394825 /* CallHistory.h */,
+				7DE49ED1180D5EF800394825 /* CallHistory.m */,
 				7DE49EE5180D5EF800394825 /* WeemoContact.h */,
 				7DE49EE6180D5EF800394825 /* WeemoContact.m */,
 			);
-			path = ExoWeemoCall;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		7DFD1912177986970053F6F3 /* @2x */ = {
@@ -5368,7 +5386,6 @@
 				578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */,
 				578ED79717EAD61A00771497 /* Icon-ios7-76@2x.png in Resources */,
 				7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */,
-				7DF39B2217F96E43000A3267 /* HomeCallIcon.png in Resources */,
 				7DAEF2091802745F00E610E1 /* bkgd_active.png in Resources */,
 				7DAEF20A1802745F00E610E1 /* bkgd_active@2x.png in Resources */,
 				7DAEF20B1802745F00E610E1 /* bkgd_active@2x~ipad.png in Resources */,
@@ -5698,6 +5715,7 @@
 				7DE49EF0180D5EF800394825 /* WeemoAboutViewController.m in Sources */,
 				7DE49EF1180D5EF800394825 /* WeemoAboutViewController_iPhone.m in Sources */,
 				7DE49EF3180D5EF800394825 /* WeemoContact.m in Sources */,
+				7DE49F24180FC73F00394825 /* ExoWeemoUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,4 +42,7 @@ typedef enum {
 - (void)setRootViewController:(UIViewController *)viewController animated:(BOOL)animated;
 - (void)updateLabelsWithNewLanguage;
 
+//update the indicator for Weemo status in the menu
+- (void)updateCellForVideoCall;
+
 @end

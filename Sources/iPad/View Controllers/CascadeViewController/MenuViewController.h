@@ -38,5 +38,5 @@
 
 - (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
 - (void) updateLabelsWithNewLanguage;
-
+- (void)updateCellForVideoCall;
 @end

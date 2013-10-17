@@ -51,6 +51,7 @@
 	[[self call]setViewVideoOut:[self v_videoOut]];
     
     self.l_caller.text = self.call.contactID;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -194,4 +195,8 @@
 	});
 }
 
+- (void)checkWeemoStats
+{
+    
+}
 @end

@@ -7,12 +7,10 @@
 //
 
 #import "ExoWeemoHandler.h"
-#import "CallViewController.h"
+#import "AppDelegate_iPad.h"
+#import "MenuViewController.h"
+#import "RootViewController.h"
 #import "AppDelegate_iPhone.h"
-#import "DialViewController_iPhone.h"
-#import "CallHistoryManager.h"
-#import "CallHistory.h"
-#import "LanguageHelper.h"
 
 @implementation ExoWeemoHandler {
     UIAlertView *incomingCall;
@@ -21,6 +19,7 @@
 @synthesize displayName = _displayName;
 @synthesize activeCallVC = _activeCallVC;
 @synthesize updatedVC = _updatedVC;
+@synthesize authenticated = _authenticated;
 
 + (ExoWeemoHandler*)sharedInstance
 {
@@ -39,6 +38,7 @@
 
 - (void)connect
 {
+    self.authenticated = NO;
     NSError *error;
     [Weemo WeemoWithURLReferer:URLReferer andDelegate:self error:&error];
 }
@@ -152,6 +152,11 @@
     if(!error) {
         //TODO: set display name
         [[Weemo instance] setDisplayName:self.displayName];
+        self.authenticated = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateMenuView];
+        });
+        
     } else {
         NSLog(@"%@", [error description]);
     }
@@ -245,5 +250,25 @@
     CallHistoryManager *historyManager = [CallHistoryManager sharedInstance];
     [historyManager.history addObject:entry];
     [historyManager saveHistory];
+}
+
+- (void) updateMenuView
+{
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        AppDelegate_iPad *ipadDelegate = [AppDelegate_iPad instance];
+        
+        RootViewController *rootVC = ipadDelegate.rootViewController;
+        if(rootVC) {
+            MenuViewController *menuVC = rootVC.menuViewController;
+            
+            [menuVC updateCellForVideoCall];
+        }
+    } else {
+        AppDelegate_iPhone *iphoneDelegate = [AppDelegate_iPhone instance];
+        HomeSidebarViewController_iPhone *homeVC = iphoneDelegate.homeSidebarViewController_iPhone;
+        if(homeVC) {
+            [homeVC updateCellForVideoCall];
+        }
+    }
 }
 @end

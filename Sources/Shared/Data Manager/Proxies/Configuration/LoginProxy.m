@@ -84,9 +84,6 @@ return self;
             }
         }
     }
-    
-    //disconnect from Weemo
-//    [[Weemo instance] disconnect];
 }
 
 #pragma mark - helper methods
@@ -167,7 +164,7 @@ return self;
     LogTrace(@"Loaded payload: %@", [response bodyAsString]);
 }
 
-
+//Login sucessful
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
     //NSLog(@"Loaded statuses: %@", objects);    
     //We receive the response from the server
@@ -190,11 +187,14 @@ return self;
                     [appPref addAndSetSelectedServer:self.serverUrl withName:@"My intranet"];
                 }
                 
-                [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+                [UserPreferencesManager sharedInstance].username = self.username;
+                [UserPreferencesManager sharedInstance].password = self.password;
+                [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+                
                 [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
             }
         }
-                
+        
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         
@@ -207,6 +207,9 @@ return self;
         [ExoWeemoHandler sharedInstance].userId = self.username;
         [ExoWeemoHandler sharedInstance].displayName = self.username;
         [[ExoWeemoHandler sharedInstance] connect];
+        
+        //set userId for CallHistoryManager
+        [CallHistoryManager sharedInstance].userId = self.username;
         
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];

@@ -17,6 +17,8 @@
 #import "DashboardViewController_iPad.h"
 #import "ExoCallViewController_iPad.h"
 #import <iOS-SDK/Weemo.h>
+#import "ExoWeemoHandler.h"
+#import "ExoWeemoUtils.h"
 
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
@@ -66,7 +68,9 @@
 
 @end
 
-@implementation MenuViewController
+@implementation MenuViewController {
+    UIView *offlineView; //indicator for weemo status in Home Menu
+}
 
 @synthesize userProfileViewController = _userProfileViewController;
 
@@ -164,11 +168,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
 }
-
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -285,8 +290,20 @@
         
     }
     
-	cell.textLabel.text = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
-	cell.imageView.image = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellImage];
+    NSDictionary *cellDict = [_cellContents objectAtIndex:indexPath.row];
+	cell.textLabel.text = [cellDict objectForKey:kCellText];
+	cell.imageView.image = [cellDict objectForKey:kCellImage];
+    
+    //add indicator for Video call Row
+    if(indexPath.row == 3) {
+        offlineView = [ExoWeemoUtils offlineView];
+        float offX = 120;
+        float offY = 10;
+        
+        offlineView.frame = CGRectMake(offX, offY,60,cell.frame.size.height);
+        [cell addSubview:offlineView];
+        cell.userInteractionEnabled = [ExoWeemoHandler sharedInstance].authenticated;
+    }
     return cell;
 }
 
@@ -328,22 +345,22 @@
         
         case EXO_VIDEO_CALL_ROW: {
             //video call
-            if([Weemo instance].isAuthenticated) {
+            if([ExoWeemoHandler sharedInstance].authenticated) {
                 ExoCallViewController_iPad *callVC = [[[ExoCallViewController_iPad alloc] initWithNibName:@"ExoCallViewController_iPad" bundle:nil] autorelease];
                 
                 [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:callVC invokeByController:self isStackStartView:TRUE];
                 
-            } else {
-                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-                [alert show];
             }
+//            else {
+//                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+//                [alert show];
+//            }
             break;
         }
         default:
             break;
     }
 }
-
 
 #pragma mark -
 #pragma mark Memory management
@@ -400,6 +417,15 @@
     [_tableView reloadData];
     // Reselect the previously selected menu item
     [_tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+- (void)updateCellForVideoCall
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:EXO_VIDEO_CALL_ROW inSection:0]];
+    UIView *indicator = [cell viewWithTag:OFFLINE_VIEW_TAG];
+    indicator.hidden = [ExoWeemoHandler sharedInstance].authenticated;
+    cell.userInteractionEnabled = [ExoWeemoHandler sharedInstance].authenticated;
+//    cell.textLabel.text = @"Can call";
 }
 
 @end
