@@ -338,23 +338,16 @@
             // dashboard
             DashboardViewController_iPad *dashboardViewController_iPad = [[[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil] autorelease];
             
-            
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:dashboardViewController_iPad invokeByController:self isStackStartView:TRUE];
             break;
         }
         
         case EXO_VIDEO_CALL_ROW: {
             //video call
-            if([ExoWeemoHandler sharedInstance].authenticated) {
-                ExoCallViewController_iPad *callVC = [[[ExoCallViewController_iPad alloc] initWithNibName:@"ExoCallViewController_iPad" bundle:nil] autorelease];
-                
-                [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:callVC invokeByController:self isStackStartView:TRUE];
-                
-            }
-//            else {
-//                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-//                [alert show];
-//            }
+            ExoCallViewController_iPad *callVC = [[[ExoCallViewController_iPad alloc] initWithNibName:@"ExoCallViewController_iPad" bundle:nil] autorelease];
+            
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:callVC invokeByController:self isStackStartView:TRUE];
+            
             break;
         }
         default:
@@ -422,10 +415,14 @@
 - (void)updateCellForVideoCall
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:EXO_VIDEO_CALL_ROW inSection:0]];
-    UIView *indicator = [cell viewWithTag:OFFLINE_VIEW_TAG];
-    indicator.hidden = [ExoWeemoHandler sharedInstance].authenticated;
-    cell.userInteractionEnabled = [ExoWeemoHandler sharedInstance].authenticated;
-//    cell.textLabel.text = @"Can call";
+    
+    UILabel *label = (UILabel *)[cell viewWithTag:OFFLINE_VIEW_TAG];
+    BOOL authenticated = [ExoWeemoHandler sharedInstance].authenticated;
+    
+    label.text = authenticated ? @"Online" : @"Offline";
+    label.textColor = authenticated ? [UIColor greenColor] : [UIColor redColor];
+    cell.userInteractionEnabled = authenticated;
+
 }
 
 @end

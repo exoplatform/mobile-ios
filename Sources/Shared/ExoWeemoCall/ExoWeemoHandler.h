@@ -27,16 +27,11 @@
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, retain) CallViewController *activeCallVC;
-@property (nonatomic, retain) UIViewController *updatedVC;
 @property (nonatomic, assign) BOOL authenticated;
 
 + (ExoWeemoHandler *)sharedInstance;
 - (void) connect;
-
 - (void)addCallView;
 - (void)removeCallView;
 
-#pragma mark - optional delegate methods used
-- (void)weemoContact:(NSString*)contact canBeCalled:(BOOL)can;
-- (void)weemoDidDisconnect:(NSError*)error;
 @end

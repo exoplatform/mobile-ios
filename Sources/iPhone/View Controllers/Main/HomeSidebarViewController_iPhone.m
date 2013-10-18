@@ -272,10 +272,11 @@
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]];
     
-    UIView *label = [cell viewWithTag:OFFLINE_VIEW_TAG];
-    
-    label.hidden = [ExoWeemoHandler sharedInstance].authenticated;
-    cell.userInteractionEnabled = [ExoWeemoHandler sharedInstance].authenticated;
+    UILabel *label = (UILabel *)[cell viewWithTag:OFFLINE_VIEW_TAG];
+    BOOL authenticated = [ExoWeemoHandler sharedInstance].authenticated; 
+    label.text = authenticated ? @"Online" : @"Offline";
+    label.textColor = authenticated ? [UIColor greenColor] : [UIColor redColor];
+    cell.userInteractionEnabled = authenticated;
 }
 
 - (void)pushContentView:(id)sender {
@@ -609,19 +610,11 @@
                 break;
                 
             case eXoWeemoCall: {
-                if([ExoWeemoHandler sharedInstance].authenticated) {
-                    ExoCallViewController_iPhone *videoCallVC = [[ExoCallViewController_iPhone alloc] initWithNibName:@"ExoCallViewController_iPhone" bundle:nil];
-                    [self setRootViewController:videoCallVC animated:YES];
-                    [videoCallVC release];
-                    [_revealView revealSidebar:NO];
-                    rowType = [(JTTableViewCellModalSimpleType *)object type];
-                }
-//                } else {
-//                    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"WeemoNotAuthenticatedTitle") message:Localize(@"WeemoNotAuthenticatedMessage") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-//                    [alert show];
-//                }
-//                
-//                
+                ExoCallViewController_iPhone *videoCallVC = [[ExoCallViewController_iPhone alloc] initWithNibName:@"ExoCallViewController_iPhone" bundle:nil];
+                [self setRootViewController:videoCallVC animated:YES];
+                [videoCallVC release];
+                [_revealView revealSidebar:NO];
+                rowType = [(JTTableViewCellModalSimpleType *)object type];
                 break;
             }
             default:

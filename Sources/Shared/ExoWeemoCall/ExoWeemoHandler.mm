@@ -18,7 +18,6 @@
 @synthesize userId = _userId;
 @synthesize displayName = _displayName;
 @synthesize activeCallVC = _activeCallVC;
-@synthesize updatedVC = _updatedVC;
 @synthesize authenticated = _authenticated;
 
 + (ExoWeemoHandler*)sharedInstance
@@ -48,6 +47,8 @@
     [super dealloc];
     [_displayName release];
     _displayName = nil;
+    [_activeCallVC release];
+    _activeCallVC = nil;
 }
 
 - (void)addCallView
@@ -82,6 +83,7 @@
 	NSLog(@">>>> createCallView");
 		
     if(_activeCallVC) {
+        _activeCallVC.call = [[Weemo instance] activeCall];
         return;
     }
     
@@ -154,7 +156,7 @@
         [[Weemo instance] setDisplayName:self.displayName];
         self.authenticated = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self updateMenuView];
+            [self updateMenuView]; //update the indicator for authentication status
         });
         
     } else {
@@ -165,7 +167,7 @@
 - (void)weemoDidDisconnect:(NSError *)error
 {
     if(error) {
-      NSLog(@"%@", [error description]);
+      NSLog(@">>>WeemoHandler: %@", [error description]);
     } else {
         NSLog(@">>>WeemoHandler: weemo did disconnect");
     }
