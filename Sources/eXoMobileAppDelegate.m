@@ -18,6 +18,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
         
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"HAD_CHAT_SERVER"]) {
+        NSString *chatServerURL = @"http://addonchat-4.0.x-pkg-develop-snapshot.acceptance.exoplatform.org";
+        NSString *chatServerName = @"Weemo Test";
+        [[ApplicationPreferencesManager sharedInstance] addAndSetSelectedServer:chatServerURL withName:chatServerName];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HAD_CHAT_SERVER"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     return YES;
 }
 

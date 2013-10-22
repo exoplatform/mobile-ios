@@ -142,11 +142,9 @@
 {
     if(error) {
         NSLog(@">>>WeemoHandler: %@", [error description]);
-        
     } else {
         [[Weemo instance] authenticateWithToken:self.userId andType:USERTYPE_INTERNAL];
     }
-    
 }
 
 - (void)weemoDidAuthenticate:(NSError *)error
