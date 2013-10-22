@@ -5,7 +5,7 @@ This is a P.O.C of Weemo Video call integration in eXo iOS application. Weemo SD
 <h3>How it works</h3>
 <ul>
 <li>
-    After authenticating intranet, user is connected to Weemo cloud using his intranet account</li>
+    After authenticating to intranet, user is connected to Weemo cloud using his intranet account</li>
 <li>
 To use video call, go to Home menu and select Call.
 </li>
@@ -15,13 +15,16 @@ To use video call, go to Home menu and select Call.
 The people list is currently hard-coded. We are waiting for <a href="https://jira.exoplatform.org/browse/SOC-3848">SOC-3848</a> to display user's connections.
 </li>
 </ul>
-<h3>Known issues</h3>
+<h3>Tips</h3>
+    <li>You can check the connection status by checking the app log using free app <a href="https://itunes.apple.com/us/app/consolekit/id648875678?mt=8">Consolekit</a> from App store </li>
+
+    <h3>Known issues</h3>
 <ul>
     
 <li>
-Weemo SDK does not work well if the connection is bad. It often disconnects automatically and we have no way to catch this event. When you can't call a user and there is no response from the app, please try to log out/kill the app and login again. (You can check the connection status by looking at the app log by using <a href="https://itunes.apple.com/us/app/consolekit/id648875678?mt=8">Consolekit</a> from App store )</li>
+With a bad connection, Weemo SDK often disconnects automatically. We have no way to catch this event (yet). When you can't call a user and there is no response from the app, please try to log out/kill the app and login again. </li>
 <li>
-Probably because of connection quality, sometime the call is made but there is only voice, the video view is blank.
+Probably because of connection quality, sometime the call is made but there is only voice, the video view is blank. Try to toggle the video, sometime it works.
 </li>
 <li>
     To receive call, eXo mobile app must be active. TODO: handle incoming call when the app is in background mode.

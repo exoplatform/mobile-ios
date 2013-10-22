@@ -77,7 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeemoContact *contact = [self.people objectAtIndex:indexPath.row];
-    [[Weemo instance] createCall:contact.uid];
+    [[Weemo instance] createCall:[NSString stringWithFormat:@"weemo%@",contact.uid]];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -92,8 +92,9 @@
     WeemoContact *contact5 = [[[WeemoContact alloc] initWithUid:@"benjamin_mestrallet" andDisplayName:@"Benjamin Mestrallet"] autorelease];
     
     WeemoContact *contact6 = [[[WeemoContact alloc] initWithUid:@"benjamin_paillereau" andDisplayName:@"Benjamin Paillereau"] autorelease];
+    WeemoContact *contact7 = [[[WeemoContact alloc] initWithUid:@"vietnq" andDisplayName:@"Quoc Viet"] autorelease];
     
-    self.people = [NSMutableArray arrayWithObjects:contact1, contact3, contact4, contact5, contact6, nil];
+    self.people = [NSMutableArray arrayWithObjects:contact1, contact3, contact4, contact5, contact6,contact7, nil];
 }
 
 @end

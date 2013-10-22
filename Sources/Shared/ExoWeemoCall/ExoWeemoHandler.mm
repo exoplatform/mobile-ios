@@ -143,7 +143,7 @@
     if(error) {
         NSLog(@">>>WeemoHandler: %@", [error description]);
     } else {
-        [[Weemo instance] authenticateWithToken:self.userId andType:USERTYPE_INTERNAL];
+        [[Weemo instance] authenticateWithToken:[NSString stringWithFormat:@"weemo%@",self.userId] andType:USERTYPE_INTERNAL];
     }
 }
 
@@ -154,7 +154,7 @@
         [[Weemo instance] setDisplayName:self.displayName];
         self.authenticated = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self updateMenuView]; //update the indicator for authentication status
+            [self updateWeemoIndicator]; //update the indicator for authentication status
         });
         
     } else {
@@ -212,7 +212,9 @@
         NSLog(@">>>WeemoHandler: %@ cannot be called", contactID);
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            NSString *message = [NSString stringWithFormat:Localize(@"ContactNotAvailableMessage"), contactID];
+            NSString *calledUID = [contactID hasPrefix:@"weemo"] ? [contactID substringFromIndex:[@"weemo" length]] : contactID;
+            
+            NSString *message = [NSString stringWithFormat:Localize(@"ContactNotAvailableMessage"), calledUID];
             
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
             [alert show];
@@ -244,7 +246,11 @@
     //save call history
     CallHistory *entry = [[CallHistory alloc] init];
     entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? 0 : 1;
-    entry.caller = call.contactID;
+    NSString *contactID = call.contactID;
+    if([contactID hasPrefix:@"weemo"]) {
+        contactID = [contactID substringFromIndex:[@"weemo" length]];
+    }
+    entry.caller = contactID;
     entry.date = [[NSDate alloc] init];
     
     CallHistoryManager *historyManager = [CallHistoryManager sharedInstance];
@@ -252,7 +258,7 @@
     [historyManager saveHistory];
 }
 
-- (void) updateMenuView
+- (void) updateWeemoIndicator
 {
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         AppDelegate_iPad *ipadDelegate = [AppDelegate_iPad instance];

@@ -56,7 +56,7 @@
 
 -(void)call:(id)sender
 {
-    [[Weemo instance] createCall:self.calledIdTf.text];
+    [[Weemo instance] createCall:[NSString stringWithFormat:@"weemo%@",self.calledIdTf.text]];
     [self.calledIdTf resignFirstResponder];
 }
 
