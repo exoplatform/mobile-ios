@@ -175,9 +175,7 @@
 - (void)weemoCallCreated:(WeemoCall*)call
 {
 	NSLog(@">>>> Controller callCreated: 0x%X", [call callStatus]);
-    
-    [self addToCallHistory:call];
-	
+    	
     if ([call callStatus] == CALLSTATUS_INCOMING) {
         
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
@@ -213,6 +211,8 @@
 
 - (void)weemoCallEnded:(WeemoCall *)call
 {
+    [self addToCallHistory:call];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
 		[self removeCallView];
 		[incomingCall dismissWithClickedButtonIndex:1 animated:YES];
@@ -267,14 +267,16 @@
 {
     //save call history
     CallHistory *entry = [[CallHistory alloc] init];
-    entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? 0 : 1;
     NSString *contactID = call.contactID;
+    
     if([contactID hasPrefix:@"weemo"]) {
         contactID = [contactID substringFromIndex:[@"weemo" length]];
     }
+    
     entry.caller = contactID;
     entry.date = [[NSDate alloc] init];
-    
+    entry.direction = ([call callStatus] == CALLSTATUS_INCOMING) ? 0 : 1;
+
     CallHistoryManager *historyManager = [CallHistoryManager sharedInstance];
     [historyManager.history addObject:entry];
     [historyManager saveHistory];

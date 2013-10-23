@@ -193,6 +193,14 @@ return self;
                 
                 [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
             }
+            
+            //connect and authenticate to Weemo cloud
+            [ExoWeemoHandler sharedInstance].userId = self.username;
+            [ExoWeemoHandler sharedInstance].displayName = self.username;
+            [[ExoWeemoHandler sharedInstance] connect];
+            
+            //set userId for CallHistoryManager
+            [CallHistoryManager sharedInstance].userId = self.username;
         }
         
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
@@ -202,15 +210,7 @@ return self;
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
             [_delegate loginProxy:self platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
         }
-        
-        //connect and authenticate to Weemo cloud
-        [ExoWeemoHandler sharedInstance].userId = self.username;
-        [ExoWeemoHandler sharedInstance].displayName = self.username;
-        [[ExoWeemoHandler sharedInstance] connect];
-        
-        //set userId for CallHistoryManager
-        [CallHistoryManager sharedInstance].userId = self.username;
-        
+                
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
