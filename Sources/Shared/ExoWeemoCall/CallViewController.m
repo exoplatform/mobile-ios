@@ -26,16 +26,6 @@
 
 #pragma mark - Controller life cycle
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-	self = [super initWithCoder:aDecoder];
-	if (self)
-	{
-		[self setCall:[[Weemo instance] activeCall]];
-	}
-	return self;
-}
-
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
@@ -45,10 +35,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
-    [[self call]setDelegate:self];
-	[[self call]setViewVideoIn:[self v_videoIn]];
-	[[self call]setViewVideoOut:[self v_videoOut]];
     
     self.l_caller.text = self.call.contactID;
     
@@ -56,8 +42,15 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
-	[self resizeView:[self interfaceOrientation]];
+	[super viewDidAppear:animated];
+    
+    self.call = [[Weemo instance] activeCall];
+    
+    [[self call]setDelegate:self];
+	[[self call]setViewVideoIn:[self v_videoIn]];
+	[[self call]setViewVideoOut:[self v_videoOut]];
+	
+    [self resizeView:[self interfaceOrientation]];
 }
 
 - (void)didReceiveMemoryWarning

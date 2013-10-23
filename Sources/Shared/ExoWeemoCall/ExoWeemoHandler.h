@@ -33,5 +33,5 @@
 - (void) connect;
 - (void)addCallView;
 - (void)removeCallView;
-
+- (void)receiveCall;
 @end

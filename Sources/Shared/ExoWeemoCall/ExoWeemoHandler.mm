@@ -180,15 +180,31 @@
 	
     if ([call callStatus] == CALLSTATUS_INCOMING) {
         
-		incomingCall = [[UIAlertView alloc]initWithTitle:Localize(@"Incoming Call")
-                                                 message:[NSString stringWithFormat:Localize(@"Someone is calling"), [call contactID]]
-                                                delegate:self
-                                       cancelButtonTitle:Localize(@"Pick-up")
-                                       otherButtonTitles:Localize(@"Deny"), nil];
-        
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[incomingCall show];
-		});
+        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+            
+            UILocalNotification *notif = [[UILocalNotification alloc] init];
+            notif.alertBody = [NSString stringWithFormat:Localize(@"Someone is calling"), [call contactID]];
+            notif.alertAction = @"Pick-up";
+            notif.soundName = UILocalNotificationDefaultSoundName;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] presentLocalNotificationNow:notif];
+                [notif release];
+            });
+            
+        } else {
+            
+            incomingCall = [[UIAlertView alloc]initWithTitle:Localize(@"Incoming Call")
+                                                     message:[NSString stringWithFormat:Localize(@"Someone is calling"), [call contactID]]
+                                                    delegate:self
+                                           cancelButtonTitle:Localize(@"Pick-up")
+                                           otherButtonTitles:Localize(@"Deny"), nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [incomingCall show];
+            });
+        }
+		
     } else {
         [self setCallStatus:[call callStatus]];
     }
@@ -229,9 +245,7 @@
         if (buttonIndex == 0)
         {
             //user took the call
-            [self createCallView];
-            [self addCallView];
-            [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
+            [self receiveCall];
             [[[Weemo instance] activeCall]resume];
         } else {
             //user hangup
@@ -239,6 +253,14 @@
             [[[Weemo instance] activeCall]hangup];
         }
     }
+}
+
+
+- (void)receiveCall
+{
+    [self createCallView];
+    [self addCallView];
+    [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
 }
 
 - (void) addToCallHistory:(WeemoCall *)call

@@ -270,7 +270,7 @@
 
 - (void)updateCellForVideoCall
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     
     UILabel *label = (UILabel *)[cell viewWithTag:OFFLINE_VIEW_TAG];
     BOOL authenticated = [ExoWeemoHandler sharedInstance].authenticated; 

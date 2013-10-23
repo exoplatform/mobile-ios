@@ -9,6 +9,7 @@
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
+#import "ExoWeemoHandler.h"
 
 @implementation eXoMobileAppDelegate
 
@@ -76,6 +77,13 @@
      */
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    //pick up the call when in background mode
+    NSLog(@"receive notification");
+    [[ExoWeemoHandler sharedInstance] receiveCall];
+    [[[Weemo instance] activeCall]resume];
+}
 
 #pragma mark -
 #pragma mark Memory management
