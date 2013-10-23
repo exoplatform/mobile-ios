@@ -114,7 +114,6 @@
                               item, kActivityStreamTabItem, 
                               nil];
         [_listOfItems insertObject:dict atIndex:i];
-        
     }
 }
 
