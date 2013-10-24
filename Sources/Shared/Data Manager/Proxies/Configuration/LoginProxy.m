@@ -201,6 +201,7 @@ return self;
             
             //set userId for CallHistoryManager
             [CallHistoryManager sharedInstance].userId = self.username;
+            [[CallHistoryManager sharedInstance] loadHistory];
         }
         
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];

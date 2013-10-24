@@ -20,6 +20,7 @@
         
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
     
+    //add chat server by default to test Weemo. TODO: remove after finishing the POC
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"HAD_CHAT_SERVER"]) {
         NSString *chatServerURL = @"http://addonchat-4.0.x-pkg-develop-snapshot.acceptance.exoplatform.org";
         NSString *chatServerName = @"Weemo Test";
@@ -82,7 +83,6 @@
     //pick up the call when in background mode
     NSLog(@"receive notification");
     [[ExoWeemoHandler sharedInstance] receiveCall];
-    [[[Weemo instance] activeCall]resume];
 }
 
 #pragma mark -

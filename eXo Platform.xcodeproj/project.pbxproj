@@ -428,6 +428,10 @@
 		7D02603917867EEC00C3FA24 /* WelcomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603717867EEC00C3FA24 /* WelcomeViewController_iPad.xib */; };
 		7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */; };
 		7D02603E1786B58A00C3FA24 /* SignUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */; };
+		7D0401E71818FCD100C249E0 /* ContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0401E51818FCD100C249E0 /* ContactDetailViewController.m */; };
+		7D0401E81818FCD100C249E0 /* ContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0401E61818FCD100C249E0 /* ContactDetailViewController.xib */; };
+		7D0401FD18191B0F00C249E0 /* ContactDetailViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0401FB18191B0E00C249E0 /* ContactDetailViewController_iPad.m */; };
+		7D0401FE18191B0F00C249E0 /* ContactDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0401FC18191B0E00C249E0 /* ContactDetailViewController_iPad.xib */; };
 		7D0A949F180D294700C83A7A /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A949D180D294700C83A7A /* info.png */; };
 		7D0A94A0180D294700C83A7A /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A949E180D294700C83A7A /* phone.png */; };
 		7D0A94B3180D327300C83A7A /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A94B2180D327300C83A7A /* question.png */; };
@@ -1599,6 +1603,12 @@
 		7D02603A1786B58A00C3FA24 /* SignUpViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPad.h; sourceTree = "<group>"; };
 		7D02603B1786B58A00C3FA24 /* SignUpViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController_iPad.m; sourceTree = "<group>"; };
 		7D02603C1786B58A00C3FA24 /* SignUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController_iPad.xib; sourceTree = "<group>"; };
+		7D0401E41818FCD100C249E0 /* ContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailViewController.h; sourceTree = "<group>"; };
+		7D0401E51818FCD100C249E0 /* ContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailViewController.m; sourceTree = "<group>"; };
+		7D0401E61818FCD100C249E0 /* ContactDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailViewController.xib; sourceTree = "<group>"; };
+		7D0401FA18191B0E00C249E0 /* ContactDetailViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailViewController_iPad.h; sourceTree = "<group>"; };
+		7D0401FB18191B0E00C249E0 /* ContactDetailViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailViewController_iPad.m; sourceTree = "<group>"; };
+		7D0401FC18191B0E00C249E0 /* ContactDetailViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailViewController_iPad.xib; sourceTree = "<group>"; };
 		7D0A949D180D294700C83A7A /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		7D0A949E180D294700C83A7A /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		7D0A94B2180D327300C83A7A /* question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question.png; sourceTree = "<group>"; };
@@ -3883,6 +3893,9 @@
 				7DE49EA5180D5EDD00394825 /* WeemoAboutViewController_iPad.h */,
 				7DE49EA6180D5EDD00394825 /* WeemoAboutViewController_iPad.m */,
 				7DE49EA7180D5EDD00394825 /* WeemoAboutViewController_iPad.xib */,
+				7D0401FA18191B0E00C249E0 /* ContactDetailViewController_iPad.h */,
+				7D0401FB18191B0E00C249E0 /* ContactDetailViewController_iPad.m */,
+				7D0401FC18191B0E00C249E0 /* ContactDetailViewController_iPad.xib */,
 			);
 			path = ExoWeemoCall;
 			sourceTree = "<group>";
@@ -3905,6 +3918,9 @@
 				7DE49EC1180D5EEC00394825 /* RecentsTabViewController_iPhone.h */,
 				7DE49EC2180D5EEC00394825 /* RecentsTabViewController_iPhone.m */,
 				7DE49EC3180D5EEC00394825 /* RecentsTabViewController_iPhone.xib */,
+				7D0401E41818FCD100C249E0 /* ContactDetailViewController.h */,
+				7D0401E51818FCD100C249E0 /* ContactDetailViewController.m */,
+				7D0401E61818FCD100C249E0 /* ContactDetailViewController.xib */,
 			);
 			path = ExoWeemoCall;
 			sourceTree = "<group>";
@@ -5441,6 +5457,8 @@
 				7DE49ECD180D5EEC00394825 /* RecentsTabViewController_iPhone.xib in Resources */,
 				7DE49EE7180D5EF800394825 /* about.html in Resources */,
 				7DE49EF2180D5EF800394825 /* WeemoAboutViewController_iPhone.xib in Resources */,
+				7D0401E81818FCD100C249E0 /* ContactDetailViewController.xib in Resources */,
+				7D0401FE18191B0F00C249E0 /* ContactDetailViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5716,6 +5734,8 @@
 				7DE49EF1180D5EF800394825 /* WeemoAboutViewController_iPhone.m in Sources */,
 				7DE49EF3180D5EF800394825 /* WeemoContact.m in Sources */,
 				7DE49F24180FC73F00394825 /* ExoWeemoUtils.m in Sources */,
+				7D0401E71818FCD100C249E0 /* ContactDetailViewController.m in Sources */,
+				7D0401FD18191B0F00C249E0 /* ContactDetailViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

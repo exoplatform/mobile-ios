@@ -9,12 +9,20 @@
 #import "PeopleViewController.h"
 #import "WeemoContact.h"
 #import "ExoWeemoHandler.h"
+#import "AppDelegate_iPhone.h"
+#import "AppDelegate_iPad.h"
+#import "ContactDetailViewController.h"
+#import "ContactDetailViewController_iPad.h"
+#import "RootViewController.h"
+#import "ExoStackScrollViewController.h"
 
 @interface PeopleViewController ()
 
 @end
 
-@implementation PeopleViewController
+@implementation PeopleViewController {
+    ContactDetailViewController *contactDetailVC;
+}
 @synthesize people = _people;
 @synthesize tableView = _tableView;
 
@@ -77,7 +85,40 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeemoContact *contact = [self.people objectAtIndex:indexPath.row];
-    [[Weemo instance] createCall:[NSString stringWithFormat:@"weemo%@",contact.uid]];
+//    [[Weemo instance] createCall:[NSString stringWithFormat:@"weemo%@",contact.uid]];
+    BOOL isIpad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+    
+    
+    
+    if(isIpad)
+    {
+        if(contactDetailVC)
+        {
+            [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:contactDetailVC];
+            
+            [contactDetailVC release];
+        }
+        contactDetailVC = [[ContactDetailViewController alloc] initWithNibName:@"ContactDetailViewController_iPad" bundle:nil];
+        
+        contactDetailVC.uid = contact.uid;
+        contactDetailVC.fullName = contact.displayName;
+
+        //get instance of ExoCallViewController which is currently at index 0 of view controllers stack
+        UIViewController *exoCallVC = [[self parentViewController] parentViewController];
+        
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:contactDetailVC invokeByController:exoCallVC isStackStartView:FALSE];
+    
+    }
+    else
+    {
+        contactDetailVC = [[ContactDetailViewController alloc] initWithNibName:@"ContactDetailViewController" bundle:nil];
+        
+        contactDetailVC.uid = contact.uid;
+        contactDetailVC.fullName = contact.displayName;
+
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:contactDetailVC animated:YES];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -19,6 +19,7 @@
 @synthesize displayName = _displayName;
 @synthesize activeCallVC = _activeCallVC;
 @synthesize authenticated = _authenticated;
+@synthesize delegate = _delegate;
 
 + (ExoWeemoHandler*)sharedInstance
 {
@@ -222,32 +223,56 @@
 
 - (void)weemoContact:(NSString *)contactID canBeCalled:(BOOL)canBeCalled
 {
-    if(canBeCalled) {
+    if(canBeCalled)
+    {
         NSLog(@">>>WeemoHandler: %@ can be called", contactID);
-    } else {
-        NSLog(@">>>WeemoHandler: %@ cannot be called", contactID);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSString *calledUID = [contactID hasPrefix:@"weemo"] ? [contactID substringFromIndex:[@"weemo" length]] : contactID;
-            
-            NSString *message = [NSString stringWithFormat:Localize(@"ContactNotAvailableMessage"), calledUID];
-            
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-            [alert show];
-        });
+        if(_delegate)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_delegate weemoHandler:self updateStatus:YES];
+                _delegate = nil;
+            });
+        }
+    }
+    else
+    {
+        if(_delegate)
+        {
+            //case: get status in Contact Detail Tab, disable the call button
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_delegate weemoHandler:self updateStatus:NO];
+                _delegate = nil;
+            });
+        }
+        else
+        {
+            //case: get status when dialing, display an alert
+            NSLog(@">>>WeemoHandler: %@ cannot be called", contactID);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSString *calledUID = [contactID hasPrefix:@"weemo"] ? [contactID substringFromIndex:[@"weemo" length]] : contactID;
+                
+                NSString *message = [NSString stringWithFormat:Localize(@"ContactNotAvailableMessage"), calledUID];
+                
+                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+                [alert show];
+            });
+        }
     }
 }
 
 #pragma mark - dealing with the incoming call
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(alertView == incomingCall) {
+    if(alertView == incomingCall)
+    {
         if (buttonIndex == 0)
         {
             //user took the call
             [self receiveCall];
-            [[[Weemo instance] activeCall]resume];
-        } else {
+        }
+        else
+        {
             //user hangup
             [self removeCallView];
             [[[Weemo instance] activeCall]hangup];
@@ -261,6 +286,7 @@
     [self createCallView];
     [self addCallView];
     [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
+    [[[Weemo instance] activeCall]resume];
 }
 
 - (void) addToCallHistory:(WeemoCall *)call
@@ -269,7 +295,8 @@
     CallHistory *entry = [[CallHistory alloc] init];
     NSString *contactID = call.contactID;
     
-    if([contactID hasPrefix:@"weemo"]) {
+    if([contactID hasPrefix:@"weemo"])
+    {
         contactID = [contactID substringFromIndex:[@"weemo" length]];
     }
     
@@ -284,19 +311,24 @@
 
 - (void) updateWeemoIndicator
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
         AppDelegate_iPad *ipadDelegate = [AppDelegate_iPad instance];
         
         RootViewController *rootVC = ipadDelegate.rootViewController;
-        if(rootVC) {
+        if(rootVC)
+        {
             MenuViewController *menuVC = rootVC.menuViewController;
             
             [menuVC updateCellForVideoCall];
         }
-    } else {
+    }
+    else
+    {
         AppDelegate_iPhone *iphoneDelegate = [AppDelegate_iPhone instance];
         HomeSidebarViewController_iPhone *homeVC = iphoneDelegate.homeSidebarViewController_iPhone;
-        if(homeVC) {
+        if(homeVC)
+        {
             [homeVC updateCellForVideoCall];
         }
     }

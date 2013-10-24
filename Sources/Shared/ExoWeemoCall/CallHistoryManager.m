@@ -14,7 +14,6 @@
 - (id)init
 {
     if((self = [super init])) {
-
     }
     return self;
 }
@@ -45,6 +44,7 @@
 - (void)loadHistory
 {
     NSString *filePath = [self filePath];
+    
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];

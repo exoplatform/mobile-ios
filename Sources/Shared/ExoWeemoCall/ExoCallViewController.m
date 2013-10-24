@@ -39,6 +39,8 @@
         
         self.tabVC.delegate = self;
         self.tabVC.view.frame = self.view.frame;
+        
+        [self addChildViewController:self.tabVC];
         [self.view addSubview:self.tabVC.view];
 
     }
