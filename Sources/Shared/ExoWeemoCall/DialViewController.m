@@ -7,7 +7,6 @@
 //
 
 #import "DialViewController.h"
-#import "ExoWeemoHandler.h"
 
 @interface DialViewController ()
 
@@ -57,6 +56,7 @@
 -(void)call:(id)sender
 {
     [[Weemo instance] createCall:[NSString stringWithFormat:@"weemo%@",self.calledIdTf.text]];
+    [ExoWeemoHandler sharedInstance].delegate = self;
     [self.calledIdTf resignFirstResponder];
 }
 
@@ -71,4 +71,20 @@
     self.callButton.enabled = isConnected;
 }
 
+
+#pragma mark ExoWeemoHandlerDelegate method
+
+- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateStatus:(BOOL)canBeCalled forContactID:(NSString *)contactID
+{
+    if(!canBeCalled)
+    {
+        NSString *calledUID = [contactID hasPrefix:@"weemo"] ? [contactID substringFromIndex:[@"weemo" length]] : contactID;
+        
+        NSString *message = [NSString stringWithFormat:Localize(@"ContactNotAvailableMessage"), calledUID];
+        
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [alert show];
+    }
+    
+}
 @end

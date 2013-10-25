@@ -10,7 +10,6 @@
 #import <iOS-SDK/Weemo.h>
 #import "CallViewController.h"
 #import "AppDelegate_iPhone.h"
-#import "DialViewController_iPhone.h"
 #import "CallHistoryManager.h"
 #import "CallHistory.h"
 #import "LanguageHelper.h"
@@ -21,7 +20,7 @@
 @class ExoWeemoHandler;
 @protocol ExoWeemoHandlerDelegate <NSObject>
 
-- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateStatus:(BOOL)canBeCalled;
+- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateStatus:(BOOL)canBeCalled forContactID:(NSString*)contactID;
 
 @end
 

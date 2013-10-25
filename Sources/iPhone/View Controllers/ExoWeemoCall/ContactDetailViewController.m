@@ -76,7 +76,7 @@
 
 #pragma mark ExoWeemHandlerDelegate methods
 
-- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateStatus:(BOOL)canBeCalled
+- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateStatus:(BOOL)canBeCalled forContactID:(NSString *)contactID
 {
     self.bt_call.enabled = canBeCalled;
 }

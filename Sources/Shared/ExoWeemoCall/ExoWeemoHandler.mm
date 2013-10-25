@@ -12,8 +12,15 @@
 #import "RootViewController.h"
 #import "AppDelegate_iPhone.h"
 
+//in milliseconds
+#define CHECK_CONNECTION_PERIOD 60
+#define DELAY_GET_STATUS 5
+
 @implementation ExoWeemoHandler {
     UIAlertView *incomingCall;
+    BOOL reconnect;
+    BOOL checkingConnection;
+    NSTimer *timer;
 }
 @synthesize userId = _userId;
 @synthesize displayName = _displayName;
@@ -102,6 +109,14 @@
 
 }
 
+- (void)receiveCall
+{
+    [self createCallView];
+    [self addCallView];
+    [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
+    [[[Weemo instance] activeCall]resume];
+}
+
 - (void)setCallStatus:(int)newStatus
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -153,10 +168,20 @@
     if(!error) {
         //TODO: set display name
         [[Weemo instance] setDisplayName:self.displayName];
+        
         self.authenticated = YES;
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self updateWeemoIndicator]; //update the indicator for authentication status
         });
+        
+        //periodically check the connection
+        if(timer) {
+            [timer invalidate];
+        }
+        
+        timer = [NSTimer timerWithTimeInterval:CHECK_CONNECTION_PERIOD target:self selector:@selector(checkConnection) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         
     } else {
         NSLog(@"%@", [error description]);
@@ -180,7 +205,7 @@
     if ([call callStatus] == CALLSTATUS_INCOMING) {
         
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
-            
+            //if the app is in background, display a local notification
             UILocalNotification *notif = [[UILocalNotification alloc] init];
             notif.alertBody = [NSString stringWithFormat:Localize(@"Someone is calling"), [call contactID]];
             notif.alertAction = @"Pick-up";
@@ -223,41 +248,19 @@
 
 - (void)weemoContact:(NSString *)contactID canBeCalled:(BOOL)canBeCalled
 {
-    if(canBeCalled)
+    reconnect = NO;
+    
+    if(checkingConnection)
     {
-        NSLog(@">>>WeemoHandler: %@ can be called", contactID);
-        if(_delegate)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_delegate weemoHandler:self updateStatus:YES];
-                _delegate = nil;
-            });
-        }
+        checkingConnection = NO;
     }
-    else
+    
+    if(_delegate)
     {
-        if(_delegate)
-        {
-            //case: get status in Contact Detail Tab, disable the call button
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_delegate weemoHandler:self updateStatus:NO];
-                _delegate = nil;
-            });
-        }
-        else
-        {
-            //case: get status when dialing, display an alert
-            NSLog(@">>>WeemoHandler: %@ cannot be called", contactID);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                NSString *calledUID = [contactID hasPrefix:@"weemo"] ? [contactID substringFromIndex:[@"weemo" length]] : contactID;
-                
-                NSString *message = [NSString stringWithFormat:Localize(@"ContactNotAvailableMessage"), calledUID];
-                
-                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-                [alert show];
-            });
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_delegate weemoHandler:self updateStatus:canBeCalled forContactID:contactID];
+            _delegate = nil;
+        });
     }
 }
 
@@ -278,15 +281,6 @@
             [[[Weemo instance] activeCall]hangup];
         }
     }
-}
-
-
-- (void)receiveCall
-{
-    [self createCallView];
-    [self addCallView];
-    [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
-    [[[Weemo instance] activeCall]resume];
 }
 
 - (void) addToCallHistory:(WeemoCall *)call
@@ -330,6 +324,40 @@
         if(homeVC)
         {
             [homeVC updateCellForVideoCall];
+        }
+    }
+}
+
+#pragma mark Utils for Checking connection periodically
+
+- (void)checkConnection
+{
+    NSLog(@">>>WeemoHandler: checking connection");
+    
+    reconnect = YES;
+    checkingConnection = YES;
+    
+    [[Weemo instance] getStatus:self.userId];
+    
+    [self performSelector:@selector(afterCheckingConnection) withObject:self afterDelay:DELAY_GET_STATUS];
+}
+
+- (void)afterCheckingConnection
+{
+    if(reconnect) {
+        @try {
+            [[Weemo instance] disconnect];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Excetion: %@", exception);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"kill the app and login again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        @finally {
+            NSLog(@">>>WeemoHandler: start re-connecting");
+            self.authenticated = NO;
+            [self updateWeemoIndicator];
+            [self connect];
         }
     }
 }
