@@ -31,7 +31,7 @@
 
 "Copy" = "Copiar";
 
-"Move" = "Cut";
+"Move" = "Recortar";
 
 "Paste" = "Paste";
 
@@ -86,7 +86,7 @@
 
 "Optional" = "Optional";
 
-"Fullscreen" = "Fullscreen";
+"Fullscreen" = "Tela cheia";
 
 "Close" = "Fechar";
 
