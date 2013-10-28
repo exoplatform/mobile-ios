@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WeemoContact.h"
+#import "ExoContact.h"
 
 @interface CallHistory : NSObject <NSCoding>
 @property (nonatomic, copy) NSString *caller;

@@ -503,6 +503,8 @@
 		7D6931EA1797D690008CCE72 /* logo_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931E41797D690008CCE72 /* logo_ipad@2x.png */; };
 		7D6931ED1797D912008CCE72 /* arrow_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931EB1797D912008CCE72 /* arrow_ipad@2x.png */; };
 		7D6931EE1797D912008CCE72 /* arrow_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D6931EC1797D912008CCE72 /* arrow_ipad.png */; };
+		7D913588181E482D0084E1CA /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D913587181E482D0084E1CA /* ContactCell.xib */; };
+		7D91358B181E48EF0084E1CA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91358A181E48EF0084E1CA /* ContactCell.m */; };
 		7D993C63176ABB410035835F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C62176ABB410035835F /* SignUpViewController.m */; };
 		7D993C78176ABB5E0035835F /* SignUpViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D993C76176ABB5E0035835F /* SignUpViewController_iPhone.m */; };
 		7D993C79176ABB5E0035835F /* SignUpViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D993C77176ABB5E0035835F /* SignUpViewController_iPhone.xib */; };
@@ -630,7 +632,7 @@
 		7DE49EF0180D5EF800394825 /* WeemoAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE1180D5EF800394825 /* WeemoAboutViewController.m */; };
 		7DE49EF1180D5EF800394825 /* WeemoAboutViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE3180D5EF800394825 /* WeemoAboutViewController_iPhone.m */; };
 		7DE49EF2180D5EF800394825 /* WeemoAboutViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */; };
-		7DE49EF3180D5EF800394825 /* WeemoContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE6180D5EF800394825 /* WeemoContact.m */; };
+		7DE49EF3180D5EF800394825 /* ExoContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49EE6180D5EF800394825 /* ExoContact.m */; };
 		7DE49F24180FC73F00394825 /* ExoWeemoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE49F23180FC73F00394825 /* ExoWeemoUtils.m */; };
 		7DF39B1617F9606A000A3267 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1517F9606A000A3267 /* CoreVideo.framework */; };
 		7DF39B1817F96076000A3267 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1717F96076000A3267 /* GLKit.framework */; };
@@ -1681,6 +1683,9 @@
 		7D6931E41797D690008CCE72 /* logo_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ipad@2x.png"; sourceTree = "<group>"; };
 		7D6931EB1797D912008CCE72 /* arrow_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_ipad@2x.png"; sourceTree = "<group>"; };
 		7D6931EC1797D912008CCE72 /* arrow_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_ipad.png; sourceTree = "<group>"; };
+		7D913587181E482D0084E1CA /* ContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
+		7D913589181E48EF0084E1CA /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
+		7D91358A181E48EF0084E1CA /* ContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCell.m; sourceTree = "<group>"; };
 		7D993C61176ABB410035835F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		7D993C62176ABB410035835F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		7D993C75176ABB5E0035835F /* SignUpViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController_iPhone.h; sourceTree = "<group>"; };
@@ -1848,8 +1853,8 @@
 		7DE49EE2180D5EF800394825 /* WeemoAboutViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoAboutViewController_iPhone.h; sourceTree = "<group>"; };
 		7DE49EE3180D5EF800394825 /* WeemoAboutViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoAboutViewController_iPhone.m; sourceTree = "<group>"; };
 		7DE49EE4180D5EF800394825 /* WeemoAboutViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeemoAboutViewController_iPhone.xib; sourceTree = "<group>"; };
-		7DE49EE5180D5EF800394825 /* WeemoContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeemoContact.h; sourceTree = "<group>"; };
-		7DE49EE6180D5EF800394825 /* WeemoContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeemoContact.m; sourceTree = "<group>"; };
+		7DE49EE5180D5EF800394825 /* ExoContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoContact.h; sourceTree = "<group>"; };
+		7DE49EE6180D5EF800394825 /* ExoContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoContact.m; sourceTree = "<group>"; };
 		7DE49F22180FC73F00394825 /* ExoWeemoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoWeemoUtils.h; sourceTree = "<group>"; };
 		7DE49F23180FC73F00394825 /* ExoWeemoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoWeemoUtils.m; sourceTree = "<group>"; };
 		7DF39B1517F9606A000A3267 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -3634,6 +3639,16 @@
 			path = ipad;
 			sourceTree = "<group>";
 		};
+		7D913586181E469F0084E1CA /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				7D913587181E482D0084E1CA /* ContactCell.xib */,
+				7D913589181E48EF0084E1CA /* ContactCell.h */,
+				7D91358A181E48EF0084E1CA /* ContactCell.m */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
 		7D993C2C1769A8E50035835F /* CloudSignup */ = {
 			isa = PBXGroup;
 			children = (
@@ -3928,6 +3943,7 @@
 		7DE49ECE180D5EF800394825 /* ExoWeemoCall */ = {
 			isa = PBXGroup;
 			children = (
+				7D913586181E469F0084E1CA /* CustomViews */,
 				7DE49F21180FC6F300394825 /* Model */,
 				7DE49F20180FC6AC00394825 /* ViewControllers */,
 				7DE49ECF180D5EF800394825 /* about.html */,
@@ -3968,8 +3984,8 @@
 			children = (
 				7DE49ED0180D5EF800394825 /* CallHistory.h */,
 				7DE49ED1180D5EF800394825 /* CallHistory.m */,
-				7DE49EE5180D5EF800394825 /* WeemoContact.h */,
-				7DE49EE6180D5EF800394825 /* WeemoContact.m */,
+				7DE49EE5180D5EF800394825 /* ExoContact.h */,
+				7DE49EE6180D5EF800394825 /* ExoContact.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -5459,6 +5475,7 @@
 				7DE49EF2180D5EF800394825 /* WeemoAboutViewController_iPhone.xib in Resources */,
 				7D0401E81818FCD100C249E0 /* ContactDetailViewController.xib in Resources */,
 				7D0401FE18191B0F00C249E0 /* ContactDetailViewController_iPad.xib in Resources */,
+				7D913588181E482D0084E1CA /* ContactCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5732,10 +5749,11 @@
 				7DE49EEF180D5EF800394825 /* RecentsTabViewController.m in Sources */,
 				7DE49EF0180D5EF800394825 /* WeemoAboutViewController.m in Sources */,
 				7DE49EF1180D5EF800394825 /* WeemoAboutViewController_iPhone.m in Sources */,
-				7DE49EF3180D5EF800394825 /* WeemoContact.m in Sources */,
+				7DE49EF3180D5EF800394825 /* ExoContact.m in Sources */,
 				7DE49F24180FC73F00394825 /* ExoWeemoUtils.m in Sources */,
 				7D0401E71818FCD100C249E0 /* ContactDetailViewController.m in Sources */,
 				7D0401FD18191B0F00C249E0 /* ContactDetailViewController_iPad.m in Sources */,
+				7D91358B181E48EF0084E1CA /* ContactCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

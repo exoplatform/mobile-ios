@@ -8,6 +8,7 @@
 
 #import "eXoViewController.h"
 #import "ExoWeemoHandler.h"
+#import "ExoContact.h"
 
 @interface ContactDetailViewController : eXoViewController <UITableViewDataSource, UITableViewDelegate, ExoWeemoHandlerDelegate>
 
@@ -15,8 +16,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *lb_uid;
 @property (nonatomic, retain) IBOutlet UIButton *bt_call;
 
-@property (nonatomic, copy) NSString *fullName;
-@property (nonatomic, copy) NSString *uid;
-
+@property (nonatomic, retain) IBOutlet UIImageView *avatar;
+@property (nonatomic, retain) ExoContact *contact;
 - (IBAction)call:(id)sender;
 @end

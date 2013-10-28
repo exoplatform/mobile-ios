@@ -12,7 +12,7 @@
 #import "RootViewController.h"
 #import "AppDelegate_iPhone.h"
 
-//in milliseconds
+//in seconds
 #define CHECK_CONNECTION_PERIOD 60
 #define DELAY_GET_STATUS 5
 
@@ -370,8 +370,12 @@
         }
         @catch (NSException *exception) {
             NSLog(@"Excetion: %@", exception);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"kill the app and login again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
+        
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Call" message:@"Error occurs when reconnecting. Please kill the app and login again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [alert show];
+            });
         }
         @finally {
             NSLog(@">>>WeemoHandler: start re-connecting");

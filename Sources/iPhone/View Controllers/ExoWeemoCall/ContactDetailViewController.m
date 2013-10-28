@@ -20,9 +20,9 @@
 }
 @synthesize bt_call = _bt_call;
 @synthesize lb_full_name = _lb_full_name;
-@synthesize fullName = _fullName;
-@synthesize uid = _uid;
+@synthesize contact = _contact;
 @synthesize lb_uid = _lb_uid;
+@synthesize avatar = _avatar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,13 +37,28 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.lb_full_name.text = self.fullName;
-    self.lb_uid.text = self.uid;
+    self.lb_full_name.text = self.contact.displayName;
+    self.lb_uid.text = self.contact.uid;
     self.bt_call.enabled = NO;
     [CloudViewUtils configureButton:self.bt_call withBackground:@"blue_btn"];
     
     [ExoWeemoHandler sharedInstance].delegate = self;
-    [[Weemo instance] getStatus:[NSString stringWithFormat:@"weemo%@", self.uid]];
+    [[Weemo instance] getStatus:[NSString stringWithFormat:@"weemo%@", self.contact.uid]];
+    
+    NSURL *avatarURL = [NSURL URLWithString:[self.contact avatarURL]];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:avatarURL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update the UI
+            if([imageData length] > 0)
+            {
+                self.avatar.image = [UIImage imageWithData:imageData];
+            }
+        });
+    });
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,13 +80,16 @@
     _bt_call = nil;
     [_bt_call release];
     
-    [_uid release];
-    [_fullName release];
+    _contact = nil;
+    [_contact release];
+    
+    _avatar = nil;
+    [_avatar release];
 }
 
 - (void)call:(id)sender
 {
-    [[Weemo instance] createCall:[NSString stringWithFormat:@"weemo%@",self.uid]];
+    [[Weemo instance] createCall:[NSString stringWithFormat:@"weemo%@",self.contact.uid]];
 }
 
 #pragma mark ExoWeemHandlerDelegate methods
