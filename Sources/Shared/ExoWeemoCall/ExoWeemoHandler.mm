@@ -176,6 +176,8 @@
         });
         
         //periodically check the connection
+        
+        //cancel any timer in used first
         if(timer) {
             [timer invalidate];
         }
@@ -248,6 +250,7 @@
 
 - (void)weemoContact:(NSString *)contactID canBeCalled:(BOOL)canBeCalled
 {
+    //toggle the flag
     reconnect = NO;
     
     if(checkingConnection)
@@ -330,20 +333,37 @@
 
 #pragma mark Utils for Checking connection periodically
 
+/*
+ * Checks the connection status, it's a little bit tricky now because Weemo didnot support notifiying 
+ * when the connection is automatically disconnected.
+ * 
+ * A user is considered connected if he can call him self.
+ * So by getting status of current user, if there is no response after a delay (of ~5s), 
+ * user must be currently disconnected.
+ */
 - (void)checkConnection
 {
     NSLog(@">>>WeemoHandler: checking connection");
     
+    //flag to check if there is any response from Weemo
     reconnect = YES;
+    
     checkingConnection = YES;
     
     [[Weemo instance] getStatus:self.userId];
     
+    //check the flag after a delay
     [self performSelector:@selector(afterCheckingConnection) withObject:self afterDelay:DELAY_GET_STATUS];
 }
 
+/*
+ * Checks the flag to see if it's toggle by a Weemo delegate method 
+ * (- (void)weemoContact:(NSString *)contactID canBeCalled:(BOOL)canBeCalled)
+ */
 - (void)afterCheckingConnection
 {
+    //if the flag reconnect is not modified, that means there is no response from Weemo
+    // try to reconnect the user
     if(reconnect) {
         @try {
             [[Weemo instance] disconnect];
