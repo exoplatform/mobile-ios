@@ -50,6 +50,21 @@
     [Weemo WeemoWithURLReferer:URLReferer andDelegate:self error:&error];
 }
 
+- (void)disconnect
+{
+    @try {
+        if(timer)
+        {
+            [timer invalidate];
+            timer = nil;
+        }
+        
+        [[Weemo instance] disconnect];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"excetion: %@",exception);
+    }
+}
 - (void)dealloc
 {
     [super dealloc];
@@ -58,6 +73,8 @@
     [_activeCallVC release];
     _activeCallVC = nil;
 }
+
+#pragma mark GUI integration
 
 - (void)addCallView
 {
@@ -176,10 +193,10 @@
         });
         
         //periodically check the connection
-        
-        //cancel any timer in used first
-        if(timer) {
+        if(timer)
+        {
             [timer invalidate];
+            timer = nil;
         }
         
         timer = [NSTimer timerWithTimeInterval:CHECK_CONNECTION_PERIOD target:self selector:@selector(checkConnection) userInfo:nil repeats:YES];
@@ -286,6 +303,7 @@
     }
 }
 
+#pragma mark Call History
 - (void) addToCallHistory:(WeemoCall *)call
 {
     //save call history
@@ -305,6 +323,8 @@
     [historyManager.history addObject:entry];
     [historyManager saveHistory];
 }
+
+#pragma mark Update Weemo status indicator
 
 - (void) updateWeemoIndicator
 {
@@ -365,24 +385,12 @@
     //if the flag reconnect is not modified, that means there is no response from Weemo
     // try to reconnect the user
     if(reconnect) {
-        @try {
-            [[Weemo instance] disconnect];
-        }
-        @catch (NSException *exception) {
-            NSLog(@"Excetion: %@", exception);
+        [self disconnect];
         
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Call" message:@"Error occurs when reconnecting. Please kill the app and login again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [alert show];
-            });
-        }
-        @finally {
-            NSLog(@">>>WeemoHandler: start re-connecting");
-            self.authenticated = NO;
-            [self updateWeemoIndicator];
-            [self connect];
-        }
+        NSLog(@">>>WeemoHandler: start re-connecting");
+        self.authenticated = NO;
+        [self updateWeemoIndicator];
+        [self connect];
     }
 }
 @end

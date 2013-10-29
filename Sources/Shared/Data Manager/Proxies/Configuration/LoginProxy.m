@@ -86,12 +86,7 @@ return self;
     }
     
     //disconnect Weemo
-    @try {
-        [[Weemo instance] disconnect];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"excetion: %@",exception);
-    }
+    [[ExoWeemoHandler sharedInstance] disconnect];
 }
 
 #pragma mark - helper methods

@@ -38,6 +38,7 @@
 @property (nonatomic, retain) id<ExoWeemoHandlerDelegate> delegate;
 + (ExoWeemoHandler *)sharedInstance;
 - (void) connect;
+- (void) disconnect;
 - (void)addCallView;
 - (void)removeCallView;
 - (void)receiveCall;
