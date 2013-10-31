@@ -10,7 +10,7 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Login page";
+"SignInPageTitle" = "Página de Login";
 
 "SignInButton" = "Conectar";
 
@@ -23,9 +23,9 @@
  * Documents
  */
 
-"TakePicture" = "Take a picture";
+"TakePicture" = "Tirar uma foto";
 
-"NewFolderTitle" = "New folder";
+"NewFolderTitle" = "Nova pasta";
 
 "RenameTitle" = "Renomear";
 
@@ -37,19 +37,19 @@
 
 "Documents" = "Documentos";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "Tirar uma foto";
 
-"AttachedPhoto" = "Attached photo";
+"AttachedPhoto" = "Foto anexada";
 
-"AddAPhoto" = "Add a photo";
+"AddAPhoto" = "Adicionar uma foto";
 
-"PhotoLibrary" = "Photo library";
+"PhotoLibrary" = "Biblioteca de foto";
 
 // Drives types
 
-"general" = "general";
+"general" = "geral";
 
-"personal" = "personal";
+"personal" = "pessoal";
 
 "group" = "grupo";
 
@@ -64,27 +64,27 @@
 
 "Delete" = "Excluir";
 
-"Success" = "Success";
+"Success" = "Successo";
 
 "Home" = "Principal";
 
 "Loading" = "Carregando...";
 
-"LoadingURL" = "Loading URL";
+"LoadingURL" = "Carregando URL";
 
 "OK" = "OK";
 
 "Disconnect" = "Desconectar";
 
-"Pull down to refresh..." = "Pull down to refresh...";
+"Pull down to refresh..." = "Puxe para baixo para atualizar...";
 
-"Release to refresh..." = "Release to refresh...";
+"Release to refresh..." = "Solte para atualizar...";
 
-"Last Updated: %@" = "Last updated: %@";
+"Last Updated: %@" = "Ultima atualização: %@";
 
-"Required" = "Required";
+"Required" = "Requerido";
 
-"Optional" = "Optional";
+"Optional" = "Opcional";
 
 "Fullscreen" = "Tela cheia";
 
@@ -101,9 +101,9 @@
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "Lembrar meu filtro";
 
-"ShowPrivateDrive" = "Show my private drive";
+"ShowPrivateDrive" = "Mostrar minha unidade privada";
 
 "Language" = "Idiomas";
 
@@ -113,200 +113,200 @@
 
 "Send" = "Enviar";
 
-"ServerList" = "Server list";
+"ServerList" = "Lista de servidores";
 
-"NewServer" = "New server";
+"NewServer" = "Novo servidor";
 
-"ServerModify" = "Modify server";
+"ServerModify" = "Modificar o servidor";
 
-"ApplicationsInformation" = "Application information";
+"ApplicationsInformation" = "Informações do aplicativo";
 
-"ServerVersion" = "Server version";
+"ServerVersion" = "Versão do servidor";
 
-"ApplicationEdition" = "Application edition";
+"ApplicationEdition" = "Edição de aplicação";
 
-"ApplicationVersion" = "Application version";
+"ApplicationVersion" = "Versão do aplicativo";
 
-"ServerName" = "Server name";
+"ServerName" = "Nome do servidor";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "URL do servidor";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "The server returned invalid data.";
+"BadResponse" = "O servidor retornou dados inválidos.";
 
-"NetworkConnection" = "Connection error";
+"NetworkConnection" = "Erro de conexão";
 
-"Authorization" = "Login failed";
+"Authorization" = "Falha no login";
 
-"WrongUserNamePassword" = "Impossible to connect, check your username and password";
+"WrongUserNamePassword" = "Impossível conectar, verifique seu nome de usuário e senha";
 
-"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"InvalidServer" = "Impossível conectar a sua intranet, verifique a URL ou contate o administrador";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "Impossível conectar a sua intranet, verifique a URL ou contate o administrador";
 
-"UserNameEmpty" = "Incorrect username";
+"UserNameEmpty" = "Nome de usuário incorreto";
 
-"PasswordEmpty" = "Incorrect password";
+"PasswordEmpty" = "Senha incorreta";
 
-"SelectedDomainEmpty" = "No server specified";
+"SelectedDomainEmpty" = "Nenhum servidor especificado";
 
-"EmptyFolder" = "This folder is empty";
+"EmptyFolder" = "Esta pasta está vazia";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "Este arquivo não pode ser aberto no aplicativo";
 
-"NoActivities" = "No activity has been posted on your activity stream";
+"NoActivities" = "Nenhuma atividade foi postada no seu mural de atividade";
 
-"NoGadget" = "You have no gadgets in your Apps";
+"NoGadget" = "Você não tem nenhum gadget em seus Apps";
 
 "MessageInfo" = "Informação";
 
-"MessageErrorServer" = "You cannot add a server with an empty name or URL";
+"MessageErrorServer" = "Você não pode adicionar um servidor com um nome vazio ou URL";
 
-"MessageErrorExist" = "This server already exists";
+"MessageErrorExist" = "Este servidor já existe";
 
-"InvalidUrl" = "Invalid URL";
+"InvalidUrl" = "URL inválida";
 
 "FileError" = "Erro";
 
-"CameraNotAvailable" = "The camera is not available";
+"CameraNotAvailable" = "A câmera não está disponível";
 
-"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"GadgetsCannotBeRetrieved" = "Gadgets não podem ser recuperados";
 
 "Error" = "Erro";
 
-"NoMessageComment" = "You must enter some text to comment";
+"NoMessageComment" = "Você deve digitar algum texto para comentar";
 
-"NoMessagePosting" = "You must enter some text to post";
+"NoMessagePosting" = "Você deve digitar algum texto para postar";
 
-"GettingActionCannotBeCompleted" = "You cannot get activities";
+"GettingActionCannotBeCompleted" = "Você não pode ver as atividades";
 
-"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"UpdatingActionCannotBeCompleted" = "Você não pode atualizar a atividade";
 
-"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"LikingActionCannotBeCompleted" = "Você não pode curtir a atividade";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "Você não pode desfazer o curtir nesta atividade";
 
-"PostingActionCannotBeCompleted" = "You cannot post a message";
+"PostingActionCannotBeCompleted" = "Você não pode postar uma mensagem";
 
-"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"CommentActionCannotBeCompleted" = "Você não pode postar um comentário";
 
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"LoadMoreActionCannotBeCompleted" = "Ocorreu um erro, as atividades estão recarregando.";
 
-"NotCompliant" = "The application can not run on the Platform edition";
+"NotCompliant" = "O aplicativo não é compatível com esta edição da Plataforma";
 
-"SpecialCharacters" = "Special characters are not allowed";
+"SpecialCharacters" = "Caracteres especiais não são permitidos";
 
-"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+"DashboardsCannotBeRetrieved" = "Não é possível recuperar os painéis de controle";
 
-"FolderNameAlreadyExist" = "This folder already exists";
+"FolderNameAlreadyExist" = "A pasta já existe";
 
-"FolderNameEmpty" = "The folder name is empty";
+"FolderNameEmpty" = "O nome da pasta está vazio";
 
-"Cannot move file to its location" = "Cannot move the file to the same location";
+"Cannot move file to its location" = "Não pode mover o arquivo para o mesmo local";
 
-"Cannot transfer file" = "Cannot transfer the file";
+"Cannot transfer file" = "Não é possível transferir o arquivo";
 
 
 /*
  * Apps
  */
 
-"Dashboard" = "Apps";
+"Dashboard" = "Aplicativos";
 
 
 /*
  * Activity stream
  */
 
-"numOfLikers" = "%d likers";
+"numOfLikers" = "%d pessoas curtiram";
 
-"numOfLiker" = "%d liker";
+"numOfLiker" = "%d pessoa curtiu";
 
-"likeThisActivity" = "%d people like this";
+"likeThisActivity" = "%d pessoas curtiram";
 
-"NoOneLikeThis" = "No one likes this";
+"NoOneLikeThis" = "Ninguém curtiu ainda";
 
-"ActivityDetails" = "Activity details";
+"ActivityDetails" = "Detalhes de atividade";
 
-"MessageComposer" = "Message composer";
+"MessageComposer" = "Compositor de mensagem";
 
-"ActivityStream" = "Activity stream";
+"ActivityStream" = "Fluxo de atividade";
 
 "News" = "Novidades";
 
 "Details" = "Detalhes";
 
-"comments(%d)" = "Comments(%d)";
+"comments(%d)" = "Comentários(%d)";
 
-"likes(%d)" = "Likes(%d)";
+"likes(%d)" = "Curtiram(%d)";
 
-"YourComment" = "Your comment";
+"YourComment" = "Seu comentário";
 
-"GettingActivity" = "Getting activity";
+"GettingActivity" = "Obtendo atividade";
 
-"UpdatingActivity" = "Updating activity";
+"UpdatingActivity" = "Atualização de atividade";
 
 "PostingActivity" = "Publicar";
 
 "CommentActivity" = "Comentário";
 
-"GettingActivityDetail" = "Getting activity detail";
+"GettingActivityDetail" = "Carregar detalhes da atividade";
 
-"UpdatingActivityDetail" = "Updating activity detail";
+"UpdatingActivityDetail" = "Atualizar detalhes de atividade";
 
-"EditWiki" = "has edited the Wiki page:";
+"EditWiki" = "editou a página de Wiki:";
 
-"CreateWiki" = "has created the Wiki page:";
+"CreateWiki" = "criou a página Wiki:";
 
-"NewPost" = "has added a new post:";
+"NewPost" = "foi adicionado um novo post:";
 
-"UpdatePost" = "has updated a post:";
+"UpdatePost" = "atualizou um post:";
 
-"NewTopic" = "has posted a new topic:";
+"NewTopic" = "postou um novo tópico:";
 
-"UpdateTopic" = "has updated a topic:";
+"UpdateTopic" = "atualizou um tópico:";
 
-"UpdateQuestion" = "has updated the question:";
+"UpdateQuestion" = "atualizou a questão:";
 
-"Answered" = "has answered to the question:";
+"Answered" = "respondeu à pergunta:";
 
-"Asked" = "has asked:";
+"Asked" = "perguntou:";
 
-"EventAdded" = "added an event:";
+"EventAdded" = "adicionou um evento:";
 
-"EventUpdated" = "has just updated the event:";
+"EventUpdated" = "acabou de atualizar o evento:";
 
-"TaskAdded" = "added a task:";
+"TaskAdded" = "adicionou uma tarefa:";
 
-"TaskUpdated" = "has just updated the task:";
+"TaskUpdated" = "acabou de atualizar a tarefa:";
 
 "Description" = "Descrição";
 
 "Location" = "Local";
 
-"StartTime" = "Start time";
+"StartTime" = "Hora de início";
 
-"EndTime" = "End time";
+"EndTime" = "Hora do fim";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "Ninguém comentou, seja o primeiro";
 
-"Image Preview" = "Image preview";
+"Image Preview" = "Visualização da imagem";
 
 "Change" = "Mudar";
 
 "Remove" = "Remover";
 
-"All Updates" = "All updates";
+"All Updates" = "Todas as atualizações";
 
-"My Connections" = "My connections";
+"My Connections" = "Minhas conexões";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "Meus espaços";
 
-"My Status" = "My status";
+"My Status" = "Meu status";
 
 
 /*
@@ -320,45 +320,45 @@
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "ago";
+"DateFmt ago" = "atrás";
 
-"DateFmt from now" = "from now";
+"DateFmt from now" = "a partir de agora";
 
-"DateFmt Less than" = "Less than ";
+"DateFmt Less than" = "Menos de ";
 
-"DateFmt About" = "About ";
+"DateFmt About" = "Cerca de ";
 
-"DateFmt Over" = "Over ";
+"DateFmt Over" = "Sobre ";
 
-"DateFmt Almost" = "Almost ";
+"DateFmt Almost" = "Quase ";
 
-"DateFmt seconds" = " seconds ";
+"DateFmt seconds" = " segundos ";
 
-"DateFmt minute" = " minute ";
+"DateFmt minute" = " minuto ";
 
-"DateFmt minutes" = " minutes ";
+"DateFmt minutes" = " minutos ";
 
-"DateFmt hour" = " hour ";
+"DateFmt hour" = " hora ";
 
-"DateFmt hours" = " hours ";
+"DateFmt hours" = " horas ";
 
-"DateFmt day" = " day ";
+"DateFmt day" = " dia ";
 
-"DateFmt days" = " days ";
+"DateFmt days" = " dias ";
 
-"DateFmt month" = " month ";
+"DateFmt month" = " mês ";
 
-"DateFmt months" = " months ";
+"DateFmt months" = " meses ";
 
-"DateFmt year" = " year ";
+"DateFmt year" = " ano ";
 
-"DateFmt years" = " years ";
+"DateFmt years" = " anos ";
 
 
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "Impossível conectar a sua intranet, verifique a URL ou contate o administrador";
 
 "AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
 
@@ -368,7 +368,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "Impossível conectar a sua intranet, verifique a URL ou contate o administrador";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
