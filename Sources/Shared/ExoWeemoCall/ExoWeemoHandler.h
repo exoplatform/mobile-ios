@@ -20,7 +20,7 @@
 @class ExoWeemoHandler;
 @protocol ExoWeemoHandlerDelegate <NSObject>
 
-- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateStatus:(BOOL)canBeCalled forContactID:(NSString*)contactID;
+- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateUIWithStatus:(BOOL)canBeCalled ofContact:(NSString*)contactID;
 
 @end
 

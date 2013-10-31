@@ -36,6 +36,11 @@
     
     
     [self updateViewWithConnectionStatus:[Weemo instance].isConnected];
+    
+    /* Add tap gesture to dismiss keyboard */
+    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
+    [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
+    [self.view addGestureRecognizer:tapGesure];
 
 }
 
@@ -71,10 +76,14 @@
     self.callButton.enabled = isConnected;
 }
 
+- (void)dismissKeyboards
+{
+    [self.calledIdTf resignFirstResponder];
+}
 
 #pragma mark ExoWeemoHandlerDelegate method
 
-- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateStatus:(BOOL)canBeCalled forContactID:(NSString *)contactID
+- (void)weemoHandler:(ExoWeemoHandler *)weemoHandler updateUIWithStatus:(BOOL)canBeCalled ofContact:(NSString *)contactID
 {
     if(!canBeCalled)
     {
@@ -85,6 +94,5 @@
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
         [alert show];
     }
-    
 }
 @end

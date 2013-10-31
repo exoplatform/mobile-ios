@@ -227,7 +227,7 @@
             //if the app is in background, display a local notification
             UILocalNotification *notif = [[UILocalNotification alloc] init];
             notif.alertBody = [NSString stringWithFormat:Localize(@"Someone is calling"), [call contactID]];
-            notif.alertAction = @"Pick-up";
+            notif.alertAction = Localize(@"Pick-up");
             notif.soundName = UILocalNotificationDefaultSoundName;
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -240,8 +240,8 @@
             incomingCall = [[UIAlertView alloc]initWithTitle:Localize(@"Incoming Call")
                                                      message:[NSString stringWithFormat:Localize(@"Someone is calling"), [call contactID]]
                                                     delegate:self
-                                           cancelButtonTitle:Localize(@"Pick-up")
-                                           otherButtonTitles:Localize(@"Deny"), nil];
+                                           cancelButtonTitle:Localize(@"Close")
+                                           otherButtonTitles:Localize(@"Pick-up"), nil];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [incomingCall show];
@@ -278,7 +278,7 @@
     if(_delegate)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_delegate weemoHandler:self updateStatus:canBeCalled forContactID:contactID];
+            [_delegate weemoHandler:self updateUIWithStatus:canBeCalled ofContact:contactID];
             _delegate = nil;
         });
     }
@@ -289,7 +289,7 @@
 {
     if(alertView == incomingCall)
     {
-        if (buttonIndex == 0)
+        if (buttonIndex == 1)
         {
             //user took the call
             [self receiveCall];
