@@ -68,10 +68,25 @@
 //updates the VideoViews location
 - (void)resizeView:(UIInterfaceOrientation)tO
 {
-	[[self view]setFrame:CGRectMake(0., 0., [[[self view]superview]bounds].size.width, [[[self view]superview]bounds].size.height)];
-	[[self v_videoIn]setFrame:CGRectMake(0., 0., [[[self view]superview]bounds].size.width, [[[self view]superview]bounds].size.height)];
+    
+    [[self view]setFrame:CGRectMake(0., 0., [[[self view]superview]bounds].size.width, [[[self view]superview]bounds].size.height)];
+    
+    [[self v_videoIn]setFrame:CGRectMake(0., 0., [[[self view]superview]bounds].size.width, [[[self view]superview]bounds].size.height)];
+
 }
 
+- (void)viewWillLayoutSubviews
+{
+    
+      CGRect frame = self.v_videoOut.frame;
+      frame.size = CGSizeMake(100, 100);
+      self.v_videoOut.frame = frame;
+        
+    [[self v_videoOut]setCenter:CGPointMake([[self view] bounds].size.width - [v_videoOut frame].size.width/2., [[self view] bounds].size.height - [v_videoOut frame].size.height/2.)];
+    
+     [[self b_hangup]setCenter:CGPointMake([[self view] bounds].size.width - [b_hangup frame].size.width/2., [b_hangup frame].size.height/2.)];
+    
+}
 #pragma mark - Actions
 
 - (IBAction)hangup:(id)sender

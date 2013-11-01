@@ -38,9 +38,11 @@
 					<object class="IBUIView" id="1052323003">
 						<reference key="NSNextResponder" ref="702818545"/>
 						<int key="NSvFlags">1298</int>
+						<array class="NSMutableArray" key="NSSubviews"/>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{2, 49}, {316, 449}}</string>
 						<reference key="NSSuperview" ref="702818545"/>
+						<reference key="NSNextKeyView" ref="148368696"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -54,11 +56,12 @@
 						<reference key="NSNextResponder" ref="702818545"/>
 						<int key="NSvFlags">1298</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{206, 363}, {112, 135}}</string>
+						<string key="NSFrame">{{210, 375}, {100, 100}}</string>
 						<reference key="NSSuperview" ref="702818545"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+							<bytes key="NSWhite">MC4zMzMzMzMzMzMzIDAAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -68,6 +71,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{154, 2}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="702818545"/>
+						<reference key="NSNextKeyView" ref="783015821"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -108,6 +112,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{276, 2}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="702818545"/>
+						<reference key="NSNextKeyView" ref="1052323003"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -147,6 +152,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{102, 2}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="702818545"/>
+						<reference key="NSNextKeyView" ref="213858697"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -167,6 +173,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{52, 2}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="702818545"/>
+						<reference key="NSNextKeyView" ref="262234704"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -187,6 +194,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{2, 2}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="702818545"/>
+						<reference key="NSNextKeyView" ref="109180141"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -205,6 +213,7 @@
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSNextKeyView" ref="387506498"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -379,11 +388,7 @@
 					<object class="IBObjectRecord">
 						<string key="id">4</string>
 						<reference key="object" ref="1052323003"/>
-						<reference key="parent" ref="702818545"/>
-					</object>
-					<object class="IBObjectRecord">
-						<string key="id">13</string>
-						<reference key="object" ref="148368696"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="702818545"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -409,6 +414,11 @@
 					<object class="IBObjectRecord">
 						<string key="id">18</string>
 						<reference key="object" ref="387506498"/>
+						<reference key="parent" ref="702818545"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">13</string>
+						<reference key="object" ref="148368696"/>
 						<reference key="parent" ref="702818545"/>
 					</object>
 				</array>
