@@ -435,9 +435,6 @@
 		7D0A949F180D294700C83A7A /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A949D180D294700C83A7A /* info.png */; };
 		7D0A94A0180D294700C83A7A /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A949E180D294700C83A7A /* phone.png */; };
 		7D0A94B3180D327300C83A7A /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A94B2180D327300C83A7A /* question.png */; };
-		7D212DF517FA861100AF93D1 /* iOS-SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DF417FA861100AF93D1 /* iOS-SDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		7D212E1617FD1B1300AF93D1 /* libspeex.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFE17FA892200AF93D1 /* libspeex.ios.a */; };
-		7D212E1717FD1B2300AF93D1 /* libvpx.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D212DFF17FA892200AF93D1 /* libvpx.ios.a */; };
 		7D25E9DD17A7A6B6003E60A0 /* iphone5-activity-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */; };
 		7D25E9DE17A7A6B6003E60A0 /* iphone5-activity-stream@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9D017A7A6B6003E60A0 /* iphone5-activity-stream@2x.png */; };
 		7D25E9DF17A7A6B6003E60A0 /* iphone5-apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D25E9D117A7A6B6003E60A0 /* iphone5-apps@2x.png */; };
@@ -640,6 +637,10 @@
 		7DF39B1C17F960A5000A3267 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1B17F960A5000A3267 /* OpenGLES.framework */; };
 		7DF39B1E17F960BD000A3267 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF39B1D17F960BD000A3267 /* AVFoundation.framework */; };
 		7DF39B2017F96BEE000A3267 /* HomeCallIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */; };
+		7DFA57F618274BB9007A350A /* libspeex.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFA57F318274BB9007A350A /* libspeex.ios.a */; };
+		7DFA57F718274BB9007A350A /* libvpx.ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFA57F418274BB9007A350A /* libvpx.ios.a */; };
+		7DFA57F818274BB9007A350A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7DFA57F518274BB9007A350A /* README.md */; };
+		7DFA57FA18274BD2007A350A /* iOS-SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFA57F918274BD2007A350A /* iOS-SDK.framework */; };
 		8909439B142204BC003A18BB /* AuthenticateServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909439A142204BC003A18BB /* AuthenticateServerCell.xib */; };
 		890D6D26146387D100A80EF4 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */; };
 		890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890D6D25146387D100A80EF4 /* DashboardTableViewCell.xib */; };
@@ -1614,9 +1615,6 @@
 		7D0A949D180D294700C83A7A /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		7D0A949E180D294700C83A7A /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		7D0A94B2180D327300C83A7A /* question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question.png; sourceTree = "<group>"; };
-		7D212DF417FA861100AF93D1 /* iOS-SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "iOS-SDK.framework"; sourceTree = "<group>"; };
-		7D212DFE17FA892200AF93D1 /* libspeex.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeex.ios.a; path = ../Resources/ThirdPart/Libraries/libspeex.ios.a; sourceTree = "<group>"; };
-		7D212DFF17FA892200AF93D1 /* libvpx.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.ios.a; path = ../Resources/ThirdPart/Libraries/libvpx.ios.a; sourceTree = "<group>"; };
 		7D25E9CF17A7A6B6003E60A0 /* iphone5-activity-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-details@2x.png"; sourceTree = "<group>"; };
 		7D25E9D017A7A6B6003E60A0 /* iphone5-activity-stream@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-activity-stream@2x.png"; sourceTree = "<group>"; };
 		7D25E9D117A7A6B6003E60A0 /* iphone5-apps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-apps@2x.png"; sourceTree = "<group>"; };
@@ -1863,6 +1861,10 @@
 		7DF39B1B17F960A5000A3267 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		7DF39B1D17F960BD000A3267 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7DF39B1F17F96BEE000A3267 /* HomeCallIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeCallIcon@2x.png"; sourceTree = "<group>"; };
+		7DFA57F318274BB9007A350A /* libspeex.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libspeex.ios.a; sourceTree = "<group>"; };
+		7DFA57F418274BB9007A350A /* libvpx.ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libvpx.ios.a; sourceTree = "<group>"; };
+		7DFA57F518274BB9007A350A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		7DFA57F918274BD2007A350A /* iOS-SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "iOS-SDK.framework"; path = "WeemoSDK/iOS-SDK.framework"; sourceTree = "<group>"; };
 		8909439A142204BC003A18BB /* AuthenticateServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticateServerCell.xib; sourceTree = "<group>"; };
 		890D6D23146387D100A80EF4 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewCell.h; path = Dashboard/DashboardTableViewCell.h; sourceTree = "<group>"; };
 		890D6D24146387D100A80EF4 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewCell.m; path = Dashboard/DashboardTableViewCell.m; sourceTree = "<group>"; };
@@ -2102,9 +2104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D212E1717FD1B2300AF93D1 /* libvpx.ios.a in Frameworks */,
-				7D212E1617FD1B1300AF93D1 /* libspeex.ios.a in Frameworks */,
-				7D212DF517FA861100AF93D1 /* iOS-SDK.framework in Frameworks */,
+				7DFA57FA18274BD2007A350A /* iOS-SDK.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				7DF39B1E17F960BD000A3267 /* AVFoundation.framework in Frameworks */,
 				89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */,
@@ -2134,6 +2134,8 @@
 				7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */,
 				7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */,
 				466FD6FD148E5BF5005A1B78 /* Crashlytics.framework in Frameworks */,
+				7DFA57F618274BB9007A350A /* libspeex.ios.a in Frameworks */,
+				7DFA57F718274BB9007A350A /* libvpx.ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2376,7 +2378,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7D212DF417FA861100AF93D1 /* iOS-SDK.framework */,
+				7DFA57F918274BD2007A350A /* iOS-SDK.framework */,
 				7DF39B1D17F960BD000A3267 /* AVFoundation.framework */,
 				7DF39B1B17F960A5000A3267 /* OpenGLES.framework */,
 				7DF39B1917F96080000A3267 /* CoreMedia.framework */,
@@ -2680,7 +2682,7 @@
 		46616C70137C729400D53D3D /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				7D212E0217FA893500AF93D1 /* Libraries */,
+				7DFA57F218274BB9007A350A /* Libraries */,
 				46C6B50B138CA87F0079C514 /* ATMHud */,
 				46616C71137C729400D53D3D /* SSToolKit */,
 			);
@@ -3459,16 +3461,6 @@
 			path = Sources/Shared/Classes/KissXML;
 			sourceTree = SOURCE_ROOT;
 		};
-		7D212E0217FA893500AF93D1 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				7D212DFE17FA892200AF93D1 /* libspeex.ios.a */,
-				7D212DFF17FA892200AF93D1 /* libvpx.ios.a */,
-			);
-			name = Libraries;
-			path = ../../Libraries;
-			sourceTree = "<group>";
-		};
 		7D25E9CE17A7A6B6003E60A0 /* iphone5_retina */ = {
 			isa = PBXGroup;
 			children = (
@@ -3988,6 +3980,16 @@
 				7DE49EE6180D5EF800394825 /* ExoContact.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		7DFA57F218274BB9007A350A /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				7DFA57F318274BB9007A350A /* libspeex.ios.a */,
+				7DFA57F418274BB9007A350A /* libvpx.ios.a */,
+				7DFA57F518274BB9007A350A /* README.md */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		7DFD1912177986970053F6F3 /* @2x */ = {
@@ -5476,6 +5478,7 @@
 				7D0401E81818FCD100C249E0 /* ContactDetailViewController.xib in Resources */,
 				7D0401FE18191B0F00C249E0 /* ContactDetailViewController_iPad.xib in Resources */,
 				7D913588181E482D0084E1CA /* ContactCell.xib in Resources */,
+				7DFA57F818274BB9007A350A /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5857,6 +5860,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WeemoSDK\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -5876,7 +5880,6 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
-					"\"$(SRCROOT)/iOS-SDK.framework\"",
 					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
@@ -5907,6 +5910,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WeemoSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -5924,7 +5928,6 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
-					"\"$(SRCROOT)/iOS-SDK.framework\"",
 					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
@@ -5997,6 +6000,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WeemoSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -6015,7 +6019,6 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
-					"\"$(SRCROOT)/iOS-SDK.framework\"",
 					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
@@ -6089,6 +6092,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WeemoSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/eXo_Platform_Prefix.pch";
@@ -6107,7 +6111,6 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Sources/Shared/Components/3-part/libidn/\"",
 					"$(inherited)",
-					"\"$(SRCROOT)/iOS-SDK.framework\"",
 					"\"$(SRCROOT)/Resources/ThirdPart/Libraries\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);

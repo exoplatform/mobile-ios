@@ -1,0 +1,3 @@
+[submodule "WeemoSDK"]
+	path = WeemoSDK
+	url = https://github.com/weemo/iOS-SDK.git
