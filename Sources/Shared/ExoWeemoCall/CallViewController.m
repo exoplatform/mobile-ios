@@ -22,10 +22,18 @@
 @synthesize call;
 @synthesize v_videoIn;
 @synthesize v_videoOut;
-@synthesize l_caller;
 
 #pragma mark - Controller life cycle
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self)
+	{
+		[self setCall:[[Weemo instance] activeCall]];
+	}
+	return self;
+}
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
@@ -35,21 +43,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-    
-    self.l_caller.text = self.call.contactID;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
-    
-    self.call = [[Weemo instance] activeCall];
+	[super viewWillAppear:animated];
     
     [[self call]setDelegate:self];
 	[[self call]setViewVideoIn:[self v_videoIn]];
 	[[self call]setViewVideoOut:[self v_videoOut]];
-	
+    
     [self resizeView:[self interfaceOrientation]];
 }
 
@@ -71,8 +74,19 @@
     
     [[self view]setFrame:CGRectMake(0., 0., [[[self view]superview]bounds].size.width, [[[self view]superview]bounds].size.height)];
     
-    [[self v_videoIn]setFrame:CGRectMake(0., 0., [[[self view]superview]bounds].size.width, [[[self view]superview]bounds].size.height)];
+    [self resizeVideoIn];
+}
 
+- (void)resizeVideoIn
+{
+	float hRat = [[self call]getVideoProfile].height / [[self view]bounds].size.height;
+	float wRat = [[self call]getVideoProfile].width / [[self view]bounds].size.width;
+	//we resize so that the biggest of the Rat is set to 1
+	[[self v_videoIn]setFrame:CGRectMake(0., 0.,
+										 [[self call] getVideoProfile].width / ((hRat > wRat)?hRat:wRat),
+										 [[self call] getVideoProfile].height / ((hRat > wRat)?hRat:wRat))];
+	
+    [[self v_videoIn]setCenter:CGPointMake(self.view.bounds.size.width/2., self.view.bounds.size.height/2.)];
 }
 
 - (void)viewWillLayoutSubviews
@@ -85,7 +99,7 @@
     [[self v_videoOut]setCenter:CGPointMake([[self view] bounds].size.width - [v_videoOut frame].size.width/2., [[self view] bounds].size.height - [v_videoOut frame].size.height/2.)];
     
      [[self b_hangup]setCenter:CGPointMake([[self view] bounds].size.width - [b_hangup frame].size.width/2., [b_hangup frame].size.height/2.)];
-    
+
 }
 #pragma mark - Actions
 
@@ -146,6 +160,7 @@
 	[self updateIdleStatus];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[self v_videoIn]setHidden:!isReceiving];
+        [self resizeVideoIn];
 	});
 	
 }
@@ -158,6 +173,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[self b_toggleVideo]setSelected:isSending];
 		[[self v_videoOut]setHidden:!isSending];
+        [self resizeVideoIn];
 	});
 }
 
@@ -168,6 +184,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSLog(@">>>> CallViewController: videoProfile: %d", profile);
 		[[self b_profile] setSelected:(profile != 0)];
+        [self resizeVideoIn];
     });
 }
 
@@ -176,6 +193,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSLog(@">>>> CallViewController: switchVideoSource: %@", (source == 0)?@"Front":@"Back");
 		[[self b_switchVideo] setSelected:!(source == 0)];
+        [self resizeVideoIn];
 	});
 }
 

@@ -43,6 +43,6 @@ typedef enum {
 - (void)updateLabelsWithNewLanguage;
 
 //update the indicator for Weemo status in the menu
-- (void)updateCellForVideoCall;
+- (void)updateCellForVideoCall:(BOOL)isConnectedToWeemo;
 
 @end

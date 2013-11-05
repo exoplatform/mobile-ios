@@ -20,7 +20,6 @@
     label.backgroundColor = [UIColor clearColor];
     label.text = @"Offline";
     label.tag = OFFLINE_VIEW_TAG;
-    label.hidden = [ExoWeemoHandler sharedInstance].authenticated;
     
     return label;
 }

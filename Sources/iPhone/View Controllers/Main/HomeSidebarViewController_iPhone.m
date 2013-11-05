@@ -268,15 +268,14 @@
     [_revealView revealSidebar: ! [_revealView isSidebarShowing]];
 }
 
-- (void)updateCellForVideoCall
+- (void)updateCellForVideoCall:(BOOL)isConnectedToWeemo
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     
     UILabel *label = (UILabel *)[cell viewWithTag:OFFLINE_VIEW_TAG];
-    BOOL authenticated = [ExoWeemoHandler sharedInstance].authenticated; 
-    label.text = authenticated ? @"Online" : @"Offline";
-    label.textColor = authenticated ? [UIColor greenColor] : [UIColor redColor];
-    cell.userInteractionEnabled = authenticated;
+    label.text = isConnectedToWeemo ? @"Online" : @"Offline";
+    label.textColor = isConnectedToWeemo ? [UIColor greenColor] : [UIColor redColor];
+    cell.userInteractionEnabled = isConnectedToWeemo;
 }
 
 - (void)pushContentView:(id)sender {

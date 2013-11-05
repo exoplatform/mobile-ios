@@ -34,7 +34,9 @@
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, retain) CallViewController *activeCallVC;
-@property (nonatomic, assign) BOOL authenticated;
+
+//is user logged in to eXo Platform
+@property (nonatomic, assign) BOOL isConnectedToExo;
 @property (nonatomic, retain) id<ExoWeemoHandlerDelegate> delegate;
 + (ExoWeemoHandler *)sharedInstance;
 - (void) connect;

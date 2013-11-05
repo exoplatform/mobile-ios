@@ -18,14 +18,11 @@
 
 @implementation ExoWeemoHandler {
     UIAlertView *incomingCall;
-    BOOL reconnect;
-    BOOL checkingConnection;
-    NSTimer *timer;
 }
 @synthesize userId = _userId;
 @synthesize displayName = _displayName;
 @synthesize activeCallVC = _activeCallVC;
-@synthesize authenticated = _authenticated;
+@synthesize isConnectedToExo = _isConnectedToExo;
 @synthesize delegate = _delegate;
 
 + (ExoWeemoHandler*)sharedInstance
@@ -45,24 +42,23 @@
 
 - (void)connect
 {
-    self.authenticated = NO;
+    //user is connected to Weemo after connecting to exo platform,
+    //so isConnectedToExo is YES at this stage
+    self.isConnectedToExo = YES;
+    
     NSError *error;
-    [Weemo WeemoWithURLReferer:URLReferer andDelegate:self error:&error];
+    [Weemo WeemoWithAppID:URLReferer andDelegate:self error:&error];
 }
 
 - (void)disconnect
 {
+    self.isConnectedToExo = NO;
+    
     @try {
-        if(timer)
-        {
-            [timer invalidate];
-            timer = nil;
-        }
-        
         [[Weemo instance] disconnect];
     }
     @catch (NSException *exception) {
-        NSLog(@"excetion: %@",exception);
+        NSLog(@"excetion while disconnecting Weemo: %@",exception);
     }
 }
 - (void)dealloc
@@ -186,22 +182,10 @@
         //TODO: set display name
         [[Weemo instance] setDisplayName:self.displayName];
         
-        self.authenticated = YES;
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self updateWeemoIndicator]; //update the indicator for authentication status
+            //update the indicator for authentication status
+            [self updateWeemoIndicator:YES];
         });
-        
-        //periodically check the connection
-        if(timer)
-        {
-            [timer invalidate];
-            timer = nil;
-        }
-        
-        timer = [NSTimer timerWithTimeInterval:CHECK_CONNECTION_PERIOD target:self selector:@selector(checkConnection) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-        
     } else {
         NSLog(@"%@", [error description]);
     }
@@ -215,10 +199,21 @@
         NSLog(@">>>WeemoHandler: weemo did disconnect");
     }
     
+    //only update the indicator and auto-reconnect if user is currently logged in
+    if(self.isConnectedToExo)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //update the indicator for authentication status
+            [self updateWeemoIndicator:NO];
+        });
+        
+        [self connect];
+    }
 }
 
 - (void)weemoCallCreated:(WeemoCall*)call
 {
+    
 	NSLog(@">>>> Controller callCreated: 0x%X", [call callStatus]);
     	
     if ([call callStatus] == CALLSTATUS_INCOMING) {
@@ -267,14 +262,6 @@
 
 - (void)weemoContact:(NSString *)contactID canBeCalled:(BOOL)canBeCalled
 {
-    //toggle the flag
-    reconnect = NO;
-    
-    if(checkingConnection)
-    {
-        checkingConnection = NO;
-    }
-    
     if(_delegate)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -326,7 +313,7 @@
 
 #pragma mark Update Weemo status indicator
 
-- (void) updateWeemoIndicator
+- (void) updateWeemoIndicator:(BOOL)isConnectedToWeemo
 {
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
@@ -337,7 +324,7 @@
         {
             MenuViewController *menuVC = rootVC.menuViewController;
             
-            [menuVC updateCellForVideoCall];
+            [menuVC updateCellForVideoCall:isConnectedToWeemo];
         }
     }
     else
@@ -346,51 +333,8 @@
         HomeSidebarViewController_iPhone *homeVC = iphoneDelegate.homeSidebarViewController_iPhone;
         if(homeVC)
         {
-            [homeVC updateCellForVideoCall];
+            [homeVC updateCellForVideoCall:isConnectedToWeemo];
         }
-    }
-}
-
-#pragma mark Utils for Checking connection periodically
-
-/*
- * Checks the connection status, it's a little bit tricky now because Weemo didnot support notifiying 
- * when the connection is automatically disconnected.
- * 
- * A user is considered connected if he can call him self.
- * So by getting status of current user, if there is no response after a delay (of ~5s), 
- * user must be currently disconnected.
- */
-- (void)checkConnection
-{
-    NSLog(@">>>WeemoHandler: checking connection");
-    
-    //flag to check if there is any response from Weemo
-    reconnect = YES;
-    
-    checkingConnection = YES;
-    
-    [[Weemo instance] getStatus:self.userId];
-    
-    //check the flag after a delay
-    [self performSelector:@selector(afterCheckingConnection) withObject:self afterDelay:DELAY_GET_STATUS];
-}
-
-/*
- * Checks the flag to see if it's toggle by a Weemo delegate method 
- * (- (void)weemoContact:(NSString *)contactID canBeCalled:(BOOL)canBeCalled)
- */
-- (void)afterCheckingConnection
-{
-    //if the flag reconnect is not modified, that means there is no response from Weemo
-    // try to reconnect the user
-    if(reconnect) {
-        [self disconnect];
-        
-        NSLog(@">>>WeemoHandler: start re-connecting");
-        self.authenticated = NO;
-        [self updateWeemoIndicator];
-        [self connect];
     }
 }
 @end

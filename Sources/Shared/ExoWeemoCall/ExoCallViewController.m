@@ -35,7 +35,7 @@
         DialViewController *dialVC = [[[DialViewController alloc] initWithNibName:isIpad ? @"DialViewController_iPad" : @"DialViewController_iPhone" bundle:nil] autorelease];
         WeemoAboutViewController *aboutVC = [[[WeemoAboutViewController alloc] initWithNibName:isIpad ? @"WeemoAboutViewController_iPad" : @"WeemoAboutViewController_iPhone"  bundle:nil] autorelease];
         
-        [self.tabVC setViewControllers:[NSArray arrayWithObjects:aboutVC, peopleVC, dialVC, recentsVC, nil]];
+        [self.tabVC setViewControllers:[NSArray arrayWithObjects: dialVC, peopleVC, recentsVC, aboutVC, nil]];
         
         self.tabVC.delegate = self;
         self.tabVC.view.frame = self.view.frame;

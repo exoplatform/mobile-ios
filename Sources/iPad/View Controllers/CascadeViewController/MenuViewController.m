@@ -302,7 +302,7 @@
         
         offlineView.frame = CGRectMake(offX, offY,60,cell.frame.size.height);
         [cell addSubview:offlineView];
-        cell.userInteractionEnabled = [ExoWeemoHandler sharedInstance].authenticated;
+        cell.userInteractionEnabled = [Weemo instance].isAuthenticated;
     }
     return cell;
 }
@@ -412,16 +412,15 @@
     [_tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
-- (void)updateCellForVideoCall
+- (void)updateCellForVideoCall:(BOOL)isConnectedToWeemo
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:EXO_VIDEO_CALL_ROW inSection:0]];
     
     UILabel *label = (UILabel *)[cell viewWithTag:OFFLINE_VIEW_TAG];
-    BOOL authenticated = [ExoWeemoHandler sharedInstance].authenticated;
     
-    label.text = authenticated ? @"Online" : @"Offline";
-    label.textColor = authenticated ? [UIColor greenColor] : [UIColor redColor];
-    cell.userInteractionEnabled = authenticated;
+    label.text = isConnectedToWeemo ? @"Online" : @"Offline";
+    label.textColor = isConnectedToWeemo ? [UIColor greenColor] : [UIColor redColor];
+    cell.userInteractionEnabled = isConnectedToWeemo;
 
 }
 
