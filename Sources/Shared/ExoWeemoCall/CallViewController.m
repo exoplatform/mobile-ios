@@ -81,12 +81,18 @@
 {
 	float hRat = [[self call]getVideoProfile].height / [[self view]bounds].size.height;
 	float wRat = [[self call]getVideoProfile].width / [[self view]bounds].size.width;
-	//we resize so that the biggest of the Rat is set to 1
-	[[self v_videoIn]setFrame:CGRectMake(0., 0.,
-										 [[self call] getVideoProfile].width / ((hRat > wRat)?hRat:wRat),
-										 [[self call] getVideoProfile].height / ((hRat > wRat)?hRat:wRat))];
-	
-    [[self v_videoIn]setCenter:CGPointMake(self.view.bounds.size.width/2., self.view.bounds.size.height/2.)];
+    
+    float maxRat = (hRat > wRat) ? hRat:wRat;
+    
+    if(maxRat !=0)
+    {
+        //we resize so that the biggest of the Rat is set to 1
+        [[self v_videoIn]setFrame:CGRectMake(0., 0.,
+                                             [[self call] getVideoProfile].width / maxRat,
+                                             [[self call] getVideoProfile].height / maxRat)];
+        
+        [[self v_videoIn]setCenter:CGPointMake(self.view.bounds.size.width/2., self.view.bounds.size.height/2.)];
+    }
 }
 
 - (void)viewWillLayoutSubviews
@@ -105,10 +111,7 @@
 
 - (IBAction)hangup:(id)sender
 {
-    
 	[[self call] hangup];
-    
-    [[ExoWeemoHandler sharedInstance] removeCallView];
 }
 
 - (IBAction)profile:(id)sender
@@ -221,8 +224,4 @@
 	});
 }
 
-- (void)checkWeemoStats
-{
-    
-}
 @end

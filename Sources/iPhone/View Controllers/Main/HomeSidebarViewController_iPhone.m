@@ -262,7 +262,7 @@
 - (void)toggleButtonPressed:(id)sender {
     
     if(![_revealView isSidebarShowing]) {
-        [self updateCellForVideoCall];
+        [self updateCellForVideoCall:[Weemo instance].isAuthenticated];
     }
     
     [_revealView revealSidebar: ! [_revealView isSidebarShowing]];
@@ -306,9 +306,7 @@
     if (rowType == eXoDocuments) {
         [self initAndSelectDocumentsViewController];
     }
-    
-    [self updateCellForVideoCall];
-    
+        
     [self dismissModalViewControllerAnimated:YES];
 }
 
