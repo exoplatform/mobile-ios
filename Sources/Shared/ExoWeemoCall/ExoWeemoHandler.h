@@ -15,7 +15,7 @@
 #import "LanguageHelper.h"
 
 //the mobile app identifier provided by Weemo
-#define URLReferer @"ecro7etqvzgnmc2e"
+#define MOBILEAPPID @"ecro7etqvzgnmc2e"
 
 @class ExoWeemoHandler;
 @protocol ExoWeemoHandlerDelegate <NSObject>

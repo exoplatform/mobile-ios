@@ -12,10 +12,6 @@
 #import "RootViewController.h"
 #import "AppDelegate_iPhone.h"
 
-//in seconds
-#define CHECK_CONNECTION_PERIOD 60
-#define DELAY_GET_STATUS 5
-
 @implementation ExoWeemoHandler {
     UIAlertView *incomingCall;
 }
@@ -47,7 +43,7 @@
     self.isConnectedToExo = YES;
     
     NSError *error;
-    [Weemo WeemoWithAppID:URLReferer andDelegate:self error:&error];
+    [Weemo WeemoWithAppID:MOBILEAPPID andDelegate:self error:&error];
 }
 
 - (void)disconnect
@@ -88,8 +84,6 @@
     _activeCallVC.view.frame =  CGRectMake(0., 0., rootVC.view.frame.size.width, rootVC.view.frame.size.height);
     
 	[rootVC.view addSubview:_activeCallVC.view];
-    
-    
 }
 
 - (void)removeCallView
@@ -119,14 +113,15 @@
     UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     
     [rootVC addChildViewController:_activeCallVC];
-
 }
 
 - (void)receiveCall
 {
     [self createCallView];
     [self addCallView];
+    
     [self setCallStatus:[[[Weemo instance] activeCall]callStatus]];
+    
     [[[Weemo instance] activeCall]resume];
 }
 
@@ -149,7 +144,6 @@
 			{
 				NSLog(@">>>> Call Incoming");
 				[self createCallView];
-//				[self addCallView];
 			}break;
 			case CALLSTATUS_ENDED:
 			{
