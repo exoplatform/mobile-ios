@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "Cancel";
+"Cancel" = "取消";
 
 "DoneButton" = "Done";
 
@@ -74,7 +74,7 @@
 
 "OK" = "OK";
 
-"Disconnect" = "Disconnect";
+"Disconnect" = "断开连接";
 
 "Pull down to refresh..." = "Pull down to refresh...";
 
