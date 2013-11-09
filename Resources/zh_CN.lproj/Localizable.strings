@@ -10,48 +10,48 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Login page";
+"SignInPageTitle" = "登录页面";
 
 "SignInButton" = "登录";
 
-"UsernamePlaceholder" = "Username";
+"UsernamePlaceholder" = "用户名";
 
-"PasswordPlaceholder" = "Password";
+"PasswordPlaceholder" = "密码";
 
 
 /* 
  * Documents
  */
 
-"TakePicture" = "Take a picture";
+"TakePicture" = "拍一张照片";
 
-"NewFolderTitle" = "New folder";
+"NewFolderTitle" = "新建文件夹";
 
-"RenameTitle" = "Rename";
+"RenameTitle" = "重命名";
 
-"Copy" = "Copy";
+"Copy" = "复制";
 
-"Move" = "Cut";
+"Move" = "剪切";
 
-"Paste" = "Paste";
+"Paste" = "粘贴";
 
-"Documents" = "Documents";
+"Documents" = "文档";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "拍一张照片";
 
-"AttachedPhoto" = "Attached photo";
+"AttachedPhoto" = "附加照片";
 
-"AddAPhoto" = "Add a photo";
+"AddAPhoto" = "添加照片";
 
-"PhotoLibrary" = "Photo library";
+"PhotoLibrary" = "照片库";
 
 // Drives types
 
-"general" = "general";
+"general" = "通用";
 
-"personal" = "personal";
+"personal" = "个人";
 
-"group" = "group";
+"group" = "组";
 
 
 /*
@@ -60,155 +60,155 @@
 
 "Cancel" = "取消";
 
-"DoneButton" = "Done";
+"DoneButton" = "完成";
 
-"Delete" = "Delete";
+"Delete" = "删除";
 
-"Success" = "Success";
+"Success" = "成功";
 
-"Home" = "Home";
+"Home" = "首页";
 
-"Loading" = "Loading...";
+"Loading" = "正在加载...";
 
-"LoadingURL" = "Loading URL";
+"LoadingURL" = "加载的链接";
 
 "OK" = "OK";
 
 "Disconnect" = "断开连接";
 
-"Pull down to refresh..." = "Pull down to refresh...";
+"Pull down to refresh..." = "下拉屏幕开始更新…";
 
-"Release to refresh..." = "Release to refresh...";
+"Release to refresh..." = "松开屏幕开始更新…";
 
-"Last Updated: %@" = "Last updated: %@";
+"Last Updated: %@" = "上次更新: %@";
 
-"Required" = "Required";
+"Required" = "必需";
 
-"Optional" = "Optional";
+"Optional" = "可选";
 
-"Fullscreen" = "Fullscreen";
+"Fullscreen" = "全屏显示";
 
-"Close" = "Close";
+"Close" = "关闭";
 
 
 /*
  * Settings
  */
 
-"Settings" = "Settings";
+"Settings" = "设置";
 
 "RememberMe" = "Remember me";
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "记住此选项";
 
-"ShowPrivateDrive" = "Show my private drive";
+"ShowPrivateDrive" = "我私人的驱动器显示";
 
-"Language" = "Languages";
+"Language" = "语言";
 
-"English" = "English";
+"English" = "英文";
 
-"French" = "French";
+"French" = "法语";
 
-"Send" = "Send";
+"Send" = "发送";
 
-"ServerList" = "Server list";
+"ServerList" = "服务器列表";
 
-"NewServer" = "New server";
+"NewServer" = "新的服务器";
 
-"ServerModify" = "Modify server";
+"ServerModify" = "修改服务器";
 
-"ApplicationsInformation" = "Application information";
+"ApplicationsInformation" = "应用程序信息";
 
-"ServerVersion" = "Server version";
+"ServerVersion" = "服务器版本";
 
-"ApplicationEdition" = "Application edition";
+"ApplicationEdition" = "应用程序版本";
 
-"ApplicationVersion" = "Application version";
+"ApplicationVersion" = "应用程序版本";
 
-"ServerName" = "Server name";
+"ServerName" = "服务器名称";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "服务器 URL";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "The server returned invalid data.";
+"BadResponse" = "服务器返回的数据无效。";
 
-"NetworkConnection" = "Connection error";
+"NetworkConnection" = "连接错误";
 
-"Authorization" = "Login failed";
+"Authorization" = "登录失败";
 
-"WrongUserNamePassword" = "Impossible to connect, check your username and password";
+"WrongUserNamePassword" = "无法连接，请检查您的用户名和密码";
 
-"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"InvalidServer" = "无法连接到您的内部网，请检查其 URL 或联系您的管理员";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "无法连接到您的内部网，请检查其 URL 或联系您的管理员";
 
-"UserNameEmpty" = "Incorrect username";
+"UserNameEmpty" = "用户名不正确";
 
-"PasswordEmpty" = "Incorrect password";
+"PasswordEmpty" = "密码不正确";
 
-"SelectedDomainEmpty" = "No server specified";
+"SelectedDomainEmpty" = "没有指定服务器";
 
-"EmptyFolder" = "This folder is empty";
+"EmptyFolder" = "此文件夹是空";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "应用程序无法打开此文件";
 
-"NoActivities" = "No activity has been posted on your activity stream";
+"NoActivities" = "无活动已上传到您活动流程";
 
-"NoGadget" = "You have no gadgets in your Apps";
+"NoGadget" = "在您的应用程序没有小工具";
 
-"MessageInfo" = "Information";
+"MessageInfo" = "信息";
 
-"MessageErrorServer" = "You cannot add a server with an empty name or URL";
+"MessageErrorServer" = "您不能添加一个空名称或链接到服务器";
 
-"MessageErrorExist" = "This server already exists";
+"MessageErrorExist" = "此服务器已存在";
 
-"InvalidUrl" = "Invalid URL";
+"InvalidUrl" = "无效链接";
 
-"FileError" = "Error";
+"FileError" = "错误";
 
-"CameraNotAvailable" = "The camera is not available";
+"CameraNotAvailable" = "相机不可用";
 
-"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"GadgetsCannotBeRetrieved" = "小工具无法取回";
 
-"Error" = "Error";
+"Error" = "错误";
 
-"NoMessageComment" = "You must enter some text to comment";
+"NoMessageComment" = "您必须输入一些文本以发表评论";
 
-"NoMessagePosting" = "You must enter some text to post";
+"NoMessagePosting" = "您必须输入一些文本以发布";
 
-"GettingActionCannotBeCompleted" = "You cannot get activities";
+"GettingActionCannotBeCompleted" = "你无法取得活动";
 
-"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"UpdatingActionCannotBeCompleted" = "您不能更新该活动";
 
-"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"LikingActionCannotBeCompleted" = "你不能喜欢活动";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "你不能喜欢活动";
 
-"PostingActionCannotBeCompleted" = "You cannot post a message";
+"PostingActionCannotBeCompleted" = "你不能发布一条消息";
 
-"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"CommentActionCannotBeCompleted" = "你不能发表评论";
 
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"LoadMoreActionCannotBeCompleted" = "出现错误，重新加载活动。";
 
-"NotCompliant" = "The application can not run on the Platform edition";
+"NotCompliant" = "应用程序在平台版不能运行";
 
-"SpecialCharacters" = "Special characters are not allowed";
+"SpecialCharacters" = "不允许使用特殊字符。";
 
-"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+"DashboardsCannotBeRetrieved" = "无法收取回仪表板";
 
-"FolderNameAlreadyExist" = "This folder already exists";
+"FolderNameAlreadyExist" = "此文件夹已存在";
 
-"FolderNameEmpty" = "The folder name is empty";
+"FolderNameEmpty" = "文件夹的名称为空";
 
-"Cannot move file to its location" = "Cannot move the file to the same location";
+"Cannot move file to its location" = "无法将文件移动到相同的位置";
 
-"Cannot transfer file" = "Cannot transfer the file";
+"Cannot transfer file" = "无法传送文件";
 
 
 /*
@@ -222,143 +222,143 @@
  * Activity stream
  */
 
-"numOfLikers" = "%d likers";
+"numOfLikers" = "%d人赞";
 
-"numOfLiker" = "%d liker";
+"numOfLiker" = "%d 人赞";
 
-"likeThisActivity" = "%d people like this";
+"likeThisActivity" = "%d 人喜欢";
 
-"NoOneLikeThis" = "No one likes this";
+"NoOneLikeThis" = "没有人喜欢这";
 
-"ActivityDetails" = "Activity details";
+"ActivityDetails" = "活动详细信息";
 
-"MessageComposer" = "Message composer";
+"MessageComposer" = "消息发表者";
 
-"ActivityStream" = "Activity stream";
+"ActivityStream" = "活动流程";
 
-"News" = "News";
+"News" = "新闻";
 
-"Details" = "Details";
+"Details" = "详细信息";
 
-"comments(%d)" = "Comments(%d)";
+"comments(%d)" = "评论(%d)";
 
-"likes(%d)" = "Likes(%d)";
+"likes(%d)" = "赞(%d)";
 
-"YourComment" = "Your comment";
+"YourComment" = "您的评论";
 
-"GettingActivity" = "Getting activity";
+"GettingActivity" = "获取活动";
 
-"UpdatingActivity" = "Updating activity";
+"UpdatingActivity" = "更新活动";
 
-"PostingActivity" = "Post";
+"PostingActivity" = "帖子";
 
-"CommentActivity" = "Comment";
+"CommentActivity" = "评论";
 
-"GettingActivityDetail" = "Getting activity detail";
+"GettingActivityDetail" = "获取活动详细信息";
 
-"UpdatingActivityDetail" = "Updating activity detail";
+"UpdatingActivityDetail" = "更新活动详细信息";
 
-"EditWiki" = "has edited the Wiki page:";
+"EditWiki" = "已编辑 Wiki 页面：";
 
-"CreateWiki" = "has created the Wiki page:";
+"CreateWiki" = "已创建 Wiki 页面：";
 
-"NewPost" = "has added a new post:";
+"NewPost" = "已添加一个新公告：";
 
-"UpdatePost" = "has updated a post:";
+"UpdatePost" = "已更新公告：";
 
-"NewTopic" = "has posted a new topic:";
+"NewTopic" = "已发布一个新的主题：";
 
-"UpdateTopic" = "has updated a topic:";
+"UpdateTopic" = "已更新一个主题：";
 
-"UpdateQuestion" = "has updated the question:";
+"UpdateQuestion" = "已更新问题：";
 
-"Answered" = "has answered to the question:";
+"Answered" = "已回答问题：";
 
-"Asked" = "has asked:";
+"Asked" = "已问：";
 
-"EventAdded" = "added an event:";
+"EventAdded" = "添加事件：";
 
-"EventUpdated" = "has just updated the event:";
+"EventUpdated" = "刚更新事件：";
 
-"TaskAdded" = "added a task:";
+"TaskAdded" = "添加一项任务：";
 
-"TaskUpdated" = "has just updated the task:";
+"TaskUpdated" = "刚更新任务：";
 
-"Description" = "Description";
+"Description" = "说明";
 
-"Location" = "Location";
+"Location" = "位置";
 
-"StartTime" = "Start time";
+"StartTime" = "开始时间";
 
-"EndTime" = "End time";
+"EndTime" = "结束时间";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "没有人评论，成为第一个";
 
-"Image Preview" = "Image preview";
+"Image Preview" = "图像预览";
 
-"Change" = "Change";
+"Change" = "变更\n";
 
-"Remove" = "Remove";
+"Remove" = "删除";
 
-"All Updates" = "All updates";
+"All Updates" = "所有更新";
 
-"My Connections" = "My connections";
+"My Connections" = "我的联系人";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "我的空间";
 
-"My Status" = "My status";
+"My Status" = "我的状态";
 
 
 /*
  * Date message converter
  */
 
-"Today" = "Today";
+"Today" = "今天";
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "ago";
+"DateFmt ago" = "前";
 
-"DateFmt from now" = "from now";
+"DateFmt from now" = "从现在开始";
 
-"DateFmt Less than" = "Less than ";
+"DateFmt Less than" = "小于";
 
-"DateFmt About" = "About ";
+"DateFmt About" = "关于";
 
-"DateFmt Over" = "Over ";
+"DateFmt Over" = "结束";
 
-"DateFmt Almost" = "Almost ";
+"DateFmt Almost" = "几乎";
 
-"DateFmt seconds" = " seconds ";
+"DateFmt seconds" = "秒";
 
-"DateFmt minute" = " minute ";
+"DateFmt minute" = "分钟";
 
-"DateFmt minutes" = " minutes ";
+"DateFmt minutes" = "分钟";
 
-"DateFmt hour" = " hour ";
+"DateFmt hour" = "小时";
 
-"DateFmt hours" = " hours ";
+"DateFmt hours" = "小时";
 
-"DateFmt day" = " day ";
+"DateFmt day" = "天";
 
-"DateFmt days" = " days ";
+"DateFmt days" = "天";
 
-"DateFmt month" = " month ";
+"DateFmt month" = "月";
 
-"DateFmt months" = " months ";
+"DateFmt months" = "个月";
 
-"DateFmt year" = " year ";
+"DateFmt year" = "年";
 
-"DateFmt years" = " years ";
+"DateFmt years" = "年";
 
 
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "无法连接到您的内部网，请检查其 URL 或联系您的管理员";
 
 "AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
 
@@ -368,7 +368,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "无法连接到您的内部网，请检查其 URL 或联系您的管理员";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
