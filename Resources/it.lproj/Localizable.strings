@@ -72,7 +72,7 @@
 
 "LoadingURL" = "Loading URL";
 
-"OK" = "OK";
+"OK" = "Ok";
 
 "Disconnect" = "Disconnect";
 
@@ -215,7 +215,7 @@
  * Apps
  */
 
-"Dashboard" = "Apps";
+"Dashboard" = "Applicazioni";
 
 
 /*
@@ -252,7 +252,7 @@
 
 "PostingActivity" = "post";
 
-"CommentActivity" = "Comment";
+"CommentActivity" = "Commenta";
 
 "GettingActivityDetail" = "Getting activity detail";
 
