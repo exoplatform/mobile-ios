@@ -12,7 +12,7 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "دخول";
+"SignInButton" = "Login";
 
 "UsernamePlaceholder" = "اسم المستخدم";
 
@@ -23,7 +23,7 @@
  * Documents
  */
 
-"TakePicture" = "Take a picture";
+"TakePicture" = "التقاط صورة";
 
 "NewFolderTitle" = "New folder";
 
@@ -37,7 +37,7 @@
 
 "Documents" = "وثائق";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "التقاط صورة";
 
 "AttachedPhoto" = "Attached photo";
 
