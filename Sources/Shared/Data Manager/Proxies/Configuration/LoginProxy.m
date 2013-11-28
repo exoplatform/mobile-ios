@@ -182,7 +182,7 @@ return self;
                 if([_delegate isKindOfClass:[AlreadyAccountViewController class]] || [_delegate isKindOfClass:[OnPremiseViewController class]]) {
                     //add the server url to server list
                     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
-                    [appPref addAndSetSelectedServer:self.serverUrl withName:@"My intranet"];
+                    [appPref addAndSetSelectedServer:self.serverUrl withName:Localize(@"My intranet")];
                 }
                 
                 [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
