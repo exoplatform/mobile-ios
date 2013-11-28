@@ -37,7 +37,7 @@
     //Add Crashlytics
     [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
     
-    
+    application.statusBarHidden = YES;
     
     // Override point for customization after application launch.
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

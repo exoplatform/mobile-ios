@@ -38,7 +38,7 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
     //Add Crashlytics
     [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
-    
+    application.statusBarHidden = YES;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
