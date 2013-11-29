@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "İptal";
+"Cancel" = "#{word.cancel}";
 
 "DoneButton" = "Bitmiş";
 
