@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "Avbryt";
+"Cancel" = "#{word.cancel}";
 
 "DoneButton" = "Gjort";
 
