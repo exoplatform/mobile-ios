@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "الغاء";
+"Cancel" = "#{word.cancel}";
 
 "DoneButton" = "عمله";
 
