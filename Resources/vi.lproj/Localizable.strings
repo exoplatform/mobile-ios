@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "Hủy bỏ";
+"Cancel" = "#{word.cancel}";
 
 "DoneButton" = "Hoàn thành";
 
