@@ -114,6 +114,9 @@
     UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
     [_txtvMessageComposer becomeFirstResponder];
     [_txtvMessageComposer setBackgroundColor:[UIColor clearColor]];
     [_txtvMessageComposer setText:@""];

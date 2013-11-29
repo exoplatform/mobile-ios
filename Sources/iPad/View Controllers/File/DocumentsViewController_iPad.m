@@ -50,6 +50,7 @@
         _navigation.topItem.title = Localize(@"Documents") ;
         ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
     }
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
 }
 
 - (CGRect)rectOfHeader:(int)width

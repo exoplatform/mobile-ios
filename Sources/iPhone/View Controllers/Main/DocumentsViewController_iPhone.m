@@ -51,6 +51,7 @@
     currentPopoverCellIndex = -1;
     
     self.view.title = self.title;
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
     if (self.actionVisibleOnFolder) {
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     } else {

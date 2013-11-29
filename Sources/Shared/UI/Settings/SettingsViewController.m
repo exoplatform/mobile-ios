@@ -290,7 +290,11 @@ typedef enum {
 
 - (void)setNavigationBarLabels {
     self.title = Localize(@"Settings");
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    
     self.navigationItem.rightBarButtonItem.title = Localize(@"DoneButton");
+    //Fix color nav button
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
 #pragma - Actions Methods 
