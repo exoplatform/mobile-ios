@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "キャンセル";
+"Cancel" = "#{word.cancel}";
 
 "DoneButton" = "完了";
 
