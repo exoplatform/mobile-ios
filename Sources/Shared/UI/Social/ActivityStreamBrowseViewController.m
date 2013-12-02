@@ -747,7 +747,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [(ActivityPictureTableViewCell *)cell resetImageAttached];
         }
     }
-
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
