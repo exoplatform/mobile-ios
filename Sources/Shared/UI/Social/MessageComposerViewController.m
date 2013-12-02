@@ -99,6 +99,8 @@
     
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
@@ -156,6 +158,7 @@
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
 - (void)viewDidLayoutSubviews {
+    
     // For iOS version >= 5.0 which support this method, the subviews are rearranged here.
     [self reArrangeSubViews];
 }
