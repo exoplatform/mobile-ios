@@ -53,7 +53,7 @@
         [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
         UIImage *barButton = [UIImage imageNamed:@"NavbarBackButton.png"];
         barButton = [barButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
-        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         UIImage *barActionButton = [UIImage imageNamed:@"NavbarActionButton.png"];
         barActionButton = [barActionButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
         [[UIBarButtonItem appearance] setBackgroundImage:barActionButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];

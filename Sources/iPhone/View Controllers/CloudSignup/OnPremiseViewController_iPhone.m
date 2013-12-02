@@ -30,6 +30,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     
     /* Add tap gesture to dismiss keyboard */
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
