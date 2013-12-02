@@ -95,7 +95,7 @@
 //#define EXO_CLOUD_URL @"http://netstg.exoplatform.org"
 //#define EXO_CLOUD_HOST @"wks-acc.exoplatform.org"
 //#define EXO_CLOUD_URL @"http://wks-acc.exoplatform.org"
-#define scrollHeight 80 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+#define scrollHeight 50 /* how much should we scroll up/down when the keyboard is displayed/hidden */
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \

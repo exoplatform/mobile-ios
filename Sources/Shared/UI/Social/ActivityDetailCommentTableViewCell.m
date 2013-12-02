@@ -81,7 +81,7 @@
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
     
     _imgvMessageBg.image = strechBg;
-    
+    self.backgroundColor = [UIColor clearColor];
     
     [[_webViewForContent.subviews objectAtIndex:0] setScrollEnabled:NO];
     [_webViewForContent setBackgroundColor:[UIColor clearColor]];
