@@ -298,6 +298,9 @@ static NSString *PRIVATE_GROUP = @"Private";
     
 	[self.view addSubview:self.hudLoadWaiting.view];
     
+    self.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    
     //Set the background Color of the view
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     //_tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
