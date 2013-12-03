@@ -145,6 +145,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */; };
 		46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */; };
 		460736E4137C2F1C00D77DB9 /* AuthenticateButtonBgStrechable.png in Resources */ = {isa = PBXBuildFile; fileRef = 460736D5137C2F1C00D77DB9 /* AuthenticateButtonBgStrechable.png */; };
 		460736E5137C2F1C00D77DB9 /* AuthenticatePanelBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 460736D6137C2F1C00D77DB9 /* AuthenticatePanelBg.png */; };
@@ -1121,6 +1122,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3D8ED7F2184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ BackButtonDisplayFix.h"; sourceTree = "<group>"; };
+		3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ BackButtonDisplayFix.m"; sourceTree = "<group>"; };
 		4607365E137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+eXoCustomIphone.h"; sourceTree = "<group>"; };
 		4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+eXoCustomIphone.m"; sourceTree = "<group>"; };
 		460736D5137C2F1C00D77DB9 /* AuthenticateButtonBgStrechable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateButtonBgStrechable.png; sourceTree = "<group>"; };
@@ -4049,6 +4052,8 @@
 				A6EECFC715EE1E4800A46A4B /* RoundRectView.m */,
 				7DBB704F178AA2D2002B387B /* eXoNavigationController.h */,
 				7DBB7050178AA2D2002B387B /* eXoNavigationController.m */,
+				3D8ED7F2184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.h */,
+				3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -5208,6 +5213,7 @@
 				8958E66714A9B7D300580EEB /* CXMLElement.m in Sources */,
 				8958E66914A9B7D300580EEB /* CXMLNode.m in Sources */,
 				8958E66B14A9B7D300580EEB /* CXMLNode_PrivateExtensions.m in Sources */,
+				3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */,
 				8958E66D14A9B7D300580EEB /* CXMLNode_XPathExtensions.m in Sources */,
 				8958E67714A9C82400580EEB /* URLAnalyzer.m in Sources */,
 				1FCE235F14BA8DCF00ED95AB /* SocialRestProxy.m in Sources */,
