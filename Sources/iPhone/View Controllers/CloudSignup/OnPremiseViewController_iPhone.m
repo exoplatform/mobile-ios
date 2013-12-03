@@ -43,6 +43,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
     }
+    CGRect viewRect = self.view.frame;
+    viewRect.origin.y = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,7 +95,7 @@
     }
     else
     {
-        viewRect.origin.y = 0;
+        viewRect.origin.y += scrollHeight;
     }
     self.view.frame = viewRect;
     [UIView commitAnimations];
