@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "DocumentsViewController.h"
 #import "File.h"
+#import "WEPopoverController.h"
 
 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Display file list
-@interface DocumentsViewController_iPad : DocumentsViewController <UIPopoverControllerDelegate>
+@interface DocumentsViewController_iPad : DocumentsViewController <UIPopoverControllerDelegate,WEPopoverControllerDelegate>
 {    
-    UIPopoverController *_actionPopoverController;
+    WEPopoverController *_actionPopoverController;
     UIPopoverController *_fileFolderActionsPopoverController;
 }
 

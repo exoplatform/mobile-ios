@@ -153,9 +153,9 @@
     //Display the UIPopoverController
     [_actionPopoverController dismissPopoverAnimated:NO];
     [_actionPopoverController release];
-	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
+	_actionPopoverController = [[WEPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
-	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
+//	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
 	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     
     [fileActionsViewController release];
@@ -234,9 +234,9 @@
     //Create the Popover to display potential actions to the user
     [_actionPopoverController dismissPopoverAnimated:NO];
     [_actionPopoverController release];
-    _actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
+    _actionPopoverController = [[WEPopoverController alloc] initWithContentViewController:fileActionsViewController];
     //set its size
-	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
+//	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
     //set its delegate
     _actionPopoverController.delegate = self;
     //present the popover from the rightBarButtonItem of the navigationBar
@@ -307,6 +307,11 @@
     [_actionPopoverController release];
     _actionPopoverController = nil;
 
+}
+
+- (BOOL)popoverControllerShouldDismissPopover:(WEPopoverController *)thePopoverController {
+	//The popover is automatically dismissed if you click outside it, unless you return NO here
+	return YES;
 }
  
 - (void)showActionSheetForPhotoAttachment

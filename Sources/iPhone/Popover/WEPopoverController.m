@@ -113,6 +113,8 @@
 	
 	UIView *v = [self keyView];
 	CGRect rect = [item frameInView:v];
+    rect.origin.x -= 5;
+    rect.origin.y += 10;
 	
 	return [self presentPopoverFromRect:rect inView:v permittedArrowDirections:arrowDirections animated:animated];
 }
