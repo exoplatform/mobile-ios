@@ -460,7 +460,7 @@ typedef enum {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierSocial];
             if(cell == nil) 
             {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLogin] autorelease];
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierSocial] autorelease];
                 
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
