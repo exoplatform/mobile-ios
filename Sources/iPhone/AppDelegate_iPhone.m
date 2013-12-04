@@ -62,7 +62,7 @@
         barActionButton = [barActionButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
         [[UIBarButtonItem appearance] setBackgroundImage:barActionButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         
-        
+        [[UINavigationBar appearance] setBackIndicatorImage:nil];
         
     }
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
