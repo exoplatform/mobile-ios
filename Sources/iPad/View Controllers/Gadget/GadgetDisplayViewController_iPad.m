@@ -31,6 +31,8 @@
     self.view.backgroundColor = [UIColor clearColor];
     //Set the title of the controller
     _navigation.topItem.title = _gadget.gadgetName;
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.tintColor = [UIColor whiteColor];
 }
 
 - (void)updateHudPosition {

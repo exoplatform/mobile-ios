@@ -43,7 +43,9 @@
 {
     [super viewDidLoad];
     self.wantsFullScreenLayout = YES;
-    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     // because on iOS 5, when init class the function willAnimateRotationToInterfaceOrientation don't call
 //    NSLog(@"%f", [[[UIDevice currentDevice] systemVersion] floatValue]);
 //    if([[[UIDevice currentDevice] systemVersion] floatValue] < IOS_5){

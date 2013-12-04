@@ -69,7 +69,9 @@
     
     
     viewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    viewController.wantsFullScreenLayout = YES;    
+    viewController.wantsFullScreenLayout = YES;
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     
     
     [UIView animateWithDuration:0.3

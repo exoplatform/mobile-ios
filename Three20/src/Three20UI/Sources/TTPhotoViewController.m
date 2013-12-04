@@ -84,6 +84,8 @@ static const NSInteger kActivityLabelTag          = 96;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
     self.navigationBarTintColor = nil;
     self.wantsFullScreenLayout = YES;
+      if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+          self.edgesForExtendedLayout = UIRectEdgeNone;
     self.hidesBottomBarWhenPushed = YES;
 
     self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");

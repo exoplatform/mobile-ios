@@ -60,6 +60,8 @@ static CGFloat kThumbnailRowHeight = 79;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
     self.navigationBarTintColor = nil;
     self.wantsFullScreenLayout = YES;
+      if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+          self.edgesForExtendedLayout = UIRectEdgeNone;
     self.hidesBottomBarWhenPushed = YES;
   }
 

@@ -88,6 +88,8 @@
 
   } else {
     CGRect frame = self.wantsFullScreenLayout ? TTScreenBounds() : TTNavigationFrame();
+      if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+          self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
     self.view.autoresizesSubviews = YES;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
