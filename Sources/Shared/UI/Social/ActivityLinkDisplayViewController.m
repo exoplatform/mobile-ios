@@ -30,7 +30,7 @@
     if(self){
         _url = [defaultURL copy];
         [_webView setDelegate:self];
-        self.titleForActivityLink = [_url absoluteString];
+        self.titleForActivityLink = [_url lastPathComponent];
     }
 	return self;
 }
@@ -44,7 +44,7 @@
 {
     
     [super viewDidLoad];
-    self.title = [_url absoluteString];
+    self.title = [_url lastPathComponent];
 }
 
 @end
