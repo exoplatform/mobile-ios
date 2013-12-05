@@ -431,12 +431,12 @@ static NSString *PRIVATE_GROUP = @"Private";
     if(theSize.width > _tblFiles.frame.size.width - 20)
         theSize.width = _tblFiles.frame.size.width - 50;
     
-    headerLabel.frame = [self rectOfHeader:theSize.width];
+    headerLabel.frame = [self rectOfHeader:theSize.width+10];
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"DashboardTabBackground.png"];
     UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:10 topCapHeight:7]];
-    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 20, kHeightForSectionHeader-15);
+    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 30, kHeightForSectionHeader-15);
     
 	[customView addSubview:imgVBackground];
     [imgVBackground release];

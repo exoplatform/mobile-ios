@@ -247,11 +247,11 @@
     
     CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblGadgets.frame.size.width-5, CGFLOAT_MAX) 
                                       lineBreakMode:UILineBreakModeWordWrap];
-    headerLabel.frame = [self rectOfHeader:theSize.width];
+    headerLabel.frame = [self rectOfHeader:theSize.width+10];
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"DashboardTabBackground.png"];
     UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:10 topCapHeight:7]];
-    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 20, kHeightForSectionHeader-15);
+    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 30, kHeightForSectionHeader-15);
     
 	[customView addSubview:imgVBackground];
     [imgVBackground release];
