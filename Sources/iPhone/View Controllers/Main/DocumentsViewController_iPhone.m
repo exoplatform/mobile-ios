@@ -63,6 +63,13 @@
         tmpFrame.size.height = iPHONE_5_SCREEN_HEIGH_MINUS_NAV_AND_STATUS_BAR;
         self.tblFiles.frame = tmpFrame;
     }
+    else {
+        CGRect tmpFrame = self.tblFiles.frame;
+        tmpFrame.size.height = self.view.bounds.size.height;
+        self.tblFiles.frame = tmpFrame;
+    }
+    
+    NSLog(@"heght of screen %f",self.view.bounds.size.height);
 }
 
 - (void)viewDidAppear:(BOOL)animated {    
