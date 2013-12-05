@@ -278,6 +278,7 @@
     if (rowType == eXoDocuments) {
         [self initAndSelectDocumentsViewController];
     }
+    [[UINavigationBar appearance] setBackIndicatorImage:nil];
     [self dismissModalViewControllerAnimated:YES];
 }
 
