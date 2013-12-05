@@ -182,8 +182,25 @@
 {
     [self.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     // Display localized placeholder text
-    [self.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
+    
     [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
+    
+    if ([self.txtfUsername respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        UIColor *color = [UIColor colorWithWhite: 0.70 alpha:1];
+        self.txtfUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localize(@"UsernamePlaceholder") attributes:@{NSForegroundColorAttributeName: color}];
+    } else {
+        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        [self.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
+    }
+    
+    if ([self.txtfPassword respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        UIColor *color = [UIColor colorWithWhite: 0.70 alpha:1];
+        self.txtfPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localize(@"PasswordPlaceholder") attributes:@{NSForegroundColorAttributeName: color}];
+    } else {
+        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
+    }
+    
 }
 
 @end
