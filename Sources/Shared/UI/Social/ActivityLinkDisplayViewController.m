@@ -30,6 +30,7 @@
     if(self){
         _url = [defaultURL copy];
         [_webView setDelegate:self];
+        
         self.titleForActivityLink = [_url lastPathComponent];
     }
 	return self;
@@ -45,6 +46,22 @@
     
     [super viewDidLoad];
     self.title = [_url lastPathComponent];
+}
+
+-(NSString *) shortString : (NSString *) myString withMaxCharacter: (int) range {
+    // define the range you're interested in
+    if (range > [myString length]) {
+        return myString;
+    }
+    NSRange stringRange = {0, MIN([myString length], range)};
+    
+    // adjust the range to include dependent chars
+    stringRange = [myString rangeOfComposedCharacterSequencesForRange:stringRange];
+    
+    // Now you can create the short string
+    NSString *shortString = [myString substringWithRange:stringRange];
+    NSString *result = [NSString stringWithFormat:@"%@%@",shortString,@"..."];
+    return result;
 }
 
 @end
