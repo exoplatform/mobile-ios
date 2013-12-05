@@ -68,8 +68,7 @@
         tmpFrame.size.height = self.view.bounds.size.height;
         self.tblFiles.frame = tmpFrame;
     }
-    
-    NSLog(@"heght of screen %f",self.view.bounds.size.height);
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {    
