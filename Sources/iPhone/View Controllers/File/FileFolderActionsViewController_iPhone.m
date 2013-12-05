@@ -31,6 +31,8 @@
                                                                             target:self 
                                                                             action:@selector(CancelBtn)];
     
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)OKBtn {
