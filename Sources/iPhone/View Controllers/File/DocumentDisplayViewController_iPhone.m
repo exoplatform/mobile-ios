@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.title = self.title;
+    self.view.title = [self shortString:self.title withMaxCharacter:20];
 }
 
 
