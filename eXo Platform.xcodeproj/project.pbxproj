@@ -145,6 +145,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */; };
 		3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */; };
 		46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */; };
 		460736E4137C2F1C00D77DB9 /* AuthenticateButtonBgStrechable.png in Resources */ = {isa = PBXBuildFile; fileRef = 460736D5137C2F1C00D77DB9 /* AuthenticateButtonBgStrechable.png */; };
@@ -1122,6 +1123,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3D7E197E1855AB8300CCF6A8 /* UIImage+BlankImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlankImage.h"; sourceTree = "<group>"; };
+		3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlankImage.m"; sourceTree = "<group>"; };
 		3D8ED7F2184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ BackButtonDisplayFix.h"; sourceTree = "<group>"; };
 		3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ BackButtonDisplayFix.m"; sourceTree = "<group>"; };
 		4607365E137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+eXoCustomIphone.h"; sourceTree = "<group>"; };
@@ -4054,6 +4057,8 @@
 				7DBB7050178AA2D2002B387B /* eXoNavigationController.m */,
 				3D8ED7F2184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.h */,
 				3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */,
+				3D7E197E1855AB8300CCF6A8 /* UIImage+BlankImage.h */,
+				3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -5194,6 +5199,7 @@
 				1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */,
 				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
+				3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */,
 				46EA0E861472641500F42855 /* JTNavigationBar.m in Sources */,
 				46EA0E871472641500F42855 /* JTNavigationView.m in Sources */,
 				46EA0E881472641500F42855 /* JTRevealSidebarView.m in Sources */,

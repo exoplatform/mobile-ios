@@ -16,6 +16,7 @@
 #import "AppDelegate_iPhone.h"
 #import "eXoViewController.h"
 #import "defines.h"
+#import "UIImage+BlankImage.h"
 
 #define kTagForCellSubviewTitleLabel 222
 #define kTagForCellSubviewImageView 333
@@ -42,6 +43,17 @@
 
 -(void)setView:(UIView *)view {
     [super setView:view];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.backIndicatorImage = [UIImage imageWithColor:[UIColor clearColor] andSize:CGSizeMake(21, 41)];
+    
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.backIndicatorTransitionMaskImage = [UIImage imageWithColor:[UIColor clearColor] andSize:CGSizeMake(21, 41)];
+    
 }
 
 -(void)viewDidLoad {
