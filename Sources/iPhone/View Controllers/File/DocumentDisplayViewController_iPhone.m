@@ -8,6 +8,7 @@
 
 #import "DocumentDisplayViewController_iPhone.h"
 #import "JTNavigationView.h"
+#import "AppDelegate_iPhone.h"
 
 
 
@@ -16,8 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.title = [self shortString:self.title withMaxCharacter:20];
+    self.view.title = [self shortString:self.title withMaxCharacter:15];
 }
 
 
