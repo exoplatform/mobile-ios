@@ -755,6 +755,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    navigationController.navigationBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavbarBg.png"]];
     
 }
 
