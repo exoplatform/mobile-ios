@@ -383,6 +383,10 @@
     [_revealView.contentView setRootView:viewController.view];
 }
 
+-(void) setContentNavigationTitle : (NSString *) title {
+    [_revealView.contentView setJTNavigationTitle:title];
+}
+
 #pragma mark - JTNavigationBarDelegate
 - (void)willPopNavigationItemAnimated:(BOOL)animated {
     [_viewControllers removeLastObject];

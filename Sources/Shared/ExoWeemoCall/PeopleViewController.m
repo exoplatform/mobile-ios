@@ -32,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Contacts";
         self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:1];
     }
     return self;
@@ -40,6 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _navigation.topItem.title = @"Contacts";
 	// Do any additional setup after loading the view.
     [self initPeopleData];
 }

@@ -11,6 +11,8 @@
 #import "PeopleViewController.h"
 #import "DialViewController.h"
 #import "WeemoAboutViewController.h"
+#import "JTNavigationView.h"
+#import "AppDelegate_iPhone.h"
 
 @interface ExoCallViewController ()
 
@@ -42,7 +44,8 @@
         
         [self addChildViewController:self.tabVC];
         [self.view addSubview:self.tabVC.view];
-
+       
+        self.view.title = dialVC.title;
     }
     return self;
 }
@@ -51,6 +54,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,4 +79,13 @@
         [recentsVC.tableView reloadData];
     }
 }
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone) {
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationTitle:viewController.title];
+    }
+    
+    return YES;
+}
+
 @end

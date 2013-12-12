@@ -42,7 +42,7 @@ typedef enum {
 
 // Navigation Bar
 - (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated;        // Default NO
-
+-(void) setJTNavigationTitle : (NSString *)title;
 @end
 
 

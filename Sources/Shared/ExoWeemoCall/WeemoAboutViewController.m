@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"About";
+        self.title = @"Help";
         
         self.tabBarItem.title = @"Help";
         self.tabBarItem.image = [UIImage imageNamed:@"question"];
@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _navigation.topItem.title = @"Help";
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     

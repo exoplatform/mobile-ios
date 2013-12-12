@@ -10,6 +10,7 @@
 #import "CallHistory.h"
 #import <iOS-SDK/Weemo.h>
 #import "CloudViewUtils.h"
+#import "JTNavigationView.h"
 
 @interface ContactDetailViewController ()
 
@@ -29,6 +30,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.view.title = @"Details";
+
     }
     return self;
 }
