@@ -41,6 +41,7 @@
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
+    _callButton.enabled = FALSE;
 
 }
 
@@ -94,5 +95,25 @@
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"ContactNotAvailableTitle") message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
         [alert show];
     }
+}
+
+#pragma mark UItextfieldDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    [self hideCallBtn];
+}
+
+-(void) hideCallBtn {
+    if ([_calledIdTf.text  isEqual: @""]) {
+        _callButton.enabled = NO;
+    } else {
+        _callButton.enabled = YES;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_calledIdTf resignFirstResponder];
+    return YES;
 }
 @end

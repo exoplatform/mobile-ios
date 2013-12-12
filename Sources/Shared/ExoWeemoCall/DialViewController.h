@@ -9,7 +9,7 @@
 #import "eXoViewController.h"
 #import "ExoWeemoHandler.h"
 
-@interface DialViewController : eXoViewController <ExoWeemoHandlerDelegate>
+@interface DialViewController : eXoViewController <ExoWeemoHandlerDelegate,UITextFieldDelegate>
 @property (nonatomic, retain) IBOutlet UILabel *uidLabel;
 @property (nonatomic, retain) IBOutlet UITextField *calledIdTf;
 @property (nonatomic, retain) IBOutlet UIButton *callButton;
