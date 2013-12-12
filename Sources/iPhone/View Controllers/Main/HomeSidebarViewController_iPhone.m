@@ -174,7 +174,7 @@
     
     //Add the footer of the View
     //For Settings and Logout
-    UIFooterView *footer = [[UIFooterView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width,60)];
+    UIFooterView *footer = [[UIFooterView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-49,self.view.frame.size.width,49)];
     
     // Create the button
     UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -23,7 +23,7 @@
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
 
-#define kHeightForFooter 60.0
+#define kHeightForFooter 56.0
 #define kMenuViewHeaderHeight 70.0
 
 @interface FooterView : UIView
