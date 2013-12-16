@@ -107,6 +107,11 @@
    self.postedTimeInWords = [[NSDate dateWithTimeIntervalSince1970:self.postedTime/1000] distanceOfTimeInWords:[NSDate date]]; 
 }
 
+- (void)convertToUpdatedTimeInWords {
+    self.updatedTimeInWords = [[NSDate dateWithTimeIntervalSince1970:self.lastUpdated/1000] distanceOfTimeInWords:[NSDate date]];
+
+}
+
 - (void)convertHTMLEncoding {
     self.title = [self.title gtm_stringByUnescapingFromHTML];
     self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];

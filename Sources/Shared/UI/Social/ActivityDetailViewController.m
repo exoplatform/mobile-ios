@@ -402,6 +402,7 @@
         self.socialActivity.totalNumberOfComments = socialActivityDetails.totalNumberOfComments;
         self.getCommentsProxy = nil;
         [self.socialActivity convertToPostedTimeInWords];
+        [self.socialActivity convertToUpdatedTimeInWords];
         //Set the last update date at now 
         self.dateOfLastUpdate = [NSDate date];
         
