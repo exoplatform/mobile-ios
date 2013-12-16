@@ -17,6 +17,7 @@
 #import "LanguageHelper.h"
 #import "EmptyView.h"
 #import "RoundRectView.h"
+#import "UIBarButtonItem+WEPopover.h"
 
 @implementation DocumentsViewController_iPad
 
@@ -98,12 +99,20 @@
     picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationFormSheet;
-    self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:picker] autorelease];    
+    self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:picker] autorelease];
     self.popoverPhotoLibraryController.delegate = self;
     
     if(displayActionDialogAtRect.size.width == 0) {
         //present the popover from the rightBarButtonItem of the navigationBar
-        [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//        [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
+        CGRect rect = [_navigation.topItem.rightBarButtonItem frameInView:self.view];
+        rect.origin.x += 10;
+        rect.origin.y += 20;
+        rect.size.width = 0;
+        rect.size.height = 0;
+        [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
     } else {
         [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
     }
@@ -330,7 +339,16 @@
     if(displayActionDialogAtRect.size.width == 0) {
         
         //present the popover from the rightBarButtonItem of the navigationBar        
-        [actionSheet showFromBarButtonItem:_navigation.topItem.rightBarButtonItem animated:YES];
+//        [actionSheet showFromBarButtonItem:_navigation.topItem.rightBarButtonItem animated:YES];
+        
+        CGRect rect = [_navigation.topItem.rightBarButtonItem frameInView:self.view];
+        rect.origin.x += 10;
+        rect.origin.y += 20;
+        rect.size.width = 0;
+        rect.size.height = 0;
+        NSLog(@"rect info %f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+        
+        [actionSheet showFromRect:rect inView:self.view animated:YES];
     }
     else {
         [actionSheet showFromRect:displayActionDialogAtRect inView:_tblFiles animated:YES];
