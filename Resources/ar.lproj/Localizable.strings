@@ -10,9 +10,9 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Login page";
+"SignInPageTitle" = "صفحة تسجيل الدّخول";
 
-"SignInButton" = "Login";
+"SignInButton" = "تسجيل الدخول";
 
 "UsernamePlaceholder" = "اسم المستخدم";
 
@@ -25,7 +25,7 @@
 
 "TakePicture" = "التقاط صورة";
 
-"NewFolderTitle" = "New folder";
+"NewFolderTitle" = "مُـجلّــد جديد";
 
 "RenameTitle" = "إعادة تسمية";
 
@@ -39,17 +39,17 @@
 
 "TakeAPicture" = "التقاط صورة";
 
-"AttachedPhoto" = "Attached photo";
+"AttachedPhoto" = "الصور المرفقة";
 
-"AddAPhoto" = "Add a photo";
+"AddAPhoto" = "إضافة صورة";
 
-"PhotoLibrary" = "Photo library";
+"PhotoLibrary" = "مكتبة الصّور";
 
 // Drives types
 
-"general" = "general";
+"general" = "عامّ";
 
-"personal" = "personal";
+"personal" = "شخصي";
 
 "group" = "المجموعة";
 
@@ -64,27 +64,27 @@
 
 "Delete" = "حذف";
 
-"Success" = "Success";
+"Success" = "نجاح";
 
 "Home" = "الصفحة الرئيسية";
 
 "Loading" = "تحميل...";
 
-"LoadingURL" = "Loading URL";
+"LoadingURL" = "تحميل الـ URL";
 
 "OK" = "موافق";
 
 "Disconnect" = "قطع الاتصال";
 
-"Pull down to refresh..." = "Pull down to refresh...";
+"Pull down to refresh..." = "اسحب للأسفل للتحديث...";
 
-"Release to refresh..." = "Release to refresh...";
+"Release to refresh..." = "اترك للتحديث...";
 
-"Last Updated: %@" = "Last updated: %@";
+"Last Updated: %@" = "آخر تحديث: %@";
 
-"Required" = "Required";
+"Required" = "مطلوب";
 
-"Optional" = "Optional";
+"Optional" = "إختياري";
 
 "Fullscreen" = "شاشة كاملة";
 
@@ -101,9 +101,9 @@
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "تذكر الفلتر الخاصّ بي";
 
-"ShowPrivateDrive" = "Show my private drive";
+"ShowPrivateDrive" = "عرض محرك الأقراص الخاصّ بي";
 
 "Language" = "اللغات";
 
@@ -113,200 +113,200 @@
 
 "Send" = "إرسال";
 
-"ServerList" = "Server list";
+"ServerList" = "قائمة المزوّدين";
 
-"NewServer" = "New server";
+"NewServer" = "مزوّد جديد";
 
-"ServerModify" = "Modify server";
+"ServerModify" = "تغيير المزوّد";
 
-"ApplicationsInformation" = "Application information";
+"ApplicationsInformation" = "معلومات التطبيق";
 
-"ServerVersion" = "Server version";
+"ServerVersion" = "إصدار المزوّد";
 
-"ApplicationEdition" = "Application edition";
+"ApplicationEdition" = "الطبعة الخاصّة بالتطبيق";
 
-"ApplicationVersion" = "Application version";
+"ApplicationVersion" = "الطبعة الخاصّة بالتطبيق";
 
-"ServerName" = "Server name";
+"ServerName" = "اسم الـمُزوّد";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "عنوان المزوّد (URL)";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "The server returned invalid data.";
+"BadResponse" = "قام المزوّد بإرجاع بيانات غير صحيحة.";
 
-"NetworkConnection" = "Connection error";
+"NetworkConnection" = "خطأ في الاتصال";
 
-"Authorization" = "Login failed";
+"Authorization" = "فشل تسجيل الدخول";
 
-"WrongUserNamePassword" = "Impossible to connect, check your username and password";
+"WrongUserNamePassword" = "لا يمكن تسجيل الدّخول ، تحقق من اسم المستخدم وكلمة المرور الخاصّة بك";
 
-"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"InvalidServer" = "لا يمكن تسجيل الدّخول الى شبكة الإنترانت الخاصّة بك، الرجاء التحقق من عنوان URL الخاص بها أو اتصل بالمسؤول.";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "لا يمكن تسجيل الدّخول الى شبكة الإنترانت الخاصّة بك، الرجاء التحقق من عنوان URL الخاص بها أو اتصل بالمسؤول.";
 
-"UserNameEmpty" = "Incorrect username";
+"UserNameEmpty" = "اسم المستخدم غير صحيح";
 
-"PasswordEmpty" = "Incorrect password";
+"PasswordEmpty" = "كلمة المرور غير صحيحة";
 
-"SelectedDomainEmpty" = "No server specified";
+"SelectedDomainEmpty" = "لم يتمّ تحديد المزوّد";
 
-"EmptyFolder" = "This folder is empty";
+"EmptyFolder" = "هذا المجلد فارغ";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "لا يمكن فتح هذا الملف ضمن هذا التطبيق";
 
-"NoActivities" = "No activity has been posted on your activity stream";
+"NoActivities" = "لم يتمّ نشر أي نشاط على تيّار الأنشطة الخاصّ بك";
 
-"NoGadget" = "You have no gadgets in your Apps";
+"NoGadget" = "ليس لك أدوات في التطبيقات الخاصّة بك.";
 
 "MessageInfo" = "معلومات";
 
-"MessageErrorServer" = "You cannot add a server with an empty name or URL";
+"MessageErrorServer" = "لا يمكنك إضافة مزوّد مع عنوان (URL) أو اسم فارغ.";
 
-"MessageErrorExist" = "This server already exists";
+"MessageErrorExist" = "هذا المزوّد موجود مُسبقــا";
 
-"InvalidUrl" = "Invalid URL";
+"InvalidUrl" = "عنوان URL غير صحيح";
 
 "FileError" = "خطأ";
 
-"CameraNotAvailable" = "The camera is not available";
+"CameraNotAvailable" = "الكاميرا غير متوفرة";
 
-"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"GadgetsCannotBeRetrieved" = "لا يمكن استرداد الأدوات";
 
 "Error" = "خطأ";
 
-"NoMessageComment" = "You must enter some text to comment";
+"NoMessageComment" = "يجب إدخال بعض الكلمات بغية التعليق";
 
-"NoMessagePosting" = "You must enter some text to post";
+"NoMessagePosting" = "لا توجد رسالة يمكن ارسالها";
 
-"GettingActionCannotBeCompleted" = "You cannot get activities";
+"GettingActionCannotBeCompleted" = "لا يمكنك الحصول على الأنشطة";
 
-"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"UpdatingActionCannotBeCompleted" = "لا يمكنك تغيير النشاط";
 
-"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"LikingActionCannotBeCompleted" = "لا يمكنك الإعجاب بهذا النّشاط";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "لا يمكنك الغاء الإعجاب بهذا النّشاط";
 
-"PostingActionCannotBeCompleted" = "You cannot post a message";
+"PostingActionCannotBeCompleted" = "لا يمكن اضافة النشاط";
 
-"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"CommentActionCannotBeCompleted" = "لا يمكنك نشر تعليق";
 
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"LoadMoreActionCannotBeCompleted" = "طرأ خطأ، يتم الآن إعادة تحميل الأنشطة.";
 
-"NotCompliant" = "The application can not run on the Platform edition";
+"NotCompliant" = "لا يمكن تشغيل التطبيق على هذه الطبعة التابعة لهذه البوابة";
 
-"SpecialCharacters" = "Special characters are not allowed";
+"SpecialCharacters" = "الحروف الخاصّة غير مسموح بها";
 
-"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+"DashboardsCannotBeRetrieved" = "لا يمكن استرداد لوحات المعلومات";
 
-"FolderNameAlreadyExist" = "This folder already exists";
+"FolderNameAlreadyExist" = "هذا المجلد موجود مسبقاً";
 
-"FolderNameEmpty" = "The folder name is empty";
+"FolderNameEmpty" = "اسم المجلد فارغ";
 
-"Cannot move file to its location" = "Cannot move the file to the same location";
+"Cannot move file to its location" = "لا يمكن نقل الملف إلى نفس الموقع";
 
-"Cannot transfer file" = "Cannot transfer the file";
+"Cannot transfer file" = "لا يمكن نقل الملف";
 
 
 /*
  * Apps
  */
 
-"Dashboard" = "Apps";
+"Dashboard" = "تطبيقات";
 
 
 /*
  * Activity stream
  */
 
-"numOfLikers" = "%d likers";
+"numOfLikers" = "%d مُعجبون";
 
-"numOfLiker" = "%d liker";
+"numOfLiker" = "%d مُعجب";
 
-"likeThisActivity" = "%d people like this";
+"likeThisActivity" = "%d مُعجبون بهذا.";
 
-"NoOneLikeThis" = "No one likes this";
+"NoOneLikeThis" = "لا أحد معجب بهذا الى حدّ الآن";
 
-"ActivityDetails" = "Activity details";
+"ActivityDetails" = "تفاصيل النشاط";
 
-"MessageComposer" = "Message composer";
+"MessageComposer" = "قم بتكوين رسالتك";
 
-"ActivityStream" = "Activity stream";
+"ActivityStream" = "الأنشطة و المستجدّات";
 
 "News" = "أخبار";
 
 "Details" = "تفاصيل";
 
-"comments(%d)" = "Comments(%d)";
+"comments(%d)" = "تعليقات (%d)";
 
-"likes(%d)" = "Likes(%d)";
+"likes(%d)" = "أشخاص نال إعجابهم (%d)";
 
-"YourComment" = "Your comment";
+"YourComment" = "تعليقك";
 
-"GettingActivity" = "Getting activity";
+"GettingActivity" = "تحميل النشاط";
 
-"UpdatingActivity" = "Updating activity";
+"UpdatingActivity" = "تحديث النشاط";
 
 "PostingActivity" = "ردّ";
 
 "CommentActivity" = "تعليق";
 
-"GettingActivityDetail" = "Getting activity detail";
+"GettingActivityDetail" = "الحصول على تفاصيل النشاط";
 
-"UpdatingActivityDetail" = "Updating activity detail";
+"UpdatingActivityDetail" = "تحديث تفاصيل النشاط";
 
-"EditWiki" = "has edited the Wiki page:";
+"EditWiki" = "قام بتغيير صفحة الويكي:";
 
-"CreateWiki" = "has created the Wiki page:";
+"CreateWiki" = "قام بانشاء صفحة الويكي:";
 
-"NewPost" = "has added a new post:";
+"NewPost" = "أضاف موضوع جديد:";
 
-"UpdatePost" = "has updated a post:";
+"UpdatePost" = "قام بتغيير موضوع:";
 
-"NewTopic" = "has posted a new topic:";
+"NewTopic" = "قام بطرح موضوع جديد:";
 
-"UpdateTopic" = "has updated a topic:";
+"UpdateTopic" = "قام بتغيير الموضوع:";
 
-"UpdateQuestion" = "has updated the question:";
+"UpdateQuestion" = "قام بتغيير السؤال:";
 
-"Answered" = "has answered to the question:";
+"Answered" = "  أجاب على السؤال:";
 
-"Asked" = "has asked:";
+"Asked" = "قام بطرح سؤال:";
 
-"EventAdded" = "added an event:";
+"EventAdded" = "أضاف حدث:";
 
-"EventUpdated" = "has just updated the event:";
+"EventUpdated" = "قام بتغيير الحدث:";
 
-"TaskAdded" = "added a task:";
+"TaskAdded" = "أضاف مهمّة:";
 
-"TaskUpdated" = "has just updated the task:";
+"TaskUpdated" = "قام يتغيير المهمّة:";
 
 "Description" = "الوصف";
 
 "Location" = "المكان";
 
-"StartTime" = "Start time";
+"StartTime" = "توقيت البداية";
 
-"EndTime" = "End time";
+"EndTime" = "توقيت الانهاء";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "لم يتمّ بعد اضافة تعليق، بادر أنت الأوّل بالتعليق";
 
-"Image Preview" = "Image preview";
+"Image Preview" = "عرض مُسبق للصّورة";
 
 "Change" = "تغيير";
 
 "Remove" = "حذف";
 
-"All Updates" = "All updates";
+"All Updates" = "كافة التحديثات";
 
-"My Connections" = "My connections";
+"My Connections" = "علاقاتي";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "فضاءاتي";
 
-"My Status" = "My status";
+"My Status" = "حالة التوافر الخاصّة بي";
 
 
 /*
@@ -320,45 +320,45 @@
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "ago";
+"DateFmt ago" = "منذ";
 
-"DateFmt from now" = "from now";
+"DateFmt from now" = "من الآن";
 
-"DateFmt Less than" = "Less than ";
+"DateFmt Less than" = "أقل من ";
 
-"DateFmt About" = "About ";
+"DateFmt About" = "حول ";
 
-"DateFmt Over" = "Over ";
+"DateFmt Over" = "على مدى ";
 
-"DateFmt Almost" = "Almost ";
+"DateFmt Almost" = "تقريبا ";
 
-"DateFmt seconds" = " seconds ";
+"DateFmt seconds" = " ثوان ";
 
-"DateFmt minute" = " minute ";
+"DateFmt minute" = " دقيقة ";
 
-"DateFmt minutes" = " minutes ";
+"DateFmt minutes" = " دقائق ";
 
-"DateFmt hour" = " hour ";
+"DateFmt hour" = " ساعة ";
 
-"DateFmt hours" = " hours ";
+"DateFmt hours" = " ساعات ";
 
-"DateFmt day" = " day ";
+"DateFmt day" = " يوم  ";
 
-"DateFmt days" = " days ";
+"DateFmt days" = " أيام ";
 
-"DateFmt month" = " month ";
+"DateFmt month" = " شهر ";
 
-"DateFmt months" = " months ";
+"DateFmt months" = " أشهر ";
 
-"DateFmt year" = " year ";
+"DateFmt year" = " سنة ";
 
-"DateFmt years" = " years ";
+"DateFmt years" = "سنوات ";
 
 
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "لا يمكن تسجيل الدّخول الى شبكة الإنترانت الخاصّة بك، الرجاء التحقق من عنوان URL الخاص بها أو اتصل بالمسؤول.";
 
 "AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
 
@@ -368,7 +368,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "لا يمكن تسجيل الدّخول الى شبكة الإنترانت الخاصّة بك، الرجاء التحقق من عنوان URL الخاص بها أو اتصل بالمسؤول.";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
