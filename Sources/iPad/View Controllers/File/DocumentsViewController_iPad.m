@@ -114,7 +114,7 @@
         [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         
     } else {
-        [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
+        [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     }
 }
 
@@ -157,7 +157,7 @@
     frame.origin.x += 20;
     
     displayActionDialogAtRect = frame;
-
+    _currentCell = cell;
     
     //Display the UIPopoverController
     [_actionPopoverController dismissPopoverAnimated:NO];
@@ -294,7 +294,7 @@
     if(displayActionDialogAtRect.size.width == 0)
         [_fileFolderActionsPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     else
-		[_fileFolderActionsPopoverController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+		[_fileFolderActionsPopoverController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
 
@@ -351,7 +351,7 @@
         [actionSheet showFromRect:rect inView:self.view animated:YES];
     }
     else {
-        [actionSheet showFromRect:displayActionDialogAtRect inView:_tblFiles animated:YES];
+        [actionSheet showFromRect:displayActionDialogAtRect inView:_currentCell animated:YES];
     }
     
 }

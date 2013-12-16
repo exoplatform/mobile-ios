@@ -36,6 +36,8 @@
 
     CGRect displayActionDialogAtRect;
     
+    UITableViewCell *_currentCell;
+    
     UIPopoverController *_popoverPhotoLibraryController;
     
     BOOL isRoot;
