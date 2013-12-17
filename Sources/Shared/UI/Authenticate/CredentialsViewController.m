@@ -195,7 +195,7 @@
     }
     
     if ([self.txtfPassword respondsToSelector:@selector(setAttributedPlaceholder:)]) {
-        //Chage place holder color to white with 70% bright
+        //Change place holder color to white with 70% brightness
         UIColor *color = [UIColor colorWithWhite: 0.70 alpha:1];
         self.txtfPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localize(@"PasswordPlaceholder") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
