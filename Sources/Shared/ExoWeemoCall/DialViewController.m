@@ -42,6 +42,7 @@
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
     _callButton.enabled = FALSE;
+    [_calledIdTf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 
 }
 
@@ -99,8 +100,8 @@
 
 #pragma mark UItextfieldDelegate
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    
+
+-(void) textFieldDidChange:(id)sender {
     [self hideCallBtn];
 }
 
