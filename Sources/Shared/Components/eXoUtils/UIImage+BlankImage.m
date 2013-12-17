@@ -1,6 +1,7 @@
 //
 //  UIImage+BlankImage.m
 //  UITransition
+//  Add new function create blank image with color and size parameter
 //
 //  Created by Ta Minh Quan on 12/9/13.
 //  Copyright (c) 2013 CapTech. All rights reserved.

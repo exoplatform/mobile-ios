@@ -186,6 +186,7 @@
     [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     
     if ([self.txtfUsername respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        //Chage place holder color to white with 70% bright
         UIColor *color = [UIColor colorWithWhite: 0.70 alpha:1];
         self.txtfUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localize(@"UsernamePlaceholder") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
@@ -194,6 +195,7 @@
     }
     
     if ([self.txtfPassword respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        //Chage place holder color to white with 70% bright
         UIColor *color = [UIColor colorWithWhite: 0.70 alpha:1];
         self.txtfPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localize(@"PasswordPlaceholder") attributes:@{NSForegroundColorAttributeName: color}];
     } else {

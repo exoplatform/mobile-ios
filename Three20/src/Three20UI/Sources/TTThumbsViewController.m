@@ -60,6 +60,7 @@ static CGFloat kThumbnailRowHeight = 79;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
     self.navigationBarTintColor = nil;
     self.wantsFullScreenLayout = YES;
+    //the property wantsFullScreenLayout is for iOS prior to v7 (backward compatibility), deprecated in iOS7, and what follows is the new way to handle edges display on the screen. Link to resources that help : http://stackoverflow.com/questions/17074365/status-bar-and-navigation-bar-appear-over-my-views-bounds-in-ios-7
       if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
           self.edgesForExtendedLayout = UIRectEdgeNone;
     self.hidesBottomBarWhenPushed = YES;
