@@ -44,6 +44,9 @@
 {
 	[super viewDidLoad];
     
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.tintColor = [UIColor whiteColor];
+    
     //Set the background Color of the view
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
@@ -53,6 +56,7 @@
     [self updateUI];
     
     [_txtfNameInput becomeFirstResponder];
+    
     
 }
 /*

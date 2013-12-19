@@ -218,4 +218,12 @@
     [(DocumentsViewController*)_delegate startRetrieveDirectoryContent];
 }
 
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.tintColor = [UIColor whiteColor];
+}
+
 @end

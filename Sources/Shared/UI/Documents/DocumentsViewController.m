@@ -298,6 +298,9 @@ static NSString *PRIVATE_GROUP = @"Private";
     
 	[self.view addSubview:self.hudLoadWaiting.view];
     
+    self.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    
     //Set the background Color of the view
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
     //_tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
@@ -428,12 +431,12 @@ static NSString *PRIVATE_GROUP = @"Private";
     if(theSize.width > _tblFiles.frame.size.width - 20)
         theSize.width = _tblFiles.frame.size.width - 50;
     
-    headerLabel.frame = [self rectOfHeader:theSize.width];
+    headerLabel.frame = [self rectOfHeader:theSize.width+10];
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"DashboardTabBackground.png"];
     UIImageView *imgVBackground = [[UIImageView alloc] initWithImage:[imgForSection stretchableImageWithLeftCapWidth:10 topCapHeight:7]];
-    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 20, kHeightForSectionHeader-15);
+    imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 30, kHeightForSectionHeader-15);
     
 	[customView addSubview:imgVBackground];
     [imgVBackground release];
@@ -745,7 +748,16 @@ static NSString *PRIVATE_GROUP = @"Private";
     [self startRetrieveDirectoryContent];
 }
 
+#pragma mark UIImagePickerDelegate
 
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    navigationController.navigationBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavbarBg.png"]];
+    
+}
 
 #pragma mark - FileFolderAction delegate Methods
 

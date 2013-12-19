@@ -30,6 +30,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    // The wantsFullScreenLayout view controller property is deprecated in iOS 7. If you currently specify wantsFullScreenLayout = NO, the
+    //view controller may display its content at an unexpected screen location when it runs in iOS 7.To adjust how a view controller lays
+    //out its views, UIViewController provides edgesForExtendedLayout. Detail in this document: https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/TransitionGuide/AppearanceCustomization.html
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     
     /* Add tap gesture to dismiss keyboard */
     UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
@@ -37,10 +42,28 @@
     [self.view addGestureRecognizer:tapGesure];
 
     // Notifies when the keyboard is shown/hidden
+//    if(![eXoViewController isHighScreen]) {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidShowNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidHideNotification object:nil];
+//    }
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // Notifies when the keyboard is shown/hidden
     if(![eXoViewController isHighScreen]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboard:) name:UIKeyboardDidHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidHideNotification object:nil];
     }
+    
+    CGRect viewRect = self.view.frame;
+    viewRect.origin.y = 0;
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,6 +71,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 #pragma mark LoginProxyDelegate methods
 
@@ -69,15 +94,15 @@
 
 #pragma mark - Keyboard management
 
--(void)manageKeyboard:(NSNotification *) notif {
+-(void)manageKeyboardPremise:(NSNotification *) notif {
     if (notif.name == UIKeyboardDidShowNotification) {
-        [self setViewMovedUp:YES];
+        [self setViewMovedUpPremise:YES];
     } else if (notif.name == UIKeyboardDidHideNotification) {
-        [self setViewMovedUp:NO];
+        [self setViewMovedUpPremise:NO];
     }
 }
 
--(void)setViewMovedUp:(BOOL)movedUp
+-(void)setViewMovedUpPremise:(BOOL)movedUp
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
@@ -91,7 +116,10 @@
     }
     else
     {
-        viewRect.origin.y = 0;
+        if (viewRect.origin.y < 0) {
+            viewRect.origin.y += scrollHeight;
+        }
+        
     }
     self.view.frame = viewRect;
     [UIView commitAnimations];

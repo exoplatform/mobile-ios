@@ -45,6 +45,8 @@
         _navigationItem = item;
         [item release];
         
+        _navigationBar.tintColor = [UIColor whiteColor];
+        
         _navigationViewFlags.isNavigationBarHidden = NO;
     }
     return self;

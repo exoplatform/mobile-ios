@@ -124,6 +124,7 @@
     //TODO Localize
     self.title = Localize(@"Details");
     
+    
     //Set the background Color of the view    
     //_tblvActivityDetail.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
    // self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];

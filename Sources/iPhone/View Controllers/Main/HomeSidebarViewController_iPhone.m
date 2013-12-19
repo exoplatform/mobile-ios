@@ -278,6 +278,7 @@
     if (rowType == eXoDocuments) {
         [self initAndSelectDocumentsViewController];
     }
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 

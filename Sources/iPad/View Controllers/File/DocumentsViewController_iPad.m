@@ -17,6 +17,7 @@
 #import "LanguageHelper.h"
 #import "EmptyView.h"
 #import "RoundRectView.h"
+#import "UIBarButtonItem+WEPopover.h"
 
 @implementation DocumentsViewController_iPad
 
@@ -50,6 +51,7 @@
         _navigation.topItem.title = Localize(@"Documents") ;
         ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
     }
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
 }
 
 - (CGRect)rectOfHeader:(int)width
@@ -97,14 +99,22 @@
     picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationFormSheet;
-    self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:picker] autorelease];    
+    self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:picker] autorelease];
     self.popoverPhotoLibraryController.delegate = self;
     
     if(displayActionDialogAtRect.size.width == 0) {
         //present the popover from the rightBarButtonItem of the navigationBar
-        [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//        [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
+        CGRect rect = [_navigation.topItem.rightBarButtonItem frameInView:self.view];
+        rect.origin.x += 10;
+        rect.origin.y += 20;
+        rect.size.width = 0;
+        rect.size.height = 0;
+        [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
     } else {
-        [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];  
+        [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     }
 }
 
@@ -147,14 +157,14 @@
     frame.origin.x += 20;
     
     displayActionDialogAtRect = frame;
-
+    _currentCell = cell;
     
     //Display the UIPopoverController
     [_actionPopoverController dismissPopoverAnimated:NO];
     [_actionPopoverController release];
-	_actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
+	_actionPopoverController = [[WEPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
-	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
+//	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
 	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     
     [fileActionsViewController release];
@@ -233,9 +243,9 @@
     //Create the Popover to display potential actions to the user
     [_actionPopoverController dismissPopoverAnimated:NO];
     [_actionPopoverController release];
-    _actionPopoverController = [[UIPopoverController alloc] initWithContentViewController:fileActionsViewController];
+    _actionPopoverController = [[WEPopoverController alloc] initWithContentViewController:fileActionsViewController];
     //set its size
-	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
+//	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
     //set its delegate
     _actionPopoverController.delegate = self;
     //present the popover from the rightBarButtonItem of the navigationBar
@@ -284,7 +294,7 @@
     if(displayActionDialogAtRect.size.width == 0)
         [_fileFolderActionsPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     else
-		[_fileFolderActionsPopoverController presentPopoverFromRect:displayActionDialogAtRect inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+		[_fileFolderActionsPopoverController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
 
@@ -307,6 +317,11 @@
     _actionPopoverController = nil;
 
 }
+
+- (BOOL)popoverControllerShouldDismissPopover:(WEPopoverController *)thePopoverController {
+	//The popover is automatically dismissed if you click outside it, unless you return NO here
+	return YES;
+}
  
 - (void)showActionSheetForPhotoAttachment
 {
@@ -324,10 +339,19 @@
     if(displayActionDialogAtRect.size.width == 0) {
         
         //present the popover from the rightBarButtonItem of the navigationBar        
-        [actionSheet showFromBarButtonItem:_navigation.topItem.rightBarButtonItem animated:YES];
+//        [actionSheet showFromBarButtonItem:_navigation.topItem.rightBarButtonItem animated:YES];
+        
+        CGRect rect = [_navigation.topItem.rightBarButtonItem frameInView:self.view];
+        rect.origin.x += 10;
+        rect.origin.y += 20;
+        rect.size.width = 0;
+        rect.size.height = 0;
+        NSLog(@"rect info %f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+        
+        [actionSheet showFromRect:rect inView:self.view animated:YES];
     }
     else {
-        [actionSheet showFromRect:displayActionDialogAtRect inView:_tblFiles animated:YES];
+        [actionSheet showFromRect:displayActionDialogAtRect inView:_currentCell animated:YES];
     }
     
 }

@@ -17,6 +17,6 @@
 
 @property (nonatomic, retain) GadgetItem *gadget;
 - (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad;
-
+-(NSString *) shortString : (NSString *) myString withMaxCharacter: (int) range;
 @end
 

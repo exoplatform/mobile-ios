@@ -99,6 +99,11 @@
     
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
+    // The wantsFullScreenLayout view controller property is deprecated in iOS 7. If you currently specify wantsFullScreenLayout = NO, the
+    //view controller may display its content at an unexpected screen location when it runs in iOS 7.To adjust how a view controller lays
+    //out its views, UIViewController provides edgesForExtendedLayout. Detail in this document: https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/TransitionGuide/AppearanceCustomization.html
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
@@ -113,6 +118,9 @@
     
     UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
+    
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     [_txtvMessageComposer becomeFirstResponder];
     [_txtvMessageComposer setBackgroundColor:[UIColor clearColor]];
@@ -153,6 +161,7 @@
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
 - (void)viewDidLayoutSubviews {
+    
     // For iOS version >= 5.0 which support this method, the subviews are rearranged here.
     [self reArrangeSubViews];
 }
@@ -275,6 +284,15 @@
     }
     
     return [thePicker autorelease];
+}
+
+#pragma mark UIImagePickerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 #pragma mark - Loader Management

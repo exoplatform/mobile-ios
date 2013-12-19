@@ -14,6 +14,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
 #import "WelcomeViewController_iPhone.h"
+#import "UINavigationBar+ BackButtonDisplayFix.h"
 
 
 @implementation AppDelegate_iPhone
@@ -38,7 +39,7 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
     //Add Crashlytics
     [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
-    
+    application.statusBarHidden = YES;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
@@ -52,12 +53,17 @@
         [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
         
 //        [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.47f green:0.23f blue:0.61f alpha:1.0f]];
-        UIImage *barButton = [UIImage imageNamed:@"NavbarBackButton.png"];
+        UIImage *barButton = [UIImage imageNamed:@"NavbarBackButton.png" ];
         barButton = [barButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
         [[UIBarButtonItem appearance] setBackButtonBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        
+        
         UIImage *barActionButton = [UIImage imageNamed:@"NavbarActionButton.png"];
         barActionButton = [barActionButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
         [[UIBarButtonItem appearance] setBackgroundImage:barActionButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        
+        [[UINavigationBar appearance] setBackIndicatorImage:nil];
+        
     }
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
         [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"NavbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];

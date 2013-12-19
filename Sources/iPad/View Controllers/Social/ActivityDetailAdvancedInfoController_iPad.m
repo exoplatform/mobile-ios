@@ -17,6 +17,7 @@
 #import "ActivityLinkDisplayViewController_iPad.h"
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
+#import "defines.h"
 
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellLeftRightPadding 1.0
@@ -256,6 +257,7 @@ static NSString *kTabItem = @"kTabItem";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]];
     self.view.frame = CGRectZero;
     [self.view setAutoresizesSubviews:YES];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;

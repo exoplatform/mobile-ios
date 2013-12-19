@@ -365,6 +365,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
     self.title = Localize(@"News");
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
     
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
     _tblvActivityStream.scrollsToTop = YES;
@@ -746,7 +747,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [(ActivityPictureTableViewCell *)cell resetImageAttached];
         }
     }
-
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

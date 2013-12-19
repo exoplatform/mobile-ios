@@ -290,7 +290,11 @@ typedef enum {
 
 - (void)setNavigationBarLabels {
     self.title = Localize(@"Settings");
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    
     self.navigationItem.rightBarButtonItem.title = Localize(@"DoneButton");
+    //Fix color nav button
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
 #pragma - Actions Methods 
@@ -456,7 +460,7 @@ typedef enum {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierSocial];
             if(cell == nil) 
             {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLogin] autorelease];
+                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierSocial] autorelease];
                 
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];

@@ -285,30 +285,33 @@
 #pragma mark - Keyboard management
 
 - (void)manageKeyboard:(NSNotification *) notif {
-        NSDictionary *info = [notif userInfo];
-        // Get the size of the keyboard, before and after the animation
-        CGFloat keyboardHeightBefore = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size.height;
-        CGFloat keyboardHeightAfter = [self.view convertRect:[[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:nil].size.height;
-        // Create a rectangle of the size of the entire frame
-        CGRect aRect = [self.view convertRect:self.view.frame fromView:nil];
-        // Create a point at the origin of the password text field component
-        CGPoint fieldPoint = 
-        CGPointMake(_credViewController.view.frame.origin.x + _credViewController.txtfPassword.frame.origin.x,
-                    _credViewController.view.frame.origin.y + _credViewController.txtfPassword.frame.origin.y);
-        
+//        NSDictionary *info = [notif userInfo];
+//        // Get the size of the keyboard, before and after the animation
+//        CGFloat keyboardHeightBefore = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size.height;
+//        CGFloat keyboardHeightAfter = [self.view convertRect:[[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:nil].size.height;
+//        // Create a rectangle of the size of the entire frame
+//        CGRect aRect = [self.view convertRect:self.view.frame fromView:nil];
+//        // Create a point at the origin of the password text field component
+//        CGPoint fieldPoint = 
+//        CGPointMake(_credViewController.view.frame.origin.x + _credViewController.txtfPassword.frame.origin.x,
+//                    _credViewController.view.frame.origin.y + _credViewController.txtfPassword.frame.origin.y);
+    BOOL isPortrait = UIDeviceOrientationIsPortrait(self.interfaceOrientation);
+    if (!isPortrait) {
         if (notif.name == UIKeyboardDidShowNotification) {
             // Reduce the height of the rect to represent only the area not covered by the keyboard (after it has appeared)
-            aRect.size.height -= keyboardHeightAfter;
-            // If the point is not in the area, we move the view up so it becomes visible
-            if (!CGRectContainsPoint(aRect, fieldPoint))
-                [self moveUp];
+            //            aRect.size.height -= keyboardHeightAfter;
+            //            // If the point is not in the area, we move the view up so it becomes visible
+            //            if (!CGRectContainsPoint(aRect, fieldPoint))
+            [self moveUp];
         } else if (notif.name == UIKeyboardDidHideNotification) {
             // Reduce the height of the rect to represent only the area not covered by the keyboard (before it will disappear)
-            aRect.size.height -= keyboardHeightBefore;
-            // If the point is in the visible area, we move the view down before the keyboard
-            if (CGRectContainsPoint(aRect, fieldPoint))
-                [self moveDown];
+            //            aRect.size.height -= keyboardHeightBefore;
+            //            // If the point is in the visible area, we move the view down before the keyboard
+            //            if (CGRectContainsPoint(aRect, fieldPoint))
+            [self moveDown];
         }
+    }
+    
 }
 
 - (void)moveUp {

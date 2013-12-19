@@ -15,6 +15,7 @@
 #import <dispatch/dispatch.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
+#import "UINavigationBar+ BackButtonDisplayFix.h"
 
 
 @implementation AppDelegate_iPad
@@ -37,7 +38,7 @@
     //Add Crashlytics
     [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
     
-    
+    application.statusBarHidden = YES;
     
     // Override point for customization after application launch.
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
