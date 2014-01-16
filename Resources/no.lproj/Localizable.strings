@@ -1,0 +1,403 @@
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
+
+/*
+ * Authenticate
+ */
+
+"SignInPageTitle" = "Innloggingsside";
+
+"SignInButton" = "Logg inn";
+
+"UsernamePlaceholder" = "Brukernavn";
+
+"PasswordPlaceholder" = "Passord";
+
+
+/* 
+ * Documents
+ */
+
+"TakePicture" = "Ta et bilde";
+
+"NewFolderTitle" = "Ny mappe";
+
+"RenameTitle" = "Endre navn";
+
+"Copy" = "Kopier";
+
+"Move" = "Klipp";
+
+"Paste" = "Lim inn";
+
+"Documents" = "Dokumenter";
+
+"TakeAPicture" = "Ta et bilde";
+
+"AttachedPhoto" = "Vedlagt bilde";
+
+"AddAPhoto" = "Legg til et bilde";
+
+"PhotoLibrary" = "Bildebiblioteket";
+
+// Drives types
+
+"general" = "generelt";
+
+"personal" = "personlig";
+
+"group" = "gruppe";
+
+
+/*
+ * General
+ */
+
+"Cancel" = "#{word.cancel}";
+
+"DoneButton" = "Utført";
+
+"Delete" = "Slette";
+
+"Success" = "Suksess";
+
+"Home" = "Hjem";
+
+"Loading" = "Laster inn...";
+
+"LoadingURL" = "Laster URL";
+
+"OK" = "OK";
+
+"Disconnect" = "Koble fra";
+
+"Pull down to refresh..." = "Dra ned for å oppdatere...";
+
+"Release to refresh..." = "Slipp for å oppdatere...";
+
+"Last Updated: %@" = "Sist oppdatert: %@";
+
+"Required" = "Påkrevd";
+
+"Optional" = "Valgfritt";
+
+"Fullscreen" = "Fullskjerm";
+
+"Close" = "Lukk";
+
+
+/*
+ * Settings
+ */
+
+"Settings" = "Innstillinger";
+
+"RememberMe" = "Remember me";
+
+"AutoLogin" = "Auto login";
+
+"KeepSelectedStream" = "Husk mitt filter";
+
+"ShowPrivateDrive" = "Vis min private disk";
+
+"Language" = "Språk";
+
+"English" = "Engelsk";
+
+"French" = "Fransk";
+
+"Send" = "Send";
+
+"ServerList" = "Serverliste";
+
+"NewServer" = "Ny server";
+
+"ServerModify" = "Endre server";
+
+"ApplicationsInformation" = "Programinformasjon";
+
+"ServerVersion" = "Serverversjon";
+
+"ApplicationEdition" = "Programutgave";
+
+"ApplicationVersion" = "Programversjon";
+
+"ServerName" = "Servernavn";
+
+"ServerUrl" = "Server-URL";
+
+
+/*
+ * Errors & Warnings
+ */
+
+"BadResponse" = "Serveren returnerte ugyldige data.";
+
+"NetworkConnection" = "Tilkoblingsfeil";
+
+"Authorization" = "Påloggingen mislyktes";
+
+"WrongUserNamePassword" = "Umulig å koble til, sjekk brukernavn og passord";
+
+"InvalidServer" = "Umulig å koble til intranettet, kontroller URL eller kontakt systemansvarlig";
+
+"NetworkConnectionFailed" = "Umulig å koble til intranettet, kontroller URL eller kontakt systemansvarlig";
+
+"UserNameEmpty" = "Ugyldig brukernavn";
+
+"PasswordEmpty" = "Ugyldig passord";
+
+"SelectedDomainEmpty" = "Ingen server angitt";
+
+"EmptyFolder" = "Denne mappen er tom";
+
+"UnreadableFile" = "Denne filen kan ikke åpnes i programmet";
+
+"NoActivities" = "Ingen aktivitet har blitt postet på din aktivitetsstrøm";
+
+"NoGadget" = "Du har ingen gadgets i dine Applikasjoner";
+
+"MessageInfo" = "Informasjon";
+
+"MessageErrorServer" = "Du kan ikke legge til en server med et tomt navn eller URL";
+
+"MessageErrorExist" = "Serveren finnes allerede";
+
+"InvalidUrl" = "Ugyldig URL";
+
+"FileError" = "Feil";
+
+"CameraNotAvailable" = "Kameraet er ikke tilgjengelig";
+
+"GadgetsCannotBeRetrieved" = "Gadgets kan ikke hentes";
+
+"Error" = "Feil";
+
+"NoMessageComment" = "Du må skrive inn tekst for å kommentere";
+
+"NoMessagePosting" = "Du må angi tekst for å lagre innlegg";
+
+"GettingActionCannotBeCompleted" = "Du kan ikke hente aktiviteter";
+
+"UpdatingActionCannotBeCompleted" = "Du kan ikke oppdatere aktiviteten";
+
+"LikingActionCannotBeCompleted" = "Du kan ikke like denne aktiviteten";
+
+"UnLikeActionCannotBeCompleted" = "Du kan ikke angre å like denne aktiviteten";
+
+"PostingActionCannotBeCompleted" = "Du kan ikke opprette en melding";
+
+"CommentActionCannotBeCompleted" = "Du kan ikke legge inn en kommentar";
+
+"LoadMoreActionCannotBeCompleted" = "Det har skjedd en feil, aktivitetene lastes på nytt.";
+
+"NotCompliant" = "Applikasjonen kan ikke kjøre på denne utgaven";
+
+"SpecialCharacters" = "Spesialtegn er ikke tillatt";
+
+"DashboardsCannotBeRetrieved" = "Kan ikke hente skrivebordene";
+
+"FolderNameAlreadyExist" = "Denne mappen finnes allerede";
+
+"FolderNameEmpty" = "Mappenavnet er tomt";
+
+"Cannot move file to its location" = "Kan ikke flytte filen til samme plassering";
+
+"Cannot transfer file" = "Kan ikke overføre filen";
+
+
+/*
+ * Apps
+ */
+
+"Dashboard" = "Applikasjoner";
+
+
+/*
+ * Activity stream
+ */
+
+"numOfLikers" = "%d har likt denne";
+
+"numOfLiker" = "%d liker";
+
+"likeThisActivity" = "%d personer som dette";
+
+"NoOneLikeThis" = "Ingen liker dette";
+
+"ActivityDetails" = "Aktivitetsdetaljer";
+
+"MessageComposer" = "Meldingsvindu";
+
+"ActivityStream" = "Aktivitetsstrøm";
+
+"News" = "Nyheter";
+
+"Details" = "Detaljer";
+
+"comments(%d)" = "Kommentarer(%d)";
+
+"likes(%d)" = "Liker(%d)";
+
+"YourComment" = "Din kommentar";
+
+"GettingActivity" = "Henter aktivitet";
+
+"UpdatingActivity" = "Oppdaterer aktivitet";
+
+"PostingActivity" = "Innlegg";
+
+"CommentActivity" = "Kommentar";
+
+"GettingActivityDetail" = "Henter aktivitetsdetaljer";
+
+"UpdatingActivityDetail" = "Oppdaterer aktivitetsdetaljer";
+
+"EditWiki" = "har redigert Wiki-siden:";
+
+"CreateWiki" = "har opprettet Wiki-siden:";
+
+"NewPost" = "har lagt til et nytt innlegg:";
+
+"UpdatePost" = "har oppdatert et innlegg:";
+
+"NewTopic" = "har opprettet et nytt emne:";
+
+"UpdateTopic" = "har oppdatert et emne:";
+
+"UpdateQuestion" = "har oppdatert spørsmålet:";
+
+"Answered" = "har svart på spørsmålet:";
+
+"Asked" = "har spurt:";
+
+"EventAdded" = "la til en hendelse:";
+
+"EventUpdated" = "har nettopp oppdatert hendelsen:";
+
+"TaskAdded" = "lagt til en aktivitet:";
+
+"TaskUpdated" = "har nettopp oppdatert oppgaven:";
+
+"Description" = "Beskrivelse";
+
+"Location" = "Sted";
+
+"StartTime" = "Starttid";
+
+"EndTime" = "Sluttid";
+
+"NoComment" = "Ingen har kommentert enda, vær den første";
+
+"Image Preview" = "Forhåndsvisning av bilde";
+
+"Change" = "Endre";
+
+"Remove" = "Fjern";
+
+"All Updates" = "Alle oppdateringer";
+
+"My Connections" = "Mitt nettverk";
+
+"My Spaces" = "My spaces";
+
+"My Status" = "Min status";
+
+
+/*
+ * Date message converter
+ */
+
+"Today" = "I dag";
+
+"DateFmt" = "%1$@%2$@%3$@%4$@";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "siden";
+
+"DateFmt from now" = "fra nå";
+
+"DateFmt Less than" = "Mindre enn ";
+
+"DateFmt About" = "Om ";
+
+"DateFmt Over" = "Over ";
+
+"DateFmt Almost" = "Omtrent ";
+
+"DateFmt seconds" = " sekunder ";
+
+"DateFmt minute" = " minutt ";
+
+"DateFmt minutes" = " minutter ";
+
+"DateFmt hour" = " time ";
+
+"DateFmt hours" = " timer ";
+
+"DateFmt day" = " dag ";
+
+"DateFmt days" = " dager ";
+
+"DateFmt month" = " måned ";
+
+"DateFmt months" = " måneder ";
+
+"DateFmt year" = " år ";
+
+"DateFmt years" = " år ";
+
+
+/*
+ * Cloud sign up assistant 
+ */
+"ServerNotAvailable" = "Umulig å koble til intranettet, kontroller URL eller kontakt systemansvarlig";
+
+"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+
+"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "Umulig å koble til intranettet, kontroller URL eller kontakt systemansvarlig";
+
+"EmailIsBlacklisted" = "Please use your company email to sign up";
+
+"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"IncorrectEmailFormat" = "Please input a valid email address";
+
+"IncorrectPassword" = "Impossible to connect, check your password";
+
+"UserNotExist" = " No account exists for this email, check your email or signup";
+
+"TenantNotExist" = "No account exists for this email, check your email or signup";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+
+"Username" = "Brukernavn";
+
+"Password" = "Password";
+
+"Your credentials" = "Your credentials";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";
