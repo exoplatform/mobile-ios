@@ -101,7 +101,7 @@
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "Запомнить мой фильтр";
 
 "ShowPrivateDrive" = "Show my private drive";
 
@@ -215,7 +215,7 @@
  * Apps
  */
 
-"Dashboard" = "Apps";
+"Dashboard" = "Приложения";
 
 
 /*
