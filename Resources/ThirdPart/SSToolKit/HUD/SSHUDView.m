@@ -10,7 +10,9 @@
 #import "SSHUDWindow.h"
 #import "SSDrawingUtilities.h"
 #import "UIView+SSToolkitAdditions.h"
+#import "NSBundle+SSToolkitAdditions.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImage+SSToolkitAdditions.h"
 
 static CGFloat kIndicatorSize = 40.0;
 
@@ -20,7 +22,13 @@ static CGFloat kIndicatorSize = 40.0;
 - (void)_removeWindow;
 @end
 
-@implementation SSHUDView
+@implementation SSHUDView {
+	SSHUDWindow *_hudWindow;
+	UIWindow *_keyWindow;
+}
+
+
+#pragma mark - Accessors
 
 @synthesize textLabel = _textLabel;
 @synthesize textLabelHidden = _textLabelHidden;
@@ -31,29 +39,47 @@ static CGFloat kIndicatorSize = 40.0;
 @synthesize completeImage = _completeImage;
 @synthesize failImage = _failImage;
 
-#pragma mark NSObject
+- (void)setTextLabelHidden:(BOOL)hidden {
+	_textLabelHidden = hidden;
+	_textLabel.hidden = hidden;
+	[self setNeedsLayout];
+}
+
+
+- (void)setLoading:(BOOL)isLoading {
+	_loading = isLoading;
+	_activityIndicator.alpha = _loading ? 1.0 : 0.0;
+	[self setNeedsDisplay];
+}
+
+
+- (BOOL)hidesVignette {
+	return _hudWindow.hidesVignette;
+}
+
+
+- (void)setHidesVignette:(BOOL)hide {
+	_hudWindow.hidesVignette = hide;
+}
+
+
+#pragma mark - NSObject
 
 - (id)init {
-	return [self initWithTitle:nil loading:YES];
+	return (self = [self initWithTitle:nil loading:YES]);
 }
 
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-    
 	[self _removeWindow];
-	[_activityIndicator release];
-	[_textLabel release];
-	[_completeImage release];
-	[_failImage release];
-	[super dealloc];
 }
 
 
-#pragma mark UIView
+#pragma mark - UIView
 
 - (id)initWithFrame:(CGRect)frame {
-	return [self initWithTitle:nil loading:YES];
+	return (self = [self initWithTitle:nil loading:YES]);
 }
 
 
@@ -76,7 +102,7 @@ static CGFloat kIndicatorSize = 40.0;
 			CGRect imageRect = CGRectMake(roundf((_hudSize.width - imageSize.width) / 2.0f),
 										  roundf((_hudSize.height - imageSize.height) / 2.0f),
 										  imageSize.width, imageSize.height);
-			[image drawInRect:imageRect];			
+			[image drawInRect:imageRect];
 			return;
 		}
 		
@@ -86,7 +112,11 @@ static CGFloat kIndicatorSize = 40.0;
 		CGRect dingbatRect = CGRectMake(roundf((_hudSize.width - dingbatSize.width) / 2.0f),
 										roundf((_hudSize.height - dingbatSize.height) / 2.0f),
 										dingbatSize.width, dingbatSize.height);
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+		[dingbat drawInRect:dingbatRect withFont:dingbatFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+#else
 		[dingbat drawInRect:dingbatRect withFont:dingbatFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
+#endif
 	}
 }
 
@@ -99,11 +129,13 @@ static CGFloat kIndicatorSize = 40.0;
 	if (_textLabelHidden) {
 		_textLabel.frame = CGRectZero;
 	} else {
-		_textLabel.frame = CGRectMake(0.0f, roundf(_hudSize.height - 30.0f), _hudSize.width, 20.0f);
+		CGSize textSize = [_textLabel.text sizeWithFont:_textLabel.font constrainedToSize:CGSizeMake(self.bounds.size.width, CGFLOAT_MAX) lineBreakMode:_textLabel.lineBreakMode];
+		_textLabel.frame = CGRectMake(0.0f, roundf(_hudSize.height - textSize.height - 10.0f), _hudSize.width, textSize.height);
 	}
 }
 
-#pragma mark HUD
+
+#pragma mark - HUD
 
 - (id)initWithTitle:(NSString *)aTitle {
 	return [self initWithTitle:aTitle loading:YES];
@@ -129,13 +161,22 @@ static CGFloat kIndicatorSize = 40.0;
 		_textLabel.textColor = [UIColor whiteColor];
 		_textLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
 		_textLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+		_textLabel.textAlignment = NSTextAlignmentCenter;
+		_textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+#else
 		_textLabel.textAlignment = UITextAlignmentCenter;
 		_textLabel.lineBreakMode = UILineBreakModeTailTruncation;
-		_textLabel.text = aTitle ? aTitle : @"Loading";
+#endif
+		_textLabel.text = aTitle ? aTitle : SSToolkitLocalizedString(@"Loading...");
 		[self addSubview:_textLabel];
 		
 		// Loading
 		self.loading = isLoading;
+		
+		// Images
+		self.completeImage = [UIImage imageNamed:@"hud-check.png" bundleName:kSSToolkitBundleName];
+		self.failImage = [UIImage imageNamed:@"hud-x.png" bundleName:kSSToolkitBundleName];
         
         // Orientation
         [self _setTransformForCurrentOrientation:NO];
@@ -146,10 +187,18 @@ static CGFloat kIndicatorSize = 40.0;
 
 
 - (void)show {
-	[self retain];
-	
+//	[self retain];
 	if (!_hudWindow) {
 		_hudWindow = [SSHUDWindow defaultWindow];
+	}
+	
+	id<UIApplicationDelegate> delegate = [[UIApplication sharedApplication] delegate];
+	if ([delegate respondsToSelector:@selector(window)]) {
+        _keyWindow = [delegate performSelector:@selector(window)];
+	}
+	else {
+		// unable to get main window from app delegate
+		_keyWindow = [[UIApplication sharedApplication] keyWindow];
 	}
 	
 	_hudWindow.alpha = 0.0f;
@@ -229,7 +278,7 @@ static CGFloat kIndicatorSize = 40.0;
 
 
 - (void)dismiss {
-	[self autorelease];
+//	[self autorelease];
 	[self dismissAnimated:YES];
 }
 
@@ -251,11 +300,12 @@ static CGFloat kIndicatorSize = 40.0;
 	[UIView setAnimationDuration:0.2];
 	self.alpha = 0.0f;
 	[UIView commitAnimations];
-	
+
+	[UIView beginAnimations:@"SSHUDViewFadeOutWindow" context:nil];
+	_hudWindow.alpha = 0.0f;
+	[UIView commitAnimations];
+
 	if (animated) {
-		[UIView beginAnimations:@"SSHUDViewFadeOutWindow" context:nil];
-		_hudWindow.alpha = 0.0f;
-		[UIView commitAnimations];
 		[self performSelector:@selector(_removeWindow) withObject:nil afterDelay:0.3];
 	} else {
 		[self _removeWindow];
@@ -263,35 +313,7 @@ static CGFloat kIndicatorSize = 40.0;
 }
 
 
-#pragma mark Getters
-
-- (BOOL)hidesVignette {
-	return _hudWindow.hidesVignette;
-}
-
-
-#pragma mark Setters
-
-- (void)setLoading:(BOOL)isLoading {
-	_loading = isLoading;
-	_activityIndicator.alpha = _loading ? 1.0 : 0.0;
-	[self setNeedsDisplay];
-}
-
-
-- (void)setTextLabelHidden:(BOOL)hidden {
-	_textLabelHidden = hidden;
-	_textLabel.hidden = hidden;
-	[self setNeedsLayout];
-}
-
-
-- (void)setHidesVignette:(BOOL)hide {
-	_hudWindow.hidesVignette = hide;
-}
-
-
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 - (void)_setTransformForCurrentOrientation:(BOOL)animated {
 	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
@@ -338,8 +360,8 @@ static CGFloat kIndicatorSize = 40.0;
 	[_hudWindow resignKeyWindow];
 	_hudWindow = nil;
 	
-	// Return focus to the first window
-	[[[[UIApplication sharedApplication] windows] objectAtIndex:0] makeKeyWindow];
+	// Return focus to the main window
+	[_keyWindow makeKeyWindow];
 }
 
 @end
