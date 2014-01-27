@@ -10,11 +10,11 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Login page";
+"SignInPageTitle" = "Страница Входа";
 
 "SignInButton" = "Login";
 
-"UsernamePlaceholder" = "Username";
+"UsernamePlaceholder" = "Имя пользователя";
 
 "PasswordPlaceholder" = "Password";
 
@@ -23,35 +23,35 @@
  * Documents
  */
 
-"TakePicture" = "Take a picture";
+"TakePicture" = "Сделать снимок";
 
-"NewFolderTitle" = "New folder";
+"NewFolderTitle" = "Новая папка";
 
-"RenameTitle" = "Rename";
+"RenameTitle" = "Переименовать";
 
-"Copy" = "Copy";
+"Copy" = "Копировать";
 
-"Move" = "Cut";
+"Move" = "Вырезать";
 
-"Paste" = "Paste";
+"Paste" = "Вставить";
 
-"Documents" = "Documents";
+"Documents" = "Документы";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "Сделать снимок";
 
-"AttachedPhoto" = "Attached photo";
+"AttachedPhoto" = "Вложенное фото";
 
-"AddAPhoto" = "Add a photo";
+"AddAPhoto" = "Добавить фотографию";
 
-"PhotoLibrary" = "Photo library";
+"PhotoLibrary" = "Фотоальбом";
 
 // Drives types
 
-"general" = "general";
+"general" = "общее";
 
-"personal" = "personal";
+"personal" = "личное";
 
-"group" = "group";
+"group" = "групповое";
 
 
 /*
@@ -62,40 +62,40 @@
 
 "DoneButton" = "Done";
 
-"Delete" = "Delete";
+"Delete" = "Удалить";
 
-"Success" = "Success";
+"Success" = "Действие выполнено успешно";
 
-"Home" = "Home";
+"Home" = "Главная";
 
-"Loading" = "Loading...";
+"Loading" = "Загрузка...";
 
-"LoadingURL" = "Loading URL";
+"LoadingURL" = "Загрузка URL";
 
-"OK" = "OK";
+"OK" = "ОК";
 
-"Disconnect" = "Disconnect";
+"Disconnect" = "Отключиться";
 
-"Pull down to refresh..." = "Pull down to refresh...";
+"Pull down to refresh..." = "Потяните вниз, чтобы обновить...";
 
-"Release to refresh..." = "Release to refresh...";
+"Release to refresh..." = "Отпустите, чтобы обновить...";
 
-"Last Updated: %@" = "Last updated: %@";
+"Last Updated: %@" = "Последнее обновление: %@";
 
-"Required" = "Required";
+"Required" = "Требуется";
 
-"Optional" = "Optional";
+"Optional" = "Опционально";
 
-"Fullscreen" = "Fullscreen";
+"Fullscreen" = "Полноэкранный режим";
 
-"Close" = "Close";
+"Close" = "Закрыть";
 
 
 /*
  * Settings
  */
 
-"Settings" = "Settings";
+"Settings" = "Настройки";
 
 "RememberMe" = "Remember me";
 
@@ -105,7 +105,7 @@
 
 "ShowPrivateDrive" = "Show my private drive";
 
-"Language" = "Languages";
+"Language" = "Языки";
 
 "English" = "English";
 
@@ -113,9 +113,9 @@
 
 "Send" = "Send";
 
-"ServerList" = "Server list";
+"ServerList" = "Список серверов";
 
-"NewServer" = "New server";
+"NewServer" = "Новый сервер";
 
 "ServerModify" = "Modify server";
 
@@ -127,36 +127,36 @@
 
 "ApplicationVersion" = "Application version";
 
-"ServerName" = "Server name";
+"ServerName" = "Имя сервера";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "URL-адрес сервера";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "The server returned invalid data.";
+"BadResponse" = "Сервер вернул недопустимые данные.";
 
-"NetworkConnection" = "Connection error";
+"NetworkConnection" = "Ошибка соединения";
 
-"Authorization" = "Login failed";
+"Authorization" = "Вход не выполнен";
 
-"WrongUserNamePassword" = "Impossible to connect, check your username and password";
+"WrongUserNamePassword" = "Невозможно подключиться, проверьте имя пользователя и пароль";
 
-"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"InvalidServer" = "Невозможно подключиться к внутренней сети, проверьте URL-адрес или обратитесь к администратору";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "Невозможно подключиться к внутренней сети, проверьте URL-адрес или обратитесь к администратору";
 
-"UserNameEmpty" = "Incorrect username";
+"UserNameEmpty" = "Неверное имя пользователя";
 
-"PasswordEmpty" = "Incorrect password";
+"PasswordEmpty" = "Неверный пароль";
 
-"SelectedDomainEmpty" = "No server specified";
+"SelectedDomainEmpty" = "Сервер не указан";
 
-"EmptyFolder" = "This folder is empty";
+"EmptyFolder" = "Эта папка пуста";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "Этот файл не может быть открыт в приложении";
 
 "NoActivities" = "No activity has been posted on your activity stream";
 
@@ -234,25 +234,25 @@
 
 "MessageComposer" = "Message composer";
 
-"ActivityStream" = "Activity stream";
+"ActivityStream" = "Лента активности";
 
-"News" = "News";
+"News" = "Новости";
 
 "Details" = "Подробная информация";
 
-"comments(%d)" = "Comments(%d)";
+"comments(%d)" = "Комментарии(%d)";
 
-"likes(%d)" = "Likes(%d)";
+"likes(%d)" = "\"Лайки\"(%d)";
 
-"YourComment" = "Your comment";
+"YourComment" = "Ваш комментарий";
 
 "GettingActivity" = "Getting activity";
 
 "UpdatingActivity" = "Updating activity";
 
-"PostingActivity" = "Post";
+"PostingActivity" = "Разместить";
 
-"CommentActivity" = "Comment";
+"CommentActivity" = "Комментировать";
 
 "GettingActivityDetail" = "Getting activity detail";
 
@@ -262,51 +262,51 @@
 
 "CreateWiki" = "has created the Wiki page:";
 
-"NewPost" = "has added a new post:";
+"NewPost" = "добавил(а) новое сообщение:";
 
-"UpdatePost" = "has updated a post:";
+"UpdatePost" = "обновил(а) сообщение:";
 
-"NewTopic" = "has posted a new topic:";
+"NewTopic" = "опубликовал(а) новую тему:";
 
-"UpdateTopic" = "has updated a topic:";
+"UpdateTopic" = "обновил(а) тему:";
 
-"UpdateQuestion" = "has updated the question:";
+"UpdateQuestion" = "обновил(а) вопрос:";
 
-"Answered" = "has answered to the question:";
+"Answered" = "ответил(а) на вопрос:";
 
-"Asked" = "has asked:";
+"Asked" = "спросил(а):";
 
-"EventAdded" = "added an event:";
+"EventAdded" = "добавил(а) событие:";
 
-"EventUpdated" = "has just updated the event:";
+"EventUpdated" = "только что обновил(а) событие:";
 
-"TaskAdded" = "added a task:";
+"TaskAdded" = "добавил(а) задачу:";
 
-"TaskUpdated" = "has just updated the task:";
+"TaskUpdated" = "только что обновил(а) задачу:";
 
-"Description" = "Description";
+"Description" = "Описание";
 
 "Location" = "Местоположение";
 
-"StartTime" = "Start time";
+"StartTime" = "Время начала";
 
-"EndTime" = "End time";
+"EndTime" = "Время окончания";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "Пока нет комментариев, прокомментируйте первым";
 
-"Image Preview" = "Image preview";
+"Image Preview" = "Предпросмотр изображения";
 
 "Change" = "Change";
 
-"Remove" = "Remove";
+"Remove" = "Удалить";
 
-"All Updates" = "All updates";
+"All Updates" = "Все обновления";
 
-"My Connections" = "My connections";
+"My Connections" = "Мои связи";
 
 "My Spaces" = "My spaces";
 
-"My Status" = "My status";
+"My Status" = "Мой статус";
 
 
 /*
@@ -320,27 +320,27 @@
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "ago";
+"DateFmt ago" = "назад";
 
-"DateFmt from now" = "from now";
+"DateFmt from now" = "с этого момента";
 
-"DateFmt Less than" = "Less than ";
+"DateFmt Less than" = "Меньше ";
 
-"DateFmt About" = "About ";
+"DateFmt About" = "Около ";
 
-"DateFmt Over" = "Over ";
+"DateFmt Over" = "Более ";
 
-"DateFmt Almost" = "Almost ";
+"DateFmt Almost" = "Почти ";
 
-"DateFmt seconds" = " seconds ";
+"DateFmt seconds" = " секунд ";
 
-"DateFmt minute" = " minute ";
+"DateFmt minute" = " минуты ";
 
-"DateFmt minutes" = " minutes ";
+"DateFmt minutes" = " минут ";
 
-"DateFmt hour" = " hour ";
+"DateFmt hour" = " часа ";
 
-"DateFmt hours" = " hours ";
+"DateFmt hours" = " часов ";
 
 "DateFmt day" = " day ";
 
@@ -358,7 +358,7 @@
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "Невозможно подключиться к внутренней сети, проверьте URL-адрес или обратитесь к администратору";
 
 "AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
 
@@ -368,7 +368,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "Невозможно подключиться к внутренней сети, проверьте URL-адрес или обратитесь к администратору";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
