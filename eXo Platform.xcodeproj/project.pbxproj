@@ -353,6 +353,12 @@
 		57A07117160FF48C002E2BAC /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5A15B51D54004F958C /* Default-Landscape@2x~ipad.png */; };
 		57A07118160FF48F002E2BAC /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5B15B51D54004F958C /* Default-Portrait~ipad.png */; };
 		57A07119160FF492002E2BAC /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5C15B51D54004F958C /* Default-Portrait@2x~ipad.png */; };
+		57AE31BC188E544200012211 /* NSBundle+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AE31BB188E544200012211 /* NSBundle+SSToolkitAdditions.m */; };
+		57AE31D2188E597000012211 /* hud-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE31CE188E597000012211 /* hud-check.png */; };
+		57AE31D3188E597000012211 /* hud-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE31CF188E597000012211 /* hud-check@2x.png */; };
+		57AE31D4188E597000012211 /* hud-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE31D0188E597000012211 /* hud-x.png */; };
+		57AE31D5188E597000012211 /* hud-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE31D1188E597000012211 /* hud-x@2x.png */; };
+		57AE31D8188E5ABF00012211 /* SSToolkitDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AE31D7188E5ABF00012211 /* SSToolkitDefines.m */; };
 		57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203215B6B7B800BF902F /* CredentialsViewController.m */; };
 		57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203515B6B7C800BF902F /* ServerListViewController.m */; };
 		57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */; };
@@ -1405,6 +1411,14 @@
 		579D50A815BD6689002F5D16 /* AuthTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthTabItem.m; sourceTree = "<group>"; };
 		579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSelectionView.h; sourceTree = "<group>"; };
 		579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthSelectionView.m; sourceTree = "<group>"; };
+		57AE31BA188E544200012211 /* NSBundle+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+SSToolkitAdditions.h"; sourceTree = "<group>"; };
+		57AE31BB188E544200012211 /* NSBundle+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+SSToolkitAdditions.m"; sourceTree = "<group>"; };
+		57AE31CE188E597000012211 /* hud-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hud-check.png"; path = "HUD/hud-check.png"; sourceTree = "<group>"; };
+		57AE31CF188E597000012211 /* hud-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hud-check@2x.png"; path = "HUD/hud-check@2x.png"; sourceTree = "<group>"; };
+		57AE31D0188E597000012211 /* hud-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hud-x.png"; path = "HUD/hud-x.png"; sourceTree = "<group>"; };
+		57AE31D1188E597000012211 /* hud-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hud-x@2x.png"; path = "HUD/hud-x@2x.png"; sourceTree = "<group>"; };
+		57AE31D6188E5ABF00012211 /* SSToolkitDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolkitDefines.h; sourceTree = "<group>"; };
+		57AE31D7188E5ABF00012211 /* SSToolkitDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolkitDefines.m; sourceTree = "<group>"; };
 		57C5203115B6B7B700BF902F /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
 		57C5203215B6B7B800BF902F /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
 		57C5203415B6B7C700BF902F /* ServerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerListViewController.h; sourceTree = "<group>"; };
@@ -2483,6 +2497,10 @@
 		46616C72137C729400D53D3D /* HUD */ = {
 			isa = PBXGroup;
 			children = (
+				57AE31D6188E5ABF00012211 /* SSToolkitDefines.h */,
+				57AE31D7188E5ABF00012211 /* SSToolkitDefines.m */,
+				57AE31BA188E544200012211 /* NSBundle+SSToolkitAdditions.h */,
+				57AE31BB188E544200012211 /* NSBundle+SSToolkitAdditions.m */,
 				46616C73137C729400D53D3D /* SSHUDView.h */,
 				46616C74137C729400D53D3D /* SSHUDView.m */,
 				46616C75137C729400D53D3D /* SSHUDWindow.h */,
@@ -3893,6 +3911,10 @@
 		894733F913370F4F00B0AD11 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				57AE31CE188E597000012211 /* hud-check.png */,
+				57AE31CF188E597000012211 /* hud-check@2x.png */,
+				57AE31D0188E597000012211 /* hud-x.png */,
+				57AE31D1188E597000012211 /* hud-x@2x.png */,
 				7D993C2C1769A8E50035835F /* CloudSignup */,
 				A65EAFB6159AFBDF00E598E0 /* HomeMenuBg.png */,
 				A65EAFB7159AFBDF00E598E0 /* HomeMenuBg@2x.png */,
@@ -4579,6 +4601,7 @@
 				8937A3441338993900D8B474 /* DocumentsViewController_iPad.xib in Resources */,
 				8937A3451338993900D8B474 /* GadgetDisplayViewController_iPad.xib in Resources */,
 				8937A3481338993900D8B474 /* AuthenticateViewController_iPad.xib in Resources */,
+				57AE31D2188E597000012211 /* hud-check.png in Resources */,
 				8937A34A1338993900D8B474 /* MainWindow_iPad.xib in Resources */,
 				8937A34D1338993900D8B474 /* FileFolderActionsViewController_iPad.xib in Resources */,
 				8937A3621338994400D8B474 /* GadgetDisplayViewController_iPhone.xib in Resources */,
@@ -4603,6 +4626,7 @@
 				46CAF6B913797B590017C959 /* HomeLogoutiPhone.png in Resources */,
 				46CAF6BD13797D320017C959 /* HomeLogoutiPhone@2x.png in Resources */,
 				46CAF74F1379907B0017C959 /* HomeActivityStreamsIconiPhone.png in Resources */,
+				57AE31D4188E597000012211 /* hud-x.png in Resources */,
 				46CAF7511379907B0017C959 /* HomeChatIconiPhone.png in Resources */,
 				46CAF7521379907B0017C959 /* HomeDashboardIconiPhone.png in Resources */,
 				46CAF7531379907B0017C959 /* HomeDocumentsIconiPhone.png in Resources */,
@@ -4700,6 +4724,7 @@
 				7CA74B9313C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png in Resources */,
 				7CA74B9413C31AB50006306D /* MessageComposerTextfieldBackground@2x.png in Resources */,
 				7CA74B9A13C31AD20006306D /* MessageComposerButtonCancelBackground.png in Resources */,
+				57AE31D5188E597000012211 /* hud-x@2x.png in Resources */,
 				7CA74B9B13C31AD20006306D /* MessageComposerButtonCancelBackgroundSelected.png in Resources */,
 				7CA74B9C13C31AD20006306D /* MessageComposerButtonSendBackground.png in Resources */,
 				7CA74B9D13C31AD20006306D /* MessageComposerButtonSendBackgroundSelected.png in Resources */,
@@ -4845,6 +4870,7 @@
 				A6B4EF2E156F98920007D631 /* activityDetailLikersAccessoryViewSelected.png in Resources */,
 				A6B4EF2F156F98920007D631 /* activityDetailLikersAccessoryViewSelected@2x.png in Resources */,
 				A6B54E52157DBEA6005BFFCD /* activity-detail-action-dislike.png in Resources */,
+				57AE31D3188E597000012211 /* hud-check@2x.png in Resources */,
 				A6B54E53157DBEA6005BFFCD /* activity-detail-action-like.png in Resources */,
 				A69B04B4157F168F003DDFDF /* activity-detail-tabs-comment-icon.png in Resources */,
 				A69B04B6157F17F0003DDFDF /* activity-detail-tabs-likers-icon.png in Resources */,
@@ -5230,6 +5256,7 @@
 				8958E66514A9B7D300580EEB /* CXMLDocument_PrivateExtensions.m in Sources */,
 				8958E66714A9B7D300580EEB /* CXMLElement.m in Sources */,
 				8958E66914A9B7D300580EEB /* CXMLNode.m in Sources */,
+				57AE31D8188E5ABF00012211 /* SSToolkitDefines.m in Sources */,
 				8958E66B14A9B7D300580EEB /* CXMLNode_PrivateExtensions.m in Sources */,
 				3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */,
 				8958E66D14A9B7D300580EEB /* CXMLNode_XPathExtensions.m in Sources */,
@@ -5283,6 +5310,7 @@
 				7D013B9517827A67005F42D2 /* CloudViewUtils.m in Sources */,
 				7D02603817867EEC00C3FA24 /* WelcomeViewController_iPad.m in Sources */,
 				7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */,
+				57AE31BC188E544200012211 /* NSBundle+SSToolkitAdditions.m in Sources */,
 				7DBB7023178A65B5002B387B /* MailInputViewController_iPad.m in Sources */,
 				7DBB7039178A66FD002B387B /* GreetingViewController_iPad.m in Sources */,
 				7DBB7048178A7A9D002B387B /* AlreadyAccountViewController_iPad.m in Sources */,

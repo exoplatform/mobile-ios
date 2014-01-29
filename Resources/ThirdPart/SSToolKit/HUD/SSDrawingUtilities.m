@@ -90,26 +90,41 @@ void SSDrawRoundedRect(CGContextRef context, CGRect rect, CGFloat cornerRadius) 
 }
 
 
-CGGradientRef SSGradientWithColors(UIColor *topColor, UIColor *bottomColor) {
-	return SSGradientWithColorsAndLocations(topColor, bottomColor, 0.0f, 1.0f);
+CGGradientRef SSCreateGradientWithColors(NSArray *colors) {
+	return SSCreateGradientWithColorsAndLocations(colors, nil);
 }
 
 
-CGGradientRef SSGradientWithColorsAndLocations(UIColor *topColor, UIColor *bottomColor, CGFloat topLocation, CGFloat bottomLocation) {
-	CGFloat locations[] = {
-		topLocation,
-		bottomLocation
-	};
+CGGradientRef SSCreateGradientWithColorsAndLocations(NSArray *colors, NSArray *locations) {
+	NSUInteger colorsCount = [colors count];
+	if (colorsCount < 2) {
+		return nil;
+	}
 	
-	CGColorRef topCGColor = topColor.CGColor;
-	CGColorSpaceRef colorSpace = CGColorGetColorSpace(topCGColor);
-	NSArray *colors = [[NSArray alloc] initWithObjects:(id)topCGColor, (id)bottomColor.CGColor, nil];
-	CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)colors, locations);
-	[colors release];
+	CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors objectAtIndex:0] CGColor]);
+	
+	CGFloat *gradientLocations = NULL;
+	NSUInteger locationsCount = [locations count];
+	if (locationsCount == colorsCount) {
+		gradientLocations = (CGFloat *)malloc(sizeof(CGFloat) * locationsCount);
+		for (NSUInteger i = 0; i < locationsCount; i++) {
+			gradientLocations[i] = [[locations objectAtIndex:i] floatValue];
+		}
+	}
+	
+	NSMutableArray *gradientColors = [[NSMutableArray alloc] initWithCapacity:colorsCount];
+	[colors enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
+		[gradientColors addObject:(id)[(UIColor *)object CGColor]];
+	}];
+	
+	CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)gradientColors, gradientLocations);
+	
+	if (gradientLocations) {
+		free(gradientLocations);
+	}
 	
 	return gradient;
 }
-
 
 
 void SSDrawGradientInRect(CGContextRef context, CGGradientRef gradient, CGRect rect) {
