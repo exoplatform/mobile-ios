@@ -107,9 +107,9 @@
 
 "Language" = "Языки";
 
-"English" = "English";
+"English" = "Английский";
 
-"French" = "French";
+"French" = "Французский";
 
 "Send" = "Send";
 
@@ -386,7 +386,7 @@
 
 "TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
 
-"Username" = "Username";
+"Username" = "Имя пользователя";
 
 "Password" = "Password";
 
