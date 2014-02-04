@@ -12,11 +12,11 @@
 
 "SignInPageTitle" = "Страница Входа";
 
-"SignInButton" = "Login";
+"SignInButton" = "Авторизация";
 
 "UsernamePlaceholder" = "Имя пользователя";
 
-"PasswordPlaceholder" = "Password";
+"PasswordPlaceholder" = "Пароль";
 
 
 /* 
@@ -60,7 +60,7 @@
 
 "Cancel" = "#{word.cancel}";
 
-"DoneButton" = "Done";
+"DoneButton" = "Готово";
 
 "Delete" = "Удалить";
 
@@ -111,7 +111,7 @@
 
 "French" = "Французский";
 
-"Send" = "Send";
+"Send" = "Отправить";
 
 "ServerList" = "Список серверов";
 
@@ -162,7 +162,7 @@
 
 "NoGadget" = "You have no gadgets in your Apps";
 
-"MessageInfo" = "Information";
+"MessageInfo" = "Информация";
 
 "MessageErrorServer" = "You cannot add a server with an empty name or URL";
 
@@ -170,13 +170,13 @@
 
 "InvalidUrl" = "Invalid URL";
 
-"FileError" = "Error";
+"FileError" = "Ошибка";
 
 "CameraNotAvailable" = "The camera is not available";
 
 "GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
 
-"Error" = "Error";
+"Error" = "Ошибка";
 
 "NoMessageComment" = "You must enter some text to comment";
 
@@ -296,7 +296,7 @@
 
 "Image Preview" = "Предпросмотр изображения";
 
-"Change" = "Change";
+"Change" = "Изменить";
 
 "Remove" = "Удалить";
 
@@ -388,7 +388,7 @@
 
 "Username" = "Имя пользователя";
 
-"Password" = "Password";
+"Password" = "Пароль";
 
 "Your credentials" = "Your credentials";
 
