@@ -103,7 +103,7 @@
 
 "KeepSelectedStream" = "Запомнить мой фильтр";
 
-"ShowPrivateDrive" = "Show my private drive";
+"ShowPrivateDrive" = "Показать мой приватный диск";
 
 "Language" = "Языки";
 
@@ -117,15 +117,15 @@
 
 "NewServer" = "Новый сервер";
 
-"ServerModify" = "Modify server";
+"ServerModify" = "Модифицировать сервер";
 
-"ApplicationsInformation" = "Application information";
+"ApplicationsInformation" = "Сведения о приложении";
 
-"ServerVersion" = "Server version";
+"ServerVersion" = "Версия сервера";
 
-"ApplicationEdition" = "Application edition";
+"ApplicationEdition" = "Редакция приложения";
 
-"ApplicationVersion" = "Application version";
+"ApplicationVersion" = "Версия приложения";
 
 "ServerName" = "Имя сервера";
 
@@ -158,57 +158,57 @@
 
 "UnreadableFile" = "Этот файл не может быть открыт в приложении";
 
-"NoActivities" = "No activity has been posted on your activity stream";
+"NoActivities" = "Вы еще ничего не опубликовали в своей ленте активности";
 
-"NoGadget" = "You have no gadgets in your Apps";
+"NoGadget" = "В ваших Приложениях нет гаджетов";
 
 "MessageInfo" = "Информация";
 
-"MessageErrorServer" = "You cannot add a server with an empty name or URL";
+"MessageErrorServer" = "Невозможно добавить сервер без названия или URL-адреса";
 
-"MessageErrorExist" = "This server already exists";
+"MessageErrorExist" = "Этот сервер уже существует";
 
-"InvalidUrl" = "Invalid URL";
+"InvalidUrl" = "Недопустимый URL-адрес";
 
 "FileError" = "Ошибка";
 
-"CameraNotAvailable" = "The camera is not available";
+"CameraNotAvailable" = "Камера не доступна";
 
-"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"GadgetsCannotBeRetrieved" = "Не удается получить гаджеты";
 
 "Error" = "Ошибка";
 
-"NoMessageComment" = "You must enter some text to comment";
+"NoMessageComment" = "Вы должны ввести текст, чтобы прокомментировать";
 
-"NoMessagePosting" = "You must enter some text to post";
+"NoMessagePosting" = "Вы должны ввести текст для опубликования";
 
-"GettingActionCannotBeCompleted" = "You cannot get activities";
+"GettingActionCannotBeCompleted" = "Вы не можете получать деятельность";
 
-"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"UpdatingActionCannotBeCompleted" = "Вы не можете обновлять деятельность";
 
-"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"LikingActionCannotBeCompleted" = "Вы не можете ставить лайки деятельности";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "Вы не можете убирать лайки с деятельности";
 
-"PostingActionCannotBeCompleted" = "You cannot post a message";
+"PostingActionCannotBeCompleted" = "Вы не можете публиковать сообщения";
 
-"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"CommentActionCannotBeCompleted" = "Вы не можете оставлять комментарии";
 
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"LoadMoreActionCannotBeCompleted" = "Произошла ошибка, перезагрузка деятельности.";
 
-"NotCompliant" = "The application can not run on the Platform edition";
+"NotCompliant" = "Приложение не может работать на редакции Платформы";
 
-"SpecialCharacters" = "Special characters are not allowed";
+"SpecialCharacters" = "Нельзя использовать специальные символы";
 
-"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+"DashboardsCannotBeRetrieved" = "Не удается получить панели мониторинга";
 
-"FolderNameAlreadyExist" = "This folder already exists";
+"FolderNameAlreadyExist" = "Эта папка уже существует";
 
-"FolderNameEmpty" = "The folder name is empty";
+"FolderNameEmpty" = "Папка не имеет названия";
 
-"Cannot move file to its location" = "Cannot move the file to the same location";
+"Cannot move file to its location" = "Нельзя переместить файл на то же место";
 
-"Cannot transfer file" = "Cannot transfer the file";
+"Cannot transfer file" = "Не удается передать файл";
 
 
 /*
@@ -222,17 +222,17 @@
  * Activity stream
  */
 
-"numOfLikers" = "%d likers";
+"numOfLikers" = "%d лайкеры";
 
-"numOfLiker" = "%d liker";
+"numOfLiker" = "%d лайкер";
 
-"likeThisActivity" = "%d people like this";
+"likeThisActivity" = "%d людям это нравится";
 
-"NoOneLikeThis" = "No one likes this";
+"NoOneLikeThis" = "Никому это не понравилось";
 
-"ActivityDetails" = "Activity details";
+"ActivityDetails" = "Детальное описание деятельности";
 
-"MessageComposer" = "Message composer";
+"MessageComposer" = "Компоновщик сообщений";
 
 "ActivityStream" = "Лента активности";
 
@@ -246,21 +246,21 @@
 
 "YourComment" = "Ваш комментарий";
 
-"GettingActivity" = "Getting activity";
+"GettingActivity" = "Получение деятельности";
 
-"UpdatingActivity" = "Updating activity";
+"UpdatingActivity" = "Обновление деятельности";
 
 "PostingActivity" = "Разместить";
 
 "CommentActivity" = "Комментировать";
 
-"GettingActivityDetail" = "Getting activity detail";
+"GettingActivityDetail" = "Получение детального описания деятельности";
 
-"UpdatingActivityDetail" = "Updating activity detail";
+"UpdatingActivityDetail" = "Обновление детального описания деятельности";
 
-"EditWiki" = "has edited the Wiki page:";
+"EditWiki" = "отредактировал(а) Вики-страницу:";
 
-"CreateWiki" = "has created the Wiki page:";
+"CreateWiki" = "создал(а) Вики-страницу:";
 
 "NewPost" = "добавил(а) новое сообщение:";
 
@@ -302,9 +302,9 @@
 
 "All Updates" = "Все обновления";
 
-"My Connections" = "Мои связи";
+"My Connections" = "Мои контакты";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "Мои области";
 
 "My Status" = "Мой статус";
 
@@ -324,35 +324,35 @@
 
 "DateFmt from now" = "с этого момента";
 
-"DateFmt Less than" = "Меньше ";
+"DateFmt Less than" = "Менее, чем ";
 
 "DateFmt About" = "Около ";
 
-"DateFmt Over" = "Более ";
+"DateFmt Over" = "Более, чем ";
 
 "DateFmt Almost" = "Почти ";
 
 "DateFmt seconds" = " секунд ";
 
-"DateFmt minute" = " минуты ";
+"DateFmt minute" = " минуту ";
 
 "DateFmt minutes" = " минут ";
 
-"DateFmt hour" = " часа ";
+"DateFmt hour" = " час ";
 
 "DateFmt hours" = " часов ";
 
-"DateFmt day" = " day ";
+"DateFmt day" = " день ";
 
-"DateFmt days" = " days ";
+"DateFmt days" = " дней ";
 
-"DateFmt month" = " month ";
+"DateFmt month" = " месяц ";
 
-"DateFmt months" = " months ";
+"DateFmt months" = " месяцев ";
 
-"DateFmt year" = " year ";
+"DateFmt year" = " год ";
 
-"DateFmt years" = " years ";
+"DateFmt years" = " лет ";
 
 
 /*
