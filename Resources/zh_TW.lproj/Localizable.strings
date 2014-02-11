@@ -1,0 +1,403 @@
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
+
+/*
+ * Authenticate
+ */
+
+"SignInPageTitle" = "Login page";
+
+"SignInButton" = "登錄";
+
+"UsernamePlaceholder" = "使用者名稱";
+
+"PasswordPlaceholder" = "密碼";
+
+
+/* 
+ * Documents
+ */
+
+"TakePicture" = "拍張照片";
+
+"NewFolderTitle" = "新的資料夾";
+
+"RenameTitle" = "重新命名";
+
+"Copy" = "複製";
+
+"Move" = "剪下";
+
+"Paste" = "貼上 ";
+
+"Documents" = "文件";
+
+"TakeAPicture" = "拍張照片";
+
+"AttachedPhoto" = "附加照片";
+
+"AddAPhoto" = "增加照片";
+
+"PhotoLibrary" = "照片庫";
+
+// Drives types
+
+"general" = "一般";
+
+"personal" = "個人";
+
+"group" = "群組";
+
+
+/*
+ * General
+ */
+
+"Cancel" = "#{word.cancel}";
+
+"DoneButton" = "完成";
+
+"Delete" = "刪除";
+
+"Success" = "成功\n";
+
+"Home" = "首頁";
+
+"Loading" = "載入中...";
+
+"LoadingURL" = "載入 URL";
+
+"OK" = "OK";
+
+"Disconnect" = "中斷連線";
+
+"Pull down to refresh..." = "下拉刷新......";
+
+"Release to refresh..." = "放開後刷新...";
+
+"Last Updated: %@" = "最後更新: %@";
+
+"Required" = "必填";
+
+"Optional" = "可選";
+
+"Fullscreen" = "全屏顯示";
+
+"Close" = "關閉";
+
+
+/*
+ * Settings
+ */
+
+"Settings" = "設定";
+
+"RememberMe" = "Remember me";
+
+"AutoLogin" = "Auto login";
+
+"KeepSelectedStream" = "記得我的篩選器";
+
+"ShowPrivateDrive" = "顯示我私人磁碟機";
+
+"Language" = "語言";
+
+"English" = "英文";
+
+"French" = "法文";
+
+"Send" = "發送";
+
+"ServerList" = "伺服器清單";
+
+"NewServer" = "新伺服器";
+
+"ServerModify" = "修改伺服器";
+
+"ApplicationsInformation" = "應用程式資訊";
+
+"ServerVersion" = "伺服器版本";
+
+"ApplicationEdition" = "應用程式版";
+
+"ApplicationVersion" = "應用程式版本";
+
+"ServerName" = "伺服器名稱";
+
+"ServerUrl" = "伺服器 URL";
+
+
+/*
+ * Errors & Warnings
+ */
+
+"BadResponse" = "伺服器返回的資料無效。";
+
+"NetworkConnection" = "連接錯誤";
+
+"Authorization" = "登入失敗";
+
+"WrongUserNamePassword" = "無法連接，請檢查您的使用者名稱和密碼";
+
+"InvalidServer" = "無法連接到您的內部網路，請檢查 URL 或與您的管理員聯繫";
+
+"NetworkConnectionFailed" = "無法連接到您的內部網路，請檢查 URL 或與您的管理員聯繫";
+
+"UserNameEmpty" = "錯誤的使用者名稱";
+
+"PasswordEmpty" = "密碼錯誤";
+
+"SelectedDomainEmpty" = "沒有指定伺服器";
+
+"EmptyFolder" = "此資料夾是空的";
+
+"UnreadableFile" = "此檔案不能打開在應用程式";
+
+"NoActivities" = "活動已張貼於你的活動流";
+
+"NoGadget" = "你沒有小工具在您的應用程式";
+
+"MessageInfo" = "資訊";
+
+"MessageErrorServer" = "您不能增加一個空名稱或 URL 的伺服器";
+
+"MessageErrorExist" = "此伺服器已存在";
+
+"InvalidUrl" = "URL不正確 ";
+
+"FileError" = "錯誤";
+
+"CameraNotAvailable" = "相機不可用";
+
+"GadgetsCannotBeRetrieved" = "不能檢索小工具。";
+
+"Error" = "錯誤";
+
+"NoMessageComment" = "您必須輸入一些文本以發表評論";
+
+"NoMessagePosting" = "您必須輸入一些文本發佈";
+
+"GettingActionCannotBeCompleted" = "你不能獲取活動";
+
+"UpdatingActionCannotBeCompleted" = "您不能更新該活動";
+
+"LikingActionCannotBeCompleted" = "你不能喜歡活動";
+
+"UnLikeActionCannotBeCompleted" = "你不能不喜歡活動";
+
+"PostingActionCannotBeCompleted" = "你不能發佈一條訊息";
+
+"CommentActionCannotBeCompleted" = "你不能發表評論";
+
+"LoadMoreActionCannotBeCompleted" = "出現了一個錯誤，各項活動，重新載入。";
+
+"NotCompliant" = "應用程式不能運行在平台版";
+
+"SpecialCharacters" = "不允許使用特殊字元。";
+
+"DashboardsCannotBeRetrieved" = "無法檢索儀表板";
+
+"FolderNameAlreadyExist" = "資料夾已存在";
+
+"FolderNameEmpty" = "資料夾的名稱為空";
+
+"Cannot move file to its location" = "不能將檔案移動到相同的位置";
+
+"Cannot transfer file" = "無法傳送檔案";
+
+
+/*
+ * Apps
+ */
+
+"Dashboard" = "應用程式";
+
+
+/*
+ * Activity stream
+ */
+
+"numOfLikers" = "%d 喜歡的人";
+
+"numOfLiker" = "%d 喜歡的人";
+
+"likeThisActivity" = "%d 人都喜歡這個";
+
+"NoOneLikeThis" = "沒有人喜歡這";
+
+"ActivityDetails" = "活動詳細資訊";
+
+"MessageComposer" = "消息作曲家";
+
+"ActivityStream" = "活動流";
+
+"News" = "新聞";
+
+"Details" = "詳細資料";
+
+"comments(%d)" = "評論(%d)";
+
+"likes(%d)" = "喜歡的人(%d)";
+
+"YourComment" = "您的評論";
+
+"GettingActivity" = "獲取活動";
+
+"UpdatingActivity" = "更新活動";
+
+"PostingActivity" = "文章";
+
+"CommentActivity" = "評論";
+
+"GettingActivityDetail" = "獲取活動詳細資訊";
+
+"UpdatingActivityDetail" = "更新活動詳細資訊";
+
+"EditWiki" = "已經編輯 Wiki 頁面：";
+
+"CreateWiki" = "已建立 Wiki 頁面：";
+
+"NewPost" = "已增加一個新職位：";
+
+"UpdatePost" = "已更新公告：";
+
+"NewTopic" = "已發佈一個新的主題：";
+
+"UpdateTopic" = "已更新主題：";
+
+"UpdateQuestion" = "已更新的問題：\n";
+
+"Answered" = "已回答的問題：";
+
+"Asked" = "已要求：";
+
+"EventAdded" = "增加事件：";
+
+"EventUpdated" = "剛更新的事件：";
+
+"TaskAdded" = "增加一項任務：";
+
+"TaskUpdated" = "剛更新任務：";
+
+"Description" = "描述";
+
+"Location" = "位置";
+
+"StartTime" = "開始時間";
+
+"EndTime" = "結束時間";
+
+"NoComment" = "沒有人評論，成為第一個";
+
+"Image Preview" = "圖片預覽";
+
+"Change" = "變更";
+
+"Remove" = "刪除 ";
+
+"All Updates" = "所有更新";
+
+"My Connections" = "我的連接";
+
+"My Spaces" = "我的空間";
+
+"My Status" = "我的狀態";
+
+
+/*
+ * Date message converter
+ */
+
+"Today" = "今天";
+
+"DateFmt" = "%1$@%2$@%3$@%4$@";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "以前";
+
+"DateFmt from now" = "從現在開始";
+
+"DateFmt Less than" = "小於";
+
+"DateFmt About" = "關於";
+
+"DateFmt Over" = "超過";
+
+"DateFmt Almost" = "幾乎";
+
+"DateFmt seconds" = "秒";
+
+"DateFmt minute" = "分鐘";
+
+"DateFmt minutes" = "分鐘";
+
+"DateFmt hour" = "小時";
+
+"DateFmt hours" = "小時";
+
+"DateFmt day" = "天";
+
+"DateFmt days" = "天";
+
+"DateFmt month" = "月";
+
+"DateFmt months" = "幾個月";
+
+"DateFmt year" = "年";
+
+"DateFmt years" = "年";
+
+
+/*
+ * Cloud sign up assistant 
+ */
+"ServerNotAvailable" = "無法連接到您的內部網路，請檢查 URL 或與您的管理員聯繫";
+
+"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+
+"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "無法連接到您的內部網路，請檢查 URL 或與您的管理員聯繫";
+
+"EmailIsBlacklisted" = "Please use your company email to sign up";
+
+"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"IncorrectEmailFormat" = "Please input a valid email address";
+
+"IncorrectPassword" = "Impossible to connect, check your password";
+
+"UserNotExist" = " No account exists for this email, check your email or signup";
+
+"TenantNotExist" = "No account exists for this email, check your email or signup";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+
+"Username" = "使用者名稱";
+
+"Password" = "密碼";
+
+"Your credentials" = "Your credentials";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";
