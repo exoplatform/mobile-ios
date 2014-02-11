@@ -100,7 +100,7 @@ typedef enum {
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
                              settingViewSectionTitleKey, @"Language",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
@@ -127,7 +127,7 @@ typedef enum {
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
                              settingViewSectionTitleKey, @"Language",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", nil],
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
@@ -498,14 +498,26 @@ typedef enum {
                 
             }
             
-            if(indexPath.row == 0)
-            {
-                cell.imageView.image = [UIImage imageNamed:@"EN.gif"];                
+            switch (indexPath.row) {
+                case 0:
+                    cell.imageView.image = [UIImage imageNamed:@"EN.gif"];
+                    break;
+                case 1:
+                    cell.imageView.image = [UIImage imageNamed:@"FR.gif"];
+                    break;
+                case 2:
+                    cell.imageView.image = [UIImage imageNamed:@"DE.gif"];
+                    break;
             }
-            else
-            {
-                cell.imageView.image = [UIImage imageNamed:@"FR.gif"];
-            }
+            
+//            if(indexPath.row == 0)
+//            {
+//                cell.imageView.image = [UIImage imageNamed:@"EN.gif"];                
+//            }
+//            else
+//            {
+//                cell.imageView.image = [UIImage imageNamed:@"FR.gif"];
+//            }
             
             //Put the checkmark
             int selectedLanguage = [[LanguageHelper sharedInstance] getSelectedLanguage];
