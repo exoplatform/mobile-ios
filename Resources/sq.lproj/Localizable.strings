@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "#{word.cancel}";
+"Cancel" = "{crwdns6710958:0}{word.cancel}{crwdne6710958:0}";
 
 "DoneButton" = "{crwdns6617113:0}{crwdne6617113:0}";
 
@@ -111,9 +111,9 @@
 
 "French" = "{crwdns6617135:0}{crwdne6617135:0}";
 
-"German" = "German";
+"German" = "{crwdns6752613:0}{crwdne6752613:0}";
 
-"Spanish" = "Spanish";
+"Spanish" = "{crwdns6752614:0}{crwdne6752614:0}";
 
 "Send" = "{crwdns6617136:0}{crwdne6617136:0}";
 
