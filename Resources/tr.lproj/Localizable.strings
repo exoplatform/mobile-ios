@@ -58,7 +58,7 @@
  * General
  */
 
-"Cancel" = "#{word.cancel}";
+"Cancel" = "İptal";
 
 "DoneButton" = "Bitmiş";
 
@@ -113,7 +113,7 @@
 
 "German" = "Almanca";
 
-"Spanish" = "Spanish";
+"Spanish" = "İspanyolca";
 
 "Send" = "Gönder";
 
