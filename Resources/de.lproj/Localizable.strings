@@ -65,7 +65,7 @@
  * General
  */
 
-"Cancel" = "#{word.cancel}";
+"Cancel" = "Abbrechen";
 
 "DoneButton" = "Erledigt";
 
