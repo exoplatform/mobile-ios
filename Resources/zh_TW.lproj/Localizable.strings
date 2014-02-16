@@ -160,7 +160,7 @@
 
 "EmptyFolder" = "此資料夾是空的";
 
-"UnreadableFile" = "此檔案不能打開在應用程式";
+"UnreadableFile" = "This file cannot be opened on the application";
 
 "NoActivities" = "活動已張貼於你的活動流";
 
@@ -296,7 +296,7 @@
 
 "EndTime" = "結束時間";
 
-"NoComment" = "沒有人評論，成為第一個";
+"NoComment" = "No one has commented, be the first one";
 
 "Image Preview" = "圖片預覽";
 
