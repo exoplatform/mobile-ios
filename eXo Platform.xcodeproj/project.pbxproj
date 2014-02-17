@@ -366,6 +366,7 @@
 		57C8020918AA0C3400A06EA7 /* DE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 57C8020818AA0C3400A06EA7 /* DE.gif */; };
 		57ED5A1415BFEA8E0007C49F /* CredentialsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */; };
 		57ED5A1615BFEA9F0007C49F /* ServerListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */; };
+		57EEB3D718B1BF6D00C6B2E8 /* ES.gif in Resources */ = {isa = PBXBuildFile; fileRef = 57EEB3D618B1BF6D00C6B2E8 /* ES.gif */; };
 		57FB189915FD7AF0001F5C20 /* ExoStackScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB189815FD7AF0001F5C20 /* ExoStackScrollViewController.m */; };
 		57FB19CE15FD9670001F5C20 /* LoginProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB19CB15FD9670001F5C20 /* LoginProxy.m */; };
 		57FB19D215FD96C0001F5C20 /* UserPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB19D115FD96C0001F5C20 /* UserPreferencesManager.m */; };
@@ -1431,6 +1432,9 @@
 		57C8020818AA0C3400A06EA7 /* DE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DE.gif; sourceTree = "<group>"; };
 		57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController_iPhone.xib; sourceTree = "<group>"; };
 		57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPhone.xib; sourceTree = "<group>"; };
+		57EEB3D418B1BC3D00C6B2E8 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		57EEB3D518B1BC3D00C6B2E8 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		57EEB3D618B1BF6D00C6B2E8 /* ES.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ES.gif; sourceTree = "<group>"; };
 		57FB189715FD7AF0001F5C20 /* ExoStackScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoStackScrollViewController.h; sourceTree = "<group>"; };
 		57FB189815FD7AF0001F5C20 /* ExoStackScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoStackScrollViewController.m; sourceTree = "<group>"; };
 		57FB19CA15FD9670001F5C20 /* LoginProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginProxy.h; sourceTree = "<group>"; };
@@ -3948,6 +3952,7 @@
 		8947342B13370F5000B0AD11 /* Flags */ = {
 			isa = PBXGroup;
 			children = (
+				57EEB3D618B1BF6D00C6B2E8 /* ES.gif */,
 				57C8020818AA0C3400A06EA7 /* DE.gif */,
 				8947342C13370F5000B0AD11 /* EN.gif */,
 				8947342D13370F5000B0AD11 /* FR.gif */,
@@ -4366,6 +4371,7 @@
 				en,
 				fr,
 				de,
+				"es-ES",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -4853,6 +4859,7 @@
 				1F20ACDF145968080068A2CB /* ActivityForumDetailMessageTableViewCell.xib in Resources */,
 				1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */,
 				1FCD8093145E9A62009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib in Resources */,
+				57EEB3D718B1BF6D00C6B2E8 /* ES.gif in Resources */,
 				1F92437C145FE0C000D5AF85 /* ActivityLinkTableViewCell.xib in Resources */,
 				890D6D27146387D100A80EF4 /* DashboardTableViewCell.xib in Resources */,
 				1FD91DC1147109A200DBDED0 /* ActivityAnswerTableViewCell.xib in Resources */,
@@ -5397,6 +5404,7 @@
 			children = (
 				8958E61214A9885900580EEB /* en */,
 				57C8020718AA07C700A06EA7 /* de */,
+				57EEB3D518B1BC3D00C6B2E8 /* es-ES */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -5407,6 +5415,7 @@
 				A66B7F2815AAC1D700218C06 /* en */,
 				A66B7F2A15AAC1E400218C06 /* fr */,
 				57C8020618AA07C700A06EA7 /* de */,
+				57EEB3D418B1BC3D00C6B2E8 /* es-ES */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
