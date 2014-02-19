@@ -5,214 +5,403 @@
   Created by Le Thanh Quang on 7/9/12.
   Copyright (c) 2012 eXoPlatform. All rights reserved.
 */
+
 /*
  * Authenticate
  */
+
 "SignInPageTitle" = "Authentification";
+
 "SignInButton" = "Connexion";
-"UsernamePlaceholder"="Utilisateur";
-"PasswordPlaceholder"="Mot de passe";
+
+"UsernamePlaceholder" = "Utilisateur";
+
+"PasswordPlaceholder" = "Mot de passe";
+
 
 /*
  * Documents
  */
+
 "TakePicture" = "Prendre une photo";
+
 "NewFolderTitle" = "Nouveau dossier";
+
 "RenameTitle" = "Renommer";
+
 "Copy" = "Copier";
+
 "Move" = "Déplacer";
+
 "Paste" = "Coller";
+
 "Documents" = "Documents";
+
 "TakeAPicture" = "Prendre une photo";
+
 "AttachedPhoto" = "Photo attachée";
+
 "AddAPhoto" = "Ajouter une photo";
+
 "PhotoLibrary" = "Librarie de photos";
+
 // Drives types
-"general"="général";
-"personal"="personnel";
-"group"="groupe";
+
+"general" = "général";
+
+"personal" = "personnel";
+
+"group" = "groupe";
+
 
 /*
  * General
  */
+
 "Cancel" = "Annuler";
+
 "DoneButton" = "OK";
+
 "Delete" = "Supprimer";
+
 "Success" = "Succès";
+
 "Home" = "Accueil";
+
 "Loading" = "Chargement...";
+
 "LoadingURL" = "Chargement de l'URL";
-"OK" = "OK";
-"Disconnect"="Déconnecter";
-"Pull down to refresh..."="Tirez pour rafraîchir...";
-"Release to refresh..."="Relâchez pour rafraîchir...";
-"Last Updated: %@"="Dernière mise à jour: %@";
-"Required"="Requis";
-"Optional"="Optionnel";
-"Fullscreen"="Plein-écran";
-"Close"="Fermer";
+
+"OK" = "Valider";
+
+"Disconnect" = "Déconnecter";
+
+"Pull down to refresh..." = "Tirez pour rafraîchir...";
+
+"Release to refresh..." = "Relâchez pour rafraîchir...";
+
+"Last Updated: %@" = "Dernière mise à jour: %@";
+
+"Required" = "Requis";
+
+"Optional" = "Optionnel";
+
+"Fullscreen" = "Plein-écran";
+
+"Close" = "Fermer";
+
 
 /*
  * Settings
  */
+
 "Settings" = "Réglages";
+
 "RememberMe" = "Se souvenir de moi";
+
 "AutoLogin" = "Connexion automatique";
-"KeepSelectedStream"="Garder mon filtre";
-"ShowPrivateDrive"="Afficher le lecteur privé";
+
+"KeepSelectedStream" = "Garder mon filtre";
+
+"ShowPrivateDrive" = "Afficher le lecteur privé";
+
 "Language" = "Langues";
+
 "English" = "Anglais (English)";
+
 "French" = "Français (French)";
+
+"German" = "Allemand";
+
+"Spanish" = "Espagnol";
+
 "Send" = "Envoyer";
+
 "ServerList" = "Liste des serveurs";
+
 "NewServer" = "Nouveau serveur";
+
 "ServerModify" = "Modifier le serveur";
+
 "ApplicationsInformation" = "Informations de l'application";
+
 "ServerVersion" = "Version du serveur";
+
 "ApplicationEdition" = "Édition du serveur";
+
 "ApplicationVersion" = "Version de l'application";
+
 "ServerName" = "Nom du serveur";
+
 "ServerUrl" = "URL du serveur";
+
 
 /*
  * Errors & Warnings
  */
+
 "BadResponse" = "Le serveur a renvoyé des données incorrectes.";
+
 "NetworkConnection" = "Erreur de connexion";
+
 "Authorization" = "L'authentification a échoué";
+
 "WrongUserNamePassword" = "Nom d'utilisateur ou mot de passe incorrect";
+
 "InvalidServer" = "Connexion au serveur impossible, vérifiez son URL";
+
 "NetworkConnectionFailed" = "Connexion au serveur impossible";
+
 "UserNameEmpty" = "Veuillez entrer un nom d'utilisateur";
+
 "PasswordEmpty" = "Veuillez entrer un mot de passe";
+
 "SelectedDomainEmpty" = "Veuillez choisir un serveur";
+
 "EmptyFolder" = "Ce dossier est vide";
+
 "UnreadableFile" = "Ce fichier ne peut pas être ouvert depuis l'application";
+
 "NoActivities" = "Aucune activité n'a encore été postée sur votre flux de news";
+
 "NoGadget" = "Aucun gadget n'est présent dans vos Apps";
+
 "MessageInfo" = "Message d'information";
+
 "MessageErrorServer" = "Impossible d'ajouter un serveur sans nom ou sans URL";
+
 "MessageErrorExist" = "Ce serveur existe déjà";
+
 "InvalidUrl" = "URL invalide";
+
 "FileError" = "Erreur";
+
 "CameraNotAvailable" = "Aucun appareil photo n'est disponible";
+
 "GadgetsCannotBeRetrieved" = "Impossible de charger vos apps";
+
 "Error" = "Erreur";
+
 "NoMessageComment" = "Aucun message pour votre commentaire";
+
 "NoMessagePosting" = "Aucun message à envoyer";
+
 "GettingActionCannotBeCompleted" = "Échec du chargement";
+
 "UpdatingActionCannotBeCompleted" = "Échec du chargement";
+
 "LikingActionCannotBeCompleted" = "Échec de l'action";
+
 "UnLikeActionCannotBeCompleted" = "Échec de l'action";
+
 "PostingActionCannotBeCompleted" = "Envoi de l'activité impossible";
+
 "CommentActionCannotBeCompleted" = "Échec de l'action";
+
 "LoadMoreActionCannotBeCompleted" = "Une erreur s'est produite, les activités se rechargent.";
+
 "NotCompliant" = "L'application ne peut pas être éxécutée sur cette édition de Platform";
+
 "SpecialCharacters" = "Les caractères spéciaux ne sont pas autorisés";
-"DashboardsCannotBeRetrieved"="Impossible de récupérer les dashboards";
-"FolderNameAlreadyExist"="Ce dossier existe déjà";
-"FolderNameEmpty"="Le nom du dossier ne peut être vide";
-"Cannot move file to its location"="Impossible de copier le fichier au même emplacement";
-"Cannot transfer file"="Impossible de transférer le fichier";
+
+"DashboardsCannotBeRetrieved" = "Impossible de récupérer les dashboards";
+
+"FolderNameAlreadyExist" = "Ce dossier existe déjà";
+
+"FolderNameEmpty" = "Le nom du dossier ne peut être vide";
+
+"Cannot move file to its location" = "Impossible de copier le fichier au même emplacement";
+
+"Cannot transfer file" = "Impossible de transférer le fichier";
+
 
 /*
  * Apps
  */
-"Dashboard" = "Apps";
+
+"Dashboard" = "Applications";
+
 
 /*
  * Activity stream
  */
+
 "numOfLikers" = "%d aimes";
+
 "numOfLiker" = "%d aime";
+
 "likeThisActivity" = "%d aiment l'activité";
+
 "NoOneLikeThis" = "Personne n'aime cela pour le moment";
+
 "ActivityDetails" = "Détails de l'activité";
+
 "MessageComposer" = "Composez votre message";
+
 "ActivityStream" = "Flux d'activités";
+
 "News" = "Nouvelles";
+
 "Details" = "Détails";
+
 "comments(%d)" = "Commentaires (%d)";
+
 "likes(%d)" = "Personnes qui aiment (%d)";
+
 "YourComment" = "Votre commentaire";
+
 "GettingActivity" = "Chargement de l'activité";
+
 "UpdatingActivity" = "Mise à jour de l'activité";
+
 "PostingActivity" = "Envoi de l'activité";
+
 "CommentActivity" = "Envoi du commentaire";
+
 "GettingActivityDetail" = "Chargement des détails de l'activité";
+
 "UpdatingActivityDetail" = "Mise à jour des détails de l'activité";
+
 "EditWiki" = "a édité la page Wiki:";
+
 "CreateWiki" = "a créé la page Wiki:";
+
 "NewPost" = "a ajouté un nouveau post:";
+
 "UpdatePost" = "a mis à jour le post:";
+
 "NewTopic" = "a posté une nouvelle discussion:";
+
 "UpdateTopic" = "a mis à jour la discussion:";
+
 "UpdateQuestion" = "a mis à jour la question:";
+
 "Answered" = "a répondu à la question:";
+
 "Asked" = "a ajouter la question:";
+
 "EventAdded" = "a ajouté l'événement:";
+
 "EventUpdated" = "a mis à jour l'événement:";
+
 "TaskAdded" = "a ajouté la tâche";
+
 "TaskUpdated" = "a mis à jour la tâche";
+
 "Description" = "Description";
+
 "Location" = "Lieu";
+
 "StartTime" = "Date de début";
+
 "EndTime" = "Date de fin";
+
 "NoComment" = "Personne n'a commenté, soyez le premier";
+
 "Image Preview" = "Image sélectionnée";
+
 "Change" = "Remplacer";
+
 "Remove" = "Supprimer";
-"All Updates"="Fil d'actualités";
-"My Connections"="Mes connexions";
-"My Spaces"="Mes espaces";
-"My Status"="Mon statut";
+
+"All Updates" = "Fil d'actualités";
+
+"My Connections" = "Mes connexions";
+
+"My Spaces" = "Mes espaces";
+
+"My Status" = "Mon statut";
+
 
 /* 
  * Date message converter
  */
-"Today"="Aujourd'hui";
-"DateFmt"="%4$@%1$@%2$@%3$@"; // Order of the message: direction - modifier - number - measure
-"DateFmt ago"="Il y a ";
-"DateFmt from now"="Dans ";
-"DateFmt Less than"="Moins de ";
-"DateFmt About"="environ ";
-"DateFmt Over"="";
-"DateFmt Almost"="presque";
-"DateFmt seconds"=" secondes";
-"DateFmt minute"=" minute";
-"DateFmt minutes"=" minutes";
-"DateFmt hour"=" heure";
-"DateFmt hours"=" heures";
-"DateFmt day"=" jour";
-"DateFmt days"=" jours";
-"DateFmt month"=" mois";
-"DateFmt months"=" mois";
-"DateFmt year"=" an";
-"DateFmt years"=" ans";
+
+"Today" = "Aujourd'hui";
+
+"DateFmt" = "%4$@%1$@%2$@%3$@";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "Il y a ";
+
+"DateFmt from now" = "Dans ";
+
+"DateFmt Less than" = "Moins de ";
+
+"DateFmt About" = "environ ";
+
+"DateFmt Over" = "Sur ";
+
+"DateFmt Almost" = "presque";
+
+"DateFmt seconds" = " secondes";
+
+"DateFmt minute" = " minute";
+
+"DateFmt minutes" = " minutes";
+
+"DateFmt hour" = " heure";
+
+"DateFmt hours" = " heures";
+
+"DateFmt day" = " jour";
+
+"DateFmt days" = " jours";
+
+"DateFmt month" = " mois";
+
+"DateFmt months" = " mois";
+
+"DateFmt year" = " an";
+
+"DateFmt years" = " ans";
+
 
 /*
  * Cloud sign up assistant
  */
-"ServerNotAvailable"="Impossible to connect to your intranet, please check its URL or contact your administrator";
-"AccountAlreadyExists"="An account already exists for this email, you will be redirected to the login screen";
-"NumberUsersExceed"=" Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
-"StartTheConfigurationAssistant"="Lancer l'assistant de configuration";
-"eXoCloudConfigurationAssistant"="eXo";
-"ServiceUnavailable"="Impossible to connect to your intranet, please check its URL or contact your administrator" ;
-"EmailIsBlacklisted"="Please use your company email to sign up";
-"NumberOfUsersExceed"="Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
-"IncorrectEmailFormat"="Please input a valid email address";
-"IncorrectPassword"="Impossible to connect, check your password";
-"UserNotExist"=" No account exists for this email, check your email or signup";
-"TenantNotExist"="No account exists for this email, check your email or signup";
-"TenantResuming"="We are restoring your intranet, please retry in few minutes";
-"TenantCreation"="We are creating your intranet. Please come back when you receive our welcome email";
-"Username"="Username";
-"Password"="Password";
-"Your credentials"="Your credentials";
-"EnterServerUrl"="Enter the URL of your intranet";
-"EnterCredentials"="Enter your credentials and Login";
-"My intranet"="My Intranet";
-"SignupInternalServerError"="The maximum number of users has been reached for your intranet, please contact your administrator";
-"NoTenantName"="There is no tenant name";
+"ServerNotAvailable" = "Connexion au serveur impossible, vérifiez son URL";
 
+"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+
+"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"StartTheConfigurationAssistant" = "Lancer l'assistant de configuration";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "Connexion au serveur impossible, vérifiez son URL";
+
+"EmailIsBlacklisted" = "Please use your company email to sign up";
+
+"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"IncorrectEmailFormat" = "Please input a valid email address";
+
+"IncorrectPassword" = "Impossible to connect, check your password";
+
+"UserNotExist" = " No account exists for this email, check your email or signup";
+
+"TenantNotExist" = "No account exists for this email, check your email or signup";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+
+"Username" = "Utilisateur";
+
+"Password" = "Mot de passe";
+
+"Your credentials" = "Vos identifiants";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";

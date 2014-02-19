@@ -13,11 +13,11 @@
 #define kFilterTabTopBottomPadding 5.0
 #define kFilterTabLeftRightPadding 10.0
 #define kFilterTabItemSeparateSpace 0.0
-#define kFilterTabItemPadding (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 25. : 8.0)
+#define kFilterTabItemPadding (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 25. : 10.)
 
 #define kActivityStreamTabItemTitle @"item title"
 #define kActivityStreamTabItem @"custom JMItem"
-#define kActivityStreamTabItemFont (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? [UIFont systemFontOfSize:11.] : [UIFont systemFontOfSize:10.])
+#define kActivityStreamTabItemFont [UIFont systemFontOfSize:12.]
 
 @interface ActivityStreamTabbar (PrivateMethods)
 - (float)calculateItemSpacing; 
@@ -136,6 +136,9 @@
         [self.tabView setBackgroundLayer:nil];
         CGRect contentRect = self.tabView.bounds;
         float itemSpacing = (contentRect.size.width - [self calculateItemSpacing]) / ([_listOfItems count] - 1);
+        // we keep a minimum space between items of 3 pts
+        // if the total width of the items is larger than the screen, the area becomes scrollable
+        if (itemSpacing < 3.) itemSpacing = 3.;
         [self.tabView setItemSpacing:itemSpacing];
         float itemWidth = (contentRect.size.width - kFilterTabItemSeparateSpace * (_listOfItems.count - 1)) / (_listOfItems.count);
         for (NSDictionary *dict in _listOfItems) {
