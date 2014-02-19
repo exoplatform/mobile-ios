@@ -324,7 +324,7 @@
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "vor";
+"DateFmt ago" = "vor ";
 
 "DateFmt from now" = "von heute an";
 

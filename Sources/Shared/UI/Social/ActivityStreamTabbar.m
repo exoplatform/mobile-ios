@@ -13,11 +13,11 @@
 #define kFilterTabTopBottomPadding 5.0
 #define kFilterTabLeftRightPadding 10.0
 #define kFilterTabItemSeparateSpace 0.0
-#define kFilterTabItemPadding (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 25. : 15.)
+#define kFilterTabItemPadding (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 25. : 10.)
 
 #define kActivityStreamTabItemTitle @"item title"
 #define kActivityStreamTabItem @"custom JMItem"
-#define kActivityStreamTabItemFont [UIFont systemFontOfSize:11.]
+#define kActivityStreamTabItemFont [UIFont systemFontOfSize:12.]
 
 @interface ActivityStreamTabbar (PrivateMethods)
 - (float)calculateItemSpacing; 
