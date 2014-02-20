@@ -20,7 +20,7 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 // Core (private)
-#import "Three20Core/private/TTExtensionInfoPrivate.h"
+#import "Three20Core/TTExtensionInfoPrivate.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
