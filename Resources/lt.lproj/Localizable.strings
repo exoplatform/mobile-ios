@@ -10,40 +10,40 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Login page";
+"SignInPageTitle" = "Prisijungimo puslapis";
 
-"SignInButton" = "Login";
+"SignInButton" = "Prisijungti";
 
-"UsernamePlaceholder" = "Username";
+"UsernamePlaceholder" = "Vartotojo vardas";
 
-"PasswordPlaceholder" = "Password";
+"PasswordPlaceholder" = "Slaptažodis";
 
 
 /* 
  * Documents
  */
 
-"TakePicture" = "Take a picture";
+"TakePicture" = "Nufotografuoti";
 
-"NewFolderTitle" = "New folder";
+"NewFolderTitle" = "Naujas aplankas";
 
-"RenameTitle" = "Rename";
+"RenameTitle" = "Pervadinti";
 
-"Copy" = "Copy";
+"Copy" = "Kopijuoti";
 
-"Move" = "Cut";
+"Move" = "Iškirpti";
 
-"Paste" = "Paste";
+"Paste" = "Įklijuoti";
 
-"Documents" = "Documents";
+"Documents" = "Dokumentai";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "Nufotografuoti";
 
-"AttachedPhoto" = "Attached photo";
+"AttachedPhoto" = "Prisegta nuotrauka";
 
-"AddAPhoto" = "Add a photo";
+"AddAPhoto" = "Pridėti nuotrauką";
 
-"PhotoLibrary" = "Photo library";
+"PhotoLibrary" = "Nuotraukų albumas";
 
 // Drives types
 
@@ -101,19 +101,19 @@
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "Atsiminti mano filtrą";
 
 "ShowPrivateDrive" = "Show my private drive";
 
 "Language" = "Languages";
 
-"English" = "English";
+"English" = "Anglų";
 
-"French" = "French";
+"French" = "Prancūzų";
 
-"German" = "German";
+"German" = "Vokiečių";
 
-"Spanish" = "Spanish";
+"Spanish" = "Ispanų";
 
 "Send" = "Send";
 
@@ -148,9 +148,9 @@
 
 "WrongUserNamePassword" = "Impossible to connect, check your username and password";
 
-"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"InvalidServer" = "Neįmanoma prisijungti prie intraneto, prašome patikrinti savo URL arba kreipkitės į administratorių";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "Neįmanoma prisijungti prie intraneto, prašome patikrinti savo URL arba kreipkitės į administratorių";
 
 "UserNameEmpty" = "Incorrect username";
 
@@ -160,7 +160,7 @@
 
 "EmptyFolder" = "This folder is empty";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "Šis failas negali būti atidarytas programoje";
 
 "NoActivities" = "No activity has been posted on your activity stream";
 
@@ -219,7 +219,7 @@
  * Apps
  */
 
-"Dashboard" = "Apps";
+"Dashboard" = "Programos";
 
 
 /*
@@ -296,7 +296,7 @@
 
 "EndTime" = "End time";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "Dar niekas nekomentavo, būkite pirmi";
 
 "Image Preview" = "Image preview";
 
@@ -362,7 +362,7 @@
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "Neįmanoma prisijungti prie intraneto, prašome patikrinti savo URL arba kreipkitės į administratorių";
 
 "AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
 
@@ -372,7 +372,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "Neįmanoma prisijungti prie intraneto, prašome patikrinti savo URL arba kreipkitės į administratorių";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
