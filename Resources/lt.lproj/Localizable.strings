@@ -51,38 +51,38 @@
 
 "personal" = "personal";
 
-"group" = "group";
+"group" = "grupė";
 
 
 /*
  * General
  */
 
-"Cancel" = "Cancel";
+"Cancel" = "Atšaukti";
 
-"DoneButton" = "Done";
+"DoneButton" = "Atlikta";
 
-"Delete" = "Delete";
+"Delete" = "Ištrinti";
 
-"Success" = "Success";
+"Success" = "Sėkmingai";
 
-"Home" = "Home";
+"Home" = "Pagrindinis";
 
-"Loading" = "Loading...";
+"Loading" = "Kraunama...";
 
-"LoadingURL" = "Loading URL";
+"LoadingURL" = "Kraunamas URL";
 
-"OK" = "OK";
+"OK" = "Gerai";
 
-"Disconnect" = "Disconnect";
+"Disconnect" = "Atsijungti";
 
 "Pull down to refresh..." = "Pull down to refresh...";
 
 "Release to refresh..." = "Release to refresh...";
 
-"Last Updated: %@" = "Last updated: %@";
+"Last Updated: %@" = "Paskutinis atnaujinimas: %@";
 
-"Required" = "Required";
+"Required" = "Reikalinga";
 
 "Optional" = "Optional";
 
@@ -125,92 +125,92 @@
 
 "ApplicationsInformation" = "Application information";
 
-"ServerVersion" = "Server version";
+"ServerVersion" = "Serverio versija";
 
-"ApplicationEdition" = "Application edition";
+"ApplicationEdition" = "Programos leidinys";
 
-"ApplicationVersion" = "Application version";
+"ApplicationVersion" = "Programos versija";
 
-"ServerName" = "Server name";
+"ServerName" = "Serverio pavadinimas";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "Serverio URL";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "The server returned invalid data.";
+"BadResponse" = "Serveris grąžino klaidingus duomenis.";
 
-"NetworkConnection" = "Connection error";
+"NetworkConnection" = "Prisijungimo klaida";
 
-"Authorization" = "Login failed";
+"Authorization" = "Nepavyko prisijungti";
 
-"WrongUserNamePassword" = "Impossible to connect, check your username and password";
+"WrongUserNamePassword" = "Neįmanoma prisijungti, patikrinkite savo vartotojo vardą ir slaptažodį";
 
 "InvalidServer" = "Neįmanoma prisijungti prie intraneto, prašome patikrinti savo URL arba kreipkitės į administratorių";
 
 "NetworkConnectionFailed" = "Neįmanoma prisijungti prie intraneto, prašome patikrinti savo URL arba kreipkitės į administratorių";
 
-"UserNameEmpty" = "Incorrect username";
+"UserNameEmpty" = "Neteisingas vartotojo vardas";
 
-"PasswordEmpty" = "Incorrect password";
+"PasswordEmpty" = "Neteisingas slaptažodis";
 
-"SelectedDomainEmpty" = "No server specified";
+"SelectedDomainEmpty" = "Nėra nurodyto serverio";
 
-"EmptyFolder" = "This folder is empty";
+"EmptyFolder" = "Šis aplankas yra tuščias";
 
 "UnreadableFile" = "Šis failas negali būti atidarytas programoje";
 
-"NoActivities" = "No activity has been posted on your activity stream";
+"NoActivities" = "Jokia veikla nebuvo pastebėta jūsų veiklos sraute";
 
 "NoGadget" = "You have no gadgets in your Apps";
 
-"MessageInfo" = "Information";
+"MessageInfo" = "Informacija";
 
-"MessageErrorServer" = "You cannot add a server with an empty name or URL";
+"MessageErrorServer" = "Jūs negalite pridėti serverio su tuščiu pavadinimu arba URL";
 
-"MessageErrorExist" = "This server already exists";
+"MessageErrorExist" = "Šis serveris jau egzistuoja";
 
-"InvalidUrl" = "Invalid URL";
+"InvalidUrl" = "Klaidingas URL";
 
-"FileError" = "Error";
+"FileError" = "Klaida";
 
-"CameraNotAvailable" = "The camera is not available";
+"CameraNotAvailable" = "Kamera negalima";
 
 "GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
 
-"Error" = "Error";
+"Error" = "Klaida";
 
-"NoMessageComment" = "You must enter some text to comment";
+"NoMessageComment" = "Jūs turite įvesti šiek tiek teksto, kad galėtumėte komentuoti";
 
-"NoMessagePosting" = "You must enter some text to post";
+"NoMessagePosting" = "Jūs turite įvesti šiek tiek teksto, kad galėtumėte siųsti";
 
-"GettingActionCannotBeCompleted" = "You cannot get activities";
+"GettingActionCannotBeCompleted" = "Jūs negalite gauti veiklos";
 
-"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"UpdatingActionCannotBeCompleted" = "Jūs negalite atnaujinti veiklos";
 
-"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"LikingActionCannotBeCompleted" = "Jūs negalite įvertinti veiklos";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "Jūs negalite neigiamai įvertinti veiklos";
 
-"PostingActionCannotBeCompleted" = "You cannot post a message";
+"PostingActionCannotBeCompleted" = "Jūs negalite rašyti žinutės";
 
-"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"CommentActionCannotBeCompleted" = "Jūs negalite rašyti komentaro";
 
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"LoadMoreActionCannotBeCompleted" = "Įvyko klaida, veikla yra perkraunama.";
 
-"NotCompliant" = "The application can not run on the Platform edition";
+"NotCompliant" = "Programa negali veikti šioje platformos laidoje";
 
-"SpecialCharacters" = "Special characters are not allowed";
+"SpecialCharacters" = "Specialūs simboliai neleidžiami";
 
 "DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
 
-"FolderNameAlreadyExist" = "This folder already exists";
+"FolderNameAlreadyExist" = "Šis aplankas jau egzistuoja";
 
-"FolderNameEmpty" = "The folder name is empty";
+"FolderNameEmpty" = "Aplanko pavadinimas yra tuščias";
 
-"Cannot move file to its location" = "Cannot move the file to the same location";
+"Cannot move file to its location" = "Negalima perkelti failo į tą pačią vietą";
 
 "Cannot transfer file" = "Cannot transfer the file";
 
@@ -226,33 +226,33 @@
  * Activity stream
  */
 
-"numOfLikers" = "%d likers";
+"numOfLikers" = "%d mėgėjų";
 
-"numOfLiker" = "%d liker";
+"numOfLiker" = "%d mėgėjas";
 
 "likeThisActivity" = "%d people like this";
 
-"NoOneLikeThis" = "No one likes this";
+"NoOneLikeThis" = "Tai niekam nepatinka ";
 
 "ActivityDetails" = "Activity details";
 
 "MessageComposer" = "Message composer";
 
-"ActivityStream" = "Activity stream";
+"ActivityStream" = "Veiklos srautas";
 
-"News" = "News";
+"News" = "Naujienos";
 
-"Details" = "Details";
+"Details" = "Išsamiai";
 
-"comments(%d)" = "Comments(%d)";
+"comments(%d)" = "Komentarai(%d)";
 
-"likes(%d)" = "Likes(%d)";
+"likes(%d)" = "Įvertinimai(%d)";
 
-"YourComment" = "Your comment";
+"YourComment" = "Jūsų komentaras";
 
-"GettingActivity" = "Getting activity";
+"GettingActivity" = "Gaunama veiklos";
 
-"UpdatingActivity" = "Updating activity";
+"UpdatingActivity" = "Atnaujinama veikla";
 
 "PostingActivity" = "Post";
 
@@ -262,62 +262,62 @@
 
 "UpdatingActivityDetail" = "Updating activity detail";
 
-"EditWiki" = "has edited the Wiki page:";
+"EditWiki" = "redagavo Wiki puslapį:";
 
-"CreateWiki" = "has created the Wiki page:";
+"CreateWiki" = "sukūrė Wiki puslapį:";
 
-"NewPost" = "has added a new post:";
+"NewPost" = "pridėjo naują pranešimą:";
 
-"UpdatePost" = "has updated a post:";
+"UpdatePost" = "atnaujino pranešimą:";
 
-"NewTopic" = "has posted a new topic:";
+"NewTopic" = "sukūrė naują temą:";
 
-"UpdateTopic" = "has updated a topic:";
+"UpdateTopic" = "atnaujino temą:";
 
-"UpdateQuestion" = "has updated the question:";
+"UpdateQuestion" = "atnaujino klausimą:";
 
-"Answered" = "has answered to the question:";
+"Answered" = "atsakė į klausimą:";
 
-"Asked" = "has asked:";
+"Asked" = "paklausė:";
 
-"EventAdded" = "added an event:";
+"EventAdded" = "pridėjo įvykį:";
 
-"EventUpdated" = "has just updated the event:";
+"EventUpdated" = "atnaujino įvykį:";
 
-"TaskAdded" = "added a task:";
+"TaskAdded" = "pridėjo užduotį:";
 
-"TaskUpdated" = "has just updated the task:";
+"TaskUpdated" = "atnaujino užduotį:";
 
-"Description" = "Description";
+"Description" = "Aprašymas";
 
-"Location" = "Location";
+"Location" = "Vieta";
 
-"StartTime" = "Start time";
+"StartTime" = "Pradžios laikas";
 
-"EndTime" = "End time";
+"EndTime" = "Pabaigos laikas";
 
 "NoComment" = "Dar niekas nekomentavo, būkite pirmi";
 
-"Image Preview" = "Image preview";
+"Image Preview" = "Paveikslėlio peržiūra";
 
-"Change" = "Change";
+"Change" = "Pakeisti";
 
-"Remove" = "Remove";
+"Remove" = "Pašalinti";
 
-"All Updates" = "All updates";
+"All Updates" = "Visi atnaujinimai";
 
 "My Connections" = "My connections";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "Mano erdvės";
 
-"My Status" = "My status";
+"My Status" = "Mano būsena";
 
 
 /*
  * Date message converter
  */
 
-"Today" = "Today";
+"Today" = "Šiandien";
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
@@ -328,33 +328,33 @@
 
 "DateFmt from now" = "from now";
 
-"DateFmt Less than" = "Less than ";
+"DateFmt Less than" = "mažiau nei ";
 
-"DateFmt About" = "About ";
+"DateFmt About" = "Apie ";
 
 "DateFmt Over" = "Over ";
 
-"DateFmt Almost" = "Almost ";
+"DateFmt Almost" = "Beveik ";
 
 "DateFmt seconds" = " seconds ";
 
-"DateFmt minute" = " minute ";
+"DateFmt minute" = " minutė ";
 
 "DateFmt minutes" = " minutes ";
 
-"DateFmt hour" = " hour ";
+"DateFmt hour" = " valanda ";
 
 "DateFmt hours" = " hours ";
 
-"DateFmt day" = " day ";
+"DateFmt day" = " diena ";
 
 "DateFmt days" = " days ";
 
-"DateFmt month" = " month ";
+"DateFmt month" = " mėnuo ";
 
 "DateFmt months" = " months ";
 
-"DateFmt year" = " year ";
+"DateFmt year" = " metai ";
 
 "DateFmt years" = " years ";
 
