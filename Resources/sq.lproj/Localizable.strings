@@ -10,353 +10,353 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "{crwdns6617094:0}{crwdne6617094:0}";
+"SignInPageTitle" = "crwdns6617094:0crwdne6617094:0";
 
-"SignInButton" = "{crwdns6617095:0}{crwdne6617095:0}";
+"SignInButton" = "crwdns6617095:0crwdne6617095:0";
 
-"UsernamePlaceholder" = "{crwdns6617096:0}{crwdne6617096:0}";
+"UsernamePlaceholder" = "crwdns6617096:0crwdne6617096:0";
 
-"PasswordPlaceholder" = "{crwdns6617097:0}{crwdne6617097:0}";
+"PasswordPlaceholder" = "crwdns6617097:0crwdne6617097:0";
 
 
 /* 
  * Documents
  */
 
-"TakePicture" = "{crwdns6617098:0}{crwdne6617098:0}";
+"TakePicture" = "crwdns6617098:0crwdne6617098:0";
 
-"NewFolderTitle" = "{crwdns6617099:0}{crwdne6617099:0}";
+"NewFolderTitle" = "crwdns6617099:0crwdne6617099:0";
 
-"RenameTitle" = "{crwdns6617100:0}{crwdne6617100:0}";
+"RenameTitle" = "crwdns6617100:0crwdne6617100:0";
 
-"Copy" = "{crwdns6617101:0}{crwdne6617101:0}";
+"Copy" = "crwdns6617101:0crwdne6617101:0";
 
-"Move" = "{crwdns6617102:0}{crwdne6617102:0}";
+"Move" = "crwdns6617102:0crwdne6617102:0";
 
-"Paste" = "{crwdns6617103:0}{crwdne6617103:0}";
+"Paste" = "crwdns6617103:0crwdne6617103:0";
 
-"Documents" = "{crwdns6617104:0}{crwdne6617104:0}";
+"Documents" = "crwdns6617104:0crwdne6617104:0";
 
-"TakeAPicture" = "{crwdns6617105:0}{crwdne6617105:0}";
+"TakeAPicture" = "crwdns6617105:0crwdne6617105:0";
 
-"AttachedPhoto" = "{crwdns6617106:0}{crwdne6617106:0}";
+"AttachedPhoto" = "crwdns6617106:0crwdne6617106:0";
 
-"AddAPhoto" = "{crwdns6617107:0}{crwdne6617107:0}";
+"AddAPhoto" = "crwdns6617107:0crwdne6617107:0";
 
-"PhotoLibrary" = "{crwdns6617108:0}{crwdne6617108:0}";
+"PhotoLibrary" = "crwdns6617108:0crwdne6617108:0";
 
 // Drives types
 
-"general" = "{crwdns6617109:0}{crwdne6617109:0}";
+"general" = "crwdns6617109:0crwdne6617109:0";
 
-"personal" = "{crwdns6617110:0}{crwdne6617110:0}";
+"personal" = "crwdns6617110:0crwdne6617110:0";
 
-"group" = "{crwdns6617111:0}{crwdne6617111:0}";
+"group" = "crwdns6617111:0crwdne6617111:0";
 
 
 /*
  * General
  */
 
-"Cancel" = "{crwdns6752616:0}{crwdne6752616:0}";
+"Cancel" = "crwdns6752616:0crwdne6752616:0";
 
-"DoneButton" = "{crwdns6617113:0}{crwdne6617113:0}";
+"DoneButton" = "crwdns6617113:0crwdne6617113:0";
 
-"Delete" = "{crwdns6617114:0}{crwdne6617114:0}";
+"Delete" = "crwdns6617114:0crwdne6617114:0";
 
-"Success" = "{crwdns6617115:0}{crwdne6617115:0}";
+"Success" = "crwdns6617115:0crwdne6617115:0";
 
-"Home" = "{crwdns6617116:0}{crwdne6617116:0}";
+"Home" = "crwdns6617116:0crwdne6617116:0";
 
-"Loading" = "{crwdns6617117:0}{crwdne6617117:0}";
+"Loading" = "crwdns6617117:0crwdne6617117:0";
 
-"LoadingURL" = "{crwdns6617118:0}{crwdne6617118:0}";
+"LoadingURL" = "crwdns6617118:0crwdne6617118:0";
 
-"OK" = "{crwdns6617119:0}{crwdne6617119:0}";
+"OK" = "crwdns6617119:0crwdne6617119:0";
 
-"Disconnect" = "{crwdns6617120:0}{crwdne6617120:0}";
+"Disconnect" = "crwdns6617120:0crwdne6617120:0";
 
-"Pull down to refresh..." = "{crwdns6617121:0}{crwdne6617121:0}";
+"Pull down to refresh..." = "crwdns6617121:0crwdne6617121:0";
 
-"Release to refresh..." = "{crwdns6617122:0}{crwdne6617122:0}";
+"Release to refresh..." = "crwdns6617122:0crwdne6617122:0";
 
-"Last Updated: %@" = "{crwdns6617123:0}%@{crwdne6617123:0}";
+"Last Updated: %@" = "crwdns6617123:0%@crwdne6617123:0";
 
-"Required" = "{crwdns6617124:0}{crwdne6617124:0}";
+"Required" = "crwdns6617124:0crwdne6617124:0";
 
-"Optional" = "{crwdns6617125:0}{crwdne6617125:0}";
+"Optional" = "crwdns6617125:0crwdne6617125:0";
 
-"Fullscreen" = "{crwdns6617126:0}{crwdne6617126:0}";
+"Fullscreen" = "crwdns6617126:0crwdne6617126:0";
 
-"Close" = "{crwdns6617127:0}{crwdne6617127:0}";
+"Close" = "crwdns6617127:0crwdne6617127:0";
 
 
 /*
  * Settings
  */
 
-"Settings" = "{crwdns6617128:0}{crwdne6617128:0}";
+"Settings" = "crwdns6617128:0crwdne6617128:0";
 
 "RememberMe" = "Remember me";
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "{crwdns6617131:0}{crwdne6617131:0}";
+"KeepSelectedStream" = "crwdns6617131:0crwdne6617131:0";
 
-"ShowPrivateDrive" = "{crwdns6617132:0}{crwdne6617132:0}";
+"ShowPrivateDrive" = "crwdns6617132:0crwdne6617132:0";
 
-"Language" = "{crwdns6617133:0}{crwdne6617133:0}";
+"Language" = "crwdns6617133:0crwdne6617133:0";
 
-"English" = "{crwdns6617134:0}{crwdne6617134:0}";
+"English" = "crwdns6617134:0crwdne6617134:0";
 
-"French" = "{crwdns6617135:0}{crwdne6617135:0}";
+"French" = "crwdns6617135:0crwdne6617135:0";
 
-"German" = "{crwdns6752613:0}{crwdne6752613:0}";
+"German" = "crwdns6752613:0crwdne6752613:0";
 
-"Spanish" = "{crwdns6752614:0}{crwdne6752614:0}";
+"Spanish" = "crwdns6752614:0crwdne6752614:0";
 
-"Send" = "{crwdns6617136:0}{crwdne6617136:0}";
+"Send" = "crwdns6617136:0crwdne6617136:0";
 
-"ServerList" = "{crwdns6617137:0}{crwdne6617137:0}";
+"ServerList" = "crwdns6617137:0crwdne6617137:0";
 
-"NewServer" = "{crwdns6617138:0}{crwdne6617138:0}";
+"NewServer" = "crwdns6617138:0crwdne6617138:0";
 
-"ServerModify" = "{crwdns6617139:0}{crwdne6617139:0}";
+"ServerModify" = "crwdns6617139:0crwdne6617139:0";
 
-"ApplicationsInformation" = "{crwdns6617140:0}{crwdne6617140:0}";
+"ApplicationsInformation" = "crwdns6617140:0crwdne6617140:0";
 
-"ServerVersion" = "{crwdns6617141:0}{crwdne6617141:0}";
+"ServerVersion" = "crwdns6617141:0crwdne6617141:0";
 
-"ApplicationEdition" = "{crwdns6617142:0}{crwdne6617142:0}";
+"ApplicationEdition" = "crwdns6617142:0crwdne6617142:0";
 
-"ApplicationVersion" = "{crwdns6617143:0}{crwdne6617143:0}";
+"ApplicationVersion" = "crwdns6617143:0crwdne6617143:0";
 
-"ServerName" = "{crwdns6617144:0}{crwdne6617144:0}";
+"ServerName" = "crwdns6617144:0crwdne6617144:0";
 
-"ServerUrl" = "{crwdns6617145:0}{crwdne6617145:0}";
+"ServerUrl" = "crwdns6617145:0crwdne6617145:0";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "{crwdns6617146:0}{crwdne6617146:0}";
+"BadResponse" = "crwdns6617146:0crwdne6617146:0";
 
-"NetworkConnection" = "{crwdns6617147:0}{crwdne6617147:0}";
+"NetworkConnection" = "crwdns6617147:0crwdne6617147:0";
 
-"Authorization" = "{crwdns6617148:0}{crwdne6617148:0}";
+"Authorization" = "crwdns6617148:0crwdne6617148:0";
 
-"WrongUserNamePassword" = "{crwdns6617149:0}{crwdne6617149:0}";
+"WrongUserNamePassword" = "crwdns6617149:0crwdne6617149:0";
 
-"InvalidServer" = "{crwdns6617150:0}{crwdne6617150:0}";
+"InvalidServer" = "crwdns6617150:0crwdne6617150:0";
 
-"NetworkConnectionFailed" = "{crwdns6617151:0}{crwdne6617151:0}";
+"NetworkConnectionFailed" = "crwdns6617151:0crwdne6617151:0";
 
-"UserNameEmpty" = "{crwdns6617152:0}{crwdne6617152:0}";
+"UserNameEmpty" = "crwdns6617152:0crwdne6617152:0";
 
-"PasswordEmpty" = "{crwdns6617153:0}{crwdne6617153:0}";
+"PasswordEmpty" = "crwdns6617153:0crwdne6617153:0";
 
-"SelectedDomainEmpty" = "{crwdns6617154:0}{crwdne6617154:0}";
+"SelectedDomainEmpty" = "crwdns6617154:0crwdne6617154:0";
 
-"EmptyFolder" = "{crwdns6617155:0}{crwdne6617155:0}";
+"EmptyFolder" = "crwdns6617155:0crwdne6617155:0";
 
-"UnreadableFile" = "{crwdns6617156:0}{crwdne6617156:0}";
+"UnreadableFile" = "crwdns6617156:0crwdne6617156:0";
 
-"NoActivities" = "{crwdns6617157:0}{crwdne6617157:0}";
+"NoActivities" = "crwdns6617157:0crwdne6617157:0";
 
-"NoGadget" = "{crwdns6617158:0}{crwdne6617158:0}";
+"NoGadget" = "crwdns6617158:0crwdne6617158:0";
 
-"MessageInfo" = "{crwdns6617159:0}{crwdne6617159:0}";
+"MessageInfo" = "crwdns6617159:0crwdne6617159:0";
 
-"MessageErrorServer" = "{crwdns6617160:0}{crwdne6617160:0}";
+"MessageErrorServer" = "crwdns6617160:0crwdne6617160:0";
 
-"MessageErrorExist" = "{crwdns6617161:0}{crwdne6617161:0}";
+"MessageErrorExist" = "crwdns6617161:0crwdne6617161:0";
 
-"InvalidUrl" = "{crwdns6617162:0}{crwdne6617162:0}";
+"InvalidUrl" = "crwdns6617162:0crwdne6617162:0";
 
-"FileError" = "{crwdns6617163:0}{crwdne6617163:0}";
+"FileError" = "crwdns6617163:0crwdne6617163:0";
 
-"CameraNotAvailable" = "{crwdns6617164:0}{crwdne6617164:0}";
+"CameraNotAvailable" = "crwdns6617164:0crwdne6617164:0";
 
-"GadgetsCannotBeRetrieved" = "{crwdns6617165:0}{crwdne6617165:0}";
+"GadgetsCannotBeRetrieved" = "crwdns6617165:0crwdne6617165:0";
 
-"Error" = "{crwdns6617166:0}{crwdne6617166:0}";
+"Error" = "crwdns6617166:0crwdne6617166:0";
 
-"NoMessageComment" = "{crwdns6617167:0}{crwdne6617167:0}";
+"NoMessageComment" = "crwdns6617167:0crwdne6617167:0";
 
-"NoMessagePosting" = "{crwdns6617168:0}{crwdne6617168:0}";
+"NoMessagePosting" = "crwdns6617168:0crwdne6617168:0";
 
-"GettingActionCannotBeCompleted" = "{crwdns6617169:0}{crwdne6617169:0}";
+"GettingActionCannotBeCompleted" = "crwdns6617169:0crwdne6617169:0";
 
-"UpdatingActionCannotBeCompleted" = "{crwdns6617170:0}{crwdne6617170:0}";
+"UpdatingActionCannotBeCompleted" = "crwdns6617170:0crwdne6617170:0";
 
-"LikingActionCannotBeCompleted" = "{crwdns6617171:0}{crwdne6617171:0}";
+"LikingActionCannotBeCompleted" = "crwdns6617171:0crwdne6617171:0";
 
-"UnLikeActionCannotBeCompleted" = "{crwdns6617172:0}{crwdne6617172:0}";
+"UnLikeActionCannotBeCompleted" = "crwdns6617172:0crwdne6617172:0";
 
-"PostingActionCannotBeCompleted" = "{crwdns6617173:0}{crwdne6617173:0}";
+"PostingActionCannotBeCompleted" = "crwdns6617173:0crwdne6617173:0";
 
-"CommentActionCannotBeCompleted" = "{crwdns6617174:0}{crwdne6617174:0}";
+"CommentActionCannotBeCompleted" = "crwdns6617174:0crwdne6617174:0";
 
-"LoadMoreActionCannotBeCompleted" = "{crwdns6617175:0}{crwdne6617175:0}";
+"LoadMoreActionCannotBeCompleted" = "crwdns6617175:0crwdne6617175:0";
 
-"NotCompliant" = "{crwdns6617176:0}{crwdne6617176:0}";
+"NotCompliant" = "crwdns6617176:0crwdne6617176:0";
 
-"SpecialCharacters" = "{crwdns6617177:0}{crwdne6617177:0}";
+"SpecialCharacters" = "crwdns6617177:0crwdne6617177:0";
 
-"DashboardsCannotBeRetrieved" = "{crwdns6617178:0}{crwdne6617178:0}";
+"DashboardsCannotBeRetrieved" = "crwdns6617178:0crwdne6617178:0";
 
-"FolderNameAlreadyExist" = "{crwdns6617179:0}{crwdne6617179:0}";
+"FolderNameAlreadyExist" = "crwdns6617179:0crwdne6617179:0";
 
-"FolderNameEmpty" = "{crwdns6617180:0}{crwdne6617180:0}";
+"FolderNameEmpty" = "crwdns6617180:0crwdne6617180:0";
 
-"Cannot move file to its location" = "{crwdns6617181:0}{crwdne6617181:0}";
+"Cannot move file to its location" = "crwdns6617181:0crwdne6617181:0";
 
-"Cannot transfer file" = "{crwdns6617182:0}{crwdne6617182:0}";
+"Cannot transfer file" = "crwdns6617182:0crwdne6617182:0";
 
 
 /*
  * Apps
  */
 
-"Dashboard" = "{crwdns6617183:0}{crwdne6617183:0}";
+"Dashboard" = "crwdns6617183:0crwdne6617183:0";
 
 
 /*
  * Activity stream
  */
 
-"numOfLikers" = "{crwdns6617184:0}%d{crwdne6617184:0}";
+"numOfLikers" = "crwdns6617184:0%dcrwdne6617184:0";
 
-"numOfLiker" = "{crwdns6617185:0}%d{crwdne6617185:0}";
+"numOfLiker" = "crwdns6617185:0%dcrwdne6617185:0";
 
-"likeThisActivity" = "{crwdns6617186:0}%d{crwdne6617186:0}";
+"likeThisActivity" = "crwdns6617186:0%dcrwdne6617186:0";
 
-"NoOneLikeThis" = "{crwdns6617187:0}{crwdne6617187:0}";
+"NoOneLikeThis" = "crwdns6617187:0crwdne6617187:0";
 
-"ActivityDetails" = "{crwdns6617188:0}{crwdne6617188:0}";
+"ActivityDetails" = "crwdns6617188:0crwdne6617188:0";
 
-"MessageComposer" = "{crwdns6617189:0}{crwdne6617189:0}";
+"MessageComposer" = "crwdns6617189:0crwdne6617189:0";
 
-"ActivityStream" = "{crwdns6617190:0}{crwdne6617190:0}";
+"ActivityStream" = "crwdns6617190:0crwdne6617190:0";
 
-"News" = "{crwdns6617191:0}{crwdne6617191:0}";
+"News" = "crwdns6617191:0crwdne6617191:0";
 
-"Details" = "{crwdns6617192:0}{crwdne6617192:0}";
+"Details" = "crwdns6617192:0crwdne6617192:0";
 
-"comments(%d)" = "{crwdns6617193:0}%d{crwdne6617193:0}";
+"comments(%d)" = "crwdns6617193:0%dcrwdne6617193:0";
 
-"likes(%d)" = "{crwdns6617194:0}%d{crwdne6617194:0}";
+"likes(%d)" = "crwdns6617194:0%dcrwdne6617194:0";
 
-"YourComment" = "{crwdns6617195:0}{crwdne6617195:0}";
+"YourComment" = "crwdns6617195:0crwdne6617195:0";
 
-"GettingActivity" = "{crwdns6617196:0}{crwdne6617196:0}";
+"GettingActivity" = "crwdns6617196:0crwdne6617196:0";
 
-"UpdatingActivity" = "{crwdns6617197:0}{crwdne6617197:0}";
+"UpdatingActivity" = "crwdns6617197:0crwdne6617197:0";
 
-"PostingActivity" = "{crwdns6617198:0}{crwdne6617198:0}";
+"PostingActivity" = "crwdns6617198:0crwdne6617198:0";
 
-"CommentActivity" = "{crwdns6617199:0}{crwdne6617199:0}";
+"CommentActivity" = "crwdns6617199:0crwdne6617199:0";
 
-"GettingActivityDetail" = "{crwdns6617200:0}{crwdne6617200:0}";
+"GettingActivityDetail" = "crwdns6617200:0crwdne6617200:0";
 
-"UpdatingActivityDetail" = "{crwdns6617201:0}{crwdne6617201:0}";
+"UpdatingActivityDetail" = "crwdns6617201:0crwdne6617201:0";
 
-"EditWiki" = "{crwdns6617202:0}{crwdne6617202:0}";
+"EditWiki" = "crwdns6617202:0crwdne6617202:0";
 
-"CreateWiki" = "{crwdns6617203:0}{crwdne6617203:0}";
+"CreateWiki" = "crwdns6617203:0crwdne6617203:0";
 
-"NewPost" = "{crwdns6617204:0}{crwdne6617204:0}";
+"NewPost" = "crwdns6617204:0crwdne6617204:0";
 
-"UpdatePost" = "{crwdns6617205:0}{crwdne6617205:0}";
+"UpdatePost" = "crwdns6617205:0crwdne6617205:0";
 
-"NewTopic" = "{crwdns6617206:0}{crwdne6617206:0}";
+"NewTopic" = "crwdns6617206:0crwdne6617206:0";
 
-"UpdateTopic" = "{crwdns6617207:0}{crwdne6617207:0}";
+"UpdateTopic" = "crwdns6617207:0crwdne6617207:0";
 
-"UpdateQuestion" = "{crwdns6617208:0}{crwdne6617208:0}";
+"UpdateQuestion" = "crwdns6617208:0crwdne6617208:0";
 
-"Answered" = "{crwdns6617209:0}{crwdne6617209:0}";
+"Answered" = "crwdns6617209:0crwdne6617209:0";
 
-"Asked" = "{crwdns6617210:0}{crwdne6617210:0}";
+"Asked" = "crwdns6617210:0crwdne6617210:0";
 
-"EventAdded" = "{crwdns6617211:0}{crwdne6617211:0}";
+"EventAdded" = "crwdns6617211:0crwdne6617211:0";
 
-"EventUpdated" = "{crwdns6617212:0}{crwdne6617212:0}";
+"EventUpdated" = "crwdns6617212:0crwdne6617212:0";
 
-"TaskAdded" = "{crwdns6617213:0}{crwdne6617213:0}";
+"TaskAdded" = "crwdns6617213:0crwdne6617213:0";
 
-"TaskUpdated" = "{crwdns6617214:0}{crwdne6617214:0}";
+"TaskUpdated" = "crwdns6617214:0crwdne6617214:0";
 
-"Description" = "{crwdns6617215:0}{crwdne6617215:0}";
+"Description" = "crwdns6617215:0crwdne6617215:0";
 
-"Location" = "{crwdns6617216:0}{crwdne6617216:0}";
+"Location" = "crwdns6617216:0crwdne6617216:0";
 
-"StartTime" = "{crwdns6617217:0}{crwdne6617217:0}";
+"StartTime" = "crwdns6617217:0crwdne6617217:0";
 
-"EndTime" = "{crwdns6617218:0}{crwdne6617218:0}";
+"EndTime" = "crwdns6617218:0crwdne6617218:0";
 
-"NoComment" = "{crwdns6617219:0}{crwdne6617219:0}";
+"NoComment" = "crwdns6617219:0crwdne6617219:0";
 
-"Image Preview" = "{crwdns6617220:0}{crwdne6617220:0}";
+"Image Preview" = "crwdns6617220:0crwdne6617220:0";
 
-"Change" = "{crwdns6617221:0}{crwdne6617221:0}";
+"Change" = "crwdns6617221:0crwdne6617221:0";
 
-"Remove" = "{crwdns6617222:0}{crwdne6617222:0}";
+"Remove" = "crwdns6617222:0crwdne6617222:0";
 
-"All Updates" = "{crwdns6617223:0}{crwdne6617223:0}";
+"All Updates" = "crwdns6617223:0crwdne6617223:0";
 
-"My Connections" = "{crwdns6617224:0}{crwdne6617224:0}";
+"My Connections" = "crwdns6617224:0crwdne6617224:0";
 
-"My Spaces" = "{crwdns6617225:0}{crwdne6617225:0}";
+"My Spaces" = "crwdns6617225:0crwdne6617225:0";
 
-"My Status" = "{crwdns6617226:0}{crwdne6617226:0}";
+"My Status" = "crwdns6617226:0crwdne6617226:0";
 
 
 /*
  * Date message converter
  */
 
-"Today" = "{crwdns6617227:0}{crwdne6617227:0}";
+"Today" = "crwdns6617227:0crwdne6617227:0";
 
-"DateFmt" = "{crwdns6617228:0}%1$@{crwdnd6617228:0}%2$@{crwdnd6617228:0}%3$@{crwdnd6617228:0}%4$@{crwdne6617228:0}";
+"DateFmt" = "crwdns6617228:0%1$@crwdnd6617228:0%2$@crwdnd6617228:0%3$@crwdnd6617228:0%4$@crwdne6617228:0";
 
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "{crwdns6617229:0}{crwdne6617229:0}";
+"DateFmt ago" = "crwdns6617229:0crwdne6617229:0";
 
-"DateFmt from now" = "{crwdns6617230:0}{crwdne6617230:0}";
+"DateFmt from now" = "crwdns6617230:0crwdne6617230:0";
 
-"DateFmt Less than" = "{crwdns6617231:0}{crwdne6617231:0}";
+"DateFmt Less than" = "crwdns6617231:0crwdne6617231:0";
 
-"DateFmt About" = "{crwdns6617232:0}{crwdne6617232:0}";
+"DateFmt About" = "crwdns6617232:0crwdne6617232:0";
 
-"DateFmt Over" = "{crwdns6617233:0}{crwdne6617233:0}";
+"DateFmt Over" = "crwdns6617233:0crwdne6617233:0";
 
-"DateFmt Almost" = "{crwdns6617234:0}{crwdne6617234:0}";
+"DateFmt Almost" = "crwdns6617234:0crwdne6617234:0";
 
-"DateFmt seconds" = "{crwdns6617235:0}{crwdne6617235:0}";
+"DateFmt seconds" = "crwdns6617235:0crwdne6617235:0";
 
-"DateFmt minute" = "{crwdns6617236:0}{crwdne6617236:0}";
+"DateFmt minute" = "crwdns6617236:0crwdne6617236:0";
 
-"DateFmt minutes" = "{crwdns6617237:0}{crwdne6617237:0}";
+"DateFmt minutes" = "crwdns6617237:0crwdne6617237:0";
 
-"DateFmt hour" = "{crwdns6617238:0}{crwdne6617238:0}";
+"DateFmt hour" = "crwdns6617238:0crwdne6617238:0";
 
-"DateFmt hours" = "{crwdns6617239:0}{crwdne6617239:0}";
+"DateFmt hours" = "crwdns6617239:0crwdne6617239:0";
 
-"DateFmt day" = "{crwdns6617240:0}{crwdne6617240:0}";
+"DateFmt day" = "crwdns6617240:0crwdne6617240:0";
 
-"DateFmt days" = "{crwdns6617241:0}{crwdne6617241:0}";
+"DateFmt days" = "crwdns6617241:0crwdne6617241:0";
 
-"DateFmt month" = "{crwdns6617242:0}{crwdne6617242:0}";
+"DateFmt month" = "crwdns6617242:0crwdne6617242:0";
 
-"DateFmt months" = "{crwdns6617243:0}{crwdne6617243:0}";
+"DateFmt months" = "crwdns6617243:0crwdne6617243:0";
 
-"DateFmt year" = "{crwdns6617244:0}{crwdne6617244:0}";
+"DateFmt year" = "crwdns6617244:0crwdne6617244:0";
 
-"DateFmt years" = "{crwdns6617245:0}{crwdne6617245:0}";
+"DateFmt years" = "crwdns6617245:0crwdne6617245:0";
 
 
 /*
