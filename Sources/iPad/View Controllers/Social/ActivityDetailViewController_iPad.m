@@ -22,7 +22,7 @@
 #import "RoundRectView.h"
 
 #define kMinimumAdvancedInfoCellHeight 400.0
-#define kAdvancedInfoCellHeight 760.0
+#define kAdvancedInfoCellHeight 800.0
 @implementation ActivityDetailViewController_iPad
 
 @synthesize extraActionsCell = _extraActionsCell;

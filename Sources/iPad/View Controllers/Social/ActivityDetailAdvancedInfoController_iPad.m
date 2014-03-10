@@ -55,7 +55,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIColor * shadowColor = [UIColor blackColor];
     CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 1.0f, [shadowColor CGColor]);
-    CGContextSaveGState(context);   
+    CGContextSaveGState(context);
     
     CGFloat xOffset = self.padding.width;
     
@@ -175,6 +175,7 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
     CGContextSetFillColorWithColor(context, [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal"]].CGColor);
     CGContextFillRect(context, contentRect);
 
+    // white border and stacked cards effect at the bottom
     UIImage *borderImg = [UIImage imageNamed:@"activity-detail-info-container-bg.png"];
     borderImg = [borderImg stretchableImageWithLeftCapWidth:borderImg.size.width/2 topCapHeight:borderImg.size.height/2];
     [borderImg drawInRect:rect];
@@ -429,7 +430,6 @@ static NSString *kTabItem = @"kTabItem";
         [self.emptyView removeFromSuperview];
         [cell.contentView addSubview:self.emptyView];
         self.emptyView.frame = self.infoView.bounds;
-        self.emptyView.frame = self.infoView.bounds;
     } else if (_selectedTab == ActivityAdvancedInfoCellTabLike) {
         CGRect likerRect = CGRectZero;
         likerRect.size.width = self.infoView.frame.size.width;
@@ -448,6 +448,7 @@ static NSString *kTabItem = @"kTabItem";
             if (cell == nil) {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailEmptyViewCell] autorelease];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.backgroundColor = [UIColor clearColor];
             }
             return cell;
         }
@@ -470,6 +471,7 @@ static NSString *kTabItem = @"kTabItem";
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailLikersTableViewCell] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor clearColor];
         }
         [cell.contentView addSubview:self.likersViewController.view];
         return cell;
