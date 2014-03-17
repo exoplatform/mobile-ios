@@ -16,7 +16,9 @@
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
 
-@implementation ActivityBasicTableViewCell
+@implementation ActivityBasicTableViewCell {
+    float plfVersion;
+}
 
 @synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
@@ -204,7 +206,12 @@
     
     self.socialActivytyStream = socialActivityStream;
     
-    _lbDate.text = [socialActivityStream.postedTimeInWords copy];
+    //On Platform 4.0 and + we display the updated time on the stream
+    //Otherwise we display the posted time
+    if(plfVersion >= 4.0)
+        _lbDate.text = [socialActivityStream.updatedTimeInWords copy];
+    else
+        _lbDate.text = [socialActivityStream.postedTimeInWords copy];
     
     //display the like number '+' if 0
     NSString *stringForLikes;
@@ -248,7 +255,9 @@
 }
 
 
-
+- (void)setPlatformVersion:(float)version {
+    plfVersion = version;
+}
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {

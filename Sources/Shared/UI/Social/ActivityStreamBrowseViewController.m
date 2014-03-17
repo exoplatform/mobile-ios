@@ -729,6 +729,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             break;
     }
     
+    [cell setPlatformVersion:plfVersion];
     cell.delegate = self;
     cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
     [cell setSocialActivityStream:socialActivityStream];

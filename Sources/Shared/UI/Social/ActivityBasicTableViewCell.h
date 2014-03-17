@@ -54,6 +54,7 @@
 - (void)configureCellForWidth:(CGFloat)fWidth;
 - (void)configureFonts:(BOOL)highlighted;
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream;
+- (void)setPlatformVersion:(float)version;
 
 
 //Methods for customizing + setting the content of the cell for specific activity
