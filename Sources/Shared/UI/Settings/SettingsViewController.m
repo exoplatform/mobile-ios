@@ -731,19 +731,17 @@ typedef enum {
         [alert release];
         return NO;
     }
-    // Check if the server URL is null
-    if(strServerUrl == nil) {
+    // Check if the server URL is null or only contains the protocol
+    if(strServerUrl == nil || [strServerUrl isEqualToString:@"http://"] || [strServerUrl isEqualToString:@"https://"]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
-    } else {
-        if (![CloudUtils correctServerUrl:strServerUrl]) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-            return NO;
-        }
+    } else if (![CloudUtils correctServerUrl:strServerUrl]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl")delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
     }
     
     return YES;
