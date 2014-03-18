@@ -97,7 +97,7 @@
 
 "Settings" = "Configuración";
 
-"RememberMe" = "Remember me";
+"RememberMe" = "Recordarme";
 
 "AutoLogin" = "Auto login";
 
@@ -134,6 +134,8 @@
 "ServerName" = "Nombre del servidor";
 
 "ServerUrl" = "URL del servidor";
+
+"Social" = "Social";
 
 
 /*
