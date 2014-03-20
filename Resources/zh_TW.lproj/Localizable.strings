@@ -97,9 +97,9 @@
 
 "Settings" = "設定";
 
-"RememberMe" = "Remember me";
+"RememberMe" = "記得我";
 
-"AutoLogin" = "Auto login";
+"AutoLogin" = "自動登入";
 
 "KeepSelectedStream" = "記得我的篩選器";
 
@@ -160,7 +160,7 @@
 
 "EmptyFolder" = "此資料夾是空的";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "此檔案不能在應用程式上打開";
 
 "NoActivities" = "活動已張貼於你的活動流";
 
@@ -296,7 +296,7 @@
 
 "EndTime" = "結束時間";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "還沒有人發表評論，成為第一個";
 
 "Image Preview" = "圖片預覽";
 
@@ -364,23 +364,23 @@
  */
 "ServerNotAvailable" = "無法連接到您的內部網路，請檢查 URL 或與您的管理員聯繫";
 
-"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+"AccountAlreadyExists" = "為此電子郵件的帳戶已經存在，您將被重定向到登錄螢幕";
 
-"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+"NumberUsersExceed" = "無法創建新的帳戶。最大使用者數已達到您的 intranet，請聯繫您的管理員";
 
-"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+"StartTheConfigurationAssistant" = "開始註冊助理";
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
 "ServiceUnavailable" = "無法連接到您的內部網路，請檢查 URL 或與您的管理員聯繫";
 
-"EmailIsBlacklisted" = "Please use your company email to sign up";
+"EmailIsBlacklisted" = "請使用您的公司電子郵件註冊";
 
-"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+"NumberOfUsersExceed" = "無法創建新的帳戶。最大使用者數已達到您的 intranet，請聯繫您的管理員";
 
-"IncorrectEmailFormat" = "Please input a valid email address";
+"IncorrectEmailFormat" = "請輸入一個有效的電子郵件";
 
-"IncorrectPassword" = "Impossible to connect, check your password";
+"IncorrectPassword" = "無法連接，請檢查您的密碼";
 
 "UserNotExist" = " No account exists for this email, check your email or signup";
 
