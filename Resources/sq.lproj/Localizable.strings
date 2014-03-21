@@ -97,9 +97,9 @@
 
 "Settings" = "crwdns6617128:0crwdne6617128:0";
 
-"RememberMe" = "Remember me";
+"RememberMe" = "crwdns6617129:0crwdne6617129:0";
 
-"AutoLogin" = "Auto login";
+"AutoLogin" = "crwdns6617130:0crwdne6617130:0";
 
 "KeepSelectedStream" = "crwdns6617131:0crwdne6617131:0";
 
@@ -362,46 +362,46 @@
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "crwdns6617246:0crwdne6617246:0";
 
-"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+"AccountAlreadyExists" = "crwdns6617247:0crwdne6617247:0";
 
-"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+"NumberUsersExceed" = "crwdns6617248:0crwdne6617248:0";
 
-"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+"StartTheConfigurationAssistant" = "crwdns6617249:0crwdne6617249:0";
 
-"eXoCloudConfigurationAssistant" = "eXo";
+"eXoCloudConfigurationAssistant" = "crwdns6617250:0crwdne6617250:0";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "crwdns6617251:0crwdne6617251:0";
 
-"EmailIsBlacklisted" = "Please use your company email to sign up";
+"EmailIsBlacklisted" = "crwdns6617252:0crwdne6617252:0";
 
-"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+"NumberOfUsersExceed" = "crwdns6617253:0crwdne6617253:0";
 
-"IncorrectEmailFormat" = "Please input a valid email address";
+"IncorrectEmailFormat" = "crwdns6617254:0crwdne6617254:0";
 
-"IncorrectPassword" = "Impossible to connect, check your password";
+"IncorrectPassword" = "crwdns6617255:0crwdne6617255:0";
 
-"UserNotExist" = " No account exists for this email, check your email or signup";
+"UserNotExist" = "crwdns6617256:0crwdne6617256:0";
 
-"TenantNotExist" = "No account exists for this email, check your email or signup";
+"TenantNotExist" = "crwdns6617257:0crwdne6617257:0";
 
-"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+"TenantResuming" = "crwdns6617258:0crwdne6617258:0";
 
-"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+"TenantCreation" = "crwdns6617259:0crwdne6617259:0";
 
-"Username" = "Username";
+"Username" = "crwdns6617260:0crwdne6617260:0";
 
-"Password" = "Password";
+"Password" = "crwdns6617261:0crwdne6617261:0";
 
-"Your credentials" = "Your credentials";
+"Your credentials" = "crwdns6617262:0crwdne6617262:0";
 
-"EnterServerUrl" = "Enter the URL of your intranet";
+"EnterServerUrl" = "crwdns6617263:0crwdne6617263:0";
 
-"EnterCredentials" = "Enter your credentials and Login";
+"EnterCredentials" = "crwdns6617264:0crwdne6617264:0";
 
-"My intranet" = "My intranet";
+"My intranet" = "crwdns6617265:0crwdne6617265:0";
 
-"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+"SignupInternalServerError" = "crwdns6617266:0crwdne6617266:0";
 
-"NoTenantName" = "There is no tenant name";
+"NoTenantName" = "crwdns6617267:0crwdne6617267:0";
