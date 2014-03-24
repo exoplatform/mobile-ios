@@ -324,28 +324,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 #pragma mark - Update Activity From ActivityDetail
 -(void)updateActivity{
-    //ActivityBasicTableViewCell *cell;
+
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:_indexpathSelectedActivity];
-    /*switch (socialActivityStream.activityType) {
-        case ACTIVITY_WIKI_ADD_PAGE:
-        case ACTIVITY_WIKI_MODIFY_PAGE:
-        {
-            cell = (ActivityWikiTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:_indexpathSelectedActivity];
-        }
-            break;
-        case ACTIVITY_FORUM_UPDATE_TOPIC:
-        case ACTIVITY_FORUM_UPDATE_POST:
-        case ACTIVITY_FORUM_CREATE_POST: 
-        case ACTIVITY_FORUM_CREATE_TOPIC:{
-            cell = (ActivityForumTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:_indexpathSelectedActivity];
-        }
-            break;
-        default:{
-            cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:_indexpathSelectedActivity];
-            
-        }
-            break;
-    }*/
     
     ActivityBasicTableViewCell *cell = (ActivityBasicTableViewCell *)[_tblvActivityStream cellForRowAtIndexPath:_indexpathSelectedActivity];
     [cell setSocialActivityStream:socialActivityStream];
@@ -384,7 +364,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 		view.delegate = self;
         view.originalContentInset = _tblvActivityStream.contentInset;
 		[_tblvActivityStream addSubview:view];
-		_refreshHeaderView = view;
+		_refreshHeaderView = [view retain];
 		[view release];
         _reloading = FALSE;
         
@@ -402,7 +382,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)viewDidUnload
 {
-    [_refreshHeaderView release]; _refreshHeaderView =nil;
+    [_refreshHeaderView release];
+    _refreshHeaderView =nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
     // Release any retained subviews of the main view.

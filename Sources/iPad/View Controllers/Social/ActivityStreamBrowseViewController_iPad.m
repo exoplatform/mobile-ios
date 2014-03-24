@@ -182,6 +182,7 @@
 
 - (void)clearActivityData {
     [super clearActivityData];
+    // Remove any opened activity detail panel
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
 }
 
