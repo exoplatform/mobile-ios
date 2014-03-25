@@ -444,12 +444,15 @@
     
 }
 
+// Controls the actions when the picker is started and an image already exists
+// i.e. user edits the photo
 - (void)editPhoto
 {
     ImagePreviewViewController *imagePreview = [[[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil] autorelease];
     __block __typeof__(imagePreview) bImagePreview = imagePreview; // create a weak reference to avoid retain cycle.
     [imagePreview changeImageWithCompletion:^(void) {
-        // when user change existed photo, remove the image preview from the navigation view and present a picker from library source.
+        // called when user change existing photo (edit -> change)
+        // remove the image preview from the navigation view and present a picker from library source.
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             UIImagePickerController *picker = [self getPicker:UIImagePickerControllerSourceTypePhotoLibrary];
             [self._popoverPhotoLibraryController setContentViewController:picker animated:YES];
@@ -464,7 +467,8 @@
         }
     }];
     [imagePreview removeImageWithCompletion:^(void) {
-        // when user remove existed photo, remove the photo in self and pop the image preview to return self view.
+        // when user immediately remove existing photo (edit -> remove)
+        // remove the photo in self and pop the image preview to return self view.
         self.attPhotoView.image = nil;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
@@ -475,7 +479,8 @@
         }
     }];
     [imagePreview selectImageWithCompletion:^(void) {
-        // when user selects new photo, come back the self view and add given photo to this.
+        // when user keeps the existing photo (edit -> OK)
+        // come back the self view and add given photo to this.
         [self addPhotoToView:bImagePreview.imageView.image];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
@@ -595,17 +600,20 @@
 
 
 #pragma mark - UIImagePickerDelegate
+// Controls the actions when the picker is started and no image is pre-existing
+// i.e. user chooses an image for the 1st time
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     ImagePreviewViewController *imagePreview = [[[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil] autorelease];
     __block __typeof__(imagePreview) bImagePreview = imagePreview; // create a weak reference to avoid retain cycle.
     [imagePreview changeImageWithCompletion:^(void) {
-        // when user changes the photo, remove image preview from nav bar to back to image picker.
+        // called when the user has chosen a photo and decides to change it (tap Change)
+        // remove image preview from nav bar to back to image picker.
         [bImagePreview.navigationController popViewControllerAnimated:YES];
-        
     }];
     [imagePreview removeImageWithCompletion:^(void) {
-        // when user remove the photo, remove image in self view and dismiss image picker to back to self view.
+        // called when the user has chosen a photo and decides to remove it (tap Remove)
+        // remove image in self view and dismiss image picker to back to self view.
         self.attPhotoView.image = nil;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
@@ -619,7 +627,8 @@
         }
     }];
     [imagePreview selectImageWithCompletion:^(void) {
-        // when user select the photo, add photo to the self view and come back to such view.
+        // called when the user has chosen a photo and decides to keep it (tap OK)
+        // add photo to the self view and come back to such view.
         [self addPhotoToView:[self resizeImage:bImagePreview.imageView.image]];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
@@ -628,6 +637,7 @@
             // restore previous status bar
             [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
             [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
+            self.navigationController.toolbarHidden = YES;
             [self dismissModalViewControllerAnimated:YES];
         }
     }];

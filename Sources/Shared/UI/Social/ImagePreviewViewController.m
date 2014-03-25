@@ -16,7 +16,6 @@
 
 @interface ImagePreviewViewController () {
     BOOL _navTranslucent;
-    BOOL _navToolbarHidden;
     BOOL _navbarHidden;
 }
 @property (nonatomic, copy) image_preview_task changeImageBlock;
@@ -43,14 +42,20 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        // navigation bar items: buttons and title
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"OK") style:UIBarButtonItemStyleBordered target:self action:@selector(selectImage:)] autorelease];
         self.navigationItem.title = Localize(@"Image Preview");
-        self.view.backgroundColor = EXO_BACKGROUND_COLOR;
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
+        
+        // image view scroll area
         self.scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
         
+        // toolbar buttons
         UIBarButtonItem *changeButton = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Change") style:UIBarButtonItemStyleBordered target:self action:@selector(changeImage:)];
+        changeButton.tintColor = [UIColor whiteColor];
         UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Remove") style:UIBarButtonItemStyleBordered target:self action:@selector(unchangeImage:)];
+        removeButton.tintColor = [UIColor whiteColor];
         
         self.toolbarItems = [NSArray arrayWithObjects:changeButton, flexItem, removeButton, nil];
         self.contentSizeForViewInPopover = kPopoverContentSize;
@@ -70,16 +75,15 @@
 #pragma mark - View lifecycle
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    _navToolbarHidden = self.navigationController.toolbarHidden;
-    [self.navigationController setToolbarHidden:NO];
     _navTranslucent = self.navigationController.navigationBar.translucent;
-    self.navigationController.navigationBar.translucent = NO;
     _navbarHidden = self.navigationController.navigationBarHidden;
+    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setToolbarHidden:_navToolbarHidden];
+    [self.navigationController setToolbarHidden:YES];
     self.navigationController.navigationBar.translucent = _navTranslucent;
     [self.navigationController setNavigationBarHidden:_navbarHidden];
     [super viewWillDisappear:animated];
