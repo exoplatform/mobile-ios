@@ -97,9 +97,9 @@
 
 "Settings" = "Настройки";
 
-"RememberMe" = "Remember me";
+"RememberMe" = "Запомнить меня";
 
-"AutoLogin" = "Auto login";
+"AutoLogin" = "Автоматический вход";
 
 "KeepSelectedStream" = "Запомнить мой фильтр";
 
@@ -113,7 +113,7 @@
 
 "German" = "Немецкий";
 
-"Spanish" = "Spanish";
+"Spanish" = "Испанский";
 
 "Send" = "Отправить";
 
@@ -364,44 +364,44 @@
  */
 "ServerNotAvailable" = "Невозможно подключиться к внутренней сети, проверьте URL-адрес или обратитесь к администратору";
 
-"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+"AccountAlreadyExists" = "Учетная запись уже существует для этой электронной почты, вы будете перенаправлены на страницу входа в систему";
 
-"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+"NumberUsersExceed" = " Невозможно создать новую учетную запись. Достигнуто максимальное количество пользователей для вашей сети, обратитесь к администратору";
 
-"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+"StartTheConfigurationAssistant" = "Запустить помощник регистраций";
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Невозможно подключиться к внутренней сети, проверьте URL-адрес или обратитесь к администратору";
+"ServiceUnavailable" = "Невозможно подключиться к сети, проверьте его URL-адрес или обратитесь к администратору";
 
-"EmailIsBlacklisted" = "Please use your company email to sign up";
+"EmailIsBlacklisted" = "Чтобы зарегистрироваться, пожалуйста, используйте адрес электронной почты вашей компании";
 
 "NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
 
-"IncorrectEmailFormat" = "Please input a valid email address";
+"IncorrectEmailFormat" = "Пожалуйста, введите действительный E-mail";
 
-"IncorrectPassword" = "Impossible to connect, check your password";
+"IncorrectPassword" = "Невозможно подключиться, проверьте ваш пароль";
 
-"UserNotExist" = " No account exists for this email, check your email or signup";
+"UserNotExist" = " Учетная запись не существует для этой электронной почты, проверьте адрес электронной почты или зарегистрируйтесь";
 
-"TenantNotExist" = "No account exists for this email, check your email or signup";
+"TenantNotExist" = "Учетная запись не существует для этой электронной почты, проверьте адрес электронной почты или зарегистрируйтесь";
 
-"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+"TenantResuming" = "Мы восстанавливаем сеть, повторите попытку через несколько минут";
 
-"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+"TenantCreation" = "Мы создаем Вашу внутреннюю сеть. Пожалуйста, приходите, когда получите наше письмо с приветствием";
 
 "Username" = "Имя пользователя";
 
 "Password" = "Пароль";
 
-"Your credentials" = "Your credentials";
+"Your credentials" = "Ваши учетные данные";
 
-"EnterServerUrl" = "Enter the URL of your intranet";
+"EnterServerUrl" = "Введите URL-адрес Вашей внутренней сети";
 
-"EnterCredentials" = "Enter your credentials and Login";
+"EnterCredentials" = "Введите ваши учетные данные и войдите";
 
 "My intranet" = "My intranet";
 
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
-"NoTenantName" = "There is no tenant name";
+"NoTenantName" = "Нет имени арендатора";
