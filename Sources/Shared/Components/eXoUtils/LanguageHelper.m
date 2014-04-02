@@ -52,14 +52,22 @@
 #pragma mark - LanguageHelper Methods
 
 - (void)loadLocalizableStringsForCurrentLanguage {
-    // returns the 2-letter language code of the device
-    NSString * language = [[[NSLocale preferredLanguages] objectAtIndex:0] substringToIndex:2];
-    // we defined es-ES in our bundle so we must check this lang-region exactly
-    if ([@"es" isEqualToString:language]) language = @"es-ES";
-    // returns the index of the language or NSNotFound
-    int langIndex = [_international indexOfObject:language];
-    // if the preferred language is not supported by the app, fallback to English
-    if (langIndex == NSNotFound) langIndex = 0;
+    
+    // returns the lang in preferences, or nil
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *selectedLang = [userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE];
+    int langIndex = (selectedLang) ? [selectedLang intValue] : 0;
+    
+    if (!selectedLang) {
+        // returns the 2-letter language code of the device
+        NSString * language = [[[NSLocale preferredLanguages] objectAtIndex:0] substringToIndex:2];
+        // we defined es-ES in our array so we must check this lang-region exactly
+        if ([@"es" isEqualToString:language]) language = @"es-ES";
+        // returns the index of the language or NSNotFound
+        langIndex = [_international indexOfObject:language];
+        // if the preferred language is not supported by the app, fallback to English
+        if (langIndex == NSNotFound) langIndex = 0;
+    }
     // set the language
     [self changeToLanguage:langIndex];
 }
