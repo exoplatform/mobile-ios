@@ -47,9 +47,9 @@
 
 // Drives types
 
-"general" = "general";
+"general" = "bendras";
 
-"personal" = "personal";
+"personal" = "asmeninis";
 
 "group" = "grupė";
 
@@ -76,26 +76,26 @@
 
 "Disconnect" = "Atsijungti";
 
-"Pull down to refresh..." = "Pull down to refresh...";
+"Pull down to refresh..." = "Patraukite žemyn atnaujinti...";
 
-"Release to refresh..." = "Release to refresh...";
+"Release to refresh..." = "Atleiskite atnaujinti...";
 
 "Last Updated: %@" = "Paskutinis atnaujinimas: %@";
 
 "Required" = "Reikalinga";
 
-"Optional" = "Optional";
+"Optional" = "Pasirinktinas";
 
-"Fullscreen" = "Fullscreen";
+"Fullscreen" = "Per visą ekraną";
 
-"Close" = "Close";
+"Close" = "Uždaryti";
 
 
 /*
  * Settings
  */
 
-"Settings" = "Settings";
+"Settings" = "Nustatymai";
 
 "RememberMe" = "Remember me";
 
@@ -103,9 +103,9 @@
 
 "KeepSelectedStream" = "Atsiminti mano filtrą";
 
-"ShowPrivateDrive" = "Show my private drive";
+"ShowPrivateDrive" = "Rodyti mano privatų diską";
 
-"Language" = "Languages";
+"Language" = "Kalbos";
 
 "English" = "Anglų";
 
@@ -115,15 +115,15 @@
 
 "Spanish" = "Ispanų";
 
-"Send" = "Send";
+"Send" = "Siųsti";
 
-"ServerList" = "Server list";
+"ServerList" = "Serverių sąrašas";
 
-"NewServer" = "New server";
+"NewServer" = "Naujas serveris";
 
-"ServerModify" = "Modify server";
+"ServerModify" = "Redaguoti serverį";
 
-"ApplicationsInformation" = "Application information";
+"ApplicationsInformation" = "Programos informacija";
 
 "ServerVersion" = "Serverio versija";
 
@@ -164,7 +164,7 @@
 
 "NoActivities" = "Jokia veikla nebuvo pastebėta jūsų veiklos sraute";
 
-"NoGadget" = "You have no gadgets in your Apps";
+"NoGadget" = "Jūs neturite įtaisų savo programose";
 
 "MessageInfo" = "Informacija";
 
@@ -178,7 +178,7 @@
 
 "CameraNotAvailable" = "Kamera negalima";
 
-"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"GadgetsCannotBeRetrieved" = "Negalima rasti įtaisų";
 
 "Error" = "Klaida";
 
@@ -204,7 +204,7 @@
 
 "SpecialCharacters" = "Specialūs simboliai neleidžiami";
 
-"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+"DashboardsCannotBeRetrieved" = "Negalima rasti prietaisų skydų";
 
 "FolderNameAlreadyExist" = "Šis aplankas jau egzistuoja";
 
@@ -212,7 +212,7 @@
 
 "Cannot move file to its location" = "Negalima perkelti failo į tą pačią vietą";
 
-"Cannot transfer file" = "Cannot transfer the file";
+"Cannot transfer file" = "Negalima persiųsti failo";
 
 
 /*
@@ -230,13 +230,13 @@
 
 "numOfLiker" = "%d mėgėjas";
 
-"likeThisActivity" = "%d people like this";
+"likeThisActivity" = "%d žmonių patinka tai";
 
 "NoOneLikeThis" = "Tai niekam nepatinka ";
 
-"ActivityDetails" = "Activity details";
+"ActivityDetails" = "Veiklos duomenys";
 
-"MessageComposer" = "Message composer";
+"MessageComposer" = "Pranešimo kūrėjas";
 
 "ActivityStream" = "Veiklos srautas";
 
@@ -254,13 +254,13 @@
 
 "UpdatingActivity" = "Atnaujinama veikla";
 
-"PostingActivity" = "Post";
+"PostingActivity" = "Siųsti";
 
-"CommentActivity" = "Comment";
+"CommentActivity" = "Komentaras";
 
-"GettingActivityDetail" = "Getting activity detail";
+"GettingActivityDetail" = "Gaunama išsami veiklos informacija";
 
-"UpdatingActivityDetail" = "Updating activity detail";
+"UpdatingActivityDetail" = "Atnaujinama veiklos informacija";
 
 "EditWiki" = "redagavo Wiki puslapį:";
 
@@ -306,7 +306,7 @@
 
 "All Updates" = "Visi atnaujinimai";
 
-"My Connections" = "My connections";
+"My Connections" = "Mano jungtys";
 
 "My Spaces" = "Mano erdvės";
 
@@ -324,39 +324,39 @@
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "ago";
+"DateFmt ago" = "prieš";
 
-"DateFmt from now" = "from now";
+"DateFmt from now" = "nuo šiol";
 
 "DateFmt Less than" = "mažiau nei ";
 
 "DateFmt About" = "Apie ";
 
-"DateFmt Over" = "Over ";
+"DateFmt Over" = "Per ";
 
 "DateFmt Almost" = "Beveik ";
 
-"DateFmt seconds" = " seconds ";
+"DateFmt seconds" = " sekundes(-ių) ";
 
 "DateFmt minute" = " minutė ";
 
-"DateFmt minutes" = " minutes ";
+"DateFmt minutes" = " minutes(-ių) ";
 
 "DateFmt hour" = " valanda ";
 
-"DateFmt hours" = " hours ";
+"DateFmt hours" = " valandos(-ų) ";
 
 "DateFmt day" = " diena ";
 
-"DateFmt days" = " days ";
+"DateFmt days" = " dienas(-ų)";
 
 "DateFmt month" = " mėnuo ";
 
-"DateFmt months" = " months ";
+"DateFmt months" = " mėnesius(-ių) ";
 
 "DateFmt year" = " metai ";
 
-"DateFmt years" = " years ";
+"DateFmt years" = " metus(-ų) ";
 
 
 /*
