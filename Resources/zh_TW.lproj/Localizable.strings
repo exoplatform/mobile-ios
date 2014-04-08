@@ -76,9 +76,9 @@
 
 "Disconnect" = "中斷連線";
 
-"Pull down to refresh..." = "下拉刷新......";
+"Pull down to refresh..." = "下拉重新整理...\n";
 
-"Release to refresh..." = "放開後刷新...";
+"Release to refresh..." = "放開以進行更新...";
 
 "Last Updated: %@" = "最後更新: %@";
 
@@ -160,9 +160,9 @@
 
 "EmptyFolder" = "此資料夾是空的";
 
-"UnreadableFile" = "此檔案不能在應用程式上打開";
+"UnreadableFile" = "此檔案不能在應用程式上開啟";
 
-"NoActivities" = "活動已張貼於你的活動流";
+"NoActivities" = "沒有活動張貼於你的活動列中";
 
 "NoGadget" = "你沒有小工具在您的應用程式";
 
@@ -182,7 +182,7 @@
 
 "Error" = "錯誤";
 
-"NoMessageComment" = "您必須輸入一些文本以發表評論";
+"NoMessageComment" = "你必須輸入文字去進行評論";
 
 "NoMessagePosting" = "您必須輸入一些文本發佈";
 
@@ -190,9 +190,9 @@
 
 "UpdatingActionCannotBeCompleted" = "您不能更新該活動";
 
-"LikingActionCannotBeCompleted" = "你不能喜歡活動";
+"LikingActionCannotBeCompleted" = "你可能不喜歡該活動";
 
-"UnLikeActionCannotBeCompleted" = "你不能不喜歡活動";
+"UnLikeActionCannotBeCompleted" = "你可能不喜歡該活動";
 
 "PostingActionCannotBeCompleted" = "你不能發佈一條訊息";
 
@@ -236,7 +236,7 @@
 
 "ActivityDetails" = "活動詳細資訊";
 
-"MessageComposer" = "消息作曲家";
+"MessageComposer" = "訊息組合者";
 
 "ActivityStream" = "活動流";
 
@@ -296,7 +296,7 @@
 
 "EndTime" = "結束時間";
 
-"NoComment" = "還沒有人發表評論，成為第一個";
+"NoComment" = "過往無人評論過，你將成為第一個人。";
 
 "Image Preview" = "圖片預覽";
 
@@ -364,7 +364,7 @@
  */
 "ServerNotAvailable" = "無法連接到您的內部網路，請檢查 URL 或與您的管理員聯繫";
 
-"AccountAlreadyExists" = "為此電子郵件的帳戶已經存在，您將被重定向到登錄螢幕";
+"AccountAlreadyExists" = "此電子郵件的帳戶已經存在，您將重新回到登錄畫面";
 
 "NumberUsersExceed" = "無法創建新的帳戶。最大使用者數已達到您的 intranet，請聯繫您的管理員";
 
