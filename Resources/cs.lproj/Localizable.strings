@@ -1,0 +1,407 @@
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
+
+/*
+ * Authenticate
+ */
+
+"SignInPageTitle" = "Přihlašovací stránka";
+
+"SignInButton" = "Přihlášení";
+
+"UsernamePlaceholder" = "Uživatelské jméno";
+
+"PasswordPlaceholder" = "Heslo";
+
+
+/* 
+ * Documents
+ */
+
+"TakePicture" = "Vyfotit";
+
+"NewFolderTitle" = "Nová složka";
+
+"RenameTitle" = "Přejmenovat";
+
+"Copy" = "Kopírovat";
+
+"Move" = "Vyjmout";
+
+"Paste" = "Vložit";
+
+"Documents" = "Dokumenty";
+
+"TakeAPicture" = "Vyfotit";
+
+"AttachedPhoto" = "Přiložená fotografie";
+
+"AddAPhoto" = "Přidat fotografii";
+
+"PhotoLibrary" = "Knihovna fotografií";
+
+// Drives types
+
+"general" = "obecné";
+
+"personal" = "osobní";
+
+"group" = "skupina";
+
+
+/*
+ * General
+ */
+
+"Cancel" = "Zrušit";
+
+"DoneButton" = "Hotovo";
+
+"Delete" = "Smazat";
+
+"Success" = "Úspěšně dokončeno";
+
+"Home" = "Domů";
+
+"Loading" = "Načítání...";
+
+"LoadingURL" = "Načítání adresy URL";
+
+"OK" = "Ok";
+
+"Disconnect" = "Odpojit";
+
+"Pull down to refresh..." = "Obnovte tažením dolů...";
+
+"Release to refresh..." = "Uvolnit pro obnovení...";
+
+"Last Updated: %@" = "Naposledy aktualizováno: %@";
+
+"Required" = "Povinné";
+
+"Optional" = "Volitelné";
+
+"Fullscreen" = "Celá obrazovka";
+
+"Close" = "Zavřít";
+
+
+/*
+ * Settings
+ */
+
+"Settings" = "Nastavení";
+
+"RememberMe" = "Remember me";
+
+"AutoLogin" = "Auto login";
+
+"KeepSelectedStream" = "Zapamatovat si můj filtr";
+
+"ShowPrivateDrive" = "Zobrazit mé soukromé disky";
+
+"Language" = "Jazyky";
+
+"English" = "Angličtina";
+
+"French" = "Francouzština";
+
+"German" = "Němčina";
+
+"Spanish" = "Španělština";
+
+"Send" = "Poslat";
+
+"ServerList" = "Seznam serverů";
+
+"NewServer" = "Nový server";
+
+"ServerModify" = "Změnit server";
+
+"ApplicationsInformation" = "Informace o aplikaci";
+
+"ServerVersion" = "Verze serveru";
+
+"ApplicationEdition" = "Edice aplikace";
+
+"ApplicationVersion" = "Verze aplikace";
+
+"ServerName" = "Název serveru";
+
+"ServerUrl" = "Adresa URL serveru";
+
+
+/*
+ * Errors & Warnings
+ */
+
+"BadResponse" = "Server vrátil neplatná data.";
+
+"NetworkConnection" = "Chyba spojení";
+
+"Authorization" = "Přihlášení se nezdařilo";
+
+"WrongUserNamePassword" = "Nelze se připojit, zkontrolujte své uživatelské jméno a heslo";
+
+"InvalidServer" = "Nelze se připojit k síti intranet, zkontrolujte jeho adresu URL nebo kontaktujte správce";
+
+"NetworkConnectionFailed" = "Nelze se připojit k síti intranet, zkontrolujte jeho adresu URL nebo kontaktujte správce";
+
+"UserNameEmpty" = "Nesprávné uživatelské jméno";
+
+"PasswordEmpty" = "Špatné heslo";
+
+"SelectedDomainEmpty" = "Není zadán žádný server";
+
+"EmptyFolder" = "Tato složka je prázdná";
+
+"UnreadableFile" = "Tento soubor nelze v aplikaci otevřít";
+
+"NoActivities" = "Ve vašem sledu aktivit nebyly přidány žádné příspěvky";
+
+"NoGadget" = "Ve vašich aplikacích nemáte žádné gadgety";
+
+"MessageInfo" = "Informace";
+
+"MessageErrorServer" = "Nelze přidat server s prázdným názvem nebo URL";
+
+"MessageErrorExist" = "Tento server již existuje";
+
+"InvalidUrl" = "Neplatná adresa URL";
+
+"FileError" = "Chyba";
+
+"CameraNotAvailable" = "Fotoaparát není k dispozici";
+
+"GadgetsCannotBeRetrieved" = "Gadgety nelze načíst";
+
+"Error" = "Chyba";
+
+"NoMessageComment" = "Abyste mohli komentovat, musíte zadat nějaký text";
+
+"NoMessagePosting" = "Abyste mohli přidat příspěvek, musíte zadat nějaký text";
+
+"GettingActionCannotBeCompleted" = "Nelze získat příspěvky";
+
+"UpdatingActionCannotBeCompleted" = "Nelze aktualizovat příspěvek";
+
+"LikingActionCannotBeCompleted" = "Tento příspěvek nelze označit líbí se mi";
+
+"UnLikeActionCannotBeCompleted" = "Tento příspěvek nelze odznačit líbí se mi";
+
+"PostingActionCannotBeCompleted" = "Nelze odeslat zprávu";
+
+"CommentActionCannotBeCompleted" = "Nelze odeslat komentář";
+
+"LoadMoreActionCannotBeCompleted" = "Došlo k chybě, příspěvky se načítají znovu.";
+
+"NotCompliant" = "Na této edici platformy nemůže být aplikace spuštěna";
+
+"SpecialCharacters" = "Zvláštní znaky nejsou povoleny";
+
+"DashboardsCannotBeRetrieved" = "Nelze načíst dashboardy";
+
+"FolderNameAlreadyExist" = "Tato složka již existuje";
+
+"FolderNameEmpty" = "Název složky je prázdný";
+
+"Cannot move file to its location" = "Nelze přesunout soubor do stejného umístění";
+
+"Cannot transfer file" = "Soubor nelze přenést";
+
+
+/*
+ * Apps
+ */
+
+"Dashboard" = "Aplikace";
+
+
+/*
+ * Activity stream
+ */
+
+"numOfLikers" = "%d se líbí";
+
+"numOfLiker" = "%d se líbí";
+
+"likeThisActivity" = "%d lidem se to líbí";
+
+"NoOneLikeThis" = "Nikomu se nelíbí";
+
+"ActivityDetails" = "Podrobnosti o příspěvku";
+
+"MessageComposer" = "Editor zpráv";
+
+"ActivityStream" = "Sled aktivit";
+
+"News" = "Novinky";
+
+"Details" = "Podrobnosti";
+
+"comments(%d)" = "Komentáře(%d)";
+
+"likes(%d)" = "Líbí se (%d)";
+
+"YourComment" = "Váš komentář";
+
+"GettingActivity" = "Získat příspěvek";
+
+"UpdatingActivity" = "Aktualizace příspěvku";
+
+"PostingActivity" = "Přidat příspěvek";
+
+"CommentActivity" = "Komentovat";
+
+"GettingActivityDetail" = "Získat podrobnosti o příspěvku";
+
+"UpdatingActivityDetail" = "Aktualizace podrobností o příspěvku";
+
+"EditWiki" = " upravil(a) Wiki stránku:";
+
+"CreateWiki" = " vytvořil(a) Wiki stránku:";
+
+"NewPost" = " přidal(a) nový příspěvek:";
+
+"UpdatePost" = " aktualizoval(a) příspěvek:";
+
+"NewTopic" = " zveřejnil(a) nové téma:";
+
+"UpdateTopic" = " aktualizoval(a) téma:";
+
+"UpdateQuestion" = "aktualizoval(a) otázku:";
+
+"Answered" = "odpověděl(a) na otázku:";
+
+"Asked" = "se zeptal(a):";
+
+"EventAdded" = " přidal(a) událost:";
+
+"EventUpdated" = "právě aktualizoval(a) událost:";
+
+"TaskAdded" = "přidal(a) úkol:";
+
+"TaskUpdated" = "právě aktualizoval(a) úkol:";
+
+"Description" = "Popis";
+
+"Location" = "Místo";
+
+"StartTime" = "Čas zahájení";
+
+"EndTime" = "Čas ukončení";
+
+"NoComment" = "Nikdo zatím komentoval, buďte první";
+
+"Image Preview" = "Náhled obrázku";
+
+"Change" = "Změna";
+
+"Remove" = "Odstranit";
+
+"All Updates" = "Všechny aktualizace";
+
+"My Connections" = "Moje kontakty";
+
+"My Spaces" = "Moje skupiny";
+
+"My Status" = "Můj stav";
+
+
+/*
+ * Date message converter
+ */
+
+"Today" = "Dnes";
+
+"DateFmt" = "%1$@%2$@%3$@%4$@";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "před";
+
+"DateFmt from now" = "od teď";
+
+"DateFmt Less than" = "Méně než ";
+
+"DateFmt About" = "O ";
+
+"DateFmt Over" = "Přes ";
+
+"DateFmt Almost" = "Téměř ";
+
+"DateFmt seconds" = " sekund ";
+
+"DateFmt minute" = " minuta ";
+
+"DateFmt minutes" = " minuty ";
+
+"DateFmt hour" = " hodina ";
+
+"DateFmt hours" = " hodiny ";
+
+"DateFmt day" = " den ";
+
+"DateFmt days" = " dny ";
+
+"DateFmt month" = " měsíc ";
+
+"DateFmt months" = " měsíce ";
+
+"DateFmt year" = " rok ";
+
+"DateFmt years" = " roky ";
+
+
+/*
+ * Cloud sign up assistant 
+ */
+"ServerNotAvailable" = "Nelze se připojit k síti intranet, zkontrolujte jeho adresu URL nebo kontaktujte správce";
+
+"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+
+"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "Nelze se připojit k síti intranet, zkontrolujte jeho adresu URL nebo kontaktujte správce";
+
+"EmailIsBlacklisted" = "Please use your company email to sign up";
+
+"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"IncorrectEmailFormat" = "Please input a valid email address";
+
+"IncorrectPassword" = "Impossible to connect, check your password";
+
+"UserNotExist" = " No account exists for this email, check your email or signup";
+
+"TenantNotExist" = "No account exists for this email, check your email or signup";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+
+"Username" = "Uživatelské jméno";
+
+"Password" = "Heslo";
+
+"Your credentials" = "Your credentials";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";
