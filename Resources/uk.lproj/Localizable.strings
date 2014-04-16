@@ -1,0 +1,407 @@
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
+
+/*
+ * Authenticate
+ */
+
+"SignInPageTitle" = "Сторінка Входу";
+
+"SignInButton" = "Логін";
+
+"UsernamePlaceholder" = "Ім'я користувача";
+
+"PasswordPlaceholder" = "Пароль";
+
+
+/* 
+ * Documents
+ */
+
+"TakePicture" = "Сфотографувати";
+
+"NewFolderTitle" = "Нова папка";
+
+"RenameTitle" = "Перейменувати";
+
+"Copy" = "Копіювати";
+
+"Move" = "Вирізати";
+
+"Paste" = "Вставити";
+
+"Documents" = "Документи";
+
+"TakeAPicture" = "Сфотографувати";
+
+"AttachedPhoto" = "Прикріплене фото";
+
+"AddAPhoto" = "Додати фотографію";
+
+"PhotoLibrary" = "Фотоальбом";
+
+// Drives types
+
+"general" = "Загальні";
+
+"personal" = "особисті";
+
+"group" = "група";
+
+
+/*
+ * General
+ */
+
+"Cancel" = "Скасувати";
+
+"DoneButton" = "Виконано";
+
+"Delete" = "Видалити";
+
+"Success" = "Успішно";
+
+"Home" = "Головна";
+
+"Loading" = "Завантаження...";
+
+"LoadingURL" = "Завантаження URL-адреси";
+
+"OK" = "Гаразд";
+
+"Disconnect" = "Відключити";
+
+"Pull down to refresh..." = "Протягніть вниз, щоб оновити...";
+
+"Release to refresh..." = "Відпустіть, щоб оновити...";
+
+"Last Updated: %@" = "Останнє оновлення: %@";
+
+"Required" = "Вимагається";
+
+"Optional" = "Факультативний";
+
+"Fullscreen" = "Повноекранний режим";
+
+"Close" = "Закрити";
+
+
+/*
+ * Settings
+ */
+
+"Settings" = "Налаштування";
+
+"RememberMe" = "Remember me";
+
+"AutoLogin" = "Auto login";
+
+"KeepSelectedStream" = "Запам'ятати мій фільтр";
+
+"ShowPrivateDrive" = "Показати мій особистий диск";
+
+"Language" = "Мови";
+
+"English" = "Англійська";
+
+"French" = "Французька";
+
+"German" = "Німецька";
+
+"Spanish" = "Іспанська";
+
+"Send" = "Надіслати";
+
+"ServerList" = "Список серверів";
+
+"NewServer" = "Новий сервер";
+
+"ServerModify" = "Змінити сервер";
+
+"ApplicationsInformation" = "Інформація про додаток";
+
+"ServerVersion" = "Версія серверу";
+
+"ApplicationEdition" = "Видання додатку";
+
+"ApplicationVersion" = "Версія додатку";
+
+"ServerName" = "Ім'я сервера";
+
+"ServerUrl" = "URL-адреса серверу";
+
+
+/*
+ * Errors & Warnings
+ */
+
+"BadResponse" = "Сервер повернув неприпустимі дані.";
+
+"NetworkConnection" = "Помилка з’єднання";
+
+"Authorization" = "Не вдалося увійти";
+
+"WrongUserNamePassword" = "Неможливо підключитися, перевірте ім'я користувача та пароль";
+
+"InvalidServer" = "Неможливо підключитися до внутрішньої мережі, перевірте  URL-адресу або зверніться до адміністратора";
+
+"NetworkConnectionFailed" = "Неможливо підключитися до внутрішньої мережі, перевірте  URL-адресу або зверніться до адміністратора";
+
+"UserNameEmpty" = "Неправильне ім'я користувача";
+
+"PasswordEmpty" = "Невірний пароль";
+
+"SelectedDomainEmpty" = "Не вказано сервер";
+
+"EmptyFolder" = "Ця папка  порожня";
+
+"UnreadableFile" = "Цей файл не можна відкрити у застосунку";
+
+"NoActivities" = "Ви ще нічого не розмістили в своїй стрічці діяльності";
+
+"NoGadget" = "В ваших додатках немає гаджетів";
+
+"MessageInfo" = "Інформація";
+
+"MessageErrorServer" = "Неможливо додати сервер без імені або URL-адреси";
+
+"MessageErrorExist" = "Цей сервер уже існує";
+
+"InvalidUrl" = "Неприпустима URL-адреса";
+
+"FileError" = "Помилка";
+
+"CameraNotAvailable" = "Камера недоступна";
+
+"GadgetsCannotBeRetrieved" = "Гаджети не можуть бути відновлені";
+
+"Error" = "Помилка";
+
+"NoMessageComment" = "Введіть текст, щоб прокоментувати";
+
+"NoMessagePosting" = "Необхідно ввести текст на повідомлення";
+
+"GettingActionCannotBeCompleted" = "Ви не можете отримати діяльності";
+
+"UpdatingActionCannotBeCompleted" = "Ви не можете оновлювати діяльність";
+
+"LikingActionCannotBeCompleted" = "Ви не можете поставити лайк цій діяльності";
+
+"UnLikeActionCannotBeCompleted" = "Ви не можете прибрати лайки з діяльності";
+
+"PostingActionCannotBeCompleted" = "Ви не можете публікувати повідомлення";
+
+"CommentActionCannotBeCompleted" = "Ви не можете залишити коментар";
+
+"LoadMoreActionCannotBeCompleted" = "Сталася помилка, перевантаження діяльності.";
+
+"NotCompliant" = "Додаток не може працювати на виданні Платформи";
+
+"SpecialCharacters" = "Спеціальні символи не допускаються";
+
+"DashboardsCannotBeRetrieved" = "Неможливо отримати панелі моніторинга";
+
+"FolderNameAlreadyExist" = "Ця папка вже існує";
+
+"FolderNameEmpty" = "Папка не має імені";
+
+"Cannot move file to its location" = "Неможна перемістити файл у те ж місце";
+
+"Cannot transfer file" = "Не вдалося передати файл";
+
+
+/*
+ * Apps
+ */
+
+"Dashboard" = "Застосунки";
+
+
+/*
+ * Activity stream
+ */
+
+"numOfLikers" = "%d лайкери";
+
+"numOfLiker" = "%d лайкер";
+
+"likeThisActivity" = "%d людей це подобається";
+
+"NoOneLikeThis" = "Нікому це не сподобалося";
+
+"ActivityDetails" = "Подробиці діяльності";
+
+"MessageComposer" = "Компоновщик повідомлення";
+
+"ActivityStream" = "Стрічка діяльності";
+
+"News" = "Новини";
+
+"Details" = "Подробиці";
+
+"comments(%d)" = "Коментарі(%d)";
+
+"likes(%d)" = "Лайки(%d)";
+
+"YourComment" = "Ваш коментар";
+
+"GettingActivity" = "Початок діяльності";
+
+"UpdatingActivity" = "Оновлення діяльності";
+
+"PostingActivity" = "Розмістити";
+
+"CommentActivity" = "Коментар";
+
+"GettingActivityDetail" = "Деталізація діяльності";
+
+"UpdatingActivityDetail" = "Оновлення деталізації діяльності";
+
+"EditWiki" = "редагував Вікі-сторінку:";
+
+"CreateWiki" = "створював Вікі-сторінку:";
+
+"NewPost" = "додав нове повідомлення:";
+
+"UpdatePost" = "оновив повідомлення:";
+
+"NewTopic" = "розмістив нову тему:";
+
+"UpdateTopic" = "оновив тему:";
+
+"UpdateQuestion" = "оновив питання:";
+
+"Answered" = "відповів на питання:";
+
+"Asked" = "спросив:";
+
+"EventAdded" = "додав подію:";
+
+"EventUpdated" = "Нещодавно поновлена подія:";
+
+"TaskAdded" = "Додав завдання:";
+
+"TaskUpdated" = "Нещодавно поновлене завдання:";
+
+"Description" = "Опис";
+
+"Location" = "Розташування";
+
+"StartTime" = "Час початку";
+
+"EndTime" = "Час завершення";
+
+"NoComment" = "Ніхто не прокоментував, прокоментуйте першим";
+
+"Image Preview" = "Попередній перегляд";
+
+"Change" = "Змінити";
+
+"Remove" = "Видалити";
+
+"All Updates" = "Всі оновлення";
+
+"My Connections" = "Мої контакти";
+
+"My Spaces" = "Мої області";
+
+"My Status" = "Мій статус";
+
+
+/*
+ * Date message converter
+ */
+
+"Today" = "Сьогодні";
+
+"DateFmt" = "%1$@%2$@%3$@%4$@";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "назад";
+
+"DateFmt from now" = "з цього моменту";
+
+"DateFmt Less than" = "Менше ніж ";
+
+"DateFmt About" = "Про ";
+
+"DateFmt Over" = "Над ";
+
+"DateFmt Almost" = "Майже ";
+
+"DateFmt seconds" = " секунд ";
+
+"DateFmt minute" = " хвилина ";
+
+"DateFmt minutes" = " хвилин ";
+
+"DateFmt hour" = " година ";
+
+"DateFmt hours" = " годин ";
+
+"DateFmt day" = " день ";
+
+"DateFmt days" = " днів ";
+
+"DateFmt month" = " місяць ";
+
+"DateFmt months" = " місяців ";
+
+"DateFmt year" = " рік ";
+
+"DateFmt years" = " років ";
+
+
+/*
+ * Cloud sign up assistant 
+ */
+"ServerNotAvailable" = "Неможливо підключитися до внутрішньої мережі, перевірте  URL-адресу або зверніться до адміністратора";
+
+"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+
+"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "Неможливо підключитися до внутрішньої мережі, перевірте  URL-адресу або зверніться до адміністратора";
+
+"EmailIsBlacklisted" = "Please use your company email to sign up";
+
+"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"IncorrectEmailFormat" = "Please input a valid email address";
+
+"IncorrectPassword" = "Impossible to connect, check your password";
+
+"UserNotExist" = " No account exists for this email, check your email or signup";
+
+"TenantNotExist" = "No account exists for this email, check your email or signup";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+
+"Username" = "Ім'я користувача";
+
+"Password" = "Пароль";
+
+"Your credentials" = "Your credentials";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";
