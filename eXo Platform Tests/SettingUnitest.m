@@ -15,7 +15,7 @@
 {
     if ((self = [super init])) 
     {
-        serverManager = [ServerPreferencesManager sharedInstance];
+        serverManager = [ApplicationPreferencesManager sharedInstance];
         
     }	
 	return self;
@@ -43,7 +43,7 @@
 
 - (NSArray *)getServerList {
     
-    return [serverManager getServerList];
+    return [serverManager serverList];
 }
 
 //Add, edit, delete server

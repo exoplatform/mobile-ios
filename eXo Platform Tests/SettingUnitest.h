@@ -6,10 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ServerPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 
 @interface SettingUnitest : NSObject {
-    ServerPreferencesManager *serverManager;
+    ApplicationPreferencesManager *serverManager;
 }
 
 - (NSString*)parseURL:(NSString*)url;
@@ -20,7 +20,8 @@
 - (NSArray *)getServerList;
 
 - (BOOL)addNewServer:(NSString*)serverName URL:(NSString*)urlStr;
-- (BOOL)editServer:(NSString*)nameOld urlOld:(NSString*)urlOld nameNew:(NSString*)nameNew urlNew:(NSString*)urlNew;
+//- (BOOL)editServer:(NSString*)nameOld urlOld:(NSString*)urlOld nameNew:(NSString*)nameNew urlNew:(NSString*)urlNew;
+- (BOOL)editServer:(NSString*)nameNew urlNew:(NSString*)urlNew;
 - (BOOL)deleteServer;
 
 @end
