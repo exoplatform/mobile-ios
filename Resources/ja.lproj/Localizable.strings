@@ -12,11 +12,11 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "ログイン";
+"SignInButton" = "Login";
 
-"UsernamePlaceholder" = "ユーザ名";
+"UsernamePlaceholder" = "Username";
 
-"PasswordPlaceholder" = "パスワード";
+"PasswordPlaceholder" = "Password";
 
 
 /* 
@@ -27,15 +27,15 @@
 
 "NewFolderTitle" = "New folder";
 
-"RenameTitle" = "名前変更";
+"RenameTitle" = "Rename";
 
-"Copy" = "コピー";
+"Copy" = "Copy";
 
-"Move" = "切り取り";
+"Move" = "Cut";
 
-"Paste" = "貼り付け";
+"Paste" = "Paste";
 
-"Documents" = "ドキュメント";
+"Documents" = "Documents";
 
 "TakeAPicture" = "Take a picture";
 
@@ -51,30 +51,30 @@
 
 "personal" = "personal";
 
-"group" = "グループ";
+"group" = "group";
 
 
 /*
  * General
  */
 
-"Cancel" = "キャンセル";
+"Cancel" = "Cancel";
 
-"DoneButton" = "完了";
+"DoneButton" = "Done";
 
-"Delete" = "削除する";
+"Delete" = "Delete";
 
 "Success" = "Success";
 
-"Home" = "ホーム";
+"Home" = "Home";
 
-"Loading" = "ロード中...";
+"Loading" = "Loading...";
 
 "LoadingURL" = "Loading URL";
 
-"OK" = "Ok";
+"OK" = "OK";
 
-"Disconnect" = "切断";
+"Disconnect" = "Disconnect";
 
 "Pull down to refresh..." = "Pull down to refresh...";
 
@@ -86,16 +86,16 @@
 
 "Optional" = "Optional";
 
-"Fullscreen" = "フルスクリーン";
+"Fullscreen" = "Fullscreen";
 
-"Close" = "閉じる";
+"Close" = "Close";
 
 
 /*
  * Settings
  */
 
-"Settings" = "設定";
+"Settings" = "Settings";
 
 "RememberMe" = "Remember me";
 
@@ -105,17 +105,17 @@
 
 "ShowPrivateDrive" = "Show my private drive";
 
-"Language" = "言語";
+"Language" = "Languages";
 
-"English" = "英語";
+"English" = "English";
 
-"French" = "フランス語";
+"French" = "French";
 
-"German" = "ドイツ語";
+"German" = "German";
 
 "Spanish" = "Spanish";
 
-"Send" = "送信";
+"Send" = "Send";
 
 "ServerList" = "Server list";
 
@@ -166,7 +166,7 @@
 
 "NoGadget" = "You have no gadgets in your Apps";
 
-"MessageInfo" = "情報";
+"MessageInfo" = "Information";
 
 "MessageErrorServer" = "You cannot add a server with an empty name or URL";
 
@@ -174,13 +174,13 @@
 
 "InvalidUrl" = "Invalid URL";
 
-"FileError" = "エラー";
+"FileError" = "Error";
 
 "CameraNotAvailable" = "The camera is not available";
 
 "GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
 
-"Error" = "エラー";
+"Error" = "Error";
 
 "NoMessageComment" = "You must enter some text to comment";
 
@@ -240,9 +240,9 @@
 
 "ActivityStream" = "Activity stream";
 
-"News" = "ニュース";
+"News" = "News";
 
-"Details" = "詳細";
+"Details" = "Details";
 
 "comments(%d)" = "Comments(%d)";
 
@@ -254,9 +254,9 @@
 
 "UpdatingActivity" = "Updating activity";
 
-"PostingActivity" = "投稿する";
+"PostingActivity" = "Post";
 
-"CommentActivity" = "コメント";
+"CommentActivity" = "Comment";
 
 "GettingActivityDetail" = "Getting activity detail";
 
@@ -288,9 +288,9 @@
 
 "TaskUpdated" = "has just updated the task:";
 
-"Description" = "説明:";
+"Description" = "Description";
 
-"Location" = "場所";
+"Location" = "Location";
 
 "StartTime" = "Start time";
 
@@ -300,9 +300,9 @@
 
 "Image Preview" = "Image preview";
 
-"Change" = "変更";
+"Change" = "Change";
 
-"Remove" = "削除";
+"Remove" = "Remove";
 
 "All Updates" = "All updates";
 
@@ -317,7 +317,7 @@
  * Date message converter
  */
 
-"Today" = "今日";
+"Today" = "Today";
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
