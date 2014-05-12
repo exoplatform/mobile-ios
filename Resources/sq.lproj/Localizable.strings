@@ -10,398 +10,398 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "crwdns6617094:0crwdne6617094:0";
+"SignInPageTitle" = "crwdns6795901:0crwdne6795901:0";
 
-"SignInButton" = "crwdns6617095:0crwdne6617095:0";
+"SignInButton" = "crwdns6795902:0crwdne6795902:0";
 
-"UsernamePlaceholder" = "crwdns6617096:0crwdne6617096:0";
+"UsernamePlaceholder" = "crwdns6795903:0crwdne6795903:0";
 
-"PasswordPlaceholder" = "crwdns6617097:0crwdne6617097:0";
+"PasswordPlaceholder" = "crwdns6795904:0crwdne6795904:0";
 
 
 /* 
  * Documents
  */
 
-"TakePicture" = "crwdns6617098:0crwdne6617098:0";
+"TakePicture" = "crwdns6795905:0crwdne6795905:0";
 
-"NewFolderTitle" = "crwdns6617099:0crwdne6617099:0";
+"NewFolderTitle" = "crwdns6795906:0crwdne6795906:0";
 
-"RenameTitle" = "crwdns6617100:0crwdne6617100:0";
+"RenameTitle" = "crwdns6795907:0crwdne6795907:0";
 
-"Copy" = "crwdns6617101:0crwdne6617101:0";
+"Copy" = "crwdns6795908:0crwdne6795908:0";
 
-"Move" = "crwdns6617102:0crwdne6617102:0";
+"Move" = "crwdns6795909:0crwdne6795909:0";
 
-"Paste" = "crwdns6617103:0crwdne6617103:0";
+"Paste" = "crwdns6795910:0crwdne6795910:0";
 
-"Documents" = "crwdns6617104:0crwdne6617104:0";
+"Documents" = "crwdns6795911:0crwdne6795911:0";
 
-"TakeAPicture" = "crwdns6617105:0crwdne6617105:0";
+"TakeAPicture" = "crwdns6795912:0crwdne6795912:0";
 
-"AttachedPhoto" = "crwdns6617106:0crwdne6617106:0";
+"AttachedPhoto" = "crwdns6795913:0crwdne6795913:0";
 
-"AddAPhoto" = "crwdns6617107:0crwdne6617107:0";
+"AddAPhoto" = "crwdns6795914:0crwdne6795914:0";
 
-"PhotoLibrary" = "crwdns6617108:0crwdne6617108:0";
+"PhotoLibrary" = "crwdns6795915:0crwdne6795915:0";
 
 // Drives types
 
-"general" = "crwdns6617109:0crwdne6617109:0";
+"general" = "crwdns6795916:0crwdne6795916:0";
 
-"personal" = "crwdns6617110:0crwdne6617110:0";
+"personal" = "crwdns6795917:0crwdne6795917:0";
 
-"group" = "crwdns6617111:0crwdne6617111:0";
+"group" = "crwdns6795918:0crwdne6795918:0";
 
 
 /*
  * General
  */
 
-"Cancel" = "crwdns6752616:0crwdne6752616:0";
+"Cancel" = "crwdns6795919:0crwdne6795919:0";
 
-"DoneButton" = "crwdns6617113:0crwdne6617113:0";
+"DoneButton" = "crwdns6795920:0crwdne6795920:0";
 
-"Delete" = "crwdns6617114:0crwdne6617114:0";
+"Delete" = "crwdns6795921:0crwdne6795921:0";
 
-"Success" = "crwdns6617115:0crwdne6617115:0";
+"Success" = "crwdns6795922:0crwdne6795922:0";
 
-"Home" = "crwdns6617116:0crwdne6617116:0";
+"Home" = "crwdns6795923:0crwdne6795923:0";
 
-"Loading" = "crwdns6617117:0crwdne6617117:0";
+"Loading" = "crwdns6795924:0crwdne6795924:0";
 
-"LoadingURL" = "crwdns6617118:0crwdne6617118:0";
+"LoadingURL" = "crwdns6795925:0crwdne6795925:0";
 
-"OK" = "crwdns6617119:0crwdne6617119:0";
+"OK" = "crwdns6795926:0crwdne6795926:0";
 
-"Disconnect" = "crwdns6617120:0crwdne6617120:0";
+"Disconnect" = "crwdns6795927:0crwdne6795927:0";
 
-"Pull down to refresh..." = "crwdns6617121:0crwdne6617121:0";
+"Pull down to refresh..." = "crwdns6795928:0crwdne6795928:0";
 
-"Release to refresh..." = "crwdns6617122:0crwdne6617122:0";
+"Release to refresh..." = "crwdns6795929:0crwdne6795929:0";
 
-"Last Updated: %@" = "crwdns6617123:0%@crwdne6617123:0";
+"Last Updated: %@" = "crwdns6795930:0%@crwdne6795930:0";
 
-"Required" = "crwdns6617124:0crwdne6617124:0";
+"Required" = "crwdns6795931:0crwdne6795931:0";
 
-"Optional" = "crwdns6617125:0crwdne6617125:0";
+"Optional" = "crwdns6795932:0crwdne6795932:0";
 
-"Fullscreen" = "crwdns6617126:0crwdne6617126:0";
+"Fullscreen" = "crwdns6795933:0crwdne6795933:0";
 
-"Close" = "crwdns6617127:0crwdne6617127:0";
+"Close" = "crwdns6795934:0crwdne6795934:0";
 
 
 /*
  * Settings
  */
 
-"Settings" = "crwdns6617128:0crwdne6617128:0";
+"Settings" = "crwdns6795935:0crwdne6795935:0";
 
-"RememberMe" = "crwdns6617129:0crwdne6617129:0";
+"RememberMe" = "crwdns6795936:0crwdne6795936:0";
 
-"AutoLogin" = "crwdns6617130:0crwdne6617130:0";
+"AutoLogin" = "crwdns6795937:0crwdne6795937:0";
 
-"KeepSelectedStream" = "crwdns6617131:0crwdne6617131:0";
+"KeepSelectedStream" = "crwdns6795938:0crwdne6795938:0";
 
-"ShowPrivateDrive" = "crwdns6617132:0crwdne6617132:0";
+"ShowPrivateDrive" = "crwdns6795939:0crwdne6795939:0";
 
-"Language" = "crwdns6617133:0crwdne6617133:0";
+"Language" = "crwdns6795940:0crwdne6795940:0";
 
-"English" = "crwdns6617134:0crwdne6617134:0";
+"English" = "crwdns6795941:0crwdne6795941:0";
 
-"French" = "crwdns6617135:0crwdne6617135:0";
+"French" = "crwdns6795942:0crwdne6795942:0";
 
-"German" = "crwdns6752613:0crwdne6752613:0";
+"German" = "crwdns6795943:0crwdne6795943:0";
 
-"Spanish" = "crwdns6752614:0crwdne6752614:0";
+"Spanish" = "crwdns6795944:0crwdne6795944:0";
 
-"Send" = "crwdns6617136:0crwdne6617136:0";
+"Send" = "crwdns6795945:0crwdne6795945:0";
 
-"ServerList" = "crwdns6617137:0crwdne6617137:0";
+"ServerList" = "crwdns6795946:0crwdne6795946:0";
 
-"NewServer" = "crwdns6617138:0crwdne6617138:0";
+"NewServer" = "crwdns6795947:0crwdne6795947:0";
 
-"ServerModify" = "crwdns6617139:0crwdne6617139:0";
+"ServerModify" = "crwdns6795948:0crwdne6795948:0";
 
-"ApplicationsInformation" = "crwdns6617140:0crwdne6617140:0";
+"ApplicationsInformation" = "crwdns6795949:0crwdne6795949:0";
 
-"ServerVersion" = "crwdns6617141:0crwdne6617141:0";
+"ServerVersion" = "crwdns6795950:0crwdne6795950:0";
 
-"ApplicationEdition" = "crwdns6617142:0crwdne6617142:0";
+"ApplicationEdition" = "crwdns6795951:0crwdne6795951:0";
 
-"ApplicationVersion" = "crwdns6617143:0crwdne6617143:0";
+"ApplicationVersion" = "crwdns6795952:0crwdne6795952:0";
 
-"ServerName" = "crwdns6617144:0crwdne6617144:0";
+"ServerName" = "crwdns6795953:0crwdne6795953:0";
 
-"ServerUrl" = "crwdns6617145:0crwdne6617145:0";
+"ServerUrl" = "crwdns6795954:0crwdne6795954:0";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "crwdns6617146:0crwdne6617146:0";
+"BadResponse" = "crwdns6795955:0crwdne6795955:0";
 
-"NetworkConnection" = "crwdns6617147:0crwdne6617147:0";
+"NetworkConnection" = "crwdns6795956:0crwdne6795956:0";
 
-"Authorization" = "crwdns6617148:0crwdne6617148:0";
+"Authorization" = "crwdns6795957:0crwdne6795957:0";
 
-"WrongUserNamePassword" = "crwdns6617149:0crwdne6617149:0";
+"WrongUserNamePassword" = "crwdns6795958:0crwdne6795958:0";
 
-"InvalidServer" = "crwdns6617150:0crwdne6617150:0";
+"InvalidServer" = "crwdns6795959:0crwdne6795959:0";
 
-"NetworkConnectionFailed" = "crwdns6617151:0crwdne6617151:0";
+"NetworkConnectionFailed" = "crwdns6795960:0crwdne6795960:0";
 
-"UserNameEmpty" = "crwdns6617152:0crwdne6617152:0";
+"UserNameEmpty" = "crwdns6795961:0crwdne6795961:0";
 
-"PasswordEmpty" = "crwdns6617153:0crwdne6617153:0";
+"PasswordEmpty" = "crwdns6795962:0crwdne6795962:0";
 
-"SelectedDomainEmpty" = "crwdns6617154:0crwdne6617154:0";
+"SelectedDomainEmpty" = "crwdns6795963:0crwdne6795963:0";
 
-"EmptyFolder" = "crwdns6617155:0crwdne6617155:0";
+"EmptyFolder" = "crwdns6795964:0crwdne6795964:0";
 
-"UnreadableFile" = "crwdns6617156:0crwdne6617156:0";
+"UnreadableFile" = "crwdns6795965:0crwdne6795965:0";
 
-"NoActivities" = "crwdns6617157:0crwdne6617157:0";
+"NoActivities" = "crwdns6795966:0crwdne6795966:0";
 
-"NoGadget" = "crwdns6617158:0crwdne6617158:0";
+"NoGadget" = "crwdns6795967:0crwdne6795967:0";
 
-"MessageInfo" = "crwdns6617159:0crwdne6617159:0";
+"MessageInfo" = "crwdns6795968:0crwdne6795968:0";
 
-"MessageErrorServer" = "crwdns6617160:0crwdne6617160:0";
+"MessageErrorServer" = "crwdns6795969:0crwdne6795969:0";
 
-"MessageErrorExist" = "crwdns6617161:0crwdne6617161:0";
+"MessageErrorExist" = "crwdns6795970:0crwdne6795970:0";
 
-"InvalidUrl" = "crwdns6617162:0crwdne6617162:0";
+"InvalidUrl" = "crwdns6795971:0crwdne6795971:0";
 
-"FileError" = "crwdns6617163:0crwdne6617163:0";
+"FileError" = "crwdns6795972:0crwdne6795972:0";
 
-"CameraNotAvailable" = "crwdns6617164:0crwdne6617164:0";
+"CameraNotAvailable" = "crwdns6795973:0crwdne6795973:0";
 
-"GadgetsCannotBeRetrieved" = "crwdns6617165:0crwdne6617165:0";
+"GadgetsCannotBeRetrieved" = "crwdns6795974:0crwdne6795974:0";
 
-"Error" = "crwdns6617166:0crwdne6617166:0";
+"Error" = "crwdns6795975:0crwdne6795975:0";
 
-"NoMessageComment" = "crwdns6617167:0crwdne6617167:0";
+"NoMessageComment" = "crwdns6795976:0crwdne6795976:0";
 
-"NoMessagePosting" = "crwdns6617168:0crwdne6617168:0";
+"NoMessagePosting" = "crwdns6795977:0crwdne6795977:0";
 
-"GettingActionCannotBeCompleted" = "crwdns6617169:0crwdne6617169:0";
+"GettingActionCannotBeCompleted" = "crwdns6795978:0crwdne6795978:0";
 
-"UpdatingActionCannotBeCompleted" = "crwdns6617170:0crwdne6617170:0";
+"UpdatingActionCannotBeCompleted" = "crwdns6795979:0crwdne6795979:0";
 
-"LikingActionCannotBeCompleted" = "crwdns6617171:0crwdne6617171:0";
+"LikingActionCannotBeCompleted" = "crwdns6795980:0crwdne6795980:0";
 
-"UnLikeActionCannotBeCompleted" = "crwdns6617172:0crwdne6617172:0";
+"UnLikeActionCannotBeCompleted" = "crwdns6795981:0crwdne6795981:0";
 
-"PostingActionCannotBeCompleted" = "crwdns6617173:0crwdne6617173:0";
+"PostingActionCannotBeCompleted" = "crwdns6795982:0crwdne6795982:0";
 
-"CommentActionCannotBeCompleted" = "crwdns6617174:0crwdne6617174:0";
+"CommentActionCannotBeCompleted" = "crwdns6795983:0crwdne6795983:0";
 
-"LoadMoreActionCannotBeCompleted" = "crwdns6617175:0crwdne6617175:0";
+"LoadMoreActionCannotBeCompleted" = "crwdns6795984:0crwdne6795984:0";
 
-"NotCompliant" = "crwdns6617176:0crwdne6617176:0";
+"NotCompliant" = "crwdns6795985:0crwdne6795985:0";
 
-"SpecialCharacters" = "crwdns6617177:0crwdne6617177:0";
+"SpecialCharacters" = "crwdns6795986:0crwdne6795986:0";
 
-"DashboardsCannotBeRetrieved" = "crwdns6617178:0crwdne6617178:0";
+"DashboardsCannotBeRetrieved" = "crwdns6795987:0crwdne6795987:0";
 
-"FolderNameAlreadyExist" = "crwdns6617179:0crwdne6617179:0";
+"FolderNameAlreadyExist" = "crwdns6795988:0crwdne6795988:0";
 
-"FolderNameEmpty" = "crwdns6617180:0crwdne6617180:0";
+"FolderNameEmpty" = "crwdns6795989:0crwdne6795989:0";
 
-"Cannot move file to its location" = "crwdns6617181:0crwdne6617181:0";
+"Cannot move file to its location" = "crwdns6795990:0crwdne6795990:0";
 
-"Cannot transfer file" = "crwdns6617182:0crwdne6617182:0";
+"Cannot transfer file" = "crwdns6795991:0crwdne6795991:0";
 
 
 /*
  * Apps
  */
 
-"Dashboard" = "crwdns6617183:0crwdne6617183:0";
+"Dashboard" = "crwdns6795992:0crwdne6795992:0";
 
 
 /*
  * Activity stream
  */
 
-"numOfLikers" = "crwdns6617184:0%dcrwdne6617184:0";
+"numOfLikers" = "crwdns6795993:0%dcrwdne6795993:0";
 
-"numOfLiker" = "crwdns6617185:0%dcrwdne6617185:0";
+"numOfLiker" = "crwdns6795994:0%dcrwdne6795994:0";
 
-"likeThisActivity" = "crwdns6617186:0%dcrwdne6617186:0";
+"likeThisActivity" = "crwdns6795995:0%dcrwdne6795995:0";
 
-"NoOneLikeThis" = "crwdns6617187:0crwdne6617187:0";
+"NoOneLikeThis" = "crwdns6795996:0crwdne6795996:0";
 
-"ActivityDetails" = "crwdns6617188:0crwdne6617188:0";
+"ActivityDetails" = "crwdns6795997:0crwdne6795997:0";
 
-"MessageComposer" = "crwdns6617189:0crwdne6617189:0";
+"MessageComposer" = "crwdns6795998:0crwdne6795998:0";
 
-"ActivityStream" = "crwdns6617190:0crwdne6617190:0";
+"ActivityStream" = "crwdns6795999:0crwdne6795999:0";
 
-"News" = "crwdns6617191:0crwdne6617191:0";
+"News" = "crwdns6796000:0crwdne6796000:0";
 
-"Details" = "crwdns6617192:0crwdne6617192:0";
+"Details" = "crwdns6796001:0crwdne6796001:0";
 
-"comments(%d)" = "crwdns6617193:0%dcrwdne6617193:0";
+"comments(%d)" = "crwdns6796002:0%dcrwdne6796002:0";
 
-"likes(%d)" = "crwdns6617194:0%dcrwdne6617194:0";
+"likes(%d)" = "crwdns6796003:0%dcrwdne6796003:0";
 
-"YourComment" = "crwdns6617195:0crwdne6617195:0";
+"YourComment" = "crwdns6796004:0crwdne6796004:0";
 
-"GettingActivity" = "crwdns6617196:0crwdne6617196:0";
+"GettingActivity" = "crwdns6796005:0crwdne6796005:0";
 
-"UpdatingActivity" = "crwdns6617197:0crwdne6617197:0";
+"UpdatingActivity" = "crwdns6796006:0crwdne6796006:0";
 
-"PostingActivity" = "crwdns6617198:0crwdne6617198:0";
+"PostingActivity" = "crwdns6796007:0crwdne6796007:0";
 
-"CommentActivity" = "crwdns6617199:0crwdne6617199:0";
+"CommentActivity" = "crwdns6796008:0crwdne6796008:0";
 
-"GettingActivityDetail" = "crwdns6617200:0crwdne6617200:0";
+"GettingActivityDetail" = "crwdns6796009:0crwdne6796009:0";
 
-"UpdatingActivityDetail" = "crwdns6617201:0crwdne6617201:0";
+"UpdatingActivityDetail" = "crwdns6796010:0crwdne6796010:0";
 
-"EditWiki" = "crwdns6617202:0crwdne6617202:0";
+"EditWiki" = "crwdns6796011:0crwdne6796011:0";
 
-"CreateWiki" = "crwdns6617203:0crwdne6617203:0";
+"CreateWiki" = "crwdns6796012:0crwdne6796012:0";
 
-"NewPost" = "crwdns6617204:0crwdne6617204:0";
+"NewPost" = "crwdns6796013:0crwdne6796013:0";
 
-"UpdatePost" = "crwdns6617205:0crwdne6617205:0";
+"UpdatePost" = "crwdns6796014:0crwdne6796014:0";
 
-"NewTopic" = "crwdns6617206:0crwdne6617206:0";
+"NewTopic" = "crwdns6796015:0crwdne6796015:0";
 
-"UpdateTopic" = "crwdns6617207:0crwdne6617207:0";
+"UpdateTopic" = "crwdns6796016:0crwdne6796016:0";
 
-"UpdateQuestion" = "crwdns6617208:0crwdne6617208:0";
+"UpdateQuestion" = "crwdns6796017:0crwdne6796017:0";
 
-"Answered" = "crwdns6617209:0crwdne6617209:0";
+"Answered" = "crwdns6796018:0crwdne6796018:0";
 
-"Asked" = "crwdns6617210:0crwdne6617210:0";
+"Asked" = "crwdns6796019:0crwdne6796019:0";
 
-"EventAdded" = "crwdns6617211:0crwdne6617211:0";
+"EventAdded" = "crwdns6796020:0crwdne6796020:0";
 
-"EventUpdated" = "crwdns6617212:0crwdne6617212:0";
+"EventUpdated" = "crwdns6796021:0crwdne6796021:0";
 
-"TaskAdded" = "crwdns6617213:0crwdne6617213:0";
+"TaskAdded" = "crwdns6796022:0crwdne6796022:0";
 
-"TaskUpdated" = "crwdns6617214:0crwdne6617214:0";
+"TaskUpdated" = "crwdns6796023:0crwdne6796023:0";
 
-"Description" = "crwdns6617215:0crwdne6617215:0";
+"Description" = "crwdns6796024:0crwdne6796024:0";
 
-"Location" = "crwdns6617216:0crwdne6617216:0";
+"Location" = "crwdns6796025:0crwdne6796025:0";
 
-"StartTime" = "crwdns6617217:0crwdne6617217:0";
+"StartTime" = "crwdns6796026:0crwdne6796026:0";
 
-"EndTime" = "crwdns6617218:0crwdne6617218:0";
+"EndTime" = "crwdns6796027:0crwdne6796027:0";
 
-"NoComment" = "crwdns6617219:0crwdne6617219:0";
+"NoComment" = "crwdns6796028:0crwdne6796028:0";
 
-"Image Preview" = "crwdns6617220:0crwdne6617220:0";
+"Image Preview" = "crwdns6796029:0crwdne6796029:0";
 
-"Change" = "crwdns6617221:0crwdne6617221:0";
+"Change" = "crwdns6796030:0crwdne6796030:0";
 
-"Remove" = "crwdns6617222:0crwdne6617222:0";
+"Remove" = "crwdns6796031:0crwdne6796031:0";
 
-"All Updates" = "crwdns6617223:0crwdne6617223:0";
+"All Updates" = "crwdns6796032:0crwdne6796032:0";
 
-"My Connections" = "crwdns6617224:0crwdne6617224:0";
+"My Connections" = "crwdns6796033:0crwdne6796033:0";
 
-"My Spaces" = "crwdns6617225:0crwdne6617225:0";
+"My Spaces" = "crwdns6796034:0crwdne6796034:0";
 
-"My Status" = "crwdns6617226:0crwdne6617226:0";
+"My Status" = "crwdns6796035:0crwdne6796035:0";
 
 
 /*
  * Date message converter
  */
 
-"Today" = "crwdns6617227:0crwdne6617227:0";
+"Today" = "crwdns6796036:0crwdne6796036:0";
 
-"DateFmt" = "crwdns6617228:0%1$@crwdnd6617228:0%2$@crwdnd6617228:0%3$@crwdnd6617228:0%4$@crwdne6617228:0";
+"DateFmt" = "crwdns6796037:0%1$@crwdnd6796037:0%2$@crwdnd6796037:0%3$@crwdnd6796037:0%4$@crwdne6796037:0";
 
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "crwdns6617229:0crwdne6617229:0";
+"DateFmt ago" = "crwdns6796038:0crwdne6796038:0";
 
-"DateFmt from now" = "crwdns6617230:0crwdne6617230:0";
+"DateFmt from now" = "crwdns6796039:0crwdne6796039:0";
 
-"DateFmt Less than" = "crwdns6617231:0crwdne6617231:0";
+"DateFmt Less than" = "crwdns6796040:0crwdne6796040:0";
 
-"DateFmt About" = "crwdns6617232:0crwdne6617232:0";
+"DateFmt About" = "crwdns6796041:0crwdne6796041:0";
 
-"DateFmt Over" = "crwdns6617233:0crwdne6617233:0";
+"DateFmt Over" = "crwdns6796042:0crwdne6796042:0";
 
-"DateFmt Almost" = "crwdns6617234:0crwdne6617234:0";
+"DateFmt Almost" = "crwdns6796043:0crwdne6796043:0";
 
-"DateFmt seconds" = "crwdns6617235:0crwdne6617235:0";
+"DateFmt seconds" = "crwdns6796044:0crwdne6796044:0";
 
-"DateFmt minute" = "crwdns6617236:0crwdne6617236:0";
+"DateFmt minute" = "crwdns6796045:0crwdne6796045:0";
 
-"DateFmt minutes" = "crwdns6617237:0crwdne6617237:0";
+"DateFmt minutes" = "crwdns6796046:0crwdne6796046:0";
 
-"DateFmt hour" = "crwdns6617238:0crwdne6617238:0";
+"DateFmt hour" = "crwdns6796047:0crwdne6796047:0";
 
-"DateFmt hours" = "crwdns6617239:0crwdne6617239:0";
+"DateFmt hours" = "crwdns6796048:0crwdne6796048:0";
 
-"DateFmt day" = "crwdns6617240:0crwdne6617240:0";
+"DateFmt day" = "crwdns6796049:0crwdne6796049:0";
 
-"DateFmt days" = "crwdns6617241:0crwdne6617241:0";
+"DateFmt days" = "crwdns6796050:0crwdne6796050:0";
 
-"DateFmt month" = "crwdns6617242:0crwdne6617242:0";
+"DateFmt month" = "crwdns6796051:0crwdne6796051:0";
 
-"DateFmt months" = "crwdns6617243:0crwdne6617243:0";
+"DateFmt months" = "crwdns6796052:0crwdne6796052:0";
 
-"DateFmt year" = "crwdns6617244:0crwdne6617244:0";
+"DateFmt year" = "crwdns6796053:0crwdne6796053:0";
 
-"DateFmt years" = "crwdns6617245:0crwdne6617245:0";
+"DateFmt years" = "crwdns6796054:0crwdne6796054:0";
 
 
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "crwdns6617246:0crwdne6617246:0";
+"ServerNotAvailable" = "crwdns6796055:0crwdne6796055:0";
 
-"AccountAlreadyExists" = "crwdns6617247:0crwdne6617247:0";
+"AccountAlreadyExists" = "crwdns6796056:0crwdne6796056:0";
 
-"NumberUsersExceed" = "crwdns6617248:0crwdne6617248:0";
+"NumberUsersExceed" = "crwdns6796057:0crwdne6796057:0";
 
-"StartTheConfigurationAssistant" = "crwdns6617249:0crwdne6617249:0";
+"StartTheConfigurationAssistant" = "crwdns6796058:0crwdne6796058:0";
 
-"eXoCloudConfigurationAssistant" = "crwdns6617250:0crwdne6617250:0";
+"eXoCloudConfigurationAssistant" = "crwdns6796059:0crwdne6796059:0";
 
-"ServiceUnavailable" = "crwdns6617251:0crwdne6617251:0";
+"ServiceUnavailable" = "crwdns6796060:0crwdne6796060:0";
 
-"EmailIsBlacklisted" = "crwdns6617252:0crwdne6617252:0";
+"EmailIsBlacklisted" = "crwdns6796061:0crwdne6796061:0";
 
-"NumberOfUsersExceed" = "crwdns6617253:0crwdne6617253:0";
+"NumberOfUsersExceed" = "crwdns6796062:0crwdne6796062:0";
 
-"IncorrectEmailFormat" = "crwdns6617254:0crwdne6617254:0";
+"IncorrectEmailFormat" = "crwdns6796063:0crwdne6796063:0";
 
-"IncorrectPassword" = "crwdns6617255:0crwdne6617255:0";
+"IncorrectPassword" = "crwdns6796064:0crwdne6796064:0";
 
-"UserNotExist" = "crwdns6617256:0crwdne6617256:0";
+"UserNotExist" = "crwdns6796065:0crwdne6796065:0";
 
-"TenantNotExist" = "crwdns6617257:0crwdne6617257:0";
+"TenantNotExist" = "crwdns6796066:0crwdne6796066:0";
 
-"TenantResuming" = "crwdns6617258:0crwdne6617258:0";
+"TenantResuming" = "crwdns6796067:0crwdne6796067:0";
 
-"TenantCreation" = "crwdns6617259:0crwdne6617259:0";
+"TenantCreation" = "crwdns6796068:0crwdne6796068:0";
 
-"Username" = "crwdns6617260:0crwdne6617260:0";
+"Username" = "crwdns6796069:0crwdne6796069:0";
 
-"Password" = "crwdns6617261:0crwdne6617261:0";
+"Password" = "crwdns6796070:0crwdne6796070:0";
 
-"Your credentials" = "crwdns6617262:0crwdne6617262:0";
+"Your credentials" = "crwdns6796071:0crwdne6796071:0";
 
-"EnterServerUrl" = "crwdns6617263:0crwdne6617263:0";
+"EnterServerUrl" = "crwdns6796072:0crwdne6796072:0";
 
-"EnterCredentials" = "crwdns6617264:0crwdne6617264:0";
+"EnterCredentials" = "crwdns6796073:0crwdne6796073:0";
 
-"My intranet" = "crwdns6617265:0crwdne6617265:0";
+"My intranet" = "crwdns6796074:0crwdne6796074:0";
 
-"SignupInternalServerError" = "crwdns6617266:0crwdne6617266:0";
+"SignupInternalServerError" = "crwdns6796075:0crwdne6796075:0";
 
-"NoTenantName" = "crwdns6617267:0crwdne6617267:0";
+"NoTenantName" = "crwdns6796076:0crwdne6796076:0";
