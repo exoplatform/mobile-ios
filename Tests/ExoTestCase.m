@@ -34,6 +34,7 @@
     [super tearDown];
 }
 
+// based on http://stackoverflow.com/questions/3423545/objective-c-iphone-percent-encode-a-string/3426140#3426140
 - (NSString *) URLEncodedString:(NSString*)s
 {
     NSMutableString * output = [NSMutableString string];
