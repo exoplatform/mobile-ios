@@ -9,11 +9,11 @@
 #import <XCTest/XCTest.h>
 #import "SettingUnitest.h"
 
-@interface UserPreferencesTestCase : XCTestCase
+@interface ApplicationPreferencesTestCase : XCTestCase
 
 @end
 
-@implementation UserPreferencesTestCase
+@implementation ApplicationPreferencesTestCase
 
 - (void)setUp
 {
@@ -32,28 +32,33 @@
     SettingUnitest *settingU = [[SettingUnitest alloc] init];
     
     //    Parse given url
-    NSString *expectedUrl = @"http://demo.platform.exo.org";
+    NSString *SERVER_URL =     @"http://demo.platform.exo.org";
+    NSString *SERVER_URL_NEW = @"http://new.platform.exo.org";
+    NSString *SERVER_NAME =     @"Test Server";
+    NSString *SERVER_NAME_NEW = @"Test Server New";
     
-    XCTAssertTrue([[settingU parseURL:@"demo.platform.exo.org/portal"] isEqualToString:expectedUrl], @"Failed");
-    XCTAssertTrue([[settingU parseURL:@"http://demo.platform.exo.org"] isEqualToString:expectedUrl], @"Failed");
-    XCTAssertTrue([[settingU parseURL:@"demo.platform.exo.org/"] isEqualToString:expectedUrl], @"Failed");
-    XCTAssertTrue([[settingU parseURL:@"http://demo.platform.exo.org/portal"] isEqualToString:expectedUrl], @"Failed");
+    XCTAssertEqualObjects([settingU parseURL:@"demo.platform.exo.org/portal"], SERVER_URL, @"Failed to parse URL");
+    XCTAssertEqualObjects([settingU parseURL:@"http://demo.platform.exo.org"], SERVER_URL, @"Failed to parse URL");
+    XCTAssertEqualObjects([settingU parseURL:@"demo.platform.exo.org/"], SERVER_URL, @"Failed to parse URL");
+    XCTAssertEqualObjects([settingU parseURL:@"http://demo.platform.exo.org/portal"], SERVER_URL, @"Failed to parse URL");
     
-    //     Get server list
-    NSArray *serverList = [settingU getServerList];
-    //    XCTAssertTrue([serverList count] > 0, @"Failed");
-    XCTAssertEqual([serverList count], 1, @"Failed");
-    
+    //     Get server list - should be empty
+    XCTAssertTrue([[settingU getServerList] count] == 0, @"Number of servers should be 0");
     
     //    Add new server
-    XCTAssertTrue([settingU addNewServer:@"" URL:@""], @"Failed");
+    [settingU addNewServer:SERVER_NAME URL:SERVER_URL];
+    XCTAssertTrue([[settingU getServerList] count] == 1, @"Number of servers should be 1");
     
     //    Edit server
-    XCTAssertTrue([settingU editServer:@"" urlNew:@""], @"Failed");
+    [settingU editServer:SERVER_NAME_NEW urlNew:SERVER_URL_NEW];
+    ServerObj *srv = [[settingU getServerList] objectAtIndex:0];
+    XCTAssertNotNil(srv, @"Server should not be null");
+    XCTAssertEqualObjects([srv _strServerName], SERVER_NAME_NEW, @"New server name should be %@", SERVER_NAME_NEW);
+    XCTAssertEqualObjects([srv _strServerUrl], SERVER_URL_NEW, @"New server URL should be %@", SERVER_URL_NEW);
     
     //    Delete server
-    XCTAssertTrue([settingU deleteServer], @"Failed");
-    
+    [settingU deleteServer];
+    XCTAssertTrue([[settingU getServerList] count] == 0, @"Number of servers should be 0");
 }
 
 

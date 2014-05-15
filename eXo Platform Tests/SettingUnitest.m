@@ -49,41 +49,17 @@
 //Add, edit, delete server
 - (BOOL)addNewServer:(NSString*)serverName URL:(NSString*)urlStr {
     
-    //Create the new server
-    ServerObj* serverObj = [[ServerObj alloc] init];
-    serverObj._strServerName = serverName;
-    serverObj._strServerUrl = [self parseURL:urlStr];    
-    serverObj._bSystemServer = NO;
-    
-    //Add the server in configuration
-    NSMutableArray* arrAddedServer = (NSMutableArray*)[self loadUserConfiguration];
-    [arrAddedServer addObject:serverObj];
-    return [serverManager writeUserConfiguration:arrAddedServer];
-
+    return [serverManager addEditServerWithServerName:serverName andServerUrl:urlStr withUsername:@"" andPassword:@"" atIndex:-1];
 }
 
 - (BOOL)editServer:(NSString*)nameNew urlNew:(NSString*)urlNew {
     
-    ServerObj* serverObj = [[ServerObj alloc] init];
-    serverObj._strServerName = urlNew;
-    serverObj._strServerUrl = [self parseURL:urlNew];
-
-    NSMutableArray* _arrServerList = (NSMutableArray*)[self loadSystemConfiguration];
-    [_arrServerList replaceObjectAtIndex:0 withObject:serverObj];
-    
-    [serverManager writeSystemConfiguration:_arrServerList];
-    
-    return YES;
+    return [serverManager addEditServerWithServerName:nameNew andServerUrl:urlNew withUsername:@"" andPassword:@"" atIndex:0];
 }
 
 - (BOOL)deleteServer {
 
-    NSMutableArray* _arrServerList = (NSMutableArray*)[self loadSystemConfiguration];
-    [_arrServerList removeObjectAtIndex:0];
-    
-    [serverManager writeSystemConfiguration:_arrServerList];
-    
-    return YES;
+    return [serverManager deleteServerObjAtIndex:0];
 }
 
 
