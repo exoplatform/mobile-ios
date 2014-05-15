@@ -28,7 +28,7 @@
     [super tearDown];
 }
 
-- (void)test_Activity_Time_Is_Converted_In_Words
+- (void)testActivityTimeIsConvertedInWords
 {
     SocialActivity *activity = [[SocialActivity alloc] init];
     NSDate *yesterday = [[NSDate alloc]

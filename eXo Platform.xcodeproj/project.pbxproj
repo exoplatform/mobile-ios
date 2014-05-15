@@ -343,6 +343,7 @@
 		46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */; };
 		46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */; };
 		46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */; };
+		5778204519245DEA00ED72D0 /* CloudUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778204419245DEA00ED72D0 /* CloudUtilsTestCase.m */; };
 		578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78C17EAD51F00771497 /* Icon-72@2x.png */; };
 		578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78E17EAD51F00771497 /* Icon-ios7-76.png */; };
 		578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78F17EAD51F00771497 /* Icon-ios7-120.png */; };
@@ -1399,6 +1400,7 @@
 		46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
 		46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "UIImage+Resize/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "UIImage+Resize/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		5778204419245DEA00ED72D0 /* CloudUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudUtilsTestCase.m; sourceTree = "<group>"; };
 		578ED78C17EAD51F00771497 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		578ED78E17EAD51F00771497 /* Icon-ios7-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76.png"; sourceTree = "<group>"; };
 		578ED78F17EAD51F00771497 /* Icon-ios7-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-120.png"; sourceTree = "<group>"; };
@@ -3111,6 +3113,7 @@
 				57A91908190E0A16008CFD6B /* Supporting Files */,
 				57A91917190E0B32008CFD6B /* ActivityModelTestCase.m */,
 				57B7F54E190FBC21005CEF92 /* UserPreferencesTestCase.m */,
+				5778204419245DEA00ED72D0 /* CloudUtilsTestCase.m */,
 			);
 			path = "eXo Platform Tests";
 			sourceTree = "<group>";
@@ -5304,6 +5307,7 @@
 				57B7F550190FBC95005CEF92 /* SettingUnitest.h in Sources */,
 				57B7F551190FBC95005CEF92 /* SettingUnitest.m in Sources */,
 				57A91918190E0B32008CFD6B /* ActivityModelTestCase.m in Sources */,
+				5778204519245DEA00ED72D0 /* CloudUtilsTestCase.m in Sources */,
 				57B7F54F190FBC21005CEF92 /* UserPreferencesTestCase.m in Sources */,
 				57A9190E190E0A16008CFD6B /* eXo_Platform_Tests.m in Sources */,
 			);
