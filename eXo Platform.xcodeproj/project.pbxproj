@@ -343,7 +343,13 @@
 		46FE84E3146989F1000F1FE0 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84DE146989F0000F1FE0 /* UIImage+Alpha.m */; };
 		46FE84E4146989F1000F1FE0 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */; };
 		46FE84E5146989F1000F1FE0 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */; };
-		5778204519245DEA00ED72D0 /* CloudUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778204419245DEA00ED72D0 /* CloudUtilsTestCase.m */; };
+		5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */; };
+		5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */; };
+		5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */; };
+		5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5778208E19249DB100ED72D0 /* InfoPlist.strings */; };
+		5778209A19249DB100ED72D0 /* eXo_Platform_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209219249DB100ED72D0 /* eXo_Platform_Tests.m */; };
+		5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209319249DB100ED72D0 /* ExoTestCase.m */; };
+		5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */; };
 		578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78C17EAD51F00771497 /* Icon-72@2x.png */; };
 		578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78E17EAD51F00771497 /* Icon-ios7-76.png */; };
 		578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78F17EAD51F00771497 /* Icon-ios7-120.png */; };
@@ -356,13 +362,7 @@
 		57A07119160FF492002E2BAC /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5C15B51D54004F958C /* Default-Portrait@2x~ipad.png */; };
 		57A91905190E0A16008CFD6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		57A91906190E0A16008CFD6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		57A9190C190E0A16008CFD6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57A9190A190E0A16008CFD6B /* InfoPlist.strings */; };
-		57A9190E190E0A16008CFD6B /* eXo_Platform_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A9190D190E0A16008CFD6B /* eXo_Platform_Tests.m */; };
-		57A91918190E0B32008CFD6B /* ActivityModelTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A91917190E0B32008CFD6B /* ActivityModelTestCase.m */; };
 		57A9191C190E10AE008CFD6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A9191B190E10AE008CFD6B /* XCTest.framework */; };
-		57B7F54F190FBC21005CEF92 /* UserPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B7F54E190FBC21005CEF92 /* UserPreferencesTestCase.m */; };
-		57B7F550190FBC95005CEF92 /* SettingUnitest.h in Sources */ = {isa = PBXBuildFile; fileRef = 8958E67214A9BE2800580EEB /* SettingUnitest.h */; };
-		57B7F551190FBC95005CEF92 /* SettingUnitest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958E67314A9BE2800580EEB /* SettingUnitest.m */; };
 		57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203215B6B7B800BF902F /* CredentialsViewController.m */; };
 		57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203515B6B7C800BF902F /* ServerListViewController.m */; };
 		57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */; };
@@ -1400,7 +1400,16 @@
 		46FE84E0146989F0000F1FE0 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
 		46FE84E1146989F0000F1FE0 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "UIImage+Resize/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		46FE84E2146989F0000F1FE0 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "UIImage+Resize/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		5778204419245DEA00ED72D0 /* CloudUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudUtilsTestCase.m; sourceTree = "<group>"; };
+		5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModelTestCase.m; sourceTree = "<group>"; };
+		5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPreferencesTestCase.m; sourceTree = "<group>"; };
+		5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudUtilsTestCase.m; sourceTree = "<group>"; };
+		5778208F19249DB100ED72D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5778209019249DB100ED72D0 /* eXo Platform Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eXo Platform Tests-Info.plist"; sourceTree = "<group>"; };
+		5778209119249DB100ED72D0 /* eXo Platform Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "eXo Platform Tests-Prefix.pch"; sourceTree = "<group>"; };
+		5778209219249DB100ED72D0 /* eXo_Platform_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXo_Platform_Tests.m; sourceTree = "<group>"; };
+		5778209319249DB100ED72D0 /* ExoTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoTestCase.m; sourceTree = "<group>"; };
+		5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzerTestCase.m; sourceTree = "<group>"; };
+		5778209D19249F4F00ED72D0 /* ExoTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoTestCase.h; sourceTree = "<group>"; };
 		578ED78C17EAD51F00771497 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		578ED78E17EAD51F00771497 /* Icon-ios7-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76.png"; sourceTree = "<group>"; };
 		578ED78F17EAD51F00771497 /* Icon-ios7-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-120.png"; sourceTree = "<group>"; };
@@ -1411,13 +1420,7 @@
 		579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthSelectionView.m; sourceTree = "<group>"; };
 		57A918EB190E030D008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		57A91903190E0A15008CFD6B /* eXo Platform Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eXo Platform Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		57A91909190E0A16008CFD6B /* eXo Platform Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "eXo Platform Tests-Info.plist"; sourceTree = "<group>"; };
-		57A9190B190E0A16008CFD6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		57A9190D190E0A16008CFD6B /* eXo_Platform_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eXo_Platform_Tests.m; sourceTree = "<group>"; };
-		57A9190F190E0A16008CFD6B /* eXo Platform Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eXo Platform Tests-Prefix.pch"; sourceTree = "<group>"; };
-		57A91917190E0B32008CFD6B /* ActivityModelTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModelTestCase.m; sourceTree = "<group>"; };
 		57A9191B190E10AE008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		57B7F54E190FBC21005CEF92 /* UserPreferencesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesTestCase.m; sourceTree = "<group>"; };
 		57C5203115B6B7B700BF902F /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
 		57C5203215B6B7B800BF902F /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
 		57C5203415B6B7C700BF902F /* ServerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerListViewController.h; sourceTree = "<group>"; };
@@ -1757,8 +1760,6 @@
 		8958E66014A9B7D300580EEB /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
 		8958E66114A9B7D300580EEB /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
 		8958E66214A9B7D300580EEB /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
-		8958E67214A9BE2800580EEB /* SettingUnitest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingUnitest.h; sourceTree = "<group>"; };
-		8958E67314A9BE2800580EEB /* SettingUnitest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingUnitest.m; sourceTree = "<group>"; };
 		8958E67514A9C82400580EEB /* URLAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLAnalyzer.h; sourceTree = "<group>"; };
 		8958E67614A9C82400580EEB /* URLAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzer.m; sourceTree = "<group>"; };
 		8989B06514735C9700EEBD7C /* gadgetPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gadgetPlaceHolder.png; sourceTree = "<group>"; };
@@ -2163,10 +2164,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5778208A19249DB100ED72D0 /* Tests */,
 				8947351C13375E1800B0AD11 /* Other Sources */,
 				89300A6C1336EF6200804D3B /* Sources */,
 				894733BB13370D7C00B0AD11 /* Resources */,
-				57A91907190E0A16008CFD6B /* eXo Platform Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -3104,28 +3105,21 @@
 			name = "UIImage+Resize";
 			sourceTree = "<group>";
 		};
-		57A91907190E0A16008CFD6B /* eXo Platform Tests */ = {
+		5778208A19249DB100ED72D0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8958E67214A9BE2800580EEB /* SettingUnitest.h */,
-				8958E67314A9BE2800580EEB /* SettingUnitest.m */,
-				57A9190D190E0A16008CFD6B /* eXo_Platform_Tests.m */,
-				57A91908190E0A16008CFD6B /* Supporting Files */,
-				57A91917190E0B32008CFD6B /* ActivityModelTestCase.m */,
-				57B7F54E190FBC21005CEF92 /* UserPreferencesTestCase.m */,
-				5778204419245DEA00ED72D0 /* CloudUtilsTestCase.m */,
+				5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */,
+				5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */,
+				5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */,
+				5778208E19249DB100ED72D0 /* InfoPlist.strings */,
+				5778209019249DB100ED72D0 /* eXo Platform Tests-Info.plist */,
+				5778209119249DB100ED72D0 /* eXo Platform Tests-Prefix.pch */,
+				5778209219249DB100ED72D0 /* eXo_Platform_Tests.m */,
+				5778209D19249F4F00ED72D0 /* ExoTestCase.h */,
+				5778209319249DB100ED72D0 /* ExoTestCase.m */,
+				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
 			);
-			path = "eXo Platform Tests";
-			sourceTree = "<group>";
-		};
-		57A91908190E0A16008CFD6B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				57A91909190E0A16008CFD6B /* eXo Platform Tests-Info.plist */,
-				57A9190A190E0A16008CFD6B /* InfoPlist.strings */,
-				57A9190F190E0A16008CFD6B /* eXo Platform Tests-Prefix.pch */,
-			);
-			name = "Supporting Files";
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		57FB19C915FD9670001F5C20 /* Configuration */ = {
@@ -5063,7 +5057,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57A9190C190E0A16008CFD6B /* InfoPlist.strings in Resources */,
+				5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5304,12 +5298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57B7F550190FBC95005CEF92 /* SettingUnitest.h in Sources */,
-				57B7F551190FBC95005CEF92 /* SettingUnitest.m in Sources */,
-				57A91918190E0B32008CFD6B /* ActivityModelTestCase.m in Sources */,
-				5778204519245DEA00ED72D0 /* CloudUtilsTestCase.m in Sources */,
-				57B7F54F190FBC21005CEF92 /* UserPreferencesTestCase.m in Sources */,
-				57A9190E190E0A16008CFD6B /* eXo_Platform_Tests.m in Sources */,
+				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
+				5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */,
+				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
+				5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */,
+				5778209A19249DB100ED72D0 /* eXo_Platform_Tests.m in Sources */,
+				5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5364,10 +5358,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		57A9190A190E0A16008CFD6B /* InfoPlist.strings */ = {
+		5778208E19249DB100ED72D0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				57A9190B190E0A16008CFD6B /* en */,
+				5778208F19249DB100ED72D0 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -5671,7 +5665,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "eXo Platform Tests/eXo Platform Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Tests/eXo Platform Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -5689,7 +5683,7 @@
 					/usr/include/libxml2,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "eXo Platform Tests/eXo Platform Tests-Info.plist";
+				INFOPLIST_FILE = "Tests/eXo Platform Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -5730,13 +5724,13 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "eXo Platform Tests/eXo Platform Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Tests/eXo Platform Tests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "eXo Platform Tests/eXo Platform Tests-Info.plist";
+				INFOPLIST_FILE = "Tests/eXo Platform Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -5772,13 +5766,13 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "eXo Platform Tests/eXo Platform Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Tests/eXo Platform Tests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "eXo Platform Tests/eXo Platform Tests-Info.plist";
+				INFOPLIST_FILE = "Tests/eXo Platform Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -5814,7 +5808,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "eXo Platform Tests/eXo Platform Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Tests/eXo Platform Tests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5826,7 +5820,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 				);
-				INFOPLIST_FILE = "eXo Platform Tests/eXo Platform Tests-Info.plist";
+				INFOPLIST_FILE = "Tests/eXo Platform Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

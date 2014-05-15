@@ -20,13 +20,9 @@
 
 #import <XCTest/XCTest.h>
 #import "CloudUtils.h"
+#import "ExoTestCase.h"
 
-@interface CloudUtilsTestCase : XCTestCase {
-    NSArray *EMAILS_OK;
-    NSArray *EMAILS_INCORRECT;
-    NSArray *URLS_OK;
-    NSArray *URLS_INCORRECT;
-}
+@interface CloudUtilsTestCase : ExoTestCase
 
 @end
 
@@ -35,58 +31,6 @@
 - (void)setUp
 {
     [super setUp];
-    EMAILS_OK = [NSArray arrayWithObjects:
-                 @"test@example.com",
-                 @"test.test@example.com",
-                 @"test-test@example.com",
-                 @"test_test@example.com",
-                 @"test+test@example.com",
-                 @"test@test.example.com",
-                 @"test@test-example.com",
-                 //@"test@test_example.com",
-                 nil];
-    
-    EMAILS_INCORRECT = [NSArray arrayWithObjects:
-                        @"example.com",
-                        @"@example.com",
-                        @"test",
-                        @"test@", nil];
-    
-    URLS_OK = [NSArray arrayWithObjects:
-               @"test.com",
-               @"test.example.com",
-               @"test-example.com",
-               @"test.fr",
-               @"test.info",
-               @"http://test.com",
-               @"https://test.com",
-               @"t.e.s.t.com",
-               @"test.com:80",
-               @"test123.com",
-               @"www.test.com/some/path",
-               @"test",
-               @"test_example.com",
-               // @"10.100.10.1",
-               nil];
-    
-    URLS_INCORRECT = [NSArray arrayWithObjects:
-                      @"test.",
-                      @"test{}.com",
-                      @"test().com",
-                      @"test[].com",
-                      @"test!.com",
-                      @"test&.com",
-                      @"test*.com",
-                      @"test|.com",
-                      @"test example.com",
-                      @"test...example.com",
-                      //@"test~.com",
-                      //@".com",
-                      //@"test@.com",
-                      //@"test#.com",
-                      //@"test$.com",
-                      nil];
-
 }
 
 - (void)tearDown
@@ -98,11 +42,11 @@
 - (void)testEmailFormat
 {
     
-    for (NSString *email in EMAILS_OK) {
+    for (NSString *email in TEST_EMAILS_OK) {
         XCTAssertTrue([CloudUtils checkEmailFormat:email], @"Email %@ should be correct", email);
     }
     
-    for (NSString *email in EMAILS_INCORRECT) {
+    for (NSString *email in TEST_EMAILS_INCORRECT) {
         XCTAssertFalse([CloudUtils checkEmailFormat:email], @"Email %@ should be incorrect", email);
     }
 }
@@ -138,11 +82,11 @@
 
 - (void)testCorrectServerURL
 {
-    for (NSString *url in URLS_OK) {
+    for (NSString *url in TEST_URLS_OK) {
         XCTAssertNotNil([CloudUtils correctServerUrl:url], @"URL %@ should be correct", url);
     }
     
-    for (NSString *url in URLS_INCORRECT) {
+    for (NSString *url in TEST_URLS_INCORRECT) {
         XCTAssertNil([CloudUtils correctServerUrl:url], @"URL %@ should be incorrect", url);
     }
 }
