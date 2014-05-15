@@ -31,6 +31,7 @@
 
 }
 
+- (NSString*)URLEncodedString:(NSString*)s;
 - (void)initVariables;
 
 @end
