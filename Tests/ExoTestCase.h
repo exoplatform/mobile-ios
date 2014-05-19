@@ -28,6 +28,9 @@
 
     NSString *TEST_SERVER_URL ;
     NSString *TEST_SERVER_NAME ;
+    
+    NSString *TEST_USER_NAME;
+    NSString *TEST_USER_PASS;
 
 }
 

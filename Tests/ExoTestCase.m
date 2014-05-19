@@ -61,6 +61,9 @@
     TEST_SERVER_URL = @"http://demo.platform.exo.org";
     TEST_SERVER_NAME = @"Test Server";
     
+    TEST_USER_NAME = @"johndoe";
+    TEST_USER_PASS = @"p4zzw0rd";
+    
     TEST_EMAILS_OK = [NSArray arrayWithObjects:
                  @"test@example.com",
                  @"test.test@example.com",
