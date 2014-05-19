@@ -350,6 +350,7 @@
 		5778209A19249DB100ED72D0 /* eXo_Platform_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209219249DB100ED72D0 /* eXo_Platform_Tests.m */; };
 		5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209319249DB100ED72D0 /* ExoTestCase.m */; };
 		5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */; };
+		578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578318141929B035006A26EC /* UserPreferencesTestCase.m */; };
 		578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78C17EAD51F00771497 /* Icon-72@2x.png */; };
 		578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78E17EAD51F00771497 /* Icon-ios7-76.png */; };
 		578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78F17EAD51F00771497 /* Icon-ios7-120.png */; };
@@ -1410,6 +1411,7 @@
 		5778209319249DB100ED72D0 /* ExoTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoTestCase.m; sourceTree = "<group>"; };
 		5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzerTestCase.m; sourceTree = "<group>"; };
 		5778209D19249F4F00ED72D0 /* ExoTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoTestCase.h; sourceTree = "<group>"; };
+		578318141929B035006A26EC /* UserPreferencesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesTestCase.m; sourceTree = "<group>"; };
 		578ED78C17EAD51F00771497 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		578ED78E17EAD51F00771497 /* Icon-ios7-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76.png"; sourceTree = "<group>"; };
 		578ED78F17EAD51F00771497 /* Icon-ios7-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-120.png"; sourceTree = "<group>"; };
@@ -3118,6 +3120,7 @@
 				5778209D19249F4F00ED72D0 /* ExoTestCase.h */,
 				5778209319249DB100ED72D0 /* ExoTestCase.m */,
 				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
+				578318141929B035006A26EC /* UserPreferencesTestCase.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -5298,6 +5301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */,
 				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
 				5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
@@ -5503,7 +5507,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = armv7;
 			};
 			name = "Distribution AdHoc";
 		};
@@ -5589,7 +5593,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = armv7;
 			};
 			name = "Distribution AppStore";
 		};
@@ -5864,7 +5868,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -5903,7 +5907,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};

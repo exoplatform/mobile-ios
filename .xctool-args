@@ -1,0 +1,5 @@
+[
+  "-project"  , "eXo Platform.xcodeproj" ,
+  "-scheme"   , "eXo Platform" ,
+  "-sdk"      , "iphonesimulator"
+]
