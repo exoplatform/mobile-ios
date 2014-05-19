@@ -17,6 +17,10 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
+//
+// Source: http://stackoverflow.com/a/19452709
+//
+
 #import <Foundation/Foundation.h>
 
 @interface UINavigationBar (BackButtonDisplayFix)
