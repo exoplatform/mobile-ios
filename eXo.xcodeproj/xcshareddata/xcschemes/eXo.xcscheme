@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "eXo.app"
-               BlueprintName = "eXo Platform"
-               ReferencedContainer = "container:eXo Platform.xcodeproj">
+               BlueprintName = "eXo"
+               ReferencedContainer = "container:eXo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "57A91902190E0A15008CFD6B"
-               BuildableName = "eXo Platform Tests.xctest"
-               BlueprintName = "eXo Platform Tests"
-               ReferencedContainer = "container:eXo Platform.xcodeproj">
+               BuildableName = "eXo Tests.xctest"
+               BlueprintName = "eXoTests"
+               ReferencedContainer = "container:eXo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "eXo.app"
-            BlueprintName = "eXo Platform"
-            ReferencedContainer = "container:eXo Platform.xcodeproj">
+            BlueprintName = "eXo"
+            ReferencedContainer = "container:eXo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "eXo.app"
-            BlueprintName = "eXo Platform"
-            ReferencedContainer = "container:eXo Platform.xcodeproj">
+            BlueprintName = "eXo"
+            ReferencedContainer = "container:eXo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "eXo.app"
-            BlueprintName = "eXo Platform"
-            ReferencedContainer = "container:eXo Platform.xcodeproj">
+            BlueprintName = "eXo"
+            ReferencedContainer = "container:eXo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
