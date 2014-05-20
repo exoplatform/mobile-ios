@@ -1,5 +1,6 @@
 [
-  "-project"  , "eXo.xcodeproj" ,
+  "-workspace"  , "eXo_Platform.xcworkspace" ,
   "-scheme"   , "eXo" ,
-  "-sdk"      , "iphonesimulator"
+  "-sdk"      , "iphonesimulator" ,
+  "-configuration" , "Debug"
 ]

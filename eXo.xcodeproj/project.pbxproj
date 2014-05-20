@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DC37420C18746C0A8B4CB17 /* libPods-eXoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F907430C78443DB778B574 /* libPods-eXoTests.a */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		1F20AC4114590BBA0068A2CB /* ActivityForumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20AC4014590BB90068A2CB /* ActivityForumTableViewCell.m */; };
 		1F20AC4314590BDA0068A2CB /* ActivityForumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F20AC4214590BDA0068A2CB /* ActivityForumTableViewCell.xib */; };
@@ -135,6 +136,7 @@
 		1FD0C408143BF146002F40A7 /* IconForUnreadableFile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3FE143BF146002F40A7 /* IconForUnreadableFile@2x.png */; };
 		1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD91DBE1471092E00DBDED0 /* ActivityAnswerTableViewCell.m */; };
 		1FD91DC1147109A200DBDED0 /* ActivityAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FD91DC0147109A000DBDED0 /* ActivityAnswerTableViewCell.xib */; };
+		244B6977EE0D410FABA7DCB2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C647115519074571B8168A62 /* libPods.a */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3201088596B4756681693704 /* libThree20UICommon.a */; };
 		320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A2827FEC940B25BC42C64 /* libThree20Core.a */; };
@@ -390,6 +392,7 @@
 		57A91905190E0A16008CFD6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		57A91906190E0A16008CFD6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		57A9191C190E10AE008CFD6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A9191B190E10AE008CFD6B /* XCTest.framework */; };
+		57C1C317192B3E0B007B3CD6 /* LoginProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */; };
 		57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203215B6B7B800BF902F /* CredentialsViewController.m */; };
 		57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203515B6B7C800BF902F /* ServerListViewController.m */; };
 		57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */; };
@@ -1359,6 +1362,8 @@
 		46F87F83140BD7A60077BE15 /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController.m; path = Documents/DocumentsViewController.m; sourceTree = "<group>"; };
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
 		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
+		47F907430C78443DB778B574 /* libPods-eXoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eXoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		572EA98F192AFBFD008CFB11 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		572EA990192AFBFD008CFB11 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
 		572EA991192AFBFD008CFB11 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
@@ -1483,6 +1488,7 @@
 		57A918EB190E030D008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		57A91903190E0A15008CFD6B /* eXoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eXoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A9191B190E10AE008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProxyTestCase.m; sourceTree = "<group>"; };
 		57C5203115B6B7B700BF902F /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
 		57C5203215B6B7B800BF902F /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
 		57C5203415B6B7C700BF902F /* ServerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerListViewController.h; sourceTree = "<group>"; };
@@ -1901,6 +1907,8 @@
 		A6FCDF4F15B7C05C00128EA6 /* 11-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x@2x.png"; sourceTree = "<group>"; };
 		A6FCDF5015B7C05C00128EA6 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check.png"; sourceTree = "<group>"; };
 		A6FCDF5115B7C05C00128EA6 /* 19-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check@2x.png"; sourceTree = "<group>"; };
+		B8B40D4597B543BCB088422C /* Pods-eXoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eXoTests.xcconfig"; path = "Pods/Pods-eXoTests.xcconfig"; sourceTree = "<group>"; };
+		C647115519074571B8168A62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE442BB91569E21000E10A00 /* SocialActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivity.h; sourceTree = "<group>"; };
 		DE442BBA1569E21000E10A00 /* SocialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivity.m; sourceTree = "<group>"; };
 		DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikersViewController.h; sourceTree = "<group>"; };
@@ -1936,6 +1944,7 @@
 				7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */,
 				7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */,
 				466FD6FD148E5BF5005A1B78 /* Crashlytics.framework in Frameworks */,
+				244B6977EE0D410FABA7DCB2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1946,6 +1955,7 @@
 				57A9191C190E10AE008CFD6B /* XCTest.framework in Frameworks */,
 				57A91906190E0A16008CFD6B /* UIKit.framework in Frameworks */,
 				57A91905190E0A16008CFD6B /* Foundation.framework in Frameworks */,
+				1DC37420C18746C0A8B4CB17 /* libPods-eXoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2174,6 +2184,8 @@
 				572EA98D192AFBFD008CFB11 /* ThirdParty */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */,
+				B8B40D4597B543BCB088422C /* Pods-eXoTests.xcconfig */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -2203,6 +2215,8 @@
 				46C6B525138CAC2B0079C514 /* AudioToolbox.framework */,
 				8958E60A14A9885900580EEB /* SenTestingKit.framework */,
 				57A918EB190E030D008CFD6B /* XCTest.framework */,
+				C647115519074571B8168A62 /* libPods.a */,
+				47F907430C78443DB778B574 /* libPods-eXoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3311,6 +3325,7 @@
 				5778209319249DB100ED72D0 /* ExoTestCase.m */,
 				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
 				578318141929B035006A26EC /* UserPreferencesTestCase.m */,
+				57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -4283,10 +4298,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "eXo" */;
 			buildPhases = (
+				6A84BF0CE01B48CCB33AE33E /* Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				466FD6FB148E5BAD005A1B78 /* ShellScript */,
+				E367E087869948998FD2BCAE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4309,9 +4326,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57A91912190E0A17008CFD6B /* Build configuration list for PBXNativeTarget "eXoTests" */;
 			buildPhases = (
+				78B39B80F1F8433C90A9C8A6 /* Check Pods Manifest.lock */,
 				57A918FF190E0A15008CFD6B /* Sources */,
 				57A91900190E0A15008CFD6B /* Frameworks */,
 				57A91901190E0A15008CFD6B /* Resources */,
+				D3372FC692D34007AD845ABF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5076,6 +5095,66 @@
 			shellPath = "./Crashlytics.framework/run b8421f485868032ad402cef01a4bd7c70263d97e";
 			shellScript = "";
 		};
+		6A84BF0CE01B48CCB33AE33E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		78B39B80F1F8433C90A9C8A6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D3372FC692D34007AD845ABF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-eXoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E367E087869948998FD2BCAE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -5303,6 +5382,7 @@
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
 				5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */,
 				5778209A19249DB100ED72D0 /* eXo_Platform_Tests.m in Sources */,
+				57C1C317192B3E0B007B3CD6 /* LoginProxyTestCase.m in Sources */,
 				5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5382,6 +5462,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5404,6 +5485,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					Three20/Build/Products/three20,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -5412,10 +5494,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 				);
-				OTHER_CFLAGS = "-DDEBUG";
+				OTHER_CFLAGS = (
+					"-DDEBUG",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
-					"-ObjC",
 					"-lxml2",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
@@ -5426,6 +5511,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5445,6 +5531,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					Three20/Build/Products/three20,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -5454,8 +5541,8 @@
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 				);
 				OTHER_LDFLAGS = (
-					"-ObjC",
 					"-lxml2",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
@@ -5509,6 +5596,7 @@
 		};
 		464C14AB138AB8890001CBC8 /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5529,6 +5617,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					Three20/Build/Products/three20,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -5539,8 +5628,8 @@
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 				);
 				OTHER_LDFLAGS = (
-					"-ObjC",
 					"-lxml2",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
@@ -5595,6 +5684,7 @@
 		};
 		46BC64031316F05B0034E7E3 /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5615,6 +5705,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					Three20/Build/Products/three20,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -5625,8 +5716,8 @@
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 				);
 				OTHER_LDFLAGS = (
-					"-ObjC",
 					"-lxml2",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "B3366449-19FB-4EB9-A35E-CAF6C167D6BD";
@@ -5639,6 +5730,7 @@
 		};
 		57A91913190E0A17008CFD6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8B40D4597B543BCB088422C /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
@@ -5690,6 +5782,7 @@
 					"-lxml2",
 					"-framework",
 					XCTest,
+					"$(inherited)",
 				);
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -5699,6 +5792,7 @@
 		};
 		57A91914190E0A17008CFD6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8B40D4597B543BCB088422C /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
@@ -5732,6 +5826,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Tests/eXoTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
@@ -5741,6 +5836,7 @@
 		};
 		57A91915190E0A17008CFD6B /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8B40D4597B543BCB088422C /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
@@ -5774,6 +5870,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Tests/eXoTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
@@ -5783,6 +5880,7 @@
 		};
 		57A91916190E0A17008CFD6B /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8B40D4597B543BCB088422C /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
@@ -5819,9 +5917,11 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/eXoTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;

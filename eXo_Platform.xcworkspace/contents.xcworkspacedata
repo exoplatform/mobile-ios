@@ -1,7 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Workspace
-   version = "1.0">
-   <FileRef
-      location = "container:eXo Platform.xcodeproj">
-   </FileRef>
-</Workspace>
+<?xml version='1.0' encoding='UTF-8'?><Workspace version='1.0'><FileRef location='group:eXo.xcodeproj'/><FileRef location='group:Pods/Pods.xcodeproj'/></Workspace>
