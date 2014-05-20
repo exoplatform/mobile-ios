@@ -19,8 +19,15 @@
 
 
 #import <XCTest/XCTest.h>
+#import "LoginProxy.h"
+#import <OHHTTPStubs.h>
+#import "ExoTestCase.h"
 
-@interface LoginProxyTestCase : XCTestCase
+
+@interface LoginProxyTestCase : ExoTestCase <LoginProxyDelegate> {
+    LoginProxy *proxy;
+    BOOL platformInfoRetrieved;
+}
 
 @end
 
@@ -29,18 +36,42 @@
 - (void)setUp
 {
     [super setUp];
+    platformInfoRetrieved = NO;
+    proxy = [[LoginProxy alloc] initWithDelegate:self username:TEST_USER_NAME password:TEST_USER_PASS serverUrl:TEST_SERVER_URL];
+    
+//    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+//        return YES;
+//    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+//        NSData* stubData = [@"Hello World!" dataUsingEncoding:NSUTF8StringEncoding];
+//        return [OHHTTPStubsResponse responseWithData:stubData statusCode:200 headers:nil];
+//    }];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [OHHTTPStubs removeAllStubs];
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testRetrievePlatformInfo
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    [proxy retrievePlatformInformations];
+   // XCTAssertTrue(platformInfoRetrieved, @"Platform version and information were not retrieved");
 }
+
+#pragma mark Delegate methods
+
+- (void) loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
+{
+    
+}
+
+- (void) loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
+{
+    platformInfoRetrieved = YES;
+}
+
 
 @end
