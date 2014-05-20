@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "57A91902190E0A15008CFD6B"
-               BuildableName = "eXo Tests.xctest"
+               BuildableName = "eXoTests.xctest"
                BlueprintName = "eXoTests"
                ReferencedContainer = "container:eXo.xcodeproj">
             </BuildableReference>
