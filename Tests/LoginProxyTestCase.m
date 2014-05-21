@@ -27,6 +27,7 @@
 @interface LoginProxyTestCase : ExoTestCase <LoginProxyDelegate> {
     LoginProxy *proxy;
     BOOL platformInfoRetrieved;
+    BOOL responseArrived;
 }
 
 @end
@@ -36,15 +37,12 @@
 - (void)setUp
 {
     [super setUp];
-    platformInfoRetrieved = NO;
     proxy = [[LoginProxy alloc] initWithDelegate:self username:TEST_USER_NAME password:TEST_USER_PASS serverUrl:TEST_SERVER_URL];
     
-//    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-//        return YES;
-//    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-//        NSData* stubData = [@"Hello World!" dataUsingEncoding:NSUTF8StringEncoding];
-//        return [OHHTTPStubsResponse responseWithData:stubData statusCode:200 headers:nil];
-//    }];
+    [OHHTTPStubs onStubActivation:^(NSURLRequest *request, id<OHHTTPStubsDescriptor> stub) {
+        NSLog(@"%@ request stubbed (%@)", stub.name, request.URL);
+    }];
+
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -55,21 +53,63 @@
     [super tearDown];
 }
 
-- (void)testRetrievePlatformInfo
+- (void)wait
 {
-    [proxy retrievePlatformInformations];
-   // XCTAssertTrue(platformInfoRetrieved, @"Platform version and information were not retrieved");
+    // Wait for the asynchronous code to finish
+    responseArrived = NO;
+    while (!responseArrived)
+        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, YES);
 }
 
-#pragma mark Delegate methods
+- (void)testAuthenticateAndGetPlatformInfo
+{
+    [self HTTPStubForAuthenticationWithSuccess:YES];
+    [self HTTPStubForPlatformInfoAuthenticated:YES];
+    
+    platformInfoRetrieved = NO;
+    [proxy authenticate];
+    
+    [self wait];
+    
+    XCTAssertTrue(platformInfoRetrieved, @"Could not authenticate and retrieve Platform info");
+}
+
+- (void)testAuthenticationFailure
+{
+    [self HTTPStubForAuthenticationWithSuccess:NO];
+    
+    platformInfoRetrieved = NO;
+    [proxy authenticate];
+    
+    [self wait];
+    
+    XCTAssertFalse(platformInfoRetrieved, @"Authenticate should have failed");
+}
+
+- (void)testRetrievePlatformInfo
+{
+    [self HTTPStubForPlatformInfoAuthenticated:NO];
+    
+    platformInfoRetrieved = NO;
+    [proxy retrievePlatformInformations];
+    
+    [self wait];
+    
+    XCTAssertTrue(platformInfoRetrieved, @"Could not retrieve public Platform info");
+}
+
+#pragma mark Proxy delegate methods
 
 - (void) loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
 {
-    
+    responseArrived = YES;
+    platformInfoRetrieved = NO;
+    NSLog(@"Could not authenticate because: %@", [error description]);
 }
 
 - (void) loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
+    responseArrived = YES;
     platformInfoRetrieved = YES;
 }
 

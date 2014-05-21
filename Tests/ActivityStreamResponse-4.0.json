@@ -1,0 +1,38 @@
+{ "activities" : [ { "activityStream" : { "faviconUrl" : "",
+                  "fullName" : "Translations",
+                  "permaLink" : "http://community.exoplatform.com:80/portal/g/:spaces:translations/translations",
+                  "prettyId" : "translations",
+                  "title" : "",
+                  "type" : "space"
+                  },
+                  "appId" : "",
+                  "body" : "",
+                  "comments" : [  ],
+                  "createdAt" : "Wed May 21 11:33:25 +0200 2014",
+                  "id" : "1e20cf09c06313bc0a9d372ecd6bd2a7",
+                  "identityId" : "d3c28a300a2106c658573c3c030bf9da",
+                  "lastUpdated" : 1400664805123,
+                  "liked" : false,
+                  "likedByIdentities" : [  ],
+                  "postedTime" : 1400664805123,
+                  "posterIdentity" : { "id" : "51aa8e300a2106c6717816abbfdab170",
+                  "profile" : { "avatarUrl" : "http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Anguyenbaoan/soc%3Aprofile/soc%3Aavatar/?upd=1381282964190",
+                  "fullName" : "An Bao Nguyen"
+                  },
+                  "providerId" : "organization",
+                  "remoteId" : "nguyenbaoan"
+                  },
+                  "priority" : 0.0,
+                  "templateParams" : { "comment" : "Hello <br />We've just added Persian and Greek languages on Platform, please visit at: <a href=\"http://translations-review-plf4.0.exoplatform.org/\">http://translations-review-plf4.0.exoplatform.org/</a> (john/gtn)",
+                  "description" : "",
+                  "image" : "",
+                  "link" : "http://translations-review-plf4.0.exoplatform.org/",
+                  "registeredKeysForProcessor" : "comment",
+                  "title" : "Login"
+                  },
+                  "title" : "Login",
+                  "titleId" : "",
+                  "totalNumberOfComments" : 0,
+                  "totalNumberOfLikes" : 4,
+                  "type" : "LINK_ACTIVITY"
+                  } ] }
