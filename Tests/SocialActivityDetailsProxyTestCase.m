@@ -22,11 +22,15 @@
 #import "ExoTestCase.h"
 #import "SocialActivityDetailsProxy.h"
 #import "SocialComment.h"
+#import "HTTPStubsHelper.h"
+#import "SocialTestsHelper.h"
 
 @interface SocialActivityDetailsProxyTestCase : ExoTestCase<SocialProxyDelegate> {
     SocialActivityDetailsProxy *adProxy;
     SocialActivity *activity;
     BOOL responseArrived;
+    HTTPStubsHelper *httpHelper;
+    SocialTestsHelper *socHelper;
 }
 
 @end
@@ -36,18 +40,18 @@
 - (void)setUp
 {
     [super setUp];
+    socHelper = [SocialTestsHelper getInstance];
     adProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:4 andNumberOfLikes:7];
     adProxy.delegate = self;
-    activity = [self createSocialActivity];
-    [self createSocialRestConfiguration];
-    [self logHTTPStubs];
+    activity = [socHelper createSocialActivity];
+    [socHelper createSocialRestConfiguration];
+    httpHelper = [HTTPStubsHelper getInstance];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [OHHTTPStubs removeAllStubs];
     [super tearDown];
 }
 
@@ -77,7 +81,7 @@
 
 - (void)testGetActivityDetails
 {
-    [self HTTPStubForActivityDetails];
+    [httpHelper HTTPStubForActivityDetails];
     
     [adProxy getActivityDetail:activity.activityId];
     
@@ -89,7 +93,7 @@
 
 - (void)testGetActivityLikes
 {
-    [self HTTPStubForActivityLikes];
+    [httpHelper HTTPStubForActivityLikes];
     
     [adProxy getLikers:activity.activityId];
     
@@ -116,7 +120,7 @@
 
 - (void)testGetActivityComments
 {
-    [self HTTPStubForActivityComments];
+    [httpHelper HTTPStubForActivityComments];
     
     [adProxy getAllOfComments:activity.activityId];
     

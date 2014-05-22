@@ -21,11 +21,15 @@
 #import <XCTest/XCTest.h>
 #import "ExoTestCase.h"
 #import "SocialActivityStreamProxy.h"
+#import "HTTPStubsHelper.h"
+#import "SocialTestsHelper.h"
 
 @interface SocialActivityStreamProxyTestCase : ExoTestCase<SocialProxyDelegate> {
     SocialActivityStreamProxy *asProxy;
     BOOL responseArrived;
     BOOL activityStreamLoaded;
+    HTTPStubsHelper *httpHelper;
+    SocialTestsHelper *socHelper;
 }
 @end
 
@@ -34,18 +38,18 @@
 - (void)setUp
 {
     [super setUp];
+    socHelper = [SocialTestsHelper getInstance];
     asProxy = [[SocialActivityStreamProxy alloc] init];
     asProxy.delegate = self;
-    asProxy.userProfile = [self createSocialUserProfile];
-    [self createSocialRestConfiguration];
-    [self logHTTPStubs];
+    asProxy.userProfile = [socHelper createSocialUserProfile];
+    [socHelper createSocialRestConfiguration];
+    httpHelper = [HTTPStubsHelper getInstance];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [OHHTTPStubs removeAllStubs];
     [super tearDown];
 }
 
@@ -79,7 +83,7 @@
 
 - (void)testGetActivityStream
 {
-    [self HTTPStubForActivityStream];
+    [httpHelper HTTPStubForActivityStream];
  
     activityStreamLoaded = NO;
     [asProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
@@ -91,9 +95,9 @@
 
 - (void)testActivityStreamBeforeActivity
 {
-    [self HTTPStubForActivityStream];
+    [httpHelper HTTPStubForActivityStream];
     
-    SocialActivity *activity = [self createSocialActivity];
+    SocialActivity *activity = [socHelper createSocialActivity];
     
     activityStreamLoaded = NO;
     [asProxy getActivitiesOfType:ActivityStreamProxyActivityTypeAllUpdates BeforeActivity:activity];

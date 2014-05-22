@@ -17,26 +17,10 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
+#define TEST_SERVER_URL   @"http://demo.platform.exo.org"
+#define TEST_SERVER_NAME  @"Test Server"
 
-#import <XCTest/XCTest.h>
-
-@interface ExoTestCase : XCTestCase {
-    NSArray *TEST_EMAILS_OK;
-    NSArray *TEST_EMAILS_INCORRECT;
-    NSArray *TEST_URLS_OK;
-    NSArray *TEST_URLS_INCORRECT;
-
-//    NSString *TEST_SERVER_URL ;
-//    NSString *TEST_SERVER_NAME ;
-//    
-//    NSString *TEST_USER_NAME;
-//    NSString *TEST_USER_PASS;
-//    NSString *TEST_USER_FIRST_NAME;
-//    NSString *TEST_USER_LAST_NAME;
-}
-
-- (NSString*)URLEncodedString:(NSString*)s;
-- (void)createVariables;
-
-
-@end
+#define TEST_USER_NAME        @"johndoe"
+#define TEST_USER_PASS        @"p4zzw0rd"
+#define TEST_USER_FIRST_NAME  @"John"
+#define TEST_USER_LAST_NAME   @"Doe"

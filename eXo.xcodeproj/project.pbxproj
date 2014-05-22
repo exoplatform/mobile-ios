@@ -379,11 +379,12 @@
 		575D9C06192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 575D9C05192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json */; };
 		575D9C08192DEC5100AD337A /* SocialUserProfileResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 575D9C07192DEC5100AD337A /* SocialUserProfileResponse-4.0.json */; };
 		575D9C0A192DEC8100AD337A /* SocialUserProfileProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9C09192DEC8100AD337A /* SocialUserProfileProxyTestCase.m */; };
+		575EFE46192DF90800798DCD /* HTTPStubsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 575EFE45192DF90800798DCD /* HTTPStubsHelper.m */; };
+		575EFE60192E045A00798DCD /* SocialTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 575EFE5F192E045A00798DCD /* SocialTestsHelper.m */; };
 		5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */; };
 		5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */; };
 		5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */; };
 		5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5778208E19249DB100ED72D0 /* InfoPlist.strings */; };
-		5778209A19249DB100ED72D0 /* eXo_Platform_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209219249DB100ED72D0 /* eXo_Platform_Tests.m */; };
 		5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209319249DB100ED72D0 /* ExoTestCase.m */; };
 		5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */; };
 		578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578318141929B035006A26EC /* UserPreferencesTestCase.m */; };
@@ -1484,13 +1485,17 @@
 		575D9C05192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ActivityDetailsCommentsResponse-4.0.json"; sourceTree = "<group>"; };
 		575D9C07192DEC5100AD337A /* SocialUserProfileResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "SocialUserProfileResponse-4.0.json"; sourceTree = "<group>"; };
 		575D9C09192DEC8100AD337A /* SocialUserProfileProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileProxyTestCase.m; sourceTree = "<group>"; };
+		575EFE44192DF90800798DCD /* HTTPStubsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStubsHelper.h; sourceTree = "<group>"; };
+		575EFE45192DF90800798DCD /* HTTPStubsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPStubsHelper.m; sourceTree = "<group>"; };
+		575EFE5E192E045A00798DCD /* SocialTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialTestsHelper.h; sourceTree = "<group>"; };
+		575EFE5F192E045A00798DCD /* SocialTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialTestsHelper.m; sourceTree = "<group>"; };
+		575EFE61192E05E300798DCD /* tests-variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tests-variables.h"; sourceTree = "<group>"; };
 		5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModelTestCase.m; sourceTree = "<group>"; };
 		5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPreferencesTestCase.m; sourceTree = "<group>"; };
 		5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudUtilsTestCase.m; sourceTree = "<group>"; };
 		5778208F19249DB100ED72D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5778209019249DB100ED72D0 /* eXoTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eXoTests-Info.plist"; sourceTree = "<group>"; };
 		5778209119249DB100ED72D0 /* eXoTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "eXoTests-Prefix.pch"; sourceTree = "<group>"; };
-		5778209219249DB100ED72D0 /* eXo_Platform_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXo_Platform_Tests.m; sourceTree = "<group>"; };
 		5778209319249DB100ED72D0 /* ExoTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoTestCase.m; sourceTree = "<group>"; };
 		5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzerTestCase.m; sourceTree = "<group>"; };
 		5778209D19249F4F00ED72D0 /* ExoTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoTestCase.h; sourceTree = "<group>"; };
@@ -3335,31 +3340,83 @@
 			path = "UIImage+Resize";
 			sourceTree = "<group>";
 		};
-		5778208A19249DB100ED72D0 /* Tests */ = {
+		575EFE58192E00EB00798DCD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */,
-				5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */,
-				5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */,
+				575EFE44192DF90800798DCD /* HTTPStubsHelper.h */,
+				575EFE45192DF90800798DCD /* HTTPStubsHelper.m */,
+				575EFE5E192E045A00798DCD /* SocialTestsHelper.h */,
+				575EFE5F192E045A00798DCD /* SocialTestsHelper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		575EFE59192E00F200798DCD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				5778208E19249DB100ED72D0 /* InfoPlist.strings */,
 				5778209019249DB100ED72D0 /* eXoTests-Info.plist */,
 				5778209119249DB100ED72D0 /* eXoTests-Prefix.pch */,
-				5778209219249DB100ED72D0 /* eXo_Platform_Tests.m */,
-				5778209D19249F4F00ED72D0 /* ExoTestCase.h */,
-				5778209319249DB100ED72D0 /* ExoTestCase.m */,
-				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
-				578318141929B035006A26EC /* UserPreferencesTestCase.m */,
-				57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */,
 				575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */,
-				575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */,
-				575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */,
 				575D9BD1192CC3F600AD337A /* ActivityStreamResponse-4.0.json */,
-				575D9BEE192D9B8E00AD337A /* SocialActivityDetailsProxyTestCase.m */,
 				575D9C01192DA61200AD337A /* ActivityDetailsResponse-4.0.json */,
 				575D9C03192DBA1B00AD337A /* ActivityDetailsLikesResponse-4.0.json */,
 				575D9C05192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json */,
 				575D9C07192DEC5100AD337A /* SocialUserProfileResponse-4.0.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		575EFE5A192E012D00798DCD /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */,
+				575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */,
+				575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */,
+				575D9BEE192D9B8E00AD337A /* SocialActivityDetailsProxyTestCase.m */,
 				575D9C09192DEC8100AD337A /* SocialUserProfileProxyTestCase.m */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
+		575EFE5B192E014600798DCD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		575EFE5C192E015D00798DCD /* General */ = {
+			isa = PBXGroup;
+			children = (
+				5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */,
+				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
+				578318141929B035006A26EC /* UserPreferencesTestCase.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		575EFE5D192E017400798DCD /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */,
+			);
+			name = Cloud;
+			sourceTree = "<group>";
+		};
+		5778208A19249DB100ED72D0 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				575EFE5D192E017400798DCD /* Cloud */,
+				575EFE5C192E015D00798DCD /* General */,
+				575EFE5B192E014600798DCD /* Authentication */,
+				575EFE5A192E012D00798DCD /* Social */,
+				575EFE59192E00F200798DCD /* Resources */,
+				575EFE58192E00EB00798DCD /* Helpers */,
+				5778209D19249F4F00ED72D0 /* ExoTestCase.h */,
+				5778209319249DB100ED72D0 /* ExoTestCase.m */,
+				575EFE61192E05E300798DCD /* tests-variables.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -5416,7 +5473,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				575EFE46192DF90800798DCD /* HTTPStubsHelper.m in Sources */,
 				578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */,
+				575EFE60192E045A00798DCD /* SocialTestsHelper.m in Sources */,
 				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
 				5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
@@ -5424,7 +5483,6 @@
 				575D9BEF192D9B8E00AD337A /* SocialActivityDetailsProxyTestCase.m in Sources */,
 				5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */,
 				575D9BCE192CB67000AD337A /* SocialProxyTestCase.m in Sources */,
-				5778209A19249DB100ED72D0 /* eXo_Platform_Tests.m in Sources */,
 				57C1C317192B3E0B007B3CD6 /* LoginProxyTestCase.m in Sources */,
 				575D9BD0192CB93000AD337A /* SocialActivityStreamProxyTestCase.m in Sources */,
 				5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */,

@@ -21,11 +21,14 @@
 #import <XCTest/XCTest.h>
 #import "ExoTestCase.h"
 #import "SocialUserProfileProxy.h"
+#import "HTTPStubsHelper.h"
+#import "SocialTestsHelper.h"
 
 @interface SocialUserProfileProxyTestCase : ExoTestCase<SocialProxyDelegate> {
     SocialUserProfileProxy *proxy;
     SocialUserProfile *profile;
     BOOL responseArrived;
+    HTTPStubsHelper *httpHelper;
 }
 
 @end
@@ -37,14 +40,14 @@
     [super setUp];
     proxy = [[SocialUserProfileProxy alloc] init];
     proxy.delegate = self;
-    profile = [self createSocialUserProfile];
+    profile = [[SocialTestsHelper getInstance] createSocialUserProfile];
+    httpHelper = [HTTPStubsHelper getInstance];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [OHHTTPStubs removeAllStubs];
     [super tearDown];
 }
 
@@ -58,7 +61,7 @@
 
 - (void)testGetUserProfileFromUsername
 {
-    [self HTTPStubForSocialUserProfileWithUsername:profile.remoteId];
+    [httpHelper HTTPStubForSocialUserProfileWithUsername:profile.remoteId];
     
     [proxy getUserProfileFromUsername:profile.remoteId];
     

@@ -18,25 +18,19 @@
 //
 
 
-#import <XCTest/XCTest.h>
+#import <Foundation/Foundation.h>
 
-@interface ExoTestCase : XCTestCase {
-    NSArray *TEST_EMAILS_OK;
-    NSArray *TEST_EMAILS_INCORRECT;
-    NSArray *TEST_URLS_OK;
-    NSArray *TEST_URLS_INCORRECT;
+@interface HTTPStubsHelper : NSObject
 
-//    NSString *TEST_SERVER_URL ;
-//    NSString *TEST_SERVER_NAME ;
-//    
-//    NSString *TEST_USER_NAME;
-//    NSString *TEST_USER_PASS;
-//    NSString *TEST_USER_FIRST_NAME;
-//    NSString *TEST_USER_LAST_NAME;
-}
++ (HTTPStubsHelper*)getInstance;
 
-- (NSString*)URLEncodedString:(NSString*)s;
-- (void)createVariables;
-
+- (void)logStubbedHTTPRequests;
+- (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success;
+- (void)HTTPStubForPlatformInfoAuthenticated:(BOOL)auth;
+- (void)HTTPStubForActivityStream;
+- (void)HTTPStubForActivityDetails;
+- (void)HTTPStubForActivityLikes;
+- (void)HTTPStubForActivityComments;
+- (void)HTTPStubForSocialUserProfileWithUsername:(NSString*)username;
 
 @end

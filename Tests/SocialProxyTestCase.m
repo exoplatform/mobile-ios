@@ -21,6 +21,7 @@
 #import <XCTest/XCTest.h>
 #import "ExoTestCase.h"
 #import "SocialProxy.h"
+#import "SocialTestsHelper.h"
 
 @interface SocialProxyTestCase : ExoTestCase {
  
@@ -35,7 +36,7 @@
 {
     [super setUp];
     proxy = [[SocialProxy alloc] init];
-    [self createSocialRestConfiguration];
+    [[SocialTestsHelper getInstance] createSocialRestConfiguration];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 

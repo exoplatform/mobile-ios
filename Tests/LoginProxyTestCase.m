@@ -22,12 +22,14 @@
 #import "LoginProxy.h"
 #import <OHHTTPStubs.h>
 #import "ExoTestCase.h"
+#import "HTTPStubsHelper.h"
 
 
 @interface LoginProxyTestCase : ExoTestCase <LoginProxyDelegate> {
     LoginProxy *proxy;
     BOOL platformInfoRetrieved;
     BOOL responseArrived;
+    HTTPStubsHelper *httpHelper;
 }
 
 @end
@@ -38,8 +40,7 @@
 {
     [super setUp];
     proxy = [[LoginProxy alloc] initWithDelegate:self username:TEST_USER_NAME password:TEST_USER_PASS serverUrl:TEST_SERVER_URL];
-    
-    [self logHTTPStubs];
+    httpHelper = [HTTPStubsHelper getInstance];
 
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -47,7 +48,6 @@
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [OHHTTPStubs removeAllStubs];
     [super tearDown];
 }
 
@@ -61,8 +61,8 @@
 
 - (void)testAuthenticateAndGetPlatformInfo
 {
-    [self HTTPStubForAuthenticationWithSuccess:YES];
-    [self HTTPStubForPlatformInfoAuthenticated:YES];
+    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
+    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
     
     platformInfoRetrieved = NO;
     [proxy authenticate];
@@ -74,7 +74,7 @@
 
 - (void)testAuthenticationFailure
 {
-    [self HTTPStubForAuthenticationWithSuccess:NO];
+    [httpHelper HTTPStubForAuthenticationWithSuccess:NO];
     
     platformInfoRetrieved = NO;
     [proxy authenticate];
@@ -86,7 +86,7 @@
 
 - (void)testRetrievePlatformInfo
 {
-    [self HTTPStubForPlatformInfoAuthenticated:NO];
+    [httpHelper HTTPStubForPlatformInfoAuthenticated:NO];
     
     platformInfoRetrieved = NO;
     [proxy retrievePlatformInformations];
