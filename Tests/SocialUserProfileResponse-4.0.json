@@ -1,0 +1,9 @@
+{
+    "id":"e4f574dec0a80126368b5c3e4cc727b4",
+    "providerId":"organization",
+    "remoteId":"johndoe",
+    "profile":{
+        "avatarUrl":"http://demo.platform.exo.org/rest/jcr/repository/social/organization/profile/johndoe/avatar/?upd=1378196459997",
+        "fullName":"John Doe"
+    }
+}

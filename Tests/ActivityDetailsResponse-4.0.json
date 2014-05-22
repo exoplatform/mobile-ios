@@ -1,0 +1,47 @@
+{
+    "body":"",
+    "appId":"",
+    "identityId":"d3c28a300a2106c658573c3c030bf9da",
+    "totalNumberOfComments":4,
+    "templateParams":{
+        "comment":"Hello <br />We've just added Persian and Greek languages on Platform, please visit at: <a href=\"http://translations-review-plf4.0.exoplatform.org/\">http://translations-review-plf4.0.exoplatform.org/</a> (john/gtn)",
+        "description":"",
+        "image":"",
+        "link":"http://translations-review-plf4.0.exoplatform.org/",
+        "registeredKeysForProcessor":"comment",
+        "title":"Login"
+    },
+    "liked":false,
+    "lastUpdated":1400664805123,
+    "postedTime":1400664805123,
+    "type":"LINK_ACTIVITY",
+    "posterIdentity":{
+        "id":"51aa8e300a2106c6717816abbfdab170",
+        "providerId":"organization",
+        "remoteId":"nguyenbaoan",
+        "profile":{
+            "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Anguyenbaoan/soc%3Aprofile/soc%3Aavatar/?upd=1381282964190",
+            "fullName":"An Bao Nguyen"
+        }
+    },
+    "activityStream":{
+        "title":"",
+        "permaLink":"http://community.exoplatform.com:80/portal/g/:spaces:translations/translations",
+        "prettyId":"translations",
+        "faviconUrl":"",
+        "fullName":"Translations",
+        "type":"space"
+    },
+    "id":"1e20cf09c06313bc0a9d372ecd6bd2a7",
+    "title":"Login",
+    "priority":0.0,
+    "createdAt":"Wed May 21 11:33:25 +0200 2014",
+    "likedByIdentities":[
+    
+    ],
+    "totalNumberOfLikes":7,
+    "titleId":"",
+    "comments":[
+    
+    ]
+}

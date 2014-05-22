@@ -36,10 +36,9 @@
     [super setUp];
     asProxy = [[SocialActivityStreamProxy alloc] init];
     asProxy.delegate = self;
-    asProxy.userProfile = SOCIAL_USER_PROFILE;
-    [OHHTTPStubs onStubActivation:^(NSURLRequest *request, id<OHHTTPStubsDescriptor> stub) {
-        NSLog(@"%@ request stubbed (%@)", stub.name, request.URL);
-    }];
+    asProxy.userProfile = [self createSocialUserProfile];
+    [self createSocialRestConfiguration];
+    [self logHTTPStubs];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -73,11 +72,12 @@
     XCTAssertEqualObjects(path, expectedPath, @"My spaces activities stream Rest URL is incorrect");
     
     path = [asProxy createPathForType:ActivityStreamProxyActivityTypeMyStatus];
-    expectedPath = [NSString stringWithFormat:@"private/api/social/v1-alpha3/portal/activity_stream/%@.json", SOCIAL_USER_PROFILE.identity];
+    NSString *identityId = asProxy.userProfile.identity;
+    expectedPath = [NSString stringWithFormat:@"private/api/social/v1-alpha3/portal/activity_stream/%@.json", identityId];
     XCTAssertEqualObjects(path, expectedPath, @"My status activities stream Rest URL is incorrect");
 }
 
-- (void)testGetAllUpdatesActivityStream
+- (void)testGetActivityStream
 {
     [self HTTPStubForActivityStream];
  
@@ -86,22 +86,21 @@
     
     [self wait];
     
-    XCTAssertTrue(activityStreamLoaded, @"Failed to get all updates activity stream");
+    XCTAssertTrue(activityStreamLoaded, @"Failed to get activity stream");
 }
 
-- (void)testGetMyConnectionsActivityStream
+- (void)testActivityStreamBeforeActivity
 {
-    XCTAssertTrue(YES, @"");
-}
-
-- (void)testGetMySpacesActivityStream
-{
-    XCTAssertTrue(YES, @"");
-}
-
-- (void)testGetMyStatusActivityStream
-{
-    XCTAssertTrue(YES, @"");
+    [self HTTPStubForActivityStream];
+    
+    SocialActivity *activity = [self createSocialActivity];
+    
+    activityStreamLoaded = NO;
+    [asProxy getActivitiesOfType:ActivityStreamProxyActivityTypeAllUpdates BeforeActivity:activity];
+    
+    [self wait];
+    
+    XCTAssertTrue(activityStreamLoaded, @"Failed to get activity stream before a certain activity");
 }
 
 #pragma mark Proxy delegate methods

@@ -39,9 +39,7 @@
     [super setUp];
     proxy = [[LoginProxy alloc] initWithDelegate:self username:TEST_USER_NAME password:TEST_USER_PASS serverUrl:TEST_SERVER_URL];
     
-    [OHHTTPStubs onStubActivation:^(NSURLRequest *request, id<OHHTTPStubsDescriptor> stub) {
-        NSLog(@"%@ request stubbed (%@)", stub.name, request.URL);
-    }];
+    [self logHTTPStubs];
 
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }

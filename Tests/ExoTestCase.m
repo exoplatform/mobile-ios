@@ -18,6 +18,7 @@
 //
 
 #import "ExoTestCase.h"
+#import "ActivityHelper.h"
 
 @implementation ExoTestCase
 
@@ -32,6 +33,13 @@
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+- (void)logHTTPStubs
+{
+    [OHHTTPStubs onStubActivation:^(NSURLRequest *request, id<OHHTTPStubsDescriptor> stub) {
+        NSLog(@"%@ request stubbed (%@)", stub.name, request.URL);
+    }];
 }
 
 - (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success
@@ -68,6 +76,44 @@
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"ActivityStreamResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
     }].name = @"Activity Stream";
+}
+
+- (void)HTTPStubForActivityDetails
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.path isEqualToString:@"/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7.json"];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"ActivityDetailsResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = @"Activity Details";
+}
+
+- (void)HTTPStubForActivityLikes
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.path isEqualToString:@"/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/likes.json"];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"ActivityDetailsLikesResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = @"Activity Likes";
+}
+
+- (void)HTTPStubForActivityComments
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.path isEqualToString:@"/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comments.json"];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"ActivityDetailsCommentsResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = @"Activity Comments";
+}
+
+- (void)HTTPStubForSocialUserProfileWithUsername:(NSString *)username
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        NSString *urlPath = [NSString stringWithFormat:@"/rest/private/api/social/v1-alpha3/portal/identity/organization/%@.json",
+                                                        username];
+        return [request.URL.path isEqualToString:urlPath];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"SocialUserProfileResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = @"Social User Profile";
 }
 
 // based on http://stackoverflow.com/questions/3423545/objective-c-iphone-percent-encode-a-string/3426140#3426140
@@ -153,9 +199,6 @@
                       //@"test#.com",
                       //@"test$.com",
                       nil];
-    
-    SOCIAL_REST_CONF = [self createSocialRestConfiguration];
-    SOCIAL_USER_PROFILE = [self createSocialUserProfile];
 }
 
 - (SocialRestConfiguration *)createSocialRestConfiguration
@@ -178,8 +221,22 @@
     profile.remoteId = TEST_USER_NAME;
     profile.providerId = @"organization";
     profile.fullName = [NSString stringWithFormat:@"%@ %@", TEST_USER_FIRST_NAME, TEST_USER_LAST_NAME];
-    profile.avatarUrl = @"";
+    profile.avatarUrl = @"http://demo.platform.exo.org/rest/jcr/repository/social/organization/profile/johndoe/avatar/?upd=1378196459997";
     return profile;
+}
+
+- (SocialActivity *)createSocialActivity
+{
+    SocialActivity *act = [[SocialActivity alloc] init];
+    act.activityId = @"1e20cf09c06313bc0a9d372ecd6bd2a7";
+    act.identityId = @"d3c28a300a2106c658573c3c030bf9da";
+    act.postedTime = 1400664805123;
+    act.lastUpdated = 1400664805123;
+    act.liked = NO;
+    act.title = @"A cool activity";
+    act.body = @"";
+    act.activityType = ACTIVITY_LINK;
+    return act;
 }
 
 

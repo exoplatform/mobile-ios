@@ -22,6 +22,7 @@
 #import <OHHTTPStubs.h>
 #import "SocialRestConfiguration.h"
 #import "SocialUserProfile.h"
+#import "SocialActivity.h"
 
 @interface ExoTestCase : XCTestCase {
     NSArray *TEST_EMAILS_OK;
@@ -36,17 +37,20 @@
     NSString *TEST_USER_PASS;
     NSString *TEST_USER_FIRST_NAME;
     NSString *TEST_USER_LAST_NAME;
-    
-    SocialRestConfiguration *SOCIAL_REST_CONF;
-    SocialUserProfile *SOCIAL_USER_PROFILE;
 }
 
 - (NSString*)URLEncodedString:(NSString*)s;
 - (SocialRestConfiguration*)createSocialRestConfiguration;
 - (SocialUserProfile*)createSocialUserProfile;
+- (SocialActivity*)createSocialActivity;
 - (void)createVariables;
+- (void)logHTTPStubs;
 - (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success;
 - (void)HTTPStubForPlatformInfoAuthenticated:(BOOL)auth;
 - (void)HTTPStubForActivityStream;
+- (void)HTTPStubForActivityDetails;
+- (void)HTTPStubForActivityLikes;
+- (void)HTTPStubForActivityComments;
+- (void)HTTPStubForSocialUserProfileWithUsername:(NSString*)username;
 
 @end
