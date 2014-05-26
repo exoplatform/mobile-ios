@@ -18,23 +18,42 @@
 //
 
 
-#import <Foundation/Foundation.h>
+#import "AsyncProxyTestCase.h"
+#import <OHHTTPStubs.h>
 
-@interface HTTPStubsHelper : NSObject
+@implementation AsyncProxyTestCase
 
-+ (HTTPStubsHelper*)getInstance;
+- (void)setUp
+{
+    [super setUp];
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
 
-- (void)logStubbedHTTPRequests;
-- (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success;
-- (void)HTTPStubForPlatformInfoAuthenticated:(BOOL)auth;
-- (void)HTTPStubForActivityStream;
-- (void)HTTPStubForActivityDetails;
-- (void)HTTPStubForActivityLikes;
-- (void)HTTPStubForActivityComments;
-- (void)HTTPStubForSocialUserProfileWithUsername:(NSString*)username;
-- (void)HTTPStubForPostActivity;
-- (void)HTTPStubForPostComment;
-- (void)HTTPStubForLikeActivityWithBoolean:(BOOL)like;
-- (void)HTTPStubForGetLatestVersion;
+- (void)tearDown
+{
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [OHHTTPStubs removeAllStubs];
+    [super tearDown];
+}
+
+- (void)wait
+{
+    // Wait for the asynchronous code to finish
+    responseArrived = NO;
+    while (!responseArrived)
+        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, YES);
+}
+
+#pragma Proxy delegate methods
+
+- (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
+{
+    responseArrived = YES;
+}
+
+- (void)proxyDidFinishLoading:(SocialProxy *)proxy
+{
+    responseArrived = YES;
+}
 
 @end

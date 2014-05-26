@@ -393,6 +393,16 @@
 		578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78E17EAD51F00771497 /* Icon-ios7-76.png */; };
 		578ED79317EAD51F00771497 /* Icon-ios7-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78F17EAD51F00771497 /* Icon-ios7-120.png */; };
 		578ED79717EAD61A00771497 /* Icon-ios7-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED79617EAD61A00771497 /* Icon-ios7-76@2x.png */; };
+		578F3A721932E52800554F28 /* SocialPostActivityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578F3A711932E52800554F28 /* SocialPostActivityTestCase.m */; };
+		578F3A851932F8BF00554F28 /* PostActivityResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 578F3A841932F8BF00554F28 /* PostActivityResponse-4.0.json */; };
+		578F3A8719331B2E00554F28 /* SocialPostCommentProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578F3A8619331B2E00554F28 /* SocialPostCommentProxyTestCase.m */; };
+		578F3A8919331D9C00554F28 /* PostCommentResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 578F3A8819331D9C00554F28 /* PostCommentResponse-4.0.json */; };
+		578F3A8B1933218100554F28 /* SocialLikeActivityProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578F3A8A1933218100554F28 /* SocialLikeActivityProxyTestCase.m */; };
+		578F3A8D1933248200554F28 /* PostLikeResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 578F3A8C1933248200554F28 /* PostLikeResponse-4.0.json */; };
+		578F3A8F193324A100554F28 /* DeleteLikeResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 578F3A8E193324A100554F28 /* DeleteLikeResponse-4.0.json */; };
+		578F3A911933288900554F28 /* SocialRestVersionProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578F3A901933288900554F28 /* SocialRestVersionProxyTestCase.m */; };
+		578F3A9319332AA700554F28 /* LatestVersionResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 578F3A9219332AA700554F28 /* LatestVersionResponse-4.0.json */; };
+		578F3A9519332D4200554F28 /* AsyncProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578F3A9419332D4200554F28 /* AsyncProxyTestCase.m */; };
 		579D50A915BD6689002F5D16 /* AuthTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50A815BD6689002F5D16 /* AuthTabItem.m */; };
 		579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */; };
 		57A07116160FF47E002E2BAC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FB0B5915B51D54004F958C /* Default-Landscape~ipad.png */; };
@@ -1509,6 +1519,17 @@
 		578ED78E17EAD51F00771497 /* Icon-ios7-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76.png"; sourceTree = "<group>"; };
 		578ED78F17EAD51F00771497 /* Icon-ios7-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-120.png"; sourceTree = "<group>"; };
 		578ED79617EAD61A00771497 /* Icon-ios7-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76@2x.png"; sourceTree = "<group>"; };
+		578F3A711932E52800554F28 /* SocialPostActivityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPostActivityTestCase.m; sourceTree = "<group>"; };
+		578F3A841932F8BF00554F28 /* PostActivityResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "PostActivityResponse-4.0.json"; sourceTree = "<group>"; };
+		578F3A8619331B2E00554F28 /* SocialPostCommentProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPostCommentProxyTestCase.m; sourceTree = "<group>"; };
+		578F3A8819331D9C00554F28 /* PostCommentResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "PostCommentResponse-4.0.json"; sourceTree = "<group>"; };
+		578F3A8A1933218100554F28 /* SocialLikeActivityProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialLikeActivityProxyTestCase.m; sourceTree = "<group>"; };
+		578F3A8C1933248200554F28 /* PostLikeResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "PostLikeResponse-4.0.json"; sourceTree = "<group>"; };
+		578F3A8E193324A100554F28 /* DeleteLikeResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DeleteLikeResponse-4.0.json"; sourceTree = "<group>"; };
+		578F3A901933288900554F28 /* SocialRestVersionProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialRestVersionProxyTestCase.m; sourceTree = "<group>"; };
+		578F3A9219332AA700554F28 /* LatestVersionResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LatestVersionResponse-4.0.json"; sourceTree = "<group>"; };
+		578F3A9419332D4200554F28 /* AsyncProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncProxyTestCase.m; sourceTree = "<group>"; };
+		578F3A9619332D6200554F28 /* AsyncProxyTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncProxyTestCase.h; sourceTree = "<group>"; };
 		579D50A715BD6689002F5D16 /* AuthTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthTabItem.h; sourceTree = "<group>"; };
 		579D50A815BD6689002F5D16 /* AuthTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthTabItem.m; sourceTree = "<group>"; };
 		579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSelectionView.h; sourceTree = "<group>"; };
@@ -3363,6 +3384,11 @@
 				575D9C03192DBA1B00AD337A /* ActivityDetailsLikesResponse-4.0.json */,
 				575D9C05192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json */,
 				575D9C07192DEC5100AD337A /* SocialUserProfileResponse-4.0.json */,
+				578F3A841932F8BF00554F28 /* PostActivityResponse-4.0.json */,
+				578F3A8819331D9C00554F28 /* PostCommentResponse-4.0.json */,
+				578F3A8C1933248200554F28 /* PostLikeResponse-4.0.json */,
+				578F3A8E193324A100554F28 /* DeleteLikeResponse-4.0.json */,
+				578F3A9219332AA700554F28 /* LatestVersionResponse-4.0.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3375,6 +3401,10 @@
 				575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */,
 				575D9BEE192D9B8E00AD337A /* SocialActivityDetailsProxyTestCase.m */,
 				575D9C09192DEC8100AD337A /* SocialUserProfileProxyTestCase.m */,
+				578F3A711932E52800554F28 /* SocialPostActivityTestCase.m */,
+				578F3A8619331B2E00554F28 /* SocialPostCommentProxyTestCase.m */,
+				578F3A8A1933218100554F28 /* SocialLikeActivityProxyTestCase.m */,
+				578F3A901933288900554F28 /* SocialRestVersionProxyTestCase.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -3417,6 +3447,8 @@
 				5778209D19249F4F00ED72D0 /* ExoTestCase.h */,
 				5778209319249DB100ED72D0 /* ExoTestCase.m */,
 				575EFE61192E05E300798DCD /* tests-variables.h */,
+				578F3A9419332D4200554F28 /* AsyncProxyTestCase.m */,
+				578F3A9619332D6200554F28 /* AsyncProxyTestCase.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -5166,13 +5198,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578F3A8F193324A100554F28 /* DeleteLikeResponse-4.0.json in Resources */,
+				578F3A8D1933248200554F28 /* PostLikeResponse-4.0.json in Resources */,
 				575D9C04192DBA1B00AD337A /* ActivityDetailsLikesResponse-4.0.json in Resources */,
 				5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */,
 				575D9BBB192C8A3D00AD337A /* PlatformInfoResponse-4.0.json in Resources */,
 				575D9C02192DA61200AD337A /* ActivityDetailsResponse-4.0.json in Resources */,
 				575D9BD2192CC3F600AD337A /* ActivityStreamResponse-4.0.json in Resources */,
+				578F3A8919331D9C00554F28 /* PostCommentResponse-4.0.json in Resources */,
 				575D9C06192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json in Resources */,
+				578F3A851932F8BF00554F28 /* PostActivityResponse-4.0.json in Resources */,
 				575D9C08192DEC5100AD337A /* SocialUserProfileResponse-4.0.json in Resources */,
+				578F3A9319332AA700554F28 /* LatestVersionResponse-4.0.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5476,16 +5513,21 @@
 				575EFE46192DF90800798DCD /* HTTPStubsHelper.m in Sources */,
 				578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */,
 				575EFE60192E045A00798DCD /* SocialTestsHelper.m in Sources */,
+				578F3A911933288900554F28 /* SocialRestVersionProxyTestCase.m in Sources */,
 				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
 				5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */,
+				578F3A8B1933218100554F28 /* SocialLikeActivityProxyTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
 				575D9C0A192DEC8100AD337A /* SocialUserProfileProxyTestCase.m in Sources */,
+				578F3A8719331B2E00554F28 /* SocialPostCommentProxyTestCase.m in Sources */,
 				575D9BEF192D9B8E00AD337A /* SocialActivityDetailsProxyTestCase.m in Sources */,
 				5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */,
 				575D9BCE192CB67000AD337A /* SocialProxyTestCase.m in Sources */,
+				578F3A9519332D4200554F28 /* AsyncProxyTestCase.m in Sources */,
 				57C1C317192B3E0B007B3CD6 /* LoginProxyTestCase.m in Sources */,
 				575D9BD0192CB93000AD337A /* SocialActivityStreamProxyTestCase.m in Sources */,
 				5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */,
+				578F3A721932E52800554F28 /* SocialPostActivityTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

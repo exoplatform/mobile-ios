@@ -52,7 +52,7 @@
 - (void)logStubbedHTTPRequests
 {
     [OHHTTPStubs onStubActivation:^(NSURLRequest *request, id<OHHTTPStubsDescriptor> stub) {
-        NSLog(@"%@ request stubbed (%@)", stub.name, request.URL);
+        NSLog(@"%@ request stubbed (%@ %@)", stub.name, request.HTTPMethod, request.URL);
     }];
 }
 
@@ -132,6 +132,49 @@
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"SocialUserProfileResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
     }].name = @"Social User Profile";
+}
+
+- (void)HTTPStubForPostActivity
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        NSString *urlPath = @"/rest/private/api/social/v1-alpha3/portal/activity.json";
+        return [request.URL.path isEqualToString:urlPath];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"PostActivityResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = @"Post Activity";
+}
+
+- (void)HTTPStubForPostComment
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        NSString *urlPath = @"/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comment.json";
+        return [request.URL.path isEqualToString:urlPath];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"PostCommentResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = @"Post Comment";
+}
+
+- (void)HTTPStubForLikeActivityWithBoolean:(BOOL)like
+{
+    NSString *stubName = like ? @"Like Activity" : @"Unlike Activity";
+    NSString *fileName = like ? @"PostLikeResponse-4.0.json" : @"DeleteLikeResponse-4.0.json";
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        NSString *urlPath = @"/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json";
+        return [request.URL.path isEqualToString:urlPath];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(fileName, nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = stubName;
+
+}
+
+- (void)HTTPStubForGetLatestVersion
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        NSString *urlPath = @"/api/social/version/latest.json";
+        return [request.URL.path isEqualToString:urlPath];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"LatestVersionResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
+    }].name = @"Get Latest Version";
 }
 
 @end

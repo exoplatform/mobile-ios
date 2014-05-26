@@ -26,13 +26,6 @@
     NSArray *TEST_URLS_OK;
     NSArray *TEST_URLS_INCORRECT;
 
-//    NSString *TEST_SERVER_URL ;
-//    NSString *TEST_SERVER_NAME ;
-//    
-//    NSString *TEST_USER_NAME;
-//    NSString *TEST_USER_PASS;
-//    NSString *TEST_USER_FIRST_NAME;
-//    NSString *TEST_USER_LAST_NAME;
 }
 
 - (NSString*)URLEncodedString:(NSString*)s;

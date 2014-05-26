@@ -19,15 +19,13 @@
 
 
 #import <XCTest/XCTest.h>
-#import "ExoTestCase.h"
+#import "AsyncProxyTestCase.h"
 #import "SocialActivityStreamProxy.h"
 #import "HTTPStubsHelper.h"
 #import "SocialTestsHelper.h"
 
-@interface SocialActivityStreamProxyTestCase : ExoTestCase<SocialProxyDelegate> {
+@interface SocialActivityStreamProxyTestCase : AsyncProxyTestCase<SocialProxyDelegate> {
     SocialActivityStreamProxy *asProxy;
-    BOOL responseArrived;
-    BOOL activityStreamLoaded;
     HTTPStubsHelper *httpHelper;
     SocialTestsHelper *socHelper;
 }
@@ -47,19 +45,6 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)wait
-{
-    // Wait for the asynchronous code to finish
-    responseArrived = NO;
-    while (!responseArrived)
-        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, YES);
-}
 
 - (void)testCreatePathForActivityType
 {
@@ -85,12 +70,11 @@
 {
     [httpHelper HTTPStubForActivityStream];
  
-    activityStreamLoaded = NO;
     [asProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
     
     [self wait];
     
-    XCTAssertTrue(activityStreamLoaded, @"Failed to get activity stream");
+    XCTAssertEqual(asProxy.arrActivityStreams.count, 1, @"Failed to get activity stream");
 }
 
 - (void)testActivityStreamBeforeActivity
@@ -99,27 +83,11 @@
     
     SocialActivity *activity = [socHelper createSocialActivity];
     
-    activityStreamLoaded = NO;
     [asProxy getActivitiesOfType:ActivityStreamProxyActivityTypeAllUpdates BeforeActivity:activity];
     
     [self wait];
     
-    XCTAssertTrue(activityStreamLoaded, @"Failed to get activity stream before a certain activity");
-}
-
-#pragma mark Proxy delegate methods
-- (void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
-{
-    responseArrived = YES;
-}
-
-- (void)proxyDidFinishLoading:(SocialProxy *)proxy
-{
-    responseArrived = YES;
-    if (asProxy.arrActivityStreams.count == 1)
-    {
-        activityStreamLoaded = YES;
-    }
+    XCTAssertEqual(asProxy.arrActivityStreams.count, 1, @"Failed to get activity stream before a certain activity");
 }
 
 

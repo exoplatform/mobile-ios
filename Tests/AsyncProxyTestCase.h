@@ -17,24 +17,16 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
+#import "ExoTestCase.h"
+#import <XCTest/XCTest.h>
+#import "SocialProxy.h"
 
-#import <Foundation/Foundation.h>
+@interface AsyncProxyTestCase : ExoTestCase<SocialProxyDelegate> {
+    BOOL responseArrived;
+}
 
-@interface HTTPStubsHelper : NSObject
-
-+ (HTTPStubsHelper*)getInstance;
-
-- (void)logStubbedHTTPRequests;
-- (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success;
-- (void)HTTPStubForPlatformInfoAuthenticated:(BOOL)auth;
-- (void)HTTPStubForActivityStream;
-- (void)HTTPStubForActivityDetails;
-- (void)HTTPStubForActivityLikes;
-- (void)HTTPStubForActivityComments;
-- (void)HTTPStubForSocialUserProfileWithUsername:(NSString*)username;
-- (void)HTTPStubForPostActivity;
-- (void)HTTPStubForPostComment;
-- (void)HTTPStubForLikeActivityWithBoolean:(BOOL)like;
-- (void)HTTPStubForGetLatestVersion;
+- (void)wait;
+- (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error;
+- (void)proxyDidFinishLoading:(SocialProxy *)proxy;
 
 @end

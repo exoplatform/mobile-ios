@@ -19,16 +19,15 @@
 
 
 #import <XCTest/XCTest.h>
-#import "ExoTestCase.h"
+#import "AsyncProxyTestCase.h"
 #import "SocialActivityDetailsProxy.h"
 #import "SocialComment.h"
 #import "HTTPStubsHelper.h"
 #import "SocialTestsHelper.h"
 
-@interface SocialActivityDetailsProxyTestCase : ExoTestCase<SocialProxyDelegate> {
+@interface SocialActivityDetailsProxyTestCase : AsyncProxyTestCase<SocialProxyDelegate> {
     SocialActivityDetailsProxy *adProxy;
     SocialActivity *activity;
-    BOOL responseArrived;
     HTTPStubsHelper *httpHelper;
     SocialTestsHelper *socHelper;
 }
@@ -49,19 +48,6 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)wait
-{
-    // Wait for the asynchronous code to finish
-    responseArrived = NO;
-    while (!responseArrived)
-        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, YES);
-}
 
 - (void)testLikeActivityResourcePath
 {
@@ -140,18 +126,6 @@
         XCTAssertEqualObjects(comment.identityId, [commentsIds objectAtIndex:i], @"Comment ID does not match");
         i++;
     }
-}
-
-#pragma mark Proxy delegate methods
-
-- (void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
-{
-    responseArrived = YES;
-}
-
-- (void) proxyDidFinishLoading:(SocialProxy *)proxy
-{
-    responseArrived = YES;
 }
 
 @end

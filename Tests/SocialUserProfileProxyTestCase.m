@@ -19,15 +19,14 @@
 
 
 #import <XCTest/XCTest.h>
-#import "ExoTestCase.h"
+#import "AsyncProxyTestCase.h"
 #import "SocialUserProfileProxy.h"
 #import "HTTPStubsHelper.h"
 #import "SocialTestsHelper.h"
 
-@interface SocialUserProfileProxyTestCase : ExoTestCase<SocialProxyDelegate> {
+@interface SocialUserProfileProxyTestCase : AsyncProxyTestCase<SocialProxyDelegate> {
     SocialUserProfileProxy *proxy;
     SocialUserProfile *profile;
-    BOOL responseArrived;
     HTTPStubsHelper *httpHelper;
 }
 
@@ -45,19 +44,6 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)wait
-{
-    // Wait for the asynchronous code to finish
-    responseArrived = NO;
-    while (!responseArrived)
-        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, YES);
-}
 
 - (void)testGetUserProfileFromUsername
 {
@@ -74,17 +60,6 @@
     XCTAssertEqualObjects(proxy.userProfile.avatarUrl, profile.avatarUrl, @"Failed to retrieve the correct user profile avatar url");
 }
 
-#pragma mark Proxy delegate methods
-
-- (void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
-{
-    responseArrived = YES;
-}
-
-- (void) proxyDidFinishLoading:(SocialProxy *)proxy
-{
-    responseArrived = YES;
-}
 
 
 
