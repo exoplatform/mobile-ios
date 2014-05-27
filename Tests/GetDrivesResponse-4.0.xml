@@ -1,0 +1,13 @@
+<Folders>
+    <Folders name="Group">
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".exo" nodeType="Group .exo" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".organization.employees" nodeType="Group .organization.employees" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".platform.users" nodeType="Group .platform.users" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".spaces.chat_application" nodeType="Group .spaces.chat_application" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".spaces.exchange_extension" nodeType="Group .spaces.exchange_extension" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".spaces.exo_mobile" nodeType="Group .spaces.exo_mobile" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".spaces.platform_40" nodeType="Group .spaces.platform_40" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".spaces.platform_41" nodeType="Group .spaces.platform_41" workspaceName="collaboration"/>
+        <Folder canAddChild="nt:folder,nt:unstructured" name=".spaces.translations" nodeType="Group .spaces.translations" workspaceName="collaboration"/>
+    </Folders>
+</Folders>

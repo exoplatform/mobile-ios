@@ -27,6 +27,9 @@
 - (void)logStubbedHTTPRequests;
 - (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success;
 - (void)HTTPStubForPlatformInfoAuthenticated:(BOOL)auth;
+- (void)HTTPStubForReachabilityRequestWithSuccess:(BOOL)success;
+- (void)HTTPStubForReachabilityRequestWithResponseCode:(int)responseCode;
+
 - (void)HTTPStubForActivityStream;
 - (void)HTTPStubForActivityDetails;
 - (void)HTTPStubForActivityLikes;
@@ -36,5 +39,7 @@
 - (void)HTTPStubForPostComment;
 - (void)HTTPStubForLikeActivityWithBoolean:(BOOL)like;
 - (void)HTTPStubForGetLatestVersion;
+
+- (void)HTTPStubForGetDrives;
 
 @end

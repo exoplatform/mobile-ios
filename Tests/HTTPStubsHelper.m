@@ -85,6 +85,34 @@
     }].name = @"Platform Information";
 }
 
+- (void)HTTPStubForReachabilityRequestWithSuccess:(BOOL)success
+{
+    NSString *name = success ? @"Successful reachability check" : @"Failed reachability check";
+    
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return YES; // intercept any request
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        if (success)
+            return [OHHTTPStubsResponse responseWithData:[@"" dataUsingEncoding:NSUTF8StringEncoding] statusCode:200 headers:nil];
+        else
+            return [OHHTTPStubsResponse responseWithError:[NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorBadServerResponse userInfo:nil]];
+    }].name = name;
+}
+
+- (void)HTTPStubForReachabilityRequestWithResponseCode:(int)responseCode
+{
+    NSString *name = [NSString stringWithFormat:@"Reachability check with response %d", responseCode];
+    
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return YES; // intercept any request
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        if (responseCode >= 100 && responseCode < 600)
+            return [OHHTTPStubsResponse responseWithData:[@"" dataUsingEncoding:NSUTF8StringEncoding] statusCode:responseCode headers:nil];
+        else
+            return [OHHTTPStubsResponse responseWithError:[NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorBadURL userInfo:nil]];
+    }].name = name;
+}
+
 #pragma mark Social
 
 - (void)HTTPStubForActivityStream
@@ -175,6 +203,18 @@
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"LatestVersionResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
     }].name = @"Get Latest Version";
+}
+
+#pragma mark Documents
+
+- (void)HTTPStubForGetDrives
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        NSString *urlPath = @"/rest/private/managedocument/getDrives";
+        return [request.URL.path isEqualToString:urlPath];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"GetDrivesResponse-4.0.xml", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"text/xml" forKey:@"Content-Type"]];
+    }].name = @"Get Drives";
 }
 
 @end

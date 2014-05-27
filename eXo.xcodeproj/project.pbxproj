@@ -418,6 +418,10 @@
 		57C5203815B6B84100BF902F /* CredentialsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203715B6B84100BF902F /* CredentialsViewController_iPad.xib */; };
 		57C5203A15B6B85A00BF902F /* ServerListViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */; };
 		57C8020918AA0C3400A06EA7 /* DE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 57C8020818AA0C3400A06EA7 /* DE.gif */; };
+		57E47603193432B400C3140E /* SocialUserProfileCacheTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E47602193432B400C3140E /* SocialUserProfileCacheTestCase.m */; };
+		57E476161934388A00C3140E /* AuthenticateProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E476151934388A00C3140E /* AuthenticateProxyTestCase.m */; };
+		57E47619193447C000C3140E /* FilesProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E47618193447C000C3140E /* FilesProxyTestCase.m */; };
+		57E4761B19344E2700C3140E /* GetDrivesResponse-4.0.xml in Resources */ = {isa = PBXBuildFile; fileRef = 57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */; };
 		57ED5A1415BFEA8E0007C49F /* CredentialsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */; };
 		57ED5A1615BFEA9F0007C49F /* ServerListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */; };
 		57EEB3D718B1BF6D00C6B2E8 /* ES.gif in Resources */ = {isa = PBXBuildFile; fileRef = 57EEB3D618B1BF6D00C6B2E8 /* ES.gif */; };
@@ -1546,6 +1550,10 @@
 		57C5203915B6B85A00BF902F /* ServerListViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPad.xib; sourceTree = "<group>"; };
 		57C8020618AA07C700A06EA7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57C8020818AA0C3400A06EA7 /* DE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DE.gif; sourceTree = "<group>"; };
+		57E47602193432B400C3140E /* SocialUserProfileCacheTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialUserProfileCacheTestCase.m; sourceTree = "<group>"; };
+		57E476151934388A00C3140E /* AuthenticateProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateProxyTestCase.m; sourceTree = "<group>"; };
+		57E47618193447C000C3140E /* FilesProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxyTestCase.m; sourceTree = "<group>"; };
+		57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GetDrivesResponse-4.0.xml"; sourceTree = "<group>"; };
 		57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController_iPhone.xib; sourceTree = "<group>"; };
 		57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPhone.xib; sourceTree = "<group>"; };
 		57EEB3D418B1BC3D00C6B2E8 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -3389,6 +3397,7 @@
 				578F3A8C1933248200554F28 /* PostLikeResponse-4.0.json */,
 				578F3A8E193324A100554F28 /* DeleteLikeResponse-4.0.json */,
 				578F3A9219332AA700554F28 /* LatestVersionResponse-4.0.json */,
+				57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3405,6 +3414,7 @@
 				578F3A8619331B2E00554F28 /* SocialPostCommentProxyTestCase.m */,
 				578F3A8A1933218100554F28 /* SocialLikeActivityProxyTestCase.m */,
 				578F3A901933288900554F28 /* SocialRestVersionProxyTestCase.m */,
+				57E47602193432B400C3140E /* SocialUserProfileCacheTestCase.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -3413,6 +3423,7 @@
 			isa = PBXGroup;
 			children = (
 				57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */,
+				57E476151934388A00C3140E /* AuthenticateProxyTestCase.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -3438,6 +3449,7 @@
 		5778208A19249DB100ED72D0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				57E476171934479300C3140E /* Documents */,
 				575EFE5D192E017400798DCD /* Cloud */,
 				575EFE5C192E015D00798DCD /* General */,
 				575EFE5B192E014600798DCD /* Authentication */,
@@ -3451,6 +3463,14 @@
 				578F3A9619332D6200554F28 /* AsyncProxyTestCase.h */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		57E476171934479300C3140E /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				57E47618193447C000C3140E /* FilesProxyTestCase.m */,
+			);
+			name = Documents;
 			sourceTree = "<group>";
 		};
 		57FB19C915FD9670001F5C20 /* Configuration */ = {
@@ -5204,6 +5224,7 @@
 				5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */,
 				575D9BBB192C8A3D00AD337A /* PlatformInfoResponse-4.0.json in Resources */,
 				575D9C02192DA61200AD337A /* ActivityDetailsResponse-4.0.json in Resources */,
+				57E4761B19344E2700C3140E /* GetDrivesResponse-4.0.xml in Resources */,
 				575D9BD2192CC3F600AD337A /* ActivityStreamResponse-4.0.json in Resources */,
 				578F3A8919331D9C00554F28 /* PostCommentResponse-4.0.json in Resources */,
 				575D9C06192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json in Resources */,
@@ -5515,6 +5536,8 @@
 				575EFE60192E045A00798DCD /* SocialTestsHelper.m in Sources */,
 				578F3A911933288900554F28 /* SocialRestVersionProxyTestCase.m in Sources */,
 				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
+				57E47619193447C000C3140E /* FilesProxyTestCase.m in Sources */,
+				57E47603193432B400C3140E /* SocialUserProfileCacheTestCase.m in Sources */,
 				5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */,
 				578F3A8B1933218100554F28 /* SocialLikeActivityProxyTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
@@ -5524,6 +5547,7 @@
 				5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */,
 				575D9BCE192CB67000AD337A /* SocialProxyTestCase.m in Sources */,
 				578F3A9519332D4200554F28 /* AsyncProxyTestCase.m in Sources */,
+				57E476161934388A00C3140E /* AuthenticateProxyTestCase.m in Sources */,
 				57C1C317192B3E0B007B3CD6 /* LoginProxyTestCase.m in Sources */,
 				575D9BD0192CB93000AD337A /* SocialActivityStreamProxyTestCase.m in Sources */,
 				5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */,
