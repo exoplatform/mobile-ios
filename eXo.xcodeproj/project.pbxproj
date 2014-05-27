@@ -135,7 +135,6 @@
 		1FD0C408143BF146002F40A7 /* IconForUnreadableFile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0C3FE143BF146002F40A7 /* IconForUnreadableFile@2x.png */; };
 		1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD91DBE1471092E00DBDED0 /* ActivityAnswerTableViewCell.m */; };
 		1FD91DC1147109A200DBDED0 /* ActivityAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FD91DC0147109A000DBDED0 /* ActivityAnswerTableViewCell.xib */; };
-		244B6977EE0D410FABA7DCB2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C647115519074571B8168A62 /* libPods.a */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3201088596B4756681693704 /* libThree20UICommon.a */; };
 		320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A2827FEC940B25BC42C64 /* libThree20Core.a */; };
@@ -2000,7 +1999,6 @@
 				7CE85B0813C46D0D00A219EB /* CoreData.framework in Frameworks */,
 				7CE85B0913C46D0D00A219EB /* SystemConfiguration.framework in Frameworks */,
 				466FD6FD148E5BF5005A1B78 /* Crashlytics.framework in Frameworks */,
-				244B6977EE0D410FABA7DCB2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
