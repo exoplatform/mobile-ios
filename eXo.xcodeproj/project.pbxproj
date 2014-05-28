@@ -421,6 +421,7 @@
 		57E476161934388A00C3140E /* AuthenticateProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E476151934388A00C3140E /* AuthenticateProxyTestCase.m */; };
 		57E47619193447C000C3140E /* FilesProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E47618193447C000C3140E /* FilesProxyTestCase.m */; };
 		57E4761B19344E2700C3140E /* GetDrivesResponse-4.0.xml in Resources */ = {isa = PBXBuildFile; fileRef = 57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */; };
+		57E4761D1935C47000C3140E /* GetFoldersAndFilesResponse-4.0.xml in Resources */ = {isa = PBXBuildFile; fileRef = 57E4761C1935C47000C3140E /* GetFoldersAndFilesResponse-4.0.xml */; };
 		57ED5A1415BFEA8E0007C49F /* CredentialsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */; };
 		57ED5A1615BFEA9F0007C49F /* ServerListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */; };
 		57EEB3D718B1BF6D00C6B2E8 /* ES.gif in Resources */ = {isa = PBXBuildFile; fileRef = 57EEB3D618B1BF6D00C6B2E8 /* ES.gif */; };
@@ -1553,6 +1554,7 @@
 		57E476151934388A00C3140E /* AuthenticateProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateProxyTestCase.m; sourceTree = "<group>"; };
 		57E47618193447C000C3140E /* FilesProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxyTestCase.m; sourceTree = "<group>"; };
 		57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GetDrivesResponse-4.0.xml"; sourceTree = "<group>"; };
+		57E4761C1935C47000C3140E /* GetFoldersAndFilesResponse-4.0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GetFoldersAndFilesResponse-4.0.xml"; sourceTree = "<group>"; };
 		57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController_iPhone.xib; sourceTree = "<group>"; };
 		57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPhone.xib; sourceTree = "<group>"; };
 		57EEB3D418B1BC3D00C6B2E8 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -3396,6 +3398,7 @@
 				578F3A8E193324A100554F28 /* DeleteLikeResponse-4.0.json */,
 				578F3A9219332AA700554F28 /* LatestVersionResponse-4.0.json */,
 				57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */,
+				57E4761C1935C47000C3140E /* GetFoldersAndFilesResponse-4.0.xml */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -5224,6 +5227,7 @@
 				575D9C02192DA61200AD337A /* ActivityDetailsResponse-4.0.json in Resources */,
 				57E4761B19344E2700C3140E /* GetDrivesResponse-4.0.xml in Resources */,
 				575D9BD2192CC3F600AD337A /* ActivityStreamResponse-4.0.json in Resources */,
+				57E4761D1935C47000C3140E /* GetFoldersAndFilesResponse-4.0.xml in Resources */,
 				578F3A8919331D9C00554F28 /* PostCommentResponse-4.0.json in Resources */,
 				575D9C06192DBEBC00AD337A /* ActivityDetailsCommentsResponse-4.0.json in Resources */,
 				578F3A851932F8BF00554F28 /* PostActivityResponse-4.0.json in Resources */,

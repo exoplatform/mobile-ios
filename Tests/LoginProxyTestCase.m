@@ -26,7 +26,7 @@
 
 
 @interface LoginProxyTestCase : AsyncProxyTestCase <LoginProxyDelegate> {
-    LoginProxy *proxy;
+    LoginProxy *loginProxy;
     BOOL platformInfoRetrieved;
     HTTPStubsHelper *httpHelper;
 }
@@ -38,7 +38,7 @@
 - (void)setUp
 {
     [super setUp];
-    proxy = [[LoginProxy alloc] initWithDelegate:self username:TEST_USER_NAME password:TEST_USER_PASS serverUrl:TEST_SERVER_URL];
+    loginProxy = [[LoginProxy alloc] initWithDelegate:self username:TEST_USER_NAME password:TEST_USER_PASS serverUrl:TEST_SERVER_URL];
     httpHelper = [HTTPStubsHelper getInstance];
 
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -51,7 +51,7 @@
     [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
     
     platformInfoRetrieved = NO;
-    [proxy authenticate];
+    [loginProxy authenticate];
     
     [self wait];
     
@@ -63,7 +63,7 @@
     [httpHelper HTTPStubForAuthenticationWithSuccess:NO];
     
     platformInfoRetrieved = NO;
-    [proxy authenticate];
+    [loginProxy authenticate];
     
     [self wait];
     
@@ -75,7 +75,7 @@
     [httpHelper HTTPStubForPlatformInfoAuthenticated:NO];
     
     platformInfoRetrieved = NO;
-    [proxy retrievePlatformInformations];
+    [loginProxy retrievePlatformInformations];
     
     [self wait];
     
@@ -86,14 +86,14 @@
 
 - (void) loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
 {
-    responseArrived = YES;
+    [super loginProxy:proxy authenticateFailedWithError:error];
     platformInfoRetrieved = NO;
     NSLog(@"Could not authenticate because: %@", [error description]);
 }
 
 - (void) loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
 {
-    responseArrived = YES;
+    [super loginProxy:proxy platformVersionCompatibleWithSocialFeatures:compatibleWithSocial withServerInformation:platformServerVersion];
     platformInfoRetrieved = YES;
 }
 

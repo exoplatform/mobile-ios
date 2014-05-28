@@ -20,13 +20,16 @@
 #import "ExoTestCase.h"
 #import <XCTest/XCTest.h>
 #import "SocialProxy.h"
+#import "LoginProxy.h"
 
-@interface AsyncProxyTestCase : ExoTestCase<SocialProxyDelegate> {
+@interface AsyncProxyTestCase : ExoTestCase<SocialProxyDelegate, LoginProxyDelegate> {
     BOOL responseArrived;
 }
 
 - (void)wait;
 - (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error;
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy;
+- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error;
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;
 
 @end

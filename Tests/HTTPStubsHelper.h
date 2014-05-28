@@ -41,5 +41,6 @@
 - (void)HTTPStubForGetLatestVersion;
 
 - (void)HTTPStubForGetDrives;
+- (void)HTTPStubForGetFoldersAndFiles;
 
 @end

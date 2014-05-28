@@ -55,21 +55,28 @@
 - (void)setPreferences
 {
     ApplicationPreferencesManager *appPM = [ApplicationPreferencesManager sharedInstance];
-    [appPM setJcrRepositoryName:@"repository" defaultWorkspace:@"collaboration" userHomePath:@"Users/johndoe"];
+    [appPM setJcrRepositoryName:@"repository" defaultWorkspace:@"collaboration" userHomePath:@"/Users/johndoe"];
     [appPM addAndSetSelectedServer:TEST_SERVER_URL withName:TEST_SERVER_NAME];
     
     UserPreferencesManager *userPM = [UserPreferencesManager sharedInstance];
     userPM.showPrivateDrive = YES;
 }
 
-- (void)testCalculateAbsPath
+- (File*)createFile
 {
     File *file = [[File alloc] init];
-    file.path = @"";
+    file.path = @".";
     file.name = @"My-File.txt";
     file.workspaceName = @"collaboration";
     file.currentFolder = @"/";
     file.driveName = @"Personal";
+    
+    return file;
+}
+
+- (void)testCalculateAbsPath
+{
+    File *file = [self createFile];
     
     NSString *relativePath = [NSString stringWithFormat:@"/%@", file.name];
     NSString *expectedPath = [NSString stringWithFormat:@"%@/%@/%@", TEST_SERVER_URL, @"rest/private/jcr/repository/collaboration", file.name];
@@ -85,17 +92,42 @@
     
     NSArray *drives = [proxy getDrives:@"Group"];
     
-    XCTAssertEqual([drives count], 9, @"List of drives retrieved is not correct");
+    // There are 9 drives listed in GetDrivesResponse-4.0.xml
+    XCTAssertEqual([drives count], 9, @"List of drives is not correct");
 }
 
 - (void)testGetContentOfFolder
 {
+    [httpHelper HTTPStubForGetFoldersAndFiles];
     
+    File *root = [self createFile];
+    root.isFolder = YES;
+    root.hasChild = YES;
+    NSArray *contents = [proxy getContentOfFolder:root];
+    
+    int nbFol = 0;
+    int nbFil = 0;
+    for (File *f in contents) {
+        if (f.isFolder) nbFol++;
+        else nbFil++;
+    }
+    // There are 5 folders and 2 files listed in GetFoldersAndFilesResponse-4.0.xml
+    XCTAssertEqual([contents count], 7, @"List of folders and files is not correct");
+    XCTAssertEqual(nbFol, 5, @"There should be 5 folders in the list");
+    XCTAssertEqual(nbFil, 2, @"There should be 2 files in the list");
 }
 
 - (void)testCreatUserRepositoryHomeUrl
 {
+    [proxy creatUserRepositoryHomeUrl];
     
+    NSString *url = proxy._strUserRepository;
+    
+    NSString *expectedUrl = [NSString stringWithFormat:@"%@%@",
+                             TEST_SERVER_URL,
+                             @"/rest/private/jcr/repository/collaboration/Users/johndoe"];
+    
+    XCTAssertEqualObjects(url, expectedUrl, @"Users JCR home path is not correct");
 }
 
 -(void)testFileAction

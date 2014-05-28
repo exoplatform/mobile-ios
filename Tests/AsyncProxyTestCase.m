@@ -56,4 +56,14 @@
     responseArrived = YES;
 }
 
+- (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error
+{
+    responseArrived = YES;
+}
+
+- (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
+{
+    responseArrived = YES;
+}
+
 @end

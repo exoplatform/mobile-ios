@@ -217,4 +217,14 @@
     }].name = @"Get Drives";
 }
 
+- (void)HTTPStubForGetFoldersAndFiles
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        NSString *urlPath = @"/rest/private/managedocument/getFoldersAndFiles";
+        return [request.URL.path isEqualToString:urlPath];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"GetFoldersAndFilesResponse-4.0.xml", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"text/xml" forKey:@"Content-Type"]];
+    }].name = @"Get Folders And Files";
+}
+
 @end

@@ -1,0 +1,13 @@
+<Folder canAddChild="true" canRemove="true" currentFolder="." driveName="Collaboration" hasChild="true" name="" nodeType="nt:unstructured" path="/" title="" titlePath="" workspaceName="collaboration">
+    <Folders>
+        <Folder canAddChild="true" canRemove="true" currentFolder="./Users" driveName="Collaboration" hasChild="true" name="Users" nodeType="nt:unstructured" path="/Users" title="Users" titlePath="/Users" workspaceName="collaboration"/>
+        <Folder canAddChild="true" canRemove="true" currentFolder="./Groups" driveName="Collaboration" hasChild="true" name="Groups" nodeType="nt:unstructured" path="/Groups" title="Groups" titlePath="/Groups" workspaceName="collaboration"/>
+        <Folder canAddChild="true" canRemove="true" currentFolder="./Digital Assets" driveName="Collaboration" hasChild="true" name="Digital Assets" nodeType="nt:unstructured" path="/Digital Assets" title="Digital Assets" titlePath="/Digital Assets" workspaceName="collaboration"/>
+        <Folder canAddChild="true" canRemove="true" currentFolder="./tags" driveName="Collaboration" hasChild="false" name="tags" nodeType="nt:unstructured" path="/tags" title="tags" titlePath="/tags" workspaceName="collaboration"/>
+        <Folder canAddChild="true" canRemove="true" currentFolder="./sites" driveName="Collaboration" hasChild="true" name="sites" nodeType="nt:unstructured" path="/sites" title="sites" titlePath="/sites" workspaceName="collaboration"/>
+    </Folders>
+    <Files>
+        <File canRemove="true" creator="john" dateCreated="5/28/14 9:18 AM" dateModified="5/28/14 9:18 AM" name="robolectric" nodeType="application/octet-stream" path="/Users/j___/jo___/joh___/john/Private/Documents/robolectric" size="2289" title="robolectric" workspaceName="collaboration"/>
+        <File canRemove="true" creator="john" dateCreated="5/28/14 9:18 AM" dateModified="5/28/14 9:18 AM" name="runscript.png" nodeType="image/png" path="/Users/j___/jo___/joh___/john/Private/Documents/runscript.png" size="32339" title="runscript.png" workspaceName="collaboration"/>
+    </Files>
+</Folder>
