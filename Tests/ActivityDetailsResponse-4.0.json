@@ -11,7 +11,7 @@
         "registeredKeysForProcessor":"comment",
         "title":"Login"
     },
-    "liked":false,
+    "liked":true,
     "lastUpdated":1400664805123,
     "postedTime":1400664805123,
     "type":"LINK_ACTIVITY",

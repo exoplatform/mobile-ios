@@ -3,64 +3,64 @@
                          {
                          "id":"4fece28a0a2106c63ce09784543ce781",
                          "providerId":"organization",
-                         "remoteId":"julien_brulland",
+                         "remoteId":"john_smith",
                          "profile":{
-                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Ajulien_brulland/soc%3Aprofile/soc%3Aavatar/?upd=1374828026200",
-                         "fullName":"Julien Brulland"
+                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Aa/soc%3Aprofile/soc%3Aavatar/?upd=1374828026200",
+                         "fullName":"John Smith"
                          }
                          },
                          {
                          "id":"51998d9b0a2106c60330eb14726dc376",
                          "providerId":"organization",
-                         "remoteId":"patrice_lamarque",
+                         "remoteId":"mary_williams",
                          "profile":{
-                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Apatrice_lamarque/soc%3Aprofile/soc%3Aavatar/?upd=1371464305999",
-                         "fullName":"Patrice Lamarque"
+                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Ab/soc%3Aprofile/soc%3Aavatar/?upd=1371464305999",
+                         "fullName":"Mary Williams"
                          }
                          },
                          {
                          "id":"50d5e1250a2106c6693ac5a1f2978328",
                          "providerId":"organization",
-                         "remoteId":"benjmestrallet",
+                         "remoteId":"johndoe",
                          "profile":{
-                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Abenjmestrallet/soc%3Aprofile/soc%3Aavatar/?upd=1371494623572",
-                         "fullName":"Benjamin Mestrallet"
+                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Ac/soc%3Aprofile/soc%3Aavatar/?upd=1371494623572",
+                         "fullName":"John Doe"
                          }
                          },
                          {
                          "id":"07358dc80a20d9903523c3bbc6ea321d",
                          "providerId":"organization",
-                         "remoteId":"evanpand",
+                         "remoteId":"jdaniels",
                          "profile":{
-                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Aevanpand/soc%3Aprofile/soc%3Aavatar/?upd=1391593333421",
-                         "fullName":"Evan Pandelopoulos"
+                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Ad/soc%3Aprofile/soc%3Aavatar/?upd=1391593333421",
+                         "fullName":"Jack Daniels"
                          }
                          },
                          {
                          "id":"d4ddb0ecc06313bc5d57b7d699a1daa0",
                          "providerId":"organization",
-                         "remoteId":"Vocab Monster",
+                         "remoteId":"paulo",
                          "profile":{
-                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3AVocab Monster/soc%3Aprofile/soc%3Aavatar/?upd=1399435676337",
-                         "fullName":"Vocab Monster"
+                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Ae/soc%3Aprofile/soc%3Aavatar/?upd=1399435676337",
+                         "fullName":"Paul Oneill"
                          }
                          },
                          {
                          "id":"4589aee8c0a803245a4d44f53df4b19b",
                          "providerId":"organization",
-                         "remoteId":"phunghainam",
+                         "remoteId":"tungnguyen",
                          "profile":{
-                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Aphunghainam/soc%3Aprofile/soc%3Aavatar/?upd=1400059015922",
-                         "fullName":"Phung Nam"
+                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Af/soc%3Aprofile/soc%3Aavatar/?upd=1400059015922",
+                         "fullName":"Tung Nguyen"
                          }
                          },
                          {
                          "id":"51aa8e300a2106c6717816abbfdab170",
                          "providerId":"organization",
-                         "remoteId":"nguyenbaoan",
+                         "remoteId":"joed",
                          "profile":{
-                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Anguyenbaoan/soc%3Aprofile/soc%3Aavatar/?upd=1381282964190",
-                         "fullName":"An Bao Nguyen"
+                         "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Ag/soc%3Aprofile/soc%3Aavatar/?upd=1381282964190",
+                         "fullName":"Joe Dalton"
                          }
                          }
                          ],

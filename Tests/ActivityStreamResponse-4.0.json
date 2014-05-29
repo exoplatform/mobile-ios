@@ -12,7 +12,7 @@
                   "id" : "1e20cf09c06313bc0a9d372ecd6bd2a7",
                   "identityId" : "d3c28a300a2106c658573c3c030bf9da",
                   "lastUpdated" : 1400664805123,
-                  "liked" : false,
+                  "liked" : true,
                   "likedByIdentities" : [  ],
                   "postedTime" : 1400664805123,
                   "posterIdentity" : { "id" : "51aa8e300a2106c6717816abbfdab170",
@@ -32,7 +32,7 @@
                   },
                   "title" : "Login",
                   "titleId" : "",
-                  "totalNumberOfComments" : 0,
+                  "totalNumberOfComments" : 1,
                   "totalNumberOfLikes" : 4,
                   "type" : "LINK_ACTIVITY"
                   } ] }

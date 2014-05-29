@@ -3,63 +3,63 @@
     "comments":[
                 {
                 "id":"e5efc8c0c06313bc4a27bbe61bfabf8f",
-                "text":"&egrave;lom&egrave;m&agrave;",
+                "text":"Look Ma, an apple!",
                 "createdAt":"Sat May 10 13:41:08 +0200 2014",
                 "postedTime":1399722068159,
                 "posterIdentity":{
-                "id":"e5ec1728c06313bc47de448bc870d0c9",
-                "providerId":"organization",
-                "remoteId":"ploponin",
-                "profile":{
-                "avatarUrl":"http://community.exoplatform.com:80/social-resources/skin/images/ShareImages/UserAvtDefault.png",
-                "fullName":"test test"
-                }
-                }
+                  "id":"e5ec1728c06313bc47de448bc870d0c9",
+                  "providerId":"organization",
+                  "remoteId":"ploponin",
+                  "profile":{
+                    "avatarUrl":"http://community.exoplatform.com:80/social-resources/skin/images/ShareImages/UserAvtDefault.png",
+                    "fullName":"test test"
+                    }
+                  }
                 },
                 {
                 "id":"ed041476c06313bc737a212a6930e917",
-                "text":"Trial walk through as a test user.",
+                "text":"I'm walking on sunshine",
                 "createdAt":"Sun May 11 22:40:38 +0200 2014",
                 "postedTime":1399840838773,
                 "posterIdentity":{
-                "id":"ed01a51fc06313bc3c6b0775c60dbcd3",
-                "providerId":"organization",
-                "remoteId":"santhosh",
-                "profile":{
-                "avatarUrl":"http://community.exoplatform.com:80/social-resources/skin/images/ShareImages/UserAvtDefault.png",
-                "fullName":"Santhosh Venugopal"
-                }
-                }
+                  "id":"ed01a51fc06313bc3c6b0775c60dbcd3",
+                  "providerId":"organization",
+                  "remoteId":"santhosh",
+                  "profile":{
+                    "avatarUrl":"http://community.exoplatform.com:80/social-resources/skin/images/ShareImages/UserAvtDefault.png",
+                    "fullName":"Santhosh Venugopal"
+                    }
+                  }
                 },
                 {
                 "id":"03deea81c06313bc2dd5d10dcfe1ef92",
-                "text":"sdfsdfsdfsdfsdf",
+                "text":"Fly me to the moon",
                 "createdAt":"Fri May 16 09:11:19 +0200 2014",
                 "postedTime":1400224279164,
                 "posterIdentity":{
-                "id":"03dc4e59c06313bc2e9f8514590eb41d",
-                "providerId":"organization",
-                "remoteId":"alexey.chervyakov",
-                "profile":{
-                "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Aalexey%2502chervyakov/soc%3Aprofile/soc%3Aavatar/?upd=1400224110606",
-                "fullName":"Алексей Червяков"
-                }
-                }
+                  "id":"03dc4e59c06313bc2e9f8514590eb41d",
+                  "providerId":"organization",
+                  "remoteId":"alexey.chervyakov",
+                  "profile":{
+                    "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Aalexey%2502chervyakov/soc%3Aprofile/soc%3Aavatar/?upd=1400224110606",
+                    "fullName":"Алексей Червяков"
+                    }
+                  }
                 },
                 {
                 "id":"03df01c3c06313bc1f93a805a1ecc48b",
-                "text":"sdfsdfsdf",
+                "text":"Lorem ipsum dolor",
                 "createdAt":"Fri May 16 09:11:25 +0200 2014",
                 "postedTime":1400224285118,
                 "posterIdentity":{
-                "id":"03dc4e59c06313bc2e9f8514590eb41d",
-                "providerId":"organization",
-                "remoteId":"alexey.chervyakov",
-                "profile":{
-                "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Aalexey%2502chervyakov/soc%3Aprofile/soc%3Aavatar/?upd=1400224110606",
-                "fullName":"Алексей Червяков"
-                }
-                }
+                  "id":"03dc4e59c06313bc2e9f8514590eb41d",
+                  "providerId":"organization",
+                  "remoteId":"alexey.chervyakov",
+                  "profile":{
+                    "avatarUrl":"http://community.exoplatform.com:80/rest/jcr/repository/social/production/soc%3Aproviders/soc%3Aorganization/soc%3Aalexey%2502chervyakov/soc%3Aprofile/soc%3Aavatar/?upd=1400224110606",
+                    "fullName":"Алексей Червяков"
+                    }
+                  }
                 }
                 ]
 }

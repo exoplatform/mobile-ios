@@ -49,6 +49,16 @@
     return conf;
 }
 
+- (void)clearSocialRestConfiguration
+{
+    SocialRestConfiguration *conf = [SocialRestConfiguration sharedInstance];
+    conf.restContextName = @"";
+    conf.restVersion = @"";
+    conf.portalContainerName = @"";
+    conf.username = @"";
+    conf.password = @"";
+}
+
 
 - (SocialUserProfile *)createSocialUserProfile
 {
@@ -57,6 +67,17 @@
     profile.remoteId = TEST_USER_NAME;
     profile.providerId = @"organization";
     profile.fullName = [NSString stringWithFormat:@"%@ %@", TEST_USER_FIRST_NAME, TEST_USER_LAST_NAME];
+    profile.avatarUrl = @"http://demo.platform.exo.org/rest/jcr/repository/social/organization/profile/johndoe/avatar/?upd=1378196459997";
+    return profile;
+}
+
+- (SocialUserProfile *)createSocialUserProfileWithID:(NSString *)pid username:(NSString *)uname fullname:(NSString *)fname
+{
+    SocialUserProfile *profile = [[SocialUserProfile alloc] init];
+    profile.identity = pid;
+    profile.remoteId = uname;
+    profile.providerId = @"organization";
+    profile.fullName = fname;
     profile.avatarUrl = @"http://demo.platform.exo.org/rest/jcr/repository/social/organization/profile/johndoe/avatar/?upd=1378196459997";
     return profile;
 }
@@ -73,6 +94,15 @@
     act.body = @"";
     act.activityType = ACTIVITY_LINK;
     return act;
+}
+
+- (SocialComment *)createCommentWithID:(NSString *)cid text:(NSString *)text
+{
+    SocialComment *comm = [[SocialComment alloc] init];
+    comm.identityId = cid;
+    comm.text = text;
+    
+    return comm;
 }
 
 @end

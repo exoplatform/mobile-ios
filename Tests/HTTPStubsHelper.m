@@ -56,6 +56,17 @@
     }];
 }
 
+- (void)HTTPStubForAnyRequestWithSuccess:(BOOL)success
+{
+    NSString *name = success ? @"Generic Successful Request" : @"Generic Failed Request";
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return YES; // intercept any request
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        int status = success ? 200 : 500;
+        return [OHHTTPStubsResponse responseWithData:[@"" dataUsingEncoding:NSUTF8StringEncoding] statusCode:status headers:nil];
+    }].name = name;
+}
+
 #pragma mark Authentication
 
 - (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success
@@ -166,7 +177,8 @@
 {
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         NSString *urlPath = @"/rest/private/api/social/v1-alpha3/portal/activity.json";
-        return [request.URL.path isEqualToString:urlPath];
+        return ([request.URL.path isEqualToString:urlPath] &&
+                [request.HTTPMethod isEqualToString:@"POST"]);
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"PostActivityResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
     }].name = @"Post Activity";
@@ -176,7 +188,8 @@
 {
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         NSString *urlPath = @"/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comment.json";
-        return [request.URL.path isEqualToString:urlPath];
+        return ([request.URL.path isEqualToString:urlPath] &&
+                [request.HTTPMethod isEqualToString:@"POST"]);
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"PostCommentResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
     }].name = @"Post Comment";
@@ -186,9 +199,11 @@
 {
     NSString *stubName = like ? @"Like Activity" : @"Unlike Activity";
     NSString *fileName = like ? @"PostLikeResponse-4.0.json" : @"DeleteLikeResponse-4.0.json";
+    NSString *httpMethod = like ? @"POST" : @"DELETE";
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         NSString *urlPath = @"/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json";
-        return [request.URL.path isEqualToString:urlPath];
+        return ([request.URL.path isEqualToString:urlPath] &&
+                [request.HTTPMethod isEqualToString:httpMethod]);
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(fileName, nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];
     }].name = stubName;
@@ -198,7 +213,7 @@
 - (void)HTTPStubForGetLatestVersion
 {
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        NSString *urlPath = @"/api/social/version/latest.json";
+        NSString *urlPath = @"/rest/api/social/version/latest.json";
         return [request.URL.path isEqualToString:urlPath];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"LatestVersionResponse-4.0.json", nil) statusCode:200 headers:[NSDictionary dictionaryWithObject:@"application/json" forKey:@"Content-Type"]];

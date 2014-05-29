@@ -22,13 +22,17 @@
 #import "SocialRestConfiguration.h"
 #import "SocialUserProfile.h"
 #import "SocialActivity.h"
+#import "SocialComment.h"
 
 @interface SocialTestsHelper : NSObject
 
 + (SocialTestsHelper*) getInstance;
 
 - (SocialRestConfiguration*)createSocialRestConfiguration;
+- (void)clearSocialRestConfiguration;
 - (SocialUserProfile*)createSocialUserProfile;
+- (SocialUserProfile*)createSocialUserProfileWithID:(NSString*)pid username:(NSString*)uname fullname:(NSString*)fname;
 - (SocialActivity*)createSocialActivity;
+- (SocialComment*)createCommentWithID:(NSString*)cid text:(NSString*)text;
 
 @end

@@ -23,6 +23,7 @@
 #import "SocialRestProxy.h"
 #import "HTTPStubsHelper.h"
 #import "SocialRestConfiguration.h"
+#import "SocialTestsHelper.h"
 
 @interface SocialRestVersionProxyTestCase : AsyncProxyTestCase<SocialProxyDelegate> {
     SocialRestProxy *verProxy;
@@ -52,6 +53,9 @@
 {
     [[HTTPStubsHelper getInstance] HTTPStubForGetLatestVersion];
     
+    // reset the version stored in social rest configuration
+    [[SocialTestsHelper getInstance] clearSocialRestConfiguration];
+    
     [verProxy getVersion];
     
     [self wait];
@@ -60,6 +64,8 @@
     NSString *expectedVersion = @"v1-alpha3";
     
     XCTAssertEqualObjects(version, expectedVersion, @"Latest version retrieved is incorrect");
+    
+    [[SocialTestsHelper getInstance] clearSocialRestConfiguration];
 }
 
 

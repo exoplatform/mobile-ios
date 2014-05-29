@@ -23,6 +23,7 @@
 #import "SocialActivityStreamProxy.h"
 #import "HTTPStubsHelper.h"
 #import "SocialTestsHelper.h"
+#import "ActivityHelper.h"
 
 @interface SocialActivityStreamProxyTestCase : AsyncProxyTestCase<SocialProxyDelegate> {
     SocialActivityStreamProxy *asProxy;
@@ -74,20 +75,49 @@
     
     [self wait];
     
-    XCTAssertEqual(asProxy.arrActivityStreams.count, 1, @"Failed to get activity stream");
+    NSArray *activities = asProxy.arrActivityStreams;
+    
+    XCTAssertEqual(activities.count, 1, @"Failed to get activity stream");
+    
+    SocialActivity *activity = [activities objectAtIndex:0];
+    
+    XCTAssertEqualObjects(activity.type, @"LINK_ACTIVITY", @"Mapping of activity stream failed: incorrect activity type");
+    XCTAssertEqualObjects(activity.activityId, @"1e20cf09c06313bc0a9d372ecd6bd2a7", @"Mapping of activity stream failed: incorrect activity ID");
+    XCTAssertEqualObjects(activity.title, @"Login", @"Mapping of activity stream failed: incorrect activity title");
+    XCTAssertEqualObjects(activity.identityId, @"d3c28a300a2106c658573c3c030bf9da", @"Mapping of activity stream failed: incorrect identity ID");
+    XCTAssertEqual(activity.postedTime, 1400664805123, @"Mapping of activity stream failed: incorrect posted time");
+    XCTAssertEqual(activity.lastUpdated, 1400664805123, @"Mapping of activity stream failed: incorrect last updated time");
+    XCTAssertTrue(activity.liked, @"Mapping of activity stream failed: activity is liked");
+    XCTAssertEqual(activity.totalNumberOfComments, 1, @"Mapping of activity stream failed: incorrect number of comments");
+    XCTAssertEqual(activity.totalNumberOfLikes, 4, @"Mapping of activity stream failed: incorrect number of likes");
+    XCTAssertEqualObjects(activity.createdAt, @"Wed May 21 11:33:25 +0200 2014", @"Mapping of activity stream failed: incorrect creation date");
+    
 }
 
 - (void)testActivityStreamBeforeActivity
 {
     [httpHelper HTTPStubForActivityStream];
     
-    SocialActivity *activity = [socHelper createSocialActivity];
+    SocialActivity *oldActivity = [socHelper createSocialActivity];
     
-    [asProxy getActivitiesOfType:ActivityStreamProxyActivityTypeAllUpdates BeforeActivity:activity];
+    [asProxy getActivitiesOfType:ActivityStreamProxyActivityTypeAllUpdates BeforeActivity:oldActivity];
     
     [self wait];
     
-    XCTAssertEqual(asProxy.arrActivityStreams.count, 1, @"Failed to get activity stream before a certain activity");
+    NSArray *activities = asProxy.arrActivityStreams;
+    
+    XCTAssertEqual(activities.count, 1, @"Failed to get activity stream");
+    
+    SocialActivity *activity = [activities objectAtIndex:0];
+    
+    XCTAssertEqualObjects(activity.type, @"LINK_ACTIVITY", @"Mapping of activity stream failed: incorrect activity type");
+    XCTAssertEqualObjects(activity.activityId, @"1e20cf09c06313bc0a9d372ecd6bd2a7", @"Mapping of activity stream failed: incorrect activity ID");
+    XCTAssertEqualObjects(activity.title, @"Login", @"Mapping of activity stream failed: incorrect activity title");
+    XCTAssertEqualObjects(activity.identityId, @"d3c28a300a2106c658573c3c030bf9da", @"Mapping of activity stream failed: incorrect identity ID");
+    XCTAssertEqual(activity.postedTime, 1400664805123, @"Mapping of activity stream failed: incorrect posted time");
+    XCTAssertEqual(activity.lastUpdated, 1400664805123, @"Mapping of activity stream failed: incorrect last updated time");
+    XCTAssertTrue(activity.liked, @"Mapping of activity stream failed: activity is liked");
+    XCTAssertEqualObjects(activity.createdAt, @"Wed May 21 11:33:25 +0200 2014", @"Mapping of activity stream failed: incorrect creation date");
 }
 
 

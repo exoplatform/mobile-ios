@@ -23,6 +23,7 @@
 #import "SocialUserProfileProxy.h"
 #import "HTTPStubsHelper.h"
 #import "SocialTestsHelper.h"
+#import "SocialUserProfileCache.h"
 
 @interface SocialUserProfileProxyTestCase : AsyncProxyTestCase<SocialProxyDelegate> {
     SocialUserProfileProxy *proxy;
@@ -41,6 +42,7 @@
     proxy.delegate = self;
     profile = [[SocialTestsHelper getInstance] createSocialUserProfile];
     httpHelper = [HTTPStubsHelper getInstance];
+    [[SocialTestsHelper getInstance] createSocialRestConfiguration];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -49,15 +51,24 @@
 {
     [httpHelper HTTPStubForSocialUserProfileWithUsername:profile.remoteId];
     
+    // cache an empty profile before the request
+    SocialUserProfileCache *cache = [SocialUserProfileCache sharedInstance];
+    SocialUserProfile *nullProfile = [[SocialUserProfile alloc] init];
+    [cache addInCache:nullProfile forIdentity:profile.identity];
+    
     [proxy getUserProfileFromUsername:profile.remoteId];
     
     [self wait];
     
-    XCTAssertEqualObjects(proxy.userProfile.identity, profile.identity, @"Failed to retrieve the correct user profile id");
-    XCTAssertEqualObjects(proxy.userProfile.fullName, profile.fullName, @"Failed to retrieve the correct user full name");
-    XCTAssertEqualObjects(proxy.userProfile.remoteId, profile.remoteId, @"Failed to retrieve the correct username");
-    XCTAssertEqualObjects(proxy.userProfile.providerId, profile.providerId, @"Failed to retrieve the correct user profile provider");
-    XCTAssertEqualObjects(proxy.userProfile.avatarUrl, profile.avatarUrl, @"Failed to retrieve the correct user profile avatar url");
+    
+    SocialUserProfile *cachedProfile = [cache cachedProfileForIdentity:profile.identity];
+    
+    XCTAssertEqualObjects(cachedProfile.identity, profile.identity, @"Failed to retrieve the correct user profile id");
+    XCTAssertEqualObjects(cachedProfile.fullName, profile.fullName, @"Failed to retrieve the correct user full name");
+    XCTAssertEqualObjects(cachedProfile.remoteId, profile.remoteId, @"Failed to retrieve the correct username");
+    XCTAssertEqualObjects(cachedProfile.providerId, profile.providerId, @"Failed to retrieve the correct user profile provider");
+    XCTAssertEqualObjects(cachedProfile.avatarUrl, profile.avatarUrl, @"Failed to retrieve the correct user profile avatar url");
+
 }
 
 
