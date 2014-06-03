@@ -38,9 +38,10 @@
 
 - (void)wait
 {
-    // Wait for the asynchronous code to finish
+    // Wait for the asynchronous code to finish, or a 5s timeout
+    NSDate* timeoutDate = [NSDate dateWithTimeIntervalSinceNow:5];
     responseArrived = NO;
-    while (!responseArrived)
+    while (!responseArrived && ([timeoutDate timeIntervalSinceNow]>0))
         CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, YES);
 }
 
