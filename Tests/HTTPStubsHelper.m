@@ -56,6 +56,16 @@
     }];
 }
 
+- (void)logWhichStubsAreRegistered
+{
+    NSArray *stubs = [OHHTTPStubs allStubs];
+    for (id<OHHTTPStubsDescriptor> stub in stubs) {
+        NSLog(@"Stub '%@' is registered", stub.name);
+    }
+}
+
+
+
 - (void)HTTPStubForAnyRequestWithSuccess:(BOOL)success
 {
     NSString *name = success ? @"Generic Successful Request" : @"Generic Failed Request";

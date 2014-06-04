@@ -25,6 +25,7 @@
 + (HTTPStubsHelper*)getInstance;
 
 - (void)logStubbedHTTPRequests;
+- (void)logWhichStubsAreRegistered;
 - (void)HTTPStubForAnyRequestWithSuccess:(BOOL)success;
 
 - (void)HTTPStubForAuthenticationWithSuccess:(BOOL)success;

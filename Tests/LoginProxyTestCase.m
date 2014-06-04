@@ -60,6 +60,8 @@
     [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
     [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
     
+    [httpHelper logWhichStubsAreRegistered];
+    
     [loginProxy authenticate];
     
     [self wait];
