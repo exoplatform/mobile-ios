@@ -51,6 +51,7 @@
 - (void)testCheckReachabilitySuccessful
 {
     [httpHelper HTTPStubForReachabilityRequestWithSuccess:YES];
+    [httpHelper logWhichStubsAreRegistered];
 
     BOOL isReachable = [proxy isReachabilityURL:TEST_SERVER_URL userName:TEST_USER_NAME password:TEST_USER_PASS];
     
@@ -60,6 +61,7 @@
 - (void)testCheckReachabilityFailedWithError
 {
     [httpHelper HTTPStubForReachabilityRequestWithSuccess:NO];
+    [httpHelper logWhichStubsAreRegistered];
 
     BOOL isReachable = [proxy isReachabilityURL:TEST_SERVER_URL userName:TEST_USER_NAME password:TEST_USER_PASS];
     

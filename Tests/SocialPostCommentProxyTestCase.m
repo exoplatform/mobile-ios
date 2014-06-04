@@ -44,6 +44,7 @@
 - (void)testPostComment
 {
     [[HTTPStubsHelper getInstance] HTTPStubForPostComment];
+    [[HTTPStubsHelper getInstance] logWhichStubsAreRegistered];
     
     hasError = YES;
     [commProxy postComment:@"A nice comment" forActivity:@"1e20cf09c06313bc0a9d372ecd6bd2a7"];

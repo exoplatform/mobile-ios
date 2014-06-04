@@ -56,6 +56,7 @@
 - (void)testPostActivityWithMessage
 {
     [httpHelper HTTPStubForPostActivity];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSString *message = @"A cool activity";
     hasError = YES;
@@ -73,6 +74,7 @@
     ApplicationPreferencesManager *appPM = [ApplicationPreferencesManager sharedInstance];
     [appPM setJcrRepositoryName:@"repository" defaultWorkspace:@"collaboration" userHomePath:@"Users/johndoe"];
     [httpHelper HTTPStubForPostActivity];
+    [httpHelper logWhichStubsAreRegistered];
     hasError = YES;
     
     [actProxy postActivity:@""

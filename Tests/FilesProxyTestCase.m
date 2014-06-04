@@ -98,6 +98,7 @@
 - (void)testGetDrives
 {
     [httpHelper HTTPStubForGetDrives];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSArray *drives = [proxy getDrives:@"Group"];
     
@@ -108,6 +109,7 @@
 - (void)testGetContentOfFolder
 {
     [httpHelper HTTPStubForGetFoldersAndFiles];
+    [httpHelper logWhichStubsAreRegistered];
     
     File *root = [self createFile];
     root.isFolder = YES;
@@ -142,6 +144,7 @@
 -(void)testFileDeleteAction
 {
     [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSString *fileUrl = [NSString stringWithFormat:@"%@%@",
                          TEST_SERVER_URL,
@@ -155,6 +158,7 @@
 -(void)testFileMoveAction
 {
     [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
                          TEST_SERVER_URL,
@@ -172,6 +176,7 @@
 -(void)testFileMoveActionFailsWhenSourceEqualsDestination
 {
     [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
                         TEST_SERVER_URL,
@@ -186,6 +191,7 @@
 -(void)testFileCopyAction
 {
     [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
                         TEST_SERVER_URL,
@@ -203,6 +209,7 @@
 -(void)testFileUploadAction
 {
     [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
                         TEST_SERVER_URL,
@@ -220,6 +227,7 @@
 - (void)testFileActionWithError
 {
     [httpHelper HTTPStubForAnyRequestWithSuccess:NO];
+    [httpHelper logWhichStubsAreRegistered];
     
     NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
                         TEST_SERVER_URL,

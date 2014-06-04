@@ -50,6 +50,7 @@
 - (void)testGetUserProfileFromUsername
 {
     [httpHelper HTTPStubForSocialUserProfileWithUsername:profile.remoteId];
+    [httpHelper logWhichStubsAreRegistered];
     
     // cache an empty profile before the request
     SocialUserProfileCache *cache = [SocialUserProfileCache sharedInstance];

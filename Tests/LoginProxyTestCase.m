@@ -59,7 +59,6 @@
 {
     [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
     [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
-    
     [httpHelper logWhichStubsAreRegistered];
     
     [loginProxy authenticate];
@@ -73,6 +72,7 @@
 - (void)testAuthenticationFailure
 {
     [httpHelper HTTPStubForAuthenticationWithSuccess:NO];
+    [httpHelper logWhichStubsAreRegistered];
     
     [loginProxy authenticate];
     
@@ -85,6 +85,7 @@
 - (void)testRetrievePlatformInfo
 {
     [httpHelper HTTPStubForPlatformInfoAuthenticated:NO];
+    [httpHelper logWhichStubsAreRegistered];
     
     [loginProxy retrievePlatformInformations];
     

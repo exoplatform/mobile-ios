@@ -68,6 +68,7 @@
 - (void)testGetActivityDetails
 {
     [httpHelper HTTPStubForActivityDetails];
+    [httpHelper logWhichStubsAreRegistered];
     
     [adProxy getActivityDetail:activity.activityId];
     
@@ -90,6 +91,7 @@
 - (void)testGetActivityLikes
 {
     [httpHelper HTTPStubForActivityLikes];
+    [httpHelper logWhichStubsAreRegistered];
     
     [adProxy getLikers:activity.activityId];
     
@@ -123,6 +125,7 @@
 - (void)testGetActivityComments
 {
     [httpHelper HTTPStubForActivityComments];
+    [httpHelper logWhichStubsAreRegistered];
     
     [adProxy getAllOfComments:activity.activityId];
     

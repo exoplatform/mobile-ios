@@ -70,6 +70,7 @@
 - (void)testGetActivityStream
 {
     [httpHelper HTTPStubForActivityStream];
+    [httpHelper logWhichStubsAreRegistered];
  
     [asProxy getActivityStreams:ActivityStreamProxyActivityTypeAllUpdates];
     
@@ -97,6 +98,7 @@
 - (void)testActivityStreamBeforeActivity
 {
     [httpHelper HTTPStubForActivityStream];
+    [httpHelper logWhichStubsAreRegistered];
     
     SocialActivity *oldActivity = [socHelper createSocialActivity];
     

@@ -52,6 +52,7 @@
 - (void)testGetVersion
 {
     [[HTTPStubsHelper getInstance] HTTPStubForGetLatestVersion];
+    [[HTTPStubsHelper getInstance] logWhichStubsAreRegistered];
     
     // reset the version stored in social rest configuration
     [[SocialTestsHelper getInstance] clearSocialRestConfiguration];

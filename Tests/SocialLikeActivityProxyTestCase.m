@@ -43,6 +43,7 @@
 - (void)testPostLikeActivity
 {
     [[HTTPStubsHelper getInstance] HTTPStubForLikeActivityWithBoolean:YES];
+    [[HTTPStubsHelper getInstance] logWhichStubsAreRegistered];
     
     hasError = YES;
     [likeProxy likeActivity:@"1e20cf09c06313bc0a9d372ecd6bd2a7"];
@@ -56,6 +57,7 @@
 - (void)testDeleteLikeActivity
 {
     [[HTTPStubsHelper getInstance] HTTPStubForLikeActivityWithBoolean:NO];
+    [[HTTPStubsHelper getInstance] logWhichStubsAreRegistered];
     
     hasError = YES;
     [likeProxy dislikeActivity:@"1e20cf09c06313bc0a9d372ecd6bd2a7"];
