@@ -43,6 +43,7 @@
     httpHelper = [HTTPStubsHelper getInstance];
     isCompatibleWithSocial = NO;
     platformInfo = nil;
+    NSLog(@"HTTP Helper class <%p>", httpHelper);
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -55,19 +56,19 @@
             [platformInfo.platformEdition isEqualToString:@"ENTERPRISE"]);
 }
 
-- (void)testAuthenticateAndGetPlatformInfo
-{
-    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
-    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    [loginProxy authenticate];
-    
-    [self wait];
-    
-    XCTAssertTrue(isCompatibleWithSocial, @"Authenticate and retrieve Platform info failed: not compatible with Social");
-    XCTAssertTrue([self platformInfoIsCorrect], @"Authenticate and retrieve Platform info failed: incorrect Platform info");
-}
+//- (void)testAuthenticateAndGetPlatformInfo
+//{
+//    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
+//    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    [loginProxy authenticate];
+//    
+//    [self wait];
+//    
+//    XCTAssertTrue(isCompatibleWithSocial, @"Authenticate and retrieve Platform info failed: not compatible with Social");
+//    XCTAssertTrue([self platformInfoIsCorrect], @"Authenticate and retrieve Platform info failed: incorrect Platform info");
+//}
 
 - (void)testAuthenticationFailure
 {
@@ -82,18 +83,18 @@
     XCTAssertNil(platformInfo, @"Authenticate should have failed");
 }
 
-- (void)testRetrievePlatformInfo
-{
-    [httpHelper HTTPStubForPlatformInfoAuthenticated:NO];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    [loginProxy retrievePlatformInformations];
-    
-    [self wait];
-    
-    XCTAssertTrue(isCompatibleWithSocial, @"Retrieve public Platform info failed: not compatible with Social");
-    XCTAssertTrue([self platformInfoIsCorrect], @"Retrieve public Platform info failed: incorrect Platform info");
-}
+//- (void)testRetrievePlatformInfo
+//{
+//    [httpHelper HTTPStubForPlatformInfoAuthenticated:NO];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    [loginProxy retrievePlatformInformations];
+//    
+//    [self wait];
+//    
+//    XCTAssertTrue(isCompatibleWithSocial, @"Retrieve public Platform info failed: not compatible with Social");
+//    XCTAssertTrue([self platformInfoIsCorrect], @"Retrieve public Platform info failed: incorrect Platform info");
+//}
 
 #pragma mark Proxy delegate methods
 
@@ -102,7 +103,6 @@
     [super loginProxy:proxy authenticateFailedWithError:error];
     isCompatibleWithSocial = NO;
     platformInfo = nil;
-    NSLog(@"Could not authenticate because: %@", [error description]);
 }
 
 - (void) loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
