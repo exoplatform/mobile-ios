@@ -95,38 +95,38 @@
     XCTAssertEqualObjects(file.path, expectedPath, @"Absolute path of the given file is not correct");
 }
 
-- (void)testGetDrives
-{
-    [httpHelper HTTPStubForGetDrives];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    NSArray *drives = [proxy getDrives:@"Group"];
-    
-    // There are 9 drives listed in GetDrivesResponse-4.0.xml
-    XCTAssertEqual([drives count], 9, @"List of drives is not correct");
-}
+//- (void)testGetDrives
+//{
+//    [httpHelper HTTPStubForGetDrives];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    NSArray *drives = [proxy getDrives:@"Group"];
+//    
+//    // There are 9 drives listed in GetDrivesResponse-4.0.xml
+//    XCTAssertEqual([drives count], 9, @"List of drives is not correct");
+//}
 
-- (void)testGetContentOfFolder
-{
-    [httpHelper HTTPStubForGetFoldersAndFiles];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    File *root = [self createFile];
-    root.isFolder = YES;
-    root.hasChild = YES;
-    NSArray *contents = [proxy getContentOfFolder:root];
-    
-    int nbFol = 0;
-    int nbFil = 0;
-    for (File *f in contents) {
-        if (f.isFolder) nbFol++;
-        else nbFil++;
-    }
-    // There are 5 folders and 2 files listed in GetFoldersAndFilesResponse-4.0.xml
-    XCTAssertEqual([contents count], 7, @"List of folders and files is not correct");
-    XCTAssertEqual(nbFol, 5, @"There should be 5 folders in the list");
-    XCTAssertEqual(nbFil, 2, @"There should be 2 files in the list");
-}
+//- (void)testGetContentOfFolder
+//{
+//    [httpHelper HTTPStubForGetFoldersAndFiles];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    File *root = [self createFile];
+//    root.isFolder = YES;
+//    root.hasChild = YES;
+//    NSArray *contents = [proxy getContentOfFolder:root];
+//    
+//    int nbFol = 0;
+//    int nbFil = 0;
+//    for (File *f in contents) {
+//        if (f.isFolder) nbFol++;
+//        else nbFil++;
+//    }
+//    // There are 5 folders and 2 files listed in GetFoldersAndFilesResponse-4.0.xml
+//    XCTAssertEqual([contents count], 7, @"List of folders and files is not correct");
+//    XCTAssertEqual(nbFol, 5, @"There should be 5 folders in the list");
+//    XCTAssertEqual(nbFil, 2, @"There should be 2 files in the list");
+//}
 
 - (void)testCreatUserRepositoryHomeUrl
 {
@@ -141,113 +141,113 @@
     XCTAssertEqualObjects(url, expectedUrl, @"Users JCR home path is not correct");
 }
 
--(void)testFileDeleteAction
-{
-    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    NSString *fileUrl = [NSString stringWithFormat:@"%@%@",
-                         TEST_SERVER_URL,
-                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
-    NSString *result = [proxy fileAction:kFileProtocolForDelete source:fileUrl destination:nil data:nil];
-    
-    // the proxy returns nil when the request is successful, and an error message otherwise
-    XCTAssertNil(result, @"Delete File Action failed");
-}
+//-(void)testFileDeleteAction
+//{
+//    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    NSString *fileUrl = [NSString stringWithFormat:@"%@%@",
+//                         TEST_SERVER_URL,
+//                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
+//    NSString *result = [proxy fileAction:kFileProtocolForDelete source:fileUrl destination:nil data:nil];
+//    
+//    // the proxy returns nil when the request is successful, and an error message otherwise
+//    XCTAssertNil(result, @"Delete File Action failed");
+//}
 
--(void)testFileMoveAction
-{
-    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
-                         TEST_SERVER_URL,
-                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
-    NSString *destUrl = [NSString stringWithFormat:@"%@%@",
-                         TEST_SERVER_URL,
-                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File-New.txt"];
-    
-    NSString *result = [proxy fileAction:kFileProtocolForMove source:srcUrl destination:destUrl data:nil];
-    
-    // the proxy returns nil when the request is successful, and an error message otherwise
-    XCTAssertNil(result, @"Move File Action failed");
-}
+//-(void)testFileMoveAction
+//{
+//    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
+//                         TEST_SERVER_URL,
+//                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
+//    NSString *destUrl = [NSString stringWithFormat:@"%@%@",
+//                         TEST_SERVER_URL,
+//                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File-New.txt"];
+//    
+//    NSString *result = [proxy fileAction:kFileProtocolForMove source:srcUrl destination:destUrl data:nil];
+//    
+//    // the proxy returns nil when the request is successful, and an error message otherwise
+//    XCTAssertNil(result, @"Move File Action failed");
+//}
 
--(void)testFileMoveActionFailsWhenSourceEqualsDestination
-{
-    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
-                        TEST_SERVER_URL,
-                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
-    
-    NSString *result = [proxy fileAction:kFileProtocolForMove source:srcUrl destination:srcUrl data:nil];
-    
-    // the proxy returns nil when the request is successful, and an error message otherwise
-    XCTAssertNotNil(result, @"Move File Action should have failed because source = destination");
-}
+//-(void)testFileMoveActionFailsWhenSourceEqualsDestination
+//{
+//    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
+//                        TEST_SERVER_URL,
+//                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
+//    
+//    NSString *result = [proxy fileAction:kFileProtocolForMove source:srcUrl destination:srcUrl data:nil];
+//    
+//    // the proxy returns nil when the request is successful, and an error message otherwise
+//    XCTAssertNotNil(result, @"Move File Action should have failed because source = destination");
+//}
 
--(void)testFileCopyAction
-{
-    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
-                        TEST_SERVER_URL,
-                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
-    NSString *destUrl = [NSString stringWithFormat:@"%@%@",
-                         TEST_SERVER_URL,
-                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File-New.txt"];
-    
-    NSString *result = [proxy fileAction:kFileProtocolForCopy source:srcUrl destination:destUrl data:nil];
-    
-    // the proxy returns nil when the request is successful, and an error message otherwise
-    XCTAssertNil(result, @"Copy File Action failed");
-}
+//-(void)testFileCopyAction
+//{
+//    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
+//                        TEST_SERVER_URL,
+//                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
+//    NSString *destUrl = [NSString stringWithFormat:@"%@%@",
+//                         TEST_SERVER_URL,
+//                         @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File-New.txt"];
+//    
+//    NSString *result = [proxy fileAction:kFileProtocolForCopy source:srcUrl destination:destUrl data:nil];
+//    
+//    // the proxy returns nil when the request is successful, and an error message otherwise
+//    XCTAssertNil(result, @"Copy File Action failed");
+//}
 
--(void)testFileUploadAction
-{
-    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
-                        TEST_SERVER_URL,
-                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/"];
-    
-    const char *utfString = [@"ABCDEFG" UTF8String];
-    NSData *data = [NSData dataWithBytes:utfString length:strlen(utfString)];
-    
-    NSString *result = [proxy fileAction:kFileProtocolForUpload source:srcUrl destination:nil data:data];
-    
-    // the proxy returns nil when the request is successful, and an error message otherwise
-    XCTAssertNil(result, @"Upload File Action failed");
-}
+//-(void)testFileUploadAction
+//{
+//    [httpHelper HTTPStubForAnyRequestWithSuccess:YES];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
+//                        TEST_SERVER_URL,
+//                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/"];
+//    
+//    const char *utfString = [@"ABCDEFG" UTF8String];
+//    NSData *data = [NSData dataWithBytes:utfString length:strlen(utfString)];
+//    
+//    NSString *result = [proxy fileAction:kFileProtocolForUpload source:srcUrl destination:nil data:data];
+//    
+//    // the proxy returns nil when the request is successful, and an error message otherwise
+//    XCTAssertNil(result, @"Upload File Action failed");
+//}
 
-- (void)testFileActionWithError
-{
-    [httpHelper HTTPStubForAnyRequestWithSuccess:NO];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
-                        TEST_SERVER_URL,
-                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
-    
-    NSString *result = [proxy fileAction:kFileProtocolForDelete source:srcUrl destination:nil data:nil];
-    
-    // the proxy returns nil when the request is successful, and an error message otherwise
-    XCTAssertNotNil(result, @"File Action should have failed");
-}
+//- (void)testFileActionWithError
+//{
+//    [httpHelper HTTPStubForAnyRequestWithSuccess:NO];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    NSString *srcUrl = [NSString stringWithFormat:@"%@%@",
+//                        TEST_SERVER_URL,
+//                        @"/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt"];
+//    
+//    NSString *result = [proxy fileAction:kFileProtocolForDelete source:srcUrl destination:nil data:nil];
+//    
+//    // the proxy returns nil when the request is successful, and an error message otherwise
+//    XCTAssertNotNil(result, @"File Action should have failed");
+//}
 
--(void)testCreateNewFolderWithURL
-{
-    
-}
-
--(void)testIsExistedUrl
-{
-    
-}
+//-(void)testCreateNewFolderWithURL
+//{
+//    
+//}
+//
+//-(void)testIsExistedUrl
+//{
+//    
+//}
 
 
 @end

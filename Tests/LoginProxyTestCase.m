@@ -56,19 +56,19 @@
             [platformInfo.platformEdition isEqualToString:@"ENTERPRISE"]);
 }
 
-//- (void)testAuthenticateAndGetPlatformInfo
-//{
-//    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
-//    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
-//    [httpHelper logWhichStubsAreRegistered];
-//    
-//    [loginProxy authenticate];
-//    
-//    [self wait];
-//    
-//    XCTAssertTrue(isCompatibleWithSocial, @"Authenticate and retrieve Platform info failed: not compatible with Social");
-//    XCTAssertTrue([self platformInfoIsCorrect], @"Authenticate and retrieve Platform info failed: incorrect Platform info");
-//}
+- (void)testAuthenticateAndGetPlatformInfo
+{
+    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
+    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
+    [httpHelper logWhichStubsAreRegistered];
+    
+    [loginProxy authenticate];
+    
+    [self wait];
+    
+    XCTAssertTrue(isCompatibleWithSocial, @"Authenticate and retrieve Platform info failed: not compatible with Social");
+    XCTAssertTrue([self platformInfoIsCorrect], @"Authenticate and retrieve Platform info failed: incorrect Platform info");
+}
 
 - (void)testAuthenticationFailure
 {
@@ -83,18 +83,18 @@
     XCTAssertNil(platformInfo, @"Authenticate should have failed");
 }
 
-//- (void)testRetrievePlatformInfo
-//{
-//    [httpHelper HTTPStubForPlatformInfoAuthenticated:NO];
-//    [httpHelper logWhichStubsAreRegistered];
-//    
-//    [loginProxy retrievePlatformInformations];
-//    
-//    [self wait];
-//    
-//    XCTAssertTrue(isCompatibleWithSocial, @"Retrieve public Platform info failed: not compatible with Social");
-//    XCTAssertTrue([self platformInfoIsCorrect], @"Retrieve public Platform info failed: incorrect Platform info");
-//}
+- (void)testRetrievePlatformInfo
+{
+    [httpHelper HTTPStubForPlatformInfoAuthenticated:NO];
+    [httpHelper logWhichStubsAreRegistered];
+    
+    [loginProxy retrievePlatformInformations];
+    
+    [self wait];
+    
+    XCTAssertTrue(isCompatibleWithSocial, @"Retrieve public Platform info failed: not compatible with Social");
+    XCTAssertTrue([self platformInfoIsCorrect], @"Retrieve public Platform info failed: incorrect Platform info");
+}
 
 #pragma mark Proxy delegate methods
 
