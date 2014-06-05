@@ -43,7 +43,8 @@
     httpHelper = [HTTPStubsHelper getInstance];
     isCompatibleWithSocial = NO;
     platformInfo = nil;
-    NSLog(@"HTTP Helper class <%p>", httpHelper);
+    NSLog(@"HTTP Helper instance <%p>", httpHelper);
+
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 

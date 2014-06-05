@@ -58,10 +58,11 @@
 
 - (void)logWhichStubsAreRegistered
 {
-    NSArray *stubs = [OHHTTPStubs allStubs];
-    for (id<OHHTTPStubsDescriptor> stub in stubs) {
-        NSLog(@"Stub '%@' is registered", stub.name);
-    }
+//    NSArray *stubs = [OHHTTPStubs allStubs];
+//    for (id<OHHTTPStubsDescriptor> stub in stubs) {
+//        NSLog(@"Stub '%@' is registered", stub.name);
+//    }
+    NSLog(@"All stubs: %@", [OHHTTPStubs allStubs]);
 }
 
 
