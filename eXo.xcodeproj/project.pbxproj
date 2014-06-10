@@ -1389,7 +1389,6 @@
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
 		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
 		47F907430C78443DB778B574 /* libPods-eXoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eXoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		572EA98F192AFBFD008CFB11 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		572EA990192AFBFD008CFB11 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
 		572EA991192AFBFD008CFB11 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
@@ -1517,8 +1516,6 @@
 		57831827192A1301006A26EC /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		57831828192A1301006A26EC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5783182A192A1341006A26EC /* eXo_Platform-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "eXo_Platform-Info.plist"; sourceTree = "<group>"; };
-		578B29E0192B76B2008CEC16 /* libPods-OHHTTPStubs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OHHTTPStubs.a"; path = "Pods/build/Debug-iphoneos/libPods-OHHTTPStubs.a"; sourceTree = "<group>"; };
-		578B29E2192B76C8008CEC16 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		578ED78C17EAD51F00771497 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		578ED78E17EAD51F00771497 /* Icon-ios7-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-76.png"; sourceTree = "<group>"; };
 		578ED78F17EAD51F00771497 /* Icon-ios7-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ios7-120.png"; sourceTree = "<group>"; };
@@ -1965,7 +1962,6 @@
 		A6FCDF4F15B7C05C00128EA6 /* 11-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x@2x.png"; sourceTree = "<group>"; };
 		A6FCDF5015B7C05C00128EA6 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check.png"; sourceTree = "<group>"; };
 		A6FCDF5115B7C05C00128EA6 /* 19-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check@2x.png"; sourceTree = "<group>"; };
-		C647115519074571B8168A62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE442BB91569E21000E10A00 /* SocialActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialActivity.h; sourceTree = "<group>"; };
 		DE442BBA1569E21000E10A00 /* SocialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivity.m; sourceTree = "<group>"; };
 		DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikersViewController.h; sourceTree = "<group>"; };
@@ -2240,7 +2236,6 @@
 				572EA98D192AFBFD008CFB11 /* ThirdParty */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */,
 				295801A742C04EAFB2DFDE32 /* Pods-eXoTests.xcconfig */,
 			);
 			name = CustomTemplate;
@@ -2249,8 +2244,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				578B29E2192B76C8008CEC16 /* libPods.a */,
-				578B29E0192B76B2008CEC16 /* libPods-OHHTTPStubs.a */,
 				57A9191B190E10AE008CFD6B /* XCTest.framework */,
 				466FD6FC148E5BF5005A1B78 /* Crashlytics.framework */,
 				7CEA558713C54CAF00FCB43A /* RestKit.xcodeproj */,
@@ -2273,7 +2266,6 @@
 				46C6B525138CAC2B0079C514 /* AudioToolbox.framework */,
 				8958E60A14A9885900580EEB /* SenTestingKit.framework */,
 				57A918EB190E030D008CFD6B /* XCTest.framework */,
-				C647115519074571B8168A62 /* libPods.a */,
 				47F907430C78443DB778B574 /* libPods-eXoTests.a */,
 			);
 			name = Frameworks;
@@ -4442,12 +4434,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "eXo" */;
 			buildPhases = (
-				6A84BF0CE01B48CCB33AE33E /* Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				466FD6FB148E5BAD005A1B78 /* ShellScript */,
-				E367E087869948998FD2BCAE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5252,21 +5242,6 @@
 			shellPath = "./Crashlytics.framework/run b8421f485868032ad402cef01a4bd7c70263d97e";
 			shellScript = "";
 		};
-		6A84BF0CE01B48CCB33AE33E /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		78B39B80F1F8433C90A9C8A6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5295,21 +5270,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-eXoTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E367E087869948998FD2BCAE /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -5632,7 +5592,6 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5670,6 +5629,11 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
+					"-ObjC",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					Foundation,
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
@@ -5681,7 +5645,6 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5712,6 +5675,11 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
+					"-ObjC",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					Foundation,
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
@@ -5766,7 +5734,6 @@
 		};
 		464C14AB138AB8890001CBC8 /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5799,6 +5766,11 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
+					"-ObjC",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					Foundation,
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
@@ -5854,7 +5826,6 @@
 		};
 		46BC64031316F05B0034E7E3 /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2C1CF1B6AF401BAD30F449 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -5887,6 +5858,11 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
+					"-ObjC",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					Foundation,
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;

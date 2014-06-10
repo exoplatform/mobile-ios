@@ -43,10 +43,10 @@
 - (void)testParserURL
 {
     NSArray *originUrls = [NSArray arrayWithObjects:
-                           @"demo.platform.exo.org/portal",
-                           @"http://demo.platform.exo.org",
-                           @"demo.platform.exo.org/",
-                           @"http://demo.platform.exo.org/portal",
+                           @"httpbin.org/portal",
+                           @"http://httpbin.org",
+                           @"httpbin.org/",
+                           @"http://httpbin.org/portal",
                            nil];
     
     for (NSString *url in originUrls) {

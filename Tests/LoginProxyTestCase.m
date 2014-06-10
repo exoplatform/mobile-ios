@@ -20,7 +20,7 @@
 
 #import <XCTest/XCTest.h>
 #import "LoginProxy.h"
-#import <OHHTTPStubs.h>
+#import "OHHTTPStubs.h"
 #import "AsyncProxyTestCase.h"
 #import "HTTPStubsHelper.h"
 
@@ -41,9 +41,9 @@
     [super setUp];
     loginProxy = [[LoginProxy alloc] initWithDelegate:self username:TEST_USER_NAME password:TEST_USER_PASS serverUrl:TEST_SERVER_URL];
     httpHelper = [HTTPStubsHelper getInstance];
+    [httpHelper logStubbedHTTPRequests];
     isCompatibleWithSocial = NO;
     platformInfo = nil;
-    NSLog(@"HTTP Helper instance <%p>", httpHelper);
 
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -104,6 +104,7 @@
     [super loginProxy:proxy authenticateFailedWithError:error];
     isCompatibleWithSocial = NO;
     platformInfo = nil;
+    NSLog(@"ERROR: %@", [error description]);
 }
 
 - (void) loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
@@ -113,6 +114,5 @@
     isCompatibleWithSocial = compatibleWithSocial;
     platformInfo = platformServerVersion;
 }
-
 
 @end

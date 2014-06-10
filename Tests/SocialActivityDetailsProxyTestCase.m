@@ -151,4 +151,16 @@
     }
 }
 
+#pragma mark Proxy delegate methods
+
+- (void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
+{
+    [super proxy:proxy didFailWithError:error];
+}
+
+- (void) proxyDidFinishLoading:(SocialProxy *)proxy
+{
+    [super proxyDidFinishLoading:proxy];
+}
+
 @end
