@@ -63,6 +63,7 @@
 #pragma mark - LanguageHelper Methods
 
 - (void)loadLocalizableStringsForCurrentLanguage {
+
     // returns the lang in preferences, or nil
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *selectedLang = [userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE];
