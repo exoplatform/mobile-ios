@@ -318,6 +318,7 @@
 		46F6344914549DBC00BB57D4 /* libRestKitXMLParserLibxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55A813C54CAF00FCB43A /* libRestKitXMLParserLibxml.a */; };
 		46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F83140BD7A60077BE15 /* DocumentsViewController.m */; };
 		46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F89140CC4C20077BE15 /* FileActionsViewController.m */; };
+		5728F29D19480EB7007EB4AE /* LanguageHelperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */; };
 		572EAA05192AFBFD008CFB11 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA990192AFBFD008CFB11 /* ATMHud.m */; };
 		572EAA06192AFBFD008CFB11 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA993192AFBFD008CFB11 /* ATMHudQueueItem.m */; };
 		572EAA07192AFBFD008CFB11 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA995192AFBFD008CFB11 /* ATMHudView.m */; };
@@ -1389,6 +1390,7 @@
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
 		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
 		47F907430C78443DB778B574 /* libPods-eXoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eXoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelperTestCase.m; sourceTree = "<group>"; };
 		572EA98F192AFBFD008CFB11 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		572EA990192AFBFD008CFB11 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
 		572EA991192AFBFD008CFB11 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
@@ -3427,6 +3429,7 @@
 				5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */,
 				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
 				578318141929B035006A26EC /* UserPreferencesTestCase.m */,
+				5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -4302,7 +4305,6 @@
 		894734E81337139800B0AD11 /* eXoUtils */ = {
 			isa = PBXGroup;
 			children = (
-				A66B7F3315AACDE400218C06 /* LanguageHelper.m */,
 				A66B7F2F15AACC4100218C06 /* localization */,
 				8958E67514A9C82400580EEB /* URLAnalyzer.h */,
 				8958E67614A9C82400580EEB /* URLAnalyzer.m */,
@@ -4326,6 +4328,7 @@
 				1FCEDED51458021C0058C80F /* eXoViewController.m */,
 				1FCE58E6146238840045FC10 /* eXoTableViewController.h */,
 				46ADAED114052599005ABA79 /* LanguageHelper.h */,
+				A66B7F3315AACDE400218C06 /* LanguageHelper.m */,
 				1FCE58E7146238840045FC10 /* eXoTableViewController.m */,
 				1FCCC2F71474ADFF000F03F4 /* eXoFullScreenView.h */,
 				1FCCC2F81474AE00000F03F4 /* eXoFullScreenView.m */,
@@ -5504,6 +5507,7 @@
 				578F3A8B1933218100554F28 /* SocialLikeActivityProxyTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
 				575D9C0A192DEC8100AD337A /* SocialUserProfileProxyTestCase.m in Sources */,
+				5728F29D19480EB7007EB4AE /* LanguageHelperTestCase.m in Sources */,
 				578F3A8719331B2E00554F28 /* SocialPostCommentProxyTestCase.m in Sources */,
 				575D9BEF192D9B8E00AD337A /* SocialActivityDetailsProxyTestCase.m in Sources */,
 				5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */,
