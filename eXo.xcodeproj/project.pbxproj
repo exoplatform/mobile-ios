@@ -4489,6 +4489,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "eXo Platform";
 				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = FEM998T42U;
+					};
 					57A91902190E0A15008CFD6B = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
@@ -5641,7 +5644,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
@@ -5687,7 +5690,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -5741,9 +5744,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5778,7 +5781,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -5833,9 +5836,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5870,7 +5873,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "B3366449-19FB-4EB9-A35E-CAF6C167D6BD";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
