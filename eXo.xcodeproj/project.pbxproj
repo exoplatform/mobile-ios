@@ -755,6 +755,8 @@
 		CD7AFD413A2B4C8D81075C22 /* libPods-eXoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F907430C78443DB778B574 /* libPods-eXoTests.a */; };
 		DE442BBB1569E21000E10A00 /* SocialActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = DE442BBA1569E21000E10A00 /* SocialActivity.m */; };
 		DE663DFD156C971000E445F5 /* ActivityLikersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */; };
+		E91EAFED198FE6F800198085 /* PlatformRegistrationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E91EAFEC198FE6F800198085 /* PlatformRegistrationProxy.m */; };
+		E91EB002198FE9C300198085 /* PlatformRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = E91EB001198FE9C300198085 /* PlatformRegistration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1968,6 +1970,10 @@
 		DE442BBA1569E21000E10A00 /* SocialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivity.m; sourceTree = "<group>"; };
 		DE663DFB156C971000E445F5 /* ActivityLikersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikersViewController.h; sourceTree = "<group>"; };
 		DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityLikersViewController.m; sourceTree = "<group>"; };
+		E91EAFEB198FE6F800198085 /* PlatformRegistrationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformRegistrationProxy.h; sourceTree = "<group>"; };
+		E91EAFEC198FE6F800198085 /* PlatformRegistrationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformRegistrationProxy.m; sourceTree = "<group>"; };
+		E91EB000198FE9C300198085 /* PlatformRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformRegistration.h; sourceTree = "<group>"; };
+		E91EB001198FE9C300198085 /* PlatformRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformRegistration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3478,6 +3484,8 @@
 				57FB19CB15FD9670001F5C20 /* LoginProxy.m */,
 				57FB19D015FD96C0001F5C20 /* UserPreferencesManager.h */,
 				57FB19D115FD96C0001F5C20 /* UserPreferencesManager.m */,
+				E91EAFEB198FE6F800198085 /* PlatformRegistrationProxy.h */,
+				E91EAFEC198FE6F800198085 /* PlatformRegistrationProxy.m */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -4375,6 +4383,7 @@
 		8947352413375EF200B0AD11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E91EAFFF198FE99E00198085 /* Notifications */,
 				4608C349142092030054E59C /* Document */,
 				46ADAEE6140699A3005ABA79 /* Dashboard */,
 				462B62A313DEF7600050FCBC /* ServerConfiguration */,
@@ -4428,6 +4437,15 @@
 				A6745B0C15A296C600340D7A /* pattern-ipad-tab@2x.png */,
 			);
 			path = Social;
+			sourceTree = "<group>";
+		};
+		E91EAFFF198FE99E00198085 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				E91EB000198FE9C300198085 /* PlatformRegistration.h */,
+				E91EB001198FE9C300198085 /* PlatformRegistration.m */,
+			);
+			name = Notifications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4491,6 +4509,11 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = FEM998T42U;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					57A91902190E0A15008CFD6B = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
@@ -5325,6 +5348,7 @@
 				468035DE139D0C0500B1DAE4 /* MockSocial_Activity.m in Sources */,
 				572EAA22192AFBFD008CFB11 /* BarBackgroundLayer.m in Sources */,
 				46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */,
+				E91EAFED198FE6F800198085 /* PlatformRegistrationProxy.m in Sources */,
 				46A03A2E13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */,
 				572EAA35192AFBFD008CFB11 /* UIImage+Resize.m in Sources */,
 				572EAA20192AFBFD008CFB11 /* JMTabItem.m in Sources */,
@@ -5457,6 +5481,7 @@
 				579D50AC15BD68C1002F5D16 /* AuthSelectionView.m in Sources */,
 				A6EECFC815EE1E4800A46A4B /* RoundRectView.m in Sources */,
 				57FB189915FD7AF0001F5C20 /* ExoStackScrollViewController.m in Sources */,
+				E91EB002198FE9C300198085 /* PlatformRegistration.m in Sources */,
 				57FB19CE15FD9670001F5C20 /* LoginProxy.m in Sources */,
 				57FB19D215FD96C0001F5C20 /* UserPreferencesManager.m in Sources */,
 				57FB1A6915FDCAF3001F5C20 /* ApplicationPreferencesManager.m in Sources */,

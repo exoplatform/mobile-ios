@@ -24,6 +24,7 @@
 #import "UserPreferencesManager.h"
 #import "AlreadyAccountViewController.h"
 #import "OnPremiseViewController.h"
+#import "PlatformRegistrationProxy.h"
 @interface LoginProxy()
 //private variables
 @property (nonatomic,retain) NSString *username;
@@ -196,13 +197,19 @@ return self;
                     [appPref addAndSetSelectedServer:self.serverUrl withName:Localize(@"My intranet")];
                 }
                 
-                [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+                [UserPreferencesManager sharedInstance].username = self.username;
+                [UserPreferencesManager sharedInstance].password = self.password;
+                [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
                 [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
+                
+                //We need to register the device in Platform
+                [[[PlatformRegistrationProxy alloc] initWithUsername:self.username] registerDeviceOnPlatform];
             }
         }
                 
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
+        
         
         //We need to prevent the caller.
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {

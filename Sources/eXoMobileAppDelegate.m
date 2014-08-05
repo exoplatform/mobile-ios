@@ -19,7 +19,9 @@
 
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
+#import "UserPreferencesManager.h"
 #import "ApplicationPreferencesManager.h"
+
 @implementation eXoMobileAppDelegate
 
 
@@ -31,7 +33,9 @@
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
     
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeAlert)];
+    // register only UIRemoteNotificationTypeNewsstandContentAvailability to intercept the notification and display it if we want
+    // cf didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler below
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeNewsstandContentAvailability];
     
     return YES;
 }
@@ -81,16 +85,43 @@
 }
 
 #pragma mark -
-#pragma mark Remote Notifications registration
+#pragma mark Remote Notifications registration and handling
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSLog(@"Successfully registered device with token %@", [deviceToken description]);
+    NSLog(@"Successfully registered device for remote notifications.");
+    [[ApplicationPreferencesManager sharedInstance] saveDeviceToken:[deviceToken description]];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"Error in registration. Error: %@", error);
+    NSLog(@"Could not register device for remote notifications. Error: %@", error);
+}
+
+// trick to intercept the remote notification and display it under certain conditions
+// cf http://stackoverflow.com/questions/24269950/ios-intercept-push-notification/24438178
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    NSString* user = [userInfo objectForKey:@"user"];
+    NSString* title = [userInfo objectForKey:@"title"];
+    NSString* message = [userInfo objectForKey:@"message"];
+    
+    NSString* currentUser = [UserPreferencesManager sharedInstance].username;
+    if ([currentUser isEqualToString:user])
+    {
+        // Raise the local notification a second after received
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+        localNotification.alertBody = [NSString stringWithFormat:@"%@: %@", title, message];
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+    else
+    {
+        NSLog(@"Notification for user '%@' was ignored because he was not logged-in.", user);
+    }
 }
 
 

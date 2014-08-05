@@ -67,6 +67,9 @@
 //if existed, return the server's index, otherwise return -1
 - (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index;
 
+#pragma mark * Notifications
+- (void)saveDeviceToken:(NSString*) token;
+- (NSString*)retrieveDeviceToken;
 
 #pragma mark * Read/Write data
 - (CXMLNode*) getNode: (CXMLNode*) element withName: (NSString*) name;

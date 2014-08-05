@@ -190,6 +190,22 @@
     return [[_selectedDomain copy] autorelease];
 }
 
+#pragma mark * Notifications
+
+- (void)saveDeviceToken:(NSString *)token
+{
+    if (token != nil && ![token isEqualToString:@""]) {
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:token forKey:NOTIFICATIONS_DEVICE_TOKEN];
+    }
+}
+
+- (NSString*)retrieveDeviceToken
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:NOTIFICATIONS_DEVICE_TOKEN];
+}
+
 #pragma mark * Read/Write data
 //Load the system Configuration
 - (NSMutableArray*)loadSystemConfiguration
