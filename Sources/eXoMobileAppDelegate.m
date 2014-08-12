@@ -33,10 +33,15 @@
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
     
-    // register only UIRemoteNotificationTypeNewsstandContentAvailability to intercept the notification and display it if we want
+    // register only UIRemoteNotificationTypeNewsstandContentAvailability to intercept the notification
     // cf didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler below
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeNewsstandContentAvailability];
     
+    // If the app was launched by tapping the notification, this launch option is set
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif) {
+        [self decreaseApplicationBadgeNumberOf:application toNumber:(localNotif.applicationIconBadgeNumber-1)];
+    }
     return YES;
 }
 
@@ -115,16 +120,25 @@
         localNotification.alertBody = [NSString stringWithFormat:@"%@: %@", title, message];
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     }
     else
     {
-        NSLog(@"Notification for user '%@' was ignored because he was not logged-in.", user);
+        NSLog(@"Notification for user '%@' was ignored because (s)he was not logged-in.", user);
     }
 }
 
+// If the application is in the foregroactund, this method is called
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    [self decreaseApplicationBadgeNumberOf:application toNumber:(notification.applicationIconBadgeNumber-1)];
+}
 
+
+- (void)decreaseApplicationBadgeNumberOf:(UIApplication *)application toNumber:(NSInteger*)number
+{
+    application.applicationIconBadgeNumber = number;
+}
 
 #pragma mark -
 #pragma mark Memory management
