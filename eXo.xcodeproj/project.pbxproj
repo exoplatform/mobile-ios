@@ -995,7 +995,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* eXo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eXo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* eXo (Push Notifications).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo (Push Notifications).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F20AC3F14590BB90068A2CB /* ActivityForumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityForumTableViewCell.h; sourceTree = "<group>"; };
 		1F20AC4014590BB90068A2CB /* ActivityForumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityForumTableViewCell.m; sourceTree = "<group>"; };
@@ -2025,7 +2025,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* eXo.app */,
+				1D6058910D05DD3D006BFB54 /* eXo (Push Notifications).app */,
 				57A91903190E0A15008CFD6B /* eXoTests.xctest */,
 			);
 			name = Products;
@@ -4474,7 +4474,7 @@
 			);
 			name = eXo;
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* eXo (Push Notifications).app */;
 			productType = "com.apple.product-type.application";
 		};
 		57A91902190E0A15008CFD6B /* eXoTests */ = {
@@ -5668,7 +5668,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (Push Notifications)";
 				PROVISIONING_PROFILE = "345703bd-f4d9-44af-bfba-cb3e0f0f66cd";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "345703bd-f4d9-44af-bfba-cb3e0f0f66cd";
 				SDKROOT = iphoneos;
@@ -5714,7 +5714,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (Push Notifications)";
 				PROVISIONING_PROFILE = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
 				SDKROOT = iphoneos;
@@ -5805,7 +5805,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (Push Notifications)";
 				PROVISIONING_PROFILE = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
 				"PROVISIONING_PROFILE[sdk=*]" = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
@@ -5897,7 +5897,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (Push Notifications)";
 				PROVISIONING_PROFILE = "d22c0cfc-d055-4eee-96f0-cb7024aa6cb9";
 				"PROVISIONING_PROFILE[sdk=*]" = "d22c0cfc-d055-4eee-96f0-cb7024aa6cb9";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "d22c0cfc-d055-4eee-96f0-cb7024aa6cb9";
