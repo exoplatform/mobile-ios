@@ -5627,8 +5627,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Philippe Aristote (B558Q86YBM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philippe Aristote (B558Q86YBM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5669,8 +5669,8 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "eXo (Push Notifications)";
-				PROVISIONING_PROFILE = "345703bd-f4d9-44af-bfba-cb3e0f0f66cd";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "345703bd-f4d9-44af-bfba-cb3e0f0f66cd";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5680,8 +5680,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5715,8 +5715,8 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "eXo (Push Notifications)";
-				PROVISIONING_PROFILE = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5769,8 +5769,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5806,9 +5806,9 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "eXo (Push Notifications)";
-				PROVISIONING_PROFILE = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
-				"PROVISIONING_PROFILE[sdk=*]" = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ac0cb0c0-5b3b-49a2-a482-154a642423ff";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5898,9 +5898,9 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "eXo (Push Notifications)";
-				PROVISIONING_PROFILE = "d22c0cfc-d055-4eee-96f0-cb7024aa6cb9";
-				"PROVISIONING_PROFILE[sdk=*]" = "d22c0cfc-d055-4eee-96f0-cb7024aa6cb9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "d22c0cfc-d055-4eee-96f0-cb7024aa6cb9";
+				PROVISIONING_PROFILE = "87279AB2-EFC4-445F-B16D-B8A32F60428A";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
