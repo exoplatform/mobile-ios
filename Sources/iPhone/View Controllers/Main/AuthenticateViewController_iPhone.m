@@ -64,20 +64,21 @@
     [_credViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
     
     [_servListViewController.view setFrame:
-     CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
+         CGRectMake(self.view.center.x-_servListViewController.view.bounds.size.width/2,
                 self.tabView.frame.origin.y+self.tabView.frame.size.height+tabViewsTopMargin,
                 _servListViewController.view.bounds.size.width,
                 _servListViewController.view.bounds.size.height)];
     [_servListViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
+    
     // Position the settings btn at the bottom
     [_btnSettings setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin)];
 
     //Stevan UI fixes
     _credViewController.panelBackground.image = 
-    [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
+            [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
+    _servListViewController.panelBackground.image =
+            [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
     
-    _servListViewController.panelBackground.image = 
-    [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
 
 }
 
@@ -85,15 +86,19 @@
     // Creating the sub view controllers
     _credViewController = [[CredentialsViewController alloc] initWithNibName:@"CredentialsViewController_iPhone" bundle:nil];
     _credViewController.authViewController = self;
-    
     _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPhone" bundle:nil];
     
-    // Initializing the Tab items and adding them to the Tab view
+    // Initializing the tab items
+    // Credentials screen
     AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIphoneOn"]];
-    [self.tabView addTabItem:tabItemCredentials];
+    // Account list
+    AuthTabItem * tabItemAccountList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateSwitcherIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateSwitcherIconIphoneOn"]];
     
-    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIphoneOn"]];
-    [self.tabView addTabItem:tabItemServerList];
+    // Initializing and adding the account list view controller and tab item only if necessary
+    [self.tabView addCredentialsTabItem:tabItemCredentials AndSwitcherTabItem:tabItemAccountList];
+    
+    // Call at the end to ensure items are added beforehand
+    [super initTabsAndViews];
     
 }
 

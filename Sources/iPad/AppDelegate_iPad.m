@@ -134,7 +134,7 @@
         [viewController disableAutoLogin:YES];
     }
 
-    [viewController updateLabelAfterLogOut];
+    [viewController updateAfterLogOut];
     [viewController autoFillCredentials];
     
     // execute Logout

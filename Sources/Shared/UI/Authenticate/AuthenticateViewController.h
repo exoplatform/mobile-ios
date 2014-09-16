@@ -12,7 +12,7 @@
 #import "ApplicationPreferencesManager.h"
 #import "CredentialsViewController.h"
 #import "ServerListViewController.h"
-#import "JMTabView.h"
+#import "AuthenticateTabView.h"
 #import "ExoCloudProxy.h"
 
 typedef enum {
@@ -28,7 +28,7 @@ typedef enum {
 	NSString*                   _strBSuccessful;	//Login status
     IBOutlet UIButton*          _btnSettings;
     CredentialsViewController * _credViewController;
-    ServerListViewController * _servListViewController;
+    ServerListViewController *  _servListViewController;
     NSDictionary*				_dictLocalize;	//Language dictionary
 	int							_intSelectedLanguage;	//Language index
     int                         _selectedTabIndex;
@@ -38,10 +38,11 @@ typedef enum {
 }
 
 @property (nonatomic, readonly) SSHUDView *hud; // display loading
-@property (nonatomic, retain) JMTabView *tabView;
+@property (nonatomic, retain) AuthenticateTabView *tabView;
+@property (nonatomic, retain) CredentialsViewController *credentialsViewController;
+@property (nonatomic, retain) ServerListViewController *accountListViewController;
 
 - (void)doSignIn;	//Login progress
-- (CredentialsViewController*) credentialsViewController;
 - (void) initTabsAndViews;
 - (void)disableAutoLogin:(BOOL)autoLogin;
 - (BOOL)autoLoginIsDisabled;
@@ -50,6 +51,6 @@ typedef enum {
 
 // method for managing keyboard behaviours
 - (void)dismissKeyboard;
-- (void)updateLabelAfterLogOut;
+- (void)updateAfterLogOut;
 - (void)autoFillCredentials;
 @end

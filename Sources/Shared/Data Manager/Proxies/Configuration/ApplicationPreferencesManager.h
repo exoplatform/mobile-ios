@@ -60,8 +60,10 @@
 
 #pragma mark * Server management
 - (NSMutableArray *)serverList;
+- (ServerObj*)getSelectedAccount;
 - (void)loadServerList;
 - (BOOL)deleteServerObjAtIndex:(int)index;
+- (BOOL)twoOrMoreAccountsExist;
 //add a new server or save changes to an existed one
 - (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password atIndex:(int)index;
 //if existed, return the server's index, otherwise return -1

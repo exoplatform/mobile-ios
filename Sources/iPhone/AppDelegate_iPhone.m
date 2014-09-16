@@ -191,7 +191,7 @@
     if(![UserPreferencesManager sharedInstance].rememberMe) {
         [_authenticateViewController disableAutoLogin:YES];
     }
-    [_authenticateViewController updateLabelAfterLogOut];
+    [_authenticateViewController updateAfterLogOut];
     [_authenticateViewController autoFillCredentials];
     navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController];
     window.rootViewController = navigationController;

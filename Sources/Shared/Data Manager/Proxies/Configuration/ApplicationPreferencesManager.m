@@ -190,6 +190,22 @@
     return [[_selectedDomain copy] autorelease];
 }
 
+- (void)saveCurrentServerUsernameCombination {
+    // TODO
+}
+
+- (ServerObj*)getSelectedAccount
+{
+    if ([_arrServerList count] > self.selectedServerIndex)
+        return [_arrServerList objectAtIndex:self.selectedServerIndex];
+    else
+        return nil;
+}
+
+- (BOOL)twoOrMoreAccountsExist {
+    return  ([_arrServerList count] > 1);
+}
+
 #pragma mark * Read/Write data
 //Load the system Configuration
 - (NSMutableArray*)loadSystemConfiguration

@@ -12,7 +12,9 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "Login";
+"SignInButton" = "Connect";
+
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Username";
 

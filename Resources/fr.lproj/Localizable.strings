@@ -14,6 +14,8 @@
 
 "SignInButton" = "Connexion";
 
+"SignInButton_In" = "à";
+
 "UsernamePlaceholder" = "Utilisateur";
 
 "PasswordPlaceholder" = "Mot de passe";

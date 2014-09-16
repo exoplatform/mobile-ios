@@ -14,6 +14,8 @@
 
 "SignInButton" = "Iniciar sesión";
 
+"SignInButton_In" = "in";
+
 "UsernamePlaceholder" = "Nombre de usuario";
 
 "PasswordPlaceholder" = "Contraseña";

@@ -33,6 +33,8 @@
 @synthesize loginProxy = _loginProxy;
 @synthesize tabView = _tabView;
 @synthesize hud = _hud;
+@synthesize credentialsViewController = _credViewController;
+@synthesize accountListViewController = _servListViewController;
 
 - (void)dealloc 
 {
@@ -41,6 +43,10 @@
     [_hud release];
     [_tempUsername release];
     [_tempPassword release];
+    self.credentialsViewController = nil;
+    self.accountListViewController = nil;
+    self.loginProxy = nil;
+    self.tabView = nil;
     [super dealloc];	
 }
 
@@ -72,7 +78,7 @@
     }
      
     // Initializing the Tab view
-    self.tabView = [[JMTabView alloc] initWithFrame:CGRectZero];
+    self.tabView = [[AuthenticateTabView alloc] initWithFrame:CGRectZero];
     self.tabView.delegate = self;
     [self.tabView setBackgroundLayer:nil];
     [self.tabView setSelectionView:[[[AuthSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
@@ -149,14 +155,17 @@
     [_credViewController.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
     [_credViewController.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
     [_credViewController.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
-    [_servListViewController.tbvlServerList reloadData];
     _credViewController.bAutoLogin = [UserPreferencesManager sharedInstance].autoLogin;    
     [_credViewController signInAnimation:_credViewController.bAutoLogin];
+    
+    [_servListViewController.tbvlServerList reloadData];
     
     if (!_credViewController.bAutoLogin) {
         // Update the value of the text fields if we don't auto login
         [self updateUsernameAndPassordAfterSettings];
     }
+    
+    [self showHideSwitcherTab];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
@@ -166,10 +175,14 @@
     [_hud release];
 }
 
--(void) initTabsAndViews {
-    // empty, must be overriden in _iPad and _iPhone children classes
-    // - create the JMView
-    // - create views for each tab, using the relevant NIB
+-(void) initTabsAndViews
+{
+    [self showHideSwitcherTab];
+}
+
+-(void)showHideSwitcherTab
+{
+    [self.tabView setShowSwitcherTab:[[ApplicationPreferencesManager sharedInstance] twoOrMoreAccountsExist]];
 }
 
 #pragma mark - Username Password textfields management
@@ -314,10 +327,6 @@
     }
 }
 
-- (CredentialsViewController*) credentialsViewController {
-    return _credViewController;
-}
-
 #pragma mark - JMTabView protocol implementation
 
 -(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
@@ -326,6 +335,7 @@
             _credViewController.view.hidden = NO;
             _servListViewController.view.hidden = YES;
             [self autoFillCredentials];
+            [_credViewController setLoginButtonLabel];
         } else if (itemIndex == AuthenticateTabItemServerList) {
             _credViewController.view.hidden = YES;
             _servListViewController.view.hidden = NO;
@@ -356,9 +366,10 @@
     NSString *value = [userDefaults objectForKey:tmpKey];
     return value ? [value boolValue] : NO;
 }
-#pragma mark - Update labels
-- (void) updateLabelAfterLogOut
+#pragma mark - Update labels and tabs after logging out
+- (void) updateAfterLogOut
 {
+    [self showHideSwitcherTab];
     [_btnSettings setTitle:Localize(@"Settings") forState:UIControlStateNormal];
 }
 

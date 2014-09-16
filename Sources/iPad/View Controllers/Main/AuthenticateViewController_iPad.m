@@ -74,17 +74,22 @@
 
 
 -(void) initTabsAndViews {
-    // Creating the sub view controllers
+    // Creating the view controllers
     _credViewController = [[CredentialsViewController alloc] initWithNibName:@"CredentialsViewController_iPad" bundle:nil];
     _credViewController.authViewController = self;
     _servListViewController = [[ServerListViewController alloc] initWithNibName:@"ServerListViewController_iPad" bundle:nil];
     
-    // Initializing the Tab items and adding them to the Tab view
+    // Initializing the tab items
+    // Credentials
     AuthTabItem * tabItemCredentials = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateCredentialsIconIpadOn"]];
-    [self.tabView addTabItem:tabItemCredentials];
+    // Account list
+    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateSwitcherIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateSwitcherIconIpadOn"]];
+
+    // Adding the items
+    [self.tabView addCredentialsTabItem:tabItemCredentials AndSwitcherTabItem:tabItemServerList];
     
-    AuthTabItem * tabItemServerList = [AuthTabItem tabItemWithTitle:nil icon:[UIImage imageNamed:@"AuthenticateServersIconIpadOff"] alternateIcon:[UIImage imageNamed:@"AuthenticateServersIconIpadOn"]];
-    [self.tabView addTabItem:tabItemServerList];
+    // Call at the end to ensure items are added beforehand
+    [super initTabsAndViews];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -99,14 +104,12 @@
 
     //Stevan UI fixes
     _credViewController.panelBackground.image = 
-        [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25]; 
-    
-    _servListViewController.panelBackground.image = 
-         [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
+        [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
+    _servListViewController.panelBackground.image =
+                 [[UIImage imageNamed:@"AuthenticatePanelBg.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:25];
     [_credViewController.txtfPassword setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
-    
     [_credViewController.txtfUsername setBackground:[[UIImage imageNamed:@"AuthenticateTextfield.png"] 
                                   stretchableImageWithLeftCapWidth:10 
                                   topCapHeight:10]];
@@ -296,29 +299,14 @@
 #pragma mark - Keyboard management
 
 - (void)manageKeyboard:(NSNotification *) notif {
-//        NSDictionary *info = [notif userInfo];
-//        // Get the size of the keyboard, before and after the animation
-//        CGFloat keyboardHeightBefore = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] toView:nil].size.height;
-//        CGFloat keyboardHeightAfter = [self.view convertRect:[[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:nil].size.height;
-//        // Create a rectangle of the size of the entire frame
-//        CGRect aRect = [self.view convertRect:self.view.frame fromView:nil];
-//        // Create a point at the origin of the password text field component
-//        CGPoint fieldPoint = 
-//        CGPointMake(_credViewController.view.frame.origin.x + _credViewController.txtfPassword.frame.origin.x,
-//                    _credViewController.view.frame.origin.y + _credViewController.txtfPassword.frame.origin.y);
+
     BOOL isPortrait = UIDeviceOrientationIsPortrait(self.interfaceOrientation);
     if (!isPortrait) {
         if (notif.name == UIKeyboardDidShowNotification) {
             // Reduce the height of the rect to represent only the area not covered by the keyboard (after it has appeared)
-            //            aRect.size.height -= keyboardHeightAfter;
-            //            // If the point is not in the area, we move the view up so it becomes visible
-            //            if (!CGRectContainsPoint(aRect, fieldPoint))
             [self moveUp];
         } else if (notif.name == UIKeyboardDidHideNotification) {
             // Reduce the height of the rect to represent only the area not covered by the keyboard (before it will disappear)
-            //            aRect.size.height -= keyboardHeightBefore;
-            //            // If the point is in the visible area, we move the view down before the keyboard
-            //            if (CGRectContainsPoint(aRect, fieldPoint))
             [self moveDown];
         }
     }
