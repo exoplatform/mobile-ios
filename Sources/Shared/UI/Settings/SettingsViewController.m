@@ -81,8 +81,7 @@ typedef enum {
     SettingViewControllerSectionDocument = 3,
     SettingViewControllerSectionLanguage = 4,
     SettingViewControllerSectionServerList = 5,
-    SettingViewControllerSectionAppsInfo = 6,
-    SettingViewControllerCloudAssistant = 7
+    SettingViewControllerSectionAppsInfo = 6
 } SettingViewControllerSection;
 
 @implementation SettingsViewController
@@ -123,7 +122,6 @@ typedef enum {
                              settingViewSectionTitleKey, @"ApplicationsInformation",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
                              nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:settingViewSectionIdKey,[NSString stringWithFormat:@"%d",SettingViewControllerCloudAssistant],settingViewSectionTitleKey,@"eXoCloudConfigurationAssistant", settingViewRowsKey, [NSArray arrayWithObjects:@"StartTheConfigurationAssistant", nil],nil],
                             nil] retain];
         
         
@@ -150,7 +148,6 @@ typedef enum {
                              settingViewSectionTitleKey, @"ApplicationsInformation",
                              settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
                              nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:settingViewSectionIdKey,[NSString stringWithFormat:@"%d",SettingViewControllerCloudAssistant],settingViewSectionTitleKey,@"eXoCloudConfigurationAssistant", settingViewRowsKey, [NSArray arrayWithObjects:@"StartTheConfigurationAssistant", nil], nil],
                             nil] retain];
     }
 }
@@ -172,9 +169,8 @@ typedef enum {
 		autoLogin = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         autoLogin.tag = kTagForSwitchAutologin;
         [autoLogin addTarget:self action:@selector(autoLoginDidChange) forControlEvents:UIControlEventValueChanged];
-        // Observe notifications when a server is added or deleted, and call enableDisableAutoLogin
+        // Observe notifications when a server is added, and call enableDisableAutoLogin
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableDisableAutoLogin:) name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
         
         _rememberSelectedStream = [[UISwitch alloc] initWithFrame:CGRectMake(200, 10, 100, 20)];
         [_rememberSelectedStream addTarget:self action:@selector(rememberStreamDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -194,7 +190,6 @@ typedef enum {
     [_rememberSelectedStream release];
     [_showPrivateDrive release];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_DELETED object:nil];
     [super dealloc];
 }
 
@@ -216,8 +211,7 @@ typedef enum {
         [self.tableView deselectRowAtIndexPath:selection animated:YES];   
 }
 
-// enables autoLogin switch if and only if rememberMe switch
-// is on and server is selected.
+// Enables Auto Login switch if Remember Me switch is ON and a server is selected.
 -(void)enableDisableAutoLogin:(id)sender {
     NSString* selDomain = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     if (rememberMe.on && selDomain != nil) {
@@ -384,8 +378,6 @@ typedef enum {
 }
 
 
-
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
@@ -411,9 +403,6 @@ typedef enum {
 }
 
 
-
-
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -421,20 +410,6 @@ typedef enum {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
     switch (sectionId) 
     {
-        case SettingViewControllerCloudAssistant:
-        {
-            cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
-            if(cell == nil)
-            {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
-                
-                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-                cell.textLabel.textColor = [UIColor darkGrayColor];
-                cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            }
-            break;
-        }
-        
         case SettingViewControllerSectionLogin:
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
@@ -553,15 +528,6 @@ typedef enum {
             
             if (indexPath.row < [[ApplicationPreferencesManager sharedInstance].serverList count]) 
             {
-                if (indexPath.row == [ApplicationPreferencesManager sharedInstance].selectedServerIndex) 
-                {
-                    cell.accessoryView = [self makeCheckmarkOnAccessoryView];
-                }
-                else
-                {
-                    cell.accessoryView = [self makeCheckmarkOffAccessoryView];
-                }
-                
                 ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
                 
                 cell.textLabel.text = tmpServerObj._strServerName;
@@ -632,32 +598,12 @@ typedef enum {
 {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
     eXoMobileAppDelegate *appDelegate;
-    if(sectionId == SettingViewControllerCloudAssistant) {
-        WelcomeViewController *welcomeVC;
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
-            welcomeVC.delegate = self;
-            appDelegate = [AppDelegate_iPad instance];
-        } else {
-            welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
-            welcomeVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-            appDelegate = [AppDelegate_iPhone instance];
-        }
-        
-        welcomeVC.shouldBackToSetting = YES;
-//        [self presentModalViewController:welcomeVC animated:YES];
-        [self dismissModalViewControllerAnimated:NO];
-        [appDelegate.window.rootViewController presentModalViewController:welcomeVC animated:YES];
-        [welcomeVC release];
-    }
-    
-	else if (sectionId == SettingViewControllerSectionLanguage)
+    if (sectionId == SettingViewControllerSectionLanguage)
 	{
 		int selectedLanguage = indexPath.row;
         
         //Save the language
         [[LanguageHelper sharedInstance] changeToLanguage:selectedLanguage];
-        
         
         //Finally reload the content of the screen
         [self setNavigationBarLabels];
@@ -671,13 +617,25 @@ typedef enum {
 	{
         if (indexPath.row == [[ApplicationPreferencesManager sharedInstance].serverList count]) 
         {
-            ServerAddingViewController* serverAddingViewController = [[ServerAddingViewController alloc] initWithNibName:@"ServerAddingViewController" bundle:nil];
-            [serverAddingViewController setDelegate:self];
-            [self.navigationController pushViewController:serverAddingViewController animated:YES];
-            [serverAddingViewController release];
+            // New account button was tapped => open the configuration assistant
+            WelcomeViewController *welcomeVC;
+            if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                welcomeVC = [[WelcomeViewController_iPad alloc] initWithNibName:@"WelcomeViewController_iPad" bundle:nil];
+                welcomeVC.delegate = self;
+                appDelegate = [AppDelegate_iPad instance];
+            } else {
+                welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
+                welcomeVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+                appDelegate = [AppDelegate_iPhone instance];
+            }
+            
+            welcomeVC.shouldBackToSetting = YES;
+            [self dismissModalViewControllerAnimated:NO];
+            [appDelegate.window.rootViewController presentModalViewController:welcomeVC animated:YES];
+            [welcomeVC release];
+
         } else {
             ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-            if(![UserPreferencesManager sharedInstance].isUserLogged || appPrefManager.selectedServerIndex != indexPath.row) {
                 ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:indexPath.row];
                 
                 ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
@@ -686,7 +644,6 @@ typedef enum {
                 
                 [self.navigationController pushViewController:serverEditingViewController animated:YES];
                 [serverEditingViewController release];
-            }
         }
 	}
 }
@@ -704,16 +661,14 @@ typedef enum {
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
     if (sectionId == SettingViewControllerSectionServerList) {
-        return UITableViewCellEditingStyleDelete;        
+        return UITableViewCellEditingStyleDelete;
     } else {
         return UITableViewCellEditingStyleNone;
     }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self deleteServerObjAtIndex:indexPath.row]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_SERVER_DELETED object:self];
-    }
+    [self deleteServerObjAtIndex:indexPath.row];
 }
 
 #pragma mark - ServerManagerProtocol

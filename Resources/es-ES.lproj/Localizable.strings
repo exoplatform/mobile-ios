@@ -119,9 +119,11 @@
 
 "Send" = "Enviar";
 
-"ServerList" = "Lista de servidores";
+"ServerList" = "Accounts";
 
-"NewServer" = "Nuevo servidor";
+"Account" = "Account";
+
+"NewServer" = "New account";
 
 "ServerModify" = "Modificar el servidor";
 

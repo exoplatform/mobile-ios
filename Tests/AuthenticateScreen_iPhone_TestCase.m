@@ -21,6 +21,7 @@
 #import <XCTest/XCTest.h>
 #import "ExoTestCase.h"
 #import "AuthenticateViewController_iPhone.h"
+#import "ServerManagerHelper.h"
 
 @interface AuthenticateScreen_iPhone_TestCase : ExoTestCase {
 
@@ -33,18 +34,14 @@
 
 - (void)deleteAllServers
 {
-    if ([serverManager serverList] != nil) {
-        for (int i=0; i<[[serverManager serverList] count]; i++) {
-            [serverManager deleteServerObjAtIndex:i];
-        }
-    }
+    [serverManager deleteAllAccounts];
 }
 
 - (void)setUp
 {
     [super setUp];
     controller = [[AuthenticateViewController_iPhone alloc] init];
-    serverManager = [ApplicationPreferencesManager sharedInstance];
+    serverManager = [ServerManagerHelper getInstance];
     [self deleteAllServers];
 }
 
@@ -88,7 +85,6 @@
 {
     //    Add 2 accounts
     [serverManager addNAccounts:2];
-
     // Load the view controller and open the account list panel
     [controller viewDidLoad];
     [controller.tabView setSelectedIndex:1];
@@ -102,7 +98,6 @@
 {
     //    Add 2 accounts
     [serverManager addNAccounts:2];
-
     // Load the view controller and open the account list panel
     [controller viewDidLoad];
     [controller.tabView setSelectedIndex:1];
@@ -121,7 +116,6 @@
 {
     //    Add 2 accounts
     [serverManager addNAccounts:2];
-
     // Load the view controller
     [controller viewDidLoad];
     // Open the account list panel

@@ -27,7 +27,14 @@
 
 
 
-
+/* Calculate the position of the row at rowIndex within the section
+   The position is either:
+   * top    : if the cell is the 1st of its section
+   * middle : if the cell is in the middle of its section
+   * bottom : if the cell is the last of its section
+   * single : if the cell is the only one in its section
+   The value is then sent to setBackgroundForPosition to set the background accordingly
+*/
 -(void)setBackgroundForRow:(int)rowIndex inSectionSize:(int)numberOfRowInSection{
     
     CustomCellBackgroundViewPosition pos;
@@ -51,11 +58,12 @@
 }
 
 
-
+/*
+   Set the background image for the cell at the given position
+*/
 -(void)setBackgroundForPosition:(CustomCellBackgroundViewPosition)position {
 
     self.cellPosition = position;
-    
     
     //Some customize of the cell background :-)
     [self setBackgroundColor:[UIColor clearColor]];

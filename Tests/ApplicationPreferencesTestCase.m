@@ -10,9 +10,11 @@
 #import "ApplicationPreferencesManager.h"
 #import "URLAnalyzer.h"
 #import "ExoTestCase.h"
+#import "ServerManagerHelper.h"
 
 @interface ApplicationPreferencesTestCase : ExoTestCase {
     ApplicationPreferencesManager *serverManager;
+    ServerManagerHelper *serverHelper;
 }
 
 @end
@@ -23,6 +25,7 @@
 {
     [super setUp];
     serverManager = [ApplicationPreferencesManager sharedInstance];
+    serverHelper = [ServerManagerHelper getInstance];
     [self deleteAllServers];
 }
 
@@ -41,11 +44,7 @@
 
 - (void)deleteAllServers
 {
-    if ([serverManager serverList] != nil) {
-        for (int i=0; i<[[serverManager serverList] count]; i++) {
-            [serverManager deleteServerObjAtIndex:i];
-        }
-    }
+    [serverHelper deleteAllAccounts];
 }
 
 
@@ -77,8 +76,7 @@
 - (void)testSelectServer
 {
     // Add 2 servers
-    [serverManager addEditServerWithServerName:TEST_SERVER_NAME andServerUrl:TEST_SERVER_URL withUsername:@"" andPassword:@"" atIndex:-1];
-    [serverManager addEditServerWithServerName:@"Second Server" andServerUrl:@"http://foo.bar" withUsername:@"" andPassword:@"" atIndex:-1];
+    [serverHelper addNAccounts:2];
     
     XCTAssertEqual([serverManager selectedServerIndex], 0, @"Server at pos 0 should be selected");
     [serverManager setSelectedServerIndex:1];
@@ -95,7 +93,7 @@
 - (void)testServerAlreadyExists
 {
     //    Add new server
-    [serverManager addEditServerWithServerName:TEST_SERVER_NAME andServerUrl:TEST_SERVER_URL withUsername:@"" andPassword:@"" atIndex:-1];
+    [serverHelper addDefaultAccount];
     
     XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL ignoringIndex:-1], 0, @"The server should already exist at index 0");
     
@@ -104,7 +102,7 @@
     
     XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
     
-        XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
 }
 
 - (void)testHandleStartupURL

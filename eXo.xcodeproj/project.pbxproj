@@ -389,6 +389,8 @@
 		5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */; };
 		577D5A2619C81FB1007B8A5B /* AuthenticateTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A2519C81FB1007B8A5B /* AuthenticateTabView.m */; };
 		577D5A5419C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A5319C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m */; };
+		577D5A9419C98D79007B8A5B /* SettingsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A9319C98D79007B8A5B /* SettingsTestCase.m */; };
+		577D5A9719C98E2C007B8A5B /* ServerManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A9619C98E2C007B8A5B /* ServerManagerHelper.m */; };
 		578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578318141929B035006A26EC /* UserPreferencesTestCase.m */; };
 		57831829192A1301006A26EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57831828192A1301006A26EC /* main.m */; };
 		578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78C17EAD51F00771497 /* Icon-72@2x.png */; };
@@ -1527,6 +1529,9 @@
 		577D5A2419C81FB1007B8A5B /* AuthenticateTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateTabView.h; sourceTree = "<group>"; };
 		577D5A2519C81FB1007B8A5B /* AuthenticateTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateTabView.m; sourceTree = "<group>"; };
 		577D5A5319C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateScreen_iPhone_TestCase.m; sourceTree = "<group>"; };
+		577D5A9319C98D79007B8A5B /* SettingsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTestCase.m; sourceTree = "<group>"; };
+		577D5A9519C98E2C007B8A5B /* ServerManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerHelper.h; sourceTree = "<group>"; };
+		577D5A9619C98E2C007B8A5B /* ServerManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerHelper.m; sourceTree = "<group>"; };
 		578318141929B035006A26EC /* UserPreferencesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesTestCase.m; sourceTree = "<group>"; };
 		57831827192A1301006A26EC /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		57831828192A1301006A26EC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3399,6 +3404,8 @@
 				575EFE45192DF90800798DCD /* HTTPStubsHelper.m */,
 				575EFE5E192E045A00798DCD /* SocialTestsHelper.h */,
 				575EFE5F192E045A00798DCD /* SocialTestsHelper.m */,
+				577D5A9519C98E2C007B8A5B /* ServerManagerHelper.h */,
+				577D5A9619C98E2C007B8A5B /* ServerManagerHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -3475,6 +3482,7 @@
 		5778208A19249DB100ED72D0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				577D5A8119C98D52007B8A5B /* Settings */,
 				57E476171934479300C3140E /* Documents */,
 				575EFE5D192E017400798DCD /* Cloud */,
 				575EFE5C192E015D00798DCD /* General */,
@@ -3489,6 +3497,14 @@
 				578F3A9619332D6200554F28 /* AsyncProxyTestCase.h */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		577D5A8119C98D52007B8A5B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				577D5A9319C98D79007B8A5B /* SettingsTestCase.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		57E476171934479300C3140E /* Documents */ = {
@@ -5539,6 +5555,7 @@
 			files = (
 				575EFE46192DF90800798DCD /* HTTPStubsHelper.m in Sources */,
 				578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */,
+				577D5A9419C98D79007B8A5B /* SettingsTestCase.m in Sources */,
 				575EFE60192E045A00798DCD /* SocialTestsHelper.m in Sources */,
 				578F3A911933288900554F28 /* SocialRestVersionProxyTestCase.m in Sources */,
 				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
@@ -5546,6 +5563,7 @@
 				57E47603193432B400C3140E /* SocialUserProfileCacheTestCase.m in Sources */,
 				5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */,
 				577D5A5419C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m in Sources */,
+				577D5A9719C98E2C007B8A5B /* ServerManagerHelper.m in Sources */,
 				578F3A8B1933218100554F28 /* SocialLikeActivityProxyTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
 				575D9C0A192DEC8100AD337A /* SocialUserProfileProxyTestCase.m in Sources */,
