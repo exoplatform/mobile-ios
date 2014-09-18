@@ -112,6 +112,15 @@
     XCTAssertEqualObjects(@"Mytenant", name, @"Extracted tenant name is incorrect");
 }
 
+- (void)testAccountNameExtraction_Localhost
+{
+    NSString* url = @"http://localhost";
+    
+    NSString* name = [AccountInfoUtils extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"Localhost", name, @"Extracted name is incorrect");
+}
+
 - (void)testAccountNameExtraction_ShortURL
 {
     NSString* url = @"http://mycompany.com";

@@ -24,6 +24,7 @@
 #import "AsyncProxyTestCase.h"
 #import "HTTPStubsHelper.h"
 #import "AlreadyAccountViewController.h"
+#import "ServerManagerHelper.h"
 #import "OnPremiseViewController.h"
 #import "ApplicationPreferencesManager.h"
 
@@ -47,8 +48,12 @@
     [httpHelper logStubbedHTTPRequests];
     isCompatibleWithSocial = NO;
     platformInfo = nil;
+    [[ServerManagerHelper getInstance] deleteAllAccounts];
+}
 
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void)tearDown
+{
+    [[ServerManagerHelper getInstance] deleteAllAccounts];
 }
 
 - (BOOL)platformInfoIsCorrect
@@ -100,27 +105,96 @@
     XCTAssertTrue([self platformInfoIsCorrect], @"Retrieve public Platform info failed: incorrect Platform info");
 }
 
-//- (void)testAccountIsCreated_WithCloudURL
-//{
-//    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
-//    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
-//    [httpHelper logWhichStubsAreRegistered];
-//    
-//    loginProxy.serverUrl = TEST_CLOUD_URL;
-//    AlreadyAccountViewController* del = [[AlreadyAccountViewController alloc]init];
-//    //loginProxy.delegate = del;
-//    
-//    [loginProxy authenticate];
-//    
-//    [self wait];
-//    
-//    ApplicationPreferencesManager* serverManager = [ApplicationPreferencesManager sharedInstance];
-//    
-//    ServerObj* account = [serverManager getSelectedAccount];
-//    
-//    XCTAssertNotNil(account, @"Account should have been created and automatically selected");
-//    
-//}
+- (void)testAccountIsCreated_WithCloudURL
+{
+    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
+    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
+    [httpHelper logWhichStubsAreRegistered];
+    
+    loginProxy.serverUrl = TEST_CLOUD_URL; // http://mytenant.exoplatform.net
+    AlreadyAccountViewController* del = [[AlreadyAccountViewController alloc]init];
+    loginProxy.delegate = del;
+    
+    [loginProxy authenticate];
+    
+    [self wait];
+    
+    ApplicationPreferencesManager* serverManager = [ApplicationPreferencesManager sharedInstance];
+    
+    ServerObj* account = [serverManager getSelectedAccount];
+    
+    XCTAssertNotNil(account, @"Account should have been created and automatically selected");
+    
+    XCTAssertEqualObjects(account.serverUrl, TEST_CLOUD_URL, @"Account should have been created with the given URL");
+    XCTAssertEqualObjects(account.accountName, @"Mytenant", @"Account should be named Mytenant");
+}
+
+- (void)testAccountIsCreated_WithPlatformURL
+{
+    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
+    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
+    [httpHelper logWhichStubsAreRegistered];
+    
+    NSString* serverUrl = @"http://intranet.mycompany.com";
+    loginProxy.serverUrl = serverUrl;
+    AlreadyAccountViewController* del = [[AlreadyAccountViewController alloc]init];
+    loginProxy.delegate = del;
+    
+    [loginProxy authenticate];
+    
+    [self wait];
+    
+    ApplicationPreferencesManager* serverManager = [ApplicationPreferencesManager sharedInstance];
+    
+    ServerObj* account = [serverManager getSelectedAccount];
+    
+    XCTAssertNotNil(account, @"Account should have been created and automatically selected");
+    
+    XCTAssertEqualObjects(account.serverUrl, serverUrl, @"Account should have been created with the given URL");
+    XCTAssertEqualObjects(account.accountName, @"Intranet", @"Account should be named Intranet");
+    
+}
+
+- (void)testAccountIsCreated_WithIPAddress
+{
+    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
+    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
+    [httpHelper logWhichStubsAreRegistered];
+    
+    NSString* serverUrl = @"http://192.168.4.42:8080";
+    loginProxy.serverUrl = serverUrl;
+    AlreadyAccountViewController* del = [[AlreadyAccountViewController alloc]init];
+    loginProxy.delegate = del;
+    
+    [loginProxy authenticate];
+    
+    [self wait];
+    
+    ApplicationPreferencesManager* serverManager = [ApplicationPreferencesManager sharedInstance];
+    
+    ServerObj* account = [serverManager getSelectedAccount];
+    
+    XCTAssertNotNil(account, @"Account should have been created and automatically selected");
+    
+    XCTAssertEqualObjects(account.serverUrl, serverUrl, @"Account should have been created with the given URL");
+    XCTAssertEqualObjects(account.accountName, @"192.168.4.42", @"Account should be named after the IP address");
+    
+}
+
+- (void)testNoAccountIsCreatedWithLoginFailure
+{
+    [httpHelper HTTPStubForAuthenticationWithSuccess:NO];
+    [httpHelper logWhichStubsAreRegistered];
+    
+    [loginProxy authenticate];
+    
+    [self wait];
+    
+    ApplicationPreferencesManager* serverManager = [ApplicationPreferencesManager sharedInstance];
+    
+    XCTAssertNil([serverManager getSelectedAccount], @"No account should have been created");
+    
+}
 
 #pragma mark Proxy delegate methods
 

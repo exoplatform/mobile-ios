@@ -19,7 +19,7 @@
 
 #define TEST_CLOUD_URL    @"http://mytenant.exoplatform.net"
 #define TEST_SERVER_URL   @"http://httpbin.org"
-#define TEST_SERVER_NAME  @"Test Server"
+#define TEST_SERVER_NAME  @"Testserver"
 
 #define TEST_USER_NAME        @"johndoe"
 #define TEST_USER_PASS        @"loremipsum"

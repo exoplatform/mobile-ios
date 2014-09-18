@@ -39,13 +39,15 @@
     return instance;
 }
 
-- (void) addDefaultAccount
+- (ServerObj*) addDefaultAccount
 {
-    [self.manager addEditServerWithServerName:TEST_SERVER_NAME
-                  andServerUrl:TEST_SERVER_URL
-                  withUsername:TEST_USER_NAME
-                  andPassword:TEST_USER_PASS
-                  atIndex:-1];
+    ServerObj* account = [[ServerObj alloc] init];
+    account.accountName = TEST_SERVER_NAME;
+    account.serverUrl = TEST_SERVER_URL;
+    account.username = TEST_USER_NAME;
+    account.password = TEST_USER_PASS;
+    
+    return [self addAccount:account];
 }
 
 - (void) addNAccounts:(int)n
@@ -60,13 +62,26 @@
     }
 }
 
-- (void) addAccount:(ServerObj *)account
+- (ServerObj*) addAccount:(ServerObj *)account
 {
     [self.manager addEditServerWithServerName:account.accountName
                   andServerUrl:account.serverUrl
                   withUsername:account.username
                   andPassword:account.password
                   atIndex:-1];
+    return account;
+}
+
+- (BOOL) selectAccountAtIndex:(int)index
+{
+    int serverCount = [self.manager.serverList count];
+    if (serverCount == 0)
+        return NO;
+    if (index < 0 && index >= serverCount)
+        return NO;
+    
+    [self.manager setSelectedServerIndex:index];
+    return YES;
 }
 
 - (void) deleteAccount:(ServerObj *)account

@@ -18,6 +18,7 @@
 //
 
 #import "ExoTestCase.h"
+#import "LanguageHelper.h"
 
 @implementation ExoTestCase
 
@@ -25,12 +26,12 @@
 {
     [super setUp];
     [self createVariables];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [[LanguageHelper sharedInstance] changeToLanguage:0]; // set language to English by default
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [[LanguageHelper sharedInstance] changeToLanguage:0]; // revert language to English
     [super tearDown];
 }
 

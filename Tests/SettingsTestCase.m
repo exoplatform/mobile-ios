@@ -20,6 +20,7 @@
 #import "ExoTestCase.h"
 #import "ServerManagerHelper.h"
 #import "SettingsViewController.h"
+#import "UserPreferencesManager.h"
 #import <XCTest/XCTest.h>
 
 @interface SettingsTestCase : ExoTestCase {
@@ -34,7 +35,6 @@
 - (void)setUp
 {
     [super setUp];
-    controller = [[SettingsViewController alloc] init];
     serverManager = [ServerManagerHelper getInstance];
     [serverManager deleteAllAccounts];
 }
@@ -42,21 +42,59 @@
 - (void)tearDown
 {
     [serverManager deleteAllAccounts];
+    [UserPreferencesManager sharedInstance].isUserLogged = NO;
     [super tearDown];
 }
 
-- (void) testLayoutIsCorrect
+- (void) testLayoutIsCorrect_Disconnected
 {
-    
     [serverManager addDefaultAccount];
+    [UserPreferencesManager sharedInstance].isUserLogged = NO;
+    controller = [[SettingsViewController alloc] init];
     
     [controller viewDidLoad];
     [controller viewWillAppear:YES];
     
-    XCTAssertEqualObjects(@"Settings", controller.title, @"Screen should be titled Settings");
+    XCTAssertEqualObjects(@"Settings", controller.title, @"Screen title should be: Settings, not %@", controller.title);
     
     int nb = controller.tableView.numberOfSections;
-    XCTAssertEqual(3, nb, @"Table should contain 3 sections, not %d", nb);
+    XCTAssertEqual(3, nb, @"The Settings screen should contain 3 sections when NO user is connected, not %d", nb);
+    
 }
+
+- (void) testLayoutIsCorrect_Connected
+{
+    [serverManager addDefaultAccount];
+    [UserPreferencesManager sharedInstance].isUserLogged = YES;
+    controller = [[SettingsViewController alloc] init];
+    
+    [controller viewDidLoad];
+    [controller viewWillAppear:YES];
+    
+    XCTAssertEqualObjects(@"Settings", controller.title, @"Screen title should be Settings, not %@", controller.title);
+    
+    int nb = controller.tableView.numberOfSections;
+    XCTAssertEqual(5, nb, @"The Settings screen should contain 5 sections when a user is connected, not %d", nb);
+    
+}
+
+- (void) testDeleteAccountItem
+{
+    [serverManager addNAccounts:2];
+    [UserPreferencesManager sharedInstance].isUserLogged = NO;
+    ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
+    controller = [[SettingsViewController alloc] init];
+    
+    [controller viewDidLoad];
+    [controller viewWillAppear:YES];
+    
+    XCTAssertEqual(2, appPrefManager.serverList.count, @"There should be 2 accounts in the accounts list");
+
+    [controller deleteServerObjAtIndex:0];
+    
+    XCTAssertEqual(1, appPrefManager.serverList.count, @"There should be 1 account left in the accounts list");
+}
+
+
 
 @end

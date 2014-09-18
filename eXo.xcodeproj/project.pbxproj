@@ -374,6 +374,7 @@
 		572EAA34192AFBFD008CFB11 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA00192AFBFD008CFB11 /* UIImage+Alpha.m */; };
 		572EAA35192AFBFD008CFB11 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */; };
 		572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */; };
+		5731DD411A1313FD001E3A19 /* ServerEditionTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */; };
 		573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */; };
 		573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */; };
 		573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7919D264580009E90D /* AccountSwitcherViewController.m */; };
@@ -1522,6 +1523,7 @@
 		572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		572EAA03192AFBFD008CFB11 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditionTestCase.m; sourceTree = "<group>"; };
 		573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ipad_Switcher.png; sourceTree = "<group>"; };
 		573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ipad_Switcher@2x.png"; sourceTree = "<group>"; };
 		573ADC7819D264580009E90D /* AccountSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherViewController.h; sourceTree = "<group>"; };
@@ -3570,6 +3572,7 @@
 			isa = PBXGroup;
 			children = (
 				577D5A9319C98D79007B8A5B /* SettingsTestCase.m */,
+				5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -4609,6 +4612,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "eXo Platform";
 				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = FEM998T42U;
+					};
 					57A91902190E0A15008CFD6B = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
@@ -5650,6 +5656,7 @@
 				577D5A9719C98E2C007B8A5B /* ServerManagerHelper.m in Sources */,
 				578F3A8B1933218100554F28 /* SocialLikeActivityProxyTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
+				5731DD411A1313FD001E3A19 /* ServerEditionTestCase.m in Sources */,
 				575D9C0A192DEC8100AD337A /* SocialUserProfileProxyTestCase.m in Sources */,
 				5728F29D19480EB7007EB4AE /* LanguageHelperTestCase.m in Sources */,
 				578F3A8719331B2E00554F28 /* SocialPostCommentProxyTestCase.m in Sources */,
@@ -5786,7 +5793,7 @@
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "056c6c3b-95ae-4a90-91f5-e3f8f078edea";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5885,9 +5892,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5923,8 +5930,8 @@
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "4d7445ce-6776-4731-81b8-b943a4f424c3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4d7445ce-6776-4731-81b8-b943a4f424c3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5977,9 +5984,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6014,9 +6021,8 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "B3366449-19FB-4EB9-A35E-CAF6C167D6BD";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6027,7 +6033,7 @@
 			baseConfigurationReference = 295801A742C04EAFB2DFDE32 /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo (Account Switcher).app/eXo (Account Switcher)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -6093,7 +6099,7 @@
 			baseConfigurationReference = 295801A742C04EAFB2DFDE32 /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo (Account Switcher).app/eXo (Account Switcher)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -6141,7 +6147,7 @@
 			baseConfigurationReference = 295801A742C04EAFB2DFDE32 /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo (Account Switcher).app/eXo (Account Switcher)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -6189,7 +6195,7 @@
 			baseConfigurationReference = 295801A742C04EAFB2DFDE32 /* Pods-eXoTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo (Account Switcher).app/eXo (Account Switcher)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eXo.app/eXo";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

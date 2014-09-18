@@ -26,9 +26,10 @@
 
 + (ServerManagerHelper*) getInstance;
 
-- (void) addDefaultAccount;
-- (void) addAccount:(ServerObj*)account;
+- (ServerObj*) addDefaultAccount;
+- (ServerObj*) addAccount:(ServerObj*)account;
 - (void) addNAccounts:(int)n;
+- (BOOL) selectAccountAtIndex:(int)index;
 - (void) deleteAccount:(ServerObj*)account;
 - (void) deleteAllAccounts;
 
