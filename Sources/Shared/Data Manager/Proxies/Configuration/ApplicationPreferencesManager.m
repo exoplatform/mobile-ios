@@ -25,6 +25,7 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 #import "URLAnalyzer.h"
+#import "CloudUtils.h"
 #define CURRENT_USER_NAME       [UserPreferencesManager sharedInstance].username
 #define USERNAME_EQUALS @"username="
 #define SERVER_LINK_EQUALS @"serverUrl="
@@ -625,10 +626,8 @@
 
 - (void)addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName
 {
-    NSURL *serverURL = [NSURL URLWithString:serverLink];
-    
     if(serverName == nil) {
-        serverName = [serverURL host];
+        serverName = [self extractAccountNameFromURL:serverLink];
     }
     
     int serverIndex = [self checkServerAlreadyExistsWithName:serverName andURL:serverLink ignoringIndex:-1];
@@ -640,4 +639,49 @@
         [self setSelectedServerIndex:[self.serverList count] - 1];
     }
 }
+
+/*!
+ Extracts an account name from a URL
+
+ If the URL is an eXo Cloud URL, the name will be the tenant name extracted by 
+ @code
+ CloudUtils.tenantFromServerUrl
+ @endcode
+
+ If the URL is a normal URL, the name will be the second-last element of the URL's host.
+ 
+ Examples:
+
+ - http://mycompany.com => Mycompany
+ 
+ - http://int.mycompany.com => Mycompany
+ 
+ - http://int.my.cool.company => Company
+
+ @returns a name for the account based on the given URL
+ @returns the localization of "My intranet" if no name could be extracted
+*/
+- (NSString*)extractAccountNameFromURL:(NSString *)url
+{
+    NSString* name;
+    // Check if the URL is an eXo Cloud URL
+    NSRange cloudHostRange = [url rangeOfString:EXO_CLOUD_HOST];
+    if(cloudHostRange.location != NSNotFound) {
+        // if yes, get the tenant name from the CloudUtils method
+        name = [CloudUtils tenantFromServerUrl:url];
+    } else {
+        // if not, extract the domain part of the url's host
+        NSString* host = [[NSURL URLWithString:url] host];
+        NSArray* elements = [host componentsSeparatedByString:@"."];
+        if (elements.count == 2) // mycompany.com => Mycompany
+            name = [elements objectAtIndex:0];
+        else if (elements.count > 2) // int.mycompany.com => Mycompany
+                                     // int.my.cool.company.com => Company
+            name = [elements objectAtIndex:elements.count-2];
+    }
+    if (name == nil) name = Localize(@"My intranet");
+    return [name capitalizedString];
+}
+
+
 @end

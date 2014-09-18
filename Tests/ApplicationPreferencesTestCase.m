@@ -105,7 +105,7 @@
     XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
 }
 
-- (void)testHandleStartupURL
+- (void)testHandleStartupURL_WithoutUsername
 {
 
     NSString * escapedURL = [self URLEncodedString:TEST_SERVER_URL];
@@ -117,10 +117,24 @@
     XCTAssertNil(username, @"Username should be nil, has value %@ instead", username);
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
     XCTAssertEqualObjects([server _strServerUrl], TEST_SERVER_URL, @"URL loaded is incorrect");
-    
 }
 
-- (void)testHandleStartupURLWithUsername
+- (void)testHandleStartupURL_WithCloudURL
+{
+    
+    NSString * escapedURL = [self URLEncodedString:TEST_CLOUD_URL];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"exomobile://serverUrl=%@", escapedURL]];
+    
+    
+    [serverManager loadReceivedUrlToPreference:url];
+
+    ServerObj *server = [[serverManager serverList] objectAtIndex:0];
+    XCTAssertEqualObjects([server _strServerUrl], TEST_CLOUD_URL, @"URL loaded is incorrect");
+    NSString *expectedServerName = @"Mytenant";
+    XCTAssertEqualObjects(expectedServerName, server._strServerName, @"Generated server name is incorrect");
+}
+
+- (void)testHandleStartupURL_WithUsername
 {
     NSString *username = @"john";
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"exomobile://username=%@?serverUrl=%@", username, TEST_SERVER_URL]];
@@ -131,6 +145,51 @@
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
     XCTAssertEqualObjects([server _strServerUrl], TEST_SERVER_URL, @"URL loaded is incorrect");
     
+}
+
+- (void)testAccountNameExtraction_CloudURL
+{
+    NSString* url = TEST_CLOUD_URL; // http://mytenant.exoplatform.net
+    
+    NSString* name = [serverManager extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"Mytenant", name, @"Extracted tenant name is incorrect");
+}
+
+- (void)testAccountNameExtraction_ShortURL
+{
+    NSString* url = @"http://mycompany.com";
+    
+    NSString* name = [serverManager extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
+}
+
+- (void)testAccountNameExtraction_NormalURL
+{
+    NSString* url = @"http://int.mycompany.com";
+    
+    NSString* name = [serverManager extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
+}
+
+- (void)testAccountNameExtraction_LongURL
+{
+    NSString* url = @"http://int.my.cool.company.com";
+    
+    NSString* name = [serverManager extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"Company", name, @"Extracted name is incorrect");
+}
+
+- (void)testAccountNameExtraction_HTTPS_URL
+{
+    NSString* url = @"https://int.mycompany.com";
+    
+    NSString* name = [serverManager extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
 }
 
 @end

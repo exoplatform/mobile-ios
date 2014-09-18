@@ -23,6 +23,9 @@
 #import "OHHTTPStubs.h"
 #import "AsyncProxyTestCase.h"
 #import "HTTPStubsHelper.h"
+#import "AlreadyAccountViewController.h"
+#import "OnPremiseViewController.h"
+#import "ApplicationPreferencesManager.h"
 
 
 @interface LoginProxyTestCase : AsyncProxyTestCase <LoginProxyDelegate> {
@@ -96,6 +99,28 @@
     XCTAssertTrue(isCompatibleWithSocial, @"Retrieve public Platform info failed: not compatible with Social");
     XCTAssertTrue([self platformInfoIsCorrect], @"Retrieve public Platform info failed: incorrect Platform info");
 }
+
+//- (void)testAccountIsCreated_WithCloudURL
+//{
+//    [httpHelper HTTPStubForAuthenticationWithSuccess:YES];
+//    [httpHelper HTTPStubForPlatformInfoAuthenticated:YES];
+//    [httpHelper logWhichStubsAreRegistered];
+//    
+//    loginProxy.serverUrl = TEST_CLOUD_URL;
+//    AlreadyAccountViewController* del = [[AlreadyAccountViewController alloc]init];
+//    //loginProxy.delegate = del;
+//    
+//    [loginProxy authenticate];
+//    
+//    [self wait];
+//    
+//    ApplicationPreferencesManager* serverManager = [ApplicationPreferencesManager sharedInstance];
+//    
+//    ServerObj* account = [serverManager getSelectedAccount];
+//    
+//    XCTAssertNotNil(account, @"Account should have been created and automatically selected");
+//    
+//}
 
 #pragma mark Proxy delegate methods
 
