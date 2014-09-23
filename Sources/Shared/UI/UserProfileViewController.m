@@ -20,6 +20,7 @@
 #import "UserProfileViewController.h"
 #import "SocialUserProfileProxy.h"
 #import "SocialRestConfiguration.h"
+#import "ApplicationPreferencesManager.h"
 #import "AvatarView.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -72,6 +73,7 @@
 @synthesize userProfileProxy = _userProfileProxy;
 @synthesize avatarView = _avatarView;
 @synthesize fullNameLabel = _fullNameLabel;
+@synthesize accountNameLabel = _accountNameLabel;
 
 - (void)dealloc {
     [_username release];
@@ -99,21 +101,35 @@
     self.avatarView.frame = CGRectMake(kUserProfileViewLefRightMargin, kUserProfileViewTopBottomMargin, avatarHeight, avatarHeight);
     [self.view addSubview:self.avatarView];
     
+    // Calculate the height of each label
     UIFont *font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
     float labelHeight = [@"A" sizeWithFont:font].height;
-    CGRect labelFrame = CGRectZero;
-    labelFrame.origin.x = _avatarView.frame.origin.x + _avatarView.frame.size.width + kUserProfileViewLefRightPadding;
-    labelFrame.origin.y = (viewBounds.size.height - labelHeight) / 2;
-    labelFrame.size.width = viewBounds.size.width - labelFrame.origin.x - kUserProfileViewLefRightMargin;
-    labelFrame.size.height = labelHeight;
-    self.fullNameLabel = [[[UILabel alloc] initWithFrame:labelFrame] autorelease];
+    // Create user's full name label
+    CGRect fullnameFrame = CGRectZero;
+    fullnameFrame.origin.x = _avatarView.frame.origin.x + _avatarView.frame.size.width + kUserProfileViewLefRightPadding;
+    fullnameFrame.origin.y = (viewBounds.size.height / 2) - labelHeight;
+    fullnameFrame.size.width = viewBounds.size.width - fullnameFrame.origin.x - kUserProfileViewLefRightMargin;
+    fullnameFrame.size.height = labelHeight;
+    self.fullNameLabel = [[[UILabel alloc] initWithFrame:fullnameFrame] autorelease];
     self.fullNameLabel.font = font;
     self.fullNameLabel.textColor = [UIColor whiteColor];
     self.fullNameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
     self.fullNameLabel.backgroundColor = [UIColor clearColor];
     self.fullNameLabel.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:self.fullNameLabel];
-    
+    // Create account name label and put it just under the full name label
+    CGRect accountNameFrame = CGRectZero;
+    accountNameFrame.origin.x = fullnameFrame.origin.x;
+    accountNameFrame.origin.y = fullnameFrame.origin.y + labelHeight;
+    accountNameFrame.size.height = fullnameFrame.size.height;
+    accountNameFrame.size.width = fullnameFrame.size.width;
+    self.accountNameLabel = [[[UILabel alloc] initWithFrame:accountNameFrame] autorelease];
+    self.accountNameLabel.font = font;
+    self.accountNameLabel.textColor = [UIColor whiteColor];
+    self.accountNameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
+    self.accountNameLabel.backgroundColor = [UIColor clearColor];
+    self.accountNameLabel.adjustsFontSizeToFitWidth = YES;
+    [self.view addSubview:self.accountNameLabel];
 }
 
 - (void)viewDidLoad
@@ -131,6 +147,7 @@
     self.userProfile = self.userProfileProxy.userProfile;
     [self.avatarView setImageURL:[NSURL URLWithString:self.userProfile.avatarUrl]];
     self.fullNameLabel.text = self.userProfile.fullName;
+    self.accountNameLabel.text = [NSString stringWithFormat:@"(%@)", [[ApplicationPreferencesManager sharedInstance] getSelectedAccount]._strServerName];
     self.userProfileProxy = nil;
 }
 

@@ -31,8 +31,13 @@
 #import "AppDelegate_iPhone.h"
 #import "UserProfileViewController.h"
 #import "UserPreferencesManager.h"
+#import "ApplicationPreferencesManager.h"
 
-#define kUserProfileViewHeight 70.0
+#define kUserProfileViewHeight    70.0
+#define kFooterViewHeight         60.0
+#define kFooterViewWidth         270.0
+#define kFooterButtonLeftMargin    6.0
+#define kFooterButtonTopMargin    15.0
 
 @interface UIFooterView : UIView 
 
@@ -77,9 +82,13 @@
 
 @end
 
+@interface HomeSidebarViewController_iPhone ()
+@property (nonatomic, retain) UIButton* accountSwitcherButton;
+@end
 
 @implementation HomeSidebarViewController_iPhone
 
+@synthesize accountSwitcherButton = _accountSwitcherButton;
 @synthesize contentNavigationItem;
 @synthesize contentNavigationBar;
 @synthesize tableView = _tableView;
@@ -91,6 +100,7 @@
     [_revealView release];
     [_tableView release];
     [_userProfileViewController release];
+    self.accountSwitcherButton = nil;
     [super dealloc];
 }
 
@@ -176,13 +186,19 @@
     
     
     
-    //Add the footer of the View
-    //For Settings and Logout
-    UIFooterView *footer = [[UIFooterView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width,60)];
+    //Add the footer of the view for Logout and Account Switcher buttons
+    UIFooterView *footer = [[UIFooterView alloc] initWithFrame:CGRectMake(0,
+                                                                          self.view.frame.size.height-kFooterViewHeight,
+                                                                          self.view.frame.size.width,
+                                                                          kFooterViewHeight)];
+    CGRect footerBounds = footer.bounds;
     
-    // Create the button
+    // Create the Logout button
     UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonLogout.frame = CGRectMake(6, 15, 31, 34);
+    buttonLogout.frame = CGRectMake(footerBounds.origin.x+kFooterButtonLeftMargin,
+                                    footerBounds.origin.x+kFooterButtonTopMargin,
+                                    31,
+                                    34);
     buttonLogout.showsTouchWhenHighlighted = YES;
     
     _disconnectLabel = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -196,23 +212,37 @@
     [_disconnectLabel.titleLabel setTextAlignment:UITextAlignmentLeft];
     [_disconnectLabel addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     CGSize disLabelSize = [_disconnectLabel.titleLabel.text sizeWithFont:_disconnectLabel.titleLabel.font];
-    _disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + 7, 15, disLabelSize.width, 34);
+    _disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + kFooterButtonLeftMargin,
+                                         kFooterButtonTopMargin,
+                                         disLabelSize.width,
+                                         34);
     [footer addSubview:_disconnectLabel];
 
-    
-    // Now load the image and create the image view
+    // Load the logout icon and create the image view
     UIImage *image = [UIImage imageNamed:@"Ipad_logout.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,31,34)];
     [imageView setImage:image];
     
     [buttonLogout addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [buttonLogout addSubview:imageView];
-    
     [footer addSubview:buttonLogout];
     
-    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 1)];
+    // Create the Account Switcher button
+    self.accountSwitcherButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.accountSwitcherButton.frame = CGRectMake(kFooterViewWidth-31-kFooterButtonLeftMargin, // right of the parent frame
+                                             footerBounds.origin.y+kFooterButtonTopMargin,
+                                             31,
+                                             34);
+    self.accountSwitcherButton.showsTouchWhenHighlighted = YES;
+    UIImage *switcherImg = [UIImage imageNamed:@"Ipad_Switcher.png"];
+    UIImageView *switcherImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,31,34)];
+    [switcherImageView setImage:switcherImg];
+//  [accountSwitcherButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    [self.accountSwitcherButton addSubview:switcherImageView];
+    [footer addSubview:self.accountSwitcherButton];
+    [self setAccountSwitcherVisibility];
+    
+    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kFooterViewWidth, 1)];
     topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
     [footer addSubview:topLine];
     [topLine release];
@@ -232,6 +262,16 @@
     [self.view addSubview:_revealView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+}
+
+- (void)setAccountSwitcherVisibility
+{
+    if ([[ApplicationPreferencesManager sharedInstance] twoOrMoreAccountsExist]) {
+        self.accountSwitcherButton.hidden = NO;
+    } else {
+        // Hide the button if only 1 account exists
+        self.accountSwitcherButton.hidden = YES;
+    }
 }
 
 -(void)logout {
@@ -279,6 +319,8 @@
 #pragma - Settings Delegate Methods
 
 -(void)doneWithSettings {
+    // We have to display/hide the account switcher button if the number of accounts is more/less than 2
+    [self setAccountSwitcherVisibility];
     // Reload menu view by setting changes
     [self.tableView reloadData];
     // Jump to last selected menu item

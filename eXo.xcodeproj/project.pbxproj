@@ -369,6 +369,8 @@
 		572EAA34192AFBFD008CFB11 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA00192AFBFD008CFB11 /* UIImage+Alpha.m */; };
 		572EAA35192AFBFD008CFB11 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */; };
 		572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */; };
+		573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */; };
+		573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */; };
 		575D9BBB192C8A3D00AD337A /* PlatformInfoResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */; };
 		575D9BCE192CB67000AD337A /* SocialProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */; };
 		575D9BD0192CB93000AD337A /* SocialActivityStreamProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */; };
@@ -1502,6 +1504,8 @@
 		572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		572EAA03192AFBFD008CFB11 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ipad_Switcher.png; sourceTree = "<group>"; };
+		573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ipad_Switcher@2x.png"; sourceTree = "<group>"; };
 		575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "PlatformInfoResponse-4.0.json"; sourceTree = "<group>"; };
 		575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialProxyTestCase.m; sourceTree = "<group>"; };
 		575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStreamProxyTestCase.m; sourceTree = "<group>"; };
@@ -3005,6 +3009,8 @@
 		46DA10911386CE98008DA976 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */,
+				573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */,
 				A6FB0B7D15B5429F004F958C /* Ipad_logout.png */,
 				A6FB0B7E15B542A0004F958C /* Ipad_logout@2x.png */,
 				A6FB0B7F15B542A1004F958C /* Ipad_setting.png */,
@@ -4942,6 +4948,7 @@
 				1FCED3451435B98500EC0B88 /* popoverArrowDownSimple.png in Resources */,
 				1FCED3461435B98500EC0B88 /* popoverArrowLeft.png in Resources */,
 				1FCED3471435B98500EC0B88 /* popoverArrowLeft@2x.png in Resources */,
+				573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */,
 				1FCED3481435B98500EC0B88 /* popoverArrowLeftSimple.png in Resources */,
 				1FCED3491435B98500EC0B88 /* popoverArrowRight.png in Resources */,
 				1FCED34A1435B98500EC0B88 /* popoverArrowRight@2x.png in Resources */,
@@ -5011,6 +5018,7 @@
 				1FD0C408143BF146002F40A7 /* IconForUnreadableFile@2x.png in Resources */,
 				1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */,
 				46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */,
+				573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */,
 				46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */,
 				1FCDDB7014481ED100846232 /* ActivityPictureDetailMessageTableViewCell.xib in Resources */,
 				1FCEDEC41457A34F0058C80F /* ActivityTypeAnswer.png in Resources */,
