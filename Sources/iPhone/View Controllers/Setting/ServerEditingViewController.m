@@ -76,7 +76,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [super viewDidLoad];
 
     // Set title of the screen as the account name
-    if (_serverObj != nil) self.title = _serverObj._strServerName;
+    if (_serverObj != nil) self.title = _serverObj.accountName;
     else self.title = Localize(@"ServerModify");
     
     // Create and add a Done button in the navigation bar
@@ -136,15 +136,15 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index
 {
-    _serverObj._strServerName = serverObj._strServerName;
-    _serverObj._strServerUrl = serverObj._strServerUrl;
+    _serverObj.accountName = serverObj.accountName;
+    _serverObj.serverUrl = serverObj.serverUrl;
     
     _serverObj.username = serverObj.username;
     _serverObj.password = serverObj.password;
     
-    _serverObj._bSystemServer = serverObj._bSystemServer;
-    [_txtfServerName setText:_serverObj._strServerName];
-    [_txtfServerUrl setText:_serverObj._strServerUrl];
+    _serverObj.bSystemServer = serverObj.bSystemServer;
+    [_txtfServerName setText:_serverObj.accountName];
+    [_txtfServerUrl setText:_serverObj.serverUrl];
     
     if([serverObj.username length] > 0) {
         _usernameTf.text = serverObj.username;

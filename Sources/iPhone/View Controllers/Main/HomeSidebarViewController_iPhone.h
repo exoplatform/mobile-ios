@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 #import "SettingsViewController.h"
 #import "JTNavigationBar.h"
+#import "AccountSwitcherViewController.h"
 
 typedef enum {
     eXoActivityStream = 0,
@@ -32,7 +33,8 @@ typedef enum {
 @class JTTableViewDatasource;
 @class UserProfileViewController;
 
-@interface HomeSidebarViewController_iPhone : UIViewController <JTNavigationBarDelegate, SettingsDelegateProcotol> {
+@interface HomeSidebarViewController_iPhone : UIViewController <JTNavigationBarDelegate, SettingsDelegateProcotol, AccountSwitcherDelegate>
+{
     JTRevealSidebarView *_revealView;
     JTTableViewDatasource *_datasource;
     JTTableRowTypes rowType;

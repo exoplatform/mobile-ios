@@ -29,15 +29,29 @@
 #define CURRENT_USER_NAME       [UserPreferencesManager sharedInstance].username
 #define USERNAME_EQUALS @"username="
 #define SERVER_LINK_EQUALS @"serverUrl="
+
 #pragma mark - Server Object
 
-
 @implementation ServerObj
-@synthesize _strServerName;
-@synthesize _strServerUrl;
-@synthesize _bSystemServer;
-@synthesize username = _username;
-@synthesize password = _password;
+ @synthesize accountName;
+ @synthesize serverUrl;
+ @synthesize bSystemServer;
+ @synthesize avatarUrl;
+ @synthesize userFullname;
+ @synthesize username;
+ @synthesize password;
+ @synthesize lastLoginDate;
+- (BOOL)isEqual:(id)object {
+    ServerObj* that = (ServerObj*)object;
+    return ([self.accountName isEqualToString:that.accountName] &&
+            [self.serverUrl isEqualToString:that.serverUrl] &&
+            [self.username isEqualToString:that.username]);
+}
+- (void)dealloc {
+    self.accountName = nil;  self.serverUrl = nil; self.bSystemServer = nil; self.avatarUrl = nil;
+    self.userFullname = nil; self.username = nil;  self.password = nil;      self.lastLoginDate = nil;
+    [super dealloc];
+}
 @end
 
 #pragma mark - Application Prefs
@@ -133,8 +147,8 @@
             for (int j = 0; j < [arrDeletedSystemServerList count]; j++) 
             {
                 ServerObj* tmpServerObj2 = [arrDeletedSystemServerList objectAtIndex:j];
-                if ([tmpServerObj2._strServerName isEqualToString:tmpServerObj1._strServerName] &&
-                    [tmpServerObj2._strServerUrl isEqualToString:tmpServerObj1._strServerUrl]) 
+                if ([tmpServerObj2.accountName isEqualToString:tmpServerObj1.accountName] &&
+                    [tmpServerObj2.serverUrl isEqualToString:tmpServerObj1.serverUrl])
                 {
                     [arrSystemServerList removeObjectAtIndex:i];
                     i --;
@@ -161,8 +175,12 @@
         [_arrServerList addObjectsFromArray:arrUserServerList];
     }
     
-    NSData* tmpData = [self createXmlDataWithServerList:_arrServerList];
-    [self writeData:tmpData toFile:@"Test"];
+//    NSData* tmpData = [self createXmlDataWithServerList:_arrServerList];
+//    [self writeData:tmpData toFile:@"Test"];
+}
+
+- (void)persistServerList {
+    [self writeUserConfiguration:_arrServerList];
 }
 
 - (void)setSelectedServerIndex:(int)selectedServerIndex {
@@ -173,7 +191,7 @@
         if (selectedServerIndex < [self.serverList count]) {
             tmpIndex = selectedServerIndex;
             ServerObj *selectedObj = [self.serverList objectAtIndex:selectedServerIndex];
-            tmpDomain = selectedObj._strServerUrl;
+            tmpDomain = selectedObj.serverUrl;
         }
     }
     [_selectedDomain release];
@@ -256,11 +274,14 @@
                     {
                         tmpNode = [arrsever objectAtIndex:i];
                         ServerObj* serverObj = [[ServerObj alloc] init];
-                        serverObj._strServerName = [self getNodeValue:tmpNode withName:@"name"];
-                        serverObj._strServerUrl = [self getNodeValue:tmpNode withName:@"serverURL"];
+                        serverObj.accountName = [self getNodeValue:tmpNode withName:@"name"];
+                        serverObj.serverUrl = [self getNodeValue:tmpNode withName:@"serverURL"];
                         serverObj.username = [self getNodeValue:tmpNode withName:@"username"];
                         serverObj.password = [self getNodeValue:tmpNode withName:@"password"];
-                        serverObj._bSystemServer = bSystemServer;
+                        serverObj.avatarUrl = [self getNodeValue:tmpNode withName:@"avatarURL"];
+                        serverObj.userFullname = [self getNodeValue:tmpNode withName:@"userFullname"];
+                        serverObj.lastLoginDate = [[self getNodeValue:tmpNode withName:@"lastLoginDate"] longLongValue];
+                        serverObj.bSystemServer = bSystemServer;
                         [arrServerList addObject:serverObj];
                         [serverObj release];
                     }
@@ -291,8 +312,6 @@
 //Saved the system Configuration to the /app/documents
 - (void)writeSystemConfiguration:(NSMutableArray*)arrSystemServerList
 {
-    // update selected server info to userdefault
-    self.selectedServerIndex = self.selectedServerIndex;
     NSData* dataWrite  = [self createXmlDataWithServerList:arrSystemServerList];
     [self writeData:dataWrite toFile:@"SystemConfiguration"];
 }
@@ -310,8 +329,6 @@
 //Saved the user Configuration to the /app/documents
 - (BOOL)writeUserConfiguration:(NSMutableArray*)arrUserSystemServerList
 {
-    // update selected server info
-    self.selectedServerIndex = self.selectedServerIndex;
     NSData* dataWrite = [self createXmlDataWithServerList:arrUserSystemServerList];
     return [self writeData:dataWrite toFile:@"UserConfiguration"];
 }
@@ -328,17 +345,26 @@
 //Created the xml string before saving
 - (NSData*)createXmlDataWithServerList:(NSMutableArray*)arrServerList
 {
-    NSString* strContent = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n\t<xml>\n\t\t<Servers>\n";
-    for (int i = 0; i < [arrServerList count]; i++) 
+    NSMutableString* str = [NSMutableString stringWithString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n\t<xml>\n\t\t<Servers>\n"];
+
+    for (int i = 0; i < [arrServerList count]; i++)
     {
         ServerObj* tmpServerObj = [arrServerList objectAtIndex:i];
-        NSString* tmpStr = [NSString stringWithFormat:@"\t\t\t<server name=\"%@\" serverURL=\"%@\" username=\"%@\" password=\"%@\" />\n" ,tmpServerObj._strServerName, tmpServerObj._strServerUrl, tmpServerObj.username, tmpServerObj.password];
-        strContent = [strContent stringByAppendingString:tmpStr];
+        
+        [str appendString:@"\t\t\t<server "];
+        [str appendFormat:@" name=\"%@\"", tmpServerObj.accountName];
+        [str appendFormat:@" serverURL=\"%@\"", tmpServerObj.serverUrl];
+        [str appendFormat:@" username=\"%@\"", tmpServerObj.username];
+        [str appendFormat:@" password=\"%@\"", tmpServerObj.password];
+        [str appendFormat:@" avatarURL=\"%@\"", (tmpServerObj.avatarUrl == nil ? @"" : tmpServerObj.avatarUrl)];
+        [str appendFormat:@" userFullname=\"%@\"", (tmpServerObj.userFullname == nil ? @"" : tmpServerObj.userFullname)];
+        [str appendFormat:@" lastLoginDate=\"%ld\"", tmpServerObj.lastLoginDate];
+        [str appendString:@" />\n"];
     }
     
-    NSString* strEnd = @"\t\t</Servers>\n\t</xml>\n</plist>";
-    strContent = [strContent stringByAppendingString:strEnd];
-    NSData* data = [strContent dataUsingEncoding:NSUTF8StringEncoding];
+    [str appendString:@"\n\t\t</Servers>\n\t</xml>\n</plist>"];
+
+    NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
     return data;
 }
 
@@ -448,7 +474,7 @@
     {
         if (index==i)continue; // ignore the server specified by index
         ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
-        NSString* tmpServURL = [tmpServerObj._strServerUrl lowercaseString];
+        NSString* tmpServURL = [tmpServerObj.serverUrl lowercaseString];
         if ([tmpServURL isEqualToString:[strServerUrl lowercaseString]])
         {
             return i;
@@ -465,9 +491,9 @@
     {
         //Create the new server
         ServerObj* serverObj = [[ServerObj alloc] init];
-        serverObj._strServerName = strServerName;
-        serverObj._strServerUrl = strServerUrl;
-        serverObj._bSystemServer = NO;
+        serverObj.accountName = strServerName;
+        serverObj.serverUrl = strServerUrl;
+        serverObj.bSystemServer = NO;
         serverObj.username = username ? username : @"";
         serverObj.password = password ? password : @"";
         
@@ -484,8 +510,8 @@
         ServerObj* serverObjEdited = [self.serverList objectAtIndex:index];
         ServerObj* tmpServerObj;
         
-        serverObjEdited._strServerName = strServerName;
-        serverObjEdited._strServerUrl = strServerUrl;
+        serverObjEdited.accountName = strServerName;
+        serverObjEdited.serverUrl = strServerUrl;
         serverObjEdited.username = username;
         serverObjEdited.password = password;
         
@@ -496,13 +522,13 @@
         for (int i = 0; i < [self.serverList count]; i++)
         {
             tmpServerObj = [self.serverList objectAtIndex:i];
-            if (tmpServerObj._bSystemServer == serverObjEdited._bSystemServer)
+            if (tmpServerObj.bSystemServer == serverObjEdited.bSystemServer)
             {
                 [arrTmp addObject:tmpServerObj];
             }
         }
         
-        if (serverObjEdited._bSystemServer)
+        if (serverObjEdited.bSystemServer)
         {
             [self writeSystemConfiguration:arrTmp];
         }
@@ -546,13 +572,13 @@
     for (int i = 0; i < [self.serverList count]; i++)
     {
         ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
-        if (tmpServerObj._bSystemServer == deletedServerObj._bSystemServer)
+        if (tmpServerObj.bSystemServer == deletedServerObj.bSystemServer)
         {
             [arrTmp addObject:tmpServerObj];
         }
     }
     
-    if (deletedServerObj._bSystemServer)
+    if (deletedServerObj.bSystemServer)
     {
         [self writeSystemConfiguration:arrTmp];
     }

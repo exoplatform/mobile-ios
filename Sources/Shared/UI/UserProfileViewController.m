@@ -147,7 +147,7 @@
     self.userProfile = self.userProfileProxy.userProfile;
     [self.avatarView setImageURL:[NSURL URLWithString:self.userProfile.avatarUrl]];
     self.fullNameLabel.text = self.userProfile.fullName;
-    self.accountNameLabel.text = [NSString stringWithFormat:@"(%@)", [[ApplicationPreferencesManager sharedInstance] getSelectedAccount]._strServerName];
+    self.accountNameLabel.text = [NSString stringWithFormat:@"(%@)", [[ApplicationPreferencesManager sharedInstance] getSelectedAccount].accountName];
     self.userProfileProxy = nil;
 }
 

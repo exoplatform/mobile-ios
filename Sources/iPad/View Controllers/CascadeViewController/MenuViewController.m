@@ -12,6 +12,7 @@
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
 #import "UserProfileViewController.h"
+#import "AccountSwitcherViewController_iPad.h"
 #import "ActivityStreamBrowseViewController_iPad.h"
 #import "DocumentsViewController_iPad.h"
 #import "DashboardViewController_iPad.h"
@@ -64,6 +65,7 @@
 
 // = Interface for private method
 @interface MenuViewController (PrivateMethods)
+- (void)initModalNavigationController;
 - (void)initAndSelectDocumentsViewController;
 @end
 
@@ -71,12 +73,14 @@
     CGRect _viewFrame;
 }
 
+@property (nonatomic, retain) eXoNavigationController* modalNavigationViewController;
 @property (nonatomic, retain) UIButton* accountSwitcherButton;
 
 @end
 
 @implementation MenuViewController
 
+@synthesize modalNavigationViewController;
 @synthesize userProfileViewController = _userProfileViewController;
 @synthesize tableView = _tableView, isCompatibleWithSocial = _isCompatibleWithSocial;
 @synthesize accountSwitcherButton = _accountSwitcherButton;
@@ -147,8 +151,7 @@
     UIImage *imageSwitcher = [UIImage imageNamed:@"Ipad_Switcher.png"];
     UIImageView *imageSwitcherView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,kFooterButtonWidth,42)];
     [imageSwitcherView setImage:imageSwitcher];
-//  [self.accountSwitcherButton addTarget:[AppDelegate_iPad instance] action:@selector(backToAuthenticate)
-//                              forControlEvents:UIControlEventTouchUpInside];
+    [self.accountSwitcherButton addTarget:self action:@selector(openAccountSwitcher) forControlEvents:UIControlEventTouchUpInside];
     [self.accountSwitcherButton addSubview:imageSwitcherView];
     [footer addSubview:self.accountSwitcherButton];
     [self setAccountSwitcherButtonVisibility];
@@ -217,23 +220,41 @@
 #pragma mark -
 #pragma mark MenuManagement methods
 
+- (void) initModalNavigationController {
+    self.modalNavigationViewController = [[eXoNavigationController alloc] init];
+    self.modalNavigationViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    self.modalNavigationViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+}
+
+- (void)openAccountSwitcher {
+    AccountSwitcherViewController_iPad* accountSwitcher = [[AccountSwitcherViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
+    accountSwitcher.accountSwitcherDelegate = self;
+    accountSwitcher.modalPresentationStyle = UIModalPresentationFormSheet;
+    accountSwitcher.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    if (self.modalNavigationViewController == nil)
+    {
+        [self initModalNavigationController];
+    }
+    [self.modalNavigationViewController setViewControllers:[NSArray arrayWithObject:accountSwitcher]];
+    
+    [self presentViewController:self.modalNavigationViewController animated:YES completion:nil];
+}
 
 -(void)showSettings {
 
     // Settings
     SettingsViewController_iPad *iPadSettingViewController = [[[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     iPadSettingViewController.settingsDelegate = self;
-   
     [iPadSettingViewController startRetrieve];
-    if (_modalNavigationSettingViewController == nil) 
+    
+    if (self.modalNavigationViewController == nil)
     {
-        _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:iPadSettingViewController];
-        _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
+        [self initModalNavigationController];
     }
-    [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
-
+    
+    [self.modalNavigationViewController setViewControllers:[NSArray arrayWithObject:iPadSettingViewController]];
+    [self presentViewController:self.modalNavigationViewController animated:YES completion:nil];
 }
 
 
@@ -367,7 +388,7 @@
 	[_cellContents release];
     [_tableView release];
     [_userProfileViewController release];
-    [_modalNavigationSettingViewController release];
+    self.modalNavigationViewController = nil;
     self.accountSwitcherButton = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [super dealloc];
@@ -390,7 +411,15 @@
     NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
     if (selectedIndex.row == EXO_DOCUMENTS_ROW)
         [self initAndSelectDocumentsViewController];
-    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
+    
+    if (self.modalNavigationViewController != nil)
+        [self.modalNavigationViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+# pragma mark Account Switcher delegate method
+- (void)didCloseAccountSwitcher {
+    if (self.modalNavigationViewController != nil)
+        [self.modalNavigationViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - change language management

@@ -37,11 +37,6 @@
                BlueprintName = "eXoTests"
                ReferencedContainer = "container:eXo.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "AuthenticateScreenTestCase">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

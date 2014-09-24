@@ -195,7 +195,7 @@
     ServerObj* selectedAcc = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount];
     NSString* label = Localize(@"SignInButton");
     if (selectedAcc != nil) {
-        label = [NSString stringWithFormat:@"%@ %@ %@",Localize(@"SignInButton"), Localize(@"SignInButton_In"), selectedAcc._strServerName];
+        label = [NSString stringWithFormat:@"%@ %@ %@",Localize(@"SignInButton"), Localize(@"SignInButton_In"), selectedAcc.accountName];
     }
     [self.btnLogin setTitle:label forState:UIControlStateNormal];
 }

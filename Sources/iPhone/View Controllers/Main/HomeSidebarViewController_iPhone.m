@@ -32,6 +32,7 @@
 #import "UserProfileViewController.h"
 #import "UserPreferencesManager.h"
 #import "ApplicationPreferencesManager.h"
+#import "AccountSwitcherViewController_iPhone.h"
 
 #define kUserProfileViewHeight    70.0
 #define kFooterViewHeight         60.0
@@ -160,7 +161,7 @@
     if (!_userProfileViewController) {
         _userProfileViewController = [[UserProfileViewController alloc] initWithFrame:profileFrame];
     }
-    _userProfileViewController.username = [SocialRestConfiguration sharedInstance].username;
+    _userProfileViewController.username = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount].username;
     [_userProfileViewController startUpdateCurrentUserProfile];
     [containerView addSubview:_userProfileViewController.view];
     
@@ -237,7 +238,7 @@
     UIImage *switcherImg = [UIImage imageNamed:@"Ipad_Switcher.png"];
     UIImageView *switcherImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,31,34)];
     [switcherImageView setImage:switcherImg];
-//  [accountSwitcherButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    [self.accountSwitcherButton addTarget:self action:@selector(openAccountSwitcher) forControlEvents:UIControlEventTouchUpInside];
     [self.accountSwitcherButton addSubview:switcherImageView];
     [footer addSubview:self.accountSwitcherButton];
     [self setAccountSwitcherVisibility];
@@ -274,11 +275,6 @@
     }
 }
 
--(void)logout {
-    [UserPreferencesManager sharedInstance].autoLogin = NO;
-    [[AppDelegate_iPhone instance] onBtnSigtOutDelegate];
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -296,6 +292,26 @@
 }
 
 #pragma mark Actions
+
+-(void)logout {
+    [UserPreferencesManager sharedInstance].autoLogin = NO;
+    [[AppDelegate_iPhone instance] onBtnSigtOutDelegate];
+}
+
+-(void)openAccountSwitcher {
+    AccountSwitcherViewController_iPhone* accountSwitcher = [[AccountSwitcherViewController_iPhone alloc] initWithStyle:UITableViewStyleGrouped];
+    accountSwitcher.accountSwitcherDelegate = self;
+    
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:accountSwitcher] autorelease];
+    [accountSwitcher release];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)didCloseAccountSwitcher {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)toggleButtonPressed:(id)sender {
     [_revealView revealSidebar: ! [_revealView isSidebarShowing]];
@@ -331,8 +347,7 @@
     if (rowType == eXoDocuments) {
         [self initAndSelectDocumentsViewController];
     }
-    
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)initAndSelectDocumentsViewController {
@@ -611,7 +626,7 @@
                 
                 navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
                 
-                [self presentModalViewController:navController animated:YES];
+                [self presentViewController:navController animated:YES completion:nil];
             }
                 break;
             case eXoDocuments:

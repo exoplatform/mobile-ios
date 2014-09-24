@@ -66,6 +66,8 @@ return self;
 }
 
 + (void)doLogout {
+    // Persist the list of accounts
+    [[ApplicationPreferencesManager sharedInstance] persistServerList];
     // Remove Cookies
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -188,26 +190,29 @@ return self;
         
         BOOL isPlatformCompatibleWithSocialFeatures = (shortVersion < 3.5) ? NO : YES;
         
-        if(self.username) { //only need when authenticating, it means self.username is not nil
+        if(self.username) { // only need when authenticating, it means self.username is not nil
             if(isPlatformCompatibleWithSocialFeatures) {
                 if([_delegate isKindOfClass:[AlreadyAccountViewController class]] || [_delegate isKindOfClass:[OnPremiseViewController class]]) {
-                    //add the server url to server list
+                    // add the server url to server list
                     ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
                     NSString* accountName = [appPref extractAccountNameFromURL:self.serverUrl];
                     [appPref addAndSetSelectedServer:self.serverUrl withName:accountName];
                 }
-                
                 [UserPreferencesManager sharedInstance].username = self.username;
                 [UserPreferencesManager sharedInstance].password = self.password;
                 [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
                 [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
             }
+            // Saving the user's username and current date in the ServerObj that represents him
+            ServerObj* selectedAccount = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount];
+            selectedAccount.username = self.username;
+            selectedAccount.lastLoginDate = [[NSDate date] timeIntervalSince1970];
         }
                 
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         
-        //We need to prevent the caller.
+        // We need to prevent the caller.
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
             [_delegate loginProxy:self platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
         }

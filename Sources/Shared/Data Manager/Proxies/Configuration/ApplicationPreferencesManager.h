@@ -24,16 +24,15 @@
 
 #pragma mark - Server Object Interface
 
-@interface ServerObj : NSObject {
-    NSString*   _strServerName;
-    NSString*   _strServerUrl;
-    BOOL        _bSystemServer;
-}
-@property BOOL _bSystemServer;
-@property (nonatomic, retain) NSString* _strServerName;
-@property (nonatomic, retain) NSString* _strServerUrl;
-@property (nonatomic, retain) NSString *username;
-@property (nonatomic, retain) NSString *password;
+@interface ServerObj : NSObject
+ @property BOOL bSystemServer;
+ @property (nonatomic, retain) NSString* accountName;
+ @property (nonatomic, retain) NSString* serverUrl;
+ @property (nonatomic, retain) NSString* avatarUrl;
+ @property (nonatomic, retain) NSString* userFullname;
+ @property (nonatomic, retain) NSString* username;
+ @property (nonatomic, retain) NSString* password;
+ @property (assign)            long      lastLoginDate; // # of seconds since Jan 1, 1970
 @end
 
 #pragma mark - Application Prefs Interface
@@ -68,7 +67,7 @@
 - (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password atIndex:(int)index;
 //if existed, return the server's index, otherwise return -1
 - (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index;
-
+- (void)persistServerList;
 
 #pragma mark * Read/Write data
 - (CXMLNode*) getNode: (CXMLNode*) element withName: (NSString*) name;

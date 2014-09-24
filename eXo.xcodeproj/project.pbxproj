@@ -318,6 +318,9 @@
 		46F6344914549DBC00BB57D4 /* libRestKitXMLParserLibxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55A813C54CAF00FCB43A /* libRestKitXMLParserLibxml.a */; };
 		46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F83140BD7A60077BE15 /* DocumentsViewController.m */; };
 		46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F89140CC4C20077BE15 /* FileActionsViewController.m */; };
+		57176F7F19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 57176F7E19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m */; };
+		57176F8719D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57176F8419D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib */; };
+		57176F8819D95079003C8B90 /* AccountSwitcherViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */; };
 		5728F29D19480EB7007EB4AE /* LanguageHelperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */; };
 		572EAA05192AFBFD008CFB11 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA990192AFBFD008CFB11 /* ATMHud.m */; };
 		572EAA06192AFBFD008CFB11 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA993192AFBFD008CFB11 /* ATMHudQueueItem.m */; };
@@ -371,6 +374,9 @@
 		572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */; };
 		573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */; };
 		573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */; };
+		573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7919D264580009E90D /* AccountSwitcherViewController.m */; };
+		573ADC7E19D269E20009E90D /* AccountSwitcherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */; };
+		573ADC7F19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */; };
 		575D9BBB192C8A3D00AD337A /* PlatformInfoResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */; };
 		575D9BCE192CB67000AD337A /* SocialProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */; };
 		575D9BD0192CB93000AD337A /* SocialActivityStreamProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */; };
@@ -1404,6 +1410,11 @@
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
 		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
 		47F907430C78443DB778B574 /* libPods-eXoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eXoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57176F7D19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountSwitcherViewController_iPhone.h; path = AccountSwitcher/AccountSwitcherViewController_iPhone.h; sourceTree = "<group>"; };
+		57176F7E19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountSwitcherViewController_iPhone.m; path = AccountSwitcher/AccountSwitcherViewController_iPhone.m; sourceTree = "<group>"; };
+		57176F8419D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountSwitcherTableViewCell_iPad.xib; path = AccountSwitcher/AccountSwitcherTableViewCell_iPad.xib; sourceTree = "<group>"; };
+		57176F8519D95079003C8B90 /* AccountSwitcherViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountSwitcherViewController_iPad.h; path = AccountSwitcher/AccountSwitcherViewController_iPad.h; sourceTree = "<group>"; };
+		57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountSwitcherViewController_iPad.m; path = AccountSwitcher/AccountSwitcherViewController_iPad.m; sourceTree = "<group>"; };
 		5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelperTestCase.m; sourceTree = "<group>"; };
 		572EA98F192AFBFD008CFB11 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		572EA990192AFBFD008CFB11 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
@@ -1506,6 +1517,11 @@
 		572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ipad_Switcher.png; sourceTree = "<group>"; };
 		573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ipad_Switcher@2x.png"; sourceTree = "<group>"; };
+		573ADC7819D264580009E90D /* AccountSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherViewController.h; sourceTree = "<group>"; };
+		573ADC7919D264580009E90D /* AccountSwitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSwitcherViewController.m; sourceTree = "<group>"; };
+		573ADC7B19D269E20009E90D /* AccountSwitcherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherTableViewCell.h; sourceTree = "<group>"; };
+		573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSwitcherTableViewCell.m; sourceTree = "<group>"; };
+		573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountSwitcherTableViewCell_iPhone.xib; path = "Sources/iPhone/View Controllers/AccountSwitcher/AccountSwitcherTableViewCell_iPhone.xib"; sourceTree = SOURCE_ROOT; };
 		575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "PlatformInfoResponse-4.0.json"; sourceTree = "<group>"; };
 		575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialProxyTestCase.m; sourceTree = "<group>"; };
 		575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStreamProxyTestCase.m; sourceTree = "<group>"; };
@@ -3137,6 +3153,26 @@
 			name = Documents;
 			sourceTree = "<group>";
 		};
+		57176F6B19D94857003C8B90 /* AccountSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				57176F7D19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.h */,
+				57176F7E19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m */,
+				573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */,
+			);
+			name = AccountSwitcher;
+			sourceTree = "<group>";
+		};
+		57176F8319D95033003C8B90 /* AccountSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				57176F8419D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib */,
+				57176F8519D95079003C8B90 /* AccountSwitcherViewController_iPad.h */,
+				57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */,
+			);
+			name = AccountSwitcher;
+			sourceTree = "<group>";
+		};
 		572EA98D192AFBFD008CFB11 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -3401,6 +3437,17 @@
 				572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */,
 			);
 			path = "UIImage+Resize";
+			sourceTree = "<group>";
+		};
+		573ADC6619D264290009E90D /* AccountSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				573ADC7819D264580009E90D /* AccountSwitcherViewController.h */,
+				573ADC7919D264580009E90D /* AccountSwitcherViewController.m */,
+				573ADC7B19D269E20009E90D /* AccountSwitcherTableViewCell.h */,
+				573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */,
+			);
+			name = AccountSwitcher;
 			sourceTree = "<group>";
 		};
 		575EFE58192E00EB00798DCD /* Helpers */ = {
@@ -4082,6 +4129,7 @@
 		894732381336FFD400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				57176F8319D95033003C8B90 /* AccountSwitcher */,
 				7D993C82176AC9F80035835F /* CloudSignup */,
 				46A03A1813A7952400E71AF9 /* Social */,
 				46E96E30138370A30085DCB6 /* CascadeViewController */,
@@ -4119,6 +4167,7 @@
 		8947323B1336FFE400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				57176F6B19D94857003C8B90 /* AccountSwitcher */,
 				7DB91BA217697D3D001CA575 /* CloudSignup */,
 				7CAB42D413A7689F00CED7A3 /* Social */,
 				8947338613370B4500B0AD11 /* File */,
@@ -4343,6 +4392,7 @@
 		8947349F1337125D00B0AD11 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				573ADC6619D264290009E90D /* AccountSwitcher */,
 				7DB91B9E17697CE4001CA575 /* CloudSignup */,
 				A661D86A157EFE5400CCF870 /* Custom Views */,
 				461BFAB1141F4CD9009844F6 /* Settings */,
@@ -4922,6 +4972,7 @@
 				7CA74B9313C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png in Resources */,
 				7CA74B9413C31AB50006306D /* MessageComposerTextfieldBackground@2x.png in Resources */,
 				7CA74B9A13C31AD20006306D /* MessageComposerButtonCancelBackground.png in Resources */,
+				573ADC7F19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib in Resources */,
 				7CA74B9B13C31AD20006306D /* MessageComposerButtonCancelBackgroundSelected.png in Resources */,
 				7CA74B9C13C31AD20006306D /* MessageComposerButtonSendBackground.png in Resources */,
 				57A9CD5019C6D15300909D93 /* AuthenticateSwitcherIconIpadOff@2x.png in Resources */,
@@ -5117,6 +5168,7 @@
 				A6FB0B8415B542A2004F958C /* Ipad_setting@2x.png in Resources */,
 				A6FB0B8815B5446A004F958C /* activity-detail-action-comment@2x.png in Resources */,
 				A6FB0B8915B5446A004F958C /* activity-detail-action-dislike@2x.png in Resources */,
+				57176F8719D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib in Resources */,
 				A6FB0B8A15B5446A004F958C /* activity-detail-action-like@2x.png in Resources */,
 				A6FB0B8D15B5451F004F958C /* activity-detail-tabs-comment-icon@2x.png in Resources */,
 				A6FB0B8E15B5451F004F958C /* activity-detail-tabs-likers-icon@2x.png in Resources */,
@@ -5371,6 +5423,7 @@
 				46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */,
 				464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */,
 				46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */,
+				573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */,
 				46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */,
 				46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */,
 				46E96E62138370A30085DCB6 /* RootViewController.m in Sources */,
@@ -5424,6 +5477,7 @@
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
 				572EAA2B192AFBFD008CFB11 /* UIImage+SSToolkitAdditions.m in Sources */,
+				57176F7F19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
 				572EAA2D192AFBFD008CFB11 /* AsyncSocket.m in Sources */,
@@ -5471,6 +5525,7 @@
 				46EC7DE71466D596009D7BB0 /* ActivityHelper.m in Sources */,
 				1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */,
 				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
+				573ADC7E19D269E20009E90D /* AccountSwitcherTableViewCell.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
 				572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */,
 				3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */,
@@ -5520,6 +5575,7 @@
 				A6EECFC815EE1E4800A46A4B /* RoundRectView.m in Sources */,
 				57FB189915FD7AF0001F5C20 /* ExoStackScrollViewController.m in Sources */,
 				57FB19CE15FD9670001F5C20 /* LoginProxy.m in Sources */,
+				57176F8819D95079003C8B90 /* AccountSwitcherViewController_iPad.m in Sources */,
 				57FB19D215FD96C0001F5C20 /* UserPreferencesManager.m in Sources */,
 				57FB1A6915FDCAF3001F5C20 /* ApplicationPreferencesManager.m in Sources */,
 				7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */,

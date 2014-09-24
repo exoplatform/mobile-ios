@@ -65,8 +65,8 @@
     [serverManager addEditServerWithServerName:SERVER_NAME_NEW andServerUrl:SERVER_URL_NEW withUsername:@"" andPassword:@"" atIndex:0];
     ServerObj *srv = [[serverManager serverList] objectAtIndex:0];
     XCTAssertNotNil(srv, @"Server should not be null");
-    XCTAssertEqualObjects([srv _strServerName], SERVER_NAME_NEW, @"New server name should be %@", SERVER_NAME_NEW);
-    XCTAssertEqualObjects([srv _strServerUrl], SERVER_URL_NEW, @"New server URL should be %@", SERVER_URL_NEW);
+    XCTAssertEqualObjects(srv.accountName, SERVER_NAME_NEW, @"New server name should be %@", SERVER_NAME_NEW);
+    XCTAssertEqualObjects(srv.serverUrl, SERVER_URL_NEW, @"New server URL should be %@", SERVER_URL_NEW);
     
     //    Delete server
     [serverManager deleteServerObjAtIndex:0];
@@ -116,7 +116,7 @@
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_USER_NAME_FROM_URL];
     XCTAssertNil(username, @"Username should be nil, has value %@ instead", username);
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
-    XCTAssertEqualObjects([server _strServerUrl], TEST_SERVER_URL, @"URL loaded is incorrect");
+    XCTAssertEqualObjects(server.serverUrl, TEST_SERVER_URL, @"URL loaded is incorrect");
 }
 
 - (void)testHandleStartupURL_WithCloudURL
@@ -129,9 +129,9 @@
     [serverManager loadReceivedUrlToPreference:url];
 
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
-    XCTAssertEqualObjects([server _strServerUrl], TEST_CLOUD_URL, @"URL loaded is incorrect");
+    XCTAssertEqualObjects(server.serverUrl, TEST_CLOUD_URL, @"URL loaded is incorrect");
     NSString *expectedServerName = @"Mytenant";
-    XCTAssertEqualObjects(expectedServerName, server._strServerName, @"Generated server name is incorrect");
+    XCTAssertEqualObjects(expectedServerName, server.accountName, @"Generated server name is incorrect");
 }
 
 - (void)testHandleStartupURL_WithUsername
@@ -143,7 +143,7 @@
     NSString *loadedUsername = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_USER_NAME_FROM_URL];
     XCTAssertEqualObjects(loadedUsername, username, @"Username should be %@ and not %@ instead", username, loadedUsername);
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
-    XCTAssertEqualObjects([server _strServerUrl], TEST_SERVER_URL, @"URL loaded is incorrect");
+    XCTAssertEqualObjects(server.serverUrl, TEST_SERVER_URL, @"URL loaded is incorrect");
     
 }
 

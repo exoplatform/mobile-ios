@@ -52,8 +52,8 @@
 {
     for (int i=1; i<=n; i++) {
         ServerObj* accN = [[ServerObj alloc] init];
-        accN._strServerName = [NSString stringWithFormat:@"%@ %d", TEST_SERVER_NAME, i];
-        accN._strServerUrl = TEST_SERVER_URL;
+        accN.accountName = [NSString stringWithFormat:@"%@ %d", TEST_SERVER_NAME, i];
+        accN.serverUrl = TEST_SERVER_URL;
         accN.username = [NSString stringWithFormat:@"%@_%d", TEST_USER_NAME, i];
         accN.password = TEST_USER_PASS;
         [self addAccount:accN];
@@ -62,8 +62,8 @@
 
 - (void) addAccount:(ServerObj *)account
 {
-    [self.manager addEditServerWithServerName:account._strServerName
-                  andServerUrl:account._strServerUrl
+    [self.manager addEditServerWithServerName:account.accountName
+                  andServerUrl:account.serverUrl
                   withUsername:account.username
                   andPassword:account.password
                   atIndex:-1];
