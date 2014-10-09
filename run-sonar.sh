@@ -230,7 +230,7 @@ if [ "$testScheme" = "" ]; then
 else
 
 	echo -n 'Running tests using xctool'	
-	runCommand sonar-reports/TEST-report.xml $xctoolCmdPrefix -scheme "$testScheme" -reporter junit GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES test
+	runCommand sonar-reports/TEST-report.xml $xctoolCmdPrefix -scheme "$testScheme" -destination "platform=iOS Simulator,name=iPhone Retina (4-inch)" -reporter junit GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES test -resetSimulator
 
 	echo -n 'Computing coverage report'
 
