@@ -68,6 +68,7 @@
 //if existed, return the server's index, otherwise return -1
 - (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index;
 - (void)persistServerList;
+- (void) addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName;
 
 #pragma mark * Read/Write data
 - (CXMLNode*) getNode: (CXMLNode*) element withName: (NSString*) name;
@@ -90,6 +91,5 @@
 
 #pragma mark * Utils
 - (void) loadReceivedUrlToPreference:(NSURL *)url;
-- (void) addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName;
 - (NSString*)extractAccountNameFromURL:(NSString*)url;
 @end

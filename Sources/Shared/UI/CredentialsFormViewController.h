@@ -17,19 +17,22 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
-
 #import "eXoTableViewController.h"
-#import "CredentialsFormViewController.h"
-#import "LoginProxy.h"
+#import "ApplicationPreferencesManager.h"
+#import <UIKit/UIKit.h>
 
-@protocol AccountSwitcherDelegate <NSObject>
-
-- (void)didCloseAccountSwitcher;
-
+@protocol CredentialsFormResultDelegate <NSObject>
+-(void) onCredentialsFormSubmittedWithAccount:(ServerObj*)account;
 @end
 
-@interface AccountSwitcherViewController : eXoTableViewController <LoginProxyDelegate, CredentialsFormResultDelegate>
+@interface CredentialsFormViewController : eXoTableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (assign) id<AccountSwitcherDelegate> accountSwitcherDelegate;
+@property (nonatomic, retain) UIBarButtonItem* doneButton;
+@property (nonatomic, retain) UITextField*     username;
+@property (nonatomic, retain) UITextField*     password;
+@property (nonatomic, retain) ServerObj*       account;
+@property (nonatomic, assign) id<CredentialsFormResultDelegate> delegate;
+
+-(id)initWithAccount:(ServerObj*)selectedAccount andDelegate:(id<CredentialsFormResultDelegate>)dlg;
 
 @end

@@ -58,4 +58,10 @@
 
 }
 
+- (void)restartAppDelegateAfterFailure
+{
+    AppDelegate_iPad *appDelegate = (AppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+    [appDelegate performSelector:@selector(backToAuthenticate) withObject:nil afterDelay:1.0];
+}
+
 @end

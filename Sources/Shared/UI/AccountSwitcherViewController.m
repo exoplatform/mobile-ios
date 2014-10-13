@@ -22,7 +22,7 @@
 #import "AccountSwitcherTableViewCell.h"
 #import "ApplicationPreferencesManager.h"
 #import "UserPreferencesManager.h"
-#import "AppDelegate_iPhone.h"
+#import "CredentialsFormViewController.h"
 #import "SSHUDView.h"
 #import "LoginProxy.h"
 #import "LanguageHelper.h"
@@ -34,7 +34,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 @interface AccountSwitcherViewController ()
 
 @property (nonatomic, retain) NSMutableArray* listOfAccounts;
-@property (nonatomic, assign) int             currentAccount;
 @property (nonatomic, retain) SSHUDView*      hud; // display loading
 @property (nonatomic, retain) LoginProxy*     login;
 
@@ -43,7 +42,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 @implementation AccountSwitcherViewController
 
 @synthesize listOfAccounts;
-@synthesize currentAccount;
 @synthesize accountSwitcherDelegate;
 @synthesize hud = _hud;
 @synthesize login;
@@ -55,7 +53,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.listOfAccounts = [[ApplicationPreferencesManager sharedInstance] serverList];
-        self.currentAccount = [[ApplicationPreferencesManager sharedInstance] selectedServerIndex];
     }
     return self;
 }
@@ -88,7 +85,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 - (void)dealloc
 {
     self.listOfAccounts = nil;
-    self.currentAccount = nil;
     self.accountSwitcherDelegate = nil;
     self.hud = nil;
     self.login = nil;
@@ -101,8 +97,20 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Actions
+
 - (void) doneAction {
     if (self.accountSwitcherDelegate) [self.accountSwitcherDelegate didCloseAccountSwitcher];
+}
+
+// Actually signs out of the current account and signs in with the provided account
+- (void) switchToAccount:(ServerObj*)account {
+    [LoginProxy doLogout];
+    [self.hud show];
+    [self view].userInteractionEnabled = NO;
+    [[ApplicationPreferencesManager sharedInstance] setSelectedServerIndex:[self.listOfAccounts indexOfObject:account]];
+    self.login = [[LoginProxy alloc] initWithDelegate:self username:account.username password:account.password serverUrl:account.serverUrl];
+    [self.login authenticate];
 }
 
 #pragma mark Table View methods
@@ -167,16 +175,19 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     NSString* password = [userDefaults objectForKey:[NSString stringWithFormat:@"%@_password",selectedAccount.serverUrl]];
     if (![selectedAccount.username isEqualToString:@""] && ![password isEqualToString:@""] && rememberUser)
     {
-        [UserPreferencesManager sharedInstance].isUserLogged = NO;
-        [LoginProxy doLogout];
-//        [self.hud setLoading:YES];
-        [self.hud show];
-        [self view].userInteractionEnabled = NO;
-        [[ApplicationPreferencesManager sharedInstance] setSelectedServerIndex:indexPath.row];
-        self.login = [[LoginProxy alloc] initWithDelegate:self username:selectedAccount.username password:password serverUrl:selectedAccount.serverUrl];
-        [self.login authenticate];
+        // Switch account
+        selectedAccount.password = password;
+        [self switchToAccount:selectedAccount];
     } else {
-        // TODO open the sign-in screen
+        // Username or Password is missing, or Remember Me is not activated
+        // Open the credentials form
+        if (self.navigationController != nil) {
+            CredentialsFormViewController* credentialsForm =
+                 [[CredentialsFormViewController alloc] initWithAccount:selectedAccount andDelegate:self];
+            [self.navigationController pushViewController:credentialsForm animated:YES];
+            [credentialsForm release];
+        }
+        // When the form is submitted, the method onCredentialsFormSubmittedWithAccount will be called
     }
 }
 
@@ -184,6 +195,12 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 {
     [NSException raise:@"AbstractMethodCallException"
                 format:@"Method restartAppDelegateAfterLogin must be overridden in iPhone and iPad classes"];
+}
+
+- (void)restartAppDelegateAfterFailure
+{
+    [NSException raise:@"AbstractMethodCallException"
+                format:@"Method restartAppDelegateAfterFailure must be overridden in iPhone and iPad classes"];
 }
 
 #pragma mark Login proxy delegate methods
@@ -202,6 +219,18 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     [self.hud dismiss];
     [self.hud setHidden:YES];
     [self view].userInteractionEnabled = YES;
+    UIAlertView *alert = [LoginProxyAlert alertWithError:error andDelegate:self];
+    [alert show];
+    [alert release];
+    
+    [self restartAppDelegateAfterFailure];
+}
+
+#pragma mark Credentials form result delegate method
+
+- (void) onCredentialsFormSubmittedWithAccount:(ServerObj *)account
+{
+    [self switchToAccount:account];
 }
 
 @end

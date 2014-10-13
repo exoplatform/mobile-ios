@@ -47,3 +47,7 @@
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;
 - (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error;
 @end
+
+@interface LoginProxyAlert
++ (UIAlertView*) alertWithError:(NSError*)error andDelegate:(id)delegate;
+@end

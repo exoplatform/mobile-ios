@@ -377,6 +377,8 @@
 		573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7919D264580009E90D /* AccountSwitcherViewController.m */; };
 		573ADC7E19D269E20009E90D /* AccountSwitcherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */; };
 		573ADC7F19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */; };
+		573EC10219EBB99C00DE3866 /* CredentialsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573EC10119EBB99C00DE3866 /* CredentialsFormViewController.m */; };
+		573EC11519EBBAAE00DE3866 /* CredentialsFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573EC11419EBBAAE00DE3866 /* CredentialsFormViewController.xib */; };
 		575D9BBB192C8A3D00AD337A /* PlatformInfoResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */; };
 		575D9BCE192CB67000AD337A /* SocialProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */; };
 		575D9BD0192CB93000AD337A /* SocialActivityStreamProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */; };
@@ -1522,6 +1524,9 @@
 		573ADC7B19D269E20009E90D /* AccountSwitcherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherTableViewCell.h; sourceTree = "<group>"; };
 		573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSwitcherTableViewCell.m; sourceTree = "<group>"; };
 		573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountSwitcherTableViewCell_iPhone.xib; path = "Sources/iPhone/View Controllers/AccountSwitcher/AccountSwitcherTableViewCell_iPhone.xib"; sourceTree = SOURCE_ROOT; };
+		573EC10019EBB99C00DE3866 /* CredentialsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsFormViewController.h; sourceTree = "<group>"; };
+		573EC10119EBB99C00DE3866 /* CredentialsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsFormViewController.m; sourceTree = "<group>"; };
+		573EC11419EBBAAE00DE3866 /* CredentialsFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsFormViewController.xib; sourceTree = "<group>"; };
 		575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "PlatformInfoResponse-4.0.json"; sourceTree = "<group>"; };
 		575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialProxyTestCase.m; sourceTree = "<group>"; };
 		575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStreamProxyTestCase.m; sourceTree = "<group>"; };
@@ -3446,6 +3451,9 @@
 				573ADC7919D264580009E90D /* AccountSwitcherViewController.m */,
 				573ADC7B19D269E20009E90D /* AccountSwitcherTableViewCell.h */,
 				573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */,
+				573EC10019EBB99C00DE3866 /* CredentialsFormViewController.h */,
+				573EC10119EBB99C00DE3866 /* CredentialsFormViewController.m */,
+				573EC11419EBBAAE00DE3866 /* CredentialsFormViewController.xib */,
 			);
 			name = AccountSwitcher;
 			sourceTree = "<group>";
@@ -5259,6 +5267,7 @@
 				7D6931BC17965763008CCE72 /* btn_signup@2x.png in Resources */,
 				7D6931BD17965763008CCE72 /* btn_skip@2x.png in Resources */,
 				7D6931BE17965763008CCE72 /* icon_clock@2x.png in Resources */,
+				573EC11519EBBAAE00DE3866 /* CredentialsFormViewController.xib in Resources */,
 				7D6931BF17965763008CCE72 /* icon_place@2x.png in Resources */,
 				7D6931C017965763008CCE72 /* logo@2x.png in Resources */,
 				7D6931C117965763008CCE72 /* welcome_separator@2x.png in Resources */,
@@ -5503,6 +5512,7 @@
 				1FCED35F1435BA1800EC0B88 /* WETouchableView.m in Sources */,
 				1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */,
 				1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */,
+				573EC10219EBB99C00DE3866 /* CredentialsFormViewController.m in Sources */,
 				1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */,
 				46A08CD61447501300D53314 /* ActivityLinkDisplayViewController.m in Sources */,
 				46A08CDA1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m in Sources */,

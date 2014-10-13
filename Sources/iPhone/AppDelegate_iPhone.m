@@ -61,9 +61,8 @@
     if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavbarBg.png"] 
                                            forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         
-//        [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.47f green:0.23f blue:0.61f alpha:1.0f]];
         UIImage *barButton = [UIImage imageNamed:@"NavbarBackButton.png" ];
         barButton = [barButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
         [[UIBarButtonItem appearance] setBackButtonBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];

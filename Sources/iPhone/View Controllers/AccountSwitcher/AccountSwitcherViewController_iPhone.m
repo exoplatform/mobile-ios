@@ -57,4 +57,10 @@
     [appDelegate performSelector:@selector(showHomeSidebarViewController) withObject:nil afterDelay:1.0];
 }
 
+- (void)restartAppDelegateAfterFailure
+{
+    AppDelegate_iPhone *appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
+    [appDelegate performSelector:@selector(onBtnSigtOutDelegate) withObject:nil afterDelay:1.0];
+}
+
 @end
