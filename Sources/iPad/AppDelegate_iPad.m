@@ -98,6 +98,8 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     [super application:application handleOpenURL:url];
+    [self.viewController doneWithSettings]; // refresh the list of accounts and display the tab item
+    [self.viewController setPreferenceValues]; // display the username (if any) in the username text field
     self.window.rootViewController = viewController;// display authenticate screen
     return YES;
 }

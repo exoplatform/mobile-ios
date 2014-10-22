@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "UserPreferencesManager.h"
 #import "ApplicationPreferencesManager.h"
 #import "URLAnalyzer.h"
 #import "ExoTestCase.h"
@@ -141,7 +142,10 @@
     
     [serverManager loadReceivedUrlToPreference:url];
     NSString *loadedUsername = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_USER_NAME_FROM_URL];
-    XCTAssertEqualObjects(loadedUsername, username, @"Username should be %@ and not %@ instead", username, loadedUsername);
+    XCTAssertEqualObjects(loadedUsername, username, @"Username from UserDefaults should be %@ and not %@", username, loadedUsername);
+    loadedUsername = nil;
+    loadedUsername = [UserPreferencesManager sharedInstance].username;
+    XCTAssertEqualObjects(loadedUsername, username, @"Username from PrefManager should be %@ and not %@", username, loadedUsername);
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
     XCTAssertEqualObjects(server.serverUrl, TEST_SERVER_URL, @"URL loaded is incorrect");
     

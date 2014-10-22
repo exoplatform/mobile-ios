@@ -113,6 +113,7 @@
     [super application:application handleOpenURL:url];
     
     navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController]; //display authenticate screen
+    [self.authenticateViewController showHideSwitcherTab];
     
     window.rootViewController = navigationController;
     return YES;

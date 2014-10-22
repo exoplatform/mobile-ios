@@ -192,6 +192,8 @@
             tmpIndex = selectedServerIndex;
             ServerObj *selectedObj = [self.serverList objectAtIndex:selectedServerIndex];
             tmpDomain = selectedObj.serverUrl;
+            [UserPreferencesManager sharedInstance].username = selectedObj.username;
+            [UserPreferencesManager sharedInstance].password = @"";
         }
     }
     [_selectedDomain release];
@@ -644,26 +646,43 @@
         //encode server link
         serverLink = [serverLink stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         // add server to list and set it to be selected
-        [self addAndSetSelectedServer:serverLink withName:nil];
+        ServerObj* account = [[[ServerObj alloc] init] autorelease];
+        account.accountName = nil;
+        account.serverUrl = serverLink;
+        account.username = username;
+        [self addAndSelectServer:account];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EXO_CLOUD_ACCOUNT_CONFIGURED];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
-- (void)addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName
+- (void) addAndSelectServer:(ServerObj*)account
 {
-    if(serverName == nil) {
-        serverName = [self extractAccountNameFromURL:serverLink];
-    }
+    if (account.accountName == nil)
+        account.accountName = [self extractAccountNameFromURL:account.serverUrl];
     
-    int serverIndex = [self checkServerAlreadyExistsWithName:serverName andURL:serverLink ignoringIndex:-1];
+    int serverIndex = [self checkServerAlreadyExistsWithName:account.accountName
+                                                      andURL:account.serverUrl
+                                               ignoringIndex:-1];
     
     if(serverIndex > -1) { //if the server is already exist, just set it to be selected
         [self setSelectedServerIndex:serverIndex];
     } else { //otherwise, add a new server to server list, and set it to be selected
-        [self addEditServerWithServerName:serverName andServerUrl:serverLink withUsername:nil andPassword:nil atIndex:-1];
+        [self addEditServerWithServerName:account.accountName
+                             andServerUrl:account.serverUrl
+                             withUsername:account.username
+                              andPassword:account.password
+                                  atIndex:-1];
         [self setSelectedServerIndex:[self.serverList count] - 1];
     }
+}
+
+- (void)addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName
+{
+    ServerObj* account = [[[ServerObj alloc] init] autorelease];
+    account.accountName = serverName;
+    account.serverUrl = serverLink;
+    [self addAndSelectServer:account];
 }
 
 /*!

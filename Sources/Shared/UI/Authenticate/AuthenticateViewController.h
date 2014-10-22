@@ -48,6 +48,7 @@ typedef enum {
 - (BOOL)autoLoginIsDisabled;
 - (void)doneWithSettings;
 - (void)saveTempUsernamePassword;
+- (void)showHideSwitcherTab;
 
 // method for managing keyboard behaviours
 - (void)dismissKeyboard;
