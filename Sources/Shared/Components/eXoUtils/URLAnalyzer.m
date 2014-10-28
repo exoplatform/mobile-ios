@@ -21,7 +21,12 @@
 
 @implementation URLAnalyzer
 
-
+/*!
+ * Adds necessary parts of the server URL (e.g. http://) and
+ * removes the unnecessary parts (e.g. path).
+ * @returns a correct server URL e.g.: http://int.exoplatform.org
+ * @returns nil if the URL is not well formed
+ */
 + (NSString *)parserURL:(NSString *)urlStr
 {
     //Put in lowercase to make checks easier
@@ -31,7 +36,7 @@
     if(urlStr == nil || [urlStr length] == 0)
         return nil;
     
-    // Check the scheme of the given URL. If it's http:// or https:// do nothing
+    // Check the scheme of the given URL. Skip if it's http:// or https://
     if (![urlStr hasPrefix:HTTP_PROTOCOL] && ![urlStr hasPrefix:HTTPS_PROTOCOL]) {
         NSRange scheme = [urlStr rangeOfString:@"://"];
         // If it's not http or https but it contains the characters ://
@@ -53,14 +58,18 @@
     
     // Add the scheme, it's already been checked and is either http or https
     [validUrl appendFormat:@"%@%@", tmpUrl.scheme, @"://"];
-    // Check if the host contains wrong characters & < > " ' ! ; \ | ( ) { } [ ] , * %
+    // Check if the host contains wrong characters . & < > " ' ! ; \ | ( ) { } [ ] , * % $ # : ` + ? ~ @ _
     NSCharacterSet *invalidChars = 
-            [NSCharacterSet characterSetWithCharactersInString:@"&<>\"'!;\\|(){}[],*%"];
+            [NSCharacterSet characterSetWithCharactersInString:@"&<>\"'!;\\|(){}[],*%$#:`+?~_"];
     NSRange range = [tmpUrl.host rangeOfCharacterFromSet:invalidChars];
-    if (range.length == 0)
+    BOOL containsWrongChars = range.length > 0;
+    BOOL containsWrongDots = ([tmpUrl.host rangeOfString:@".."].length > 0 || [tmpUrl.host rangeOfString:@"."].location == [tmpUrl.host length] - 1 || [tmpUrl.host hasPrefix:@"."] );
+    
+    if (!containsWrongChars && !containsWrongDots)
         [validUrl appendString:tmpUrl.host];
     else
         return nil;
+    
     // Add the port
     int port = (tmpUrl.port == nil) ? 0 : [tmpUrl.port intValue];
     if(port > 0)

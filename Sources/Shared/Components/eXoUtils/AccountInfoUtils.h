@@ -17,11 +17,14 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
+
 #import <Foundation/Foundation.h>
 
-@interface CloudUtils : NSObject
-+(BOOL) checkEmailFormat:(NSString *)mail;
-+(NSString *)usernameByEmail:(NSString *)email;
-+ (NSString *)serverUrlByTenant:(NSString *)tenantName;
-+ (NSString *)tenantFromServerUrl:(NSString *)serverUrl;
+@interface AccountInfoUtils : NSObject
+
++ (BOOL)stringContainsSpecialCharacter:(NSString*)str inSet:(NSString *)chars;
++ (BOOL)accountNameIsValid:(NSString*)name;
++ (BOOL)usernameIsValid:(NSString*)username;
++ (NSString*)extractAccountNameFromURL:(NSString *)url;
+
 @end

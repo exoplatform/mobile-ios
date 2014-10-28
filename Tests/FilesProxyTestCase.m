@@ -57,7 +57,10 @@
 {
     ApplicationPreferencesManager *appPM = [ApplicationPreferencesManager sharedInstance];
     [appPM setJcrRepositoryName:@"repository" defaultWorkspace:@"collaboration" userHomePath:@"/Users/johndoe"];
-    [appPM addAndSetSelectedServer:TEST_SERVER_URL withName:TEST_SERVER_NAME];
+    ServerObj * account = [[ServerObj alloc] init];
+    account.accountName = TEST_SERVER_NAME;
+    account.serverUrl = TEST_SERVER_URL;
+    [appPM addAndSelectServer:account];
     
     UserPreferencesManager *userPM = [UserPreferencesManager sharedInstance];
     userPM.showPrivateDrive = YES;

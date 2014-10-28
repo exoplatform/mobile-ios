@@ -34,6 +34,7 @@
 #import "WelcomeViewController_iPad.h"
 #import "AppDelegate_iPad.h"
 #import "CloudUtils.h"
+#import "AccountInfoUtils.h"
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
 static NSString *CellIdentifierDocuments = @"CellIdentifierDocuments";
@@ -673,15 +674,7 @@ typedef enum {
 
 #pragma mark - ServerManagerProtocol
 
-- (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
-    
-    NSCharacterSet *invalidCharSet = [NSCharacterSet characterSetWithCharactersInString:chars];
-    NSRange range = [str rangeOfCharacterFromSet:invalidCharSet];
-    return (range.length > 0);
-    
-}
-
-- (BOOL)checkServerInfo:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl {
+- (BOOL)checkServerName:(NSString*)strServerName andServerUrl:(NSString*)strServerUrl andUsername:(NSString*)username {
     
     //Check if the server name is null or empty
     if (strServerName == nil || [strServerName length] == 0){
@@ -690,8 +683,8 @@ typedef enum {
         [alert release];
         return NO;
     }
-    // Check if the name contains some forbidden characters: & < > " '
-    if ([self nameContainSpecialCharacter:strServerName inSet:@"&<>\"'"]) {
+    // Check if the name contains only alpha-numeric characters
+    if (![AccountInfoUtils accountNameIsValid:strServerName]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
@@ -703,8 +696,17 @@ typedef enum {
         [alert show];
         [alert release];
         return NO;
-    } else if (![CloudUtils correctServerUrl:strServerUrl]) {
+    } else if ([URLAnalyzer parserURL:strServerUrl] == nil) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl")delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    
+    // Check if the username is valid
+    if (username == nil || ![AccountInfoUtils usernameIsValid:username])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
         return NO;
@@ -716,12 +718,15 @@ typedef enum {
 // Unique private method to add/edit a server, avoids duplicating common code
 - (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password  atIndex:(int)index {
     
+    username = username == nil ? @"" : [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    password = password == nil ? @"" : [password stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     if (![[strServerUrl lowercaseString] hasPrefix:@"http://"] && 
         ![[strServerUrl lowercaseString] hasPrefix:@"https://"]) {
         strServerUrl = [NSString stringWithFormat:@"http://%@", strServerUrl];
     }   
     // Check whether the name and URL are correctly formed
-    if(![self checkServerInfo:strServerName andServerUrl:strServerUrl])
+    if(![self checkServerName:strServerName andServerUrl:strServerUrl andUsername:username])
         return NO;
     
     // If the name and URL are well formed, we remove some unnecessary characters
@@ -729,19 +734,15 @@ typedef enum {
     NSString* cleanServerUrl = [URLAnalyzer parserURL:[strServerUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     
     ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    if(index == -1) {
-        // Check whether the name and URL already exists, ignoring case
-        if ([appPrefManager checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl ignoringIndex:index] > -1) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-            return NO;
-        }
+
+    // Check whether an account with same name, server URL and username already exists
+    if ([appPrefManager checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl andUsername:username ignoringIndex:index] > -1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
     }
-    
-    username = [username length] > 0 ? username : @"";
-    password = [password length] > 0 ? password : @"";
-    
+
     [appPrefManager addEditServerWithServerName:cleanServerName andServerUrl:cleanServerUrl withUsername:username andPassword:password atIndex:index];
     
     [self.tableView reloadData];

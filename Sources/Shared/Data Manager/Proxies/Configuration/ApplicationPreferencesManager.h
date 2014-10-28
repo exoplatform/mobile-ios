@@ -66,9 +66,9 @@
 //add a new server or save changes to an existed one
 - (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password atIndex:(int)index;
 //if existed, return the server's index, otherwise return -1
-- (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl ignoringIndex:(NSInteger) index;
+- (int)checkServerAlreadyExistsWithName:(NSString*)strServerName andURL:(NSString*)strServerUrl andUsername:(NSString*)username ignoringIndex:(NSInteger) index;
 - (void)persistServerList;
-- (void) addAndSetSelectedServer:(NSString *)serverLink withName:(NSString *)serverName;
+- (void) addAndSelectServer:(ServerObj*)account;
 
 #pragma mark * Read/Write data
 - (CXMLNode*) getNode: (CXMLNode*) element withName: (NSString*) name;
@@ -87,9 +87,7 @@
 
 #pragma mark * JCR storage
 - (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath;
-- (void)saveCurrentServerUsernameCombination;
 
 #pragma mark * Utils
 - (void) loadReceivedUrlToPreference:(NSURL *)url;
-- (NSString*)extractAccountNameFromURL:(NSString*)url;
 @end

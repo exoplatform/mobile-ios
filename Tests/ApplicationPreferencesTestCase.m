@@ -86,7 +86,10 @@
 
 - (void)testAddAndSelectServer
 {
-    [serverManager addAndSetSelectedServer:TEST_SERVER_URL withName:TEST_SERVER_NAME];
+    ServerObj * account = [[ServerObj alloc] init];
+    account.accountName = TEST_SERVER_NAME;
+    account.serverUrl = TEST_SERVER_URL;
+    [serverManager addAndSelectServer:account];
     XCTAssertTrue([[serverManager serverList] count] == 1, @"Number of servers should be 1");
     XCTAssertEqual([serverManager selectedServerIndex], 0, @"Server at pos 0 should be selected");
 }
@@ -96,14 +99,23 @@
     //    Add new server
     [serverHelper addDefaultAccount];
     
-    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL ignoringIndex:-1], 0, @"The server should already exist at index 0");
+    // Should return the existing server at index 0
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL andUsername:TEST_USER_NAME ignoringIndex:-1], 0, @"The server should already exist at index 0");
     
-//    commented out because the method checkServerAlreadyExistsWithName:andURL, despite its name, does not check the server name
-//    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:TEST_SERVER_URL ignoringIndex:-1], -1, @"The server should not exist");
+    // Should return -1 because the account name is different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:TEST_SERVER_URL andUsername:TEST_USER_NAME ignoringIndex:-1], -1, @"The server should not exist");
     
-    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
+    // Should return -1 because the account server URL is different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:@"http://foo.bar" andUsername:TEST_USER_NAME ignoringIndex:-1], -1, @"The server should not exist");
     
-    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
+    // Should return -1 because the account username is different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL andUsername:@"someuser" ignoringIndex:-1], -1, @"The server should not exist");
+    
+    // Should return -1 because the account username is empty
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL andUsername:@"" ignoringIndex:-1], -1, @"The server should not exist");
+    
+    // Should return -1 because all parameters are different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:@"http://foo.bar" andUsername:@"someuser" ignoringIndex:-1], -1, @"The server should not exist");
 }
 
 - (void)testHandleStartupURL_WithoutUsername
@@ -151,49 +163,5 @@
     
 }
 
-- (void)testAccountNameExtraction_CloudURL
-{
-    NSString* url = TEST_CLOUD_URL; // http://mytenant.exoplatform.net
-    
-    NSString* name = [serverManager extractAccountNameFromURL:url];
-    
-    XCTAssertEqualObjects(@"Mytenant", name, @"Extracted tenant name is incorrect");
-}
-
-- (void)testAccountNameExtraction_ShortURL
-{
-    NSString* url = @"http://mycompany.com";
-    
-    NSString* name = [serverManager extractAccountNameFromURL:url];
-    
-    XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
-}
-
-- (void)testAccountNameExtraction_NormalURL
-{
-    NSString* url = @"http://int.mycompany.com";
-    
-    NSString* name = [serverManager extractAccountNameFromURL:url];
-    
-    XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
-}
-
-- (void)testAccountNameExtraction_LongURL
-{
-    NSString* url = @"http://int.my.cool.company.com";
-    
-    NSString* name = [serverManager extractAccountNameFromURL:url];
-    
-    XCTAssertEqualObjects(@"Company", name, @"Extracted name is incorrect");
-}
-
-- (void)testAccountNameExtraction_HTTPS_URL
-{
-    NSString* url = @"https://int.mycompany.com";
-    
-    NSString* name = [serverManager extractAccountNameFromURL:url];
-    
-    XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
-}
 
 @end

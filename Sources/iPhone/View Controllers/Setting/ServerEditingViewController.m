@@ -149,7 +149,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     if([serverObj.username length] > 0) {
         _usernameTf.text = serverObj.username;
     } else {
-        [_usernameTf setPlaceholder:Localize(@"Required")];
+        [_usernameTf setPlaceholder:Localize(@"Optional")];
     }
     
     if([serverObj.password length] > 0) {

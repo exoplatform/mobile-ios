@@ -21,7 +21,7 @@
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
-#import "CloudUtils.h"
+#import "URLAnalyzer.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CloudViewUtils.h"
 #import "defines.h"
@@ -89,7 +89,7 @@
 {
     
     [LoginProxy doLogout];//clear all credentials cache
-    NSString *correctUrl = [CloudUtils correctServerUrl:self.serverUrlTf.text];
+    NSString *correctUrl = [URLAnalyzer parserURL:self.serverUrlTf.text];
     
     if(correctUrl) {
         [self dismissKeyboards];

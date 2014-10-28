@@ -21,6 +21,7 @@
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
 #import "CloudUtils.h"
+#import "AccountInfoUtils.h"
 #import "UserPreferencesManager.h"
 #import "AlreadyAccountViewController.h"
 #import "OnPremiseViewController.h"
@@ -196,8 +197,12 @@ return self;
             if(isPlatformCompatibleWithSocialFeatures) {
                 if([_delegate isKindOfClass:[AlreadyAccountViewController class]] || [_delegate isKindOfClass:[OnPremiseViewController class]]) {
                     // add the server url to server list
-                    NSString* accountName = [appPref extractAccountNameFromURL:self.serverUrl];
-                    [appPref addAndSetSelectedServer:self.serverUrl withName:accountName];
+                    NSString* accountName = [AccountInfoUtils extractAccountNameFromURL:self.serverUrl];
+                    ServerObj* account = [[[ServerObj alloc] init] autorelease];
+                    account.accountName = accountName;
+                    account.serverUrl = self.serverUrl;
+                    account.username = self.username;
+                    [appPref addAndSelectServer:account];
                 }
                 [UserPreferencesManager sharedInstance].username = self.username;
                 [UserPreferencesManager sharedInstance].password = self.password;

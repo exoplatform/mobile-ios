@@ -322,6 +322,8 @@
 		57176F8719D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57176F8419D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib */; };
 		57176F8819D95079003C8B90 /* AccountSwitcherViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */; };
 		5728F29D19480EB7007EB4AE /* LanguageHelperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */; };
+		572C97FD19FE2C72003D5CF4 /* AccountInfoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 572C97FC19FE2C72003D5CF4 /* AccountInfoUtils.m */; };
+		572C981019FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 572C980F19FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m */; };
 		572EAA05192AFBFD008CFB11 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA990192AFBFD008CFB11 /* ATMHud.m */; };
 		572EAA06192AFBFD008CFB11 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA993192AFBFD008CFB11 /* ATMHudQueueItem.m */; };
 		572EAA07192AFBFD008CFB11 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA995192AFBFD008CFB11 /* ATMHudView.m */; };
@@ -1418,6 +1420,9 @@
 		57176F8519D95079003C8B90 /* AccountSwitcherViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountSwitcherViewController_iPad.h; path = AccountSwitcher/AccountSwitcherViewController_iPad.h; sourceTree = "<group>"; };
 		57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountSwitcherViewController_iPad.m; path = AccountSwitcher/AccountSwitcherViewController_iPad.m; sourceTree = "<group>"; };
 		5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelperTestCase.m; sourceTree = "<group>"; };
+		572C97FB19FE2C72003D5CF4 /* AccountInfoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoUtils.h; sourceTree = "<group>"; };
+		572C97FC19FE2C72003D5CF4 /* AccountInfoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoUtils.m; sourceTree = "<group>"; };
+		572C980F19FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoUtilsTestCase.m; sourceTree = "<group>"; };
 		572EA98F192AFBFD008CFB11 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		572EA990192AFBFD008CFB11 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
 		572EA991192AFBFD008CFB11 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
@@ -3528,6 +3533,7 @@
 				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
 				578318141929B035006A26EC /* UserPreferencesTestCase.m */,
 				5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */,
+				572C980F19FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -4452,6 +4458,8 @@
 				3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */,
 				3D7E197E1855AB8300CCF6A8 /* UIImage+BlankImage.h */,
 				3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */,
+				572C97FB19FE2C72003D5CF4 /* AccountInfoUtils.h */,
+				572C97FC19FE2C72003D5CF4 /* AccountInfoUtils.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -5483,6 +5491,7 @@
 				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
 				572EAA30192AFBFD008CFB11 /* CXMLElement.m in Sources */,
 				57831829192A1301006A26EC /* main.m in Sources */,
+				572C97FD19FE2C72003D5CF4 /* AccountInfoUtils.m in Sources */,
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
 				572EAA2B192AFBFD008CFB11 /* UIImage+SSToolkitAdditions.m in Sources */,
@@ -5632,6 +5641,7 @@
 				577D5A9419C98D79007B8A5B /* SettingsTestCase.m in Sources */,
 				575EFE60192E045A00798DCD /* SocialTestsHelper.m in Sources */,
 				578F3A911933288900554F28 /* SocialRestVersionProxyTestCase.m in Sources */,
+				572C981019FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m in Sources */,
 				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
 				57E47619193447C000C3140E /* FilesProxyTestCase.m in Sources */,
 				57E47603193432B400C3140E /* SocialUserProfileCacheTestCase.m in Sources */,

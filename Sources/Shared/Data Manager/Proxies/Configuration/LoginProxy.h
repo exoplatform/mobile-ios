@@ -48,6 +48,6 @@
 - (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error;
 @end
 
-@interface LoginProxyAlert
+@interface LoginProxyAlert : NSObject
 + (UIAlertView*) alertWithError:(NSError*)error andDelegate:(id)delegate;
 @end
