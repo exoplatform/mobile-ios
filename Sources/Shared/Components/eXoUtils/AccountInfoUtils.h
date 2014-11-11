@@ -25,6 +25,6 @@
 + (BOOL)stringContainsSpecialCharacter:(NSString*)str inSet:(NSString *)chars;
 + (BOOL)accountNameIsValid:(NSString*)name;
 + (BOOL)usernameIsValid:(NSString*)username;
-+ (NSString*)extractAccountNameFromURL:(NSString *)url;
++ (NSString*)extractAccountNameFromURL:(NSString *)strUrl;
 
 @end

@@ -78,6 +78,27 @@
     return validUrl;
 }
 
++ (BOOL) isIPAddress:(NSString *)urlStr {
+    NSURL* url = [NSURL URLWithString:urlStr];
+    BOOL result = NO;
+    if (url != nil) {
+        NSArray* parts = [url.host componentsSeparatedByString:@"."];
+        if (parts.count == 4) {
+            for (NSString* part in parts) {
+                if ([part rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound) {
+                    // a letter was found, it's not an IP address
+                    result = NO;
+                    break;
+                } else {
+                    // assume it is an IP address so far
+                    result = YES;
+                }
+            }
+        }
+    }
+    return result;
+}
+
 + (NSString *)enCodeURL:(NSString *)url {
     
     NSMutableString *escaped = [NSMutableString stringWithString:url];  

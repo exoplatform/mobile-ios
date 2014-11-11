@@ -67,38 +67,39 @@
 /*!
  Extracts an account name from a URL.
  If the URL is an eXo Cloud URL, the name will be the tenant name extracted by
- @code
- CloudUtils.tenantFromServerUrl
- @endcode
- If the URL is a normal URL, the name will be the second-last element of the URL's host.
+ CloudUtils.tenantFromServerUrl.
+ If the URL is a normal URL, the name will be the first part of the FQDN.
  Examples:
 
  - http://mycompany.com => Mycompany
  
- - http://int.mycompany.com => Mycompany
+ - http://int.mycompany.com => Int
  
- - http://int.my.cool.company => Company
+ - http://int.my.cool.company => Int
  
  @returns a name for the account based on the given URL
  @returns the localization of "My intranet" if no name could be extracted
+ @returns the IP address if the given URL is an IP address
  */
-+ (NSString*)extractAccountNameFromURL:(NSString *)url
++ (NSString*)extractAccountNameFromURL:(NSString *)strUrl
 {
-    NSString* name;
+    NSString* name = nil;
     // Check if the URL is an eXo Cloud URL
-    NSRange cloudHostRange = [url rangeOfString:EXO_CLOUD_HOST];
+    NSRange cloudHostRange = [strUrl rangeOfString:EXO_CLOUD_HOST];
     if(cloudHostRange.location != NSNotFound) {
         // if yes, get the tenant name from the CloudUtils method
-        name = [CloudUtils tenantFromServerUrl:url];
+        name = [CloudUtils tenantFromServerUrl:strUrl];
     } else {
         // if not, extract the domain part of the url's host
-        NSString* host = [[NSURL URLWithString:url] host];
-        NSArray* elements = [host componentsSeparatedByString:@"."];
-        if (elements.count == 2) // mycompany.com => Mycompany
-            name = [elements objectAtIndex:0];
-        else if (elements.count > 2) // int.mycompany.com => Mycompany
-            // int.my.cool.company.com => Company
-            name = [elements objectAtIndex:elements.count-2];
+        NSURL* urlURL = [NSURL URLWithString:strUrl];
+        if (urlURL != nil) {
+            if ([URLAnalyzer isIPAddress:urlURL.absoluteString]) {
+                name = urlURL.host;
+            } else {
+                NSArray* elements = [urlURL.host componentsSeparatedByString:@"."];
+                name = [elements objectAtIndex:0];
+            }
+        }
     }
     if (name == nil) name = Localize(@"My intranet");
     return [name capitalizedString];

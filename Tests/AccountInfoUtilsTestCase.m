@@ -127,7 +127,7 @@
     
     NSString* name = [AccountInfoUtils extractAccountNameFromURL:url];
     
-    XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
+    XCTAssertEqualObjects(@"Int", name, @"Extracted name is incorrect");
 }
 
 - (void)testAccountNameExtraction_LongURL
@@ -136,7 +136,7 @@
     
     NSString* name = [AccountInfoUtils extractAccountNameFromURL:url];
     
-    XCTAssertEqualObjects(@"Company", name, @"Extracted name is incorrect");
+    XCTAssertEqualObjects(@"Int", name, @"Extracted name is incorrect");
 }
 
 - (void)testAccountNameExtraction_HTTPS_URL
@@ -145,15 +145,37 @@
     
     NSString* name = [AccountInfoUtils extractAccountNameFromURL:url];
     
+    XCTAssertEqualObjects(@"Int", name, @"Extracted name is incorrect");
+}
+
+- (void)testAccountNameExtraction_IP
+{
+    NSString* url = @"http://192.168.4.42";
+    
+    NSString* name = [AccountInfoUtils extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"192.168.4.42", name, @"Extracted name is incorrect");
+
+}
+
+- (void)testAccountNameExtraction_URL_With_Port
+{
+    NSString* url = @"http://mycompany.com:8080";
+    
+    NSString* name = [AccountInfoUtils extractAccountNameFromURL:url];
+    
     XCTAssertEqualObjects(@"Mycompany", name, @"Extracted name is incorrect");
 }
 
-
-
-
-
-
-
+- (void)testAccountNameExtraction_IP_With_Port
+{
+    NSString* url = @"http://192.168.4.42:8080";
+    
+    NSString* name = [AccountInfoUtils extractAccountNameFromURL:url];
+    
+    XCTAssertEqualObjects(@"192.168.4.42", name, @"Extracted name is incorrect");
+    
+}
 
 
 @end
