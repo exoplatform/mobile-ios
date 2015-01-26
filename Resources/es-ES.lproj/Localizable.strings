@@ -14,10 +14,17 @@
 
 "SignInButton" = "Iniciar sesión";
 
+"SignInButton_In" = "in";
+
 "UsernamePlaceholder" = "Nombre de usuario";
 
 "PasswordPlaceholder" = "Contraseña";
 
+"Last Login" = "Last login";
+
+"Connected" = "Connected";
+
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -117,9 +124,11 @@
 
 "Send" = "Enviar";
 
-"ServerList" = "Lista de servidores";
+"ServerList" = "Accounts";
 
-"NewServer" = "Nuevo servidor";
+"Account" = "Account";
+
+"NewServer" = "New account";
 
 "ServerModify" = "Modificar el servidor";
 

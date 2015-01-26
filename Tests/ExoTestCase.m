@@ -18,6 +18,7 @@
 //
 
 #import "ExoTestCase.h"
+#import "LanguageHelper.h"
 
 @implementation ExoTestCase
 
@@ -25,12 +26,12 @@
 {
     [super setUp];
     [self createVariables];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [[LanguageHelper sharedInstance] changeToLanguage:0]; // set language to English by default
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [[LanguageHelper sharedInstance] changeToLanguage:0]; // revert language to English
     [super tearDown];
 }
 
@@ -68,13 +69,16 @@
                  @"test+test@example.com",
                  @"test@test.example.com",
                  @"test@test-example.com",
-                 //@"test@test_example.com",
                  nil];
     
     TEST_EMAILS_INCORRECT = [NSArray arrayWithObjects:
                         @"example.com",
                         @"@example.com",
                         @"test",
+                        @"test@example@com",
+                        @"test@@example.com",
+                        @"test@test@example.com",
+                        @"test@test_example.com", // => _ is not allowed in the domain name
                         @"test@", nil];
     
     TEST_URLS_OK = [NSArray arrayWithObjects:
@@ -83,6 +87,7 @@
                @"test-example.com",
                @"test.fr",
                @"test.info",
+               @"some.test.averylongtld",
                @"http://test.com",
                @"https://test.com",
                @"t.e.s.t.com",
@@ -90,8 +95,8 @@
                @"test123.com",
                @"www.test.com/some/path",
                @"test",
-               @"test_example.com",
-               // @"10.100.10.1",
+               @"http://some.test.com?with=param&key=value",
+               @"192.168.10.0",
                nil];
     
     TEST_URLS_INCORRECT = [NSArray arrayWithObjects:
@@ -101,15 +106,17 @@
                       @"test[].com",
                       @"test!.com",
                       @"test&.com",
+                      @"test_example.com",
                       @"test*.com",
                       @"test|.com",
                       @"test example.com",
+                      @"test..example.info",
                       @"test...example.com",
-                      //@"test~.com",
-                      //@".com",
-                      //@"test@.com",
-                      //@"test#.com",
-                      //@"test$.com",
+                      @"test~.com",
+                      @".com",
+                      @"test@.com",
+                      // @"test#.com", => will be returned as test.com therefore still correct
+                      @"test$.com",
                       nil];
 }
 

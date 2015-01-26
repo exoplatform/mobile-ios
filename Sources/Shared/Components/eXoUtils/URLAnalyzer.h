@@ -25,6 +25,7 @@
 }
 
 + (NSString *)parserURL:(NSString *)urlStr;
++ (BOOL)      isIPAddress:(NSString *)urlStr;
 + (NSString *)enCodeURL:(NSString *)url;
 + (NSString *)decodeURL:(NSString *)url;
 

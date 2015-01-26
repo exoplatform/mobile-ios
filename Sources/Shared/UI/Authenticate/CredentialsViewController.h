@@ -33,6 +33,6 @@
 - (IBAction)onSignInBtn:(id)sender;	//Login action
 - (void) dismissKeyboard;
 - (void)signInAnimation:(int)animationMode;
-
+- (void)setLoginButtonLabel;
 
 @end

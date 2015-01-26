@@ -42,46 +42,6 @@
     return  [NSString stringWithFormat:@"http://%@.%@",tenantName, EXO_CLOUD_HOST];
 }
 
-//returns a correct server url for ex: http://int.exoplatform.org
-//return nil if the url is not well formed
-+ (NSString *)correctServerUrl:(NSString *)inputtedUrl
-{
-    if([inputtedUrl length] == 0) {
-        return nil;
-    }
-    //url can't contain some special characters
-    //url can't end with a '.' for ex: abc.
-    //url can't contain a sequence of more than 1 '.' for ex: abc...
-    if(([self nameContainSpecialCharacter:inputtedUrl inSet:@"&<>\"'!;\\|(){}[],*%"])
-       || ([inputtedUrl rangeOfString:@"."].location == [inputtedUrl length] - 1)
-       || ([inputtedUrl rangeOfString:@".."].location != NSNotFound)) {
-        return nil;
-    }
-    
-    NSString *correctUrl = inputtedUrl;
-    
-    //add the prefix
-    if (![[inputtedUrl lowercaseString] hasPrefix:@"http://"] &&
-        ![[inputtedUrl lowercaseString] hasPrefix:@"https://"]) {
-        correctUrl = [NSString stringWithFormat:@"http://%@", correctUrl];
-    }
-    
-    NSURL* tmpUrl = [NSURL URLWithString:correctUrl];
-    
-    if(tmpUrl && tmpUrl.scheme && tmpUrl.host) {
-        return correctUrl;
-    }
-    return nil;
-}
-
-+ (BOOL)nameContainSpecialCharacter:(NSString*)str inSet:(NSString *)chars {
-    
-    NSCharacterSet *invalidCharSet = [NSCharacterSet characterSetWithCharactersInString:chars];
-    NSRange range = [str rangeOfCharacterFromSet:invalidCharSet];
-    return (range.length > 0);
-    
-}
-
 //gets the tenant name from server url, returns nil if not exist
 //the cloud tenant is in form: http://abc.exoplatform.net
 //so if the url contains cloud host (exoplatform.net), returns 'abc' as tenant name

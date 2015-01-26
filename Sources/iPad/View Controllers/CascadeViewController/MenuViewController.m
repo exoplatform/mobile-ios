@@ -12,9 +12,11 @@
 #import "AppDelegate_iPad.h"
 #import "LanguageHelper.h"
 #import "UserProfileViewController.h"
+#import "AccountSwitcherViewController_iPad.h"
 #import "ActivityStreamBrowseViewController_iPad.h"
 #import "DocumentsViewController_iPad.h"
 #import "DashboardViewController_iPad.h"
+#import "ApplicationPreferencesManager.h"
 
 
 #define kCellText @"CellText"
@@ -22,6 +24,13 @@
 
 #define kHeightForFooter 60.0
 #define kMenuViewHeaderHeight 70.0
+#define kMenuViewWidth  200.0
+#define kFooterButtonWidth 40.0
+#define kFooterButtonLeftRightMargin 15.0
+#define kFooterLogoutButtonPosX   kFooterButtonLeftRightMargin // Aligned left (0 + left margin)
+#define kFooterSwitcherButtonPosX (kMenuViewWidth-kFooterButtonWidth)/2 // Center
+#define kFooterSettingsButtonPosX kMenuViewWidth - kFooterButtonWidth - kFooterButtonLeftRightMargin // Aligned right
+
 
 @interface FooterView : UIView
 
@@ -56,6 +65,7 @@
 
 // = Interface for private method
 @interface MenuViewController (PrivateMethods)
+- (void)initModalNavigationController;
 - (void)initAndSelectDocumentsViewController;
 @end
 
@@ -63,13 +73,17 @@
     CGRect _viewFrame;
 }
 
+@property (nonatomic, retain) eXoNavigationController* modalNavigationViewController;
+@property (nonatomic, retain) UIButton* accountSwitcherButton;
+
 @end
 
 @implementation MenuViewController
 
+@synthesize modalNavigationViewController;
 @synthesize userProfileViewController = _userProfileViewController;
-
 @synthesize tableView = _tableView, isCompatibleWithSocial = _isCompatibleWithSocial;
+@synthesize accountSwitcherButton = _accountSwitcherButton;
 
 
 #pragma mark -
@@ -112,51 +126,63 @@
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:_tableView];
 
-    //Add the footer of the View
-    //For Settings and Logout
-    UIView *footer = [[[FooterView alloc] initWithFrame:CGRectMake(0,viewBounds.size.height - kHeightForFooter,viewBounds.size.width, kHeightForFooter)] autorelease];
+    //Add the footer of the View for Logout, Account Switcher and Settings buttons
+    UIView *footer = [[[FooterView alloc] initWithFrame:CGRectMake(0,
+                                                                   viewBounds.size.height - kHeightForFooter,
+                                                                   viewBounds.size.width,
+                                                                   kHeightForFooter)] autorelease];
     footer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:footer];
-    // Create the button
+    // Create the Logout button
     UIButton *buttonLogout = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonLogout.frame = CGRectMake(15, 10, 39, 42);
+    buttonLogout.frame = CGRectMake(kFooterLogoutButtonPosX, 10, kFooterButtonWidth, 42);
     buttonLogout.showsTouchWhenHighlighted = YES;
-    
-    // Now load the image and create the image view
     UIImage *image = [UIImage imageNamed:@"Ipad_logout.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,kFooterButtonWidth,42)];
     [imageView setImage:image];
-    
     [buttonLogout addTarget:[AppDelegate_iPad instance] action:@selector(backToAuthenticate) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [buttonLogout addSubview:imageView];
-    
     [footer addSubview:buttonLogout];
     
+    // Create the Account Switcher button
+    self.accountSwitcherButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.accountSwitcherButton.frame = CGRectMake(kFooterSwitcherButtonPosX, 10, kFooterButtonWidth, 42);
+    self.accountSwitcherButton.showsTouchWhenHighlighted = YES;
+    UIImage *imageSwitcher = [UIImage imageNamed:@"Ipad_Switcher.png"];
+    UIImageView *imageSwitcherView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,kFooterButtonWidth,42)];
+    [imageSwitcherView setImage:imageSwitcher];
+    [self.accountSwitcherButton addTarget:self action:@selector(openAccountSwitcher) forControlEvents:UIControlEventTouchUpInside];
+    [self.accountSwitcherButton addSubview:imageSwitcherView];
+    [footer addSubview:self.accountSwitcherButton];
+    [self setAccountSwitcherButtonVisibility];
     
-    // Create the button
+    // Create the Settings button
     UIButton *buttonSettings = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonSettings.frame = CGRectMake(152, 12, 39, 42);
+    buttonSettings.frame = CGRectMake(kFooterSettingsButtonPosX, 12, kFooterButtonWidth, 42);
     buttonSettings.showsTouchWhenHighlighted = YES;
-    
-    // Now load the image and create the image view
     UIImage *imageSettings = [UIImage imageNamed:@"Ipad_setting.png"];
-    UIImageView *imageViewSettings = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,39,42)];
+    UIImageView *imageViewSettings = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,kFooterButtonWidth,42)];
     [imageViewSettings setImage:imageSettings];
-    
     [buttonSettings addSubview:imageViewSettings];
     [buttonSettings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [footer addSubview:buttonSettings];
     
     
-    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 1)];
+    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMenuViewWidth, 1)];
     topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
     [footer addSubview:topLine];
     [topLine release];
     
+}
+
+- (void)setAccountSwitcherButtonVisibility
+{
+    if ([[ApplicationPreferencesManager sharedInstance] twoOrMoreAccountsExist]) {
+        self.accountSwitcherButton.hidden = NO;
+    } else {
+        // Hide the button if only 1 account exists
+        self.accountSwitcherButton.hidden = YES;
+    }
 }
 
 - (void)viewDidLoad {
@@ -194,23 +220,41 @@
 #pragma mark -
 #pragma mark MenuManagement methods
 
+- (void) initModalNavigationController {
+    self.modalNavigationViewController = [[eXoNavigationController alloc] init];
+    self.modalNavigationViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    self.modalNavigationViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+}
+
+- (void)openAccountSwitcher {
+    AccountSwitcherViewController_iPad* accountSwitcher = [[AccountSwitcherViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
+    accountSwitcher.accountSwitcherDelegate = self;
+    accountSwitcher.modalPresentationStyle = UIModalPresentationFormSheet;
+    accountSwitcher.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    if (self.modalNavigationViewController == nil)
+    {
+        [self initModalNavigationController];
+    }
+    [self.modalNavigationViewController setViewControllers:[NSArray arrayWithObject:accountSwitcher]];
+    
+    [self presentViewController:self.modalNavigationViewController animated:YES completion:nil];
+}
 
 -(void)showSettings {
 
     // Settings
     SettingsViewController_iPad *iPadSettingViewController = [[[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     iPadSettingViewController.settingsDelegate = self;
-   
     [iPadSettingViewController startRetrieve];
-    if (_modalNavigationSettingViewController == nil) 
+    
+    if (self.modalNavigationViewController == nil)
     {
-        _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:iPadSettingViewController];
-        _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
+        [self initModalNavigationController];
     }
-    [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
-
+    
+    [self.modalNavigationViewController setViewControllers:[NSArray arrayWithObject:iPadSettingViewController]];
+    [self presentViewController:self.modalNavigationViewController animated:YES completion:nil];
 }
 
 
@@ -326,9 +370,6 @@
             break;
     }
     
-    
-    //DataViewController *dataViewController = [[DataViewController alloc] initWithFrame:CGRectMake(0, 0, 477, self.view.frame.size.height) squareCorners:NO];
-	//[[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:dataViewController invokeByController:self isStackStartView:TRUE];
 }
 
 
@@ -347,7 +388,8 @@
 	[_cellContents release];
     [_tableView release];
     [_userProfileViewController release];
-    [_modalNavigationSettingViewController release];
+    self.modalNavigationViewController = nil;
+    self.accountSwitcherButton = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     [super dealloc];
 }
@@ -363,11 +405,21 @@
 #pragma mark - Settings Delegate methods
 
 -(void)doneWithSettings {
-    // Reload the Documents page it is currently selected
+    // We have to display/hide the account switcher button if the number of accounts is more/less than 2
+    [self setAccountSwitcherButtonVisibility];
+    // Reload the Documents page if it is currently selected
     NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
     if (selectedIndex.row == EXO_DOCUMENTS_ROW)
         [self initAndSelectDocumentsViewController];
-    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
+    
+    if (self.modalNavigationViewController != nil)
+        [self.modalNavigationViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+# pragma mark Account Switcher delegate method
+- (void)didCloseAccountSwitcher {
+    if (self.modalNavigationViewController != nil)
+        [self.modalNavigationViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - change language management

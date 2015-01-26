@@ -105,10 +105,12 @@
 
 - (void)reloadUsernamePassword {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    self.username = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
-    self.username = self.username ? self.username : @"";
-    self.password = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
-    self.password = self.password ? self.password : @"";
+    NSString* tmpUsername = [userDefaults objectForKey:EXO_PREFERENCE_USERNAME];
+    self.username = tmpUsername != nil ? tmpUsername : @"";
+    NSString* tmpPassword = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
+    self.password = tmpPassword != nil ? tmpPassword : @"";
+    [tmpUsername release];
+    [tmpPassword release];
 }
 
 #pragma mark * Remember My Stream

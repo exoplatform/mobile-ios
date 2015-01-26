@@ -21,7 +21,7 @@
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
-#import "CloudUtils.h"
+#import "URLAnalyzer.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CloudViewUtils.h"
 #import "defines.h"
@@ -89,7 +89,7 @@
 {
     
     [LoginProxy doLogout];//clear all credentials cache
-    NSString *correctUrl = [CloudUtils correctServerUrl:self.serverUrlTf.text];
+    NSString *correctUrl = [URLAnalyzer parserURL:self.serverUrlTf.text];
     
     if(correctUrl) {
         [self dismissKeyboards];
@@ -116,31 +116,10 @@
 {
     [self view].userInteractionEnabled = YES;
     [self.hud setHidden:YES];
-    UIAlertView *alert = nil;
-    
-    if([error.domain isEqualToString:NSURLErrorDomain] && error.code == kCFURLErrorNotConnectedToInternet) { // network connection problem
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnectionFailed") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    } else if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorCannotFindHost || error.code == kCFURLErrorTimedOut)) { // cant connect to server
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"InvalidServer") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    } else if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication) { // wrong username/password
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"WrongUserNamePassword") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    } else if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) { //error getting platform info by restkit
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"NetworkConnectionFailed") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    } else if([error.domain isEqualToString:EXO_NOT_COMPILANT_ERROR_DOMAIN]) {
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Error")
-                                            message:Localize(@"NotCompliant")
-                                           delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil] autorelease];
-        
-    } else if([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(@"ServerNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    }
-    else {
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-    }
+    UIAlertView *alert = [LoginProxyAlert alertWithError:error andDelegate:self];
     alert.tag = kAlertViewTag;
     [alert show];
+    [alert release];
 }
 
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion

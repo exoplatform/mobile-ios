@@ -189,11 +189,22 @@
     }
 }
 
+- (void)setLoginButtonLabel
+{
+    // Display the selected account name on the Login button
+    ServerObj* selectedAcc = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount];
+    NSString* label = Localize(@"SignInButton");
+    if (selectedAcc != nil) {
+        label = [NSString stringWithFormat:@"%@ %@ %@",Localize(@"SignInButton"), Localize(@"SignInButton_In"), selectedAcc.accountName];
+    }
+    [self.btnLogin setTitle:label forState:UIControlStateNormal];
+}
+
 - (void)localizeLabel
 {
-    [self.btnLogin setTitle:Localize(@"SignInButton") forState:UIControlStateNormal];
-    // Display localized placeholder text
+    [self setLoginButtonLabel];
     
+    // Display localized placeholder text
     [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     
     if ([self.txtfUsername respondsToSelector:@selector(setAttributedPlaceholder:)]) {

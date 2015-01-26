@@ -21,6 +21,7 @@
 #import "ServerEditingViewController.h"
 #import "ServerAddingViewController.h"
 #import "ApplicationPreferencesManager.h"
+#import "UserPreferencesManager.h"
 #import "CustomBackgroundForCell_iPhone.h"
 #import "URLAnalyzer.h"
 #import "LanguageHelper.h"
@@ -55,7 +56,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     [_txtfServerName release];
     [_txtfServerUrl release];
     [_serverObj release];
-    [_btnDelete release];
     [_usernameTf release];
     [_passwordTf release];
     [super dealloc];
@@ -74,33 +74,17 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.title = Localize(@"ServerModify");
+
+    // Set title of the screen as the account name
+    if (_serverObj != nil) self.title = _serverObj.accountName;
+    else self.title = Localize(@"ServerModify");
+    
+    // Create and add a Done button in the navigation bar
     _bbtnEdit = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStyleDone target:self action:@selector(onBbtnDone)];
     [self.navigationItem setRightBarButtonItem:_bbtnEdit];
-        
-    _btnDelete = [[UIButton alloc] init];
-
-    int marginLeft;
     
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        marginLeft = 32;
-    else
-        marginLeft = 10;
-
-    [_btnDelete setFrame:CGRectMake(marginLeft, 10, self.navigationController.view.frame.size.width - marginLeft*2, 44)];
-
-        
-    [_btnDelete setBackgroundImage:[[UIImage imageNamed:@"DeleteButton"]
-                                    stretchableImageWithLeftCapWidth:5 topCapHeight:5]
-                          forState:UIControlStateNormal];
-    [_btnDelete setTitle:Localize(@"Delete") forState:UIControlStateNormal];
-    [_btnDelete addTarget:self action:@selector(onBtnDelete) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+    // Table view background
     self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
-    
-    
 
 }
 
@@ -142,7 +126,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return YES;
 }
 
@@ -153,15 +136,15 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (void)setServerObj:(ServerObj*)serverObj andIndex:(int)index
 {
-    _serverObj._strServerName = serverObj._strServerName;
-    _serverObj._strServerUrl = serverObj._strServerUrl;
+    _serverObj.accountName = serverObj.accountName;
+    _serverObj.serverUrl = serverObj.serverUrl;
     
     _serverObj.username = serverObj.username;
     _serverObj.password = serverObj.password;
     
-    _serverObj._bSystemServer = serverObj._bSystemServer;
-    [_txtfServerName setText:_serverObj._strServerName];
-    [_txtfServerUrl setText:_serverObj._strServerUrl];
+    _serverObj.bSystemServer = serverObj.bSystemServer;
+    [_txtfServerName setText:_serverObj.accountName];
+    [_txtfServerUrl setText:_serverObj.serverUrl];
     
     if([serverObj.username length] > 0) {
         _usernameTf.text = serverObj.username;
@@ -176,6 +159,12 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     }
     
     _intIndex = index;
+    
+    // YES : all fields are enabled and can be edited
+    // NO  : only the account name can be edited
+    BOOL sameAccount = [ApplicationPreferencesManager sharedInstance].selectedServerIndex == _intIndex;
+    BOOL connected   = [UserPreferencesManager sharedInstance].isUserLogged;
+    _canEdit = !sameAccount || !connected;
 }
 
 - (void)onBbtnDone
@@ -188,16 +177,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     }
 }
 
-- (void)onBtnDelete
-{
-    [_txtfServerName resignFirstResponder];
-    [_txtfServerUrl resignFirstResponder]; 
-    if ([_delegate deleteServerObjAtIndex:_intIndex]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_SERVER_DELETED object:self];
-        [self.navigationController popViewControllerAnimated:YES];   
-    }
-}
-
 #pragma mark TextField methods
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -207,7 +186,8 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField 
 {
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
+    // Move from one text field to another when tapping Next
+    // Save when tapping Done on the last field
     
     if (theTextField == _txtfServerName) {
         [_txtfServerUrl becomeFirstResponder];
@@ -240,35 +220,28 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	NSString* tmpStr = @"";
-    if(section == 1) {
-        tmpStr = Localize(@"Your credentials");
-    }
+    if (section == 0)
+        tmpStr = Localize(@"Account");
+    else if(section == 1)
+        tmpStr = Localize(@"Your credentials"); // You credentials
 	return tmpStr;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if(section == 1) {
-        return 44.0;
-    }
     return 10.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if(section == 1) { //add the delete button at the bottom of the table view
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
-        [view addSubview:_btnDelete];
-        return view;
-    }
     return nil;
 }
 
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
+    // There are 2 rows per section:
     return 2;
 }
 
@@ -298,6 +271,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         else
         {
             textLabel.text = Localize(@"ServerUrl");
+            [_txtfServerUrl setEnabled:_canEdit];
             [self configureTextField:_txtfServerUrl withTextLabel:textLabel inCell:cell];
         }
         
@@ -305,11 +279,13 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         if(indexPath.row == 0)
         {
             textLabel.text = Localize(@"Username");
+            [_usernameTf setEnabled:_canEdit];
             [self configureTextField:_usernameTf withTextLabel:textLabel inCell:cell];
         }
         else
         {
             textLabel.text = Localize(@"Password");
+            [_passwordTf setEnabled:_canEdit];
             [self configureTextField:_passwordTf withTextLabel:textLabel inCell:cell];
         }
     }
@@ -339,7 +315,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     _usernameTf = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:NO] retain];
     [_usernameTf setReturnKeyType:UIReturnKeyNext];
 	_usernameTf.delegate = self;
-    
     
     [_passwordTf release];
     _passwordTf = [[ServerAddingViewController textInputFieldForCellWithSecure:YES andRequired:NO] retain];

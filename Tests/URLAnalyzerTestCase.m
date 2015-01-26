@@ -40,34 +40,59 @@
     [super tearDown];
 }
 
-- (void)testParserURL
+- (void)testParserURLWithPath
 {
-    NSArray *originUrls = [NSArray arrayWithObjects:
-                           @"httpbin.org/portal",
-                           @"http://httpbin.org",
-                           @"httpbin.org/",
-                           @"http://httpbin.org/portal",
-                           nil];
+    NSString *url1 = @"demo.platform.exo.org/some/path";
+    NSString *url2 = @"http://demo.platform.exo.org/some/path";
+    NSString *expectedUrl = @"http://demo.platform.exo.org";
     
-    for (NSString *url in originUrls) {
+    XCTAssertEqualObjects([URLAnalyzer parserURL:url1], expectedUrl, @"Failed to parse and validate URL with path %@", url1);
+    XCTAssertEqualObjects([URLAnalyzer parserURL:url2], expectedUrl, @"Failed to parse and validate URL with path %@", url2);
+}
 
-        XCTAssertEqualObjects([URLAnalyzer parserURL:url], TEST_SERVER_URL, @"Failed to parse and validate URL %@",url);
-    }
-
+- (void)testParserURLWithQueryParam
+{
+    NSString *url = @"demo.platform.exo.org?foo=bar&param=value";
+    NSString *expectedUrl = @"http://demo.platform.exo.org";
+    
+    XCTAssertEqualObjects([URLAnalyzer parserURL:url], expectedUrl, @"Failed to parse and validate URL with param %@", url);
 }
 
 - (void)testParserURLWithHTTPS
 {
-    NSString *url = @"https://demo.platform.exo.org/portal";
+    NSString *url = @"https://demo.platform.exo.org";
     NSString *expectedUrl = @"https://demo.platform.exo.org";
     XCTAssertEqualObjects([URLAnalyzer parserURL:url], expectedUrl, @"Failed to parse and validate HTTPS URL %@", url);
 }
 
 - (void)testParserURLWithPort
 {
-    NSString *url = @"https://demo.platform.exo.org:80/portal";
-    NSString *expectedUrl = @"https://demo.platform.exo.org:80";
-    XCTAssertEqualObjects([URLAnalyzer parserURL:url], expectedUrl, @"Failed to parse and validate HTTPS URL %@", url);
+    NSString *url = @"demo.platform.exo.org:8080";
+    NSString *expectedUrl = @"http://demo.platform.exo.org:8080";
+    XCTAssertEqualObjects([URLAnalyzer parserURL:url], expectedUrl, @"Failed to parse and validate URL with port number %@", url);
+}
+
+- (void)testParserURLWithIPAddress
+{
+    NSString *url = @"192.168.10.10";
+    NSString *expectedUrl = @"http://192.168.10.10";
+    XCTAssertEqualObjects([URLAnalyzer parserURL:url], expectedUrl, @"Failed to parse and validate IP address %@", url);
+}
+
+- (void)testCorrectServerURL
+{
+    for (NSString *url in TEST_URLS_OK) {
+        NSString * correctUrl = [URLAnalyzer parserURL:url];
+        XCTAssertNotNil(correctUrl, @"URL %@ (obtained from %@) should be correct", correctUrl, url);
+    }
+}
+
+- (void)testIncorrectServerURL
+{
+    for (NSString *url in TEST_URLS_INCORRECT) {
+        NSString * incorrectUrl = [URLAnalyzer parserURL:url];
+        XCTAssertNil(incorrectUrl, @"URL %@ (obtained from %@) should be nil", incorrectUrl, url);
+    }
 }
 
 @end

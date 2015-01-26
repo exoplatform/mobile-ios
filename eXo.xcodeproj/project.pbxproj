@@ -318,7 +318,12 @@
 		46F6344914549DBC00BB57D4 /* libRestKitXMLParserLibxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CEA55A813C54CAF00FCB43A /* libRestKitXMLParserLibxml.a */; };
 		46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F83140BD7A60077BE15 /* DocumentsViewController.m */; };
 		46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F87F89140CC4C20077BE15 /* FileActionsViewController.m */; };
+		57176F7F19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 57176F7E19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m */; };
+		57176F8719D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57176F8419D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib */; };
+		57176F8819D95079003C8B90 /* AccountSwitcherViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */; };
 		5728F29D19480EB7007EB4AE /* LanguageHelperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */; };
+		572C97FD19FE2C72003D5CF4 /* AccountInfoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 572C97FC19FE2C72003D5CF4 /* AccountInfoUtils.m */; };
+		572C981019FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 572C980F19FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m */; };
 		572EAA05192AFBFD008CFB11 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA990192AFBFD008CFB11 /* ATMHud.m */; };
 		572EAA06192AFBFD008CFB11 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA993192AFBFD008CFB11 /* ATMHudQueueItem.m */; };
 		572EAA07192AFBFD008CFB11 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA995192AFBFD008CFB11 /* ATMHudView.m */; };
@@ -369,6 +374,14 @@
 		572EAA34192AFBFD008CFB11 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA00192AFBFD008CFB11 /* UIImage+Alpha.m */; };
 		572EAA35192AFBFD008CFB11 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */; };
 		572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */; };
+		5731DD411A1313FD001E3A19 /* ServerEditionTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */; };
+		573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */; };
+		573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */; };
+		573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7919D264580009E90D /* AccountSwitcherViewController.m */; };
+		573ADC7E19D269E20009E90D /* AccountSwitcherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */; };
+		573ADC7F19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */; };
+		573EC10219EBB99C00DE3866 /* CredentialsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573EC10119EBB99C00DE3866 /* CredentialsFormViewController.m */; };
+		573EC11519EBBAAE00DE3866 /* CredentialsFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573EC11419EBBAAE00DE3866 /* CredentialsFormViewController.xib */; };
 		575D9BBB192C8A3D00AD337A /* PlatformInfoResponse-4.0.json in Resources */ = {isa = PBXBuildFile; fileRef = 575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */; };
 		575D9BCE192CB67000AD337A /* SocialProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */; };
 		575D9BD0192CB93000AD337A /* SocialActivityStreamProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */; };
@@ -387,6 +400,10 @@
 		5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5778208E19249DB100ED72D0 /* InfoPlist.strings */; };
 		5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209319249DB100ED72D0 /* ExoTestCase.m */; };
 		5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */; };
+		577D5A2619C81FB1007B8A5B /* AuthenticateTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A2519C81FB1007B8A5B /* AuthenticateTabView.m */; };
+		577D5A5419C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A5319C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m */; };
+		577D5A9419C98D79007B8A5B /* SettingsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A9319C98D79007B8A5B /* SettingsTestCase.m */; };
+		577D5A9719C98E2C007B8A5B /* ServerManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A9619C98E2C007B8A5B /* ServerManagerHelper.m */; };
 		578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 578318141929B035006A26EC /* UserPreferencesTestCase.m */; };
 		57831829192A1301006A26EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57831828192A1301006A26EC /* main.m */; };
 		578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578ED78C17EAD51F00771497 /* Icon-72@2x.png */; };
@@ -412,6 +429,14 @@
 		57A91905190E0A16008CFD6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		57A91906190E0A16008CFD6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		57A9191C190E10AE008CFD6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A9191B190E10AE008CFD6B /* XCTest.framework */; };
+		57A9CD4F19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD4B19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff.png */; };
+		57A9CD5019C6D15300909D93 /* AuthenticateSwitcherIconIpadOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD4C19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff@2x.png */; };
+		57A9CD5119C6D15300909D93 /* AuthenticateSwitcherIconIpadOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD4D19C6D15300909D93 /* AuthenticateSwitcherIconIpadOn.png */; };
+		57A9CD5219C6D15300909D93 /* AuthenticateSwitcherIconIpadOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD4E19C6D15300909D93 /* AuthenticateSwitcherIconIpadOn@2x.png */; };
+		57A9CD5519C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD5319C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOff.png */; };
+		57A9CD5619C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD5419C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOn.png */; };
+		57A9CD5919C6D17900909D93 /* AuthenticateSwitcherIconIphoneOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD5719C6D17900909D93 /* AuthenticateSwitcherIconIphoneOff@2x.png */; };
+		57A9CD5A19C6D17900909D93 /* AuthenticateSwitcherIconIphoneOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A9CD5819C6D17900909D93 /* AuthenticateSwitcherIconIphoneOn@2x.png */; };
 		57C1C317192B3E0B007B3CD6 /* LoginProxyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */; };
 		57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203215B6B7B800BF902F /* CredentialsViewController.m */; };
 		57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C5203515B6B7C800BF902F /* ServerListViewController.m */; };
@@ -1390,7 +1415,15 @@
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
 		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
 		47F907430C78443DB778B574 /* libPods-eXoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eXoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57176F7D19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountSwitcherViewController_iPhone.h; path = AccountSwitcher/AccountSwitcherViewController_iPhone.h; sourceTree = "<group>"; };
+		57176F7E19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountSwitcherViewController_iPhone.m; path = AccountSwitcher/AccountSwitcherViewController_iPhone.m; sourceTree = "<group>"; };
+		57176F8419D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountSwitcherTableViewCell_iPad.xib; path = AccountSwitcher/AccountSwitcherTableViewCell_iPad.xib; sourceTree = "<group>"; };
+		57176F8519D95079003C8B90 /* AccountSwitcherViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountSwitcherViewController_iPad.h; path = AccountSwitcher/AccountSwitcherViewController_iPad.h; sourceTree = "<group>"; };
+		57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountSwitcherViewController_iPad.m; path = AccountSwitcher/AccountSwitcherViewController_iPad.m; sourceTree = "<group>"; };
 		5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageHelperTestCase.m; sourceTree = "<group>"; };
+		572C97FB19FE2C72003D5CF4 /* AccountInfoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoUtils.h; sourceTree = "<group>"; };
+		572C97FC19FE2C72003D5CF4 /* AccountInfoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoUtils.m; sourceTree = "<group>"; };
+		572C980F19FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoUtilsTestCase.m; sourceTree = "<group>"; };
 		572EA98F192AFBFD008CFB11 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		572EA990192AFBFD008CFB11 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
 		572EA991192AFBFD008CFB11 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
@@ -1490,6 +1523,17 @@
 		572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		572EAA03192AFBFD008CFB11 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditionTestCase.m; sourceTree = "<group>"; };
+		573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ipad_Switcher.png; sourceTree = "<group>"; };
+		573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ipad_Switcher@2x.png"; sourceTree = "<group>"; };
+		573ADC7819D264580009E90D /* AccountSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherViewController.h; sourceTree = "<group>"; };
+		573ADC7919D264580009E90D /* AccountSwitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSwitcherViewController.m; sourceTree = "<group>"; };
+		573ADC7B19D269E20009E90D /* AccountSwitcherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherTableViewCell.h; sourceTree = "<group>"; };
+		573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSwitcherTableViewCell.m; sourceTree = "<group>"; };
+		573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountSwitcherTableViewCell_iPhone.xib; path = "Sources/iPhone/View Controllers/AccountSwitcher/AccountSwitcherTableViewCell_iPhone.xib"; sourceTree = SOURCE_ROOT; };
+		573EC10019EBB99C00DE3866 /* CredentialsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsFormViewController.h; sourceTree = "<group>"; };
+		573EC10119EBB99C00DE3866 /* CredentialsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsFormViewController.m; sourceTree = "<group>"; };
+		573EC11419EBBAAE00DE3866 /* CredentialsFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsFormViewController.xib; sourceTree = "<group>"; };
 		575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "PlatformInfoResponse-4.0.json"; sourceTree = "<group>"; };
 		575D9BCD192CB67000AD337A /* SocialProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialProxyTestCase.m; sourceTree = "<group>"; };
 		575D9BCF192CB93000AD337A /* SocialActivityStreamProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialActivityStreamProxyTestCase.m; sourceTree = "<group>"; };
@@ -1514,6 +1558,12 @@
 		5778209319249DB100ED72D0 /* ExoTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoTestCase.m; sourceTree = "<group>"; };
 		5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLAnalyzerTestCase.m; sourceTree = "<group>"; };
 		5778209D19249F4F00ED72D0 /* ExoTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExoTestCase.h; sourceTree = "<group>"; };
+		577D5A2419C81FB1007B8A5B /* AuthenticateTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateTabView.h; sourceTree = "<group>"; };
+		577D5A2519C81FB1007B8A5B /* AuthenticateTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateTabView.m; sourceTree = "<group>"; };
+		577D5A5319C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateScreen_iPhone_TestCase.m; sourceTree = "<group>"; };
+		577D5A9319C98D79007B8A5B /* SettingsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTestCase.m; sourceTree = "<group>"; };
+		577D5A9519C98E2C007B8A5B /* ServerManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerHelper.h; sourceTree = "<group>"; };
+		577D5A9619C98E2C007B8A5B /* ServerManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManagerHelper.m; sourceTree = "<group>"; };
 		578318141929B035006A26EC /* UserPreferencesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesTestCase.m; sourceTree = "<group>"; };
 		57831827192A1301006A26EC /* eXo_Platform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXo_Platform_Prefix.pch; sourceTree = "<group>"; };
 		57831828192A1301006A26EC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1540,6 +1590,14 @@
 		57A918EB190E030D008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		57A91903190E0A15008CFD6B /* eXoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eXoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A9191B190E10AE008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		57A9CD4B19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateSwitcherIconIpadOff.png; sourceTree = "<group>"; };
+		57A9CD4C19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AuthenticateSwitcherIconIpadOff@2x.png"; sourceTree = "<group>"; };
+		57A9CD4D19C6D15300909D93 /* AuthenticateSwitcherIconIpadOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateSwitcherIconIpadOn.png; sourceTree = "<group>"; };
+		57A9CD4E19C6D15300909D93 /* AuthenticateSwitcherIconIpadOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AuthenticateSwitcherIconIpadOn@2x.png"; sourceTree = "<group>"; };
+		57A9CD5319C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateSwitcherIconIphoneOff.png; path = "Authenticate/@1x/AuthenticateSwitcherIconIphoneOff.png"; sourceTree = "<group>"; };
+		57A9CD5419C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AuthenticateSwitcherIconIphoneOn.png; path = "Authenticate/@1x/AuthenticateSwitcherIconIphoneOn.png"; sourceTree = "<group>"; };
+		57A9CD5719C6D17900909D93 /* AuthenticateSwitcherIconIphoneOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateSwitcherIconIphoneOff@2x.png"; path = "Authenticate/@2x/AuthenticateSwitcherIconIphoneOff@2x.png"; sourceTree = "<group>"; };
+		57A9CD5819C6D17900909D93 /* AuthenticateSwitcherIconIphoneOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AuthenticateSwitcherIconIphoneOn@2x.png"; path = "Authenticate/@2x/AuthenticateSwitcherIconIphoneOn@2x.png"; sourceTree = "<group>"; };
 		57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProxyTestCase.m; sourceTree = "<group>"; };
 		57C5203115B6B7B700BF902F /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
 		57C5203215B6B7B800BF902F /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
@@ -2897,6 +2955,8 @@
 		46D97B7C13743C8700F71E82 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				57A9CD5319C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOff.png */,
+				57A9CD5419C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOn.png */,
 				46BF6E2F13793DC900D1E1A5 /* AuthenticateCredentialsIconIphoneOff.png */,
 				46BF6E3013793DC900D1E1A5 /* AuthenticateServersIconIphoneOn.png */,
 				46BF6E22137931A200D1E1A5 /* AuthenticateCheckmarkiPhoneOff.png */,
@@ -2911,6 +2971,8 @@
 		46D97B7D13743C9000F71E82 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				57A9CD5719C6D17900909D93 /* AuthenticateSwitcherIconIphoneOff@2x.png */,
+				57A9CD5819C6D17900909D93 /* AuthenticateSwitcherIconIphoneOn@2x.png */,
 				46BF6E3313793DD600D1E1A5 /* AuthenticateCredentialsIconIphoneOff@2x.png */,
 				46BF6E3413793DD600D1E1A5 /* AuthenticateServersIconIphoneOn@2x.png */,
 				46BF6E29137931B300D1E1A5 /* AuthenticateCheckmarkiPhoneOff@2x.png */,
@@ -2940,6 +3002,10 @@
 		46DA10871386CE98008DA976 /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
+				57A9CD4B19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff.png */,
+				57A9CD4C19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff@2x.png */,
+				57A9CD4D19C6D15300909D93 /* AuthenticateSwitcherIconIpadOn.png */,
+				57A9CD4E19C6D15300909D93 /* AuthenticateSwitcherIconIpadOn@2x.png */,
 				A6FB0B6115B523A9004F958C /* AuthenticateCredentialsIconIpadOff.png */,
 				A6FB0B6215B523A9004F958C /* AuthenticateCredentialsIconIpadOff@2x.png */,
 				A6FB0B6315B523A9004F958C /* AuthenticateCredentialsIconIpadOn.png */,
@@ -2971,6 +3037,8 @@
 		46DA10911386CE98008DA976 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */,
+				573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */,
 				A6FB0B7D15B5429F004F958C /* Ipad_logout.png */,
 				A6FB0B7E15B542A0004F958C /* Ipad_logout@2x.png */,
 				A6FB0B7F15B542A1004F958C /* Ipad_setting.png */,
@@ -3095,6 +3163,26 @@
 				4633E6E9141BB0FB002A47F4 /* DocumentDisplayViewController.m */,
 			);
 			name = Documents;
+			sourceTree = "<group>";
+		};
+		57176F6B19D94857003C8B90 /* AccountSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				57176F7D19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.h */,
+				57176F7E19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m */,
+				573ADC7D19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib */,
+			);
+			name = AccountSwitcher;
+			sourceTree = "<group>";
+		};
+		57176F8319D95033003C8B90 /* AccountSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				57176F8419D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib */,
+				57176F8519D95079003C8B90 /* AccountSwitcherViewController_iPad.h */,
+				57176F8619D95079003C8B90 /* AccountSwitcherViewController_iPad.m */,
+			);
+			name = AccountSwitcher;
 			sourceTree = "<group>";
 		};
 		572EA98D192AFBFD008CFB11 /* ThirdParty */ = {
@@ -3363,6 +3451,20 @@
 			path = "UIImage+Resize";
 			sourceTree = "<group>";
 		};
+		573ADC6619D264290009E90D /* AccountSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				573ADC7819D264580009E90D /* AccountSwitcherViewController.h */,
+				573ADC7919D264580009E90D /* AccountSwitcherViewController.m */,
+				573ADC7B19D269E20009E90D /* AccountSwitcherTableViewCell.h */,
+				573ADC7C19D269E20009E90D /* AccountSwitcherTableViewCell.m */,
+				573EC10019EBB99C00DE3866 /* CredentialsFormViewController.h */,
+				573EC10119EBB99C00DE3866 /* CredentialsFormViewController.m */,
+				573EC11419EBBAAE00DE3866 /* CredentialsFormViewController.xib */,
+			);
+			name = AccountSwitcher;
+			sourceTree = "<group>";
+		};
 		575EFE58192E00EB00798DCD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -3370,6 +3472,8 @@
 				575EFE45192DF90800798DCD /* HTTPStubsHelper.m */,
 				575EFE5E192E045A00798DCD /* SocialTestsHelper.h */,
 				575EFE5F192E045A00798DCD /* SocialTestsHelper.m */,
+				577D5A9519C98E2C007B8A5B /* ServerManagerHelper.h */,
+				577D5A9619C98E2C007B8A5B /* ServerManagerHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -3419,6 +3523,7 @@
 			children = (
 				57C1C316192B3E0B007B3CD6 /* LoginProxyTestCase.m */,
 				57E476151934388A00C3140E /* AuthenticateProxyTestCase.m */,
+				577D5A5319C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -3430,6 +3535,7 @@
 				5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */,
 				578318141929B035006A26EC /* UserPreferencesTestCase.m */,
 				5728F29C19480EB7007EB4AE /* LanguageHelperTestCase.m */,
+				572C980F19FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -3445,6 +3551,7 @@
 		5778208A19249DB100ED72D0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				577D5A8119C98D52007B8A5B /* Settings */,
 				57E476171934479300C3140E /* Documents */,
 				575EFE5D192E017400798DCD /* Cloud */,
 				575EFE5C192E015D00798DCD /* General */,
@@ -3459,6 +3566,15 @@
 				578F3A9619332D6200554F28 /* AsyncProxyTestCase.h */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		577D5A8119C98D52007B8A5B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				577D5A9319C98D79007B8A5B /* SettingsTestCase.m */,
+				5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		57E476171934479300C3140E /* Documents */ = {
@@ -3944,6 +4060,8 @@
 				579D50A815BD6689002F5D16 /* AuthTabItem.m */,
 				579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */,
 				579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */,
+				577D5A2419C81FB1007B8A5B /* AuthenticateTabView.h */,
+				577D5A2519C81FB1007B8A5B /* AuthenticateTabView.m */,
 			);
 			path = Authenticate;
 			sourceTree = "<group>";
@@ -4028,6 +4146,7 @@
 		894732381336FFD400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				57176F8319D95033003C8B90 /* AccountSwitcher */,
 				7D993C82176AC9F80035835F /* CloudSignup */,
 				46A03A1813A7952400E71AF9 /* Social */,
 				46E96E30138370A30085DCB6 /* CascadeViewController */,
@@ -4065,6 +4184,7 @@
 		8947323B1336FFE400B0AD11 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				57176F6B19D94857003C8B90 /* AccountSwitcher */,
 				7DB91BA217697D3D001CA575 /* CloudSignup */,
 				7CAB42D413A7689F00CED7A3 /* Social */,
 				8947338613370B4500B0AD11 /* File */,
@@ -4289,6 +4409,7 @@
 		8947349F1337125D00B0AD11 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				573ADC6619D264290009E90D /* AccountSwitcher */,
 				7DB91B9E17697CE4001CA575 /* CloudSignup */,
 				A661D86A157EFE5400CCF870 /* Custom Views */,
 				461BFAB1141F4CD9009844F6 /* Settings */,
@@ -4340,6 +4461,8 @@
 				3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */,
 				3D7E197E1855AB8300CCF6A8 /* UIImage+BlankImage.h */,
 				3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */,
+				572C97FB19FE2C72003D5CF4 /* AccountInfoUtils.h */,
+				572C97FC19FE2C72003D5CF4 /* AccountInfoUtils.m */,
 			);
 			path = eXoUtils;
 			sourceTree = "<group>";
@@ -4489,6 +4612,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "eXo Platform";
 				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = FEM998T42U;
+					};
 					57A91902190E0A15008CFD6B = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
@@ -4868,13 +4994,16 @@
 				7CA74B9313C31AB50006306D /* MessageComposerButtonSendBackgroundSelected@2x.png in Resources */,
 				7CA74B9413C31AB50006306D /* MessageComposerTextfieldBackground@2x.png in Resources */,
 				7CA74B9A13C31AD20006306D /* MessageComposerButtonCancelBackground.png in Resources */,
+				573ADC7F19D269E20009E90D /* AccountSwitcherTableViewCell_iPhone.xib in Resources */,
 				7CA74B9B13C31AD20006306D /* MessageComposerButtonCancelBackgroundSelected.png in Resources */,
 				7CA74B9C13C31AD20006306D /* MessageComposerButtonSendBackground.png in Resources */,
+				57A9CD5019C6D15300909D93 /* AuthenticateSwitcherIconIpadOff@2x.png in Resources */,
 				7CA74B9D13C31AD20006306D /* MessageComposerButtonSendBackgroundSelected.png in Resources */,
 				7CA74B9E13C31AD20006306D /* MessageComposerTextfieldBackground.png in Resources */,
 				7C5053EC13E2AF3600FA73CD /* default-avatar.png in Resources */,
 				7C5053ED13E2AF3600FA73CD /* default-avatar@2x.png in Resources */,
 				46A3E5DD13F01AB900F606B4 /* SocialYourCommentButtonBg.png in Resources */,
+				57A9CD5919C6D17900909D93 /* AuthenticateSwitcherIconIphoneOff@2x.png in Resources */,
 				46A3E5DF13F01AC600F606B4 /* SocialYourCommentButtonBg@2x.png in Resources */,
 				46A9375213F0364D009D41DA /* SocialActivityDetailDislikeButton@2x.png in Resources */,
 				46A9375413F03656009D41DA /* SocialActivityDetailDislikeButton.png in Resources */,
@@ -4892,6 +5021,7 @@
 				1FCED3451435B98500EC0B88 /* popoverArrowDownSimple.png in Resources */,
 				1FCED3461435B98500EC0B88 /* popoverArrowLeft.png in Resources */,
 				1FCED3471435B98500EC0B88 /* popoverArrowLeft@2x.png in Resources */,
+				573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */,
 				1FCED3481435B98500EC0B88 /* popoverArrowLeftSimple.png in Resources */,
 				1FCED3491435B98500EC0B88 /* popoverArrowRight.png in Resources */,
 				1FCED34A1435B98500EC0B88 /* popoverArrowRight@2x.png in Resources */,
@@ -4928,6 +5058,7 @@
 				1FCD3A05143A9A6C00C814C5 /* DocumentActionPopupBackground@2x.png in Resources */,
 				1FCD3A06143A9A6C00C814C5 /* DocumentActionPopupCellLineSeparator@2x.png in Resources */,
 				1FCD3A07143A9A6C00C814C5 /* DocumentActionPopupCopyIcon@2x.png in Resources */,
+				57A9CD5219C6D15300909D93 /* AuthenticateSwitcherIconIpadOn@2x.png in Resources */,
 				1FCD3A08143A9A6C00C814C5 /* DocumentActionPopupCutIcon@2x.png in Resources */,
 				1FCD3A09143A9A6C00C814C5 /* DocumentActionPopupDeleteIcon@2x.png in Resources */,
 				1FCD3A0A143A9A6C00C814C5 /* DocumentActionPopupPasteIcon@2x.png in Resources */,
@@ -4960,6 +5091,7 @@
 				1FD0C408143BF146002F40A7 /* IconForUnreadableFile@2x.png in Resources */,
 				1FCE30561445B020004AE55F /* ActivityPictureTableViewCell.xib in Resources */,
 				46A08CDB1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib in Resources */,
+				573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */,
 				46A08CE0144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib in Resources */,
 				1FCDDB7014481ED100846232 /* ActivityPictureDetailMessageTableViewCell.xib in Resources */,
 				1FCEDEC41457A34F0058C80F /* ActivityTypeAnswer.png in Resources */,
@@ -4969,6 +5101,7 @@
 				1FCEDEC81457A34F0058C80F /* ActivityTypeForum.png in Resources */,
 				1FCEDEC91457A34F0058C80F /* ActivityTypeLink.png in Resources */,
 				1FCEDECA1457A34F0058C80F /* ActivityTypeNormal.png in Resources */,
+				57A9CD5519C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOff.png in Resources */,
 				1FCEDECB1457A34F0058C80F /* ActivityTypeWiki.png in Resources */,
 				1FCEDECC1457A34F0058C80F /* ActivityTypeAnswer@2x.png in Resources */,
 				1FCEDECD1457A34F0058C80F /* ActivityTypeCalendar@2x.png in Resources */,
@@ -5057,11 +5190,13 @@
 				A6FB0B8415B542A2004F958C /* Ipad_setting@2x.png in Resources */,
 				A6FB0B8815B5446A004F958C /* activity-detail-action-comment@2x.png in Resources */,
 				A6FB0B8915B5446A004F958C /* activity-detail-action-dislike@2x.png in Resources */,
+				57176F8719D95079003C8B90 /* AccountSwitcherTableViewCell_iPad.xib in Resources */,
 				A6FB0B8A15B5446A004F958C /* activity-detail-action-like@2x.png in Resources */,
 				A6FB0B8D15B5451F004F958C /* activity-detail-tabs-comment-icon@2x.png in Resources */,
 				A6FB0B8E15B5451F004F958C /* activity-detail-tabs-likers-icon@2x.png in Resources */,
 				A6FB0B9115B5494C004F958C /* activity-detail-actions-cell.png in Resources */,
 				A6FB0B9215B5494C004F958C /* activity-detail-actions-cell@2x.png in Resources */,
+				57A9CD5A19C6D17900909D93 /* AuthenticateSwitcherIconIphoneOn@2x.png in Resources */,
 				A6FB0B9515B54DE5004F958C /* activity-detail-comment-textfield-bg.png in Resources */,
 				A6FB0B9615B54DE5004F958C /* activity-detail-comment-textfield-bg@2x.png in Resources */,
 				A6FB0B9915B54EF3004F958C /* activity-detail-comment-textfield-bg-selected.png in Resources */,
@@ -5116,6 +5251,7 @@
 				7D9B77F01785C840003F8D19 /* icon_link.png in Resources */,
 				7D9B77F21785C840003F8D19 /* icon_lock.png in Resources */,
 				7D9B77F41785C840003F8D19 /* icon_mail.png in Resources */,
+				57A9CD5119C6D15300909D93 /* AuthenticateSwitcherIconIpadOn.png in Resources */,
 				7D9B77F61785C840003F8D19 /* icon_mail_white.png in Resources */,
 				7D9B77F71785C840003F8D19 /* icon_user.png in Resources */,
 				7D9B77F91785C840003F8D19 /* icon_warning.png in Resources */,
@@ -5145,6 +5281,7 @@
 				7D6931BC17965763008CCE72 /* btn_signup@2x.png in Resources */,
 				7D6931BD17965763008CCE72 /* btn_skip@2x.png in Resources */,
 				7D6931BE17965763008CCE72 /* icon_clock@2x.png in Resources */,
+				573EC11519EBBAAE00DE3866 /* CredentialsFormViewController.xib in Resources */,
 				7D6931BF17965763008CCE72 /* icon_place@2x.png in Resources */,
 				7D6931C017965763008CCE72 /* logo@2x.png in Resources */,
 				7D6931C117965763008CCE72 /* welcome_separator@2x.png in Resources */,
@@ -5175,6 +5312,7 @@
 				7D25E9E417A7A6B6003E60A0 /* iphone-documents@2x.png in Resources */,
 				7D25E9E517A7A6B6003E60A0 /* iphone-activity-details.png in Resources */,
 				7D25E9E617A7A6B6003E60A0 /* iphone-activity-stream.png in Resources */,
+				57A9CD5619C6D16B00909D93 /* AuthenticateSwitcherIconIphoneOn.png in Resources */,
 				7D25E9E717A7A6B6003E60A0 /* iphone-apps.png in Resources */,
 				7D25E9E817A7A6B6003E60A0 /* iphone-documents.png in Resources */,
 				7D25E9FD17A7ACD6003E60A0 /* ipad-activity-details-landscape.png in Resources */,
@@ -5192,6 +5330,7 @@
 				7D25EA0917A7ACD6003E60A0 /* ipad-activity-details-portrait@2x.png in Resources */,
 				7D25EA0A17A7ACD6003E60A0 /* ipad-activity-stream-portrait@2x.png in Resources */,
 				7D25EA0B17A7ACD6003E60A0 /* ipad-apps-portrait@2x.png in Resources */,
+				57A9CD4F19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff.png in Resources */,
 				7D25EA0C17A7ACD6003E60A0 /* ipad-documents-portrait@2x.png in Resources */,
 				578ED79017EAD51F00771497 /* Icon-72@2x.png in Resources */,
 				578ED79217EAD51F00771497 /* Icon-ios7-76.png in Resources */,
@@ -5307,6 +5446,7 @@
 				46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */,
 				464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */,
 				46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */,
+				573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */,
 				46E96E5F138370A30085DCB6 /* MenuViewController.m in Sources */,
 				46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */,
 				46E96E62138370A30085DCB6 /* RootViewController.m in Sources */,
@@ -5357,9 +5497,11 @@
 				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
 				572EAA30192AFBFD008CFB11 /* CXMLElement.m in Sources */,
 				57831829192A1301006A26EC /* main.m in Sources */,
+				572C97FD19FE2C72003D5CF4 /* AccountInfoUtils.m in Sources */,
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
 				572EAA2B192AFBFD008CFB11 /* UIImage+SSToolkitAdditions.m in Sources */,
+				57176F7F19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
 				572EAA2D192AFBFD008CFB11 /* AsyncSocket.m in Sources */,
@@ -5385,6 +5527,7 @@
 				1FCED35F1435BA1800EC0B88 /* WETouchableView.m in Sources */,
 				1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */,
 				1FCE304B14453EB6004AE55F /* SocialPictureAttach.m in Sources */,
+				573EC10219EBB99C00DE3866 /* CredentialsFormViewController.m in Sources */,
 				1FCE30551445B020004AE55F /* ActivityPictureTableViewCell.m in Sources */,
 				46A08CD61447501300D53314 /* ActivityLinkDisplayViewController.m in Sources */,
 				46A08CDA1447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m in Sources */,
@@ -5407,6 +5550,7 @@
 				46EC7DE71466D596009D7BB0 /* ActivityHelper.m in Sources */,
 				1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */,
 				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
+				573ADC7E19D269E20009E90D /* AccountSwitcherTableViewCell.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
 				572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */,
 				3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */,
@@ -5427,6 +5571,7 @@
 				8958E64F14A9B76100580EEB /* AuthenticateProxy.m in Sources */,
 				8958E65314A9B79A00580EEB /* DataProcess.m in Sources */,
 				572EAA0F192AFBFD008CFB11 /* EGOImageView.m in Sources */,
+				577D5A2619C81FB1007B8A5B /* AuthenticateTabView.m in Sources */,
 				3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */,
 				8958E67714A9C82400580EEB /* URLAnalyzer.m in Sources */,
 				1FCE235F14BA8DCF00ED95AB /* SocialRestProxy.m in Sources */,
@@ -5455,6 +5600,7 @@
 				A6EECFC815EE1E4800A46A4B /* RoundRectView.m in Sources */,
 				57FB189915FD7AF0001F5C20 /* ExoStackScrollViewController.m in Sources */,
 				57FB19CE15FD9670001F5C20 /* LoginProxy.m in Sources */,
+				57176F8819D95079003C8B90 /* AccountSwitcherViewController_iPad.m in Sources */,
 				57FB19D215FD96C0001F5C20 /* UserPreferencesManager.m in Sources */,
 				57FB1A6915FDCAF3001F5C20 /* ApplicationPreferencesManager.m in Sources */,
 				7DB91BA117697D0A001CA575 /* WelcomeViewController.m in Sources */,
@@ -5498,14 +5644,19 @@
 			files = (
 				575EFE46192DF90800798DCD /* HTTPStubsHelper.m in Sources */,
 				578318151929B035006A26EC /* UserPreferencesTestCase.m in Sources */,
+				577D5A9419C98D79007B8A5B /* SettingsTestCase.m in Sources */,
 				575EFE60192E045A00798DCD /* SocialTestsHelper.m in Sources */,
 				578F3A911933288900554F28 /* SocialRestVersionProxyTestCase.m in Sources */,
+				572C981019FE2EA1003D5CF4 /* AccountInfoUtilsTestCase.m in Sources */,
 				5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */,
 				57E47619193447C000C3140E /* FilesProxyTestCase.m in Sources */,
 				57E47603193432B400C3140E /* SocialUserProfileCacheTestCase.m in Sources */,
 				5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */,
+				577D5A5419C91CD2007B8A5B /* AuthenticateScreen_iPhone_TestCase.m in Sources */,
+				577D5A9719C98E2C007B8A5B /* ServerManagerHelper.m in Sources */,
 				578F3A8B1933218100554F28 /* SocialLikeActivityProxyTestCase.m in Sources */,
 				5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */,
+				5731DD411A1313FD001E3A19 /* ServerEditionTestCase.m in Sources */,
 				575D9C0A192DEC8100AD337A /* SocialUserProfileProxyTestCase.m in Sources */,
 				5728F29D19480EB7007EB4AE /* LanguageHelperTestCase.m in Sources */,
 				578F3A8719331B2E00554F28 /* SocialPostCommentProxyTestCase.m in Sources */,
@@ -5642,7 +5793,7 @@
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "056c6c3b-95ae-4a90-91f5-e3f8f078edea";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5741,9 +5892,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5779,8 +5930,8 @@
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "4d7445ce-6776-4731-81b8-b943a4f424c3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4d7445ce-6776-4731-81b8-b943a4f424c3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5833,9 +5984,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5870,9 +6021,8 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "B3366449-19FB-4EB9-A35E-CAF6C167D6BD";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

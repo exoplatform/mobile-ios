@@ -20,6 +20,7 @@
 #import "SocialUserProfileProxy.h"
 #import "SocialRestConfiguration.h"
 #import "SocialUserProfileCache.h"
+#import "ApplicationPreferencesManager.h"
 
 
 @implementation SocialUserProfileProxy
@@ -56,12 +57,10 @@
 
 
 #pragma mark - Call methods
-
-
 - (void) getUserProfileFromUsername:(NSString *)username {
     
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager sharedManager];    
+    RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
     [mapping mapKeyPathsToAttributes:
      @"id",@"identity",
@@ -77,9 +76,13 @@
 
 #pragma mark - RKObjectLoaderDelegate methods
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    //We receive the response from the server
-    //We need to prevent the caller.
+    // We receive the response from the server
     _userProfile = [[objects objectAtIndex:0] retain];
+    // Saving the current user's full name and avatar URL in the ServerObj that represents him
+    ServerObj* currentAccount = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount];
+    currentAccount.avatarUrl = _userProfile.avatarUrl;
+    currentAccount.userFullname = _userProfile.fullName;
+    // We need to prevent the caller.
     [[SocialUserProfileCache sharedInstance] addInCache:_userProfile forIdentity:_userProfile.identity];
     [super objectLoader:objectLoader didLoadObjects:objects];
 }

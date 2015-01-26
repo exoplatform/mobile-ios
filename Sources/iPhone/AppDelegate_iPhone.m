@@ -47,7 +47,7 @@
 	return self;
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application { 
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
     //Add Crashlytics
     [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
     application.statusBarHidden = YES;
@@ -61,9 +61,8 @@
     if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavbarBg.png"] 
                                            forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         
-//        [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.47f green:0.23f blue:0.61f alpha:1.0f]];
         UIImage *barButton = [UIImage imageNamed:@"NavbarBackButton.png" ];
         barButton = [barButton stretchableImageWithLeftCapWidth:barButton.size.width / 2 topCapHeight:0];
         [[UIBarButtonItem appearance] setBackButtonBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -114,6 +113,7 @@
     [super application:application handleOpenURL:url];
     
     navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController]; //display authenticate screen
+    [self.authenticateViewController showHideSwitcherTab];
     
     window.rootViewController = navigationController;
     return YES;
@@ -191,7 +191,7 @@
     if(![UserPreferencesManager sharedInstance].rememberMe) {
         [_authenticateViewController disableAutoLogin:YES];
     }
-    [_authenticateViewController updateLabelAfterLogOut];
+    [_authenticateViewController updateAfterLogOut];
     [_authenticateViewController autoFillCredentials];
     navigationController = [[UINavigationController alloc] initWithRootViewController:_authenticateViewController];
     window.rootViewController = navigationController;

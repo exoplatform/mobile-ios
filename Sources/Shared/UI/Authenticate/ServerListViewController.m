@@ -135,8 +135,8 @@
     }
     
 	ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
-    cell.textLabel.text = tmpServerObj._strServerName;
-    cell.detailTextLabel.text = tmpServerObj._strServerUrl;
+    cell.textLabel.text = tmpServerObj.accountName;
+    cell.detailTextLabel.text = tmpServerObj.serverUrl;
     
 	return cell;
 }

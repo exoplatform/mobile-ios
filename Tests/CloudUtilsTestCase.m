@@ -80,40 +80,5 @@
     
 }
 
-- (void)testCorrectServerURL
-{
-    for (NSString *url in TEST_URLS_OK) {
-        XCTAssertNotNil([CloudUtils correctServerUrl:url], @"URL %@ should be correct", url);
-    }
-    
-    for (NSString *url in TEST_URLS_INCORRECT) {
-        XCTAssertNil([CloudUtils correctServerUrl:url], @"URL %@ should be incorrect", url);
-    }
-}
-
-- (void)testNameContainsSpecialCharacters
-{
-    NSArray *names = [NSArray arrayWithObjects:
-                      @"test&",
-                      @"test<>",
-                      @"test\"",
-                      @"test'",
-                      @"test!",
-                      @"test;",
-                      @"test\\",
-                      @"test|",
-                      @"test()",
-                      @"test{}",
-                      @"test[]",
-                      @"test,",
-                      @"test*",
-                      @"test%",
-                      nil];
-    NSString *specialChars = @"&<>\"'!;\\|(){}[],*%";
-    
-    for (NSString *name in names) {
-        XCTAssertTrue([CloudUtils nameContainSpecialCharacter:name inSet:specialChars], @"Name %@ should be incorrect", name);
-    }
-}
 
 @end

@@ -7,12 +7,15 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "UserPreferencesManager.h"
 #import "ApplicationPreferencesManager.h"
 #import "URLAnalyzer.h"
 #import "ExoTestCase.h"
+#import "ServerManagerHelper.h"
 
 @interface ApplicationPreferencesTestCase : ExoTestCase {
     ApplicationPreferencesManager *serverManager;
+    ServerManagerHelper *serverHelper;
 }
 
 @end
@@ -23,6 +26,7 @@
 {
     [super setUp];
     serverManager = [ApplicationPreferencesManager sharedInstance];
+    serverHelper = [ServerManagerHelper getInstance];
     [self deleteAllServers];
 }
 
@@ -41,11 +45,7 @@
 
 - (void)deleteAllServers
 {
-    if ([serverManager serverList] != nil) {
-        for (int i=0; i<[[serverManager serverList] count]; i++) {
-            [serverManager deleteServerObjAtIndex:i];
-        }
-    }
+    [serverHelper deleteAllAccounts];
 }
 
 
@@ -66,8 +66,8 @@
     [serverManager addEditServerWithServerName:SERVER_NAME_NEW andServerUrl:SERVER_URL_NEW withUsername:@"" andPassword:@"" atIndex:0];
     ServerObj *srv = [[serverManager serverList] objectAtIndex:0];
     XCTAssertNotNil(srv, @"Server should not be null");
-    XCTAssertEqualObjects([srv _strServerName], SERVER_NAME_NEW, @"New server name should be %@", SERVER_NAME_NEW);
-    XCTAssertEqualObjects([srv _strServerUrl], SERVER_URL_NEW, @"New server URL should be %@", SERVER_URL_NEW);
+    XCTAssertEqualObjects(srv.accountName, SERVER_NAME_NEW, @"New server name should be %@", SERVER_NAME_NEW);
+    XCTAssertEqualObjects(srv.serverUrl, SERVER_URL_NEW, @"New server URL should be %@", SERVER_URL_NEW);
     
     //    Delete server
     [serverManager deleteServerObjAtIndex:0];
@@ -77,8 +77,7 @@
 - (void)testSelectServer
 {
     // Add 2 servers
-    [serverManager addEditServerWithServerName:TEST_SERVER_NAME andServerUrl:TEST_SERVER_URL withUsername:@"" andPassword:@"" atIndex:-1];
-    [serverManager addEditServerWithServerName:@"Second Server" andServerUrl:@"http://foo.bar" withUsername:@"" andPassword:@"" atIndex:-1];
+    [serverHelper addNAccounts:2];
     
     XCTAssertEqual([serverManager selectedServerIndex], 0, @"Server at pos 0 should be selected");
     [serverManager setSelectedServerIndex:1];
@@ -87,7 +86,10 @@
 
 - (void)testAddAndSelectServer
 {
-    [serverManager addAndSetSelectedServer:TEST_SERVER_URL withName:TEST_SERVER_NAME];
+    ServerObj * account = [[ServerObj alloc] init];
+    account.accountName = TEST_SERVER_NAME;
+    account.serverUrl = TEST_SERVER_URL;
+    [serverManager addAndSelectServer:account];
     XCTAssertTrue([[serverManager serverList] count] == 1, @"Number of servers should be 1");
     XCTAssertEqual([serverManager selectedServerIndex], 0, @"Server at pos 0 should be selected");
 }
@@ -95,19 +97,28 @@
 - (void)testServerAlreadyExists
 {
     //    Add new server
-    [serverManager addEditServerWithServerName:TEST_SERVER_NAME andServerUrl:TEST_SERVER_URL withUsername:@"" andPassword:@"" atIndex:-1];
+    [serverHelper addDefaultAccount];
     
-    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL ignoringIndex:-1], 0, @"The server should already exist at index 0");
+    // Should return the existing server at index 0
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL andUsername:TEST_USER_NAME ignoringIndex:-1], 0, @"The server should already exist at index 0");
     
-//    commented out because the method checkServerAlreadyExistsWithName:andURL, despite its name, does not check the server name
-//    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:TEST_SERVER_URL ignoringIndex:-1], -1, @"The server should not exist");
+    // Should return -1 because the account name is different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:TEST_SERVER_URL andUsername:TEST_USER_NAME ignoringIndex:-1], -1, @"The server should not exist");
     
-    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
+    // Should return -1 because the account server URL is different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:@"http://foo.bar" andUsername:TEST_USER_NAME ignoringIndex:-1], -1, @"The server should not exist");
     
-        XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:@"http://foo.bar" ignoringIndex:-1], -1, @"The server should not exist");
+    // Should return -1 because the account username is different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL andUsername:@"someuser" ignoringIndex:-1], -1, @"The server should not exist");
+    
+    // Should return -1 because the account username is empty
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:TEST_SERVER_NAME andURL:TEST_SERVER_URL andUsername:@"" ignoringIndex:-1], -1, @"The server should not exist");
+    
+    // Should return -1 because all parameters are different
+    XCTAssertEqual([serverManager checkServerAlreadyExistsWithName:@"Foo Bar" andURL:@"http://foo.bar" andUsername:@"someuser" ignoringIndex:-1], -1, @"The server should not exist");
 }
 
-- (void)testHandleStartupURL
+- (void)testHandleStartupURL_WithoutUsername
 {
 
     NSString * escapedURL = [self URLEncodedString:TEST_SERVER_URL];
@@ -118,21 +129,39 @@
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_USER_NAME_FROM_URL];
     XCTAssertNil(username, @"Username should be nil, has value %@ instead", username);
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
-    XCTAssertEqualObjects([server _strServerUrl], TEST_SERVER_URL, @"URL loaded is incorrect");
-    
+    XCTAssertEqualObjects(server.serverUrl, TEST_SERVER_URL, @"URL loaded is incorrect");
 }
 
-- (void)testHandleStartupURLWithUsername
+- (void)testHandleStartupURL_WithCloudURL
+{
+    
+    NSString * escapedURL = [self URLEncodedString:TEST_CLOUD_URL];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"exomobile://serverUrl=%@", escapedURL]];
+    
+    
+    [serverManager loadReceivedUrlToPreference:url];
+
+    ServerObj *server = [[serverManager serverList] objectAtIndex:0];
+    XCTAssertEqualObjects(server.serverUrl, TEST_CLOUD_URL, @"URL loaded is incorrect");
+    NSString *expectedServerName = @"Mytenant";
+    XCTAssertEqualObjects(expectedServerName, server.accountName, @"Generated server name is incorrect");
+}
+
+- (void)testHandleStartupURL_WithUsername
 {
     NSString *username = @"john";
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"exomobile://username=%@?serverUrl=%@", username, TEST_SERVER_URL]];
     
     [serverManager loadReceivedUrlToPreference:url];
     NSString *loadedUsername = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_CLOUD_USER_NAME_FROM_URL];
-    XCTAssertEqualObjects(loadedUsername, username, @"Username should be %@ and not %@ instead", username, loadedUsername);
+    XCTAssertEqualObjects(loadedUsername, username, @"Username from UserDefaults should be %@ and not %@", username, loadedUsername);
+    loadedUsername = nil;
+    loadedUsername = [UserPreferencesManager sharedInstance].username;
+    XCTAssertEqualObjects(loadedUsername, username, @"Username from PrefManager should be %@ and not %@", username, loadedUsername);
     ServerObj *server = [[serverManager serverList] objectAtIndex:0];
-    XCTAssertEqualObjects([server _strServerUrl], TEST_SERVER_URL, @"URL loaded is incorrect");
+    XCTAssertEqualObjects(server.serverUrl, TEST_SERVER_URL, @"URL loaded is incorrect");
     
 }
+
 
 @end

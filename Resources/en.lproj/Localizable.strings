@@ -12,12 +12,19 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "Login";
+"SignInButton" = "Connect";
+
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Username";
 
 "PasswordPlaceholder" = "Password";
 
+"Last Login" = "Last login";
+
+"Connected" = "Connected";
+
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -117,9 +124,11 @@
 
 "Send" = "Send";
 
-"ServerList" = "Server list";
+"ServerList" = "Accounts";
 
-"NewServer" = "New server";
+"Account" = "Account";
+
+"NewServer" = "New Account";
 
 "ServerModify" = "Modify server";
 
@@ -131,9 +140,9 @@
 
 "ApplicationVersion" = "Application version";
 
-"ServerName" = "Server name";
+"ServerName" = "Name";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "Server";
 
 "Social" = "Social";
 

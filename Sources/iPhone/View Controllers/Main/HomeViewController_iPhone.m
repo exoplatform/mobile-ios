@@ -50,7 +50,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
     {
-        self.title = @"Home";
+//        self.title = @"Home";
     }
     
     return self;
@@ -78,17 +78,17 @@
     UIBarButtonItem *customItem = [[UIBarButtonItem alloc] initWithCustomView:barButton];
     [self.navigationItem setLeftBarButtonItem:customItem];
     [customItem release];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self initView];
 }
 
 
-- (void)loadView 
+- (void)initView
 {
-    [super loadView];
     
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
@@ -104,24 +104,8 @@
     self.navigationItem.hidesBackButton = YES;
     
     //Set the title of the controller
-    //TODO Localize that
     self.title = Localize(@"Home");
     
-    //Add the bubble background
-    /*UIImageView* imgBubble = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeBubbleBackground.png"]];
-    imgBubble.frame = CGRectMake(0, self.view.frame.size.height-imgBubble.frame.size.height, imgBubble.frame.size.width, imgBubble.frame.size.height);
-    [self.view addSubview:imgBubble];
-    [imgBubble release];
-    */
-    /*
-     
-     //Add the shadow at the bottom of the navigationBar
-     UIImageView *navigationBarShadowImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GlobalNavigationBarShadowIphone.png"]];
-     navigationBarShadowImgV.frame = CGRectMake(0,0,navigationBarShadowImgV.frame.size.width,navigationBarShadowImgV.frame.size.height);
-     [self.view addSubview:navigationBarShadowImgV];
-     [navigationBarShadowImgV release];
-     
-     */
     
     if(_launcherView != nil){
         [_launcherView release];
@@ -135,7 +119,6 @@
     _launcherView.pager.hidesForSinglePage = YES;
 
     
-    //TODO Localize
     TTLauncherItem *actStreamItem = [[[TTLauncherItem alloc] initWithTitle:Localize(@"News")
                                                                      image:@"bundle://HomeActivityStreamsIconiPhone.png"
                                                                        URL:@"tt://activityStream" canDelete:NO] autorelease];
@@ -233,11 +216,7 @@
 
 #pragma - Settings Delegate Methods
 - (void)doneWithSettings {
-//    NSArray *listItems = _launcherView.pages;
-//    for (TTLauncherItem *item in listItems){
-//        
-//    }
-    [self loadView];
+    [self initView];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

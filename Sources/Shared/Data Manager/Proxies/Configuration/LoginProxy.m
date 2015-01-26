@@ -21,6 +21,7 @@
 #import "ApplicationPreferencesManager.h"
 #import "defines.h"
 #import "CloudUtils.h"
+#import "AccountInfoUtils.h"
 #import "UserPreferencesManager.h"
 #import "AlreadyAccountViewController.h"
 #import "OnPremiseViewController.h"
@@ -66,6 +67,8 @@ return self;
 }
 
 + (void)doLogout {
+    // Persist the list of accounts
+    [[ApplicationPreferencesManager sharedInstance] persistServerList];
     // Remove Cookies
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -93,6 +96,7 @@ return self;
             }
         }
     }
+    [UserPreferencesManager sharedInstance].isUserLogged = NO;
 }
 
 #pragma mark - helper methods
@@ -188,23 +192,33 @@ return self;
         
         BOOL isPlatformCompatibleWithSocialFeatures = (shortVersion < 3.5) ? NO : YES;
         
-        if(self.username) { //only need when authenticating, it means self.username is not nil
+        if(self.username) { // only need when authenticating, it means self.username is not nil
+            ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
             if(isPlatformCompatibleWithSocialFeatures) {
                 if([_delegate isKindOfClass:[AlreadyAccountViewController class]] || [_delegate isKindOfClass:[OnPremiseViewController class]]) {
-                    //add the server url to server list
-                    ApplicationPreferencesManager *appPref = [ApplicationPreferencesManager sharedInstance];
-                    [appPref addAndSetSelectedServer:self.serverUrl withName:Localize(@"My intranet")];
+                    // add the server url to server list
+                    NSString* accountName = [AccountInfoUtils extractAccountNameFromURL:self.serverUrl];
+                    ServerObj* account = [[[ServerObj alloc] init] autorelease];
+                    account.accountName = accountName;
+                    account.serverUrl = self.serverUrl;
+                    account.username = self.username;
+                    [appPref addAndSelectServer:account];
                 }
-                
-                [UserPreferencesManager sharedInstance].username = self.username;            [UserPreferencesManager sharedInstance].password = self.password;            [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
-                [[ApplicationPreferencesManager sharedInstance] setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
+                [UserPreferencesManager sharedInstance].username = self.username;
+                [UserPreferencesManager sharedInstance].password = self.password;
+                [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
+                [appPref setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
             }
+            // Saving the user's username and current date in the ServerObj that represents him
+            ServerObj* selectedAccount =  [appPref getSelectedAccount];
+            selectedAccount.username = self.username;
+            selectedAccount.lastLoginDate = [[NSDate date] timeIntervalSince1970];
         }
                 
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         
-        //We need to prevent the caller.
+        // We need to prevent the caller.
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
             [_delegate loginProxy:self platformVersionCompatibleWithSocialFeatures:isPlatformCompatibleWithSocialFeatures withServerInformation:platformServerVersion];
         }
@@ -255,6 +269,70 @@ return self;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [self.delegate loginProxy:self authenticateFailedWithError:error];
+}
+
+@end
+
+#pragma mark Builder of UIAlertView when login failed
+
+@implementation LoginProxyAlert
+
++ (UIAlertView*) alertWithError:(NSError *)error andDelegate:(id)delegate
+{
+    UIAlertView *alert = nil;
+    
+    if([error.domain isEqualToString:NSURLErrorDomain] && error.code == kCFURLErrorNotConnectedToInternet) {
+        // network connection problem
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+                                            message:Localize(@"NetworkConnectionFailed")
+                                           delegate:delegate
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil] autorelease];
+    } else if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorCannotFindHost || error.code == kCFURLErrorTimedOut)) {
+        // cant connect to server
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+                                            message:Localize(@"InvalidServer")
+                                           delegate:delegate
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil] autorelease];
+    } else if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication) {
+        // wrong username/password
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+                                            message:Localize(@"WrongUserNamePassword")
+                                           delegate:delegate
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil] autorelease];
+    } else if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
+        // error getting platform info by restkit
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+                                            message:Localize(@"NetworkConnectionFailed")
+                                           delegate:delegate
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil] autorelease];
+    } else if([error.domain isEqualToString:EXO_NOT_COMPILANT_ERROR_DOMAIN]) {
+        // target version of Platform is not mobile compliant
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Error")
+                                            message:Localize(@"NotCompliant")
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] autorelease];
+        
+    } else if([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
+        // incorrect server error response
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+                                            message:Localize(@"ServerNotAvailable")
+                                           delegate:delegate
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil] autorelease];
+    } else {
+        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+                                            message:@""
+                                           delegate:delegate
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil] autorelease];
+    }
+    
+    return [alert retain];
 }
 
 @end
