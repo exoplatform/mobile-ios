@@ -14,10 +14,17 @@
 
 "SignInButton" = "crwdns6795902:0crwdne6795902:0";
 
+"SignInButton_In" = "to";
+
 "UsernamePlaceholder" = "crwdns6795903:0crwdne6795903:0";
 
 "PasswordPlaceholder" = "crwdns6795904:0crwdne6795904:0";
 
+"Last Login" = "Last login";
+
+"Connected" = "Connected";
+
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -115,9 +122,13 @@
 
 "Spanish" = "crwdns6795944:0crwdne6795944:0";
 
+"Portuguese-Brazil" = "Portuguese (Brazil)";
+
 "Send" = "crwdns6795945:0crwdne6795945:0";
 
 "ServerList" = "crwdns6795946:0crwdne6795946:0";
+
+"Account" = "Account";
 
 "NewServer" = "crwdns6795947:0crwdne6795947:0";
 
@@ -134,6 +145,8 @@
 "ServerName" = "crwdns6795953:0crwdne6795953:0";
 
 "ServerUrl" = "crwdns6795954:0crwdne6795954:0";
+
+"Social" = "crwdns6796077:0crwdne6796077:0";
 
 
 /*
@@ -405,3 +418,4 @@
 "SignupInternalServerError" = "crwdns6796075:0crwdne6796075:0";
 
 "NoTenantName" = "crwdns6796076:0crwdne6796076:0";
+
