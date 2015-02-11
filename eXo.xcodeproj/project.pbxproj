@@ -375,6 +375,7 @@
 		572EAA35192AFBFD008CFB11 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */; };
 		572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */; };
 		5731DD411A1313FD001E3A19 /* ServerEditionTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */; };
+		5736ED081A8B02E20041C120 /* BR.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5736ED071A8B02E20041C120 /* BR.gif */; };
 		573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */; };
 		573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */; };
 		573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7919D264580009E90D /* AccountSwitcherViewController.m */; };
@@ -1524,6 +1525,8 @@
 		572EAA03192AFBFD008CFB11 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditionTestCase.m; sourceTree = "<group>"; };
+		5736ED061A8AFF890041C120 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5736ED071A8B02E20041C120 /* BR.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BR.gif; sourceTree = "<group>"; };
 		573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ipad_Switcher.png; sourceTree = "<group>"; };
 		573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ipad_Switcher@2x.png"; sourceTree = "<group>"; };
 		573ADC7819D264580009E90D /* AccountSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherViewController.h; sourceTree = "<group>"; };
@@ -4349,6 +4352,7 @@
 		8947342B13370F5000B0AD11 /* Flags */ = {
 			isa = PBXGroup;
 			children = (
+				5736ED071A8B02E20041C120 /* BR.gif */,
 				57EEB3D618B1BF6D00C6B2E8 /* ES.gif */,
 				57C8020818AA0C3400A06EA7 /* DE.gif */,
 				8947342C13370F5000B0AD11 /* EN.gif */,
@@ -4633,6 +4637,7 @@
 				fr,
 				de,
 				"es-ES",
+				"pt-BR",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -5248,6 +5253,7 @@
 				7D9B77ED1785C840003F8D19 /* bg_texture.png in Resources */,
 				7D9B77EE1785C840003F8D19 /* blue_btn.png in Resources */,
 				7D9B77EF1785C840003F8D19 /* icon_check.png in Resources */,
+				5736ED081A8B02E20041C120 /* BR.gif in Resources */,
 				7D9B77F01785C840003F8D19 /* icon_link.png in Resources */,
 				7D9B77F21785C840003F8D19 /* icon_lock.png in Resources */,
 				7D9B77F41785C840003F8D19 /* icon_mail.png in Resources */,
@@ -5738,6 +5744,7 @@
 				A66B7F2A15AAC1E400218C06 /* fr */,
 				57C8020618AA07C700A06EA7 /* de */,
 				57EEB3D418B1BC3D00C6B2E8 /* es-ES */,
+				5736ED061A8AFF890041C120 /* pt-BR */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

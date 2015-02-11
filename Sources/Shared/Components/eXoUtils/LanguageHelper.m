@@ -46,7 +46,7 @@
 {
     if ((self = [super init])) 
     {
-        _international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", nil] retain];
+        _international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", nil] retain];
         //Intialisation, load the current dictionnary for localizable strings
         [self loadLocalizableStringsForCurrentLanguage];
     }	
@@ -72,8 +72,9 @@
     if (!selectedLang) {
         // returns the 2-letter language code of the device
         NSString * language = [[[NSLocale preferredLanguages] objectAtIndex:0] substringToIndex:2];
-        // we defined es-ES in our array so we must check this lang-region exactly
+        // we defined some Country+Region codes in our array so we must check these explicitely
         if ([@"es" isEqualToString:language]) language = @"es-ES";
+        else if ([@"pt" isEqualToString:language]) language = @"pt-BR";
         // returns the index of the language or NSNotFound
         langIndex = [_international indexOfObject:language];
         // if the preferred language is not supported by the app, fallback to English

@@ -111,7 +111,7 @@ typedef enum {
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
                              settingViewSectionTitleKey, @"Language",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", nil],
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
@@ -137,7 +137,7 @@ typedef enum {
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
                              settingViewSectionTitleKey, @"Language",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", nil],
+                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil],
                              nil],
                             [NSDictionary dictionaryWithKeysAndObjects:
                              settingViewSectionIdKey, [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
@@ -497,6 +497,9 @@ typedef enum {
                     break;
                 case 3:
                     cell.imageView.image = [UIImage imageNamed:@"ES.gif"];
+                    break;
+                case 4:
+                    cell.imageView.image = [UIImage imageNamed:@"BR.gif"];
                     break;
             }
             
