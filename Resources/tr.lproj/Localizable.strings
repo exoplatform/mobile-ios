@@ -14,10 +14,17 @@
 
 "SignInButton" = "Uturum Aç";
 
+"SignInButton_In" = "to";
+
 "UsernamePlaceholder" = "Kullanıcı Adı";
 
 "PasswordPlaceholder" = "Şifre";
 
+"Last Login" = "Last login";
+
+"Connected" = "Connected";
+
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -115,9 +122,13 @@
 
 "Spanish" = "İspanyolca";
 
+"Portuguese-Brazil" = "Portuguese (Brazil)";
+
 "Send" = "Gönder";
 
 "ServerList" = "Sunucu Listesi";
+
+"Account" = "Account";
 
 "NewServer" = "Yeni sunucu";
 
@@ -134,6 +145,8 @@
 "ServerName" = "Sunucu adı";
 
 "ServerUrl" = "Sunucu URL'si";
+
+"Social" = "Social";
 
 
 /*
@@ -405,3 +418,4 @@
 "SignupInternalServerError" = "Intranetiniz için en fazla kullanıcı sayısı ulaşıldı, yöneticinize başvurun";
 
 "NoTenantName" = "Kiracı adı yok";
+
