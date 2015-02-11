@@ -14,7 +14,7 @@
 
 "SignInButton" = "Connexion";
 
-"SignInButton_In" = "à";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Utilisateur";
 
@@ -24,7 +24,7 @@
 
 "Connected" = "Connected";
 
-"Sign In" = "Connexion";
+"Sign In" = "Sign In";
 
 /*
  * Documents
@@ -98,7 +98,6 @@
 "Close" = "Fermer";
 
 
-
 /*
  * Settings
  */
@@ -123,17 +122,17 @@
 
 "Spanish" = "Espagnol";
 
-"Portuguese-Brazil" = "Portugais (Brésil)";
+"Portuguese-Brazil" = "Portuguese (Brazil)";
 
 "Greek"= "Grec";
 
 "Send" = "Envoyer";
 
-"ServerList" = "Comptes";
+"ServerList" = "Liste des serveurs";
 
-"Account" = "Compte";
+"Account" = "Account";
 
-"NewServer" = "Nouveau compte";
+"NewServer" = "Nouveau serveur";
 
 "ServerModify" = "Modifier le serveur";
 
@@ -150,6 +149,7 @@
 "ServerUrl" = "URL du serveur";
 
 "Social" = "Social";
+
 
 /*
  * Errors & Warnings
@@ -414,7 +414,7 @@
 
 "EnterCredentials" = "Enter your credentials and Login";
 
-"My intranet" = "My Intranet";
+"My intranet" = "My intranet";
 
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
