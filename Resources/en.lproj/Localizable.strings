@@ -426,6 +426,7 @@
  Post Activity to Space
  */
 
+"Public" = "Your Stream";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 

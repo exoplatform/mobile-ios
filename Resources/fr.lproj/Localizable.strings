@@ -425,6 +425,7 @@
  Post Activity to Space
  */
 
+"Public" = "Vos Activités";
 
 "CannotLoadSpaceID" = "Impossible de charger les détails de l'espace";
 
@@ -442,3 +443,4 @@
 
 //we cannot translate in french
 "space" = "";
+
