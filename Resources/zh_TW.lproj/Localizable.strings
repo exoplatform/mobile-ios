@@ -14,10 +14,17 @@
 
 "SignInButton" = "登錄";
 
+"SignInButton_In" = "to";
+
 "UsernamePlaceholder" = "使用者名稱";
 
 "PasswordPlaceholder" = "密碼";
 
+"Last Login" = "Last login";
+
+"Connected" = "Connected";
+
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -115,9 +122,13 @@
 
 "Spanish" = "西班牙文";
 
+"Portuguese-Brazil" = "Portuguese (Brazil)";
+
 "Send" = "發送";
 
 "ServerList" = "伺服器清單";
+
+"Account" = "Account";
 
 "NewServer" = "新伺服器";
 
@@ -134,6 +145,8 @@
 "ServerName" = "伺服器名稱";
 
 "ServerUrl" = "伺服器 URL";
+
+"Social" = "社會";
 
 
 /*
@@ -405,3 +418,4 @@
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
 "NoTenantName" = "There is no tenant name";
+
