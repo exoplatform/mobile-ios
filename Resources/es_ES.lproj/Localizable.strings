@@ -14,10 +14,17 @@
 
 "SignInButton" = "Iniciar sesión";
 
+"SignInButton_In" = "to";
+
 "UsernamePlaceholder" = "Nombre de usuario";
 
 "PasswordPlaceholder" = "Contraseña";
 
+"Last Login" = "Last login";
+
+"Connected" = "Connected";
+
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -115,9 +122,13 @@
 
 "Spanish" = "Español";
 
+"Portuguese-Brazil" = "Portuguese (Brazil)";
+
 "Send" = "Enviar";
 
 "ServerList" = "Lista de servidores";
+
+"Account" = "Account";
 
 "NewServer" = "Nuevo servidor";
 
@@ -134,6 +145,8 @@
 "ServerName" = "Nombre del servidor";
 
 "ServerUrl" = "URL del servidor";
+
+"Social" = "Social";
 
 
 /*
@@ -330,7 +343,7 @@
 
 "DateFmt Less than" = "Menos de ";
 
-"DateFmt About" = "Acerca de ";
+"DateFmt About" = "Cerca de ";
 
 "DateFmt Over" = "Sobre ";
 
@@ -405,3 +418,4 @@
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
 "NoTenantName" = "There is no tenant name";
+
