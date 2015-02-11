@@ -10,29 +10,29 @@
 	<string>eXo_Platform</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>208639DF-3773-4DBD-BB34-807004FEF970</key>
+		<key>0FBB391DA2918381B84F499EA3C750CEFC6FC88E</key>
 		<string>https://github.com/exoplatform/mobile-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>eXo_Platform.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>208639DF-3773-4DBD-BB34-807004FEF970</key>
+		<key>0FBB391DA2918381B84F499EA3C750CEFC6FC88E</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/exoplatform/mobile-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>208639DF-3773-4DBD-BB34-807004FEF970</string>
+	<string>0FBB391DA2918381B84F499EA3C750CEFC6FC88E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>208639DF-3773-4DBD-BB34-807004FEF970</string>
+			<string>0FBB391DA2918381B84F499EA3C750CEFC6FC88E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>mobile-ios</string>
 		</dict>
