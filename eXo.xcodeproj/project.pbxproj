@@ -376,6 +376,7 @@
 		572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */; };
 		5731DD411A1313FD001E3A19 /* ServerEditionTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */; };
 		5736ED081A8B02E20041C120 /* BR.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5736ED071A8B02E20041C120 /* BR.gif */; };
+		5736ED6E1A8B4B4D0041C120 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5736ED6D1A8B4B4D0041C120 /* Entitlements.plist */; };
 		573ADC1D19D150BB0009E90D /* Ipad_Switcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */; };
 		573ADC1E19D150BB0009E90D /* Ipad_Switcher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */; };
 		573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573ADC7919D264580009E90D /* AccountSwitcherViewController.m */; };
@@ -1527,6 +1528,7 @@
 		5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditionTestCase.m; sourceTree = "<group>"; };
 		5736ED061A8AFF890041C120 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5736ED071A8B02E20041C120 /* BR.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BR.gif; sourceTree = "<group>"; };
+		5736ED6D1A8B4B4D0041C120 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		573ADC1B19D150BB0009E90D /* Ipad_Switcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ipad_Switcher.png; sourceTree = "<group>"; };
 		573ADC1C19D150BB0009E90D /* Ipad_Switcher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ipad_Switcher@2x.png"; sourceTree = "<group>"; };
 		573ADC7819D264580009E90D /* AccountSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSwitcherViewController.h; sourceTree = "<group>"; };
@@ -2290,6 +2292,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5736ED6D1A8B4B4D0041C120 /* Entitlements.plist */,
 				5783182A192A1341006A26EC /* eXo_Platform-Info.plist */,
 				57831827192A1301006A26EC /* eXo_Platform_Prefix.pch */,
 				57831828192A1301006A26EC /* main.m */,
@@ -5111,6 +5114,7 @@
 				1FCEDECC1457A34F0058C80F /* ActivityTypeAnswer@2x.png in Resources */,
 				1FCEDECD1457A34F0058C80F /* ActivityTypeCalendar@2x.png in Resources */,
 				1FCEDECE1457A34F0058C80F /* ActivityTypeConnection@2x.png in Resources */,
+				5736ED6E1A8B4B4D0041C120 /* Entitlements.plist in Resources */,
 				1FCEDECF1457A34F0058C80F /* ActivityTypeDocument@2x.png in Resources */,
 				1FCEDED01457A34F0058C80F /* ActivityTypeForum@2x.png in Resources */,
 				1FCEDED11457A34F0058C80F /* ActivityTypeLink@2x.png in Resources */,
@@ -5885,9 +5889,9 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "0b7ec93a-c064-4ab6-b92d-9ceeeba08516";
-				"PROVISIONING_PROFILE[sdk=*]" = "0b7ec93a-c064-4ab6-b92d-9ceeeba08516";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0b7ec93a-c064-4ab6-b92d-9ceeeba08516";
+				PROVISIONING_PROFILE = "7ee7de76-eee8-4bb0-adb2-902a2dd575b8";
+				"PROVISIONING_PROFILE[sdk=*]" = "7ee7de76-eee8-4bb0-adb2-902a2dd575b8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7ee7de76-eee8-4bb0-adb2-902a2dd575b8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
@@ -5937,8 +5941,8 @@
 				);
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "0b7ec93a-c064-4ab6-b92d-9ceeeba08516";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0b7ec93a-c064-4ab6-b92d-9ceeeba08516";
+				"PROVISIONING_PROFILE[sdk=*]" = "7ee7de76-eee8-4bb0-adb2-902a2dd575b8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7ee7de76-eee8-4bb0-adb2-902a2dd575b8";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
