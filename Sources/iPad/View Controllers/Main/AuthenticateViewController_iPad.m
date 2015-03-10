@@ -271,8 +271,7 @@
         _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     }
-    
-    [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
+    [self presentViewController:_modalNavigationSettingViewController animated:YES completion:nil];
 }
 
 #pragma mark - TextField delegate 
@@ -293,7 +292,7 @@
 
 -(void)doneWithSettings {
     [super doneWithSettings];
-    [_iPadSettingViewController dismissModalViewControllerAnimated:YES];
+    [_iPadSettingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Keyboard management

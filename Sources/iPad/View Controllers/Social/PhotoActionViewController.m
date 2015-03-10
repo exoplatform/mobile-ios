@@ -104,8 +104,7 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
     {  
         thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        thePicker.allowsEditing = YES;
-        [self presentModalViewController:thePicker animated:YES];
+        [self presentViewController:thePicker animated:YES completion:nil];
     }
     else
     {
@@ -216,8 +215,8 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
-{  
-    [picker dismissModalViewControllerAnimated:YES];  
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
     [_delegate dismissAddPhotoPopOver:YES];
 }
@@ -233,7 +232,7 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 

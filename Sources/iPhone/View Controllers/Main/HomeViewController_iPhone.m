@@ -187,7 +187,7 @@
         [settingsViewController release];
         
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        [self.navigationController presentModalViewController:navController animated:YES];
+        [self.navigationController presentViewController:navController animated:YES completion:nil];
     }
 }
 
@@ -217,7 +217,7 @@
 #pragma - Settings Delegate Methods
 - (void)doneWithSettings {
     [self initView];
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

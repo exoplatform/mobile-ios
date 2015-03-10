@@ -22,20 +22,18 @@
 
 @interface ActivityLinkTableViewCell : ActivityBasicTableViewCell {
  
-    EGOImageView*          _imgvAttach;
-    TTStyledTextLabel*     _htmlActivityMessage;
-    TTStyledTextLabel*     _htmlLinkTitle;
-    TTStyledTextLabel*     _htmlLinkDescription;
-    TTStyledTextLabel*     _htmlName;
-    TTStyledTextLabel*     _htmlLinkMessage;
     CGFloat width;
 }
 
-@property (retain) IBOutlet EGOImageView* imgvAttach;
+// An image attached with the linked page
+@property (retain) IBOutlet   EGOImageView*      imgvAttach;
+// The activity message
 @property (retain, nonatomic) TTStyledTextLabel* htmlActivityMessage;
+// The title of the linked page
 @property (retain, nonatomic) TTStyledTextLabel* htmlLinkTitle;
+// The text of the linked page
 @property (retain, nonatomic) TTStyledTextLabel* htmlLinkDescription;
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
+// The URL of the link
 @property (retain, nonatomic) TTStyledTextLabel* htmlLinkMessage;
 
 @end

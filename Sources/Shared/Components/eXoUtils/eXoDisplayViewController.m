@@ -76,20 +76,9 @@
                                                         style:UIBarButtonItemStylePlain 
                                                         target:self 
                                                         action:@selector(close)];
-
-    
     
     viewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    // wantsFullScreenLayout is deprecated in iOS7+ but we keep it for backward compatibility
-    viewController.wantsFullScreenLayout = YES;
-    
-    // The wantsFullScreenLayout view controller property is deprecated in iOS 7. If you currently specify wantsFullScreenLayout = NO, the
-    //view controller may display its content at an unexpected screen location when it runs in iOS 7.To adjust how a view controller lays
-    //out its views, UIViewController provides edgesForExtendedLayout. Detail in this document: https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/TransitionGuide/AppearanceCustomization.html
-    
-    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [UIView animateWithDuration:0.3
                      animations:^{
@@ -102,7 +91,8 @@
                          }
                          [viewController.view addSubview:_webView];
 
-                         [[AppDelegate_iPad instance].rootViewController presentModalViewController:navigationBar animated:YES];
+                         [[AppDelegate_iPad instance].rootViewController
+                            presentViewController:navigationBar animated:YES completion:nil];
                          
                          CGRect frame = _webView.frame;
                          frame.origin.y -= _navigation.frame.size.height;
@@ -131,7 +121,7 @@
 
 
 -(void)close {
-    [navigationBar dismissModalViewControllerAnimated:YES];
+    [navigationBar dismissViewControllerAnimated:YES completion:nil];
 
     [UIView animateWithDuration:0.3
                      animations:^{

@@ -28,6 +28,7 @@
 
 #define WIDTH_FOR_CONTENT_IPHONE 237
 #define WIDTH_FOR_CONTENT_IPAD 409
+#define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
 
 @implementation ActivityLinkDetailMessageTableViewCell
 
@@ -48,100 +49,128 @@
     }
         
     //_webViewComment.contentMode = UIViewContentModeScaleAspectFit;
-    [[_webViewComment.subviews objectAtIndex:0] setScrollEnabled:NO];
-    [_webViewComment setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[_webViewComment subviews] objectAtIndex:0];
+    [[self.webViewComment.subviews objectAtIndex:0] setScrollEnabled:NO];
+    [self.webViewComment setBackgroundColor:[UIColor clearColor]];
+    UIScrollView *scrollView = (UIScrollView *)[[self.webViewComment subviews] objectAtIndex:0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
-    _webViewComment.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeAddress;
+    self.webViewComment.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeAddress;
 
-    [_webViewComment setOpaque:NO];
+    [self.webViewComment setOpaque:NO];
 }
 
 - (void)updateSizeToFitSubViews {
     
     CGRect myFrame = self.frame;
-    myFrame.size.height = _webViewComment.frame.origin.y + _webViewComment.frame.size.height + _lbDate.bounds.size.height + kBottomMargin;
+    myFrame.size.height = self.webViewComment.frame.origin.y + self.webViewComment.frame.size.height + self.lbDate.bounds.size.height + kBottomMargin;
     
     self.frame = myFrame;
 }
 
-#define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
+    
+    // Title
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
     NSDictionary *_templateParams = self.socialActivity.templateParams;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
+    NSMutableParagraphStyle *wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
-    CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                           lineBreakMode:UILineBreakModeWordWrap];
-    CGRect rect = _lbName.frame;
-    rect.size.height = theSize.height + 5;
-    _lbName.frame = rect;
     
-    //Set the UserName of the activity
-    _lbName.text = title;
+    CGSize theSize = [title boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{
+                                                   NSFontAttributeName: kFontForTitle,
+                                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                                   }
+                                         context:nil].size;
+    CGRect rect = self.lbName.frame;
+    rect.size.height = theSize.height + kBottomMargin;
+    self.lbName.frame = rect;
+    self.lbName.text = title;
     
-    // comment
-    [_webViewForContent loadHTMLString:
+    // Content
+    [self.webViewForContent loadHTMLString:
      [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"comment"]?[_templateParams valueForKey:@"comment"]:@""] 
                                baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
      ];
     
-    // Content
-    [_webViewComment loadHTMLString:
+    // Comment
+    [self.webViewComment loadHTMLString:
      [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} p{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body><a href=\"%@\">%@</a></br>%@Source : %@</body></html>",[_templateParams valueForKey:@"link"],[_templateParams valueForKey:@"title"],(![[[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] isEqualToString:@""])?[NSString stringWithFormat:@"%@</br>", [[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText]]:@"",  [_templateParams valueForKey:@"link"]] 
                             baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
      ];
     
     NSString *textWithoutHtml = [[_templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText];
-    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
     
+    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{
+                                                      NSFontAttributeName: kFontForMessage,
+                                                      NSParagraphStyleAttributeName: wordWrapStyle
+                                                      }
+                                            context:nil].size;
+    rect = self.webViewForContent.frame;
+    rect.origin.y =  self.lbName.frame.size.height + self.lbName.frame.origin.y;
+    rect.size.height =  ceil(theSize.height) + kBottomMargin;
+    self.webViewForContent.frame = rect;
     
-    rect = _webViewForContent.frame;
-    rect.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y;
-    rect.size.height =  theSize.height + 5;
-    
-    _webViewForContent.frame = rect;
+    // Attached Image
     NSURL *url = [NSURL URLWithString:[_templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
         rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[[_templateParams valueForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
+        rect.origin.y = self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + kBottomMargin;
         rect.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 50);
         self.imgvAttach.frame = rect;
         
-        rect = _webViewComment.frame;
-        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
+        rect = self.webViewComment.frame;
+        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + kBottomMargin;
     } else {
-        rect = _webViewComment.frame;
-        rect.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y;
+        rect = self.webViewComment.frame;
+        rect.origin.y = self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + kBottomMargin;
     }
     
     textWithoutHtml = [[_templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText];
-    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
-    rect.size.height = theSize.height;
+    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{
+                                                      NSFontAttributeName: kFontForMessage,
+                                                      NSParagraphStyleAttributeName: wordWrapStyle
+                                                      }
+                                            context:nil].size;
+    rect.size.height = ceil(theSize.height);
     //
     textWithoutHtml = [[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText];
-    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                              lineBreakMode:UILineBreakModeWordWrap];
-    rect.size.height += theSize.height;
+    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{
+                                                      NSFontAttributeName: kFontForMessage,
+                                                      NSParagraphStyleAttributeName: wordWrapStyle
+                                                      }
+                                            context:nil].size;
+    rect.size.height += ceil(theSize.height);
     
     textWithoutHtml = [NSString stringWithFormat:@"Source : %@",[[_templateParams valueForKey:@"link"] stringByConvertingHTMLToPlainText]];
-    theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                              lineBreakMode:UILineBreakModeWordWrap];
-    rect.size.height += theSize.height + 5;
+    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{
+                                                      NSFontAttributeName: kFontForMessage,
+                                                      NSParagraphStyleAttributeName: wordWrapStyle
+                                                      }
+                                            context:nil].size;
+    rect.size.height += ceil(theSize.height) + kBottomMargin;
     
-    _webViewComment.frame = rect;
+    self.webViewComment.frame = rect;
     
-    [_webViewForContent sizeToFit];
-    [_webViewComment sizeToFit];
+    [self.webViewForContent sizeToFit];
+    [self.webViewComment sizeToFit];
     [self updateSizeToFitSubViews];
 }
 

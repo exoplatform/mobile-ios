@@ -69,7 +69,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     // Accounts title
     self.title = Localize(@"ServerList");
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
 
 }
 

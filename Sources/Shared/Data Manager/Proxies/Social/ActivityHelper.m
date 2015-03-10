@@ -56,9 +56,17 @@
     }
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
-        
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
+    
+    NSMutableParagraphStyle* wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [textWithoutHtml
+                      boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{
+                                   NSFontAttributeName: kFontForMessage,
+                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                   }
+                      context:nil].size;
     
     int fHeight = theSize.height + nbBR * 10;
 
@@ -89,8 +97,16 @@
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
     
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle* wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [textWithoutHtml
+                      boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{
+                                   NSFontAttributeName: kFontForTitle,
+                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                   }
+                      context:nil].size;
     
     int fHeight = theSize.height + nbBR * 10;
     
@@ -492,8 +508,16 @@
         [pseudoDisplayedText appendString:@"\n"];
     }
     
-    
-    CGSize theSize = [pseudoDisplayedText sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle* wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [pseudoDisplayedText
+                      boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{
+                                   NSFontAttributeName: kFontForMessage,
+                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                   }
+                      context:nil].size;
     
     if (theSize.height < 30) 
     {

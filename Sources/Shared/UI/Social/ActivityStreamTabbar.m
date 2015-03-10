@@ -52,7 +52,7 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize titleSize = [self.title sizeWithFont:kActivityStreamTabItemFont];
+    CGSize titleSize = [self.title sizeWithAttributes:@{NSFontAttributeName:kActivityStreamTabItemFont}];
     return CGSizeMake(titleSize.width + kFilterTabItemPadding * 2, _itemSize.height);
 }
 
@@ -61,10 +61,10 @@
     CGContextSaveGState(context);
     UIColor *textColor = self.isSelectedTabItem ? [UIColor colorWithRed:84./255 green:84./255 blue:84./255 alpha:1.] : [UIColor colorWithRed:122./255 green:122./255 blue:122./255 alpha:1.];
     [textColor set];
-    CGSize titleSize = [self.title sizeWithFont:kActivityStreamTabItemFont];
+    CGSize titleSize = [self.title sizeWithAttributes:@{NSFontAttributeName:kActivityStreamTabItemFont}];
     float xOffset = (rect.size.width - titleSize.width) / 2;
     float yOffset = (rect.size.height - titleSize.height) / 2;
-    [self.title drawAtPoint:CGPointMake(xOffset, yOffset) withFont:kActivityStreamTabItemFont];
+    [self.title drawAtPoint:CGPointMake(xOffset, yOffset) withAttributes:@{NSFontAttributeName:kActivityStreamTabItemFont}];
     CGContextRestoreGState(context);
 }
 
@@ -167,7 +167,7 @@
     float itemsWidth = 0;
     for (NSDictionary *itemData in _listOfItems) {
         NSString *title = Localize([itemData objectForKey:kActivityStreamTabItemTitle]);
-        CGSize titleSize = [title sizeWithFont:kActivityStreamTabItemFont];
+        CGSize titleSize = [title sizeWithAttributes:@{NSFontAttributeName: kActivityStreamTabItemFont}];
         itemsWidth += titleSize.width + kFilterTabItemPadding * 2;
     }
     return itemsWidth;

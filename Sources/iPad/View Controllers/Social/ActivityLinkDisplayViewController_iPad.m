@@ -41,7 +41,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     _navigation.topItem.title = [self shortString:self.title withMaxCharacter:40];
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     _navigation.tintColor = [UIColor whiteColor];
     
     //If the orientation is in Landscape mode

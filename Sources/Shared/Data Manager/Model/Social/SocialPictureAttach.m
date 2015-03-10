@@ -31,7 +31,13 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"-%@, %@, %@, %@",_docPath?_docPath:@"",_message?_message:@"",_docLink?_docLink:@"", _workspace?_workspace:@"",_repository?_repository:@"",_docName?_docName:@""];
+    return [NSString stringWithFormat:@"-%@, %@, %@, %@, %@, %@",
+            _docPath?_docPath:@"",
+            _message?_message:@"",
+            _docLink?_docLink:@"",
+            _workspace?_workspace:@"",
+            _repository?_repository:@"",
+            _docName?_docName:@""];
 }
 
 @end

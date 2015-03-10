@@ -956,12 +956,12 @@
 		1F20AC4214590BDA0068A2CB /* ActivityForumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityForumTableViewCell.xib; sourceTree = "<group>"; };
 		1F20ACDE145968060068A2CB /* ActivityForumDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityForumDetailMessageTableViewCell.xib; path = Social/ActivityForumDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1F20ACE01459682D0068A2CB /* ActivityForumDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityForumDetailMessageTableViewCell.h; path = Social/ActivityForumDetailMessageTableViewCell.h; sourceTree = "<group>"; };
-		1F20ACE11459682F0068A2CB /* ActivityForumDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityForumDetailMessageTableViewCell.m; path = Social/ActivityForumDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1F20ACE11459682F0068A2CB /* ActivityForumDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityForumDetailMessageTableViewCell.m; path = Social/ActivityForumDetailMessageTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1F924378145FE07300D5AF85 /* ActivityLinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkTableViewCell.h; path = Social/ActivityLinkTableViewCell.h; sourceTree = "<group>"; };
-		1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkTableViewCell.m; path = Social/ActivityLinkTableViewCell.m; sourceTree = "<group>"; };
+		1F924379145FE07500D5AF85 /* ActivityLinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityLinkTableViewCell.m; path = Social/ActivityLinkTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1F92437B145FE0BF00D5AF85 /* ActivityLinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkTableViewCell.xib; path = Social/ActivityLinkTableViewCell.xib; sourceTree = "<group>"; };
 		1FC345391474FD3400540016 /* ActivityAnswerDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityAnswerDetailMessageTableViewCell.h; path = Social/ActivityAnswerDetailMessageTableViewCell.h; sourceTree = "<group>"; };
-		1FC3453A1474FD3500540016 /* ActivityAnswerDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityAnswerDetailMessageTableViewCell.m; path = Social/ActivityAnswerDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1FC3453A1474FD3500540016 /* ActivityAnswerDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityAnswerDetailMessageTableViewCell.m; path = Social/ActivityAnswerDetailMessageTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1FC3453C1474FD5200540016 /* ActivityAnswerDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityAnswerDetailMessageTableViewCell.xib; path = Social/ActivityAnswerDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCBCC26143D4BB300CC4F21 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		1FCBCC27143D4BB300CC4F21 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
@@ -1021,10 +1021,10 @@
 		1FCD3A1D143AA05900C814C5 /* DashboardTabBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DashboardTabBackground.png; sourceTree = "<group>"; };
 		1FCD3A1F143AA05900C814C5 /* DashboardTabBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DashboardTabBackground@2x.png"; sourceTree = "<group>"; };
 		1FCD808F145E9A23009B34D3 /* ActivityWikiDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityWikiDetailMessageTableViewCell.h; path = Social/ActivityWikiDetailMessageTableViewCell.h; sourceTree = "<group>"; };
-		1FCD8090145E9A26009B34D3 /* ActivityWikiDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityWikiDetailMessageTableViewCell.m; path = Social/ActivityWikiDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1FCD8090145E9A26009B34D3 /* ActivityWikiDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityWikiDetailMessageTableViewCell.m; path = Social/ActivityWikiDetailMessageTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1FCD8092145E9A60009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityWikiDetailMessageTableViewCell.xib; path = Social/ActivityWikiDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCDDB6C14481ECD00846232 /* ActivityPictureDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityPictureDetailMessageTableViewCell.h; path = Social/ActivityPictureDetailMessageTableViewCell.h; sourceTree = "<group>"; };
-		1FCDDB6D14481ECF00846232 /* ActivityPictureDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityPictureDetailMessageTableViewCell.m; path = Social/ActivityPictureDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1FCDDB6D14481ECF00846232 /* ActivityPictureDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityPictureDetailMessageTableViewCell.m; path = Social/ActivityPictureDetailMessageTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1FCDDB6E14481ED000846232 /* ActivityPictureDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityPictureDetailMessageTableViewCell.xib; path = Social/ActivityPictureDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCDF075147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityCalendarDetailMessageTableViewCell.xib; path = Social/ActivityCalendarDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCDF077147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCalendarDetailMessageTableViewCell.h; path = Social/ActivityCalendarDetailMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -1036,7 +1036,7 @@
 		1FCE304914453EB6004AE55F /* SocialPictureAttach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPictureAttach.h; sourceTree = "<group>"; };
 		1FCE304A14453EB6004AE55F /* SocialPictureAttach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialPictureAttach.m; sourceTree = "<group>"; };
 		1FCE30521445B01A004AE55F /* ActivityPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityPictureTableViewCell.h; path = Social/ActivityPictureTableViewCell.h; sourceTree = "<group>"; };
-		1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityPictureTableViewCell.m; path = Social/ActivityPictureTableViewCell.m; sourceTree = "<group>"; };
+		1FCE30531445B01A004AE55F /* ActivityPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityPictureTableViewCell.m; path = Social/ActivityPictureTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1FCE30541445B01C004AE55F /* ActivityPictureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityPictureTableViewCell.xib; path = Social/ActivityPictureTableViewCell.xib; sourceTree = "<group>"; };
 		1FCE58E6146238840045FC10 /* eXoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoTableViewController.h; sourceTree = "<group>"; };
 		1FCE58E7146238840045FC10 /* eXoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoTableViewController.m; sourceTree = "<group>"; };
@@ -1086,7 +1086,7 @@
 		1FCEDED51458021C0058C80F /* eXoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoViewController.m; sourceTree = "<group>"; };
 		1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDetailMessageTableViewCell.xib; path = Social/ActivityLinkDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCF4A471476413700EEB9C7 /* ActivityLinkDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDetailMessageTableViewCell.h; path = Social/ActivityLinkDetailMessageTableViewCell.h; sourceTree = "<group>"; };
-		1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityLinkDetailMessageTableViewCell.m; path = Social/ActivityLinkDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityLinkDetailMessageTableViewCell.m; path = Social/ActivityLinkDetailMessageTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1FD02F92145A50CD00A36840 /* ActivityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityHelper.h; sourceTree = "<group>"; };
 		1FD02F95145A8C1300A36840 /* ActivityWikiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityWikiTableViewCell.h; path = Social/ActivityWikiTableViewCell.h; sourceTree = "<group>"; };
 		1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityWikiTableViewCell.m; path = Social/ActivityWikiTableViewCell.m; sourceTree = "<group>"; };
@@ -1201,7 +1201,7 @@
 		46A03A2813A8C16D00E71AF9 /* ActivityBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityBasicTableViewCell.m; path = Social/ActivityBasicTableViewCell.m; sourceTree = "<group>"; };
 		46A03A2913A8C16D00E71AF9 /* ActivityBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityBasicTableViewCell.xib; path = Social/ActivityBasicTableViewCell.xib; sourceTree = "<group>"; };
 		46A03A2A13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController.h; path = Social/ActivityStreamBrowseViewController.h; sourceTree = "<group>"; };
-		46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController.m; path = Social/ActivityStreamBrowseViewController.m; sourceTree = "<group>"; };
+		46A03A2B13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityStreamBrowseViewController.m; path = Social/ActivityStreamBrowseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		46A03AA413A8E0EF00E71AF9 /* SocialActivityBrowseHeaderHighlightedBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowseHeaderHighlightedBg.png; sourceTree = "<group>"; };
 		46A03AA513A8E0EF00E71AF9 /* SocialActivityBrowseHeaderNormalBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowseHeaderNormalBg.png; sourceTree = "<group>"; };
 		46A03AA613A8E0EF00E71AF9 /* SocialActivityBrowserActivityBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialActivityBrowserActivityBg.png; sourceTree = "<group>"; };
@@ -1240,7 +1240,7 @@
 		46ADAED114052599005ABA79 /* LanguageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanguageHelper.h; path = "../../Data Manager/Settings Management/LanguageHelper.h"; sourceTree = "<group>"; };
 		46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityStreamBrowseViewController_iPhone.xib; path = Sources/iPhone/NIB/ActivityStreamBrowseViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		46ADAEE314068EAF005ABA79 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardViewController.h; path = Dashboard/DashboardViewController.h; sourceTree = "<group>"; };
-		46ADAEE414068EAF005ABA79 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardViewController.m; path = Dashboard/DashboardViewController.m; sourceTree = "<group>"; };
+		46ADAEE414068EAF005ABA79 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = DashboardViewController.m; path = Dashboard/DashboardViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		46BE69D313D5B30E00F62614 /* SocialComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialComment.h; sourceTree = "<group>"; };
 		46BE69D413D5B30E00F62614 /* SocialComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialComment.m; sourceTree = "<group>"; };
 		46BE69DE13D5B33E00F62614 /* SocialPostActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialPostActivity.h; sourceTree = "<group>"; };
@@ -1335,9 +1335,9 @@
 		46EA0E8D147264B100F42855 /* HomeSidebarViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSidebarViewController_iPhone.m; sourceTree = "<group>"; };
 		46EC3594140FDE150083FA07 /* FileFolderActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileFolderActionsViewController.h; path = Documents/FileFolderActionsViewController.h; sourceTree = "<group>"; };
 		46EC3595140FDE150083FA07 /* FileFolderActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileFolderActionsViewController.m; path = Documents/FileFolderActionsViewController.m; sourceTree = "<group>"; };
-		46EC7DE61466D596009D7BB0 /* ActivityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityHelper.m; sourceTree = "<group>"; };
+		46EC7DE61466D596009D7BB0 /* ActivityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ActivityHelper.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		46F87F82140BD7A60077BE15 /* DocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController.h; path = Documents/DocumentsViewController.h; sourceTree = "<group>"; };
-		46F87F83140BD7A60077BE15 /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController.m; path = Documents/DocumentsViewController.m; sourceTree = "<group>"; };
+		46F87F83140BD7A60077BE15 /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = DocumentsViewController.m; path = Documents/DocumentsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		46F87F88140CC4C20077BE15 /* FileActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileActionsViewController.h; path = Documents/FileActionsViewController.h; sourceTree = "<group>"; };
 		46F87F89140CC4C20077BE15 /* FileActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileActionsViewController.m; path = Documents/FileActionsViewController.m; sourceTree = "<group>"; };
 		47F907430C78443DB778B574 /* libPods-eXoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eXoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1356,13 +1356,13 @@
 		572EA992192AFBFD008CFB11 /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
 		572EA993192AFBFD008CFB11 /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
 		572EA994192AFBFD008CFB11 /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
-		572EA995192AFBFD008CFB11 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		572EA995192AFBFD008CFB11 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ATMHudView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		572EA996192AFBFD008CFB11 /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
 		572EA997192AFBFD008CFB11 /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
 		572EA998192AFBFD008CFB11 /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
 		572EA999192AFBFD008CFB11 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
 		572EA99A192AFBFD008CFB11 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
-		572EA99B192AFBFD008CFB11 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
+		572EA99B192AFBFD008CFB11 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ATMTextLayer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		572EA99E192AFBFD008CFB11 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		572EA99F192AFBFD008CFB11 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		572EA9A1192AFBFD008CFB11 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
@@ -1588,7 +1588,7 @@
 		7CA74B0B13C30C330006306D /* ActivityDetailViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController_iPad.m; path = Social/ActivityDetailViewController_iPad.m; sourceTree = "<group>"; };
 		7CA74B0C13C30C330006306D /* ActivityDetailViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityDetailViewController_iPad.xib; path = Social/ActivityDetailViewController_iPad.xib; sourceTree = "<group>"; };
 		7CA74B0D13C30C330006306D /* ActivityStreamBrowseViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityStreamBrowseViewController_iPad.h; path = Social/ActivityStreamBrowseViewController_iPad.h; sourceTree = "<group>"; };
-		7CA74B0E13C30C330006306D /* ActivityStreamBrowseViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityStreamBrowseViewController_iPad.m; path = Social/ActivityStreamBrowseViewController_iPad.m; sourceTree = "<group>"; };
+		7CA74B0E13C30C330006306D /* ActivityStreamBrowseViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityStreamBrowseViewController_iPad.m; path = Social/ActivityStreamBrowseViewController_iPad.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7CA74B0F13C30C330006306D /* MessageComposerViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposerViewController_iPad.h; path = Social/MessageComposerViewController_iPad.h; sourceTree = "<group>"; };
 		7CA74B1013C30C330006306D /* MessageComposerViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposerViewController_iPad.m; path = Social/MessageComposerViewController_iPad.m; sourceTree = "<group>"; };
 		7CA74B1113C30C330006306D /* MessageComposerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageComposerViewController_iPad.xib; path = Social/MessageComposerViewController_iPad.xib; sourceTree = "<group>"; };
@@ -5703,6 +5703,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -5750,6 +5751,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -5839,6 +5841,7 @@
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Distribution AdHoc";
@@ -5928,6 +5931,7 @@
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Distribution AppStore";

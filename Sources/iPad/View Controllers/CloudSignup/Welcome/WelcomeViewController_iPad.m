@@ -70,7 +70,7 @@
     AppDelegate_iPad *appDelegate = [AppDelegate_iPad instance];
 
     if(self.shouldBackToSetting) {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         appDelegate.window.rootViewController = appDelegate.viewController;
     }
@@ -83,7 +83,7 @@
     [signUpVC release];
     navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentModalViewController:navCon animated:YES];
+    [self presentViewController:navCon animated:YES completion:nil];
 }
 
 - (void)login:(id)sender
@@ -94,8 +94,7 @@
     
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
     navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-
-    [self presentModalViewController:navCon animated:YES];
+    [self presentViewController:navCon animated:YES completion:nil];
 }
 
 - (BOOL)shouldAutorotate

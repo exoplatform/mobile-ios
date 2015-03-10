@@ -62,7 +62,7 @@
         _navigation.topItem.title = Localize(@"Documents") ;
         ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
     }
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
 }
 
 - (CGRect)rectOfHeader:(int)width
@@ -378,8 +378,8 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
-{  
-    [picker dismissModalViewControllerAnimated:YES];  
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [self.popoverPhotoLibraryController dismissPopoverAnimated:YES];
     _navigation.topItem.rightBarButtonItem.enabled = YES;
     

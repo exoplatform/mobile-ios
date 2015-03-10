@@ -294,7 +294,7 @@ typedef enum {
 
 - (void)setNavigationBarLabels {
     self.title = Localize(@"Settings");
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     
     self.navigationItem.rightBarButtonItem.title = Localize(@"DoneButton");
     //Fix color nav button
@@ -544,7 +544,7 @@ typedef enum {
                 
                 cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"] autorelease];
                 cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:0]);
-                [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+                [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.textLabel.backgroundColor = [UIColor clearColor];
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
@@ -635,8 +635,8 @@ typedef enum {
             }
             
             welcomeVC.shouldBackToSetting = YES;
-            [self dismissModalViewControllerAnimated:NO];
-            [appDelegate.window.rootViewController presentModalViewController:welcomeVC animated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [appDelegate.window.rootViewController presentViewController:welcomeVC animated:YES completion:nil];
             [welcomeVC release];
 
         } else {
@@ -774,6 +774,6 @@ typedef enum {
 
 - (void)didSkipSignUp
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

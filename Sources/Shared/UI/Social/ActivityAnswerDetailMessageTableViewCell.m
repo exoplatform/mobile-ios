@@ -56,7 +56,7 @@
 
 - (void)updateSizeToFitSubViews {
     CGRect frame = _htmlMessage.frame;
-    frame.origin.y = _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + kPadding;
+    frame.origin.y = self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + kPadding;
     _htmlMessage.frame = frame;
     
     frame = self.frame;
@@ -104,27 +104,33 @@
     float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
     // in plf 4, there is no "Name" in template params, we take the title of activity instead.
     if(plfVersion >= 4.0) {
-        [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [socialActivityDetail.title stringByConvertingHTMLToPlainText]]
+        [self.webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [socialActivityDetail.title stringByConvertingHTMLToPlainText]]
                                    baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
          ];
     } else {
-        [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [[_templateParams valueForKey:@"Name" ] stringByConvertingHTMLToPlainText]] baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
+        [self.webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [[_templateParams valueForKey:@"Name" ] stringByConvertingHTMLToPlainText]] baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
          ];
     }
-    
-    CGSize theSize = [[[_templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText] sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                                     lineBreakMode:UILineBreakModeWordWrap];
-    
-    tmpFrame = _webViewForContent.frame;
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [[[_templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText]
+                      boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                   options:nil
+                                attributes:@{
+                                             NSFontAttributeName: kFontForTitle,
+                                             NSParagraphStyleAttributeName: style
+                                             }
+                                   context:nil].size;
+    tmpFrame = self.webViewForContent.frame;
     tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y;
     tmpFrame.size.height = theSize.height + 5;
-    _webViewForContent.frame = tmpFrame;
+    self.webViewForContent.frame = tmpFrame;
     
     _htmlMessage.html = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
     [_htmlMessage sizeToFit];
     
-    [_webViewForContent sizeToFit];
+    [self.webViewForContent sizeToFit];
     [self updateSizeToFitSubViews];
 }
 

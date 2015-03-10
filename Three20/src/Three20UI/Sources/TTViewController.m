@@ -88,9 +88,12 @@
 
   } else {
     CGRect frame = self.wantsFullScreenLayout ? TTScreenBounds() : TTNavigationFrame();
-      // The wantsFullScreenLayout view controller property is deprecated in iOS 7. If you currently specify wantsFullScreenLayout = NO, the
-      //view controller may display its content at an unexpected screen location when it runs in iOS 7.To adjust how a view controller lays
-      //out its views, UIViewController provides edgesForExtendedLayout. Detail in this document: https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/TransitionGuide/AppearanceCustomization.html
+      // The wantsFullScreenLayout view controller property is deprecated in iOS 7.
+      // If you currently specify wantsFullScreenLayout = NO, the view controller may
+      // display its content at an unexpected screen location when it runs in iOS 7.
+      // To adjust how a view controller lays out its views,
+      // UIViewController provides edgesForExtendedLayout. Detail in this document:
+      // https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/TransitionGuide/AppearanceCustomization.html
       if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
           self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
