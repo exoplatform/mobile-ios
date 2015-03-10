@@ -135,7 +135,7 @@
     UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     [_txtvMessageComposer becomeFirstResponder];
@@ -312,7 +312,7 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
@@ -425,7 +425,7 @@
     }
     else
     {
-        [self dismissModalViewControllerAnimated:YES];    
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     
 }
@@ -491,7 +491,7 @@
             _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
             _previousStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
             
-            [self presentModalViewController:[self getPicker:UIImagePickerControllerSourceTypePhotoLibrary] animated:YES];
+            [self presentViewController:[self getPicker:UIImagePickerControllerSourceTypePhotoLibrary] animated:YES completion:nil];
         }
     }];
     [imagePreview removeImageWithCompletion:^(void) {
@@ -544,7 +544,7 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-
+    
     if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
         if (_socialSpaceProxy.mySpaces && _socialSpaceProxy.mySpaces.count>0){
             selectedSpace.spaceId = ((SocialSpace*)_socialSpaceProxy.mySpaces[0]).spaceId;
@@ -556,10 +556,7 @@
             [delegate messageComposerDidSendData];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-
     }
-    
-    
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
@@ -631,7 +628,7 @@
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
             _previousStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
-            [self presentModalViewController:thePicker animated:YES];
+            [self presentViewController:thePicker animated:YES completion:nil];
         } else {
             self._popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:thePicker] autorelease];
             [self._popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];        
@@ -667,7 +664,7 @@
             // restore previous status bar
             [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
             [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
     [imagePreview selectImageWithCompletion:^(void) {
@@ -682,7 +679,7 @@
             [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
             [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
             self.navigationController.toolbarHidden = YES;
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
     [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
@@ -693,7 +690,7 @@
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

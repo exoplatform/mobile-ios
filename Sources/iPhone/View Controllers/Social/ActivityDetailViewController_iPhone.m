@@ -82,7 +82,7 @@
     self.view.title = self.title;
     
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.backBarButtonItem = self.navigationItem.backBarButtonItem;
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.tintColor = [UIColor whiteColor];
     
     
@@ -109,10 +109,7 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
-    [self presentModalViewController:navController animated:YES];
-
-    
-    
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)finishLoadingAllLikers {

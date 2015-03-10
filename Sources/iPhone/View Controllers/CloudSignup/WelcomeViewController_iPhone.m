@@ -52,7 +52,7 @@
 -(void)skipCloudSignup:(id)sender
 {
     if(self.shouldBackToSetting) {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     } else {
 
         AppDelegate_iPhone *appDelegate = [AppDelegate_iPhone instance];
@@ -67,7 +67,7 @@
 {
     SignUpViewController_iPhone *signupViewController = [[[SignUpViewController_iPhone alloc] initWithNibName:@"SignUpViewController_iPhone" bundle:nil] autorelease];
     signupViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentModalViewController:signupViewController animated:YES];
+    [self presentViewController:signupViewController animated:YES completion:nil];
 }
 
 - (void)login:(id)sender
@@ -78,7 +78,7 @@
    
     navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
-    [self presentModalViewController:navigationController animated:YES];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

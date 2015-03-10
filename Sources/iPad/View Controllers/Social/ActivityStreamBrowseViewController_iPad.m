@@ -69,7 +69,12 @@
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
     
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                                             options:nil
+                                          attributes:@{ NSFontAttributeName: kFontForMessage, NSParagraphStyleAttributeName: style }
+                                             context:nil].size;
     
     if (theSize.height < 30) 
     {
@@ -109,7 +114,9 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPad instance].rootViewController.menuViewController
+        presentViewController:navController animated:YES completion:nil];
+
     
     int x, y;
     
@@ -143,7 +150,8 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPad instance].rootViewController.menuViewController
+        presentViewController:navController animated:YES completion:nil];
     [messageComposerViewController release];
         
     int x, y;

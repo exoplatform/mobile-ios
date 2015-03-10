@@ -210,9 +210,10 @@
     [_disconnectLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_disconnectLabel setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25] forState:UIControlStateNormal];
     _disconnectLabel.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    [_disconnectLabel.titleLabel setTextAlignment:UITextAlignmentLeft];
+    [_disconnectLabel.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [_disconnectLabel addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    CGSize disLabelSize = [_disconnectLabel.titleLabel.text sizeWithFont:_disconnectLabel.titleLabel.font];
+    CGSize disLabelSize = [_disconnectLabel.titleLabel.text
+                           sizeWithAttributes:@{NSFontAttributeName:_disconnectLabel.titleLabel.font}];
     _disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + kFooterButtonLeftMargin,
                                          kFooterButtonTopMargin,
                                          disLabelSize.width,
@@ -464,7 +465,8 @@
     // Update the label of the button
     [_disconnectLabel setTitle:Localize(@"Disconnect") forState:UIControlStateNormal];
     // Calculate the new size and apply it
-    CGSize disLabelSize = [_disconnectLabel.titleLabel.text sizeWithFont:_disconnectLabel.titleLabel.font];
+    CGSize disLabelSize = [_disconnectLabel.titleLabel.text
+                           sizeWithAttributes:@{NSFontAttributeName:_disconnectLabel.titleLabel.font}];
     _disconnectLabel.frame = CGRectMake(_disconnectLabel.frame.origin.x,
                                         _disconnectLabel.frame.origin.y,
                                         disLabelSize.width,

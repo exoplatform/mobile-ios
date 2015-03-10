@@ -152,9 +152,12 @@
     [_rootView removeFromSuperview], [_rootView autorelease], _rootView = nil;
     _rootView = [rootView retain];
 
-    for (UIView *view in _views) {
+    for (int n = 0; n < _views.count; n++) {
         [self popViewAnimated:NO];
     }
+//    for (UIView *view in _views) {
+//        [self popViewAnimated:NO];
+//    }
     [_navigationBar setItems:[NSArray arrayWithObject:_navigationItem]];
 
     _navigationItem.title = _rootView.title;

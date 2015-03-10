@@ -42,7 +42,7 @@
                                                                             target:self 
                                                                             action:@selector(CancelBtn)];
     
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
@@ -56,8 +56,7 @@
     } else {
         [_delegate renameFolder:strName forFolder:_fileToApplyAction];
     }    
-    
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

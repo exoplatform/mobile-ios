@@ -221,7 +221,6 @@ switch([self kind])
 		[str appendString:[self stringValue]];
 		break;
 	case XML_COMMENT_NODE:
-	case XML_CDATA_SECTION_NODE:
 		// TODO: NSXML does not have XML_CDATA_SECTION_NODE correspondent.
 		break;
 	default:

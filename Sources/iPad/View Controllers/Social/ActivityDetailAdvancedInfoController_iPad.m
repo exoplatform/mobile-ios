@@ -78,9 +78,9 @@
     
     [kTabItemTextColor set];
     
-    CGFloat heightTitle = [self.title sizeWithFont:kTabItemFont].height;
+    CGFloat heightTitle = [self.title sizeWithAttributes:@{NSFontAttributeName:kTabItemFont}].height;
     CGFloat titleYOffset = (contentRect.size.height - heightTitle) / 2;
-    [self.title drawAtPoint:CGPointMake(xOffset, titleYOffset) withFont:kTabItemFont];
+    [self.title drawAtPoint:CGPointMake(xOffset, titleYOffset) withAttributes:@{NSFontAttributeName:kTabItemFont}];
     
     CGContextRestoreGState(context);
 }
@@ -201,7 +201,6 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
 
 static NSString *kTabType = @"kTapType";
 static NSString *kTabTitle = @"kTapTitle";
-static NSString *kTabImageName = @"kTapImageName";
 static NSString *kTabItem = @"kTabItem";
 
 @interface ActivityDetailAdvancedInfoController_iPad () {

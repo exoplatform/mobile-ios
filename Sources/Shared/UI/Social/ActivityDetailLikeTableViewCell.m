@@ -88,7 +88,8 @@
     [super layoutSubviews];
     CGRect contentBounds = self.contentView.bounds;
     /* ### Configure message label ### */
-    CGSize messageSize = [_lbMessage.text sizeWithFont:_lbMessage.font];
+    CGSize messageSize = [_lbMessage.text sizeWithAttributes:@{ NSFontAttributeName: _lbMessage.font }];
+//    CGSize messageSize = [_lbMessage.text sizeWithFont:_lbMessage.font];
     _lbMessage.frame = CGRectMake(kLeftRightMargin, kTopMargin, messageSize.width, messageSize.height); // the message is on the top of the content view
     /* ##### */
     float avatarHeight = (contentBounds.size.height - (kTopMargin + kBottomMargin) - self.lbMessage.bounds.size.height - kPadding);
@@ -220,6 +221,9 @@
 - (UIImage *)imageOfThreePointsWithSize:(CGSize)imageSize {
     NSString *threePoints = @"...";
     UIFont *font = [UIFont boldSystemFontOfSize:20.0];
+    NSMutableParagraphStyle* paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
     CGRect rect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
     // this method is available from iOS 4.0
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
@@ -228,7 +232,16 @@
     CGContextFillRect(context, rect);
     
     CGContextSetFillColorWithColor(context, [UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor);
-    [threePoints drawInRect:rect withFont:font lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+    [threePoints drawInRect:rect
+             withAttributes:@{
+                              NSFontAttributeName: font,
+                    NSParagraphStyleAttributeName: paragraphStyle
+                              }
+     ];
+//    [threePoints drawInRect:rect
+//                   withFont:font
+//              lineBreakMode:UILineBreakModeTailTruncation
+//                  alignment:UITextAlignmentCenter];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

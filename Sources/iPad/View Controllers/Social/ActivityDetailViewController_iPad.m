@@ -62,7 +62,7 @@
     ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = YES;
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
 }
 
 #pragma mark - like/dislike management
@@ -99,7 +99,8 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPad instance].rootViewController.menuViewController
+        presentViewController:navController animated:YES completion:nil];
     
     int x, y;
     

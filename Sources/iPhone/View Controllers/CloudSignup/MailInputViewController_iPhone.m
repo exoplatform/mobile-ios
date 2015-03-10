@@ -70,7 +70,7 @@
     [alreadyVC release];
     
     [self.parentViewController dismissViewControllerAnimated:NO completion:^{
-        [presentingVC presentModalViewController:navCon animated:YES];
+        [presentingVC presentViewController:navCon animated:YES completion:nil];
     }];
 }
 

@@ -55,7 +55,7 @@
 {
 	[super viewDidLoad];
     
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     _navigation.tintColor = [UIColor whiteColor];
     
     //Set the background Color of the view

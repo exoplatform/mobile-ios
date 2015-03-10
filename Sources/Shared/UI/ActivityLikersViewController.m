@@ -160,7 +160,7 @@
         UILabel *label = [self newNameLabel];
         label.text = user.fullName;
         // update position of the avatar 
-        CGSize labelSize = [label.text sizeWithFont:label.font];
+        CGSize labelSize = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
         label.frame = CGRectMake(avatarView.frame.origin.x, avatarView.frame.origin.y + avatarWidth, avatarWidth, labelSize.height);
         
         columnCount++;
@@ -200,7 +200,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor colorWithRed:58.0/255 green:118.0/255 blue:178.0/255 alpha:1];
     label.adjustsFontSizeToFitWidth = YES;
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     return [label autorelease];
 }
 

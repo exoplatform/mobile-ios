@@ -36,7 +36,6 @@ static NSString *GENERAL_GROUP = @"general";
 static NSString *PERSONAL_GROUP = @"personal";
 static NSString *SHARED_GROUP = @"group";
 static NSString *PUBLIC_DRIVE = @"Public";
-static NSString *PRIVATE_GROUP = @"Private";
 
 #pragma mark -
 #pragma mark Private
@@ -312,7 +311,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 	[self.view addSubview:self.hudLoadWaiting.view];
     
     self.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     
     //Set the background Color of the view
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
@@ -437,11 +436,19 @@ static NSString *PRIVATE_GROUP = @"Private";
 	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     headerLabel.shadowOffset = CGSizeMake(0,1);
-    headerLabel.textAlignment = UITextAlignmentCenter;
+    headerLabel.textAlignment = NSTextAlignmentCenter;
 
     headerLabel.text = Localize([[_dicContentOfFolder allKeys] objectAtIndex:section]);
     
-    CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblFiles.frame.size.width-5, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [headerLabel.text boundingRectWithSize:CGSizeMake(_tblFiles.frame.size.width-5, CGFLOAT_MAX)
+                                                    options:nil
+                                                 attributes:@{
+                                                              NSFontAttributeName: headerLabel.font,
+                                                              NSParagraphStyleAttributeName: style
+                                                              }
+                                                    context:nil].size;
     
     if(theSize.width > _tblFiles.frame.size.width - 20)
         theSize.width = _tblFiles.frame.size.width - 50;
@@ -722,8 +729,8 @@ static NSString *PRIVATE_GROUP = @"Private";
 
     if(thePicker) {
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            //[self.navigationController presentModalViewController:thePicker animated:YES];  
-            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
+            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone
+                presentViewController:thePicker animated:YES completion:nil];
         }
         else {
             
@@ -768,7 +775,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
     navigationController.navigationBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavbarBg.png"]];
     
@@ -1076,8 +1083,8 @@ static NSString *PRIVATE_GROUP = @"Private";
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
-{  
-    [picker dismissModalViewControllerAnimated:YES];  
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
 }
 

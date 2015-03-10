@@ -103,7 +103,7 @@
     
     // Calculate the height of each label
     UIFont *font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    float labelHeight = [@"A" sizeWithFont:font].height;
+    float labelHeight = [@"A" sizeWithAttributes:@{NSFontAttributeName:font}].height;
     // Create user's full name label
     CGRect fullnameFrame = CGRectZero;
     fullnameFrame.origin.x = _avatarView.frame.origin.x + _avatarView.frame.size.width + kUserProfileViewLefRightPadding;

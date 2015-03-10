@@ -1015,7 +1015,6 @@
 				25F5182413724866009B2E22 /* RKObjectRelationshipMapping.m */,
 				259C64BD137477D0001FE1C5 /* RKObjectMapper.h */,
 				259C64BE137477D0001FE1C5 /* RKObjectMapper.m */,
-				2530078D137838D30074F3FD /* RKObjectMapper_Private.h */,
 				3F71ED3213748536006281CA /* RKObjectMappingProvider.h */,
 				3F71ED3313748536006281CA /* RKObjectMappingProvider.m */,
 				257D2D6E13759D6F008E9649 /* RKObjectMappingResult.h */,
@@ -1798,7 +1797,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Two Toasters";
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "RestKit" */;
@@ -2208,18 +2207,16 @@
 		1DEB922308733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD_32_64_BIT)";
 				BUILD_STYLE = Debug;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = Code/Support/RestKit_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2232,14 +2229,11 @@
 		1DEB922408733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD_32_64_BIT)";
 				BUILD_STYLE = Release;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREFIX_HEADER = Code/Support/RestKit_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -2262,6 +2256,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					../three20/Build/Products/three20,
 					Examples/RKDiscussionBoardExample/DiscussionBoard/Libraries/three20,
@@ -2290,6 +2285,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					../three20/Build/Products/three20,
 					Examples/RKDiscussionBoardExample/DiscussionBoard/Libraries/three20,
@@ -2312,14 +2308,11 @@
 		253216491338CA940099A5DB /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD_32_64_BIT)";
 				BUILD_STYLE = Release;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREFIX_HEADER = Code/Support/RestKit_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -2339,6 +2332,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Network/Private;
 				PRODUCT_NAME = RestKitNetwork;
@@ -2354,6 +2348,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/ObjectMapping/Private;
 				PRODUCT_NAME = RestKitObjectMapping;
@@ -2369,6 +2364,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Support/Private;
 				PRODUCT_NAME = RestKitSupport;
@@ -2385,6 +2381,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "Vendor/YAJL/yajl-1.0.9/src/api";
 				OTHER_CFLAGS = "$(YAJL_GENERAL_OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
@@ -2406,6 +2403,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -2423,6 +2421,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -2441,6 +2440,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/CoreData/Private;
 				PRODUCT_NAME = RestKitCoreData;
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/CoreData;
@@ -2457,6 +2457,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					../three20/Build/Products/three20,
 					Examples/RKDiscussionBoardExample/DiscussionBoard/Libraries/three20,
@@ -2492,6 +2493,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Specs/Runner/UISpec/headers",
 					"$(SRCROOT)/Specs/Runner/OCMock/Headers",
@@ -2531,6 +2533,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Network/Private;
 				PRODUCT_NAME = RestKitNetwork;
@@ -2545,6 +2548,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Network/Private;
 				PRODUCT_NAME = RestKitNetwork;
@@ -2561,6 +2565,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/ObjectMapping/Private;
 				PRODUCT_NAME = RestKitObjectMapping;
@@ -2575,6 +2580,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/ObjectMapping/Private;
 				PRODUCT_NAME = RestKitObjectMapping;
@@ -2591,6 +2597,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Support/Private;
 				PRODUCT_NAME = RestKitSupport;
@@ -2605,6 +2612,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Support/Private;
 				PRODUCT_NAME = RestKitSupport;
@@ -2621,6 +2629,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/CoreData/Private;
 				PRODUCT_NAME = RestKitCoreData;
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/CoreData;
@@ -2634,6 +2643,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/CoreData/Private;
 				PRODUCT_NAME = RestKitCoreData;
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/CoreData;
@@ -2644,14 +2654,11 @@
 		255920CC13BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD_32_64_BIT)";
 				BUILD_STYLE = Release;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREFIX_HEADER = Code/Support/RestKit_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -2667,6 +2674,7 @@
 		255920CD13BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_THUMB_SUPPORT = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -2680,6 +2688,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Network/Private;
 				PRODUCT_NAME = RestKitNetwork;
@@ -2695,6 +2704,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/ObjectMapping/Private;
 				PRODUCT_NAME = RestKitObjectMapping;
@@ -2710,6 +2720,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/Support/Private;
 				PRODUCT_NAME = RestKitSupport;
@@ -2726,6 +2737,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "Vendor/YAJL/yajl-1.0.9/src/api";
 				OTHER_CFLAGS = "$(YAJL_GENERAL_OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
@@ -2747,6 +2759,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -2764,6 +2777,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -2780,6 +2794,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2798,6 +2813,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = include/RestKit/CoreData/Private;
 				PRODUCT_NAME = RestKitCoreData;
 				PUBLIC_HEADERS_FOLDER_PATH = include/RestKit/CoreData;
@@ -2814,6 +2830,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					../three20/Build/Products/three20,
 					Examples/RKDiscussionBoardExample/DiscussionBoard/Libraries/three20,
@@ -2849,6 +2866,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Specs/Runner/UISpec/headers",
 					"$(SRCROOT)/Specs/Runner/OCMock/Headers",
@@ -2883,6 +2901,7 @@
 		255B758A133BABBF00ED76AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_THUMB_SUPPORT = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -2892,6 +2911,7 @@
 		255B758B133BABBF00ED76AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_THUMB_SUPPORT = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -2901,6 +2921,7 @@
 		255B758C133BABBF00ED76AD /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_THUMB_SUPPORT = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -2916,6 +2937,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "Vendor/YAJL/yajl-1.0.9/src/api";
 				OTHER_CFLAGS = "$(YAJL_GENERAL_OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
@@ -2937,6 +2959,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "Vendor/YAJL/yajl-1.0.9/src/api";
 				OTHER_CFLAGS = "$(YAJL_GENERAL_OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
@@ -2959,6 +2982,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -2976,6 +3000,7 @@
 				BUILD_STYLE = Release;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -2993,6 +3018,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3009,6 +3035,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3025,6 +3052,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3054,6 +3082,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Specs/Runner/UISpec/headers",
 					"$(SRCROOT)/Specs/Runner/OCMock/Headers",
@@ -3101,6 +3130,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Specs/Runner/UISpec/headers",
 					"$(SRCROOT)/Specs/Runner/OCMock/Headers",
@@ -3139,6 +3169,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -3155,6 +3186,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

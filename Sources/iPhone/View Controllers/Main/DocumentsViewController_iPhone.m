@@ -75,7 +75,7 @@
     currentPopoverCellIndex = -1;
     
     self.view.title = self.title;
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     if (self.actionVisibleOnFolder) {
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     } else {
@@ -162,7 +162,7 @@
 }
 
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:picker animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentViewController:picker animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -328,7 +328,8 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone dismissViewControllerAnimated:YES completion:nil];
+    
     [navController release];
     
     [self.popoverController dismissPopoverAnimated:YES];
@@ -352,7 +353,7 @@
 
 - (void)hideFileFolderActionsController {
     [super hideFileFolderActionsController];
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone dismissModalViewControllerAnimated:YES];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone dismissViewControllerAnimated:YES completion:nil];
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.topItem.rightBarButtonItem.enabled = YES;
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];
     [self.popoverController dismissPopoverAnimated:YES];
@@ -375,7 +376,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
 {  
-    [picker dismissModalViewControllerAnimated:YES];  
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];    
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:NO animated:YES];

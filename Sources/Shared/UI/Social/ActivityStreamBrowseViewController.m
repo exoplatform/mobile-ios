@@ -356,7 +356,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
     self.title = Localize(@"News");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
     _tblvActivityStream.scrollsToTop = YES;
@@ -560,7 +560,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.5];
     headerLabel.shadowOffset = CGSizeMake(0,1);
-    headerLabel.textAlignment = UITextAlignmentRight;
+    headerLabel.textAlignment = NSTextAlignmentRight;
 	headerLabel.frame = CGRectMake(0.0, 0.0, _tblvActivityStream.frame.size.width-5, kHeightForSectionHeader);
     NSString *headerTitle = [_arrayOfSectionsTitle objectAtIndex:section];
     if ([headerTitle isEqualToString:@"Today"]) {
@@ -570,8 +570,15 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         headerLabel.text = [[NSDate dateWithTimeIntervalSince1970:firstAct.postedTime/1000] distanceOfTimeInWords:[NSDate date]];
     }
     
-    CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblvActivityStream.frame.size.width-5, CGFLOAT_MAX) 
-                                      lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [headerLabel.text boundingRectWithSize:CGSizeMake(_tblvActivityStream.frame.size.width-5, CGFLOAT_MAX)
+                                                 options:nil
+                                              attributes:@{
+                                                           NSFontAttributeName: headerLabel.font,
+                                                 NSParagraphStyleAttributeName: style
+                                                           }
+                                                 context:nil].size;
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderNormalBg.png"];

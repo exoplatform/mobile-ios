@@ -64,7 +64,7 @@
     self.view.title = self.title;
     
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
 }
 
 
@@ -81,9 +81,7 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
-    [self presentModalViewController:navController animated:YES];
-
-
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 
@@ -102,8 +100,7 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 
-    
-    [self presentModalViewController:navController animated:YES];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 

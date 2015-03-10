@@ -171,7 +171,7 @@
     orLabel.backgroundColor = [UIColor clearColor];
     orLabel.font = [UIFont fontWithName:@"Helvetica" size:orLabelSize];
     orLabel.textColor = [UIColor whiteColor];
-    CGSize size = [orLabel.text sizeWithFont:orLabel.font];
+    CGSize size = [orLabel.text sizeWithAttributes:@{NSFontAttributeName: orLabel.font}];
     CGRect frame = CGRectMake(0,0,size.width, size.width);
     frame.origin.x = signupBg.size.width - size.width/2 + 1;
     frame.origin.y = (view.frame.size.height - orLabelYMinus - orLabel.frame.size.height)/2;
@@ -258,7 +258,7 @@
     captionLabel.backgroundColor = [UIColor clearColor];
     captionLabel.textColor = [UIColor whiteColor];
     captionLabel.textAlignment = NSTextAlignmentCenter;
-    CGSize labelSize = [captionLabel.text sizeWithFont:captionLabel.font];
+    CGSize labelSize = [captionLabel.text sizeWithAttributes:@{NSFontAttributeName: captionLabel.font}];
     float captionX = (view.frame.size.width - labelSize.width) / 2;
     [captionLabel setFrame:CGRectMake(captionX, CAPTION_Y, labelSize.width, labelSize.height)];
     

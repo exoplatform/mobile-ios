@@ -51,7 +51,6 @@ static short fileActionMode = 0;//1:copy, 2:move
         // Custom initialization
         
         self.preferredContentSize = kPreferredContentSize;
-		
         fileActionsDelegate = actionsDelegate;
         
 		_file = [fileForActions retain];
@@ -72,7 +71,6 @@ static short fileActionMode = 0;//1:copy, 2:move
     }
     return self;
 }
-
 
 - (void)setFileToApplyAction:(File *)fileToApplyAction {
     
