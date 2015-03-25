@@ -46,8 +46,6 @@
 
 - (void)dealloc
 {
-//    [_actionsViewController release];
-//    _actionsViewController = nil;
     [super dealloc];
 }
 
@@ -71,11 +69,10 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     //Try setting this to UIPopoverController to use the iPad popover. The API is exactly the same!
-	//popoverClass = [WEPopoverController class];
     currentPopoverCellIndex = -1;
     
     self.view.title = self.title;
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     if (self.actionVisibleOnFolder) {
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     } else {
@@ -112,20 +109,6 @@
     [super viewDidUnload];
 }
 
-//- (void)setHudPosition {
-//    NSArray *visibleCells  = [_tblFiles visibleCells];
-//    CGRect rect = CGRectZero;
-//    for (int n = 0; n < [visibleCells count]; n ++){
-//        UITableViewCell *cell = [visibleCells objectAtIndex:n];
-//        if(n == 0){
-//            rect.origin.y = cell.frame.origin.y;
-//            rect.size.width = cell.frame.size.width;
-//        }
-//        rect.size.height += cell.frame.size.height;
-//    }
-//    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
-//    NSLog(@"%@", NSStringFromCGPoint(_hudFolder.center));
-//}
 
 #pragma mark - UINavigationBar Management
 
@@ -187,7 +170,7 @@
     
     //Retrieve the File corresponding to the selected Cell
 
-	File *fileToBrowse = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+	File *fileToBrowse = [_dicContentOfFolder allValues][indexPath.section][indexPath.row];
 	
 	if(fileToBrowse.isFolder)
 	{
@@ -197,7 +180,7 @@
         // Check the folder can be supported actions or not.
         if (!_rootFile) {
             // if the view is first document view.
-            NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+            NSString *driveGroup = [_dicContentOfFolder allKeys][indexPath.section];
             newViewControllerForFilesBrowsing.actionVisibleOnFolder = [newViewControllerForFilesBrowsing supportActionsForItem:fileToBrowse ofGroup:driveGroup];
         } else {
             // support action for every folder which is not a drive.
@@ -239,8 +222,8 @@
         self.popoverController = nil;
     } 
     
-    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];
-    fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
+    NSArray *arrFileFolder = [_dicContentOfFolder allValues][indexPath.section];
+    fileToApplyAction = arrFileFolder[indexPath.row];
     
         FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                 bundle:nil 
@@ -328,7 +311,7 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone dismissViewControllerAnimated:YES completion:nil];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentViewController:navController animated:YES completion:nil];
     
     [navController release];
     

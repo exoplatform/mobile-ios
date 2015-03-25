@@ -29,7 +29,7 @@
 @end
 
 @implementation WelcomeViewController_iPhone
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -57,7 +57,7 @@
 
         AppDelegate_iPhone *appDelegate = [AppDelegate_iPhone instance];
         AuthenticateViewController_iPhone *authenticateVC = [[AuthenticateViewController_iPhone alloc] initWithNibName:@"AuthenticateViewController_iPhone" bundle:nil];
-        [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:authenticateVC]];
+        [appDelegate.navigationController setViewControllers:@[authenticateVC]];
         [authenticateVC release];
     }
 }

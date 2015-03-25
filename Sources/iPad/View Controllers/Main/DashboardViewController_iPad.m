@@ -35,11 +35,11 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
-    RoundRectView *containerView = (RoundRectView *) [[self.view subviews] objectAtIndex:0];
+    RoundRectView *containerView = (RoundRectView *) [self.view subviews][0];
     containerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     containerView.squareCorners = NO;
     _navigation.topItem.title = Localize(@"Dashboard");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
 
@@ -52,7 +52,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     
-    GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+    GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
 
     
     GadgetDisplayViewController_iPad* gadgetDisplayViewController = [[[GadgetDisplayViewController_iPad alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPad" bundle:nil gadget:gadgetTmp] autorelease];

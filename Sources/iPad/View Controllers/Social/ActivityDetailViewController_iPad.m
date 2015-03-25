@@ -45,7 +45,7 @@
     [super dealloc];
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
             
@@ -59,10 +59,10 @@
 {
     [super viewDidLoad];    
     self.view.backgroundColor = [UIColor clearColor];
-    ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = YES;
+    ((RoundRectView *) [self.view subviews][0]).squareCorners = YES;
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
 #pragma mark - like/dislike management
@@ -273,6 +273,7 @@
 #pragma mark - cell initialization
 
 - (ActivityDetailExtraActionsCell *)extraActionsCell {
+    
     if (!_extraActionsCell) {
         _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
         [_extraActionsCell.likeButton addTarget:self action:@selector(likeDislike:) forControlEvents:UIControlEventTouchUpInside];

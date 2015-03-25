@@ -63,7 +63,7 @@
     [super dealloc];
 }
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         _avatarViews = [[NSMutableArray alloc] init];
         _nameLabels = [[NSMutableArray alloc] init];

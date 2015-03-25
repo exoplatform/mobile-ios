@@ -14,7 +14,7 @@
 @implementation ATMTextLayer
 @synthesize caption;
 
-- (id)initWithLayer:(id)layer {
+- (instancetype)initWithLayer:(id)layer {
 	if ((self = [super init])) {
 		caption = @"";
 	}

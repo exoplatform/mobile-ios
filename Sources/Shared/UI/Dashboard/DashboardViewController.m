@@ -45,7 +45,7 @@
 @synthesize dateOfLastUpdate = _dateOfLastUpdate;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -260,7 +260,7 @@
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = NSTextAlignmentCenter;
-    headerLabel.text = [(DashboardItem *)[_arrDashboard objectAtIndex:section] label];
+    headerLabel.text = [(DashboardItem *)_arrDashboard[section] label];
     
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.lineBreakMode = NSLineBreakByWordWrapping;
@@ -289,7 +289,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+    GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
     
     return [self getHeighSizeForTableView:tableView andText:gadgetTmp.gadgetDescription];
 
@@ -299,7 +299,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-	return [[(DashboardItem*)[_arrDashboard objectAtIndex:section] arrayOfGadgets] count] ;
+	return [[(DashboardItem*)_arrDashboard[section] arrayOfGadgets] count] ;
 }
 
 // Customize the appearance of table view cells.
@@ -313,10 +313,10 @@
     //Check if we found a cell
     if (cell==nil) 
     { 
-        GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+        GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DashboardTableViewCell" owner:self options:nil];
-        cell = (DashboardTableViewCell *)[nib objectAtIndex:0];
+        cell = (DashboardTableViewCell *)nib[0];
         //Not found, so create a new one
         
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

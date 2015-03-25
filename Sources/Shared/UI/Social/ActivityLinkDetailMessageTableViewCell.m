@@ -29,7 +29,10 @@
 #define WIDTH_FOR_CONTENT_IPHONE 237
 #define WIDTH_FOR_CONTENT_IPAD 409
 #define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]
-
+@interface ActivityLinkDetailMessageTableViewCell (){
+    BOOL hasImage;
+}
+@end
 @implementation ActivityLinkDetailMessageTableViewCell
 
 @synthesize htmlLinkTitle = _htmlLinkTitle;
@@ -38,6 +41,7 @@
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
+    hasImage = NO;
     CGRect tmpFrame = CGRectZero;
     
     if (fWidth > 320) {
@@ -49,9 +53,9 @@
     }
         
     //_webViewComment.contentMode = UIViewContentModeScaleAspectFit;
-    [[self.webViewComment.subviews objectAtIndex:0] setScrollEnabled:NO];
+    [(self.webViewComment.subviews)[0] setScrollEnabled:NO];
     [self.webViewComment setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[self.webViewComment subviews] objectAtIndex:0];
+    UIScrollView *scrollView = (UIScrollView *)[self.webViewComment subviews][0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
     self.webViewComment.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeAddress;
@@ -62,9 +66,27 @@
 - (void)updateSizeToFitSubViews {
     
     CGRect myFrame = self.frame;
-    myFrame.size.height = self.webViewComment.frame.origin.y + self.webViewComment.frame.size.height + self.lbDate.bounds.size.height + kBottomMargin;
-    
+    myFrame.size.height = self.lbName.frame.size.height + self.webViewForContent.frame.size.height + self.webViewComment.frame.size.height + 55 + 5*kBottomMargin;
+    if (hasImage) {
+     
+        CGRect imgFrame = self.imgvAttach.frame;
+        imgFrame.origin.x = 63;
+        imgFrame.origin.y = self.webViewForContent.frame.origin.y + self.webViewForContent.frame.size.height+  kBottomMargin;
+        imgFrame.size.width = width;
+        imgFrame.size.height = width*9/16;
+        myFrame.size.height += imgFrame.size.height;
+        
+        [self.imgvAttach setFrame:imgFrame];
+        
+        CGRect webCommentFrame = self.webViewComment.frame;
+        webCommentFrame.origin.y = imgFrame.origin.y + imgFrame.size.height +kBottomMargin;
+        [self.webViewComment setFrame:webCommentFrame];
+        
+    }
     self.frame = myFrame;
+
+    
+    
 }
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
@@ -121,6 +143,7 @@
     self.webViewForContent.frame = rect;
     
     // Attached Image
+    hasImage = NO;
     NSURL *url = [NSURL URLWithString:[_templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
         rect = self.imgvAttach.frame;
@@ -130,6 +153,7 @@
         rect.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 50);
         self.imgvAttach.frame = rect;
         
+        hasImage = YES;
         rect = self.webViewComment.frame;
         rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + kBottomMargin;
     } else {

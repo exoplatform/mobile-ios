@@ -30,7 +30,7 @@
 
 #pragma mark - Object Management
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
     } 
     return self;
@@ -86,7 +86,7 @@
 #pragma mark - RKObjectLoaderDelegate methods
 -(void) restKitDidLoadObjects:(NSArray*)objects {
     // We receive the response from the server
-    _userProfile = [[objects objectAtIndex:0] retain];
+    _userProfile = [objects[0] retain];
     // Saving the current user's full name and avatar URL in the ServerObj that represents him
     ServerObj* currentAccount = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount];
     currentAccount.avatarUrl = _userProfile.avatarUrl;

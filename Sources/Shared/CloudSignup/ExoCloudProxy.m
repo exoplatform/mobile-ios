@@ -47,7 +47,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 @synthesize tenantName = _tenantName;
 @synthesize username = _username;
 
-- (id)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email
+- (instancetype)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email
 {
     if((self = [super init])) {
         self.email = email;
@@ -100,7 +100,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"%@", [error description]);
-    [_delegate cloudProxy:self handleError:error];
+    [self.delegate cloudProxy:self handleError:error];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -108,22 +108,22 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     NSString *responseBody = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] lowercaseString];
     if([responseBody length] > 0) {
         if([responseBody isEqualToString:TENANT_RESUMING_RESPONSE] || [responseBody isEqualToString:TENANT_STOPPED_RESPONSE] || [responseBody isEqualToString:TENANT_CREATION_FAIL_RESPONSE]) {
-            [_delegate cloudProxy:self handleCloudResponse:TENANT_RESUMING forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse:TENANT_RESUMING forEmail:self.email];
             [connection cancel];
         } else if([responseBody isEqualToString:TENANT_ONLINE_RESPONSE]) {
-            [_delegate cloudProxy:self handleCloudResponse:TENANT_ONLINE forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse:TENANT_ONLINE forEmail:self.email];
             [connection cancel];
         } else if([responseBody isEqualToString:USER_EXIST_RESPONSE]) {
-            [_delegate cloudProxy:self handleCloudResponse:USER_EXISTED forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse:USER_EXISTED forEmail:self.email];
             [connection cancel];
         } else if([responseBody isEqualToString:USER_NOT_EXIST_RESPONSE]) {
-            [_delegate cloudProxy:self handleCloudResponse:USER_NOT_EXISTED forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse:USER_NOT_EXISTED forEmail:self.email];
             [connection cancel];
         } else if([responseBody isEqualToString:TENANT_CREATION_RESPONSE] || [responseBody isEqualToString:TENANT_WAITING_CREATION_RESPONSE]) {
-            [_delegate cloudProxy:self handleCloudResponse:TENANT_CREATION forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse:TENANT_CREATION forEmail:self.email];
             [connection cancel];
         } else if([responseBody isEqualToString:ACCOUNT_BEING_PROCESSED_RESPONSE] && statusCode == 500) {
-            [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:self.email];
             [connection cancel];
         }
     }
@@ -137,12 +137,12 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
         case CHECK_TENANT_STATUS: {
             switch (statusCode) {
                 case 404: {
-                    [_delegate cloudProxy:self handleCloudResponse:TENANT_NOT_EXIST forEmail:nil];
+                    [self.delegate cloudProxy:self handleCloudResponse:TENANT_NOT_EXIST forEmail:nil];
                     [connection cancel];
                     break;
                 }
                 case 503 : {
-                    [_delegate cloudProxy:self handleCloudResponse:SERVICE_UNAVAILABLE forEmail:nil];
+                    [self.delegate cloudProxy:self handleCloudResponse:SERVICE_UNAVAILABLE forEmail:nil];
                     [connection cancel];
                     break;
                 }
@@ -154,19 +154,19 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
         case SIGN_UP: {
             switch(httpResponse.statusCode) {
                 case 202: {
-                    [_delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
+                    [self.delegate cloudProxy:self handleCloudResponse:NUMBER_OF_USERS_EXCEED forEmail:nil];
                     [connection cancel];
                     [self getInfoForMail:self.email andCreateLead:YES];
                     break;
                 }
                 case 503 : {
-                    [_delegate cloudProxy:self handleCloudResponse:SERVICE_UNAVAILABLE forEmail:nil];
+                    [self.delegate cloudProxy:self handleCloudResponse:SERVICE_UNAVAILABLE forEmail:nil];
                     [connection cancel];
                     break;
                 }
                     
                 case 200 :  {
-                    [_delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
+                    [self.delegate cloudProxy:self handleCloudResponse:EMAIL_SENT forEmail:self.email];
                     [connection cancel];
                     [self getInfoForMail:self.email andCreateLead:YES];
                     break;
@@ -187,11 +187,11 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     if(response) {
         NSString *path = [[request URL] path];
         if([EXO_CLOUD_RESUMING_PATH isEqualToString:path]) {
-            [_delegate cloudProxy:self handleCloudResponse: TENANT_RESUMING forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse: TENANT_RESUMING forEmail:self.email];
         } else if([EXO_CLOUD_TRY_AGAIN_PATH isEqualToString:path]) {
-            [_delegate cloudProxy:self handleCloudResponse: EMAIL_BLACKLISTED forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse: EMAIL_BLACKLISTED forEmail:self.email];
         } else if([EXO_CLOUD_LOGIN_PATH isEqualToString:path]) {
-            [_delegate cloudProxy:self handleCloudResponse: ACCOUNT_CREATED forEmail:self.email];
+            [self.delegate cloudProxy:self handleCloudResponse: ACCOUNT_CREATED forEmail:self.email];
         } 
         [connection cancel];
         return nil;
@@ -207,10 +207,10 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 - (void)dealloc
 {
     [super dealloc];
-    [_delegate release];
-    [_email release];
-    [_tenantName release];
-    [_username release];
+    self.email = nil;
+    self.tenantName = nil;
+    self.username = nil;
+    self.delegate = nil;
 }
 
 #pragma mark Cloud rest service url
@@ -255,8 +255,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
             if(jsonError) {
                 [self.delegate cloudProxy:self handleError:error];
             } else {
-                self.username = [dict objectForKey:@"username"];
-                self.tenantName = [dict objectForKey:@"tenant"];
+                self.username = dict[@"username"];
+                self.tenantName = dict[@"tenant"];
                 if(createLead) {
                     //create marketo lead when signing up
                     [self createLeadForEmail:self.email andTenant:self.tenantName];

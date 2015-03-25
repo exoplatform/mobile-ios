@@ -24,9 +24,10 @@
 #define Localize(key) AMLocalizedString(key, @"")
 
 @interface LanguageHelper : NSObject {
-    // The international map which contains "English", "French" consequently
-    NSArray* _international;
 }
+
+// The international map which contains "English", "French" consequently
+@property (nonatomic, retain) NSArray* international;
 
 
 + (LanguageHelper *)sharedInstance;

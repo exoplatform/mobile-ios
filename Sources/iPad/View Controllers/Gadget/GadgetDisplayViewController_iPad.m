@@ -23,7 +23,7 @@
 
 @implementation GadgetDisplayViewController_iPad
 
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad {
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad {
     if ((self = [super initWithNibAndUrl:nibName bundle:nibBundle gadget:gadgetToLoad])) {
         
         //If the orientation is in Landscape mode
@@ -42,7 +42,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     //Set the title of the controller
     _navigation.topItem.title = [self shortString:_gadget.gadgetName withMaxCharacter:40];
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     _navigation.tintColor = [UIColor whiteColor];
 }
 

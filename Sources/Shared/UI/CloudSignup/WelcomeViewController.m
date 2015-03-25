@@ -32,7 +32,7 @@
 @synthesize skipButton, pageControl, scrollView;
 @synthesize shouldBackToSetting;
 @synthesize captions;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -47,7 +47,7 @@
 	// Do any additional setup after loading the view.
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
     
-    self.captions = [NSArray arrayWithObjects:@"Activity streams", @"Comments and likes", @" Personal dashboards", @"Files management", nil];
+    self.captions = @[@"Activity streams", @"Comments and likes", @" Personal dashboards", @"Files management"];
     
     [self initSwipedElements];
     [self configureSkipButton];
@@ -115,7 +115,7 @@
     [self.scrollView addSubview:[self logoView]];
     
     for(int i = 0; i < [images count]; i++) {
-        UIView *swipedView = [self swipedViewWithCaption:[self.captions objectAtIndex:i] andScreenShot:[images objectAtIndex:i]];
+        UIView *swipedView = [self swipedViewWithCaption:(self.captions)[i] andScreenShot:images[i]];
         CGRect frame = swipedView.frame;
         frame.origin.x = [self swipedViewWidth] * (i+1);
         swipedView.frame = frame;
@@ -273,16 +273,16 @@
     NSArray *res = [[NSArray alloc] init];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-            res = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-apps-landscape", @"ipad-documents-landscape", nil];
+            res = @[@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-apps-landscape", @"ipad-documents-landscape"];
         } else {
-            res = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait",@"ipad-apps-portrait",@"ipad-documents-portrait", nil];
+            res = @[@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait",@"ipad-apps-portrait",@"ipad-documents-portrait"];
         }
         
     } else {
         if([eXoViewController isHighScreen]) {
-            res = [NSArray arrayWithObjects:@"iphone5-activity-stream",@"iphone5-activity-details", @"iphone5-apps", @"iphone5-documents", nil];
+            res = @[@"iphone5-activity-stream",@"iphone5-activity-details", @"iphone5-apps", @"iphone5-documents"];
         } else {
-            res = [NSArray arrayWithObjects:@"iphone-activity-stream",@"iphone-activity-details", @"iphone-apps", @"iphone-documents", nil];
+            res = @[@"iphone-activity-stream",@"iphone-activity-details", @"iphone-apps", @"iphone-documents"];
         }
     }
     return res;

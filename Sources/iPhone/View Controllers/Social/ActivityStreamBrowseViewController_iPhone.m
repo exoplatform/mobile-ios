@@ -64,7 +64,7 @@
     self.view.title = self.title;
     
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
 
@@ -119,10 +119,6 @@
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                      andCurrentUserProfile:self.userProfile];
     
-    //[self.navigationController pushViewController:_activityDetailViewController animated:YES];
-    
-    //[_revealView.contentView setRootView:_activityStreamBrowseViewController_iPhone.view];
-    //[_revealView revealSidebar:NO];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:_activityDetailViewController animated:YES];
 
 }

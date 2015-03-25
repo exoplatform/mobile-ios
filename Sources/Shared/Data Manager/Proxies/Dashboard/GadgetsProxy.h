@@ -35,7 +35,7 @@
 @property (retain, nonatomic) DashboardItem *dashboard;
 @property (nonatomic, assign) id<GadgetsProxyDelegate> delegate;
 
--(id)initWithDashboardItem:(DashboardItem *)dashboardItem andDelegate:(id<GadgetsProxyDelegate>)delegateForProxy;
+-(instancetype)initWithDashboardItem:(DashboardItem *)dashboardItem andDelegate:(id<GadgetsProxyDelegate>)delegateForProxy;
 -(void)retrieveGadgetsForDashboardItem:(DashboardItem *)dashboardItem;
 
 @end

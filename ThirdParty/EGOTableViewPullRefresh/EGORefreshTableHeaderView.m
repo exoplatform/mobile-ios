@@ -43,7 +43,7 @@
 @synthesize originalContentInset = _originalContentInset;
 
 
-- (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
+- (instancetype)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
     if((self = [super initWithFrame:frame])) {
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -114,7 +114,7 @@
 	
 }
 
-- (id)initWithFrame:(CGRect)frame  {
+- (instancetype)initWithFrame:(CGRect)frame  {
   return [self initWithFrame:frame arrowImageName:@"whiteArrow.png" textColor:TEXT_COLOR];
 }
 

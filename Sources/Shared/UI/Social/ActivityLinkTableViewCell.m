@@ -67,11 +67,12 @@
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
     CGRect tmpFrame = CGRectZero;
-    width = fWidth;
     if (fWidth > 320) {
         tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPAD, 21);
+        width = WIDTH_FOR_CONTENT_IPAD;
     } else {
         tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
+        width = WIDTH_FOR_CONTENT_IPHONE;
     }
 
     self.htmlActivityMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
@@ -126,17 +127,17 @@
                             space ? [NSString stringWithFormat:@" in %@ space", space]
                                   : @""];
     
-    CGSize theSize = [title boundingRectWithSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX)
+    CGSize theSize = [title boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
                                          options:NSStringDrawingUsesLineFragmentOrigin
                                       attributes:@{
                                                    NSFontAttributeName: kFontForTitle,
                                                    NSParagraphStyleAttributeName: wordWrapStyle
                                                    }
                                          context:nil].size;
-    CGRect frame = self.lbName.frame;
-    frame.size.height = ceil(theSize.height);
-    self.lbName.frame = frame;
     self.lbName.text = title;
+
+    CGRect nameFrame = self.lbName.frame;
+    nameFrame.size.height = ceil(theSize.height+5);
 
     // Activity Message
     NSString* activityMessage = [socialActivityStream.templateParams valueForKey:@"comment"];
@@ -152,7 +153,6 @@
         htmlTagOfImage = [activityMessage substringWithRange:imgTagRange];
         activityMessage = [activityMessage stringByReplacingCharactersInRange:imgTagRange withString:@""];
     }
-
     self.htmlActivityMessage.html =
       [[activityMessage stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
@@ -162,10 +162,16 @@
     if (![(NSString*)[socialActivityStream.templateParams valueForKey:@"comment"] isEqualToString:@""]) {
         [self.htmlActivityMessage sizeToFit];
     } else {
-        CGRect rect = self.htmlActivityMessage.frame;
-        rect.size.height = 0;
-        self.htmlActivityMessage.frame = rect;
+        CGRect htmlActivityMessageFrame = self.htmlActivityMessage.frame;
+        htmlActivityMessageFrame.size.height = 0;
+        self.htmlActivityMessage.frame = htmlActivityMessageFrame;
     }
+    CGRect htmlActivityMessageFrame = self.htmlActivityMessage.frame;
+    htmlActivityMessageFrame.origin.y = nameFrame.size.height + nameFrame.origin.y+5;
+    
+    double heigthForTTLabel = [[[self htmlActivityMessage] text] height];
+    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;
+    htmlActivityMessageFrame.size.height = heigthForTTLabel;
     
     // Link Title
     self.htmlLinkTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
@@ -181,32 +187,21 @@
         self.htmlLinkDescription.frame = rect;
     }
     
+    
     self.htmlLinkMessage.html = [NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
     
     [self.htmlLinkMessage sizeToFit];
     
-    CGRect rect = self.htmlActivityMessage.frame;
-    rect.origin.y = self.lbName.frame.size.height + self.lbName.frame.origin.y+5;
-    double heigthForTTLabel = [[[self htmlActivityMessage] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    rect.size.height = heigthForTTLabel;
-    self.htmlActivityMessage.frame = rect;
-
-    //
+    // Getting image from the link
+    BOOL hasImage = NO;
+    
     NSURL *url = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
         
         self.imgvAttach.hidden = NO;
-        rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
-        rect.origin.y = self.htmlActivityMessage.frame.size.height + self.htmlActivityMessage.frame.origin.y + 5;
-        rect.origin.x = (width > 320)? (width/3 + 60) : (width/3 + 40);
-        self.imgvAttach.frame = rect;
-        
-        rect = self.htmlLinkTitle.frame;
-        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
-        self.htmlLinkTitle.frame = rect;
+        hasImage = YES;
         
     } else if (activityMessageContainsImage) {
         
@@ -253,42 +248,28 @@
         };
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), decodeImageBlock);
-
-        
-        self.imgvAttach.hidden = NO;
-        rect = self.imgvAttach.frame;
-        self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
-        rect.origin.y = self.htmlActivityMessage.frame.size.height + self.htmlActivityMessage.frame.origin.y + 5;
-        rect.origin.x = (width > 320)? (width/3 + 60) : (width/3 + 40);
-        self.imgvAttach.frame = rect;
-        
-        rect = self.htmlLinkTitle.frame;
-        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
-        self.htmlLinkTitle.frame = rect;
-
-    } else {
-        
-        rect = self.htmlLinkTitle.frame;
-        rect.origin.y = self.htmlActivityMessage.frame.size.height + self.htmlActivityMessage.frame.origin.y;
-        self.htmlLinkTitle.frame = rect;
-        self.imgvAttach.hidden = YES;
+        hasImage = YES;
     }
+    
+    _imgvAttach.hidden = !hasImage;
+    
+    
+    CGRect imgvAttachFrame;
+    CGRect htmlLinkTitleFrame;
+    
+    htmlLinkTitleFrame = self.htmlLinkTitle.frame;
+    htmlLinkTitleFrame.origin.y  = htmlActivityMessageFrame.origin.y + htmlActivityMessageFrame.size.height +5;
     [self.htmlLinkTitle sizeToFit];
-    rect = self.htmlLinkDescription.frame;
-    rect.origin.y = self.htmlLinkTitle.frame.size.height + self.htmlLinkTitle.frame.origin.y;
-    heigthForTTLabel = self.htmlLinkDescription.frame.size.height;
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    rect.size.height = heigthForTTLabel;
-    self.htmlLinkDescription.frame = rect;
+    htmlLinkTitleFrame.size.height = [[self.htmlLinkTitle text] height] + 2;
     
-    rect = self.htmlLinkMessage.frame;
-    rect.origin.y = self.htmlLinkDescription.frame.size.height + self.htmlLinkDescription.frame.origin.y;
+    /* Estime link message height */
     
+    CGRect htmlLinkMessageFrame = self.htmlLinkMessage.frame;
     
     NSString *link = [NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
     
     
-    theSize = [link boundingRectWithSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX)
+    theSize = [link boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
                         options:NSStringDrawingUsesLineFragmentOrigin
                      attributes:@{
                                   NSFontAttributeName: kFontForMessage,
@@ -296,14 +277,51 @@
                                   }
                         context:nil].size;
 
-    rect.size.height = ceil(theSize.height);
-    rect.size.width = self.htmlLinkDescription.frame.size.width;
+    htmlLinkMessageFrame.size.height = MIN (EXO_MAX_HEIGHT, ceil(theSize.height+2));
+    htmlLinkMessageFrame.size.width = self.htmlLinkDescription.frame.size.width;
+    
+    CGRect htmlLinkDescriptionFrame = self.htmlLinkDescription.frame;
+    htmlLinkDescriptionFrame.size.height = MIN( EXO_MAX_HEIGHT, self.htmlLinkDescription.frame.size.height);
+
+    /* */
+    float cellHeight = [ActivityHelper getHeightForActivityCell:socialActivityStream forTableViewWidth:width];
+    
+    if (hasImage){
+        htmlLinkMessageFrame.origin.y =cellHeight - 42 - htmlLinkMessageFrame.size.height; // 42 = size of lbDate + Buttom Padding
+        htmlLinkDescriptionFrame.origin.y = htmlLinkMessageFrame.origin.y - htmlLinkDescriptionFrame.size.height - 5;
+        imgvAttachFrame = _imgvAttach.frame;
+        imgvAttachFrame.origin.x = 15;  // Padding from the left.
+        imgvAttachFrame.size.width = width;
+        imgvAttachFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 5;
+        imgvAttachFrame.size.height = htmlLinkDescriptionFrame.origin.y - imgvAttachFrame.origin.y -5;
+        
+    } else {
+        imgvAttachFrame = CGRectZero;
+        htmlLinkDescriptionFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 5;
+        htmlLinkMessageFrame.origin.y = htmlLinkDescriptionFrame.origin.y + htmlLinkDescriptionFrame.size.height+5;
+        
+        // Use flexible padding to fit all subviews in the cell.
+        float diff = htmlLinkMessageFrame.origin.y + htmlLinkMessageFrame.size.height- ((cellHeight-40) - htmlLinkMessageFrame.origin.y);
+        float padding = MIN(5.0, diff/4.0);
+        
+        htmlActivityMessageFrame.origin.y -=padding;
+        htmlLinkTitleFrame.origin.y -=2*padding;
+        htmlLinkDescriptionFrame.origin.y -= 3*padding;
+        htmlLinkMessageFrame.origin.y -= 4*padding;
+        htmlLinkMessageFrame.size.height = (cellHeight-40) - htmlLinkMessageFrame.origin.y;// cellHeight -40 -> lbDate.frame.origin.y after auto layout. 40 = 28 + paddings
+        
+    }
+    
+    dispatch_async(dispatch_get_main_queue(),^(void){
+        [self.lbName setFrame:nameFrame];
+        [self.htmlActivityMessage setFrame: htmlActivityMessageFrame];
+        [self.htmlLinkTitle setFrame:htmlLinkTitleFrame];
+        [self.imgvAttach setFrame:imgvAttachFrame];
+        [self.htmlLinkDescription setFrame:htmlLinkDescriptionFrame];
+        [self.htmlLinkMessage setFrame:htmlLinkMessageFrame];
+    });
     
     
-    heigthForTTLabel = rect.size.height;
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    rect.size.height = heigthForTTLabel;
-    self.htmlLinkMessage.frame = rect;
 }
 
 - (void)dealloc {    

@@ -22,7 +22,7 @@
 
 @implementation SocialRestProxy
 
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
@@ -47,6 +47,7 @@
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialVersion class]];
+
     
     [mapping addAttributeMappingsFromDictionary:@{@"version":@"version"}];
     

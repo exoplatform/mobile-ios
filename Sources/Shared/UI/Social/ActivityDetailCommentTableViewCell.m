@@ -35,7 +35,7 @@
 @synthesize extraDelegateForWebView;
 @synthesize width;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -94,9 +94,9 @@
     _imgvMessageBg.image = strechBg;
     self.backgroundColor = [UIColor clearColor];
     
-    [[_webViewForContent.subviews objectAtIndex:0] setScrollEnabled:NO];
+    [(_webViewForContent.subviews)[0] setScrollEnabled:NO];
     [_webViewForContent setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[_webViewForContent subviews] objectAtIndex:0];
+    UIScrollView *scrollView = (UIScrollView *)[_webViewForContent subviews][0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
     scrollView.scrollsToTop = YES;

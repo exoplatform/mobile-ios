@@ -26,7 +26,7 @@
 
 
 
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName
 {
 	if ((self = [super initWithNibAndUrl:nibName bundle:nibBundle url:defaultURL fileName:fileName])) {
         //If the orientation is in Landscape mode
@@ -43,7 +43,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     _navigation.topItem.title = [self shortString:self.title withMaxCharacter:40];
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     _navigation.tintColor = [UIColor whiteColor];
 }
 

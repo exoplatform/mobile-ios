@@ -39,7 +39,7 @@
 @synthesize username = _username;
 @synthesize password = _password;
 @synthesize serverUrl = _serverUrl;
-- (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl
+- (instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl
 {
     if((self = [super init])) {
         self.delegate = delegate;
@@ -50,14 +50,14 @@
 return self;
 }
 
--(id)initWithDelegate:(id<LoginProxyDelegate>)delegate {
+-(instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate {
     if ((self = [super init])) {
         _delegate = delegate;
         self.serverUrl = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     }
     return self;
 }
--(id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)userName password:(NSString *)passWord
+-(instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)userName password:(NSString *)passWord
 {
     if((self = [super init])) {
         _delegate = delegate;
@@ -87,12 +87,12 @@ return self;
         
         // iterate over all NSURLProtectionSpaces
         while (urlProtectionSpace = [protectionSpaceEnumerator nextObject]) {
-            NSEnumerator *userNameEnumerator = [[credentialsDict objectForKey:urlProtectionSpace] keyEnumerator];
+            NSEnumerator *userNameEnumerator = [credentialsDict[urlProtectionSpace] keyEnumerator];
             id userName;
             
             // iterate over all usernames for this protectionspace, which are the keys for the actual NSURLCredentials
             while (userName = [userNameEnumerator nextObject]) {
-                NSURLCredential *cred = [[credentialsDict objectForKey:urlProtectionSpace] objectForKey:userName];
+                NSURLCredential *cred = credentialsDict[urlProtectionSpace][userName];
                 LogDebug(@"credential to be removed: %@", cred);
                 [[NSURLCredentialStorage sharedCredentialStorage] removeCredential:cred forProtectionSpace:urlProtectionSpace];
             }
@@ -206,7 +206,7 @@ return self;
     //We receive the response from the server
     //We now need to check if the version can run social features or not and set properties
     
-    PlatformServerVersion *platformServerVersion = [objects objectAtIndex:0];
+    PlatformServerVersion *platformServerVersion = objects[0];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil && [platformServerVersion.isMobileCompliant boolValue]) {
         // get the 3 first chars of version, ex: 3.5, 4.0

@@ -44,7 +44,7 @@
     [super viewDidLoad];
     _navigation.topItem.title = self.title;
     self.view.backgroundColor = [UIColor clearColor];
-    RoundRectView *containerView = (RoundRectView *) [[self.view subviews] objectAtIndex:0];
+    RoundRectView *containerView = (RoundRectView *) [self.view subviews][0];
     containerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     containerView.squareCorners = NO;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
@@ -191,13 +191,16 @@
     } 
     
     _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
+
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream
+                                     andCurrentUserProfile:self.userProfile];
+
     _activityDetailViewController.iconType = [self getIconForType:socialActivityStream.type];
+
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
     
     _indexpathSelectedActivity = [indexPath copy];
 
-    [_activityDetailViewController setSocialActivityStream:socialActivityStream 
-                                     andCurrentUserProfile:self.userProfile];
 
         
     

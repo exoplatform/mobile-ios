@@ -38,7 +38,7 @@
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
-    NSArray *colors = [NSArray arrayWithObjects:(id) startColor, (id) endColor, nil];
+    NSArray *colors = @[(id) startColor, (id) endColor];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
@@ -84,7 +84,7 @@
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super init]) {
         _viewFrame = frame;
     }

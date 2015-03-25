@@ -14,7 +14,7 @@
 @implementation ATMHudQueueItem
 @synthesize caption, image, showActivity, accessoryPosition, activityStyle;
 
-- (id)init {
+- (instancetype)init {
 	if ((self = [super init])) {
 		caption = @"";
 		image = nil;

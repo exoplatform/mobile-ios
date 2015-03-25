@@ -41,7 +41,7 @@
 }
 
 
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
@@ -58,12 +58,12 @@
 
 -(SocialUserProfile *)cachedProfileForIdentity:(NSString *)identityId
 {
-    return [_localCacheInMemory objectForKey:identityId];
+    return _localCacheInMemory[identityId];
 }
 
 
 - (void)addInCache:(SocialUserProfile*)profile forIdentity:(NSString *)identityId {
-    [_localCacheInMemory setObject:profile forKey:identityId];
+    _localCacheInMemory[identityId] = profile;
 }
 
 @end

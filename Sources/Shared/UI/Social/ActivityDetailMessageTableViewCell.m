@@ -35,7 +35,7 @@
 @synthesize imgType = _imgType;
 @synthesize imgvAttach = _imgvAttach;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -112,9 +112,9 @@
     
     
     //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    [[self.webViewForContent.subviews objectAtIndex:0] setScrollEnabled:NO];
+    [(self.webViewForContent.subviews)[0] setScrollEnabled:NO];
     [self.webViewForContent setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[self.webViewForContent subviews] objectAtIndex:0];
+    UIScrollView *scrollView = (UIScrollView *)[self.webViewForContent subviews][0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
     scrollView.scrollsToTop = YES;

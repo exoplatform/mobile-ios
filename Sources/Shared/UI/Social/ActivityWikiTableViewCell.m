@@ -143,7 +143,7 @@
     if (heigthForTTLabel > MAX_LENGTH)
         heigthForTTLabel = MAX_LENGTH;  // Do not exceed the maximum height for the TTStyledTextLabel.
     // The Text was supposed to clip here when maximum height is set!**
-    tmpFrame.size.height = heigthForTTLabel;
+    tmpFrame.size.height = heigthForTTLabel+5;
     _lbMessage.frame = tmpFrame;
 }
 

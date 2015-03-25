@@ -36,14 +36,13 @@
 
 @implementation eXoDisplayViewController
 
-@synthesize _webView;
-@synthesize loadingIndicator = _loadingIndicator;
+@synthesize fullscreen, webView, url, fileName, rect, navigationBar, loadingIndicator;
+
 
 // custom init method to allow URL to be passed
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle 
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle 
 {
 	if(self = [super initWithNibName:nibName bundle:nibBundle]){
-        
         
     }
 	return self;
@@ -54,23 +53,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_webView setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
-    _webView.delegate = self;
-    _webView.opaque = NO;
-    [_webView setScalesPageToFit:YES];
-    if(_url != nil)
+    [self.webView setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
+    self.webView.delegate = self;
+    self.webView.opaque = NO;
+    [self.webView setScalesPageToFit:YES];
+    if(self.url != nil)
 	{
-        NSURLRequest* request = [NSURLRequest requestWithURL:_url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];	
-        [_webView loadRequest:request];
+        NSURLRequest* request = [NSURLRequest requestWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];
+        [self.webView loadRequest:request];
     }
 }
 
--(void)fullScreen {
+- (void)fullScreen {
     eXoFullScreenView *viewController = [[eXoFullScreenView alloc] initWithNibName:nil bundle:nil];
     
-    
-
-    navigationBar = [[UINavigationController alloc] initWithRootViewController:viewController];
+    self.navigationBar = [[UINavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
                                                         initWithTitle:Localize(@"Close") 
                                                         style:UIBarButtonItemStylePlain 
@@ -82,71 +79,62 @@
     
     [UIView animateWithDuration:0.3
                      animations:^{
-                         _webView.alpha = 0;
+                         self.webView.alpha = 0;
 
                      } 
                      completion:^(BOOL finished){
-                         if(_webView.superview != nil){
-                            [_webView removeFromSuperview];
+                         if(self.webView.superview != nil){
+                            [self.webView removeFromSuperview];
                          }
-                         [viewController.view addSubview:_webView];
+                         [viewController.view addSubview:self.webView];
 
                          [[AppDelegate_iPad instance].rootViewController
-                            presentViewController:navigationBar animated:YES completion:nil];
+                            presentViewController:self.navigationBar animated:YES completion:nil];
                          
-                         CGRect frame = _webView.frame;
-                         frame.origin.y -= _navigation.frame.size.height;
-                         frame.size.height = navigationBar.view.bounds.size.height;
-                         frame.size.width = navigationBar.view.bounds.size.width;
-                         _webView.frame = frame;
+                         CGRect frame = self.webView.frame;
+                         frame.origin.y -= self.navigation.frame.size.height;
+                         frame.size.height = self.navigationBar.view.bounds.size.height;
+                         frame.size.width = self.navigationBar.view.bounds.size.width;
+                         self.webView.frame = frame;
                          
                          [UIView animateWithDuration:0.3
                                           animations:^{
-                                              
-                                              
-                                              _webView.alpha = 1;
+                                              self.webView.alpha = 1;
                                           } 
                                           completion:^(BOOL finished){
-                                              
-
                                           }];
                      }];
-    
-    
-    
-    
     
     [viewController release];
 }
 
 
 -(void)close {
-    [navigationBar dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationBar dismissViewControllerAnimated:YES completion:nil];
 
     [UIView animateWithDuration:0.3
                      animations:^{
-                         _webView.alpha = 0;
+                         self.webView.alpha = 0;
 
                      } 
                      completion:^(BOOL finished){
                          
 
                          
-                         if(_webView.superview != nil){
-                             [_webView removeFromSuperview];
+                         if(self.webView.superview != nil){
+                             [self.webView removeFromSuperview];
                          }
-                         [self.view addSubview:_webView];
+                         [self.view addSubview:self.webView];
                          
-                         CGRect frame = _webView.frame;
-                         frame.origin.y += _navigation.frame.size.height;
+                         CGRect frame = self.webView.frame;
+                         frame.origin.y += self.navigation.frame.size.height;
                          frame.size.width = self.view.bounds.size.width;
                          frame.size.height = self.view.bounds.size.height;
-                         _webView.frame = frame;
+                         self.webView.frame = frame;
                                                    
                          [UIView animateWithDuration:0.3
                                           animations:^{
-                                              
-                                              _webView.alpha = 1;
+                                              self.webView.alpha = 1;
                                           } 
                                           completion:^(BOOL finished){
                                               [self stopLoadingAnimation];
@@ -159,8 +147,8 @@
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) {
         // Fullscreen feature is available only on iPad
         // So we must display the fullscreen button instead of the indicator
-        _navigation.topItem.rightBarButtonItem = nil;
-        _navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)] autorelease];
+        self.navigation.topItem.rightBarButtonItem = nil;
+        self.navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)] autorelease];
     } else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) {
         // On iPhone we just remove the indicator
         JTNavigationBar* _iPhoneNavBar = [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar;
@@ -179,7 +167,7 @@
     self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     // Position the indicator at the right of the navigation bar
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        _navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator] autorelease];
+        self.navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator] autorelease];
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         JTNavigationBar* _iPhoneNavBar = [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar;
         _iPhoneNavBar.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator] autorelease];
@@ -190,28 +178,21 @@
 
 - (void)viewDidUnload
 {
-    [_webView setDelegate:nil];
-    [_webView stopLoading];
+    [self.webView setDelegate:nil];
+    self.webView = nil;
     [super viewDidUnload];
-}
-
-
-- (void)didReceiveMemoryWarning 
-{
-    
-    [super didReceiveMemoryWarning];
 }
 
 - (void)dealloc 
 {
-
-    [_loadingIndicator release];
-    [_url release];
-    [_webView setDelegate:nil];
-    [_webView stopLoading];
-    [_webView release];
-    [_fileName release];
-    [navigationBar release];
+    [self.webView setDelegate:nil];
+    [self.webView stopLoading];
+    self.webView = nil;
+    self.url = nil;
+    self.fileName = nil;
+    self.navigationBar = nil;
+    self.loadingIndicator = nil;
+    self.fullscreen = nil;
     [super dealloc];
 }
 
@@ -247,12 +228,6 @@
     }
 }
 
-- (void)setUrl:(NSURL*)url
-{
-    [_url release];
-	_url = [url copy];
-}
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     return YES;
 }
@@ -286,7 +261,7 @@
 #pragma mark - change language management
 
 - (void)updateLabelsWithNewLanguage{
-    _navigation.topItem.rightBarButtonItem.title = Localize(@"Fullscreen");
+    self.navigation.topItem.rightBarButtonItem.title = Localize(@"Fullscreen");
     [self.view setNeedsDisplay];
 }
 
