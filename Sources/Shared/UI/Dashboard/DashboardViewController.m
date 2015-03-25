@@ -18,7 +18,7 @@
 //
 
 #import "DashboardViewController.h"
-#import "DashboardProxy_old.h"
+#import "defines.h"
 #import "DashboardProxy.h"
 #import "LanguageHelper.h"
 #import "Gadget.h"
