@@ -15,10 +15,10 @@
 #import "AuthenticateTabView.h"
 #import "ExoCloudProxy.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, AuthenticateTabItem) {
     AuthenticateTabItemCredentials = 0,
     AuthenticateTabItemServerList = 1
-} AuthenticateTabItem;
+} ;
 
 
 //Login page
@@ -45,7 +45,7 @@ typedef enum {
 - (void)doSignIn;	//Login progress
 - (void) initTabsAndViews;
 - (void)disableAutoLogin:(BOOL)autoLogin;
-- (BOOL)autoLoginIsDisabled;
+@property (nonatomic, readonly) BOOL autoLoginIsDisabled;
 - (void)doneWithSettings;
 - (void)saveTempUsernamePassword;
 - (void)showHideSwitcherTab;

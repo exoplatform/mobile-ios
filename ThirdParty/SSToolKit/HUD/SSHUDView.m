@@ -33,7 +33,7 @@ static CGFloat kIndicatorSize = 40.0;
 
 #pragma mark NSObject
 
-- (id)init {
+- (instancetype)init {
 	return [self initWithTitle:nil loading:YES];
 }
 
@@ -52,7 +52,7 @@ static CGFloat kIndicatorSize = 40.0;
 
 #pragma mark UIView
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
 	return [self initWithTitle:nil loading:YES];
 }
 
@@ -114,12 +114,12 @@ static CGFloat kIndicatorSize = 40.0;
 
 #pragma mark HUD
 
-- (id)initWithTitle:(NSString *)aTitle {
+- (instancetype)initWithTitle:(NSString *)aTitle {
 	return [self initWithTitle:aTitle loading:YES];
 }
 
 
-- (id)initWithTitle:(NSString *)aTitle loading:(BOOL)isLoading {
+- (instancetype)initWithTitle:(NSString *)aTitle loading:(BOOL)isLoading {
 	if ((self = [super initWithFrame:CGRectZero])) {
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -348,7 +348,7 @@ static CGFloat kIndicatorSize = 40.0;
 	_hudWindow = nil;
 	
 	// Return focus to the first window
-	[[[[UIApplication sharedApplication] windows] objectAtIndex:0] makeKeyWindow];
+	[[[UIApplication sharedApplication] windows][0] makeKeyWindow];
 }
 
 @end

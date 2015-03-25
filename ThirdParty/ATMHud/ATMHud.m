@@ -30,14 +30,14 @@
 @synthesize showSound, updateSound, hideSound;
 @synthesize __view, sound, displayQueue, queuePosition;
 
-- (id)init {
+- (instancetype)init {
 	if ((self = [super init])) {
 		[self construct];
 	}
 	return self;
 }
 
-- (id)initWithDelegate:(id)hudDelegate {
+- (instancetype)initWithDelegate:(id)hudDelegate {
 	if ((self = [super init])) {
 		delegate = hudDelegate;
 		[self construct];
@@ -182,7 +182,7 @@
 		CGSize targetSize;
 		ATMHudQueueItem *queueItem;
 		for (int i = 0; i < [displayQueue count]; i++) {
-			queueItem = [displayQueue objectAtIndex:i];
+			queueItem = displayQueue[i];
 			
 			targetSize = [__view calculateSizeForQueueItem:queueItem];
 			if (targetSize.width > newSize.width) {
@@ -209,7 +209,7 @@
 			[self hide];
 			return;
 		}
-		ATMHudQueueItem *item = [displayQueue objectAtIndex:queuePosition];
+		ATMHudQueueItem *item = displayQueue[queuePosition];
 		
 		__view.caption = item.caption;
 		__view.image = item.image;

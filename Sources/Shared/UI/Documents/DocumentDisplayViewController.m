@@ -23,7 +23,7 @@
 @implementation DocumentDisplayViewController
 
 // custom init method to allow URL to be passed
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName
 {
 	if(self = [super initWithNibName:nibName bundle:nibBundle]){
         _url = [defaultURL retain];

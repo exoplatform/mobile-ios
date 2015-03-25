@@ -44,7 +44,7 @@
     [super viewDidLoad];
     
     self.view.title = self.title;
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
 }
 
@@ -61,7 +61,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     
-    GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+    GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
 
 	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[[GadgetDisplayViewController_iPhone alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone"  bundle:nil gadget:gadgetTmp] autorelease];
 

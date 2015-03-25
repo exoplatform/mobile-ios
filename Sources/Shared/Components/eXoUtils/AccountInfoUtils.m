@@ -97,7 +97,7 @@
                 name = urlURL.host;
             } else {
                 NSArray* elements = [urlURL.host componentsSeparatedByString:@"."];
-                name = [elements objectAtIndex:0];
+                name = elements[0];
             }
         }
     }

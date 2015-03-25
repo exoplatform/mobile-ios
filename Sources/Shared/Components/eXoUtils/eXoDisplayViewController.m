@@ -40,7 +40,7 @@
 @synthesize loadingIndicator = _loadingIndicator;
 
 // custom init method to allow URL to be passed
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle 
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle 
 {
 	if(self = [super initWithNibName:nibName bundle:nibBundle]){
         

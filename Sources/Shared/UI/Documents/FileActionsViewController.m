@@ -39,7 +39,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 
 
 //Constructor
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
                  file:(File *)fileForActions 
                 enableDeleteThisFolder:(BOOL)enableDeleteFolder
                 enableCreateFolder:(BOOL)enableCreateFolder

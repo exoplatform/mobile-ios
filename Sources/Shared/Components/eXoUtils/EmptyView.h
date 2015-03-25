@@ -26,7 +26,7 @@
     NSString *imagename;
     NSInteger distance;
 }
-- (id)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content;
+- (instancetype)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content;
 - (void)changeOrientation;
 - (void)setLabelContent:(NSString*)content;
 @end

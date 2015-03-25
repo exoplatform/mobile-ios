@@ -47,7 +47,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 @synthesize tenantName = _tenantName;
 @synthesize username = _username;
 
-- (id)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email
+- (instancetype)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email
 {
     if((self = [super init])) {
         self.email = email;
@@ -255,8 +255,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
             if(jsonError) {
                 [self.delegate cloudProxy:self handleError:error];
             } else {
-                self.username = [dict objectForKey:@"username"];
-                self.tenantName = [dict objectForKey:@"tenant"];
+                self.username = dict[@"username"];
+                self.tenantName = dict[@"tenant"];
                 if(createLead) {
                     //create marketo lead when signing up
                     [self createLeadForEmail:self.email andTenant:self.tenantName];

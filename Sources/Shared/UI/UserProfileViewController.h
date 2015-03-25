@@ -32,7 +32,7 @@
 @property (nonatomic, retain) UILabel *fullNameLabel;
 @property (nonatomic, retain) UILabel *accountNameLabel;
 
-- (id)initWithFrame:(CGRect)frame;
+- (instancetype)initWithFrame:(CGRect)frame;
 - (void)startUpdateCurrentUserProfile;
 
 @end

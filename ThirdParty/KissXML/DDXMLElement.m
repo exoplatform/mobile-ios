@@ -5,7 +5,7 @@
 
 @implementation DDXMLElement
 
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
 {
 	// Note: Make every guarantee that genericPtr is not null
 	
@@ -14,7 +14,7 @@
 	return [self initWithPrimitive:(xmlKindPtr)node];
 }
 
-- (id)initWithName:(NSString *)name URI:(NSString *)URI
+- (instancetype)initWithName:(NSString *)name URI:(NSString *)URI
 {
 	// Note: Make every guarantee that genericPtr is not null
 	
@@ -26,7 +26,7 @@
 	return result;
 }
 
-- (id)initWithName:(NSString *)name stringValue:(NSString *)string
+- (instancetype)initWithName:(NSString *)name stringValue:(NSString *)string
 {
 	// Note: Make every guarantee that genericPtr is not null
 	
@@ -38,7 +38,7 @@
 	return result;
 }
 
-- (id)initWithXMLString:(NSString *)string error:(NSError **)error
+- (instancetype)initWithXMLString:(NSString *)string error:(NSError **)error
 {
 	DDXMLDocument *doc = [[DDXMLDocument alloc] initWithXMLString:string options:0 error:error];
 	
@@ -59,7 +59,7 @@
 	return [[[DDXMLElement alloc] initWithPrimitive:nodePtr] autorelease];
 }
 
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr
 {
 	if(nodePtr == NULL || nodePtr->type != XML_ELEMENT_NODE)
 	{
@@ -84,7 +84,7 @@
 **/
 - (NSArray *)elementsForName:(NSString *)name
 {
-	if(name == nil) return [NSArray array];
+	if(name == nil) return @[];
 	
 	// We need to check to see if name has a prefix.
 	// If it does have a prefix, we need to figure out what the corresponding URI is for that prefix,
@@ -98,7 +98,7 @@
 		xmlNsPtr ns = xmlSearchNs(node->doc, node, [prefix xmlChar]);
 		if(ns != NULL)
 		{
-			NSString *uri = [NSString stringWithUTF8String:((const char *)ns->href)];
+			NSString *uri = @((const char *)ns->href);
 			return [self elementsWithName:name uri:uri];
 		}
 		
@@ -110,7 +110,7 @@
 
 - (NSArray *)elementsForLocalName:(NSString *)localName URI:(NSString *)URI
 {
-	if(localName == nil) return [NSArray array];
+	if(localName == nil) return @[];
 	
 	// We need to figure out what the prefix is for this URI.
 	// Then we search for elements that are named prefix:localName OR (named localName AND have the given URI).
@@ -277,7 +277,7 @@
 	NSUInteger i;
 	for(i = 0; i < [attributes count]; i++)
 	{
-		DDXMLNode *attribute = [attributes objectAtIndex:i];
+		DDXMLNode *attribute = attributes[i];
 		[self addAttribute:attribute];
 	}
 }
@@ -409,7 +409,7 @@
 	NSUInteger i;
 	for(i = 0; i < [namespaces count]; i++)
 	{
-		DDXMLNode *namespace = [namespaces objectAtIndex:i];
+		DDXMLNode *namespace = namespaces[i];
 		[self addNamespace:namespace];
 	}
 }
@@ -474,7 +474,7 @@
 		{
 			if(ns->prefix != NULL)
 			{
-				return [NSString stringWithUTF8String:((const char *)ns->prefix)];
+				return @((const char *)ns->prefix);
 			}
 		}
 		ns = ns->next;
@@ -582,7 +582,7 @@
 	NSUInteger i;
 	for(i = 0; i < [children count]; i++)
 	{
-		DDXMLNode *child = [children objectAtIndex:i];
+		DDXMLNode *child = children[i];
 		[self addChild:child];
 	}
 }

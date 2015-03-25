@@ -22,7 +22,7 @@
 
 @implementation SocialRestProxy
 
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
@@ -53,7 +53,7 @@
 #pragma mark - RKObjectLoaderDelegate methods
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
 {
-    SocialVersion *version = [objects objectAtIndex:0];
+    SocialVersion *version = objects[0];
     SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
     socialConfig.restVersion = version.version;
     

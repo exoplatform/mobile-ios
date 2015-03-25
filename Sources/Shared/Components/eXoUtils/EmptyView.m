@@ -22,7 +22,7 @@
 
 @implementation EmptyView
 
-- (id)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content
+- (instancetype)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content
 {
     self = [super initWithFrame:frame];
     if (self) {

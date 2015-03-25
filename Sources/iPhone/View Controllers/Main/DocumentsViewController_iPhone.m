@@ -75,7 +75,7 @@
     currentPopoverCellIndex = -1;
     
     self.view.title = self.title;
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     if (self.actionVisibleOnFolder) {
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     } else {
@@ -187,7 +187,7 @@
     
     //Retrieve the File corresponding to the selected Cell
 
-	File *fileToBrowse = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+	File *fileToBrowse = [_dicContentOfFolder allValues][indexPath.section][indexPath.row];
 	
 	if(fileToBrowse.isFolder)
 	{
@@ -197,7 +197,7 @@
         // Check the folder can be supported actions or not.
         if (!_rootFile) {
             // if the view is first document view.
-            NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+            NSString *driveGroup = [_dicContentOfFolder allKeys][indexPath.section];
             newViewControllerForFilesBrowsing.actionVisibleOnFolder = [newViewControllerForFilesBrowsing supportActionsForItem:fileToBrowse ofGroup:driveGroup];
         } else {
             // support action for every folder which is not a drive.
@@ -239,8 +239,8 @@
         self.popoverController = nil;
     } 
     
-    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];
-    fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
+    NSArray *arrFileFolder = [_dicContentOfFolder allValues][indexPath.section];
+    fileToApplyAction = arrFileFolder[indexPath.row];
     
         FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
                                                 bundle:nil 

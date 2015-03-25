@@ -71,7 +71,7 @@
 @synthesize postCommentProxy = _postCommentProxy;
 @synthesize socialSpaceProxy = _socialSpaceProxy;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -135,7 +135,7 @@
     UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     [_txtvMessageComposer becomeFirstResponder];
@@ -312,7 +312,7 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
@@ -685,7 +685,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
     [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
     [picker pushViewController:imagePreview animated:YES];
-    [imagePreview displayImage:[self resizeImage:[info objectForKey:UIImagePickerControllerOriginalImage]]];
+    [imagePreview displayImage:[self resizeImage:info[UIImagePickerControllerOriginalImage]]];
 }
 
 

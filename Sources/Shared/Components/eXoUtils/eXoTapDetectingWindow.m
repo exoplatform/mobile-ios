@@ -23,7 +23,7 @@
 
 @synthesize viewToObserve;
 @synthesize controllerThatObserves;
-- (id)initWithViewToObserver:(UIView *)view andDelegate:(id<eXoTapDetectingWindowDelegate>)delegate {
+- (instancetype)initWithViewToObserver:(UIView *)view andDelegate:(id<eXoTapDetectingWindowDelegate>)delegate {
     if(self == [super init]) {
         self.viewToObserve = view;
         self.controllerThatObserves = delegate;
@@ -69,8 +69,8 @@
         return;
     CGPoint tapPoint = [touch locationInView:viewToObserve];
     //NSLog(@"TapPoint = %f, %f", tapPoint.x, tapPoint.y);
-    NSArray *pointArray = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%f", tapPoint.x],
-                           [NSString stringWithFormat:@"%f", tapPoint.y], nil];
+    NSArray *pointArray = @[[NSString stringWithFormat:@"%f", tapPoint.x],
+                           [NSString stringWithFormat:@"%f", tapPoint.y]];
 
     if (touch.tapCount == 1) {
         [self performSelector:@selector(forwardTap:) withObject:pointArray afterDelay:0.1];

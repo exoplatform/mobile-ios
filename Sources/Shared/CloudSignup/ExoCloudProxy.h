@@ -19,7 +19,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, CloudResponse) {
     EMAIL_SENT = 1, //validation email sent
     ACCOUNT_CREATED, //account confirmed
     NUMBER_OF_USERS_EXCEED, //maximum number of users is reached
@@ -32,14 +32,14 @@ typedef enum {
     SERVICE_UNAVAILABLE,
     TENANT_CREATION, //tenant is being created or waiting for creation
     INTERNAL_SERVER_ERROR //internal server error, 
-} CloudResponse;
+} ;
 
-typedef enum
+typedef NS_ENUM(NSInteger, CloudRequest)
 {
     CHECK_USER_EXIST = 1,
     CHECK_TENANT_STATUS,
     SIGN_UP
-} CloudRequest;
+} ;
 
 @class ExoCloudProxy;
 
@@ -58,7 +58,7 @@ typedef enum
 @property (nonatomic, retain) NSString *tenantName;
 @property (nonatomic, retain) NSString *username;
 
-- (id)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email;
+- (instancetype)initWithDelegate:(id<ExoCloudProxyDelegate>)delegate andEmail:(NSString *)email;
 - (void)signUp;
 - (void)checkTenantStatus;
 - (void)checkUserExistance;

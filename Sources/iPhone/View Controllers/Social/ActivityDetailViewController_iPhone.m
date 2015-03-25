@@ -82,7 +82,7 @@
     self.view.title = self.title;
     
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.backBarButtonItem = self.navigationItem.backBarButtonItem;
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.tintColor = [UIColor whiteColor];
     
     
@@ -205,7 +205,7 @@
             if (cell == nil) 
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
-                cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
+                cell = (ActivityDetailCommentTableViewCell *)nib[0];
                 
                 //Create a cell, need to do some configurations
                 [cell configureCell];
@@ -213,7 +213,7 @@
                 cell.extraDelegateForWebView = self;
             }
             
-            SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+            SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
             [cell setSocialComment:socialComment];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;

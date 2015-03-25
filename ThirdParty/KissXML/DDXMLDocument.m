@@ -10,7 +10,7 @@
 	return [[[DDXMLDocument alloc] initWithPrimitive:nodePtr] autorelease];
 }
 
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr
 {
 	if(nodePtr == NULL || nodePtr->type != XML_DOCUMENT_NODE)
 	{
@@ -28,7 +28,7 @@
  * Returns an initialized DDXMLDocument object, or nil if initialization fails
  * because of parsing errors or other reasons.
 **/
-- (id)initWithXMLString:(NSString *)string options:(NSUInteger)mask error:(NSError **)error
+- (instancetype)initWithXMLString:(NSString *)string options:(NSUInteger)mask error:(NSError **)error
 {
 	return [self initWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:mask error:error];
 }
@@ -39,7 +39,7 @@
  * Returns an initialized DDXMLDocument object, or nil if initialization fails
  * because of parsing errors or other reasons.
 **/
-- (id)initWithData:(NSData *)data options:(NSUInteger)mask error:(NSError **)error
+- (instancetype)initWithData:(NSData *)data options:(NSUInteger)mask error:(NSError **)error
 {
 	if(data == nil || [data length] == 0)
 	{

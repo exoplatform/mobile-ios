@@ -40,7 +40,7 @@
 	return _p;
 }
 
-- (id)initWithFrame:(CGRect)frame andController:(ATMHud *)c {
+- (instancetype)initWithFrame:(CGRect)frame andController:(ATMHud *)c {
     if ((self = [super initWithFrame:frame])) {
 		self.p = c;
 		self.backgroundColor = [UIColor clearColor];

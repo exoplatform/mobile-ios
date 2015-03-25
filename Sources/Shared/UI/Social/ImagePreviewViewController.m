@@ -49,7 +49,7 @@
 @synthesize selectImageBlock = _selectImageBlock;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -68,7 +68,7 @@
         UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Remove") style:UIBarButtonItemStyleBordered target:self action:@selector(unchangeImage:)];
         removeButton.tintColor = [UIColor whiteColor];
         
-        self.toolbarItems = [NSArray arrayWithObjects:changeButton, flexItem, removeButton, nil];
+        self.toolbarItems = @[changeButton, flexItem, removeButton];
         self.contentSizeForViewInPopover = kPopoverContentSize;
         [changeButton release];
         [removeButton release];

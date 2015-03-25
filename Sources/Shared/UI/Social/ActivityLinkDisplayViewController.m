@@ -35,7 +35,7 @@
 
 
 // custom init method to allow URL to be passed
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL
 {
 	self = [super initWithNibName:nibName bundle:nibBundle];
     if(self){

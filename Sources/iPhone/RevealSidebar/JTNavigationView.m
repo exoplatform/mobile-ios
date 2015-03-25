@@ -22,12 +22,12 @@
 @synthesize navigationItem = _navigationItem;
 @synthesize navigationBar = _navigationBar;
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [self initWithFrame:frame animationStyle:JTNavigationViewAnimationStylePush];
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame animationStyle:(JTNavigationViewAnimationStyle)style {
+- (instancetype)initWithFrame:(CGRect)frame animationStyle:(JTNavigationViewAnimationStyle)style {
     self = [super initWithFrame:frame];
     if (self) {
         _views = [[NSMutableArray alloc] init];
@@ -158,7 +158,7 @@
 //    for (UIView *view in _views) {
 //        [self popViewAnimated:NO];
 //    }
-    [_navigationBar setItems:[NSArray arrayWithObject:_navigationItem]];
+    [_navigationBar setItems:@[_navigationItem]];
 
     _navigationItem.title = _rootView.title;
     // Insert root view to be the bottom most index.

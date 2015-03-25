@@ -47,7 +47,7 @@
 
 @implementation CustomTabItem 
 
-- (id)initWithTitle:(NSString *)title icon:(UIImage *)icon {
+- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon {
     if (self = [super initWithTitle:title icon:icon]) {
         self.showsTouchWhenHighlighted = YES;
     }
@@ -93,7 +93,7 @@
 
 @implementation CustomSelectionView 
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.layer.shadowOffset = CGSizeMake(4.0f, 4.0f);
         self.layer.shadowRadius = 5.0f;
@@ -160,7 +160,7 @@ CGMutablePathRef createCommentShapeForRect(CGRect rect, CGFloat radius) {
 
 @implementation InfoContainerView
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
         self.layer.cornerRadius = kInfoViewCornerRadius;
@@ -244,21 +244,15 @@ static NSString *kTabItem = @"kTabItem";
 }
 
 - (void)doInit {
-    _dataSourceArray = [[NSArray arrayWithObjects:
-                        [NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSNumber numberWithInt:ActivityAdvancedInfoCellTabComment], kTabType,
-                            @"comments(%d)", kTabTitle, 
-                            [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-comment-icon"]] autorelease], kTabItem,
-                            nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSNumber numberWithInt:ActivityAdvancedInfoCellTabLike], kTabType,
-                            @"likes(%d)", kTabTitle, 
-                            [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-likers-icon"]] autorelease], kTabItem, 
-                            nil],
-                        nil] retain];
+    _dataSourceArray = [@[@{kTabType: @(ActivityAdvancedInfoCellTabComment),
+                            kTabTitle: @"comments(%d)", 
+                            kTabItem: [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-comment-icon"]] autorelease]},
+                        @{kTabType: @(ActivityAdvancedInfoCellTabLike),
+                            kTabTitle: @"likes(%d)", 
+                            kTabItem: [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-likers-icon"]] autorelease]}] retain];
 }
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         [self doInit];
     }
@@ -273,7 +267,7 @@ static NSString *kTabItem = @"kTabItem";
     [self.view setAutoresizesSubviews:YES];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     for (NSDictionary *tabData in _dataSourceArray) {
-        JMTabItem *tabItem = [tabData objectForKey:kTabItem];
+        JMTabItem *tabItem = tabData[kTabItem];
         tabItem.highlighted = NO;
         [self.tabView addTabItem:tabItem];
     }
@@ -386,9 +380,9 @@ static NSString *kTabItem = @"kTabItem";
 
 - (void)updateTabLabels {
     for (NSDictionary *tabData in _dataSourceArray) {
-        JMTabItem *tabItem = [tabData objectForKey:kTabItem];
+        JMTabItem *tabItem = tabData[kTabItem];
         int number = 0;
-        ActivityAdvancedInfoCellTab tabType = [[tabData objectForKey:kTabType] intValue];
+        ActivityAdvancedInfoCellTab tabType = [tabData[kTabType] intValue];
         switch (tabType) {
             case ActivityAdvancedInfoCellTabComment:
                 number = self.socialActivity.totalNumberOfComments;
@@ -399,7 +393,7 @@ static NSString *kTabItem = @"kTabItem";
             default:
                 break;
         }
-        tabItem.title = [NSString stringWithFormat:Localize([tabData objectForKey:kTabTitle]), number];
+        tabItem.title = [NSString stringWithFormat:Localize(tabData[kTabTitle]), number];
         [tabItem setNeedsDisplay];
     }
 }
@@ -465,14 +459,14 @@ static NSString *kTabItem = @"kTabItem";
         ActivityDetailCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
-            cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
+            cell = (ActivityDetailCommentTableViewCell *)nib[0];
             
             //Create a cell, need to do some configurations
             [cell configureCell];
             cell.width = tableView.frame.size.width;
             cell.extraDelegateForWebView = self.delegateToProcessClickAction;
         }
-        SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+        SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
         [cell setSocialComment:socialComment];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;        
@@ -496,7 +490,7 @@ static NSString *kTabItem = @"kTabItem";
         }
         case ActivityAdvancedInfoCellTabComment: {
             if (self.socialActivity.totalNumberOfComments > 0) {
-                SocialComment *comment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+                SocialComment *comment = (self.socialActivity.comments)[indexPath.row];
                 return [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];                
             } else {
                 return self.infoView.frame.size.height;
@@ -524,7 +518,7 @@ static NSString *kTabItem = @"kTabItem";
 }
 #pragma mark - JMTabViewDelegate 
 - (void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
-    ActivityAdvancedInfoCellTab selectedTab = [[[_dataSourceArray objectAtIndex:itemIndex] valueForKey:kTabType] intValue];
+    ActivityAdvancedInfoCellTab selectedTab = [[_dataSourceArray[itemIndex] valueForKey:kTabType] intValue];
     if (_selectedTab != selectedTab) {
         _selectedTab = selectedTab;
         [self reloadInfoContainerWithAnimated:YES];

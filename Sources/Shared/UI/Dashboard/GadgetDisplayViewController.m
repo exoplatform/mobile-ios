@@ -38,7 +38,7 @@
 }
 
 // custom init method
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
 {
 	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
         [self setGadget:gadgetToLoad];

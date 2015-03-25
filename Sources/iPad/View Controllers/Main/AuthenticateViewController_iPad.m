@@ -45,7 +45,7 @@
 @implementation AuthenticateViewController_iPad
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
 	{

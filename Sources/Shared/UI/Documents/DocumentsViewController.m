@@ -65,6 +65,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 @synthesize parentController = _parentController, isRoot;
 @synthesize actionVisibleOnFolder = _actionVisibleOnFolder;
 @synthesize popoverPhotoLibraryController = _popoverPhotoLibraryController;
+
 @synthesize popoverProperties = _popoverProperties;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -79,7 +80,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 
 
-- (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName  {
+- (instancetype) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName  {
     if ((self = [self initWithNibName:nibName bundle:nil])) {
         //Set the rootFile 
         _rootFile = [rootFile retain];
@@ -270,7 +271,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
     NSArray *visibleCells  = [_tblFiles visibleCells];
     CGRect rect = CGRectZero;
     for (int n = 0; n < [visibleCells count]; n ++){
-        UITableViewCell *cell = [visibleCells objectAtIndex:n];
+        UITableViewCell *cell = visibleCells[n];
         if(n == 0){
             rect.origin.y = cell.frame.origin.y;
             rect.size.width = cell.frame.size.width;
@@ -311,7 +312,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 	[self.view addSubview:self.hudLoadWaiting.view];
     
     self.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     //Set the background Color of the view
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
@@ -438,7 +439,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
     headerLabel.shadowOffset = CGSizeMake(0,1);
     headerLabel.textAlignment = NSTextAlignmentCenter;
 
-    headerLabel.text = Localize([[_dicContentOfFolder allKeys] objectAtIndex:section]);
+    headerLabel.text = Localize([_dicContentOfFolder allKeys][section]);
     
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.lineBreakMode = NSLineBreakByWordWrapping;
@@ -477,7 +478,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 // tell our table how many rows it will have, in our case the size of our menuList
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [[[_dicContentOfFolder allValues] objectAtIndex:section] count];
+	return [[_dicContentOfFolder allValues][section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -501,8 +502,8 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 
     //Retrieve the correct file corresponding to the indexPath
-    File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+    File *file = [_dicContentOfFolder allValues][indexPath.section][indexPath.row];
+    NSString *driveGroup = [_dicContentOfFolder allKeys][indexPath.section];
     if ([self supportActionsForItem:file ofGroup:driveGroup]) {
         //Add action button
         UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
@@ -775,7 +776,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
     navigationController.navigationBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavbarBg.png"]];
     
@@ -829,7 +830,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
         NSArray *arrFileFolder = nil;
         if([[_dicContentOfFolder allValues] count] > 0)
-            arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+            arrFileFolder = [_dicContentOfFolder allValues][0];
         
         for (File* file in arrFileFolder) {
             if([newFolderName isEqualToString:file.name])
@@ -920,7 +921,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
         
         NSArray *arrFileFolder = nil;
         if([[_dicContentOfFolder allValues] count] > 0)
-            arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+            arrFileFolder = [_dicContentOfFolder allValues][0];
 
         
         for (File* file in arrFileFolder) {
@@ -1056,7 +1057,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
         
         if ([imageData length] > 0) 
         {
-            NSString *imageName = [[editingInfo objectForKey:UIImagePickerControllerReferenceURL] lastPathComponent];
+            NSString *imageName = [editingInfo[UIImagePickerControllerReferenceURL] lastPathComponent];
             
             if(imageName == nil) {
                 

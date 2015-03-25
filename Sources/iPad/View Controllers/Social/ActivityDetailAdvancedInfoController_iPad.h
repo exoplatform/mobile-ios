@@ -24,10 +24,10 @@
 @class ActivityLikersViewController;
 @class EmptyView;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ActivityAdvancedInfoCellTab) {
     ActivityAdvancedInfoCellTabComment = 0,
     ActivityAdvancedInfoCellTabLike = 1
-} ActivityAdvancedInfoCellTab;
+} ;
 
 @interface ActivityDetailAdvancedInfoController_iPad : UIViewController <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource>
 

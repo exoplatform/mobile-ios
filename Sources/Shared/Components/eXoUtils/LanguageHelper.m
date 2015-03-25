@@ -42,7 +42,7 @@
 
 
 //Initialisation Method
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
@@ -71,7 +71,7 @@
     
     if (!selectedLang) {
         // returns the 2-letter language code of the device
-        NSString * language = [[[NSLocale preferredLanguages] objectAtIndex:0] substringToIndex:2];
+        NSString * language = [[NSLocale preferredLanguages][0] substringToIndex:2];
         // we defined some Country+Region codes in our array so we must check these explicitely
         if ([@"es" isEqualToString:language]) language = @"es-ES";
         else if ([@"pt" isEqualToString:language]) language = @"pt-BR";
@@ -87,7 +87,7 @@
 - (void)changeToLanguage:(int)languageWanted {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSString stringWithFormat:@"%d", languageWanted] forKey:EXO_PREFERENCE_LANGUAGE];
-	LocalizationSetLanguage([_international objectAtIndex:languageWanted]);
+	LocalizationSetLanguage(_international[languageWanted]);
     
 }
 

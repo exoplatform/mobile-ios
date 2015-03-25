@@ -49,9 +49,9 @@
     }
         
     //_webViewComment.contentMode = UIViewContentModeScaleAspectFit;
-    [[self.webViewComment.subviews objectAtIndex:0] setScrollEnabled:NO];
+    [(self.webViewComment.subviews)[0] setScrollEnabled:NO];
     [self.webViewComment setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[self.webViewComment subviews] objectAtIndex:0];
+    UIScrollView *scrollView = (UIScrollView *)[self.webViewComment subviews][0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
     self.webViewComment.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeAddress;

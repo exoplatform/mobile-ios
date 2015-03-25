@@ -67,7 +67,7 @@
 @synthesize likeActivityProxy = _likeActivityProxy;
 @synthesize dateOfLastUpdate = _dateOfLastUpdate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -210,7 +210,7 @@
     }
     if (indexPath.section == 2) 
     {
-        SocialComment* comment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+        SocialComment* comment = (self.socialActivity.comments)[indexPath.row];
         n = [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];
 
     }
@@ -252,7 +252,7 @@
             case ACTIVITY_DOC:
             case ACTIVITY_CONTENTS_SPACE: {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityPictureDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                _activityDetailCell = (ActivityPictureDetailMessageTableViewCell *)nib[0];
                 //Create a cell, need to do some configurations
                 [_activityDetailCell configureCell];
                 [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
@@ -267,7 +267,7 @@
             case ACTIVITY_WIKI_ADD_PAGE:
             case ACTIVITY_WIKI_MODIFY_PAGE: {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityWikiDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                _activityDetailCell = (ActivityWikiDetailMessageTableViewCell *)nib[0];
                 //Create a cell, need to do some configurations
                 [_activityDetailCell configureCell];
                 [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
@@ -280,7 +280,7 @@
             case ACTIVITY_FORUM_UPDATE_POST:
             case ACTIVITY_FORUM_UPDATE_TOPIC: {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityForumDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityForumDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                _activityDetailCell = (ActivityForumDetailMessageTableViewCell *)nib[0];
                 //Create a cell, need to do some configurations
                 [_activityDetailCell configureCell];
                 [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
@@ -293,7 +293,7 @@
             case ACTIVITY_CALENDAR_UPDATE_EVENT:
             case ACTIVITY_CALENDAR_ADD_EVENT: {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityCalendarDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityCalendarDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                _activityDetailCell = (ActivityCalendarDetailMessageTableViewCell *)nib[0];
                 //Create a cell, need to do some configurations
                 [_activityDetailCell configureCell];
                 [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
@@ -305,7 +305,7 @@
             case ACTIVITY_ANSWER_ADD_QUESTION:
             case ACTIVITY_ANSWER_UPDATE_QUESTION: {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityAnswerDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityAnswerDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                _activityDetailCell = (ActivityAnswerDetailMessageTableViewCell *)nib[0];
                 //Create a cell, need to do some configurations
                 [_activityDetailCell configureCell];
                 [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
@@ -315,7 +315,7 @@
             }
             case ACTIVITY_LINK: {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityLinkDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityLinkDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                _activityDetailCell = (ActivityLinkDetailMessageTableViewCell *)nib[0];
                 //Create a cell, need to do some configurations
                 [_activityDetailCell configureCell];
                 [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
@@ -327,7 +327,7 @@
             }
             default: {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                _activityDetailCell = (ActivityDetailMessageTableViewCell *)nib[0];
                 //Create a cell, need to do some configurations
                 [_activityDetailCell configureCell];
                 

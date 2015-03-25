@@ -26,7 +26,7 @@
 
 @synthesize comment=_comment, userIdentity = _userIdentity;
 
-- (id)init 
+- (instancetype)init 
 {
     if ((self = [super init])) 
     {

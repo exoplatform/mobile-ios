@@ -45,7 +45,7 @@
 
 @synthesize _isCompatibleWithSocial;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
@@ -136,10 +136,9 @@
                                                                    image:@"bundle://HomeSettingsIconiPhone.png"
                                                                      URL:@"tt://setting" canDelete:NO] autorelease];
     if(_isCompatibleWithSocial)
-        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
-                                                         actStreamItem, documentItem, dashboardItem, settingItem, nil], nil];
+        _launcherView.pages = @[@[actStreamItem, documentItem, dashboardItem, settingItem]];
     else
-        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects: documentItem, dashboardItem, settingItem, nil], nil];    
+        _launcherView.pages = @[@[documentItem, dashboardItem, settingItem]];    
     [self.view addSubview:_launcherView];
 }
 

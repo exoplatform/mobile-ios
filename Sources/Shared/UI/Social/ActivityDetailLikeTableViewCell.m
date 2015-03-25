@@ -39,7 +39,7 @@
 @property (retain, nonatomic) UIActivityIndicatorView *indicatorForLikeButton;
 @property (nonatomic, retain) NSMutableArray *likerAvatarImageViews;
 - (UIImage *)imageOfThreePointsWithSize:(CGSize)imageSize;
-- (AvatarView *)newAvatarView;
+@property (nonatomic, readonly, strong) AvatarView *newAvatarView;
 - (void)adjustAvatarViewFrames:(BOOL)animate;
 
 @end
@@ -64,7 +64,7 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -204,8 +204,8 @@
     
     for (int i = 0; i < self.socialActivity.totalNumberOfLikes; i++) {
         if (i == kNumberOfDisplayedAvatars) break;
-        SocialUserProfile *user = i < self.socialActivity.likedByIdentities.count ? [self.socialActivity.likedByIdentities objectAtIndex:i] : nil;
-        AvatarView *imageView = i < [_likerAvatarImageViews count] ? [_likerAvatarImageViews objectAtIndex:i] : nil;
+        SocialUserProfile *user = i < self.socialActivity.likedByIdentities.count ? (self.socialActivity.likedByIdentities)[i] : nil;
+        AvatarView *imageView = i < [_likerAvatarImageViews count] ? _likerAvatarImageViews[i] : nil;
         if (!imageView) {
             imageView = [self newAvatarView];
             [_likerAvatarImageViews addObject:imageView];

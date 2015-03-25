@@ -29,7 +29,7 @@
 @synthesize isUpdateRequest = _isUpdateRequest;
 @synthesize userProfile = _userProfile;
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init])) 
     { 
