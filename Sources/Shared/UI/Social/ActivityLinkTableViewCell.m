@@ -139,7 +139,22 @@
     self.lbName.text = title;
 
     // Activity Message
-    self.htmlActivityMessage.html = [[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+    NSString* activityMessage = [socialActivityStream.templateParams valueForKey:@"comment"];
+    NSString* htmlTagOfImage = nil;
+    // Check if an image is embedded in the activity message
+    // If YES, the tag and its base64 content are saved to be decoded later, and removed from the activity message
+    BOOL activityMessageContainsImage = [activityMessage containsString:@"<img src="];
+    if (activityMessageContainsImage) {
+        NSRange imgTagBegin = [activityMessage rangeOfString:@"<img src="];
+        // Backwards search saves time if the base64 data is very long
+        NSRange imgTagEnd = [activityMessage rangeOfString:@"/>" options:NSBackwardsSearch];
+        NSRange imgTagRange = NSMakeRange(imgTagBegin.location, imgTagEnd.location + imgTagEnd.length - imgTagBegin.location);
+        htmlTagOfImage = [activityMessage substringWithRange:imgTagRange];
+        activityMessage = [activityMessage stringByReplacingCharactersInRange:imgTagRange withString:@""];
+    }
+
+    self.htmlActivityMessage.html =
+      [[activityMessage stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
     //When htmlActivityMessage is empty, htmlActivityMessage's frame is set to width:0 in sizeToFit
     //When the the view is recycled, the reuse will keep the width to 0
@@ -177,8 +192,10 @@
     rect.size.height = heigthForTTLabel;
     self.htmlActivityMessage.frame = rect;
 
+    //
     NSURL *url = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
+        
         self.imgvAttach.hidden = NO;
         rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
@@ -190,7 +207,67 @@
         rect = self.htmlLinkTitle.frame;
         rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
         self.htmlLinkTitle.frame = rect;
+        
+    } else if (activityMessageContainsImage) {
+        
+        self.imgvAttach.image = nil;
+        
+        void (^decodeImageBlock)(void) = ^(void) {
+            
+            NSError* err = nil;
+            NSString* base64StringOfImage = nil;
+            NSRegularExpression* regex =
+            [NSRegularExpression regularExpressionWithPattern:@"<img src=\"(.*)\"(.*) />"
+                                                      options:NSRegularExpressionCaseInsensitive
+                                                        error:&err];
+            if (!err) {
+                NSTextCheckingResult *match =
+                [regex firstMatchInString:htmlTagOfImage
+                                  options:0
+                                    range:NSMakeRange(0, [htmlTagOfImage length])];
+                if (match) {
+                    NSRange rangeOfImage = [match rangeAtIndex:1];
+                    if (!NSEqualRanges(rangeOfImage, NSMakeRange(NSNotFound, 0))) {
+                        // Keep the data url in base64 format that contains the image
+                        base64StringOfImage = [htmlTagOfImage substringWithRange:rangeOfImage];
+                        // Remove part of the string that is not actual data
+                        base64StringOfImage = [base64StringOfImage stringByReplacingOccurrencesOfString:@"data:<;base64," withString:@""];
+                        // Add missing = at the end so the total length is a multiple of 4
+                        if (base64StringOfImage.length % 4 > 0) {
+                            int remainder = base64StringOfImage.length % 4;
+                            for (int i = 4; i > remainder; i--) {
+                                base64StringOfImage = [base64StringOfImage stringByAppendingString:@"="];
+                            }
+                        }
+                        NSData* imageData = [[NSData alloc] initWithBase64EncodedString:base64StringOfImage
+                                                                                options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                        UIImage* imageAttached = [UIImage imageWithData:imageData];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // called on the UI thread to display the image immediately
+                            self.imgvAttach.image = imageAttached;
+                        });
+                    }
+                }
+            }
+        };
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), decodeImageBlock);
+
+        
+        self.imgvAttach.hidden = NO;
+        rect = self.imgvAttach.frame;
+        self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
+        rect.origin.y = self.htmlActivityMessage.frame.size.height + self.htmlActivityMessage.frame.origin.y + 5;
+        rect.origin.x = (width > 320)? (width/3 + 60) : (width/3 + 40);
+        self.imgvAttach.frame = rect;
+        
+        rect = self.htmlLinkTitle.frame;
+        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
+        self.htmlLinkTitle.frame = rect;
+
     } else {
+        
         rect = self.htmlLinkTitle.frame;
         rect.origin.y = self.htmlActivityMessage.frame.size.height + self.htmlActivityMessage.frame.origin.y;
         self.htmlLinkTitle.frame = rect;
@@ -227,10 +304,7 @@
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
     rect.size.height = heigthForTTLabel;
     self.htmlLinkMessage.frame = rect;
-    
 }
-
-
 
 - (void)dealloc {    
     self.imgvAttach = nil;
