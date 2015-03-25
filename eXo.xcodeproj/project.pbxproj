@@ -233,7 +233,6 @@
 		46ABBE8713890BD10077809B /* FilesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8613890BD10077809B /* FilesProxy.m */; };
 		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
 		46ABBE95138914200077809B /* DocumentsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */; };
-		46ADAD141403E419005ABA79 /* DashboardProxy_old.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAD131403E419005ABA79 /* DashboardProxy_old.m */; };
 		46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */; };
 		46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAEE414068EAF005ABA79 /* DashboardViewController.m */; };
 		46BE69DB13D5B30E00F62614 /* SocialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D413D5B30E00F62614 /* SocialComment.m */; };
@@ -359,7 +358,6 @@
 		572EAA2A192AFBFD008CFB11 /* SSHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9E8192AFBFD008CFB11 /* SSHUDWindow.m */; };
 		572EAA2B192AFBFD008CFB11 /* UIImage+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9EA192AFBFD008CFB11 /* UIImage+SSToolkitAdditions.m */; };
 		572EAA2C192AFBFD008CFB11 /* UIView+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9EC192AFBFD008CFB11 /* UIView+SSToolkitAdditions.m */; };
-		572EAA2D192AFBFD008CFB11 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9EF192AFBFD008CFB11 /* AsyncSocket.m */; };
 		572EAA2E192AFBFD008CFB11 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9F2192AFBFD008CFB11 /* CXMLDocument.m */; };
 		572EAA2F192AFBFD008CFB11 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9F4192AFBFD008CFB11 /* CXMLDocument_PrivateExtensions.m */; };
 		572EAA30192AFBFD008CFB11 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9F6192AFBFD008CFB11 /* CXMLElement.m */; };
@@ -1304,8 +1302,6 @@
 		46ABBE8913890C260077809B /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = File.m; path = Documents/File.m; sourceTree = "<group>"; };
 		46ABBE921389141E0077809B /* DocumentsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentsViewController_iPhone.h; path = ../Main/DocumentsViewController_iPhone.h; sourceTree = "<group>"; };
 		46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentsViewController_iPhone.m; path = ../Main/DocumentsViewController_iPhone.m; sourceTree = "<group>"; };
-		46ADAD121403E419005ABA79 /* DashboardProxy_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardProxy_old.h; path = Dashboard/DashboardProxy_old.h; sourceTree = "<group>"; };
-		46ADAD131403E419005ABA79 /* DashboardProxy_old.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardProxy_old.m; path = Dashboard/DashboardProxy_old.m; sourceTree = "<group>"; };
 		46ADAED114052599005ABA79 /* LanguageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanguageHelper.h; path = "../../Data Manager/Settings Management/LanguageHelper.h"; sourceTree = "<group>"; };
 		46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityStreamBrowseViewController_iPhone.xib; path = Sources/iPhone/NIB/ActivityStreamBrowseViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		46ADAEE314068EAF005ABA79 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardViewController.h; path = Dashboard/DashboardViewController.h; sourceTree = "<group>"; };
@@ -1498,8 +1494,6 @@
 		572EA9EA192AFBFD008CFB11 /* UIImage+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SSToolkitAdditions.m"; sourceTree = "<group>"; };
 		572EA9EB192AFBFD008CFB11 /* UIView+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSToolkitAdditions.h"; sourceTree = "<group>"; };
 		572EA9EC192AFBFD008CFB11 /* UIView+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSToolkitAdditions.m"; sourceTree = "<group>"; };
-		572EA9EE192AFBFD008CFB11 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
-		572EA9EF192AFBFD008CFB11 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		572EA9F1192AFBFD008CFB11 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		572EA9F2192AFBFD008CFB11 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
 		572EA9F3192AFBFD008CFB11 /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
@@ -2785,8 +2779,6 @@
 		46ADAD111403E3C0005ABA79 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				46ADAD121403E419005ABA79 /* DashboardProxy_old.h */,
-				46ADAD131403E419005ABA79 /* DashboardProxy_old.m */,
 				46CCF22B14571BEE0039CEAC /* DashboardProxy.h */,
 				46CCF22C14571BEF0039CEAC /* DashboardProxy.m */,
 				46CCF2C814580FCF0039CEAC /* GadgetsProxy.h */,
@@ -3197,7 +3189,6 @@
 				572EA9DC192AFBFD008CFB11 /* libidn */,
 				572EA9E0192AFBFD008CFB11 /* Logging.h */,
 				572EA9E1192AFBFD008CFB11 /* SSToolKit */,
-				572EA9ED192AFBFD008CFB11 /* TCP */,
 				572EA9F0192AFBFD008CFB11 /* TouchXml */,
 				572EA9FE192AFBFD008CFB11 /* UIImage+Resize */,
 			);
@@ -3407,15 +3398,6 @@
 				572EA9EC192AFBFD008CFB11 /* UIView+SSToolkitAdditions.m */,
 			);
 			path = HUD;
-			sourceTree = "<group>";
-		};
-		572EA9ED192AFBFD008CFB11 /* TCP */ = {
-			isa = PBXGroup;
-			children = (
-				572EA9EE192AFBFD008CFB11 /* AsyncSocket.h */,
-				572EA9EF192AFBFD008CFB11 /* AsyncSocket.m */,
-			);
-			path = TCP;
 			sourceTree = "<group>";
 		};
 		572EA9F0192AFBFD008CFB11 /* TouchXml */ = {
@@ -5519,8 +5501,6 @@
 				57176F7F19D948C6003C8B90 /* AccountSwitcherViewController_iPhone.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,
-				572EAA2D192AFBFD008CFB11 /* AsyncSocket.m in Sources */,
-				46ADAD141403E419005ABA79 /* DashboardProxy_old.m in Sources */,
 				46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */,
 				46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */,
 				46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */,
