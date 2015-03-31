@@ -42,7 +42,7 @@
 {
 	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
         [self setGadget:gadgetToLoad];
-        _url = [[NSURL URLWithString:_gadget.gadgetUrl] retain];
+        self.url = [[NSURL URLWithString:_gadget.gadgetUrl] retain];
 	}
     return self;
 }

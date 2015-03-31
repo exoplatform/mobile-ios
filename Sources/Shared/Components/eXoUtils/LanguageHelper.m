@@ -23,6 +23,7 @@
 
 @implementation LanguageHelper
 
+@synthesize international;
 
 #pragma mark - Object Management
 //Singleton Accessor/Creator
@@ -46,7 +47,7 @@
 {
     if ((self = [super init])) 
     {
-        _international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", nil] retain];
+        self.international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", nil] autorelease];
         //Intialisation, load the current dictionnary for localizable strings
         [self loadLocalizableStringsForCurrentLanguage];
     }	
@@ -56,7 +57,7 @@
 //Dealloc method
 - (void) dealloc
 {
-    [_international release];
+    self.international = nil;
 	[super dealloc];
 }
 
@@ -76,7 +77,7 @@
         if ([@"es" isEqualToString:language]) language = @"es-ES";
         else if ([@"pt" isEqualToString:language]) language = @"pt-BR";
         // returns the index of the language or NSNotFound
-        langIndex = [_international indexOfObject:language];
+        langIndex = [self.international indexOfObject:language];
         // if the preferred language is not supported by the app, fallback to English
         if (langIndex == NSNotFound) langIndex = 0;
     }
@@ -87,7 +88,7 @@
 - (void)changeToLanguage:(int)languageWanted {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSString stringWithFormat:@"%d", languageWanted] forKey:EXO_PREFERENCE_LANGUAGE];
-	LocalizationSetLanguage(_international[languageWanted]);
+	LocalizationSetLanguage(self.international[languageWanted]);
     
 }
 

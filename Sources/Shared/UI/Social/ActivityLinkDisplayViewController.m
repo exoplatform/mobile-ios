@@ -39,10 +39,10 @@
 {
 	self = [super initWithNibName:nibName bundle:nibBundle];
     if(self){
-        _url = [defaultURL copy];
-        [_webView setDelegate:self];
+        self.url = defaultURL;
+        [self.webView setDelegate:self];
         
-        self.titleForActivityLink = [_url lastPathComponent];
+        self.titleForActivityLink = [self.url lastPathComponent];
     }
 	return self;
 }
@@ -56,7 +56,7 @@
 {
     
     [super viewDidLoad];
-    self.title = [_url lastPathComponent];
+    self.title = [self.url lastPathComponent];
 }
 
 -(NSString *) shortString : (NSString *) myString withMaxCharacter: (int) range {

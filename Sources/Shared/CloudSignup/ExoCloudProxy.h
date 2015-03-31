@@ -45,15 +45,16 @@ typedef NS_ENUM(NSInteger, CloudRequest)
 
 @protocol ExoCloudProxyDelegate <NSObject>
 
--(void)cloudProxy:(ExoCloudProxy *)cloudProxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email;
+- (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleCloudResponse:(CloudResponse)response forEmail:(NSString *)email;
 - (void)cloudProxy:(ExoCloudProxy *)cloudProxy handleError:(NSError *)error;
+
 @end
 
 @interface ExoCloudProxy : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
 
 }
 
-@property (nonatomic, retain) id<ExoCloudProxyDelegate> delegate;
+@property (nonatomic, assign) id<ExoCloudProxyDelegate> delegate;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSString *tenantName;
 @property (nonatomic, retain) NSString *username;

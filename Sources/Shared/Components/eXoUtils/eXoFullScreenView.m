@@ -24,14 +24,14 @@
 
 @implementation eXoFullScreenView
 
-@synthesize orientation;
+@synthesize first, orientation;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        first = YES;
+        self.first = YES;
     }
     return self;
 }
@@ -45,9 +45,6 @@
 }
 
 #pragma mark - View lifecycle
-
-
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -73,12 +70,13 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    // if the first time presentModalViewController, return (only on iso4)
-//    if(first){
-//        first = NO;
-//        return;
-//    }
-    // when device rotate
     self.orientation = interfaceOrientation;
 }
+
+- (void)dealloc {
+    self.first = nil;
+    self.orientation = nil;
+    [super dealloc];
+}
+
 @end

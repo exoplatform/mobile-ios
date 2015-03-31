@@ -20,8 +20,8 @@
 #import <Foundation/Foundation.h>
 
 @interface CloudUtils : NSObject
-+(BOOL) checkEmailFormat:(NSString *)mail;
-+(NSString *)usernameByEmail:(NSString *)email;
++ (BOOL)      checkEmailFormat:(NSString *)mail;
++ (NSString *)usernameByEmail:(NSString *)email;
 + (NSString *)serverUrlByTenant:(NSString *)tenantName;
 + (NSString *)tenantFromServerUrl:(NSString *)serverUrl;
 @end

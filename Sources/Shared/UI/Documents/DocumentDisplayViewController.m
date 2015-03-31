@@ -26,8 +26,8 @@
 - (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName
 {
 	if(self = [super initWithNibName:nibName bundle:nibBundle]){
-        _url = [defaultURL retain];
-        _fileName = [fileName retain];
+        self.url = defaultURL;
+        self.fileName = fileName;
     }
     
 	return self;
@@ -42,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = _fileName;
+    self.title = self.fileName;
 }
 
 -(NSString *) shortString : (NSString *) myString withMaxCharacter: (int) range {

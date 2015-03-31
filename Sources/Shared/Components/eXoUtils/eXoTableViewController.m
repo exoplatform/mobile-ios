@@ -21,19 +21,21 @@
 #import "LanguageHelper.h"
 
 @implementation eXoTableViewController
+
 @synthesize hudLoadWaiting = _hudLoadWaiting;
+@synthesize navigation, label;
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 }
 
-
 -(void)dealloc {
+    self.label = nil;
+    self.navigation = nil;
     [super dealloc];
-
 }
 
 #pragma mark - hudLoadWaiting
