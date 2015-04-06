@@ -131,7 +131,7 @@
 
 - (void)setTitleForFilesViewController {
     if (_rootFile) {
-        self.title = _rootFile.name;
+        self.title = _rootFile.naturalName;
     } else {
         self.title = Localize(@"Documents");
     }
@@ -219,7 +219,7 @@
                                                                        initWithNibAndUrl:@"DocumentDisplayViewController_iPhone"
                                                                                   bundle:nil 
                                                                                     url:urlOfTheFileToOpen
-                                                                                fileName:fileToBrowse.name];        
+                                                                                fileName:fileToBrowse.naturalName];
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:fileWebViewController animated:YES];
 		//[self.navigationController pushViewController:fileWebViewController animated:YES];    

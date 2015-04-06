@@ -24,7 +24,7 @@
 @implementation File
 
 @synthesize path=_path, isFolder=_isFolder;
-@synthesize name=_name, canAddChild=_canAddChild, canRemove=_canRemove, currentFolder=_currentFolder, 
+@synthesize name=_name, naturalName= _naturalName, canAddChild=_canAddChild, canRemove=_canRemove, currentFolder=_currentFolder,
 driveName=_driveName, hasChild=_hasChild, workspaceName=_workspaceName, nodeType=_nodeType,
 creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_size;
 
@@ -74,8 +74,61 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
     [_creator release];
     [_dateCreated release];
     [_dateModified release];
+    [_naturalName release];
+    _naturalName = nil;
     [super dealloc];
 }
 
+/*!
+ @return the title of the folder/file
+ */
+-(NSString *) getNaturalName{
+
+    if (_naturalName!=nil) {
+        // sometime the name of the folder/file is created automatically the the system. In this case we use the converted name as the title of the folder
+        return _naturalName;
+    }
+    return _name;
+}
+
+
+/*!
+ Folders in the "Group" section are named automatically by the system & these names are not really nice.
+ The goal of this method is to convert this name into a more natural one without special characters.
+ */
+-(NSString* ) convertToNaturalName {
+    
+    NSMutableString * s = [_name mutableCopy];
+    [s replaceOccurrencesOfString:@"." withString:@" " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+    [s replaceOccurrencesOfString:@"_" withString:@" " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+    [s replaceOccurrencesOfString:@" exo" withString:@" eXo" options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+    [s replaceOccurrencesOfString:@" spaces " withString:@" space " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+    while ([s rangeOfString:@"  "].location !=NSNotFound) {
+        [s replaceOccurrencesOfString:@"  " withString:@" " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+    }
+    
+    while ([s characterAtIndex:0] == ' ') {
+        [s deleteCharactersInRange:NSMakeRange(0,1)];
+    }
+    while ([s characterAtIndex:(s.length-1)] == ' ') {
+        [s deleteCharactersInRange:NSMakeRange(s.length-1,1)];
+    }
+    [s replaceCharactersInRange:NSMakeRange(0,1) withString:[[s substringWithRange:NSMakeRange(0,1)] uppercaseString]];
+    
+    //First character of a word would be in Uppercase
+    for (int index =1; index < s.length -1 ; index++ ){
+        if ([s characterAtIndex:index] == ' ' ){
+            [s replaceCharactersInRange:NSMakeRange(index+1,1) withString:[[s substringWithRange:NSMakeRange(index+1,1)] uppercaseString]];
+        }
+    }
+   [s replaceOccurrencesOfString:@"EXo" withString:@"eXo" options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+
+    if (_naturalName) {
+        [_naturalName release];
+    }
+    _naturalName = [s substringToIndex:s.length];
+    [_naturalName retain];
+    return _naturalName;
+}
 
 @end

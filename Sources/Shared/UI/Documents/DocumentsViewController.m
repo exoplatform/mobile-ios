@@ -334,7 +334,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     [_tblFiles setBackgroundView:nil];
     [_tblFiles setBackgroundView:[[[UIView alloc] init] autorelease]];
     if (_rootFile) {
-        self.title = _rootFile.name;
+        self.title = _rootFile.naturalName;
     } else {
         self.title = Localize(@"Documents");
     }
@@ -526,7 +526,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     }
     
     //Set the file name
-    cell.textLabel.text = [file.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];; 
+    cell.textLabel.text = [file.naturalName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     return cell;
     

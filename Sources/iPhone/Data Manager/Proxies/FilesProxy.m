@@ -182,6 +182,7 @@
         
         File *file = [[File alloc] init];
         file.name = [[resultElement attributeForName:@"name"] stringValue];
+        
         file.workspaceName = [[resultElement attributeForName:@"workspaceName"] stringValue];
         file.driveName = file.name;
         file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
@@ -189,6 +190,9 @@
             file.currentFolder = @"";
         file.isFolder = YES;
 		
+        if ([driveName isEqualToString:@"group"]) {
+            [file convertToNaturalName];
+        }
         // Add the file to the global Array so that the view can access it.
         [folderArray addObject:file];
         [file release];

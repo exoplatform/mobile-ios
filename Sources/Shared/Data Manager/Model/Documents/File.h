@@ -44,6 +44,8 @@
 @property(nonatomic, retain) NSString *path;
 @property BOOL isFolder;
 @property(nonatomic, retain) NSString *name;
+@property (readonly, getter=getNaturalName, retain, nonatomic) NSString * naturalName;
+
 @property BOOL canAddChild;
 @property BOOL canRemove;
 @property(nonatomic, retain) NSString *currentFolder;
@@ -59,5 +61,6 @@
 //Tool method to retrive the type of the File
 + (NSString *)fileType:(NSString *)fileName;
 
+-(NSString *) convertToNaturalName;
 
 @end

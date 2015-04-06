@@ -57,7 +57,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     //Add the UIBarButtonItem for actions on the NavigationBar of the Controller
     if (_rootFile) {
-        _navigation.topItem.title = _rootFile.name;
+        _navigation.topItem.title = _rootFile.naturalName;
     } else {
         _navigation.topItem.title = Localize(@"Documents") ;
         ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
@@ -223,7 +223,7 @@
 		DocumentDisplayViewController_iPad* contentViewController = [[DocumentDisplayViewController_iPad alloc] initWithNibAndUrl:@"DocumentDisplayViewController_iPad"
                                                                                                bundle:nil 
                                                                                                   url:urlOfTheFileToOpen
-                                                                                             fileName:fileToBrowse.name];
+                                                                                             fileName:fileToBrowse.naturalName];
 		
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:contentViewController invokeByController:self isStackStartView:FALSE];
         

@@ -252,5 +252,16 @@
     
 }
 
+-(void)testConversionNaturalName
+{
+    File * file = [[File alloc] init];
+    file.name = @".spaces.exo.platform.home.";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Space eXo Platform Home"]);
+    
+    file.name = @".exo";
+    [file convertToNaturalName ];
+    XCTAssertTrue([file.naturalName isEqualToString:@"eXo"]);
+}
 
 @end
