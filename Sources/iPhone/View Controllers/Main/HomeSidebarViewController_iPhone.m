@@ -315,8 +315,26 @@
 
 - (void)toggleButtonPressed:(id)sender {
     [_revealView revealSidebar: ! [_revealView isSidebarShowing]];
+    if ([_revealView isSidebarShowing]){
+        UIView * coverView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
+        UITapGestureRecognizer * tapGesture = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)] autorelease];
+        tapGesture.numberOfTapsRequired =1;
+        [coverView addGestureRecognizer:tapGesture];
+        coverView.backgroundColor = [UIColor clearColor];
+        
+        UISwipeGestureRecognizer * swipeGesture = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)] autorelease];
+        swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+        [coverView addGestureRecognizer:swipeGesture];
+
+        [_revealView.contentView addSubview:coverView];
+        
+    }
 }
 
+-(void) closeLeftMenu:(id) sender {
+    [self toggleButtonPressed:sender];
+    [((UIView*)[_revealView.contentView.subviews lastObject]) removeFromSuperview];
+}
 - (void)pushContentView:(id)sender {
     UIView *subview = [[UIView alloc] initWithFrame:CGRectZero];
     subview.backgroundColor = [UIColor blueColor];
