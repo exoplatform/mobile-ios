@@ -333,7 +333,7 @@
 
 -(void) closeLeftMenu:(id) sender {
     [self toggleButtonPressed:sender];
-    [((UIView*)[_revealView.contentView.subviews lastObject]) removeFromSuperview];
+    [[_revealView.contentView.subviews lastObject] removeFromSuperview];
 }
 - (void)pushContentView:(id)sender {
     UIView *subview = [[UIView alloc] initWithFrame:CGRectZero];
@@ -622,7 +622,7 @@
                 
                 [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
                 [_activityStreamBrowseViewController_iPhone release];
-                [_revealView revealSidebar:NO];
+                [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
@@ -630,7 +630,7 @@
             {
                 DashboardViewController_iPhone *dashboardController = [[[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil] autorelease];
                 [self setRootViewController:dashboardController animated:NO];
-                [_revealView revealSidebar:NO];
+                [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
@@ -652,7 +652,7 @@
                 // Same code is used at the end of the method doneWithSettings
                 // Hence it's put in the separate method initAndSelectDocumentsViewController
                 [self initAndSelectDocumentsViewController];
-                [_revealView revealSidebar:NO];
+                [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
