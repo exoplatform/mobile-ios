@@ -252,19 +252,32 @@
     
     
     UITableViewCell *cell = [_tblFiles cellForRowAtIndexPath:indexPath];
-    CGRect frame = cell.accessoryView.frame;
-    frame.origin.x -= 5;
+    CGRect frame =cell.accessoryView.frame;
     
-    //frame = [_tblFiles convertRect:_tblFiles.frame toView:self.view];
+    // get the position of the Accessory View in the Table View (_tblFiles)
+    frame = [cell convertRect:frame toView:_tblFiles];
+    
+
     self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     
-    [self.popoverController presentPopoverFromRect:frame 
-                                            inView:cell 
-                          permittedArrowDirections:UIPopoverArrowDirectionUp |UIPopoverArrowDirectionDown
-                                          animated:YES];
+    [self.popoverController setContainerViewProperties:self.popoverProperties];
+    /*
+     The direction of the arrow depend on the position of the accessoryView in the tableView (_tblFiles). Futher more, we preferer the direction Up/Down which allow the title of the cell to be visible
+     */
+
+    if (frame.origin.y > kPreferredContentSize.height){
+        frame.origin.y +=10;
+        [self.popoverController presentPopoverFromRect:frame inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    }  else if (_tblFiles.frame.size.height - frame.origin.y - frame.size.height  > kPreferredContentSize.height) {
+        frame.origin.y -=10;
+        [self.popoverController presentPopoverFromRect:frame inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    } else {
+        [self.popoverController presentPopoverFromRect:frame inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
     
     [_actionsViewController release];
 }
+
 
 #pragma mark - Panel Actions
 
@@ -279,8 +292,8 @@
         return;
     } 
     //Check if the _actionsViewController is already created or not
-
-        FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" 
+    
+    FileActionsViewController *_actionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController"
                                                 bundle:nil 
                                                 file:_rootFile 
                                                 enableDeleteThisFolder:YES
@@ -293,11 +306,11 @@
     self.popoverClass = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
     [_actionsViewController release];
     self.popoverClass.delegate = self;
-    //self.popoverClass.passthroughViews = [NSArray arrayWithObject:[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.revealView.contentView];
     
-    [self.popoverClass presentPopoverFromBarButtonItem:[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.topItem.rightBarButtonItem
-                                   permittedArrowDirections:(UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown) 
-                                                   animated:YES];
+    [self.popoverClass setContainerViewProperties:self.popoverProperties];
+    
+    CGRect frame = CGRectMake(290,-5, 0, 0);
+    [self.popoverClass presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.topItem.rightBarButtonItem.enabled = NO;
 }
 

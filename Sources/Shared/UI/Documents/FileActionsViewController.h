@@ -19,6 +19,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kPreferredContentSize CGSizeMake(200,280)
 
 @protocol FileActionsProtocol 
 //Method needed to retrieve the delete action

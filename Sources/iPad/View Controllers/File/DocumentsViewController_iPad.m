@@ -175,6 +175,9 @@
     [_actionPopoverController release];
 	_actionPopoverController = [[WEPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
+    // set Properties (Border in black gradient)
+    [_actionPopoverController setContainerViewProperties:self.popoverProperties];
+
 //	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
 	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     
@@ -250,6 +253,7 @@
                                                             enableRenameFile:NO
                                                             delegate:self];
     
+    
     fileToApplyAction = _rootFile;
     //Create the Popover to display potential actions to the user
     [_actionPopoverController dismissPopoverAnimated:NO];
@@ -259,6 +263,9 @@
 //	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
     //set its delegate
     _actionPopoverController.delegate = self;
+    // set Properties (Border in black gradient)
+    [_actionPopoverController setContainerViewProperties:self.popoverProperties];
+    
     //present the popover from the rightBarButtonItem of the navigationBar
 	[_actionPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
                                      permittedArrowDirections:UIPopoverArrowDirectionUp 
