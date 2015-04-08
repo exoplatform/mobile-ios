@@ -25,7 +25,7 @@
 #import "eXoViewController.h"
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
-
+#import "WEPopoverController.h"
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 #define kHeightForSectionHeader 40
 
@@ -85,5 +85,6 @@
 - (NSInteger)tagNumberFromIndexPath:(NSIndexPath *)indexPath;
 - (NSIndexPath *)indexPathFromTagNumber:(NSInteger)tagNumber;
 
-
+// Popover properties (for both iPhone & ipad 
+-(WEPopoverContainerViewProperties *)improvedContainerViewProperties;
 @end

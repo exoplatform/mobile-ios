@@ -98,10 +98,10 @@
 		1FCED34F1435B98500EC0B88 /* popoverBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED3401435B98500EC0B88 /* popoverBg.png */; };
 		1FCED3501435B98500EC0B88 /* popoverBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED3411435B98500EC0B88 /* popoverBg@2x.png */; };
 		1FCED3511435B98500EC0B88 /* popoverBgSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCED3421435B98500EC0B88 /* popoverBgSimple.png */; };
-		1FCED35C1435BA1800EC0B88 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED3541435BA1800EC0B88 /* UIBarButtonItem+WEPopover.m */; };
-		1FCED35D1435BA1800EC0B88 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED3561435BA1800EC0B88 /* WEPopoverContainerView.m */; };
-		1FCED35E1435BA1800EC0B88 /* WEPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED3581435BA1800EC0B88 /* WEPopoverController.m */; };
-		1FCED35F1435BA1800EC0B88 /* WETouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED35B1435BA1800EC0B88 /* WETouchableView.m */; };
+		1FCED35C1435BA1800EC0B88 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED3541435BA1800EC0B88 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		1FCED35D1435BA1800EC0B88 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED3561435BA1800EC0B88 /* WEPopoverContainerView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		1FCED35E1435BA1800EC0B88 /* WEPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED3581435BA1800EC0B88 /* WEPopoverController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		1FCED35F1435BA1800EC0B88 /* WETouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCED35B1435BA1800EC0B88 /* WETouchableView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		1FCEDEC41457A34F0058C80F /* ActivityTypeAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEB31457A34F0058C80F /* ActivityTypeAnswer.png */; };
 		1FCEDEC51457A34F0058C80F /* ActivityTypeCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEB41457A34F0058C80F /* ActivityTypeCalendar.png */; };
 		1FCEDEC61457A34F0058C80F /* ActivityTypeConnection.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEB51457A34F0058C80F /* ActivityTypeConnection.png */; };
@@ -682,6 +682,7 @@
 		8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8989B06714735CA100EEBD7C /* gadgetPlaceHolder@2x.png */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 		89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */; };
+		9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
 		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
 		A619958315B67E5E0098565D /* activity-detail-info-container-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A619958115B67E5E0098565D /* activity-detail-info-container-bg.png */; };
@@ -1915,6 +1916,8 @@
 		8989B06714735CA100EEBD7C /* gadgetPlaceHolder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gadgetPlaceHolder@2x.png"; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController_iPhone.xib; path = ../../NIB/DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
+		9C0A6D541AD505D500287C26 /* WEBlockingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEBlockingGestureRecognizer.h; sourceTree = "<group>"; };
+		9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEBlockingGestureRecognizer.m; sourceTree = "<group>"; };
 		A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePreviewViewController.h; path = Social/ImagePreviewViewController.h; sourceTree = "<group>"; };
 		A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePreviewViewController.m; path = Social/ImagePreviewViewController.m; sourceTree = "<group>"; };
 		A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePreviewViewController.xib; path = Social/ImagePreviewViewController.xib; sourceTree = "<group>"; };
@@ -2202,6 +2205,8 @@
 			children = (
 				1FCED3531435BA1800EC0B88 /* UIBarButtonItem+WEPopover.h */,
 				1FCED3541435BA1800EC0B88 /* UIBarButtonItem+WEPopover.m */,
+				9C0A6D541AD505D500287C26 /* WEBlockingGestureRecognizer.h */,
+				9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */,
 				1FCED3551435BA1800EC0B88 /* WEPopoverContainerView.h */,
 				1FCED3561435BA1800EC0B88 /* WEPopoverContainerView.m */,
 				1FCED3571435BA1800EC0B88 /* WEPopoverController.h */,
@@ -5561,6 +5566,7 @@
 				1FCC23D6146A72990040989B /* eXoDisplayViewController.m in Sources */,
 				1FCC23D7146A72990040989B /* eXoTapDetectingWindow.m in Sources */,
 				573ADC7E19D269E20009E90D /* AccountSwitcherTableViewCell.m in Sources */,
+				9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
 				572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */,
 				3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */,
@@ -5859,10 +5865,7 @@
 		464C14AA138AB8890001CBC8 /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
@@ -5951,10 +5954,7 @@
 		46BC64021316F05B0034E7E3 /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "";
@@ -6260,10 +6260,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -6285,7 +6282,7 @@
 					/usr/include/libxml2,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
@@ -6299,10 +6296,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
