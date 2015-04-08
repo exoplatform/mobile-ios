@@ -82,20 +82,12 @@
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = nil;
     }
 
-    if([eXoViewController isHighScreen]) {
-        CGRect tmpFrame = self.tblFiles.frame;
-        tmpFrame.size.height = iPHONE_5_SCREEN_HEIGH_MINUS_NAV_AND_STATUS_BAR;
-        self.tblFiles.frame = tmpFrame;
-    }
-    else {
-        CGRect tmpFrame = self.tblFiles.frame;
-        tmpFrame.size.height = self.view.bounds.size.height;
-        self.tblFiles.frame = tmpFrame;
-    }
-
+    CGRect tmpFrame = [[UIScreen mainScreen] bounds];
+    tmpFrame.size.height -= 44; // navigation bar size. 
+    self.tblFiles.frame = tmpFrame;
 }
 
-- (void)viewDidAppear:(BOOL)animated {    
+- (void)viewDidAppear:(BOOL)animated {
     // Unselect the selected row if any
     NSIndexPath*	selection = [_tblFiles indexPathForSelectedRow];
     if (selection)
