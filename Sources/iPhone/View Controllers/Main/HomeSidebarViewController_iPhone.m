@@ -39,7 +39,7 @@
 #define kFooterViewWidth         270.0
 #define kFooterButtonLeftMargin    6.0
 #define kFooterButtonTopMargin    15.0
-
+#define kCoverViewTag               10
 @interface UIFooterView : UIView 
 
 @end
@@ -315,8 +315,32 @@
 
 - (void)toggleButtonPressed:(id)sender {
     [_revealView revealSidebar: ! [_revealView isSidebarShowing]];
+    if ([_revealView isSidebarShowing]){
+        UIView * coverView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
+        UITapGestureRecognizer * tapGesture = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)] autorelease];
+        tapGesture.numberOfTapsRequired =1;
+        [coverView addGestureRecognizer:tapGesture];
+        coverView.backgroundColor = [UIColor clearColor];
+        
+        UISwipeGestureRecognizer * swipeGesture = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)] autorelease];
+        swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+        [coverView addGestureRecognizer:swipeGesture];
+
+        [_revealView.contentView addSubview:coverView];
+        
+        coverView.tag = kCoverViewTag;
+        
+    }
 }
 
+-(void) closeLeftMenu:(id) sender {
+    [self toggleButtonPressed:sender];
+    UIView * coverView =[_revealView.contentView viewWithTag:kCoverViewTag];
+    if (coverView){
+        [coverView removeFromSuperview];
+    }
+    
+}
 - (void)pushContentView:(id)sender {
     UIView *subview = [[UIView alloc] initWithFrame:CGRectZero];
     subview.backgroundColor = [UIColor blueColor];
@@ -604,7 +628,7 @@
                 
                 [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
                 [_activityStreamBrowseViewController_iPhone release];
-                [_revealView revealSidebar:NO];
+                [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
@@ -612,7 +636,7 @@
             {
                 DashboardViewController_iPhone *dashboardController = [[[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil] autorelease];
                 [self setRootViewController:dashboardController animated:NO];
-                [_revealView revealSidebar:NO];
+                [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
@@ -634,7 +658,7 @@
                 // Same code is used at the end of the method doneWithSettings
                 // Hence it's put in the separate method initAndSelectDocumentsViewController
                 [self initAndSelectDocumentsViewController];
-                [_revealView revealSidebar:NO];
+                [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
