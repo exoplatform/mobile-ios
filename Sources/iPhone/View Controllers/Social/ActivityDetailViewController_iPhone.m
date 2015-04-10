@@ -92,6 +92,8 @@
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
     [_btnMsgComposer setTitleEdgeInsets:UIEdgeInsetsMake(5.0f, 0.0f, 0.0f, 0.0f)];
     [_btnMsgComposer setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollToTopNotificationHandle) name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
 }
 
 
@@ -247,6 +249,10 @@
     }
 }
 
+-(void) scrollToTopNotificationHandle {
+    if (self.view.window)
+        [self.tblvActivityDetail setContentOffset:CGPointZero animated:YES];
+}
 #pragma mark - like/dislike management
 - (void)likeDislikeActivity:(NSString *)activity {
     [super likeDislikeActivity:activity];

@@ -82,9 +82,13 @@
         [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = nil;
     }
 
+
     CGRect tmpFrame = [[UIScreen mainScreen] bounds];
     tmpFrame.size.height -= 44; // navigation bar size. 
     self.tblFiles.frame = tmpFrame;
+   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollToTopNotificationHandle) name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -165,6 +169,11 @@
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:picker animated:YES];
 }
 
+-(void) scrollToTopNotificationHandle {
+    if (self.view.window){
+        [self.tblFiles setContentOffset:CGPointZero animated:YES];
+    }
+}
 #pragma mark -
 #pragma mark WEPopoverControllerDelegate implementation
 

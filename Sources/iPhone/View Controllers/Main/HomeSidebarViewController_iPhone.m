@@ -259,10 +259,23 @@
     [tmpButton setImage:barButtonImage forState:UIControlStateNormal];
     [tmpButton addTarget:self action:@selector(toggleButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
     _revealView.contentView.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:tmpButton] autorelease];
-    
+      
     [self.view addSubview:_revealView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
+    UIButton *topScrollButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    topScrollButton.frame = CGRectMake(self.view.center.x - 50, 0, 100,30);
+    [topScrollButton addTarget:self action:@selector(topScrollButtonAction:) forControlEvents: UIControlEventTouchUpInside];
+    topScrollButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:topScrollButton];
+    
+}
+-(void) topScrollButtonAction:(id) sender {
+    if (! [_revealView isSidebarShowing]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
+        NSLog(@"coucou touché");
+    }
 }
 
 - (void)setAccountSwitcherVisibility

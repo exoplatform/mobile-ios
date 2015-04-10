@@ -65,6 +65,8 @@
     
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollToTopNotificationHandle) name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
 }
 
 
@@ -130,5 +132,9 @@
 
 }
 
+-(void) scrollToTopNotificationHandle {
+    if (self.view.window)
+        [self.tblvActivityStream setContentOffset:CGPointZero animated:YES];
+}
 
 @end

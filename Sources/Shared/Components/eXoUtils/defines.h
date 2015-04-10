@@ -52,6 +52,8 @@
 #define EXO_NOTIFICATION_SHOW_PRIVATE_DRIVE @"notification-show-private-drive"
 #define EXO_NOTIFICATION_SERVER_ADDED       @"notification-server-added"
 #define EXO_NOTIFICATION_SERVER_DELETED     @"notification-server-deleted"
+#define EXO_NOTIFICATION_SCROLL_TO_TOP      @"notification-table-view-scroll-to-top"
+
 
 #define EXO_PREFERENCE_LANGUAGE				@"language"
 #define HTTP_PROTOCOL                       @"http://"
