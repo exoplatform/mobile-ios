@@ -274,7 +274,6 @@
 -(void) topScrollButtonAction:(id) sender {
     if (! [_revealView isSidebarShowing]){
         [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
-        NSLog(@"coucou touché");
     }
 }
 
