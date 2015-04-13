@@ -319,6 +319,7 @@
 
 "Remove" = "Remove";
 
+
 "All Updates" = "All Activities";
 
 "My Connections" = "My Connections";
@@ -326,7 +327,6 @@
 "My Spaces" = "My Spaces";
 
 "My Status" = "My Activities";
-
 
 /*
  * Date message converter
