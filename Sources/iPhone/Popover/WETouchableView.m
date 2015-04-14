@@ -7,35 +7,40 @@
 //
 
 #import "WETouchableView.h"
+#import "WEBlockingGestureRecognizer.h"
 
 @interface WETouchableView(Private)
 
 - (BOOL)isPassthroughView:(UIView *)v;
+- (BOOL)isGestureRecognizerAllowed:(UIGestureRecognizer *)gr;
 
 @end
 
-@implementation WETouchableView
+@implementation WETouchableView {
+	BOOL _testHits;
+}
 
-@synthesize touchForwardingDisabled, delegate, passthroughViews;
-
-- (void)dealloc {
-	[passthroughViews release];
-	[super dealloc];
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+        WEBlockingGestureRecognizer *gr = [[WEBlockingGestureRecognizer alloc] init];
+        [self addGestureRecognizer:gr];
+    }
+    return self;
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-	if (testHits) {
+	if (_testHits) {
 		return nil;
-	} else if (touchForwardingDisabled) {
+	} else if (_touchForwardingDisabled) {
 		return self;
 	} else {
 		UIView *hitView = [super hitTest:point withEvent:event];
 		
 		if (hitView == self) {
 			//Test whether any of the passthrough views would handle this touch
-			testHits = YES;
+			_testHits = YES;
 			UIView *superHitView = [self.superview hitTest:point withEvent:event];
-			testHits = NO;
+			_testHits = NO;
 			
 			if ([self isPassthroughView:superHitView]) {
 				hitView = superHitView;
@@ -50,9 +55,23 @@
 	[self.delegate viewWasTouched:self];
 }
 
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return [self isGestureRecognizerAllowed:otherGestureRecognizer];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return [self isGestureRecognizerAllowed:otherGestureRecognizer];
+}
+
 @end
 
 @implementation WETouchableView(Private)
+
+- (BOOL)isGestureRecognizerAllowed:(UIGestureRecognizer *)gr {
+    return [gr.view isDescendantOfView:self];
+}
 
 - (BOOL)isPassthroughView:(UIView *)v {
 	
@@ -60,7 +79,7 @@
 		return NO;
 	}
 	
-	if ([passthroughViews containsObject:v]) {
+	if ([_passthroughViews containsObject:v]) {
 		return YES;
 	}
 	

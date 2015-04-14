@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "WEPopoverContainerView.h"
 #import "WETouchableView.h"
 
@@ -14,38 +15,39 @@
 
 @protocol WEPopoverControllerDelegate<NSObject>
 
+@optional
 - (void)popoverControllerDidDismissPopover:(WEPopoverController *)popoverController;
 - (BOOL)popoverControllerShouldDismissPopover:(WEPopoverController *)popoverController;
+- (void)popoverController:(WEPopoverController *)popoverController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView **)view;
 
 @end
 
 /**
- * @brief Popover controller for the iPhone, mimicing the iPad UIPopoverController interface. See that class for more details.
+ * Popover controller for the iPhone, mimicing the iPad UIPopoverController interface. See that class for more details.
  */
-@interface WEPopoverController : NSObject<WETouchableViewDelegate> {
-	UIViewController *contentViewController;
-	UIView *view;
-	WETouchableView *backgroundView;
-	
-	BOOL popoverVisible;
-	UIPopoverArrowDirection popoverArrowDirection;
-	id <WEPopoverControllerDelegate> delegate;
-	CGSize popoverContentSize;
-	WEPopoverContainerViewProperties *containerViewProperties;
-	id <NSObject> context;
-	NSArray *passthroughViews;	
-}
+@interface WEPopoverController : NSObject
 
-@property(nonatomic, retain) UIViewController *contentViewController;
+@property(nonatomic, strong) UIViewController *contentViewController;
 
-@property (nonatomic, readonly) UIView *view;
+@property(nonatomic, weak, readonly) UIView *presentedFromView;
+@property(nonatomic, assign, readonly) CGRect presentedFromRect;
+
+@property (weak, nonatomic, readonly) UIView *view;
+@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, readonly) UIView *backgroundView;
 @property (nonatomic, readonly, getter=isPopoverVisible) BOOL popoverVisible;
 @property (nonatomic, readonly) UIPopoverArrowDirection popoverArrowDirection;
-@property (nonatomic, assign) id <WEPopoverControllerDelegate> delegate;
+@property (nonatomic, weak) id <WEPopoverControllerDelegate> delegate;
 @property (nonatomic, assign) CGSize popoverContentSize;
-@property (nonatomic, retain) WEPopoverContainerViewProperties *containerViewProperties;
-@property (nonatomic, retain) id <NSObject> context;
+@property (nonatomic, strong) WEPopoverContainerViewProperties *containerViewProperties;
+@property (nonatomic, strong) id <NSObject> context;
+@property (nonatomic, weak) UIView *parentView;
 @property (nonatomic, copy) NSArray *passthroughViews;
+
+@property(nonatomic, assign) UIEdgeInsets popoverLayoutMargins;
+
++ (WEPopoverContainerViewProperties *)defaultContainerViewProperties;
++ (void)setDefaultContainerViewProperties:(WEPopoverContainerViewProperties *)properties;
 
 - (id)initWithContentViewController:(UIViewController *)theContentViewController;
 
@@ -63,5 +65,10 @@
 - (void)repositionPopoverFromRect:(CGRect)rect
 						   inView:(UIView *)view
 		 permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections;
+
+- (void)repositionPopoverFromRect:(CGRect)rect
+						   inView:(UIView *)view
+		 permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections
+                         animated:(BOOL)animated;
 
 @end

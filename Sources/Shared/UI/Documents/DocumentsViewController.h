@@ -25,7 +25,7 @@
 #import "eXoViewController.h"
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
-
+#import "WEPopoverController.h"
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 #define kHeightForSectionHeader 40
 
@@ -59,6 +59,7 @@
 @property(nonatomic, assign) DocumentsViewController *parentController;
 @property(nonatomic, retain) UIPopoverController *popoverPhotoLibraryController;
 @property (nonatomic, assign) BOOL actionVisibleOnFolder;
+
 @property BOOL isRoot;
 
 // Check whether user can execute actions on the folder or not. 
@@ -85,5 +86,7 @@
 - (NSInteger)tagNumberFromIndexPath:(NSIndexPath *)indexPath;
 - (NSIndexPath *)indexPathFromTagNumber:(NSInteger)tagNumber;
 
+// Popover properties (for both iPhone & ipad
+@property (nonatomic, readonly, retain) WEPopoverContainerViewProperties * popoverProperties;
 
 @end
