@@ -18,7 +18,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
+
 #import "SocialProxy.h"
 
 @interface SocialPostActivity : SocialProxy {

@@ -61,22 +61,23 @@
     
     
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    manager.serializationMIMEType = RKMIMETypeJSON;
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
 
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
+    RKRouter * router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
+    
     manager.router = router;
     
-    // Send POST requests for instances of SocialActivity to '/activity.json'
-    [router routeClass:[SocialActivity class] toResourcePath:[self createPath] forMethod:RKRequestMethodPOST];
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialActivity class] pathPattern:[self createPath] method:RKRequestMethodPOST]];
     
     // Let's create an SocialActivity
     SocialActivity *activity = [[SocialActivity alloc] init];
     activity.title = message;
     
     //Register our mappings with the provider FOR SERIALIZATION
-    RKObjectMapping *activitySimpleMapping = [RKObjectMapping mappingForClass: 
-                                              [SocialActivity class]]; 
-    [activitySimpleMapping mapKeyPath:@"title" toAttribute:@"title"];
+    RKObjectMapping *activitySimpleMapping = [RKObjectMapping requestMapping];
+    
+    [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"title":@"title"}];
+    
     
     //Attach file
     if(fileURL != nil) {
@@ -100,43 +101,55 @@
         [activity setKeyForTemplateParams:@"REPOSITORY" value:serverPM.currentRepository];
         [activity setKeyForTemplateParams:@"DOCNAME" value:fileName];
         
-        [activitySimpleMapping mapKeyPath:@"type" toAttribute:@"type"];
-        [activitySimpleMapping mapKeyPath:@"templateParams" toAttribute:@"templateParams"];
+        [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"type":@"type",@"templateParams":@"templateParams"}];
     }
     
     //Configure a serialization mapping for our Product class 
-    RKObjectMapping *activitySimpleSerializationMapping = [activitySimpleMapping 
-                                                    inverseMapping]; 
+//    RKObjectMapping *activitySimpleSerializationMapping = [activitySimpleMapping 
+//                                                    inverseMapping];
     
-    //serialization mapping 
-    [manager.mappingProvider 
-     setSerializationMapping:activitySimpleSerializationMapping forClass:[SocialActivity 
-                                                                   class]]; 
+    //serialization mapping
     
+        
+    RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:activitySimpleMapping objectClass:[SocialActivity class] rootKeyPath:nil method:RKRequestMethodPOST];
+    
+    [manager addRequestDescriptor:requestDescriptor];
     
     
     //Now create the mapping for the response
-    RKObjectMapping* mappingForResponse = [RKObjectMapping mappingForClass:[SocialActivity class]];
-    [mappingForResponse mapKeyPathsToAttributes:
-     @"identityId",@"identityId",
-     @"totalNumberOfComments",@"totalNumberOfComments",
-     @"postedTime",@"postedTime",
-     @"type",@"type",
-     @"activityStream",@"activityStream",
-     @"title",@"title",
-     @"priority",@"priority",
-     @"activityId",@"activityId",
-     @"createdAt",@"createdAt",
-     @"titleId",@"titleId",
-     @"posterIdentity",@"posterIdentity",
-     @"templateParams",@"templateParams",
-     nil];
+    RKObjectMapping* mappingForResponse =  [RKObjectMapping mappingForClass:[SocialActivity class]];
+    [mappingForResponse addAttributeMappingsFromDictionary:@{
+     @"identityId":@"identityId",
+     @"totalNumberOfComments":@"totalNumberOfComments",
+     @"postedTime":@"postedTime",
+     @"type":@"type",
+     @"activityStream":@"activityStream",
+     @"title":@"title",
+     @"priority":@"priority",
+     @"activityId":@"activityId",
+     @"createdAt":@"createdAt",
+     @"titleId":@"titleId",
+     @"templateParams":@"templateParams"}];
     
     
-    //[manager.mappingProvider addObjectMapping:mappingForResponse]; 
+    RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:mappingForResponse method:RKRequestMethodPOST pathPattern:[self createPath] keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
     
-    // Send a POST to /articles to create the remote instance
-    [manager postObject:activity mapResponseWith:mappingForResponse delegate:self];    
+    
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    
+    
+    
+    // Send a POST to /like to create the remote instance
+            
+    [manager  postObject:activity path:[self createPath] parameters:nil
+                 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                     [super restKitDidLoadObjects:[mappingResult array]];
+                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                     [super restKitDidFailWithError:error];
+                 }
+     ];
+    
     [activity release];
 }
 

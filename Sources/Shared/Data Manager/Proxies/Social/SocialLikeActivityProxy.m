@@ -21,7 +21,8 @@
 #import "SocialRestConfiguration.h"
 #import "SocialLike.h"
 
-
+#import "RKRouter.h"
+#import "RKObjectManager.h"
 @implementation SocialLikeActivityProxy
 
 
@@ -30,19 +31,20 @@
 - (void) configureObjectManagerForActivity:(NSString *)activityIdentity {
     
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    manager.serializationMIMEType = RKMIMETypeJSON;
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
     
     
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
+    RKRouter* router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
     manager.router = router;
 
     // Send POST requests for instances of SocialLike to '/like.json'
-    [router routeClass:[SocialLike class] toResourcePath:[NSString stringWithFormat:@"%@/like.json",activityIdentity] forMethod:RKRequestMethodPOST];
     
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialLike class] pathPattern:[NSString stringWithFormat:@"%@/like.json",activityIdentity] method:RKRequestMethodPOST]];
     
-    // Send DELETE request for instances of SocialLike to "/like.json'
-    [router routeClass:[SocialLike class] toResourcePath:[NSString stringWithFormat:@"%@/like.json",activityIdentity] forMethod:RKRequestMethodDELETE];
 
+    
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialLike class] pathPattern:[NSString stringWithFormat:@"%@/like.json",activityIdentity]  method:RKRequestMethodDELETE]];
+    
     
 }
 
@@ -54,74 +56,97 @@
 -(void)likeActivity:(NSString *)activity {
     
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    manager.serializationMIMEType = RKMIMETypeJSON;
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
     
     
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
+    RKRouter* router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
     manager.router = router;
     
-    // Send POST requests for instances of SocialLike to '/like.json'
-    [router routeClass:[SocialLike class] toResourcePath:[self createPathWithActivityId:activity] forMethod:RKRequestMethodPOST];
+
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialLike class] pathPattern:[self createPathWithActivityId:activity] method:RKRequestMethodPOST]];
     
-    
-    // Let's create an SocialActivityDetails
     SocialLike* likeToPost = [[[SocialLike alloc] init] autorelease];
     likeToPost.like = YES;
     
-    //Register our mappings with the provider FOR SERIALIZATION
-    RKObjectMapping *postSimpleMapping = [RKObjectMapping mappingForClass: 
-                                             [SocialLike class]]; 
+    RKObjectMapping* postSimpleMapping = [RKObjectMapping requestMapping];
     
-    [postSimpleMapping mapKeyPathsToAttributes:nil];
-    [postSimpleMapping mapKeyPath:@"like" toAttribute:@"like"]; 
+    [postSimpleMapping  addAttributeMappingsFromDictionary:@{@"like":@"like"}];
     
-    //Configure a serialization mapping for our SocialLike class 
-    RKObjectMapping *postSimpleSerializationMapping = [postSimpleMapping inverseMapping];
-    [postSimpleSerializationMapping removeAllMappings];
+     //Configure a serialization mapping for our SocialLike class
     
-    [manager.mappingProvider setSerializationMapping:postSimpleSerializationMapping 
-                                            forClass:[SocialLike class]];
-        
+//    RKObjectMapping *postSimpleSerializationMapping = [postSimpleMapping inverseMapping];
+
     // Send a POST to /like to create the remote instance
-    [manager postObject:likeToPost mapResponseWith:postSimpleMapping delegate:self]; 
+    
+    RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:postSimpleMapping objectClass:[SocialLike class] rootKeyPath:nil method:RKRequestMethodPOST];
+    
+    RKObjectMapping* responseMapping = [RKObjectMapping mappingForClass:[SocialLike class]];
+    [responseMapping addAttributeMappingsFromDictionary:@{@"like":@"like"}];
+    
+    RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:responseMapping method:RKRequestMethodPOST pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
+    
+    [manager addRequestDescriptor:requestDescriptor];
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager  postObject:likeToPost path:[self createPathWithActivityId:activity] parameters:nil
+                 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                     [super restKitDidLoadObjects:[mappingResult array]];
+                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                     [super restKitDidFailWithError:error];
+                 }
+     ];
+    
 }
 
 
 -(void)dislikeActivity:(NSString *)activity {
     
+//RestKit 0.24
+    
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    manager.serializationMIMEType = RKMIMETypeJSON;
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
     
-    
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
+    RKRouter* router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
     manager.router = router;
     
     // Send POST requests for instances of SocialLike to '/like.json'
-    [router routeClass:[SocialLike class] toResourcePath:[self createPathWithActivityId:activity] forMethod:RKRequestMethodDELETE];
     
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialLike class] pathPattern:[self createPathWithActivityId:activity] method:RKRequestMethodDELETE]];
     
     // Let's create an SocialActivityDetails
     SocialLike* likeToPost = [[[SocialLike alloc] init] autorelease];
     likeToPost.like = NO;
     
     //Register our mappings with the provider FOR SERIALIZATION
-    RKObjectMapping *deleteSimpleMapping = [RKObjectMapping mappingForClass: 
-                                          [SocialLike class]]; 
+    RKObjectMapping *deleteSimpleMapping = [RKObjectMapping requestMapping];
+
+    [deleteSimpleMapping addAttributeMappingsFromDictionary:@{@"like":@"like"}];
     
-    [deleteSimpleMapping mapKeyPathsToAttributes:nil];
-    [deleteSimpleMapping mapKeyPath:@"like" toAttribute:@"like"]; 
-    
-    //Configure a serialization mapping for our SocialLike class 
-    RKObjectMapping *deleteSimpleSerializationMapping = [deleteSimpleMapping inverseMapping];
-    [deleteSimpleSerializationMapping removeAllMappings];
-    
-    [manager.mappingProvider setSerializationMapping:deleteSimpleSerializationMapping 
-                                            forClass:[SocialLike class]];
-    
-    //[manager.client post:[NSString stringWithFormat:@"%@/like.json",activity] params:[NSDictionary dictionaryWithObjectsAndKeys:nil] delegate:self];
     
     // Send a DELETE to /like to create the remote instance
-    [manager deleteObject:likeToPost mapResponseWith:deleteSimpleMapping delegate:self]; 
+    
+    
+    RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:deleteSimpleMapping objectClass:[SocialLike class] rootKeyPath:nil method:RKRequestMethodDELETE];
+    
+    [manager addRequestDescriptor:requestDescriptor];
+    
+    
+    // Add the response mapping
+    RKObjectMapping* responseMapping = [RKObjectMapping mappingForClass:[SocialLike class]];
+    [responseMapping addAttributeMappingsFromDictionary:@{@"like":@"like"}];
+    
+    RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:responseMapping method:RKRequestMethodPOST pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager  deleteObject:likeToPost path:[self createPathWithActivityId:activity]  parameters:nil
+                 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                     [super restKitDidLoadObjects:[mappingResult array]];
+                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                     [super restKitDidFailWithError:error];
+                 }
+     ];
+    
+    
 }
 
 @end

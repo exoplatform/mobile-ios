@@ -63,7 +63,7 @@
 
 -(void)dealloc {
     
-    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
+//    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [_dashboard release];
     _delegate = nil;
     [_manager release];
@@ -72,46 +72,32 @@
 
 #pragma mark - Call methods
 - (void)retrieveGadgets {
-    // Load the object model via RestKit
-    self.manager = [RKObjectManager objectManagerWithBaseURL:_dashboard.link];
-    self.manager.client.username = [NSString stringWithFormat:@"%@", [UserPreferencesManager sharedInstance].username];
-    self.manager.client.password = [NSString stringWithFormat:@"%@", [UserPreferencesManager sharedInstance].password];    
+    
+    self.manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:_dashboard.link]];
+    [self.manager.HTTPClient setAuthorizationHeaderWithUsername:[NSString stringWithFormat:@"%@", [UserPreferencesManager sharedInstance].username] password:[NSString stringWithFormat:@"%@", [UserPreferencesManager sharedInstance].password]];
+
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[GadgetItem class]];
-    [mapping mapKeyPathsToAttributes:
-     @"gadgetUrl",@"gadgetUrl",
-     @"gadgetIcon",@"gadgetIcon",
-     @"gadgetName",@"gadgetName",
-     @"gadgetDescription",@"gadgetDescription",
-     nil];
+    [mapping addAttributeMappingsFromDictionary:@{
+     @"gadgetUrl":@"gadgetUrl",
+     @"gadgetIcon":@"gadgetIcon",
+     @"gadgetName":@"gadgetName",
+     @"gadgetDescription":@"gadgetDescription"}
+     ];
     
-    [self.manager loadObjectsAtResourcePath:@"" objectMapping:mapping delegate:self];          
-}
-
-
-
-#pragma mark - RKObjectLoaderDelegate methods
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-}
-
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {    
-    //Add gadgets into the dashboard
-    _dashboard.arrayOfGadgets = objects;
-    
-    //Ok response received, we can call the delegate to warn it that datas has been retrieved
-    if (_delegate && [_delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
-        [_delegate proxyDidFinishLoading:self];
-    }
-}
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {    
-    //Need to prevent the delegate
-    if (_delegate && [_delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
-        [_delegate proxy:self didFailWithError:error];
-    }
-    
+    RKResponseDescriptor * responseDescriptor  = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:@"" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [self.manager addResponseDescriptor:responseDescriptor];
+    [self.manager getObjectsAtPath:@""  parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        _dashboard.arrayOfGadgets = [mappingResult array];
+        //Ok response received, we can call the delegate to warn it that datas has been retrieved
+        if (_delegate && [_delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
+            [_delegate proxyDidFinishLoading:self];
+        }
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        //Need to prevent the delegate
+        if (_delegate && [_delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
+            [_delegate proxy:self didFailWithError:error];
+        }
+    }];
 }
 
 

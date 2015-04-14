@@ -127,128 +127,181 @@
 
 - (void)getActivityDetail:(NSString *)activityId{
     
+      //RESTKIT 0.24
+    
     RKObjectManager* manager = [RKObjectManager sharedManager];
+    RKObjectMapping* socialActivityMapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
+    [socialActivityMapping addAttributeMappingsFromDictionary:@{
+                                                                @"identityId":@"identityId",
+                                                                @"totalNumberOfComments":@"totalNumberOfComments",
+                                                                @"totalNumberOfLikes":@"totalNumberOfLikes",
+                                                                @"postedTime":@"postedTime",
+                                                                @"type":@"type",
+                                                                @"activityStream":@"activityStream",
+                                                                @"title":@"title",
+                                                                @"body":@"body",
+                                                                @"priority":@"priority",
+                                                                @"id":@"activityId",
+                                                                @"createdAt":@"createdAt",
+                                                                @"titleId":@"titleId",
+                                                                @"liked":@"liked",
+                                                                }];
     
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
-    [mapping mapKeyPathsToAttributes:
-     @"identityId",@"identityId",
-     @"totalNumberOfComments",@"totalNumberOfComments",
-     @"totalNumberOfLikes",@"totalNumberOfLikes",
-     @"postedTime",@"postedTime",
-     @"type",@"type",
-     @"activityStream",@"activityStream",
-     @"title",@"title",
-     @"body",@"body",
-     @"priority",@"priority",
-     @"id",@"activityId",
-     @"createdAt",@"createdAt",
-     @"titleId",@"titleId",
-     @"liked",@"liked",
-     nil];
     
     
-    //Retrieve the UserProfile directly on the activityDetails service
+    
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [posterProfileMapping mapKeyPathsToAttributes:
-     @"id",@"identity",
-     @"remoteId",@"remoteId",
-     @"providerId",@"providerId",
-     @"profile.avatarUrl",@"avatarUrl",
-     @"profile.fullName",@"fullName",
-     nil];
-
-    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
-
+    [posterProfileMapping addAttributeMappingsFromDictionary:@{
+                                                               @"id":@"identity",
+                                                               @"remoteId":@"remoteId",
+                                                               @"providerId":@"providerId",
+                                                               @"profile.avatarUrl":@"avatarUrl",
+                                                               @"profile.fullName":@"fullName"
+                                                               }];
     
     
-    // Create our new SocialCommentIdentity mapping
+    [socialActivityMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"posterIdentity" withMapping:posterProfileMapping]];
+    
+    
     RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
-    [socialCommentMapping mapKeyPathsToAttributes:
-     @"createdAt",@"createdAt",
-     @"text",@"text",
-     @"postedTime",@"postedTime",
-     @"id",@"identityId",
-     nil];
-     [mapping mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
+    [socialCommentMapping addAttributeMappingsFromDictionary:@{
+     @"createdAt":@"createdAt",
+     @"text":@"text",
+     @"postedTime":@"postedTime",
+     @"id":@"identityId"}];
     
-    //Retrieve the UserProfile directly for comments 
+    [socialActivityMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"comments" toKeyPath:@"comments" withMapping:socialCommentMapping]];
+    
+    
     RKObjectMapping* commentPosterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [commentPosterProfileMapping mapKeyPathsToAttributes:
-     @"id",@"identity",
-     @"remoteId",@"remoteId",
-     @"providerId",@"providerId",
-     @"profile.avatarUrl",@"avatarUrl",
-     @"profile.fullName",@"fullName",
-     nil];
+    [commentPosterProfileMapping addAttributeMappingsFromDictionary:@{
+     @"id":@"identity",
+     @"remoteId":@"remoteId",
+     @"providerId":@"providerId",
+     @"profile.avatarUrl":@"avatarUrl",
+     @"profile.fullName":@"fullName"}];
     
-    [socialCommentMapping mapKeyPath:@"posterIdentity" toRelationship:@"userProfile" withObjectMapping:commentPosterProfileMapping];
+
+    
+    [socialCommentMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"userProfile" withMapping:commentPosterProfileMapping]];
+    
     
     
     //Retrieve likesByIdentities
     RKObjectMapping* likedByIdentitiesMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [likedByIdentitiesMapping mapKeyPathsToAttributes:
-     @"id",@"identity",
-     @"remoteId",@"remoteId",
-     @"providerId",@"providerId",   
-     @"profile.avatarUrl",@"avatarUrl",
-     @"profile.fullName",@"fullName",
-     nil];
-    [mapping mapKeyPath:@"likedByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likedByIdentitiesMapping];
+    [likedByIdentitiesMapping addAttributeMappingsFromDictionary:@{
+     @"id":@"identity",
+     @"remoteId":@"remoteId",
+     @"providerId":@"providerId",
+     @"profile.avatarUrl":@"avatarUrl",
+     @"profile.fullName":@"fullName"}];
+
     
-     
-    [manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] 
-                         objectMapping:mapping delegate:self];
+    [socialActivityMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"likedByIdentities" toKeyPath:@"likedByIdentities" withMapping:likedByIdentitiesMapping]];
+    
+    
+    
+    
+    
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:socialActivityMapping
+                                                 method:RKRequestMethodGET
+                                            pathPattern:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]]
+                                                keyPath:nil
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager getObjectsAtPath:[NSString stringWithFormat:@"%@?%@",[self createPath:activityId],[self URLEncodedString:[self createParamDictionary]]] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        self.socialActivityDetails = [[mappingResult array] objectAtIndex:0];
+        [super restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [super restKitDidFailWithError:error];
+    }];
     
 }
 
 - (void)getLikers:(NSString *)activityId {
+
+    //RestKit 0.24
     RKObjectManager *manager = [RKObjectManager sharedManager];
-    
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
-    [mapping mapKeyPathsToAttributes:@"totalNumberOfLikes", @"totalNumberOfLikes", nil];
+    
+    [mapping addAttributeMappingsFromDictionary:@{@"totalNumberOfLikes": @"totalNumberOfLikes"}];
     RKObjectMapping *likesByIdentitiesMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [likesByIdentitiesMapping mapKeyPathsToAttributes:
-     @"id", @"identity",
-     @"remoteId", @"remoteId",
-     @"providerId", @"providerId",   
-     @"profile.avatarUrl", @"avatarUrl",
-     @"profile.fullName", @"fullName",
-     nil];
-    [mapping mapKeyPath:@"likesByIdentities" toRelationship:@"likedByIdentities" withObjectMapping:likesByIdentitiesMapping];
-    [manager loadObjectsAtResourcePath:[self createLikeResourcePath:activityId] objectMapping:mapping delegate:self];
+    [likesByIdentitiesMapping addAttributeMappingsFromDictionary:@{
+     @"id": @"identity",
+     @"remoteId": @"remoteId",
+     @"providerId": @"providerId",
+     @"profile.avatarUrl": @"avatarUrl",
+     @"profile.fullName": @"fullName"}];
+    
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"likesByIdentities" toKeyPath:@"likedByIdentities" withMapping:likesByIdentitiesMapping]];
+    
+    
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:mapping
+                                                 method:RKRequestMethodGET
+                                            pathPattern:[self createLikeResourcePath:activityId]
+                                                keyPath:nil
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager getObjectsAtPath:[self createLikeResourcePath:activityId] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        self.socialActivityDetails = [[mappingResult array] objectAtIndex:0];
+        [super restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [super restKitDidFailWithError:error];
+    }];
+    
+//    [manager loadObjectsAtResourcePath:[self createLikeResourcePath:activityId] objectMapping:mapping delegate:self];
+
 }
 
 - (void)getAllOfComments:(NSString *)activityId {
+
     RKObjectManager *manager = [RKObjectManager sharedManager];
     
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
-    [mapping mapKeyPath:@"totalNumberOfComments" toAttribute:@"totalNumberOfComments"];
+    
+    [mapping addAttributeMappingsFromDictionary:@{@"totalNumberOfComments": @"totalNumberOfComments"}];
     // SocialComment mapping
     RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
-    [socialCommentMapping mapKeyPathsToAttributes:@"createdAt",@"createdAt",
-            @"text",@"text",
-            @"postedTime",@"postedTime",
-            @"id",@"identityId",
-     nil];
+    [socialCommentMapping addAttributeMappingsFromDictionary:
+     @{@"createdAt":@"createdAt",
+       @"text":@"text",
+       @"postedTime":@"postedTime",
+       @"id":@"identityId"}
+     ];
+
     RKObjectMapping* commentPosterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [commentPosterProfileMapping mapKeyPathsToAttributes:
-        @"id",@"identity",
-        @"remoteId",@"remoteId",
-        @"providerId",@"providerId",
-        @"profile.avatarUrl",@"avatarUrl",
-        @"profile.fullName",@"fullName",
-     nil];
-    [socialCommentMapping mapKeyPath:@"posterIdentity" toRelationship:@"userProfile" withObjectMapping:commentPosterProfileMapping];
+    [commentPosterProfileMapping addAttributeMappingsFromDictionary:@{
+     @"id":@"identity",
+     @"remoteId":@"remoteId",
+     @"providerId":@"providerId",
+     @"profile.avatarUrl":@"avatarUrl",
+     @"profile.fullName":@"fullName"}];
+
+
+    [socialCommentMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"userProfile" withMapping:commentPosterProfileMapping]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"comments" toKeyPath:@"comments" withMapping:socialCommentMapping]];
     
-    [mapping mapKeyPath:@"comments" toRelationship:@"comments" withObjectMapping:socialCommentMapping];
-    [manager loadObjectsAtResourcePath:[self createCommentsResourcePath:activityId] objectMapping:mapping delegate:self];
+   
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:mapping
+                                                 method:RKRequestMethodGET
+                                            pathPattern:[self createCommentsResourcePath:activityId]
+                                                keyPath:nil
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager getObjectsAtPath:[self createCommentsResourcePath:activityId] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        self.socialActivityDetails = [[mappingResult array] objectAtIndex:0];
+        [super restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [super restKitDidFailWithError:error];
+    }];
+
 }
 
-#pragma mark - RKObjectLoaderDelegate methods
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
-{
-    self.socialActivityDetails = [objects objectAtIndex:0];
-    [super objectLoader:objectLoader didLoadObjects:objects];
-}
 
 @end
