@@ -92,37 +92,36 @@ typedef enum {
 
 - (void)doInit {
     if ([UserPreferencesManager sharedInstance].isUserLogged) {
+        
+      
+        
         _listOfSections = [[NSMutableArray arrayWithObjects:
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
-                             settingViewSectionTitleKey, @"SignInButton",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil],
-                             nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionSocial],
-                             settingViewSectionTitleKey, @"Social",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"KeepSelectedStream", nil],
-                             nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionDocument],
-                             settingViewSectionTitleKey, @"Documents",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"ShowPrivateDrive", nil],
-                             nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
-                             settingViewSectionTitleKey, @"Language",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil],
-                             nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
-                             settingViewSectionTitleKey, @"ServerList",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
-                             nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
-                             settingViewSectionTitleKey, @"ApplicationsInformation",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
-                             nil],
+                            @{settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
+                              settingViewSectionTitleKey: @"SignInButton",
+                              settingViewRowsKey: [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil]},
+                            
+                           @{
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionSocial],
+                             settingViewSectionTitleKey: @"Social",
+                             settingViewRowsKey: [NSArray arrayWithObjects:@"KeepSelectedStream", nil]},
+                           
+                           @{
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionDocument],
+                             settingViewSectionTitleKey: @"Documents",
+                             settingViewRowsKey: [NSArray arrayWithObjects:@"ShowPrivateDrive", nil]},
+                           
+                            @{
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
+                              settingViewSectionTitleKey: @"Language",
+                              settingViewRowsKey: [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil]},
+                           @{
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
+                             settingViewSectionTitleKey: @"ServerList",
+                             settingViewRowsKey: [NSArray arrayWithObjects:@"NewServer", nil]},
+                           @{
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
+                             settingViewSectionTitleKey: @"ApplicationsInformation",
+                             settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
                             nil] retain];
         
         
@@ -134,22 +133,22 @@ typedef enum {
         }
     } else {
         _listOfSections = [[NSMutableArray arrayWithObjects:
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
-                             settingViewSectionTitleKey, @"Language",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil],
-                             nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
-                             settingViewSectionTitleKey, @"ServerList",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"NewServer", nil],
-                             nil],
-                            [NSDictionary dictionaryWithKeysAndObjects:
-                             settingViewSectionIdKey, [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
-                             settingViewSectionTitleKey, @"ApplicationsInformation",
-                             settingViewRowsKey, [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil],
-                             nil],
+                            @{
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
+                              settingViewSectionTitleKey: @"Language",
+                              settingViewRowsKey: [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil]},
+                            @{
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
+                              settingViewSectionTitleKey: @"ServerList",
+                              settingViewRowsKey: [NSArray arrayWithObjects:@"NewServer", nil]},
+                            
+                            @{
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
+                              settingViewSectionTitleKey: @"ApplicationsInformation",
+                              settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
+                             
                             nil] retain];
+        
     }
 }
 

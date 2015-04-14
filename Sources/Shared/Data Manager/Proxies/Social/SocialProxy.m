@@ -51,7 +51,7 @@ static NSString *urlEncode(id object) {
 - (void)dealloc {
     delegate = nil;
 
-    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
+//    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [super dealloc];
 }
 
@@ -96,23 +96,14 @@ static NSString *urlEncode(id object) {
 	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (RKObjectLoader*)RKObjectLoader {
-    return rkLoader;
-}
 
 #pragma mark - RKObjectLoaderDelegate implementation
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
-{
-    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-}
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
+-(void) restKitDidLoadObjects:(NSArray*)objects {
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];
     }
 }
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {    
+-(void) restKitDidFailWithError:(NSError *)error{
     if (delegate && [delegate respondsToSelector:@selector(proxy: didFailWithError:)]) {
         [delegate proxy:self didFailWithError:error];
     }

@@ -47,19 +47,13 @@
 
 -(void)postComment:(NSString *)commentValue forActivity:(NSString *)activityIdentity
 {
-    if (commentValue != nil) {
-        _comment = commentValue;
-    }
-    
-    
-    RKObjectManager* manager = [RKObjectManager sharedManager];
-    manager.serializationMIMEType = RKMIMETypeJSON;
-    
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
-    manager.router = router;
+    /*
+
     
     // Send POST requests for instances of SocialActivityDetails to '/activity.json'
-    [router routeClass:[SocialComment class] toResourcePath:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] forMethod:RKRequestMethodPOST];
+//    [router routeClass:[SocialComment class] toResourcePath:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] forMethod:RKRequestMethodPOST];
+    
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialComment class] pathPattern:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] method:RKRequestMethodPOST]];
     
     // Let's create an SocialActivityDetails
     SocialComment* commentToPost = [[SocialComment alloc] init];
@@ -94,7 +88,59 @@
         
     // Send a POST to /articles to create the remote instance
     [manager postObject:commentToPost mapResponseWith:socialCommentMapping delegate:self];  
-    [commentToPost release];
+    [commentToPost release]; 
+     */
+    if (commentValue != nil) {
+        _comment = commentValue;
+    }
+    
+    RKObjectManager* manager = [RKObjectManager sharedManager];
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
+    
+    
+    RKRouter* router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
+    manager.router = router;
+    
+    
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialComment class] pathPattern:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] method:RKRequestMethodPOST]];
+    
+    // Let's create an SocialActivityDetails
+    SocialComment* commentToPost = [[SocialComment alloc] init];
+    commentToPost.text = _comment;
+    
+    //Register our mappings with the provider FOR SERIALIZATION
+    
+    RKObjectMapping* commentSimpleMapping = [RKObjectMapping requestMapping];
+    
+    [commentSimpleMapping  addAttributeMappingsFromDictionary:@{@"text":@"text"}];
+    
+    // Send a POST to /like to create the remote instance
+    
+    RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:commentSimpleMapping objectClass:[SocialComment class] rootKeyPath:nil method:RKRequestMethodPOST];
+
+    [manager addRequestDescriptor:requestDescriptor];
+    
+    
+    RKObjectMapping* responseMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
+    [responseMapping addAttributeMappingsFromDictionary:@{
+                                                          @"createdAt":@"createdAt",
+                                                          @"text":@"text",
+                                                          @"postedTime":@"postedTime",
+                                                          @"identityId":@"identityId"
+                                                          }];
+    
+    RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:responseMapping method:RKRequestMethodPOST pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
+    
+
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager  postObject:commentToPost path:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] parameters:nil
+                 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                     [super restKitDidLoadObjects:[mappingResult array]];
+                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                     [super restKitDidFailWithError:error];
+                 }
+     ];
 }
 
 @end

@@ -18,16 +18,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSDictionary+RKRequestSerialization.h"
 #import <RestKit/RestKit.h>
 
 @protocol SocialProxyDelegate;
 
 
-@interface SocialProxy : NSObject <RKObjectLoaderDelegate> {
+@interface SocialProxy : NSObject {
     
     id<SocialProxyDelegate> delegate;
-    RKObjectLoader* rkLoader;
     
 }
 
@@ -35,12 +33,15 @@
 
 - (NSString *)createPath;
 - (NSString*)URLEncodedString:(NSDictionary *)dictForParam;
-- (RKObjectLoader*)RKObjectLoader;
 
 @end
 
 
 @protocol SocialProxyDelegate<NSObject>
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy;
-- (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error;	
+- (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error;
+
+-(void) restKitDidLoadObjects:(NSArray*)objects;
+-(void) restKitDidFailWithError:(NSError *)error;
+
 @end

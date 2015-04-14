@@ -24,7 +24,7 @@
 @protocol GadgetsProxyDelegate;
 
 
-@interface GadgetsProxy : NSObject<RKObjectLoaderDelegate>  {
+@interface GadgetsProxy : NSObject  {
 
     DashboardItem *_dashboard;
     
