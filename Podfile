@@ -4,7 +4,9 @@ workspace 'eXo_Platform'
 xcodeproj 'eXo.xcodeproj'
 
 target "eXo" do
-    
+
+    pod 'RestKit', '~>0.24'
+	
 end
 
 target "eXoTests" do

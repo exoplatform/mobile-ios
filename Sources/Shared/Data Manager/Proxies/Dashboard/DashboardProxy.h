@@ -25,7 +25,7 @@
 @protocol DashboardProxyDelegate;
 
 
-@interface DashboardProxy : NSObject<RKObjectLoaderDelegate, GadgetsProxyDelegate> {
+@interface DashboardProxy : NSObject<GadgetsProxyDelegate> {
     
     BOOL _isPlatformCompatibleWithSocialFeatures;
     

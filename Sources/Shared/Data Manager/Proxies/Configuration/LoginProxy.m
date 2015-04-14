@@ -114,22 +114,32 @@ return self;
 
 - (void)retrievePlatformInformations {
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
+    RKObjectManager* manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:[self createBaseURL]]];
     [RKObjectManager setSharedManager:manager];
         
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
-    [mapping mapKeyPathsToAttributes:
-     @"platformVersion",@"platformVersion",
-     @"platformRevision",@"platformRevision",
-     @"platformBuildNumber",@"platformBuildNumber",
-     @"isMobileCompliant",@"isMobileCompliant",
-     @"platformEdition",@"platformEdition",
-     @"currentRepoName",@"currentRepoName",
-     @"defaultWorkSpaceName",@"defaultWorkSpaceName",
-     @"userHomeNodePath",@"userHomeNodePath",
-     nil];
+    [mapping addAttributeMappingsFromDictionary:@{
+                                                   @"platformVersion":@"platformVersion",
+                                                   @"platformRevision":@"platformRevision",
+                                                   @"platformBuildNumber":@"platformBuildNumber",
+                                                   @"isMobileCompliant":@"isMobileCompliant",
+                                                   @"platformEdition":@"platformEdition",
+                                                   @"currentRepoName":@"currentRepoName",
+                                                   @"defaultWorkSpaceName":@"defaultWorkSpaceName",
+                                                   @"userHomeNodePath":@"userHomeNodePath"
+                                                   }];
     
-    [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];          
+//    [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:@"platform/info" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    [manager getObjectsAtPath:@"platform/info" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [self restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        //         Authenticate failed
+        if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
+            [_delegate loginProxy:self authenticateFailedWithError:error];
+        }
+    }];
 }
 
 #pragma mark Methods for authentication
@@ -144,43 +154,55 @@ return self;
 }
 
 - (void)getPlatformInfoAfterAuthenticate {
+
     NSString *baseURL = [self createBaseURL];
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:baseURL];
-    manager.client.username = self.username;
-    manager.client.password = self.password;
-    manager.client.cachePolicy = RKRequestCachePolicyNone;
+    RKObjectManager* manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:baseURL]];
+    
+
+//TODO:    manager.HTTPClient.cachePolicy = RKRequestCachePolicyNone;
+    
+    [manager.HTTPClient setAuthorizationHeaderWithUsername:self.username password:self.password];
 
     [RKObjectManager setSharedManager:manager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
-    [mapping mapKeyPathsToAttributes:
-     @"platformVersion",@"platformVersion",
-     @"platformRevision",@"platformRevision",
-     @"platformBuildNumber",@"platformBuildNumber",
-     @"isMobileCompliant",@"isMobileCompliant",
-     @"platformEdition",@"platformEdition",
-     @"currentRepoName",@"currentRepoName",
-     @"defaultWorkSpaceName",@"defaultWorkSpaceName",
-     @"userHomeNodePath",@"userHomeNodePath",
-     nil];
-    // add '#' into the link to prevent caching result
-    [manager loadObjectsAtResourcePath:@"private/platform/info#" objectMapping:mapping delegate:self];
-    
+    [mapping addAttributeMappingsFromDictionary:@{     @"platformVersion":@"platformVersion",
+                                                       @"platformRevision":@"platformRevision",
+                                                       @"platformBuildNumber":@"platformBuildNumber",
+                                                       @"isMobileCompliant":@"isMobileCompliant",
+                                                       @"platformEdition":@"platformEdition",
+                                                       @"currentRepoName":@"currentRepoName",
+                                                       @"defaultWorkSpaceName":@"defaultWorkSpaceName",
+                                                       @"userHomeNodePath":@"userHomeNodePath",
+}];
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:@"private/platform/info#" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    [manager getObjectsAtPath:@"private/platform/info#"  parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [self restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//         Authenticate failed
+        if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
+            [_delegate loginProxy:self authenticateFailedWithError:error];
+        }
+    }];
+     
+     
 }
 
 
 #pragma mark - RKObjectLoaderDelegate methods
 
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-}
+//- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
+//    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
+//}
 
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+-(void) restKitDidLoadObjects:(NSArray *) objects {
+    //NSLog(@"Loaded statuses: %@", objects);
     //We receive the response from the server
     //We now need to check if the version can run social features or not and set properties
     
@@ -220,7 +242,7 @@ return self;
                 selectedAccount.serverUrl = self.serverUrl;
             }
         }
-                
+        
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         
@@ -238,16 +260,9 @@ return self;
     [userDefaults synchronize];
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-	// Authenticate failed
-    if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
-        [_delegate loginProxy:self authenticateFailedWithError:error];
-    }
-}
 
 - (void) dealloc {
     _delegate = nil;
-    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [self.username release];
     [self.password release];
     [self.serverUrl release];
@@ -320,13 +335,13 @@ return self;
                                            delegate:delegate
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles: nil] autorelease];
-    } else if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
-        // error getting platform info by restkit
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-                                            message:Localize(@"NetworkConnectionFailed")
-                                           delegate:delegate
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+//    } else if ([error.domain isEqualToString:RKErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
+//        // error getting platform info by restkit
+//        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+//                                            message:Localize(@"NetworkConnectionFailed")
+//                                           delegate:delegate
+//                                  cancelButtonTitle:@"OK"
+//                                  otherButtonTitles: nil] autorelease];
     } else if([error.domain isEqualToString:EXO_NOT_COMPILANT_ERROR_DOMAIN]) {
         // target version of Platform is not mobile compliant
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Error")
@@ -335,13 +350,13 @@ return self;
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil] autorelease];
         
-    } else if([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
-        // incorrect server error response
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-                                            message:Localize(@"ServerNotAvailable")
-                                           delegate:delegate
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+//    } else if([error.domain isEqualToString:RKErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
+//        // incorrect server error response
+//        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+//                                            message:Localize(@"ServerNotAvailable")
+//                                           delegate:delegate
+//                                  cancelButtonTitle:@"OK"
+//                                  otherButtonTitles: nil] autorelease];
     } else {
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
                                             message:@""

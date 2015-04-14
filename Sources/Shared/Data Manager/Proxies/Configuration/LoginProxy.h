@@ -25,7 +25,7 @@
 @protocol LoginProxyDelegate;
 
 
-@interface LoginProxy : NSObject<RKObjectLoaderDelegate, NSURLConnectionDataDelegate> {
+@interface LoginProxy : NSObject<NSURLConnectionDataDelegate> {
         
     id<LoginProxyDelegate> _delegate;
 }

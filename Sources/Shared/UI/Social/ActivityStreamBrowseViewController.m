@@ -230,7 +230,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         // Release the RKObjectLoader because we don't need RK anymore
         if (_activityAction==ActivityActionLoadMore || _activityAction==ActivityActionUpdateAfterError)
-            [[proxy RKObjectLoader] release];
         _lastActivity = nil;
     } 
     else if (proxy == self.likeActivityProxy) 
@@ -262,7 +261,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         // We don't release RKObjectLoader here because we need it for the new RK request
     } else if (_activityAction == ActivityActionUpdateAfterError) {
         // Release the RKObjectLoader because we don't need RK anymore
-        [[proxy RKObjectLoader] release];
         alertMessages = [NSMutableString stringWithString:Localize(@"UpdatingActionCannotBeCompleted")];
     }
 
@@ -273,14 +271,16 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 //    RKObjectLoaderUnexpectedResponseError       =   4
 
     if (alertMessages!=nil) {
-
-        if (error.code == RKObjectLoaderUnexpectedResponseError) {
-            [alertMessages appendString:@"\n"];
-            [alertMessages appendString:Localize(@"BadResponse")];
-        } else if(error.code == RKRequestBaseURLOfflineError) {
-            [alertMessages appendString:@"\n"];
-            [alertMessages appendString:Localize(@"NetworkConnection")];
-        }
+//TODO: Detect new  Error code
+        
+        
+//        if (error.code == RKObjectLoaderUnexpectedResponseError) {
+//            [alertMessages appendString:@"\n"];
+//            [alertMessages appendString:Localize(@"BadResponse")];
+//        } else if(error.code == RKRequestBaseURLOfflineError) {
+//            [alertMessages appendString:@"\n"];
+//            [alertMessages appendString:Localize(@"NetworkConnection")];
+//        }
 
         UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [alertView show];

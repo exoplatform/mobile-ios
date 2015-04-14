@@ -22,7 +22,7 @@
 #import "SocialProxy.h"
 #import "SocialUserProfile.h"
 
-@interface SocialUserProfileProxy : SocialProxy <RKObjectLoaderDelegate> {
+@interface SocialUserProfileProxy : SocialProxy  {
     
     SocialUserProfile* _userProfile;
 }

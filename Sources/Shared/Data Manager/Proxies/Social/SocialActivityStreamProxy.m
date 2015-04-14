@@ -90,42 +90,53 @@
  */
 - (void) getActivityStreams:(ActivityStreamProxyActivityType)activitytype
 {
+  
+  //RESTKIT 0.24
+
     RKObjectManager* manager = [RKObjectManager sharedManager];
+    RKObjectMapping* mappingSocialActivity = [RKObjectMapping mappingForClass:[SocialActivity class]];
+    [mappingSocialActivity addAttributeMappingsFromDictionary:@{@"identityId":@"identityId",@"liked":@"liked",
+                                                  @"postedTime":@"postedTime",
+                                                  @"type":@"type",
+                                                  @"id":@"activityId",
+                                                  @"title":@"title",
+                                                  @"body":@"body",
+                                                  @"createdAt":@"createdAt",
+                                                  @"titleId":@"titleId",
+                                                  @"totalNumberOfComments":@"totalNumberOfComments",
+                                                  @"totalNumberOfLikes":@"totalNumberOfLikes",
+                                                  @"templateParams": @"templateParams",
+                                                  @"activityStream": @"activityStream",
+                                                  @"lastUpdated":@"lastUpdated" }];
     
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
-    [mapping mapKeyPathsToAttributes:
-     @"identityId",@"identityId",
-     @"liked",@"liked",
-     @"postedTime",@"postedTime",
-     @"type",@"type",
-     @"id",@"activityId",
-     @"title",@"title",
-     @"body",@"body",
-     @"createdAt",@"createdAt",
-     @"titleId",@"titleId",
-     @"totalNumberOfComments",@"totalNumberOfComments",
-     @"totalNumberOfLikes",@"totalNumberOfLikes",
-     @"templateParams", @"templateParams",
-     @"activityStream", @"activityStream",
-     @"lastUpdated",@"lastUpdated",
-    nil];
     
-    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
     
-    //Retrieve the UserProfile directly on the activityStream service
+    
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [posterProfileMapping mapKeyPathsToAttributes:
-     @"id",@"identity",
-     @"remoteId",@"remoteId",
-     @"providerId",@"providerId",
-     @"profile.avatarUrl",@"avatarUrl",
-     @"profile.fullName",@"fullName",
-     nil];
-    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
+    [posterProfileMapping addAttributeMappingsFromDictionary:@{
+     @"id":@"identity",
+     @"remoteId":@"remoteId",
+     @"providerId":@"providerId",
+     @"profile.avatarUrl":@"avatarUrl",
+     @"profile.fullName":@"fullName"}];
     
-    // No need to keep and retain the RKObjectLoader here because we don't need RK if the
-    // request fails, we just display an error dialog
-    [manager loadObjectsAtResourcePath:[self createPathForType:activitytype] delegate:self];
+    [mappingSocialActivity addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"posterIdentity" withMapping:posterProfileMapping]];
+    
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:mappingSocialActivity
+                                                 method:RKRequestMethodGET
+                                            pathPattern:[self createPathForType:activitytype]
+                                                keyPath:@"activities"
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager getObjectsAtPath:[self createPathForType:activitytype] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        self.arrActivityStreams = [mappingResult array];
+        [super restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [super restKitDidFailWithError:error];
+    }];
+    
 }
 
 /*
@@ -133,52 +144,53 @@
  * Cf method above for explanation of the types and the RK mapping
  */
 - (void)getActivitiesOfType:(ActivityStreamProxyActivityType)activitytype BeforeActivity:(SocialActivity*)activity {
-    
+
+    //RestKit 0.24
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];
-    [mapping mapKeyPathsToAttributes:
-     @"identityId",@"identityId",
-     @"liked",@"liked",
-     @"postedTime",@"postedTime",            
-     @"type",@"type",
-     @"id",@"activityId",
-     @"title",@"title",
-     @"body",@"body",
-     @"createdAt",@"createdAt",
-     @"titleId",@"titleId",
-     @"templateParams", @"templateParams",
-     @"activityStream", @"activityStream",
-     @"lastUpdated", @"lastUpdated",
-     nil];
-    
-    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"activities"];
-    
-    
-    //Retrieve the UserProfile directly on the activityStream service
+    RKObjectMapping* mappingSocialActivity = [RKObjectMapping mappingForClass:[SocialActivity class]];
+    [mappingSocialActivity addAttributeMappingsFromDictionary:@{     @"identityId":@"identityId",
+                                                                     @"liked":@"liked",
+                                                                     @"postedTime":@"postedTime",
+                                                                     @"type":@"type",
+                                                                     @"id":@"activityId",
+                                                                     @"title":@"title",
+                                                                     @"body":@"body",
+                                                                     @"createdAt":@"createdAt",
+                                                                     @"titleId":@"titleId",
+                                                                     @"templateParams": @"templateParams",
+                                                                     @"activityStream": @"activityStream",
+                                                                     @"lastUpdated": @"lastUpdated"
+                                                                }];
+
     RKObjectMapping* posterProfileMapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [posterProfileMapping mapKeyPathsToAttributes:
-     @"id",@"identity",
-     @"remoteId",@"remoteId",
-     @"providerId",@"providerId",
-     @"profile.avatarUrl",@"avatarUrl",
-     @"profile.fullName",@"fullName",
-     nil];
-    [mapping mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:posterProfileMapping];
+    [posterProfileMapping addAttributeMappingsFromDictionary:@{
+                                                               @"id":@"identity",
+                                                               @"remoteId":@"remoteId",
+                                                               @"providerId":@"providerId",
+                                                               @"profile.avatarUrl":@"avatarUrl",
+                                                               @"profile.fullName":@"fullName"}];
     
-    // Keep and retain the instance of RKObjectLoader, so RK can use it if there is an error
-    // and it needs to make another request to reload all activities
-    // We will release it when the LoadMore request is successful, 
-    // or when the UpdateAfterError request ends (successful or not)
-    // Cf ActivityStreamBrowseViewController:didFinishLoading and :didFailWithError
-    rkLoader = [[manager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?max_id=%@",[self createPathForType:activitytype], activity.activityId] delegate:self] retain];
+    [mappingSocialActivity addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"posterIdentity" withMapping:posterProfileMapping]];
+    
+    // We need to set the path only in the descriptor, not the query parameters
+    NSString* pathPattern = [NSString stringWithString:[self createPathForType:activitytype]];
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:mappingSocialActivity
+                                                 method:RKRequestMethodGET
+                                            pathPattern:pathPattern
+                                                keyPath:@"activities"
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager getObjectsAtPath:[NSString stringWithFormat:@"%@?max_id=%@",[self createPathForType:activitytype], activity.activityId] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        self.arrActivityStreams = [mappingResult array];
+        [super restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [super restKitDidFailWithError:error];
+    }];
+    
+    
 }
 
-#pragma mark - RKObjectLoaderDelegate methods
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
-{
-    self.arrActivityStreams = objects;
-    [super objectLoader:objectLoader didLoadObjects:objects];
-}
 
 @end

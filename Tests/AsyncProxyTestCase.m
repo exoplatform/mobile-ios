@@ -26,13 +26,17 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    // Set up a RestKit shared manager that is used in some proxies
+    NSString* strBaseUrl = [NSString stringWithFormat:@"%@/rest/", TEST_SERVER_URL];
+    RKObjectManager* manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:strBaseUrl]];
+    [RKObjectManager setSharedManager:manager];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [OHHTTPStubs removeAllStubs];
+    // Removes the RK shared manager
+    [RKObjectManager setSharedManager:nil];
     [super tearDown];
 }
 
@@ -46,6 +50,16 @@
 }
 
 #pragma Proxy delegate methods
+
+- (void)restKitDidLoadObjects:(NSArray *)objects
+{
+
+}
+
+- (void)restKitDidFailWithError:(NSError *)error
+{
+
+}
 
 - (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
