@@ -29,8 +29,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
+    
+    topViewButton = [[[UIButton alloc] initWithFrame:CGRectMake(100,0,_navigation.frame.size.width-200,20)] autorelease];
+    [topViewButton addTarget:self action:@selector(scrollTableViewToTop:) forControlEvents:UIControlEventTouchUpInside];
+    
+    topViewButton.backgroundColor = [UIColor clearColor];
+    [_navigation addSubview:topViewButton];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];    
+    
 }
+-(void) scrollTableViewToTop:(id) sender {
+   
+}
+
 /*
 -(void)setTitle:(NSString *)_titleView {
     [super setTitle:_titleView];

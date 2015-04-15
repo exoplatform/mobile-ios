@@ -264,7 +264,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     
-    UIButton *topScrollButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *topScrollButton = [[UIButton buttonWithType:UIButtonTypeCustom] autorelease];
     topScrollButton.frame = CGRectMake(self.view.center.x - 50, 0, 100,20);
     [topScrollButton addTarget:self action:@selector(topScrollButtonAction:) forControlEvents: UIControlEventTouchUpInside];
     topScrollButton.backgroundColor = [UIColor clearColor];

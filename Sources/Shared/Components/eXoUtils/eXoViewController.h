@@ -25,8 +25,11 @@
 
 @interface eXoViewController : UIViewController {
     IBOutlet UINavigationBar*           _navigation;
+    UIButton * topViewButton;
     UILabel *label;
 }
+
+-(void) scrollTableViewToTop:(id) sender;
 
 // ATMHud to manage loading diplay
 @property (nonatomic, readonly) ATMHud *hudLoadWaiting;

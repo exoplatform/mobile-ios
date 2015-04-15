@@ -62,13 +62,7 @@
     ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = YES;
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-    UIButton * topViewButton = [[UIButton alloc] initWithFrame:CGRectMake(100,0,_navigation.frame.size.width-200,20)];
-    [topViewButton addTarget:self action:@selector(scrollTableViewToTop:) forControlEvents:UIControlEventTouchUpInside];
-    
-    topViewButton.backgroundColor = [UIColor clearColor];
-    [_navigation addSubview:topViewButton];
-    
+    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];    
     
 }
 

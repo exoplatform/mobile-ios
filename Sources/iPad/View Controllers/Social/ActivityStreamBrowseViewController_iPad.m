@@ -48,13 +48,7 @@
     containerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     containerView.squareCorners = NO;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
-    
-    UIButton * topViewButton = [[UIButton alloc] initWithFrame:CGRectMake(100,0,_navigation.frame.size.width-200,20)];
-    [topViewButton addTarget:self action:@selector(scrollTableViewToTop:) forControlEvents:UIControlEventTouchUpInside];
-    
-    topViewButton.backgroundColor = [UIColor clearColor];
-    [_navigation addSubview:topViewButton];
-    
+        
     
 }
 -(void) scrollTableViewToTop:(id) sender {
