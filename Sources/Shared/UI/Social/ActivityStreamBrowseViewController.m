@@ -261,7 +261,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         // We don't release RKObjectLoader here because we need it for the new RK request
     } else if (_activityAction == ActivityActionUpdateAfterError) {
         // Release the RKObjectLoader because we don't need RK anymore
-        [[proxy RKObjectLoader] release];
         alertMessages = [NSMutableString stringWithString:Localize(@"UpdatingActionCannotBeCompleted")];
     }
 
@@ -283,8 +282,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 //            [alertMessages appendString:Localize(@"NetworkConnection")];
 //        }
 
-//        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-//        [alertView show];
+        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [alertView show];
     }
 }
 

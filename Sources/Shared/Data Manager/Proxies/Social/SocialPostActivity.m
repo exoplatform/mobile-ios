@@ -120,10 +120,6 @@
          [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"type":@"type"}];
     }
     
-    //Configure a serialization mapping for our Product class 
-//    RKObjectMapping *activitySimpleSerializationMapping = [activitySimpleMapping 
-//                                                    inverseMapping];
-    
     //serialization mapping
     
         
