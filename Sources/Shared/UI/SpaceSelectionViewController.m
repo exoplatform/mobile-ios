@@ -34,8 +34,9 @@
 {
     [super viewDidLoad];
     _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
-    _socialSpaceProxy.delegate = self;
+    _socialSpaceProxy.delegate = self;    
     [_socialSpaceProxy getMySocialSpaces];
+    
     self.navigationItem.title = Localize(@"Post Activity To");
 }
 

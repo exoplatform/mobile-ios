@@ -61,7 +61,7 @@
 @implementation MessageComposerViewController
 
 @synthesize isPostMessage=_isPostMessage, strActivityID=_strActivityID, delegate, tblvActivityDetail=_tblvActivityDetail;
-@synthesize _popoverPhotoLibraryController, btnSend, _btnCancel;
+@synthesize _popoverPhotoLibraryController;
 @synthesize btnAttachPhoto = _btnAttachPhoto;
 @synthesize txtMessage = _txtMessage;
 @synthesize attPhotoView = _attPhotoView;
@@ -84,8 +84,6 @@
     [_postCommentProxy release];
     [_strActivityID release];
     [_tblvActivityDetail release];
-    [btnSend release];
-    [_btnCancel release];
     [_btnAttachPhoto release];
     [_txtMessage release];
     [_attPhotoView release];

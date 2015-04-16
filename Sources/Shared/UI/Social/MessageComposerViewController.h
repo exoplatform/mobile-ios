@@ -33,8 +33,7 @@
 
 @interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, SpaceSelectionDelegate, SocialProxyDelegate>
 {
-    IBOutlet UIButton*                  _btnCancel;
-    IBOutlet UIButton*                  btnSend;
+
     IBOutlet UIButton*                  _btnAttach;
     IBOutlet UITextView*                _txtvMessageComposer;
     IBOutlet UIImageView*               _imgvBackground;
@@ -52,8 +51,7 @@
 }
 
 @property BOOL isPostMessage;
-@property(nonatomic, retain) UIButton* _btnCancel;
-@property(nonatomic, retain) UIButton* btnSend;
+
 @property(nonatomic, retain) NSString* strActivityID;
 @property(nonatomic, retain) UIButton *btnAttachPhoto;
 @property(nonatomic, retain) UITextView *txtMessage;
