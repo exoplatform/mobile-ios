@@ -61,7 +61,7 @@
     NSString *message = @"A cool activity";
     hasError = YES;
     
-    [actProxy postActivity:message fileURL:nil fileName:nil];
+    [actProxy postActivity:message fileURL:nil fileName:nil toSpace:nil];
     
     [self wait];
     
@@ -79,7 +79,7 @@
     
     [actProxy postActivity:@""
                 fileURL:[NSString stringWithFormat:@"%@/%@", TEST_SERVER_URL, @"rest/private/jcr/repository/collaboration/Users/johndoe/Public/file.txt"]
-               fileName:@"My Document"];
+                  fileName:@"My Document" toSpace:nil];
     
     [self wait];
     

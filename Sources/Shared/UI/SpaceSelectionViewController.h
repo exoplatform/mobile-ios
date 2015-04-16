@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2003-2014 eXo Platform SAS.
+// Copyright (C) 2003-2015 eXo Platform SAS.
 //
 // This is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
@@ -17,17 +17,27 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
-#import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
-#import "SocialProxy.h"
+
+#import <UIKit/UIKit.h>
 #import "SocialSpace.h"
-@interface SocialPostActivity : SocialProxy {
-    
-    NSString* _text;
+#import "LanguageHelper.h"
+#import "SocialSpaceProxy.h"
+#import "EGOImageView.h"
+#import "eXoTableViewController.h"
+@protocol SpaceSelectionDelegate;
+
+@interface SpaceSelectionViewController : eXoTableViewController
+<SocialProxyDelegate> {
+    SocialSpaceProxy * _socialSpaceProxy;
 }
 
-@property (nonatomic,copy) NSString* text;
+@property (nonatomic, assign) id<SpaceSelectionDelegate> delegate;
+@property (nonatomic, retain) SocialSpaceProxy * socialSpaceProxy;
 
--(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName toSpace:(SocialSpace *) space;
+@end
+@protocol SpaceSelectionDelegate <NSObject>
+
+@optional
+-(void) spaceSelection:(SpaceSelectionViewController *) spaceSelection didSelectSpace:(SocialSpace*) space;
 
 @end
