@@ -28,8 +28,6 @@
 
 -(void) getMySocialSpaces {
     
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     // Load the object model via RestKit
     RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
@@ -56,7 +54,6 @@
     [mapping mapKeyPathsToAttributes:
      @"id",@"spaceId",
      nil];
-//    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"spaces"];
     
     NSString * path = [NSString stringWithFormat:@"private/api/social/v1-alpha3/portal/identity/space/%@.json", space.name];
     
