@@ -54,11 +54,17 @@
 }
 
 
--(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName {
+-(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName toSpace:(SocialSpace *) space{
     if (message != nil) {
         self.text = message;
     }
     
+    if (space && !space.spaceId){
+        if (delegate && [delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
+            [delegate proxy:self didFailWithError:nil];
+        }
+        return;
+    }
     
     RKObjectManager* manager = [RKObjectManager sharedManager];
     manager.serializationMIMEType = RKMIMETypeJSON;
@@ -67,11 +73,18 @@
     manager.router = router;
     
     // Send POST requests for instances of SocialActivity to '/activity.json'
-    [router routeClass:[SocialActivity class] toResourcePath:[self createPath] forMethod:RKRequestMethodPOST];
+    NSString * path = [self createPath];
+    if (space){
+        path = [NSString stringWithFormat:@"%@?identity_id=%@", path, space.spaceId];
+    }
+    [router routeClass:[SocialActivity class] toResourcePath:path forMethod:RKRequestMethodPOST];
     
     // Let's create an SocialActivity
     SocialActivity *activity = [[SocialActivity alloc] init];
     activity.title = message;
+    if (space) {
+        activity.type = @"exosocial:spaces";
+    }
     
     //Register our mappings with the provider FOR SERIALIZATION
     RKObjectMapping *activitySimpleMapping = [RKObjectMapping mappingForClass: 

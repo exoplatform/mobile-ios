@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 #import "SocialProxy.h"
-
+#import "SocialSpace.h"
 @interface SocialPostActivity : SocialProxy {
     
     NSString* _text;
@@ -28,6 +28,6 @@
 
 @property (nonatomic,copy) NSString* text;
 
--(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName;
+-(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName toSpace:(SocialSpace *) space;
 
 @end

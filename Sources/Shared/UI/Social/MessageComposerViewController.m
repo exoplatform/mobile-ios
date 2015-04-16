@@ -385,7 +385,7 @@
             self.postActivityProxy = [[[SocialPostActivity alloc] init] autorelease];
             self.postActivityProxy.delegate = self;
 
-            [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName];            
+            [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName toSpace:selectedSpace];
         }
         else
         {
@@ -541,12 +541,13 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
+
+    [self hideLoaderImmediately:YES];
     if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
         if (_socialSpaceProxy.mySpaces && _socialSpaceProxy.mySpaces.count>0){
             selectedSpace.spaceId = ((SocialSpace*)_socialSpaceProxy.mySpaces[0]).spaceId;
         }
     } else {
-        [self hideLoaderImmediately:YES];
         if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
             [delegate messageComposerDidSendData];
             [self dismissModalViewControllerAnimated:YES];
@@ -559,23 +560,25 @@
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
+
+    [self hideLoaderImmediately:NO];
+    NSString *alertMessage = nil;
     if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
-        
+            alertMessage = Localize(@"CannotLoadSpaceID");
     } else {
-        [self hideLoaderImmediately:NO];
+
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-        NSString *alertMessage = nil;
+
         if(_isPostMessage)
             alertMessage = Localize(@"PostingActionCannotBeCompleted");
         else
             alertMessage = Localize(@"CommentActionCannotBeCompleted");
         
-        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
-        
-        [alertView show];
-        //    [alertView release];
-        
     }
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
+    
+    [alertView show];
+    //    [alertView release];
 }
 
 -(void)cancelDisplayAttachedPhoto {
@@ -733,7 +736,9 @@
     selectedSpace = space;
     [self.spacesTableView reloadData];
     if (space){
+        [self displayHudLoader];
         [_socialSpaceProxy getIdentifyOfSpace:space];
+
     }
 }
 
