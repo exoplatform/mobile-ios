@@ -19,7 +19,14 @@
 
 
 #import "SocialProxy.h"
+#import "SocialSpace.h"
+@interface SocialSpaceProxy : SocialProxy {
+    NSArray*                    _mySpaces;
+}
+@property (nonatomic,retain) NSArray * mySpaces;
 
-@interface SocialSpaceProxy : SocialProxy
+-(void) getMySocialSpaces;
+
+-(void) getIdentifyOfSpace:(SocialSpace *) space;
 
 @end

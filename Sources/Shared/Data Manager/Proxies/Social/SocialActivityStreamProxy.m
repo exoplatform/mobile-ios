@@ -133,7 +133,9 @@
  * Cf method above for explanation of the types and the RK mapping
  */
 - (void)getActivitiesOfType:(ActivityStreamProxyActivityType)activitytype BeforeActivity:(SocialActivity*)activity {
-        
+    
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialActivity class]];

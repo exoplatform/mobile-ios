@@ -19,7 +19,22 @@
 
 
 #import <UIKit/UIKit.h>
+#import "SocialSpace.h"
+#import "LanguageHelper.h"
+#import "SocialSpaceProxy.h"
+@protocol SpaceSelectionDelegate;
 
-@interface SpaceSelectionViewController : UITableViewController
+@interface SpaceSelectionViewController : UITableViewController <SocialProxyDelegate> {
+    SocialSpaceProxy * _socialSpaceProxy;
+}
+
+@property (nonatomic, assign) id<SpaceSelectionDelegate> delegate;
+@property (nonatomic, retain) SocialSpaceProxy * socialSpaceProxy;
+
+@end
+@protocol SpaceSelectionDelegate <NSObject>
+
+@optional
+-(void) spaceSelection:(SpaceSelectionViewController *) spaceSelection DidSelectedSpace:(SocialSpace*) space;
 
 @end

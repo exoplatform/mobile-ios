@@ -20,6 +20,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SocialSpace : NSObject
+@interface SocialSpace : NSObject {
+    NSString * _avatarUrl;
+    NSString * _groupId;
+    NSString * _spaceUrl;
+    NSString * _name;
+    NSString * _displayName;
+    NSString * _url;
+    NSString * _spaceId;
+
+}
+
+@property (nonatomic, retain) NSString * avatarUrl;
+@property (nonatomic, retain) NSString * groupId;
+@property (nonatomic, retain) NSString * spaceUrl;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * displayName;
+@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString * spaceId;
 
 @end

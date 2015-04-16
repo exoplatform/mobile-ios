@@ -19,7 +19,56 @@
 
 
 #import "SocialSpaceProxy.h"
+#define MY_SPACE_PATH @"private/portal/social/spaces/mySpaces/show.json"
+@interface SocialSpaceProxy (){
+}
+@end
 
 @implementation SocialSpaceProxy
+
+-(void) getMySocialSpaces {
+    
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    // Load the object model via RestKit
+    RKObjectManager* manager = [RKObjectManager sharedManager];
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
+    [mapping mapKeyPathsToAttributes:
+     @"avatarUrl",@"avatarUrl",
+     @"groupId",@"groupId",
+     @"spaceUrl",@"spaceUrl",
+     @"url",@"url",
+     @"name",@"name",
+     @"displayName",@"displayName",
+     nil];
+    [mapping setRootKeyPath:@"spaces"];
+    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"spaces"];
+
+    
+    [manager loadObjectsAtResourcePath:MY_SPACE_PATH objectMapping:mapping delegate:self];
+    
+}
+
+-(void) getIdentifyOfSpace:(SocialSpace *)space {
+    
+    RKObjectManager* manager = [RKObjectManager sharedManager];
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
+    [mapping mapKeyPathsToAttributes:
+     @"id",@"spaceId",
+     nil];
+//    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"spaces"];
+    
+    NSString * path = [NSString stringWithFormat:@"private/api/social/v1-alpha3/portal/identity/space/%@.json", space.name];
+    
+    [manager loadObjectsAtResourcePath:path objectMapping:mapping delegate:self];
+}
+
+
+#pragma mark - RKObjectLoaderDelegate methods
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
+{
+    self.mySpaces = objects;
+    [super objectLoader:objectLoader didLoadObjects:objects];
+}
 
 @end

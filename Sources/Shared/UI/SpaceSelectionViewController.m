@@ -20,109 +20,88 @@
 
 #import "SpaceSelectionViewController.h"
 
-@interface SpaceSelectionViewController ()
-
+@interface SpaceSelectionViewController () {
+    NSArray * _mySpaces;
+}
+@property (nonatomic, retain) NSArray * mySpaces;
 @end
 
 @implementation SpaceSelectionViewController
-
+@synthesize socialSpaceProxy = _socialSpaceProxy;
+@synthesize delegate;
+#pragma mark -
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
+    _socialSpaceProxy.delegate = self;
+    [_socialSpaceProxy getMySocialSpaces];
+    self.navigationItem.title = Localize(@"Post Activity To");
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    if (section == 0) return  1;
+    if (_mySpaces)
+        return _mySpaces.count;
     return 0;
 }
-
-/*
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        return Localize(@"Spaces");
+    }
+    return @"";
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSString * reuseIdentifier = @"SpaceTableView";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
     
-    // Configure the cell...
-    
+    if (indexPath.section == 0) {
+        cell.textLabel.text = Localize(@"Public");
+    } else {
+        SocialSpace * socicalSpace = _mySpaces[indexPath.row];
+        cell.textLabel.text = socicalSpace.displayName;
+    }
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    SocialSpace * socicalSpace = nil;
+    if (indexPath.section == 1){
+        socicalSpace = _mySpaces[indexPath.row];
+    }
+    if (delegate && [delegate respondsToSelector:@selector(spaceSelection:DidSelectedSpace:)]){
+        [delegate spaceSelection:self DidSelectedSpace:socicalSpace];
+    }
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - Social Proxy Delegate 
+
+-(void) proxyDidFinishLoading:(SocialProxy *)proxy {
+    _mySpaces = _socialSpaceProxy.mySpaces;
+    [self.tableView reloadData];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+-(void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {
     
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
 }
-*/
 
 @end

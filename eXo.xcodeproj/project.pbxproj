@@ -682,6 +682,9 @@
 		8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8989B06714735CA100EEBD7C /* gadgetPlaceHolder@2x.png */; };
 		89C9ED5012DEEF2100910C9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */; };
 		89E0D82D137A880100C06E6A /* DashboardViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */; };
+		9C01DEDD1ADF56A600E3C578 /* SocialSpaceProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C01DEDC1ADF56A600E3C578 /* SocialSpaceProxy.m */; };
+		9C01DEF11ADF57B100E3C578 /* SocialSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C01DEF01ADF57B100E3C578 /* SocialSpace.m */; };
+		9C01DEF81ADF67EC00E3C578 /* SpaceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */; };
 		9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
 		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
@@ -1916,6 +1919,12 @@
 		8989B06714735CA100EEBD7C /* gadgetPlaceHolder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gadgetPlaceHolder@2x.png"; sourceTree = "<group>"; };
 		89C9ED4F12DEEF2100910C9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		89E0D82C137A880100C06E6A /* DashboardViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController_iPhone.xib; path = ../../NIB/DashboardViewController_iPhone.xib; sourceTree = "<group>"; };
+		9C01DEDB1ADF56A600E3C578 /* SocialSpaceProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialSpaceProxy.h; sourceTree = "<group>"; };
+		9C01DEDC1ADF56A600E3C578 /* SocialSpaceProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialSpaceProxy.m; sourceTree = "<group>"; };
+		9C01DEEF1ADF57B100E3C578 /* SocialSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialSpace.h; sourceTree = "<group>"; };
+		9C01DEF01ADF57B100E3C578 /* SocialSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialSpace.m; sourceTree = "<group>"; };
+		9C01DEF51ADF67EC00E3C578 /* SpaceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceSelectionViewController.h; sourceTree = "<group>"; };
+		9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceSelectionViewController.m; sourceTree = "<group>"; };
 		9C0A6D541AD505D500287C26 /* WEBlockingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEBlockingGestureRecognizer.h; sourceTree = "<group>"; };
 		9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEBlockingGestureRecognizer.m; sourceTree = "<group>"; };
 		A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePreviewViewController.h; path = Social/ImagePreviewViewController.h; sourceTree = "<group>"; };
@@ -2511,6 +2520,8 @@
 				1FCE236114BA8E4300ED95AB /* SocialVersion.m */,
 				DE442BB91569E21000E10A00 /* SocialActivity.h */,
 				DE442BBA1569E21000E10A00 /* SocialActivity.m */,
+				9C01DEEF1ADF57B100E3C578 /* SocialSpace.h */,
+				9C01DEF01ADF57B100E3C578 /* SocialSpace.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -2541,6 +2552,8 @@
 				46EC7DE61466D596009D7BB0 /* ActivityHelper.m */,
 				1FCE235D14BA8DCF00ED95AB /* SocialRestProxy.h */,
 				1FCE235E14BA8DCF00ED95AB /* SocialRestProxy.m */,
+				9C01DEDB1ADF56A600E3C578 /* SocialSpaceProxy.h */,
+				9C01DEDC1ADF56A600E3C578 /* SocialSpaceProxy.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -2700,6 +2713,8 @@
 				467F4F0113AB9B3400B2DCFA /* ActivityDetail */,
 				7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */,
 				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
+				9C01DEF51ADF67EC00E3C578 /* SpaceSelectionViewController.h */,
+				9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */,
 				46A08CD41447501200D53314 /* ActivityLinkDisplayViewController.h */,
 				46A08CD51447501200D53314 /* ActivityLinkDisplayViewController.m */,
 				A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */,
@@ -5466,6 +5481,7 @@
 				46E96E60138370A30085DCB6 /* MenuWatermarkFooter.m in Sources */,
 				46E96E62138370A30085DCB6 /* RootViewController.m in Sources */,
 				572EAA1B192AFBFD008CFB11 /* UIView+InnerShadow.m in Sources */,
+				9C01DEDD1ADF56A600E3C578 /* SocialSpaceProxy.m in Sources */,
 				46E96E63138370A30085DCB6 /* RoundedUITableView.m in Sources */,
 				46E96E65138370A30085DCB6 /* StackScrollViewController.m in Sources */,
 				46E96E67138370A30085DCB6 /* UIViewWithShadow.m in Sources */,
@@ -5585,6 +5601,7 @@
 				1FCC6FF1147A5C7A00BBB64F /* ActivityCalendarTableViewCell.m in Sources */,
 				1FCDF079147B433800F72293 /* ActivityCalendarDetailMessageTableViewCell.m in Sources */,
 				8958E64F14A9B76100580EEB /* AuthenticateProxy.m in Sources */,
+				9C01DEF81ADF67EC00E3C578 /* SpaceSelectionViewController.m in Sources */,
 				8958E65314A9B79A00580EEB /* DataProcess.m in Sources */,
 				572EAA0F192AFBFD008CFB11 /* EGOImageView.m in Sources */,
 				577D5A2619C81FB1007B8A5B /* AuthenticateTabView.m in Sources */,
@@ -5609,6 +5626,7 @@
 				A6A0276D15B936CB0090342B /* ActivityStreamTabbar.m in Sources */,
 				57C5203315B6B7B800BF902F /* CredentialsViewController.m in Sources */,
 				57C5203615B6B7C800BF902F /* ServerListViewController.m in Sources */,
+				9C01DEF11ADF57B100E3C578 /* SocialSpace.m in Sources */,
 				572EAA0E192AFBFD008CFB11 /* EGOImageLoader.m in Sources */,
 				579D50A915BD6689002F5D16 /* AuthTabItem.m in Sources */,
 				572EAA0C192AFBFD008CFB11 /* EGOImageButton.m in Sources */,

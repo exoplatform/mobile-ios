@@ -22,4 +22,19 @@
 
 @implementation SocialSpace
 
+
+-(void) dealloc {
+    [_avatarUrl release];
+    [_groupId release];
+    [_spaceId release];
+    [_name release];
+    [_displayName release];
+    [_url release];
+    [_spaceId release];
+    [super dealloc];
+}
+-(NSString *) description {
+    return [NSString stringWithFormat:@"[name : %@] [url : %@] [id : %@]", _name, _url, _spaceId];
+}
+
 @end

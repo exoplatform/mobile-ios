@@ -26,6 +26,7 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 
+
 // Horizontal margin to subviews. 
 #define kHorizontalMargin 10.0
 // Vertical margin to subviews.
@@ -43,12 +44,14 @@
     // Keep previous status bar style as the image picker changed it when displayed.
     UIStatusBarStyle _previousStatusBarStyle;
     BOOL _previousStatusBarHidden;
+    SocialSpace * selectedSpace;
 }
 
 @property (nonatomic, readonly) UIButton *attPhotoButton;
 @property(nonatomic, readonly) UIImageView *photoFrameView;
 @property (nonatomic, retain) SocialPostActivity *postActivityProxy;
 @property (nonatomic, retain) SocialPostCommentProxy *postCommentProxy;
+@property (nonatomic, retain) SocialSpaceProxy * socialSpaceProxy;
 
 - (UIImagePickerController *)getPicker:(UIImagePickerControllerSourceType)sourceType;
 
@@ -88,6 +91,9 @@
     [_attPhotoView release];
     [_photoFrameView release];
     [_attPhotoButton release];
+    [_spacesTableView release];
+    [_socialSpaceProxy release];
+    
     [super dealloc];
 }
 
@@ -107,6 +113,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
@@ -159,6 +167,12 @@
     /*
      ######
      */
+    
+    _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
+    _socialSpaceProxy.delegate = self;
+    
+    selectedSpace = nil;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -527,29 +541,41 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    [self hideLoaderImmediately:YES];
-    
-    if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
-        [delegate messageComposerDidSendData];
-        [self dismissModalViewControllerAnimated:YES];    
+    if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
+        if (_socialSpaceProxy.mySpaces && _socialSpaceProxy.mySpaces.count>0){
+            selectedSpace.spaceId = ((SocialSpace*)_socialSpaceProxy.mySpaces[0]).spaceId;
+        }
+    } else {
+        [self hideLoaderImmediately:YES];
+        if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
+            [delegate messageComposerDidSendData];
+            [self dismissModalViewControllerAnimated:YES];
+        }
+
     }
+    
     
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
-    [self hideLoaderImmediately:NO];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    NSString *alertMessage = nil;
-    if(_isPostMessage)
-        alertMessage = Localize(@"PostingActionCannotBeCompleted");    
-    else
-        alertMessage = Localize(@"CommentActionCannotBeCompleted");
-    
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
-    
-    [alertView show];
-    //    [alertView release];
+    if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
+        
+    } else {
+        [self hideLoaderImmediately:NO];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        NSString *alertMessage = nil;
+        if(_isPostMessage)
+            alertMessage = Localize(@"PostingActionCannotBeCompleted");
+        else
+            alertMessage = Localize(@"CommentActionCannotBeCompleted");
+        
+        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
+        
+        [alertView show];
+        //    [alertView release];
+        
+    }
 }
 
 -(void)cancelDisplayAttachedPhoto {
@@ -661,6 +687,54 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark - Table View Delegate & DataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+-(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell * cell;
+    
+    NSString * tableCellIdentfient = @"spaceTableView";
+    cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentfient];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellIdentfient];
+    }
+    
+    cell.textLabel.textColor = [UIColor blueColor];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica neue" size:14];
+    if (!selectedSpace) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",Localize(@"To"),Localize(@"Public")];
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",Localize(@"To"),selectedSpace.displayName];
+    }
+
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SpaceSelectionViewController  * spaceSelectionVC = [[SpaceSelectionViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    spaceSelectionVC.delegate = self;
+    [self.navigationController pushViewController:spaceSelectionVC animated:YES];
+    
+}
+
+#pragma mark - Space Selection Delegate 
+
+-(void) spaceSelection:(SpaceSelectionViewController *)spaceSelection DidSelectedSpace:(SocialSpace *)space {
+    selectedSpace = space;
+    [self.spacesTableView reloadData];
+    if (space){
+        [_socialSpaceProxy getIdentifyOfSpace:space];
+    }
 }
 
 @end

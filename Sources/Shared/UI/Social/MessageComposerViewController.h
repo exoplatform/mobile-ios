@@ -21,6 +21,9 @@
 #import "SocialProxy.h"
 #import "eXoViewController.h"
 #import "ImagePreviewViewController.h"
+#import "LanguageHelper.h"
+#import "SpaceSelectionViewController.h"
+#import "SocialSpaceProxy.h"
 
 @class ActivityStreamBrowseViewController;
 
@@ -28,7 +31,7 @@
 @protocol SocialMessageComposerDelegate;
 
 
-@interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate>
+@interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, SpaceSelectionDelegate, SocialProxyDelegate>
 {
     IBOutlet UIButton*                  _btnCancel;
     IBOutlet UIButton*                  btnSend;
@@ -72,6 +75,9 @@
 - (void)deleteAttachedPhoto;
 - (UIImage *)resizeImage:(UIImage *)image;
 - (void)reArrangeSubViews;
+
+@property (retain, nonatomic) IBOutlet UITableView *spacesTableView;
+
 
 @end
 
