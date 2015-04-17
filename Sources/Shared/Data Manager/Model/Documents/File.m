@@ -101,8 +101,9 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
     NSMutableString * s = [_name mutableCopy];
     [s replaceOccurrencesOfString:@"." withString:@" " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
     [s replaceOccurrencesOfString:@"_" withString:@" " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+    [s replaceOccurrencesOfString:@"-" withString:@" " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
     [s replaceOccurrencesOfString:@" exo" withString:@" eXo" options:NSLiteralSearch range:NSMakeRange(0,s.length)];
-    [s replaceOccurrencesOfString:@" spaces " withString:@" space " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
+    
     while ([s rangeOfString:@"  "].location !=NSNotFound) {
         [s replaceOccurrencesOfString:@"  " withString:@" " options:NSLiteralSearch range:NSMakeRange(0,s.length)];
     }
@@ -126,7 +127,11 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
     if (_naturalName) {
         [_naturalName release];
     }
-    _naturalName = [s substringToIndex:s.length];
+    if ([s rangeOfString:@"Spaces"].location == 0){
+        _naturalName = [s substringFromIndex:[s rangeOfString:@"Spaces"].length+1];
+    } else {
+        _naturalName = [s substringFromIndex:0];
+    }
     [_naturalName retain];
     return _naturalName;
 }

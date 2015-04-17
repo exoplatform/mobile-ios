@@ -252,16 +252,36 @@
     
 }
 
--(void)testConversionNaturalName
+-(void)testConversionNaturalName_1
 {
     File * file = [[File alloc] init];
     file.name = @".spaces.exo.platform.home.";
     [file convertToNaturalName];
-    XCTAssertTrue([file.naturalName isEqualToString:@"Space eXo Platform Home"]);
-    
-    file.name = @".exo";
-    [file convertToNaturalName ];
-    XCTAssertTrue([file.naturalName isEqualToString:@"eXo"]);
+    XCTAssertTrue([file.naturalName isEqualToString:@"eXo Platform Home"]);
 }
+
+-(void)testConversionNaturalName_3
+{
+    File * file = [[File alloc] init];
+    file.name = @" nguyễn-văn-định ";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Nguyễn Văn Định"]);
+}
+
+-(void)testConversionNaturalName_4
+{
+    File * file = [[File alloc] init];
+    file.name = @".élus.députés";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Élus Députés"]);
+}
+-(void)testConversionNaturalName_5
+{
+    File * file = [[File alloc] init];
+    file.name = @"Âã-đô-ịẻç";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Âã Đô Ịẻç"]);
+}
+
 
 @end
