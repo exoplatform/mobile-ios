@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpaceTableViewCell" id="KGk-i7-Jjw" customClass="SpaceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="saj-LP-fzW" customClass="EGOImageView">
+                        <rect key="frame" x="35" y="4" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="hd3-qg-TcH"/>
+                            <constraint firstAttribute="width" constant="35" id="uvo-GA-XzQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEU-ds-p96">
+                        <rect key="frame" x="5" y="11" width="22" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="4Dn-Lc-gXt"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="35" id="fdw-Yk-XFU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKS-aI-BWg">
+                        <rect key="frame" x="81" y="11" width="99" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="bem-eP-jyS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="saj-LP-fzW" secondAttribute="centerY" id="490-2R-jNQ"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UKS-aI-BWg" secondAttribute="trailing" constant="5" id="6tB-Me-nWT"/>
+                    <constraint firstAttribute="centerY" secondItem="UKS-aI-BWg" secondAttribute="centerY" id="DEa-IQ-JAO"/>
+                    <constraint firstItem="saj-LP-fzW" firstAttribute="leading" secondItem="aEU-ds-p96" secondAttribute="trailing" constant="8" id="hG0-cr-jFL"/>
+                    <constraint firstAttribute="centerY" secondItem="aEU-ds-p96" secondAttribute="centerY" id="hQn-Pz-SQz"/>
+                    <constraint firstItem="UKS-aI-BWg" firstAttribute="leading" secondItem="saj-LP-fzW" secondAttribute="trailing" constant="11" id="kcy-Ph-mKA"/>
+                    <constraint firstItem="aEU-ds-p96" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="pHw-hz-bKm"/>
+                    <constraint firstItem="saj-LP-fzW" firstAttribute="leading" secondItem="aEU-ds-p96" secondAttribute="trailing" constant="8" id="slb-yO-eTm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="prefixLabel" destination="aEU-ds-p96" id="ruW-Ld-RYt"/>
+                <outlet property="spaceAvatar" destination="saj-LP-fzW" id="Wr2-7V-sJ7"/>
+                <outlet property="spaceName" destination="UKS-aI-BWg" id="eCr-U6-zgf"/>
+            </connections>
+            <point key="canvasLocation" x="100" y="208"/>
+        </tableViewCell>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

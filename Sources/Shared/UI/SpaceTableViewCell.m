@@ -18,26 +18,26 @@
 //
 
 
-#import <UIKit/UIKit.h>
-#import "SocialSpace.h"
-#import "LanguageHelper.h"
-#import "SocialSpaceProxy.h"
-#import "EGOImageView.h"
-#import "eXoTableViewController.h"
-@protocol SpaceSelectionDelegate;
+#import "SpaceTableViewCell.h"
 
-@interface SpaceSelectionViewController : eXoTableViewController
-<SocialProxyDelegate> {
-    SocialSpaceProxy * _socialSpaceProxy;
+@implementation SpaceTableViewCell
+
+- (void)awakeFromNib
+{
+    // Initialization code
 }
 
-@property (nonatomic, assign) id<SpaceSelectionDelegate> delegate;
-@property (nonatomic, retain) SocialSpaceProxy * socialSpaceProxy;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
 
-@end
-@protocol SpaceSelectionDelegate <NSObject>
+    // Configure the view for the selected state
+}
 
-@optional
--(void) spaceSelection:(SpaceSelectionViewController *) spaceSelection DidSelectedSpace:(SocialSpace*) space;
-
+- (void)dealloc {
+    [_prefixLabel release];
+    [_spaceAvatar release];
+    [_spaceName release];
+    [super dealloc];
+}
 @end

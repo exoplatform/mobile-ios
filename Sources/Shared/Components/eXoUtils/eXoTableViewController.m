@@ -18,45 +18,79 @@
 //
 
 #import "eXoTableViewController.h"
-
+#import "LanguageHelper.h"
 
 @implementation eXoTableViewController
-
+@synthesize hudLoadWaiting = _hudLoadWaiting;
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*NSString *deviceType = [UIDevice currentDevice].model;
-    
-    if([deviceType rangeOfString:@"iPhone"].length > 0){
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
-    } else {
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 40)];
-    }
-    label.adjustsFontSizeToFitWidth = YES;
-    label.textAlignment = UITextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1];
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
-    
-    label.shadowOffset = CGSizeMake(0,1);
-    label.shadowColor = [UIColor grayColor];
-    
-    _navigation.topItem.titleView = label;
-    self.navigationItem.titleView = label;*/
+
 }
 
-/*
--(void)setTitle:(NSString *)_titleView {
-    [super setTitle:_titleView];
-    label.text = _titleView;
-}
-*/
 
 -(void)dealloc {
     [super dealloc];
-    //[label release];
+
+}
+
+#pragma mark - hudLoadWaiting
+- (ATMHud *)hudLoadWaiting {
+    // lazy loading
+    if (!_hudLoadWaiting) {
+        _hudLoadWaiting = [[ATMHud alloc] initWithDelegate:nil];
+        // disable user interaction during the loading.
+        [_hudLoadWaiting setAllowSuperviewInteraction:NO];
+    }
+    return _hudLoadWaiting;
+}
+
+- (void)updateHudPosition {
+    // default implementation
+}
+
+- (ATMHud *)hudLoadWaitingWithPositionUpdated {
+    ATMHud *hudLoad = [self hudLoadWaiting];
+    [self updateHudPosition];
+    return hudLoad;
+}
+
+- (void)displayHudLoader {
+    [self displayHUDLoaderWithMessage:Localize(@"Loading")];
+}
+
+- (void)displayHUDLoaderWithMessage:(NSString *)message {
+    [self.hudLoadWaitingWithPositionUpdated setCaption:message];
+    [self.hudLoadWaiting setActivity:YES];
+    [self.hudLoadWaiting show];
+}
+
+- (void)hideLoader:(BOOL)successful {
+    [self.hudLoadWaitingWithPositionUpdated setActivity:NO];
+    if (successful) {
+        [self.hudLoadWaiting setImage:[UIImage imageNamed:@"19-check"]];
+        [self.hudLoadWaiting setCaption:Localize(@"Success")];
+        [self.hudLoadWaiting hideAfter:0.5];
+    } else {
+        [self.hudLoadWaiting setImage:[UIImage imageNamed:@"11-x"]];
+        [self.hudLoadWaiting setCaption:Localize(@"Error")];
+        [self.hudLoadWaiting hideAfter:1.0];
+    }
+    [self.hudLoadWaiting update];
+}
+
+- (void)hideLoaderImmediately:(BOOL)successful {
+    [self.hudLoadWaitingWithPositionUpdated setActivity:NO];
+    if (successful) {
+        [self.hudLoadWaiting setImage:[UIImage imageNamed:@"19-check"]];
+        [self.hudLoadWaiting setCaption:Localize(@"Success")];
+    } else {
+        [self.hudLoadWaiting setImage:[UIImage imageNamed:@"11-x"]];
+        [self.hudLoadWaiting setCaption:Localize(@"Error")];
+    }
+    [self.hudLoadWaiting hide];
 }
 
 @end

@@ -27,7 +27,8 @@
 @implementation SocialSpaceProxy
 
 -(void) getMySocialSpaces {
-    
+//    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+//    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     // Load the object model via RestKit
     RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];

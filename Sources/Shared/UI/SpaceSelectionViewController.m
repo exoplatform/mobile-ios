@@ -19,7 +19,8 @@
 
 
 #import "SpaceSelectionViewController.h"
-
+#import "SpaceTableViewCell.h"
+#import "ApplicationPreferencesManager.h"
 @interface SpaceSelectionViewController () {
     NSArray * _mySpaces;
 }
@@ -34,10 +35,12 @@
 {
     [super viewDidLoad];
     _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
-    _socialSpaceProxy.delegate = self;    
+    _socialSpaceProxy.delegate = self;
+    [self displayHUDLoaderWithMessage:Localize(@"Loading")];
     [_socialSpaceProxy getMySocialSpaces];
-    
+
     self.navigationItem.title = Localize(@"Post Activity To");
+    [self.tableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,24 +65,31 @@
 }
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return Localize(@"Spaces");
+        if (_mySpaces && _mySpaces.count>0){
+            return Localize(@"Spaces");
+        } else {
+            return Localize(@"No Space found");
+        }
+
     }
     return @"";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * reuseIdentifier = @"SpaceTableView";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-    }
-    
+    NSString * reuseIdentifier = @"SpaceTableViewCell";
+    SpaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+
+    cell.prefixLabel.text = @"";
     if (indexPath.section == 0) {
-        cell.textLabel.text = Localize(@"Public");
+        cell.spaceName.text = Localize(@"Public");
+        cell.spaceAvatar.image = [UIImage imageNamed:@"global-icon.png"];
+        
     } else {
-        SocialSpace * socicalSpace = _mySpaces[indexPath.row];
-        cell.textLabel.text = socicalSpace.displayName;
+        SocialSpace * socialSpace = _mySpaces[indexPath.row];
+        cell.spaceName.text= socialSpace.displayName;
+        cell.spaceAvatar.imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",[[ApplicationPreferencesManager sharedInstance] selectedDomain], socialSpace.avatarUrl]];
     }
+
     return cell;
 }
 
@@ -98,11 +108,12 @@
 #pragma mark - Social Proxy Delegate 
 
 -(void) proxyDidFinishLoading:(SocialProxy *)proxy {
+    [self hideLoaderImmediately:YES];
     _mySpaces = _socialSpaceProxy.mySpaces;
     [self.tableView reloadData];
 }
 -(void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {
-    
+    [self hideLoaderImmediately:NO];
 }
 
 @end

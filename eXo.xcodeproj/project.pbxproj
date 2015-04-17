@@ -685,7 +685,13 @@
 		9C01DEDD1ADF56A600E3C578 /* SocialSpaceProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C01DEDC1ADF56A600E3C578 /* SocialSpaceProxy.m */; };
 		9C01DEF11ADF57B100E3C578 /* SocialSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C01DEF01ADF57B100E3C578 /* SocialSpace.m */; };
 		9C01DEF81ADF67EC00E3C578 /* SpaceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */; };
+		9C01DEFC1ADFB98300E3C578 /* SpaceAvtDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFA1ADFB98300E3C578 /* SpaceAvtDefault.png */; };
+		9C01DEFD1ADFB98300E3C578 /* SpaceAvtDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFB1ADFB98300E3C578 /* SpaceAvtDefault@2x.png */; };
+		9C01DF001ADFBA5200E3C578 /* global-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFE1ADFBA5200E3C578 /* global-icon.png */; };
+		9C01DF011ADFBA5200E3C578 /* global-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */; };
 		9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */; };
+		9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */; };
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
 		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
 		A619958315B67E5E0098565D /* activity-detail-info-container-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A619958115B67E5E0098565D /* activity-detail-info-container-bg.png */; };
@@ -1925,8 +1931,15 @@
 		9C01DEF01ADF57B100E3C578 /* SocialSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialSpace.m; sourceTree = "<group>"; };
 		9C01DEF51ADF67EC00E3C578 /* SpaceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceSelectionViewController.h; sourceTree = "<group>"; };
 		9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceSelectionViewController.m; sourceTree = "<group>"; };
+		9C01DEFA1ADFB98300E3C578 /* SpaceAvtDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpaceAvtDefault.png; sourceTree = "<group>"; };
+		9C01DEFB1ADFB98300E3C578 /* SpaceAvtDefault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpaceAvtDefault@2x.png"; sourceTree = "<group>"; };
+		9C01DEFE1ADFBA5200E3C578 /* global-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "global-icon.png"; sourceTree = "<group>"; };
+		9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "global-icon@2x.png"; sourceTree = "<group>"; };
 		9C0A6D541AD505D500287C26 /* WEBlockingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEBlockingGestureRecognizer.h; sourceTree = "<group>"; };
 		9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEBlockingGestureRecognizer.m; sourceTree = "<group>"; };
+		9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceTableViewCell.h; sourceTree = "<group>"; };
+		9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceTableViewCell.m; sourceTree = "<group>"; };
+		9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceTableViewCell.xib; sourceTree = "<group>"; };
 		A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePreviewViewController.h; path = Social/ImagePreviewViewController.h; sourceTree = "<group>"; };
 		A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePreviewViewController.m; path = Social/ImagePreviewViewController.m; sourceTree = "<group>"; };
 		A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePreviewViewController.xib; path = Social/ImagePreviewViewController.xib; sourceTree = "<group>"; };
@@ -2715,6 +2728,9 @@
 				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
 				9C01DEF51ADF67EC00E3C578 /* SpaceSelectionViewController.h */,
 				9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */,
+				9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */,
+				9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */,
+				9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */,
 				46A08CD41447501200D53314 /* ActivityLinkDisplayViewController.h */,
 				46A08CD51447501200D53314 /* ActivityLinkDisplayViewController.m */,
 				A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */,
@@ -3647,6 +3663,10 @@
 				A6B4EF24156F8AF90007D631 /* activityDetailLikeBgSelected.png */,
 				A6B4EF22156F8ADD0007D631 /* activityDetailLikeBg@2x.png */,
 				A6B4EF20156F8AD50007D631 /* activityDetailLikeBg.png */,
+				9C01DEFA1ADFB98300E3C578 /* SpaceAvtDefault.png */,
+				9C01DEFB1ADFB98300E3C578 /* SpaceAvtDefault@2x.png */,
+				9C01DEFE1ADFBA5200E3C578 /* global-icon.png */,
+				9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */,
 				1FCEDEB11457A34F0058C80F /* ActivitiesTypes */,
 				1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */,
 				1FCED1C414355C1C00EC0B88 /* SocialAddPhotoButton@2x.png */,
@@ -4913,6 +4933,7 @@
 				469597FB1377017300ADC826 /* AuthenticateServersIconIphoneOff.png in Resources */,
 				469597FD1377017300ADC826 /* AuthenticateSettingsIconIphone.png in Resources */,
 				469598051377018100ADC826 /* AuthenticateCredentialsIconIphoneOn@2x.png in Resources */,
+				9C01DEFD1ADFB98300E3C578 /* SpaceAvtDefault@2x.png in Resources */,
 				469598091377018100ADC826 /* AuthenticateServersIconIphoneOff@2x.png in Resources */,
 				4695980B1377018100ADC826 /* AuthenticateSettingsIconIphone@2x.png in Resources */,
 				4695981D13780D3400ADC826 /* AuthenticateViewController_iPhone.xib in Resources */,
@@ -4974,6 +4995,7 @@
 				46C6B4E8138C12350079C514 /* FileActionsViewController.xib in Resources */,
 				46C6B524138CA87F0079C514 /* pop.wav in Resources */,
 				46C6B550138D108D0079C514 /* Ipad_exo_black.png in Resources */,
+				9C01DEFC1ADFB98300E3C578 /* SpaceAvtDefault.png in Resources */,
 				46E91D871393DB1B00A35D5A /* DeleteButton.png in Resources */,
 				46E91D891393DB2500A35D5A /* DeleteButton@2x.png in Resources */,
 				46E91D8E1393E30500A35D5A /* CustomBackgroundForCellBottomSelected.png in Resources */,
@@ -5059,6 +5081,7 @@
 				1FCED34E1435B98500EC0B88 /* popoverArrowUpSimple.png in Resources */,
 				1FCED34F1435B98500EC0B88 /* popoverBg.png in Resources */,
 				1FCED3501435B98500EC0B88 /* popoverBg@2x.png in Resources */,
+				9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */,
 				1FCED3511435B98500EC0B88 /* popoverBgSimple.png in Resources */,
 				1FCD39ED143A9A6C00C814C5 /* DocumentActionPopupAddFolderIcon.png in Resources */,
 				1FCD39EE143A9A6C00C814C5 /* DocumentActionPopupBackground.png in Resources */,
@@ -5110,6 +5133,7 @@
 				1FD0C3FF143BF146002F40A7 /* IconForEmptyFolder.png in Resources */,
 				1FD0C400143BF146002F40A7 /* IconForNoActivities.png in Resources */,
 				1FD0C401143BF146002F40A7 /* IconForNoContact.png in Resources */,
+				9C01DF011ADFBA5200E3C578 /* global-icon@2x.png in Resources */,
 				1FD0C402143BF146002F40A7 /* IconForNoGadgets.png in Resources */,
 				1FD0C403143BF146002F40A7 /* IconForUnreadableFile.png in Resources */,
 				1FD0C404143BF146002F40A7 /* IconForEmptyFolder@2x.png in Resources */,
@@ -5201,6 +5225,7 @@
 				A6FB0B6915B523AB004F958C /* AuthenticateCredentialsIconIpadOff.png in Resources */,
 				A6FB0B6A15B523AB004F958C /* AuthenticateCredentialsIconIpadOff@2x.png in Resources */,
 				A6FB0B6B15B523AB004F958C /* AuthenticateCredentialsIconIpadOn.png in Resources */,
+				9C01DF001ADFBA5200E3C578 /* global-icon.png in Resources */,
 				A6FB0B6C15B523AB004F958C /* AuthenticateCredentialsIconIpadOn@2x.png in Resources */,
 				A6FB0B6D15B523AB004F958C /* AuthenticateServersIconIpadOff.png in Resources */,
 				57C8020918AA0C3400A06EA7 /* DE.gif in Resources */,
@@ -5654,6 +5679,7 @@
 				572EAA0A192AFBFD008CFB11 /* ATMTextLayer.m in Sources */,
 				7DCA4F33176EB590002694D5 /* OnPremiseViewController.m in Sources */,
 				7DCA4F37176EB654002694D5 /* OnPremiseViewController_iPhone.m in Sources */,
+				9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */,
 				7DCA4F4E176F00FA002694D5 /* ExoCloudProxy.m in Sources */,
 				7D013B9517827A67005F42D2 /* CloudViewUtils.m in Sources */,
 				572EAA25192AFBFD008CFB11 /* DDXMLNode.m in Sources */,

@@ -25,8 +25,8 @@
 #import "FilesProxy.h"
 #import "defines.h"
 #import "LanguageHelper.h"
-
-
+#import "SpaceTableViewCell.h"
+#import "ApplicationPreferencesManager.h"
 // Horizontal margin to subviews. 
 #define kHorizontalMargin 10.0
 // Vertical margin to subviews.
@@ -112,7 +112,7 @@
 {
     [super viewDidLoad];
     
-    
+    [self.spacesTableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
     
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
@@ -178,7 +178,7 @@
         // For iOS version < 5.0, the subviews are rearranged before appearing phase. 
         [self reArrangeSubViews];        
     }
-
+    [self.spacesTableView reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -699,24 +699,26 @@
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
-
+-(CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell;
     
-    NSString * tableCellIdentfient = @"spaceTableView";
-    cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentfient];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellIdentfient];
-    }
-    
-    cell.textLabel.textColor = [UIColor blueColor];
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica neue" size:14];
-    if (!selectedSpace) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",Localize(@"To"),Localize(@"Public")];
-    } else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",Localize(@"To"),selectedSpace.displayName];
-    }
+    NSString * reuseIdentifier = @"SpaceTableViewCell";
+    SpaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
 
+    cell.prefixLabel.text = Localize(@"To:");
+    cell.spaceName.textColor = [UIColor colorWithRed:0.0 green:122.0/255 blue:250.0/255 alpha:1.0];
+
+    if (!selectedSpace) {
+        cell.spaceName.text = Localize(@"Public");
+        cell.spaceAvatar.image = [UIImage imageNamed:@"global-icon.png"];
+        
+    } else {
+        cell.spaceName.text= selectedSpace.displayName;
+        cell.spaceAvatar.imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",[ApplicationPreferencesManager sharedInstance].selectedDomain, selectedSpace.avatarUrl]];
+    }
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -732,7 +734,6 @@
 
 -(void) spaceSelection:(SpaceSelectionViewController *)spaceSelection DidSelectedSpace:(SocialSpace *)space {
     selectedSpace = space;
-    [self.spacesTableView reloadData];
     if (space){
         [self displayHudLoader];
         [_socialSpaceProxy getIdentifyOfSpace:space];
