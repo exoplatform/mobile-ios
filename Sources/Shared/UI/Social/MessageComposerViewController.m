@@ -26,7 +26,7 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 #import "SpaceTableViewCell.h"
-#import "ApplicationPreferencesManager.h"
+
 // Horizontal margin to subviews. 
 #define kHorizontalMargin 10.0
 // Vertical margin to subviews.
@@ -112,8 +112,6 @@
 {
     [super viewDidLoad];
     
-    [self.spacesTableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
-    
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
     // The wantsFullScreenLayout view controller property is deprecated in iOS 7. If you currently specify wantsFullScreenLayout = NO, the
@@ -165,6 +163,7 @@
     /*
      ######
      */
+    [self.spacesTableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
     
     _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
     _socialSpaceProxy.delegate = self;
@@ -710,14 +709,7 @@
     cell.prefixLabel.text = Localize(@"To:");
     cell.spaceName.textColor = [UIColor colorWithRed:0.0 green:122.0/255 blue:250.0/255 alpha:1.0];
 
-    if (!selectedSpace) {
-        cell.spaceName.text = Localize(@"Public");
-        cell.spaceAvatar.image = [UIImage imageNamed:@"global-icon.png"];
-        
-    } else {
-        cell.spaceName.text= selectedSpace.displayName;
-        cell.spaceAvatar.imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",[ApplicationPreferencesManager sharedInstance].selectedDomain, selectedSpace.avatarUrl]];
-    }
+    [cell setSpace:selectedSpace];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;

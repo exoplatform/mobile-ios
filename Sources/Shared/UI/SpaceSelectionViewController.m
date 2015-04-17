@@ -20,7 +20,6 @@
 
 #import "SpaceSelectionViewController.h"
 #import "SpaceTableViewCell.h"
-#import "ApplicationPreferencesManager.h"
 @interface SpaceSelectionViewController () {
     NSArray * _mySpaces;
 }
@@ -48,7 +47,10 @@
     [super didReceiveMemoryWarning];
 
 }
-
+-(void) dealloc {
+    [_socialSpaceProxy release];
+    [super dealloc];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -81,15 +83,10 @@
 
     cell.prefixLabel.text = @"";
     if (indexPath.section == 0) {
-        cell.spaceName.text = Localize(@"Public");
-        cell.spaceAvatar.image = [UIImage imageNamed:@"global-icon.png"];
-        
+        [cell setSpace:nil];
     } else {
-        SocialSpace * socialSpace = _mySpaces[indexPath.row];
-        cell.spaceName.text= socialSpace.displayName;
-        cell.spaceAvatar.imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",[[ApplicationPreferencesManager sharedInstance] selectedDomain], socialSpace.avatarUrl]];
+        [cell setSpace:_mySpaces[indexPath.row]];
     }
-
     return cell;
 }
 

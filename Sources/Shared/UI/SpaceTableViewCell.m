@@ -19,7 +19,8 @@
 
 
 #import "SpaceTableViewCell.h"
-
+#import "ApplicationPreferencesManager.h"
+#import "LanguageHelper.h"
 @implementation SpaceTableViewCell
 
 - (void)awakeFromNib
@@ -39,5 +40,19 @@
     [_spaceAvatar release];
     [_spaceName release];
     [super dealloc];
+}
+-(void) setSpace:(SocialSpace *)space {
+    if (!space) {
+    } else {
+    
+    }
+    if (!space) {
+        self.spaceName.text = Localize(@"Public");
+        self.spaceAvatar.image = [UIImage imageNamed:@"global-icon.png"];
+        
+    } else {
+        self.spaceName.text= space.displayName;
+        self.spaceAvatar.imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",[ApplicationPreferencesManager sharedInstance].selectedDomain, space.avatarUrl]];
+    }
 }
 @end
