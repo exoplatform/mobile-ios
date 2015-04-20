@@ -41,8 +41,8 @@
 
 
 -(void)dealloc {
-    self.navigation = nil;
-    self.label = nil;
+//    self.navigation = nil;
+//    self.label = nil;
     [_hudLoadWaiting release];
     _hudLoadWaiting = nil;
     [super dealloc];

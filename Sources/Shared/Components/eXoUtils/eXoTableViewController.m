@@ -33,8 +33,8 @@
 }
 
 -(void)dealloc {
-    self.label = nil;
-    self.navigation = nil;
+//    self.label = nil;
+//    self.navigation = nil;
     [super dealloc];
 }
 
