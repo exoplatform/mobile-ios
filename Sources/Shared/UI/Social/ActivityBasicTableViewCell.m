@@ -156,29 +156,29 @@ activityType = _activityType, htmlMessage = _htmlMessage;
     //Add images for Comment button
     [self.btnComment setBackgroundImage:
      [[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 4)]
+      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 20)]
                            forState:UIControlStateNormal];
     [self.btnComment setBackgroundImage:
      [[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 4)]
+      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 20)]
                            forState:UIControlStateSelected];
     [self.btnComment setBackgroundImage:
      [[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 4)]
+      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 20)]
                            forState:UIControlStateHighlighted];
     
     //Add images for Like button
     [self.btnLike setBackgroundImage:
      [[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 5)]
+      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 20)]
                         forState:UIControlStateNormal];
     [self.btnLike setBackgroundImage:
      [[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 5)]
+      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 20)]
                         forState:UIControlStateSelected];
     [self.btnLike setBackgroundImage:
      [[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 5)]
+      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 20)]
                         forState:UIControlStateHighlighted];
     
     [self configureCellForSpecificContentWithWidth:fWidth];
