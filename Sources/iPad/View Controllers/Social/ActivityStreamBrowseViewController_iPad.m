@@ -187,13 +187,16 @@
     } 
     
     _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
+
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream
+                                     andCurrentUserProfile:self.userProfile];
+
     _activityDetailViewController.iconType = [self getIconForType:socialActivityStream.type];
+
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
     
     _indexpathSelectedActivity = [indexPath copy];
 
-    [_activityDetailViewController setSocialActivityStream:socialActivityStream 
-                                     andCurrentUserProfile:self.userProfile];
 
         
     

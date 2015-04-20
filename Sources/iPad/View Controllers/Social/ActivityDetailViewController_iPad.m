@@ -273,6 +273,8 @@
 #pragma mark - cell initialization
 
 - (ActivityDetailExtraActionsCell *)extraActionsCell {
+    [_extraActionsCell setBackgroundColor:[UIColor redColor]];
+    
     if (!_extraActionsCell) {
         _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
         [_extraActionsCell.likeButton addTarget:self action:@selector(likeDislike:) forControlEvents:UIControlEventTouchUpInside];

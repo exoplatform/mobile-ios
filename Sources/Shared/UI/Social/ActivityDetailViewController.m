@@ -247,6 +247,7 @@
 
 #pragma mark - cell initialization
 - (ActivityDetailMessageTableViewCell *)activityDetailCell {
+
     if (!_activityDetailCell) {
         switch (self.socialActivity.activityType) {
             case ACTIVITY_DOC:

@@ -70,12 +70,12 @@
 @end
 
 @interface MenuViewController () {
-    CGRect _viewFrame;
+ 
 }
 
 @property (nonatomic, retain) eXoNavigationController* modalNavigationViewController;
 @property (nonatomic, retain) UIButton* accountSwitcherButton;
-
+@property (nonatomic) CGRect viewFrame;
 @end
 
 @implementation MenuViewController

@@ -69,7 +69,7 @@
         removeButton.tintColor = [UIColor whiteColor];
         
         self.toolbarItems = @[changeButton, flexItem, removeButton];
-        self.contentSizeForViewInPopover = kPopoverContentSize;
+        self.preferredContentSize = kPopoverContentSize;
         [changeButton release];
         [removeButton release];
         [flexItem release];

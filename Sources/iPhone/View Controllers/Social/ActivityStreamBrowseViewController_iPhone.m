@@ -119,10 +119,6 @@
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 
                                      andCurrentUserProfile:self.userProfile];
     
-    //[self.navigationController pushViewController:_activityDetailViewController animated:YES];
-    
-    //[_revealView.contentView setRootView:_activityStreamBrowseViewController_iPhone.view];
-    //[_revealView revealSidebar:NO];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:_activityDetailViewController animated:YES];
 
 }

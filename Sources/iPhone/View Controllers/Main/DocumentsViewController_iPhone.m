@@ -46,8 +46,6 @@
 
 - (void)dealloc
 {
-//    [_actionsViewController release];
-//    _actionsViewController = nil;
     [super dealloc];
 }
 
@@ -71,7 +69,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     //Try setting this to UIPopoverController to use the iPad popover. The API is exactly the same!
-	//popoverClass = [WEPopoverController class];
     currentPopoverCellIndex = -1;
     
     self.view.title = self.title;
@@ -112,20 +109,6 @@
     [super viewDidUnload];
 }
 
-//- (void)setHudPosition {
-//    NSArray *visibleCells  = [_tblFiles visibleCells];
-//    CGRect rect = CGRectZero;
-//    for (int n = 0; n < [visibleCells count]; n ++){
-//        UITableViewCell *cell = [visibleCells objectAtIndex:n];
-//        if(n == 0){
-//            rect.origin.y = cell.frame.origin.y;
-//            rect.size.width = cell.frame.size.width;
-//        }
-//        rect.size.height += cell.frame.size.height;
-//    }
-//    _hudFolder.center = CGPointMake(self.view.frame.size.width/2, (((rect.size.width)/2 + rect.origin.y) <= self.view.frame.size.height) ? self.view.frame.size.height/2 : ((rect.size.height)/2 + rect.origin.y));
-//    NSLog(@"%@", NSStringFromCGPoint(_hudFolder.center));
-//}
 
 #pragma mark - UINavigationBar Management
 

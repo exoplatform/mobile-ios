@@ -2207,6 +2207,10 @@
 		1DEB922308733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD_32_64_BIT)";
 				BUILD_STYLE = Debug;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2672,6 +2676,10 @@
 		255920CC13BDEDB400E9C29C /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD_32_64_BIT)";
 				BUILD_STYLE = Release;
 				GCC_C_LANGUAGE_STANDARD = c99;

@@ -50,7 +50,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
     {
-//        self.title = @"Home";
     }
     
     return self;
@@ -92,9 +91,6 @@
     
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    
-    //Force the status bar to be black opaque since TTViewController reset it
-    //self.statusBarStyle = UIStatusBarStyleBlackOpaque;
     
     //Add the eXo logo to the Navigation Bar
     UIImageView* img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eXoLogoNavigationBariPhone.png"]];
