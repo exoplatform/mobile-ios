@@ -328,7 +328,7 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 
-    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone dismissViewControllerAnimated:YES completion:nil];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentViewController:navController animated:YES completion:nil];
     
     [navController release];
     
