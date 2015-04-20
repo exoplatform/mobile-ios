@@ -95,4 +95,39 @@
     }
 }
 
+- (void)testExtractDomainFromURL_Success
+{
+    // http
+    NSArray* urls = @[
+                      @"http://community.exoplatform.com/a/path",
+                      @"http://community.exoplatform.com/",
+                      @"http://community.exoplatform.com"
+                      ];
+    for (NSString* url in urls) {
+        XCTAssertEqualObjects([URLAnalyzer extractDomainFromURL:url],
+                              @"http://community.exoplatform.com",
+                              @"Failed to extract domain from URL %@", url);
+    }
+    
+    // https
+    NSString* urlHttps = @"https://community.exoplatform.com/a/path";
+    XCTAssertEqualObjects([URLAnalyzer extractDomainFromURL:urlHttps],
+                          @"https://community.exoplatform.com",
+                          @"Failed to extract domain from URL %@", urlHttps);
+}
+
+- (void)testExtractDomainFromURL_Failure
+{
+    NSArray* urls = @[
+                      @"community.exoplatform.com/rest/private",
+                      @"",
+                      @"null"
+                      ];
+    for (NSString* url in urls) {
+        XCTAssertEqualObjects([URLAnalyzer extractDomainFromURL:url],
+                              @"",
+                              @"Domain extraction from %@ should have failed and returned an empty string", url);
+    }
+}
+
 @end

@@ -99,6 +99,15 @@
     return result;
 }
 
++ (NSString*) extractDomainFromURL:(NSString *)urlStr {
+    NSURL* url = [NSURL URLWithString:urlStr];
+    if (url && url.scheme && url.host) {
+        return [NSString stringWithFormat:@"%@://%@", url.scheme, url.host];
+    } else {
+        return @"";
+    }
+}
+
 + (NSString *)enCodeURL:(NSString *)url {
     
     NSMutableString *escaped = [NSMutableString stringWithString:url];  

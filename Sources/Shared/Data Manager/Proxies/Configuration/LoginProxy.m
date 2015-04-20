@@ -25,6 +25,8 @@
 #import "UserPreferencesManager.h"
 #import "AlreadyAccountViewController.h"
 #import "OnPremiseViewController.h"
+#import "URLAnalyzer.h"
+
 @interface LoginProxy()
 //private variables
 @property (nonatomic,retain) NSString *username;
@@ -179,7 +181,6 @@ return self;
 
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    //NSLog(@"Loaded statuses: %@", objects);    
     //We receive the response from the server
     //We now need to check if the version can run social features or not and set properties
     
@@ -213,6 +214,11 @@ return self;
             ServerObj* selectedAccount =  [appPref getSelectedAccount];
             selectedAccount.username = self.username;
             selectedAccount.lastLoginDate = [[NSDate date] timeIntervalSince1970];
+            if (![selectedAccount.serverUrl isEqualToString:self.serverUrl]) {
+                // Update the URL of the server with the new value,
+                // probably retrieved when we handled the http redirection
+                selectedAccount.serverUrl = self.serverUrl;
+            }
         }
                 
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
@@ -266,9 +272,21 @@ return self;
 {
     [self getPlatformInfoAfterAuthenticate];
 }
+
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [self.delegate loginProxy:self authenticateFailedWithError:error];
+}
+
+- (NSURLRequest*)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+    NSHTTPURLResponse* httpResp = (NSHTTPURLResponse*)response;
+    if (response && httpResp.statusCode == 301) {
+        // E.g http://community.exoplatform.com/rest/private
+        NSString* location = [httpResp.allHeaderFields objectForKey:@"Location"];
+        NSString* domain = [URLAnalyzer extractDomainFromURL:location];
+        self.serverUrl = domain;
+    }
+    return request;
 }
 
 @end

@@ -28,5 +28,6 @@
 + (BOOL)      isIPAddress:(NSString *)urlStr;
 + (NSString *)enCodeURL:(NSString *)url;
 + (NSString *)decodeURL:(NSString *)url;
++ (NSString *)extractDomainFromURL:(NSString *)urlStr;
 
 @end
