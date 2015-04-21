@@ -26,17 +26,17 @@
 #import "ApplicationPreferencesManager.h"
 
 #define MAX_HEIGHT_FILE_NAME 32
-
 @implementation ActivityPictureTableViewCell
 
 @synthesize imgvAttach = _imgvAttach, urlForAttachment = _urlForAttachment, lbFileName = _lbFileName;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
+    
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        
+
         [_imgvAttach needToBeResizedForSize:CGSizeMake(45,45)];
         
     }
@@ -62,7 +62,6 @@
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
     CGRect tmpFrame = CGRectZero;
-    //width = fWidth;
     if (fWidth > 320) {
         tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPAD, 21);
         width = WIDTH_FOR_CONTENT_IPAD;
@@ -74,17 +73,15 @@
     _lbFileName.textAlignment = NSTextAlignmentCenter;
     _lbFileName.userInteractionEnabled = NO;
     _lbFileName.backgroundColor = [UIColor clearColor];
-    _lbFileName.font = [UIFont systemFontOfSize:13.0];
+    _lbFileName.font = [UIFont systemFontOfSize:14.0];
     _lbFileName.textColor = [UIColor grayColor];
     _lbFileName.numberOfLines = 2;
     
+    
     self.htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     self.htmlMessage.userInteractionEnabled = NO;
-    self.htmlMessage.autoresizesSubviews = YES;
-    self.htmlMessage.font = [UIFont systemFontOfSize:13.0];
-    self.htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.htmlMessage.font = [UIFont systemFontOfSize:14.0];
     self.htmlMessage.textColor = [UIColor grayColor];
-    
     [self.contentView addSubview:self.htmlMessage];
 }
 
@@ -96,7 +93,6 @@
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
     
-//    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.lineBreakMode = NSLineBreakByWordWrapping;
@@ -138,35 +134,10 @@
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
             
-                        
-            //Set the position of Title
-            CGRect tmpFrame = self.htmlMessage.frame;
-            tmpFrame.origin.y = self.lbName.frame.origin.y + self.lbName.frame.size.height + 5;
-            double heigthForTTLabel = [[[self htmlMessage] text] height];
-            if (heigthForTTLabel > EXO_MAX_HEIGHT){
-                heigthForTTLabel = EXO_MAX_HEIGHT; 
-            }
-            tmpFrame.size.height = heigthForTTLabel;
-            tmpFrame.size.width = self.lbName.frame.size.width;
-            self.htmlMessage.frame = tmpFrame;
             
-            //Set the position of lbMessage
-            tmpFrame = self.imgvAttach.frame;
-            tmpFrame.origin.y = self.htmlMessage.frame.origin.y + self.htmlMessage.frame.size.height + 5;
-            tmpFrame.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 70);
-            self.imgvAttach.frame = tmpFrame;
+            /**/
             
-            
-            tmpFrame = _lbFileName.frame;
-            tmpFrame.origin.y = self.imgvAttach.frame.origin.y + self.imgvAttach.frame.size.height + 5;
-            CGSize theSize = [[socialActivityStream.templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                                             lineBreakMode:NSLineBreakByWordWrapping];
-            if(theSize.height > MAX_HEIGHT_FILE_NAME){
-                theSize.height = MAX_HEIGHT_FILE_NAME;
-            }
-            tmpFrame.size.height = theSize.height;
-            tmpFrame.size.width = self.lbName.frame.size.width;
-            _lbFileName.frame = tmpFrame;
+
         }
             break;
         case ACTIVITY_CONTENTS_SPACE:{
@@ -195,27 +166,65 @@
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
             
-            
-            //Set the position of Title
-            CGRect tmpFrame = self.htmlMessage.frame;
-            tmpFrame.origin.y = self.lbName.frame.origin.y + self.lbName.frame.size.height + 5;
-            double heigthForTTLabel = [[[self htmlMessage] text] height];
-            if (heigthForTTLabel > EXO_MAX_HEIGHT){
-                heigthForTTLabel = EXO_MAX_HEIGHT; 
-            }
-            tmpFrame.size.height = heigthForTTLabel;
-            tmpFrame.size.width = self.lbName.frame.size.width;
-            self.htmlMessage.frame = tmpFrame;
-            
-            
-            //Set the position of lbMessage
-            tmpFrame = self.imgvAttach.frame;
-            tmpFrame.origin.y = self.htmlMessage.frame.origin.y + self.htmlMessage.frame.size.height + 10;
-            tmpFrame.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 70);
-            self.imgvAttach.frame = tmpFrame;
+
         }
             break;
     }
+    
+    //Set the position of lbMessage
+    /*
+     Cell Structure:
+     - Avatar: all left side until 55 px
+     On the Right Side:
+     1. Name's Label: from 5px to the top, height default (22px)
+     2. HTML Message: next under Name, height to be estime
+     3. Image View.
+     4. Image name's label: under the image view, height to be estime
+     5. Tool View (time, like, comment button): 40px from the buttom, height 28px.
+     */
+    float cellHeight = [ActivityHelper getHeightForActivityCell:socialActivityStream forTableViewWidth:self.frame.size.width];
+    
+    
+    //Set the position of Title
+    double heigthForTTLabel = [[[self htmlMessage] text] height];
+    if (heigthForTTLabel > EXO_MAX_HEIGHT){
+        heigthForTTLabel = EXO_MAX_HEIGHT;
+    }
+    CGRect htmlMessageFrame = self.htmlMessage.frame;
+    htmlMessageFrame.origin.x =  self.lbName.frame.origin.x + 55;
+    htmlMessageFrame.origin.y =  self.lbName.frame.origin.y + self.lbName.frame.size.height+5;
+    htmlMessageFrame.size.width =  width;
+    htmlMessageFrame.size.height = heigthForTTLabel+5;
+    
+    
+    // estime Image Name Label frame from the buttom.
+    
+    CGSize nameFileLabelSize = [[socialActivityStream.templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)                                                                                          lineBreakMode:NSLineBreakByWordWrapping];
+    if(nameFileLabelSize.height > MAX_HEIGHT_FILE_NAME){
+        nameFileLabelSize.height = MAX_HEIGHT_FILE_NAME;
+    }
+    
+    CGRect lbFileNameFrame   = _lbFileName.frame;
+    lbFileNameFrame.origin.x = self.lbName.frame.origin.x;
+    lbFileNameFrame.origin.y = cellHeight - 40 - nameFileLabelSize.height;
+    lbFileNameFrame.size.width = width;
+    lbFileNameFrame.size.height = nameFileLabelSize.height;
+    
+    CGRect imageFrame = _imgvAttach.frame;
+    
+    imageFrame.origin.x = self.lbName.frame.origin.x;
+    imageFrame.origin.y = htmlMessageFrame.origin.y + htmlMessageFrame.size.height+5;
+    imageFrame.size.width = width;
+    imageFrame.size.height = lbFileNameFrame.origin.y - 5 - imageFrame.origin.y;
+    
+    
+    dispatch_async(dispatch_get_main_queue(),^(void){
+        [self.htmlMessage setFrame:htmlMessageFrame];
+        [self.imgvAttach setFrame:imageFrame];
+        [self.lbFileName setFrame:lbFileNameFrame];
+    });
+
+    
 }
 
 
