@@ -252,7 +252,7 @@
     
 }
 
--(void)testConversionNaturalName_1
+-(void)testConversionNaturalName_Simple
 {
     File * file = [[File alloc] init];
     file.name = @".spaces.exo.platform.home.";
@@ -260,7 +260,7 @@
     XCTAssertTrue([file.naturalName isEqualToString:@"eXo Platform Home"]);
 }
 
--(void)testConversionNaturalName_3
+-(void)testConversionNaturalName_Vietnamese
 {
     File * file = [[File alloc] init];
     file.name = @" nguyễn-văn-định ";
@@ -268,20 +268,87 @@
     XCTAssertTrue([file.naturalName isEqualToString:@"Nguyễn Văn Định"]);
 }
 
--(void)testConversionNaturalName_4
+-(void)testConversionNaturalName_French
 {
     File * file = [[File alloc] init];
     file.name = @".élus.députés";
     [file convertToNaturalName];
     XCTAssertTrue([file.naturalName isEqualToString:@"Élus Députés"]);
 }
--(void)testConversionNaturalName_5
+
+-(void)testConversionNaturalName_Special
 {
     File * file = [[File alloc] init];
     file.name = @"Âã-đô-ịẻç";
     [file convertToNaturalName];
     XCTAssertTrue([file.naturalName isEqualToString:@"Âã Đô Ịẻç"]);
 }
+
+-(void)testConversionNaturalName_Japanese
+{
+    // 日本語 => ri_ben_yu
+    File * file = [[File alloc] init];
+    file.name = @".spaces.ri_ben_yu";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Ri Ben Yu"]);
+    
+    file.name = @"日本語";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"日本語"]);
+}
+
+-(void)testConversionNaturalName_Arabic
+{
+    // AR عربي عربى => ʿrby_ʿrby
+    File * file = [[File alloc] init];
+    file.name = @".spaces.ʿrby_ʿrby";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"ʿrby ʿrby"]);
+    
+    file.name = @"عربي عربى";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"عربي عربى"]);
+}
+
+-(void)testConversionNaturalName_Chinese
+{
+    // 指事字 => zhi_shi_zi
+    File * file = [[File alloc] init];
+    file.name = @".spaces.zhi_shi_zi";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Zhi Shi Zi"]);
+    
+    file.name = @"指事字";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"指事字"]);
+}
+
+-(void)testConversionNaturalName_Greek
+{
+    // λάμβδα => lambda
+    File * file = [[File alloc] init];
+    file.name = @".spaces.lambda";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Lambda"]);
+    
+    file.name = @"λάμβδα";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"Λάμβδα"]);
+}
+
+-(void)testConversionNaturalName_Hebrew
+{
+    // HE אותיות השימוש => ʼwtywt_hsymws
+    File * file = [[File alloc] init];
+    file.name = @".spaces.ʼwtywt_hsymws";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"ʼwtywt Hsymws"]);
+    
+    file.name = @"אותיות השימוש";
+    [file convertToNaturalName];
+    XCTAssertTrue([file.naturalName isEqualToString:@"אותיות השימוש"]);
+}
+
 
 
 @end
