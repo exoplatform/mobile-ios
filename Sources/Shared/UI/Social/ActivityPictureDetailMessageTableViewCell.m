@@ -54,7 +54,9 @@
     //Set the position of lbMessage
     CGRect rect = self.imgvAttach.frame;
     rect.origin.y =  self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + 5;
-    rect.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 60);
+    rect.origin.x =  63;
+    rect.size.width =  width;
+    rect.size.height += 50;
     self.imgvAttach.frame = rect;
     
     rect = _lbFileName.frame;
