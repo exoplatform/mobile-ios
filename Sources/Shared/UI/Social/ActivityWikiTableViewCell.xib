@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ActivityTypeNormal.png" id="6">
-                        <rect key="frame" x="70" y="73" width="14" height="14"/>
+                        <rect key="frame" x="70" y="73" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="default-avatar.png" id="10" customClass="AvatarView">
