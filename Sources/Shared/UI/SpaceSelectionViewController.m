@@ -38,7 +38,7 @@
     [self displayHUDLoaderWithMessage:Localize(@"Loading")];
     [_socialSpaceProxy getMySocialSpaces];
 
-    self.navigationItem.title = Localize(@"Post Activity To");
+    self.navigationItem.title = Localize(@"PostActivityTo");
     [self.tableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
 }
 
@@ -69,9 +69,9 @@
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
         if (_mySpaces && _mySpaces.count>0){
-            return Localize(@"Spaces");
+            return Localize(@"My Spaces");
         } else {
-            return Localize(@"No Space found");
+            return Localize(@"No space found");
         }
 
     }

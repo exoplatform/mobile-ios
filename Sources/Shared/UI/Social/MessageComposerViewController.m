@@ -706,7 +706,7 @@
     NSString * reuseIdentifier = @"SpaceTableViewCell";
     SpaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
 
-    cell.prefixLabel.text = Localize(@"To:");
+    cell.prefixLabel.text = [NSString stringWithFormat:@"%@:",Localize(@"To")];
     cell.spaceName.textColor = [UIColor colorWithRed:0.0 green:122.0/255 blue:250.0/255 alpha:1.0];
 
     [cell setSpace:selectedSpace];
