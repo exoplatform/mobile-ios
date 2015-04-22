@@ -24,13 +24,13 @@
 
 
 -(void) dealloc {
-    [_avatarUrl release];
-    [_groupId release];
-    [_spaceId release];
-    [_name release];
-    [_displayName release];
-    [_url release];
-    [_spaceId release];
+    _avatarUrl = nil;
+    _groupId = nil;
+    _spaceId = nil;
+    _name = nil;
+    _displayName = nil;
+    _url = nil;
+    _spaceId = nil;
     [super dealloc];
 }
 -(NSString *) description {

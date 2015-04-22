@@ -716,7 +716,7 @@
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SpaceSelectionViewController  * spaceSelectionVC = [[SpaceSelectionViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    SpaceSelectionViewController  * spaceSelectionVC = [[[SpaceSelectionViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     spaceSelectionVC.delegate = self;
     [self.navigationController pushViewController:spaceSelectionVC animated:YES];
     
@@ -724,7 +724,7 @@
 
 #pragma mark - Space Selection Delegate 
 
--(void) spaceSelection:(SpaceSelectionViewController *)spaceSelection DidSelectedSpace:(SocialSpace *)space {
+-(void) spaceSelection:(SpaceSelectionViewController *)spaceSelection didSelectSpace:(SocialSpace *)space {
     selectedSpace = space;
     if (space){
         [self displayHudLoader];

@@ -36,9 +36,9 @@
 }
 
 - (void)dealloc {
-    [_prefixLabel release];
-    [_spaceAvatar release];
-    [_spaceName release];
+    _prefixLabel = nil;
+    _spaceAvatar = nil;
+    _spaceName = nil;
     [super dealloc];
 }
 -(void) setSpace:(SocialSpace *)space {
@@ -53,6 +53,11 @@
     } else {
         self.spaceName.text= space.displayName;
         self.spaceAvatar.imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",[ApplicationPreferencesManager sharedInstance].selectedDomain, space.avatarUrl]];
+        self.spaceAvatar.delegate = self;
     }
+}
+-(void) imageViewFailedToLoadImage:(EGOImageView *)imageView error:(NSError *)error {
+    self.spaceAvatar.image = [UIImage imageNamed:@"SpaceAvtDefault.png"];
+
 }
 @end

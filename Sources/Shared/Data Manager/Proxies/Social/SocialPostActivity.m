@@ -113,11 +113,12 @@
         [activity setKeyForTemplateParams:@"REPOSITORY" value:serverPM.currentRepository];
         [activity setKeyForTemplateParams:@"DOCNAME" value:fileName];
         
-        [activitySimpleMapping mapKeyPath:@"type" toAttribute:@"type"];
         [activitySimpleMapping mapKeyPath:@"templateParams" toAttribute:@"templateParams"];
     }
-    
-    //Configure a serialization mapping for our Product class 
+    if (activity.type.length>0){
+        [activitySimpleMapping mapKeyPath:@"type" toAttribute:@"type"];
+    }
+    //Configure a serialization mapping for our Product class
     RKObjectMapping *activitySimpleSerializationMapping = [activitySimpleMapping 
                                                     inverseMapping]; 
     
@@ -141,12 +142,22 @@
      @"activityId",@"activityId",
      @"createdAt",@"createdAt",
      @"titleId",@"titleId",
-     @"posterIdentity",@"posterIdentity",
      @"templateParams",@"templateParams",
      nil];
     
+    RKObjectMapping* socialUserProfileMapping  = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [socialUserProfileMapping mapKeyPathsToAttributes:
+     @"id",@"identity",
+     @"remoteId",@"remoteId",
+     @"providerId",@"providerId",
+     @"profile.avatarUrl",@"avatarUrl",
+     @"profile.fullName",@"fullName",
+     nil];
     
-    //[manager.mappingProvider addObjectMapping:mappingForResponse]; 
+    [mappingForResponse mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:socialUserProfileMapping];
+
+    
+    //[manager.mappingProvider addObjectMapping:mappingForResponse];
     
     // Send a POST to /articles to create the remote instance
     [manager postObject:activity mapResponseWith:mappingForResponse delegate:self];    

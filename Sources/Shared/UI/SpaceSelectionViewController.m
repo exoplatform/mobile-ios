@@ -48,7 +48,8 @@
 
 }
 -(void) dealloc {
-    [_socialSpaceProxy release];
+    _socialSpaceProxy = nil;
+    _mySpaces = nil;    
     [super dealloc];
 }
 #pragma mark - Table view data source
@@ -92,12 +93,12 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    SocialSpace * socicalSpace = nil;
+    SocialSpace * socialSpace = nil;
     if (indexPath.section == 1){
-        socicalSpace = _mySpaces[indexPath.row];
+        socialSpace = _mySpaces[indexPath.row];
     }
-    if (delegate && [delegate respondsToSelector:@selector(spaceSelection:DidSelectedSpace:)]){
-        [delegate spaceSelection:self DidSelectedSpace:socicalSpace];
+    if (delegate && [delegate respondsToSelector:@selector(spaceSelection:didSelectSpace:)]){
+        [delegate spaceSelection:self didSelectSpace:socialSpace];
     }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

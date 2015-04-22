@@ -20,15 +20,10 @@
 
 #import "SocialSpaceProxy.h"
 #define MY_SPACE_PATH @"private/portal/social/spaces/mySpaces/show.json"
-@interface SocialSpaceProxy (){
-}
-@end
 
 @implementation SocialSpaceProxy
 
 -(void) getMySocialSpaces {
-//    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-//    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     // Load the object model via RestKit
     RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
@@ -69,4 +64,8 @@
     [super objectLoader:objectLoader didLoadObjects:objects];
 }
 
+-(void) dealloc {
+    self.mySpaces = nil;
+    [super dealloc];
+}
 @end

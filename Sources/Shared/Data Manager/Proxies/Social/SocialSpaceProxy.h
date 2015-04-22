@@ -25,8 +25,20 @@
 }
 @property (nonatomic,retain) NSArray * mySpaces;
 
+
+/*!
+ 
+ @return The list of all user's spaces.
+ 
+ @discussion The REST reponse with a list of spaces in JSON. Each space have: Remote Id (or Name), Display Name, URL, Avatar URL,..  But the Identity. To get the Identity of a space, use the method:@method getIdentifyOfSpace:space
+ */
 -(void) getMySocialSpaces;
 
+/*!
+ @return A space with the attribute Identity is filled.
+ @param space: The space with no information about it's identity.
+ @discussion the @method getMySocialSpaces return a list of spaces but each space doen't have the identity attribut. Use this method to get that information.
+ */
 -(void) getIdentifyOfSpace:(SocialSpace *) space;
 
 @end

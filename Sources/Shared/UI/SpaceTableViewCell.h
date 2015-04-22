@@ -21,7 +21,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 #import "SocialSpace.h"
-@interface SpaceTableViewCell : UITableViewCell
+@interface SpaceTableViewCell : UITableViewCell <EGOImageViewDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *prefixLabel;
 @property (retain, nonatomic) IBOutlet EGOImageView *spaceAvatar;
 @property (retain, nonatomic) IBOutlet UILabel *spaceName;

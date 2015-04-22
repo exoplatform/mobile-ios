@@ -38,6 +38,6 @@
 @protocol SpaceSelectionDelegate <NSObject>
 
 @optional
--(void) spaceSelection:(SpaceSelectionViewController *) spaceSelection DidSelectedSpace:(SocialSpace*) space;
+-(void) spaceSelection:(SpaceSelectionViewController *) spaceSelection didSelectSpace:(SocialSpace*) space;
 
 @end
