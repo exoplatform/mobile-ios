@@ -302,7 +302,16 @@
         imgvAttachFrame = CGRectZero;
         htmlLinkDescriptionFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 2;
         htmlLinkMessageFrame.origin.y = htmlLinkDescriptionFrame.origin.y + htmlLinkDescriptionFrame.size.height+2;
-        htmlLinkMessageFrame.size.height = cellHeight - 40 - htmlLinkMessageFrame.origin.y;
+        
+        if (htmlLinkMessageFrame.origin.y + htmlLinkMessageFrame.size.height >= self.lbDate.frame.origin.y){            
+            // in critical case, minimize the padding from 5px to 2px
+            htmlActivityMessageFrame.origin.y -=3;
+            htmlLinkTitleFrame.origin.y -=6;
+            htmlLinkDescriptionFrame.origin.y -= 9;
+            htmlLinkMessageFrame.origin.y -= 12;
+            htmlLinkMessageFrame.size.height = cellHeight - 40 - htmlLinkMessageFrame.origin.y + 12;
+        }
+
     }
     
     dispatch_async(dispatch_get_main_queue(),^(void){
