@@ -137,10 +137,7 @@
     self.lbName.text = title;
 
     CGRect nameFrame = self.lbName.frame;
-    nameFrame.size.height = ceil(theSize.height+2);
-    dispatch_async(dispatch_get_main_queue(),^(void){
-        [self.lbName setFrame:nameFrame];
-    });
+    nameFrame.size.height = ceil(theSize.height+5);
 
     // Activity Message
     NSString* activityMessage = [socialActivityStream.templateParams valueForKey:@"comment"];
@@ -170,7 +167,7 @@
         self.htmlActivityMessage.frame = htmlActivityMessageFrame;
     }
     CGRect htmlActivityMessageFrame = self.htmlActivityMessage.frame;
-    htmlActivityMessageFrame.origin.y = self.lbName.frame.size.height + self.lbName.frame.origin.y+5;
+    htmlActivityMessageFrame.origin.y = nameFrame.size.height + nameFrame.origin.y+5;
     
     double heigthForTTLabel = [[[self htmlActivityMessage] text] height];
     if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;
@@ -300,21 +297,23 @@
         
     } else {
         imgvAttachFrame = CGRectZero;
-        htmlLinkDescriptionFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 2;
-        htmlLinkMessageFrame.origin.y = htmlLinkDescriptionFrame.origin.y + htmlLinkDescriptionFrame.size.height+2;
+        htmlLinkDescriptionFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 5;
+        htmlLinkMessageFrame.origin.y = htmlLinkDescriptionFrame.origin.y + htmlLinkDescriptionFrame.size.height+5;
         
-        if (htmlLinkMessageFrame.origin.y + htmlLinkMessageFrame.size.height >= self.lbDate.frame.origin.y){            
-            // in critical case, minimize the padding from 5px to 2px
-            htmlActivityMessageFrame.origin.y -=3;
-            htmlLinkTitleFrame.origin.y -=6;
-            htmlLinkDescriptionFrame.origin.y -= 9;
-            htmlLinkMessageFrame.origin.y -= 12;
-            htmlLinkMessageFrame.size.height = cellHeight - 40 - htmlLinkMessageFrame.origin.y + 12;
-        }
-
+        // Use flexible padding to fit all subviews in the cell.
+        float diff = htmlLinkMessageFrame.origin.y + htmlLinkMessageFrame.size.height- ((cellHeight-40) - htmlLinkMessageFrame.origin.y);
+        float padding = MIN(5.0, diff/4.0);
+        
+        htmlActivityMessageFrame.origin.y -=padding;
+        htmlLinkTitleFrame.origin.y -=2*padding;
+        htmlLinkDescriptionFrame.origin.y -= 3*padding;
+        htmlLinkMessageFrame.origin.y -= 4*padding;
+        htmlLinkMessageFrame.size.height = (cellHeight-40) - htmlLinkMessageFrame.origin.y;// cellHeight -40 -> lbDate.frame.origin.y after auto layout. 40 = 28 + paddings
+        
     }
     
     dispatch_async(dispatch_get_main_queue(),^(void){
+        [self.lbName setFrame:nameFrame];
         [self.htmlActivityMessage setFrame: htmlActivityMessageFrame];
         [self.htmlLinkTitle setFrame:htmlLinkTitleFrame];
         [self.imgvAttach setFrame:imgvAttachFrame];

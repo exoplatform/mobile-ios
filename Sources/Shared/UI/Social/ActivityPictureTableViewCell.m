@@ -25,7 +25,10 @@
 #import "ActivityHelper.h"
 #import "ApplicationPreferencesManager.h"
 
-#define MAX_HEIGHT_FILE_NAME 32
+#define MAX_HEIGHT_FILE_NAME    32
+#define LEFT_PADDING            70
+#define LINE_DEFAULT_PADDING    5
+
 @implementation ActivityPictureTableViewCell
 
 @synthesize imgvAttach = _imgvAttach, urlForAttachment = _urlForAttachment, lbFileName = _lbFileName;
@@ -103,9 +106,8 @@
                                                    NSParagraphStyleAttributeName: style
                                                    }
                                          context:nil].size;
-    CGRect rect = self.lbName.frame;
-    rect.size.height = theSize.height + 5;
-    self.lbName.frame = rect;
+    CGRect nameFrame = self.lbName.frame;
+    nameFrame.size.height = ceil(theSize.height + 5);
     
     self.lbName.text = title;
     
@@ -190,9 +192,10 @@
     if (heigthForTTLabel > EXO_MAX_HEIGHT){
         heigthForTTLabel = EXO_MAX_HEIGHT;
     }
+    
     CGRect htmlMessageFrame = self.htmlMessage.frame;
-    htmlMessageFrame.origin.x =  self.lbName.frame.origin.x + 55;
-    htmlMessageFrame.origin.y =  self.lbName.frame.origin.y + self.lbName.frame.size.height+5;
+    htmlMessageFrame.origin.x =  LEFT_PADDING;
+    htmlMessageFrame.origin.y =  nameFrame.origin.y + nameFrame.size.height + LINE_DEFAULT_PADDING;
     htmlMessageFrame.size.width =  width;
     htmlMessageFrame.size.height = heigthForTTLabel+5;
     
@@ -205,25 +208,25 @@
     }
     
     CGRect lbFileNameFrame   = _lbFileName.frame;
-    lbFileNameFrame.origin.x = self.lbName.frame.origin.x;
+    lbFileNameFrame.origin.x = nameFrame.origin.x;
     lbFileNameFrame.origin.y = cellHeight - 40 - nameFileLabelSize.height;
     lbFileNameFrame.size.width = width;
     lbFileNameFrame.size.height = nameFileLabelSize.height;
     
     CGRect imageFrame = _imgvAttach.frame;
     
-    imageFrame.origin.x = self.lbName.frame.origin.x;
-    imageFrame.origin.y = htmlMessageFrame.origin.y + htmlMessageFrame.size.height+5;
+    imageFrame.origin.x = nameFrame.origin.x;
+    imageFrame.origin.y = htmlMessageFrame.origin.y + htmlMessageFrame.size.height+LINE_DEFAULT_PADDING;
     imageFrame.size.width = width;
-    imageFrame.size.height = lbFileNameFrame.origin.y - 5 - imageFrame.origin.y;
+    imageFrame.size.height = lbFileNameFrame.origin.y - LINE_DEFAULT_PADDING - imageFrame.origin.y;
     
     
     dispatch_async(dispatch_get_main_queue(),^(void){
+        [self.lbName setFrame:nameFrame];
         [self.htmlMessage setFrame:htmlMessageFrame];
         [self.imgvAttach setFrame:imageFrame];
         [self.lbFileName setFrame:lbFileNameFrame];
     });
-
     
 }
 
