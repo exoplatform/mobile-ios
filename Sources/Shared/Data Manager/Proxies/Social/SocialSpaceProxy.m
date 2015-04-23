@@ -45,6 +45,9 @@
 
 -(void) getIdentifyOfSpace:(SocialSpace *)space {
     
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    
     RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
     [mapping mapKeyPathsToAttributes:
@@ -52,7 +55,7 @@
      nil];
     
     NSString * path = [NSString stringWithFormat:@"private/api/social/v1-alpha3/portal/identity/space/%@.json", space.name];
-    
+    path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [manager loadObjectsAtResourcePath:path objectMapping:mapping delegate:self];
 }
 
