@@ -42,6 +42,8 @@
 @synthesize likeViewCell = _likeViewCell;
 
 - (void)dealloc {
+   [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
+
     [_noCommentCell release];
     [_likeViewCell release];
     [super dealloc];

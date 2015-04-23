@@ -46,8 +46,7 @@
 
 - (void)dealloc
 {
-//    [_actionsViewController release];
-//    _actionsViewController = nil;
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
     [super dealloc];
 }
 

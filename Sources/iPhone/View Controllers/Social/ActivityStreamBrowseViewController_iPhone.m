@@ -70,7 +70,10 @@
 }
 
 
-
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
+    [super dealloc];
+}
 
 - (void)postACommentOnActivity:(NSString *)activity {
     MessageComposerViewController_iPhone* messageComposerViewController = [[MessageComposerViewController_iPhone alloc] initWithNibName:@"MessageComposerViewController_iPhone" bundle:nil];
