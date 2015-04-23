@@ -543,11 +543,12 @@
     if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
         if (_socialSpaceProxy.mySpaces && _socialSpaceProxy.mySpaces.count>0){
             selectedSpace.spaceId = ((SocialSpace*)_socialSpaceProxy.mySpaces[0]).spaceId;
+            [self.spacesTableView reloadData];
         }
     } else {
         if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
             [delegate messageComposerDidSendData];
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
 
     }
@@ -708,6 +709,10 @@
 
     cell.prefixLabel.text = [NSString stringWithFormat:@"%@:",Localize(@"To")];
     cell.spaceName.textColor = [UIColor colorWithRed:0.0 green:122.0/255 blue:250.0/255 alpha:1.0];
+
+    if (selectedSpace && !selectedSpace.spaceId) {
+        cell.spaceName.textColor = [UIColor redColor];
+    }
 
     [cell setSpace:selectedSpace];
     
