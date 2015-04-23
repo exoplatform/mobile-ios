@@ -429,6 +429,11 @@
 
 "PostActivityTo" = "Post activity to";
 
-"No space found" = "No space found";
+"You didn't join any space" = "You didn't join any space";
+
+"CannotLoadSpace" = "Unable to load information about your spaces";
+
+"Loading spaces" = "Loading spaces ...";
 
 "To" = "To";
+

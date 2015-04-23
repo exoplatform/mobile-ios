@@ -165,8 +165,6 @@
      */
     [self.spacesTableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
     
-    _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
-    _socialSpaceProxy.delegate = self;
     
     selectedSpace = nil;
     
@@ -733,6 +731,10 @@
     selectedSpace = space;
     if (space){
         [self displayHudLoader];
+        if (!_socialSpaceProxy){
+            _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
+            _socialSpaceProxy.delegate = self;
+        }
         [_socialSpaceProxy getIdentifyOfSpace:space];
 
     }

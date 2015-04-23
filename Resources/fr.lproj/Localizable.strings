@@ -428,6 +428,10 @@
 
 "PostActivityTo" = "Envoyer à";
 
-"No space found" = "Aucun d'espaces sont trouvés";
+"Loading spaces" = "Chargement vos espaces ...";
+
+"You didn't join any space" = "Vous avez aucun espace";
+
+"CannotLoadSpace" = "Erreur en chargement vos espaces";
 
 "To" = "À";

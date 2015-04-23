@@ -24,6 +24,8 @@
     NSArray * _mySpaces;
 }
 @property (nonatomic, retain) NSArray * mySpaces;
+@property (nonatomic, retain) NSString * headerTitle;
+
 @end
 
 @implementation SpaceSelectionViewController
@@ -37,7 +39,8 @@
     _socialSpaceProxy.delegate = self;
     [self displayHUDLoaderWithMessage:Localize(@"Loading")];
     [_socialSpaceProxy getMySocialSpaces];
-
+    _headerTitle = Localize(@"Loading spaces");
+    
     self.navigationItem.title = Localize(@"PostActivityTo");
     [self.tableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
 }
@@ -49,7 +52,8 @@
 }
 -(void) dealloc {
     _socialSpaceProxy = nil;
-    _mySpaces = nil;    
+    _mySpaces = nil;
+    _headerTitle = nil;
     [super dealloc];
 }
 #pragma mark - Table view data source
@@ -68,12 +72,7 @@
 }
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        if (_mySpaces && _mySpaces.count>0){
-            return Localize(@"My Spaces");
-        } else {
-            return Localize(@"No space found");
-        }
-
+        return _headerTitle;
     }
     return @"";
 }
@@ -108,10 +107,28 @@
 -(void) proxyDidFinishLoading:(SocialProxy *)proxy {
     [self hideLoaderImmediately:YES];
     _mySpaces = _socialSpaceProxy.mySpaces;
+    if (_mySpaces.count >0){
+        _headerTitle = Localize(@"My spaces");
+    } else {
+        _headerTitle = Localize(@"You didn't join any space");
+    }
     [self.tableView reloadData];
 }
 -(void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {
     [self hideLoaderImmediately:NO];
+    NSString * alertMessage = Localize(@"CannotLoadSpace");
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
+    
+    [alertView show];
+
+}
+
+
+#pragma mark - UIAlertViewDelegate method
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //      Remove the loader
+    [self hideLoader:NO];
 }
 
 @end
