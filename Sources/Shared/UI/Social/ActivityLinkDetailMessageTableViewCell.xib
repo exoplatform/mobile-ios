@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<int key="IBDocument.SystemTarget">1792</int>
+		<string key="IBDocument.SystemVersion">14D136</string>
+		<string key="IBDocument.InterfaceBuilderVersion">6751</string>
+		<string key="IBDocument.AppKitVersion">1347.57</string>
+		<string key="IBDocument.HIToolboxVersion">758.70</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1181</string>
+			<string key="NS.object.0">6736</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBUIWebView</string>
-			<string>IBUITableViewCell</string>
+			<string>IBProxyObject</string>
 			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
-			<string>IBProxyObject</string>
+			<string>IBUITableViewCell</string>
+			<string>IBUIWebView</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -58,7 +58,7 @@
 							<object class="IBUIImageView" id="917447928">
 								<reference key="NSNextResponder" ref="854945432"/>
 								<int key="NSvFlags">288</int>
-								<string key="NSFrame">{{130, 57}, {80, 80}}</string>
+								<string key="NSFrame">{{130, 71}, {80, 48}}</string>
 								<reference key="NSSuperview" ref="854945432"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="25562674"/>
@@ -112,6 +112,8 @@
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
 								</object>
+								<bool key="useAutomaticPreferredMaxLayoutWidth">YES</bool>
+								<double key="preferredMaxLayoutWidth">237</double>
 							</object>
 							<object class="IBUILabel" id="231458852">
 								<reference key="NSNextResponder" ref="854945432"/>
@@ -119,7 +121,6 @@
 								<string key="NSFrame">{{86, 161}, {206, 24}}</string>
 								<reference key="NSSuperview" ref="854945432"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="693510399">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -149,6 +150,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+								<bool key="useAutomaticPreferredMaxLayoutWidth">YES</bool>
 							</object>
 							<object class="IBUIWebView" id="695024165">
 								<reference key="NSNextResponder" ref="854945432"/>
@@ -205,7 +207,7 @@
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
+			<array key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">lbDate</string>
@@ -406,7 +408,7 @@
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ActivityDetailMessageTableViewCell.h</string>
+						<string key="minorKey">Sources/Shared/UI/Social/ActivityDetailMessageTableViewCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -414,7 +416,7 @@
 					<string key="superclassName">ActivityDetailMessageTableViewCell</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ActivityLinkDetailMessageTableViewCell.h</string>
+						<string key="minorKey">Sources/Shared/UI/Social/ActivityLinkDetailMessageTableViewCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -422,7 +424,7 @@
 					<string key="superclassName">EGOImageView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/AvatarView.h</string>
+						<string key="minorKey">Sources/Shared/UI/AvatarView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -430,16 +432,17 @@
 					<string key="superclassName">UIImageView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/EGOImageView.h</string>
+						<string key="minorKey">ThirdParty/EGOImageLoading/EGOImageView/EGOImageView.h</string>
 					</object>
 				</object>
 			</array>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1296" key="NS.object.0"/>
+		<bool key="IBDocument.previouslyAttemptedUpgradeToXcode5">NO</bool>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
+			<integer value="4600" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
@@ -447,6 +450,5 @@
 			<string key="ActivityTypeNormal.png">{20, 20}</string>
 			<string key="default-avatar.png">{59, 59}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>
