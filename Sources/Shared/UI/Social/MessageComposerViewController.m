@@ -337,9 +337,8 @@
     
     if (selectedSpace && (!selectedSpace.spaceId ||selectedSpace.spaceId.length ==0)){
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"CannotLoadSpaceID") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"CannotLoadSpaceID") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil] autorelease];
         [alert show];
-        [alert release];
         return;
     }
     
@@ -405,7 +404,7 @@
     else
     {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"NoMessageComment") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"NoMessageComment") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil] ;
         [alert show];
         
         if(_isPostMessage)
@@ -582,7 +581,6 @@
         UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
         
         [alertView show];
-        //    [alertView release];
 
     }
 }
@@ -740,7 +738,6 @@
 -(void) spaceSelection:(SpaceSelectionViewController *)spaceSelection didSelectSpace:(SocialSpace *)space {
     selectedSpace = space;
     if (space){
-//        [self displayHudLoader];
         if (!self.socialSpaceProxy){
             self.socialSpaceProxy = [[SocialSpaceProxy alloc] init];
             self.socialSpaceProxy.delegate = self;
