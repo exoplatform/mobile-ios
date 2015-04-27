@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2003-2014 eXo Platform SAS.
+// Copyright (C) 2003-2015 eXo Platform SAS.
 //
 // This is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
@@ -17,17 +17,14 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
-#import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
-#import "SocialProxy.h"
+
+#import <UIKit/UIKit.h>
+#import "EGOImageView.h"
 #import "SocialSpace.h"
-@interface SocialPostActivity : SocialProxy {
-    
-    NSString* _text;
-}
-
-@property (nonatomic,copy) NSString* text;
-
--(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName toSpace:(SocialSpace *) space;
+@interface SpaceTableViewCell : UITableViewCell <EGOImageViewDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *prefixLabel;
+@property (retain, nonatomic) IBOutlet EGOImageView *spaceAvatar;
+@property (retain, nonatomic) IBOutlet UILabel *spaceName;
+-(void) setSpace:(SocialSpace*) space;
 
 @end

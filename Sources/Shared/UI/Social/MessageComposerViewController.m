@@ -25,6 +25,7 @@
 #import "FilesProxy.h"
 #import "defines.h"
 #import "LanguageHelper.h"
+#import "SpaceTableViewCell.h"
 
 // Horizontal margin to subviews. 
 #define kHorizontalMargin 10.0
@@ -43,12 +44,14 @@
     // Keep previous status bar style as the image picker changed it when displayed.
     UIStatusBarStyle _previousStatusBarStyle;
     BOOL _previousStatusBarHidden;
+    SocialSpace * selectedSpace;
 }
 
 @property (nonatomic, readonly) UIButton *attPhotoButton;
 @property(nonatomic, readonly) UIImageView *photoFrameView;
 @property (nonatomic, retain) SocialPostActivity *postActivityProxy;
 @property (nonatomic, retain) SocialPostCommentProxy *postCommentProxy;
+@property (nonatomic, retain) SocialSpaceProxy * socialSpaceProxy;
 
 - (UIImagePickerController *)getPicker:(UIImagePickerControllerSourceType)sourceType;
 
@@ -58,7 +61,7 @@
 @implementation MessageComposerViewController
 
 @synthesize isPostMessage=_isPostMessage, strActivityID=_strActivityID, delegate, tblvActivityDetail=_tblvActivityDetail;
-@synthesize _popoverPhotoLibraryController, btnSend, _btnCancel;
+@synthesize _popoverPhotoLibraryController;
 @synthesize btnAttachPhoto = _btnAttachPhoto;
 @synthesize txtMessage = _txtMessage;
 @synthesize attPhotoView = _attPhotoView;
@@ -66,6 +69,7 @@
 @synthesize attPhotoButton = _attPhotoButton;
 @synthesize postActivityProxy = _postActivityProxy;
 @synthesize postCommentProxy = _postCommentProxy;
+@synthesize socialSpaceProxy = _socialSpaceProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,13 +85,14 @@
     [_postCommentProxy release];
     [_strActivityID release];
     [_tblvActivityDetail release];
-    [btnSend release];
-    [_btnCancel release];
     [_btnAttachPhoto release];
     [_txtMessage release];
     [_attPhotoView release];
     [_photoFrameView release];
     [_attPhotoButton release];
+    [_spacesTableView release];
+    [_socialSpaceProxy release];
+    if (selectedSpace) [selectedSpace release];
     [super dealloc];
 }
 
@@ -159,6 +164,11 @@
     /*
      ######
      */
+    [self.spacesTableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
+    
+    
+    selectedSpace = nil;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,7 +176,7 @@
         // For iOS version < 5.0, the subviews are rearranged before appearing phase. 
         [self reArrangeSubViews];        
     }
-
+    [self.spacesTableView reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -325,6 +335,13 @@
 
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    if (selectedSpace && (!selectedSpace.spaceId ||selectedSpace.spaceId.length ==0)){
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"CannotLoadSpaceID") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil] autorelease];
+        [alert show];
+        return;
+    }
+    
     if([_txtvMessageComposer.text length] > 0)
     {
         NSString* fileAttachName = nil;
@@ -371,7 +388,7 @@
             self.postActivityProxy = [[[SocialPostActivity alloc] init] autorelease];
             self.postActivityProxy.delegate = self;
 
-            [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName];            
+            [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName toSpace:selectedSpace];
         }
         else
         {
@@ -387,7 +404,7 @@
     else
     {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"NoMessageComment") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"NoMessageComment") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil] ;
         [alert show];
         
         if(_isPostMessage)
@@ -527,29 +544,45 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    [self hideLoaderImmediately:YES];
-    
-    if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
-        [delegate messageComposerDidSendData];
-        [self dismissModalViewControllerAnimated:YES];    
+
+    if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
+        if (_socialSpaceProxy.mySpaces && _socialSpaceProxy.mySpaces.count>0){
+            selectedSpace.spaceId = ((SocialSpace*)_socialSpaceProxy.mySpaces[0]).spaceId;
+            [self.spacesTableView reloadData];
+        }
+    } else {
+        [self hideLoaderImmediately:YES];
+        if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
+            [delegate messageComposerDidSendData];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+
     }
+    
     
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
 {
-    [self hideLoaderImmediately:NO];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    NSString *alertMessage = nil;
-    if(_isPostMessage)
-        alertMessage = Localize(@"PostingActionCannotBeCompleted");    
-    else
-        alertMessage = Localize(@"CommentActionCannotBeCompleted");
-    
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
-    
-    [alertView show];
-    //    [alertView release];
+
+    if (![proxy isKindOfClass:[SocialSpaceProxy class]]){
+
+        NSString *alertMessage = nil;
+
+        [self hideLoaderImmediately:NO];
+
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+
+        if(_isPostMessage)
+            alertMessage = Localize(@"PostingActionCannotBeCompleted");
+        else
+            alertMessage = Localize(@"CommentActionCannotBeCompleted");
+        
+        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
+        
+        [alertView show];
+
+    }
 }
 
 -(void)cancelDisplayAttachedPhoto {
@@ -661,6 +694,57 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark - Table View Delegate & DataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+-(CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
+-(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString * reuseIdentifier = @"SpaceTableViewCell";
+    SpaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+
+    cell.prefixLabel.text = [NSString stringWithFormat:@"%@:",Localize(@"To")];
+    cell.spaceName.textColor = [UIColor colorWithRed:0.0 green:122.0/255 blue:250.0/255 alpha:1.0];
+
+    if (selectedSpace && !selectedSpace.spaceId) {
+        cell.spaceName.textColor = [UIColor redColor];
+    }
+
+    [cell setSpace:selectedSpace];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SpaceSelectionViewController  * spaceSelectionVC = [[[SpaceSelectionViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    spaceSelectionVC.delegate = self;
+    [self.navigationController pushViewController:spaceSelectionVC animated:YES];
+    
+}
+
+#pragma mark - Space Selection Delegate 
+
+-(void) spaceSelection:(SpaceSelectionViewController *)spaceSelection didSelectSpace:(SocialSpace *)space {
+    selectedSpace = space;
+    if (space){
+        if (!self.socialSpaceProxy){
+            self.socialSpaceProxy = [[SocialSpaceProxy alloc] init];
+            self.socialSpaceProxy.delegate = self;
+        }
+        [self.socialSpaceProxy getIdentifyOfSpace:space];
+
+    }
 }
 
 @end

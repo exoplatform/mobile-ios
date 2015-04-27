@@ -21,6 +21,9 @@
 #import "SocialProxy.h"
 #import "eXoViewController.h"
 #import "ImagePreviewViewController.h"
+#import "LanguageHelper.h"
+#import "SpaceSelectionViewController.h"
+#import "SocialSpaceProxy.h"
 
 @class ActivityStreamBrowseViewController;
 
@@ -28,10 +31,9 @@
 @protocol SocialMessageComposerDelegate;
 
 
-@interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate>
+@interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, SpaceSelectionDelegate, SocialProxyDelegate>
 {
-    IBOutlet UIButton*                  _btnCancel;
-    IBOutlet UIButton*                  btnSend;
+
     IBOutlet UIButton*                  _btnAttach;
     IBOutlet UITextView*                _txtvMessageComposer;
     IBOutlet UIImageView*               _imgvBackground;
@@ -49,8 +51,7 @@
 }
 
 @property BOOL isPostMessage;
-@property(nonatomic, retain) UIButton* _btnCancel;
-@property(nonatomic, retain) UIButton* btnSend;
+
 @property(nonatomic, retain) NSString* strActivityID;
 @property(nonatomic, retain) UIButton *btnAttachPhoto;
 @property(nonatomic, retain) UITextView *txtMessage;
@@ -72,6 +73,9 @@
 - (void)deleteAttachedPhoto;
 - (UIImage *)resizeImage:(UIImage *)image;
 - (void)reArrangeSubViews;
+
+@property (retain, nonatomic) IBOutlet UITableView *spacesTableView;
+
 
 @end
 

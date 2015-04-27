@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2003-2014 eXo Platform SAS.
+// Copyright (C) 2003-2015 eXo Platform SAS.
 //
 // This is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
@@ -17,17 +17,26 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
+
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
-#import "SocialProxy.h"
-#import "SocialSpace.h"
-@interface SocialPostActivity : SocialProxy {
-    
-    NSString* _text;
+
+@interface SocialSpace : NSObject {
+    NSString * _avatarUrl;
+    NSString * _groupId;
+    NSString * _spaceUrl;
+    NSString * _name;
+    NSString * _displayName;
+    NSString * _url;
+    NSString * _spaceId;
+
 }
 
-@property (nonatomic,copy) NSString* text;
-
--(void)postActivity:(NSString *)message fileURL:(NSString*)fileURL fileName:(NSString*)fileName toSpace:(SocialSpace *) space;
+@property (nonatomic, retain) NSString * avatarUrl;
+@property (nonatomic, retain) NSString * groupId;
+@property (nonatomic, retain) NSString * spaceUrl;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * displayName;
+@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString * spaceId;
 
 @end
