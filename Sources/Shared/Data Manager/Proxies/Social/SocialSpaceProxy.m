@@ -48,9 +48,6 @@
 }
 
 -(void) getIdentifyOfSpace:(SocialSpace *)space {
-//    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
-    
     RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
     [mapping mapKeyPathsToAttributes:
