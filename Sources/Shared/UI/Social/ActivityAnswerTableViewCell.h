@@ -22,12 +22,9 @@
 
 @interface ActivityAnswerTableViewCell : ActivityBasicTableViewCell
 {
-    TTStyledTextLabel*                      _lbMessage;
-    TTStyledTextLabel*                      _htmlName;
-    TTStyledTextLabel*                      _htmlTitle;
+    UILabel*                       _lbTitle;
 }
 
-@property (retain, nonatomic) TTStyledTextLabel* lbMessage;
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
-@property (retain, nonatomic) TTStyledTextLabel* htmlTitle;
+@property (retain, nonatomic) IBOutlet UILabel *lbTitle;
+
 @end

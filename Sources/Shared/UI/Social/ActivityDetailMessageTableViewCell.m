@@ -30,8 +30,6 @@
 
 @synthesize socialActivity = _socialActivity;
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
-@synthesize webViewForContent = _webViewForContent;
-@synthesize webViewComment =  _webViewComment;
 @synthesize imgType = _imgType;
 @synthesize imgvAttach = _imgvAttach;
 
@@ -72,10 +70,6 @@
     self.lbMessage = nil;
     self.lbDate = nil;
     self.lbName = nil;
-    self.webViewForContent.delegate = nil;
-    self.webViewForContent = nil;
-    self.webViewComment.delegate = nil;
-    self.webViewComment = nil;
     self.imgvAvatar = nil;
     [super dealloc];
 }
@@ -85,15 +79,7 @@
 }
 
 - (void)updateSizeToFitSubViews {
-    //Set the position of lbMessage
-    CGRect tmpFrame = self.webViewForContent.frame;
-    tmpFrame.origin.y = self.lbName.frame.origin.y + self.lbName.frame.size.height + kPadding;
-    self.webViewForContent.frame = tmpFrame;
-    
-    CGRect myFrame = self.frame;
-    myFrame.size.height = self.webViewForContent.frame.origin.y + self.webViewForContent.frame.size.height + kPadding + self.lbDate.bounds.size.height + kBottomMargin;
-    
-    self.frame = myFrame;
+
 }
 
 #pragma mark - Activity Cell methods 
@@ -110,38 +96,29 @@
 - (void)configureCell {
     [self customizeAvatarDecorations];
     
-    
-    //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    [(self.webViewForContent.subviews)[0] setScrollEnabled:NO];
-    [self.webViewForContent setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[self.webViewForContent subviews][0];
-    scrollView.bounces = NO;
-    [scrollView flashScrollIndicators];
-    scrollView.scrollsToTop = YES;
-    [self.webViewForContent setOpaque:NO];
 }
 
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     self.socialActivity = socialActivityDetail;
-    self.lbMessage.text = @"";
     self.lbName.text = self.socialActivity.posterIdentity.fullName;
     self.lbDate.text = socialActivityDetail.postedTimeInWords;
     self.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
+    self.lbMessage.text=@"";
+
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DEFAULT:
         {
-            NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialActivityDetail.title ? socialActivityDetail.title : @""];
-            [self.webViewForContent loadHTMLString:htmlStr ? htmlStr :@""
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
-            
-            [self updateSizeToFitSubViews];
-            
+            if (socialActivityDetail.attributedMessage) {
+                self.lbMessage.attributedText = socialActivityDetail.attributedMessage;
+            } else {
+                self.lbMessage.text =socialActivityDetail.title ?socialActivityDetail.title:@"";
+            }
         }
             break;
     }
+    
 }
 
 #pragma mark - change language management

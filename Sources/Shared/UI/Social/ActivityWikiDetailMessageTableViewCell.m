@@ -25,8 +25,6 @@
 
 @implementation ActivityWikiDetailMessageTableViewCell
 
-@synthesize htmlMessage = _htmlMessage;
-@synthesize htmlName = _htmlName;
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
     CGRect tmpFrame = CGRectZero;
@@ -37,30 +35,10 @@
         tmpFrame = CGRectMake(67, 0, WIDTH_FOR_CONTENT_IPHONE, 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
-    
-    _htmlName = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlName.userInteractionEnabled = NO;
-    _htmlName.backgroundColor = [UIColor clearColor];
-    _htmlName.font = [UIFont systemFontOfSize:13.0];
-    _htmlName.textColor = [UIColor grayColor];
-    [self.contentView addSubview:_htmlName];
-    
-    _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlMessage.userInteractionEnabled = NO;
-    _htmlMessage.backgroundColor = [UIColor clearColor];
-    _htmlMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlMessage.textColor = [UIColor grayColor];
-    [self.contentView addSubview:_htmlMessage];
 }
 
 - (void)updateSizeToFitSubViews {
     // Content
-    CGRect frame = _htmlMessage.frame;
-    frame.origin.y = self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + 5;
-    _htmlMessage.frame = frame;
-    frame = self.frame;
-    frame.size.height = self.htmlMessage.frame.origin.y + self.htmlMessage.frame.size.height + self.lbDate.bounds.size.height + kBottomMargin;
-    self.frame = frame;
 }
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
@@ -70,60 +48,40 @@
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
-    
-    NSString *htmlStr = nil;
-    NSDictionary *_templateParams = self.socialActivity.templateParams;
-    switch (self.socialActivity.activityType) {
-        case ACTIVITY_WIKI_ADD_PAGE:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"CreateWiki")];         
+    NSString * name = socialActivityDetail.posterIdentity.fullName;
+    switch (socialActivityDetail.activityType) {
+        case ACTIVITY_WIKI_MODIFY_PAGE:{
+            name =  [NSString stringWithFormat:@"%@%@ %@",
+                     socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                     Localize(@"EditWiki")];
+            
         }
             break;
-        case ACTIVITY_WIKI_MODIFY_PAGE:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"EditWiki")];
+        case ACTIVITY_WIKI_ADD_PAGE:
+        {
+            name =  [NSString stringWithFormat:@"%@%@ %@",
+                     socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                     Localize(@"CreateWiki")];
         }
+            
+            break;
+        default:
             break;
     }
-    // Name
-    _htmlName.html = htmlStr;
-    [_htmlName sizeToFit];
+    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
     
-    CGRect tmpFrame = _htmlName.frame;
-    tmpFrame.origin.y = 5;
-    _htmlName.frame = tmpFrame;
+    NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
+    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    _lbName.attributedText = attributedName;
     
-    // Title
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize theSize = [[[_templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText]
-                        boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                     options:nil
-                                  attributes:@{
-                                               NSFontAttributeName: kFontForTitle,
-                                               NSParagraphStyleAttributeName: style
-                                               }
-                                     context:nil].size;
+    _lbTitle.text =[[[socialActivityDetail.templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
-    [self.webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#F5F5F5;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></body></html>", [_templateParams valueForKey:@"page_url"],[_templateParams valueForKey:@"page_name"]]
-                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]];
+    _lbMessage.text =  [[[socialActivityDetail.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
 
-    self.webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    //Set the position of web
-    tmpFrame = self.webViewForContent.frame;
-    tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y + 5;
-    tmpFrame.size.height = theSize.height + 10;
-    self.webViewForContent.frame = tmpFrame;
-    
-    _htmlMessage.html = [NSString stringWithFormat:@"<p>%@</p>", [[[_templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
-    [_htmlMessage sizeToFit];
-    [self.webViewForContent sizeToFit];
-    
-    [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {
-    [_htmlMessage release];
-    _htmlMessage = nil;
-    
+    [_lbTitle release];
     [super dealloc];
 }
 

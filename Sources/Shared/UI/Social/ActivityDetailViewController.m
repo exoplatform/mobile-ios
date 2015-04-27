@@ -152,6 +152,16 @@
 	}
     // Observe the change language notif to update the labels
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityPictureDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityPictureDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityLinkDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityLinkDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityWikiDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityWikiDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityForumDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityForumDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityAnswerDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityAnswerDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityCalendarDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityCalendarDetailMessageTableViewCell"];
+
+//ActivityAnswerDetailMessageTableViewCell
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -201,7 +211,7 @@
     int n = 0;
     if (indexPath.section == 0) 
     {
-        return self.activityDetailCell.bounds.size.height;
+        return [self.activityDetailCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
     }
     
     if (indexPath.section == 1) 
@@ -252,13 +262,10 @@
         switch (self.socialActivity.activityType) {
             case ACTIVITY_DOC:
             case ACTIVITY_CONTENTS_SPACE: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityPictureDetailMessageTableViewCell *)nib[0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                
+                NSString * identCell = @"ActivityPictureDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
+
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
                 [_activityDetailCell.imgvAttach addGestureRecognizer:tapGesture];
                 [tapGesture release];
@@ -267,80 +274,56 @@
             }
             case ACTIVITY_WIKI_ADD_PAGE:
             case ACTIVITY_WIKI_MODIFY_PAGE: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityWikiDetailMessageTableViewCell *)nib[0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                NSString * identCell = @"ActivityWikiDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break;
             }
             case ACTIVITY_FORUM_CREATE_POST: 
             case ACTIVITY_FORUM_CREATE_TOPIC:
             case ACTIVITY_FORUM_UPDATE_POST:
             case ACTIVITY_FORUM_UPDATE_TOPIC: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityForumDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityForumDetailMessageTableViewCell *)nib[0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                NSString * identCell = @"ActivityForumDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break;
             }
             case ACTIVITY_CALENDAR_UPDATE_TASK: 
             case ACTIVITY_CALENDAR_ADD_TASK:
             case ACTIVITY_CALENDAR_UPDATE_EVENT:
             case ACTIVITY_CALENDAR_ADD_EVENT: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityCalendarDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityCalendarDetailMessageTableViewCell *)nib[0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                NSString * identCell = @"ActivityCalendarDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break; 
             }
             case ACTIVITY_ANSWER_QUESTION:
             case ACTIVITY_ANSWER_ADD_QUESTION:
             case ACTIVITY_ANSWER_UPDATE_QUESTION: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityAnswerDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityAnswerDetailMessageTableViewCell *)nib[0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;            
+                NSString * identCell = @"ActivityAnswerDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break;
             }
             case ACTIVITY_LINK: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityLinkDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityLinkDetailMessageTableViewCell *)nib[0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
+                NSString * identCell = @"ActivityLinkDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
-                _activityDetailCell.webViewComment.delegate = self;
+                UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
+                [_activityDetailCell addGestureRecognizer:tapGesture];
+                [tapGesture release];
+
                 break;
             }
             default: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityDetailMessageTableViewCell *)nib[0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                NSString * identCell = @"ActivityDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break;
             }
         }
         _activityDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _activityDetailCell.imgType.image = [UIImage imageNamed:_iconType];
         [_activityDetailCell setSocialActivityDetail:self.socialActivity];
+        [_activityDetailCell setNeedsLayout];
+        [_activityDetailCell layoutIfNeeded];
         [_activityDetailCell retain];
+
     }
     
     return _activityDetailCell;
@@ -497,19 +480,6 @@
 
 #pragma mark - UIWebViewDelegate methods 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (webView == self.activityDetailCell.webViewForContent || webView == self.activityDetailCell.webViewComment) {
-        // update the webview to display all the content 
-        CGRect frame = webView.frame;
-        frame.size.height = 1;
-        webView.frame = frame;
-        CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-        frame.size = fittingSize;
-        frame.size.height += kPadding;
-        webView.frame = frame;
-        
-        [self.activityDetailCell updateSizeToFitSubViews];
-        [_tblvActivityDetail reloadData];
-    }
 }
 
 

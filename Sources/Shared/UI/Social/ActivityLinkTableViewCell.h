@@ -21,19 +21,18 @@
 #import "ActivityBasicTableViewCell.h"
 
 @interface ActivityLinkTableViewCell : ActivityBasicTableViewCell {
- 
+
+    EGOImageView*          _imgvAttach;
     CGFloat width;
 }
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightConstraint;
 
-// An image attached with the linked page
-@property (retain) IBOutlet   EGOImageView*      imgvAttach;
-// The activity message
-@property (retain, nonatomic) TTStyledTextLabel* htmlActivityMessage;
-// The title of the linked page
-@property (retain, nonatomic) TTStyledTextLabel* htmlLinkTitle;
-// The text of the linked page
-@property (retain, nonatomic) TTStyledTextLabel* htmlLinkDescription;
-// The URL of the link
-@property (retain, nonatomic) TTStyledTextLabel* htmlLinkMessage;
+@property (retain) IBOutlet EGOImageView* imgvAttach;
+
+@property (retain, nonatomic) IBOutlet UILabel *htmlActivityMessage;
+@property (retain, nonatomic) IBOutlet UILabel *htmlLinkTitle;
+@property (retain, nonatomic) IBOutlet UILabel *htmlLinkDescription;
+@property (retain, nonatomic) IBOutlet UILabel *htmlLinkMessage;
+
 
 @end

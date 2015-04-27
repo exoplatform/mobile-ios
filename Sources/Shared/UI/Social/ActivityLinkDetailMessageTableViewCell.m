@@ -37,8 +37,8 @@
 
 @synthesize htmlLinkTitle = _htmlLinkTitle;
 @synthesize htmlLinkMessage = _htmlLinkMessage;
-@synthesize htmlActivityMessage = _htmlActivityMessage;
-
+@synthesize htmlDescriptionMessage = _htmlDescriptionMessage;
+@synthesize imageViewHeightConstaint = _imageViewHeightConstaint;
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
     hasImage = NO;
@@ -52,47 +52,15 @@
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
         
-    //_webViewComment.contentMode = UIViewContentModeScaleAspectFit;
-    [(self.webViewComment.subviews)[0] setScrollEnabled:NO];
-    [self.webViewComment setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[self.webViewComment subviews][0];
-    scrollView.bounces = NO;
-    [scrollView flashScrollIndicators];
-    self.webViewComment.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeAddress;
-
-    [self.webViewComment setOpaque:NO];
 }
 
 - (void)updateSizeToFitSubViews {
-    
-    CGRect myFrame = self.frame;
-    myFrame.size.height = self.lbName.frame.size.height + self.webViewForContent.frame.size.height + self.webViewComment.frame.size.height + 55 + 5*kBottomMargin;
-    if (hasImage) {
-     
-        CGRect imgFrame = self.imgvAttach.frame;
-        imgFrame.origin.x = 63;
-        imgFrame.origin.y = self.webViewForContent.frame.origin.y + self.webViewForContent.frame.size.height+  kBottomMargin;
-        imgFrame.size.width = width;
-        imgFrame.size.height = width*9/16;
-        myFrame.size.height += imgFrame.size.height;
-        
-        [self.imgvAttach setFrame:imgFrame];
-        
-        CGRect webCommentFrame = self.webViewComment.frame;
-        webCommentFrame.origin.y = imgFrame.origin.y + imgFrame.size.height +kBottomMargin;
-        [self.webViewComment setFrame:webCommentFrame];
-        
-    }
-    self.frame = myFrame;
-
-    
     
 }
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     
-    // Title
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
     NSDictionary *_templateParams = self.socialActivity.templateParams;
@@ -103,99 +71,37 @@
     wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    _lbName.text = title;
     
-    CGSize theSize = [title boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                         options:NSStringDrawingUsesLineFragmentOrigin
-                                      attributes:@{
-                                                   NSFontAttributeName: kFontForTitle,
-                                                   NSParagraphStyleAttributeName: wordWrapStyle
-                                                   }
-                                         context:nil].size;
-    CGRect rect = self.lbName.frame;
-    rect.size.height = theSize.height + kBottomMargin;
-    self.lbName.frame = rect;
-    self.lbName.text = title;
-    
-    // Content
-    [self.webViewForContent loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"comment"]?[_templateParams valueForKey:@"comment"]:@""] 
-                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-     ];
-    
-    // Comment
-    [self.webViewComment loadHTMLString:
-     [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} p{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body><a href=\"%@\">%@</a></br>%@Source : %@</body></html>",[_templateParams valueForKey:@"link"],[_templateParams valueForKey:@"title"],(![[[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] isEqualToString:@""])?[NSString stringWithFormat:@"%@</br>", [[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText]]:@"",  [_templateParams valueForKey:@"link"]] 
-                            baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-     ];
-    
-    NSString *textWithoutHtml = [[_templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText];
-    
-    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                            options:NSStringDrawingUsesLineFragmentOrigin
-                                         attributes:@{
-                                                      NSFontAttributeName: kFontForMessage,
-                                                      NSParagraphStyleAttributeName: wordWrapStyle
-                                                      }
-                                            context:nil].size;
-    rect = self.webViewForContent.frame;
-    rect.origin.y =  self.lbName.frame.size.height + self.lbName.frame.origin.y;
-    rect.size.height =  ceil(theSize.height) + kBottomMargin;
-    self.webViewForContent.frame = rect;
-    
-    // Attached Image
-    hasImage = NO;
+    // comment
+
+    if (socialActivityDetail.attributedMessage){
+        _lbMessage.attributedText =  socialActivityDetail.attributedMessage;
+    } else {
+        _lbMessage.text =@"";
+    }
+
     NSURL *url = [NSURL URLWithString:[_templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
-        rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[[_templateParams valueForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        rect.origin.y = self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + kBottomMargin;
-        rect.origin.x = (width > 320)? (width/3 + 100) : (width/3 + 50);
-        self.imgvAttach.frame = rect;
         
-        hasImage = YES;
-        rect = self.webViewComment.frame;
-        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + kBottomMargin;
+        _imageViewHeightConstaint.constant = EXO_IMAGE_CELL_HEIGHT;
     } else {
-        rect = self.webViewComment.frame;
-        rect.origin.y = self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + kBottomMargin;
+        _imageViewHeightConstaint.constant = 0;
+   
     }
     
-    textWithoutHtml = [[_templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText];
-    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                            options:NSStringDrawingUsesLineFragmentOrigin
-                                         attributes:@{
-                                                      NSFontAttributeName: kFontForMessage,
-                                                      NSParagraphStyleAttributeName: wordWrapStyle
-                                                      }
-                                            context:nil].size;
-    rect.size.height = ceil(theSize.height);
-    //
-    textWithoutHtml = [[_templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText];
-    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                            options:NSStringDrawingUsesLineFragmentOrigin
-                                         attributes:@{
-                                                      NSFontAttributeName: kFontForMessage,
-                                                      NSParagraphStyleAttributeName: wordWrapStyle
-                                                      }
-                                            context:nil].size;
-    rect.size.height += ceil(theSize.height);
+    _htmlLinkTitle.text =[socialActivityDetail.templateParams valueForKey:@"title"];
+
+    _htmlDescriptionMessage.text =[socialActivityDetail.templateParams valueForKey:@"description"];
     
-    textWithoutHtml = [NSString stringWithFormat:@"Source : %@",[[_templateParams valueForKey:@"link"] stringByConvertingHTMLToPlainText]];
-    theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                            options:NSStringDrawingUsesLineFragmentOrigin
-                                         attributes:@{
-                                                      NSFontAttributeName: kFontForMessage,
-                                                      NSParagraphStyleAttributeName: wordWrapStyle
-                                                      }
-                                            context:nil].size;
-    rect.size.height += ceil(theSize.height) + kBottomMargin;
     
-    self.webViewComment.frame = rect;
-    
-    [self.webViewForContent sizeToFit];
-    [self.webViewComment sizeToFit];
-    [self updateSizeToFitSubViews];
+    NSString * linkMessage =[NSString stringWithFormat:@"Source : %@",[socialActivityDetail.templateParams valueForKey:@"link"]];
+    NSMutableAttributedString * attributedLinkMessage =  [[NSMutableAttributedString alloc] initWithString:linkMessage];
+
+    [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityDetail.templateParams valueForKey:@"link"]]];    
+    _htmlLinkMessage.attributedText = attributedLinkMessage;
 }
 
 - (void)dealloc {
@@ -205,6 +111,8 @@
     [_htmlLinkTitle release];
     _htmlLinkTitle = nil;
     
+    [_htmlDescriptionMessage release];
+    [_imageViewHeightConstaint release];
     [super dealloc];
 }
 

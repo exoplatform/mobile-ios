@@ -105,6 +105,7 @@
 }
 
 
+
 - (void)setSocialComment:(SocialComment*)socialComment
 {
     NSString* tmp = socialComment.userProfile.avatarUrl;

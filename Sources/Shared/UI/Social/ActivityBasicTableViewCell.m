@@ -23,7 +23,6 @@
 #import "SocialActivity.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "SocialUserProfile.h"
-#import "Three20/Three20.h"
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
 
@@ -31,11 +30,10 @@
     float plfVersion;
 }
 
-@synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType,
-btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg,
-socialActivytyStream = _socialActivytyStream, delegate = _delegate,
-activityType = _activityType, htmlMessage = _htmlMessage;
-
+@synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
+@synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
+@synthesize activityType = _activityType;
+@synthesize lbMessage = _lbMessage;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -92,9 +90,8 @@ activityType = _activityType, htmlMessage = _htmlMessage;
     self.imgType = nil;
     self.lbDate = nil;
     self.lbName = nil;
-    self.htmlMessage = nil;
     self.activityType = nil;
-
+    [_lbMessage release];
     [super dealloc];
 }
 
@@ -105,29 +102,21 @@ activityType = _activityType, htmlMessage = _htmlMessage;
 
 }
 
-
 - (void)configureFonts:(BOOL)highlighted {
     
     if (!highlighted) {
-        
-        self.lbName.textColor = [UIColor colorWithRed:17./255 green:94./255 blue:173./255 alpha:1.];
-        self.lbName.shadowOffset = CGSizeMake(0,1);
-        self.lbName.shadowColor = [UIColor whiteColor];
-        self.lbName.backgroundColor = [UIColor whiteColor];
-    
-        self.htmlMessage.textColor = [UIColor grayColor];
-        self.htmlMessage.backgroundColor = [UIColor whiteColor];
- 
-        self.lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
-        self.lbDate.shadowOffset = CGSizeMake(0,1);
-        self.lbDate.shadowColor = [UIColor whiteColor];
-        self.lbDate.backgroundColor = [UIColor whiteColor];
-        
+        _lbName.textColor = [UIColor colorWithRed:17./255 green:94./255 blue:173./255 alpha:1.];
+        _lbName.shadowOffset = CGSizeMake(0,1);
+        _lbName.shadowColor = [UIColor whiteColor];
+        _lbName.backgroundColor = [UIColor whiteColor];
+     
+        _lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
+        _lbDate.shadowOffset = CGSizeMake(0,1);
+        _lbDate.shadowColor = [UIColor whiteColor];
+        _lbDate.backgroundColor = [UIColor whiteColor];
     } else {
         
-        self.lbName.backgroundColor = SELECTED_CELL_BG_COLOR;
-        self.htmlMessage.textColor = [UIColor darkGrayColor];
-        self.htmlMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
+        _lbName.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         self.lbDate.textColor = [UIColor colorWithRed:130./255 green:130./255 blue:130./255 alpha:1.];
         self.lbDate.shadowOffset = CGSizeMake(0,0);
@@ -135,75 +124,6 @@ activityType = _activityType, htmlMessage = _htmlMessage;
         self.lbDate.backgroundColor = SELECTED_CELL_BG_COLOR;
         
     }
-}
-
-
-- (void)configureCellForWidth:(CGFloat)fWidth {
-    
-    [self customizeAvatarDecorations];
-    [self configureFonts:NO];
-    
-    //Add images for Background Message
-    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"]
-                         resizableImageWithCapInsets:UIEdgeInsetsMake(22, 15, 15, 15)];
-    
-    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityBrowserActivityBgSelected.png"]
-                                 resizableImageWithCapInsets:UIEdgeInsetsMake(22, 15, 15, 15)];
-    
-    self.imgvMessageBg.image = strechBg;
-    self.imgvMessageBg.highlightedImage = strechBgSelected;
-            
-    //Add images for Comment button
-    [self.btnComment setBackgroundImage:
-     [[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 20)]
-                           forState:UIControlStateNormal];
-    [self.btnComment setBackgroundImage:
-     [[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 20)]
-                           forState:UIControlStateSelected];
-    [self.btnComment setBackgroundImage:
-     [[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 20)]
-                           forState:UIControlStateHighlighted];
-    
-    //Add images for Like button
-    [self.btnLike setBackgroundImage:
-     [[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 20)]
-                        forState:UIControlStateNormal];
-    [self.btnLike setBackgroundImage:
-     [[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 20)]
-                        forState:UIControlStateSelected];
-    [self.btnLike setBackgroundImage:
-     [[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
-      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 20)]
-                        forState:UIControlStateHighlighted];
-    
-    [self configureCellForSpecificContentWithWidth:fWidth];
-}
-
-
-
-- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
-
-    CGRect tmpFrame = CGRectZero;
-    
-    if (fWidth > 320) {
-        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPAD, 21);
-    } else {
-        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
-    }
-    
-    self.htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    self.htmlMessage.userInteractionEnabled = NO;
-    self.htmlMessage.autoresizesSubviews = YES;
-    self.htmlMessage.font = [UIFont systemFontOfSize:13.0];
-    self.htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.htmlMessage.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:self.htmlMessage];
 }
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream
@@ -265,11 +185,49 @@ activityType = _activityType, htmlMessage = _htmlMessage;
     plfVersion = version;
 }
 
+-(void) backgroundConfiguration {
+    //Add images for Background Message
+    if (_imgvMessageBg.image == nil){
+        UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+        
+        UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityBrowserActivityBgSelected.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+        
+        _imgvMessageBg.image = strechBg;
+        _imgvMessageBg.highlightedImage = strechBgSelected;
+        
+        //Add images for Comment button
+        [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"]
+                                         stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                               forState:UIControlStateNormal];
+        [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                         stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                               forState:UIControlStateSelected];
+        [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                         stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                               forState:UIControlStateHighlighted];
+        
+        
+        //Add images for Like button
+        [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"]
+                                      stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                            forState:UIControlStateNormal];
+        [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                      stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                            forState:UIControlStateSelected];
+        [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                      stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                            forState:UIControlStateHighlighted];
+        
+    }
+    
+}
+
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
- 
-    self.htmlMessage.html = socialActivityStream.title;
-    self.lbName.text = [socialActivityStream.posterIdentity.fullName copy];
+
+    _lbMessage.attributedText = socialActivityStream.attributedMessage;
+    
+    _lbName.text = [socialActivityStream.posterIdentity.fullName copy];
 }
 
 @end

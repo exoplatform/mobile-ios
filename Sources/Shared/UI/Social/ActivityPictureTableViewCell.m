@@ -38,87 +38,34 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-
-        [_imgvAttach needToBeResizedForSize:CGSizeMake(45,45)];
         
     }
     return self;
 }
 
-
-- (void)configureFonts:(BOOL)highlighted {
-    
-    if (!highlighted) {
-        _lbFileName.textColor = [UIColor grayColor];
-        _lbFileName.backgroundColor = [UIColor whiteColor];
-        
-    } else {
-        _lbFileName.textColor = [UIColor darkGrayColor];
-        _lbFileName.backgroundColor = SELECTED_CELL_BG_COLOR;
-        
-    }
-    
-    [super configureFonts:highlighted];
-}
-
-- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
-    
-    CGRect tmpFrame = CGRectZero;
-    if (fWidth > 320) {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPAD, 21);
-        width = WIDTH_FOR_CONTENT_IPAD;
-    } else {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPHONE, 21);
-        width = WIDTH_FOR_CONTENT_IPHONE;
-    }
-    
-    _lbFileName.textAlignment = NSTextAlignmentCenter;
-    _lbFileName.userInteractionEnabled = NO;
-    _lbFileName.backgroundColor = [UIColor clearColor];
-    _lbFileName.font = [UIFont systemFontOfSize:14.0];
-    _lbFileName.textColor = [UIColor grayColor];
-    _lbFileName.numberOfLines = 2;
-    
-    
-    self.htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    self.htmlMessage.userInteractionEnabled = NO;
-    self.htmlMessage.font = [UIFont systemFontOfSize:14.0];
-    self.htmlMessage.textColor = [UIColor grayColor];
-    [self.contentView addSubview:self.htmlMessage];
-}
-
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
+    
     //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
-        
+    
+
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize theSize = [title boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                         options:nil
-                                      attributes:@{
-                                                   NSFontAttributeName: kFontForTitle,
-                                                   NSParagraphStyleAttributeName: style
-                                                   }
-                                         context:nil].size;
-    CGRect nameFrame = self.lbName.frame;
-    nameFrame.size.height = ceil(theSize.height + 5);
+    
+    _lbName.text = title;
     
     self.lbName.text = title;
 
    
-    NSString *html = nil;
+
     switch (socialActivityStream.activityType) {
         case ACTIVITY_DOC:{
-            html = [[[socialActivityStream.templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-            
-            self.htmlMessage.html = html?html:@"";
-            [self.htmlMessage sizeToFit];
+            NSString * message  = [[[socialActivityStream.templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+
+            self.activityMessage.text = message?message:@"";
             
             _lbFileName.text = [socialActivityStream.templateParams valueForKey:@"DOCNAME"];
 
@@ -135,27 +82,38 @@
             NSString *strURL = [NSString stringWithFormat:@"%@%@", [ApplicationPreferencesManager sharedInstance].selectedDomain, imagePath];
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
-            
-            
-            /**/
-            
+
 
         }
             break;
         case ACTIVITY_CONTENTS_SPACE:{
             
             float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+            NSString * message;
+            
             if(plfVersion >= 4.0) { // in plf 4, no state in template params.
-                html = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a>", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"]];
+                
+                message = [NSString stringWithFormat:@"%@ was created by %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"]];
+
             } else {
-                html = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a> state: %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"], [socialActivityStream.templateParams valueForKey:@"state"]];
+                message = [NSString stringWithFormat:@"%@ was created by %@ state: %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"], [socialActivityStream.templateParams valueForKey:@"state"]];
+            }
+            if (message){
+                NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];
+                
+                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"contentName"]]];
+                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
+   
+                if(plfVersion < 4.0) {
+                 [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
+                }
+                
+                self.activityMessage.attributedText = attributedMessage;
+            } else {
+                self.activityMessage.text = @"";
             }
             
-            self.htmlMessage.html = [NSString stringWithFormat:@"<p>%@</p>", html?html:@""];
-            [self.htmlMessage sizeToFit];
-            
             _lbFileName.text = @"";
-            [_lbFileName sizeToFit];
             if ([[socialActivityStream.templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
                 self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
             } else {
@@ -167,7 +125,6 @@
             NSString *strURL = [NSString stringWithFormat:@"%@/rest/thumbnailImage/large/%@", [userDefaults valueForKey:EXO_PREFERENCE_DOMAIN], [socialActivityStream.templateParams valueForKey:@"contenLink"]];
             
             _urlForAttachment = [[NSURL alloc] initWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; 
-            
 
         }
             break;
@@ -232,7 +189,6 @@
 
 
 - (void)startLoadingImageAttached {
-    //if(self.imgvAttach.imageURL == nil)
     self.imgvAttach.imageURL = self.urlForAttachment;
 }
 
@@ -245,7 +201,8 @@
 {
     [_urlForAttachment release];
     _urlForAttachment = nil;
-    
+    [_lbFileName release];
+    [_activityMessage release];
     [super dealloc];
 }
 

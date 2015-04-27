@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 #import "SocialUserProfile.h"
 #import "SocialPictureAttach.h"
-
+#import "defines.h"
 @interface SocialActivity : NSObject
 
 @property (nonatomic, retain) NSString* identityId;
@@ -45,12 +45,17 @@
 
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) NSString* updatedTimeInWords;
+@property (nonatomic, retain) NSAttributedString* attributedMessage;
 @property (nonatomic, retain) NSDictionary* templateParams; 
 @property int           activityType;
 
 - (void)getActivityType;
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
+/*
+ In the case of Activity type link: a bloc HTML contains all the status message & the links (in <a href ..> tag. We need to convert this HTML to an attributedString to be able to display without using a Web View.
+ */
+- (void)convertToAttributedMessage;
 - (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value;
 - (void)cellHeightCalculationForWidth:(CGFloat)fWidth;
 - (void)convertToUpdatedTimeInWords;
