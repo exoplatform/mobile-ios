@@ -389,6 +389,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     // The footer view that contains the activity indicator
     [self setupActivityIndicator];
+
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityPictureTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityPictureTableViewCell"];
 }
 
 - (void)viewDidUnload
@@ -597,9 +599,31 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+
+    if (socialActivityStream.activityType ==  ACTIVITY_DOC || socialActivityStream.activityType ==  ACTIVITY_CONTENTS_SPACE) {
+        return [self heightForPictureCellAtIndexPath:indexPath];
+        
+    }
+
     return  socialActivityStream.cellHeight;
 }
 
+-(CGFloat) heightForPictureCellAtIndexPath:(NSIndexPath*) indexPath {
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+
+    NSString * identCell = @"ActivityPictureTableViewCell";
+    static ActivityPictureTableViewCell *sizingCell = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+//    });
+    [sizingCell setSocialActivityStreamForSpecificContent:socialActivityStream];
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1.0f; // Add 1.0f for the cell separator height
+}
 
 
 // Customize the appearance of table view cells.
@@ -611,17 +635,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     switch (socialActivityStream.activityType) {
         case ACTIVITY_DOC:
         case ACTIVITY_CONTENTS_SPACE:{
-            cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureTableViewCell" owner:self options:nil];
-                cell = (ActivityPictureTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-                
-            }
+            NSString * identCell = @"ActivityPictureTableViewCell";
+            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
+            [cell setNeedsLayout];
+            [cell layoutIfNeeded];
         }
             break;
             
