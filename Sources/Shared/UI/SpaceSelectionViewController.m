@@ -35,11 +35,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
-    _socialSpaceProxy.delegate = self;
+    self.socialSpaceProxy = [[SocialSpaceProxy alloc] init];
+    self.socialSpaceProxy.delegate = self;
     [self displayHUDLoaderWithMessage:Localize(@"Loading")];
-    [_socialSpaceProxy getMySocialSpaces];
-    _headerTitle = Localize(@"Loading spaces");
+    [self.socialSpaceProxy getMySocialSpaces];
+    self.headerTitle = Localize(@"Loading spaces");
     
     self.navigationItem.title = Localize(@"PostActivityTo");
     [self.tableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
@@ -51,9 +51,9 @@
 
 }
 -(void) dealloc {
-    _socialSpaceProxy = nil;
-    _mySpaces = nil;
-    _headerTitle = nil;
+    self.socialSpaceProxy = nil;
+    self.mySpaces = nil;
+    self.headerTitle = nil;
     [super dealloc];
 }
 #pragma mark - Table view data source
@@ -66,13 +66,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) return  1;
-    if (_mySpaces)
-        return _mySpaces.count;
+    if (self.mySpaces)
+        return self.mySpaces.count;
     return 0;
 }
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return _headerTitle;
+        return self.headerTitle;
     }
     return @"";
 }
@@ -85,7 +85,7 @@
     if (indexPath.section == 0) {
         [cell setSpace:nil];
     } else {
-        [cell setSpace:_mySpaces[indexPath.row]];
+        [cell setSpace:self.mySpaces[indexPath.row]];
     }
     return cell;
 }
@@ -94,7 +94,7 @@
 
     SocialSpace * socialSpace = nil;
     if (indexPath.section == 1){
-        socialSpace = _mySpaces[indexPath.row];
+        socialSpace = self.mySpaces[indexPath.row];
     }
     if (delegate && [delegate respondsToSelector:@selector(spaceSelection:didSelectSpace:)]){
         [delegate spaceSelection:self didSelectSpace:socialSpace];
@@ -106,11 +106,11 @@
 
 -(void) proxyDidFinishLoading:(SocialProxy *)proxy {
     [self hideLoaderImmediately:YES];
-    _mySpaces = _socialSpaceProxy.mySpaces;
-    if (_mySpaces.count >0){
-        _headerTitle = Localize(@"My spaces");
+    self.mySpaces = self.socialSpaceProxy.mySpaces;
+    if (self.mySpaces.count >0){
+        self.headerTitle = Localize(@"My spaces");
     } else {
-        _headerTitle = Localize(@"You didn't join any space");
+        self.headerTitle = Localize(@"You didn't join any space");
     }
     [self.tableView reloadData];
 }
@@ -127,7 +127,7 @@
 #pragma mark - UIAlertViewDelegate method
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    //      Remove the loader
+    // Remove the loader
     [self hideLoader:NO];
 }
 

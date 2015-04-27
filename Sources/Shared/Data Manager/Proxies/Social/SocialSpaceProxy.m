@@ -19,9 +19,13 @@
 
 
 #import "SocialSpaceProxy.h"
+
+
 #define MY_SPACE_PATH @"private/portal/social/spaces/mySpaces/show.json"
 
 @implementation SocialSpaceProxy
+
+@synthesize mySpaces = _mySpaces;
 
 -(void) getMySocialSpaces {
     // Load the object model via RestKit

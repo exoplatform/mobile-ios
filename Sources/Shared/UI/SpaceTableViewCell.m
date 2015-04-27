@@ -41,6 +41,7 @@
     _spaceName = nil;
     [super dealloc];
 }
+
 -(void) setSpace:(SocialSpace *)space {
     if (!space) {
     } else {

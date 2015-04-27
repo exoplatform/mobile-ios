@@ -22,19 +22,20 @@
 
 @implementation SocialSpace
 
+@synthesize avatarUrl, groupId, spaceId, name, displayName, url, spaceUrl;
 
 -(void) dealloc {
-    _avatarUrl = nil;
-    _groupId = nil;
-    _spaceId = nil;
-    _name = nil;
-    _displayName = nil;
-    _url = nil;
-    _spaceId = nil;
+    self.avatarUrl = nil;
+    self.groupId = nil;
+    self.spaceId = nil;
+    self.name = nil;
+    self.displayName = nil;
+    self.url = nil;
+    self.spaceUrl = nil;
     [super dealloc];
 }
 -(NSString *) description {
-    return [NSString stringWithFormat:@"[name : %@] [url : %@] [id : %@]", _name, _url, _spaceId];
+    return [NSString stringWithFormat:@"[name : %@] [url : %@] [id : %@]", self.name, self.url, self.spaceId];
 }
 
 @end

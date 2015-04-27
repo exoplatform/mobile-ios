@@ -69,6 +69,7 @@
 @synthesize attPhotoButton = _attPhotoButton;
 @synthesize postActivityProxy = _postActivityProxy;
 @synthesize postCommentProxy = _postCommentProxy;
+@synthesize socialSpaceProxy = _socialSpaceProxy;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -91,7 +92,7 @@
     [_attPhotoButton release];
     [_spacesTableView release];
     [_socialSpaceProxy release];
-    
+    if (selectedSpace) [selectedSpace release];
     [super dealloc];
 }
 
@@ -731,11 +732,11 @@
     selectedSpace = space;
     if (space){
         [self displayHudLoader];
-        if (!_socialSpaceProxy){
-            _socialSpaceProxy = [[SocialSpaceProxy alloc] init];
-            _socialSpaceProxy.delegate = self;
+        if (!self.socialSpaceProxy){
+            self.socialSpaceProxy = [[SocialSpaceProxy alloc] init];
+            self.socialSpaceProxy.delegate = self;
         }
-        [_socialSpaceProxy getIdentifyOfSpace:space];
+        [self.socialSpaceProxy getIdentifyOfSpace:space];
 
     }
 }
