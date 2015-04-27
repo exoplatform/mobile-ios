@@ -95,7 +95,7 @@
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
-    
+        
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.lineBreakMode = NSLineBreakByWordWrapping;
@@ -110,7 +110,7 @@
     nameFrame.size.height = ceil(theSize.height + 5);
     
     self.lbName.text = title;
-    
+
    
     NSString *html = nil;
     switch (socialActivityStream.activityType) {
@@ -184,7 +184,7 @@
      4. Image name's label: under the image view, height to be estime
      5. Tool View (time, like, comment button): 40px from the buttom, height 28px.
      */
-    float cellHeight = [ActivityHelper getHeightForActivityCell:socialActivityStream forTableViewWidth:self.frame.size.width];
+    float cellHeight = [ActivityHelper getHeightForActivityCell:socialActivityStream forTableViewWidth:width];
     
     
     //Set the position of Title
@@ -209,7 +209,7 @@
     
     CGRect lbFileNameFrame   = _lbFileName.frame;
     lbFileNameFrame.origin.x = nameFrame.origin.x;
-    lbFileNameFrame.origin.y = cellHeight - 40 - nameFileLabelSize.height;
+    lbFileNameFrame.origin.y = cellHeight - 40 - nameFileLabelSize.height;  // 40 = size of lbDate & buttom padding
     lbFileNameFrame.size.width = width;
     lbFileNameFrame.size.height = nameFileLabelSize.height;
     

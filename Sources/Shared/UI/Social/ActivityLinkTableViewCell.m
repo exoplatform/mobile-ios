@@ -287,10 +287,10 @@
     float cellHeight = [ActivityHelper getHeightForActivityCell:socialActivityStream forTableViewWidth:width];
     
     if (hasImage){
-        htmlLinkMessageFrame.origin.y =cellHeight - 42 - htmlLinkMessageFrame.size.height;
+        htmlLinkMessageFrame.origin.y =cellHeight - 42 - htmlLinkMessageFrame.size.height; // 42 = size of lbDate + Buttom Padding
         htmlLinkDescriptionFrame.origin.y = htmlLinkMessageFrame.origin.y - htmlLinkDescriptionFrame.size.height - 5;
         imgvAttachFrame = _imgvAttach.frame;
-        imgvAttachFrame.origin.x = 15;
+        imgvAttachFrame.origin.x = 15;  // Padding from the left.
         imgvAttachFrame.size.width = width;
         imgvAttachFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 5;
         imgvAttachFrame.size.height = htmlLinkDescriptionFrame.origin.y - imgvAttachFrame.origin.y -5;
