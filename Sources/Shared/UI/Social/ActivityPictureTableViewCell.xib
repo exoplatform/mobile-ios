@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="55" y="0.0" width="265" height="279"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                                <rect key="frame" x="10" y="10" width="245" height="259"/>
+                                <rect key="frame" x="5" y="5" width="255" height="269"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                                 <rect key="frame" x="26" y="19" width="222" height="15"/>
@@ -35,20 +35,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ED2-La-EtO">
                                 <rect key="frame" x="10" y="236" width="245" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                                        <rect key="frame" x="200" y="6" width="36" height="18"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="4wT-9e-p7I"/>
-                                            <constraint firstAttribute="width" constant="36" id="dRP-h8-JQK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="10"/>
-                                        <inset key="titleEdgeInsets" minX="-12" minY="3" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal">
-                                            <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8">
                                         <rect key="frame" x="29" y="3" width="130" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -73,6 +59,20 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="WBt-w3-ffZ"/>
                                             <constraint firstAttribute="width" constant="36" id="c6K-gJ-Koe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="10"/>
+                                        <inset key="titleEdgeInsets" minX="-12" minY="3" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                                        <rect key="frame" x="200" y="6" width="36" height="18"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="4wT-9e-p7I"/>
+                                            <constraint firstAttribute="width" constant="36" id="dRP-h8-JQK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="10"/>
                                         <inset key="titleEdgeInsets" minX="-12" minY="3" maxX="0.0" maxY="0.0"/>
@@ -107,7 +107,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="12" customClass="EGOImageView">
-                                <rect key="frame" x="10" y="65" width="245" height="142"/>
+                                <rect key="frame" x="12" y="65" width="245" height="142"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="142" id="POT-Pv-8Qe"/>
                                 </constraints>
@@ -120,21 +120,21 @@
                             <constraint firstAttribute="bottom" secondItem="ED2-La-EtO" secondAttribute="bottom" constant="13" id="1LJ-WV-DX9"/>
                             <constraint firstItem="5" firstAttribute="top" secondItem="44" secondAttribute="top" constant="19" id="3Iu-qG-T9T"/>
                             <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="17" id="8zS-wa-b5v"/>
-                            <constraint firstItem="9" firstAttribute="top" secondItem="44" secondAttribute="top" constant="10" id="9TW-Z1-Kdj"/>
                             <constraint firstAttribute="trailing" secondItem="mzr-n3-BHU" secondAttribute="trailing" constant="17" id="ApQ-RM-wbJ"/>
                             <constraint firstItem="mzr-n3-BHU" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="6" id="BTp-oK-7Zg"/>
-                            <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" constant="10" id="J4n-YL-1oQ"/>
-                            <constraint firstItem="9" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="10" id="JOJ-kL-dQt"/>
                             <constraint firstItem="42" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="26" id="QIA-cm-8Z8"/>
-                            <constraint firstItem="12" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="10" id="RZ5-77-6xQ"/>
-                            <constraint firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="10" id="RrX-II-Uod"/>
+                            <constraint firstItem="12" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="12" id="RZ5-77-6xQ"/>
                             <constraint firstAttribute="trailing" secondItem="42" secondAttribute="trailing" constant="17" id="SzD-It-Cit"/>
                             <constraint firstItem="5" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="26" id="TBp-VB-4el"/>
                             <constraint firstItem="mzr-n3-BHU" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="26" id="aZd-Xw-Z3c"/>
                             <constraint firstItem="12" firstAttribute="top" secondItem="mzr-n3-BHU" secondAttribute="bottom" constant="8" id="erj-E0-jK0"/>
+                            <constraint firstItem="9" firstAttribute="top" secondItem="44" secondAttribute="top" constant="5" id="fwX-ya-HFd"/>
                             <constraint firstAttribute="trailing" secondItem="ED2-La-EtO" secondAttribute="trailing" constant="10" id="g0i-cl-2n6"/>
+                            <constraint firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="5" id="g8Y-QN-kaD"/>
                             <constraint firstItem="ED2-La-EtO" firstAttribute="top" secondItem="42" secondAttribute="bottom" constant="4" id="kuH-Ls-hOR"/>
-                            <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" constant="10" id="oNg-rB-IRW"/>
+                            <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" constant="8" id="oNg-rB-IRW"/>
+                            <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" constant="5" id="ocL-XC-Eay"/>
+                            <constraint firstItem="9" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="5" id="u5w-yv-Vx5"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="default-avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="6" customClass="AvatarView">
@@ -169,7 +169,7 @@
                 <outlet property="lbFileName" destination="42" id="43"/>
                 <outlet property="lbName" destination="5" id="18"/>
             </connections>
-            <point key="canvasLocation" x="-12" y="247"/>
+            <point key="canvasLocation" x="24" y="187"/>
         </tableViewCell>
     </objects>
     <resources>

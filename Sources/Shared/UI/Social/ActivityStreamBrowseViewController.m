@@ -391,6 +391,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self setupActivityIndicator];
 
     [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityPictureTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityPictureTableViewCell"];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityLinkTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityLinkTableViewCell"];
 }
 
 - (void)viewDidUnload
@@ -600,28 +601,41 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 {
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
 
-    if (socialActivityStream.activityType ==  ACTIVITY_DOC || socialActivityStream.activityType ==  ACTIVITY_CONTENTS_SPACE) {
-        return [self heightForPictureCellAtIndexPath:indexPath];
-        
+    if (socialActivityStream.activityType ==  ACTIVITY_DOC || socialActivityStream.activityType ==  ACTIVITY_CONTENTS_SPACE || socialActivityStream.activityType ==  ACTIVITY_LINK) {
+        return [self heightForRowAtIndexPath:indexPath];
     }
 
+    
     return  socialActivityStream.cellHeight;
 }
 
--(CGFloat) heightForPictureCellAtIndexPath:(NSIndexPath*) indexPath {
+-(CGFloat) heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
 
-    NSString * identCell = @"ActivityPictureTableViewCell";
-    static ActivityPictureTableViewCell *sizingCell = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-        sizingCell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-//    });
+    NSString * identCell;
+    switch (socialActivityStream.activityType) {
+        case ACTIVITY_DOC:
+        case ACTIVITY_CONTENTS_SPACE:{
+            identCell = @"ActivityPictureTableViewCell";
+        }
+            break;
+        case ACTIVITY_LINK:{
+            identCell = @"ActivityLinkTableViewCell";
+        }
+            break;
+    }
+    
+    static ActivityBasicTableViewCell *sizingCell = nil;
+
+    sizingCell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+    
     [sizingCell setSocialActivityStreamForSpecificContent:socialActivityStream];
     [sizingCell setNeedsLayout];
     [sizingCell layoutIfNeeded];
     
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    socialActivityStream.cellHeight = size.height +1.0f;
+    
     return size.height + 1.0f; // Add 1.0f for the cell separator height
 }
 
@@ -648,11 +662,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             //Check if we found a cell
             if (cell == nil) 
             {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityLinkTableViewCell" owner:self options:nil];
-                cell = (ActivityLinkTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
+
+                NSString * identCell = @"ActivityLinkTableViewCell";
+                cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+                [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
+                [cell setNeedsLayout];
+                [cell layoutIfNeeded];
+
             }
         }
             break;

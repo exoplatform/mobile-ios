@@ -39,8 +39,7 @@
     }
     return self;
 }
-
-- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
+-(void) backgroundConfiguration {
     //Add images for Background Message
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
     
@@ -73,8 +72,11 @@
                         forState:UIControlStateHighlighted];
     
 
+}
+
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     
-    
+    [self backgroundConfiguration];
     //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
@@ -124,7 +126,7 @@
                 message = [NSString stringWithFormat:@"%@ was created by %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"]];
 
             } else {
-                message = [NSString stringWithFormat:@"<a>%@</a> was created by <a>%@</a> state: %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"], [socialActivityStream.templateParams valueForKey:@"state"]];
+                message = [NSString stringWithFormat:@"%@ was created by %@ state: %@", [socialActivityStream.templateParams valueForKey:@"contentName"], [socialActivityStream.templateParams valueForKey:@"author"], [socialActivityStream.templateParams valueForKey:@"state"]];
             }
             if (message){
                 NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];

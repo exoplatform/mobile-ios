@@ -31,7 +31,7 @@
 @synthesize htmlName = _htmlName;
 @synthesize htmlLinkMessage = _htmlLinkMessage;
 @synthesize htmlLinkDescription = _htmlLinkDescription;
-
+/*
 - (void)configureFonts:(BOOL)highlighted {
     
     if (!highlighted) {
@@ -62,8 +62,9 @@
     
     [super configureFonts:highlighted];
 }
+*/
 
-
+/*
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
@@ -109,9 +110,44 @@
     [self.contentView addSubview:_htmlLinkMessage];
         
 }
-
+*/
+-(void) backgroundConfiguration {
+    //Add images for Background Message
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityBrowserActivityBgSelected.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    _imgvMessageBg.image = strechBg;
+    _imgvMessageBg.highlightedImage = strechBgSelected;
+    
+    //Add images for Comment button
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateNormal];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateSelected];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateHighlighted];
+    
+    
+    //Add images for Like button
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateNormal];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateSelected];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateHighlighted];
+    
+    
+}
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
+    [self backgroundConfiguration];
     //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
@@ -119,104 +155,69 @@
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
     
-//    _lbName.text = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterUserProfile.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    NSDictionary * urlAttribute =@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.9333 alpha:1], NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid)};
     
+
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
-    CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX) 
-                           lineBreakMode:UILineBreakModeWordWrap];
-    CGRect frame = _lbName.frame;
-    frame.size.height = theSize.height;
-    _lbName.frame = frame;
+    
     
     _lbName.text = title;
-
-    // Activity Message
-    _htmlActivityMessage.html = [[[socialActivityStream.templateParams valueForKey:@"comment"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
-    //SLM : Bug fix
-    //When _htmlActivityMessage is empty, _htmlActivityMessage's frame is set to width:0 in sizeToFit
-    //When the the view is recycle, the reuse will keep the width to 0
-    // so _htmlActivityMessage will not be correctly displayed
-    if (![(NSString*)[socialActivityStream.templateParams valueForKey:@"comment"] isEqualToString:@""]) {
-        [_htmlActivityMessage sizeToFit];
-    } else {
-        CGRect rect = _htmlActivityMessage.frame;
-        rect.size.height = 0;
-        _htmlActivityMessage.frame = rect;
-    }
+    NSString * activityMessage = [socialActivityStream.templateParams valueForKey:@"comment"];
+    NSData *stringData = [activityMessage dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *options = @{
+                              NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,
+                              };
+    NSMutableAttributedString *decodedString;
+    NSDictionary * htmlAttributes;
+    decodedString = [[NSMutableAttributedString alloc] initWithData:stringData options:options documentAttributes:&htmlAttributes error:NULL];
+    [decodedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, decodedString.length)];
+
+    _htmlActivityMessage.attributedText = decodedString;
     
     // Link Title
-    _htmlLinkTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[socialActivityStream.templateParams valueForKey:@"title"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
-     
+
+    _htmlLinkTitle.text =[socialActivityStream.templateParams valueForKey:@"title"];
     
-    // Link Message
-    _htmlLinkDescription.html = [[[socialActivityStream.templateParams valueForKey:@"description"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+    _htmlLinkDescription.text =[socialActivityStream.templateParams valueForKey:@"description"];
+    NSString * linkMessage =[NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
+    NSMutableAttributedString * attributedLinkMessage =  [[NSMutableAttributedString alloc] initWithString:linkMessage];
+    [attributedLinkMessage setAttributes:urlAttribute range:[linkMessage rangeOfString:[socialActivityStream.templateParams valueForKey:@"link"]]];
     
-    if (![(NSString*)[socialActivityStream.templateParams valueForKey:@"description"] isEqualToString:@""]) {
-        [_htmlLinkDescription sizeToFit];
-    } else {
-        CGRect rect = _htmlLinkDescription.frame;
-        rect.size.height = 0;
-        _htmlLinkDescription.frame = rect;
-    }
-    
-    _htmlLinkMessage.html = [NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
-    
-    [_htmlLinkMessage sizeToFit];
-    
-    CGRect rect = _htmlActivityMessage.frame;
-    rect.origin.y = _lbName.frame.size.height + _lbName.frame.origin.y;
-    double heigthForTTLabel = [[[self htmlActivityMessage] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    rect.size.height = heigthForTTLabel;
-    _htmlActivityMessage.frame = rect;
+    _htmlLinkMessage.attributedText = attributedLinkMessage;
 
     NSURL *url = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
     if (url && url.host && url.scheme){
-        self.imgvAttach.hidden = NO;
-        rect = self.imgvAttach.frame;
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
-        rect.origin.y = _htmlActivityMessage.frame.size.height + _htmlActivityMessage.frame.origin.y + 5;
-        rect.origin.x = (width > 320)? (width/3 + 60) : (width/3 + 40);
-        self.imgvAttach.frame = rect;
-        
-        rect = _htmlLinkTitle.frame;
-        rect.origin.y = self.imgvAttach.frame.size.height + self.imgvAttach.frame.origin.y + 5;
-        _htmlLinkTitle.frame = rect;
+        _imageViewHeightConstraint.constant = 150;
+
     } else {
-        rect = _htmlLinkTitle.frame;
-        rect.origin.y = _htmlActivityMessage.frame.size.height + _htmlActivityMessage.frame.origin.y;
-        _htmlLinkTitle.frame = rect;
-        self.imgvAttach.hidden = YES;
+
+        _imageViewHeightConstraint.constant = 0;
     }
-    [_htmlLinkTitle sizeToFit];
-    rect = _htmlLinkDescription.frame;
-    rect.origin.y = _htmlLinkTitle.frame.size.height + _htmlLinkTitle.frame.origin.y;
-    heigthForTTLabel = _htmlLinkDescription.frame.size.height;
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    rect.size.height = heigthForTTLabel;
-    _htmlLinkDescription.frame = rect;
-    
-    rect = _htmlLinkMessage.frame;
-    rect.origin.y = _htmlLinkDescription.frame.size.height + _htmlLinkDescription.frame.origin.y;
-    
-    
-    NSString *link = [NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
-    theSize = [link sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake((width > 320)?WIDTH_FOR_CONTENT_IPAD:WIDTH_FOR_CONTENT_IPHONE, CGFLOAT_MAX) 
-                           lineBreakMode:UILineBreakModeWordWrap];
-    rect.size.height = theSize.height;
-    rect.size.width = _htmlLinkDescription.frame.size.width;
-    
-    
-    heigthForTTLabel = rect.size.height;
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    rect.size.height = heigthForTTLabel;
-    _htmlLinkMessage.frame = rect;
+
     
 }
 
 
+-(NSAttributedString * ) getHTMLAttributedStringFromString:(NSString *) string {
+    NSDictionary * urlAttribute =@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.9333 alpha:1], NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid)};
+    
+    NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
+    
+    NSString * urlPattern = @"(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:urlPattern options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSArray * matches = [regex matchesInString:string options:NSRegularExpressionCaseInsensitive range:NSMakeRange(0, string.length)];
+    for (NSTextCheckingResult *match in matches)
+    {
+        NSRange matchRange = match.range;
+        [htmlAttributedString addAttributes:urlAttribute range:matchRange];
+    }
+    return htmlAttributedString;
+}
 
 - (void)dealloc {
     _lbName = nil;
@@ -230,6 +231,11 @@
     [_htmlActivityMessage release];
     _htmlActivityMessage = nil;
     
+    [_imageViewHeightConstraint release];
+    [_htmlActivityMessage release];
+    [_htmlLinkTitle release];
+    [_htmlLinkDescription release];
+    [_htmlLinkMessage release];
     [super dealloc];
 }
 
