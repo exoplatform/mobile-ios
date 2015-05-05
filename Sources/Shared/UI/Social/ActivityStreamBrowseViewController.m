@@ -222,6 +222,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [socialActivityStream convertHTMLEncoding];
             [socialActivityStream getActivityType];
             [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
+            [socialActivityStream convertToAttributedMessage];
             [_arrActivityStreams addObject:socialActivityStream];
         }
 
@@ -389,8 +390,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     // The footer view that contains the activity indicator
     [self setupActivityIndicator];
-
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityPictureTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityPictureTableViewCell"];
+    
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityWikiTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierWiki];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityPictureTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierPicture];
     [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityLinkTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityLinkTableViewCell"];
 }
 
@@ -601,7 +603,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 {
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
 
-    if (socialActivityStream.activityType ==  ACTIVITY_DOC || socialActivityStream.activityType ==  ACTIVITY_CONTENTS_SPACE || socialActivityStream.activityType ==  ACTIVITY_LINK) {
+    if (socialActivityStream.activityType ==  ACTIVITY_DOC || socialActivityStream.activityType ==  ACTIVITY_CONTENTS_SPACE || socialActivityStream.activityType ==  ACTIVITY_LINK || socialActivityStream.activityType ==  ACTIVITY_WIKI_ADD_PAGE || socialActivityStream.activityType ==  ACTIVITY_WIKI_MODIFY_PAGE) {
         return [self heightForRowAtIndexPath:indexPath];
     }
 
@@ -616,11 +618,16 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     switch (socialActivityStream.activityType) {
         case ACTIVITY_DOC:
         case ACTIVITY_CONTENTS_SPACE:{
-            identCell = @"ActivityPictureTableViewCell";
+            identCell = kCellIdentifierPicture;
         }
             break;
         case ACTIVITY_LINK:{
             identCell = @"ActivityLinkTableViewCell";
+        }
+            break;
+        case ACTIVITY_WIKI_ADD_PAGE:
+        case ACTIVITY_WIKI_MODIFY_PAGE:{
+            identCell = kCellIdentifierWiki;
         }
             break;
     }
@@ -649,7 +656,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     switch (socialActivityStream.activityType) {
         case ACTIVITY_DOC:
         case ACTIVITY_CONTENTS_SPACE:{
-            NSString * identCell = @"ActivityPictureTableViewCell";
+            NSString * identCell = kCellIdentifierPicture;
             cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
             [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
             [cell setNeedsLayout];
@@ -658,33 +665,21 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             break;
             
         case ACTIVITY_LINK:{
-            cell  = (ActivityLinkTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierLink];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
+            NSString * identCell = @"ActivityLinkTableViewCell";
+            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
+            [cell setNeedsLayout];
+            [cell layoutIfNeeded];
 
-                NSString * identCell = @"ActivityLinkTableViewCell";
-                cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-                [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-                [cell setNeedsLayout];
-                [cell layoutIfNeeded];
-
-            }
         }
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
         case ACTIVITY_WIKI_MODIFY_PAGE:{
-            cell  = (ActivityWikiTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierWiki];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiTableViewCell" owner:self options:nil];
-                cell = (ActivityWikiTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
-            
+            NSString * identCell = kCellIdentifierWiki;
+            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
+            [cell setNeedsLayout];
+            [cell layoutIfNeeded];
         }
             break;
         case ACTIVITY_FORUM_CREATE_POST: 

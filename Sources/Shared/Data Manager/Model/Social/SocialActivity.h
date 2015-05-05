@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 #import "SocialUserProfile.h"
 #import "SocialPictureAttach.h"
-
+#import "defines.h"
 @interface SocialActivity : NSObject
 
 @property (nonatomic, retain) NSString* identityId;
@@ -45,12 +45,14 @@
 
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) NSString* updatedTimeInWords;
+@property (nonatomic, retain) NSAttributedString* attributedMessage;
 @property (nonatomic, retain) NSDictionary* templateParams; 
 @property int           activityType;
 
 - (void)getActivityType;
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
+- (void) convertToAttributedMessage;
 - (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value;
 - (void)cellHeightCalculationForWidth:(CGFloat)fWidth;
 - (void)convertToUpdatedTimeInWords;

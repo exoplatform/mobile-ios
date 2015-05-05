@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="default-avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="6" customClass="AvatarView">
-                        <rect key="frame" x="5" y="15" width="45" height="45"/>
+                        <rect key="frame" x="5" y="5" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="CFe-EM-Qwt"/>
                             <constraint firstAttribute="width" constant="45" id="QBm-Ig-Faa"/>
@@ -164,7 +164,7 @@
                     <constraint firstAttribute="bottom" secondItem="26" secondAttribute="bottom" id="2Do-UK-Wmj"/>
                     <constraint firstItem="26" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="5" id="HN5-Dy-d5s"/>
                     <constraint firstAttribute="trailing" secondItem="26" secondAttribute="trailing" id="cih-ja-l3w"/>
-                    <constraint firstItem="6" firstAttribute="top" secondItem="sBU-SH-VrZ" secondAttribute="top" constant="15" id="dCd-rg-bY6"/>
+                    <constraint firstItem="6" firstAttribute="top" secondItem="sBU-SH-VrZ" secondAttribute="top" constant="5" id="dCd-rg-bY6"/>
                     <constraint firstItem="6" firstAttribute="leading" secondItem="sBU-SH-VrZ" secondAttribute="leading" constant="5" id="gui-XV-ZWI"/>
                     <constraint firstItem="26" firstAttribute="top" secondItem="sBU-SH-VrZ" secondAttribute="top" id="uGg-2J-8DP"/>
                     <constraint firstItem="26" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="5" id="wOa-Xx-2IS"/>

@@ -155,7 +155,6 @@
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
     
-    NSDictionary * urlAttribute =@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.9333 alpha:1], NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid)};
     
 
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
@@ -163,7 +162,8 @@
     
     _lbName.text = title;
     
-    NSString * activityMessage = [socialActivityStream.templateParams valueForKey:@"comment"];
+    
+  /*  NSString * activityMessage = [socialActivityStream.templateParams valueForKey:@"comment"];
     NSData *stringData = [activityMessage dataUsingEncoding:NSUTF8StringEncoding];
     
     NSDictionary *options = @{
@@ -173,8 +173,12 @@
     NSDictionary * htmlAttributes;
     decodedString = [[NSMutableAttributedString alloc] initWithData:stringData options:options documentAttributes:&htmlAttributes error:NULL];
     [decodedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, decodedString.length)];
-
-    _htmlActivityMessage.attributedText = decodedString;
+     */
+    if (socialActivityStream.attributedMessage){
+        _htmlActivityMessage.attributedText =  socialActivityStream.attributedMessage;
+    } else {
+        _htmlActivityMessage.text =@"";
+    }
     
     // Link Title
 
@@ -183,7 +187,7 @@
     _htmlLinkDescription.text =[socialActivityStream.templateParams valueForKey:@"description"];
     NSString * linkMessage =[NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
     NSMutableAttributedString * attributedLinkMessage =  [[NSMutableAttributedString alloc] initWithString:linkMessage];
-    [attributedLinkMessage setAttributes:urlAttribute range:[linkMessage rangeOfString:[socialActivityStream.templateParams valueForKey:@"link"]]];
+    [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityStream.templateParams valueForKey:@"link"]]];
     
     _htmlLinkMessage.attributedText = attributedLinkMessage;
 
@@ -203,7 +207,6 @@
 
 
 -(NSAttributedString * ) getHTMLAttributedStringFromString:(NSString *) string {
-    NSDictionary * urlAttribute =@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.9333 alpha:1], NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid)};
     
     NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
     
@@ -214,7 +217,7 @@
     for (NSTextCheckingResult *match in matches)
     {
         NSRange matchRange = match.range;
-        [htmlAttributedString addAttributes:urlAttribute range:matchRange];
+        [htmlAttributedString addAttributes:kAttributeURL range:matchRange];
     }
     return htmlAttributedString;
 }
