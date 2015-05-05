@@ -26,10 +26,9 @@
 @implementation ActivityForumTableViewCell
 
 @synthesize lbMessage = _lbMessage;
-@synthesize htmlName = _htmlName;
 @synthesize lbTitle = _lbTitle;
 
-
+/*
 - (void)configureFonts:(BOOL)highlighted {
     
     if (!highlighted) {
@@ -87,84 +86,100 @@
     _lbMessage.font = [UIFont systemFontOfSize:13.0];
     [self.contentView addSubview:_lbMessage];
 }
+*/
 
 
-
-
+-(void) backgroundConfiguration {
+    //Add images for Background Message
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityBrowserActivityBgSelected.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    _imgvMessageBg.image = strechBg;
+    _imgvMessageBg.highlightedImage = strechBgSelected;
+    
+    //Add images for Comment button
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateNormal];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateSelected];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateHighlighted];
+    
+    
+    //Add images for Like button
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateNormal];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateSelected];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateHighlighted];
+    
+    
+}
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
-    NSString *html = nil;
+    [self backgroundConfiguration];
+    
+    
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
+    
+    NSString * name = socialActivityStream.posterIdentity.fullName;
+    NSString * title = nil;
     switch (socialActivityStream.activityType) {
         case ACTIVITY_FORUM_CREATE_POST:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewPost")];
-            html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewPost")];
+            title = [socialActivityStream.templateParams valueForKey:@"PostName"];
             break;
         case ACTIVITY_FORUM_CREATE_TOPIC:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewTopic")];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewTopic")];
             
             float plfVersion = [[[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
             
             if(plfVersion >= 4.0) { // plf 4 and later: TopicName is not in template params, it is title of socialActivityStream
-                html = [NSString stringWithFormat:@"<a>%@</a>",
-                        [[socialActivityStream.title stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+                title = socialActivityStream.title;
             } else {
-                html = [NSString stringWithFormat:@"<a>%@</a>",
-                        [[[socialActivityStream.templateParams valueForKey:@"TopicName" ] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+                title = [socialActivityStream.templateParams valueForKey:@"TopicName" ];
             }
             
             break;
         case ACTIVITY_FORUM_UPDATE_TOPIC:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdateTopic")];
-            html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdateTopic")];
+            title = [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText];
             break; 
         case ACTIVITY_FORUM_UPDATE_POST:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdatePost")];
-            html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdatePost")];
+            title = [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText];
             break; 
         default:
             break;
     }
     
-    [_htmlName sizeToFit];
+    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
     
-    _lbTitle.html = html;
-    [_lbTitle sizeToFit];
+    NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
+    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
+    _lbName.attributedText = attributedName;
     
-    _lbMessage.html = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    [_lbMessage sizeToFit];
+    _lbTitle.text = title;
 
-    //Set the position of Title
-    CGRect tmpFrame = _lbTitle.frame;
-    tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
-    //tmpFrame.size.width = _htmlName.frame.size.width;
-    _lbTitle.frame = tmpFrame;
-    
-    //Set the position of lbMessage
-    tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _lbTitle.frame.origin.y + _lbTitle.frame.size.height + 5;
-    double heigthForTTLabel = [[[self lbMessage] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT){
-        heigthForTTLabel = EXO_MAX_HEIGHT; 
-    }
-    tmpFrame.size.height = heigthForTTLabel;
-    //tmpFrame.size.width = _htmlName.frame.size.width;
-    _lbMessage.frame = tmpFrame;
+    _lbMessage.text = [socialActivityStream.body stringByConvertingHTMLToPlainText];
+
 }
 
 
 - (void)dealloc {
     
     _lbMessage = nil;
-    
-    [_htmlName release];
-    _htmlName = nil;
     
     [super dealloc];
 }

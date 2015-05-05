@@ -97,8 +97,7 @@
         {
             name =  [NSString stringWithFormat:@"%@%@ %@",
                                 socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
-                                Localize(@"CreateWiki")];
-            
+                                Localize(@"CreateWiki")];            
         }
             
             break; 
