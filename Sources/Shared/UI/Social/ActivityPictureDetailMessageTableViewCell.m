@@ -50,31 +50,6 @@
     _lbFileName.numberOfLines = 2;
 }
 
-- (void)updateSizeToFitSubViews {
-    //Set the position of lbMessage
-    CGRect rect = self.imgvAttach.frame;
-    rect.origin.y =  _webViewForContent.frame.size.height + _webViewForContent.frame.origin.y + 5;
-    rect.origin.x = (width > 320)? (width/3 + 110) : (width/3 + 60);
-    self.imgvAttach.frame = rect;
-    
-    rect = _lbFileName.frame;
-    rect.origin.y = self.imgvAttach.frame.origin.y + self.imgvAttach.frame.size.height + 5;
-    CGSize theSize = [[self.socialActivity.templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage 
-                                                   constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)             
-                                                       lineBreakMode:UILineBreakModeWordWrap];
-    if(theSize.height > MAX_HEIGHT_FILE_NAME){
-        theSize.height = MAX_HEIGHT_FILE_NAME;
-    }
-    rect.size.height = theSize.height;
-    rect.size.width = _lbName.frame.size.width;
-    _lbFileName.frame = rect;
-    
-    [_webViewForContent sizeToFit];
-    
-    rect = self.frame;
-    rect.size.height = _lbFileName.frame.origin.y + _lbFileName.frame.size.height + _lbDate.frame.size.height + kBottomMargin;
-    self.frame = rect;
-}
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
@@ -84,12 +59,9 @@
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
+    
+    
     NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
-    CGSize theSize = [title sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                      lineBreakMode:UILineBreakModeWordWrap];
-    CGRect rect = _lbName.frame;
-    rect.size.height = theSize.height + 5;
-    _lbName.frame = rect;
     
     _lbName.text = title;
     
@@ -97,7 +69,7 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     float plfVersion = [[userDefault valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
 
-    NSString *htmlStr = nil;
+    NSString *message = nil;
     NSDictionary *_templateParams = self.socialActivity.templateParams;
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DOC:{
@@ -110,11 +82,10 @@
                 imgPath = [NSString stringWithFormat:@"/rest/thumbnailImage/large%@", imgPath];
             }
             _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN],  imgPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            [_webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;} a{color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", [_templateParams valueForKey:@"MESSAGE"]?[[_templateParams valueForKey:@"MESSAGE"] stringByConvertingHTMLToPlainText]:@""]
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
             
-            htmlStr = [NSString stringWithFormat:@"%@", [_templateParams valueForKey:@"MESSAGE"]];
+            message = [NSString stringWithFormat:@"%@", [_templateParams valueForKey:@"MESSAGE"]];
+            self.lbMessage.text = message;
+            
             _lbFileName.text = [_templateParams valueForKey:@"DOCNAME"];
         }
             break;
@@ -130,35 +101,40 @@
             // The link for thumbnail image is in the format "/{rest context name}/thumbnailImage/large/{relative path}"
             _imgvAttach.imageURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", [userDefault valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/rest/thumbnailImage/large/%@", [_templateParams valueForKey:@"contenLink"]]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
              
-            if(plfVersion >= 4.0) { // plf4 : no state
-                htmlStr = [NSString stringWithFormat:@"<a href=\"%@\">%@</a> was created by <a>%@</a>", [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]], [_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"]];
+            float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+            NSString * message;
+            
+            if(plfVersion >= 4.0) { // in plf 4, no state in template params.
+                
+                message = [NSString stringWithFormat:@"%@ was created by %@", [_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"]];
+                
             } else {
-                htmlStr = [NSString stringWithFormat:@"<a href=\"%@\">%@</a> was created by <a>%@</a> state: %@", [NSString stringWithFormat:@"/portal/rest/jcr/%@", [_templateParams valueForKey:@"contenLink"]], [_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"], [_templateParams valueForKey:@"state"]];
+                message = [NSString stringWithFormat:@"%@ was created by %@ state: %@", [_templateParams valueForKey:@"contentName"], [_templateParams valueForKey:@"author"], [_templateParams valueForKey:@"state"]];
             }
-                        
-            NSString *htmlForWebView = [NSString stringWithFormat:@"<html><head><style>body {background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link {color: #115EAD; text-decoration: none; font-weight: bold;} a {color: #115EAD; text-decoration: none; font-weight: bold;}</style></head><body>%@</body></html>", htmlStr];
-            [_webViewForContent loadHTMLString:htmlForWebView
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
             
             _lbFileName.text = @"";
+
+            if (message){
+                NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];
+                NSDictionary * attribute =@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Bold" size:14], NSForegroundColorAttributeName:[UIColor blackColor]};
+                
+                [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"contentName"]]];
+                [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"author"]]];
+                
+                if(plfVersion < 4.0) {
+                    [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"state"]]];
+                }
+                
+                self.lbMessage.attributedText = attributedMessage;
+            } else {
+                self.lbMessage.text = @"";
+            }
         }
             break;
     }
     
-    htmlStr = [htmlStr stringByStrippingTags];
-    
-    theSize = [htmlStr sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
-    //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    
-    rect = _webViewForContent.frame;
-    rect.origin.y =  _lbName.frame.size.height + _lbName.frame.origin.y;
-    rect.size.height =  theSize.height + 5;
-    _webViewForContent.frame = rect;
-    
-    
-    [self updateSizeToFitSubViews];
+
+
     
 }
 

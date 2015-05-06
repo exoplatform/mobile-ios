@@ -110,26 +110,9 @@
 
         _imageViewHeightConstraint.constant = 0;
     }
-
     
 }
 
-
--(NSAttributedString * ) getHTMLAttributedStringFromString:(NSString *) string {
-    
-    NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
-    
-    NSString * urlPattern = @"(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?";
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:urlPattern options:NSRegularExpressionCaseInsensitive error:nil];
-    
-    NSArray * matches = [regex matchesInString:string options:NSRegularExpressionCaseInsensitive range:NSMakeRange(0, string.length)];
-    for (NSTextCheckingResult *match in matches)
-    {
-        NSRange matchRange = match.range;
-        [htmlAttributedString addAttributes:kAttributeURL range:matchRange];
-    }
-    return htmlAttributedString;
-}
 
 - (void)dealloc {
     _lbName = nil;

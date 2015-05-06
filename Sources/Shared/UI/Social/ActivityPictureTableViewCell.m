@@ -145,7 +145,6 @@
             }
             
             _lbFileName.text = @"";
-            [_lbFileName sizeToFit];
             if ([[socialActivityStream.templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
                 self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
             } else {

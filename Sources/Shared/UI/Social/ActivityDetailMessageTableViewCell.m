@@ -126,23 +126,20 @@
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     self.socialActivity = socialActivityDetail;
-    _lbMessage.text = @"";
     _lbName.text = self.socialActivity.posterIdentity.fullName;
     _lbDate.text = socialActivityDetail.postedTimeInWords;
     _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
+    self.lbMessage.text=@"";
+
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DEFAULT:
         {
-            NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialActivityDetail.title ? socialActivityDetail.title : @""];
-            [_webViewForContent loadHTMLString:htmlStr ? htmlStr :@""
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
-            
-            [self updateSizeToFitSubViews];
+            self.lbMessage.attributedText = socialActivityDetail.attributedMessage ? socialActivityDetail.attributedMessage : @"";
             
         }
             break;
     }
+    
 }
 
 #pragma mark - change language management

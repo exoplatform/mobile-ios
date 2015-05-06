@@ -152,6 +152,11 @@
 	}
     // Observe the change language notif to update the labels
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityPictureDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityPictureDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityDetailMessageTableViewCell"];
+
+//ActivityDetailMessageTableViewCell
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -201,7 +206,7 @@
     int n = 0;
     if (indexPath.section == 0) 
     {
-        return self.activityDetailCell.bounds.size.height;
+        return [self.activityDetailCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
     }
     
     if (indexPath.section == 1) 
@@ -251,13 +256,10 @@
         switch (self.socialActivity.activityType) {
             case ACTIVITY_DOC:
             case ACTIVITY_CONTENTS_SPACE: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityPictureDetailMessageTableViewCell *)[nib objectAtIndex:0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                
+                NSString * identCell = @"ActivityPictureDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
+
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
                 [_activityDetailCell.imgvAttach addGestureRecognizer:tapGesture];
                 [tapGesture release];
@@ -326,20 +328,23 @@
                 break;
             }
             default: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityDetailMessageTableViewCell *)[nib objectAtIndex:0];
+                NSString * identCell = @"ActivityDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];        
                 //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
+//                [_activityDetailCell configureCell];
                 
                 //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+//                _activityDetailCell.webViewForContent.delegate = self;
                 break;
             }
         }
         _activityDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _activityDetailCell.imgType.image = [UIImage imageNamed:_iconType];
         [_activityDetailCell setSocialActivityDetail:self.socialActivity];
+        [_activityDetailCell setNeedsLayout];
+        [_activityDetailCell layoutIfNeeded];
         [_activityDetailCell retain];
+
     }
     
     return _activityDetailCell;
