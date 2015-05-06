@@ -39,11 +39,10 @@
     
     UIImageView*                            _imgvMessageBg;
     
-    SocialActivity*                   _socialActivytyStream;
+    SocialActivity*                         _socialActivytyStream;
     ActivityStreamBrowseViewController*     _delegate;
     NSInteger                               _activityType;
     
-    TTStyledTextLabel*                      _htmlMessage;
 }
 
 @property (retain, nonatomic) IBOutlet AvatarView *imgvAvatar;
@@ -56,7 +55,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView*  imgType;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
-@property (retain, nonatomic) TTStyledTextLabel   *htmlMessage;
+@property (retain, nonatomic) IBOutlet UILabel *message;
 
 @property NSInteger activityType;
 

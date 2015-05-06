@@ -34,8 +34,6 @@
 @synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 @synthesize activityType = _activityType;
-@synthesize htmlMessage = _htmlMessage;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -98,9 +96,7 @@
     
     self.imgvMessageBg = nil;
     
-    [_htmlMessage release];
-    _htmlMessage = nil;
-    
+    [_message release];
     [super dealloc];
 }
 
@@ -111,7 +107,6 @@
 
 }
 
-
 - (void)configureFonts:(BOOL)highlighted {
     
     if (!highlighted) {
@@ -119,10 +114,7 @@
         _lbName.shadowOffset = CGSizeMake(0,1);
         _lbName.shadowColor = [UIColor whiteColor];
         _lbName.backgroundColor = [UIColor whiteColor];
-    
-        _htmlMessage.textColor = [UIColor grayColor];
-        _htmlMessage.backgroundColor = [UIColor whiteColor];
- 
+     
         _lbDate.textColor = [UIColor colorWithRed:167./255 green:170./255 blue:174./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,1);
         _lbDate.shadowColor = [UIColor whiteColor];
@@ -130,8 +122,6 @@
     } else {
         
         _lbName.backgroundColor = SELECTED_CELL_BG_COLOR;
-        _htmlMessage.textColor = [UIColor darkGrayColor];
-        _htmlMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
         
         _lbDate.textColor = [UIColor colorWithRed:130./255 green:130./255 blue:130./255 alpha:1.];
         _lbDate.shadowOffset = CGSizeMake(0,0);
@@ -197,16 +187,6 @@
         tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
     }
     
-    _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-
-    
-    _htmlMessage.userInteractionEnabled = NO;
-    _htmlMessage.autoresizesSubviews = YES;
-    _htmlMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlMessage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    _htmlMessage.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlMessage];
 }
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream
@@ -307,10 +287,10 @@
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
- 
-    _htmlMessage.html = socialActivityStream.title;
-    //_htmlMessage.text = [TTStyledText textFromXHTML:socialActivityStream.title];
+    [self backgroundConfiguration];
 
+    _message.text = socialActivityStream.title;
+    
     _lbName.text = [socialActivityStream.posterIdentity.fullName copy];
 }
 

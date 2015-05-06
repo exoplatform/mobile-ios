@@ -125,6 +125,8 @@
 -(void) convertToAttributedMessage {
     if ([self.templateParams objectForKey:@"comment"]){
         self.attributedMessage = [self getHTMLAttributedStringFromHTML:[self.templateParams objectForKey:@"comment"]];
+    } else {
+        self.attributedMessage =[self getHTMLAttributedStringFromHTML:self.title];
     }
 }
 - (void)convertHTMLEncoding {
@@ -148,10 +150,10 @@
 
 
 -(NSAttributedString * ) getHTMLAttributedStringFromHTML:(NSString *) html {
-    
+
     NSString * string = html;
-    
-    NSMutableArray * links = [[NSMutableArray alloc] init];
+
+   NSMutableArray * links = [[NSMutableArray alloc] init];
     while ([string rangeOfString:@"<a href"].location!= NSNotFound) {
         int beginTagLocation =[string rangeOfString:@"<a href"].location;
         int contentTagLocation = [[string substringFromIndex:beginTagLocation] rangeOfString:@">"].location+1+beginTagLocation;
@@ -170,6 +172,8 @@
         [htmlAttributedString addAttributes:kAttributeURL range:[string rangeOfString:link]];
     }
     return htmlAttributedString;
+   
+
 }
 
 - (NSString *)stringByDecodingHTML:(NSString *) html {
