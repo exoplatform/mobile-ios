@@ -424,17 +424,19 @@
  Post Activity to Space
  */
 
-"Public" = "Vos Activités";
+"Public" = "Your Stream";
 
-"CannotLoadSpaceID" = "Impossible de charger les détails de l'espace";
+"CannotLoadSpaceID" = "Unable to load the space's identity";
 
-"PostActivityTo" = "Envoyer à";
+"PostActivityTo" = "Post activity to";
 
-"Loading spaces" = "Chargement de vos espaces ...";
+"You didn't join any space" = "You didn't join any space";
 
-"You didn't join any space" = "Vous n'êtes dans aucun espace";
+"CannotLoadSpace" = "Unable to load information about your spaces";
 
-"CannotLoadSpace" = "Erreur pendant le chargement de vos espaces";
+"Loading spaces" = "Loading spaces ...";
+
+"To" = "To";
 
 "To" = "À";
 
@@ -442,4 +444,3 @@
 
 //we cannot translate in french
 "space" = "";
-
