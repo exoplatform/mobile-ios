@@ -29,8 +29,8 @@
                                 <rect key="frame" x="5" y="5" width="255" height="329"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                                <rect key="frame" x="26" y="19" width="222" height="15"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                <rect key="frame" x="26" y="19" width="222" height="18"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -57,8 +57,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="xdu-R1-3Lo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27">
@@ -139,24 +138,24 @@
                             <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" constant="15" id="Aqa-iv-AHS"/>
                             <constraint firstAttribute="trailing" secondItem="30" secondAttribute="trailing" constant="16" id="AwL-fq-z4x"/>
                             <constraint firstItem="30" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="26" id="BOt-yU-Tdn"/>
-                            <constraint firstItem="8" firstAttribute="top" secondItem="26" secondAttribute="top" constant="19" id="DOR-ry-uO1"/>
                             <constraint firstAttribute="trailing" secondItem="13" secondAttribute="trailing" constant="8" id="Deb-w3-r28"/>
                             <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="5" id="Diq-hE-zbC"/>
-                            <constraint firstItem="8" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="26" id="GY8-HC-pAG"/>
                             <constraint firstItem="4" firstAttribute="top" secondItem="26" secondAttribute="top" constant="5" id="Gme-Wg-vFP"/>
                             <constraint firstItem="27" firstAttribute="top" secondItem="UZ5-Ch-jVn" secondAttribute="bottom" constant="8" id="MKY-j8-iSW"/>
                             <constraint firstItem="4" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="5" id="P7q-90-DZo"/>
+                            <constraint firstItem="8" firstAttribute="top" secondItem="26" secondAttribute="top" constant="19" id="Sg8-4f-AFc"/>
                             <constraint firstItem="UZ5-Ch-jVn" firstAttribute="top" secondItem="29" secondAttribute="bottom" constant="2" id="TXa-AA-I7e"/>
+                            <constraint firstItem="28" firstAttribute="top" secondItem="8" secondAttribute="bottom" constant="5" id="TfV-x6-IrJ"/>
                             <constraint firstAttribute="trailing" secondItem="UZ5-Ch-jVn" secondAttribute="trailing" constant="16" id="VHQ-aY-kT6"/>
                             <constraint firstItem="UZ5-Ch-jVn" firstAttribute="top" secondItem="29" secondAttribute="bottom" constant="2" id="Wtd-N2-fng"/>
                             <constraint firstItem="13" firstAttribute="top" secondItem="30" secondAttribute="bottom" constant="8" id="cUm-b4-Aaa"/>
-                            <constraint firstAttribute="trailing" secondItem="8" secondAttribute="trailing" constant="17" id="eLx-8a-gdD"/>
+                            <constraint firstItem="8" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="26" id="dgL-4F-b5U"/>
                             <constraint firstItem="29" firstAttribute="top" secondItem="13" secondAttribute="bottom" constant="8" id="eWc-ye-Z9b"/>
                             <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" constant="10" id="fgs-F2-ffj"/>
+                            <constraint firstAttribute="trailing" secondItem="8" secondAttribute="trailing" constant="17" id="hqD-CT-2TD"/>
                             <constraint firstAttribute="trailing" secondItem="28" secondAttribute="trailing" constant="17" id="jXU-fl-pze"/>
                             <constraint firstItem="28" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="25" id="kim-8P-dUU"/>
                             <constraint firstItem="30" firstAttribute="top" secondItem="28" secondAttribute="bottom" constant="8" id="liT-RV-C6Z"/>
-                            <constraint firstItem="28" firstAttribute="top" secondItem="8" secondAttribute="bottom" constant="8" id="mSW-Mt-Hd2"/>
                             <constraint firstItem="27" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="10" id="nDr-vc-HZK"/>
                             <constraint firstItem="UZ5-Ch-jVn" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="26" id="rBe-LJ-058"/>
                             <constraint firstItem="29" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="26" id="sV6-Jr-Vha"/>

@@ -396,6 +396,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityLinkTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierLink];
     [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityForumTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierForum];
     [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityAnswerTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierAnswer];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityCalendarTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierCalendar];
 
 }
 
@@ -608,7 +609,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
     if (socialActivityStream.activityType ==  ACTIVITY_DOC || socialActivityStream.activityType ==  ACTIVITY_CONTENTS_SPACE || socialActivityStream.activityType ==  ACTIVITY_LINK || socialActivityStream.activityType ==  ACTIVITY_WIKI_ADD_PAGE || socialActivityStream.activityType ==  ACTIVITY_WIKI_MODIFY_PAGE || socialActivityStream.activityType ==  ACTIVITY_FORUM_CREATE_POST || socialActivityStream.activityType ==  ACTIVITY_FORUM_CREATE_TOPIC || socialActivityStream.activityType ==  ACTIVITY_FORUM_UPDATE_TOPIC || socialActivityStream.activityType ==  ACTIVITY_FORUM_UPDATE_POST  ||
         socialActivityStream.activityType ==  ACTIVITY_ANSWER_QUESTION ||
-        socialActivityStream.activityType ==  ACTIVITY_ANSWER_ADD_QUESTION ||socialActivityStream.activityType ==  ACTIVITY_ANSWER_UPDATE_QUESTION
+        socialActivityStream.activityType ==  ACTIVITY_ANSWER_ADD_QUESTION ||socialActivityStream.activityType ==  ACTIVITY_ANSWER_UPDATE_QUESTION  ||
+        socialActivityStream.activityType ==  ACTIVITY_CALENDAR_UPDATE_TASK ||
+        socialActivityStream.activityType ==  ACTIVITY_CALENDAR_UPDATE_EVENT ||socialActivityStream.activityType ==  ACTIVITY_CALENDAR_ADD_EVENT||socialActivityStream.activityType ==  ACTIVITY_CALENDAR_ADD_TASK
         ) {
         return [self heightForRowAtIndexPath:indexPath];
     }
@@ -648,6 +651,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         case ACTIVITY_ANSWER_UPDATE_QUESTION:
         {
             identCell = kCellIdentifierAnswer;
+        }
+            break;
+        case ACTIVITY_CALENDAR_UPDATE_TASK:
+        case ACTIVITY_CALENDAR_UPDATE_EVENT:
+        case ACTIVITY_CALENDAR_ADD_EVENT:
+        case ACTIVITY_CALENDAR_ADD_TASK:
+        {
+            identCell = kCellIdentifierCalendar;
         }
             break;
     }
@@ -730,17 +741,11 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         case ACTIVITY_CALENDAR_ADD_EVENT:
         case ACTIVITY_CALENDAR_ADD_TASK:
         {
-            //We dequeue a cell
-            cell  = (ActivityCalendarTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierCalendar];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityCalendarTableViewCell" owner:self options:nil];
-                cell = (ActivityCalendarTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
+            NSString * identCell = kCellIdentifierCalendar;
+            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
+            [cell setNeedsLayout];
+            [cell layoutIfNeeded];
         }
             break;
         

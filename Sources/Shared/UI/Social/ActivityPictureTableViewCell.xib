@@ -21,11 +21,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9">
                                 <rect key="frame" x="5" y="5" width="255" height="269"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                                <rect key="frame" x="26" y="19" width="222" height="15"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="mzr-n3-BHU">
                                 <rect key="frame" x="26" y="40" width="222" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -112,20 +107,25 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="142" id="POT-Pv-8Qe"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                                <rect key="frame" x="26" y="17" width="222" height="18"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ED2-La-EtO" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="10" id="0rS-Kx-E9N"/>
                             <constraint firstItem="42" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="8" id="0xe-E2-nTA"/>
                             <constraint firstAttribute="bottom" secondItem="ED2-La-EtO" secondAttribute="bottom" constant="13" id="1LJ-WV-DX9"/>
-                            <constraint firstItem="5" firstAttribute="top" secondItem="44" secondAttribute="top" constant="19" id="3Iu-qG-T9T"/>
-                            <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="17" id="8zS-wa-b5v"/>
+                            <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="17" id="7Ie-lz-baE"/>
                             <constraint firstAttribute="trailing" secondItem="mzr-n3-BHU" secondAttribute="trailing" constant="17" id="ApQ-RM-wbJ"/>
-                            <constraint firstItem="mzr-n3-BHU" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="6" id="BTp-oK-7Zg"/>
+                            <constraint firstItem="5" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="26" id="BfA-la-cQb"/>
+                            <constraint firstItem="5" firstAttribute="top" secondItem="44" secondAttribute="top" constant="17" id="BvR-uF-oE3"/>
                             <constraint firstItem="42" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="26" id="QIA-cm-8Z8"/>
                             <constraint firstItem="12" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="12" id="RZ5-77-6xQ"/>
                             <constraint firstAttribute="trailing" secondItem="42" secondAttribute="trailing" constant="17" id="SzD-It-Cit"/>
-                            <constraint firstItem="5" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="26" id="TBp-VB-4el"/>
+                            <constraint firstItem="mzr-n3-BHU" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="5" id="U0j-0v-Tu9"/>
                             <constraint firstItem="mzr-n3-BHU" firstAttribute="leading" secondItem="44" secondAttribute="leading" constant="26" id="aZd-Xw-Z3c"/>
                             <constraint firstItem="12" firstAttribute="top" secondItem="mzr-n3-BHU" secondAttribute="bottom" constant="8" id="erj-E0-jK0"/>
                             <constraint firstItem="9" firstAttribute="top" secondItem="44" secondAttribute="top" constant="5" id="fwX-ya-HFd"/>
