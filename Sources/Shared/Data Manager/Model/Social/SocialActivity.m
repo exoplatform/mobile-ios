@@ -152,7 +152,8 @@
 -(NSAttributedString * ) getHTMLAttributedStringFromHTML:(NSString *) html {
 
     NSString * string = html;
-
+   // Analyse the <a href ..> HTML Tag to get the links
+    
    NSMutableArray * links = [[NSMutableArray alloc] init];
     while ([string rangeOfString:@"<a href"].location!= NSNotFound) {
         int beginTagLocation =[string rangeOfString:@"<a href"].location;
@@ -166,14 +167,35 @@
         string = [string stringByReplacingCharactersInRange:NSMakeRange(beginTagLocation, contentTagLocation-beginTagLocation) withString:@""];
     }
     string = [string stringByReplacingOccurrencesOfString:@"</a>" withString:@""];
+    
+    //remove all others HTML TAG
+    NSRange range;
+    while ((range = [string rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound) {
+        string = [string stringByReplacingCharactersInRange:range withString:@""];
+        
+    }
+
     string = [self stringByDecodingHTML:string];
     NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
     for (NSString * link in links){
         [htmlAttributedString addAttributes:kAttributeURL range:[string rangeOfString:link]];
     }
+    
     return htmlAttributedString;
+ 
+    /*
    
+    NSData *stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
 
+    NSDictionary *options = @{                              NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,
+                              };
+    NSMutableAttributedString *decodedString;
+    NSDictionary * htmlAttributes;
+    decodedString = [[NSMutableAttributedString alloc] initWithData:stringData options:options documentAttributes:&htmlAttributes error:NULL];
+    [decodedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, decodedString.length)];
+    
+    return decodedString;
+      */
 }
 
 - (NSString *)stringByDecodingHTML:(NSString *) html {

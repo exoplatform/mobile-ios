@@ -31,86 +31,7 @@
 @synthesize htmlName = _htmlName;
 @synthesize htmlLinkMessage = _htmlLinkMessage;
 @synthesize htmlLinkDescription = _htmlLinkDescription;
-/*
-- (void)configureFonts:(BOOL)highlighted {
-    
-    if (!highlighted) {
-        _htmlLinkDescription.textColor = [UIColor grayColor];
-        _htmlLinkDescription.backgroundColor = [UIColor whiteColor];
-        
-        _htmlLinkTitle.textColor = [UIColor grayColor];
-        _htmlLinkTitle.backgroundColor = [UIColor whiteColor];
-        
-        _htmlLinkMessage.textColor = [UIColor grayColor];
-        _htmlLinkMessage.backgroundColor = [UIColor whiteColor];
-        
-        _htmlActivityMessage.textColor = [UIColor grayColor];
-        _htmlActivityMessage.backgroundColor = [UIColor whiteColor];
-    } else {
-        _htmlLinkDescription.textColor = [UIColor darkGrayColor];
-        _htmlLinkDescription.backgroundColor = SELECTED_CELL_BG_COLOR;
-        
-        _htmlLinkTitle.textColor = [UIColor darkGrayColor];
-        _htmlLinkTitle.backgroundColor = SELECTED_CELL_BG_COLOR;
-        
-        _htmlLinkMessage.textColor = [UIColor darkGrayColor];
-        _htmlLinkMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
-        
-        _htmlActivityMessage.textColor = [UIColor darkGrayColor];
-        _htmlActivityMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
-    }
-    
-    [super configureFonts:highlighted];
-}
-*/
 
-/*
-
-- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
-    
-    CGRect tmpFrame = CGRectZero;
-    width = fWidth;
-    if (fWidth > 320) {
-        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPAD, 21);
-    } else {
-        tmpFrame = CGRectMake(70, 38, WIDTH_FOR_CONTENT_IPHONE, 21);
-    }
-
-    _htmlActivityMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlActivityMessage.userInteractionEnabled = NO;
-    _htmlActivityMessage.backgroundColor = [UIColor clearColor];
-    _htmlActivityMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlActivityMessage.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlActivityMessage];
-    
-    _htmlLinkTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlLinkTitle.userInteractionEnabled = NO;
-    _htmlLinkTitle.backgroundColor = [UIColor clearColor];
-    _htmlLinkTitle.font = [UIFont systemFontOfSize:13.0];
-    _htmlLinkTitle.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlLinkTitle];
-    
-    
-    _htmlLinkDescription = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlLinkDescription.userInteractionEnabled = NO;
-    _htmlLinkDescription.backgroundColor = [UIColor clearColor];
-    _htmlLinkDescription.font = [UIFont systemFontOfSize:13.0];
-    _htmlLinkDescription.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlLinkDescription];
-    
-    _htmlLinkMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlLinkMessage.userInteractionEnabled = NO;
-    _htmlLinkMessage.backgroundColor = [UIColor clearColor];
-    _htmlLinkMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlLinkMessage.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlLinkMessage];
-        
-}
-*/
 -(void) backgroundConfiguration {
     //Add images for Background Message
     UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
@@ -162,18 +83,6 @@
     
     _lbName.text = title;
     
-    
-  /*  NSString * activityMessage = [socialActivityStream.templateParams valueForKey:@"comment"];
-    NSData *stringData = [activityMessage dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSDictionary *options = @{
-                              NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,
-                              };
-    NSMutableAttributedString *decodedString;
-    NSDictionary * htmlAttributes;
-    decodedString = [[NSMutableAttributedString alloc] initWithData:stringData options:options documentAttributes:&htmlAttributes error:NULL];
-    [decodedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, decodedString.length)];
-     */
     if (socialActivityStream.attributedMessage){
         _htmlActivityMessage.attributedText =  socialActivityStream.attributedMessage;
     } else {

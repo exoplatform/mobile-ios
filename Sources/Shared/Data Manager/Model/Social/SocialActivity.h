@@ -52,7 +52,10 @@
 - (void)getActivityType;
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
-- (void) convertToAttributedMessage;
+/*
+ In the case of Activity type link: a bloc HTML contains all the status message & the links (in <a href ..> tag. We need to convert this HTML to an attributedString to be able to display without using a Web View.
+ */
+- (void)convertToAttributedMessage;
 - (void)setKeyForTemplateParams:(NSString*)key value:(NSString*)value;
 - (void)cellHeightCalculationForWidth:(CGFloat)fWidth;
 - (void)convertToUpdatedTimeInWords;

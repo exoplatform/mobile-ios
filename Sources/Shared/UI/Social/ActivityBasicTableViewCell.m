@@ -288,8 +288,9 @@
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     [self backgroundConfiguration];
+    
 
-    _message.text = socialActivityStream.title;
+    _message.attributedText = socialActivityStream.attributedMessage;
     
     _lbName.text = [socialActivityStream.posterIdentity.fullName copy];
 }
