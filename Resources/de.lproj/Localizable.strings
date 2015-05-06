@@ -421,3 +421,21 @@
 
 "NoTenantName" = "There is no tenant name";
 
+/*
+ Post Activity to Space
+ */
+
+"Public" = "Your Stream";
+
+"CannotLoadSpaceID" = "Unable to load the space's identity";
+
+"PostActivityTo" = "Post activity to";
+
+"You didn't join any space" = "You didn't join any space";
+
+"CannotLoadSpace" = "Unable to load information about your spaces";
+
+"Loading spaces" = "Loading spaces ...";
+
+"To" = "To";
+
