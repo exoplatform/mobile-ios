@@ -64,6 +64,7 @@
 - (void)customizeAvatarDecorations;
 - (void)configureCellForWidth:(CGFloat)fWidth;
 - (void)configureFonts:(BOOL)highlighted;
+-(void) backgroundConfiguration;
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream;
 - (void)setPlatformVersion:(float)version;
 

@@ -26,10 +26,9 @@
 @implementation ActivityAnswerTableViewCell
 
 @synthesize lbMessage = _lbMessage;
-@synthesize htmlName = _htmlName;
-@synthesize htmlTitle = _htmlTitle;
+@synthesize lbTitle = _lbTitle;
 
-
+/*
 - (void)configureFonts:(BOOL)highlighted {
     
     if (!highlighted) {
@@ -86,60 +85,48 @@
     [self.contentView addSubview:_lbMessage];
 }
 
-
+*/
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
+    [self backgroundConfiguration];
+    
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
+    NSString * name = socialActivityStream.posterIdentity.fullName;
+    
     switch (socialActivityStream.activityType) {
         case ACTIVITY_ANSWER_ADD_QUESTION:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Asked")];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Asked")];
             break;
         case ACTIVITY_ANSWER_QUESTION:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Answered")];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Answered")];
             break; 
         case ACTIVITY_ANSWER_UPDATE_QUESTION:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"UpdateQuestion")];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"UpdateQuestion")];
             break; 
         default:
             break;
     }
     
-    [_htmlName sizeToFit];
+    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
+    
+    NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
+    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
+    _lbName.attributedText = attributedName;
     
     //Set the position of Title
     float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
     // in plf 4, no Name in template params, it's the title of ActivityStream
     NSString *title = plfVersion >= 4.0 ? socialActivityStream.title : [socialActivityStream.templateParams valueForKey:@"Name"];
     
-    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[title stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
+    _lbTitle.text = title;
     
-    [_htmlTitle sizeToFit];
+    _lbMessage.text = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
-    _lbMessage.html = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    [_lbMessage sizeToFit];
-    
-    
-    // for title
-    CGRect tmpFrame = _htmlTitle.frame;
-    tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
-    double heigthForTTLabel = [[[self htmlTitle] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    tmpFrame.size.height = heigthForTTLabel;
-    _htmlTitle.frame = tmpFrame;
-    
-    
-    //Set the position of lbMessage
-    tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _htmlTitle.frame.origin.y + _htmlTitle.frame.size.height + 5;
-    heigthForTTLabel = [[[self lbMessage] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT) heigthForTTLabel = EXO_MAX_HEIGHT;  
-    tmpFrame.size.height = heigthForTTLabel;
-    _lbMessage.frame = tmpFrame;
     
 }
 
@@ -148,9 +135,8 @@
     
     _lbMessage = nil;
     
-    [_htmlName release];
-    _htmlName = nil;
-    
+    [_lbMessage release];
+    [_lbTitle release];
     [super dealloc];
 }
 

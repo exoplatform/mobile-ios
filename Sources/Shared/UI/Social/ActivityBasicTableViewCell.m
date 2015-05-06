@@ -270,6 +270,41 @@
     plfVersion = version;
 }
 
+-(void) backgroundConfiguration {
+    //Add images for Background Message
+    UIImage *strechBg = [[UIImage imageNamed:@"SocialActivityBrowserActivityBg.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    UIImage *strechBgSelected = [[UIImage imageNamed:@"SocialActivityBrowserActivityBgSelected.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:22];
+    
+    _imgvMessageBg.image = strechBg;
+    _imgvMessageBg.highlightedImage = strechBgSelected;
+    
+    //Add images for Comment button
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButton.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateNormal];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateSelected];
+    [_btnComment setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserCommentButtonSelected.png"]
+                                     stretchableImageWithLeftCapWidth:14 topCapHeight:0]
+                           forState:UIControlStateHighlighted];
+    
+    
+    //Add images for Like button
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateNormal];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateSelected];
+    [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
+                                  stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                        forState:UIControlStateHighlighted];
+    
+    
+}
+
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
  
