@@ -14,7 +14,7 @@
 
 "SignInButton" = "Logg inn";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "Til";
 
 "UsernamePlaceholder" = "Brukernavn";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "I nettverk";
 
-"Sign In" = "Sign In";
+"Sign In" = "Logg inn";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Fjern";
 
-"All Updates" = "Alle oppdateringer";
+"All Updates" = "Alle aktiviteter";
 
 "My Connections" = "Mitt nettverk";
 
 "My Spaces" = "Mine fellesskap";
 
-"My Status" = "Min status";
+"My Status" = "Mine aktiviteter";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Til";
 
