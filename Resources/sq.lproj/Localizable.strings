@@ -14,17 +14,17 @@
 
 "SignInButton" = "crwdns6795902:0crwdne6795902:0";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "crwdns6812290:0crwdne6812290:0";
 
 "UsernamePlaceholder" = "crwdns6795903:0crwdne6795903:0";
 
 "PasswordPlaceholder" = "crwdns6795904:0crwdne6795904:0";
 
-"Last Login" = "Last login";
+"Last Login" = "crwdns6812291:0crwdne6812291:0";
 
-"Connected" = "Connected";
+"Connected" = "crwdns6812292:0crwdne6812292:0";
 
-"Sign In" = "Sign In";
+"Sign In" = "crwdns6812293:0crwdne6812293:0";
 
 /* 
  * Documents
@@ -122,13 +122,13 @@
 
 "Spanish" = "crwdns6795944:0crwdne6795944:0";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "crwdns6812294:0crwdne6812294:0";
 
 "Send" = "crwdns6795945:0crwdne6795945:0";
 
 "ServerList" = "crwdns6795946:0crwdne6795946:0";
 
-"Account" = "Account";
+"Account" = "crwdns6812295:0crwdne6812295:0";
 
 "NewServer" = "crwdns6795947:0crwdne6795947:0";
 
@@ -317,13 +317,13 @@
 
 "Remove" = "crwdns6796031:0crwdne6796031:0";
 
-"All Updates" = "crwdns6796032:0crwdne6796032:0";
+"All Updates" = "crwdns6812296:0crwdne6812296:0";
 
-"My Connections" = "crwdns6796033:0crwdne6796033:0";
+"My Connections" = "crwdns6812297:0crwdne6812297:0";
 
-"My Spaces" = "crwdns6796034:0crwdne6796034:0";
+"My Spaces" = "crwdns6812298:0crwdne6812298:0";
 
-"My Status" = "crwdns6796035:0crwdne6796035:0";
+"My Status" = "crwdns6812299:0crwdne6812299:0";
 
 
 /*
@@ -423,17 +423,17 @@
  Post Activity to Space
  */
 
-"Public" = "Your Stream";
+"Public" = "crwdns6812300:0crwdne6812300:0";
 
-"CannotLoadSpaceID" = "Unable to load the space's identity";
+"CannotLoadSpaceID" = "crwdns6812301:0crwdne6812301:0";
 
-"PostActivityTo" = "Post activity to";
+"PostActivityTo" = "crwdns6812302:0crwdne6812302:0";
 
-"You didn't join any space" = "You didn't join any space";
+"You didn't join any space" = "crwdns6812303:0crwdne6812303:0";
 
-"CannotLoadSpace" = "Unable to load information about your spaces";
+"CannotLoadSpace" = "crwdns6812304:0crwdne6812304:0";
 
-"Loading spaces" = "Loading spaces ...";
+"Loading spaces" = "crwdns6812305:0crwdne6812305:0";
 
-"To" = "To";
+"To" = "crwdns6812306:0crwdne6812306:0";
 
