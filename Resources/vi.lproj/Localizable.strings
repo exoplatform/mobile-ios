@@ -14,7 +14,7 @@
 
 "SignInButton" = "Đăng nhập";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "Đến";
 
 "UsernamePlaceholder" = "Tên người dùng";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Đã kết nối";
 
-"Sign In" = "Sign In";
+"Sign In" = "Đăng nhập";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Loại bỏ";
 
-"All Updates" = "All updates";
+"All Updates" = "Tất cả";
 
-"My Connections" = "My connections";
+"My Connections" = "Kết nối của Tôi";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "NHÓM CỦA TÔI";
 
-"My Status" = "My status";
+"My Status" = "Hoạt động cá nhân";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Đến";
 
