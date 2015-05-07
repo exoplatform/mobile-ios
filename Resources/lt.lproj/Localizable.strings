@@ -14,7 +14,7 @@
 
 "SignInButton" = "Prisijungti";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "į";
 
 "UsernamePlaceholder" = "Vartotojo vardas";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Prisijungta";
 
-"Sign In" = "Sign In";
+"Sign In" = "Prisijungti";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Pašalinti";
 
-"All Updates" = "Visi atnaujinimai";
+"All Updates" = "Visos veiklos";
 
 "My Connections" = "Mano jungtys";
 
 "My Spaces" = "Mano erdvės";
 
-"My Status" = "Mano būsena";
+"My Status" = "Mano veiklos";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Iki";
 
