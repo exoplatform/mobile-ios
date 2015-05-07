@@ -14,7 +14,7 @@
 
 "SignInButton" = "Connexion";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "jusqu'au";
 
 "UsernamePlaceholder" = "Utilisateur";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Connecté";
 
-"Sign In" = "Sign In";
+"Sign In" = "Connexion";
 
 /*
  * Documents
@@ -436,7 +436,7 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "à";
 
 "To" = "À";
 
