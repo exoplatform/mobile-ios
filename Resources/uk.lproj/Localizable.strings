@@ -14,7 +14,7 @@
 
 "SignInButton" = "Логін";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "до";
 
 "UsernamePlaceholder" = "Ім'я користувача";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "В контактах";
 
-"Sign In" = "Sign In";
+"Sign In" = "Увійти";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Видалити";
 
-"All Updates" = "Всі оновлення";
+"All Updates" = "Всі діяльності";
 
 "My Connections" = "Мої контакти";
 
 "My Spaces" = "Мої області";
 
-"My Status" = "Мій статус";
+"My Status" = "Мої діяльності";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "До";
 
