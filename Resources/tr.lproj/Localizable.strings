@@ -14,7 +14,7 @@
 
 "SignInButton" = "Uturum Aç";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "Kime";
 
 "UsernamePlaceholder" = "Kullanıcı Adı";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Bağlandı";
 
-"Sign In" = "Sign In";
+"Sign In" = "Oturum Aç";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Kaldır";
 
-"All Updates" = "Tüm Güncelleştirmeler";
+"All Updates" = "Tüm Faliyetler";
 
 "My Connections" = "Bağlantılarım";
 
 "My Spaces" = "Alanlarım";
 
-"My Status" = "Durumum";
+"My Status" = "Faliyetlerim";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Bitiş Tarihi";
 
