@@ -14,7 +14,7 @@
 
 "SignInButton" = "登录";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "到";
 
 "UsernamePlaceholder" = "用户名";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "已连接";
 
-"Sign In" = "Sign In";
+"Sign In" = "登录";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "删除";
 
-"All Updates" = "所有更新";
+"All Updates" = "所有活动";
 
 "My Connections" = "我的联系人";
 
 "My Spaces" = "我的空间";
 
-"My Status" = "我的状态";
+"My Status" = "我的活动";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "到";
 
