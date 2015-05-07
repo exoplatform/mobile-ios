@@ -14,7 +14,7 @@
 
 "SignInButton" = "Logga in";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "till";
 
 "UsernamePlaceholder" = "Användarnamn";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Ansluten";
 
-"Sign In" = "Sign In";
+"Sign In" = "Logga in";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Ta bort";
 
-"All Updates" = "All updates";
+"All Updates" = "Alla aktiviteter";
 
-"My Connections" = "My connections";
+"My Connections" = "Mina kopplingar";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "Mina Webb-ytor";
 
-"My Status" = "My status";
+"My Status" = "Min Aktiviteter";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Till";
 
