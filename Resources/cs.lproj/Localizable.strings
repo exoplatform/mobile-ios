@@ -14,7 +14,7 @@
 
 "SignInButton" = "Přihlášení";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "do";
 
 "UsernamePlaceholder" = "Uživatelské jméno";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "V seznamu kontaktů";
 
-"Sign In" = "Sign In";
+"Sign In" = "Přihlásit se";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Odstranit";
 
-"All Updates" = "Všechny aktualizace";
+"All Updates" = "Všechny aktivity";
 
 "My Connections" = "Moje kontakty";
 
 "My Spaces" = "Moje skupiny";
 
-"My Status" = "Můj stav";
+"My Status" = "Moje příspěvky";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Do";
 
