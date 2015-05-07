@@ -14,7 +14,7 @@
 
 "SignInButton" = "Login";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "宛先";
 
 "UsernamePlaceholder" = "Username";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "接続されています。";
 
-"Sign In" = "Sign In";
+"Sign In" = "サインイン";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "Remove";
 
-"All Updates" = "All updates";
+"All Updates" = "すべてのアクティビティ";
 
-"My Connections" = "My connections";
+"My Connections" = "私のつながり";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "マイスペース";
 
-"My Status" = "My status";
+"My Status" = "私のアクティビティ";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "終了日";
 
