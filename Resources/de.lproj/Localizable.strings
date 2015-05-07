@@ -14,7 +14,7 @@
 
 "SignInButton" = "Anmelden";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "bis";
 
 "UsernamePlaceholder" = "Benutzername";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Verbunden";
 
-"Sign In" = "Sign In";
+"Sign In" = "Anmelden";
 
 /* 
  * Documents
@@ -319,13 +319,13 @@
 
 "Remove" = "Entfernen";
 
-"All Updates" = "Alle Aktualisierungen";
+"All Updates" = "Alle Aktivitäten";
 
 "My Connections" = "Meine Verbindungen";
 
 "My Spaces" = "Meine Räume";
 
-"My Status" = "Mein Status";
+"My Status" = "Meine Aktivitäten";
 
 
 /*
@@ -437,5 +437,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "An";
 
