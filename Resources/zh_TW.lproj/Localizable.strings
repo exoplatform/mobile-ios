@@ -14,7 +14,7 @@
 
 "SignInButton" = "登錄";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "至";
 
 "UsernamePlaceholder" = "使用者名稱";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "連接";
 
-"Sign In" = "Sign In";
+"Sign In" = "登入";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "刪除 ";
 
-"All Updates" = "所有更新";
+"All Updates" = "所有活動";
 
-"My Connections" = "我的連接";
+"My Connections" = "我的聯繫";
 
 "My Spaces" = "我的空間";
 
-"My Status" = "我的狀態";
+"My Status" = "我的活動";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "至";
 
