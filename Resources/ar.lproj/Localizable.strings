@@ -14,7 +14,7 @@
 
 "SignInButton" = "تسجيل الدخول";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "إلى";
 
 "UsernamePlaceholder" = "اسم المستخدم";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "متصل";
 
-"Sign In" = "Sign In";
+"Sign In" = "تسجيل الدخول";
 
 /* 
  * Documents
@@ -317,13 +317,13 @@
 
 "Remove" = "حذف";
 
-"All Updates" = "كافة التحديثات";
+"All Updates" = "جميع الأنشطة";
 
 "My Connections" = "علاقاتي";
 
 "My Spaces" = "فضاءاتي";
 
-"My Status" = "حالة التوافر الخاصّة بي";
+"My Status" = "آخر أخباري";
 
 
 /*
@@ -435,5 +435,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "إلى";
 
