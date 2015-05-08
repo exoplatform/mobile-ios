@@ -156,7 +156,12 @@
     [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityPictureDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityPictureDetailMessageTableViewCell"];
     [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityDetailMessageTableViewCell"];
     [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityLinkDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityLinkDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityWikiDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityWikiDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityForumDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityForumDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityAnswerDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityAnswerDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityCalendarDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityCalendarDetailMessageTableViewCell"];
 
+//ActivityAnswerDetailMessageTableViewCell
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -268,51 +273,31 @@
             }
             case ACTIVITY_WIKI_ADD_PAGE:
             case ACTIVITY_WIKI_MODIFY_PAGE: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityWikiDetailMessageTableViewCell *)[nib objectAtIndex:0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                NSString * identCell = @"ActivityWikiDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break;
             }
             case ACTIVITY_FORUM_CREATE_POST: 
             case ACTIVITY_FORUM_CREATE_TOPIC:
             case ACTIVITY_FORUM_UPDATE_POST:
             case ACTIVITY_FORUM_UPDATE_TOPIC: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityForumDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityForumDetailMessageTableViewCell *)[nib objectAtIndex:0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                NSString * identCell = @"ActivityForumDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break;
             }
             case ACTIVITY_CALENDAR_UPDATE_TASK: 
             case ACTIVITY_CALENDAR_ADD_TASK:
             case ACTIVITY_CALENDAR_UPDATE_EVENT:
             case ACTIVITY_CALENDAR_ADD_EVENT: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityCalendarDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityCalendarDetailMessageTableViewCell *)[nib objectAtIndex:0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
+                NSString * identCell = @"ActivityCalendarDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break; 
             }
             case ACTIVITY_ANSWER_QUESTION:
             case ACTIVITY_ANSWER_ADD_QUESTION:
             case ACTIVITY_ANSWER_UPDATE_QUESTION: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityAnswerDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityAnswerDetailMessageTableViewCell *)[nib objectAtIndex:0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;            
+                NSString * identCell = @"ActivityAnswerDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 break;
             }
             case ACTIVITY_LINK: {
@@ -328,11 +313,6 @@
             default: {
                 NSString * identCell = @"ActivityDetailMessageTableViewCell" ;
                 _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];        
-                //Create a cell, need to do some configurations
-//                [_activityDetailCell configureCell];
-                
-                //Set the delegate of the webview
-//                _activityDetailCell.webViewForContent.delegate = self;
                 break;
             }
         }

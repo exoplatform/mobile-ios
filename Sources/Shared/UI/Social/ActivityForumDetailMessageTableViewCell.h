@@ -24,5 +24,7 @@
         
     CGFloat width;
 }
+
 @property (retain, nonatomic) IBOutlet UILabel *lbTitle;
+
 @end

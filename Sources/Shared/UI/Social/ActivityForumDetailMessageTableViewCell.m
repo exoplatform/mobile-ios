@@ -98,6 +98,7 @@
 
 - (void)dealloc {
     [_lbTitle release];
+    [_lbTitle release];
     [super dealloc];
 }
 
