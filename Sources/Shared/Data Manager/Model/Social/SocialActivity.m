@@ -183,7 +183,7 @@
     
     return htmlAttributedString;
  
-    /*
+
    
     NSData *stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -195,7 +195,7 @@
     [decodedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, decodedString.length)];
     
     return decodedString;
-      */
+
 }
 
 - (NSString *)stringByDecodingHTML:(NSString *) html {

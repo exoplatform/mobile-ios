@@ -238,6 +238,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         self.likeActivityProxy = nil;
         [self updateActivityStream];
     }
+    
+    if (self.hudLoadWaiting.view.superview){
+        [self.hudLoadWaiting.view removeFromSuperview];
+    }
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
@@ -349,6 +353,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityWikiTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierWiki];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityPictureTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierPicture];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityLinkTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierLink];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityForumTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierForum];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityAnswerTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierAnswer];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityCalendarTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierCalendar];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityBasicTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
+
     
     plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
     
@@ -362,12 +374,15 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     _tblvActivityStream.scrollsToTop = YES;
     _tblvActivityStream.contentInset = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
     _tblvActivityStream.scrollIndicatorInsets = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
+    
+    
     // filter tab bar
     CGRect activityStreamFrame = _tblvActivityStream.frame;
     self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)] autorelease];
-    self.filterTabbar.tabView.delegate = self;
-    [self.filterTabbar selectTabItem:[UserPreferencesManager sharedInstance].selectedSocialStream];
+    self.filterTabbar.tabView.delegate = self;    
     [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
+    [self.filterTabbar selectTabItem:[UserPreferencesManager sharedInstance].selectedSocialStream];
+
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		
@@ -390,16 +405,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     // The footer view that contains the activity indicator
     [self setupActivityIndicator];
     
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityWikiTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierWiki];
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityPictureTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierPicture];
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityLinkTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierLink];
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityForumTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierForum];
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityAnswerTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierAnswer];
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityCalendarTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierCalendar];
-    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityBasicTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
 
 }
-
 - (void)viewDidUnload
 {
     [_refreshHeaderView release];
@@ -532,6 +539,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [_tblvActivityStream reloadData];
     [self displayHudLoader];
     [self callProxiesToReloadActivityStream];
+    
+    
 }
 
 
@@ -610,7 +619,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         return socialActivityStream.cellHeight;
     }
     return [self heightForRowAtIndexPath:indexPath];
-    
+
 }
 
 -(CGFloat) heightForRowAtIndexPath:(NSIndexPath*) indexPath {

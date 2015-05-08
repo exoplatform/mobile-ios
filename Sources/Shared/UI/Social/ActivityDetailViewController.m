@@ -155,8 +155,8 @@
     
     [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityPictureDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityPictureDetailMessageTableViewCell"];
     [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityDetailMessageTableViewCell"];
+    [self.tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityLinkDetailMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityLinkDetailMessageTableViewCell"];
 
-//ActivityDetailMessageTableViewCell
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -316,15 +316,13 @@
                 break;
             }
             case ACTIVITY_LINK: {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityLinkDetailMessageTableViewCell" owner:self options:nil];
-                _activityDetailCell = (ActivityLinkDetailMessageTableViewCell *)[nib objectAtIndex:0];
-                //Create a cell, need to do some configurations
-                [_activityDetailCell configureCell];
-                [_activityDetailCell configureCellForSpecificContentWithWidth:_tblvActivityDetail.frame.size.width];
+                NSString * identCell = @"ActivityLinkDetailMessageTableViewCell" ;
+                _activityDetailCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
                 
-                //Set the delegate of the webview
-                _activityDetailCell.webViewForContent.delegate = self;
-                _activityDetailCell.webViewComment.delegate = self;
+                UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
+                [_activityDetailCell addGestureRecognizer:tapGesture];
+                [tapGesture release];
+
                 break;
             }
             default: {

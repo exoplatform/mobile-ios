@@ -68,6 +68,7 @@
         _hudLoadWaiting = [[ATMHud alloc] initWithDelegate:nil];
         // disable user interaction during the loading.
         [_hudLoadWaiting setAllowSuperviewInteraction:NO];
+
     }
     return _hudLoadWaiting;
 }
@@ -80,6 +81,7 @@
     ATMHud *hudLoad = [self hudLoadWaiting];
     [self updateHudPosition];
     return hudLoad;
+    
 }
 
 - (void)displayHudLoader {

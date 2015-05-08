@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -41,53 +41,38 @@
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nND-iE-yjI">
-                                <rect key="frame" x="10" y="236" width="245" height="30"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="1bw-Jz-pzu">
-                                        <rect key="frame" x="30" y="3" width="24" height="24"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
-                                        <color key="textColor" red="0.68627450980000004" green="0.69019607839999997" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ActivityTypeNormal.png" translatesAutoresizingMaskIntoConstraints="NO" id="F0k-4T-0I6">
-                                        <rect key="frame" x="7" y="9" width="14" height="14"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="14" id="DAO-sG-Fdv"/>
-                                            <constraint firstAttribute="width" constant="14" id="YRR-rG-ca2"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ActivityTypeNormal.png" translatesAutoresizingMaskIntoConstraints="NO" id="F0k-4T-0I6">
+                                <rect key="frame" x="20" y="252" width="14" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="245" id="Aue-98-hS7"/>
-                                    <constraint firstItem="1bw-Jz-pzu" firstAttribute="top" secondItem="nND-iE-yjI" secondAttribute="top" constant="3" id="CFc-yW-fMp"/>
-                                    <constraint firstAttribute="height" constant="30" id="JaK-8C-JiN"/>
-                                    <constraint firstItem="F0k-4T-0I6" firstAttribute="top" secondItem="nND-iE-yjI" secondAttribute="top" constant="9" id="KlF-vp-AL5"/>
-                                    <constraint firstItem="1bw-Jz-pzu" firstAttribute="leading" secondItem="F0k-4T-0I6" secondAttribute="trailing" constant="9" id="OxR-nu-x5K"/>
-                                    <constraint firstAttribute="bottom" secondItem="1bw-Jz-pzu" secondAttribute="bottom" constant="3" id="RLC-Gg-LUS"/>
-                                    <constraint firstAttribute="bottom" secondItem="F0k-4T-0I6" secondAttribute="bottom" constant="7" id="RvQ-kS-sre"/>
-                                    <constraint firstItem="F0k-4T-0I6" firstAttribute="leading" secondItem="nND-iE-yjI" secondAttribute="leading" constant="7" id="qi4-9r-fQA"/>
+                                    <constraint firstAttribute="width" constant="14" id="5AI-WB-iei"/>
+                                    <constraint firstAttribute="height" constant="14" id="eNc-ap-fsj"/>
                                 </constraints>
-                            </view>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="1bw-Jz-pzu">
+                                <rect key="frame" x="42" y="253" width="24" height="13"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                <color key="textColor" red="0.68627450980000004" green="0.69019607839999997" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ufX-Dj-w0t" firstAttribute="leading" secondItem="HNa-VQ-rig" secondAttribute="leading" constant="12" id="5NE-a5-DmN"/>
                             <constraint firstItem="b0T-uq-azZ" firstAttribute="leading" secondItem="HNa-VQ-rig" secondAttribute="leading" constant="26" id="8fU-cV-uGO"/>
                             <constraint firstAttribute="trailing" secondItem="BwN-Cd-DxW" secondAttribute="trailing" constant="17" id="F1H-re-52e"/>
+                            <constraint firstAttribute="bottom" secondItem="1bw-Jz-pzu" secondAttribute="bottom" constant="13" id="Fn7-vh-eVT"/>
                             <constraint firstAttribute="trailing" secondItem="ufX-Dj-w0t" secondAttribute="trailing" constant="8" id="HSm-sF-wkD"/>
-                            <constraint firstAttribute="trailing" secondItem="nND-iE-yjI" secondAttribute="trailing" constant="10" id="O3N-hU-FGE"/>
-                            <constraint firstAttribute="bottom" secondItem="nND-iE-yjI" secondAttribute="bottom" constant="13" id="X1x-W8-u1c"/>
                             <constraint firstAttribute="trailing" secondItem="0HM-4X-uOQ" secondAttribute="trailing" constant="17" id="Xao-PK-Ryu"/>
-                            <constraint firstItem="nND-iE-yjI" firstAttribute="leading" secondItem="HNa-VQ-rig" secondAttribute="leading" constant="10" id="YIt-QD-OVi"/>
+                            <constraint firstItem="1bw-Jz-pzu" firstAttribute="top" secondItem="BwN-Cd-DxW" secondAttribute="bottom" constant="21" id="YHw-UH-q6X"/>
                             <constraint firstItem="BwN-Cd-DxW" firstAttribute="top" secondItem="ufX-Dj-w0t" secondAttribute="bottom" constant="8" id="a2q-76-jOA"/>
+                            <constraint firstItem="F0k-4T-0I6" firstAttribute="leading" secondItem="HNa-VQ-rig" secondAttribute="leading" constant="20" id="bbN-69-iBy"/>
                             <constraint firstItem="ufX-Dj-w0t" firstAttribute="top" secondItem="b0T-uq-azZ" secondAttribute="bottom" constant="8" id="dOj-Ob-4s8"/>
-                            <constraint firstItem="nND-iE-yjI" firstAttribute="top" secondItem="BwN-Cd-DxW" secondAttribute="bottom" constant="4" id="eVQ-KH-C5g"/>
                             <constraint firstItem="BwN-Cd-DxW" firstAttribute="leading" secondItem="HNa-VQ-rig" secondAttribute="leading" constant="26" id="gNM-hN-Lym"/>
                             <constraint firstAttribute="trailing" secondItem="b0T-uq-azZ" secondAttribute="trailing" constant="17" id="l1N-gO-ovX"/>
+                            <constraint firstAttribute="bottom" secondItem="F0k-4T-0I6" secondAttribute="bottom" constant="13" id="mc0-oo-Iwk"/>
                             <constraint firstItem="b0T-uq-azZ" firstAttribute="top" secondItem="0HM-4X-uOQ" secondAttribute="bottom" constant="5" id="nTz-1Y-jNL"/>
+                            <constraint firstItem="1bw-Jz-pzu" firstAttribute="leading" secondItem="F0k-4T-0I6" secondAttribute="trailing" constant="8" id="oGC-e6-F2Y"/>
                             <constraint firstItem="0HM-4X-uOQ" firstAttribute="leading" secondItem="HNa-VQ-rig" secondAttribute="leading" constant="26" id="plI-ia-dF4"/>
                             <constraint firstItem="0HM-4X-uOQ" firstAttribute="top" secondItem="HNa-VQ-rig" secondAttribute="top" constant="17" id="xyC-pl-Gtr"/>
                         </constraints>
@@ -116,12 +101,12 @@
                 <outlet property="imgType" destination="F0k-4T-0I6" id="PN6-5H-QZY"/>
                 <outlet property="imgvAttach" destination="ufX-Dj-w0t" id="dFB-BN-Dtv"/>
                 <outlet property="imgvAvatar" destination="IUb-3f-0yh" id="PGv-Vi-RdH"/>
-                <outlet property="lbDate" destination="1bw-Jz-pzu" id="Cji-8P-4SA"/>
+                <outlet property="lbDate" destination="1bw-Jz-pzu" id="vk2-ls-mLA"/>
                 <outlet property="lbFileName" destination="BwN-Cd-DxW" id="FKl-ab-oCq"/>
                 <outlet property="lbMessage" destination="b0T-uq-azZ" id="vw2-fX-4ej"/>
                 <outlet property="lbName" destination="0HM-4X-uOQ" id="zh7-Aq-yDc"/>
             </connections>
-            <point key="canvasLocation" x="24" y="187"/>
+            <point key="canvasLocation" x="24" y="185"/>
         </tableViewCell>
     </objects>
     <resources>

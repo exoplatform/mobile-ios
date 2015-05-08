@@ -126,16 +126,19 @@
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     self.socialActivity = socialActivityDetail;
-    _lbName.text = self.socialActivity.posterIdentity.fullName;
-    _lbDate.text = socialActivityDetail.postedTimeInWords;
-    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
+    self.lbName.text = self.socialActivity.posterIdentity.fullName;
+    self.lbDate.text = socialActivityDetail.postedTimeInWords;
+    self.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
     self.lbMessage.text=@"";
 
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DEFAULT:
         {
-            self.lbMessage.attributedText = socialActivityDetail.attributedMessage ? socialActivityDetail.attributedMessage : @"";
-            
+            if (socialActivityDetail.attributedMessage) {
+                self.lbMessage.attributedText = socialActivityDetail.attributedMessage;
+            } else {
+                self.lbMessage.text =socialActivityDetail.title ?socialActivityDetail.title:@"";
+            }
         }
             break;
     }
