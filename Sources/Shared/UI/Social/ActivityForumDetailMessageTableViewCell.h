@@ -21,12 +21,8 @@
 #import "ActivityDetailMessageTableViewCell.h"
 
 @interface ActivityForumDetailMessageTableViewCell : ActivityDetailMessageTableViewCell{
-    
-    TTStyledTextLabel*                      _htmlName;
-    TTStyledTextLabel*                      _htmlMessage;
-    
+        
     CGFloat width;
 }
-@property (retain, nonatomic) TTStyledTextLabel* htmlMessage;
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
+@property (retain, nonatomic) IBOutlet UILabel *lbTitle;
 @end
