@@ -621,38 +621,34 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     return [self heightForRowAtIndexPath:indexPath];
 
 }
-
--(CGFloat) heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-
-    NSString * identCell;
-    switch (socialActivityStream.activityType) {
+-(NSString *) identifientForCellOfSocialActivity:(SocialActivity *) socialActivity {
+    switch (socialActivity.activityType) {
         case ACTIVITY_DOC:
         case ACTIVITY_CONTENTS_SPACE:{
-            identCell = kCellIdentifierPicture;
+            return kCellIdentifierPicture;
         }
             break;
         case ACTIVITY_LINK:{
-            identCell = kCellIdentifierLink;
+            return kCellIdentifierLink;
         }
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
         case ACTIVITY_WIKI_MODIFY_PAGE:{
-            identCell = kCellIdentifierWiki;
+            return kCellIdentifierWiki;
         }
             break;
         case ACTIVITY_FORUM_CREATE_POST:
         case ACTIVITY_FORUM_CREATE_TOPIC:
         case ACTIVITY_FORUM_UPDATE_TOPIC:
         case ACTIVITY_FORUM_UPDATE_POST:{
-            identCell = kCellIdentifierForum;
+            return kCellIdentifierForum;
         }
             break;
         case ACTIVITY_ANSWER_QUESTION:
         case ACTIVITY_ANSWER_ADD_QUESTION:
         case ACTIVITY_ANSWER_UPDATE_QUESTION:
         {
-            identCell = kCellIdentifierAnswer;
+            return kCellIdentifierAnswer;
         }
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
@@ -660,17 +656,22 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         case ACTIVITY_CALENDAR_ADD_EVENT:
         case ACTIVITY_CALENDAR_ADD_TASK:
         {
-            identCell = kCellIdentifierCalendar;
+            return kCellIdentifierCalendar;
         }
             break;
         default:{
-            identCell = kCellIdentifier;
+            return kCellIdentifier;
         }
             break;
     }
+}
+
+-(CGFloat) heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     
     static ActivityBasicTableViewCell *sizingCell = nil;
-
+    NSString * identCell = [self identifientForCellOfSocialActivity:socialActivityStream];
+    
     sizingCell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
     
     [sizingCell setSocialActivityStreamForSpecificContent:socialActivityStream];
@@ -688,86 +689,19 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    
+    NSString * identCell = [self identifientForCellOfSocialActivity:socialActivityStream];
+    
     ActivityBasicTableViewCell *cell;
-    
-    switch (socialActivityStream.activityType) {
-        case ACTIVITY_DOC:
-        case ACTIVITY_CONTENTS_SPACE:{
-            NSString * identCell = kCellIdentifierPicture;
-            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-        }
-            break;
-            
-        case ACTIVITY_LINK:{
-            NSString * identCell = kCellIdentifierLink;
-            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
+    cell =  [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
 
-        }
-            break;
-        case ACTIVITY_WIKI_ADD_PAGE:
-        case ACTIVITY_WIKI_MODIFY_PAGE:{
-            NSString * identCell = kCellIdentifierWiki;
-            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-        }
-            break;
-        case ACTIVITY_FORUM_CREATE_POST: 
-        case ACTIVITY_FORUM_CREATE_TOPIC:
-        case ACTIVITY_FORUM_UPDATE_TOPIC:
-        case ACTIVITY_FORUM_UPDATE_POST:{
-            NSString * identCell = kCellIdentifierForum;
-            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-        }
-            break;
-        case ACTIVITY_ANSWER_QUESTION:
-        case ACTIVITY_ANSWER_ADD_QUESTION:
-        case ACTIVITY_ANSWER_UPDATE_QUESTION:
-        {
-            //We dequeue a cell
-            NSString * identCell = kCellIdentifierAnswer;
-            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-        }
-            break;
-        case ACTIVITY_CALENDAR_UPDATE_TASK:
-        case ACTIVITY_CALENDAR_UPDATE_EVENT:
-        case ACTIVITY_CALENDAR_ADD_EVENT:
-        case ACTIVITY_CALENDAR_ADD_TASK:
-        {
-            NSString * identCell = kCellIdentifierCalendar;
-            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-        }
-            break;
-        
-        default:{
-            NSString * identCell = kCellIdentifier;
-            cell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
-            [cell setSocialActivityStreamForSpecificContent:socialActivityStream];
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-        }
-            break;
-    }
-    
+    // configuration cell.
     [cell setPlatformVersion:plfVersion];
     cell.delegate = self;
     cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
+    // setup background image.
+    [cell backgroundConfiguration];
+    // setup social activity
     [cell setSocialActivityStream:socialActivityStream];
     
     //Load images

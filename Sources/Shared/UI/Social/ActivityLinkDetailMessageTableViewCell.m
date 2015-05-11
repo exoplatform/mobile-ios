@@ -33,7 +33,7 @@
 
 @synthesize htmlLinkTitle = _htmlLinkTitle;
 @synthesize htmlLinkMessage = _htmlLinkMessage;
-@synthesize htmlActivityMessage = _htmlActivityMessage;
+@synthesize htmlDescriptionMessage = _htmlDescriptionMessage;
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
@@ -102,12 +102,13 @@
     
     _htmlLinkTitle.text =[socialActivityDetail.templateParams valueForKey:@"title"];
 
-    _htmlLinkMessage.text =[socialActivityDetail.templateParams valueForKey:@"description"];
+    _htmlDescriptionMessage.text =[socialActivityDetail.templateParams valueForKey:@"description"];
+    
+    
     NSString * linkMessage =[NSString stringWithFormat:@"Source : %@",[socialActivityDetail.templateParams valueForKey:@"link"]];
     NSMutableAttributedString * attributedLinkMessage =  [[NSMutableAttributedString alloc] initWithString:linkMessage];
-    [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityDetail.templateParams valueForKey:@"link"]]];
-    
-    _htmlActivityMessage.attributedText = attributedLinkMessage;
+    [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityDetail.templateParams valueForKey:@"link"]]];    
+    _htmlLinkMessage.attributedText = attributedLinkMessage;
     
 }
 
@@ -118,7 +119,7 @@
     [_htmlLinkTitle release];
     _htmlLinkTitle = nil;
     
-    [_htmlActivityMessage release];
+    [_htmlDescriptionMessage release];
     [_imageViewHeightConstaint release];
     [super dealloc];
 }

@@ -182,19 +182,7 @@
     }
     
     return htmlAttributedString;
- 
 
-   
-    NSData *stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
-
-    NSDictionary *options = @{                              NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,
-                              };
-    NSMutableAttributedString *decodedString;
-    NSDictionary * htmlAttributes;
-    decodedString = [[NSMutableAttributedString alloc] initWithData:stringData options:options documentAttributes:&htmlAttributes error:NULL];
-    [decodedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, decodedString.length)];
-    
-    return decodedString;
 
 }
 

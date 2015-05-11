@@ -104,7 +104,7 @@
                             <imageView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="12" customClass="EGOImageView">
                                 <rect key="frame" x="12" y="65" width="245" height="142"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="142" id="POT-Pv-8Qe"/>
+                                    <constraint firstAttribute="height" constant="142" id="POT-Pv-8Qe"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="5">

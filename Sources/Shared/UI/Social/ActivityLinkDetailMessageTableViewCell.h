@@ -22,14 +22,14 @@
 
 @interface ActivityLinkDetailMessageTableViewCell : ActivityDetailMessageTableViewCell{
 
-    UILabel*      _htmlLinkTitle;
+    UILabel*     _htmlLinkTitle;
     UILabel*     _htmlLinkMessage;
-    UILabel*     _htmlActivityMessage;
+    UILabel*     _htmlDescriptionMessage;
     
     CGFloat width;
 }
 @property (retain, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightConstaint;
-@property (retain, nonatomic) IBOutlet UILabel *htmlActivityMessage;
+@property (retain, nonatomic) IBOutlet UILabel * htmlDescriptionMessage;
 @property (retain, nonatomic) IBOutlet UILabel * htmlLinkTitle;
 @property (retain, nonatomic) IBOutlet UILabel * htmlLinkMessage;
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;

@@ -102,8 +102,8 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="htmlActivityMessage" destination="UXe-tg-3bk" id="0N6-Xl-hpa"/>
-                <outlet property="htmlLinkMessage" destination="27" id="31"/>
+                <outlet property="htmlDescriptionMessage" destination="27" id="JWa-YF-jrZ"/>
+                <outlet property="htmlLinkMessage" destination="UXe-tg-3bk" id="AAG-B2-Zmj"/>
                 <outlet property="htmlLinkTitle" destination="28" id="30"/>
                 <outlet property="imageViewHeightConstaint" destination="JbA-9k-E1i" id="5Pe-2j-bfO"/>
                 <outlet property="imgType" destination="7" id="14"/>

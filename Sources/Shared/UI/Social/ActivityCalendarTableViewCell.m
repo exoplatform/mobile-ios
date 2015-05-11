@@ -33,7 +33,6 @@
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
 
-    [self backgroundConfiguration];
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
