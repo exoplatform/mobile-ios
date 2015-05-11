@@ -20,7 +20,7 @@
 
 "PasswordPlaceholder" = "Mot de passe";
 
-"Last Login" = "Last login";
+"Last Login" = "Dernière connexion";
 
 "Connected" = "Connecté";
 
@@ -122,7 +122,7 @@
 
 "Spanish" = "Espagnol";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Portugais (Brésil)";
 
 "Greek"= "Grec";
 
@@ -130,7 +130,7 @@
 
 "ServerList" = "Liste des serveurs";
 
-"Account" = "Account";
+"Account" = "Compte";
 
 "NewServer" = "Nouveau serveur";
 
