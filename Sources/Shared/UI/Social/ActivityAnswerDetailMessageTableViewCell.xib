@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -23,9 +23,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="fxv-yr-o4e">
-                        <rect key="frame" x="67" y="8" width="245" height="15"/>
+                        <rect key="frame" x="67" y="8" width="245" height="18"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -61,17 +61,17 @@
                     <constraint firstItem="QdF-TD-Z40" firstAttribute="top" secondItem="yJu-ct-vqd" secondAttribute="bottom" constant="5" id="Dne-8r-tUS"/>
                     <constraint firstItem="yJu-ct-vqd" firstAttribute="leading" secondItem="Qy5-UQ-ByD" secondAttribute="trailing" constant="16" id="Ic1-kR-he7"/>
                     <constraint firstItem="QdF-TD-Z40" firstAttribute="leading" secondItem="eh7-a3-1Ls" secondAttribute="leading" constant="69" id="NLF-O7-FcC"/>
+                    <constraint firstItem="yJu-ct-vqd" firstAttribute="top" secondItem="fxv-yr-o4e" secondAttribute="bottom" constant="6" id="NpO-PQ-xze"/>
                     <constraint firstAttribute="trailing" secondItem="QdF-TD-Z40" secondAttribute="trailing" constant="8" id="PoX-jL-Uaw"/>
                     <constraint firstAttribute="trailing" secondItem="yJu-ct-vqd" secondAttribute="trailing" constant="8" id="TRF-C1-Acf"/>
                     <constraint firstItem="HTG-GK-pWk" firstAttribute="leading" secondItem="eh7-a3-1Ls" secondAttribute="leading" constant="69" id="Tuf-as-lx2"/>
+                    <constraint firstItem="fxv-yr-o4e" firstAttribute="leading" secondItem="Qy5-UQ-ByD" secondAttribute="trailing" constant="15" id="b4Z-Hy-ohd"/>
+                    <constraint firstAttribute="trailing" secondItem="fxv-yr-o4e" secondAttribute="trailing" constant="8" id="bAK-Xj-6LR"/>
+                    <constraint firstItem="fxv-yr-o4e" firstAttribute="top" secondItem="eh7-a3-1Ls" secondAttribute="top" constant="8" id="eWq-Sl-nxh"/>
                     <constraint firstItem="4AJ-JR-aSN" firstAttribute="leading" secondItem="HTG-GK-pWk" secondAttribute="trailing" constant="8" id="fOI-5N-BSP"/>
                     <constraint firstAttribute="bottom" secondItem="4AJ-JR-aSN" secondAttribute="bottom" constant="9" id="gUJ-w3-zTP"/>
-                    <constraint firstItem="yJu-ct-vqd" firstAttribute="top" secondItem="fxv-yr-o4e" secondAttribute="bottom" constant="9" id="hAa-yO-EPc"/>
-                    <constraint firstItem="fxv-yr-o4e" firstAttribute="top" secondItem="eh7-a3-1Ls" secondAttribute="top" constant="8" id="iWX-WL-yGh"/>
-                    <constraint firstItem="fxv-yr-o4e" firstAttribute="leading" secondItem="Qy5-UQ-ByD" secondAttribute="trailing" constant="15" id="nlz-IE-BTp"/>
                     <constraint firstItem="Qy5-UQ-ByD" firstAttribute="leading" secondItem="eh7-a3-1Ls" secondAttribute="leading" constant="7" id="nsT-ld-7qc"/>
                     <constraint firstItem="Qy5-UQ-ByD" firstAttribute="top" secondItem="eh7-a3-1Ls" secondAttribute="top" constant="5" id="qXf-9y-tKJ"/>
-                    <constraint firstAttribute="trailing" secondItem="fxv-yr-o4e" secondAttribute="trailing" constant="8" id="txQ-QN-vXc"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

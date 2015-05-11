@@ -23,9 +23,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="18">
-                        <rect key="frame" x="67" y="8" width="245" height="15"/>
+                        <rect key="frame" x="67" y="8" width="245" height="18"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -62,16 +62,16 @@
                     <constraint firstItem="8" firstAttribute="top" secondItem="VM2-OY-ehZ" secondAttribute="top" constant="5" id="Q41-2S-4XN"/>
                     <constraint firstItem="9" firstAttribute="leading" secondItem="VM2-OY-ehZ" secondAttribute="leading" constant="69" id="Rrc-32-EpM"/>
                     <constraint firstAttribute="trailing" secondItem="16" secondAttribute="trailing" constant="8" id="Skw-BN-Wel"/>
+                    <constraint firstItem="18" firstAttribute="top" secondItem="VM2-OY-ehZ" secondAttribute="top" constant="8" id="Wri-xf-9Vm"/>
                     <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" constant="11" id="XaD-xe-q6V"/>
                     <constraint firstItem="4" firstAttribute="top" secondItem="16" secondAttribute="bottom" constant="16" id="Yep-5M-k1t"/>
+                    <constraint firstItem="18" firstAttribute="leading" secondItem="8" secondAttribute="trailing" constant="15" id="ZXF-jx-bba"/>
                     <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" constant="9" id="ZiG-IZ-cpM"/>
-                    <constraint firstAttribute="trailing" secondItem="18" secondAttribute="trailing" constant="8" id="cV1-Ef-ikn"/>
-                    <constraint firstItem="19" firstAttribute="top" secondItem="18" secondAttribute="bottom" constant="9" id="ctY-Qf-9Mu"/>
+                    <constraint firstAttribute="trailing" secondItem="18" secondAttribute="trailing" constant="8" id="jM6-Rl-S0n"/>
                     <constraint firstItem="16" firstAttribute="leading" secondItem="VM2-OY-ehZ" secondAttribute="leading" constant="69" id="lSE-ra-xD1"/>
                     <constraint firstItem="4" firstAttribute="leading" secondItem="9" secondAttribute="trailing" constant="8" id="ohD-XY-z7e"/>
-                    <constraint firstItem="18" firstAttribute="leading" secondItem="8" secondAttribute="trailing" constant="15" id="tSv-Ve-o0h"/>
+                    <constraint firstItem="19" firstAttribute="top" secondItem="18" secondAttribute="bottom" constant="6" id="uyX-sV-Mlc"/>
                     <constraint firstItem="16" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="5" id="vlB-Nr-BBG"/>
-                    <constraint firstItem="18" firstAttribute="top" secondItem="VM2-OY-ehZ" secondAttribute="top" constant="8" id="yry-DJ-Bjj"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
