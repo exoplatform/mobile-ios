@@ -85,10 +85,9 @@
             break;
     }
     
-    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
     
     NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
-    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
     _lbName.attributedText = attributedName;
     
     _lbTitle.text = title;

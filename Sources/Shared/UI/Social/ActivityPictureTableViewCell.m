@@ -96,10 +96,9 @@
             }
             if (message){
                 NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];
-                NSDictionary * attribute =@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Bold" size:14], NSForegroundColorAttributeName:[UIColor blackColor]};
                 
-                [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"contentName"]]];
-                [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
+                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"contentName"]]];
+                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
    
                 if(plfVersion < 4.0) {
                  [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
