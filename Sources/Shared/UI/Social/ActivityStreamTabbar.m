@@ -168,6 +168,7 @@
         NSString *title = Localize(itemData[kActivityStreamTabItemTitle]);
         CGSize titleSize = [title sizeWithAttributes:@{NSFontAttributeName: kActivityStreamTabItemFont}];
         itemsWidth += titleSize.width + kFilterTabItemPadding * 2;
+        
     }
     return itemsWidth;
 }

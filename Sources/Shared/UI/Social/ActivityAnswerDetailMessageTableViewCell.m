@@ -26,9 +26,6 @@
 
 @implementation ActivityAnswerDetailMessageTableViewCell
 
-@synthesize htmlMessage = _htmlMessage;
-@synthesize htmlTitle = _htmlTitle;
-@synthesize htmlName = _htmlName;
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
     CGRect tmpFrame = CGRectZero;
@@ -39,29 +36,11 @@
         tmpFrame = CGRectMake(67, 0, WIDTH_FOR_CONTENT_IPHONE , 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
-    _htmlName = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlName.userInteractionEnabled = NO;
-    _htmlName.backgroundColor = [UIColor clearColor];
-    _htmlName.font = [UIFont systemFontOfSize:13.0];
-    _htmlName.textColor = [UIColor grayColor];
-    [self.contentView addSubview:_htmlName];
     
-    _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlMessage.userInteractionEnabled = NO;
-    _htmlMessage.backgroundColor = [UIColor clearColor];
-    _htmlMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlMessage.textColor = [UIColor grayColor];
-    [self.contentView addSubview:_htmlMessage];
 }
 
 - (void)updateSizeToFitSubViews {
-    CGRect frame = _htmlMessage.frame;
-    frame.origin.y = self.webViewForContent.frame.size.height + self.webViewForContent.frame.origin.y + kPadding;
-    _htmlMessage.frame = frame;
-    
-    frame = self.frame;
-    frame.size.height = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height + kPadding + self.lbDate.frame.size.height + kBottomMargin;
-    self.frame = frame;
+
 }
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
@@ -72,72 +51,40 @@
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
+    NSString * name = socialActivityDetail.posterIdentity.fullName;
     
-    //NSString *textWithoutHtml = @"";
-    NSString *htmlStr = nil;
-    NSDictionary *_templateParams = self.socialActivity.templateParams;
-    switch (self.socialActivity.activityType) {
-        case ACTIVITY_ANSWER_ADD_QUESTION:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Asked")];
-        }
+    switch (socialActivityDetail.activityType) {
+        case ACTIVITY_ANSWER_ADD_QUESTION:
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Asked")];
             break;
-        case ACTIVITY_ANSWER_QUESTION:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Answered")];
-        }
+        case ACTIVITY_ANSWER_QUESTION:
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"Answered")];
             break;
-        case ACTIVITY_ANSWER_UPDATE_QUESTION:{
-            htmlStr = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"UpdateQuestion")]; 
-        }
+        case ACTIVITY_ANSWER_UPDATE_QUESTION:
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName,  space ? [NSString stringWithFormat:@" in %@ space", space] : @"",Localize(@"UpdateQuestion")];
+            break;
+        default:
             break;
     }
-    // Name
-    _htmlName.html = htmlStr;
-    [_htmlName sizeToFit];
     
-    CGRect tmpFrame = _htmlName.frame;
-    tmpFrame.origin.y = 5;
-    _htmlName.frame = tmpFrame;
+    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
     
-    //Set the position of web
-    //Title
+    NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
+    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    _lbName.attributedText = attributedName;
     
+    //Set the position of Title
     float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
-    // in plf 4, there is no "Name" in template params, we take the title of activity instead.
-    if(plfVersion >= 4.0) {
-        [self.webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [socialActivityDetail.title stringByConvertingHTMLToPlainText]]
-                                   baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-         ];
-    } else {
-        [self.webViewForContent loadHTMLString:[NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><a href=\"%@\">%@</a></html>",  [_templateParams valueForKey:@"Link"], [[_templateParams valueForKey:@"Name" ] stringByConvertingHTMLToPlainText]] baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-         ];
-    }
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize theSize = [[[_templateParams valueForKey:@"Name"] stringByConvertingHTMLToPlainText]
-                      boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                   options:nil
-                                attributes:@{
-                                             NSFontAttributeName: kFontForTitle,
-                                             NSParagraphStyleAttributeName: style
-                                             }
-                                   context:nil].size;
-    tmpFrame = self.webViewForContent.frame;
-    tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y;
-    tmpFrame.size.height = theSize.height + 5;
-    self.webViewForContent.frame = tmpFrame;
+    // in plf 4, no Name in template params, it's the title of ActivityStream
+    NSString *title = plfVersion >= 4.0 ? socialActivityDetail.title : [socialActivityDetail.templateParams valueForKey:@"Name"];
     
-    _htmlMessage.html = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+    _lbTitle.text = title;
     
-    [_htmlMessage sizeToFit];
-    
-    [self.webViewForContent sizeToFit];
-    [self updateSizeToFitSubViews];
+    _lbMessage.text = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
 }
 
 - (void)dealloc {
-    [_htmlMessage release];
-    _htmlMessage = nil;
-    
+    [self.lbTitle release];
     [super dealloc];
 }
 

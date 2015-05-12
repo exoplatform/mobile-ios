@@ -24,14 +24,14 @@
 @interface ActivityForumTableViewCell : ActivityBasicTableViewCell {
 
     
-    TTStyledTextLabel*                       _lbMessage;
-    TTStyledTextLabel*                      _htmlName;
-    TTStyledTextLabel*                      _lbTitle;
+    UILabel*                                _lbMessage;
+    UILabel*                                _lbTitle;
     
 }
-@property (retain, nonatomic) TTStyledTextLabel* lbTitle;
-@property (retain, nonatomic) TTStyledTextLabel* lbMessage;
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
+@property (retain, nonatomic) IBOutlet UILabel *lbTitle;
+
+@property (retain, nonatomic) IBOutlet UILabel *lbMessage;
+
 
 
 @end

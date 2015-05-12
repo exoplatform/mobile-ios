@@ -186,6 +186,10 @@
             url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [self.socialActivity.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
             break;
+        case ACTIVITY_LINK :{
+            url = [NSURL URLWithString:[self.socialActivity.templateParams valueForKey:@"link"]];
+        }
+            break;
     }
     ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] 
                                                                      initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"

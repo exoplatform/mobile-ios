@@ -27,14 +27,14 @@
 #import "eXoViewController.h"
 #import "ActivityStreamTabbar.h"
 
-typedef NS_ENUM(NSInteger, ActivityAction) {
+typedef enum {
     ActivityActionLoad       = 0, // Load activities
     ActivityActionUpdate     = 1, // Update activities, e.g. with pull to refresh gesture
     ActivityActionLike       = 2,
     ActivityActionUnlike     = 3,
     ActivityActionLoadMore   = 4, // Load 100 more activities after the displayed ones
     ActivityActionUpdateAfterError = 5 // if LoadMore fails, reload the activity stream
-} ;
+} ActivityAction;
 
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
@@ -78,6 +78,6 @@ typedef NS_ENUM(NSInteger, ActivityAction) {
 - (void)clearActivityData;
 - (SocialActivity *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath;
 - (void)showHudForUpload;
-@property (nonatomic, readonly, strong) UITableView *tblvActivityStream;
+- (UITableView*) tblvActivityStream;
 //- (float)getHeightForText:(NSString *)text width:(float)width;
 @end

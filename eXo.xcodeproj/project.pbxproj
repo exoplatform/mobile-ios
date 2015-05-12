@@ -117,7 +117,6 @@
 		1FCEDED21457A34F0058C80F /* ActivityTypeNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC21457A34F0058C80F /* ActivityTypeNormal@2x.png */; };
 		1FCEDED31457A34F0058C80F /* ActivityTypeWiki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FCEDEC31457A34F0058C80F /* ActivityTypeWiki@2x.png */; };
 		1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCEDED51458021C0058C80F /* eXoViewController.m */; };
-		1FCF4A461476410900EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */; };
 		1FCF4A491476413E00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */; };
 		1FD02F97145A8C1500A36840 /* ActivityWikiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD02F96145A8C1400A36840 /* ActivityWikiTableViewCell.m */; };
 		1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FD02F98145A8C4100A36840 /* ActivityWikiTableViewCell.xib */; };
@@ -679,6 +678,7 @@
 		9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */; };
 		9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */; };
+		9CE6E3CA1B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3C91B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib */; };
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
 		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
 		A619958315B67E5E0098565D /* activity-detail-info-container-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A619958115B67E5E0098565D /* activity-detail-info-container-bg.png */; };
@@ -1150,7 +1150,6 @@
 		1FCEDEC31457A34F0058C80F /* ActivityTypeWiki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityTypeWiki@2x.png"; sourceTree = "<group>"; };
 		1FCEDED41458021C0058C80F /* eXoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eXoViewController.h; sourceTree = "<group>"; };
 		1FCEDED51458021C0058C80F /* eXoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eXoViewController.m; sourceTree = "<group>"; };
-		1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDetailMessageTableViewCell.xib; path = Social/ActivityLinkDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		1FCF4A471476413700EEB9C7 /* ActivityLinkDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLinkDetailMessageTableViewCell.h; path = Social/ActivityLinkDetailMessageTableViewCell.h; sourceTree = "<group>"; };
 		1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ActivityLinkDetailMessageTableViewCell.m; path = Social/ActivityLinkDetailMessageTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1FD02F92145A50CD00A36840 /* ActivityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityHelper.h; sourceTree = "<group>"; };
@@ -1912,6 +1911,7 @@
 		9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceTableViewCell.h; sourceTree = "<group>"; };
 		9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceTableViewCell.m; sourceTree = "<group>"; };
 		9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceTableViewCell.xib; sourceTree = "<group>"; };
+		9CE6E3C91B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDetailMessageTableViewCell.xib; path = Social/ActivityLinkDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePreviewViewController.h; path = Social/ImagePreviewViewController.h; sourceTree = "<group>"; };
 		A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePreviewViewController.m; path = Social/ImagePreviewViewController.m; sourceTree = "<group>"; };
 		A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePreviewViewController.xib; path = Social/ImagePreviewViewController.xib; sourceTree = "<group>"; };
@@ -2625,7 +2625,7 @@
 				DE663DFC156C971000E445F5 /* ActivityLikersViewController.m */,
 				1FCF4A471476413700EEB9C7 /* ActivityLinkDetailMessageTableViewCell.h */,
 				1FCF4A481476413B00EEB9C7 /* ActivityLinkDetailMessageTableViewCell.m */,
-				1FCF4A451476410400EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib */,
+				9CE6E3C91B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib */,
 				1FCDDB6C14481ECD00846232 /* ActivityPictureDetailMessageTableViewCell.h */,
 				1FCDDB6D14481ECF00846232 /* ActivityPictureDetailMessageTableViewCell.m */,
 				1FCDDB6E14481ED000846232 /* ActivityPictureDetailMessageTableViewCell.xib */,
@@ -2673,8 +2673,6 @@
 			isa = PBXGroup;
 			children = (
 				467F4F0113AB9B3400B2DCFA /* ActivityDetail */,
-				7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */,
-				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
 				9C01DEF51ADF67EC00E3C578 /* SpaceSelectionViewController.h */,
 				9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */,
 				9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */,
@@ -3608,7 +3606,6 @@
 				9C01DEFB1ADFB98300E3C578 /* SpaceAvtDefault@2x.png */,
 				9C01DEFE1ADFBA5200E3C578 /* global-icon.png */,
 				9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */,
-
 				7C5053EA13E2AF3600FA73CD /* default-avatar.png */,
 				7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */,
 				1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */,
@@ -5074,6 +5071,7 @@
 				1FD0C3FF143BF146002F40A7 /* IconForEmptyFolder.png in Resources */,
 				1FD0C400143BF146002F40A7 /* IconForNoActivities.png in Resources */,
 				1FD0C401143BF146002F40A7 /* IconForNoContact.png in Resources */,
+				9CE6E3CA1B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */,
 				9C01DF011ADFBA5200E3C578 /* global-icon@2x.png in Resources */,
 				1FD0C402143BF146002F40A7 /* IconForNoGadgets.png in Resources */,
 				1FD0C403143BF146002F40A7 /* IconForUnreadableFile.png in Resources */,
@@ -5116,7 +5114,6 @@
 				8989B06614735C9700EEBD7C /* gadgetPlaceHolder.png in Resources */,
 				8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */,
 				1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */,
-				1FCF4A461476410900EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */,
 				1FCC6FF3147A5C9600BBB64F /* ActivityCalendarTableViewCell.xib in Resources */,
 				1FCDF076147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib in Resources */,
 				46540FA2148786F1006C010C /* Bubble_horizontal.png in Resources */,

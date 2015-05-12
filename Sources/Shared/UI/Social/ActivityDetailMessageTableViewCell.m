@@ -32,15 +32,16 @@
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize webViewForContent = _webViewForContent;
 @synthesize webViewComment =  _webViewComment;
+
 @synthesize imgType = _imgType;
 @synthesize imgvAttach = _imgvAttach;
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        [self.imgvAvatar needToBeResizedForSize:CGSizeMake(45,45)];
+        [_imgvAvatar needToBeResizedForSize:CGSizeMake(45,45)];
     }
     return self;
 }
@@ -52,7 +53,7 @@
     self.lbDate.frame = frame;
     
     frame = self.imgType.frame;
-    frame.origin.y = self.lbDate.frame.origin.y + 4;
+    frame.origin.y = self.lbDate.frame.origin.y;
     self.imgType.frame = frame;
 }
 
@@ -86,12 +87,12 @@
 
 - (void)updateSizeToFitSubViews {
     //Set the position of lbMessage
-    CGRect tmpFrame = self.webViewForContent.frame;
-    tmpFrame.origin.y = self.lbName.frame.origin.y + self.lbName.frame.size.height + kPadding;
-    self.webViewForContent.frame = tmpFrame;
+    CGRect tmpFrame = _webViewForContent.frame;
+    tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height + 5;
+    _webViewForContent.frame = tmpFrame;
     
     CGRect myFrame = self.frame;
-    myFrame.size.height = self.webViewForContent.frame.origin.y + self.webViewForContent.frame.size.height + kPadding + self.lbDate.bounds.size.height + kBottomMargin;
+    myFrame.size.height = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + kPadding + _lbDate.bounds.size.height + kBottomMargin;
     
     self.frame = myFrame;
 }
@@ -112,42 +113,42 @@
     
     
     //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    [(self.webViewForContent.subviews)[0] setScrollEnabled:NO];
-    [self.webViewForContent setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[self.webViewForContent subviews][0];
+    [[_webViewForContent.subviews objectAtIndex:0] setScrollEnabled:NO];
+    [_webViewForContent setBackgroundColor:[UIColor clearColor]];
+    UIScrollView *scrollView = (UIScrollView *)[[_webViewForContent subviews] objectAtIndex:0];
     scrollView.bounces = NO;
     [scrollView flashScrollIndicators];
     scrollView.scrollsToTop = YES;
-    [self.webViewForContent setOpaque:NO];
+    [_webViewForContent setOpaque:NO];
 }
 
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     self.socialActivity = socialActivityDetail;
-    self.lbMessage.text = @"";
     self.lbName.text = self.socialActivity.posterIdentity.fullName;
     self.lbDate.text = socialActivityDetail.postedTimeInWords;
     self.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
+    self.lbMessage.text=@"";
+
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DEFAULT:
         {
-            NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialActivityDetail.title ? socialActivityDetail.title : @""];
-            [self.webViewForContent loadHTMLString:htmlStr ? htmlStr :@""
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
-            
-            [self updateSizeToFitSubViews];
-            
+            if (socialActivityDetail.attributedMessage) {
+                self.lbMessage.attributedText = socialActivityDetail.attributedMessage;
+            } else {
+                self.lbMessage.text =socialActivityDetail.title ?socialActivityDetail.title:@"";
+            }
         }
             break;
     }
+    
 }
 
 #pragma mark - change language management
 - (void)updateLabelsWithNewLanguage{
     // The date in words
-    self.lbDate.text = self.socialActivity.postedTimeInWords;
+    _lbDate.text = self.socialActivity.postedTimeInWords;
     // Calling the setter with the same values will reset all the properties,
     // including the labels localized in the new language
     [self setSocialActivityDetail:self.socialActivity];

@@ -34,17 +34,16 @@
 
 @interface ActivityDetailMessageTableViewCell : UITableViewCell {
     
-//    UILabel*               _lbMessage;
-//    UILabel*               _lbDate;
-//    UILabel*               _lbName;
-//    
-//    UIImageView*           _imgType;
-//    EGOImageView*          _imgvAttach;
-//    
-//    UIWebView*             _webViewForContent;
-//    UIWebView   *          _webViewComment;
+    UILabel*               _lbMessage;
+    UILabel*               _lbDate;
+    UILabel*               _lbName;
     
-    TTStyledTextLabel*     htmlLabel;
+    UIImageView*           _imgType;
+    EGOImageView*          _imgvAttach;
+    
+    UIWebView*             _webViewForContent;
+    UIWebView   *          _webViewComment;
+    
 }
 
 @property (nonatomic, retain) SocialActivity *socialActivity;
