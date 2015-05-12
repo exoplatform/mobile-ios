@@ -47,49 +47,7 @@
 
 -(void)postComment:(NSString *)commentValue forActivity:(NSString *)activityIdentity
 {
-    /*
 
-    
-    // Send POST requests for instances of SocialActivityDetails to '/activity.json'
-//    [router routeClass:[SocialComment class] toResourcePath:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] forMethod:RKRequestMethodPOST];
-    
-    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialComment class] pathPattern:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] method:RKRequestMethodPOST]];
-    
-    // Let's create an SocialActivityDetails
-    SocialComment* commentToPost = [[SocialComment alloc] init];
-    commentToPost.text = _comment;
-    
-    //Register our mappings with the provider FOR SERIALIZATION
-    RKObjectMapping *commentSimpleMapping = [RKObjectMapping mappingForClass: 
-                                              [SocialComment class]]; 
-    [commentSimpleMapping mapKeyPath:@"text" toAttribute:@"text"]; 
-    
-    //Configure a serialization mapping for our SocialComment class 
-    RKObjectMapping *commentSimpleSerializationMapping = [commentSimpleMapping 
-                                                           inverseMapping]; 
-    
-    //serialization mapping 
-    [manager.mappingProvider 
-     setSerializationMapping:commentSimpleSerializationMapping forClass:[SocialComment 
-                                                                          class]]; 
-    
-    
-    
-   
-    
-    // Create our new SocialComment mapping
-    RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
-    [socialCommentMapping mapKeyPathsToAttributes:
-     @"createdAt",@"createdAt",
-     @"text",@"text",
-     @"postedTime",@"postedTime",
-     @"identityId",@"identityId",
-     nil];
-        
-    // Send a POST to /articles to create the remote instance
-    [manager postObject:commentToPost mapResponseWith:socialCommentMapping delegate:self];  
-    [commentToPost release]; 
-     */
     if (commentValue != nil) {
         _comment = commentValue;
     }

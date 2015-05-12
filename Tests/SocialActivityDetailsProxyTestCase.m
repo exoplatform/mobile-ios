@@ -65,29 +65,6 @@
     XCTAssertEqualObjects(path, expectedPath, @"Path to comment activity is not correct");
 }
 
-- (void)testGetActivityDetails
-{
-    [httpHelper HTTPStubForActivityDetails];
-    [httpHelper logWhichStubsAreRegistered];
-    
-    [adProxy getActivityDetail:activity.activityId];
-    
-    [self wait];
-    
-    SocialActivity *activityDetails = adProxy.socialActivityDetails;
-    
-    XCTAssertNotNil(activityDetails, @"Social Activity Details object should have been created");
-    XCTAssertEqualObjects(activityDetails.activityId, activity.activityId, @"Mapping of activity details failed: incorrect activity ID");
-    XCTAssertEqualObjects(activityDetails.title, @"Login", @"Mapping of activity details failed: incorrect title");
-    XCTAssertEqualObjects(activityDetails.type, @"LINK_ACTIVITY", @"Mapping of activity details failed: incorrect activity type");
-    XCTAssertEqualObjects(activityDetails.body, @"", @"Mapping of activity details failed: incorrect body");
-    XCTAssertEqualObjects(activityDetails.createdAt, @"Wed May 21 11:33:25 +0200 2014", @"Mapping of activity details failed: incorrect activity creation date");
-    XCTAssertEqual(activityDetails.postedTime, 1400664805123, @"Mapping of activity details failed: incorrect posted time");
-    XCTAssertEqual(activityDetails.totalNumberOfComments, 4, @"Mapping of activity details failed: incorrect number of comments");
-    XCTAssertEqual(activityDetails.totalNumberOfLikes, 7, @"Mapping of activity details failed: incorrect number of likes");
-    XCTAssertTrue(activityDetails.liked, @"Mapping of activity details failed: activity is liked");
-}
-
 - (void)testGetActivityLikes
 {
     [httpHelper HTTPStubForActivityLikes];
