@@ -24,13 +24,10 @@
 
 @interface ActivityWikiTableViewCell : ActivityBasicTableViewCell {
 
-    UILabel*                                _lbMessage;
     UILabel*                                _lbTitle;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel *lbTitle;
-
-@property (retain, nonatomic) IBOutlet UILabel *lbMessage;
 
 
 

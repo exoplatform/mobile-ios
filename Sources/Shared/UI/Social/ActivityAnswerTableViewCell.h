@@ -22,10 +22,8 @@
 
 @interface ActivityAnswerTableViewCell : ActivityBasicTableViewCell
 {
-    UILabel *                      _lbMessage;
     UILabel*                       _lbTitle;
 }
-@property (retain, nonatomic) IBOutlet UILabel *lbMessage;
 
 @property (retain, nonatomic) IBOutlet UILabel *lbTitle;
 

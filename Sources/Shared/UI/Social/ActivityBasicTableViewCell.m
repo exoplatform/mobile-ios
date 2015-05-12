@@ -34,6 +34,7 @@
 @synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 @synthesize activityType = _activityType;
+@synthesize lbMessage = _lbMessage;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -96,7 +97,7 @@
     
     self.imgvMessageBg = nil;
     
-    [_message release];
+    [_lbMessage release];
     [super dealloc];
 }
 
@@ -233,7 +234,7 @@
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     
 
-    _message.attributedText = socialActivityStream.attributedMessage;
+    _lbMessage.attributedText = socialActivityStream.attributedMessage;
     
     _lbName.text = [socialActivityStream.posterIdentity.fullName copy];
 }

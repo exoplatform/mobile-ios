@@ -25,7 +25,6 @@
 
 @implementation ActivityAnswerTableViewCell
 
-@synthesize lbMessage = _lbMessage;
 @synthesize lbTitle = _lbTitle;
 
 
@@ -66,7 +65,7 @@
     
     _lbTitle.text = title;
     
-    _lbMessage.text = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+    self.lbMessage.text = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
     
 }
@@ -74,7 +73,6 @@
 
 - (void)dealloc {
     
-    [_lbMessage release];
     [_lbTitle release];
     [super dealloc];
 }

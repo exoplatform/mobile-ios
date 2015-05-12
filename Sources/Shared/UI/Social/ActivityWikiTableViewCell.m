@@ -27,7 +27,6 @@
 
 @implementation ActivityWikiTableViewCell
 
-@synthesize lbMessage = _lbMessage;
 @synthesize lbTitle = _lbTitle;
 
 - (void)configureFonts:(BOOL)highlighted {
@@ -76,17 +75,15 @@
     
     _lbTitle.text =[[[socialActivityStream.templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
-    _lbMessage.text =  [[[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
+    self.lbMessage.text =  [[[socialActivityStream.templateParams valueForKey:@"page_exceprt"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
 }
 
 
 
 - (void)dealloc {
-    
-    _lbMessage = nil;    
     _lbTitle = nil;
     [_lbTitle release];
-    [_lbMessage release];
+
     [super dealloc];
 }
 

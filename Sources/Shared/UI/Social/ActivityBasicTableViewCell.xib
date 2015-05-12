@@ -146,8 +146,8 @@
                 <outlet property="imgvAvatar" destination="ZBo-C1-Eqh" id="hnp-0H-Dzo"/>
                 <outlet property="imgvMessageBg" destination="99D-aR-yNg" id="No2-J4-PAR"/>
                 <outlet property="lbDate" destination="vnY-vr-PpO" id="jOk-7Y-5Pf"/>
+                <outlet property="lbMessage" destination="vF5-4G-OAY" id="McL-th-mWJ"/>
                 <outlet property="lbName" destination="Wls-hy-rVa" id="A33-DO-kAj"/>
-                <outlet property="message" destination="vF5-4G-OAY" id="DGk-Nf-stO"/>
             </connections>
             <point key="canvasLocation" x="194" y="145"/>
         </tableViewCell>

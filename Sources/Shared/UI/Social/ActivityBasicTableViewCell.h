@@ -55,7 +55,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView*  imgType;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
-@property (retain, nonatomic) IBOutlet UILabel *message;
+@property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 
 @property NSInteger activityType;
 
