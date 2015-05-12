@@ -28,10 +28,9 @@
 @synthesize imgvAttach = _imgvAttach;
 @synthesize htmlActivityMessage = _htmlActivityMessage;
 @synthesize htmlLinkTitle =  _htmlLinkTitle;
-@synthesize htmlName = _htmlName;
 @synthesize htmlLinkMessage = _htmlLinkMessage;
 @synthesize htmlLinkDescription = _htmlLinkDescription;
-
+@synthesize imageViewHeightConstraint = _imageViewHeightConstraint;
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     //Set the UserName of the activity
@@ -69,10 +68,9 @@
     if (url && url.host && url.scheme){
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[socialActivityStream.templateParams valueForKey:@"image"]];
-        _imageViewHeightConstraint.constant = 150;
+        _imageViewHeightConstraint.constant = EXO_IMAGE_CELL_HEIGHT;
 
     } else {
-
         _imageViewHeightConstraint.constant = 0;
     }
     
@@ -80,7 +78,6 @@
 
 
 - (void)dealloc {
-    _lbName = nil;
 
     [_htmlLinkTitle release];
     _htmlLinkTitle = nil;

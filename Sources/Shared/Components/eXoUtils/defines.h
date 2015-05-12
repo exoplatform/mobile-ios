@@ -64,6 +64,7 @@
 #define SCR_HEIGHT_PRTR_IPAD                1004
 
 #define EXO_MAX_HEIGHT                      80
+#define EXO_IMAGE_CELL_HEIGHT               150
 
 #define SPECIAL_CHAR_NAME_SET                    @"[]/\\&~?*|<>\";:+()$%@#!"
 #define SPECIAL_CHAR_URL_SET                    @"[]\\&~?*|<>\";+"

@@ -131,13 +131,6 @@
     }
 }
 
--(void) configureCellForWidth:(CGFloat)fWidth {
-    
-}
--(void) configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
-    
-}
-
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream
 { 
     

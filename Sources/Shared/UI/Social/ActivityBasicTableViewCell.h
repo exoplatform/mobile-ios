@@ -61,7 +61,6 @@
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
-- (void)configureCellForWidth:(CGFloat)fWidth;
 - (void)configureFonts:(BOOL)highlighted;
 -(void) backgroundConfiguration;
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream;
@@ -69,7 +68,6 @@
 
 
 //Methods for customizing + setting the content of the cell for specific activity
-- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream;
 
 

@@ -34,7 +34,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *htmlLinkDescription;
 @property (retain, nonatomic) IBOutlet UILabel *htmlLinkMessage;
 
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
-
 
 @end

@@ -83,9 +83,8 @@
 
 
 - (void)dealloc {
-    
-    _lbMessage = nil;
-    
+    [_lbMessage release];
+    [_lbTitle release];
     [super dealloc];
 }
 

@@ -34,7 +34,7 @@
 @synthesize htmlLinkTitle = _htmlLinkTitle;
 @synthesize htmlLinkMessage = _htmlLinkMessage;
 @synthesize htmlDescriptionMessage = _htmlDescriptionMessage;
-
+@synthesize imageViewHeightConstaint = _imageViewHeightConstaint;
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
     
     CGRect tmpFrame = CGRectZero;
@@ -81,7 +81,7 @@
         self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableLink.png"];
         self.imgvAttach.imageURL = [NSURL URLWithString:[[_templateParams valueForKey:@"image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
-        _imageViewHeightConstaint.constant = 150;
+        _imageViewHeightConstaint.constant = EXO_IMAGE_CELL_HEIGHT;
     } else {
         _imageViewHeightConstaint.constant = 0;
    
