@@ -43,7 +43,7 @@ static NSString* CredentialsFormCellIdentifier = @"CredentialItem";
 
 #pragma mark Initialization
 
-- (id)initWithAccount:(ServerObj*)selectedAccount andDelegate:(id<CredentialsFormResultDelegate>)dlg
+- (instancetype)initWithAccount:(ServerObj*)selectedAccount andDelegate:(id<CredentialsFormResultDelegate>)dlg
 {
     self = [super initWithNibName:@"CredentialsFormViewController" bundle:nil];
     if (self) {

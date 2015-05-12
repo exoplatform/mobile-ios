@@ -70,7 +70,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	return __imageLoader;
 }
 
-- (id)init {
+- (instancetype)init {
 	if((self = [super init])) {
 		connectionsLock = [[NSLock alloc] init];
 		currentConnections = [[NSMutableDictionary alloc] init];
@@ -86,7 +86,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 }
 
 - (EGOImageLoadConnection*)loadingConnectionForURL:(NSURL*)aURL {
-	EGOImageLoadConnection* connection = [[self.currentConnections objectForKey:aURL] retain];
+	EGOImageLoadConnection* connection = [(self.currentConnections)[aURL] retain];
 	if(!connection) return nil;
 	else return [connection autorelease];
 }
@@ -130,7 +130,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 		connection = [[EGOImageLoadConnection alloc] initWithImageURL:aURL delegate:self];
 	
 		[connectionsLock lock];
-		[currentConnections setObject:connection forKey:aURL];
+		currentConnections[aURL] = connection;
 		self.currentConnections = [[currentConnections copy] autorelease];
 		[connectionsLock unlock];
 		[connection performSelector:@selector(start) withObject:nil afterDelay:0.01];
@@ -240,7 +240,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 		#if __EGOIL_USE_NOTIF
 		NSNotification* notification = [NSNotification notificationWithName:kImageNotificationLoadFailed(connection.imageURL)
 																	 object:self
-																   userInfo:[NSDictionary dictionaryWithObjectsAndKeys:error,@"error",connection.imageURL,@"imageURL",nil]];
+																   userInfo:@{@"error": error,@"imageURL": connection.imageURL}];
 		
 		[[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:notification waitUntilDone:YES];
 		#endif
@@ -257,7 +257,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 		#if __EGOIL_USE_NOTIF
 		NSNotification* notification = [NSNotification notificationWithName:kImageNotificationLoaded(connection.imageURL)
 																	 object:self
-																   userInfo:[NSDictionary dictionaryWithObjectsAndKeys:anImage,@"image",connection.imageURL,@"imageURL",nil]];
+																   userInfo:@{@"image": anImage,@"imageURL": connection.imageURL}];
 		
 		[[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:notification waitUntilDone:YES];
 		#endif
@@ -279,7 +279,7 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	#if __EGOIL_USE_NOTIF
 	NSNotification* notification = [NSNotification notificationWithName:kImageNotificationLoadFailed(connection.imageURL)
 																 object:self
-															   userInfo:[NSDictionary dictionaryWithObjectsAndKeys:error,@"error",connection.imageURL,@"imageURL",nil]];
+															   userInfo:@{@"error": error,@"imageURL": connection.imageURL}];
 	
 	[[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:notification waitUntilDone:YES];
 	#endif

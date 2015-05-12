@@ -6,10 +6,10 @@
 {
 }
 
-- (id)initWithName:(NSString *)name;
-- (id)initWithName:(NSString *)name URI:(NSString *)URI;
-- (id)initWithName:(NSString *)name stringValue:(NSString *)string;
-- (id)initWithXMLString:(NSString *)string error:(NSError **)error;
+- (instancetype)initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name URI:(NSString *)URI;
+- (instancetype)initWithName:(NSString *)name stringValue:(NSString *)string;
+- (instancetype)initWithXMLString:(NSString *)string error:(NSError **)error;
 
 #pragma mark --- Elements by name ---
 
@@ -20,9 +20,8 @@
 
 - (void)addAttribute:(DDXMLNode *)attribute;
 - (void)removeAttributeForName:(NSString *)name;
-- (void)setAttributes:(NSArray *)attributes;
 //- (void)setAttributesAsDictionary:(NSDictionary *)attributes;
-- (NSArray *)attributes;
+@property (nonatomic, copy) NSArray *attributes;
 - (DDXMLNode *)attributeForName:(NSString *)name;
 //- (DDXMLNode *)attributeForLocalName:(NSString *)localName URI:(NSString *)URI;
 

@@ -46,7 +46,7 @@
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
-    NSArray *colors = [NSArray arrayWithObjects:(id) startColor, (id) endColor, nil];
+    NSArray *colors = @[(id) startColor, (id) endColor];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
@@ -70,12 +70,12 @@
 @end
 
 @interface MenuViewController () {
-    CGRect _viewFrame;
+ 
 }
 
 @property (nonatomic, retain) eXoNavigationController* modalNavigationViewController;
 @property (nonatomic, retain) UIButton* accountSwitcherButton;
-
+@property (nonatomic) CGRect viewFrame;
 @end
 
 @implementation MenuViewController
@@ -89,7 +89,7 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial {
+- (instancetype)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial {
     self = [super init];
     if (self) {
         _viewFrame = frame;
@@ -97,10 +97,10 @@
 		_cellContents = [[NSMutableArray alloc] init];
 
         if(_isCompatibleWithSocial){
-            [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
+            [_cellContents addObject:@{kCellImage: [UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellText: Localize(@"News")}];
         }
-        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
-        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
+        [_cellContents addObject:@{kCellImage: [UIImage imageNamed:@"DocumentIpadIcon.png"], kCellText: Localize(@"Documents")}];
+        [_cellContents addObject:@{kCellImage: [UIImage imageNamed:@"DashboardIpadIcon.png"], kCellText: Localize(@"Dashboard")}];
     }
     return self;
 }
@@ -236,7 +236,7 @@
     {
         [self initModalNavigationController];
     }
-    [self.modalNavigationViewController setViewControllers:[NSArray arrayWithObject:accountSwitcher]];
+    [self.modalNavigationViewController setViewControllers:@[accountSwitcher]];
     
     [self presentViewController:self.modalNavigationViewController animated:YES completion:nil];
 }
@@ -253,7 +253,7 @@
         [self initModalNavigationController];
     }
     
-    [self.modalNavigationViewController setViewControllers:[NSArray arrayWithObject:iPadSettingViewController]];
+    [self.modalNavigationViewController setViewControllers:@[iPadSettingViewController]];
     [self presentViewController:self.modalNavigationViewController animated:YES completion:nil];
 }
 
@@ -326,8 +326,8 @@
         
     }
     
-	cell.textLabel.text = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellText];
-	cell.imageView.image = [[_cellContents objectAtIndex:indexPath.row] objectForKey:kCellImage];
+	cell.textLabel.text = _cellContents[indexPath.row][kCellText];
+	cell.imageView.image = _cellContents[indexPath.row][kCellImage];
     return cell;
 }
 
@@ -398,7 +398,7 @@
     NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
     DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
     documentsViewController.isRoot = YES;
-    documentsViewController.title = [[_cellContents objectAtIndex:selectedIndex.row] objectForKey:kCellText];
+    documentsViewController.title = _cellContents[selectedIndex.row][kCellText];
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];
 }
 
@@ -431,10 +431,10 @@
     [_cellContents removeAllObjects];
     // ...and add them again, the new language is automatically applied
     if(_isCompatibleWithSocial){
-        [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellImage, Localize(@"News"), kCellText, nil]];
+        [_cellContents addObject:@{kCellImage: [UIImage imageNamed:@"ActivityStreamIpadIcon.png"], kCellText: Localize(@"News")}];
     }
-    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DocumentIpadIcon.png"], kCellImage, Localize(@"Documents"), kCellText, nil]];
-    [_cellContents addObject:[NSDictionary dictionaryWithObjectsAndKeys:[UIImage imageNamed:@"DashboardIpadIcon.png"], kCellImage, Localize(@"Dashboard"), kCellText, nil]];
+    [_cellContents addObject:@{kCellImage: [UIImage imageNamed:@"DocumentIpadIcon.png"], kCellText: Localize(@"Documents")}];
+    [_cellContents addObject:@{kCellImage: [UIImage imageNamed:@"DashboardIpadIcon.png"], kCellText: Localize(@"Dashboard")}];
     // Redraw the table
     [_tableView reloadData];
     // Reselect the previously selected menu item

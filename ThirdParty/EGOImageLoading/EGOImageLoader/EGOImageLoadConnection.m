@@ -34,7 +34,7 @@
 @synthesize handlers;
 #endif
 
-- (id)initWithImageURL:(NSURL*)aURL delegate:(id)delegate {
+- (instancetype)initWithImageURL:(NSURL*)aURL delegate:(id)delegate {
 	if((self = [super init])) {
 		_imageURL = [aURL retain];
 		self.delegate = delegate;

@@ -32,7 +32,7 @@
 @synthesize arrayOfDashboards = _arrayOfDashboards;
 
 
--(id)initWithDelegate:(id<DashboardProxyDelegate>)delegate {
+-(instancetype)initWithDelegate:(id<DashboardProxyDelegate>)delegate {
     if ((self = [super init])) {
         _delegate = delegate;
     }

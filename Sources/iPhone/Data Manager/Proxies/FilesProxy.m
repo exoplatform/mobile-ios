@@ -75,7 +75,7 @@
 	
 	*p = '\0';
 	
-	NSString* ret = [NSString stringWithCString:tmp encoding:NSASCIIStringEncoding];
+	NSString* ret = @(tmp);
 	free(tmp);
 	
 	return ret;
@@ -132,7 +132,7 @@
 	return sharedInstance;
 }
 
-- (id)init{
+- (instancetype)init{
     if ((self = [super init])) { 
     }
     return self;
@@ -220,7 +220,7 @@
     NSArray *resultNodes = NULL;
 	
     // MOB-1253 update values for the folder.
-    CXMLElement *folderElm = [[parser nodesForXPath:@"//Folder" error:nil] objectAtIndex:0];
+    CXMLElement *folderElm = [parser nodesForXPath:@"//Folder" error:nil][0];
     file.canRemove = [[[folderElm attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"];
     file.canAddChild = [[[folderElm attributeForName:@"canAddChild"] stringValue] isEqualToString:@"true"];
     file.hasChild = [[[folderElm attributeForName:@"hasChild"] stringValue] isEqualToString:@"true"];

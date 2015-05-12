@@ -32,6 +32,7 @@
 @property (retain) IBOutlet UILabel* lbFileName;
 
 
+
 //Method use to start the loading of the image Attached.
 - (void)startLoadingImageAttached;
 

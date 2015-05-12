@@ -27,7 +27,7 @@
 
 @implementation MailInputViewController_iPhone
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -70,7 +70,7 @@
     [alreadyVC release];
     
     [self.parentViewController dismissViewControllerAnimated:NO completion:^{
-        [presentingVC presentModalViewController:navCon animated:YES];
+        [presentingVC presentViewController:navCon animated:YES completion:nil];
     }];
 }
 

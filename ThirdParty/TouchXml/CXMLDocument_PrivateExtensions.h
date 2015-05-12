@@ -35,6 +35,6 @@
 
 //- (id)initWithLibXmlParserContext:(xmlParserCtxtPtr)inContext options:(NSUInteger)inOptions error:(NSError **)outError;
 
-- (NSMutableSet *)nodePool;
+@property (nonatomic, readonly, copy) NSMutableSet *nodePool;
 
 @end

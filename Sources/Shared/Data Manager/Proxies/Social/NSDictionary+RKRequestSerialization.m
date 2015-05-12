@@ -36,13 +36,13 @@ static NSString *urlEncode(id object) {
 - (NSString*)URLEncodedString {
 	NSMutableArray *parts = [NSMutableArray array];
 	for (id key in self) {
-		id value = [self objectForKey:key];
+		id value = self[key];
 		if ([value isKindOfClass:[NSArray class]]) {
 			for (id item in value) {
                 if ([item isKindOfClass:[NSDictionary class]]) {
                     // Handle nested object one level deep
                     for( NSString *nKey in [item allKeys] ) {
-                        id nValue = [item objectForKey:nKey];
+                        id nValue = item[nKey];
                         NSString *part = [NSString stringWithFormat: @"%@[][%@]=%@",
                                           urlEncode(key), urlEncode(nKey), urlEncode(nValue)];
                         [parts addObject:part];

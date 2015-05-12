@@ -48,7 +48,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 
 #pragma mark Initialization
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -69,7 +69,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     // Accounts title
     self.title = Localize(@"ServerList");
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 
 }
 
@@ -131,7 +131,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     // https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/TableView_iPhone/TableViewCells/TableViewCells.html#//apple_ref/doc/uid/TP40007451-CH7-SW20
     cell = (AccountSwitcherTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierAccount];
     
-    ServerObj* account = [self.listOfAccounts objectAtIndex:indexPath.row];
+    ServerObj* account = (self.listOfAccounts)[indexPath.row];
     cell.accountNameLabel.text = [account.accountName uppercaseString];
     cell.accountServerUrlLabel.text = account.serverUrl;
     cell.accountUserFullNameLabel.text = // Display the user's full name if it is set, nothing otherwise
@@ -162,7 +162,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ServerObj* selectedAccount = [self.listOfAccounts objectAtIndex:indexPath.row];
+    ServerObj* selectedAccount = (self.listOfAccounts)[indexPath.row];
     if ([selectedAccount isEqual:[[ApplicationPreferencesManager sharedInstance] getSelectedAccount]])
     {
         // if the current account is selected, simply close the account switcher

@@ -40,7 +40,7 @@ static NSString* _EGOCacheDirectory;
 
 static inline NSString* EGOCacheDirectory() {
 	if(!_EGOCacheDirectory) {
-		NSString* cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
 		_EGOCacheDirectory = [[[cachesDirectory stringByAppendingPathComponent:[[NSProcessInfo processInfo] processName]] stringByAppendingPathComponent:@"EGOCache"] copy];
 	}
 	
@@ -75,7 +75,7 @@ static EGOCache* __instance;
 	return __instance;
 }
 
-- (id)init {
+- (instancetype)init {
 	if((self = [super init])) {
 		NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:cachePathForKey(@"EGOCache.plist")];
 		
@@ -93,7 +93,7 @@ static EGOCache* __instance;
 														error:NULL];
 		
 		for(NSString* key in cacheDictionary) {
-			NSDate* date = [cacheDictionary objectForKey:key];
+			NSDate* date = cacheDictionary[key];
 			if([[[NSDate date] earlierDate:date] isEqualToDate:date]) {
 				[[NSFileManager defaultManager] removeItemAtPath:cachePathForKey(key) error:NULL];
 			}
@@ -131,7 +131,7 @@ static EGOCache* __instance;
 }
 
 - (BOOL)hasCacheForKey:(NSString*)key {
-	NSDate* date = [cacheDictionary objectForKey:key];
+	NSDate* date = cacheDictionary[key];
 	if(!date) return NO;
 	if([[[NSDate date] earlierDate:date] isEqualToDate:date]) return NO;
 	return [[NSFileManager defaultManager] fileExistsAtPath:cachePathForKey(key)];
@@ -146,7 +146,7 @@ static EGOCache* __instance;
 
 - (void)copyFilePath:(NSString*)filePath asKey:(NSString*)key withTimeoutInterval:(NSTimeInterval)timeoutInterval {
 	[[NSFileManager defaultManager] copyItemAtPath:filePath toPath:cachePathForKey(key) error:NULL];
-	[cacheDictionary setObject:[NSDate dateWithTimeIntervalSinceNow:timeoutInterval] forKey:key];
+	cacheDictionary[key] = [NSDate dateWithTimeIntervalSinceNow:timeoutInterval];
 	[self performSelectorOnMainThread:@selector(saveAfterDelay) withObject:nil waitUntilDone:YES];
 }																												   
 
@@ -168,7 +168,7 @@ static EGOCache* __instance;
 	[writeInvocation setArgument:&cachePath atIndex:3];
 	
 	[self performDiskWriteOperation:writeInvocation];
-	[cacheDictionary setObject:[NSDate dateWithTimeIntervalSinceNow:timeoutInterval] forKey:key];
+	cacheDictionary[key] = [NSDate dateWithTimeIntervalSinceNow:timeoutInterval];
 	
 	[self performSelectorOnMainThread:@selector(saveAfterDelay) withObject:nil waitUntilDone:YES]; // Need to make sure the save delay get scheduled in the main runloop, not the current threads
 }

@@ -22,12 +22,12 @@
 #import "JTNavigationBar.h"
 #import "AccountSwitcherViewController.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, JTTableRowTypes) {
     eXoActivityStream = 0,
     eXoDocuments = 1,
     eXoDashboard = 2,
     eXoSettings = 3,
-} JTTableRowTypes;
+} ;
 
 @class JTRevealSidebarView;
 @class JTTableViewDatasource;

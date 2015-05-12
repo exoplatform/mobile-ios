@@ -74,21 +74,21 @@
     [super dealloc];
 }
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         [self configureAvatar];
     }
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self configureAvatar];
     }
     return self;
 }
 
-- (id)initWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage{
+- (instancetype)initWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage{
     if (self = [super initWithImage:image highlightedImage:highlightedImage]) {
         [self configureAvatar];
     }

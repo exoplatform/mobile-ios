@@ -30,7 +30,7 @@
 #import <Foundation/Foundation.h>
 #include <libxml/tree.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, CXMLNodeKind) {
 	CXMLInvalidKind = 0,
 	CXMLElementKind = XML_ELEMENT_NODE,
 	CXMLAttributeKind = XML_ATTRIBUTE_NODE,
@@ -43,7 +43,7 @@ typedef enum {
 	CXMLAttributeDeclarationKind =  XML_ATTRIBUTE_DECL,
 	CXMLEntityDeclarationKind = XML_ENTITY_DECL,
 	CXMLNamespaceKind = XML_NAMESPACE_DECL,
-} CXMLNodeKind;
+} ;
 
 @class CXMLDocument;
 
@@ -52,18 +52,18 @@ typedef enum {
 	xmlNodePtr _node;
 }
 
-- (CXMLNodeKind)kind;
-- (NSString *)name;
-- (NSString *)stringValue;
-- (NSUInteger)index;
-- (NSUInteger)level;
-- (CXMLDocument *)rootDocument;
-- (CXMLNode *)parent;
-- (NSUInteger)childCount;
-- (NSArray *)children;
+@property (nonatomic, readonly) CXMLNodeKind kind;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *stringValue;
+@property (nonatomic, readonly) NSUInteger index;
+@property (nonatomic, readonly) NSUInteger level;
+@property (nonatomic, readonly, strong) CXMLDocument *rootDocument;
+@property (nonatomic, readonly, strong) CXMLNode *parent;
+@property (nonatomic, readonly) NSUInteger childCount;
+@property (nonatomic, readonly, copy) NSArray *children;
 - (CXMLNode *)childAtIndex:(NSUInteger)index;
-- (CXMLNode *)previousSibling;
-- (CXMLNode *)nextSibling;
+@property (nonatomic, readonly, strong) CXMLNode *previousSibling;
+@property (nonatomic, readonly, strong) CXMLNode *nextSibling;
 //- (CXMLNode *)previousNode;
 //- (CXMLNode *)nextNode;
 //- (NSString *)XPath;
@@ -73,8 +73,8 @@ typedef enum {
 //+ (NSString *)localNameForName:(NSString *)name;
 //+ (NSString *)prefixForName:(NSString *)name;
 //+ (CXMLNode *)predefinedNamespaceForPrefix:(NSString *)name;
-- (NSString *)description;
-- (NSString *)XMLString;
+@property (nonatomic, readonly, copy) NSString *description;
+@property (nonatomic, readonly, copy) NSString *XMLString;
 - (NSString *)XMLStringWithOptions:(NSUInteger)options;
 //- (NSString *)canonicalXMLStringPreservingComments:(BOOL)comments;
 - (NSArray *)nodesForXPath:(NSString *)xpath error:(NSError **)error;

@@ -30,11 +30,11 @@
 @implementation EGOImageButton
 @synthesize imageURL, placeholderImage, delegate;
 
-- (id)initWithPlaceholderImage:(UIImage*)anImage {
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage {
 	return [self initWithPlaceholderImage:anImage delegate:nil];	
 }
 
-- (id)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageButtonDelegate>)aDelegate {
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageButtonDelegate>)aDelegate {
 	if((self = [super initWithFrame:CGRectZero])) {
 		self.placeholderImage = anImage;
 		self.delegate = aDelegate;
@@ -77,9 +77,9 @@
 }
 
 - (void)imageLoaderDidLoad:(NSNotification*)notification {
-	if(![[[notification userInfo] objectForKey:@"imageURL"] isEqual:self.imageURL]) return;
+	if(![[notification userInfo][@"imageURL"] isEqual:self.imageURL]) return;
 	
-	UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
+	UIImage* anImage = [notification userInfo][@"image"];
 	[self setImage:anImage forState:UIControlStateNormal];
 	[self setNeedsDisplay];
 	
@@ -89,10 +89,10 @@
 }
 
 - (void)imageLoaderDidFailToLoad:(NSNotification*)notification {
-	if(![[[notification userInfo] objectForKey:@"imageURL"] isEqual:self.imageURL]) return;
+	if(![[notification userInfo][@"imageURL"] isEqual:self.imageURL]) return;
 	
 	if([self.delegate respondsToSelector:@selector(imageButtonFailedToLoadImage:error:)]) {
-		[self.delegate imageButtonFailedToLoadImage:self error:[[notification userInfo] objectForKey:@"error"]];
+		[self.delegate imageButtonFailedToLoadImage:self error:[notification userInfo][@"error"]];
 	}
 }
 

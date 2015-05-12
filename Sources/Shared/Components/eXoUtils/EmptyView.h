@@ -21,12 +21,15 @@
 #import "LanguageHelper.h"
 
 @interface EmptyView : UIView {
-    UIImageView *imageView;
-    UILabel *label;
-    NSString *imagename;
-    NSInteger distance;
+
 }
-- (id)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content;
+
+@property (nonatomic, retain) UIImageView* imageView;
+@property (nonatomic, retain) UILabel* label;
+@property (nonatomic, retain) NSString* imagename;
+@property (nonatomic, assign) NSInteger distance;
+
+- (instancetype)initWithFrame:(CGRect)frame withImageName:(NSString*)imageName andContent:(NSString *)content;
 - (void)changeOrientation;
 - (void)setLabelContent:(NSString*)content;
 @end

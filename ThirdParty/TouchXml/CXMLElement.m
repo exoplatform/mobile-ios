@@ -106,7 +106,7 @@ for (id attribute in [self attributes] )
 if ( ! _node->children )
 	{
 	bool isEmpty = NO;
-	NSArray *emptyTags = [NSArray arrayWithObjects: @"br", @"area", @"link", @"img", @"param", @"hr", @"input", @"col", @"base", @"meta", nil ];
+	NSArray *emptyTags = @[@"br", @"area", @"link", @"img", @"param", @"hr", @"input", @"col", @"base", @"meta"];
 	for (id s in emptyTags)
 		{
 		if ( [s isEqualToString:@"base"] )

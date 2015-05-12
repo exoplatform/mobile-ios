@@ -39,4 +39,7 @@
 // Hide Hud Load view immediately
 - (void)hideLoaderImmediately:(BOOL)successful;
 
+@property (nonatomic, retain) IBOutlet UINavigationBar* navigation;
+@property (nonatomic, retain) UILabel* label;
+
 @end

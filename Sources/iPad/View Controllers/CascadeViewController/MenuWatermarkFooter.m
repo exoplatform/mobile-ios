@@ -10,7 +10,7 @@
 
 @implementation MenuWatermarkFooter
 
-- (id)initWithFrame:(CGRect)aRect
+- (instancetype)initWithFrame:(CGRect)aRect
 {
 	if ((self = [super initWithFrame:aRect]))
 	{

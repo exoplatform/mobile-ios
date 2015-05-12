@@ -42,7 +42,7 @@ static NSBundle *bundle = nil;
 }
 
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init])) 
     {
@@ -92,7 +92,7 @@ static NSBundle *bundle = nil;
 
 	NSArray* languages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
 
-	NSString *preferredLang = [languages objectAtIndex:0];
+	NSString *preferredLang = languages[0];
 
 	return preferredLang;
 }

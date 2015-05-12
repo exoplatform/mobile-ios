@@ -30,7 +30,7 @@
 
 #pragma - Object Management
 
--(id)init {
+-(instancetype)init {
     if ((self=[super init])) {
         //Default behavior
         _text = [@"" retain];

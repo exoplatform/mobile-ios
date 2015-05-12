@@ -47,7 +47,7 @@
 - (NSString *)createCommentsResourcePath:(NSString *)activityId;
 
 //Use this constructor when you want to set a particular value for the number of comment wanted
--(id)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes;
+-(instancetype)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes;
 
 // Retrieve Activity details for a given identity
 - (void)getActivityDetail:(NSString *)activityId;

@@ -79,7 +79,7 @@
     UIFont *titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:titleFontSize ];
     UILabel *titleLabel = [CloudViewUtils labelWithText:title andFont:titleFont andTextColor:[UIColor whiteColor]];
         
-    float titleWidth = [[titleLabel text] sizeWithFont:titleFont].width;
+    float titleWidth = [[titleLabel text] sizeWithAttributes:@{NSFontAttributeName: titleFont}].width;
     float titleX = (button.frame.size.width - titleWidth) / 2;
     [titleLabel setFrame:CGRectMake(titleX, -titleXMinus, button.frame.size.width, button.frame.size.height)];
     
@@ -108,11 +108,11 @@
     UILabel *label1 = [CloudViewUtils labelWithText:line1 andFont:titleFont andTextColor:[UIColor darkGrayColor]];
     UILabel *label2 = [CloudViewUtils labelWithText:line2 andFont:titleFont andTextColor:[UIColor darkGrayColor]];
     
-    float width1 = [label1.text sizeWithFont:titleFont].width;
-    float height1 = [label1.text sizeWithFont:titleFont].width;
+    float width1 = [label1.text sizeWithAttributes:@{NSFontAttributeName: titleFont}].width;
+    float height1 = [label1.text sizeWithAttributes:@{NSFontAttributeName: titleFont}].width;
     
-    float width2 = [label2.text sizeWithFont:titleFont].width;
-    float height2 = [label2.text sizeWithFont:titleFont].width;
+    float width2 = [label2.text sizeWithAttributes:@{NSFontAttributeName: titleFont}].width;
+    float height2 = [label2.text sizeWithAttributes:@{NSFontAttributeName: titleFont}].width;
     
     float buttonWidth = button.frame.size.width;
     
@@ -164,9 +164,10 @@
 +(CGRect)frameForLabel:(UILabel *)label inRect:(CGRect)rect
 {
     CGRect frame;
-    frame.origin.x = (rect.size.width - [label.text sizeWithFont:label.font].width) / 2;
-    frame.origin.y = (rect.size.height - [label.text sizeWithFont:label.font].height) / 2;
-    frame.size = CGSizeMake([label.text sizeWithFont:label.font].width, [label.text sizeWithFont:label.font].height);
+    frame.origin.x = (rect.size.width - [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}].width) / 2;
+    frame.origin.y = (rect.size.height - [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}].height) / 2;
+    frame.size = CGSizeMake([label.text sizeWithAttributes:@{NSFontAttributeName: label.font}].width,
+                            [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}].height);
     return frame;
 }
 
