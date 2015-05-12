@@ -21,12 +21,7 @@
 #import "ActivityDetailMessageTableViewCell.h"
 
 @interface ActivityCalendarDetailMessageTableViewCell : ActivityDetailMessageTableViewCell{
-    TTStyledTextLabel*                      _htmlMessage;
-    TTStyledTextLabel*                      _htmlName;
-    TTStyledTextLabel*                      _htmlTitle;
     CGFloat width;
 }
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
-@property (retain, nonatomic) TTStyledTextLabel* htmlMessage;
-@property (retain, nonatomic) TTStyledTextLabel* htmlTitle;
+@property (retain, nonatomic) IBOutlet UILabel *lbTitle;
 @end

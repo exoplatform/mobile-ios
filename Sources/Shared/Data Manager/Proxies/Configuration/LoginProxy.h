@@ -34,12 +34,12 @@
 @property (nonatomic, retain) NSString *serverUrl;
 
 + (void)doLogout;
--(id)initWithDelegate:(id<LoginProxyDelegate>)delegate;
+-(instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate;
 - (void)retrievePlatformInformations; // get public platform infos to fill in settings view when user is not signed in
 - (void)getPlatformInfoAfterAuthenticate; //get private infos after authenticating and then switch to activity stream
 - (void)authenticate;
-- (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password;
-- (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl;
+- (instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password;
+- (instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl;
 @end
 
 @class LoginProxy;

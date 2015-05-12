@@ -23,54 +23,61 @@
 
 @synthesize viewToObserve;
 @synthesize controllerThatObserves;
-- (id)initWithViewToObserver:(UIView *)view andDelegate:(id<eXoTapDetectingWindowDelegate>)delegate {
+@synthesize multipleTouches;
+
+- (instancetype)initWithViewToObserver:(UIView *)view andDelegate:(id<eXoTapDetectingWindowDelegate>)delegate {
     if(self == [super init]) {
         self.viewToObserve = view;
         self.controllerThatObserves = delegate;
     }
     return self;
 }
+
 - (void)dealloc {
-    [viewToObserve release];
-    controllerThatObserves = nil;
+    self.viewToObserve = nil;
+    self.controllerThatObserves = nil;
+    self.multipleTouches = nil;
     [super dealloc];
 }
+
 - (void)forwardTap:(id)touch {
     [controllerThatObserves userDidTapWebView:touch];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-
 {
     // cancel any pending handleSingleTap messages 
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(forwardTap) object:nil];
     
     // update our touch state
     if ([[event touchesForView:self] count] > 1)
-        multipleTouches = YES;
+        self.multipleTouches = YES;
 
 }
 - (void)sendEvent:(UIEvent *)event {
     [super sendEvent:event];
-    if (viewToObserve == nil || controllerThatObserves == nil)
+    if (self.viewToObserve == nil || self.controllerThatObserves == nil)
         return;
+    
     NSSet *touches = [event allTouches];
     if (touches.count != 1)
         return;
     
-    if (multipleTouches)
+    if (self.multipleTouches)
         return;
     
     NSLog(@"%d",touches.count);
     UITouch *touch = touches.anyObject;
     if (touch.phase != UITouchPhaseEnded)
         return;
-    if ([touch.view isDescendantOfView:viewToObserve] == NO)
+    
+    if ([touch.view isDescendantOfView:self.viewToObserve] == NO)
         return;
-    CGPoint tapPoint = [touch locationInView:viewToObserve];
+    
+    CGPoint tapPoint = [touch locationInView:self.viewToObserve];
     //NSLog(@"TapPoint = %f, %f", tapPoint.x, tapPoint.y);
-    NSArray *pointArray = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%f", tapPoint.x],
-                           [NSString stringWithFormat:@"%f", tapPoint.y], nil];
+    NSArray *pointArray = @[[NSString stringWithFormat:@"%f", tapPoint.x],
+                           [NSString stringWithFormat:@"%f", tapPoint.y]];
 
     if (touch.tapCount == 1) {
         [self performSelector:@selector(forwardTap:) withObject:pointArray afterDelay:0.1];

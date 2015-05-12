@@ -14,7 +14,7 @@
 @implementation ATMTextLayer
 @synthesize caption;
 
-- (id)initWithLayer:(id)layer {
+- (instancetype)initWithLayer:(id)layer {
 	if ((self = [super init])) {
 		caption = @"";
 	}
@@ -35,13 +35,20 @@
 	CGRect f = self.bounds;
 	CGRect s = f;
 	s.origin.y -= 1;
-	
-	[[UIColor blackColor] set];
-	[caption drawInRect:f withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
-	
-	[[UIColor whiteColor] set];
-	[caption drawInRect:s withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
-	
+    NSMutableParagraphStyle *wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    wordWrapStyle.alignment = NSTextAlignmentCenter;
+    [caption drawInRect:f withAttributes:@{
+                                           NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                           NSParagraphStyleAttributeName: wordWrapStyle,
+                                           NSForegroundColorAttributeName: [UIColor blackColor]
+                                           }];
+
+    [caption drawInRect:s withAttributes:@{
+                                           NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                           NSParagraphStyleAttributeName: wordWrapStyle,
+                                           NSForegroundColorAttributeName: [UIColor whiteColor]
+                                           }];
 	UIGraphicsPopContext();
 }
 

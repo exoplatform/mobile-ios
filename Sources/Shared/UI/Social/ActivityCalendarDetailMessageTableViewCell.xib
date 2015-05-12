@@ -1,391 +1,98 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
-	<data>
-		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1181</string>
-		</object>
-		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBUIWebView</string>
-			<string>IBUITableViewCell</string>
-			<string>IBUIImageView</string>
-			<string>IBUILabel</string>
-			<string>IBProxyObject</string>
-		</array>
-		<array key="IBDocument.PluginDependencies">
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBUITableViewCell" id="590466191">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="760222638">
-						<reference key="NSNextResponder" ref="590466191"/>
-						<int key="NSvFlags">256</int>
-						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="1058708617">
-								<reference key="NSNextResponder" ref="760222638"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{65, 90}, {14, 14}}</string>
-								<reference key="NSSuperview" ref="760222638"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="644484243"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">ActivityTypeNormal.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="912865599">
-								<reference key="NSNextResponder" ref="760222638"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{5, 9}, {45, 45}}</string>
-								<reference key="NSSuperview" ref="760222638"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="786436380"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">default-avatar.png</string>
-								</object>
-							</object>
-							<object class="IBUILabel" id="644484243">
-								<reference key="NSNextResponder" ref="760222638"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{86, 85}, {222, 21}}</string>
-								<reference key="NSSuperview" ref="760222638"/>
-								<reference key="NSWindow"/>
-								<object class="NSColor" key="IBUIBackgroundColor" id="542920876">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">1 day ago</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC42Mjc0NTA5ODA0IDAuNjI3NDUwOTgwNCAwLjYyNzQ1MDk4MDQAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">0</int>
-									<double key="pointSize">11</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">11</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-							<object class="IBUILabel" id="154554391">
-								<reference key="NSNextResponder" ref="760222638"/>
-								<int key="NSvFlags">314</int>
-								<string key="NSFrame">{{58, 52}, {245, 34}}</string>
-								<reference key="NSSuperview" ref="760222638"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1058708617"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC40OTQxMTc2NDcxIDAuNDk0MTE3NjQ3MSAwLjQ5NDExNzY0NzEAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">13</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">13</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-							<object class="IBUIWebView" id="786436380">
-								<reference key="NSNextResponder" ref="760222638"/>
-								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{58, 6}, {249, 43}}</string>
-								<reference key="NSSuperview" ref="760222638"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="154554391"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIDataDetectorTypes">2</int>
-							</object>
-						</array>
-						<string key="NSFrameSize">{320, 110}</string>
-						<reference key="NSSuperview" ref="590466191"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="912865599"/>
-						<reference key="IBUIBackgroundColor" ref="542920876"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
-				</array>
-				<string key="NSFrameSize">{320, 111}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="760222638"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-				</object>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<reference key="IBUIContentView" ref="760222638"/>
-				<string key="IBUIReuseIdentifier">kIdentifierActivityCalendarDetailMessageTableViewCell</string>
-				<real value="111" key="IBUIRowHeight"/>
-			</object>
-		</array>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imgType</string>
-						<reference key="source" ref="590466191"/>
-						<reference key="destination" ref="1058708617"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imgvAvatar</string>
-						<reference key="source" ref="590466191"/>
-						<reference key="destination" ref="912865599"/>
-					</object>
-					<int key="connectionID">17</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">webViewForContent</string>
-						<reference key="source" ref="590466191"/>
-						<reference key="destination" ref="786436380"/>
-					</object>
-					<int key="connectionID">18</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbMessage</string>
-						<reference key="source" ref="590466191"/>
-						<reference key="destination" ref="154554391"/>
-					</object>
-					<int key="connectionID">19</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbDate</string>
-						<reference key="source" ref="590466191"/>
-						<reference key="destination" ref="644484243"/>
-					</object>
-					<int key="connectionID">20</int>
-				</object>
-			</array>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<array key="orderedObjects">
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<array key="object" id="0"/>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="590466191"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="1058708617"/>
-							<reference ref="912865599"/>
-							<reference ref="644484243"/>
-							<reference ref="786436380"/>
-							<reference ref="154554391"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="1058708617"/>
-						<reference key="parent" ref="590466191"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="786436380"/>
-						<reference key="parent" ref="590466191"/>
-						<string key="objectName">Web View</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="912865599"/>
-						<reference key="parent" ref="590466191"/>
-						<string key="objectName">Image View - default-avatar.png</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="644484243"/>
-						<reference key="parent" ref="590466191"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">15</int>
-						<reference key="object" ref="154554391"/>
-						<reference key="parent" ref="590466191"/>
-					</object>
-				</array>
-			</object>
-			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="13.CustomClassName">AvatarView</string>
-				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="3.CustomClassName">ActivityCalendarDetailMessageTableViewCell</string>
-				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			</dictionary>
-			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
-			<nil key="activeLocalization"/>
-			<dictionary class="NSMutableDictionary" key="localizations"/>
-			<nil key="sourceID"/>
-			<int key="maxID">21</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">ActivityCalendarDetailMessageTableViewCell</string>
-					<string key="superclassName">ActivityDetailMessageTableViewCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ActivityCalendarDetailMessageTableViewCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">ActivityDetailMessageTableViewCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="imgType">UIImageView</string>
-						<string key="imgvAttach">EGOImageView</string>
-						<string key="imgvAvatar">AvatarView</string>
-						<string key="lbDate">UILabel</string>
-						<string key="lbMessage">UILabel</string>
-						<string key="lbName">UILabel</string>
-						<string key="webViewComment">UIWebView</string>
-						<string key="webViewForContent">UIWebView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="imgType">
-							<string key="name">imgType</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgvAttach">
-							<string key="name">imgvAttach</string>
-							<string key="candidateClassName">EGOImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgvAvatar">
-							<string key="name">imgvAvatar</string>
-							<string key="candidateClassName">AvatarView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lbDate">
-							<string key="name">lbDate</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lbMessage">
-							<string key="name">lbMessage</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lbName">
-							<string key="name">lbName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="webViewComment">
-							<string key="name">webViewComment</string>
-							<string key="candidateClassName">UIWebView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="webViewForContent">
-							<string key="name">webViewForContent</string>
-							<string key="candidateClassName">UIWebView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ActivityDetailMessageTableViewCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">AvatarView</string>
-					<string key="superclassName">EGOImageView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/AvatarView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">EGOImageView</string>
-					<string key="superclassName">UIImageView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/EGOImageView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1296" key="NS.object.0"/>
-		</object>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="ActivityTypeNormal.png">{20, 20}</string>
-			<string key="default-avatar.png">{59, 59}</string>
-		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1181</string>
-	</data>
-</archive>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <development version="5000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ActivityCalendarDetailMessageTableViewCell" rowHeight="121" id="X63-PC-zbi" customClass="ActivityCalendarDetailMessageTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X63-PC-zbi" id="YVd-8g-hfB">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="default-avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="bxQ-1J-wKK" userLabel="Image View - default-avatar.png" customClass="AvatarView">
+                        <rect key="frame" x="8" y="5" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="MhA-C9-WYx"/>
+                            <constraint firstAttribute="width" constant="45" id="wCm-YM-fSC"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" preferredMaxLayoutWidth="236" translatesAutoresizingMaskIntoConstraints="NO" id="EUZ-xK-Ut5">
+                        <rect key="frame" x="72" y="62" width="236" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="7RN-4J-ImV">
+                        <rect key="frame" x="71" y="8" width="231" height="18"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                        <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="4HA-3A-1tL">
+                        <rect key="frame" x="71" y="34" width="222" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ActivityTypeNormal.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q50-s2-y4f">
+                        <rect key="frame" x="69" y="94" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="J8k-2p-6x9"/>
+                            <constraint firstAttribute="height" constant="14" id="eJK-iG-FEV"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 day ago" lineBreakMode="tailTruncation" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvp-e6-PQd">
+                        <rect key="frame" x="90" y="96" width="53" height="14"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                        <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="xvp-e6-PQd" secondAttribute="bottom" constant="10" id="0ft-Ij-ZnB"/>
+                    <constraint firstItem="bxQ-1J-wKK" firstAttribute="top" secondItem="YVd-8g-hfB" secondAttribute="top" constant="5" id="2Lb-HC-cst"/>
+                    <constraint firstItem="xvp-e6-PQd" firstAttribute="leading" secondItem="Q50-s2-y4f" secondAttribute="trailing" constant="7" id="QS9-9D-Zq2"/>
+                    <constraint firstItem="4HA-3A-1tL" firstAttribute="top" secondItem="7RN-4J-ImV" secondAttribute="bottom" constant="8" id="Ue2-kR-2gT"/>
+                    <constraint firstItem="EUZ-xK-Ut5" firstAttribute="top" secondItem="4HA-3A-1tL" secondAttribute="bottom" constant="11" id="V58-qz-8Z7"/>
+                    <constraint firstItem="bxQ-1J-wKK" firstAttribute="leading" secondItem="YVd-8g-hfB" secondAttribute="leading" constant="8" id="VpG-2j-g9A"/>
+                    <constraint firstAttribute="bottom" secondItem="Q50-s2-y4f" secondAttribute="bottom" constant="12" id="Y3O-uj-qBX"/>
+                    <constraint firstItem="xvp-e6-PQd" firstAttribute="top" secondItem="EUZ-xK-Ut5" secondAttribute="bottom" constant="17" id="eeE-B0-4Je"/>
+                    <constraint firstItem="7RN-4J-ImV" firstAttribute="leading" secondItem="bxQ-1J-wKK" secondAttribute="trailing" constant="18" id="iYj-U6-uVE"/>
+                    <constraint firstAttribute="trailing" secondItem="EUZ-xK-Ut5" secondAttribute="trailing" constant="12" id="iyq-Ns-CJq"/>
+                    <constraint firstItem="EUZ-xK-Ut5" firstAttribute="leading" secondItem="YVd-8g-hfB" secondAttribute="leading" constant="72" id="l9O-sF-QwC"/>
+                    <constraint firstItem="7RN-4J-ImV" firstAttribute="top" secondItem="YVd-8g-hfB" secondAttribute="top" constant="8" id="lH9-Ff-KQq"/>
+                    <constraint firstAttribute="trailing" secondItem="4HA-3A-1tL" secondAttribute="trailing" constant="27" id="liO-ca-sha"/>
+                    <constraint firstItem="Q50-s2-y4f" firstAttribute="leading" secondItem="YVd-8g-hfB" secondAttribute="leading" constant="69" id="oNt-cQ-4Sn"/>
+                    <constraint firstAttribute="trailing" secondItem="7RN-4J-ImV" secondAttribute="trailing" constant="18" id="uym-yZ-9Da"/>
+                    <constraint firstItem="4HA-3A-1tL" firstAttribute="leading" secondItem="bxQ-1J-wKK" secondAttribute="trailing" constant="18" id="yhe-8p-Cqf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="imgType" destination="Q50-s2-y4f" id="XLR-Js-r78"/>
+                <outlet property="imgvAvatar" destination="bxQ-1J-wKK" id="wPv-f1-WyV"/>
+                <outlet property="lbDate" destination="xvp-e6-PQd" id="GVP-Pw-aW0"/>
+                <outlet property="lbMessage" destination="EUZ-xK-Ut5" id="QsJ-nu-KOy"/>
+                <outlet property="lbName" destination="7RN-4J-ImV" id="s5P-If-3lL"/>
+                <outlet property="lbTitle" destination="4HA-3A-1tL" id="JDk-9l-qQ9"/>
+            </connections>
+            <point key="canvasLocation" x="31" y="277.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ActivityTypeNormal.png" width="20" height="20"/>
+        <image name="default-avatar.png" width="59" height="59"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

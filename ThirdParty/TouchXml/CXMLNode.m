@@ -63,7 +63,7 @@ NSAssert(_node != NULL, @"TODO");
 if (_node->name == NULL)
 	return(NULL);
 else
-	return([NSString stringWithUTF8String:(const char *)_node->name]);
+	return(@((const char *)_node->name));
 }
 
 - (NSString *)stringValue
@@ -78,7 +78,7 @@ else
 NSString *theStringValue = NULL;
 if (theXMLString != NULL)
 	{
-	theStringValue = [NSString stringWithUTF8String:(const char *)theXMLString];
+	theStringValue = @((const char *)theXMLString);
 	if ( _node->type != CXMLTextKind )
 		xmlFree(theXMLString);
 	}
@@ -221,7 +221,6 @@ switch([self kind])
 		[str appendString:[self stringValue]];
 		break;
 	case XML_COMMENT_NODE:
-	case XML_CDATA_SECTION_NODE:
 		// TODO: NSXML does not have XML_CDATA_SECTION_NODE correspondent.
 		break;
 	default:
@@ -249,7 +248,7 @@ theXPathContext->node = _node;
 // TODO considering putting xmlChar <-> UTF8 into a NSString category
 xmlXPathObjectPtr theXPathObject = xmlXPathEvalExpression((const xmlChar *)[xpath UTF8String], theXPathContext);
 if (xmlXPathNodeSetIsEmpty(theXPathObject->nodesetval))
-	theResult = [NSArray array]; // TODO better to return NULL?
+	theResult = @[]; // TODO better to return NULL?
 else
 	{
 	NSMutableArray *theArray = [NSMutableArray array];

@@ -21,11 +21,13 @@
 #import "ActivityBasicTableViewCell.h"
 
 @interface ActivityPictureTableViewCell : ActivityBasicTableViewCell {
-    EGOImageView*          _imgvAttach;
-    UILabel*     _lbFileName;
-    CGFloat width;
-    NSURL*                 _urlForAttachment;
+    EGOImageView*           _imgvAttach;
+    UILabel*                _lbFileName;
+    CGFloat                 width;
+    NSURL*                  _urlForAttachment;
 }
+
+@property (retain, nonatomic) IBOutlet UILabel *activityMessage;
 
 @property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain) NSURL* urlForAttachment;

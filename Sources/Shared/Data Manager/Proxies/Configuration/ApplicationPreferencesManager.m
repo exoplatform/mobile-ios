@@ -88,7 +88,7 @@
 	return sharedInstance;
 }
 
-- (id) init
+- (instancetype) init
 {
 	self = [super init];
     if (self) 
@@ -131,7 +131,7 @@
     {
         //copy the defautl Configuration to the system Configuration in the /app/documents
         strDefaultConfigPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"xml"];
-        strSystemConfigPath = [[paths objectAtIndex:0] stringByAppendingString:@"/SystemConfiguration"];
+        strSystemConfigPath = [paths[0] stringByAppendingString:@"/SystemConfiguration"];
         [fileManager copyItemAtPath:strDefaultConfigPath toPath:strSystemConfigPath error:&error];
     }
     
@@ -145,10 +145,10 @@
     {
         for (int i = 0; i < [arrSystemServerList count]; i++) 
         {
-            ServerObj* tmpServerObj1 = [arrSystemServerList objectAtIndex:i];
+            ServerObj* tmpServerObj1 = arrSystemServerList[i];
             for (int j = 0; j < [arrDeletedSystemServerList count]; j++) 
             {
-                ServerObj* tmpServerObj2 = [arrDeletedSystemServerList objectAtIndex:j];
+                ServerObj* tmpServerObj2 = arrDeletedSystemServerList[j];
                 if ([tmpServerObj2.accountName isEqualToString:tmpServerObj1.accountName] &&
                     [tmpServerObj2.serverUrl isEqualToString:tmpServerObj1.serverUrl])
                 {
@@ -192,7 +192,7 @@
     if (selectedServerIndex >= 0 &&
         selectedServerIndex < [self.serverList count]) {
         tmpIndex = selectedServerIndex;
-        ServerObj *selectedObj = [self.serverList objectAtIndex:selectedServerIndex];
+        ServerObj *selectedObj = (self.serverList)[selectedServerIndex];
         tmpDomain = selectedObj.serverUrl;
     }
     
@@ -216,7 +216,7 @@
 - (ServerObj*)getSelectedAccount
 {
     if ([_arrServerList count] > self.selectedServerIndex)
-        return [_arrServerList objectAtIndex:self.selectedServerIndex];
+        return _arrServerList[self.selectedServerIndex];
     else
         return nil;
 }
@@ -235,7 +235,7 @@
     for (int i = 0; i < [self.serverList count]; i++)
     {
         if (index==i)continue; // ignore the server specified by index
-        ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
+        ServerObj* tmpServerObj = (self.serverList)[i];
         BOOL sameName = [tmpServerObj.accountName isEqualToString:strServerName];
         BOOL sameURL  = [[tmpServerObj.serverUrl lowercaseString] isEqualToString:[strServerUrl lowercaseString]];
         BOOL sameUser = [tmpServerObj.username isEqualToString:username];
@@ -269,7 +269,7 @@
     // Edit the server specified by index
     else
     {
-        ServerObj* serverObjEdited = [self.serverList objectAtIndex:index];
+        ServerObj* serverObjEdited = (self.serverList)[index];
         ServerObj* tmpServerObj;
         
         serverObjEdited.accountName = strServerName;
@@ -277,13 +277,13 @@
         serverObjEdited.username = username;
         serverObjEdited.password = password;
         
-        [self.serverList replaceObjectAtIndex:index withObject:serverObjEdited];
+        (self.serverList)[index] = serverObjEdited;
         
         NSMutableArray* arrTmp = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < [self.serverList count]; i++)
         {
-            tmpServerObj = [self.serverList objectAtIndex:i];
+            tmpServerObj = (self.serverList)[i];
             if (tmpServerObj.bSystemServer == serverObjEdited.bSystemServer)
             {
                 [arrTmp addObject:tmpServerObj];
@@ -343,7 +343,7 @@
 
 - (BOOL)deleteServerObjAtIndex:(int)index
 {
-    ServerObj* deletedServerObj = [[self.serverList objectAtIndex:index] retain];
+    ServerObj* deletedServerObj = [(self.serverList)[index] retain];
     
     [self.serverList removeObjectAtIndex:index];
     int currentIndex = self.selectedServerIndex;
@@ -360,7 +360,7 @@
     
     for (int i = 0; i < [self.serverList count]; i++)
     {
-        ServerObj* tmpServerObj = [self.serverList objectAtIndex:i];
+        ServerObj* tmpServerObj = (self.serverList)[i];
         if (tmpServerObj.bSystemServer == deletedServerObj.bSystemServer)
         {
             [arrTmp addObject:tmpServerObj];
@@ -427,18 +427,18 @@
         NSArray* arrXml = [root elementsForName:@"xml"];
         if (arrXml) 
         {
-            CXMLElement* elementXml = [arrXml objectAtIndex:0];
+            CXMLElement* elementXml = arrXml[0];
             NSArray* arrServers = [elementXml elementsForName:@"Servers"];
             if (arrServers) 
             {
-                CXMLElement* elementSevers = [arrServers objectAtIndex:0];
+                CXMLElement* elementSevers = arrServers[0];
                 NSArray* arrsever = [elementSevers elementsForName:@"server"];
                 if (arrsever) 
                 {
                     CXMLNode* tmpNode;                   
                     for (int i = 0; i < [arrsever count]; i++) 
                     {
-                        tmpNode = [arrsever objectAtIndex:i];
+                        tmpNode = arrsever[i];
                         ServerObj* serverObj = [[ServerObj alloc] init];
                         serverObj.accountName = [self getNodeValue:tmpNode withName:@"name"];
                         serverObj.serverUrl = [self getNodeValue:tmpNode withName:@"serverURL"];
@@ -466,7 +466,7 @@
     NSFileManager* fileManager = [NSFileManager defaultManager];
     BOOL bExist = NO;
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* strFilePath = [[paths objectAtIndex:0] stringByAppendingString:[NSString stringWithFormat:@"/%@",strFileName]];
+    NSString* strFilePath = [paths[0] stringByAppendingString:[NSString stringWithFormat:@"/%@",strFileName]];
     bExist = [fileManager fileExistsAtPath:strFilePath];
     if (bExist) 
     {
@@ -503,7 +503,7 @@
 {
     NSFileManager* fileManager = [NSFileManager defaultManager];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* strFilePath = [[paths objectAtIndex:0] stringByAppendingString:[NSString stringWithFormat:@"/%@",strFileName]];
+    NSString* strFilePath = [paths[0] stringByAppendingString:[NSString stringWithFormat:@"/%@",strFileName]];
     return [fileManager createFileAtPath:strFilePath contents:data attributes:nil];
 }
 
@@ -515,7 +515,7 @@
 
     for (int i = 0; i < [arrServerList count]; i++)
     {
-        ServerObj* tmpServerObj = [arrServerList objectAtIndex:i];
+        ServerObj* tmpServerObj = arrServerList[i];
         
         [str appendString:@"\t\t\t<server "];
         [str appendFormat:@" name=\"%@\"", tmpServerObj.accountName];

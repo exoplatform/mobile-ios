@@ -24,6 +24,6 @@
     
 
 }
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName;
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL fileName:(NSString *)fileName;
 -(NSString *) shortString : (NSString *) myString withMaxCharacter: (int) range;
 @end

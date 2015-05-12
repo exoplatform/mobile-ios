@@ -38,11 +38,11 @@
 }
 
 // custom init method
-- (id)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
+- (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
 {
 	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
         [self setGadget:gadgetToLoad];
-        _url = [[NSURL URLWithString:_gadget.gadgetUrl] retain];
+        self.url = [[NSURL URLWithString:_gadget.gadgetUrl] retain];
 	}
     return self;
 }

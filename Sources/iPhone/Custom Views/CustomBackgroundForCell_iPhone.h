@@ -19,12 +19,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum  {
+typedef NS_ENUM(NSInteger, CustomCellBackgroundViewPosition)  {
 	CustomCellBackgroundViewPositionTop, 
 	CustomCellBackgroundViewPositionMiddle, 
 	CustomCellBackgroundViewPositionBottom,
 	CustomCellBackgroundViewPositionSingle
-} CustomCellBackgroundViewPosition;
+} ;
 
 
 @interface CustomBackgroundForCell_iPhone : UITableViewCell {

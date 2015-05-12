@@ -26,9 +26,10 @@
 @end
 
 @interface RoundRectView : UIView {
-    RoundRectViewMask *mask;
+//    RoundRectViewMask *mask;
 }
 
-@property (nonatomic) BOOL squareCorners;
+@property (nonatomic, retain) RoundRectViewMask* mask;
+@property (nonatomic, getter=squareCorners, setter=setSquareCorners:) BOOL squareCorners;
 
 @end

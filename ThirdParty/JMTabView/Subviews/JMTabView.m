@@ -23,7 +23,7 @@
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) 
@@ -38,7 +38,7 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self)
     {
@@ -52,7 +52,7 @@
 
 - (void)setBackgroundLayer:(CALayer *)backgroundLayer;
 {
-    CALayer * oldBackground = [[self.layer sublayers] objectAtIndex:0];
+    CALayer * oldBackground = [self.layer sublayers][0];
     if (oldBackground)
     {
         [self.layer replaceSublayer:oldBackground with:backgroundLayer];

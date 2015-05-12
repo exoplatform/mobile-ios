@@ -153,9 +153,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:_settingsViewController];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self.navigationController presentModalViewController:navController animated:YES];
-    
-    
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion {
@@ -188,7 +186,7 @@
 
 - (void)doneWithSettings {
     [super doneWithSettings];
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 @end
 

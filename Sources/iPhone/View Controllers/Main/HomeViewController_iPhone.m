@@ -45,12 +45,11 @@
 
 @synthesize _isCompatibleWithSocial;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
     {
-//        self.title = @"Home";
     }
     
     return self;
@@ -93,9 +92,6 @@
     //Set the background Color of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     
-    //Force the status bar to be black opaque since TTViewController reset it
-    //self.statusBarStyle = UIStatusBarStyleBlackOpaque;
-    
     //Add the eXo logo to the Navigation Bar
     UIImageView* img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eXoLogoNavigationBariPhone.png"]];
     self.navigationItem.titleView = img;
@@ -136,10 +132,9 @@
                                                                    image:@"bundle://HomeSettingsIconiPhone.png"
                                                                      URL:@"tt://setting" canDelete:NO] autorelease];
     if(_isCompatibleWithSocial)
-        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects:
-                                                         actStreamItem, documentItem, dashboardItem, settingItem, nil], nil];
+        _launcherView.pages = @[@[actStreamItem, documentItem, dashboardItem, settingItem]];
     else
-        _launcherView.pages = [NSArray arrayWithObjects:[NSArray arrayWithObjects: documentItem, dashboardItem, settingItem, nil], nil];    
+        _launcherView.pages = @[@[documentItem, dashboardItem, settingItem]];    
     [self.view addSubview:_launcherView];
 }
 
@@ -187,7 +182,7 @@
         [settingsViewController release];
         
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        [self.navigationController presentModalViewController:navController animated:YES];
+        [self.navigationController presentViewController:navController animated:YES completion:nil];
     }
 }
 
@@ -217,7 +212,7 @@
 #pragma - Settings Delegate Methods
 - (void)doneWithSettings {
     [self initView];
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

@@ -18,14 +18,16 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @protocol eXoTapDetectingWindowDelegate
 - (void)userDidTapWebView:(id)tapPoint;
 @end
+
 @interface eXoTapDetectingWindow : UIWindow {
-    UIView *viewToObserve;
-    id <eXoTapDetectingWindowDelegate> controllerThatObserves;
-    BOOL multipleTouches;
 }
+
 @property (nonatomic, retain) UIView *viewToObserve;
 @property (nonatomic, assign) id <eXoTapDetectingWindowDelegate> controllerThatObserves;
+@property (nonatomic, assign) BOOL multipleTouches;
+
 @end

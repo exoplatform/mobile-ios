@@ -47,7 +47,7 @@
     _tblFiles.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     _tblFiles.backgroundColor = EXO_BACKGROUND_COLOR;
     [_tblFiles setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [((RoundRectView *) [[self.view subviews] objectAtIndex:0]) addSubview:_tblFiles];
+    [((RoundRectView *) [self.view subviews][0]) addSubview:_tblFiles];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -60,9 +60,9 @@
         _navigation.topItem.title = _rootFile.naturalName;
     } else {
         _navigation.topItem.title = Localize(@"Documents") ;
-        ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = NO;
+        ((RoundRectView *) [self.view subviews][0]).squareCorners = NO;
     }
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
 - (CGRect)rectOfHeader:(int)width
@@ -93,7 +93,7 @@
     ExoStackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
     int viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
     if (viewIndex != NSNotFound) {
-        DocumentsViewController *parentController = viewIndex > 0 ? [[stackScrollVC.viewControllersStack objectAtIndex:viewIndex - 1] retain] : nil;
+        DocumentsViewController *parentController = viewIndex > 0 ? [(stackScrollVC.viewControllersStack)[viewIndex - 1] retain] : nil;
         [stackScrollVC removeViewFromController:parentController];
         // Reload the content of the parent view.
         [parentController startRetrieveDirectoryContent];
@@ -158,8 +158,8 @@
     //Use Modulo to retrieve the section information.
     NSIndexPath *indexPath = [self indexPathFromTagNumber:bt.tag];
     
-    NSArray *arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:indexPath.section];
-    fileToApplyAction = [arrFileFolder objectAtIndex:indexPath.row];
+    NSArray *arrFileFolder = [_dicContentOfFolder allValues][indexPath.section];
+    fileToApplyAction = arrFileFolder[indexPath.row];
     
     FileActionsViewController *fileActionsViewController = [[FileActionsViewController alloc] initWithNibName:@"FileActionsViewController" bundle:nil file:fileToApplyAction enableDeleteThisFolder:YES enableCreateFolder:NO enableRenameFile:(_rootFile.canAddChild && fileToApplyAction.canRemove) delegate:self];
     
@@ -193,7 +193,7 @@
 {
     
     //Retrieve the File corresponding to the selected Cell
-	File *fileToBrowse = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+	File *fileToBrowse = [_dicContentOfFolder allValues][indexPath.section][indexPath.row];
     
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:self];
 	
@@ -205,7 +205,7 @@
         // Check the folder can be supported actions or not.
         if (!_rootFile) {
             // if the view is first document view.
-            NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+            NSString *driveGroup = [_dicContentOfFolder allKeys][indexPath.section];
             newViewControllerForFilesBrowsing.actionVisibleOnFolder = [newViewControllerForFilesBrowsing supportActionsForItem:fileToBrowse ofGroup:driveGroup];
         } else {
             // support action for every folder which is not a drive.
@@ -378,8 +378,8 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
-{  
-    [picker dismissModalViewControllerAnimated:YES];  
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [self.popoverPhotoLibraryController dismissPopoverAnimated:YES];
     _navigation.topItem.rightBarButtonItem.enabled = YES;
     

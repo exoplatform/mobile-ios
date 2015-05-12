@@ -27,11 +27,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-typedef enum{
+typedef NS_ENUM(NSInteger, EGOPullRefreshState){
 	EGOOPullRefreshPulling = 0,
 	EGOOPullRefreshNormal,
 	EGOOPullRefreshLoading,	
-} EGOPullRefreshState;
+} ;
 
 @protocol EGORefreshTableHeaderDelegate;
 @interface EGORefreshTableHeaderView : UIView {
@@ -49,7 +49,7 @@ typedef enum{
 @property(nonatomic,assign) id <EGORefreshTableHeaderDelegate> delegate;
 @property (nonatomic, assign) UIEdgeInsets originalContentInset;
 
-- (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor;
+- (instancetype)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor;
 
 - (void)refreshLastUpdatedDate;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;

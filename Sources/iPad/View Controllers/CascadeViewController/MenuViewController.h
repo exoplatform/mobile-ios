@@ -35,7 +35,7 @@
 @property BOOL isCompatibleWithSocial;
 @property (nonatomic, retain) UserProfileViewController *userProfileViewController;
 
-- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
+- (instancetype)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
 - (void) updateLabelsWithNewLanguage;
 
 @end

@@ -16,7 +16,7 @@
     [super dealloc];
 }
 
-+ (id)modalWithTitle:(NSString *)title {
++ (instancetype)modalWithTitle:(NSString *)title {
     JTTableViewCellModal *modal = [[[[self class] alloc] init] autorelease];
     modal.title = title;
     return modal;

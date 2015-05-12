@@ -71,10 +71,10 @@
 - (void)contentDirectoryIsRetrieved;
 - (void)askToMakeFolderActions:(BOOL)createNewFolder;
 - (void)hideActionsPanel;
-- (UITableView*)tblFiles;
+@property (nonatomic, readonly, strong) UITableView *tblFiles;
 
 //Use this method to init the Controller with a root file
-- (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 
+- (instancetype) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName; 
 - (void)hideFileFolderActionsController;
 - (void)buttonAccessoryClick:(id)sender;
 - (UINavigationBar *)navigationBar;

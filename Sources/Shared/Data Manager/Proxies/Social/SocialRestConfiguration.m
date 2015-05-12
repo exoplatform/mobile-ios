@@ -73,7 +73,7 @@
     return [NSString stringWithFormat:@"%@/%@/private/", self.domainName, self.restContextName];
 }
 
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {

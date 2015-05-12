@@ -34,7 +34,7 @@
 
 @implementation CXMLNode (CXMLNode_PrivateExtensions)
 
-- (id)initWithLibXMLNode:(xmlNodePtr)inLibXMLNode;
+- (instancetype)initWithLibXMLNode:(xmlNodePtr)inLibXMLNode;
 {
 if ((self = [super init]) != NULL)
 	{

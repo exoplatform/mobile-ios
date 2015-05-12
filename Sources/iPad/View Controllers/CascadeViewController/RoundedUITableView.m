@@ -35,7 +35,7 @@
 @implementation RoundedUITableViewMask
 @synthesize squareCorners = _squareCorners;
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = NO;
@@ -93,7 +93,7 @@
 }
 
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)aTableStyle {
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)aTableStyle {
     if (self = [super initWithFrame:frame style:aTableStyle]) {
 		[self setupView];
     }
@@ -102,7 +102,7 @@
 }
 
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
 		[self setupView];
     }

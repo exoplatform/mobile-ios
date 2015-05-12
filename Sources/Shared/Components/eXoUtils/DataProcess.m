@@ -83,7 +83,7 @@ static DataProcess *_instance;
 	{	
 		NSString* encodedKey = [self escapeString: dictKey withEncoding:encoding];
 		//NSString* encodedValue = [self escapeString:dictKey withEncoding:encoding];   
-		NSString* encodedValue = [self escapeString:(NSString*)[dictData objectForKey:dictKey] withEncoding:encoding];   
+		NSString* encodedValue = [self escapeString:(NSString*)dictData[dictKey] withEncoding:encoding];   
 		NSString* keyAndValue = [NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue];
 		[keyAndValues addObject:keyAndValue];
 	}
