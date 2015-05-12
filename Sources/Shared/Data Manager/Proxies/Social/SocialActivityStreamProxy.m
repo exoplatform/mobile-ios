@@ -172,10 +172,12 @@
     
     [mappingSocialActivity addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"posterIdentity" withMapping:posterProfileMapping]];
     
+    // We need to set the path only in the descriptor, not the query parameters
+    NSString* pathPattern = [NSString stringWithString:[self createPathForType:activitytype]];
     RKResponseDescriptor *responseDescriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:mappingSocialActivity
                                                  method:RKRequestMethodGET
-                                            pathPattern:[NSString stringWithFormat:@"%@?max_id=%@",[self createPathForType:activitytype], activity.activityId]
+                                            pathPattern:pathPattern
                                                 keyPath:@"activities"
                                             statusCodes:[NSIndexSet indexSetWithIndex:200]];
     [manager addResponseDescriptor:responseDescriptor];

@@ -31,5 +31,7 @@
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy;
 - (void)loginProxy:(LoginProxy *)proxy authenticateFailedWithError:(NSError *)error;
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion;
+- (void)restKitDidLoadObjects:(NSArray *)objects;
+- (void)restKitDidFailWithError:(NSError *)error;
 
 @end

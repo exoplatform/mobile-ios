@@ -72,12 +72,6 @@
     
     [postSimpleMapping  addAttributeMappingsFromDictionary:@{@"like":@"like"}];
     
-     //Configure a serialization mapping for our SocialLike class
-    
-//    RKObjectMapping *postSimpleSerializationMapping = [postSimpleMapping inverseMapping];
-
-    // Send a POST to /like to create the remote instance
-    
     RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:postSimpleMapping objectClass:[SocialLike class] rootKeyPath:nil method:RKRequestMethodPOST];
     
     RKObjectMapping* responseMapping = [RKObjectMapping mappingForClass:[SocialLike class]];
