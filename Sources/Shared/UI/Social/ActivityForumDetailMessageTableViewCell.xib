@@ -34,7 +34,7 @@
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="16">
                         <rect key="frame" x="69" y="54" width="243" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.4941176471" green="0.4941176471" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,7 +47,7 @@
                             <constraint firstAttribute="width" constant="14" id="dW3-IV-uUz"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 day ago" lineBreakMode="tailTruncation" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 day ago" lineBreakMode="tailTruncation" minimumFontSize="10" preferredMaxLayoutWidth="49" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                         <rect key="frame" x="91" y="86" width="49" height="13"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>

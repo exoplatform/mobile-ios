@@ -35,7 +35,7 @@
                             <constraint firstAttribute="height" constant="45" id="zXM-wg-nxN"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="10" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="237" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="10" minimumFontSize="10" preferredMaxLayoutWidth="237" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                         <rect key="frame" x="64" y="8" width="237" height="18"/>
                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>

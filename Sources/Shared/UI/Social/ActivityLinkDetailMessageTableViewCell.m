@@ -47,23 +47,10 @@
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
         
-    //_webViewComment.contentMode = UIViewContentModeScaleAspectFit;
-    [[_webViewComment.subviews objectAtIndex:0] setScrollEnabled:NO];
-    [_webViewComment setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[_webViewComment subviews] objectAtIndex:0];
-    scrollView.bounces = NO;
-    [scrollView flashScrollIndicators];
-    _webViewComment.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeAddress;
-
-    [_webViewComment setOpaque:NO];
 }
 
 - (void)updateSizeToFitSubViews {
     
-    CGRect myFrame = self.frame;
-    myFrame.size.height = _webViewComment.frame.origin.y + _webViewComment.frame.size.height + _lbDate.bounds.size.height + kBottomMargin;
-    
-    self.frame = myFrame;
 }
 
 #define kFontForLink [UIFont fontWithName:@"Helvetica" size:15]

@@ -40,10 +40,7 @@
     
     UIImageView*           _imgType;
     EGOImageView*          _imgvAttach;
-    
-    UIWebView*             _webViewForContent;
-    UIWebView   *          _webViewComment;
-    
+        
 }
 
 @property (nonatomic, retain) SocialActivity *socialActivity;
@@ -55,8 +52,6 @@
 @property (retain) IBOutlet EGOImageView* imgvAttach;
 @property (retain, nonatomic) IBOutlet UIImageView* imgType;
 
-@property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;
-@property (retain, nonatomic) IBOutlet UIWebView *webViewComment;
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
 - (void)configureCell;

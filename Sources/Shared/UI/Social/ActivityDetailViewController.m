@@ -479,19 +479,6 @@
 
 #pragma mark - UIWebViewDelegate methods 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (webView == self.activityDetailCell.webViewForContent || webView == self.activityDetailCell.webViewComment) {
-        // update the webview to display all the content 
-        CGRect frame = webView.frame;
-        frame.size.height = 1;
-        webView.frame = frame;
-        CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-        frame.size = fittingSize;
-        frame.size.height += kPadding;
-        webView.frame = frame;
-        
-        [self.activityDetailCell updateSizeToFitSubViews];
-        [_tblvActivityDetail reloadData];
-    }
 }
 
 

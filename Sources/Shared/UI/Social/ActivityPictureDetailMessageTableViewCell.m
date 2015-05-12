@@ -42,7 +42,7 @@
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
     
-    _lbFileName.textAlignment = UITextAlignmentCenter;
+
     _lbFileName.userInteractionEnabled = NO;
     _lbFileName.backgroundColor = [UIColor clearColor];
     _lbFileName.font = [UIFont systemFontOfSize:13.0];
@@ -133,9 +133,10 @@
             break;
     }
     
-
-
-    
 }
 
+-(void) dealloc {
+    [_lbFileName release];
+    [super dealloc];
+}
 @end

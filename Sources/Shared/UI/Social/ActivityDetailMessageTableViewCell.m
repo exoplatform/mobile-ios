@@ -30,8 +30,6 @@
 
 @synthesize socialActivity = _socialActivity;
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
-@synthesize webViewForContent = _webViewForContent;
-@synthesize webViewComment =  _webViewComment;
 
 @synthesize imgType = _imgType;
 @synthesize imgvAttach = _imgvAttach;
@@ -73,10 +71,6 @@
     self.lbMessage = nil;
     self.lbDate = nil;
     self.lbName = nil;
-    self.webViewForContent.delegate = nil;
-    self.webViewForContent = nil;
-    self.webViewComment.delegate = nil;
-    self.webViewComment = nil;
     self.imgvAvatar = nil;
     [super dealloc];
 }
@@ -86,15 +80,6 @@
 }
 
 - (void)updateSizeToFitSubViews {
-    //Set the position of lbMessage
-    CGRect tmpFrame = _webViewForContent.frame;
-    tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height + 5;
-    _webViewForContent.frame = tmpFrame;
-    
-    CGRect myFrame = self.frame;
-    myFrame.size.height = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + kPadding + _lbDate.bounds.size.height + kBottomMargin;
-    
-    self.frame = myFrame;
 }
 
 #pragma mark - Activity Cell methods 
@@ -112,14 +97,6 @@
     [self customizeAvatarDecorations];
     
     
-    //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    [[_webViewForContent.subviews objectAtIndex:0] setScrollEnabled:NO];
-    [_webViewForContent setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[_webViewForContent subviews] objectAtIndex:0];
-    scrollView.bounces = NO;
-    [scrollView flashScrollIndicators];
-    scrollView.scrollsToTop = YES;
-    [_webViewForContent setOpaque:NO];
 }
 
 
