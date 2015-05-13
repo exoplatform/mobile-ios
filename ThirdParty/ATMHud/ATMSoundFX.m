@@ -20,7 +20,7 @@
     return nil;
 }
 
-- (id)initWithContentsOfFile:(NSString *)path {
+- (instancetype)initWithContentsOfFile:(NSString *)path {
     self = [super init];
     
     if (self != nil) {

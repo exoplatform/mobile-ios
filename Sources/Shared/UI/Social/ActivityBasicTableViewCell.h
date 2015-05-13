@@ -39,11 +39,10 @@
     
     UIImageView*                            _imgvMessageBg;
     
-    SocialActivity*                   _socialActivytyStream;
+    SocialActivity*                         _socialActivytyStream;
     ActivityStreamBrowseViewController*     _delegate;
     NSInteger                               _activityType;
     
-    TTStyledTextLabel*                      _htmlMessage;
 }
 
 @property (retain, nonatomic) IBOutlet AvatarView *imgvAvatar;
@@ -56,20 +55,19 @@
 @property (retain, nonatomic) IBOutlet UIImageView*  imgType;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
-@property (retain, nonatomic) TTStyledTextLabel   *htmlMessage;
+@property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 
 @property NSInteger activityType;
 
 //Use this method after create the cell to customize the appearance of the Avatar
 - (void)customizeAvatarDecorations;
-- (void)configureCellForWidth:(CGFloat)fWidth;
 - (void)configureFonts:(BOOL)highlighted;
+-(void) backgroundConfiguration;
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream;
 - (void)setPlatformVersion:(float)version;
 
 
 //Methods for customizing + setting the content of the cell for specific activity
-- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth;
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream;
 
 

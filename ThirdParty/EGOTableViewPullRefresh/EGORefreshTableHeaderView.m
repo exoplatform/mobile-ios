@@ -43,7 +43,7 @@
 @synthesize originalContentInset = _originalContentInset;
 
 
-- (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
+- (instancetype)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
     if((self = [super initWithFrame:frame])) {
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -57,7 +57,7 @@
 		label.shadowColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
 		label.shadowOffset = CGSizeMake(1.0f, 1.0f);
 		label.backgroundColor = [UIColor clearColor];
-		label.textAlignment = UITextAlignmentCenter;
+		label.textAlignment = NSTextAlignmentCenter;
 		[self addSubview:label];
 		_lastUpdatedLabel=label;
 		[label release];
@@ -69,7 +69,7 @@
 		label.shadowColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
 		label.shadowOffset = CGSizeMake(1.0f, 1.0f);
 		label.backgroundColor = [UIColor clearColor];
-		label.textAlignment = UITextAlignmentCenter;
+		label.textAlignment = NSTextAlignmentCenter;
 		[self addSubview:label];
 		_statusLabel=label;
 		[label release];
@@ -114,7 +114,7 @@
 	
 }
 
-- (id)initWithFrame:(CGRect)frame  {
+- (instancetype)initWithFrame:(CGRect)frame  {
   return [self initWithFrame:frame arrowImageName:@"whiteArrow.png" textColor:TEXT_COLOR];
 }
 

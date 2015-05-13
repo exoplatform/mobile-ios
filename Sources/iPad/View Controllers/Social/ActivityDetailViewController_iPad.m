@@ -45,7 +45,7 @@
     [super dealloc];
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
             
@@ -59,10 +59,10 @@
 {
     [super viewDidLoad];    
     self.view.backgroundColor = [UIColor clearColor];
-    ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = YES;
+    ((RoundRectView *) [self.view subviews][0]).squareCorners = YES;
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
 #pragma mark - like/dislike management
@@ -99,7 +99,8 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPad instance].rootViewController.menuViewController
+        presentViewController:navController animated:YES completion:nil];
     
     int x, y;
     
@@ -183,6 +184,10 @@
             break;
         case ACTIVITY_CONTENTS_SPACE:{
             url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [self.socialActivity.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+            break;
+        case ACTIVITY_LINK :{
+            url = [NSURL URLWithString:[self.socialActivity.templateParams valueForKey:@"link"]];
         }
             break;
     }
@@ -272,6 +277,7 @@
 #pragma mark - cell initialization
 
 - (ActivityDetailExtraActionsCell *)extraActionsCell {
+    
     if (!_extraActionsCell) {
         _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
         [_extraActionsCell.likeButton addTarget:self action:@selector(likeDislike:) forControlEvents:UIControlEventTouchUpInside];

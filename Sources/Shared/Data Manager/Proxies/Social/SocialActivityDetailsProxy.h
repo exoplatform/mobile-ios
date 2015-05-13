@@ -46,8 +46,8 @@
 // Create comment resource path
 - (NSString *)createCommentsResourcePath:(NSString *)activityId;
 
-// Use this constructor when you want to set a particular value for the number of comment wanted
--(id)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes;
+//Use this constructor when you want to set a particular value for the number of comment wanted
+-(instancetype)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes;
 
 // Get all likers of the activity
 - (void)getLikers:(NSString *)activityId;

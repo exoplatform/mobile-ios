@@ -10,10 +10,10 @@
 #import <UIKit/UIKit.h>
 #import "JTNavigationBar.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, JTNavigationViewAnimationStyle) {
     JTNavigationViewAnimationStylePush,
     JTNavigationViewAnimationStyleCoverUp,
-} JTNavigationViewAnimationStyle;
+} ;
 
 @interface JTNavigationView : UIView <JTNavigationBarDelegate> {
     NSMutableArray *_views;
@@ -33,7 +33,7 @@ typedef enum {
 @property (nonatomic, retain) JTNavigationBar *navigationBar;
 
 
-- (id)initWithFrame:(CGRect)frame animationStyle:(JTNavigationViewAnimationStyle)style;
+- (instancetype)initWithFrame:(CGRect)frame animationStyle:(JTNavigationViewAnimationStyle)style;
 
 - (void)pushView:(UIView *)view animated:(BOOL)animated;
 - (UIView *)popViewAnimated:(BOOL)animated;

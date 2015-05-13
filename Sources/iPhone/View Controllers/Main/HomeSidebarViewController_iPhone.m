@@ -54,7 +54,7 @@
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
-    NSArray *colors = [NSArray arrayWithObjects:(id) startColor, (id) endColor, nil];
+    NSArray *colors = @[(id) startColor, (id) endColor];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
@@ -105,14 +105,14 @@
     [super dealloc];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         _viewControllers = [[NSMutableArray alloc] init];
         _datasource = [[JTTableViewDatasource alloc] init];
-        _datasource.sourceInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"root", @"url", nil];
+        _datasource.sourceInfo = @{@"url": @"root"};
         _datasource.delegate   = self;
     }
     return self;
@@ -210,9 +210,10 @@
     [_disconnectLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_disconnectLabel setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25] forState:UIControlStateNormal];
     _disconnectLabel.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    [_disconnectLabel.titleLabel setTextAlignment:UITextAlignmentLeft];
+    [_disconnectLabel.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [_disconnectLabel addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    CGSize disLabelSize = [_disconnectLabel.titleLabel.text sizeWithFont:_disconnectLabel.titleLabel.font];
+    CGSize disLabelSize = [_disconnectLabel.titleLabel.text
+                           sizeWithAttributes:@{NSFontAttributeName:_disconnectLabel.titleLabel.font}];
     _disconnectLabel.frame =  CGRectMake(buttonLogout.frame.origin.x + buttonLogout.frame.size.width + kFooterButtonLeftMargin,
                                          kFooterButtonTopMargin,
                                          disLabelSize.width,
@@ -383,16 +384,13 @@
 #pragma mark Helper
 
 - (void)simulateDidSucceedFetchingDatasource:(JTTableViewDatasource *)datasource {
-    NSString *url = [datasource.sourceInfo objectForKey:@"url"];
+    NSString *url = (datasource.sourceInfo)[@"url"];
     if ([url isEqualToString:@"root"]) {
         [datasource configureSingleSectionWithArray:
-         [NSArray arrayWithObjects:
-          [JTTableViewCellModalSimpleType modalWithTitle:@"News" type:eXoActivityStream],
+         @[[JTTableViewCellModalSimpleType modalWithTitle:@"News" type:eXoActivityStream],
           [JTTableViewCellModalSimpleType modalWithTitle:@"Documents" type:eXoDocuments],
           [JTTableViewCellModalSimpleType modalWithTitle:@"Dashboard" type:eXoDashboard],
-          [JTTableViewCellModalSimpleType modalWithTitle:@"Settings" type:eXoSettings],
-
-          nil]
+          [JTTableViewCellModalSimpleType modalWithTitle:@"Settings" type:eXoSettings]]
          ];
     } else {
         NSAssert(NO, @"not handled!", nil);
@@ -464,7 +462,8 @@
     // Update the label of the button
     [_disconnectLabel setTitle:Localize(@"Disconnect") forState:UIControlStateNormal];
     // Calculate the new size and apply it
-    CGSize disLabelSize = [_disconnectLabel.titleLabel.text sizeWithFont:_disconnectLabel.titleLabel.font];
+    CGSize disLabelSize = [_disconnectLabel.titleLabel.text
+                           sizeWithAttributes:@{NSFontAttributeName:_disconnectLabel.titleLabel.font}];
     _disconnectLabel.frame = CGRectMake(_disconnectLabel.frame.origin.x,
                                         _disconnectLabel.frame.origin.y,
                                         disLabelSize.width,
@@ -479,7 +478,7 @@
 @implementation HomeSidebarViewController_iPhone (UITableView)
 
 - (BOOL)datasourceShouldLoad:(JTTableViewDatasource *)datasource {
-    if ([datasource.sourceInfo objectForKey:@"url"]) {
+    if ((datasource.sourceInfo)[@"url"]) {
         [self loadDatasourceSection:datasource];
         return YES;
     } else {
@@ -528,7 +527,7 @@
             [cell addSubview:bottomLine];
             [bottomLine release];
         }
-        if ([[datasource.sections objectAtIndex:0] indexOfObject:object] == 0) {
+        if ([(datasource.sections)[0] indexOfObject:object] == 0) {
             // Generate the top separator line for the first cell 
             UIImage *lineImg = [UIImage imageNamed:@"HomeFeatureSeparator.png"];
             lineImg = [lineImg stretchableImageWithLeftCapWidth:(lineImg.size.width / 2) topCapHeight:0];
@@ -591,7 +590,7 @@
         return cell;
     } else if ([object conformsToProtocol:@protocol(JTTableViewCellModalCustom)]) {
         id <JTTableViewCellModalCustom> custom = (id)object;
-        JTTableViewDatasource *datasource = (JTTableViewDatasource *)[[custom info] objectForKey:@"datasource"];
+        JTTableViewDatasource *datasource = (JTTableViewDatasource *)[custom info][@"datasource"];
         if (datasource) {
             static NSString *cellIdentifier = @"datasourceCell";
             
@@ -600,7 +599,7 @@
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = [[custom info] objectForKey:@"title"];
+            cell.textLabel.text = [custom info][@"title"];
             return cell;
         }
     }
@@ -610,7 +609,7 @@
 - (void)datasource:(JTTableViewDatasource *)datasource tableView:(UITableView *)tableView didSelectObject:(NSObject *)object {
     if ([object conformsToProtocol:@protocol(JTTableViewCellModalCustom)]) {
         id <JTTableViewCellModalCustom> custom = (id)object;
-        JTTableViewDatasource *datasource = (JTTableViewDatasource *)[[custom info] objectForKey:@"datasource"];
+        JTTableViewDatasource *datasource = (JTTableViewDatasource *)[custom info][@"datasource"];
         if (datasource) {
             UITableView *tableView = [[[UITableView alloc] initWithFrame:_revealView.sidebarView.bounds] autorelease];
             tableView.delegate   = datasource;

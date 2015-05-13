@@ -3,21 +3,20 @@
 #import "DDXMLNode.h"
 
 
-enum {
+typedef NS_ENUM(NSUInteger, DDXMLDocumentContentKind) {
 	DDXMLDocumentXMLKind = 0,
 	DDXMLDocumentXHTMLKind,
 	DDXMLDocumentHTMLKind,
 	DDXMLDocumentTextKind
 };
-typedef NSUInteger DDXMLDocumentContentKind;
 
 @interface DDXMLDocument : DDXMLNode
 {
 }
 
-- (id)initWithXMLString:(NSString *)string options:(NSUInteger)mask error:(NSError **)error;
+- (instancetype)initWithXMLString:(NSString *)string options:(NSUInteger)mask error:(NSError **)error;
 //- (id)initWithContentsOfURL:(NSURL *)url options:(NSUInteger)mask error:(NSError **)error;
-- (id)initWithData:(NSData *)data options:(NSUInteger)mask error:(NSError **)error;
+- (instancetype)initWithData:(NSData *)data options:(NSUInteger)mask error:(NSError **)error;
 //- (id)initWithRootElement:(DDXMLElement *)element;
 
 //+ (Class)replacementClassForClass:(Class)cls;
@@ -41,7 +40,7 @@ typedef NSUInteger DDXMLDocumentContentKind;
 //- (DDXMLDTD *)DTD;
 
 //- (void)setRootElement:(DDXMLNode *)root;
-- (DDXMLElement *)rootElement;
+@property (nonatomic, readonly, copy) DDXMLElement *rootElement;
 
 //- (void)insertChild:(DDXMLNode *)child atIndex:(NSUInteger)index;
 

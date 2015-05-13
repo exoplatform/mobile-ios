@@ -20,12 +20,12 @@
 #import <UIKit/UIKit.h>
 #import "JMTabView.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ActivityStreamTabItem) {
   ActivityStreamTabItemAllUpdate = 0,
   ActivityStreamTabItemMyConnections = 1,
   ActivityStreamTabItemMySpaces = 2,
   ActivityStreamTabItemMyStatus = 3
-} ActivityStreamTabItem;
+} ;
 
 @interface ActivityStreamTabbar : UIView {
     NSMutableArray *_listOfItems;

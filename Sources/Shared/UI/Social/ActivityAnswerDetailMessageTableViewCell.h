@@ -23,12 +23,8 @@
 
 @interface ActivityAnswerDetailMessageTableViewCell : ActivityDetailMessageTableViewCell
 {
-    TTStyledTextLabel*                      _htmlMessage;
-    TTStyledTextLabel*                      _htmlTitle;
-    TTStyledTextLabel*                      _htmlName;
     CGFloat width;
 }
-@property (retain, nonatomic) TTStyledTextLabel* htmlMessage;
-@property (retain, nonatomic) TTStyledTextLabel* htmlTitle;
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
+@property (retain, nonatomic) IBOutlet UILabel *lbTitle;
+
 @end

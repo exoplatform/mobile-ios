@@ -26,7 +26,7 @@
 
 @synthesize squareCorners = _squareCorners;
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = NO;
@@ -70,9 +70,9 @@
 
 @implementation RoundRectView
 
-@synthesize squareCorners;
+@synthesize squareCorners, mask;
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -81,7 +81,7 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self adjustMask];
     }
@@ -94,28 +94,29 @@
 }
 
 - (void)adjustMask {
-	if (nil == mask) {
-		mask = [[RoundRectViewMask alloc] initWithFrame:CGRectZero];
-		mask.squareCorners = self.squareCorners;
+	if (nil == self.mask) {
+		self.mask = [[[RoundRectViewMask alloc] initWithFrame:CGRectZero] autorelease];
+		self.mask.squareCorners = self.squareCorners;
 		self.layer.mask = mask.layer;
 	}
 	
-    mask.frame = self.bounds;
+    self.mask.frame = self.bounds;
 	
-    [mask setNeedsDisplay];
+    [self.mask setNeedsDisplay];
     [self setNeedsDisplay];
 }
 
 - (void)setSquareCorners:(BOOL)aSquareCorners {
-    mask.squareCorners = aSquareCorners;
+    self.mask.squareCorners = aSquareCorners;
 }
 
 - (BOOL)squareCorners {
-    return mask.squareCorners;
+    return self.mask.squareCorners;
 }
 
 - (void)dealloc {
-    [mask release];
+    self.mask = nil;
+    self.squareCorners = nil;
     [super dealloc];
 }
 

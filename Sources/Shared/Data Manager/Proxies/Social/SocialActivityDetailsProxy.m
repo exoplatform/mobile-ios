@@ -37,7 +37,7 @@
 
 #pragma - Object Management
 
--(id)init {
+-(instancetype)init {
     if ((self=[super init])) {
         //Default behavior
         _numberOfComments = 0;
@@ -49,7 +49,7 @@
 }
 
 
--(id)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes {
+-(instancetype)initWithNumberOfComments:(int)nbComments andNumberOfLikes:(int)nbLikes {
     if ((self = [self init])) {
         
         //The set the wanted number of comments

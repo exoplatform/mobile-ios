@@ -52,6 +52,6 @@
 
 - (CGRect)rectOfHeader:(int)width;
 - (void)emptyState;
-- (UITableView*)tblGadgets;
+@property (nonatomic, readonly, strong) UITableView *tblGadgets;
 
 @end

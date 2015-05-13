@@ -24,14 +24,14 @@
 
 @implementation eXoFullScreenView
 
-@synthesize orientation;
+@synthesize first, orientation;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        first = YES;
+        self.first = YES;
     }
     return self;
 }
@@ -46,28 +46,12 @@
 
 #pragma mark - View lifecycle
 
-
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // wantsFullScreenLayout is deprecated in iOS7+ but we keep it for backward compatibility
-    self.wantsFullScreenLayout = YES;
-    // The wantsFullScreenLayout view controller property is deprecated in iOS 7. If you currently specify wantsFullScreenLayout = NO, the
-    //view controller may display its content at an unexpected screen location when it runs in iOS 7.To adjust how a view controller lays
-    //out its views, UIViewController provides edgesForExtendedLayout. Detail in this document: https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/TransitionGuide/AppearanceCustomization.html
-    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
-        self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    // because on iOS 5, when init class the function willAnimateRotationToInterfaceOrientation don't call
-//    NSLog(@"%f", [[[UIDevice currentDevice] systemVersion] floatValue]);
-//    if([[[UIDevice currentDevice] systemVersion] floatValue] < IOS_5){
-//        first = YES;
-//    }else {
-//        first = NO;
-//    }
 }
 
 
@@ -86,12 +70,13 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    // if the first time presentModalViewController, return (only on iso4)
-//    if(first){
-//        first = NO;
-//        return;
-//    }
-    // when device rotate
     self.orientation = interfaceOrientation;
 }
+
+- (void)dealloc {
+    self.first = nil;
+    self.orientation = nil;
+    [super dealloc];
+}
+
 @end

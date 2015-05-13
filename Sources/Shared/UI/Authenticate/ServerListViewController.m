@@ -134,7 +134,7 @@
         cell.accessoryView = [self makeCheckmarkOffAccessoryView];
     }
     
-	ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
+	ServerObj* tmpServerObj = ([ApplicationPreferencesManager sharedInstance].serverList)[indexPath.row];
     cell.textLabel.text = tmpServerObj.accountName;
     cell.detailTextLabel.text = tmpServerObj.serverUrl;
     

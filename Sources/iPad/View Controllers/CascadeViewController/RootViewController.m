@@ -24,15 +24,15 @@
 	UIView* viewToReturn=nil;
 	CGPoint pointToReturn;
 	
-	UIView* uiLeftView = (UIView*)[[self subviews] objectAtIndex:1];
+	UIView* uiLeftView = (UIView*)[self subviews][1];
 	
-	if ([[uiLeftView subviews] objectAtIndex:0]) {
+	if ([uiLeftView subviews][0]) {
 		
-		UIView* uiScrollView = [[uiLeftView subviews] objectAtIndex:0];	
+		UIView* uiScrollView = [uiLeftView subviews][0];	
 		
-		if ([[uiScrollView subviews] objectAtIndex:0]) {	 
+		if ([uiScrollView subviews][0]) {	 
 			
-			UIView* uiMainView = [[uiScrollView subviews] objectAtIndex:1];	
+			UIView* uiMainView = [uiScrollView subviews][1];	
 			
 			for (UIView* subView in [uiMainView subviews]) {
 				CGPoint point  = [subView convertPoint:pt fromView:self];
@@ -65,7 +65,7 @@
 @synthesize duration, interfaceOrient;
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isCompatibleWithSocial:(BOOL)compatipleWithSocial {
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isCompatibleWithSocial:(BOOL)compatipleWithSocial {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {		
         self.isCompatibleWithSocial = compatipleWithSocial;

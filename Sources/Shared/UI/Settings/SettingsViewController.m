@@ -76,14 +76,14 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 static NSString *settingViewSectionIdKey = @"section id";
 static NSString *settingViewSectionTitleKey = @"section title";
 static NSString *settingViewRowsKey = @"row title";
-typedef enum {
+typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     SettingViewControllerSectionLogin = 1,
     SettingViewControllerSectionSocial = 2,
     SettingViewControllerSectionDocument = 3,
     SettingViewControllerSectionLanguage = 4,
     SettingViewControllerSectionServerList = 5,
     SettingViewControllerSectionAppsInfo = 6
-} SettingViewControllerSection;
+} ;
 
 @implementation SettingsViewController
 
@@ -122,6 +122,7 @@ typedef enum {
                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
                              settingViewSectionTitleKey: @"ApplicationsInformation",
                              settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
+
                             nil] retain];
         
         
@@ -146,13 +147,12 @@ typedef enum {
                               settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
                               settingViewSectionTitleKey: @"ApplicationsInformation",
                               settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
-                             
                             nil] retain];
         
     }
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
@@ -295,7 +295,7 @@ typedef enum {
 
 - (void)setNavigationBarLabels {
     self.title = Localize(@"Settings");
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     self.navigationItem.rightBarButtonItem.title = Localize(@"DoneButton");
     //Fix color nav button
@@ -369,7 +369,7 @@ typedef enum {
     
 	// If you want to align the header text as centered
 	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
-    headerLabel.text = Localize([[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionTitleKey]);
+    headerLabel.text = Localize(_listOfSections[section][settingViewSectionTitleKey]);
     
 	[customView addSubview:headerLabel];
     [headerLabel release];
@@ -382,11 +382,11 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
     int numofRows = 0;
-	if([[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
+	if([_listOfSections[section][settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
 	{	
 		numofRows = [[ApplicationPreferencesManager sharedInstance].serverList count] + 1;
 	} else {
-        numofRows = [[[_listOfSections objectAtIndex:section] objectForKey:settingViewRowsKey] count];
+        numofRows = [_listOfSections[section][settingViewRowsKey] count];
     }
     
 	return numofRows;
@@ -407,7 +407,7 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CustomBackgroundForCell_iPhone *cell;
-    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    SettingViewControllerSection sectionId = [_listOfSections[indexPath.section][settingViewSectionIdKey] intValue];
     switch (sectionId) 
     {
         case SettingViewControllerSectionLogin:
@@ -531,7 +531,7 @@ typedef enum {
             
             if (indexPath.row < [[ApplicationPreferencesManager sharedInstance].serverList count]) 
             {
-                ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
+                ServerObj* tmpServerObj = ([ApplicationPreferencesManager sharedInstance].serverList)[indexPath.row];
                 
                 cell.textLabel.text = tmpServerObj.accountName;
                 cell.detailTextLabel.text = tmpServerObj.serverUrl;
@@ -541,8 +541,8 @@ typedef enum {
             {
                 
                 cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"] autorelease];
-                cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:0]);
-                [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+                cell.textLabel.text = Localize(_listOfSections[indexPath.section][settingViewRowsKey][0]);
+                [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.textLabel.backgroundColor = [UIColor clearColor];
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
@@ -587,7 +587,7 @@ typedef enum {
             break;
     }
     if (sectionId != SettingViewControllerSectionServerList) {
-        cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:indexPath.row]);
+        cell.textLabel.text = Localize(_listOfSections[indexPath.section][settingViewRowsKey][indexPath.row]);
     
     }
     //Customize the cell background
@@ -599,7 +599,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    SettingViewControllerSection sectionId = [_listOfSections[indexPath.section][settingViewSectionIdKey] intValue];
     eXoMobileAppDelegate *appDelegate;
     if (sectionId == SettingViewControllerSectionLanguage)
 	{
@@ -633,13 +633,13 @@ typedef enum {
             }
             
             welcomeVC.shouldBackToSetting = YES;
-            [self dismissModalViewControllerAnimated:NO];
-            [appDelegate.window.rootViewController presentModalViewController:welcomeVC animated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [appDelegate.window.rootViewController presentViewController:welcomeVC animated:YES completion:nil];
             [welcomeVC release];
 
         } else {
             ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-                ServerObj* tmpServerObj = [appPrefManager.serverList objectAtIndex:indexPath.row];
+                ServerObj* tmpServerObj = (appPrefManager.serverList)[indexPath.row];
                 
                 ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
                 [serverEditingViewController setDelegate:self];
@@ -652,7 +652,7 @@ typedef enum {
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    SettingViewControllerSection sectionId = [_listOfSections[indexPath.section][settingViewSectionIdKey] intValue];
     if (sectionId == SettingViewControllerSectionServerList) {
         ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
         return !([UserPreferencesManager sharedInstance].isUserLogged && appPrefManager.selectedServerIndex == indexPath.row) && indexPath.row < [appPrefManager.serverList count];        
@@ -662,7 +662,7 @@ typedef enum {
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
+    SettingViewControllerSection sectionId = [_listOfSections[indexPath.section][settingViewSectionIdKey] intValue];
     if (sectionId == SettingViewControllerSectionServerList) {
         return UITableViewCellEditingStyleDelete;
     } else {
@@ -772,6 +772,6 @@ typedef enum {
 
 - (void)didSkipSignUp
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

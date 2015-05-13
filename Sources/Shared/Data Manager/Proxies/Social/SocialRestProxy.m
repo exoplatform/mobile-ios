@@ -22,7 +22,7 @@
 
 @implementation SocialRestProxy
 
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
@@ -47,7 +47,6 @@
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialVersion class]];
-    
     [mapping addAttributeMappingsFromDictionary:@{@"version":@"version"}];
     
     RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:[self createPath] keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];

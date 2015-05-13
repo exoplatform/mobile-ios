@@ -24,7 +24,7 @@
 
 @synthesize _strDbItemName, _urlDbItem, _arrGadgetsInItem;
 
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if(self)
@@ -76,7 +76,7 @@
 @synthesize _strID;
 
 
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if(self)

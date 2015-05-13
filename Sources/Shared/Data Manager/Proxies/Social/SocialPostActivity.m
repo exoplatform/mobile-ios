@@ -30,7 +30,7 @@
 
 #pragma - Object Management
 
--(id)init {
+-(instancetype)init {
     if ((self=[super init])) {
         //Default behavior
         _text = [@"" retain];
@@ -73,10 +73,6 @@
     
     manager.router = router;
         // Send POST requests for instances of SocialActivity to '/activity.json'
-    NSString * path = [self createPath];
-    if (space){
-        path = [NSString stringWithFormat:@"%@?identity_id=%@", path, space.spaceId];
-    }
     [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialActivity class] pathPattern:[self createPath] method:RKRequestMethodPOST]];
     
     // Let's create an SocialActivity
@@ -113,6 +109,7 @@
         [activity setKeyForTemplateParams:@"WORKSPACE" value:serverPM.defaultWorkspace];
         [activity setKeyForTemplateParams:@"REPOSITORY" value:serverPM.currentRepository];
         [activity setKeyForTemplateParams:@"DOCNAME" value:fileName];
+        
         [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"templateParams":@"templateParams"}];
     }
     if (activity.type.length>0){
@@ -123,10 +120,10 @@
     
         
     RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:activitySimpleMapping objectClass:[SocialActivity class] rootKeyPath:nil method:RKRequestMethodPOST];
-    
+    for (RKRequestDescriptor * requestDes in manager.requestDescriptors){
+        [manager removeRequestDescriptor:requestDes];
+    }
     [manager addRequestDescriptor:requestDescriptor];
-    
-    
 
     RKObjectMapping* mappingForResponse =  [RKObjectMapping mappingForClass:[SocialActivity class]];
     [mappingForResponse addAttributeMappingsFromDictionary:@{
@@ -161,7 +158,11 @@
     
     
     // Send a POST to /like to create the remote instance
-            
+    NSString * path = [self createPath];
+    if (space){
+        path = [NSString stringWithFormat:@"%@?identity_id=%@", path, space.spaceId];
+    }
+    
     [manager  postObject:activity path:path parameters:nil
                  success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                      [super restKitDidLoadObjects:[mappingResult array]];

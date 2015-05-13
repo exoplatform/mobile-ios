@@ -18,9 +18,9 @@ enum
 	NSMutableSet* nodePool;
 }
 
-- (id)initWithXMLString:(NSString*)inString options:(NSUInteger)inOptions error:(NSError**)outError;
-- (id)initWithContentsOfURL:(NSURL*)inURL options:(NSUInteger)inOptions error:(NSError**)outError;
-- (id)initWithData:(NSData*)inData options:(NSUInteger)inOptions error:(NSError**)outError;
+- (instancetype)initWithXMLString:(NSString*)inString options:(NSUInteger)inOptions error:(NSError**)outError;
+- (instancetype)initWithContentsOfURL:(NSURL*)inURL options:(NSUInteger)inOptions error:(NSError**)outError;
+- (instancetype)initWithData:(NSData*)inData options:(NSUInteger)inOptions error:(NSError**)outError;
 
 //- (NSString *)characterEncoding;
 //- (NSString *)version;
@@ -29,7 +29,7 @@ enum
 //- (NSString *)MIMEType;
 //- (CXMLDTD *)DTD;
 
-- (CXMLElement*)rootElement;
+@property (nonatomic, readonly, strong) CXMLElement *rootElement;
 
 //- (NSData *)XMLData;
 //- (NSData *)XMLDataWithOptions:(NSUInteger)options;

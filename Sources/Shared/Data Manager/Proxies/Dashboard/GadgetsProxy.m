@@ -35,7 +35,7 @@
 @synthesize dashboard = _dashboard, delegate=_delegate;
 @synthesize manager = _manager;
 
--(id)initWithDashboardItem:(DashboardItem *)dashboardItem andDelegate:(id<GadgetsProxyDelegate>)delegateForProxy {
+-(instancetype)initWithDashboardItem:(DashboardItem *)dashboardItem andDelegate:(id<GadgetsProxyDelegate>)delegateForProxy {
 
     if ((self = [super init])) {
     

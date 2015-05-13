@@ -14,7 +14,7 @@
 
 @synthesize sidebarView, contentView;
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -33,10 +33,8 @@
     newShadow.endPoint = CGPointMake(1.0, 0.5);
 	CGColorRef darkColor  = [UIColor colorWithWhite:0.0f alpha:0.3f].CGColor;
 	CGColorRef lightColor = [UIColor clearColor].CGColor;
-	newShadow.colors = [NSArray arrayWithObjects:
-                        (id)(inverse ? lightColor : darkColor),
-                        (id)(inverse ? darkColor : lightColor),
-                        nil];
+	newShadow.colors = @[(id)(inverse ? lightColor : darkColor),
+                        (id)(inverse ? darkColor : lightColor)];
 	return newShadow;
 }
 

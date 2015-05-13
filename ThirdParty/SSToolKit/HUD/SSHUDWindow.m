@@ -27,7 +27,7 @@ static SSHUDWindow *kHUDWindow = nil;
 
 #pragma mark NSObject
 
-- (id)init {
+- (instancetype)init {
 	if ((self = [super initWithFrame:[[UIScreen mainScreen] bounds]])) {
 		self.backgroundColor = [UIColor clearColor];
 		self.windowLevel = UIWindowLevelStatusBar + 1.0f;
