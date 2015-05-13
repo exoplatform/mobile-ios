@@ -74,11 +74,11 @@
             
             break;
         case ACTIVITY_FORUM_UPDATE_TOPIC:
-            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdateTopic")];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"UpdateTopic")];
             title = [[[socialActivityDetail.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText];
             break;
         case ACTIVITY_FORUM_UPDATE_POST:
-            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdatePost")];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"UpdatePost")];
             title = [[[socialActivityDetail.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText];
             break;
         default:
@@ -88,6 +88,10 @@
     
     NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
     [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    
+    if (space) {
+        [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    }
     _lbName.attributedText = attributedName;
     
     _lbTitle.text = title;

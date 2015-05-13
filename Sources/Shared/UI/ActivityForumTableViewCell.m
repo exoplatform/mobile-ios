@@ -73,7 +73,7 @@
     [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
     
     if (space) {
-        [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:space]];
+        [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
     }
     _lbName.attributedText = attributedName;
     

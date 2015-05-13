@@ -56,28 +56,29 @@
     switch (socialActivityDetail.activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"EventAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_EVENT:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventUpdated")];
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"EventUpdated")];
             break;
         case ACTIVITY_CALENDAR_ADD_TASK:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskAdded")];
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"TaskAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskUpdated")];
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"TaskUpdated")];
             break;
         default:
             break;
     }
     
-    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
-    
     NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
-    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    if (space) {
+        [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    }
     _lbName.attributedText = attributedName;
     
     _lbTitle.text =[[[socialActivityDetail.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];

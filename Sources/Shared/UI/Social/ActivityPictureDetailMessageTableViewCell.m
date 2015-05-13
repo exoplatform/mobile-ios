@@ -23,7 +23,7 @@
 #import "defines.h"
 #import "ActivityHelper.h"
 #import "NSString+HTML.h"
-
+#import "LanguageHelper.h"
 #define MAX_HEIGHT_FILE_NAME 32
 
 @implementation ActivityPictureDetailMessageTableViewCell
@@ -61,9 +61,15 @@
     }
     
     
-    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @""];
     
-    _lbName.text = title;
+    NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    if (space) {
+        [attributedTitle addAttributes:kAttributeText range:[title rangeOfString:[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]]];
+        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    }
+    
+    _lbName.attributedText = attributedTitle;
     
     _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];

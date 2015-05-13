@@ -57,7 +57,7 @@
     NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
     if (space) {
         [attributedTitle addAttributes:kAttributeText range:[title rangeOfString:[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]]];
-        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:space]];
+        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
     }
     
     _lbName.attributedText = attributedTitle;
