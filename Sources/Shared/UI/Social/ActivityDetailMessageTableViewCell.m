@@ -101,8 +101,25 @@
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
+    
     self.socialActivity = socialActivityDetail;
-    self.lbName.text = self.socialActivity.posterIdentity.fullName;
+    
+    NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if([type isEqualToString:STREAM_TYPE_SPACE]) {
+        space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
+    }
+    
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ?[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @""];
+    
+    
+    NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    if (space) {
+        [attributedTitle addAttributes:kAttributeText range:[title rangeOfString:[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]]];
+        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:space]];
+    }
+    
+    _lbName.attributedText = attributedTitle;
     self.lbDate.text = socialActivityDetail.postedTimeInWords;
     self.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
     self.lbMessage.text=@"";

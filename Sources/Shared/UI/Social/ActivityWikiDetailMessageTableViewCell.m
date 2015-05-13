@@ -44,15 +44,17 @@
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
-    NSString *space = nil;
+    NSString *space = @"";
+    
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
+    
     NSString * name = socialActivityDetail.posterIdentity.fullName;
     switch (socialActivityDetail.activityType) {
         case ACTIVITY_WIKI_MODIFY_PAGE:{
             name =  [NSString stringWithFormat:@"%@%@ %@",
-                     socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                     socialActivityDetail.posterIdentity.fullName,  space.length ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]  : @"",
                      Localize(@"EditWiki")];
             
         }
@@ -60,7 +62,7 @@
         case ACTIVITY_WIKI_ADD_PAGE:
         {
             name =  [NSString stringWithFormat:@"%@%@ %@",
-                     socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                     socialActivityDetail.posterIdentity.fullName,  space.length ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"",
                      Localize(@"CreateWiki")];
         }
             
@@ -68,10 +70,11 @@
         default:
             break;
     }
-    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
     
     NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
-    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    
     _lbName.attributedText = attributedName;
     
     _lbTitle.text =[[[socialActivityDetail.templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];

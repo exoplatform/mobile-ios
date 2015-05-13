@@ -103,7 +103,7 @@
 }
 
 - (void)configureFonts:(BOOL)highlighted {
-    
+    /*
     if (!highlighted) {
         _lbName.textColor = [UIColor colorWithRed:17./255 green:94./255 blue:173./255 alpha:1.];
         _lbName.shadowOffset = CGSizeMake(0,1);
@@ -123,7 +123,7 @@
         self.lbDate.shadowColor = [UIColor darkGrayColor];
         self.lbDate.backgroundColor = SELECTED_CELL_BG_COLOR;
         
-    }
+    } */
 }
 
 - (void)setSocialActivityStream:(SocialActivity *)socialActivityStream
@@ -227,7 +227,24 @@
 
     _lbMessage.attributedText = socialActivityStream.attributedMessage;
     
-    _lbName.text = [socialActivityStream.posterIdentity.fullName copy];
+    NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if([type isEqualToString:STREAM_TYPE_SPACE]) {
+        space = [socialActivityStream.activityStream valueForKey:@"fullName"];
+    }
+    
+    
+    
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ?[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @""];
+    
+    
+    NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    if (space) {
+        [attributedTitle addAttributes:kAttributeText range:[title rangeOfString:[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]]];
+        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:space]];
+    }
+    
+    _lbName.attributedText = attributedTitle;
 }
 
 @end

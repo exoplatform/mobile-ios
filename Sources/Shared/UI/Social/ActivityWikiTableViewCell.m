@@ -42,17 +42,19 @@
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
     
-    
+    //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
-    NSString *space = nil;
+    NSString *space = @"";
+    
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
+    
     NSString * name = socialActivityStream.posterIdentity.fullName;
     switch (socialActivityStream.activityType) {
         case ACTIVITY_WIKI_MODIFY_PAGE:{
             name =  [NSString stringWithFormat:@"%@%@ %@",
-                                         socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                                         socialActivityStream.posterIdentity.fullName,  space.length ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]  : @"",
                                          Localize(@"EditWiki")];
             
         }
@@ -60,7 +62,7 @@
         case ACTIVITY_WIKI_ADD_PAGE:
         {
             name =  [NSString stringWithFormat:@"%@%@ %@",
-                                socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"",
+                                socialActivityStream.posterIdentity.fullName,  space.length ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"",
                                 Localize(@"CreateWiki")];            
         }
             
@@ -71,6 +73,8 @@
     
     NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
     [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
+    [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    
     _lbName.attributedText = attributedName;
     
     _lbTitle.text =[[[socialActivityStream.templateParams valueForKey:@"page_name"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
