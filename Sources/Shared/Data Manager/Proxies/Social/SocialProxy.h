@@ -33,6 +33,8 @@
 
 - (NSString *)createPath;
 - (NSString*)URLEncodedString:(NSDictionary *)dictForParam;
+-(void) restKitDidLoadObjects:(NSArray*)objects;
+-(void) restKitDidFailWithError:(NSError *)error;
 
 @end
 
@@ -41,7 +43,5 @@
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy;
 - (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error;
 
--(void) restKitDidLoadObjects:(NSArray*)objects;
--(void) restKitDidFailWithError:(NSError *)error;
 
 @end

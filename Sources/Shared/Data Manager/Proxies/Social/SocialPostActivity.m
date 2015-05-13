@@ -142,9 +142,18 @@
      @"titleId":@"titleId",
      @"templateParams":@"templateParams"}];
     
+    RKObjectMapping* socialUserProfileMapping  = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
+    [socialUserProfileMapping addAttributeMappingsFromDictionary:@{
+     @"id":@"identity",
+     @"remoteId":@"remoteId",
+     @"providerId":@"providerId",
+     @"profile.avatarUrl":@"avatarUrl",
+     @"profile.fullName":@"fullName",
+     }];
+
+    [mappingForResponse addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"posterIdentity" withMapping:socialUserProfileMapping]];
     
     RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:mappingForResponse method:RKRequestMethodPOST pathPattern:[self createPath] keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
-    
     
     [manager addResponseDescriptor:responseDescriptor];
     
@@ -153,7 +162,7 @@
     
     // Send a POST to /like to create the remote instance
             
-    [manager  postObject:activity path:[self createPath] parameters:nil
+    [manager  postObject:activity path:path parameters:nil
                  success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                      [super restKitDidLoadObjects:[mappingResult array]];
                  } failure:^(RKObjectRequestOperation *operation, NSError *error) {
