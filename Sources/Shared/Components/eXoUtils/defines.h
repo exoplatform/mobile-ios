@@ -117,3 +117,5 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define kAttributeText @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]}
 
+#define kAttributeNameSpace @{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.9333 alpha:1] }
+

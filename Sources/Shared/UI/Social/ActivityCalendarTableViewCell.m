@@ -41,19 +41,19 @@
     switch (socialActivityStream.activityType) {
         case ACTIVITY_CALENDAR_ADD_EVENT:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"EventAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_EVENT:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventUpdated")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"EventUpdated")];
             break;
         case ACTIVITY_CALENDAR_ADD_TASK:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskAdded")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"TaskAdded")];
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
             name = [NSString stringWithFormat:@"%@%@ %@",
-                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskUpdated")];
+                              socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"TaskUpdated")];
             break; 
         default:
             break;
@@ -61,6 +61,9 @@
     
     NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
     [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
+    if (space) {
+        [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:space]];
+    }
     _lbName.attributedText = attributedName;
     
     _lbTitle.text =[[[socialActivityStream.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];

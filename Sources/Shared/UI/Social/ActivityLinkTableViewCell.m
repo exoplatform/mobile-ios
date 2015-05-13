@@ -22,6 +22,7 @@
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
+#import "LanguageHelper.h"
 
 @implementation ActivityLinkTableViewCell
 
@@ -42,10 +43,16 @@
     
     
 
-    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ?[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @""];
     
     
-    _lbName.text = title;
+    NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    if (space) {
+        [attributedTitle addAttributes:kAttributeText range:[title rangeOfString:[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]]];
+        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:space]];
+    }
+    
+    _lbName.attributedText = attributedTitle;
     
     if (socialActivityStream.attributedMessage){
         _htmlActivityMessage.attributedText =  socialActivityStream.attributedMessage;
