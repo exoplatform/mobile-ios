@@ -72,8 +72,7 @@
     RKRouter * router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
     
     manager.router = router;
-    
-    // Send POST requests for instances of SocialActivity to '/activity.json'
+        // Send POST requests for instances of SocialActivity to '/activity.json'
     NSString * path = [self createPath];
     if (space){
         path = [NSString stringWithFormat:@"%@?identity_id=%@", path, space.spaceId];
@@ -149,7 +148,7 @@
     
     [manager addResponseDescriptor:responseDescriptor];
     
-    
+
     
     
     // Send a POST to /like to create the remote instance

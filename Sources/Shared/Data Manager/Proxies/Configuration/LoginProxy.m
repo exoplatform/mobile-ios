@@ -200,7 +200,6 @@ return self;
 //    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
 //}
 
-
 -(void) restKitDidLoadObjects:(NSArray *) objects {
     //NSLog(@"Loaded statuses: %@", objects);
     //We receive the response from the server
