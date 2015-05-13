@@ -1,0 +1,439 @@
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
+
+/*
+ * Authenticate
+ */
+
+"SignInPageTitle" = "Pagina de autentificare";
+
+"SignInButton" = "Autentificare";
+
+"SignInButton_In" = "pentru a";
+
+"UsernamePlaceholder" = "Nume de utilizator";
+
+"PasswordPlaceholder" = "Parola";
+
+"Last Login" = "Last login";
+
+"Connected" = "Conectat(ă)";
+
+"Sign In" = "Autentificare";
+
+/* 
+ * Documents
+ */
+
+"TakePicture" = "Fotografierea";
+
+"NewFolderTitle" = "Dosar nou";
+
+"RenameTitle" = "Redenumiți";
+
+"Copy" = "Copiați";
+
+"Move" = "Taie";
+
+"Paste" = "Lipește";
+
+"Documents" = "Documente";
+
+"TakeAPicture" = "Fotografierea";
+
+"AttachedPhoto" = "Fotografia ataşată";
+
+"AddAPhoto" = "Adauga o fotografie";
+
+"PhotoLibrary" = "Biblioteca foto";
+
+// Drives types
+
+"general" = "generale";
+
+"personal" = "personale";
+
+"group" = "Grup";
+
+
+/*
+ * General
+ */
+
+"Cancel" = "Anuleaza";
+
+"DoneButton" = "Făcut";
+
+"Delete" = "Ştergeţi";
+
+"Success" = "Succes";
+
+"Home" = "Acasă";
+
+"Loading" = "Încărcare...";
+
+"LoadingURL" = "URL-ul de încărcare";
+
+"OK" = "ok";
+
+"Disconnect" = "Deconecteaza";
+
+"Pull down to refresh..." = "Trageţi în jos pentru a împrospăta...";
+
+"Release to refresh..." = "Eliberează pentru a reîmprospăta...";
+
+"Last Updated: %@" = "Ultima actualizare: % @";
+
+"Required" = "Necesar";
+
+"Optional" = "Opţional";
+
+"Fullscreen" = "Pe tot ecranul";
+
+"Close" = "Închidere";
+
+
+/*
+ * Settings
+ */
+
+"Settings" = "Setări";
+
+"RememberMe" = "Remember me";
+
+"AutoLogin" = "Auto login";
+
+"KeepSelectedStream" = "Ține minte filtrul meu";
+
+"ShowPrivateDrive" = "Arată unitatea mea privată";
+
+"Language" = "Limbi";
+
+"English" = "Engleză";
+
+"French" = "Franceză";
+
+"German" = "Germană";
+
+"Spanish" = "Spaniolă";
+
+"Portuguese-Brazil" = "Portuguese (Brazil)";
+
+"Send" = "Trimite";
+
+"ServerList" = "Listă de servere";
+
+"Account" = "Account";
+
+"NewServer" = "Server nou";
+
+"ServerModify" = "Modifica serverul";
+
+"ApplicationsInformation" = "Cerere informații";
+
+"ServerVersion" = "Versiune server";
+
+"ApplicationEdition" = "Ediția aplicației";
+
+"ApplicationVersion" = "Versiunea aplicaţiei";
+
+"ServerName" = "Nume server";
+
+"ServerUrl" = "URL-ul serverului";
+
+"Social" = "Social";
+
+
+/*
+ * Errors & Warnings
+ */
+
+"BadResponse" = "Serverul a returnat date nevalide.";
+
+"NetworkConnection" = "Eroare de conexiune";
+
+"Authorization" = "Logare (autentificare) eșuată";
+
+"WrongUserNamePassword" = "Conectare imposibilă, verificaţi numele de utilizator şi parola";
+
+"InvalidServer" = "Imposibil să se conecteze la intranet, vă rugăm să verificaţi URL-ul său sau contactaţi administratorul";
+
+"NetworkConnectionFailed" = "Imposibil să se conecteze la intranet, vă rugăm să verificaţi URL-ul său sau contactaţi administratorul";
+
+"UserNameEmpty" = "Nume de utilizator incorect";
+
+"PasswordEmpty" = "Parolă incorectă";
+
+"SelectedDomainEmpty" = "Nici un server specificat";
+
+"EmptyFolder" = "Dosarul este gol";
+
+"UnreadableFile" = "Acest fişier este imposibil de deschis in aplicație";
+
+"NoActivities" = "Nici o activitate nu a fost postată pe fluxul tău de activitate";
+
+"NoGadget" = "Nu ai nici un gadget în aplicaţii";
+
+"MessageInfo" = "Informaţii";
+
+"MessageErrorServer" = "Nu puteţi adăuga un server cu un numele sau URL-ul gol";
+
+"MessageErrorExist" = "Acest server există deja";
+
+"InvalidUrl" = "URL invalid";
+
+"FileError" = "Eroare";
+
+"CameraNotAvailable" = "Camera nu este disponibilă";
+
+"GadgetsCannotBeRetrieved" = "Gadget-urile nu se pot regăsi";
+
+"Error" = "Eroare";
+
+"NoMessageComment" = "Trebuie să introduceţi un text pentru a comenta";
+
+"NoMessagePosting" = "Trebuie să introduceţi un text pentru a posta";
+
+"GettingActionCannotBeCompleted" = "Nu se pot obţine activităţi";
+
+"UpdatingActionCannotBeCompleted" = "Nu se poate actualiza activitatea";
+
+"LikingActionCannotBeCompleted" = "Tu nu poți aprecia activitatea";
+
+"UnLikeActionCannotBeCompleted" = "Tu nu poți dez-aprecia activitatea";
+
+"PostingActionCannotBeCompleted" = "Tu nu poți posta un mesaj";
+
+"CommentActionCannotBeCompleted" = "Tu nu poți posta un comentariu";
+
+"LoadMoreActionCannotBeCompleted" = "A apărut o eroare, activităţile sunt reîncărcare.";
+
+"NotCompliant" = "Aplicaţia nu poate rula pe această ediţie a platformei";
+
+"SpecialCharacters" = "Nu sunt permise caractere speciale";
+
+"DashboardsCannotBeRetrieved" = "Imposibil de regăsit tablouri de comandă";
+
+"FolderNameAlreadyExist" = "Acest folder există deja";
+
+"FolderNameEmpty" = "Numele de folder este gol";
+
+"Cannot move file to its location" = "Imposibil de mutat fişierul în aceeaşi locaţie";
+
+"Cannot transfer file" = "Nu se poate transfera fișierul";
+
+
+/*
+ * Apps
+ */
+
+"Dashboard" = "Aplicații";
+
+
+/*
+ * Activity stream
+ */
+
+"numOfLikers" = "%d admiratori";
+
+"numOfLiker" = "%d admirator";
+
+"likeThisActivity" = "%d oameni apreciază acest lucru";
+
+"NoOneLikeThis" = "Nimănui nu îi place acest lucru";
+
+"ActivityDetails" = "Detalii activitate";
+
+"MessageComposer" = "Compozitor mesaj";
+
+"ActivityStream" = "Flux activitate";
+
+"News" = "Ştiri";
+
+"Details" = "Detalii";
+
+"comments(%d)" = "Comentarii(%d)";
+
+"likes(%d)" = "Aprecieri(%d)";
+
+"YourComment" = "Comentariul tau";
+
+"GettingActivity" = "Obtinerea de activitate";
+
+"UpdatingActivity" = "Actualizare activitate";
+
+"PostingActivity" = "Postare";
+
+"CommentActivity" = "Comentariu";
+
+"GettingActivityDetail" = "Obținere detalii activitate";
+
+"UpdatingActivityDetail" = "Actualizare detalii activitate";
+
+"EditWiki" = "a editat pagina Wiki:";
+
+"CreateWiki" = "a creat pagina Wiki:";
+
+"NewPost" = "a adăugat o nouă postare:";
+
+"UpdatePost" = "a actualizat o postare:";
+
+"NewTopic" = "a postat un subiect nou:";
+
+"UpdateTopic" = "a actualizat un subiect:";
+
+"UpdateQuestion" = "a actualizat întrebarea:";
+
+"Answered" = "a răspuns la întrebarea:";
+
+"Asked" = "a întrebat:";
+
+"EventAdded" = "a adăugat un eveniment:";
+
+"EventUpdated" = "a actualizat evenimentul:";
+
+"TaskAdded" = "a adăugat o sarcină:";
+
+"TaskUpdated" = "a actualizat sarcina:";
+
+"Description" = "Descriere";
+
+"Location" = "Locaţie";
+
+"StartTime" = "Ora de începere";
+
+"EndTime" = "Ora de terminare";
+
+"NoComment" = "Nimeni nu a comentat, fii tu primul";
+
+"Image Preview" = "Previzualizare a imaginii";
+
+"Change" = "Schimbare";
+
+"Remove" = "Elimină";
+
+"All Updates" = "Toate Activitățile";
+
+"My Connections" = "Colaboratorii mei";
+
+"My Spaces" = "Spațiile mele";
+
+"My Status" = "Activităţile mele";
+
+
+/*
+ * Date message converter
+ */
+
+"Today" = "Astăzi";
+
+"DateFmt" = "% 1$@%2$@%3$@%4$ @";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "în urmă";
+
+"DateFmt from now" = "de-acum";
+
+"DateFmt Less than" = "Mai puţin ";
+
+"DateFmt About" = "Despre ";
+
+"DateFmt Over" = "Peste ";
+
+"DateFmt Almost" = "Aproape ";
+
+"DateFmt seconds" = " secunde ";
+
+"DateFmt minute" = " minut ";
+
+"DateFmt minutes" = " minute ";
+
+"DateFmt hour" = " oră ";
+
+"DateFmt hours" = " ore ";
+
+"DateFmt day" = " Ziua ";
+
+"DateFmt days" = " zile ";
+
+"DateFmt month" = " lună ";
+
+"DateFmt months" = " luni ";
+
+"DateFmt year" = " an ";
+
+"DateFmt years" = " ani ";
+
+
+/*
+ * Cloud sign up assistant 
+ */
+"ServerNotAvailable" = "Imposibil să se conecteze la intranet, vă rugăm să verificaţi URL-ul său sau contactaţi administratorul";
+
+"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+
+"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "Imposibil să se conecteze la intranet, vă rugăm să verificaţi URL-ul său sau contactaţi administratorul";
+
+"EmailIsBlacklisted" = "Please use your company email to sign up";
+
+"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"IncorrectEmailFormat" = "Please input a valid email address";
+
+"IncorrectPassword" = "Impossible to connect, check your password";
+
+"UserNotExist" = " No account exists for this email, check your email or signup";
+
+"TenantNotExist" = "No account exists for this email, check your email or signup";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+
+"Username" = "Nume de utilizator";
+
+"Password" = "Parola";
+
+"Your credentials" = "Your credentials";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";
+
+/*
+ Post Activity to Space
+ */
+
+"Public" = "Your Stream";
+
+"CannotLoadSpaceID" = "Unable to load the space's identity";
+
+"PostActivityTo" = "Post activity to";
+
+"You didn't join any space" = "You didn't join any space";
+
+"CannotLoadSpace" = "Unable to load information about your spaces";
+
+"Loading spaces" = "Loading spaces ...";
+
+"To" = "Până la";
+
