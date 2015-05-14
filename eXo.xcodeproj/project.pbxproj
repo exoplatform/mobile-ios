@@ -399,7 +399,6 @@
 		5778209519249DB100ED72D0 /* ActivityModelTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */; };
 		5778209619249DB100ED72D0 /* ApplicationPreferencesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */; };
 		5778209719249DB100ED72D0 /* CloudUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */; };
-		5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5778208E19249DB100ED72D0 /* InfoPlist.strings */; };
 		5778209B19249DB100ED72D0 /* ExoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209319249DB100ED72D0 /* ExoTestCase.m */; };
 		5778209C19249DB100ED72D0 /* URLAnalyzerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5778209419249DB100ED72D0 /* URLAnalyzerTestCase.m */; };
 		577D5A2619C81FB1007B8A5B /* AuthenticateTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D5A2519C81FB1007B8A5B /* AuthenticateTabView.m */; };
@@ -690,6 +689,7 @@
 		9C01DF001ADFBA5200E3C578 /* global-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFE1ADFBA5200E3C578 /* global-icon.png */; };
 		9C01DF011ADFBA5200E3C578 /* global-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */; };
 		9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		9C34B91D1B044971003A2DF3 /* EL.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B91C1B044971003A2DF3 /* EL.gif */; };
 		9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */; };
 		9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */; };
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
@@ -1567,7 +1567,6 @@
 		5778208B19249DB100ED72D0 /* ActivityModelTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModelTestCase.m; sourceTree = "<group>"; };
 		5778208C19249DB100ED72D0 /* ApplicationPreferencesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPreferencesTestCase.m; sourceTree = "<group>"; };
 		5778208D19249DB100ED72D0 /* CloudUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudUtilsTestCase.m; sourceTree = "<group>"; };
-		5778208F19249DB100ED72D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5778209019249DB100ED72D0 /* eXoTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eXoTests-Info.plist"; sourceTree = "<group>"; };
 		5778209119249DB100ED72D0 /* eXoTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "eXoTests-Prefix.pch"; sourceTree = "<group>"; };
 		5778209319249DB100ED72D0 /* ExoTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExoTestCase.m; sourceTree = "<group>"; };
@@ -1937,6 +1936,8 @@
 		9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "global-icon@2x.png"; sourceTree = "<group>"; };
 		9C0A6D541AD505D500287C26 /* WEBlockingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEBlockingGestureRecognizer.h; sourceTree = "<group>"; };
 		9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEBlockingGestureRecognizer.m; sourceTree = "<group>"; };
+		9C34B91A1B04473E003A2DF3 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9C34B91C1B044971003A2DF3 /* EL.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = EL.gif; sourceTree = "<group>"; };
 		9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceTableViewCell.h; sourceTree = "<group>"; };
 		9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceTableViewCell.m; sourceTree = "<group>"; };
 		9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceTableViewCell.xib; sourceTree = "<group>"; };
@@ -3523,7 +3524,6 @@
 		575EFE59192E00F200798DCD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5778208E19249DB100ED72D0 /* InfoPlist.strings */,
 				5778209019249DB100ED72D0 /* eXoTests-Info.plist */,
 				5778209119249DB100ED72D0 /* eXoTests-Prefix.pch */,
 				575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */,
@@ -4395,6 +4395,7 @@
 		8947342B13370F5000B0AD11 /* Flags */ = {
 			isa = PBXGroup;
 			children = (
+				9C34B91C1B044971003A2DF3 /* EL.gif */,
 				5736ED071A8B02E20041C120 /* BR.gif */,
 				57EEB3D618B1BF6D00C6B2E8 /* ES.gif */,
 				57C8020818AA0C3400A06EA7 /* DE.gif */,
@@ -4681,6 +4682,7 @@
 				de,
 				"es-ES",
 				"pt-BR",
+				el,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -5165,6 +5167,7 @@
 				1FCEDED21457A34F0058C80F /* ActivityTypeNormal@2x.png in Resources */,
 				1FCEDED31457A34F0058C80F /* ActivityTypeWiki@2x.png in Resources */,
 				1F20AC4314590BDA0068A2CB /* ActivityForumTableViewCell.xib in Resources */,
+				9C34B91D1B044971003A2DF3 /* EL.gif in Resources */,
 				1F20ACDF145968080068A2CB /* ActivityForumDetailMessageTableViewCell.xib in Resources */,
 				1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */,
 				1FCD8093145E9A62009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib in Resources */,
@@ -5409,7 +5412,6 @@
 				578F3A8F193324A100554F28 /* DeleteLikeResponse-4.0.json in Resources */,
 				578F3A8D1933248200554F28 /* PostLikeResponse-4.0.json in Resources */,
 				575D9C04192DBA1B00AD337A /* ActivityDetailsLikesResponse-4.0.json in Resources */,
-				5778209819249DB100ED72D0 /* InfoPlist.strings in Resources */,
 				575D9BBB192C8A3D00AD337A /* PlatformInfoResponse-4.0.json in Resources */,
 				575D9C02192DA61200AD337A /* ActivityDetailsResponse-4.0.json in Resources */,
 				57E4761B19344E2700C3140E /* GetDrivesResponse-4.0.xml in Resources */,
@@ -5783,14 +5785,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5778208E19249DB100ED72D0 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5778208F19249DB100ED72D0 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		A66B7F2915AAC1D700218C06 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -5799,6 +5793,7 @@
 				57C8020618AA07C700A06EA7 /* de */,
 				57EEB3D418B1BC3D00C6B2E8 /* es-ES */,
 				5736ED061A8AFF890041C120 /* pt-BR */,
+				9C34B91A1B04473E003A2DF3 /* el */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

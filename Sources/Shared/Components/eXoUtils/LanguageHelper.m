@@ -46,7 +46,7 @@
 {
     if ((self = [super init])) 
     {
-        _international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", nil] retain];
+        _international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", @"el", nil] retain];
         //Intialisation, load the current dictionnary for localizable strings
         [self loadLocalizableStringsForCurrentLanguage];
     }	
