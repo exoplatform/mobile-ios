@@ -690,6 +690,8 @@
 		9C01DF001ADFBA5200E3C578 /* global-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFE1ADFBA5200E3C578 /* global-icon.png */; };
 		9C01DF011ADFBA5200E3C578 /* global-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */; };
 		9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		9C34B9C31B0595D6003A2DF3 /* LanguageSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C34B9C11B0595D6003A2DF3 /* LanguageSelectionViewController.m */; };
+		9C34B9C41B0595D6003A2DF3 /* LanguageSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B9C21B0595D6003A2DF3 /* LanguageSelectionViewController.xib */; };
 		9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */; };
 		9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */; };
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
@@ -1937,6 +1939,9 @@
 		9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "global-icon@2x.png"; sourceTree = "<group>"; };
 		9C0A6D541AD505D500287C26 /* WEBlockingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEBlockingGestureRecognizer.h; sourceTree = "<group>"; };
 		9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEBlockingGestureRecognizer.m; sourceTree = "<group>"; };
+		9C34B9C01B0595D6003A2DF3 /* LanguageSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanguageSelectionViewController.h; path = Settings/LanguageSelectionViewController.h; sourceTree = "<group>"; };
+		9C34B9C11B0595D6003A2DF3 /* LanguageSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanguageSelectionViewController.m; path = Settings/LanguageSelectionViewController.m; sourceTree = "<group>"; };
+		9C34B9C21B0595D6003A2DF3 /* LanguageSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanguageSelectionViewController.xib; path = Settings/LanguageSelectionViewController.xib; sourceTree = "<group>"; };
 		9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceTableViewCell.h; sourceTree = "<group>"; };
 		9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceTableViewCell.m; sourceTree = "<group>"; };
 		9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceTableViewCell.xib; sourceTree = "<group>"; };
@@ -2497,6 +2502,9 @@
 			children = (
 				461BFAB2141F4D14009844F6 /* SettingsViewController.h */,
 				461BFAB3141F4D14009844F6 /* SettingsViewController.m */,
+				9C34B9C01B0595D6003A2DF3 /* LanguageSelectionViewController.h */,
+				9C34B9C11B0595D6003A2DF3 /* LanguageSelectionViewController.m */,
+				9C34B9C21B0595D6003A2DF3 /* LanguageSelectionViewController.xib */,
 				7C06962813419B78007F26BB /* ServerAddingViewController.h */,
 				7C06962913419B8D007F26BB /* ServerAddingViewController.m */,
 				7C06962613419B6C007F26BB /* ServerAddingViewController.xib */,
@@ -4928,6 +4936,7 @@
 				7C0696201341953B007F26BB /* ServerEditingViewController.xib in Resources */,
 				7C06962713419B6C007F26BB /* ServerAddingViewController.xib in Resources */,
 				46D97B3013742B7F00F71E82 /* Default.png in Resources */,
+				9C34B9C41B0595D6003A2DF3 /* LanguageSelectionViewController.xib in Resources */,
 				46D97B3213742B8B00F71E82 /* Default@2x.png in Resources */,
 				469597F71377017300ADC826 /* AuthenticateCredentialsIconIphoneOn.png in Resources */,
 				469597FB1377017300ADC826 /* AuthenticateServersIconIphoneOff.png in Resources */,
@@ -5563,6 +5572,7 @@
 				572EAA2D192AFBFD008CFB11 /* AsyncSocket.m in Sources */,
 				46ADAD141403E419005ABA79 /* DashboardProxy_old.m in Sources */,
 				46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */,
+				9C34B9C31B0595D6003A2DF3 /* LanguageSelectionViewController.m in Sources */,
 				46F87F84140BD7A60077BE15 /* DocumentsViewController.m in Sources */,
 				46F87F8A140CC4C20077BE15 /* FileActionsViewController.m in Sources */,
 				46EC3596140FDE150083FA07 /* FileFolderActionsViewController.m in Sources */,

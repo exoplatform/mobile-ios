@@ -35,6 +35,8 @@
 #import "AppDelegate_iPad.h"
 #import "CloudUtils.h"
 #import "AccountInfoUtils.h"
+#import "LanguageSelectionViewController.h"
+
 static NSString *CellIdentifierLogin = @"CellIdentifierLogin";
 static NSString *CellIdentifierSocial = @"CellIdentifierSocial";
 static NSString *CellIdentifierDocuments = @"CellIdentifierDocuments";
@@ -191,6 +193,8 @@ typedef enum {
     [_rememberSelectedStream release];
     [_showPrivateDrive release];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+
     [super dealloc];
 }
 
@@ -250,6 +254,9 @@ typedef enum {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStyleDone target:self action:@selector(doneAction)];
     
     self.title = Localize(@"Settings");
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+
 }
 
 #pragma mark - PlatformVersionProxyDelegate
@@ -293,7 +300,10 @@ typedef enum {
 
 
 #pragma - Settings Methods
-
+-(void) updateLabelsWithNewLanguage {
+    [self setNavigationBarLabels];
+    [self.tableView reloadData];
+}
 - (void)setNavigationBarLabels {
     self.title = Localize(@"Settings");
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
@@ -382,6 +392,12 @@ typedef enum {
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
+    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue];
+    
+    if (sectionId == SettingViewControllerSectionLanguage) {
+        return 1;
+    }
+    
     int numofRows = 0;
 	if([[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
 	{	
@@ -484,8 +500,10 @@ typedef enum {
                 cell.textLabel.backgroundColor = [UIColor clearColor];
                 
             }
-            
-            switch (indexPath.row) {
+            int selectedLanguage = [[LanguageHelper sharedInstance] getSelectedLanguage];
+            cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:selectedLanguage]);
+
+            switch (selectedLanguage) {
                 case 0:
                     cell.imageView.image = [UIImage imageNamed:@"EN.gif"];
                     break;
@@ -502,17 +520,9 @@ typedef enum {
                     cell.imageView.image = [UIImage imageNamed:@"BR.gif"];
                     break;
             }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
             //Put the checkmark
-            int selectedLanguage = [[LanguageHelper sharedInstance] getSelectedLanguage];
-            if (indexPath.row == selectedLanguage) 
-            {
-                cell.accessoryView = [self makeCheckmarkOnAccessoryView];
-            }
-            else
-            {
-                cell.accessoryView = [self makeCheckmarkOffAccessoryView];
-            }
             break;
         }
         case SettingViewControllerSectionServerList:
@@ -587,7 +597,7 @@ typedef enum {
         default:
             break;
     }
-    if (sectionId != SettingViewControllerSectionServerList) {
+    if (sectionId != SettingViewControllerSectionServerList && sectionId != SettingViewControllerSectionLanguage) {
         cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:indexPath.row]);
     
     }
@@ -604,18 +614,13 @@ typedef enum {
     eXoMobileAppDelegate *appDelegate;
     if (sectionId == SettingViewControllerSectionLanguage)
 	{
-		int selectedLanguage = indexPath.row;
+//        [self setNavigationBarLabels];
+//        [self.tableView reloadData];
+        LanguageSelectionViewController * languageSelectionVC = [[LanguageSelectionViewController alloc] initWithNibName:@"LanguageSelectionViewController" bundle:nil];
+        languageSelectionVC.listLanguages = [[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey];
+        [self.navigationController pushViewController:languageSelectionVC animated:nil];
         
-        //Save the language
-        [[LanguageHelper sharedInstance] changeToLanguage:selectedLanguage];
-        
-        //Finally reload the content of the screen
-        [self setNavigationBarLabels];
-        [self.tableView reloadData];
-        
-        //Notify the language change
-        [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_CHANGE_LANGUAGE object:self];
-	}
+    }
     
 	else if (sectionId == SettingViewControllerSectionServerList)
 	{
