@@ -930,7 +930,6 @@
 		1FD0C3FE143BF146002F40A7 /* IconForUnreadableFile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconForUnreadableFile@2x.png"; sourceTree = "<group>"; };
 		1FD91DBD1471092E00DBDED0 /* ActivityAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityAnswerTableViewCell.h; path = Social/ActivityAnswerTableViewCell.h; sourceTree = "<group>"; };
 		1FD91DBE1471092E00DBDED0 /* ActivityAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityAnswerTableViewCell.m; path = Social/ActivityAnswerTableViewCell.m; sourceTree = "<group>"; };
-		295801A742C04EAFB2DFDE32 /* Pods-eXoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eXoTests.xcconfig"; path = "Pods/Pods-eXoTests.xcconfig"; sourceTree = "<group>"; };
 		3D34F8BC185FF3A9006065DE /* Icon80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon80x80.png; sourceTree = "<group>"; };
 		3D34F8BD185FF3A9006065DE /* Icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon40x40.png; sourceTree = "<group>"; };
 		3D34F8BE185FF3A9006065DE /* Icon100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon100x100.png; sourceTree = "<group>"; };
@@ -2029,7 +2028,6 @@
 				57831827192A1301006A26EC /* eXo_Platform_Prefix.pch */,
 				5783182A192A1341006A26EC /* eXo_Platform-Info.plist */,
 				57831828192A1301006A26EC /* main.m */,
-				295801A742C04EAFB2DFDE32 /* Pods-eXoTests.xcconfig */,
 				894733BB13370D7C00B0AD11 /* Resources */,
 				89300A6C1336EF6200804D3B /* Sources */,
 				5778208A19249DB100ED72D0 /* Tests */,
@@ -5192,6 +5190,7 @@
 			baseConfigurationReference = 0F15430D57FBE9077ED5C2A9 /* Pods-eXo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -5220,6 +5219,7 @@
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DDEBUG",
 					"$(inherited)",
@@ -5238,6 +5238,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -5246,6 +5247,7 @@
 			baseConfigurationReference = 03A305EB71020C02534A344E /* Pods-eXo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -5272,6 +5274,7 @@
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-ObjC",
@@ -5287,6 +5290,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};
@@ -5338,6 +5342,7 @@
 			baseConfigurationReference = 8200154AFCCBDDA02E56AA6A /* Pods-eXo.distribution adhoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
@@ -5365,6 +5370,7 @@
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-ObjC",
@@ -5381,6 +5387,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = "Distribution AdHoc";
 		};
@@ -5432,6 +5439,7 @@
 			baseConfigurationReference = FB71766E8C6DA785FC332D92 /* Pods-eXo.distribution appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
@@ -5459,6 +5467,7 @@
 					"$(PROJECT_DIR)/ThirdParty/libidn",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-ObjC",
@@ -5475,6 +5484,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = "Distribution AppStore";
 		};
