@@ -124,6 +124,8 @@
 
 "Portuguese-Brazil" = "crwdns6812294:0crwdne6812294:0";
 
+"Greek"= "Greek";
+
 "Send" = "crwdns6795945:0crwdne6795945:0";
 
 "ServerList" = "crwdns6795946:0crwdne6795946:0";
@@ -324,7 +326,6 @@
 "My Spaces" = "crwdns6812298:0crwdne6812298:0";
 
 "My Status" = "crwdns6812299:0crwdne6812299:0";
-
 
 /*
  * Date message converter
