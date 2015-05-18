@@ -238,9 +238,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         [self updateActivityStream];
     }
     
-    if (self.hudLoadWaiting.view.superview){
-        [self.hudLoadWaiting.view removeFromSuperview];
-    }
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
@@ -381,7 +378,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)] autorelease];
     self.filterTabbar.tabView.delegate = self;    
     [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
-    [self.filterTabbar selectTabItem:[UserPreferencesManager sharedInstance].selectedSocialStream];
 
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
@@ -405,6 +401,12 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     // The footer view that contains the activity indicator
     [self setupActivityIndicator];
     
+
+}
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.filterTabbar selectTabItem:[UserPreferencesManager sharedInstance].selectedSocialStream];
 
 }
 - (void)viewDidUnload
