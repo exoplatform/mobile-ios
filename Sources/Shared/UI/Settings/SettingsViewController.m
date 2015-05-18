@@ -614,8 +614,6 @@ typedef enum {
     eXoMobileAppDelegate *appDelegate;
     if (sectionId == SettingViewControllerSectionLanguage)
 	{
-//        [self setNavigationBarLabels];
-//        [self.tableView reloadData];
         LanguageSelectionViewController * languageSelectionVC = [[LanguageSelectionViewController alloc] initWithNibName:@"LanguageSelectionViewController" bundle:nil];
         languageSelectionVC.listLanguages = [[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey];
         [self.navigationController pushViewController:languageSelectionVC animated:YES];

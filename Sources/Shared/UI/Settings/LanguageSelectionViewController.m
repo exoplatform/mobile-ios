@@ -88,9 +88,6 @@
         case 4:
             cell.imageView.image = [UIImage imageNamed:@"BR.gif"];
             break;
-        case 5:
-            cell.imageView.image = [UIImage imageNamed:@"EL.gif"];
-            break;
     }
     
     //Put the checkmark
