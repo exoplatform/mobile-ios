@@ -122,9 +122,9 @@
 
 "Spanish" = "Ισπανικά";
 
-"Portuguese-Brazil" = "Πορτογαλικά (Βραζιλίας)";
+"Portuguese-Brazil" = "Portuguese (Brazil)";
 
-"Greek"= "ελληνικά";
+"Greek"= "Greek";
 
 "Send" = "Αποστολή";
 
@@ -326,7 +326,6 @@
 "My Spaces" = "Οι χωροι μου";
 
 "My Status" = "Οι δραστηριότητές μου";
-
 
 /*
  * Date message converter
