@@ -124,6 +124,8 @@
 
 "Portuguese-Brazil" = "Portuguese (Brazil)";
 
+"Greek"= "Greek";
+
 "Send" = "Skicka";
 
 "ServerList" = "Server list";
@@ -324,7 +326,6 @@
 "My Spaces" = "Mina Webb-ytor";
 
 "My Status" = "Min Aktiviteter";
-
 
 /*
  * Date message converter
