@@ -124,6 +124,8 @@
 
 "Portuguese-Brazil" = "Portuguese (Brazil)";
 
+"Greek"= "Greek";
+
 "Send" = "Trimite";
 
 "ServerList" = "Listă de servere";
@@ -324,7 +326,6 @@
 "My Spaces" = "Spațiile mele";
 
 "My Status" = "Activităţile mele";
-
 
 /*
  * Date message converter
