@@ -19,7 +19,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityBasicTableViewCell.h"
-#import "Three20/Three20.h"
 
 @interface ActivityForumTableViewCell : ActivityBasicTableViewCell {
 

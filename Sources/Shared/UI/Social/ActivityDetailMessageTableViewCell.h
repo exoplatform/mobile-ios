@@ -18,7 +18,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Three20/Three20.h"
 #import "defines.h"
 
 #define kBottomMargin 5.0

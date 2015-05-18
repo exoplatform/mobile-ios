@@ -23,7 +23,6 @@
 #import "SocialActivity.h"
 #import "ActivityStreamBrowseViewController.h"
 #import "SocialUserProfile.h"
-#import "Three20/Three20.h"
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
 
