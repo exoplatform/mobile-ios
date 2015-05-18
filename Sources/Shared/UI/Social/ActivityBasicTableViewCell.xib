@@ -89,7 +89,7 @@
                                     <constraint firstAttribute="bottom" secondItem="vnY-vr-PpO" secondAttribute="bottom" constant="3" id="9a3-P9-iIx"/>
                                     <constraint firstAttribute="trailing" secondItem="JV4-XJ-tCF" secondAttribute="trailing" constant="9" id="Ayk-lv-97y"/>
                                     <constraint firstItem="RXh-9C-52T" firstAttribute="top" secondItem="9KK-3r-PF2" secondAttribute="top" constant="7" id="JuV-BJ-kIW"/>
-                                    <constraint firstAttribute="height" constant="30" id="SSW-GZ-6LV"/>
+                                    <constraint firstAttribute="height" priority="250" constant="30" id="SSW-GZ-6LV"/>
                                     <constraint firstItem="vnY-vr-PpO" firstAttribute="leading" secondItem="G5v-yA-Y5h" secondAttribute="trailing" constant="9" id="YkF-cs-Cjd"/>
                                     <constraint firstItem="JV4-XJ-tCF" firstAttribute="top" secondItem="9KK-3r-PF2" secondAttribute="top" constant="7" id="bYO-gh-xAm"/>
                                     <constraint firstItem="G5v-yA-Y5h" firstAttribute="top" secondItem="9KK-3r-PF2" secondAttribute="top" constant="9" id="cEN-Is-OSG"/>

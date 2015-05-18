@@ -718,6 +718,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         }
     }
     cell.backgroundColor = [UIColor clearColor];
+//    [cell setNeedsLayout];
+//    [cell layoutIfNeeded];
+
     return cell;
 }
 

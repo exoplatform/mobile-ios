@@ -114,7 +114,7 @@
                                     <constraint firstAttribute="bottom" secondItem="7" secondAttribute="bottom" constant="3" id="Kke-G7-Uny"/>
                                     <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="9" id="OJe-ra-CyZ"/>
                                     <constraint firstItem="9" firstAttribute="top" secondItem="27" secondAttribute="top" constant="9" id="SSp-2w-4ur"/>
-                                    <constraint firstAttribute="height" constant="30" id="hH4-ge-lKl"/>
+                                    <constraint firstAttribute="height" priority="250" constant="30" id="hH4-ge-lKl"/>
                                     <constraint firstItem="9" firstAttribute="leading" secondItem="27" secondAttribute="leading" constant="7" id="mB1-Xa-5E2"/>
                                     <constraint firstItem="7" firstAttribute="top" secondItem="27" secondAttribute="top" constant="3" id="my2-hP-NAV"/>
                                     <constraint firstItem="7" firstAttribute="leading" secondItem="9" secondAttribute="trailing" constant="9" id="pYL-gs-bb4"/>

@@ -80,7 +80,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="22" secondAttribute="bottom" constant="7" id="40j-ek-bPx"/>
-                                    <constraint firstAttribute="width" constant="245" id="Bc8-0i-hML"/>
                                     <constraint firstItem="4" firstAttribute="top" secondItem="ED2-La-EtO" secondAttribute="top" constant="6" id="GMf-6c-YFl"/>
                                     <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="9" id="Lus-c3-Jrc"/>
                                     <constraint firstAttribute="bottom" secondItem="8" secondAttribute="bottom" constant="3" id="Qep-2g-ALA"/>
