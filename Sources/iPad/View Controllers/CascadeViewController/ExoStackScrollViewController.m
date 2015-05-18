@@ -31,7 +31,7 @@
 
 @implementation ExoStackScrollViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -102,9 +102,9 @@
                 if (activePaneTag < nbOfPanesMoved) nbOfPanesMoved--;
                 // Set the scrollsToTop property
                 if(activePaneTag < [viewControllersStack count]) { //MOB-1459: avoid out of bound exception
-                    [self setScrollToTopForViewController:[viewControllersStack objectAtIndex:activePaneTag] withScroll:NO];
+                    [self setScrollToTopForViewController:viewControllersStack[activePaneTag] withScroll:NO];
                 }
-                [self setScrollToTopForViewController:[viewControllersStack objectAtIndex:activePaneTag-nbOfPanesMoved] withScroll:YES];
+                [self setScrollToTopForViewController:viewControllersStack[activePaneTag-nbOfPanesMoved] withScroll:YES];
             }
             // Check whether the left menu was opened by the gesture
             if (activePaneTag == 0 && viewAtLeft.frame.origin.x == PANE_X_POS_MENU_CLOSED) {
@@ -118,8 +118,8 @@
                 if (activePaneTag+nbOfPanesMoved > viewControllersStack.count-1 ||
                     (leftMenuOpened && dragLength < PANE_NEG_X_POS_MENU_OPENED)) nbOfPanesMoved--;
                 // Set the scrollsToTop property
-                [self setScrollToTopForViewController:[viewControllersStack objectAtIndex:activePaneTag] withScroll:NO];
-                [self setScrollToTopForViewController:[viewControllersStack objectAtIndex:activePaneTag+nbOfPanesMoved] withScroll:YES];
+                [self setScrollToTopForViewController:viewControllersStack[activePaneTag] withScroll:NO];
+                [self setScrollToTopForViewController:viewControllersStack[activePaneTag+nbOfPanesMoved] withScroll:YES];
             }
             // Check whether the left menu was closed by the gesture
             if (viewAtLeft.frame.origin.x == -PANE_NEG_X_POS_MENU_OPENED && leftMenuOpened) {

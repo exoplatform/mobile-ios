@@ -42,7 +42,7 @@
 @implementation UIViewWithShadow
 
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         self.backgroundColor = [UIColor clearColor];
         self.opaque = NO;

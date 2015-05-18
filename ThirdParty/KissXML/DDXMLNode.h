@@ -4,7 +4,7 @@
 @class DDXMLDocument;
 
 
-enum {
+typedef NS_ENUM(NSUInteger, DDXMLNodeKind) {
 	DDXMLInvalidKind                = 0,
 	DDXMLDocumentKind               = XML_DOCUMENT_NODE,
 	DDXMLElementKind                = XML_ELEMENT_NODE,
@@ -19,7 +19,6 @@ enum {
 	DDXMLElementDeclarationKind     = XML_ELEMENT_DECL,
 	DDXMLNotationDeclarationKind    = XML_NOTATION_NODE
 };
-typedef NSUInteger DDXMLNodeKind;
 
 enum {
 	DDXMLNodeOptionsNone                       = 0,
@@ -107,48 +106,45 @@ typedef struct _xmlStd *xmlStdPtr;
 
 #pragma mark --- Properties ---
 
-- (DDXMLNodeKind)kind;
+@property (nonatomic, readonly) DDXMLNodeKind kind;
 
-- (void)setName:(NSString *)name;
-- (NSString *)name;
+@property (nonatomic, copy) NSString *name;
 
 //- (void)setObjectValue:(id)value;
 //- (id)objectValue;
 
-- (void)setStringValue:(NSString *)string;
 //- (void)setStringValue:(NSString *)string resolvingEntities:(BOOL)resolve;
-- (NSString *)stringValue;
+@property (nonatomic, copy) NSString *stringValue;
 
 #pragma mark --- Tree Navigation ---
 
-- (NSUInteger)index;
+@property (nonatomic, readonly) NSUInteger index;
 
-- (NSUInteger)level;
+@property (nonatomic, readonly) NSUInteger level;
 
-- (DDXMLDocument *)rootDocument;
+@property (nonatomic, readonly, copy) DDXMLDocument *rootDocument;
 
-- (DDXMLNode *)parent;
-- (NSUInteger)childCount;
-- (NSArray *)children;
+@property (nonatomic, readonly, copy) DDXMLNode *parent;
+@property (nonatomic, readonly) NSUInteger childCount;
+@property (nonatomic, readonly, copy) NSArray *children;
 - (DDXMLNode *)childAtIndex:(NSUInteger)index;
 
-- (DDXMLNode *)previousSibling;
-- (DDXMLNode *)nextSibling;
+@property (nonatomic, readonly, copy) DDXMLNode *previousSibling;
+@property (nonatomic, readonly, copy) DDXMLNode *nextSibling;
 
-- (DDXMLNode *)previousNode;
-- (DDXMLNode *)nextNode;
+@property (nonatomic, readonly, copy) DDXMLNode *previousNode;
+@property (nonatomic, readonly, copy) DDXMLNode *nextNode;
 
 - (void)detach;
 
-- (NSString *)XPath;
+@property (nonatomic, readonly, copy) NSString *XPath;
 
 #pragma mark --- QNames ---
 
-- (NSString *)localName;
-- (NSString *)prefix;
+@property (nonatomic, readonly, copy) NSString *localName;
+@property (nonatomic, readonly, copy) NSString *prefix;
 
-- (void)setURI:(NSString *)URI;
-- (NSString *)URI;
+@property (nonatomic, copy) NSString *URI;
 
 + (NSString *)localNameForName:(NSString *)name;
 + (NSString *)prefixForName:(NSString *)name;

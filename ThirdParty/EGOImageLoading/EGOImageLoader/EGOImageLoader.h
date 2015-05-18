@@ -35,7 +35,7 @@
 #endif
 
 @protocol EGOImageLoaderObserver;
-@interface EGOImageLoader : NSObject/*<NSURLConnectionDelegate>*/ {
+@interface EGOImageLoader : NSObject /*<NSURLConnectionDelegate>*/ {
 @private
 	NSDictionary* _currentConnections;
 	NSMutableDictionary* currentConnections;

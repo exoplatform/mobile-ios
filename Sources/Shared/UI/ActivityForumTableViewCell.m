@@ -25,147 +25,63 @@
 
 @implementation ActivityForumTableViewCell
 
-@synthesize lbMessage = _lbMessage;
-@synthesize htmlName = _htmlName;
 @synthesize lbTitle = _lbTitle;
 
 
-- (void)configureFonts:(BOOL)highlighted {
-    
-    if (!highlighted) {
-        _htmlName.textColor = [UIColor grayColor];
-        _htmlName.backgroundColor = [UIColor whiteColor];
-        
-        _lbMessage.textColor = [UIColor grayColor];
-        _lbMessage.backgroundColor = [UIColor whiteColor];
-        
-        
-        _lbTitle.textColor = [UIColor grayColor];
-        _lbTitle.backgroundColor = [UIColor whiteColor];
-    } else {
-        _htmlName.textColor = [UIColor darkGrayColor];
-        _htmlName.backgroundColor = SELECTED_CELL_BG_COLOR;
-        
-        _lbMessage.textColor = [UIColor darkGrayColor];
-        _lbMessage.backgroundColor = SELECTED_CELL_BG_COLOR;
-        
-        _lbTitle.textColor = [UIColor darkGrayColor];
-        _lbTitle.backgroundColor = SELECTED_CELL_BG_COLOR;
-    }
-    
-    [super configureFonts:highlighted];
-}
 
-
-- (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth {
+- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {    
     
-    CGRect tmpFrame = CGRectZero;
-    
-    if (fWidth > 320) {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPAD, 21);
-    } else {
-        tmpFrame = CGRectMake(70, 14, WIDTH_FOR_CONTENT_IPHONE, 21);
-    }
-    
-    //Use an html styled label to display informations about the author of the wiki page
-    _htmlName = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlName.userInteractionEnabled = NO;
-    _htmlName.backgroundColor = [UIColor clearColor];
-    _htmlName.font = [UIFont systemFontOfSize:13.0];
-    [self.contentView addSubview:_htmlName];
-    
-    //Use an html styled label to display informations about the author of the wiki page
-    _lbTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _lbTitle.userInteractionEnabled = NO;
-    _lbTitle.backgroundColor = [UIColor clearColor];
-    _lbTitle.font = [UIFont systemFontOfSize:13.0];
-    [self.contentView addSubview:_lbTitle];
-    
-    _lbMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _lbMessage.userInteractionEnabled = NO;
-    _lbMessage.backgroundColor = [UIColor clearColor];
-    _lbMessage.font = [UIFont systemFontOfSize:13.0];
-    [self.contentView addSubview:_lbMessage];
-}
-
-
-
-
-- (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
-    NSString *html = nil;
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
+    
+    NSString * name = socialActivityStream.posterIdentity.fullName;
+    NSString * title = nil;
     switch (socialActivityStream.activityType) {
         case ACTIVITY_FORUM_CREATE_POST:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewPost")];
-            html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewPost")];
+            title = [socialActivityStream.templateParams valueForKey:@"PostName"];
             break;
         case ACTIVITY_FORUM_CREATE_TOPIC:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewTopic")];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewTopic")];
             
             float plfVersion = [[[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
             
             if(plfVersion >= 4.0) { // plf 4 and later: TopicName is not in template params, it is title of socialActivityStream
-                html = [NSString stringWithFormat:@"<a>%@</a>",
-                        [[socialActivityStream.title stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+                title = socialActivityStream.title;
             } else {
-                html = [NSString stringWithFormat:@"<a>%@</a>",
-                        [[[socialActivityStream.templateParams valueForKey:@"TopicName" ] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+                title = [socialActivityStream.templateParams valueForKey:@"TopicName" ];
             }
             
             break;
         case ACTIVITY_FORUM_UPDATE_TOPIC:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdateTopic")];
-            html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdateTopic")];
+            title = [[[socialActivityStream.templateParams valueForKey:@"TopicName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText];
             break; 
         case ACTIVITY_FORUM_UPDATE_POST:
-            _htmlName.html = [NSString stringWithFormat:@"<p><a>%@%@</a> %@</p>", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdatePost")];
-            html = [NSString stringWithFormat:@"<a>%@</a>", 
-                             [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText]];
+            name = [NSString stringWithFormat:@"%@%@ %@", socialActivityStream.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"UpdatePost")];
+            title = [[[socialActivityStream.templateParams valueForKey:@"PostName"] stringByEncodeWithHTML] stringByConvertingHTMLToPlainText];
             break; 
         default:
             break;
     }
     
-    [_htmlName sizeToFit];
     
-    _lbTitle.html = html;
-    [_lbTitle sizeToFit];
+    NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
+    [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
+    _lbName.attributedText = attributedName;
     
-    _lbMessage.html = [[socialActivityStream.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
-    [_lbMessage sizeToFit];
+    _lbTitle.text = title;
 
-    //Set the position of Title
-    CGRect tmpFrame = _lbTitle.frame;
-    tmpFrame.origin.y = _htmlName.frame.origin.y + _htmlName.frame.size.height + 5;
-    //tmpFrame.size.width = _htmlName.frame.size.width;
-    _lbTitle.frame = tmpFrame;
-    
-    //Set the position of lbMessage
-    tmpFrame = _lbMessage.frame;
-    tmpFrame.origin.y = _lbTitle.frame.origin.y + _lbTitle.frame.size.height + 5;
-    double heigthForTTLabel = [[[self lbMessage] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT){
-        heigthForTTLabel = EXO_MAX_HEIGHT; 
-    }
-    tmpFrame.size.height = heigthForTTLabel;
-    //tmpFrame.size.width = _htmlName.frame.size.width;
-    _lbMessage.frame = tmpFrame;
+    self.lbMessage.text = [socialActivityStream.body stringByConvertingHTMLToPlainText];
+
 }
 
 
 - (void)dealloc {
-    
-    _lbMessage = nil;
-    
-    [_htmlName release];
-    _htmlName = nil;
-    
+    [_lbTitle release];
     [super dealloc];
 }
 

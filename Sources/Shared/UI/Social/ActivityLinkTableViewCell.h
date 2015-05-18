@@ -23,19 +23,16 @@
 @interface ActivityLinkTableViewCell : ActivityBasicTableViewCell {
  
     EGOImageView*          _imgvAttach;
-    TTStyledTextLabel*     _htmlActivityMessage;
-    TTStyledTextLabel*     _htmlLinkTitle;
-    TTStyledTextLabel*     _htmlLinkDescription;
-    TTStyledTextLabel*     _htmlName;
-    TTStyledTextLabel*     _htmlLinkMessage;
     CGFloat width;
 }
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightConstraint;
 
 @property (retain) IBOutlet EGOImageView* imgvAttach;
-@property (retain, nonatomic) TTStyledTextLabel* htmlActivityMessage;
-@property (retain, nonatomic) TTStyledTextLabel* htmlLinkTitle;
-@property (retain, nonatomic) TTStyledTextLabel* htmlLinkDescription;
-@property (retain, nonatomic) TTStyledTextLabel* htmlName;
-@property (retain, nonatomic) TTStyledTextLabel* htmlLinkMessage;
+
+@property (retain, nonatomic) IBOutlet UILabel *htmlActivityMessage;
+@property (retain, nonatomic) IBOutlet UILabel *htmlLinkTitle;
+@property (retain, nonatomic) IBOutlet UILabel *htmlLinkDescription;
+@property (retain, nonatomic) IBOutlet UILabel *htmlLinkMessage;
+
 
 @end

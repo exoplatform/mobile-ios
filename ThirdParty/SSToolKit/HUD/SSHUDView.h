@@ -36,8 +36,8 @@
 @property (nonatomic, retain) UIImage *completeImage;
 @property (nonatomic, retain) UIImage *failImage;
 
-- (id)initWithTitle:(NSString *)aTitle;
-- (id)initWithTitle:(NSString *)aTitle loading:(BOOL)isLoading;
+- (instancetype)initWithTitle:(NSString *)aTitle;
+- (instancetype)initWithTitle:(NSString *)aTitle loading:(BOOL)isLoading;
 
 - (void)show;
 - (void)dismiss;

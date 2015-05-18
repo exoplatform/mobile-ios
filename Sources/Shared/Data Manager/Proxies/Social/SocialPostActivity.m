@@ -30,7 +30,7 @@
 
 #pragma - Object Management
 
--(id)init {
+-(instancetype)init {
     if ((self=[super init])) {
         //Default behavior
         _text = [@"" retain];
@@ -67,17 +67,13 @@
     }
     
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    manager.serializationMIMEType = RKMIMETypeJSON;
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
 
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
-    manager.router = router;
+    RKRouter * router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
     
-    // Send POST requests for instances of SocialActivity to '/activity.json'
-    NSString * path = [self createPath];
-    if (space){
-        path = [NSString stringWithFormat:@"%@?identity_id=%@", path, space.spaceId];
-    }
-    [router routeClass:[SocialActivity class] toResourcePath:path forMethod:RKRequestMethodPOST];
+    manager.router = router;
+        // Send POST requests for instances of SocialActivity to '/activity.json'
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialActivity class] pathPattern:[self createPath] method:RKRequestMethodPOST]];
     
     // Let's create an SocialActivity
     SocialActivity *activity = [[SocialActivity alloc] init];
@@ -87,9 +83,10 @@
     }
     
     //Register our mappings with the provider FOR SERIALIZATION
-    RKObjectMapping *activitySimpleMapping = [RKObjectMapping mappingForClass: 
-                                              [SocialActivity class]]; 
-    [activitySimpleMapping mapKeyPath:@"title" toAttribute:@"title"];
+    RKObjectMapping *activitySimpleMapping = [RKObjectMapping requestMapping];
+    
+    [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"title":@"title"}];
+    
     
     //Attach file
     if(fileURL != nil) {
@@ -113,54 +110,67 @@
         [activity setKeyForTemplateParams:@"REPOSITORY" value:serverPM.currentRepository];
         [activity setKeyForTemplateParams:@"DOCNAME" value:fileName];
         
-        [activitySimpleMapping mapKeyPath:@"templateParams" toAttribute:@"templateParams"];
+        [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"templateParams":@"templateParams"}];
     }
     if (activity.type.length>0){
-        [activitySimpleMapping mapKeyPath:@"type" toAttribute:@"type"];
+         [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"type":@"type"}];
     }
-    //Configure a serialization mapping for our Product class
-    RKObjectMapping *activitySimpleSerializationMapping = [activitySimpleMapping 
-                                                    inverseMapping]; 
     
-    //serialization mapping 
-    [manager.mappingProvider 
-     setSerializationMapping:activitySimpleSerializationMapping forClass:[SocialActivity 
-                                                                   class]]; 
+    //serialization mapping
     
-    
-    
-    //Now create the mapping for the response
-    RKObjectMapping* mappingForResponse = [RKObjectMapping mappingForClass:[SocialActivity class]];
-    [mappingForResponse mapKeyPathsToAttributes:
-     @"identityId",@"identityId",
-     @"totalNumberOfComments",@"totalNumberOfComments",
-     @"postedTime",@"postedTime",
-     @"type",@"type",
-     @"activityStream",@"activityStream",
-     @"title",@"title",
-     @"priority",@"priority",
-     @"activityId",@"activityId",
-     @"createdAt",@"createdAt",
-     @"titleId",@"titleId",
-     @"templateParams",@"templateParams",
-     nil];
+        
+    RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:activitySimpleMapping objectClass:[SocialActivity class] rootKeyPath:nil method:RKRequestMethodPOST];
+    for (RKRequestDescriptor * requestDes in manager.requestDescriptors){
+        [manager removeRequestDescriptor:requestDes];
+    }
+    [manager addRequestDescriptor:requestDescriptor];
+
+    RKObjectMapping* mappingForResponse =  [RKObjectMapping mappingForClass:[SocialActivity class]];
+    [mappingForResponse addAttributeMappingsFromDictionary:@{
+     @"identityId":@"identityId",
+     @"totalNumberOfComments":@"totalNumberOfComments",
+     @"postedTime":@"postedTime",
+     @"type":@"type",
+     @"activityStream":@"activityStream",
+     @"title":@"title",
+     @"priority":@"priority",
+     @"activityId":@"activityId",
+     @"createdAt":@"createdAt",
+     @"titleId":@"titleId",
+     @"templateParams":@"templateParams"}];
     
     RKObjectMapping* socialUserProfileMapping  = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [socialUserProfileMapping mapKeyPathsToAttributes:
-     @"id",@"identity",
-     @"remoteId",@"remoteId",
-     @"providerId",@"providerId",
-     @"profile.avatarUrl",@"avatarUrl",
-     @"profile.fullName",@"fullName",
-     nil];
+    [socialUserProfileMapping addAttributeMappingsFromDictionary:@{
+     @"id":@"identity",
+     @"remoteId":@"remoteId",
+     @"providerId":@"providerId",
+     @"profile.avatarUrl":@"avatarUrl",
+     @"profile.fullName":@"fullName",
+     }];
+
+    [mappingForResponse addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"posterIdentity" toKeyPath:@"posterIdentity" withMapping:socialUserProfileMapping]];
     
-    [mappingForResponse mapKeyPath:@"posterIdentity" toRelationship:@"posterIdentity" withObjectMapping:socialUserProfileMapping];
+    RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:mappingForResponse method:RKRequestMethodPOST pathPattern:[self createPath] keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
+    
+    [manager addResponseDescriptor:responseDescriptor];
+    
 
     
-    //[manager.mappingProvider addObjectMapping:mappingForResponse];
     
-    // Send a POST to /articles to create the remote instance
-    [manager postObject:activity mapResponseWith:mappingForResponse delegate:self];    
+    // Send a POST to /like to create the remote instance
+    NSString * path = [self createPath];
+    if (space){
+        path = [NSString stringWithFormat:@"%@?identity_id=%@", path, space.spaceId];
+    }
+    
+    [manager  postObject:activity path:path parameters:nil
+                 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                     [super restKitDidLoadObjects:[mappingResult array]];
+                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                     [super restKitDidFailWithError:error];
+                 }
+     ];
+    
     [activity release];
 }
 

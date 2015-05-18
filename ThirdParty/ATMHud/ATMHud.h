@@ -13,12 +13,12 @@
 @class ATMHudView, ATMSoundFX, ATMHudQueueItem;
 @protocol ATMHudDelegate;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ATMHudAccessoryPosition) {
 	ATMHudAccessoryPositionTop = 0,
 	ATMHudAccessoryPositionRight,
 	ATMHudAccessoryPositionBottom,
 	ATMHudAccessoryPositionLeft
-} ATMHudAccessoryPosition;
+} ;
 
 @interface ATMHud : UIViewController {
 	CGFloat margin;
@@ -81,7 +81,7 @@ typedef enum {
 
 + (NSString *)buildInfo;
 
-- (id)initWithDelegate:(id)hudDelegate;
+- (instancetype)initWithDelegate:(id)hudDelegate;
 
 - (void)setCaption:(NSString *)caption;
 - (void)setImage:(UIImage *)image;

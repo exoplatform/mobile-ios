@@ -30,7 +30,7 @@
 
 #pragma mark - Object Management
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
     } 
     return self;
@@ -62,29 +62,38 @@
     // Load the object model via RestKit
     RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialUserProfile class]];
-    [mapping mapKeyPathsToAttributes:
-     @"id",@"identity",
-     @"remoteId",@"remoteId",
-     @"providerId",@"providerId",
-     @"profile.avatarUrl",@"avatarUrl",
-     @"profile.fullName",@"fullName",
-    nil];
     
-    [manager loadObjectsAtResourcePath:[self createPathForUsername:username] objectMapping:mapping delegate:self];   
+    [mapping addAttributeMappingsFromDictionary:@{     @"id":@"identity",
+                                                       @"remoteId":@"remoteId",
+                                                       @"providerId":@"providerId",
+                                                       @"profile.avatarUrl":@"avatarUrl",
+                                                       @"profile.fullName":@"fullName",
+                                                       }];
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:[self createPathForUsername:username] keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    [manager getObjectsAtPath:[self createPathForUsername:username] parameters:nil
+                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                          [self restKitDidLoadObjects:[mappingResult array]];
+                      } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                          [super restKitDidFailWithError:error];
+                      }
+     ];
+    
+//    [manager loadObjectsAtResourcePath:[self createPathForUsername:username] objectMapping:mapping delegate:self];   
 }
 
 
 #pragma mark - RKObjectLoaderDelegate methods
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+-(void) restKitDidLoadObjects:(NSArray*)objects {
     // We receive the response from the server
-    _userProfile = [[objects objectAtIndex:0] retain];
+    _userProfile = [objects[0] retain];
     // Saving the current user's full name and avatar URL in the ServerObj that represents him
     ServerObj* currentAccount = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount];
     currentAccount.avatarUrl = _userProfile.avatarUrl;
     currentAccount.userFullname = _userProfile.fullName;
     // We need to prevent the caller.
     [[SocialUserProfileCache sharedInstance] addInCache:_userProfile forIdentity:_userProfile.identity];
-    [super objectLoader:objectLoader didLoadObjects:objects];
+    [super restKitDidLoadObjects:objects];
 }
 
 @end

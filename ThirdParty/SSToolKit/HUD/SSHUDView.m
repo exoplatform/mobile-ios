@@ -33,7 +33,7 @@ static CGFloat kIndicatorSize = 40.0;
 
 #pragma mark NSObject
 
-- (id)init {
+- (instancetype)init {
 	return [self initWithTitle:nil loading:YES];
 }
 
@@ -52,7 +52,7 @@ static CGFloat kIndicatorSize = 40.0;
 
 #pragma mark UIView
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
 	return [self initWithTitle:nil loading:YES];
 }
 
@@ -82,11 +82,20 @@ static CGFloat kIndicatorSize = 40.0;
 		
 		NSString *dingbat = _successful ? @"✔" : @"✘";
 		UIFont *dingbatFont = [UIFont systemFontOfSize:60.0f];
-		CGSize dingbatSize = [dingbat sizeWithFont:dingbatFont];
+        CGSize dingbatSize = [dingbat sizeWithAttributes:@{NSFontAttributeName: dingbatFont}];
 		CGRect dingbatRect = CGRectMake(roundf((_hudSize.width - dingbatSize.width) / 2.0f),
 										roundf((_hudSize.height - dingbatSize.height) / 2.0f),
 										dingbatSize.width, dingbatSize.height);
-		[dingbat drawInRect:dingbatRect withFont:dingbatFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
+        NSMutableParagraphStyle *dingbatStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        dingbatStyle.lineBreakMode = NSLineBreakByClipping;
+        dingbatStyle.alignment = NSTextAlignmentCenter;
+        [dingbat drawWithRect:dingbatRect
+                      options:nil
+                   attributes:@{
+                                NSFontAttributeName: dingbatFont,
+                                NSParagraphStyleAttributeName: dingbatStyle
+                                }
+                      context:nil];
 	}
 }
 
@@ -105,12 +114,12 @@ static CGFloat kIndicatorSize = 40.0;
 
 #pragma mark HUD
 
-- (id)initWithTitle:(NSString *)aTitle {
+- (instancetype)initWithTitle:(NSString *)aTitle {
 	return [self initWithTitle:aTitle loading:YES];
 }
 
 
-- (id)initWithTitle:(NSString *)aTitle loading:(BOOL)isLoading {
+- (instancetype)initWithTitle:(NSString *)aTitle loading:(BOOL)isLoading {
 	if ((self = [super initWithFrame:CGRectZero])) {
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -129,8 +138,8 @@ static CGFloat kIndicatorSize = 40.0;
 		_textLabel.textColor = [UIColor whiteColor];
 		_textLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
 		_textLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		_textLabel.textAlignment = UITextAlignmentCenter;
-		_textLabel.lineBreakMode = UILineBreakModeTailTruncation;
+		_textLabel.textAlignment = NSTextAlignmentCenter;
+		_textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
 		_textLabel.text = aTitle ? aTitle : @"Loading";
 		[self addSubview:_textLabel];
 		
@@ -339,7 +348,7 @@ static CGFloat kIndicatorSize = 40.0;
 	_hudWindow = nil;
 	
 	// Return focus to the first window
-	[[[[UIApplication sharedApplication] windows] objectAtIndex:0] makeKeyWindow];
+	[[[UIApplication sharedApplication] windows][0] makeKeyWindow];
 }
 
 @end

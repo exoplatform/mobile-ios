@@ -25,7 +25,7 @@
     [super dealloc];
 }
 
-- (id)initWithTitle:(NSString *)title icon:(UIImage *)icon;
+- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon;
 {
     self = [super init];
     if (self)
@@ -44,7 +44,7 @@
 
 - (CGSize) sizeThatFits:(CGSize)size;
 {
-    CGSize titleSize = [self.title sizeWithFont:kTabItemFont];
+    CGSize titleSize = [self.title sizeWithAttributes:@{ NSFontAttributeName: kTabItemFont}];
     
     CGFloat width = titleSize.width;
     
@@ -100,9 +100,9 @@
     
     [kTabItemTextColor set];
 
-    CGFloat heightTitle = [self.title sizeWithFont:kTabItemFont].height;
+    CGFloat heightTitle = [self.title sizeWithAttributes:@{NSFontAttributeName: kTabItemFont}].height;
     CGFloat titleYOffset = (self.bounds.size.height - heightTitle) / 2;
-    [self.title drawAtPoint:CGPointMake(xOffset, titleYOffset) withFont:kTabItemFont];
+    [self.title drawAtPoint:CGPointMake(xOffset, titleYOffset) withAttributes:@{NSFontAttributeName: kTabItemFont}];
     
     CGContextRestoreGState(context);
 }

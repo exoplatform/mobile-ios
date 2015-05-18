@@ -16,11 +16,11 @@ typedef struct _xmlRetain *xmlRetainPtr;
 
 @interface DDXMLNode (PrivateAPI)
 
-+ (id)nodeWithPrimitive:(xmlKindPtr)nodePtr;
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr;
++ (instancetype)nodeWithPrimitive:(xmlKindPtr)nodePtr;
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr;
 
-+ (id)nodeWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr;
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr;
++ (instancetype)nodeWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr;
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr;
 
 + (BOOL)isXmlAttrPtr:(xmlKindPtr)kindPtr;
 - (BOOL)isXmlAttrPtr;
@@ -65,7 +65,7 @@ typedef struct _xmlRetain *xmlRetainPtr;
 @interface DDXMLElement (PrivateAPI)
 
 + (id)nodeWithPrimitive:(xmlKindPtr)nodePtr;
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr;
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr;
 
 - (NSArray *)elementsWithName:(NSString *)name uri:(NSString *)URI;
 
@@ -77,6 +77,6 @@ typedef struct _xmlRetain *xmlRetainPtr;
 @interface DDXMLDocument (PrivateAPI)
 
 + (id)nodeWithPrimitive:(xmlKindPtr)nodePtr;
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr;
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr;
 
 @end

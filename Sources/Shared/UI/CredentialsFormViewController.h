@@ -33,6 +33,6 @@
 @property (nonatomic, retain) ServerObj*       account;
 @property (nonatomic, assign) id<CredentialsFormResultDelegate> delegate;
 
--(id)initWithAccount:(ServerObj*)selectedAccount andDelegate:(id<CredentialsFormResultDelegate>)dlg;
+-(instancetype)initWithAccount:(ServerObj*)selectedAccount andDelegate:(id<CredentialsFormResultDelegate>)dlg;
 
 @end

@@ -45,7 +45,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 @synthesize createButton = _createButton;
 @synthesize warningIcon = _warningIcon;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -189,7 +189,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 - (void)showGreeting
 {
     
-    UIView *greetingView = [[[self.view superview] subviews] objectAtIndex:1];
+    UIView *greetingView = [[self.view superview] subviews][1];
     greetingView.hidden = NO;
     self.view.hidden = YES;
     [UIView transitionFromView:self.view toView:greetingView duration:0.8f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
@@ -200,7 +200,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
             button.title = @"OK";
         } else {
             UINavigationBar *navigationBar = (UINavigationBar *)[self.parentViewController.view viewWithTag:SIGNUP_NAVIGATION_BAR_TAG];
-            UINavigationItem *navigationItem = (UINavigationItem *) [[navigationBar items] objectAtIndex:0];
+            UINavigationItem *navigationItem = (UINavigationItem *) [navigationBar items][0];
             UIBarButtonItem *button = navigationItem.rightBarButtonItem;
             button.title = @"OK";
         }

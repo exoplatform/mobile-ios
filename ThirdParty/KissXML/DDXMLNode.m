@@ -107,12 +107,12 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 #pragma mark Init, Dealloc
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-+ (id)nodeWithPrimitive:(xmlKindPtr)nodePtr
++ (instancetype)nodeWithPrimitive:(xmlKindPtr)nodePtr
 {
 	return [[[DDXMLNode alloc] initWithPrimitive:nodePtr] autorelease];
 }
 
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr
 {
 	if(nodePtr == NULL)
 	{
@@ -144,12 +144,12 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 	return self;
 }
 
-+ (id)nodeWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr
++ (instancetype)nodeWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr
 {
 	return [[[DDXMLNode alloc] initWithPrimitive:nodePtr nsParent:parentPtr] autorelease];
 }
 
-- (id)initWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr
+- (instancetype)initWithPrimitive:(xmlKindPtr)nodePtr nsParent:(xmlNodePtr)parentPtr
 {
 	if(nodePtr == NULL)
 	{
@@ -273,7 +273,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 	{
 		xmlNsPtr ns = (xmlNsPtr)genericPtr;
 		if(ns->prefix != NULL)
-			return [NSString stringWithUTF8String:((const char*)ns->prefix)];
+			return @((const char*)ns->prefix);
 		else
 			return @"";
 	}
@@ -284,7 +284,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 		if(name == NULL)
 			return nil;
 		else
-			return [NSString stringWithUTF8String:name];
+			return @(name);
 	}
 }
 
@@ -338,7 +338,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 {
 	if([self isXmlNsPtr])
 	{
-		return [NSString stringWithUTF8String:((const char *)((xmlNsPtr)genericPtr)->href)];
+		return @((const char *)((xmlNsPtr)genericPtr)->href);
 	}
 	else if([self isXmlAttrPtr])
 	{
@@ -346,7 +346,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 		
 		if(attr->children != NULL)
 		{
-			return [NSString stringWithUTF8String:(const char *)attr->children->content];
+			return @((const char *)attr->children->content);
 		}
 		
 		return nil;
@@ -355,7 +355,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 	{
 		xmlChar *content = xmlNodeGetContent((xmlNodePtr)genericPtr);
 		
-		NSString *result = [NSString stringWithUTF8String:(const char *)content];
+		NSString *result = @((const char *)content);
 		
 		xmlFree(content);
 		return result;
@@ -803,7 +803,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 		// Strangely enough, the localName of a namespace is the prefix, and the prefix is an empty string
 		xmlNsPtr ns = (xmlNsPtr)genericPtr;
 		if(ns->prefix != NULL)
-			return [NSString stringWithUTF8String:((const char *)ns->prefix)];
+			return @((const char *)ns->prefix);
 		else
 			return @"";
 	}
@@ -887,7 +887,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 		xmlAttrPtr attr = (xmlAttrPtr)genericPtr;
 		if(attr->ns != NULL)
 		{
-			return [NSString stringWithUTF8String:((const char *)attr->ns->href)];
+			return @((const char *)attr->ns->href);
 		}
 	}
 	else if([self isXmlNodePtr])
@@ -895,7 +895,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 		xmlNodePtr node = (xmlNodePtr)genericPtr;
 		if(node->ns != NULL)
 		{
-			return [NSString stringWithUTF8String:((const char *)node->ns->href)];
+			return @((const char *)node->ns->href);
 		}
 	}
 	
@@ -992,7 +992,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 	
 	if([self kind] == DDXMLTextKind)
 	{
-		NSString *result = [NSString stringWithUTF8String:(const char *)bufferPtr->content];
+		NSString *result = @((const char *)bufferPtr->content);
 		
 		xmlBufferFree(bufferPtr);
 		
@@ -1074,7 +1074,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 		
 		if(count == 0)
 		{
-			result = [NSArray array];
+			result = @[];
 		}
 		else
 		{
@@ -1796,7 +1796,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 **/
 + (NSError *)lastError
 {
-	NSValue *lastErrorValue = [[[NSThread currentThread] threadDictionary] objectForKey:DDLastErrorKey];
+	NSValue *lastErrorValue = [[NSThread currentThread] threadDictionary][DDLastErrorKey];
 	if(lastErrorValue)
 	{
 		xmlError lastError;
@@ -1805,7 +1805,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error);
 		int errCode = lastError.code;
 		NSString *errMsg = [[NSString stringWithFormat:@"%s", lastError.message] trimWhitespace];
 		
-		NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+		NSDictionary *info = @{NSLocalizedDescriptionKey: errMsg};
 			
 		return [NSError errorWithDomain:@"DDXMLErrorDomain" code:errCode userInfo:info];
 	}
@@ -1831,7 +1831,7 @@ static void MyErrorHandler(void * userData, xmlErrorPtr error)
 	{
 		NSValue *errorValue = [NSValue valueWithBytes:error objCType:@encode(xmlError)];
 		
-		[[[NSThread currentThread] threadDictionary] setObject:errorValue forKey:DDLastErrorKey];
+		[[NSThread currentThread] threadDictionary][DDLastErrorKey] = errorValue;
 	}
 }
 

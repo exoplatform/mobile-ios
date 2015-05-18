@@ -25,7 +25,7 @@
 @protocol DashboardProxyDelegate;
 
 
-@interface DashboardProxy : NSObject<RKObjectLoaderDelegate, GadgetsProxyDelegate> {
+@interface DashboardProxy : NSObject<GadgetsProxyDelegate> {
     
     BOOL _isPlatformCompatibleWithSocialFeatures;
     
@@ -42,7 +42,7 @@
 @property (nonatomic, retain) NSArray *arrayOfDashboards;
 @property (nonatomic, assign) id<DashboardProxyDelegate> delegate;
 
--(id)initWithDelegate:(id<DashboardProxyDelegate>)delegate;
+-(instancetype)initWithDelegate:(id<DashboardProxyDelegate>)delegate;
 - (void)retrieveDashboards;
 
 @end

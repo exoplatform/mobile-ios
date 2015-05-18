@@ -24,7 +24,7 @@
 
 @synthesize userID, userFullName,activityID,avatarUrl,title,body,lastUpdateDate,postedTime,nbLikes,nbComments,postedTimeInWords, arrComments, arrLikes;
 
--(id)initWithUserID:(NSString *)_userID
+-(instancetype)initWithUserID:(NSString *)_userID
          activityID:(NSString *)_activityID
           avatarUrl:(NSString *)_avatarUrl
               title:(NSString *)_title
@@ -50,7 +50,7 @@
     return self;
 }
 
--(id)initWithUserID:(NSString *)_userID
+-(instancetype)initWithUserID:(NSString *)_userID
          activityID:(NSString *)_activityID
           avatarUrl:(NSString *)_avatarUrl
               title:(NSString *)_title
@@ -81,7 +81,7 @@
 @synthesize arrComments;
 @synthesize userImageAvatar;
 
-- (id)initWithUserID:(NSString *)_activityID
+- (instancetype)initWithUserID:(NSString *)_activityID
             arrLikes:(NSArray *)_arrLikes
          arrComments:(NSArray *)_arrComments
 {
@@ -105,7 +105,7 @@
 @synthesize userFullName;
 @synthesize arrTxtComments;
 
-- (id)initWithUserID:(NSString *)_activityID
+- (instancetype)initWithUserID:(NSString *)_activityID
               userID:(NSString *)_userID
       arrTxtComments:(NSMutableArray *)_arrTxtComments
 {
@@ -128,7 +128,7 @@
 @synthesize arrLikes;
 @synthesize arrComments;
 
--(id)init{
+-(instancetype)init{
     if ((self = [super init])) {
    
         //Create a list of activities

@@ -33,7 +33,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 @synthesize usernameTf = _usernameTf;
 @synthesize passwordTf = _passwordTf;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -73,7 +73,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     _bbtnDone = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStyleDone target:self action:@selector(onBbtnDone)];
     //[_bbtnDone setEnabled:NO];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [self.navigationItem setRightBarButtonItem:_bbtnDone];
     
     self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;

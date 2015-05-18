@@ -40,7 +40,7 @@
 	return _p;
 }
 
-- (id)initWithFrame:(CGRect)frame andController:(ATMHud *)c {
+- (instancetype)initWithFrame:(CGRect)frame andController:(ATMHud *)c {
     if ((self = [super initWithFrame:frame])) {
 		self.p = c;
 		self.backgroundColor = [UIColor clearColor];
@@ -109,8 +109,16 @@
 		activityRect = CGRectMake(p.margin, p.margin, activitySize.width, activitySize.height);
 		targetBounds = CGRectMake(0, 0, p.margin*2+activitySize.width, p.margin*2+activitySize.height);
 	} else {
+        NSMutableParagraphStyle *wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
 		BOOL hasFixedSize = NO;
-		CGSize captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize captionSize = [caption boundingRectWithSize:CGSizeMake(160, 200)
+                                                   options:nil
+                                                attributes:@{
+                                                   NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                                   }
+                                                   context:nil].size;
 		
 		if (fixedSize.width > 0 & fixedSize.height > 0) {
 			CGSize s = fixedSize;
@@ -118,7 +126,13 @@
 				s.width = progressRect.size.width+p.margin*2;
 			}
 			hasFixedSize = YES;
-			captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(s.width-p.margin*2, 200) lineBreakMode:UILineBreakModeWordWrap];
+            captionSize = [caption boundingRectWithSize:CGSizeMake(s.width-p.margin*2, 200)
+                                                options:nil
+                                             attributes:@{
+                                                          NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                          NSParagraphStyleAttributeName: wordWrapStyle
+                                                          }
+                                                context:nil].size;
 			targetBounds = CGRectMake(0, 0, s.width, s.height);
 		}
 		
@@ -132,7 +146,13 @@
 				if (progress > 0) {
 					adjustment = p.padding+progressRect.size.height;
 					if (captionSize.width+p.margin*2 < progressRect.size.width) {
-						captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(progressRect.size.width, 200) lineBreakMode:UILineBreakModeWordWrap];
+                        captionSize = [caption boundingRectWithSize:CGSizeMake(progressRect.size.width, 200)
+                                                            options:nil
+                                                         attributes:@{
+                                                                      NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                                      NSParagraphStyleAttributeName: wordWrapStyle
+                                                                      }
+                                                            context:nil].size;
 						captionRect.size = captionSize;
 						targetBounds = CGRectMake(0, 0, progressRect.size.width+p.margin*2, captionSize.height+p.margin*2+adjustment);
 					} else {
@@ -159,7 +179,13 @@
 				if (progress > 0) {
 					adjustment = p.padding+progressRect.size.height;
 					if (captionSize.width+p.margin*2 < progressRect.size.width) {
-						captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(progressRect.size.width, 200) lineBreakMode:UILineBreakModeWordWrap];
+                        captionSize = [caption boundingRectWithSize:CGSizeMake(progressRect.size.width, 200)
+                                                            options:nil
+                                                         attributes:@{
+                                                                      NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                                      NSParagraphStyleAttributeName: wordWrapStyle
+                                                                      }
+                                                            context:nil].size;
 						captionRect.size = captionSize;
 					}
 				} else {
@@ -173,7 +199,13 @@
 				int deltaWidth = targetBounds.size.width-captionSize.width;
 				marginX = 0.5*deltaWidth;
 				if (marginX < p.margin) {
-					captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
+                    captionSize = [caption boundingRectWithSize:CGSizeMake(160, 200)
+                                                        options:nil
+                                                     attributes:@{
+                                                                  NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                                  NSParagraphStyleAttributeName: wordWrapStyle
+                                                                  }
+                                                        context:nil].size;
 					captionRect.size = captionSize;
 					
 					targetBounds = CGRectMake(0, 0, captionSize.width+2*p.margin, targetBounds.size.height);
@@ -196,7 +228,13 @@
 				int deltaWidth = targetBounds.size.width-(adjustment+captionSize.width);
 				marginX = 0.5*deltaWidth;
 				if (marginX < p.margin) {
-					captionSize = [caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
+                    captionSize = [caption boundingRectWithSize:CGSizeMake(160, 200)
+                                                        options:nil
+                                                     attributes:@{
+                                                                  NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                                  NSParagraphStyleAttributeName: wordWrapStyle
+                                                                  }
+                                                        context:nil].size;
 					captionRect.size = captionSize;
 					
 					targetBounds = CGRectMake(0, 0, adjustment+captionSize.width+2*p.margin, targetBounds.size.height);
@@ -283,12 +321,19 @@
 - (CGSize)calculateSizeForQueueItem:(ATMHudQueueItem *)item {
 	CGSize targetSize = CGSizeZero;
 	CGSize styleSize = [self sizeForActivityStyle:item.activityStyle];
+    NSMutableParagraphStyle *wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
 	if (!item.caption || [item.caption isEqualToString:@""]) {
 		targetSize = CGSizeMake(p.margin*2+styleSize.width, p.margin*2+styleSize.height);
 	} else {
 		BOOL hasFixedSize = NO;
-		CGSize captionSize = [item.caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
-		
+        CGSize captionSize = [item.caption boundingRectWithSize:CGSizeMake(160, 200)
+                                                   options:nil
+                                                attributes:@{
+                                                             NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                             NSParagraphStyleAttributeName: wordWrapStyle
+                                                             }
+                                                   context:nil].size;
 		float adjustment = 0;
 		CGFloat marginX = 0;
 		CGFloat marginY = 0;
@@ -319,8 +364,13 @@
 				int deltaWidth = targetSize.width-captionSize.width;
 				marginX = 0.5*deltaWidth;
 				if (marginX < p.margin) {
-					captionSize = [item.caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
-					
+                    captionSize = [item.caption boundingRectWithSize:CGSizeMake(160, 200)
+                                                             options:nil
+                                                          attributes:@{
+                                                                       NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                                       NSParagraphStyleAttributeName: wordWrapStyle
+                                                                       }
+                                                             context:nil].size;
 					targetSize = CGSizeMake(captionSize.width+2*p.margin, targetSize.height);
 				}
 				
@@ -339,8 +389,13 @@
 				int deltaWidth = targetSize.width-(adjustment+captionSize.width);
 				marginX = 0.5*deltaWidth;
 				if (marginX < p.margin) {
-					captionSize = [item.caption sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160, 200) lineBreakMode:UILineBreakModeWordWrap];
-					
+                    captionSize = [item.caption boundingRectWithSize:CGSizeMake(160, 200)
+                                                             options:nil
+                                                          attributes:@{
+                                                                       NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+                                                                       NSParagraphStyleAttributeName: wordWrapStyle
+                                                                       }
+                                                             context:nil].size;
 					targetSize = CGSizeMake(adjustment+captionSize.width+2*p.margin, targetSize.height);
 				}
 				
