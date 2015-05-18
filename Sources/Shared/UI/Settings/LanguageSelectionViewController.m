@@ -34,6 +34,8 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = Localize(@"Language");
+    self.tableView.backgroundColor = EXO_BACKGROUND_COLOR;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,7 +58,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    CustomBackgroundForCell_iPhone *cell;
     cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:@"LanguageCell"];
     if(cell == nil)
     {
@@ -102,6 +104,8 @@
         cell.accessoryView = [self makeCheckmarkOffAccessoryView];
     }
 
+
+    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
     
     return cell;
 }
@@ -125,6 +129,8 @@
 
     //Notify the language change
     [[NSNotificationCenter defaultCenter] postNotificationName:EXO_NOTIFICATION_CHANGE_LANGUAGE object:self];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 

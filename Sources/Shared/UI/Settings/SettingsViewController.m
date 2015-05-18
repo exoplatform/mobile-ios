@@ -618,7 +618,7 @@ typedef enum {
 //        [self.tableView reloadData];
         LanguageSelectionViewController * languageSelectionVC = [[LanguageSelectionViewController alloc] initWithNibName:@"LanguageSelectionViewController" bundle:nil];
         languageSelectionVC.listLanguages = [[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey];
-        [self.navigationController pushViewController:languageSelectionVC animated:nil];
+        [self.navigationController pushViewController:languageSelectionVC animated:YES];
         
     }
     
