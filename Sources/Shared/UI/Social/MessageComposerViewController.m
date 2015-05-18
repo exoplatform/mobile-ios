@@ -93,6 +93,7 @@
     [_spacesTableView release];
     [_socialSpaceProxy release];
     if (selectedSpace) [selectedSpace release];
+    [_spaceTableViewHeightConstraint release];
     [super dealloc];
 }
 
@@ -164,29 +165,24 @@
     /*
      ######
      */
+
     [self.spacesTableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
-    
-    
+
+    if (!_isPostMessage) {
+        self.spaceTableViewHeightConstraint.constant = 0;
+    }
     selectedSpace = nil;
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"4.0") && SYSTEM_VERSION_LESS_THAN(@"5.0")) {
-        // For iOS version < 5.0, the subviews are rearranged before appearing phase. 
-        [self reArrangeSubViews];        
-    }
     [self.spacesTableView reloadData];
     [super viewWillAppear:animated];
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
 - (void)viewDidLayoutSubviews {
-    
-    // For iOS version >= 5.0 which support this method, the subviews are rearranged here.
     [self reArrangeSubViews];
 }
-#endif
 
 - (void)viewDidUnload
 {
