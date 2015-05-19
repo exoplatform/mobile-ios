@@ -3160,7 +3160,6 @@
 				5778209119249DB100ED72D0 /* eXoTests-Prefix.pch */,
 				57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */,
 				57E4761C1935C47000C3140E /* GetFoldersAndFilesResponse-4.0.xml */,
-				5778208E19249DB100ED72D0 /* InfoPlist.strings */,
 				578F3A9219332AA700554F28 /* LatestVersionResponse-4.0.json */,
 				575D9BBA192C8A3D00AD337A /* PlatformInfoResponse-4.0.json */,
 				578F3A841932F8BF00554F28 /* PostActivityResponse-4.0.json */,
@@ -4566,9 +4565,7 @@
 				1FCEDED11457A34F0058C80F /* ActivityTypeLink@2x.png in Resources */,
 				1FCEDED21457A34F0058C80F /* ActivityTypeNormal@2x.png in Resources */,
 				1FCEDED31457A34F0058C80F /* ActivityTypeWiki@2x.png in Resources */,
-				1F20AC4314590BDA0068A2CB /* ActivityForumTableViewCell.xib in Resources */,
 				9C34B91D1B044971003A2DF3 /* EL.gif in Resources */,
-				1F20ACDF145968080068A2CB /* ActivityForumDetailMessageTableViewCell.xib in Resources */,
 				1FD02F99145A8C4300A36840 /* ActivityWikiTableViewCell.xib in Resources */,
 				1FCD8093145E9A62009B34D3 /* ActivityWikiDetailMessageTableViewCell.xib in Resources */,
 				57EEB3D718B1BF6D00C6B2E8 /* ES.gif in Resources */,
@@ -5207,9 +5204,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					Three20/Build/Products/three20,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
@@ -5261,9 +5255,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					Three20/Build/Products/three20,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
@@ -5318,12 +5309,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					Three20/Build/Products/three20,
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-				);
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
@@ -5357,9 +5343,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					Three20/Build/Products/three20,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
@@ -5415,12 +5398,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					Three20/Build/Products/three20,
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-				);
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
@@ -5454,9 +5432,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					Three20/Build/Products/three20,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eXo_Platform-Info.plist";
@@ -5530,9 +5505,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 					"$(inherited)",
 				);
@@ -5686,9 +5659,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = (
-					Three20/Build/Products/three20,
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					/usr/include/libxml2,
 					"$(inherited)",
 				);
@@ -5729,11 +5699,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-				);
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lxml2";
@@ -5769,11 +5735,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-				);
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
