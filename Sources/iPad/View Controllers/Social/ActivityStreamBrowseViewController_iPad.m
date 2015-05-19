@@ -48,6 +48,10 @@
     containerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     containerView.squareCorners = NO;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
+    
+    //Remove & re-Add the loading indicator here to be sure that this view is above the table view (& the filter view)
+    [self.hudLoadWaitingWithPositionUpdated.view removeFromSuperview];
+    [self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
 }
 
 // Specific method to retrieve the height of the cell
