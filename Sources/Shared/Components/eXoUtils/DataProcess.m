@@ -118,12 +118,12 @@ static DataProcess *_instance;
 		if([tmpNodeValue compare:@" .."] != NSOrderedSame)
 		{
 			NSRange range1 = [tmpNodeDescription rangeOfString:@"href="];
-			int mark = 0;
+			long mark = 0;
 			
 			if(range1.length > 0)
 			{
 				
-				for(int i = range1.location + range1.length + 1; i < [tmpNodeDescription length]; i ++)
+				for(long i = range1.location + range1.length + 1; i < [tmpNodeDescription length]; i ++)
 				{
 					if([tmpNodeDescription characterAtIndex:i] == '"')
 					{

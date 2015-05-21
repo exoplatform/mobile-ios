@@ -322,8 +322,9 @@
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [cell configureCell:gadgetTmp.gadgetName description:gadgetTmp.gadgetDescription icon:gadgetTmp.gadgetIcon];
         
-        [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
-        
+        int row = (int)indexPath.row;
+        int size = (int)[self tableView:tableView numberOfRowsInSection:indexPath.section];
+        [cell setBackgroundForRow:row inSectionSize:size];
     }
     
 	return cell;

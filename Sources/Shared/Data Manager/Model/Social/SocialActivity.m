@@ -250,7 +250,7 @@
                 
                 [result appendFormat:@"&#%@%@", xForHex, unknownEntity];
                 
-                NSLog(@"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
+                LogError(@"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
                 
             }
             

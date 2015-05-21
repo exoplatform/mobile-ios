@@ -7,15 +7,6 @@
 #import "UIImage+RoundedCorner.h"
 #import "UIImage+Alpha.h"
 
-// Private helper methods
-@interface UIImage ()
-- (UIImage *)resizedImage:(CGSize)newSize
-                transform:(CGAffineTransform)transform
-           drawTransposed:(BOOL)transpose
-     interpolationQuality:(CGInterpolationQuality)quality;
-- (CGAffineTransform)transformForOrientation:(CGSize)newSize;
-@end
-
 @implementation UIImage (Resize)
 
 // Returns a copy of this image that is cropped to the given bounds.
@@ -48,7 +39,7 @@
     UIImage *croppedImage = [resizedImage croppedImage:cropRect];
     
     UIImage *transparentBorderImage = borderSize ? [croppedImage transparentBorderImage:borderSize] : croppedImage;
-
+    
     return [transparentBorderImage roundedCornerImage:cornerRadius borderSize:borderSize];
 }
 
@@ -58,18 +49,23 @@
     BOOL drawTransposed;
     CGAffineTransform transform = CGAffineTransformIdentity;
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
-        // Apprently in iOS 5 the image is already correctly rotated, so we don't need to rotate it manually
+    // In iOS 5 the image is already correctly rotated. See Eran Sandler's
+    // addition here: http://eran.sandler.co.il/2011/11/07/uiimage-in-ios-5-orientation-and-resize/
+    
+    if ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0 ) 
+    {
         drawTransposed = NO;  
-    } else {    
-        switch (self.imageOrientation) {
+    } 
+    else 
+    {    
+        switch ( self.imageOrientation ) 
+        {
             case UIImageOrientationLeft:
             case UIImageOrientationLeftMirrored:
             case UIImageOrientationRight:
             case UIImageOrientationRightMirrored:
                 drawTransposed = YES;
                 break;
-                
             default:
                 drawTransposed = NO;
         }
@@ -77,10 +73,7 @@
         transform = [self transformForOrientation:newSize];
     } 
     
-    return [self resizedImage:newSize
-                    transform:transform
-               drawTransposed:drawTransposed
-         interpolationQuality:quality];
+    return [self resizedImage:newSize transform:transform drawTransposed:drawTransposed interpolationQuality:quality];
 }
 
 // Resizes the image according to the given content mode, taking into account the image's orientation
@@ -123,15 +116,19 @@
     CGRect transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
     CGImageRef imageRef = self.CGImage;
     
-    // Build a context that's the same dimensions as the new size
-    CGContextRef bitmap = CGBitmapContextCreate(NULL,
-                                                newRect.size.width,
-                                                newRect.size.height,
-                                                CGImageGetBitsPerComponent(imageRef),
-                                                0,
-                                                CGImageGetColorSpace(imageRef),
-                                                CGImageGetBitmapInfo(imageRef));
-    
+    // Fix for a colorspace / transparency issue that affects some types of 
+    // images. See here: http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/comment-page-2/#comment-39951
+        
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmap =CGBitmapContextCreate( NULL,
+                                               newRect.size.width,
+                                               newRect.size.height,
+                                               8,
+                                               0,
+                                               colorSpace,
+                                               kCGImageAlphaPremultipliedLast );
+    CGColorSpaceRelease(colorSpace);
+	
     // Rotate and/or flip the image if required by its orientation
     CGContextConcatCTM(bitmap, transform);
     

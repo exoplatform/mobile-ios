@@ -99,7 +99,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 #pragma mark NSURLConnectionDelegate methods
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"%@", [error description]);
+    LogError(@"%@", [error description]);
     [self.delegate cloudProxy:self handleError:error];
 }
 
@@ -283,7 +283,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(error) {
-          NSLog(@"create marketo lead failed for email: %@", email);    
+          LogError(@"create marketo lead failed for email: %@", email);
         }
     }];
 }

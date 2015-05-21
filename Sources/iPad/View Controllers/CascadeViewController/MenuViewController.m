@@ -335,7 +335,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    _intIndex = indexPath.row;
+    _intIndex = (int)indexPath.row;
     NSInteger index = _intIndex;
     
     if(!_isCompatibleWithSocial){

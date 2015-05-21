@@ -322,7 +322,7 @@
             _credViewController.view.hidden = YES;
             _servListViewController.view.hidden = NO;
         }
-        _selectedTabIndex = itemIndex;
+        _selectedTabIndex = (int)itemIndex;
     }
 }
 // fills username - password if there is remembered credentials

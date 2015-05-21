@@ -367,7 +367,7 @@
         rect.origin.y += 20;
         rect.size.width = 0;
         rect.size.height = 0;
-        NSLog(@"rect info %f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+        LogDebug(@"rect info %f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
         
         [actionSheet showFromRect:rect inView:self.view animated:YES];
     }

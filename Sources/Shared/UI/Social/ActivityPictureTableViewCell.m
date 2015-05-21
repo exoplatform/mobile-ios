@@ -101,7 +101,7 @@
                 [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
    
                 if(plfVersion < 4.0) {
-                 [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
+                 [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
                 }
                 
                 self.activityMessage.attributedText = attributedMessage;

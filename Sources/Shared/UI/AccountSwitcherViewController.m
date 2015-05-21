@@ -108,7 +108,8 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     [LoginProxy doLogout];
     [self.hud show];
     [self view].userInteractionEnabled = NO;
-    [[ApplicationPreferencesManager sharedInstance] setSelectedServerIndex:[self.listOfAccounts indexOfObject:account]];
+    int index = (int)[self.listOfAccounts indexOfObject:account];
+    [[ApplicationPreferencesManager sharedInstance] setSelectedServerIndex:index];
     self.login = [[LoginProxy alloc] initWithDelegate:self username:account.username password:account.password serverUrl:account.serverUrl];
     [self.login authenticate];
 }

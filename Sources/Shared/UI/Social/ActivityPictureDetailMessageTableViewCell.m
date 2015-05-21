@@ -67,8 +67,6 @@
     
     _imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    float plfVersion = [[userDefault valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
-
     NSString *message = nil;
     NSDictionary *_templateParams = self.socialActivity.templateParams;
     switch (self.socialActivity.activityType) {
