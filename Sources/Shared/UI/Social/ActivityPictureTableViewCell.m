@@ -95,7 +95,6 @@
             break;
         case ACTIVITY_CONTENTS_SPACE:{
             
-            float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
             NSString * message;
             
             if(plfVersion >= 4.0) { // in plf 4, no state in template params.

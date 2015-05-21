@@ -43,6 +43,7 @@
     ActivityStreamBrowseViewController*     _delegate;
     NSInteger                               _activityType;
     
+    float                                   plfVersion;
 }
 
 @property (retain, nonatomic) IBOutlet AvatarView *imgvAvatar;

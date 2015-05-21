@@ -27,7 +27,6 @@
 #import "ActivityHelper.h"
 
 @implementation ActivityBasicTableViewCell {
-    float plfVersion;
 }
 
 @synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar, imgType = _imgType;

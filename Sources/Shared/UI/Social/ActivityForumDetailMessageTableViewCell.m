@@ -24,7 +24,7 @@
 #import "LanguageHelper.h"
 #import "EGOImageView.h"
 #import "NSString+HTML.h"
-
+#import "ApplicationPreferencesManager.h"
 @implementation ActivityForumDetailMessageTableViewCell
 
 
@@ -67,9 +67,7 @@
             break;
         case ACTIVITY_FORUM_CREATE_TOPIC:
             name = [NSString stringWithFormat:@"%@%@ %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"NewTopic")];
-            
-            float plfVersion = [[[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
-            
+            float plfVersion = [[ApplicationPreferencesManager sharedInstance].platformVersion floatValue];
             if(plfVersion >= 4.0) { // plf 4 and later: TopicName is not in template params, it is title of socialActivityDetail
                 title = socialActivityDetail.title;
             } else {

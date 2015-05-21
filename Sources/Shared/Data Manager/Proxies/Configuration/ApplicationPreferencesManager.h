@@ -45,6 +45,7 @@
 #pragma mark * Server management
 @property (nonatomic, assign) NSInteger selectedServerIndex;
 @property (nonatomic, readonly) NSString *selectedDomain;
+@property (nonatomic, retain) NSString * platformVersion; //platform version 4.1.1
 
 #pragma mark * JCR storage
 /* current jcr repository. Return "repository" if cannot retrieve it from the server */

@@ -23,7 +23,7 @@
 #import "ActivityHelper.h"
 #import "defines.h"
 #import "NSString+HTML.h"
-
+#import "ApplicationPreferencesManager.h"
 @implementation ActivityAnswerDetailMessageTableViewCell
 
 

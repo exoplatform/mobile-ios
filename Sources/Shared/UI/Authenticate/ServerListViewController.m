@@ -150,7 +150,7 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
     [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
-    
+    [ApplicationPreferencesManager sharedInstance].platformVersion = @"";
     // Reload the tableview
     [_tbvlServerList reloadData];
 }
