@@ -94,7 +94,7 @@
 	static const char *tbl = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	
 	const char *s = [str UTF8String];
-	int length = [str length];
+	long length = [str length];
 	char *tmp = malloc(length * 4 / 3 + 4);
 	
 	int i = 0;

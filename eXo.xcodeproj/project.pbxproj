@@ -318,7 +318,6 @@
 		572EAA16192AFBFD008CFB11 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572EA9B4192AFBFD008CFB11 /* grayArrow@2x.png */; };
 		572EAA17192AFBFD008CFB11 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 572EA9B5192AFBFD008CFB11 /* whiteArrow.png */; };
 		572EAA18192AFBFD008CFB11 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572EA9B6192AFBFD008CFB11 /* whiteArrow@2x.png */; };
-		572EAA19192AFBFD008CFB11 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9B9192AFBFD008CFB11 /* Reachability.m */; };
 		572EAA1A192AFBFD008CFB11 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9BD192AFBFD008CFB11 /* UIColor+Hex.m */; };
 		572EAA1B192AFBFD008CFB11 /* UIView+InnerShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9BF192AFBFD008CFB11 /* UIView+InnerShadow.m */; };
 		572EAA1C192AFBFD008CFB11 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9C1192AFBFD008CFB11 /* UIView+Positioning.m */; };
@@ -328,10 +327,6 @@
 		572EAA20192AFBFD008CFB11 /* JMTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9CB192AFBFD008CFB11 /* JMTabItem.m */; };
 		572EAA21192AFBFD008CFB11 /* JMTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9CD192AFBFD008CFB11 /* JMTabView.m */; };
 		572EAA22192AFBFD008CFB11 /* BarBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D0192AFBFD008CFB11 /* BarBackgroundLayer.m */; };
-		572EAA23192AFBFD008CFB11 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D4192AFBFD008CFB11 /* DDXMLDocument.m */; };
-		572EAA24192AFBFD008CFB11 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D6192AFBFD008CFB11 /* DDXMLElement.m */; };
-		572EAA25192AFBFD008CFB11 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D8192AFBFD008CFB11 /* DDXMLNode.m */; };
-		572EAA26192AFBFD008CFB11 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9DB192AFBFD008CFB11 /* NSStringAdditions.m */; };
 		572EAA27192AFBFD008CFB11 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 572EA9DE192AFBFD008CFB11 /* libidn.a */; };
 		572EAA28192AFBFD008CFB11 /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9E4192AFBFD008CFB11 /* SSDrawingUtilities.m */; };
 		572EAA29192AFBFD008CFB11 /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9E6192AFBFD008CFB11 /* SSHUDView.m */; };
@@ -344,9 +339,6 @@
 		572EAA31192AFBFD008CFB11 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9F8192AFBFD008CFB11 /* CXMLNode.m */; };
 		572EAA32192AFBFD008CFB11 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9FA192AFBFD008CFB11 /* CXMLNode_PrivateExtensions.m */; };
 		572EAA33192AFBFD008CFB11 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9FC192AFBFD008CFB11 /* CXMLNode_XPathExtensions.m */; };
-		572EAA34192AFBFD008CFB11 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA00192AFBFD008CFB11 /* UIImage+Alpha.m */; };
-		572EAA35192AFBFD008CFB11 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */; };
-		572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */; };
 		5731DD411A1313FD001E3A19 /* ServerEditionTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */; };
 		5736ED081A8B02E20041C120 /* BR.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5736ED071A8B02E20041C120 /* BR.gif */; };
 		5736ED6E1A8B4B4D0041C120 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5736ED6D1A8B4B4D0041C120 /* Entitlements.plist */; };
@@ -1195,8 +1187,6 @@
 		572EA9B4192AFBFD008CFB11 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		572EA9B5192AFBFD008CFB11 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		572EA9B6192AFBFD008CFB11 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
-		572EA9B8192AFBFD008CFB11 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		572EA9B9192AFBFD008CFB11 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		572EA9BC192AFBFD008CFB11 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		572EA9BD192AFBFD008CFB11 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		572EA9BE192AFBFD008CFB11 /* UIView+InnerShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InnerShadow.h"; sourceTree = "<group>"; };
@@ -1216,16 +1206,6 @@
 		572EA9CD192AFBFD008CFB11 /* JMTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTabView.m; sourceTree = "<group>"; };
 		572EA9CF192AFBFD008CFB11 /* BarBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarBackgroundLayer.h; sourceTree = "<group>"; };
 		572EA9D0192AFBFD008CFB11 /* BarBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarBackgroundLayer.m; sourceTree = "<group>"; };
-		572EA9D2192AFBFD008CFB11 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
-		572EA9D3192AFBFD008CFB11 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
-		572EA9D4192AFBFD008CFB11 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
-		572EA9D5192AFBFD008CFB11 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
-		572EA9D6192AFBFD008CFB11 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
-		572EA9D7192AFBFD008CFB11 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
-		572EA9D8192AFBFD008CFB11 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
-		572EA9D9192AFBFD008CFB11 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
-		572EA9DA192AFBFD008CFB11 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
-		572EA9DB192AFBFD008CFB11 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		572EA9DD192AFBFD008CFB11 /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
 		572EA9DE192AFBFD008CFB11 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		572EA9DF192AFBFD008CFB11 /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
@@ -1253,12 +1233,6 @@
 		572EA9FB192AFBFD008CFB11 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
 		572EA9FC192AFBFD008CFB11 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
 		572EA9FD192AFBFD008CFB11 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
-		572EA9FF192AFBFD008CFB11 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
-		572EAA00192AFBFD008CFB11 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
-		572EAA01192AFBFD008CFB11 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
-		572EAA03192AFBFD008CFB11 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
-		572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		5731DD401A1313FD001E3A19 /* ServerEditionTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerEditionTestCase.m; sourceTree = "<group>"; };
 		5736ED061A8AFF890041C120 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5736ED071A8B02E20041C120 /* BR.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BR.gif; sourceTree = "<group>"; };
@@ -2871,14 +2845,11 @@
 				572EA98E192AFBFD008CFB11 /* ATMHud */,
 				572EA99C192AFBFD008CFB11 /* EGOImageLoading */,
 				572EA9AB192AFBFD008CFB11 /* EGOTableViewPullRefresh */,
-				572EA9B7192AFBFD008CFB11 /* InternetReachability */,
 				572EA9BA192AFBFD008CFB11 /* JMTabView */,
-				572EA9D1192AFBFD008CFB11 /* KissXML */,
 				572EA9DC192AFBFD008CFB11 /* libidn */,
 				572EA9E0192AFBFD008CFB11 /* Logging.h */,
 				572EA9E1192AFBFD008CFB11 /* SSToolKit */,
 				572EA9F0192AFBFD008CFB11 /* TouchXml */,
-				572EA9FE192AFBFD008CFB11 /* UIImage+Resize */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -2977,15 +2948,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		572EA9B7192AFBFD008CFB11 /* InternetReachability */ = {
-			isa = PBXGroup;
-			children = (
-				572EA9B8192AFBFD008CFB11 /* Reachability.h */,
-				572EA9B9192AFBFD008CFB11 /* Reachability.m */,
-			);
-			path = InternetReachability;
-			sourceTree = "<group>";
-		};
 		572EA9BA192AFBFD008CFB11 /* JMTabView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3034,23 +2996,6 @@
 				572EA9D0192AFBFD008CFB11 /* BarBackgroundLayer.m */,
 			);
 			path = Layers;
-			sourceTree = "<group>";
-		};
-		572EA9D1192AFBFD008CFB11 /* KissXML */ = {
-			isa = PBXGroup;
-			children = (
-				572EA9D2192AFBFD008CFB11 /* DDXML.h */,
-				572EA9D3192AFBFD008CFB11 /* DDXMLDocument.h */,
-				572EA9D4192AFBFD008CFB11 /* DDXMLDocument.m */,
-				572EA9D5192AFBFD008CFB11 /* DDXMLElement.h */,
-				572EA9D6192AFBFD008CFB11 /* DDXMLElement.m */,
-				572EA9D7192AFBFD008CFB11 /* DDXMLNode.h */,
-				572EA9D8192AFBFD008CFB11 /* DDXMLNode.m */,
-				572EA9D9192AFBFD008CFB11 /* DDXMLPrivate.h */,
-				572EA9DA192AFBFD008CFB11 /* NSStringAdditions.h */,
-				572EA9DB192AFBFD008CFB11 /* NSStringAdditions.m */,
-			);
-			path = KissXML;
 			sourceTree = "<group>";
 		};
 		572EA9DC192AFBFD008CFB11 /* libidn */ = {
@@ -3106,19 +3051,6 @@
 				572EA9FD192AFBFD008CFB11 /* TouchXML.h */,
 			);
 			path = TouchXml;
-			sourceTree = "<group>";
-		};
-		572EA9FE192AFBFD008CFB11 /* UIImage+Resize */ = {
-			isa = PBXGroup;
-			children = (
-				572EA9FF192AFBFD008CFB11 /* UIImage+Alpha.h */,
-				572EAA00192AFBFD008CFB11 /* UIImage+Alpha.m */,
-				572EAA01192AFBFD008CFB11 /* UIImage+Resize.h */,
-				572EAA02192AFBFD008CFB11 /* UIImage+Resize.m */,
-				572EAA03192AFBFD008CFB11 /* UIImage+RoundedCorner.h */,
-				572EAA04192AFBFD008CFB11 /* UIImage+RoundedCorner.m */,
-			);
-			path = "UIImage+Resize";
 			sourceTree = "<group>";
 		};
 		573ADC6619D264290009E90D /* AccountSwitcher */ = {
@@ -4258,7 +4190,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "eXo Platform";
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
@@ -4920,12 +4852,10 @@
 				894735121337142200B0AD11 /* GTMNSString+HTML.m in Sources */,
 				8937A32A13387F1E00D8B474 /* NSString+HTML.m in Sources */,
 				7C06962513419583007F26BB /* ServerEditingViewController.m in Sources */,
-				572EAA19192AFBFD008CFB11 /* Reachability.m in Sources */,
 				7C06962A13419B8D007F26BB /* ServerAddingViewController.m in Sources */,
 				7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */,
 				572EAA0D192AFBFD008CFB11 /* EGOImageLoadConnection.m in Sources */,
 				7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */,
-				572EAA34192AFBFD008CFB11 /* UIImage+Alpha.m in Sources */,
 				464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */,
 				46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */,
 				573ADC7A19D264580009E90D /* AccountSwitcherViewController.m in Sources */,
@@ -4946,7 +4876,6 @@
 				572EAA22192AFBFD008CFB11 /* BarBackgroundLayer.m in Sources */,
 				46A03A2C13A8C16D00E71AF9 /* ActivityBasicTableViewCell.m in Sources */,
 				46A03A2E13A8C16D00E71AF9 /* ActivityStreamBrowseViewController.m in Sources */,
-				572EAA35192AFBFD008CFB11 /* UIImage+Resize.m in Sources */,
 				572EAA20192AFBFD008CFB11 /* JMTabItem.m in Sources */,
 				572EAA1C192AFBFD008CFB11 /* UIView+Positioning.m in Sources */,
 				572EAA33192AFBFD008CFB11 /* CXMLNode_XPathExtensions.m in Sources */,
@@ -5001,7 +4930,6 @@
 				1FCED35C1435BA1800EC0B88 /* UIBarButtonItem+WEPopover.m in Sources */,
 				1FCED35D1435BA1800EC0B88 /* WEPopoverContainerView.m in Sources */,
 				572EAA0B192AFBFD008CFB11 /* EGOCache.m in Sources */,
-				572EAA24192AFBFD008CFB11 /* DDXMLElement.m in Sources */,
 				1FCED35E1435BA1800EC0B88 /* WEPopoverController.m in Sources */,
 				1FCED35F1435BA1800EC0B88 /* WETouchableView.m in Sources */,
 				1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */,
@@ -5032,11 +4960,9 @@
 				573ADC7E19D269E20009E90D /* AccountSwitcherTableViewCell.m in Sources */,
 				9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */,
 				1FD91DBF1471092E00DBDED0 /* ActivityAnswerTableViewCell.m in Sources */,
-				572EAA36192AFBFD008CFB11 /* UIImage+RoundedCorner.m in Sources */,
 				3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */,
 				46EA0E861472641500F42855 /* JTNavigationBar.m in Sources */,
 				46EA0E871472641500F42855 /* JTNavigationView.m in Sources */,
-				572EAA26192AFBFD008CFB11 /* NSStringAdditions.m in Sources */,
 				46EA0E881472641500F42855 /* JTRevealSidebarView.m in Sources */,
 				46EA0E891472641500F42855 /* JTTableViewCellFactory.m in Sources */,
 				46EA0E8A1472641500F42855 /* JTTableViewCellModal.m in Sources */,
@@ -5065,7 +4991,6 @@
 				A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */,
 				A6B54E4F157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m in Sources */,
 				A661D86D157EFEB800CCF870 /* CustomBackgroundView.m in Sources */,
-				572EAA23192AFBFD008CFB11 /* DDXMLDocument.m in Sources */,
 				572EAA09192AFBFD008CFB11 /* ATMSoundFX.m in Sources */,
 				A6B8CF211580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m in Sources */,
 				A65EAF4A159AB64400E598E0 /* UserProfileViewController.m in Sources */,
@@ -5105,7 +5030,6 @@
 				9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */,
 				7DCA4F4E176F00FA002694D5 /* ExoCloudProxy.m in Sources */,
 				7D013B9517827A67005F42D2 /* CloudViewUtils.m in Sources */,
-				572EAA25192AFBFD008CFB11 /* DDXMLNode.m in Sources */,
 				572EAA10192AFBFD008CFB11 /* EGORefreshTableHeaderView.m in Sources */,
 				7D02603817867EEC00C3FA24 /* WelcomeViewController_iPad.m in Sources */,
 				7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */,
@@ -5187,7 +5111,6 @@
 			baseConfigurationReference = 0F15430D57FBE9077ED5C2A9 /* Pods-eXo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -5241,7 +5164,6 @@
 			baseConfigurationReference = 03A305EB71020C02534A344E /* Pods-eXo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -5288,10 +5210,6 @@
 		464C14AA138AB8890001CBC8 /* Distribution AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
@@ -5328,7 +5246,6 @@
 			baseConfigurationReference = 8200154AFCCBDDA02E56AA6A /* Pods-eXo.distribution adhoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
@@ -5377,10 +5294,6 @@
 		46BC64021316F05B0034E7E3 /* Distribution AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -5417,7 +5330,6 @@
 			baseConfigurationReference = FB71766E8C6DA785FC332D92 /* Pods-eXo.distribution appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
@@ -5679,10 +5591,6 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -5701,7 +5609,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
@@ -5715,10 +5623,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

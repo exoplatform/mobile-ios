@@ -43,7 +43,7 @@
 
 #pragma mark - Properties
 #pragma mark * Server management
-@property (nonatomic, assign) int selectedServerIndex;
+@property (nonatomic, assign) NSInteger selectedServerIndex;
 @property (nonatomic, readonly) NSString *selectedDomain;
 
 #pragma mark * JCR storage

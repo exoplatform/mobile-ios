@@ -83,50 +83,6 @@
     
 }
 
-
-- (void)dealloc {
-
-    /* */
-    float cellHeight = [ActivityHelper getHeightForActivityCell:socialActivityStream forTableViewWidth:width];
-    
-    if (hasImage){
-        htmlLinkMessageFrame.origin.y =cellHeight - 42 - htmlLinkMessageFrame.size.height; // 42 = size of lbDate + Buttom Padding
-        htmlLinkDescriptionFrame.origin.y = htmlLinkMessageFrame.origin.y - htmlLinkDescriptionFrame.size.height - 5;
-        imgvAttachFrame = _imgvAttach.frame;
-        imgvAttachFrame.origin.x = 15;  // Padding from the left.
-        imgvAttachFrame.size.width = width;
-        imgvAttachFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 5;
-        imgvAttachFrame.size.height = htmlLinkDescriptionFrame.origin.y - imgvAttachFrame.origin.y -5;
-        
-    } else {
-        imgvAttachFrame = CGRectZero;
-        htmlLinkDescriptionFrame.origin.y = htmlLinkTitleFrame.origin.y + htmlLinkTitleFrame.size.height + 5;
-        htmlLinkMessageFrame.origin.y = htmlLinkDescriptionFrame.origin.y + htmlLinkDescriptionFrame.size.height+5;
-        
-        // Use flexible padding to fit all subviews in the cell.
-        float diff = htmlLinkMessageFrame.origin.y + htmlLinkMessageFrame.size.height- ((cellHeight-40) - htmlLinkMessageFrame.origin.y);
-        float padding = MIN(5.0, diff/4.0);
-        
-        htmlActivityMessageFrame.origin.y -=padding;
-        htmlLinkTitleFrame.origin.y -=2*padding;
-        htmlLinkDescriptionFrame.origin.y -= 3*padding;
-        htmlLinkMessageFrame.origin.y -= 4*padding;
-        htmlLinkMessageFrame.size.height = (cellHeight-40) - htmlLinkMessageFrame.origin.y;// cellHeight -40 -> lbDate.frame.origin.y after auto layout. 40 = 28 + paddings
-        
-    }
-    
-    dispatch_async(dispatch_get_main_queue(),^(void){
-        [self.lbName setFrame:nameFrame];
-        [self.htmlActivityMessage setFrame: htmlActivityMessageFrame];
-        [self.htmlLinkTitle setFrame:htmlLinkTitleFrame];
-        [self.imgvAttach setFrame:imgvAttachFrame];
-        [self.htmlLinkDescription setFrame:htmlLinkDescriptionFrame];
-        [self.htmlLinkMessage setFrame:htmlLinkMessageFrame];
-    });
-    
-    
-}
-
 - (void)dealloc {    
     self.imgvAttach = nil;
     self.htmlActivityMessage = nil;

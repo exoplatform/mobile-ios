@@ -91,10 +91,10 @@ static NSString *urlEncode(id object) {
 	return [parts componentsJoinedByString: @"&"];
 }
 
-- (NSData*)HTTPBody {
-    NSDictionary *dict = [[NSDictionary alloc] init];
-	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
-}
+//- (NSData*)HTTPBody {
+//    NSDictionary *dict = [[NSDictionary alloc] init];
+//	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
+//}
 
 
 #pragma mark - RKObjectLoaderDelegate implementation

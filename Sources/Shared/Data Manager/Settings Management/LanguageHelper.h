@@ -32,7 +32,7 @@
 
 + (LanguageHelper *)sharedInstance;
 - (void)loadLocalizableStringsForCurrentLanguage;
-- (void)changeToLanguage:(int)languageWanted;
+- (void)changeToLanguage:(NSInteger)languageWanted;
 - (int)getSelectedLanguage;
 
 @end

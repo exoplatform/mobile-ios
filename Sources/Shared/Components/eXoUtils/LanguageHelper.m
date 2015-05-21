@@ -68,7 +68,7 @@
     // returns the lang in preferences, or nil
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *selectedLang = [userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE];
-    int langIndex = (selectedLang) ? [selectedLang intValue] : 0;
+    NSInteger langIndex = (selectedLang) ? [selectedLang intValue] : 0;
     
     if (!selectedLang) {
         // returns the 2-letter language code of the device
@@ -85,9 +85,9 @@
     [self changeToLanguage:langIndex];
 }
 
-- (void)changeToLanguage:(int)languageWanted {
+- (void)changeToLanguage:(NSInteger)languageWanted {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", languageWanted] forKey:EXO_PREFERENCE_LANGUAGE];
+    [userDefaults setObject:[NSString stringWithFormat:@"%ld", (long)languageWanted] forKey:EXO_PREFERENCE_LANGUAGE];
 	LocalizationSetLanguage(self.international[languageWanted]);
     
 }

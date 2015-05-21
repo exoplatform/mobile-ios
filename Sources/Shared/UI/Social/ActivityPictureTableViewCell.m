@@ -109,7 +109,7 @@
                 [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
    
                 if(plfVersion < 4.0) {
-                 [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
+                 [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
                 }
                 
                 self.activityMessage.attributedText = attributedMessage;
@@ -133,62 +133,6 @@
         }
             break;
     }
-    
-    //Set the position of lbMessage
-    /*
-     Cell Structure:
-     - Avatar: all left side until 55 px
-     On the Right Side:
-     1. Name's Label: from 5px to the top, height default (22px)
-     2. HTML Message: next under Name, height to be estime
-     3. Image View.
-     4. Image name's label: under the image view, height to be estime
-     5. Tool View (time, like, comment button): 40px from the buttom, height 28px.
-     */
-    float cellHeight = [ActivityHelper getHeightForActivityCell:socialActivityStream forTableViewWidth:width];
-    
-    
-    //Set the position of Title
-    double heigthForTTLabel = [[[self htmlMessage] text] height];
-    if (heigthForTTLabel > EXO_MAX_HEIGHT){
-        heigthForTTLabel = EXO_MAX_HEIGHT;
-    }
-    
-    CGRect htmlMessageFrame = self.htmlMessage.frame;
-    htmlMessageFrame.origin.x =  LEFT_PADDING;
-    htmlMessageFrame.origin.y =  nameFrame.origin.y + nameFrame.size.height + LINE_DEFAULT_PADDING;
-    htmlMessageFrame.size.width =  width;
-    htmlMessageFrame.size.height = heigthForTTLabel+5;
-    
-    
-    // estime Image Name Label frame from the buttom.
-    
-    CGSize nameFileLabelSize = [[socialActivityStream.templateParams valueForKey:@"DOCNAME"] sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)                                                                                          lineBreakMode:NSLineBreakByWordWrapping];
-    if(nameFileLabelSize.height > MAX_HEIGHT_FILE_NAME){
-        nameFileLabelSize.height = MAX_HEIGHT_FILE_NAME;
-    }
-    
-    CGRect lbFileNameFrame   = _lbFileName.frame;
-    lbFileNameFrame.origin.x = nameFrame.origin.x;
-    lbFileNameFrame.origin.y = cellHeight - 40 - nameFileLabelSize.height;  // 40 = size of lbDate & buttom padding
-    lbFileNameFrame.size.width = width;
-    lbFileNameFrame.size.height = nameFileLabelSize.height;
-    
-    CGRect imageFrame = _imgvAttach.frame;
-    
-    imageFrame.origin.x = nameFrame.origin.x;
-    imageFrame.origin.y = htmlMessageFrame.origin.y + htmlMessageFrame.size.height+LINE_DEFAULT_PADDING;
-    imageFrame.size.width = width;
-    imageFrame.size.height = lbFileNameFrame.origin.y - LINE_DEFAULT_PADDING - imageFrame.origin.y;
-    
-    
-    dispatch_async(dispatch_get_main_queue(),^(void){
-        [self.lbName setFrame:nameFrame];
-        [self.htmlMessage setFrame:htmlMessageFrame];
-        [self.imgvAttach setFrame:imageFrame];
-        [self.lbFileName setFrame:lbFileNameFrame];
-    });
-    
 }
 
 

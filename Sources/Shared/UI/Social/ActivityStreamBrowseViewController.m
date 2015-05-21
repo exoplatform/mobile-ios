@@ -473,7 +473,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         long timeInSecond = plfVersion < 4 ? round(a.postedTime/1000) : round(a.lastUpdated/1000);
         long timeIntervalNow = [[NSDate date] timeIntervalSince1970];
         
-        int time = (timeIntervalNow - timeInSecond);
+        long time = (timeIntervalNow - timeInSecond);
         
         if (time < 86400) {
             //Search the current array of activities for today
@@ -536,7 +536,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     } else {
         _selectedTabItem = itemIndex;
     }
-    [UserPreferencesManager sharedInstance].selectedSocialStream = itemIndex;
+    [UserPreferencesManager sharedInstance].selectedSocialStream = (int)itemIndex;
     [self clearActivityData];
     [_tblvActivityStream reloadData];
     [self displayHudLoader];
@@ -761,7 +761,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
-    //NSLog(@"%@")//SocialLikeActivityProxy
     self.likeActivityProxy = [[[SocialLikeActivityProxy alloc] init] autorelease];
     self.likeActivityProxy.delegate = self;
     

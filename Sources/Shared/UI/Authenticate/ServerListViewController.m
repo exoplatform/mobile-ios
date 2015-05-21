@@ -144,7 +144,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ApplicationPreferencesManager sharedInstance].selectedServerIndex = indexPath.row;
+    [ApplicationPreferencesManager sharedInstance].selectedServerIndex = (int)indexPath.row;
     
     //Invalidate server informations
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

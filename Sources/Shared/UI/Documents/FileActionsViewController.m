@@ -157,8 +157,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
-    int section = indexPath.section;
-	int row = indexPath.row;
+    long section = indexPath.section;
+	long row = indexPath.row;
     
 	if(cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier]autorelease];
@@ -271,8 +271,8 @@ static short fileActionMode = 0;//1:copy, 2:move
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-	int section = indexPath.section;
-	int row = indexPath.row;
+	long section = indexPath.section;
+	long row = indexPath.row;
 	
 	if(section == 0)
 	{
