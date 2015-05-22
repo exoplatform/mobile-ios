@@ -124,7 +124,7 @@
 
 "Portuguese-Brazil" = "Portugais (Brésil)";
 
-"Greek"= "Greek";
+"Greek" = "Grec";
 
 "Send" = "Envoyer";
 
@@ -424,17 +424,17 @@
  Post Activity to Space
  */
 
-"Public" = "Your Stream";
+"Public" = "Mes activités";
 
-"CannotLoadSpaceID" = "Unable to load the space's identity";
+"CannotLoadSpaceID" = "Impossible de charger l'identité de l'espace";
 
-"PostActivityTo" = "Post activity to";
+"PostActivityTo" = "Poster l'activité dans";
 
-"You didn't join any space" = "You didn't join any space";
+"You didn't join any space" = "Vous n'avez rejoint aucun espace";
 
-"CannotLoadSpace" = "Unable to load information about your spaces";
+"CannotLoadSpace" = "Impossible de charger les informations sur vos espaces";
 
-"Loading spaces" = "Loading spaces ...";
+"Loading spaces" = "Chargement des espaces...";
 
 "To" = "à";
 
