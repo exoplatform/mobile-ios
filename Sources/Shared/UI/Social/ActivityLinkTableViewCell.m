@@ -34,6 +34,12 @@
 @synthesize imageViewHeightConstraint = _imageViewHeightConstraint;
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.htmlLinkTitle.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+        self.htmlLinkMessage.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+        self.htmlLinkDescription.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
+
     //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;

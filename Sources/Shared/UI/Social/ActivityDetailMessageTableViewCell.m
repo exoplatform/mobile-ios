@@ -101,6 +101,10 @@
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.lbName.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+        self.lbMessage.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
     
     self.socialActivity = socialActivityDetail;
     

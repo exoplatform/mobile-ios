@@ -60,7 +60,11 @@
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
-    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.htmlLinkTitle.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+        self.htmlLinkMessage.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+        self.htmlDescriptionMessage.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
     NSDictionary *_templateParams = self.socialActivity.templateParams;

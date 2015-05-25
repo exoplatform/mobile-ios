@@ -224,6 +224,10 @@
 
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.lbName.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+        self.lbMessage.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
 
     _lbMessage.attributedText = socialActivityStream.attributedMessage;
     

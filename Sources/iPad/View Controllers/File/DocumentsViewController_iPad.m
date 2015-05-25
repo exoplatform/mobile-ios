@@ -122,10 +122,15 @@
         rect.origin.y += 20;
         rect.size.width = 0;
         rect.size.height = 0;
-        [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        
+        // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        }];
     } else {
-        [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        }];
     }
 }
 

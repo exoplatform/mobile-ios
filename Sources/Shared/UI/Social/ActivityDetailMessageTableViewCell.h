@@ -23,6 +23,8 @@
 #define kBottomMargin 5.0
 #define kPadding 5.0
 
+#define WIDTH_FOR_LABEL_IPAD 475
+
 @class Activity;
 @class EGOImageView;
 @class SocialActivity;

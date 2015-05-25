@@ -21,6 +21,8 @@
 #import "defines.h"
 #import "AvatarView.h"
 
+#define WIDTH_FOR_LABEL_IPAD 450
+
 @class Activity;
 @class SocialActivity;
 @class ActivityStreamBrowseViewController;

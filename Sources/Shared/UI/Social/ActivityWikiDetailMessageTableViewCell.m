@@ -43,6 +43,10 @@
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail{
     [super setSocialActivityDetail:socialActivityDetail];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.lbTitle.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
+
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = @"";
     

@@ -586,8 +586,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     if ([headerTitle isEqualToString:@"Today"]) {
         headerLabel.text = Localize(_arrayOfSectionsTitle[section]);
     } else {
-        SocialActivity *firstAct = _sortedActivities[_arrayOfSectionsTitle[section]][0];
-        headerLabel.text = [[NSDate dateWithTimeIntervalSince1970:firstAct.postedTime/1000] distanceOfTimeInWords:[NSDate date]];
+        SocialActivity *firstAct = [[_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:section]] objectAtIndex:0];
+        headerLabel.text = [[NSDate dateWithTimeIntervalSince1970:firstAct.lastUpdated/1000] distanceOfTimeInWords:[NSDate date]];
     }
     
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];

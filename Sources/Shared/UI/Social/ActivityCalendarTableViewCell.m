@@ -31,6 +31,9 @@
 @synthesize lbTitle = _lbTitle;
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.lbTitle.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
 
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;

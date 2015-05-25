@@ -45,7 +45,10 @@
 }
 
 - (void)setSocialActivityStreamForSpecificContent:(SocialActivity *)socialActivityStream {
-    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.lbFileName.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
+
     //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
