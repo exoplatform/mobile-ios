@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "Your Stream";
+"Public" = "فعالیت های من";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
