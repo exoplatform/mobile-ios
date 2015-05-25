@@ -627,7 +627,10 @@
             [self presentViewController:thePicker animated:YES completion:nil];
         } else {
             self._popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:thePicker] autorelease];
-            [self._popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];        
+            // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self._popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+            }];
             // set style for navigation bar because the popover using the default style if it is not set.
             thePicker.navigationBar.barStyle = UIBarStyleBlackTranslucent;            
         }
