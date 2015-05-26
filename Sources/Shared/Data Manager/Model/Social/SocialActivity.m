@@ -224,6 +224,11 @@
             [result appendString:@"<"];
         else if ([scanner scanString:@"&gt;" intoString:NULL])
             [result appendString:@">"];
+        else if ([scanner scanString:@"&rsquo;" intoString:NULL])
+            [result appendString:@"'"];
+        else if ([scanner scanString:@"&eacute;" intoString:NULL])
+            [result appendString:@"é"];
+
         else if ([scanner scanString:@"&#" intoString:NULL]) {
             BOOL gotNumber;
             unsigned charCode;
