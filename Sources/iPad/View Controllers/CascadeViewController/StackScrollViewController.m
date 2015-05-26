@@ -668,7 +668,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 
 - (void) removeViewFromController:(UIViewController*)controller {
     // Remove all view controllers from specified view controller to top of the stack (except it)
-    int index = [viewControllersStack indexOfObject:controller];
+    NSInteger index = [viewControllersStack indexOfObject:controller];
     
     if (index != NSNotFound) {
         [controller retain];
@@ -680,7 +680,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 }
 
 - (void)popViewController:(UIViewController *)viewController {
-    int index = [viewControllersStack indexOfObject:viewController];
+    NSInteger index = [viewControllersStack indexOfObject:viewController];
     
     if (index != NSNotFound) {
         // get the parent view if it's avaiable
@@ -724,7 +724,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 		}
 		
 		NSInteger viewControllerCount = [viewControllersStack count];
-		for (int i = indexOfViewController; i < viewControllerCount; i++) {
+		for (NSInteger i = indexOfViewController; i < viewControllerCount; i++) {
 			[[slideViews viewWithTag:i] removeFromSuperview];
 			[viewControllersStack removeObjectAtIndex:indexOfViewController];
 			viewXPosition = self.view.frame.size.width - [controller view].frame.size.width;

@@ -40,7 +40,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 #define ACCOUNT_BEING_PROCESSED_RESPONSE [NSString stringWithFormat:@"the request to create or join a workspace from %@ has already been submitted. it is currently being processed. please wait for the creation to be completed, or use another email.",self.email]
 @implementation ExoCloudProxy {
     CloudRequest cloudRequest;
-    int statusCode;
+    NSInteger statusCode;
 }
 @synthesize delegate = _delegate;
 @synthesize email = _email;

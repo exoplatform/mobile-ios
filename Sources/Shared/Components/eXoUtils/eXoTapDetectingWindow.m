@@ -66,7 +66,7 @@
     if (self.multipleTouches)
         return;
     
-    LogDebug(@"%lu",touches.count);
+    LogDebug(@"%ld",(long)touches.count);
     UITouch *touch = touches.anyObject;
     if (touch.phase != UITouchPhaseEnded)
         return;

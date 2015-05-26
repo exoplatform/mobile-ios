@@ -91,7 +91,7 @@
 - (void)deleteCurentFileView {
     // This method will remove this view and reload its parent view. 
     ExoStackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
-    int viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
+    NSInteger viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
     if (viewIndex != NSNotFound) {
         DocumentsViewController *parentController = viewIndex > 0 ? [(stackScrollVC.viewControllersStack)[viewIndex - 1] retain] : nil;
         [stackScrollVC removeViewFromController:parentController];
