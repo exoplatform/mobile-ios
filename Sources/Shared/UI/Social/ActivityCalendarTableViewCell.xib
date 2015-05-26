@@ -59,7 +59,7 @@
                                             <constraint firstAttribute="height" constant="14" id="y0F-Rh-PCp"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="9" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="24" translatesAutoresizingMaskIntoConstraints="NO" id="paG-4n-tz3">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="9" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="24" translatesAutoresizingMaskIntoConstraints="NO" id="paG-4n-tz3">
                                         <rect key="frame" x="30" y="9" width="24" height="13"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
