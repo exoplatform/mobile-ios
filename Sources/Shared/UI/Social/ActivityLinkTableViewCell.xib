@@ -110,7 +110,7 @@
                                     <constraint firstAttribute="centerY" secondItem="5" secondAttribute="centerY" id="TrY-GR-RdR"/>
                                     <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="9" id="Uz0-eb-CUI"/>
                                     <constraint firstItem="7" firstAttribute="leading" secondItem="9" secondAttribute="trailing" constant="9" id="gQC-qk-qUW"/>
-                                    <constraint firstAttribute="height" priority="250" constant="30" id="hH4-ge-lKl"/>
+                                    <constraint firstAttribute="height" constant="30" id="hH4-ge-lKl"/>
                                     <constraint firstItem="5" firstAttribute="leading" secondItem="11" secondAttribute="trailing" id="nPh-5R-tGt"/>
                                     <constraint firstAttribute="centerY" secondItem="11" secondAttribute="centerY" id="nea-d8-rMl"/>
                                     <constraint firstAttribute="centerY" secondItem="7" secondAttribute="centerY" id="rG5-53-ijW"/>
@@ -119,7 +119,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="13" customClass="EGOImageView">
                                 <rect key="frame" x="12" y="92" width="245" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="dgx-ZT-eSd"/>
+                                    <constraint firstAttribute="height" priority="750" constant="150" id="dgx-ZT-eSd"/>
                                 </constraints>
                             </imageView>
                         </subviews>
