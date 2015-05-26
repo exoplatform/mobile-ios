@@ -326,10 +326,6 @@
 		572EAA20192AFBFD008CFB11 /* JMTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9CB192AFBFD008CFB11 /* JMTabItem.m */; };
 		572EAA21192AFBFD008CFB11 /* JMTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9CD192AFBFD008CFB11 /* JMTabView.m */; };
 		572EAA22192AFBFD008CFB11 /* BarBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D0192AFBFD008CFB11 /* BarBackgroundLayer.m */; };
-		572EAA23192AFBFD008CFB11 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D4192AFBFD008CFB11 /* DDXMLDocument.m */; };
-		572EAA24192AFBFD008CFB11 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D6192AFBFD008CFB11 /* DDXMLElement.m */; };
-		572EAA25192AFBFD008CFB11 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9D8192AFBFD008CFB11 /* DDXMLNode.m */; };
-		572EAA26192AFBFD008CFB11 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9DB192AFBFD008CFB11 /* NSStringAdditions.m */; };
 		572EAA27192AFBFD008CFB11 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 572EA9DE192AFBFD008CFB11 /* libidn.a */; };
 		572EAA28192AFBFD008CFB11 /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9E4192AFBFD008CFB11 /* SSDrawingUtilities.m */; };
 		572EAA29192AFBFD008CFB11 /* SSHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EA9E6192AFBFD008CFB11 /* SSHUDView.m */; };
@@ -1208,16 +1204,6 @@
 		572EA9CD192AFBFD008CFB11 /* JMTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTabView.m; sourceTree = "<group>"; };
 		572EA9CF192AFBFD008CFB11 /* BarBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarBackgroundLayer.h; sourceTree = "<group>"; };
 		572EA9D0192AFBFD008CFB11 /* BarBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarBackgroundLayer.m; sourceTree = "<group>"; };
-		572EA9D2192AFBFD008CFB11 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
-		572EA9D3192AFBFD008CFB11 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
-		572EA9D4192AFBFD008CFB11 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
-		572EA9D5192AFBFD008CFB11 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
-		572EA9D6192AFBFD008CFB11 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
-		572EA9D7192AFBFD008CFB11 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
-		572EA9D8192AFBFD008CFB11 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
-		572EA9D9192AFBFD008CFB11 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
-		572EA9DA192AFBFD008CFB11 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
-		572EA9DB192AFBFD008CFB11 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		572EA9DD192AFBFD008CFB11 /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
 		572EA9DE192AFBFD008CFB11 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		572EA9DF192AFBFD008CFB11 /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
@@ -2846,7 +2832,6 @@
 				572EA99C192AFBFD008CFB11 /* EGOImageLoading */,
 				572EA9AB192AFBFD008CFB11 /* EGOTableViewPullRefresh */,
 				572EA9BA192AFBFD008CFB11 /* JMTabView */,
-				572EA9D1192AFBFD008CFB11 /* KissXML */,
 				572EA9DC192AFBFD008CFB11 /* libidn */,
 				572EA9E0192AFBFD008CFB11 /* Logging.h */,
 				572EA9E1192AFBFD008CFB11 /* SSToolKit */,
@@ -2997,23 +2982,6 @@
 				572EA9D0192AFBFD008CFB11 /* BarBackgroundLayer.m */,
 			);
 			path = Layers;
-			sourceTree = "<group>";
-		};
-		572EA9D1192AFBFD008CFB11 /* KissXML */ = {
-			isa = PBXGroup;
-			children = (
-				572EA9D2192AFBFD008CFB11 /* DDXML.h */,
-				572EA9D3192AFBFD008CFB11 /* DDXMLDocument.h */,
-				572EA9D4192AFBFD008CFB11 /* DDXMLDocument.m */,
-				572EA9D5192AFBFD008CFB11 /* DDXMLElement.h */,
-				572EA9D6192AFBFD008CFB11 /* DDXMLElement.m */,
-				572EA9D7192AFBFD008CFB11 /* DDXMLNode.h */,
-				572EA9D8192AFBFD008CFB11 /* DDXMLNode.m */,
-				572EA9D9192AFBFD008CFB11 /* DDXMLPrivate.h */,
-				572EA9DA192AFBFD008CFB11 /* NSStringAdditions.h */,
-				572EA9DB192AFBFD008CFB11 /* NSStringAdditions.m */,
-			);
-			path = KissXML;
 			sourceTree = "<group>";
 		};
 		572EA9DC192AFBFD008CFB11 /* libidn */ = {
@@ -4946,7 +4914,6 @@
 				1FCED35C1435BA1800EC0B88 /* UIBarButtonItem+WEPopover.m in Sources */,
 				1FCED35D1435BA1800EC0B88 /* WEPopoverContainerView.m in Sources */,
 				572EAA0B192AFBFD008CFB11 /* EGOCache.m in Sources */,
-				572EAA24192AFBFD008CFB11 /* DDXMLElement.m in Sources */,
 				1FCED35E1435BA1800EC0B88 /* WEPopoverController.m in Sources */,
 				1FCED35F1435BA1800EC0B88 /* WETouchableView.m in Sources */,
 				1FCBCC28143D4BB300CC4F21 /* EmptyView.m in Sources */,
@@ -4980,7 +4947,6 @@
 				3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */,
 				46EA0E861472641500F42855 /* JTNavigationBar.m in Sources */,
 				46EA0E871472641500F42855 /* JTNavigationView.m in Sources */,
-				572EAA26192AFBFD008CFB11 /* NSStringAdditions.m in Sources */,
 				46EA0E881472641500F42855 /* JTRevealSidebarView.m in Sources */,
 				46EA0E891472641500F42855 /* JTTableViewCellFactory.m in Sources */,
 				46EA0E8A1472641500F42855 /* JTTableViewCellModal.m in Sources */,
@@ -5009,7 +4975,6 @@
 				A6B61A8D15774B07006C3526 /* AvatarView.m in Sources */,
 				A6B54E4F157DB6E0005BFFCD /* ActivityDetailExtraActionsCell.m in Sources */,
 				A661D86D157EFEB800CCF870 /* CustomBackgroundView.m in Sources */,
-				572EAA23192AFBFD008CFB11 /* DDXMLDocument.m in Sources */,
 				572EAA09192AFBFD008CFB11 /* ATMSoundFX.m in Sources */,
 				A6B8CF211580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m in Sources */,
 				A65EAF4A159AB64400E598E0 /* UserProfileViewController.m in Sources */,
@@ -5049,7 +5014,6 @@
 				9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */,
 				7DCA4F4E176F00FA002694D5 /* ExoCloudProxy.m in Sources */,
 				7D013B9517827A67005F42D2 /* CloudViewUtils.m in Sources */,
-				572EAA25192AFBFD008CFB11 /* DDXMLNode.m in Sources */,
 				572EAA10192AFBFD008CFB11 /* EGORefreshTableHeaderView.m in Sources */,
 				7D02603817867EEC00C3FA24 /* WelcomeViewController_iPad.m in Sources */,
 				7D02603D1786B58A00C3FA24 /* SignUpViewController_iPad.m in Sources */,
