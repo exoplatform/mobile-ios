@@ -1,11 +1,12 @@
-#platform :ios, '7.0'
+platform :ios, '7.0'
 
 workspace 'eXo_Platform'
 xcodeproj 'eXo.xcodeproj'
 
 target "eXo" do
 
-    pod 'RestKit', '~>0.24'
+    pod 'RestKit', '~> 0.24'
+    pod 'UIImage-Categories', '0.0.1'
 	
 end
 

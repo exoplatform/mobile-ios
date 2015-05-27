@@ -40,7 +40,7 @@
     NSMutableString *textMutable = [[NSMutableString alloc] init];
     if (text) [textMutable setString:text];
     
-    int nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
+    long nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
     
     [textMutable release];
     
@@ -80,7 +80,7 @@
     NSMutableString *textMutable = [[NSMutableString alloc] init];
     if (text) [textMutable setString:text];
     
-    int nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
+    long nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
     
     [textMutable release];
     
@@ -266,13 +266,12 @@
         default:{
             text = activtyStreamDetail.title;
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            //NSLog(@"%@", text);
         }
             break;
     }
     
     fHeight += [ActivityHelper heightForAllDecorationsWithTableViewWidth:fWidth];
-    NSLog(@"Cell for: %@ =  %f",activtyStreamDetail.title, fHeight);
+    LogDebug(@"Cell for: %@ =  %f",activtyStreamDetail.title, fHeight);
     return fHeight;
 }
 

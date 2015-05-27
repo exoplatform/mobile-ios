@@ -75,7 +75,7 @@
 - (void)reArrangeSubViews;
 
 @property (retain, nonatomic) IBOutlet UITableView *spacesTableView;
-
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *spaceTableViewHeightConstraint;
 
 @end
 

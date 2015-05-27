@@ -1,0 +1,441 @@
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
+
+/*
+ * Authenticate
+ */
+
+"SignInPageTitle" = "Σελίδα σύνδεσης";
+
+"SignInButton" = "Είσοδος";
+
+"SignInButton_In" = "μέχρι";
+
+"UsernamePlaceholder" = "Όνομα χρήστη";
+
+"PasswordPlaceholder" = "Κωδικός πρόσβασης";
+
+"Last Login" = "Last login";
+
+"Connected" = "Συνδεδεμένοι";
+
+"Sign In" = "Είσοδος";
+
+/* 
+ * Documents
+ */
+
+"TakePicture" = "Τραβήξτε μια φωτογραφία";
+
+"NewFolderTitle" = "Νέος φάκελος";
+
+"RenameTitle" = "Μετονομασία";
+
+"Copy" = "Αντιγραφή";
+
+"Move" = "Αποκοπή";
+
+"Paste" = "Επικόλληση";
+
+"Documents" = "Έγγραφα";
+
+"TakeAPicture" = "Τραβήξτε μια φωτογραφία";
+
+"AttachedPhoto" = "Συνημμένη φωτογραφία";
+
+"AddAPhoto" = "Προσθέστε μια φωτογραφία";
+
+"PhotoLibrary" = "Βιβλιοθήκη φωτογραφιών";
+
+// Drives types
+
+"general" = "γενικά";
+
+"personal" = "προσωπικά";
+
+"group" = "ομάδα";
+
+
+/*
+ * General
+ */
+
+"Cancel" = "Ακύρωση";
+
+"DoneButton" = "Ολοκλήρωση";
+
+"Delete" = "Διαγραφή";
+
+"Success" = "Επιτυχία";
+
+"Home" = "Αρχική";
+
+"Loading" = "Φόρτωση...";
+
+"LoadingURL" = "Φόρτωση URL";
+
+"OK" = "Επιβεβαίωση";
+
+"Disconnect" = "Αποσύνδεση";
+
+"Pull down to refresh..." = "Τραβήξτε κάτω για ανανέωση...";
+
+"Release to refresh..." = "Απελευθερώστε για ανανέωση...";
+
+"Last Updated: %@" = "Τελευταία ενημέρωση: %@";
+
+"Required" = "Απαιτείται";
+
+"Optional" = "Προαιρετικό";
+
+"Fullscreen" = "Πλήρης οθόνη";
+
+"Close" = "Κλείσιμο";
+
+
+/*
+ * Settings
+ */
+
+"Settings" = "Ρυθμίσεις";
+
+"RememberMe" = "Remember me";
+
+"AutoLogin" = "Auto login";
+
+"KeepSelectedStream" = "Αποθήκευση φίλτρου";
+
+"ShowPrivateDrive" = "Εμφάνιση ιδιωτικού δίσκου";
+
+"Language" = "Γλώσσες";
+
+"English" = "Αγγλικά";
+
+"French" = "Γαλλικά";
+
+"German" = "Γερμανικά";
+
+"Spanish" = "Ισπανικά";
+
+"Portuguese-Brazil" = "Πορτογαλικά (Βραζιλίας)";
+
+"Greek"= "ελληνικά";
+
+"Send" = "Αποστολή";
+
+"ServerList" = "Λίστα διακομιστών";
+
+"Account" = "Account";
+
+"NewServer" = "Νέος διακομιστής";
+
+"ServerModify" = "Τροποποίηση διακομιστή";
+
+"ApplicationsInformation" = "Πληροφορίες εφαρμογής";
+
+"ServerVersion" = "Έκδοση διακομιστή";
+
+"ApplicationEdition" = "Γενιά έκδοσης";
+
+"ApplicationVersion" = "Έκδοση εφαρμογής";
+
+"ServerName" = "Όνομα διακομιστή";
+
+"ServerUrl" = "Διεύθυνση URL διακομιστή";
+
+"Social" = "Κοινωνικό";
+
+
+/*
+ * Errors & Warnings
+ */
+
+"BadResponse" = "Ο διακομιστής επέστρεψε μη έγκυρα δεδομένα.";
+
+"NetworkConnection" = "Σφάλμα σύνδεσης";
+
+"Authorization" = "Αποτυχία εισόδου";
+
+"WrongUserNamePassword" = "Δεν μπορείτε να συνδεθείτε, ελέγξτε το όνομα χρήστη και τον κωδικό πρόσβασης";
+
+"InvalidServer" = "Αδυναμία σύνδεσης στο intranet, παρακαλώ ελέγξτε το URL ή επικοινωνήστε με το διαχειριστή";
+
+"NetworkConnectionFailed" = "Αδυναμία σύνδεσης στο intranet, παρακαλώ ελέγξτε το URL ή επικοινωνήστε με το διαχειριστή";
+
+"UserNameEmpty" = "Εσφαλμένο όνομα χρήστη";
+
+"PasswordEmpty" = "Εσφαλμένο συνθηματικό";
+
+"SelectedDomainEmpty" = "Δεν καθορίστηκε διακομιστής";
+
+"EmptyFolder" = "Αυτός ο φάκελος είναι κενός";
+
+"UnreadableFile" = "Αυτό το αρχείο δεν μπορεί να ανοιχθεί στην εφαρμογή";
+
+"NoActivities" = "Δεν υπάρχουν δραστηριότητες στο ιστορικό σας";
+
+"NoGadget" = "Δεν έχετε μικροεφαρμογές στις εφαρμογές σας";
+
+"MessageInfo" = "Πληροφορίες";
+
+"MessageErrorServer" = "Δεν μπορείτε να προσθέσετε ένα διακομιστή με κενό όνομα ή διεύθυνση URL";
+
+"MessageErrorExist" = "Αυτός ο διακομιστής υπάρχει ήδη";
+
+"InvalidUrl" = "Μη έγκυρη διεύθυνση URL";
+
+"FileError" = "Σφάλμα";
+
+"CameraNotAvailable" = "Η κάμερα δεν είναι διαθέσιμη";
+
+"GadgetsCannotBeRetrieved" = "Οι μικροεφαρμογές δεν μπορούν να ανακτηθούν";
+
+"Error" = "Σφάλμα";
+
+"NoMessageComment" = "Πρέπει να πληκτρολογήσετε κάποιο κείμενο στο σχόλιο";
+
+"NoMessagePosting" = "Πρέπει να πληκτρολογήσετε κάποιο κείμενο για να δημοσιεύσετε";
+
+"GettingActionCannotBeCompleted" = "Δεν μπορείτε να λάβετε δραστηριότητες";
+
+"UpdatingActionCannotBeCompleted" = "Δεν μπορείτε να ενημερώσετε τη δραστηριότητα";
+
+"LikingActionCannotBeCompleted" = "Δεν μπορείτε να κάνετε like σε αυτή τη δραστηριότητα";
+
+"UnLikeActionCannotBeCompleted" = "Δεν μπορείτε να κάνετε unlike σε αυτή τη δραστηριότητα";
+
+"PostingActionCannotBeCompleted" = "Δεν μπορείτε να δημοσιεύσετε μηνύματα";
+
+"CommentActionCannotBeCompleted" = "Δεν μπορείτε να δημοσιεύσετε ένα σχόλιο";
+
+"LoadMoreActionCannotBeCompleted" = "Παρουσιάστηκε σφάλμα, οι δραστηριότητες επαναφορτώνονται.";
+
+"NotCompliant" = "Η εφαρμογή δεν μπορεί να τρέξει στην συγκεκριμένη έκδοση της πλατφόρμας";
+
+"SpecialCharacters" = "Δεν επιτρέπονται ειδικοί χαρακτήρες";
+
+"DashboardsCannotBeRetrieved" = "Δεν μπορούν να ανακτηθούν οι πίνακες εργαλείων";
+
+"FolderNameAlreadyExist" = "Αυτός ο φάκελος υπάρχει ήδη";
+
+"FolderNameEmpty" = "Το όνομα φακέλου είναι κενό";
+
+"Cannot move file to its location" = "Δεν μπορείτε να μετακινήσετε το αρχείο στην ίδια θέση";
+
+"Cannot transfer file" = "Δεν μπορώ να μεταφέρω το αρχείο";
+
+
+/*
+ * Apps
+ */
+
+"Dashboard" = "Εφαρμογές";
+
+
+/*
+ * Activity stream
+ */
+
+"numOfLikers" = "%d τους άρεσε";
+
+"numOfLiker" = "%d του άρεσε";
+
+"likeThisActivity" = "%d άτομα τους άρεσε";
+
+"NoOneLikeThis" = "Κανένας δεν έχει κάνει like";
+
+"ActivityDetails" = "Λεπτομέρειες δραστηριότητας";
+
+"MessageComposer" = "Σύνθεση μηνύματος";
+
+"ActivityStream" = "Ιστορικό δραστηριοτήτων";
+
+"News" = "Νέα";
+
+"Details" = "Λεπτομέρειες";
+
+"comments(%d)" = "Σχόλια(%d)";
+
+"likes(%d)" = "Σε (%d) άτομα άρεσε";
+
+"YourComment" = "Το σχόλιό σας";
+
+"GettingActivity" = "Λήψη δραστηριότητας";
+
+"UpdatingActivity" = "Ενημέρωση δραστηριότητας";
+
+"PostingActivity" = "Ανάρτηση";
+
+"CommentActivity" = "Σχόλιο";
+
+"GettingActivityDetail" = "Λήψη λεπτομερειών δραστηριότητας";
+
+"UpdatingActivityDetail" = "Ενημέρωση λεπτομερειών δραστηριότητας";
+
+"EditWiki" = "έχει τροποποιήσει τη σελίδα Wiki:";
+
+"CreateWiki" = "έχει δημιουργήσει τη σελίδα Wiki:";
+
+"NewPost" = "έχει προσθέσει μια νέα ανάρτηση:";
+
+"UpdatePost" = "έχει ενημερώσει μια ανάρτηση:";
+
+"NewTopic" = "έχει αναρτήσει ένα νέο θέμα:";
+
+"UpdateTopic" = "έχει ενημερώσει ένα θέμα:";
+
+"UpdateQuestion" = "έχει ενημερώσει το ερώτημα:";
+
+"Answered" = "έχει απαντήσει στο ερώτημα:";
+
+"Asked" = "ρώτησε:";
+
+"EventAdded" = "έχει προσθέσει ένα γεγονός:";
+
+"EventUpdated" = "έχει ενημερώσει το γεγονός:";
+
+"TaskAdded" = "έχει προσθέσει μια εργασία:";
+
+"TaskUpdated" = "μόλις ενημέρωσε την εργασία:";
+
+"Description" = "Περιγραφή";
+
+"Location" = "Τοποθεσία";
+
+"StartTime" = "Ώρα έναρξης";
+
+"EndTime" = "Ώρα λήξης";
+
+"NoComment" = "Κανείς δεν έχει σχολιάσει, γίνε ο πρώτος";
+
+"Image Preview" = "Προεπισκόπηση εικόνας";
+
+"Change" = "Αλλαγή";
+
+"Remove" = "Κατάργηση";
+
+"All Updates" = "Όλες οι δραστηριότητες";
+
+"My Connections" = "Οι συνδέσεις μου";
+
+"My Spaces" = "Οι χωροι μου";
+
+"My Status" = "Οι δραστηριότητές μου";
+
+
+/*
+ * Date message converter
+ */
+
+"Today" = "Σήμερα";
+
+"DateFmt" = "%4$@%1$@%2$@%3$@";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "πριν";
+
+"DateFmt from now" = "από τώρα";
+
+"DateFmt Less than" = "Λιγότερο από ";
+
+"DateFmt About" = "Περίπου ";
+
+"DateFmt Over" = "Πάνω από ";
+
+"DateFmt Almost" = "Σχεδόν ";
+
+"DateFmt seconds" = " δευτερόλεπτα ";
+
+"DateFmt minute" = " λεπτό ";
+
+"DateFmt minutes" = " λεπτά ";
+
+"DateFmt hour" = " ώρα ";
+
+"DateFmt hours" = " ώρες ";
+
+"DateFmt day" = " ημέρα ";
+
+"DateFmt days" = " ημέρες ";
+
+"DateFmt month" = " μήνας ";
+
+"DateFmt months" = " μήνες ";
+
+"DateFmt year" = " έτος ";
+
+"DateFmt years" = " χρόνια ";
+
+
+/*
+ * Cloud sign up assistant 
+ */
+"ServerNotAvailable" = "Αδυναμία σύνδεσης στο intranet, παρακαλώ ελέγξτε το URL ή επικοινωνήστε με το διαχειριστή";
+
+"AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
+
+"NumberUsersExceed" = " Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"StartTheConfigurationAssistant" = "Start the sign-up assistant";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "Αδυναμία σύνδεσης στο intranet, παρακαλώ ελέγξτε το URL ή επικοινωνήστε με το διαχειριστή";
+
+"EmailIsBlacklisted" = "Please use your company email to sign up";
+
+"NumberOfUsersExceed" = "Impossible to create a new account. The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"IncorrectEmailFormat" = "Please input a valid email address";
+
+"IncorrectPassword" = "Impossible to connect, check your password";
+
+"UserNotExist" = " No account exists for this email, check your email or signup";
+
+"TenantNotExist" = "No account exists for this email, check your email or signup";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
+
+"Username" = "Όνομα χρήστη";
+
+"Password" = "Κωδικός πρόσβασης";
+
+"Your credentials" = "Your credentials";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";
+
+/*
+ Post Activity to Space
+ */
+
+"Public" = "Your Stream";
+
+"CannotLoadSpaceID" = "Unable to load the space's identity";
+
+"PostActivityTo" = "Post activity to";
+
+"You didn't join any space" = "You didn't join any space";
+
+"CannotLoadSpace" = "Unable to load information about your spaces";
+
+"Loading spaces" = "Loading spaces ...";
+
+"To" = "Έως";
+

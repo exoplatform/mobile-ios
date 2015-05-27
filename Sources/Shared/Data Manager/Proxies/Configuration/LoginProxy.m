@@ -196,12 +196,7 @@ return self;
 
 #pragma mark - RKObjectLoaderDelegate methods
 
-//- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-//    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-//}
-
 -(void) restKitDidLoadObjects:(NSArray *) objects {
-    //NSLog(@"Loaded statuses: %@", objects);
     //We receive the response from the server
     //We now need to check if the version can run social features or not and set properties
     

@@ -91,7 +91,7 @@
 - (void)deleteCurentFileView {
     // This method will remove this view and reload its parent view. 
     ExoStackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
-    int viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
+    NSInteger viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
     if (viewIndex != NSNotFound) {
         DocumentsViewController *parentController = viewIndex > 0 ? [(stackScrollVC.viewControllersStack)[viewIndex - 1] retain] : nil;
         [stackScrollVC removeViewFromController:parentController];
@@ -122,10 +122,15 @@
         rect.origin.y += 20;
         rect.size.width = 0;
         rect.size.height = 0;
-        [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        
+        // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        }];
     } else {
-        [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        }];
     }
 }
 
@@ -367,7 +372,7 @@
         rect.origin.y += 20;
         rect.size.width = 0;
         rect.size.height = 0;
-        NSLog(@"rect info %f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+        LogDebug(@"rect info %f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
         
         [actionSheet showFromRect:rect inView:self.view animated:YES];
     }

@@ -20,8 +20,6 @@
 #import "FilesProxy.h"
 #import "NSString+HTML.h"
 #import "DataProcess.h"
-#import "Reachability.h"
-#import "AuthenticateProxy.h"
 #import "TouchXML.h"
 #import "defines.h"
 #import "ApplicationPreferencesManager.h"
@@ -45,7 +43,7 @@
 	static const char *tbl = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	
 	const char *s = [str UTF8String];
-	int length = [str length];
+	long length = [str length];
 	char *tmp = malloc(length * 4 / 3 + 4);
 	
 	int i = 0;

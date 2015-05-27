@@ -19,7 +19,6 @@
 
 #import "AuthenticateViewController_iPad.h"
 #import "defines.h"
-#import "AuthenticateProxy.h"
 #import "SettingsViewController_iPad.h"
 #import "SSHUDView.h"
 #import "AppDelegate_iPad.h"

@@ -185,9 +185,9 @@
     [self writeUserConfiguration:_arrServerList];
 }
 
-- (void)setSelectedServerIndex:(int)selectedServerIndex {
+- (void)setSelectedServerIndex:(NSInteger)selectedServerIndex {
     // customize setter of selectedServerIndex
-    int tmpIndex = -1; // default value for selected server index 
+    NSInteger tmpIndex = -1; // default value for selected server index
     NSString *tmpDomain = nil; // default value for selected domain
     if (selectedServerIndex >= 0 &&
         selectedServerIndex < [self.serverList count]) {
@@ -200,7 +200,7 @@
     _selectedDomain = [tmpDomain retain];
     _selectedServerIndex = tmpIndex;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", _selectedServerIndex]
+    [userDefaults setObject:[NSString stringWithFormat:@"%ld", (long)_selectedServerIndex]
                      forKey:EXO_PREFERENCE_SELECTED_SEVER];
     [userDefaults setObject:_selectedDomain
                      forKey:EXO_PREFERENCE_DOMAIN];
@@ -346,7 +346,7 @@
     ServerObj* deletedServerObj = [(self.serverList)[index] retain];
     
     [self.serverList removeObjectAtIndex:index];
-    int currentIndex = self.selectedServerIndex;
+    NSInteger currentIndex = self.selectedServerIndex;
     if ([self.serverList count] > 0) {
         if(currentIndex > index) {
             self.selectedServerIndex = currentIndex - 1;
@@ -610,7 +610,7 @@
 {
     NSMutableString *path = [NSMutableString stringWithString:@"/Users"];
     
-    int length = [username length];
+    NSInteger length = [username length];
     
     int numberOfUserLevel = length < 4 ?  2 : 3;
     

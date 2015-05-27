@@ -25,7 +25,7 @@
                         <rect key="frame" x="5" y="11" width="22" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="4Dn-Lc-gXt"/>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="35" id="fdw-Yk-XFU"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="55" id="fdw-Yk-XFU"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

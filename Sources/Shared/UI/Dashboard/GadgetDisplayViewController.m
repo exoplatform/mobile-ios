@@ -19,7 +19,6 @@
 
 #import "GadgetDisplayViewController.h"
 #import "GadgetItem.h"
-#import "AuthenticateProxy.h"
 #import "EmptyView.h"
 #import "LanguageHelper.h"
 

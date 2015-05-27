@@ -66,7 +66,7 @@
     if (self.multipleTouches)
         return;
     
-    NSLog(@"%d",touches.count);
+    LogDebug(@"%ld",(long)touches.count);
     UITouch *touch = touches.anyObject;
     if (touch.phase != UITouchPhaseEnded)
         return;
@@ -75,7 +75,6 @@
         return;
     
     CGPoint tapPoint = [touch locationInView:self.viewToObserve];
-    //NSLog(@"TapPoint = %f, %f", tapPoint.x, tapPoint.y);
     NSArray *pointArray = @[[NSString stringWithFormat:@"%f", tapPoint.x],
                            [NSString stringWithFormat:@"%f", tapPoint.y]];
 

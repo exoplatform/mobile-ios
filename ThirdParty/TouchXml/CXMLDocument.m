@@ -156,8 +156,7 @@ static void htmlparser_warning(void *ctx, const char *msg, ...)
 - (CXMLElement *)rootElement
 {
 	xmlNodePtr theLibXMLNode = xmlDocGetRootElement((xmlDocPtr)_node);
-	
-	return([CXMLNode nodeWithLibXMLNode:theLibXMLNode]);
+	return([CXMLElement nodeWithLibXMLNode:theLibXMLNode]);
 }
 
 //- (NSData *)XMLData;

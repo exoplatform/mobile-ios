@@ -156,10 +156,10 @@
     
    NSMutableArray * links = [[NSMutableArray alloc] init];
     while ([string rangeOfString:@"<a href"].location!= NSNotFound) {
-        int beginTagLocation =[string rangeOfString:@"<a href"].location;
-        int contentTagLocation = [[string substringFromIndex:beginTagLocation] rangeOfString:@">"].location+1+beginTagLocation;
+        NSInteger beginTagLocation =[string rangeOfString:@"<a href"].location;
+        NSInteger contentTagLocation = [[string substringFromIndex:beginTagLocation] rangeOfString:@">"].location+1+beginTagLocation;
         
-        int endTagLocation =[[string substringFromIndex:beginTagLocation] rangeOfString:@"</a>"].location+1+beginTagLocation;
+        NSInteger endTagLocation =[[string substringFromIndex:beginTagLocation] rangeOfString:@"</a>"].location+1+beginTagLocation;
         
         NSString * link = [string substringWithRange:NSMakeRange(contentTagLocation, endTagLocation-contentTagLocation-1)];
         [links addObject:link];
@@ -224,6 +224,11 @@
             [result appendString:@"<"];
         else if ([scanner scanString:@"&gt;" intoString:NULL])
             [result appendString:@">"];
+        else if ([scanner scanString:@"&rsquo;" intoString:NULL])
+            [result appendString:@"'"];
+        else if ([scanner scanString:@"&eacute;" intoString:NULL])
+            [result appendString:@"é"];
+
         else if ([scanner scanString:@"&#" intoString:NULL]) {
             BOOL gotNumber;
             unsigned charCode;
@@ -250,7 +255,7 @@
                 
                 [result appendFormat:@"&#%@%@", xForHex, unknownEntity];
                 
-                NSLog(@"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
+                LogError(@"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
                 
             }
             

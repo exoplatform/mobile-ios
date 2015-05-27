@@ -54,7 +54,7 @@
 - (NSString*)languageCodeAtPosition:(int) pos
 {
     // based on the array of supported languages in LanguageHelper.m
-    NSArray *langs = [NSArray arrayWithObjects:@"en", @"fr", @"de", @"es-ES", nil];
+    NSArray *langs = [NSArray arrayWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", @"el", nil];
     if (pos >= 0 && pos < [langs count])
         return [langs objectAtIndex:pos];
     else
@@ -116,6 +116,30 @@
     
     XCTAssertEqualObjects(selectedLang, expectedLang, @"Selected language should be English");
     XCTAssertEqualObjects(Localize(@"UsernamePlaceholder"), @"Username", @"Username in English should be Username");
+}
+
+- (void)testPortugueseLanguageIsUsed
+{
+    NSString *expectedLang = @"pt-BR";
+    [self setDeviceLanguage:expectedLang];
+    
+    [langHelper loadLocalizableStringsForCurrentLanguage];
+    NSString *selectedLang = [self languageCodeAtPosition:[langHelper getSelectedLanguage]];
+    
+    XCTAssertEqualObjects(selectedLang, expectedLang, @"Selected language should be Portuguese");
+    XCTAssertEqualObjects(Localize(@"UsernamePlaceholder"), @"Nome do usuário", @"Username in English should be Nome do usuário");
+}
+
+- (void)testGreekLanguageIsUsed
+{
+    NSString *expectedLang = @"el";
+    [self setDeviceLanguage:expectedLang];
+    
+    [langHelper loadLocalizableStringsForCurrentLanguage];
+    NSString *selectedLang = [self languageCodeAtPosition:[langHelper getSelectedLanguage]];
+    
+    XCTAssertEqualObjects(selectedLang, expectedLang, @"Selected language should be Greek");
+    XCTAssertEqualObjects(Localize(@"UsernamePlaceholder"), @"Όνομα χρήστη", @"Username in English should be Όνομα χρήστη");
 }
 
 - (void)testEnglishLanguageIsUsedByDefault

@@ -40,7 +40,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 #define ACCOUNT_BEING_PROCESSED_RESPONSE [NSString stringWithFormat:@"the request to create or join a workspace from %@ has already been submitted. it is currently being processed. please wait for the creation to be completed, or use another email.",self.email]
 @implementation ExoCloudProxy {
     CloudRequest cloudRequest;
-    int statusCode;
+    NSInteger statusCode;
 }
 @synthesize delegate = _delegate;
 @synthesize email = _email;
@@ -99,7 +99,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 #pragma mark NSURLConnectionDelegate methods
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"%@", [error description]);
+    LogError(@"%@", [error description]);
     [self.delegate cloudProxy:self handleError:error];
 }
 
@@ -283,7 +283,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(error) {
-          NSLog(@"create marketo lead failed for email: %@", email);    
+          LogError(@"create marketo lead failed for email: %@", email);
         }
     }];
 }

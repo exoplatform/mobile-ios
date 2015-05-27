@@ -89,7 +89,6 @@
     CGRect contentBounds = self.contentView.bounds;
     /* ### Configure message label ### */
     CGSize messageSize = [_lbMessage.text sizeWithAttributes:@{ NSFontAttributeName: _lbMessage.font }];
-//    CGSize messageSize = [_lbMessage.text sizeWithFont:_lbMessage.font];
     _lbMessage.frame = CGRectMake(kLeftRightMargin, kTopMargin, messageSize.width, messageSize.height); // the message is on the top of the content view
     /* ##### */
     float avatarHeight = (contentBounds.size.height - (kTopMargin + kBottomMargin) - self.lbMessage.bounds.size.height - kPadding);
@@ -238,10 +237,6 @@
                     NSParagraphStyleAttributeName: paragraphStyle
                               }
      ];
-//    [threePoints drawInRect:rect
-//                   withFont:font
-//              lineBreakMode:UILineBreakModeTailTruncation
-//                  alignment:UITextAlignmentCenter];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

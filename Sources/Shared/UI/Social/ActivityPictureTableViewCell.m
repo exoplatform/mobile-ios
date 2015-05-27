@@ -24,6 +24,7 @@
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
 #import "ApplicationPreferencesManager.h"
+#import "LanguageHelper.h"
 
 #define MAX_HEIGHT_FILE_NAME 32
 
@@ -46,15 +47,20 @@
     //Set the UserName of the activity
     NSString *type = [socialActivityStream.activityStream valueForKey:@"type"];
     NSString *space = nil;
+    
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityStream.activityStream valueForKey:@"fullName"];
     }
     
-
-    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" in %@ space", space] : @""];
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityStream.posterIdentity.fullName copy], space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @""];
     
-    _lbName.text = title;
+    NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    if (space) {
+        [attributedTitle addAttributes:kAttributeText range:[title rangeOfString:[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]]];
+        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    }
     
+    _lbName.attributedText = attributedTitle;
    
 
     switch (socialActivityStream.activityType) {
@@ -101,7 +107,7 @@
                 [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
    
                 if(plfVersion < 4.0) {
-                 [attributedMessage setAttributes:attribute range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
+                 [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
                 }
                 
                 self.activityMessage.attributedText = attributedMessage;

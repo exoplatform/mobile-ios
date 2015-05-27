@@ -96,30 +96,30 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
       
         
         _listOfSections = [[NSMutableArray arrayWithObjects:
-                            @{settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionLogin],
+                            @{settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionLogin],
                               settingViewSectionTitleKey: @"SignInButton",
                               settingViewRowsKey: [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil]},
                             
                            @{
-                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionSocial],
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionSocial],
                              settingViewSectionTitleKey: @"Social",
                              settingViewRowsKey: [NSArray arrayWithObjects:@"KeepSelectedStream", nil]},
                            
                            @{
-                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionDocument],
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionDocument],
                              settingViewSectionTitleKey: @"Documents",
                              settingViewRowsKey: [NSArray arrayWithObjects:@"ShowPrivateDrive", nil]},
                            
                             @{
-                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionLanguage],
                               settingViewSectionTitleKey: @"Language",
-                              settingViewRowsKey: [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil]},
+                              settingViewRowsKey: [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", @"Greek", nil]},
                            @{
-                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionServerList],
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionServerList],
                              settingViewSectionTitleKey: @"ServerList",
                              settingViewRowsKey: [NSArray arrayWithObjects:@"NewServer", nil]},
                            @{
-                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
+                             settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionAppsInfo],
                              settingViewSectionTitleKey: @"ApplicationsInformation",
                              settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
 
@@ -135,16 +135,16 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     } else {
         _listOfSections = [[NSMutableArray arrayWithObjects:
                             @{
-                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionLanguage],
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionLanguage],
                               settingViewSectionTitleKey: @"Language",
-                              settingViewRowsKey: [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", nil]},
+                              settingViewRowsKey: [NSArray arrayWithObjects:@"English", @"French", @"German", @"Spanish", @"Portuguese-Brazil", @"Greek", nil]},
                             @{
-                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d",SettingViewControllerSectionServerList],
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d",(int)SettingViewControllerSectionServerList],
                               settingViewSectionTitleKey: @"ServerList",
                               settingViewRowsKey: [NSArray arrayWithObjects:@"NewServer", nil]},
                             
                             @{
-                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", SettingViewControllerSectionAppsInfo],
+                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionAppsInfo],
                               settingViewSectionTitleKey: @"ApplicationsInformation",
                               settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
                             nil] retain];
@@ -384,9 +384,9 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     int numofRows = 0;
 	if([_listOfSections[section][settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
 	{	
-		numofRows = [[ApplicationPreferencesManager sharedInstance].serverList count] + 1;
+		numofRows = (int)[[ApplicationPreferencesManager sharedInstance].serverList count] + 1;
 	} else {
-        numofRows = [_listOfSections[section][settingViewRowsKey] count];
+        numofRows = (int)[_listOfSections[section][settingViewRowsKey] count];
     }
     
 	return numofRows;
@@ -500,6 +500,9 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                 case 4:
                     cell.imageView.image = [UIImage imageNamed:@"BR.gif"];
                     break;
+                case 5:
+                    cell.imageView.image = [UIImage imageNamed:@"EL.gif"];
+                    break;
             }
             
             //Put the checkmark
@@ -591,7 +594,9 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     
     }
     //Customize the cell background
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    int row = (int)indexPath.row;
+    int size = (int)[self tableView:tableView numberOfRowsInSection:indexPath.section];
+    [cell setBackgroundForRow:row inSectionSize:size];
     
     return cell;
 }
@@ -603,7 +608,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     eXoMobileAppDelegate *appDelegate;
     if (sectionId == SettingViewControllerSectionLanguage)
 	{
-		int selectedLanguage = indexPath.row;
+		int selectedLanguage = (int)indexPath.row;
         
         //Save the language
         [[LanguageHelper sharedInstance] changeToLanguage:selectedLanguage];
@@ -643,7 +648,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                 
                 ServerEditingViewController* serverEditingViewController = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
                 [serverEditingViewController setDelegate:self];
-                [serverEditingViewController setServerObj:tmpServerObj andIndex:indexPath.row];
+                [serverEditingViewController setServerObj:tmpServerObj andIndex:(int)indexPath.row];
                 
                 [self.navigationController pushViewController:serverEditingViewController animated:YES];
                 [serverEditingViewController release];
@@ -671,7 +676,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self deleteServerObjAtIndex:indexPath.row];
+    [self deleteServerObjAtIndex:(int)indexPath.row];
 }
 
 #pragma mark - ServerManagerProtocol

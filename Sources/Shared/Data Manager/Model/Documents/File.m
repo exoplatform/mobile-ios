@@ -19,7 +19,6 @@
 
 #import "File.h"
 #import "FilesProxy.h"
-#import "AuthenticateProxy.h"
 
 @implementation File
 

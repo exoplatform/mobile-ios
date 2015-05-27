@@ -52,10 +52,13 @@
             break;
     }
     
-    NSDictionary * attributes =@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]};
+
     
     NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
-    [attributedName setAttributes:attributes range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
+    [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityStream.posterIdentity.fullName.length, name.length-socialActivityStream.posterIdentity.fullName.length)];
+    if (space){
+        [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    }
     _lbName.attributedText = attributedName;
     
     //Set the position of Title

@@ -498,7 +498,9 @@ static NSString *PUBLIC_DRIVE = @"Public";
     }
 
     //Customize the cell background
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    int row = (int)indexPath.row;
+    int size = (int)[self tableView:tableView numberOfRowsInSection:indexPath.section];
+    [cell setBackgroundForRow:row inSectionSize:size];
 
 
     //Retrieve the correct file corresponding to the indexPath
@@ -608,7 +610,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
     
     //Hide the action Panel
     [self hideActionsPanel];
-    //NSLog(@"%@", urlFileToDelete);
     [self performSelectorInBackground:@selector(deleteFileInBackground:) withObject:urlFileToDelete];
 }
 
@@ -855,7 +856,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
             [self displayHudLoader];
             
             NSString* strNewFolderPath = [FilesProxy urlForFileAction:[fileToApplyAction.path stringByAppendingPathComponent:newFolderName]];
-            NSLog(@"%@", strNewFolderPath);
+            LogDebug(@"%@", strNewFolderPath);
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(createNewFolderInBackground:)]];
             [invocation setTarget:self];

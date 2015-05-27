@@ -249,10 +249,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         }
     }
         
+    int row = (int)indexPath.row;
+    int size = (int)[self tableView:tableView numberOfRowsInSection:indexPath.section];
+    [cell setBackgroundForRow:row inSectionSize:size];
 
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
-
-    
     return cell;
 
 }

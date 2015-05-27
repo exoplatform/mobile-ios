@@ -124,6 +124,8 @@
 
 "Portuguese-Brazil" = "Portuguese (Brazil)";
 
+"Greek"= "Greek";
+
 "Send" = "Send";
 
 "ServerList" = "Accounts";
@@ -317,13 +319,13 @@
 
 "Remove" = "Remove";
 
-"All Updates" = "All updates";
+"All Updates" = "All Activities";
 
-"My Connections" = "My connections";
+"My Connections" = "My Connections";
 
-"My Spaces" = "My spaces";
+"My Spaces" = "My Spaces";
 
-"My Status" = "My status";
+"My Status" = "My Activities";
 
 
 /*
@@ -437,3 +439,6 @@
 
 "To" = "To";
 
+"in" = "in";
+
+"space" = "space";

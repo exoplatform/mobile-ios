@@ -252,7 +252,7 @@
 
 //
 -(void)showContent:(UITapGestureRecognizer *)tapGesture{
-    //NSLog(@"test");
+
 }
 
 #pragma mark - cell initialization
