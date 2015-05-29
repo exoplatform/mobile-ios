@@ -69,7 +69,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)loadImagesForOnscreenRows;
 - (void)callProxiesToReloadActivityStream;
-- (BOOL)shoudAutoLoadMore;
+@property (nonatomic, readonly) BOOL shoudAutoLoadMore;
 
 
 @end
@@ -91,7 +91,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 @synthesize filterTabbar = _filterTabbar;
 @synthesize userProfile = _userProfile;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -215,13 +215,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         } 
         for (int i = 0; i < [self.socialActivityStreamProxy.arrActivityStreams count]; i++) 
         {
-            SocialActivity *socialActivityStream = [self.socialActivityStreamProxy.arrActivityStreams objectAtIndex:i];
+            SocialActivity *socialActivityStream = (self.socialActivityStreamProxy.arrActivityStreams)[i];
             
             [socialActivityStream convertToPostedTimeInWords];
             [socialActivityStream convertToUpdatedTimeInWords];
             [socialActivityStream convertHTMLEncoding];
             [socialActivityStream getActivityType];
-            [socialActivityStream cellHeightCalculationForWidth:_tblvActivityStream.frame.size.width];
+            [socialActivityStream convertToAttributedMessage];
             [_arrActivityStreams addObject:socialActivityStream];
         }
 
@@ -230,7 +230,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         
         // Release the RKObjectLoader because we don't need RK anymore
         if (_activityAction==ActivityActionLoadMore || _activityAction==ActivityActionUpdateAfterError)
-            [[proxy RKObjectLoader] release];
         _lastActivity = nil;
     } 
     else if (proxy == self.likeActivityProxy) 
@@ -238,6 +237,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         self.likeActivityProxy = nil;
         [self updateActivityStream];
     }
+    
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
@@ -262,7 +262,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         // We don't release RKObjectLoader here because we need it for the new RK request
     } else if (_activityAction == ActivityActionUpdateAfterError) {
         // Release the RKObjectLoader because we don't need RK anymore
-        [[proxy RKObjectLoader] release];
         alertMessages = [NSMutableString stringWithString:Localize(@"UpdatingActionCannotBeCompleted")];
     }
 
@@ -273,14 +272,16 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 //    RKObjectLoaderUnexpectedResponseError       =   4
 
     if (alertMessages!=nil) {
-
-        if (error.code == RKObjectLoaderUnexpectedResponseError) {
-            [alertMessages appendString:@"\n"];
-            [alertMessages appendString:Localize(@"BadResponse")];
-        } else if(error.code == RKRequestBaseURLOfflineError) {
-            [alertMessages appendString:@"\n"];
-            [alertMessages appendString:Localize(@"NetworkConnection")];
-        }
+//TODO: Detect new  Error code
+        
+        
+//        if (error.code == RKObjectLoaderUnexpectedResponseError) {
+//            [alertMessages appendString:@"\n"];
+//            [alertMessages appendString:Localize(@"BadResponse")];
+//        } else if(error.code == RKRequestBaseURLOfflineError) {
+//            [alertMessages appendString:@"\n"];
+//            [alertMessages appendString:Localize(@"NetworkConnection")];
+//        }
 
         UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [alertView show];
@@ -349,6 +350,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityWikiTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierWiki];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityPictureTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierPicture];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityLinkTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierLink];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityForumTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierForum];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityAnswerTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierAnswer];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityCalendarTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifierCalendar];
+    [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityBasicTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
+
     
     plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
     
@@ -356,18 +365,20 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
     self.title = Localize(@"News");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     _tblvActivityStream.backgroundColor = [UIColor clearColor];
     _tblvActivityStream.scrollsToTop = YES;
     _tblvActivityStream.contentInset = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
     _tblvActivityStream.scrollIndicatorInsets = UIEdgeInsetsMake(kStreamTabbarHeight, 0, 0, 0);
+    
+    
     // filter tab bar
     CGRect activityStreamFrame = _tblvActivityStream.frame;
     self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)] autorelease];
-    self.filterTabbar.tabView.delegate = self;
-    [self.filterTabbar selectTabItem:[UserPreferencesManager sharedInstance].selectedSocialStream];
+    self.filterTabbar.tabView.delegate = self;    
     [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
+
     //Add the pull to refresh header
     if (_refreshHeaderView == nil) {
 		
@@ -389,8 +400,15 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     // The footer view that contains the activity indicator
     [self setupActivityIndicator];
-}
+    
 
+}
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.filterTabbar selectTabItem:[UserPreferencesManager sharedInstance].selectedSocialStream];
+
+}
 - (void)viewDidUnload
 {
     [_refreshHeaderView release];
@@ -445,7 +463,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:(plfVersion < 4) ? @"postedTime" : @"lastUpdated"
                                                                     ascending:NO] autorelease];
     
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortDescriptors = @[sortDescriptor];
     self.arrActivityStreams = [[[NSMutableArray alloc] initWithArray:[self.arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]] autorelease];
     
     //Browse each activities
@@ -455,18 +473,18 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         long timeInSecond = plfVersion < 4 ? round(a.postedTime/1000) : round(a.lastUpdated/1000);
         long timeIntervalNow = [[NSDate date] timeIntervalSince1970];
         
-        int time = (timeIntervalNow - timeInSecond);
+        long time = (timeIntervalNow - timeInSecond);
         
         if (time < 86400) {
             //Search the current array of activities for today
-            NSMutableArray *arrayOfToday = [_sortedActivities objectForKey:@"Today"];
+            NSMutableArray *arrayOfToday = _sortedActivities[@"Today"];
             
             // if the array not yet exist, we create it
             if (arrayOfToday == nil) {
                 //create the array
                 arrayOfToday = [[[NSMutableArray alloc] init] autorelease];
                 //set it into the dictonary
-                [_sortedActivities setObject:arrayOfToday forKey:@"Today"];
+                _sortedActivities[@"Today"] = arrayOfToday;
                 
                 //set the key to the array of sections title
                 [_arrayOfSectionsTitle addObject:@"Today"];
@@ -478,14 +496,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         else
         {
             //Search the current array of activities for current key
-            NSMutableArray *arrayOfCurrentKeys = [_sortedActivities objectForKey:(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords];
+            NSMutableArray *arrayOfCurrentKeys = _sortedActivities[(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords];
             
             // if the array not yet exist, we create it
             if (arrayOfCurrentKeys == nil) {
                 //create the array
                 arrayOfCurrentKeys = [[[NSMutableArray alloc] init] autorelease];
                 //set it into the dictonary
-                [_sortedActivities setObject:arrayOfCurrentKeys forKey:(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords];
+                _sortedActivities[(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords] = arrayOfCurrentKeys;
                 
                 //set the key to the array of sections title 
                 [_arrayOfSectionsTitle addObject:(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords];
@@ -500,8 +518,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (SocialActivity *)getSocialActivityStreamForIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:indexPath.section]];
-    return [arrayForSection objectAtIndex:indexPath.row];
+    NSMutableArray *arrayForSection = _sortedActivities[_arrayOfSectionsTitle[indexPath.section]];
+    return arrayForSection[indexPath.row];
 }
 
 - (void)clearActivityData
@@ -518,11 +536,13 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     } else {
         _selectedTabItem = itemIndex;
     }
-    [UserPreferencesManager sharedInstance].selectedSocialStream = itemIndex;
+    [UserPreferencesManager sharedInstance].selectedSocialStream = (int)itemIndex;
     [self clearActivityData];
     [_tblvActivityStream reloadData];
     [self displayHudLoader];
     [self callProxiesToReloadActivityStream];
+    
+    
 }
 
 
@@ -535,7 +555,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSMutableArray *arrayForSection = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:section]];
+    NSMutableArray *arrayForSection = _sortedActivities[_arrayOfSectionsTitle[section]];
     return [arrayForSection count];
 }
 
@@ -560,22 +580,29 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.5];
     headerLabel.shadowOffset = CGSizeMake(0,1);
-    headerLabel.textAlignment = UITextAlignmentRight;
+    headerLabel.textAlignment = NSTextAlignmentRight;
 	headerLabel.frame = CGRectMake(0.0, 0.0, _tblvActivityStream.frame.size.width-5, kHeightForSectionHeader);
-    NSString *headerTitle = [_arrayOfSectionsTitle objectAtIndex:section];
+    NSString *headerTitle = _arrayOfSectionsTitle[section];
     if ([headerTitle isEqualToString:@"Today"]) {
-        headerLabel.text = Localize([_arrayOfSectionsTitle objectAtIndex:section]);
+        headerLabel.text = Localize(_arrayOfSectionsTitle[section]);
     } else {
         SocialActivity *firstAct = [[_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:section]] objectAtIndex:0];
-        headerLabel.text = [[NSDate dateWithTimeIntervalSince1970:firstAct.postedTime/1000] distanceOfTimeInWords:[NSDate date]];
+        headerLabel.text = [[NSDate dateWithTimeIntervalSince1970:firstAct.lastUpdated/1000] distanceOfTimeInWords:[NSDate date]];
     }
     
-    CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblvActivityStream.frame.size.width-5, CGFLOAT_MAX) 
-                                      lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [headerLabel.text boundingRectWithSize:CGSizeMake(_tblvActivityStream.frame.size.width-5, CGFLOAT_MAX)
+                                                 options:nil
+                                              attributes:@{
+                                                           NSFontAttributeName: headerLabel.font,
+                                                 NSParagraphStyleAttributeName: style
+                                                           }
+                                                 context:nil].size;
     
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderNormalBg.png"];
-    if ([(NSString *) [_arrayOfSectionsTitle objectAtIndex:section] isEqualToString:@"Today"]) {
+    if ([(NSString *) _arrayOfSectionsTitle[section] isEqualToString:@"Today"]) {
         imgForSection = [UIImage imageNamed:@"SocialActivityBrowseHeaderHighlightedBg.png"];
         headerLabel.textColor = [UIColor colorWithRed:21./255 green:94./255 blue:173./255 alpha:1.];
     }
@@ -597,93 +624,40 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-    return  socialActivityStream.cellHeight;
+    if (socialActivityStream.cellHeight >0) {
+        return socialActivityStream.cellHeight;
+    }
+    return [self heightForRowAtIndexPath:indexPath];
+
 }
-
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
-{    
-    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
-    ActivityBasicTableViewCell *cell;
-    
-    switch (socialActivityStream.activityType) {
+-(NSString *) identifientForCellOfSocialActivity:(SocialActivity *) socialActivity {
+    switch (socialActivity.activityType) {
         case ACTIVITY_DOC:
         case ACTIVITY_CONTENTS_SPACE:{
-            cell  = (ActivityPictureTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPicture];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityPictureTableViewCell" owner:self options:nil];
-                cell = (ActivityPictureTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-                
-            }
+            return kCellIdentifierPicture;
         }
             break;
-            
         case ACTIVITY_LINK:{
-            cell  = (ActivityLinkTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierLink];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityLinkTableViewCell" owner:self options:nil];
-                cell = (ActivityLinkTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
+            return kCellIdentifierLink;
         }
             break;
         case ACTIVITY_WIKI_ADD_PAGE:
         case ACTIVITY_WIKI_MODIFY_PAGE:{
-            cell  = (ActivityWikiTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierWiki];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityWikiTableViewCell" owner:self options:nil];
-                cell = (ActivityWikiTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
-            
+            return kCellIdentifierWiki;
         }
             break;
-        case ACTIVITY_FORUM_CREATE_POST: 
+        case ACTIVITY_FORUM_CREATE_POST:
         case ACTIVITY_FORUM_CREATE_TOPIC:
         case ACTIVITY_FORUM_UPDATE_TOPIC:
         case ACTIVITY_FORUM_UPDATE_POST:{
-            cell  = (ActivityForumTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierForum];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityForumTableViewCell" owner:self options:nil];
-                cell = (ActivityForumTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
+            return kCellIdentifierForum;
         }
             break;
         case ACTIVITY_ANSWER_QUESTION:
         case ACTIVITY_ANSWER_ADD_QUESTION:
         case ACTIVITY_ANSWER_UPDATE_QUESTION:
         {
-            //We dequeue a cell
-            cell  = (ActivityAnswerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierAnswer];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityAnswerTableViewCell" owner:self options:nil];
-                cell = (ActivityAnswerTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
+            return kCellIdentifierAnswer;
         }
             break;
         case ACTIVITY_CALENDAR_UPDATE_TASK:
@@ -691,39 +665,52 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         case ACTIVITY_CALENDAR_ADD_EVENT:
         case ACTIVITY_CALENDAR_ADD_TASK:
         {
-            //We dequeue a cell
-            cell  = (ActivityCalendarTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifierCalendar];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityCalendarTableViewCell" owner:self options:nil];
-                cell = (ActivityCalendarTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
+            return kCellIdentifierCalendar;
         }
             break;
-        
         default:{
-            //We dequeue a cell
-            cell  = (ActivityBasicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityBasicTableViewCell" owner:self options:nil];
-                cell = (ActivityBasicTableViewCell *)[nib objectAtIndex:0];
-                
-                //Create a cell, need to do some Configurations
-                [cell configureCellForWidth:tableView.frame.size.width];
-            }
+            return kCellIdentifier;
         }
             break;
     }
+}
+
+-(CGFloat) heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
     
+    static ActivityBasicTableViewCell *sizingCell = nil;
+    NSString * identCell = [self identifientForCellOfSocialActivity:socialActivityStream];
+    
+    sizingCell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+    
+    [sizingCell setSocialActivityStreamForSpecificContent:socialActivityStream];
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    socialActivityStream.cellHeight = size.height +1.0f;
+    
+    return size.height + 1.0f; // Add 1.0f for the cell separator height
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{    
+    SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+    
+    NSString * identCell = [self identifientForCellOfSocialActivity:socialActivityStream];
+    
+    ActivityBasicTableViewCell *cell;
+    cell =  [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
+
+    // configuration cell.
     [cell setPlatformVersion:plfVersion];
     cell.delegate = self;
     cell.imgType.image = [UIImage imageNamed:[self getIconForType:socialActivityStream.type]];
+    // setup background image.
+    [cell backgroundConfiguration];
+    // setup social activity
     [cell setSocialActivityStream:socialActivityStream];
     
     //Load images
@@ -741,6 +728,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         }
     }
     cell.backgroundColor = [UIColor clearColor];
+//    [cell setNeedsLayout];
+//    [cell layoutIfNeeded];
+
     return cell;
 }
 
@@ -771,7 +761,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
-    //NSLog(@"%@")//SocialLikeActivityProxy
     self.likeActivityProxy = [[[SocialLikeActivityProxy alloc] init] autorelease];
     self.likeActivityProxy.delegate = self;
     
@@ -957,7 +946,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     if (scrollView.contentOffset.y == scrollView.contentSize.height - scrollView.bounds.size.height) {
         if([self shoudAutoLoadMore]) {
             // First we get the last activity of the table
-            NSMutableArray *lastSectionArray = [_sortedActivities objectForKey:[_arrayOfSectionsTitle objectAtIndex:_arrayOfSectionsTitle.count-1]];
+            NSMutableArray *lastSectionArray = _sortedActivities[_arrayOfSectionsTitle[_arrayOfSectionsTitle.count-1]];
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow:lastSectionArray.count-1 inSection:_tblvActivityStream.numberOfSections-1];
             _activityAction = ActivityActionLoadMore;
             SocialActivity* lastActivity = [self getSocialActivityStreamForIndexPath:indexPath];

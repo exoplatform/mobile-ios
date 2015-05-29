@@ -30,41 +30,60 @@
 -(void) getMySocialSpaces {
     // Load the object model via RestKit
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
-    [mapping mapKeyPathsToAttributes:
-     @"avatarUrl",@"avatarUrl",
-     @"groupId",@"groupId",
-     @"spaceUrl",@"spaceUrl",
-     @"url",@"url",
-     @"name",@"name",
-     @"displayName",@"displayName",
-     nil];
-    [mapping setRootKeyPath:@"spaces"];
-    [manager.mappingProvider setObjectMapping:mapping forKeyPath:@"spaces"];
-
     
-    [manager loadObjectsAtResourcePath:MY_SPACE_PATH objectMapping:mapping delegate:self];
+
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
+    [mapping addAttributeMappingsFromDictionary:@{
+     @"avatarUrl":@"avatarUrl",
+     @"groupId":@"groupId",
+     @"spaceUrl":@"spaceUrl",
+     @"url":@"url",
+     @"name":@"name",
+     @"displayName":@"displayName"
+     }];
+    
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:MY_SPACE_PATH keyPath:@"spaces" statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    
+    [manager addResponseDescriptor:responseDescriptor];
+    [manager getObjectsAtPath:MY_SPACE_PATH parameters:nil
+                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                          [self restKitDidLoadObjects:[mappingResult array]];
+                      } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                          [super restKitDidFailWithError:error];
+                      }
+     ];
+
     
 }
 
 -(void) getIdentifyOfSpace:(SocialSpace *)space {
     RKObjectManager* manager = [RKObjectManager sharedManager];
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialSpace class]];
-    [mapping mapKeyPathsToAttributes:
-     @"id",@"spaceId",
-     nil];
+    [mapping addAttributeMappingsFromDictionary:@{@"id":@"spaceId" }];
     
     NSString * path = [NSString stringWithFormat:@"private/api/social/v1-alpha3/portal/identity/space/%@.json", space.name];
     path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [manager loadObjectsAtResourcePath:path objectMapping:mapping delegate:self];
+    
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:path keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [manager addResponseDescriptor:responseDescriptor];
+    [manager getObjectsAtPath:path parameters:nil
+                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                          [self restKitDidLoadObjects:[mappingResult array]];
+                      } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                          [super restKitDidFailWithError:error];
+                      }
+     ];
 }
 
 
 #pragma mark - RKObjectLoaderDelegate methods
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
+- (void)restKitDidLoadObjects:(NSArray*)objects
 {
     self.mySpaces = objects;
-    [super objectLoader:objectLoader didLoadObjects:objects];
+    [super restKitDidLoadObjects:objects];
+
 }
 
 -(void) dealloc {

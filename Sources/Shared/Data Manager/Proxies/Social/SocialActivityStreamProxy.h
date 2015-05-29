@@ -23,12 +23,12 @@
 #import "SocialUserProfile.h"
 #import "SocialActivity.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ActivityStreamProxyActivityType) {
   ActivityStreamProxyActivityTypeAllUpdates = 0,
   ActivityStreamProxyActivityTypeMyConnections, 
   ActivityStreamProxyActivityTypeMySpaces,
   ActivityStreamProxyActivityTypeMyStatus
-} ActivityStreamProxyActivityType;
+} ;
 
 @class SocialUserProfileProxy;
 

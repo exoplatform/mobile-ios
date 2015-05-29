@@ -20,7 +20,6 @@
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
-#import <Three20Network/TTURLRequestQueue.h>
 @implementation eXoMobileAppDelegate
 
 
@@ -31,8 +30,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
-    // Accept responses with content length up to 1MB
-    [[TTURLRequestQueue mainQueue] setMaxContentLength:1000000];
     return YES;
 }
 

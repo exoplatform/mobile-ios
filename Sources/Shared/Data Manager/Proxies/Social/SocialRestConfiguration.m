@@ -61,8 +61,7 @@
     
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer
-    NSString *domainWithoutHttp = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] stringByReplacingOccurrencesOfString:@"http://" 
-                                                                                                                                                   withString:@""];
+    NSString *domainWithoutHttp = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] stringByReplacingOccurrencesOfString:@"http://" withString:@""];
     
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer
@@ -73,7 +72,7 @@
     return [NSString stringWithFormat:@"%@/%@/private/", self.domainName, self.restContextName];
 }
 
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {

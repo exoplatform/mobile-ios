@@ -40,7 +40,7 @@
     NSMutableString *textMutable = [[NSMutableString alloc] init];
     if (text) [textMutable setString:text];
     
-    int nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
+    long nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
     
     [textMutable release];
     
@@ -56,9 +56,17 @@
     }
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
-        
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
+    
+    NSMutableParagraphStyle* wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [textWithoutHtml
+                      boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{
+                                   NSFontAttributeName: kFontForMessage,
+                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                   }
+                      context:nil].size;
     
     int fHeight = theSize.height + nbBR * 10;
 
@@ -72,7 +80,7 @@
     NSMutableString *textMutable = [[NSMutableString alloc] init];
     if (text) [textMutable setString:text];
     
-    int nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
+    long nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
     
     [textMutable release];
     
@@ -89,8 +97,16 @@
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
     
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForTitle constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle* wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [textWithoutHtml
+                      boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{
+                                   NSFontAttributeName: kFontForTitle,
+                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                   }
+                      context:nil].size;
     
     int fHeight = theSize.height + nbBR * 10;
     
@@ -250,12 +266,12 @@
         default:{
             text = activtyStreamDetail.title;
             fHeight += [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
-            //NSLog(@"%@", text);
         }
             break;
     }
     
     fHeight += [ActivityHelper heightForAllDecorationsWithTableViewWidth:fWidth];
+    LogDebug(@"Cell for: %@ =  %f",activtyStreamDetail.title, fHeight);
     return fHeight;
 }
 
@@ -286,6 +302,9 @@
             if(h > 32){
                 h = 32;
             }
+            if (h>0){
+                h+= 100;
+            }
             fHeight += h + 80;
         }
             break;
@@ -294,6 +313,9 @@
             h =  [ActivityHelper getHeightSizeForText:text andTableViewWidth:fWidth];
             if(h > EXO_MAX_HEIGHT){
                 h = EXO_MAX_HEIGHT;
+            }
+            if (h>0){
+                h+= 100;
             }
             fHeight += h + 80;
         }
@@ -323,8 +345,9 @@
             
             NSURL *url = [NSURL URLWithString:[activtyStream.templateParams valueForKey:@"image"]];
             if (url && url.host && url.scheme){
-                fHeight += 65;
-            } else {
+                fHeight += 265;
+            }
+            else {
                 fHeight -= 10;
             }
 
@@ -492,8 +515,16 @@
         [pseudoDisplayedText appendString:@"\n"];
     }
     
-    
-    CGSize theSize = [pseudoDisplayedText sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle* wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [pseudoDisplayedText
+                      boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{
+                                   NSFontAttributeName: kFontForMessage,
+                                   NSParagraphStyleAttributeName: wordWrapStyle
+                                   }
+                      context:nil].size;
     
     if (theSize.height < 30) 
     {

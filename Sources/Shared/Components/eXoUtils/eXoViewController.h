@@ -24,10 +24,11 @@
 
 
 @interface eXoViewController : UIViewController {
-    IBOutlet UINavigationBar*           _navigation;
-    UILabel *label;
+    IBOutlet UINavigationBar* _navigation;
 }
 
+@property (nonatomic, retain) IBOutlet UINavigationBar* navigation;
+@property (nonatomic, retain) UILabel* label;
 // ATMHud to manage loading diplay
 @property (nonatomic, readonly) ATMHud *hudLoadWaiting;
 

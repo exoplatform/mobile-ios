@@ -64,10 +64,10 @@
 				  urlIcon:(NSURL*)urlIcon 
 				imageIcon:(UIImage*)imageIcon;
 //Gettors
-- (NSString*)name;
-- (NSString*)description;
-- (NSURL*)urlContent;
-- (NSURL*)urlIcon;
-- (UIImage*)imageIcon;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *description;
+@property (nonatomic, readonly, copy) NSURL *urlContent;
+@property (nonatomic, readonly, copy) NSURL *urlIcon;
+@property (nonatomic, readonly, strong) UIImage *imageIcon;
 @end
 

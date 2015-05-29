@@ -44,7 +44,7 @@
     [super viewDidLoad];
     _navigation.topItem.title = self.title;
     self.view.backgroundColor = [UIColor clearColor];
-    RoundRectView *containerView = (RoundRectView *) [[self.view subviews] objectAtIndex:0];
+    RoundRectView *containerView = (RoundRectView *) [self.view subviews][0];
     containerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
     containerView.squareCorners = NO;
     [_navigation.topItem setRightBarButtonItem:_bbtnPost];
@@ -73,7 +73,12 @@
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
     
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                                             options:nil
+                                          attributes:@{ NSFontAttributeName: kFontForMessage, NSParagraphStyleAttributeName: style }
+                                             context:nil].size;
     
     if (theSize.height < 30) 
     {
@@ -113,7 +118,9 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPad instance].rootViewController.menuViewController
+        presentViewController:navController animated:YES completion:nil];
+
     
     int x, y;
     
@@ -147,7 +154,8 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPad instance].rootViewController.menuViewController
+        presentViewController:navController animated:YES completion:nil];
     [messageComposerViewController release];
         
     int x, y;
@@ -183,13 +191,16 @@
     } 
     
     _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];
+
+    [_activityDetailViewController setSocialActivityStream:socialActivityStream
+                                     andCurrentUserProfile:self.userProfile];
+
     _activityDetailViewController.iconType = [self getIconForType:socialActivityStream.type];
+
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:_activityDetailViewController invokeByController:self isStackStartView:FALSE];
     
     _indexpathSelectedActivity = [indexPath copy];
 
-    [_activityDetailViewController setSocialActivityStream:socialActivityStream 
-                                     andCurrentUserProfile:self.userProfile];
 
         
     

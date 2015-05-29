@@ -112,7 +112,7 @@ static BOOL OSVersionIsAtLeast(float version) {
 }
 
 
-- (id)init {
+- (instancetype)init {
 	if ((self = [super init])) {
         self.backgroundColor = [UIColor clearColor];
         self.popoverLayoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -120,7 +120,7 @@ static BOOL OSVersionIsAtLeast(float version) {
 	return self;
 }
 
-- (id)initWithContentViewController:(UIViewController *)viewController {
+- (instancetype)initWithContentViewController:(UIViewController *)viewController {
 	if ((self = [self init])) {
 		self.contentViewController = viewController;
 	}
@@ -356,6 +356,7 @@ static BOOL OSVersionIsAtLeast(float version) {
 
 @implementation WEPopoverController(Private)
 
+
 - (BOOL)isView:(UIView *)v1 inSameHierarchyAsView:(UIView *)v2 {
     BOOL inViewHierarchy = NO;
     while (v1 != nil) {
@@ -398,11 +399,12 @@ static BOOL OSVersionIsAtLeast(float version) {
 
 - (void)determineContentSize {
     if (CGSizeEqualToSize(_popoverContentSize, CGSizeZero)) {
-        if ([_contentViewController respondsToSelector:@selector(preferredContentSize)]) {
+//        We support iOS7.0 and + so we don't need to use the deprecated property contentSizeForViewInPopover
+//        if ([_contentViewController respondsToSelector:@selector(preferredContentSize)]) {
             _effectivePopoverContentSize = _contentViewController.preferredContentSize;
-        } else {
-            _effectivePopoverContentSize = _contentViewController.contentSizeForViewInPopover;
-        }
+//        } else {
+//            _effectivePopoverContentSize = _contentViewController.contentSizeForViewInPopover;
+//        }
 	} else {
         _effectivePopoverContentSize = _popoverContentSize;
     }
@@ -434,7 +436,6 @@ static BOOL OSVersionIsAtLeast(float version) {
                                  
                                  [self animationDidStop:@"FadeOut" finished:[NSNumber numberWithBool:finished] context:(__bridge void *)([NSNumber numberWithBool:userInitiated])];
                              }];
-            
             
 		} else {
             if ([self forwardAppearanceMethods]) {

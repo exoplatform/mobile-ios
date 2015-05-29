@@ -134,7 +134,7 @@
         cell.accessoryView = [self makeCheckmarkOffAccessoryView];
     }
     
-	ServerObj* tmpServerObj = [[ApplicationPreferencesManager sharedInstance].serverList objectAtIndex:indexPath.row];
+	ServerObj* tmpServerObj = ([ApplicationPreferencesManager sharedInstance].serverList)[indexPath.row];
     cell.textLabel.text = tmpServerObj.accountName;
     cell.detailTextLabel.text = tmpServerObj.serverUrl;
     
@@ -144,7 +144,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ApplicationPreferencesManager sharedInstance].selectedServerIndex = indexPath.row;
+    [ApplicationPreferencesManager sharedInstance].selectedServerIndex = (int)indexPath.row;
     
     //Invalidate server informations
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

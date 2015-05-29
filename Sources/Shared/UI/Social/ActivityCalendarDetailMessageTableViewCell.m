@@ -29,10 +29,6 @@
 
 @implementation ActivityCalendarDetailMessageTableViewCell
 
-@synthesize htmlMessage = _htmlMessage;
-@synthesize htmlName =_htmlName;
-@synthesize htmlTitle = _htmlTitle;
-
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
     CGRect tmpFrame = CGRectZero;
     //width = fWidth;
@@ -43,102 +39,64 @@
         tmpFrame = CGRectMake(65, 0, WIDTH_FOR_CONTENT_IPHONE , 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
-    
-    _htmlName = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlName.userInteractionEnabled = NO;
-    _htmlName.backgroundColor = [UIColor clearColor];
-    _htmlName.font = [UIFont systemFontOfSize:13.0];
-    _htmlName.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlName];
-    
-    _htmlTitle = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlTitle.userInteractionEnabled = NO;
-    _htmlTitle.backgroundColor = [UIColor clearColor];
-    _htmlTitle.font = [UIFont systemFontOfSize:13.0];
-    
-    [self.contentView addSubview:_htmlTitle];
-    
-    _htmlMessage = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
-    _htmlMessage.userInteractionEnabled = NO;
-    _htmlMessage.backgroundColor = [UIColor clearColor];
-    _htmlMessage.font = [UIFont systemFontOfSize:13.0];
-    _htmlMessage.textColor = [UIColor grayColor];
-    
-    [self.contentView addSubview:_htmlMessage];
 }
 
 - (void)updateSizeToFitSubViews {
-    CGRect frame = self.frame;
-    frame.size.height = _htmlMessage.frame.origin.y + _htmlMessage.frame.size.height + kPadding + self.lbDate.frame.size.height + kBottomMargin;
-    self.frame = frame;
 }
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
     [super setSocialActivityDetail:socialActivityDetail];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.lbTitle.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
+
     NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
     NSString *space = nil;
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
-    
-    NSString *htmlStr = nil;
-    NSDictionary *_templateParams = self.socialActivity.templateParams;
-    switch (self.socialActivity.activityType) {
-        case ACTIVITY_CALENDAR_ADD_EVENT:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventAdded")];
-            
-        }
+    NSString * name = socialActivityDetail.posterIdentity.fullName;
+    switch (socialActivityDetail.activityType) {
+        case ACTIVITY_CALENDAR_ADD_EVENT:
+            name = [NSString stringWithFormat:@"%@%@ %@",
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"EventAdded")];
             break;
-        case ACTIVITY_CALENDAR_UPDATE_EVENT:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"EventUpdated")];
-        }
-            break; 
-        case ACTIVITY_CALENDAR_ADD_TASK:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName,space ? [NSString stringWithFormat:@" in %@", space] : @"", Localize(@"TaskAdded")];
-            
-        }
-            
+        case ACTIVITY_CALENDAR_UPDATE_EVENT:
+            name = [NSString stringWithFormat:@"%@%@ %@",
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"EventUpdated")];
             break;
-        case ACTIVITY_CALENDAR_UPDATE_TASK:{
-            htmlStr = [NSString stringWithFormat:@"<a>%@%@</a> %@", socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" in %@ space", space] : @"", Localize(@"TaskUpdated")];
-        }
+        case ACTIVITY_CALENDAR_ADD_TASK:
+            name = [NSString stringWithFormat:@"%@%@ %@",
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"TaskAdded")];
+            break;
+        case ACTIVITY_CALENDAR_UPDATE_TASK:
+            name = [NSString stringWithFormat:@"%@%@ %@",
+                    socialActivityDetail.posterIdentity.fullName, space ? [NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @"", Localize(@"TaskUpdated")];
+            break;
+        default:
             break;
     }
-    _htmlName.html = htmlStr;
-    [_htmlName sizeToFit];
     
-    _htmlTitle.html = [NSString stringWithFormat:@"<a>%@</a>", [[[_templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML]];
+    NSMutableAttributedString * attributedName = [[NSMutableAttributedString alloc] initWithString:name];
+    [attributedName setAttributes:kAttributeText range:NSMakeRange(socialActivityDetail.posterIdentity.fullName.length, name.length-socialActivityDetail.posterIdentity.fullName.length)];
+    if (space) {
+        [attributedName setAttributes:kAttributeNameSpace range:[name rangeOfString:[NSString stringWithFormat:@" %@ ",space]]];
+    }
+    _lbName.attributedText = attributedName;
     
-    NSString *startTime = [[NSDate dateWithTimeIntervalSince1970:[[[_templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
-    NSString *endTime = [[NSDate dateWithTimeIntervalSince1970:[[[_templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
+    _lbTitle.text =[[[socialActivityDetail.templateParams valueForKey:@"EventSummary"] stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
     
-    _htmlMessage.html = [NSString stringWithFormat:@"%@: %@\n%@: %@\n%@: %@\n%@: %@\n",Localize(@"Description"), [[_templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText], Localize(@"Location"),[[_templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText], Localize(@"StartTime"), startTime, Localize(@"EndTime"), endTime];
-
-    //Set the position of web
-    CGRect tmpFrame = _htmlName.frame;
-    tmpFrame.origin.y = 6;
-    _htmlName.frame = tmpFrame;
     
-    tmpFrame = _htmlTitle.frame;
-    tmpFrame.origin.y = _htmlName.frame.size.height + _htmlName.frame.origin.y + 5;
-    _htmlTitle.frame = tmpFrame;
-
-    tmpFrame = _htmlMessage.frame;
-    tmpFrame.origin.y = _htmlTitle.frame.size.height + _htmlTitle.frame.origin.y + 5;
-    _htmlMessage.frame = tmpFrame;
+    NSString *startTime = [[NSDate dateWithTimeIntervalSince1970:[[[socialActivityDetail.templateParams valueForKey:@"EventStartTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
+    NSString *endTime = [[NSDate dateWithTimeIntervalSince1970:[[[socialActivityDetail.templateParams valueForKey:@"EventEndTime"] stringByConvertingHTMLToPlainText] doubleValue]/1000] distanceOfTimeInWords];
     
-    [_htmlMessage sizeToFit];
-    [_htmlTitle sizeToFit];
-    [self updateSizeToFitSubViews];
+    _lbMessage.text = [NSString stringWithFormat:@"%@: %@\n%@: %@\n%@: %@\n%@: %@",Localize(@"Description"), [[socialActivityDetail.templateParams valueForKey:@"EventDescription"] stringByConvertingHTMLToPlainText], Localize(@"Location"),[[socialActivityDetail.templateParams valueForKey:@"EventLocale"] stringByConvertingHTMLToPlainText], Localize(@"StartTime"), startTime, Localize(@"EndTime"), endTime];
 }
 
 - (void)dealloc {
-    [_htmlTitle release];
-    [_htmlMessage release];
-    [_htmlName release];
     
+    [_lbTitle release];
     [super dealloc];
 }
 

@@ -15,7 +15,7 @@
 
 @interface JTTableViewCellModal : NSObject <JTTableViewCellModal>
 @property (nonatomic, copy) NSString *title;
-+ (id)modalWithTitle:(NSString *)title;
++ (instancetype)modalWithTitle:(NSString *)title;
 @end
 
 @interface NSString (JTTableViewCellModal) <JTTableViewCellModal>

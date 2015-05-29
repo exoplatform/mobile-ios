@@ -51,7 +51,7 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
@@ -322,7 +322,7 @@
             _credViewController.view.hidden = YES;
             _servListViewController.view.hidden = NO;
         }
-        _selectedTabIndex = itemIndex;
+        _selectedTabIndex = (int)itemIndex;
     }
 }
 // fills username - password if there is remembered credentials

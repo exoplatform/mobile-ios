@@ -39,7 +39,7 @@
 	id<EGOImageLoadConnectionDelegate> _delegate;
 }
 
-- (id)initWithImageURL:(NSURL*)aURL delegate:(id)delegate;
+- (instancetype)initWithImageURL:(NSURL*)aURL delegate:(id)delegate;
 
 - (void)start;
 - (void)cancel;

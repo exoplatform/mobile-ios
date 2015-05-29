@@ -51,7 +51,7 @@ static NSString *urlEncode(id object) {
 - (void)dealloc {
     delegate = nil;
 
-    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
+//    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [super dealloc];
 }
 
@@ -63,13 +63,13 @@ static NSString *urlEncode(id object) {
 - (NSString*)URLEncodedString:(NSDictionary *)dictForParam {
 	NSMutableArray *parts = [NSMutableArray array];
 	for (id key in dictForParam) {
-		id value = [dictForParam objectForKey:key];
+		id value = dictForParam[key];
 		if ([value isKindOfClass:[NSArray class]]) {
 			for (id item in value) {
                 if ([item isKindOfClass:[NSDictionary class]]) {
                     // Handle nested object one level deep
                     for( NSString *nKey in [item allKeys] ) {
-                        id nValue = [item objectForKey:nKey];
+                        id nValue = item[nKey];
                         NSString *part = [NSString stringWithFormat: @"%@[][%@]=%@",
                                           urlEncode(key), urlEncode(nKey), urlEncode(nValue)];
                         [parts addObject:part];
@@ -91,28 +91,19 @@ static NSString *urlEncode(id object) {
 	return [parts componentsJoinedByString: @"&"];
 }
 
-- (NSData*)HTTPBody {
-    NSDictionary *dict = [[NSDictionary alloc] init];
-	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
-}
+//- (NSData*)HTTPBody {
+//    NSDictionary *dict = [[NSDictionary alloc] init];
+//	return [[dict URLEncodedString] dataUsingEncoding:NSUTF8StringEncoding];
+//}
 
-- (RKObjectLoader*)RKObjectLoader {
-    return rkLoader;
-}
 
 #pragma mark - RKObjectLoaderDelegate implementation
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
-{
-    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-}
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
+-(void) restKitDidLoadObjects:(NSArray*)objects {
     if (delegate && [delegate respondsToSelector:@selector(proxyDidFinishLoading:)]) {
         [delegate proxyDidFinishLoading:self];
     }
 }
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {    
+-(void) restKitDidFailWithError:(NSError *)error{
     if (delegate && [delegate respondsToSelector:@selector(proxy: didFailWithError:)]) {
         [delegate proxy:self didFailWithError:error];
     }

@@ -21,7 +21,6 @@
 
 #import "defines.h"
 #import "FilesProxy.h"
-#import "HomeStyleSheet.h"
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
 #import "WelcomeViewController_iPhone.h"
@@ -33,7 +32,6 @@
 @synthesize window;
 @synthesize authenticateViewController = _authenticateViewController;
 @synthesize navigationController;
-@synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
 @synthesize homeSidebarViewController_iPhone = _homeSidebarViewController_iPhone;
 
@@ -41,7 +39,7 @@
     return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];    
 }
 
-- (id)init {
+- (instancetype)init {
 	if ((self = [super init])) {
 	}
 	return self;
@@ -121,9 +119,6 @@
 
 - (void)showHomeSidebarViewController {
     // Login is successfully
-    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
-
-    
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
@@ -140,24 +135,11 @@
 - (void)showHomeViewController {
     // Login is successfully
     
-    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
-
-    
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
     
     [UserPreferencesManager sharedInstance].isUserLogged = YES;
-    
-    [_homeViewController_iPhone release];
-    _homeViewController_iPhone = nil;   
-    
-    _homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
-    [_homeViewController_iPhone setDelegate:self];
-    
-    _homeViewController_iPhone._isCompatibleWithSocial = _isCompatibleWithSocial;
-    
-    [self.navigationController pushViewController:_homeViewController_iPhone animated:YES];
     
 }
 
@@ -173,12 +155,7 @@
     [_authenticateViewController release];
     _authenticateViewController = nil;
     
-    
-    if (_homeViewController_iPhone)
-    {
-        [_homeViewController_iPhone release];
-    }
-    
+        
     [window release];
     window = nil;
     

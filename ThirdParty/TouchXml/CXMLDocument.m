@@ -31,7 +31,7 @@ static void htmlparser_warning(void *ctx, const char *msg, ...)
 	va_end(args);
 }
 
-- (id)initWithXMLString:(NSString *)inString options:(NSUInteger)inOptions error:(NSError **)outError
+- (instancetype)initWithXMLString:(NSString *)inString options:(NSUInteger)inOptions error:(NSError **)outError
 {
 	if ((self = [super init]) != NULL)
 	{
@@ -86,7 +86,7 @@ static void htmlparser_warning(void *ctx, const char *msg, ...)
 	return(self);
 }
 
-- (id)initWithContentsOfURL:(NSURL *)inURL options:(NSUInteger)inOptions error:(NSError **)outError
+- (instancetype)initWithContentsOfURL:(NSURL *)inURL options:(NSUInteger)inOptions error:(NSError **)outError
 {
 	if (outError)
 	{
@@ -106,7 +106,7 @@ static void htmlparser_warning(void *ctx, const char *msg, ...)
 	return(self);
 }
 
-- (id)initWithData:(NSData *)inData options:(NSUInteger)inOptions error:(NSError **)outError
+- (instancetype)initWithData:(NSData *)inData options:(NSUInteger)inOptions error:(NSError **)outError
 {
 	if ((self = [super init]) != NULL)
 	{
@@ -156,8 +156,7 @@ static void htmlparser_warning(void *ctx, const char *msg, ...)
 - (CXMLElement *)rootElement
 {
 	xmlNodePtr theLibXMLNode = xmlDocGetRootElement((xmlDocPtr)_node);
-	
-	return([CXMLNode nodeWithLibXMLNode:theLibXMLNode]);
+	return([CXMLElement nodeWithLibXMLNode:theLibXMLNode]);
 }
 
 //- (NSData *)XMLData;

@@ -47,7 +47,7 @@
     [super dealloc];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -212,7 +212,7 @@
         UIColor *color = [UIColor colorWithWhite: 0.70 alpha:1];
         self.txtfUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localize(@"UsernamePlaceholder") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
-        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        LogError(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         [self.txtfUsername setPlaceholder:Localize(@"UsernamePlaceholder")];
     }
     
@@ -221,7 +221,7 @@
         UIColor *color = [UIColor colorWithWhite: 0.70 alpha:1];
         self.txtfPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localize(@"PasswordPlaceholder") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
-        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        LogError(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         [self.txtfPassword setPlaceholder:Localize(@"PasswordPlaceholder")];
     }
     

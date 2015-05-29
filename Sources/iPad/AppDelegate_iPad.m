@@ -22,7 +22,6 @@
 #import "MenuViewController.h"
 #import "defines.h"
 #import "FilesProxy.h"
-#import "HomeStyleSheet.h"
 #import <dispatch/dispatch.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
@@ -106,10 +105,6 @@
 
 -(void)showHome
 {
-    
-    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
-
-    
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
     [[SocialRestConfiguration sharedInstance] updateDatas];
 

@@ -437,3 +437,8 @@
 "CannotLoadSpace" = "Erreur pendant le chargement de vos espaces";
 
 "To" = "À";
+
+"in" = "dans";
+
+//we cannot translate in french
+"space" = "";

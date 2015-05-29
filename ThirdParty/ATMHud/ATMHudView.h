@@ -11,11 +11,11 @@
 
 @class ATMTextLayer, ATMProgressLayer, ATMHud, ATMHudQueueItem;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ATMHudApplyMode) {
 	ATMHudApplyModeShow = 0,
 	ATMHudApplyModeUpdate,
 	ATMHudApplyModeHide
-} ATMHudApplyMode;
+} ;
 
 @interface ATMHudView : UIView {
 	NSString *caption;
@@ -67,7 +67,7 @@ typedef enum {
 @property (nonatomic, retain) ATMTextLayer *captionLayer;
 @property (nonatomic, retain) ATMProgressLayer *progressLayer;
 
-- (id)initWithFrame:(CGRect)frame andController:(ATMHud *)c;
+- (instancetype)initWithFrame:(CGRect)frame andController:(ATMHud *)c;
 
 - (CGRect)sharpRect:(CGRect)rect;
 - (CGPoint)sharpPoint:(CGPoint)point;

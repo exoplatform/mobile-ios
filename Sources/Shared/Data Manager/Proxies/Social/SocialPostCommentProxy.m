@@ -26,7 +26,7 @@
 
 @synthesize comment=_comment, userIdentity = _userIdentity;
 
-- (id)init 
+- (instancetype)init 
 {
     if ((self = [super init])) 
     {
@@ -47,54 +47,58 @@
 
 -(void)postComment:(NSString *)commentValue forActivity:(NSString *)activityIdentity
 {
+
     if (commentValue != nil) {
         _comment = commentValue;
     }
     
-    
     RKObjectManager* manager = [RKObjectManager sharedManager];
-    manager.serializationMIMEType = RKMIMETypeJSON;
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
     
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
+    
+    RKRouter* router = [[RKRouter alloc] initWithBaseURL:manager.baseURL];
     manager.router = router;
     
-    // Send POST requests for instances of SocialActivityDetails to '/activity.json'
-    [router routeClass:[SocialComment class] toResourcePath:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] forMethod:RKRequestMethodPOST];
+    
+    [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialComment class] pathPattern:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] method:RKRequestMethodPOST]];
     
     // Let's create an SocialActivityDetails
     SocialComment* commentToPost = [[SocialComment alloc] init];
     commentToPost.text = _comment;
     
     //Register our mappings with the provider FOR SERIALIZATION
-    RKObjectMapping *commentSimpleMapping = [RKObjectMapping mappingForClass: 
-                                              [SocialComment class]]; 
-    [commentSimpleMapping mapKeyPath:@"text" toAttribute:@"text"]; 
     
-    //Configure a serialization mapping for our SocialComment class 
-    RKObjectMapping *commentSimpleSerializationMapping = [commentSimpleMapping 
-                                                           inverseMapping]; 
+    RKObjectMapping* commentSimpleMapping = [RKObjectMapping requestMapping];
     
-    //serialization mapping 
-    [manager.mappingProvider 
-     setSerializationMapping:commentSimpleSerializationMapping forClass:[SocialComment 
-                                                                          class]]; 
+    [commentSimpleMapping  addAttributeMappingsFromDictionary:@{@"text":@"text"}];
+    
+    // Send a POST to /like to create the remote instance
+    
+    RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:commentSimpleMapping objectClass:[SocialComment class] rootKeyPath:nil method:RKRequestMethodPOST];
+
+    [manager addRequestDescriptor:requestDescriptor];
     
     
+    RKObjectMapping* responseMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
+    [responseMapping addAttributeMappingsFromDictionary:@{
+                                                          @"createdAt":@"createdAt",
+                                                          @"text":@"text",
+                                                          @"postedTime":@"postedTime",
+                                                          @"identityId":@"identityId"
+                                                          }];
     
-   
+    RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:responseMapping method:RKRequestMethodPOST pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
     
-    // Create our new SocialComment mapping
-    RKObjectMapping* socialCommentMapping = [RKObjectMapping mappingForClass:[SocialComment class]];
-    [socialCommentMapping mapKeyPathsToAttributes:
-     @"createdAt",@"createdAt",
-     @"text",@"text",
-     @"postedTime",@"postedTime",
-     @"identityId",@"identityId",
-     nil];
-        
-    // Send a POST to /articles to create the remote instance
-    [manager postObject:commentToPost mapResponseWith:socialCommentMapping delegate:self];  
-    [commentToPost release];
+
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager  postObject:commentToPost path:[NSString stringWithFormat:@"%@/activity/%@/comment.json", [super createPath], activityIdentity] parameters:nil
+                 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                     [super restKitDidLoadObjects:[mappingResult array]];
+                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                     [super restKitDidFailWithError:error];
+                 }
+     ];
 }
 
 @end
