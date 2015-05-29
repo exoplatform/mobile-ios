@@ -29,6 +29,10 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationBar* navigation;
 @property (nonatomic, retain) UILabel* label;
+@property (nonatomic, retain) UIButton* topViewButton;
+
+-(void) scrollTableViewToTop:(id) sender;
+
 // ATMHud to manage loading diplay
 @property (nonatomic, readonly) ATMHud *hudLoadWaiting;
 
