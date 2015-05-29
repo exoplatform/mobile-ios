@@ -54,6 +54,10 @@
     [self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
 }
 
+-(void) scrollTableViewToTop:(id) sender {
+    [self.tblvActivityStream setContentOffset:EXO_TABLEVIEW_ORIGIN_POINT animated:YES];
+}
+
 // Specific method to retrieve the height of the cell
 // This method override the inherited one.
 - (float)getHeighSizeForTableView:(UITableView *)tableView andText:(NSString*)text  picture:(BOOL)isPicture

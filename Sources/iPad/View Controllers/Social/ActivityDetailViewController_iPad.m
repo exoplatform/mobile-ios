@@ -62,6 +62,12 @@
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
     _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+ 
+    
+}
+
+-(void) scrollTableViewToTop:(id) sender {
+    [self.tblvActivityDetail setContentOffset:EXO_TABLEVIEW_ORIGIN_POINT animated:YES];
 }
 
 #pragma mark - like/dislike management
