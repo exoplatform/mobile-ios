@@ -650,7 +650,6 @@
 		9C34B91D1B044971003A2DF3 /* EL.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B91C1B044971003A2DF3 /* EL.gif */; };
 		9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */; };
 		9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */; };
-		9CE6E3CA1B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3C91B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib */; };
 		9CE6E3E91B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3E81B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib */; };
 		9CE6E3ED1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3EC1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib */; };
 		9CE6E3EF1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3EE1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib */; };
@@ -772,7 +771,6 @@
 		03A305EB71020C02534A344E /* Pods-eXo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eXo.release.xcconfig"; path = "Pods/Target Support Files/Pods-eXo/Pods-eXo.release.xcconfig"; sourceTree = "<group>"; };
 		0F15430D57FBE9077ED5C2A9 /* Pods-eXo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eXo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eXo/Pods-eXo.debug.xcconfig"; sourceTree = "<group>"; };
 		132487837C65B21C16F2F045 /* Pods-eXoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eXoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eXoTests/Pods-eXoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* eXo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eXo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F20AC3F14590BB90068A2CB /* ActivityForumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityForumTableViewCell.h; sourceTree = "<group>"; };
 		1F20AC4014590BB90068A2CB /* ActivityForumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityForumTableViewCell.m; sourceTree = "<group>"; };
 		1F20ACE01459682D0068A2CB /* ActivityForumDetailMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityForumDetailMessageTableViewCell.h; path = Social/ActivityForumDetailMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -1295,12 +1293,13 @@
 		578F3A9219332AA700554F28 /* LatestVersionResponse-4.0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LatestVersionResponse-4.0.json"; sourceTree = "<group>"; };
 		578F3A9419332D4200554F28 /* AsyncProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncProxyTestCase.m; sourceTree = "<group>"; };
 		578F3A9619332D6200554F28 /* AsyncProxyTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncProxyTestCase.h; sourceTree = "<group>"; };
+		579212131B1C1D570050D650 /* eXo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eXo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		579212151B1C1D570050D650 /* eXoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eXoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		579D50A715BD6689002F5D16 /* AuthTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthTabItem.h; sourceTree = "<group>"; };
 		579D50A815BD6689002F5D16 /* AuthTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthTabItem.m; sourceTree = "<group>"; };
 		579D50AA15BD68C1002F5D16 /* AuthSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSelectionView.h; sourceTree = "<group>"; };
 		579D50AB15BD68C1002F5D16 /* AuthSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthSelectionView.m; sourceTree = "<group>"; };
 		57A918EB190E030D008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		57A91903190E0A15008CFD6B /* eXoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eXoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A9191B190E10AE008CFD6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		57A9CD4B19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AuthenticateSwitcherIconIpadOff.png; sourceTree = "<group>"; };
 		57A9CD4C19C6D15300909D93 /* AuthenticateSwitcherIconIpadOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AuthenticateSwitcherIconIpadOff@2x.png"; sourceTree = "<group>"; };
@@ -1633,7 +1632,6 @@
 		9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceTableViewCell.h; sourceTree = "<group>"; };
 		9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceTableViewCell.m; sourceTree = "<group>"; };
 		9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceTableViewCell.xib; sourceTree = "<group>"; };
-		9CE6E3C91B01BDC000B2EA36 /* ActivityLinkDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityLinkDetailMessageTableViewCell.xib; path = Social/ActivityLinkDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3E81B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityAnswerTableViewCell.xib; path = Social/ActivityAnswerTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3EC1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityCalendarTableViewCell.xib; path = Social/ActivityCalendarTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3EE1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityForumTableViewCell.xib; sourceTree = "<group>"; };
@@ -1783,15 +1781,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		19C28FACFE9D520D11CA2CBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1D6058910D05DD3D006BFB54 /* eXo.app */,
-				57A91903190E0A15008CFD6B /* eXoTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		1FCD39BD143A9A6B00C814C5 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
@@ -2008,6 +1997,7 @@
 				572EA98D192AFBFD008CFB11 /* ThirdParty */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				513842A9B361371730DB14CF /* Pods */,
+				579212141B1C1D570050D650 /* Products */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -2225,17 +2215,6 @@
 			name = ActivityKind;
 			sourceTree = "<group>";
 		};
-		4660597B13D72217009C6353 /* Needed Import for RestKit */ = {
-			isa = PBXGroup;
-			children = (
-				46BE69E713D5C3C900F62614 /* NSDictionary+RKRequestSerialization.h */,
-				46BE69E813D5C3C900F62614 /* NSDictionary+RKRequestSerialization.m */,
-				46A2739513D7FBAE00A5C29D /* NSString+MD5.h */,
-				46A2739613D7FBAE00A5C29D /* NSString+MD5.m */,
-			);
-			name = "Needed Import for RestKit";
-			sourceTree = "<group>";
-		};
 		46616C70137C729400D53D3D /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
@@ -2320,8 +2299,6 @@
 			isa = PBXGroup;
 			children = (
 				467F4F0113AB9B3400B2DCFA /* ActivityDetail */,
-				7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */,
-				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
 				9C01DEF51ADF67EC00E3C578 /* SpaceSelectionViewController.h */,
 				9C01DEF61ADF67EC00E3C578 /* SpaceSelectionViewController.m */,
 				9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */,
@@ -3178,6 +3155,15 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		579212141B1C1D570050D650 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				579212131B1C1D570050D650 /* eXo.app */,
+				579212151B1C1D570050D650 /* eXoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		57E476171934479300C3140E /* Documents */ = {
 			isa = PBXGroup;
 			children = (
@@ -3227,7 +3213,6 @@
 				9C01DEFB1ADFB98300E3C578 /* SpaceAvtDefault@2x.png */,
 				9C01DEFE1ADFBA5200E3C578 /* global-icon.png */,
 				9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */,
-
 				7C5053EA13E2AF3600FA73CD /* default-avatar.png */,
 				7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */,
 				1FCED1C314355C1C00EC0B88 /* SocialAddPhotoButton.png */,
@@ -4160,7 +4145,7 @@
 			);
 			name = eXo;
 			productName = "eXo Platform";
-			productReference = 1D6058910D05DD3D006BFB54 /* eXo.app */;
+			productReference = 579212131B1C1D570050D650 /* eXo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		57A91902190E0A15008CFD6B /* eXoTests */ = {
@@ -4180,7 +4165,7 @@
 			);
 			name = eXoTests;
 			productName = "eXo Platform Tests";
-			productReference = 57A91903190E0A15008CFD6B /* eXoTests.xctest */;
+			productReference = 579212151B1C1D570050D650 /* eXoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -4218,6 +4203,7 @@
 				el,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 579212141B1C1D570050D650 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -4507,7 +4493,6 @@
 				8989B06814735CA100EEBD7C /* gadgetPlaceHolder@2x.png in Resources */,
 				1FC3453D1474FD5300540016 /* ActivityAnswerDetailMessageTableViewCell.xib in Resources */,
 				1FCF4A461476410900EEB9C7 /* ActivityLinkDetailMessageTableViewCell.xib in Resources */,
-				1FCC6FF3147A5C9600BBB64F /* ActivityCalendarTableViewCell.xib in Resources */,
 				1FCDF076147B430D00F72293 /* ActivityCalendarDetailMessageTableViewCell.xib in Resources */,
 				46540FA2148786F1006C010C /* Bubble_horizontal.png in Resources */,
 				46540FA3148786F1006C010C /* Bubble_vertical.png in Resources */,
