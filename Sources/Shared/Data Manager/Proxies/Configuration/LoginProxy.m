@@ -26,6 +26,7 @@
 #import "AlreadyAccountViewController.h"
 #import "OnPremiseViewController.h"
 #import "URLAnalyzer.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface LoginProxy()
 //private variables
@@ -241,11 +242,14 @@ return self;
                 // probably retrieved when we handled the http redirection
                 selectedAccount.serverUrl = self.serverUrl;
             }
+             [Crashlytics setUserName:self.username];
         }
-        
+       
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
         [ApplicationPreferencesManager sharedInstance].platformVersion = platformServerVersion.platformVersion;
+        [Crashlytics setObjectValue:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [Crashlytics setObjectValue:self.serverUrl forKey:EXO_PREFERENCE_DOMAIN];
         
         // We need to prevent the caller.
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
