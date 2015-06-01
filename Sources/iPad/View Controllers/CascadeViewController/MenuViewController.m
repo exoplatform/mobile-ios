@@ -92,6 +92,7 @@
 - (instancetype)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial {
     self = [super init];
     if (self) {
+        _intIndex = -1;
         _viewFrame = frame;
         _isCompatibleWithSocial = compatibleWithSocial;
 		_cellContents = [[NSMutableArray alloc] init];
@@ -335,12 +336,12 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    _intIndex = (int)indexPath.row;
-    NSInteger index = _intIndex;
-    
+    if (_intIndex == indexPath.row) return;
+    NSInteger index = indexPath.row;
     if(!_isCompatibleWithSocial){
         index += 1;
     }
+    _intIndex = indexPath.row;
     switch (index) {
         case EXO_ACTIVITY_STREAM_ROW: {
             //Activity Stream

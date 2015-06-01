@@ -42,20 +42,10 @@
 - (void) dealloc {
         
     _delegate = nil;
-//    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [_gadgetsProxy release];
     [_setOfDashboardsToRetrieveGadgets release];
     [super dealloc];
 }
-
-
-#pragma mark - helper methods
-
-//Helper to create the base URL
-- (NSString *)createBaseURL {    
-    return [NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainName,kRestContextName]; 
-}
-
 
 
 #pragma mark - Call methods
@@ -64,15 +54,12 @@
     // Load the object model via RestKit
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
-    RKObjectMapping* mapping = [RKObjectMapping requestMapping];
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[DashboardItem class]];
     [mapping addAttributeMappingsFromDictionary:@{ @"id": @"idDashboard", @"link": @"link", @"html": @"html",@"label": @"label" }];
+    
+    RKResponseDescriptor* responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:@"private/dashboards" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
 
-    
-//    [manager  loadObjectsAtResourcePath:@"private/dashboards" objectMapping:mapping delegate:self];
-//TODO
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping objectClass:[DashboardItem class] rootKeyPath:@"Dashboard" method:RKRequestMethodGET];
-    
-    [manager addRequestDescriptor:requestDescriptor];
+    [manager addResponseDescriptor:responseDescriptor];
     
     [manager getObjectsAtPath:@"private/dashboards" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
     {

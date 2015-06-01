@@ -21,14 +21,14 @@
                                                   SettingsDelegateProcotol, AccountSwitcherDelegate> {
                                                       
     
-	UITableView*  _tableView;
+	UITableView*    _tableView;
 	NSMutableArray* _cellContents;
     
-	int									_intSelectedLanguage;
+	int				_intSelectedLanguage;
 
-    int                             _intIndex;
+    NSInteger       _intIndex;
     
-    BOOL                            _isCompatibleWithSocial;
+    BOOL            _isCompatibleWithSocial;
     
 }
 @property (nonatomic, retain) UITableView* tableView;

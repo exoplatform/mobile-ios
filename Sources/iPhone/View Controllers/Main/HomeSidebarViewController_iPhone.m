@@ -179,12 +179,10 @@
     [containerView addSubview:self.tableView];
     //Add the ActivityStream as main view
     ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
-    
-    
     [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
     [_activityStreamBrowseViewController_iPhone release];
     [_revealView revealSidebar:NO];
-    
+    rowType = eXoActivityStream;
     
     
     //Add the footer of the view for Logout and Account Switcher buttons
@@ -251,8 +249,6 @@
     
     [_revealView.sidebarView addSubview:footer];
     
-    rowType = eXoActivityStream;
-    
     // Create a custom Menu button    
     UIButton *tmpButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *barButtonImage = [UIImage imageNamed:@"NavbarMenuButton.png"];
@@ -274,13 +270,6 @@
         // Hide the button if only 1 account exists
         self.accountSwitcherButton.hidden = YES;
     }
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 #pragma mark - getters & setters 
@@ -618,12 +607,14 @@
             [_revealView.sidebarView pushView:tableView animated:YES];
         }
     } else if ([object conformsToProtocol:@protocol(JTTableViewCellModalSimpleType)]) {  
-        
+        if (rowType == [(JTTableViewCellModalSimpleType *)object type]) {
+            [self closeLeftMenu:nil];
+            return;
+        }
         switch ([(JTTableViewCellModalSimpleType *)object type]) {
             case eXoActivityStream:
             {
                 ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
-                
                 
                 [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
                 [_activityStreamBrowseViewController_iPhone release];
