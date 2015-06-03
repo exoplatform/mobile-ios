@@ -176,6 +176,21 @@
     {
         [_arrServerList addObjectsFromArray:arrUserServerList];
     }
+    NSUserDefaults * groupUserDefaults = [[NSUserDefaults alloc] initWithSuiteName: @"group.com.exoplatform.mob.eXoPlatformiPHone"];
+    NSMutableArray * list_accounts = [[NSMutableArray alloc] init];
+
+    for (ServerObj * serverObj in _arrServerList){
+        NSDictionary * account = @{@"username":serverObj.username,
+                                   @"password":serverObj.password,
+                                   @"serverURL":serverObj.serverUrl,
+                                   @"accountName":serverObj.accountName
+                                   };
+        [list_accounts addObject:account];
+    }
+    [groupUserDefaults setObject:list_accounts forKey:EXO_SHARE_EXTENSION_ALL_ACCOUNTS];
+    
+    int selectedAccountInt = (int)[_arrServerList indexOfObject:self.selectedAccount];
+    [groupUserDefaults setObject:[NSNumber numberWithInt:selectedAccountInt] forKey:EXO_SHARE_EXTENSION_SELECTED_ACCOUNT_INDEX];
     
 //    NSData* tmpData = [self createXmlDataWithServerList:_arrServerList];
 //    [self writeData:tmpData toFile:@"Test"];

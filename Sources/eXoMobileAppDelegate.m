@@ -77,6 +77,9 @@
      */
 }
 
+-(void) application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler {
+    NSLog(@"BG Session complete");
+}
 
 #pragma mark -
 #pragma mark Memory management

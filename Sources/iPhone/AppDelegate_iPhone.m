@@ -147,6 +147,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
+
+-(void) application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler {
+    NSLog(@"BG Session complete");
+}
+
+
 - (void)dealloc {
 	
 	[navigationController release];

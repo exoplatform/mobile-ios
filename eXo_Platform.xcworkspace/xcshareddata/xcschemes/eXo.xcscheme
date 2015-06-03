@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0610"
-   version = "1.8">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "770EED3CB0EE1F64D4C8F175"
+               BlueprintIdentifier = "DD9389EE800F77DB5A4BE77A"
                BuildableName = "libPods-eXo.a"
                BlueprintName = "Pods-eXo"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
