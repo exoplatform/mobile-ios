@@ -20,7 +20,7 @@
 
 "PasswordPlaceholder" = "Κωδικός πρόσβασης";
 
-"Last Login" = "Last login";
+"Last Login" = "Τελευταια εισοδος";
 
 "Connected" = "Συνδεδεμένοι";
 
@@ -122,15 +122,15 @@
 
 "Spanish" = "Ισπανικά";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Πορτογαλικά (Βραζιλίας)";
 
-"Greek"= "Greek";
+"Greek" = "Ελληνικά";
 
 "Send" = "Αποστολή";
 
 "ServerList" = "Λίστα διακομιστών";
 
-"Account" = "Account";
+"Account" = "Λογαριασμός";
 
 "NewServer" = "Νέος διακομιστής";
 
@@ -426,15 +426,15 @@
 
 "Public" = "Οι δραστηριότητές μου";
 
-"CannotLoadSpaceID" = "Unable to load the space's identity";
+"CannotLoadSpaceID" = "Δεν είναι δυνατή η φόρτωση της ταυτότητας του Χώρου";
 
-"PostActivityTo" = "Post activity to";
+"PostActivityTo" = "Αναρτήστε τη δραστηριότητα στο";
 
-"You didn't join any space" = "You didn't join any space";
+"You didn't join any space" = "Δεν έχετε συνδεθεί με κάποιο Χώρο";
 
-"CannotLoadSpace" = "Unable to load information about your spaces";
+"CannotLoadSpace" = "Δεν είναι δυνατή η φόρτωση πληροφοριών για τους Χώρους σας";
 
-"Loading spaces" = "Loading spaces ...";
+"Loading spaces" = "Φόρτωση πληροφοριών Χώρων...";
 
 "To" = "Έως";
 
