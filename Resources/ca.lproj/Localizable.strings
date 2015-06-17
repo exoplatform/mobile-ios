@@ -20,7 +20,7 @@
 
 "PasswordPlaceholder" = "Contrasenya";
 
-"Last Login" = "Last login";
+"Last Login" = "Últim accés";
 
 "Connected" = "Connectat";
 
@@ -122,15 +122,15 @@
 
 "Spanish" = "Castellà";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Portuguès (Brasil)";
 
-"Greek"= "Greek";
+"Greek" = "Grec";
 
 "Send" = "Envia";
 
 "ServerList" = "Llista de servidors";
 
-"Account" = "Account";
+"Account" = "Compte";
 
 "NewServer" = "Nou servidor";
 
@@ -426,15 +426,15 @@
 
 "Public" = "Les Meves Activitats";
 
-"CannotLoadSpaceID" = "Unable to load the space's identity";
+"CannotLoadSpaceID" = "No es pot carregar la identitat de l'espai";
 
-"PostActivityTo" = "Post activity to";
+"PostActivityTo" = "Publica l'activitat a";
 
-"You didn't join any space" = "You didn't join any space";
+"You didn't join any space" = "Vostè no pot unir-se a cap espai";
 
-"CannotLoadSpace" = "Unable to load information about your spaces";
+"CannotLoadSpace" = "No es pot obtenir informació dels teus espais";
 
-"Loading spaces" = "Loading spaces ...";
+"Loading spaces" = "Carregant espais...";
 
 "To" = "A";
 
