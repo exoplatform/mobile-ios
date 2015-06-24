@@ -359,7 +359,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [self.tblvActivityStream registerNib: [UINib nibWithNibName:@"ActivityBasicTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
 
     
-    plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+    plfVersion = [[ApplicationPreferencesManager sharedInstance].platformVersion floatValue];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActivity) name:EXO_NOTIFICATION_ACTIVITY_UPDATED object:nil];    
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
@@ -683,6 +683,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     sizingCell = [self.tblvActivityStream dequeueReusableCellWithIdentifier:identCell];
     
+    [sizingCell setPlatformVersion:plfVersion];
     [sizingCell setSocialActivityStreamForSpecificContent:socialActivityStream];
     [sizingCell setNeedsLayout];
     [sizingCell layoutIfNeeded];
@@ -1021,7 +1022,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 #pragma mark - auto load more helpers
 - (BOOL)shoudAutoLoadMore
 {
-    NSString *plfVersionStr = [[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER];
+    NSString *plfVersionStr =[ApplicationPreferencesManager sharedInstance].platformVersion;
     
     //no auto load more for plf 4.0.0
     return [plfVersionStr rangeOfString:@"4.0.0"].location == NSNotFound; }

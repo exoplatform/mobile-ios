@@ -24,6 +24,7 @@
 #import "ActivityHelper.h"
 #import "NSString+HTML.h"
 #import "LanguageHelper.h"
+#import "ApplicationPreferencesManager.h"
 #define MAX_HEIGHT_FILE_NAME 32
 
 @implementation ActivityPictureDetailMessageTableViewCell
@@ -76,6 +77,7 @@
     self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *message = nil;
+    
     NSDictionary *_templateParams = self.socialActivity.templateParams;
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DOC:{

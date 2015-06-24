@@ -245,6 +245,7 @@ return self;
         
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
+        [ApplicationPreferencesManager sharedInstance].platformVersion = platformServerVersion.platformVersion;
         
         // We need to prevent the caller.
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
@@ -253,7 +254,7 @@ return self;
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
-        
+        [ApplicationPreferencesManager sharedInstance].platformVersion =@"";
         NSError *error = [[NSError alloc] initWithDomain:EXO_NOT_COMPILANT_ERROR_DOMAIN code:nil userInfo:nil];
         [self.delegate loginProxy:self authenticateFailedWithError:error];
     }

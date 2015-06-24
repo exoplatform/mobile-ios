@@ -65,7 +65,6 @@
     _lbName.attributedText = attributedName;
     
     //Set the position of Title
-    float plfVersion = [[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
     // in plf 4, no Name in template params, it's the title of ActivityStream
     NSString *title = plfVersion >= 4.0 ? socialActivityStream.title : [socialActivityStream.templateParams valueForKey:@"Name"];
     

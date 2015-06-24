@@ -219,6 +219,7 @@
                      forKey:EXO_PREFERENCE_SELECTED_SEVER];
     [userDefaults setObject:_selectedDomain
                      forKey:EXO_PREFERENCE_DOMAIN];
+    [userDefaults synchronize];
 }
 
 - (NSString *)selectedDomain {

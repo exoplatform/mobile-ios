@@ -125,7 +125,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                             nil] retain];
         
         
-        float plfVersion = [[[NSUserDefaults standardUserDefaults] stringForKey:EXO_PREFERENCE_VERSION_SERVER] floatValue];
+        float plfVersion = [[ApplicationPreferencesManager sharedInstance].platformVersion floatValue];
         
         //PLF 4: dont show 'Show my private drive' in settings, cf: MOB-1425
         if(plfVersion >= 4.0) {
@@ -258,12 +258,15 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
         //Setup Version Platfrom and Application
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
+        [ApplicationPreferencesManager sharedInstance].platformVersion = platformServerVersion.platformVersion;
         [userDefaults synchronize];
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
+        platformServerVersion.platformVersion = 0;
         [userDefaults synchronize];
     }
+    [userDefaults synchronize];
     bVersionServer = YES;
     [self.tableView reloadData];
 }
@@ -574,7 +577,8 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                
             //Create an image streachable images for background
             if(indexPath.row == 0){
-                cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_SERVER];
+                
+                cell.detailTextLabel.text = [ApplicationPreferencesManager sharedInstance].platformVersion;
             }
             if(indexPath.row == 1){
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_EDITION_SERVER];

@@ -90,6 +90,20 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2.5.4.20150624</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>b8421f485868032ad402cef01a4bd7c70263d97e</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
