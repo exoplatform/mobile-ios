@@ -46,13 +46,14 @@
 @synthesize postedTimeInWords = _postedTimeInWords;
 @synthesize templateParams = _templateParams;
 @synthesize activityType = _activityType;
-
+@synthesize embeddedURL = _embeddedURL;
 - (void)dealloc {
     [_identityId release];
     [_activityId release];
     [_type release];
     [_activityStream release];
     [_title release];
+    [_embeddedURL release];
     [_body release];
     [_createdAt release];
     [_likedByIdentities release];
@@ -179,10 +180,12 @@
     NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
     for (NSString * link in links){
         [htmlAttributedString addAttributes:kAttributeURL range:[string rangeOfString:link]];
-    }    
+    }
+    if (links && links.count>0){
+        _embeddedURL = links[0];
+    }
+
     return htmlAttributedString;
-
-
 }
 
 @end

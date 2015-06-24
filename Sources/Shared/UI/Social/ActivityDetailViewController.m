@@ -254,7 +254,9 @@
 -(void)showContent:(UITapGestureRecognizer *)tapGesture{
 
 }
-
+-(void) gotoEmbededURL: (UITapGestureRecognizer *)tapGesture {
+    
+}
 #pragma mark - cell initialization
 - (ActivityDetailMessageTableViewCell *)activityDetailCell {
 
@@ -317,6 +319,12 @@
                 break;
             }
         }
+        
+        if (self.socialActivity.embeddedURL){
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoEmbededURL:)];
+            [_activityDetailCell.lbMessage addGestureRecognizer:tapGesture];
+            [tapGesture release];
+            _activityDetailCell.lbMessage.userInteractionEnabled = YES;        }
         _activityDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _activityDetailCell.imgType.image = [UIImage imageNamed:_iconType];
         [_activityDetailCell setSocialActivityDetail:self.socialActivity];

@@ -171,6 +171,16 @@
     
 }
 
+
+-(void) gotoEmbededURL:(UITapGestureRecognizer *)gesture {
+    if (self.socialActivity.embeddedURL) {
+        NSURL *url = [NSURL URLWithString:self.socialActivity.embeddedURL];
+        ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone" bundle:nil url:url] autorelease];
+        
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
+    }
+}
+
 #pragma mark - UIWebViewDelegateMethod 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     //CAPTURE USER LINK-CLICK.
