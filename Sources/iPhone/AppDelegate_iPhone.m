@@ -21,6 +21,7 @@
 
 #import "defines.h"
 #import "FilesProxy.h"
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
 #import "WelcomeViewController_iPhone.h"
@@ -47,7 +48,8 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     //Add Crashlytics
-    [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
+    
+    [Fabric with:@[CrashlyticsKit]];
     application.statusBarHidden = YES;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

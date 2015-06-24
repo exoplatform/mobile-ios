@@ -664,6 +664,7 @@
 		9CE6E3ED1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3EC1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib */; };
 		9CE6E3EF1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3EE1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib */; };
 		9CE6E3F11B01E02800B2EA36 /* ActivityForumDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3F01B01E02800B2EA36 /* ActivityForumDetailMessageTableViewCell.xib */; };
+		9CFED90C1B3AC57D0049B9CC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFED90B1B3AC57D0049B9CC /* Fabric.framework */; };
 		A5301A69EA0F582CDFE0F119 /* libPods-eXo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83AB17575F2C4F1B2529D34 /* libPods-eXo.a */; };
 		A60C63C9152968FA00F5A52A /* ImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */; };
 		A60C63CA152968FA00F5A52A /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */; };
@@ -1688,6 +1689,9 @@
 		9CE6E3EE1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityForumTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3F01B01E02800B2EA36 /* ActivityForumDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityForumDetailMessageTableViewCell.xib; path = Social/ActivityForumDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CF1F7621ADB827300E89909 /* libPods-eXo-RestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-eXo-RestKit.a"; path = "Pods/../build/Debug-iphoneos/libPods-eXo-RestKit.a"; sourceTree = "<group>"; };
+		9CFED9081B3ABFE70049B9CC /* eXo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eXo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CFED90A1B3ABFE70049B9CC /* eXoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eXoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CFED90B1B3AC57D0049B9CC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePreviewViewController.h; path = Social/ImagePreviewViewController.h; sourceTree = "<group>"; };
 		A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePreviewViewController.m; path = Social/ImagePreviewViewController.m; sourceTree = "<group>"; };
 		A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePreviewViewController.xib; path = Social/ImagePreviewViewController.xib; sourceTree = "<group>"; };
@@ -1817,6 +1821,7 @@
 				572EAA27192AFBFD008CFB11 /* libidn.a in Frameworks */,
 				466FD6FD148E5BF5005A1B78 /* Crashlytics.framework in Frameworks */,
 				A5301A69EA0F582CDFE0F119 /* libPods-eXo.a in Frameworks */,
+				9CFED90C1B3AC57D0049B9CC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2068,6 +2073,7 @@
 				9CBF87021B26A0DC00106F1B /* MobileCoreServices.framework */,
 				9CF1F7621ADB827300E89909 /* libPods-eXo-RestKit.a */,
 				57A9191B190E10AE008CFD6B /* XCTest.framework */,
+				9CFED90B1B3AC57D0049B9CC /* Fabric.framework */,
 				466FD6FC148E5BF5005A1B78 /* Crashlytics.framework */,
 				57A918EB190E030D008CFD6B /* XCTest.framework */,
 				47F907430C78443DB778B574 /* libPods-eXoTests.a */,
@@ -4923,7 +4929,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "./Crashlytics.framework/run b8421f485868032ad402cef01a4bd7c70263d97e";
+			shellPath = "./Fabric.framework/run b8421f485868032ad402cef01a4bd7c70263d97e 6b8bd5297ac216c6a0a79351084947edba67104633f611c471f5c1fe96cca005";
 			shellScript = "";
 		};
 		78B39B80F1F8433C90A9C8A6 /* Check Pods Manifest.lock */ = {
@@ -5277,7 +5283,8 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -5330,7 +5337,8 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/eXo_Platform_Prefix.pch";
@@ -5413,7 +5421,8 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/eXo_Platform_Prefix.pch";
@@ -5497,7 +5506,8 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/eXo_Platform_Prefix.pch";

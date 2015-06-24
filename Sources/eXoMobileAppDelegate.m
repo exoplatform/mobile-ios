@@ -20,6 +20,7 @@
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
+#import <Fabric/Fabric.h>
 @implementation eXoMobileAppDelegate
 
 
@@ -30,6 +31,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
+//    [Fabric with:@[TwitterKit, CrashlyticsKit, MoPubKit]];
     return YES;
 }
 
