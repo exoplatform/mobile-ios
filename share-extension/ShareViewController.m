@@ -159,10 +159,12 @@ enum {eXoStatusNotLogin     =  0,
                     NSURL * url = (NSURL *) item;
                     if ([url isKindOfClass:[NSURL class]]){
                         postActivity.url = url;
+                    } else if ([url isKindOfClass:[UIImage class]]){
+                        postActivity.fileData = UIImagePNGRepresentation((UIImage*)item);
                     } else if ([url isKindOfClass:[NSData class]]){
                         postActivity.fileData = (NSData*)url;
-                        postActivity.fileExtension = @"png";
                     }
+                    postActivity.fileExtension = @"png";
                 }
             }];
         } else if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeAudio]) {
