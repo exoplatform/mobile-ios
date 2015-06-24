@@ -34,6 +34,7 @@
 @property (nonatomic, retain) NSString* type;
 @property (nonatomic, retain) NSDictionary* activityStream;
 @property (nonatomic, retain) NSString* title;
+@property (nonatomic, retain) NSString* embeddedURL;
 @property (nonatomic, retain) NSString* body;
 @property (nonatomic, assign) int priority;
 @property (nonatomic, retain) NSString* createdAt;
@@ -42,7 +43,6 @@
 @property (nonatomic, retain) SocialUserProfile* posterIdentity;
 @property (nonatomic, retain) SocialPictureAttach *posterPicture;
 @property (nonatomic, retain) NSArray* comments;
-
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) NSString* updatedTimeInWords;
 @property (nonatomic, retain) NSAttributedString* attributedMessage;

@@ -205,6 +205,20 @@
     [linkWebViewController release];
 }
 
+-(void) gotoEmbededURL:(UITapGestureRecognizer *)gesture {
+    if (self.socialActivity.embeddedURL) {
+        NSURL *url = [NSURL URLWithString:self.socialActivity.embeddedURL];
+        ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc]
+                                                                         initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
+                                                                         bundle:nil
+                                                                         url:url];
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
+        
+        [linkWebViewController release];
+        
+    }
+    
+}
 
 
 //Test for rotation management
