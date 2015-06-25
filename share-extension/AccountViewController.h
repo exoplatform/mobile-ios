@@ -20,18 +20,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Account.h"
-@protocol AccountDelegate;
+@protocol AccountSelectorDelegate;
 @interface AccountViewController : UITableViewController
 
-@property (nonatomic, assign) id<AccountDelegate> delegate;
+@property (nonatomic, assign) id<AccountSelectorDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray * allAccounts;
 @property (nonatomic, retain) Account * selectedAccount;
 
 @end
 
 
-@protocol AccountDelegate <NSObject>
+@protocol AccountSelectorDelegate <NSObject>
 
 @optional
--(void) accountSelection:(AccountViewController *) accountSelection didSelectAccount:(Account*) account;
+-(void) accountSelector:(AccountViewController *) accountSelector didSelectAccount:(Account*) account;
+
 @end

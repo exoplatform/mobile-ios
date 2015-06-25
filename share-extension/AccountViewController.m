@@ -27,14 +27,6 @@
 @implementation AccountViewController
 @synthesize delegate;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -58,7 +50,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.allAccounts.count;
+    if (self.allAccounts){
+        return self.allAccounts.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,8 +74,8 @@
     Account * account = self.allAccounts[indexPath.row];
     // The account is selected, if this account have a password configured: go back to ShareVC, if not: Popup a message alert to ask user to configure the password for this account. 
     if (account.password.length >0){
-        if (delegate && [delegate respondsToSelector:@selector(accountSelection:didSelectAccount:)]) {
-            [delegate accountSelection:self didSelectAccount:account];
+        if (delegate && [delegate respondsToSelector:@selector(accountSelector:didSelectAccount:)]) {
+            [delegate accountSelector:self didSelectAccount:account];
         }
         [self.navigationController popViewControllerAnimated:YES];
         
@@ -97,8 +92,8 @@
                                                               handler:^(UIAlertAction * action) {
                                                                   account.password = ((UITextField*)alert.textFields[0]).text;
                                                                   [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                  if (delegate && [delegate respondsToSelector:@selector(accountSelection:didSelectAccount:)]) {
-                                                                      [delegate accountSelection:self didSelectAccount:account];
+                                                                  if (delegate && [delegate respondsToSelector:@selector(accountSelector:didSelectAccount:)]) {
+                                                                      [delegate accountSelector:self didSelectAccount:account];
                                                                   }
                                                                   [self.navigationController popViewControllerAnimated:YES];
                                                               }];

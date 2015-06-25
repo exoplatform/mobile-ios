@@ -32,9 +32,9 @@
  - No special characters
  - No space or -,_
  */
-#define REGEXP_SEPARATER @"[_: ]"
-#define REGEXP_2TIME_SPEPARATER @"-{2,}"
-#define REGEXP_REMOVE_CHAR @"[{}()!@#$%^&|;\"~`'<>?\\/,+=*.ˆ]"
+#define REGEXP_SEPARATOR @"[_: ]"
+#define REGEXP_2TIME_SPEPARATOR @"-{2,}"
+#define REGEXP_REMOVE_CHAR @"[{}()!@#$%^&|;\"~`'<>?\\/,+=*.ˆ\\[\\]]"
 
 -(NSString *) makeUploadFileName {
     
@@ -53,10 +53,10 @@
     while ((range = [name rangeOfString:REGEXP_REMOVE_CHAR options:NSRegularExpressionSearch]).location != NSNotFound) {
         name = [name stringByReplacingCharactersInRange:range withString:@""];
     }
-    while ((range = [name rangeOfString:REGEXP_SEPARATER options:NSRegularExpressionSearch]).location != NSNotFound) {
+    while ((range = [name rangeOfString:REGEXP_SEPARATOR options:NSRegularExpressionSearch]).location != NSNotFound) {
         name = [name stringByReplacingCharactersInRange:range withString:@"-"];
     }
-    while ((range = [name rangeOfString:REGEXP_2TIME_SPEPARATER options:NSRegularExpressionSearch]).location != NSNotFound) {
+    while ((range = [name rangeOfString:REGEXP_2TIME_SPEPARATOR options:NSRegularExpressionSearch]).location != NSNotFound) {
         name = [name stringByReplacingCharactersInRange:range withString:@"-"];
     }
     

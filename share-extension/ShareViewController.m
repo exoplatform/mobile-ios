@@ -1,9 +1,20 @@
 //
-//  ShareViewController.m
-//  share-extension
+// Copyright (C) 2003-2015 eXo Platform SAS.
 //
-//  Created by Nguyen Manh Toan on 6/3/15.
-//  Copyright (c) 2015 eXo Platform. All rights reserved.
+// This is free software; you can redistribute it and/or modify it
+// under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This software is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this software; if not, write to the Free
+// Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+// 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
 #import "ShareViewController.h"
@@ -56,12 +67,13 @@
 
 @implementation ShareViewController
 
-enum {eXoStatusNotLogin     =  0,
-    eXoStatusLoggingIn      =  1,
-    eXoStatusLoggedFail     =  2,
-    eXoStatusLoggInAuthentificationFail     =  3,
-    eXoStatusLoggedIn       =  4,
-    eXoStatusLoadingSpaceId =  5,
+enum {
+    eXoStatusNotLogin = 0,
+    eXoStatusLoggingIn = 1,
+    eXoStatusLoggedFail = 2,
+    eXoStatusLoggInAuthentificationFail = 3,
+    eXoStatusLoggedIn = 4,
+    eXoStatusLoadingSpaceId = 5,
     eXoStatusCheckingUploadFoder = 6,
     eXoStatusCreatingUploadFoder = 7
 };
@@ -69,10 +81,7 @@ enum {eXoStatusNotLogin     =  0,
 #pragma mark - Share VC life cycle
 
 - (BOOL)isContentValid {
-    if (self.contentText.length<=0){
-        return NO;
-    }
-    return YES;
+    return (self.contentText != nil && self.contentText.length > 0);
 }
 
 -(void) viewDidLoad {
@@ -425,7 +434,7 @@ NSMutableData * data;
 }
 
 // User did selected an account.
--(void) accountSelection:(SpaceViewController *)accountSelection didSelectAccount:(Account *)account {
+-(void) accountSelector:(AccountViewController *)accountSelector didSelectAccount:(Account *)account {
     if (account){
         selectedAccount  = account;
         loggingStatus = eXoStatusNotLogin;
@@ -440,7 +449,7 @@ NSMutableData * data;
 
 -(NSString *) mobileFolderPath {
     if (selectedSpace){
-        return [NSString stringWithFormat:@"%@/rest/private/jcr/repository/collaboration/Groups%@/Documents/Mobile",selectedAccount.serverURL,selectedSpace.groupId];
+        return [NSString stringWithFormat:@"%@/rest/private/jcr/%@/%@/Groups%@/Documents/Mobile",selectedAccount.serverURL,currentRepository, defaultWorkspace, selectedSpace.groupId];
     }
     return [NSString stringWithFormat:@"%@/rest/private/jcr/%@/%@%@/Public/Mobile",selectedAccount.serverURL,currentRepository, defaultWorkspace,userHomeJcrPath];
 }
@@ -667,7 +676,7 @@ NSMutableData * data;
 /*
  User did selected the Cancel button while uploading
  */
--(void) uploadViewController:(UploadViewController *)uploadController didSelectedCancel:(id)sender {
+-(void) uploadViewController:(UploadViewController *)uploadController didSelectCancel:(id)sender {
     [uploadTask cancel];
     [uploadController dismissViewControllerAnimated:YES completion:nil];
     [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
