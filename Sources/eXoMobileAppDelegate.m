@@ -31,7 +31,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
-//    [Fabric with:@[TwitterKit, CrashlyticsKit, MoPubKit]];
     return YES;
 }
 

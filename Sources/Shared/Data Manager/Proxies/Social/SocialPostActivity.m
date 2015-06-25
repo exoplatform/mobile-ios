@@ -125,7 +125,7 @@
         
     RKRequestDescriptor * requestDescriptor =  [RKRequestDescriptor requestDescriptorWithMapping:activitySimpleMapping objectClass:[SocialActivity class] rootKeyPath:nil method:RKRequestMethodPOST];
     
-    // Remove all old request descriptor before add new one to advoid confit.
+    // Remove all old request descriptor before add new one to avoid conflicts.
     for (RKRequestDescriptor * requestDesc in manager.requestDescriptors){
         [manager removeRequestDescriptor:requestDesc];
     }
@@ -160,7 +160,7 @@
     
     RKResponseDescriptor * responseDescriptor =  [RKResponseDescriptor responseDescriptorWithMapping:mappingForResponse method:RKRequestMethodPOST pathPattern:[self createPath] keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]] ;
 
-    // Remove all old response descriptor before add new one to advoid confit.
+    // Remove all old response descriptor before add new one to avoid conflicts.
     for (RKResponseDescriptor * responseDesc in manager.responseDescriptors){
         [manager removeResponseDescriptor:responseDesc];
     }
