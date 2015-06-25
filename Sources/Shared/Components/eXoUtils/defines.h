@@ -40,6 +40,12 @@
 #define EXO_PREFERENCE_USERID				@"userId"
 #define EXO_PREFERENCE_USERNAME				[NSString stringWithFormat:@"%@_username",SELECTED_DOMAIN]
 #define EXO_PREFERENCE_PASSWORD				[NSString stringWithFormat:@"%@_password",SELECTED_DOMAIN]
+#define EXO_SHARE_EXTENSION_USERNAME        @"exo_share_username"
+#define EXO_SHARE_EXTENSION_PASSWORD        @"exo_share_password"
+#define EXO_SHARE_EXTENSION_DOMAIN          @"exo_share_domain"
+#define EXO_SHARE_EXTENSION_ALL_ACCOUNTS    @"exo_share_all_usernames"
+#define EXO_SHARE_EXTENSION_SELECTED_ACCOUNT_INDEX   @"exo_share_selected_account_index"
+
 #define EXO_PREFERENCE_EXO_USERID			@"exo_user_id"
 #define EXO_PREFERENCE_DOMAIN				@"domain_name"
 #define EXO_PREFERENCE_SELECTED_SEVER		@"selected_server"

@@ -223,6 +223,12 @@ return self;
                 }
                 [UserPreferencesManager sharedInstance].username = self.username;
                 [UserPreferencesManager sharedInstance].password = self.password;
+                NSUserDefaults * groupUserDefaults = [[NSUserDefaults alloc] initWithSuiteName: @"group.com.exoplatform.mob.eXoPlatformiPHone"];
+                [groupUserDefaults setObject:self.username forKey:EXO_SHARE_EXTENSION_USERNAME];
+                [groupUserDefaults setObject:self.password forKey:EXO_SHARE_EXTENSION_PASSWORD];
+                [groupUserDefaults setObject:self.serverUrl forKey:EXO_SHARE_EXTENSION_DOMAIN];
+                
+                
                 [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
                 [appPref setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
             }

@@ -2,12 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>application-identifier</key>
-	<string>FEM998T42U.com.exoplatform.mob.eXoPlatformiPhone</string>
 	<key>com.apple.developer.team-identifier</key>
 	<string>FEM998T42U</string>
-	<key>get-task-allow</key>
-	<false/>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.exoplatform.mob.eXoPlatformiPHone</string>
+	</array>
 	<key>keychain-access-groups</key>
 	<string>FEM998T42U.com.exoplatform.mob.eXoPlatformiPhone</string>
 </dict>

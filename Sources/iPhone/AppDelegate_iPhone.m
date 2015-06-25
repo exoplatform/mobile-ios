@@ -147,6 +147,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
+
 - (void)dealloc {
 	
 	[navigationController release];
