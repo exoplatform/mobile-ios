@@ -82,8 +82,11 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
+    _getCommentsProxy.delegate = nil;
     [_getCommentsProxy release];
+    _getLikersProxy.delegate = nil;
     [_getLikersProxy release];
+    _likeActivityProxy.delegate = nil;
     [_likeActivityProxy release];
     
     _tblvActivityDetail.delegate = nil;

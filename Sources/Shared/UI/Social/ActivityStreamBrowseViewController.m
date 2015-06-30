@@ -147,9 +147,16 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     [_indexpathSelectedActivity release];
 
     // release proxies
+    _socialActivityStreamProxy.delegate = nil;
     [_socialActivityStreamProxy release];
+
+    _socialRestProxy.delegate = nil;
     [_socialRestProxy release];
+
+    _likeActivityProxy.delegate = nil;
     [_likeActivityProxy release];
+
+    _userProfileProxy.delegate = nil;
     [_userProfileProxy release];
     
     [super dealloc];

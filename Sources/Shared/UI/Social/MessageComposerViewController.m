@@ -80,8 +80,10 @@
 }
 
 - (void)dealloc
-{    
+{
+    _postActivityProxy.delegate = nil;
     [_postActivityProxy release];
+    _postCommentProxy.delegate = nil;
     [_postCommentProxy release];
     [_strActivityID release];
     [_tblvActivityDetail release];
@@ -91,6 +93,7 @@
     [_photoFrameView release];
     [_attPhotoButton release];
     [_spacesTableView release];
+    _socialSpaceProxy.delegate = nil;
     [_socialSpaceProxy release];
     if (selectedSpace) [selectedSpace release];
     [_spaceTableViewHeightConstraint release];

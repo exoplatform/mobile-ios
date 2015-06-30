@@ -39,6 +39,7 @@
 - (void)dealloc 
 {
     [_tabView release];
+    _loginProxy.delegate = nil;
     [_loginProxy release];
     [_hud release];
     [_tempUsername release];

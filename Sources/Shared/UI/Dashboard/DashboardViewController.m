@@ -76,6 +76,7 @@
     [_refreshHeaderView release];
     _refreshHeaderView = nil;
     
+    _dashboardProxy.delegate = nil;
     [_dashboardProxy release];
     _dashboardProxy = nil;
     
