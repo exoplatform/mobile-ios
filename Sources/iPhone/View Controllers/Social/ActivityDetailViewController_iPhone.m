@@ -44,7 +44,6 @@
 - (void)dealloc {
     [_noCommentCell release];
     [_likeViewCell release];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
     [super dealloc];
 }
 
@@ -93,13 +92,8 @@
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
     [_btnMsgComposer setTitleEdgeInsets:UIEdgeInsetsMake(5.0f, 0.0f, 0.0f, 0.0f)];
     [_btnMsgComposer setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollToTopNotificationHandle) name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
-    
 }
-- (void) scrollToTopNotificationHandle {
-    if (self.view.window)
-        [self.tblvActivityDetail setContentOffset:EXO_TABLEVIEW_ORIGIN_POINT animated:YES];
-}
+
 
 - (void)onBtnMessageComposer
 {

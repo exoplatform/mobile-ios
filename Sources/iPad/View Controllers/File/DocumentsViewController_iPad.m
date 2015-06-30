@@ -65,10 +65,6 @@
     _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
--(void) scrollTableViewToTop:(id) sender {
-    [self.tblFiles setContentOffset:EXO_TABLEVIEW_ORIGIN_POINT animated:YES];
-}
-
 - (CGRect)rectOfHeader:(int)width
 {
     return CGRectMake(50.0, 11.0, width, kHeightForSectionHeader);

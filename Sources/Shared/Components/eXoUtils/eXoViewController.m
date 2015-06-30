@@ -24,21 +24,13 @@
 
 @synthesize hudLoadWaiting = _hudLoadWaiting;
 @synthesize navigation = _navigation, label;
-@synthesize topViewButton;
+
 #pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    topViewButton = [[[UIButton alloc] initWithFrame:CGRectMake(100,0,_navigation.frame.size.width-200,20)] autorelease];
-    [topViewButton addTarget:self action:@selector(scrollTableViewToTop:) forControlEvents:UIControlEventTouchUpInside];
-    topViewButton.backgroundColor = [UIColor clearColor];
-    [_navigation addSubview:topViewButton];
-    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-}
-
--(void) scrollTableViewToTop:(id) sender {
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

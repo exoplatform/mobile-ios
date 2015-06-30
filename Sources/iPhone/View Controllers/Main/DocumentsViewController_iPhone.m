@@ -46,8 +46,6 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
-    
     [super dealloc];
 }
 
@@ -84,8 +82,6 @@
     CGRect tmpFrame = [[UIScreen mainScreen] bounds];
     tmpFrame.size.height -= 44; // navigation bar size. 
     self.tblFiles.frame = tmpFrame;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollToTopNotificationHandle) name:EXO_NOTIFICATION_SCROLL_TO_TOP object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,11 +111,6 @@
 
 
 #pragma mark - UINavigationBar Management
--(void) scrollToTopNotificationHandle {
-    if (self.view.window){
-        [self.tblFiles setContentOffset:EXO_TABLEVIEW_ORIGIN_POINT animated:YES];
-    }
-}
 
 - (void)setTitleForFilesViewController {
     if (_rootFile) {
