@@ -302,8 +302,9 @@
     
 	
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];	
-	[request setURL:[NSURL URLWithString:source]]; 
-	
+    [request setURL:[NSURL URLWithString:source]];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+    
 	if([protocol isEqualToString:kFileProtocolForDelete])
 	{
 		[request setHTTPMethod:@"DELETE"];
