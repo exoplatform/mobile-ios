@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.5.4.20150624</string>
+	<string>2.5.4</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
