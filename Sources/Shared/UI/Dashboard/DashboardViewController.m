@@ -18,7 +18,7 @@
 //
 
 #import "DashboardViewController.h"
-#import "DashboardProxy_old.h"
+#import "defines.h"
 #import "DashboardProxy.h"
 #import "LanguageHelper.h"
 #import "Gadget.h"
@@ -45,7 +45,7 @@
 @synthesize dateOfLastUpdate = _dateOfLastUpdate;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -76,6 +76,7 @@
     [_refreshHeaderView release];
     _refreshHeaderView = nil;
     
+    _dashboardProxy.delegate = nil;
     [_dashboardProxy release];
     _dashboardProxy = nil;
     
@@ -200,9 +201,15 @@
     
     NSString* textWithoutHtml = [text stringByConvertingHTMLToPlainText];
     
-    
-    CGSize theSize = [textWithoutHtml sizeWithFont:kFontForMessage constrainedToSize:CGSizeMake(fWidth, CGFLOAT_MAX) 
-                                     lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *wordWrapStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    wordWrapStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [textWithoutHtml boundingRectWithSize:CGSizeMake(fWidth, CGFLOAT_MAX)
+                                             options:nil
+                                          attributes:@{
+                                                       NSFontAttributeName: kFontForMessage,
+                                                       NSParagraphStyleAttributeName: wordWrapStyle
+                                                       }
+                                             context:nil].size;
     if (theSize.height < 30) 
     {
         fHeight = 60;
@@ -253,11 +260,18 @@
 	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     headerLabel.shadowOffset = CGSizeMake(0,1);
-    headerLabel.textAlignment = UITextAlignmentCenter;
-    headerLabel.text = [(DashboardItem *)[_arrDashboard objectAtIndex:section] label];
+    headerLabel.textAlignment = NSTextAlignmentCenter;
+    headerLabel.text = [(DashboardItem *)_arrDashboard[section] label];
     
-    CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblGadgets.frame.size.width-5, CGFLOAT_MAX) 
-                                      lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [headerLabel.text boundingRectWithSize:CGSizeMake(_tblGadgets.frame.size.width-5, CGFLOAT_MAX)
+                                                    options:nil
+                                                 attributes:@{
+                                                        NSFontAttributeName: headerLabel.font,
+                                                        NSParagraphStyleAttributeName: style
+                                                        }
+                                                    context:nil].size;
     headerLabel.frame = [self rectOfHeader:theSize.width+10];
     //Retrieve the image depending of the section
     UIImage *imgForSection = [UIImage imageNamed:@"DashboardTabBackground.png"];
@@ -276,7 +290,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+    GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
     
     return [self getHeighSizeForTableView:tableView andText:gadgetTmp.gadgetDescription];
 
@@ -286,7 +300,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-	return [[(DashboardItem*)[_arrDashboard objectAtIndex:section] arrayOfGadgets] count] ;
+	return [[(DashboardItem*)_arrDashboard[section] arrayOfGadgets] count] ;
 }
 
 // Customize the appearance of table view cells.
@@ -300,17 +314,18 @@
     //Check if we found a cell
     if (cell==nil) 
     { 
-        GadgetItem* gadgetTmp = [[(DashboardItem *)[_arrDashboard objectAtIndex:indexPath.section] arrayOfGadgets] objectAtIndex:indexPath.row]; 
+        GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DashboardTableViewCell" owner:self options:nil];
-        cell = (DashboardTableViewCell *)[nib objectAtIndex:0];
+        cell = (DashboardTableViewCell *)nib[0];
         //Not found, so create a new one
         
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [cell configureCell:gadgetTmp.gadgetName description:gadgetTmp.gadgetDescription icon:gadgetTmp.gadgetIcon];
         
-        [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
-        
+        int row = (int)indexPath.row;
+        int size = (int)[self tableView:tableView numberOfRowsInSection:indexPath.section];
+        [cell setBackgroundForRow:row inSectionSize:size];
     }
     
 	return cell;

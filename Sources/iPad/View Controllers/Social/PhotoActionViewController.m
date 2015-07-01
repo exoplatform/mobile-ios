@@ -28,7 +28,7 @@
 
 @synthesize _delegate, _rectForPresentView, _viewForPresent;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -104,8 +104,7 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
     {  
         thePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        thePicker.allowsEditing = YES;
-        [self presentModalViewController:thePicker animated:YES];
+        [self presentViewController:thePicker animated:YES completion:nil];
     }
     else
     {
@@ -174,7 +173,7 @@
     
     if([_delegate isKindOfClass:[MessageComposerViewController class]])
     {
-        [_delegate addPhotoToView:[editingInfo objectForKey:@"UIImagePickerControllerOriginalImage"]];
+        [_delegate addPhotoToView:editingInfo[@"UIImagePickerControllerOriginalImage"]];
     }
     else if([_delegate isKindOfClass:[DocumentsViewController class]])
     {
@@ -184,7 +183,7 @@
         
         if ([imageData length] > 0) 
         {
-            NSString *imageName = [[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
+            NSString *imageName = [editingInfo[@"UIImagePickerControllerReferenceURL"] lastPathComponent];
             
             if(imageName == nil) {
                 
@@ -216,8 +215,8 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
-{  
-    [picker dismissModalViewControllerAnimated:YES];  
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
     [_delegate dismissAddPhotoPopOver:YES];
 }
@@ -233,7 +232,7 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 

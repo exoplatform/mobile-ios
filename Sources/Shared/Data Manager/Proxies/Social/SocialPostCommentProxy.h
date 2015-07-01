@@ -21,7 +21,7 @@
 #import <RestKit/RestKit.h>
 #import "SocialProxy.h"
 
-@interface SocialPostCommentProxy : SocialProxy <RKObjectLoaderDelegate> {
+@interface SocialPostCommentProxy : SocialProxy  {
     
     NSString* _comment;
     NSString* _userIdentity;

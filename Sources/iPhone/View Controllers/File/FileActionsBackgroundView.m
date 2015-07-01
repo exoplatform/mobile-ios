@@ -31,7 +31,7 @@
 @implementation FileActionsBackgroundView
 
 
--(id)initWithFrame:(CGRect)frame {
+-(instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         
         [self applyDefaultStyle];
@@ -66,8 +66,7 @@
     const CGFloat *cs = CGColorGetComponents(color.CGColor);
     
     // create the colors for our gradient based on the color passed in
-    layer.colors = [NSArray arrayWithObjects:
-                    (id)[color CGColor],
+    layer.colors = @[(id)[color CGColor],
                     (id)[[UIColor colorWithRed:0.98f*cs[0] 
                                          green:0.98f*cs[1] 
                                           blue:0.98f*cs[2] 
@@ -79,16 +78,13 @@
                     (id)[[UIColor colorWithRed:0.93f*cs[0] 
                                          green:0.93f*cs[1] 
                                           blue:0.93f*cs[2] 
-                                         alpha:1] CGColor],
-                    nil];
+                                         alpha:1] CGColor]];
     
     // create the color stops for our gradient
-    layer.locations = [NSArray arrayWithObjects:
-                       [NSNumber numberWithFloat:0.0f],
-                       [NSNumber numberWithFloat:0.49f],
-                       [NSNumber numberWithFloat:0.51f],
-                       [NSNumber numberWithFloat:1.0f],
-                       nil];
+    layer.locations = @[@0.0f,
+                       @0.49f,
+                       @0.51f,
+                       @1.0f];
     
     layer.frame = self.bounds;
     [self.layer insertSublayer:layer atIndex:0];

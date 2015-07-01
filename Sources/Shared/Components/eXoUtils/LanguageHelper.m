@@ -23,6 +23,7 @@
 
 @implementation LanguageHelper
 
+@synthesize international;
 
 #pragma mark - Object Management
 //Singleton Accessor/Creator
@@ -42,11 +43,11 @@
 
 
 //Initialisation Method
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
-        _international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", nil] retain];
+        self.international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", @"el", nil] autorelease];
         //Intialisation, load the current dictionnary for localizable strings
         [self loadLocalizableStringsForCurrentLanguage];
     }	
@@ -56,7 +57,7 @@
 //Dealloc method
 - (void) dealloc
 {
-    [_international release];
+    self.international = nil;
 	[super dealloc];
 }
 
@@ -67,16 +68,16 @@
     // returns the lang in preferences, or nil
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *selectedLang = [userDefaults objectForKey:EXO_PREFERENCE_LANGUAGE];
-    int langIndex = (selectedLang) ? [selectedLang intValue] : 0;
+    NSInteger langIndex = (selectedLang) ? [selectedLang intValue] : 0;
     
     if (!selectedLang) {
         // returns the 2-letter language code of the device
-        NSString * language = [[[NSLocale preferredLanguages] objectAtIndex:0] substringToIndex:2];
+        NSString * language = [[NSLocale preferredLanguages][0] substringToIndex:2];
         // we defined some Country+Region codes in our array so we must check these explicitely
         if ([@"es" isEqualToString:language]) language = @"es-ES";
         else if ([@"pt" isEqualToString:language]) language = @"pt-BR";
         // returns the index of the language or NSNotFound
-        langIndex = [_international indexOfObject:language];
+        langIndex = [self.international indexOfObject:language];
         // if the preferred language is not supported by the app, fallback to English
         if (langIndex == NSNotFound) langIndex = 0;
     }
@@ -84,10 +85,10 @@
     [self changeToLanguage:langIndex];
 }
 
-- (void)changeToLanguage:(int)languageWanted {
+- (void)changeToLanguage:(NSInteger)languageWanted {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSString stringWithFormat:@"%d", languageWanted] forKey:EXO_PREFERENCE_LANGUAGE];
-	LocalizationSetLanguage([_international objectAtIndex:languageWanted]);
+    [userDefaults setObject:[NSString stringWithFormat:@"%ld", (long)languageWanted] forKey:EXO_PREFERENCE_LANGUAGE];
+	LocalizationSetLanguage(self.international[languageWanted]);
     
 }
 

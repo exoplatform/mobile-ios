@@ -46,13 +46,14 @@
 @synthesize postedTimeInWords = _postedTimeInWords;
 @synthesize templateParams = _templateParams;
 @synthesize activityType = _activityType;
-
+@synthesize embeddedURL = _embeddedURL;
 - (void)dealloc {
     [_identityId release];
     [_activityId release];
     [_type release];
     [_activityStream release];
     [_title release];
+    [_embeddedURL release];
     [_body release];
     [_createdAt release];
     [_likedByIdentities release];
@@ -122,7 +123,13 @@
     self.updatedTimeInWords = [[NSDate dateWithTimeIntervalSince1970:self.lastUpdated/1000] distanceOfTimeInWords:[NSDate date]];
 
 }
-
+-(void) convertToAttributedMessage {
+    if ([self.templateParams objectForKey:@"comment"]){
+        self.attributedMessage = [self getHTMLAttributedStringFromHTML:[self.templateParams objectForKey:@"comment"]];
+    } else {
+        self.attributedMessage =[self getHTMLAttributedStringFromHTML:self.title];
+    }
+}
 - (void)convertHTMLEncoding {
     self.title = [self.title gtm_stringByUnescapingFromHTML];
     self.posterPicture.message = [self.posterPicture.message gtm_stringByUnescapingFromHTML];
@@ -140,6 +147,45 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"[title : %@], [body : %@], [identityId : %@], [comment : %@]", self.title, self.body, self.identityId, self.comments];
+}
+
+
+-(NSAttributedString * ) getHTMLAttributedStringFromHTML:(NSString *) html {
+
+    NSString * string = html;
+   // Analyse the <a href ..> HTML Tag to get the links
+    
+   NSMutableArray * links = [[NSMutableArray alloc] init];
+    while ([string rangeOfString:@"<a href"].location!= NSNotFound) {
+        NSInteger beginTagLocation =[string rangeOfString:@"<a href"].location;
+        NSInteger contentTagLocation = [[string substringFromIndex:beginTagLocation] rangeOfString:@">"].location+1+beginTagLocation;
+        
+        NSInteger endTagLocation =[[string substringFromIndex:beginTagLocation] rangeOfString:@"</a>"].location+1+beginTagLocation;
+        
+        NSString * link = [string substringWithRange:NSMakeRange(contentTagLocation, endTagLocation-contentTagLocation-1)];
+        [links addObject:link];
+        
+        string = [string stringByReplacingCharactersInRange:NSMakeRange(beginTagLocation, contentTagLocation-beginTagLocation) withString:@""];
+    }
+    string = [string stringByReplacingOccurrencesOfString:@"</a>" withString:@""];
+    
+    //remove all others HTML TAG
+    NSRange range;
+    while ((range = [string rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound) {
+        string = [string stringByReplacingCharactersInRange:range withString:@""];
+        
+    }
+
+    string = [string gtm_stringByUnescapingFromHTML];
+    NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
+    for (NSString * link in links){
+        [htmlAttributedString addAttributes:kAttributeURL range:[string rangeOfString:link]];
+    }
+    if (links && links.count>0){
+        _embeddedURL = links[0];
+    }
+
+    return htmlAttributedString;
 }
 
 @end

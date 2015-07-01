@@ -21,21 +21,21 @@
                                                   SettingsDelegateProcotol, AccountSwitcherDelegate> {
                                                       
     
-	UITableView*  _tableView;
+	UITableView*    _tableView;
 	NSMutableArray* _cellContents;
     
-	int									_intSelectedLanguage;
+	int				_intSelectedLanguage;
 
-    int                             _intIndex;
+    NSInteger       _intIndex;
     
-    BOOL                            _isCompatibleWithSocial;
+    BOOL            _isCompatibleWithSocial;
     
 }
 @property (nonatomic, retain) UITableView* tableView;
 @property BOOL isCompatibleWithSocial;
 @property (nonatomic, retain) UserProfileViewController *userProfileViewController;
 
-- (id)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
+- (instancetype)initWithFrame:(CGRect)frame isCompatibleWithSocial:(BOOL)compatibleWithSocial;
 - (void) updateLabelsWithNewLanguage;
 
 @end

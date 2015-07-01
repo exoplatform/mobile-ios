@@ -82,7 +82,7 @@
     self.view.title = self.title;
     
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.backBarButtonItem = self.navigationItem.backBarButtonItem;
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.tintColor = [UIColor whiteColor];
     
     
@@ -109,10 +109,7 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
-    [self presentModalViewController:navController animated:YES];
-
-    
-    
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)finishLoadingAllLikers {
@@ -153,6 +150,10 @@
             url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [self.socialActivity.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
             break;
+        case ACTIVITY_LINK :{
+            url = [NSURL URLWithString:[self.socialActivity.templateParams valueForKey:@"link"]];
+        }
+            break;
     }
     
     ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] 
@@ -162,6 +163,16 @@
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
     
+}
+
+
+-(void) gotoEmbededURL:(UITapGestureRecognizer *)gesture {
+    if (self.socialActivity.embeddedURL) {
+        NSURL *url = [NSURL URLWithString:self.socialActivity.embeddedURL];
+        ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone" bundle:nil url:url] autorelease];
+        
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
+    }
 }
 
 #pragma mark - UIWebViewDelegateMethod 
@@ -208,7 +219,7 @@
             if (cell == nil) 
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
-                cell = (ActivityDetailCommentTableViewCell *)[nib objectAtIndex:0];
+                cell = (ActivityDetailCommentTableViewCell *)nib[0];
                 
                 //Create a cell, need to do some configurations
                 [cell configureCell];
@@ -216,7 +227,7 @@
                 cell.extraDelegateForWebView = self;
             }
             
-            SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
+            SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
             [cell setSocialComment:socialComment];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;

@@ -22,12 +22,12 @@
 #import "MenuViewController.h"
 #import "defines.h"
 #import "FilesProxy.h"
-#import "HomeStyleSheet.h"
 #import <dispatch/dispatch.h>
-#import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
 #import "UINavigationBar+ BackButtonDisplayFix.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate_iPad
 
@@ -47,7 +47,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     [super application:application didFinishLaunchingWithOptions:launchOptions];
     //Add Crashlytics
-    [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
+    [Fabric with:@[CrashlyticsKit]];
     
     application.statusBarHidden = YES;
     
@@ -106,10 +106,6 @@
 
 -(void)showHome
 {
-    
-    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
-
-    
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
     [[SocialRestConfiguration sharedInstance] updateDatas];
 

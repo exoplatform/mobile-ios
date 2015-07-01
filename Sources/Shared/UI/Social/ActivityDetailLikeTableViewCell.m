@@ -39,7 +39,7 @@
 @property (retain, nonatomic) UIActivityIndicatorView *indicatorForLikeButton;
 @property (nonatomic, retain) NSMutableArray *likerAvatarImageViews;
 - (UIImage *)imageOfThreePointsWithSize:(CGSize)imageSize;
-- (AvatarView *)newAvatarView;
+@property (nonatomic, readonly, strong) AvatarView *newAvatarView;
 - (void)adjustAvatarViewFrames:(BOOL)animate;
 
 @end
@@ -64,7 +64,7 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -88,7 +88,7 @@
     [super layoutSubviews];
     CGRect contentBounds = self.contentView.bounds;
     /* ### Configure message label ### */
-    CGSize messageSize = [_lbMessage.text sizeWithFont:_lbMessage.font];
+    CGSize messageSize = [_lbMessage.text sizeWithAttributes:@{ NSFontAttributeName: _lbMessage.font }];
     _lbMessage.frame = CGRectMake(kLeftRightMargin, kTopMargin, messageSize.width, messageSize.height); // the message is on the top of the content view
     /* ##### */
     float avatarHeight = (contentBounds.size.height - (kTopMargin + kBottomMargin) - self.lbMessage.bounds.size.height - kPadding);
@@ -203,8 +203,8 @@
     
     for (int i = 0; i < self.socialActivity.totalNumberOfLikes; i++) {
         if (i == kNumberOfDisplayedAvatars) break;
-        SocialUserProfile *user = i < self.socialActivity.likedByIdentities.count ? [self.socialActivity.likedByIdentities objectAtIndex:i] : nil;
-        AvatarView *imageView = i < [_likerAvatarImageViews count] ? [_likerAvatarImageViews objectAtIndex:i] : nil;
+        SocialUserProfile *user = i < self.socialActivity.likedByIdentities.count ? (self.socialActivity.likedByIdentities)[i] : nil;
+        AvatarView *imageView = i < [_likerAvatarImageViews count] ? _likerAvatarImageViews[i] : nil;
         if (!imageView) {
             imageView = [self newAvatarView];
             [_likerAvatarImageViews addObject:imageView];
@@ -220,6 +220,9 @@
 - (UIImage *)imageOfThreePointsWithSize:(CGSize)imageSize {
     NSString *threePoints = @"...";
     UIFont *font = [UIFont boldSystemFontOfSize:20.0];
+    NSMutableParagraphStyle* paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
     CGRect rect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
     // this method is available from iOS 4.0
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
@@ -228,7 +231,12 @@
     CGContextFillRect(context, rect);
     
     CGContextSetFillColorWithColor(context, [UIColor colorWithRed:134./255 green:134./255 blue:134./255 alpha:1.].CGColor);
-    [threePoints drawInRect:rect withFont:font lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+    [threePoints drawInRect:rect
+             withAttributes:@{
+                              NSFontAttributeName: font,
+                    NSParagraphStyleAttributeName: paragraphStyle
+                              }
+     ];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

@@ -71,7 +71,7 @@
 @synthesize postCommentProxy = _postCommentProxy;
 @synthesize socialSpaceProxy = _socialSpaceProxy;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -80,8 +80,10 @@
 }
 
 - (void)dealloc
-{    
+{
+    _postActivityProxy.delegate = nil;
     [_postActivityProxy release];
+    _postCommentProxy.delegate = nil;
     [_postCommentProxy release];
     [_strActivityID release];
     [_tblvActivityDetail release];
@@ -91,8 +93,10 @@
     [_photoFrameView release];
     [_attPhotoButton release];
     [_spacesTableView release];
+    _socialSpaceProxy.delegate = nil;
     [_socialSpaceProxy release];
     if (selectedSpace) [selectedSpace release];
+    [_spaceTableViewHeightConstraint release];
     [super dealloc];
 }
 
@@ -135,7 +139,7 @@
     UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     [_txtvMessageComposer becomeFirstResponder];
@@ -164,29 +168,24 @@
     /*
      ######
      */
+
     [self.spacesTableView registerNib:[UINib nibWithNibName:@"SpaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"SpaceTableViewCell"];
-    
-    
+
+    if (!_isPostMessage) {
+        self.spaceTableViewHeightConstraint.constant = 0;
+    }
     selectedSpace = nil;
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"4.0") && SYSTEM_VERSION_LESS_THAN(@"5.0")) {
-        // For iOS version < 5.0, the subviews are rearranged before appearing phase. 
-        [self reArrangeSubViews];        
-    }
     [self.spacesTableView reloadData];
     [super viewWillAppear:animated];
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
 - (void)viewDidLayoutSubviews {
-    
-    // For iOS version >= 5.0 which support this method, the subviews are rearranged here.
     [self reArrangeSubViews];
 }
-#endif
 
 - (void)viewDidUnload
 {
@@ -312,7 +311,7 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
@@ -363,6 +362,8 @@
                 [dateFormatter release];
 
                 fileAttachName = [NSString stringWithFormat:@"MobileImage_%@.png", fileAttachName];
+                fileAttachName = [fileAttachName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                NSLog(@"uploading file: %@",fileAttachName);
                 
                 fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
                 
@@ -425,7 +426,7 @@
     }
     else
     {
-        [self dismissModalViewControllerAnimated:YES];    
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     
 }
@@ -491,7 +492,7 @@
             _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
             _previousStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
             
-            [self presentModalViewController:[self getPicker:UIImagePickerControllerSourceTypePhotoLibrary] animated:YES];
+            [self presentViewController:[self getPicker:UIImagePickerControllerSourceTypePhotoLibrary] animated:YES completion:nil];
         }
     }];
     [imagePreview removeImageWithCompletion:^(void) {
@@ -544,7 +545,7 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-
+    
     if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
         if (_socialSpaceProxy.mySpaces && _socialSpaceProxy.mySpaces.count>0){
             selectedSpace.spaceId = ((SocialSpace*)_socialSpaceProxy.mySpaces[0]).spaceId;
@@ -556,10 +557,7 @@
             [delegate messageComposerDidSendData];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-
     }
-    
-    
 }
 
 -(void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error
@@ -631,10 +629,13 @@
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
             _previousStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
-            [self presentModalViewController:thePicker animated:YES];
+            [self presentViewController:thePicker animated:YES completion:nil];
         } else {
             self._popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:thePicker] autorelease];
-            [self._popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];        
+            // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self._popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+            }];
             // set style for navigation bar because the popover using the default style if it is not set.
             thePicker.navigationBar.barStyle = UIBarStyleBlackTranslucent;            
         }
@@ -667,7 +668,7 @@
             // restore previous status bar
             [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
             [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
     [imagePreview selectImageWithCompletion:^(void) {
@@ -682,18 +683,18 @@
             [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
             [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
             self.navigationController.toolbarHidden = YES;
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
     [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
     [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
     [picker pushViewController:imagePreview animated:YES];
-    [imagePreview displayImage:[self resizeImage:[info objectForKey:UIImagePickerControllerOriginalImage]]];
+    [imagePreview displayImage:[self resizeImage:info[UIImagePickerControllerOriginalImage]]];
 }
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -705,7 +706,7 @@
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
--(CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
 }
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -60,7 +60,7 @@
 
 
 //Initialisation Method
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
@@ -94,7 +94,7 @@
 	static const char *tbl = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	
 	const char *s = [str UTF8String];
-	int length = [str length];
+	long length = [str length];
 	char *tmp = malloc(length * 4 / 3 + 4);
 	
 	int i = 0;
@@ -124,7 +124,7 @@
 	
 	*p = '\0';
 	
-	NSString* ret = [NSString stringWithCString:tmp encoding:NSASCIIStringEncoding];
+	NSString* ret = @(tmp);
 	free(tmp);
 	
 	return ret;
@@ -248,7 +248,7 @@
 	[loginRequest setHTTPMethod: @"POST"]; 
 	
 	NSDictionary *cookiesInfo = [NSHTTPCookie requestHeaderFieldsWithCookies:[store cookies]];
-	[loginRequest setValue:[cookiesInfo objectForKey:@"Cookie"] forHTTPHeaderField:@"Cookie"];
+	[loginRequest setValue:cookiesInfo[@"Cookie"] forHTTPHeaderField:@"Cookie"];
 	
 	
 	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
@@ -339,7 +339,7 @@
 	[loginRequest setHTTPMethod: @"POST"]; 
 	
 	NSDictionary *cookiesInfo = [NSHTTPCookie requestHeaderFieldsWithCookies:[store cookies]];
-	[loginRequest setValue:[cookiesInfo objectForKey:@"Cookie"] forHTTPHeaderField:@"Cookie"];
+	[loginRequest setValue:cookiesInfo[@"Cookie"] forHTTPHeaderField:@"Cookie"];
 	
 	
 	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];

@@ -35,8 +35,8 @@
 	id<EGOImageButtonDelegate> delegate;
 }
 
-- (id)initWithPlaceholderImage:(UIImage*)anImage; // delegate:nil
-- (id)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageButtonDelegate>)aDelegate;
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage; // delegate:nil
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageButtonDelegate>)aDelegate;
 
 - (void)cancelImageLoad;
 

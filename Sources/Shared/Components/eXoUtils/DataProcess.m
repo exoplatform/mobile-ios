@@ -83,7 +83,7 @@ static DataProcess *_instance;
 	{	
 		NSString* encodedKey = [self escapeString: dictKey withEncoding:encoding];
 		//NSString* encodedValue = [self escapeString:dictKey withEncoding:encoding];   
-		NSString* encodedValue = [self escapeString:(NSString*)[dictData objectForKey:dictKey] withEncoding:encoding];   
+		NSString* encodedValue = [self escapeString:(NSString*)dictData[dictKey] withEncoding:encoding];   
 		NSString* keyAndValue = [NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue];
 		[keyAndValues addObject:keyAndValue];
 	}
@@ -118,12 +118,12 @@ static DataProcess *_instance;
 		if([tmpNodeValue compare:@" .."] != NSOrderedSame)
 		{
 			NSRange range1 = [tmpNodeDescription rangeOfString:@"href="];
-			int mark = 0;
+			long mark = 0;
 			
 			if(range1.length > 0)
 			{
 				
-				for(int i = range1.location + range1.length + 1; i < [tmpNodeDescription length]; i ++)
+				for(long i = range1.location + range1.length + 1; i < [tmpNodeDescription length]; i ++)
 				{
 					if([tmpNodeDescription characterAtIndex:i] == '"')
 					{

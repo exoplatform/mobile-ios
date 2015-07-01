@@ -25,7 +25,7 @@
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) 
@@ -126,7 +126,7 @@
 
 - (void)animateSelectionToItemAtIndex:(NSUInteger)itemIndex;
 {
-    JMTabItem * tabItem = [self.tabItems objectAtIndex:itemIndex];
+    JMTabItem * tabItem = (self.tabItems)[itemIndex];
     [UIView beginAnimations:kSelectionAnimation context:self.selectionView];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:(CGRectIsEmpty(self.selectionView.frame) ? 0. : kTabSelectionAnimationDuration)];
@@ -150,7 +150,7 @@
 #pragma mark - Tab Item Accessors
 
 - (JMTabItem *)tabItemAtIndex:(NSUInteger)index {
-    return [self.tabItems objectAtIndex:index];
+    return (self.tabItems)[index];
 }
 
 @end

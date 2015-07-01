@@ -24,7 +24,7 @@
 #pragma mark Instance method
 
 - (NSObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
-    return [[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    return (self.sections)[indexPath.section][indexPath.row];
 }
 
 - (NSArray *)sections {
@@ -32,13 +32,10 @@
         BOOL shouldLoad = [self.delegate datasourceShouldLoad:self];
 
         if (shouldLoad) {
-            sections = [[NSArray arrayWithObject:
-                         [NSArray arrayWithObject:
-                          [JTTableViewCellModalLoadingIndicator modal]
-                          ]]
+            sections = [@[@[[JTTableViewCellModalLoadingIndicator modal]]]
                         retain];
         } else {
-            sections = [[NSArray arrayWithObject:[NSArray array]] retain];
+            sections = [@[@[]] retain];
         }
     }
     return sections;
@@ -81,7 +78,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.sections objectAtIndex:section] count];
+    return [(self.sections)[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

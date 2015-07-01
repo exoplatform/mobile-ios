@@ -37,7 +37,7 @@
 - (NSArray *)elementsForName:(NSString *)name;
 //- (NSArray *)elementsForLocalName:(NSString *)localName URI:(NSString *)URI;
 
-- (NSArray *)attributes;
+@property (nonatomic, readonly, copy) NSArray *attributes;
 - (CXMLNode *)attributeForName:(NSString *)name;
 //- (CXMLNode *)attributeForLocalName:(NSString *)localName URI:(NSString *)URI;
 

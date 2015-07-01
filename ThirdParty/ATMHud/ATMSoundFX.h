@@ -17,7 +17,7 @@
 }
 
 + (id)soundEffectWithContentsOfFile:(NSString *)aPath;
-- (id)initWithContentsOfFile:(NSString *)path;
+- (instancetype)initWithContentsOfFile:(NSString *)path;
 - (void)play;
 
 @end

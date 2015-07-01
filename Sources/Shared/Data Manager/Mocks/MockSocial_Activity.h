@@ -55,7 +55,7 @@
 @property int nbComments;
 
 
--(id)initWithUserID:(NSString *)_userID
+-(instancetype)initWithUserID:(NSString *)_userID
          activityID:(NSString *)_activityID
           avatarUrl:(NSString *)_avatarUrl
               title:(NSString *)_title
@@ -64,7 +64,7 @@
       numberOfLikes:(int)_numberOfLikes
    numberOfComments:(int)_numberOfComments; 
 
--(id)initWithUserID:(NSString *)_userID
+-(instancetype)initWithUserID:(NSString *)_userID
          activityID:(NSString *)_activityID
           avatarUrl:(NSString *)_avatarUrl
               title:(NSString *)_title
@@ -92,7 +92,7 @@
 @property (nonatomic, retain) NSArray *arrComments;
 @property (nonatomic, retain) NSString* userImageAvatar;
 
-- (id)initWithUserID:(NSString *)_activityID
+- (instancetype)initWithUserID:(NSString *)_activityID
             arrLikes:(NSArray *)_arrLikes
          arrComments:(NSArray *)_arrComments;
 @end
@@ -111,7 +111,7 @@
 @property (nonatomic, retain) NSString *userFullName;
 @property (nonatomic, retain) NSMutableArray *arrTxtComments;
 
-- (id)initWithUserID:(NSString *)_activityID
+- (instancetype)initWithUserID:(NSString *)_activityID
               userID:(NSString *)_userID
       arrTxtComments:(NSMutableArray *)_arrTxtComments;
 @end

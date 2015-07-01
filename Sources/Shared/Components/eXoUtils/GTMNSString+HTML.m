@@ -30,9 +30,9 @@ typedef struct {
 static HTMLEscapeMap gAsciiHTMLEscapeMap[] = {
 	// A.2.2. Special characters
 	{ @"&quot;", 34 },
-	//{ @"&amp;", 38 },
+	{ @"&amp;", 38 },
 	{ @"&apos;", 39 },
-	//{ @"&lt;", 60 },
+	{ @"&lt;", 60 },
 	{ @"&gt;", 62 },
 	
     // A.2.1. Latin-1 characters
@@ -314,7 +314,7 @@ static HTMLEscapeMap gAsciiHTMLEscapeMap[] = {
 static HTMLEscapeMap gUnicodeHTMLEscapeMap[] = {
 	// C0 Controls and Basic Latin
 	{ @"&quot;", 34 },
-	//{ @"&amp;", 38 },
+	{ @"&amp;", 38 },
 	{ @"&apos;", 39 },
 	{ @"&lt;", 60 },
 	{ @"&gt;", 62 },

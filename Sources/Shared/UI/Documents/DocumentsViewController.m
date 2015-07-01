@@ -36,7 +36,6 @@ static NSString *GENERAL_GROUP = @"general";
 static NSString *PERSONAL_GROUP = @"personal";
 static NSString *SHARED_GROUP = @"group";
 static NSString *PUBLIC_DRIVE = @"Public";
-static NSString *PRIVATE_GROUP = @"Private";
 
 #pragma mark -
 #pragma mark Private
@@ -66,6 +65,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 @synthesize parentController = _parentController, isRoot;
 @synthesize actionVisibleOnFolder = _actionVisibleOnFolder;
 @synthesize popoverPhotoLibraryController = _popoverPhotoLibraryController;
+
 @synthesize popoverProperties = _popoverProperties;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -80,7 +80,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
 
 
-- (id) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName  {
+- (instancetype) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName  {
     if ((self = [self initWithNibName:nibName bundle:nil])) {
         //Set the rootFile 
         _rootFile = [rootFile retain];
@@ -271,7 +271,7 @@ static NSString *PRIVATE_GROUP = @"Private";
     NSArray *visibleCells  = [_tblFiles visibleCells];
     CGRect rect = CGRectZero;
     for (int n = 0; n < [visibleCells count]; n ++){
-        UITableViewCell *cell = [visibleCells objectAtIndex:n];
+        UITableViewCell *cell = visibleCells[n];
         if(n == 0){
             rect.origin.y = cell.frame.origin.y;
             rect.size.width = cell.frame.size.width;
@@ -312,7 +312,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 	[self.view addSubview:self.hudLoadWaiting.view];
     
     self.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     //Set the background Color of the view
     //_tblFiles.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
@@ -437,11 +437,19 @@ static NSString *PRIVATE_GROUP = @"Private";
 	headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
     headerLabel.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     headerLabel.shadowOffset = CGSizeMake(0,1);
-    headerLabel.textAlignment = UITextAlignmentCenter;
+    headerLabel.textAlignment = NSTextAlignmentCenter;
 
-    headerLabel.text = Localize([[_dicContentOfFolder allKeys] objectAtIndex:section]);
+    headerLabel.text = Localize([_dicContentOfFolder allKeys][section]);
     
-    CGSize theSize = [headerLabel.text sizeWithFont:headerLabel.font constrainedToSize:CGSizeMake(_tblFiles.frame.size.width-5, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize theSize = [headerLabel.text boundingRectWithSize:CGSizeMake(_tblFiles.frame.size.width-5, CGFLOAT_MAX)
+                                                    options:nil
+                                                 attributes:@{
+                                                              NSFontAttributeName: headerLabel.font,
+                                                              NSParagraphStyleAttributeName: style
+                                                              }
+                                                    context:nil].size;
     
     if(theSize.width > _tblFiles.frame.size.width - 20)
         theSize.width = _tblFiles.frame.size.width - 50;
@@ -470,7 +478,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 // tell our table how many rows it will have, in our case the size of our menuList
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [[[_dicContentOfFolder allValues] objectAtIndex:section] count];
+	return [[_dicContentOfFolder allValues][section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -490,12 +498,14 @@ static NSString *PRIVATE_GROUP = @"Private";
     }
 
     //Customize the cell background
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    int row = (int)indexPath.row;
+    int size = (int)[self tableView:tableView numberOfRowsInSection:indexPath.section];
+    [cell setBackgroundForRow:row inSectionSize:size];
 
 
     //Retrieve the correct file corresponding to the indexPath
-    File *file = [[[_dicContentOfFolder allValues] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    NSString *driveGroup = [[_dicContentOfFolder allKeys] objectAtIndex:indexPath.section];
+    File *file = [_dicContentOfFolder allValues][indexPath.section][indexPath.row];
+    NSString *driveGroup = [_dicContentOfFolder allKeys][indexPath.section];
     if ([self supportActionsForItem:file ofGroup:driveGroup]) {
         //Add action button
         UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
@@ -600,7 +610,6 @@ static NSString *PRIVATE_GROUP = @"Private";
     
     //Hide the action Panel
     [self hideActionsPanel];
-    //NSLog(@"%@", urlFileToDelete);
     [self performSelectorInBackground:@selector(deleteFileInBackground:) withObject:urlFileToDelete];
 }
 
@@ -722,8 +731,8 @@ static NSString *PRIVATE_GROUP = @"Private";
 
     if(thePicker) {
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            //[self.navigationController presentModalViewController:thePicker animated:YES];  
-            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentModalViewController:thePicker animated:YES];
+            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone
+                presentViewController:thePicker animated:YES completion:nil];
         }
         else {
             
@@ -768,7 +777,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     navigationController.navigationBar.tintColor = [UIColor whiteColor];
     navigationController.navigationBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavbarBg.png"]];
     
@@ -822,7 +831,7 @@ static NSString *PRIVATE_GROUP = @"Private";
 
         NSArray *arrFileFolder = nil;
         if([[_dicContentOfFolder allValues] count] > 0)
-            arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+            arrFileFolder = [_dicContentOfFolder allValues][0];
         
         for (File* file in arrFileFolder) {
             if([newFolderName isEqualToString:file.name])
@@ -847,7 +856,7 @@ static NSString *PRIVATE_GROUP = @"Private";
             [self displayHudLoader];
             
             NSString* strNewFolderPath = [FilesProxy urlForFileAction:[fileToApplyAction.path stringByAppendingPathComponent:newFolderName]];
-            NSLog(@"%@", strNewFolderPath);
+            LogDebug(@"%@", strNewFolderPath);
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(createNewFolderInBackground:)]];
             [invocation setTarget:self];
@@ -913,7 +922,7 @@ static NSString *PRIVATE_GROUP = @"Private";
         
         NSArray *arrFileFolder = nil;
         if([[_dicContentOfFolder allValues] count] > 0)
-            arrFileFolder = [[_dicContentOfFolder allValues] objectAtIndex:0];
+            arrFileFolder = [_dicContentOfFolder allValues][0];
 
         
         for (File* file in arrFileFolder) {
@@ -1049,7 +1058,7 @@ static NSString *PRIVATE_GROUP = @"Private";
         
         if ([imageData length] > 0) 
         {
-            NSString *imageName = [[editingInfo objectForKey:UIImagePickerControllerReferenceURL] lastPathComponent];
+            NSString *imageName = [editingInfo[UIImagePickerControllerReferenceURL] lastPathComponent];
             
             if(imageName == nil) {
                 
@@ -1076,8 +1085,8 @@ static NSString *PRIVATE_GROUP = @"Private";
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
-{  
-    [picker dismissModalViewControllerAnimated:YES];  
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
 }
 

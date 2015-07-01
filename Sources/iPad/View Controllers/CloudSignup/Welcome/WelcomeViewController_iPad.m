@@ -29,7 +29,7 @@
 
 @implementation WelcomeViewController_iPad
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -70,7 +70,7 @@
     AppDelegate_iPad *appDelegate = [AppDelegate_iPad instance];
 
     if(self.shouldBackToSetting) {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         appDelegate.window.rootViewController = appDelegate.viewController;
     }
@@ -83,7 +83,7 @@
     [signUpVC release];
     navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentModalViewController:navCon animated:YES];
+    [self presentViewController:navCon animated:YES completion:nil];
 }
 
 - (void)login:(id)sender
@@ -94,8 +94,7 @@
     
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
     navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-
-    [self presentModalViewController:navCon animated:YES];
+    [self presentViewController:navCon animated:YES completion:nil];
 }
 
 - (BOOL)shouldAutorotate
@@ -122,9 +121,9 @@
 - (void)repositionSwipedElements:(UIInterfaceOrientation)toInterfaceOrientation
 {
     if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        images = [NSArray arrayWithObjects:@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-apps-landscape", @"ipad-documents-landscape", nil];
+        images = @[@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-apps-landscape", @"ipad-documents-landscape"];
     } else {
-        images = [NSArray arrayWithObjects:@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait", @"ipad-apps-portrait", @"ipad-documents-portrait", nil];
+        images = @[@"ipad-activity-stream-portrait",@"ipad-activity-details-portrait", @"ipad-apps-portrait", @"ipad-documents-portrait"];
     }
 
     CGRect frame = self.scrollView.frame;
@@ -150,7 +149,7 @@
         
         for(UIView *tmpView in [swipedView subviews]) {
             if([tmpView isKindOfClass:UIImageView.class]) {
-                UIImage *screenshot = [UIImage imageNamed:[images objectAtIndex:i]];
+                UIImage *screenshot = [UIImage imageNamed:images[i]];
                 UIImageView *imageView = (UIImageView *)tmpView;
                 frame = imageView.frame;
                 frame.size = screenshot.size;

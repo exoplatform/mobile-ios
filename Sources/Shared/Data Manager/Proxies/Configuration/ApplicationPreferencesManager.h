@@ -43,8 +43,9 @@
 
 #pragma mark - Properties
 #pragma mark * Server management
-@property (nonatomic, assign) int selectedServerIndex;
+@property (nonatomic, assign) NSInteger selectedServerIndex;
 @property (nonatomic, readonly) NSString *selectedDomain;
+@property (nonatomic, retain) NSString * platformVersion; //platform version 4.1.1
 
 #pragma mark * JCR storage
 /* current jcr repository. Return "repository" if cannot retrieve it from the server */
@@ -58,11 +59,11 @@
 + (ApplicationPreferencesManager*)sharedInstance;
 
 #pragma mark * Server management
-- (NSMutableArray *)serverList;
-- (ServerObj*)getSelectedAccount;
+@property (nonatomic, readonly, copy) NSMutableArray *serverList;
+@property (nonatomic, getter=getSelectedAccount, readonly, strong) ServerObj *selectedAccount;
 - (void)loadServerList;
 - (BOOL)deleteServerObjAtIndex:(int)index;
-- (BOOL)twoOrMoreAccountsExist;
+@property (nonatomic, readonly) BOOL twoOrMoreAccountsExist;
 //add a new server or save changes to an existed one
 - (BOOL) addEditServerWithServerName:(NSString*) strServerName andServerUrl:(NSString*) strServerUrl withUsername:(NSString *)username andPassword:(NSString *)password atIndex:(int)index;
 //if existed, return the server's index, otherwise return -1

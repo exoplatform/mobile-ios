@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageComposerViewController_iPad">
@@ -11,6 +10,7 @@
                 <outlet property="_btnAttach" destination="18" id="22"/>
                 <outlet property="_imgvTextViewBg" destination="16" id="17"/>
                 <outlet property="_txtvMessageComposer" destination="4" id="9"/>
+                <outlet property="spaceTableViewHeightConstraint" destination="kjI-Wd-TmO" id="i3m-Rn-t5f"/>
                 <outlet property="spacesTableView" destination="26" id="27"/>
                 <outlet property="view" destination="3" id="10"/>
             </connections>
@@ -79,6 +79,7 @@
                 <constraint firstItem="26" firstAttribute="top" secondItem="3" secondAttribute="top" id="vUr-NX-ZX6"/>
                 <constraint firstItem="16" firstAttribute="top" secondItem="26" secondAttribute="bottom" constant="9" id="xCi-tw-8tc"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="163" y="185"/>
         </view>

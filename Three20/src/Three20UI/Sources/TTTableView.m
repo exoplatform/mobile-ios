@@ -35,7 +35,7 @@
 static const CGFloat kShadowHeight        = 20.0;
 static const CGFloat kShadowInverseHeight = 10.0;
 
-static const CGFloat kCancelHighlightThreshold = 4;
+//static const CGFloat kCancelHighlightThreshold = 4;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

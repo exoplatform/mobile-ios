@@ -31,8 +31,8 @@
 
 @interface CXMLNode (CXMLNode_PrivateExtensions)
 
-- (id)initWithLibXMLNode:(xmlNodePtr)inLibXMLNode;
+- (instancetype)initWithLibXMLNode:(xmlNodePtr)inLibXMLNode;
 
-+ (id)nodeWithLibXMLNode:(xmlNodePtr)inLibXMLNode;
++ (instancetype)nodeWithLibXMLNode:(xmlNodePtr)inLibXMLNode;
 
 @end

@@ -38,8 +38,8 @@
     BOOL resize;
 }
 
-- (id)initWithPlaceholderImage:(UIImage*)anImage; // delegate:nil
-- (id)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageViewDelegate>)aDelegate;
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage; // delegate:nil
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageViewDelegate>)aDelegate;
 
 - (void)cancelImageLoad;
 

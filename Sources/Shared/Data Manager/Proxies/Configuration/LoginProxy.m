@@ -26,6 +26,7 @@
 #import "AlreadyAccountViewController.h"
 #import "OnPremiseViewController.h"
 #import "URLAnalyzer.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface LoginProxy()
 //private variables
@@ -39,7 +40,7 @@
 @synthesize username = _username;
 @synthesize password = _password;
 @synthesize serverUrl = _serverUrl;
-- (id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl
+- (instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)username password:(NSString *)password serverUrl:(NSString *)serverUrl
 {
     if((self = [super init])) {
         self.delegate = delegate;
@@ -50,14 +51,14 @@
 return self;
 }
 
--(id)initWithDelegate:(id<LoginProxyDelegate>)delegate {
+-(instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate {
     if ((self = [super init])) {
         _delegate = delegate;
         self.serverUrl = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     }
     return self;
 }
--(id)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)userName password:(NSString *)passWord
+-(instancetype)initWithDelegate:(id<LoginProxyDelegate>)delegate username:(NSString *)userName password:(NSString *)passWord
 {
     if((self = [super init])) {
         _delegate = delegate;
@@ -87,12 +88,12 @@ return self;
         
         // iterate over all NSURLProtectionSpaces
         while (urlProtectionSpace = [protectionSpaceEnumerator nextObject]) {
-            NSEnumerator *userNameEnumerator = [[credentialsDict objectForKey:urlProtectionSpace] keyEnumerator];
+            NSEnumerator *userNameEnumerator = [credentialsDict[urlProtectionSpace] keyEnumerator];
             id userName;
             
             // iterate over all usernames for this protectionspace, which are the keys for the actual NSURLCredentials
             while (userName = [userNameEnumerator nextObject]) {
-                NSURLCredential *cred = [[credentialsDict objectForKey:urlProtectionSpace] objectForKey:userName];
+                NSURLCredential *cred = credentialsDict[urlProtectionSpace][userName];
                 LogDebug(@"credential to be removed: %@", cred);
                 [[NSURLCredentialStorage sharedCredentialStorage] removeCredential:cred forProtectionSpace:urlProtectionSpace];
             }
@@ -114,22 +115,32 @@ return self;
 
 - (void)retrievePlatformInformations {
     // Load the object model via RestKit
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:[self createBaseURL]];
+    RKObjectManager* manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:[self createBaseURL]]];
     [RKObjectManager setSharedManager:manager];
         
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
-    [mapping mapKeyPathsToAttributes:
-     @"platformVersion",@"platformVersion",
-     @"platformRevision",@"platformRevision",
-     @"platformBuildNumber",@"platformBuildNumber",
-     @"isMobileCompliant",@"isMobileCompliant",
-     @"platformEdition",@"platformEdition",
-     @"currentRepoName",@"currentRepoName",
-     @"defaultWorkSpaceName",@"defaultWorkSpaceName",
-     @"userHomeNodePath",@"userHomeNodePath",
-     nil];
+    [mapping addAttributeMappingsFromDictionary:@{
+                                                   @"platformVersion":@"platformVersion",
+                                                   @"platformRevision":@"platformRevision",
+                                                   @"platformBuildNumber":@"platformBuildNumber",
+                                                   @"isMobileCompliant":@"isMobileCompliant",
+                                                   @"platformEdition":@"platformEdition",
+                                                   @"currentRepoName":@"currentRepoName",
+                                                   @"defaultWorkSpaceName":@"defaultWorkSpaceName",
+                                                   @"userHomeNodePath":@"userHomeNodePath"
+                                                   }];
     
-    [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];          
+//    [manager loadObjectsAtResourcePath:@"platform/info" objectMapping:mapping delegate:self];
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:@"platform/info" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    [manager getObjectsAtPath:@"platform/info" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [self restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        //         Authenticate failed
+        if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
+            [_delegate loginProxy:self authenticateFailedWithError:error];
+        }
+    }];
 }
 
 #pragma mark Methods for authentication
@@ -144,47 +155,53 @@ return self;
 }
 
 - (void)getPlatformInfoAfterAuthenticate {
+
     NSString *baseURL = [self createBaseURL];
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURL:baseURL];
-    manager.client.username = self.username;
-    manager.client.password = self.password;
-    manager.client.cachePolicy = RKRequestCachePolicyNone;
+    RKObjectManager* manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:baseURL]];
+    
+
+//TODO:    manager.HTTPClient.cachePolicy = RKRequestCachePolicyNone;
+    
+    [manager.HTTPClient setAuthorizationHeaderWithUsername:self.username password:self.password];
 
     [RKObjectManager setSharedManager:manager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[PlatformServerVersion class]];
-    [mapping mapKeyPathsToAttributes:
-     @"platformVersion",@"platformVersion",
-     @"platformRevision",@"platformRevision",
-     @"platformBuildNumber",@"platformBuildNumber",
-     @"isMobileCompliant",@"isMobileCompliant",
-     @"platformEdition",@"platformEdition",
-     @"currentRepoName",@"currentRepoName",
-     @"defaultWorkSpaceName",@"defaultWorkSpaceName",
-     @"userHomeNodePath",@"userHomeNodePath",
-     nil];
-    // add '#' into the link to prevent caching result
-    [manager loadObjectsAtResourcePath:@"private/platform/info#" objectMapping:mapping delegate:self];
-    
+    [mapping addAttributeMappingsFromDictionary:@{     @"platformVersion":@"platformVersion",
+                                                       @"platformRevision":@"platformRevision",
+                                                       @"platformBuildNumber":@"platformBuildNumber",
+                                                       @"isMobileCompliant":@"isMobileCompliant",
+                                                       @"platformEdition":@"platformEdition",
+                                                       @"currentRepoName":@"currentRepoName",
+                                                       @"defaultWorkSpaceName":@"defaultWorkSpaceName",
+                                                       @"userHomeNodePath":@"userHomeNodePath",
+}];
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:@"private/platform/info#" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [manager addResponseDescriptor:responseDescriptor];
+    [manager getObjectsAtPath:@"private/platform/info#"  parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [self restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//         Authenticate failed
+        if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
+            [_delegate loginProxy:self authenticateFailedWithError:error];
+        }
+    }];
+     
+     
 }
 
 
 #pragma mark - RKObjectLoaderDelegate methods
 
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-}
-
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+-(void) restKitDidLoadObjects:(NSArray *) objects {
     //We receive the response from the server
     //We now need to check if the version can run social features or not and set properties
     
-    PlatformServerVersion *platformServerVersion = [objects objectAtIndex:0];
+    PlatformServerVersion *platformServerVersion = objects[0];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if(platformServerVersion != nil && [platformServerVersion.isMobileCompliant boolValue]) {
         // get the 3 first chars of version, ex: 3.5, 4.0
@@ -207,6 +224,12 @@ return self;
                 }
                 [UserPreferencesManager sharedInstance].username = self.username;
                 [UserPreferencesManager sharedInstance].password = self.password;
+                NSUserDefaults * groupUserDefaults = [[NSUserDefaults alloc] initWithSuiteName: @"group.com.exoplatform.mob.eXoPlatformiPHone"];
+                [groupUserDefaults setObject:self.username forKey:EXO_SHARE_EXTENSION_USERNAME];
+                [groupUserDefaults setObject:self.password forKey:EXO_SHARE_EXTENSION_PASSWORD];
+                [groupUserDefaults setObject:self.serverUrl forKey:EXO_SHARE_EXTENSION_DOMAIN];
+                
+                
                 [[UserPreferencesManager sharedInstance] persistUsernameAndPasswod];
                 [appPref setJcrRepositoryName:platformServerVersion.currentRepoName defaultWorkspace:platformServerVersion.defaultWorkSpaceName userHomePath:platformServerVersion.userHomeNodePath];
             }
@@ -219,10 +242,14 @@ return self;
                 // probably retrieved when we handled the http redirection
                 selectedAccount.serverUrl = self.serverUrl;
             }
+             [Crashlytics setUserName:self.username];
         }
-                
+       
         [userDefaults setObject:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:platformServerVersion.platformEdition forKey:EXO_PREFERENCE_EDITION_SERVER];
+        [ApplicationPreferencesManager sharedInstance].platformVersion = platformServerVersion.platformVersion;
+        [Crashlytics setObjectValue:platformServerVersion.platformVersion forKey:EXO_PREFERENCE_VERSION_SERVER];
+        [Crashlytics setObjectValue:self.serverUrl forKey:EXO_PREFERENCE_DOMAIN];
         
         // We need to prevent the caller.
         if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:platformVersionCompatibleWithSocialFeatures:withServerInformation:)]) {
@@ -231,23 +258,16 @@ return self;
     } else {
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_VERSION_SERVER];
         [userDefaults setObject:@"" forKey:EXO_PREFERENCE_EDITION_SERVER];
-        
+        [ApplicationPreferencesManager sharedInstance].platformVersion =@"";
         NSError *error = [[NSError alloc] initWithDomain:EXO_NOT_COMPILANT_ERROR_DOMAIN code:nil userInfo:nil];
         [self.delegate loginProxy:self authenticateFailedWithError:error];
     }
     [userDefaults synchronize];
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-	// Authenticate failed
-    if (_delegate && [_delegate respondsToSelector:@selector(loginProxy:authenticateFailedWithError:)]) {
-        [_delegate loginProxy:self authenticateFailedWithError:error];
-    }
-}
 
 - (void) dealloc {
     _delegate = nil;
-    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
     [self.username release];
     [self.password release];
     [self.serverUrl release];
@@ -320,13 +340,13 @@ return self;
                                            delegate:delegate
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles: nil] autorelease];
-    } else if ([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
-        // error getting platform info by restkit
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-                                            message:Localize(@"NetworkConnectionFailed")
-                                           delegate:delegate
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+//    } else if ([error.domain isEqualToString:RKErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
+//        // error getting platform info by restkit
+//        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+//                                            message:Localize(@"NetworkConnectionFailed")
+//                                           delegate:delegate
+//                                  cancelButtonTitle:@"OK"
+//                                  otherButtonTitles: nil] autorelease];
     } else if([error.domain isEqualToString:EXO_NOT_COMPILANT_ERROR_DOMAIN]) {
         // target version of Platform is not mobile compliant
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Error")
@@ -335,13 +355,13 @@ return self;
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil] autorelease];
         
-    } else if([error.domain isEqualToString:RKRestKitErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
-        // incorrect server error response
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
-                                            message:Localize(@"ServerNotAvailable")
-                                           delegate:delegate
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+//    } else if([error.domain isEqualToString:RKErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
+//        // incorrect server error response
+//        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+//                                            message:Localize(@"ServerNotAvailable")
+//                                           delegate:delegate
+//                                  cancelButtonTitle:@"OK"
+//                                  otherButtonTitles: nil] autorelease];
     } else {
         alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
                                             message:@""

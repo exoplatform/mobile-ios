@@ -19,7 +19,6 @@
 
 #import "File.h"
 #import "FilesProxy.h"
-#import "AuthenticateProxy.h"
 
 @implementation File
 
@@ -127,10 +126,12 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
     if (_naturalName) {
         [_naturalName release];
     }
-    if ([s rangeOfString:@"Spaces"].location == 0){
-        _naturalName = [s substringFromIndex:[s rangeOfString:@"Spaces"].length+1];
+    
+    NSRange spaceRange = [s rangeOfString:@"Spaces"];
+    if (spaceRange.location !=NSNotFound && spaceRange.location == 0 && spaceRange.length+1<s.length){
+        _naturalName = [s substringFromIndex:spaceRange.length+1];
     } else {
-        _naturalName = [s substringFromIndex:0];
+        _naturalName = s;
     }
     [_naturalName retain];
     return _naturalName;

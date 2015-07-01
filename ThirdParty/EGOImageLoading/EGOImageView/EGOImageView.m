@@ -42,11 +42,11 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 @implementation EGOImageView
 @synthesize imageURL, placeholderImage, delegate;
 
-- (id)initWithPlaceholderImage:(UIImage*)anImage {
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage {
 	return [self initWithPlaceholderImage:anImage delegate:nil];	
 }
 
-- (id)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageViewDelegate>)aDelegate {
+- (instancetype)initWithPlaceholderImage:(UIImage*)anImage delegate:(id<EGOImageViewDelegate>)aDelegate {
 	if((self = [super initWithImage:anImage])) {
 		self.placeholderImage = anImage;
 		self.delegate = aDelegate;
@@ -164,9 +164,9 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 }
 
 - (void)imageLoaderDidLoad:(NSNotification*)notification {
-	if(![[[notification userInfo] objectForKey:@"imageURL"] isEqual:self.imageURL]) return;
+	if(![[notification userInfo][@"imageURL"] isEqual:self.imageURL]) return;
 
-    UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
+    UIImage* anImage = [notification userInfo][@"image"];
     if (resize) anImage = [anImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
                                                         bounds:sizeToResize 
                                           interpolationQuality:kCGInterpolationDefault];
@@ -194,10 +194,10 @@ inline static NSString* keyForURL(NSURL* url, NSString* style) {
 }
 
 - (void)imageLoaderDidFailToLoad:(NSNotification*)notification {
-	if(![[[notification userInfo] objectForKey:@"imageURL"] isEqual:self.imageURL]) return;
+	if(![[notification userInfo][@"imageURL"] isEqual:self.imageURL]) return;
 	
 	if([self.delegate respondsToSelector:@selector(imageViewFailedToLoadImage:error:)]) {
-		[self.delegate imageViewFailedToLoadImage:self error:[[notification userInfo] objectForKey:@"error"]];
+		[self.delegate imageViewFailedToLoadImage:self error:[notification userInfo][@"error"]];
 	}
 }
 

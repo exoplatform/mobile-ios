@@ -32,7 +32,7 @@
 @synthesize arrayOfDashboards = _arrayOfDashboards;
 
 
--(id)initWithDelegate:(id<DashboardProxyDelegate>)delegate {
+-(instancetype)initWithDelegate:(id<DashboardProxyDelegate>)delegate {
     if ((self = [super init])) {
         _delegate = delegate;
     }
@@ -42,20 +42,11 @@
 - (void) dealloc {
         
     _delegate = nil;
-    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
+    _gadgetsProxy.delegate = nil;
     [_gadgetsProxy release];
     [_setOfDashboardsToRetrieveGadgets release];
     [super dealloc];
 }
-
-
-#pragma mark - helper methods
-
-//Helper to create the base URL
-- (NSString *)createBaseURL {    
-    return [NSString stringWithFormat:@"%@/%@/",[SocialRestConfiguration sharedInstance].domainName,kRestContextName]; 
-}
-
 
 
 #pragma mark - Call methods
@@ -65,45 +56,27 @@
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[DashboardItem class]];
-    [mapping mapKeyPathsToAttributes:
-     @"id",@"idDashboard",
-     @"link",@"link",
-     @"html",@"html",
-     @"label",@"label",
-     nil];
+    [mapping addAttributeMappingsFromDictionary:@{ @"id": @"idDashboard", @"link": @"link", @"html": @"html",@"label": @"label" }];
     
-    [manager loadObjectsAtResourcePath:@"private/dashboards" objectMapping:mapping delegate:self];          
+    RKResponseDescriptor* responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:@"private/dashboards" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager getObjectsAtPath:@"private/dashboards" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
+    {
+        self.arrayOfDashboards = [mappingResult array];
+        _setOfDashboardsToRetrieveGadgets = [[NSMutableSet alloc] initWithArray: [mappingResult array]];
+        [self loadGadgetsFromSet];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(dashboardProxy:didFailWithError:)]) {
+            [_delegate dashboardProxy:self didFailWithError:error];
+        }
+    }];
+
 }
 
-
-
-#pragma mark - RKObjectLoaderDelegate methods
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    LogTrace(@"Loaded payload: %@", [response bodyAsString]);
-}
-
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    LogTrace(@"Loaded statuses: %@", objects);    
-    //We receive the response from the server
-    
-    //Store dahsboards collected
-    self.arrayOfDashboards = objects;
-    
-    //Prepare the set of dashboard where we will need to make request to retrieve gadgets
-    _setOfDashboardsToRetrieveGadgets = [[NSMutableSet alloc] initWithArray:objects];
-    
-    [self loadGadgetsFromSet];
-    
-}
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    //We need to prevent the caller
-    if (_delegate && [_delegate respondsToSelector:@selector(dashboardProxy:didFailWithError:)]) {
-        [_delegate dashboardProxy:self didFailWithError:error];
-    }
-}
 
 
 - (void)finishLoadingGadgets {

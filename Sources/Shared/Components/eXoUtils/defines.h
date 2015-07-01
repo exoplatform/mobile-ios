@@ -40,6 +40,12 @@
 #define EXO_PREFERENCE_USERID				@"userId"
 #define EXO_PREFERENCE_USERNAME				[NSString stringWithFormat:@"%@_username",SELECTED_DOMAIN]
 #define EXO_PREFERENCE_PASSWORD				[NSString stringWithFormat:@"%@_password",SELECTED_DOMAIN]
+#define EXO_SHARE_EXTENSION_USERNAME        @"exo_share_username"
+#define EXO_SHARE_EXTENSION_PASSWORD        @"exo_share_password"
+#define EXO_SHARE_EXTENSION_DOMAIN          @"exo_share_domain"
+#define EXO_SHARE_EXTENSION_ALL_ACCOUNTS    @"exo_share_all_usernames"
+#define EXO_SHARE_EXTENSION_SELECTED_ACCOUNT_INDEX   @"exo_share_selected_account_index"
+
 #define EXO_PREFERENCE_EXO_USERID			@"exo_user_id"
 #define EXO_PREFERENCE_DOMAIN				@"domain_name"
 #define EXO_PREFERENCE_SELECTED_SEVER		@"selected_server"
@@ -64,6 +70,7 @@
 #define SCR_HEIGHT_PRTR_IPAD                1004
 
 #define EXO_MAX_HEIGHT                      80
+#define EXO_IMAGE_CELL_HEIGHT               150
 
 #define SPECIAL_CHAR_NAME_SET                    @"[]/\\&~?*|<>\";:+()$%@#!"
 #define SPECIAL_CHAR_URL_SET                    @"[]\\&~?*|<>\";+"
@@ -111,3 +118,10 @@
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define kAttributeURL @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.9333 alpha:1], NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid)}
+
+#define kAttributeText @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]}
+
+#define kAttributeNameSpace @{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRed:17.0/255.0 green:94.0/255 blue:174.0/255.0 alpha:1] }
+

@@ -30,18 +30,15 @@
 
 @synthesize socialActivity = _socialActivity;
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
-@synthesize webViewForContent = _webViewForContent;
-@synthesize webViewComment =  _webViewComment;
-
 @synthesize imgType = _imgType;
 @synthesize imgvAttach = _imgvAttach;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        [_imgvAvatar needToBeResizedForSize:CGSizeMake(45,45)];
+        [self.imgvAvatar needToBeResizedForSize:CGSizeMake(45,45)];
     }
     return self;
 }
@@ -53,7 +50,7 @@
     self.lbDate.frame = frame;
     
     frame = self.imgType.frame;
-    frame.origin.y = self.lbDate.frame.origin.y;
+    frame.origin.y = self.lbDate.frame.origin.y + 4;
     self.imgType.frame = frame;
 }
 
@@ -73,10 +70,6 @@
     self.lbMessage = nil;
     self.lbDate = nil;
     self.lbName = nil;
-    self.webViewForContent.delegate = nil;
-    self.webViewForContent = nil;
-    self.webViewComment.delegate = nil;
-    self.webViewComment = nil;
     self.imgvAvatar = nil;
     [super dealloc];
 }
@@ -86,15 +79,7 @@
 }
 
 - (void)updateSizeToFitSubViews {
-    //Set the position of lbMessage
-    CGRect tmpFrame = _webViewForContent.frame;
-    tmpFrame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height + 5;
-    _webViewForContent.frame = tmpFrame;
-    
-    CGRect myFrame = self.frame;
-    myFrame.size.height = _webViewForContent.frame.origin.y + _webViewForContent.frame.size.height + kPadding + _lbDate.bounds.size.height + kBottomMargin;
-    
-    self.frame = myFrame;
+
 }
 
 #pragma mark - Activity Cell methods 
@@ -111,44 +96,56 @@
 - (void)configureCell {
     [self customizeAvatarDecorations];
     
-    
-    //_webViewForContent.contentMode = UIViewContentModeScaleAspectFit;
-    [[_webViewForContent.subviews objectAtIndex:0] setScrollEnabled:NO];
-    [_webViewForContent setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[[_webViewForContent subviews] objectAtIndex:0];
-    scrollView.bounces = NO;
-    [scrollView flashScrollIndicators];
-    scrollView.scrollsToTop = YES;
-    [_webViewForContent setOpaque:NO];
 }
 
 
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail
 {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.lbName.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+        self.lbMessage.preferredMaxLayoutWidth = WIDTH_FOR_LABEL_IPAD;
+    }
+    
     self.socialActivity = socialActivityDetail;
-    _lbMessage.text = @"";
-    _lbName.text = self.socialActivity.posterIdentity.fullName;
-    _lbDate.text = socialActivityDetail.postedTimeInWords;
-    _imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
+    
+    NSString *type = [socialActivityDetail.activityStream valueForKey:@"type"];
+    NSString *space = nil;
+    if([type isEqualToString:STREAM_TYPE_SPACE]) {
+        space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
+    }
+    
+    NSString *title = [NSString stringWithFormat:@"%@%@", [socialActivityDetail.posterIdentity.fullName copy], space ?[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")] : @""];
+    
+    
+    NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    if (space) {
+        [attributedTitle addAttributes:kAttributeText range:[title rangeOfString:[NSString stringWithFormat:@" %@ %@ %@",Localize(@"in"), space, Localize(@"space")]]];
+        [attributedTitle addAttributes:kAttributeNameSpace range:[title rangeOfString:space]];
+    }
+    
+    _lbName.attributedText = attributedTitle;
+    self.lbDate.text = socialActivityDetail.postedTimeInWords;
+    self.imgvAvatar.imageURL = [NSURL URLWithString:socialActivityDetail.posterIdentity.avatarUrl];
+    self.lbMessage.text=@"";
+
     switch (self.socialActivity.activityType) {
         case ACTIVITY_DEFAULT:
         {
-            NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialActivityDetail.title ? socialActivityDetail.title : @""];
-            [_webViewForContent loadHTMLString:htmlStr ? htmlStr :@""
-                                       baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-             ];
-            
-            [self updateSizeToFitSubViews];
-            
+            if (socialActivityDetail.attributedMessage) {
+                self.lbMessage.attributedText = socialActivityDetail.attributedMessage;
+            } else {
+                self.lbMessage.text =socialActivityDetail.title ?socialActivityDetail.title:@"";
+            }
         }
             break;
     }
+    
 }
 
 #pragma mark - change language management
 - (void)updateLabelsWithNewLanguage{
     // The date in words
-    _lbDate.text = self.socialActivity.postedTimeInWords;
+    self.lbDate.text = self.socialActivity.postedTimeInWords;
     // Calling the setter with the same values will reset all the properties,
     // including the labels localized in the new language
     [self setSocialActivityDetail:self.socialActivity];

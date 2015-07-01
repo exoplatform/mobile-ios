@@ -33,7 +33,6 @@
 #import "RoundRectView.h"
 
 #define kMinimumAdvancedInfoCellHeight 400.0
-#define kAdvancedInfoCellHeight 800.0
 @implementation ActivityDetailViewController_iPad
 
 @synthesize extraActionsCell = _extraActionsCell;
@@ -45,7 +44,7 @@
     [super dealloc];
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
             
@@ -59,10 +58,10 @@
 {
     [super viewDidLoad];    
     self.view.backgroundColor = [UIColor clearColor];
-    ((RoundRectView *) [[self.view subviews] objectAtIndex:0]).squareCorners = YES;
+    ((RoundRectView *) [self.view subviews][0]).squareCorners = YES;
     self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     _navigation.topItem.title = Localize(@"Details");
-    _navigation.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
 #pragma mark - like/dislike management
@@ -99,7 +98,8 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController presentModalViewController:navController animated:YES];
+    [[AppDelegate_iPad instance].rootViewController.menuViewController
+        presentViewController:navController animated:YES completion:nil];
     
     int x, y;
     
@@ -185,6 +185,10 @@
             url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN], [NSString stringWithFormat:@"/portal/rest/jcr/%@", [self.socialActivity.templateParams valueForKey:@"contenLink"]]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
             break;
+        case ACTIVITY_LINK :{
+            url = [NSURL URLWithString:[self.socialActivity.templateParams valueForKey:@"link"]];
+        }
+            break;
     }
     ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc] 
                                                                      initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
@@ -195,6 +199,20 @@
     [linkWebViewController release];
 }
 
+-(void) gotoEmbededURL:(UITapGestureRecognizer *)gesture {
+    if (self.socialActivity.embeddedURL) {
+        NSURL *url = [NSURL URLWithString:self.socialActivity.embeddedURL];
+        ActivityLinkDisplayViewController_iPad* linkWebViewController = [[ActivityLinkDisplayViewController_iPad alloc]
+                                                                         initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad"
+                                                                         bundle:nil
+                                                                         url:url];
+        [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
+        
+        [linkWebViewController release];
+        
+    }
+    
+}
 
 
 //Test for rotation management
@@ -260,10 +278,7 @@
     if (indexPath.section == 1) {
         return self.extraActionsCell.frame.size.height;
     } else if (indexPath.section == 2) {
-        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) { //workaround for MOB-1461
-            return kAdvancedInfoCellHeight;
-        }
-        return self.advancedInfoController.view.frame.size.height;
+        return kMinimumAdvancedInfoCellHeight;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -272,6 +287,7 @@
 #pragma mark - cell initialization
 
 - (ActivityDetailExtraActionsCell *)extraActionsCell {
+    
     if (!_extraActionsCell) {
         _extraActionsCell = [[ActivityDetailExtraActionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extra actions cell"];
         [_extraActionsCell.likeButton addTarget:self action:@selector(likeDislike:) forControlEvents:UIControlEventTouchUpInside];

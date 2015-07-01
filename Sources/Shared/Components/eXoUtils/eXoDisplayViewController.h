@@ -24,19 +24,16 @@
 
 @interface eXoDisplayViewController : eXoViewController<UIWebViewDelegate, UIScrollViewDelegate>
 {
-    BOOL fullscreen;
-    UIWebView*	_webView;	
-	NSURL* _url;
-    NSString *_fileName;
-    CGRect rect;
-    UINavigationController *navigationBar;
-    //eXoFullScreenView *viewController;
-    UIActivityIndicatorView* _loadingIndicator;
 }
 
-@property (nonatomic, retain) IBOutlet UIWebView* _webView;
+@property (nonatomic, assign, getter=fullscreen) BOOL fullscreen;
+@property (nonatomic, retain) IBOutlet UIWebView* webView;
+@property (nonatomic, copy) NSURL* url;
+@property (nonatomic, retain) NSString* fileName;
+@property (nonatomic, assign) CGRect rect;
+@property (nonatomic, retain) UINavigationController* navigationBar;
 @property (nonatomic, retain) UIActivityIndicatorView* loadingIndicator;
 
-- (void)setUrl:(NSURL*)url;	//Set gadget URL
+//- (void)setUrl:(NSURL*)url;	//Set gadget URL
 
 @end

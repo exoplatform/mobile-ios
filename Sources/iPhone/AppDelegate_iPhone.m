@@ -21,7 +21,7 @@
 
 #import "defines.h"
 #import "FilesProxy.h"
-#import "HomeStyleSheet.h"
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UserPreferencesManager.h"
 #import "WelcomeViewController_iPhone.h"
@@ -33,7 +33,6 @@
 @synthesize window;
 @synthesize authenticateViewController = _authenticateViewController;
 @synthesize navigationController;
-@synthesize homeViewController_iPhone;
 @synthesize isCompatibleWithSocial = _isCompatibleWithSocial;
 @synthesize homeSidebarViewController_iPhone = _homeSidebarViewController_iPhone;
 
@@ -41,7 +40,7 @@
     return (AppDelegate_iPhone *) [[UIApplication sharedApplication] delegate];    
 }
 
-- (id)init {
+- (instancetype)init {
 	if ((self = [super init])) {
 	}
 	return self;
@@ -49,7 +48,8 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     //Add Crashlytics
-    [Crashlytics startWithAPIKey:@"b8421f485868032ad402cef01a4bd7c70263d97e"];
+    
+    [Fabric with:@[CrashlyticsKit]];
     application.statusBarHidden = YES;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -121,9 +121,6 @@
 
 - (void)showHomeSidebarViewController {
     // Login is successfully
-    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
-
-    
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
@@ -140,30 +137,18 @@
 - (void)showHomeViewController {
     // Login is successfully
     
-    [TTStyleSheet setGlobalStyleSheet:[[[HomeStyleSheet alloc] init] autorelease]];
-
-    
     [[FilesProxy sharedInstance] creatUserRepositoryHomeUrl];
     [[SocialRestConfiguration sharedInstance] updateDatas];
     
     
     [UserPreferencesManager sharedInstance].isUserLogged = YES;
     
-    [_homeViewController_iPhone release];
-    _homeViewController_iPhone = nil;   
-    
-    _homeViewController_iPhone = [[HomeViewController_iPhone alloc] initWithNibName:nil bundle:nil];
-    [_homeViewController_iPhone setDelegate:self];
-    
-    _homeViewController_iPhone._isCompatibleWithSocial = _isCompatibleWithSocial;
-    
-    [self.navigationController pushViewController:_homeViewController_iPhone animated:YES];
-    
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
+
 
 - (void)dealloc {
 	
@@ -173,12 +158,7 @@
     [_authenticateViewController release];
     _authenticateViewController = nil;
     
-    
-    if (_homeViewController_iPhone)
-    {
-        [_homeViewController_iPhone release];
-    }
-    
+        
     [window release];
     window = nil;
     

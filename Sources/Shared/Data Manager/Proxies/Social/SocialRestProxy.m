@@ -22,7 +22,7 @@
 
 @implementation SocialRestProxy
 
-- (id) init
+- (instancetype) init
 {
     if ((self = [super init])) 
     {
@@ -47,18 +47,24 @@
     RKObjectManager* manager = [RKObjectManager sharedManager];
     
     RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[SocialVersion class]];
-    [mapping mapKeyPath:@"version" toAttribute:@"version"]; 
-    [manager loadObjectsAtResourcePath:[self createPath] objectMapping:mapping delegate:self];   
-}
-#pragma mark - RKObjectLoaderDelegate methods
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects 
-{
-    SocialVersion *version = [objects objectAtIndex:0];
-    SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
-    socialConfig.restVersion = version.version;
-    
-    [super objectLoader:objectLoader didLoadObjects:objects];
-}
 
+    
+    [mapping addAttributeMappingsFromDictionary:@{@"version":@"version"}];
+    
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:[self createPath] keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [manager addResponseDescriptor:responseDescriptor];
+    
+    [manager getObjectsAtPath:[self createPath] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        SocialVersion *version = [[mappingResult array] objectAtIndex:0];
+        SocialRestConfiguration* socialConfig = [SocialRestConfiguration sharedInstance];
+        socialConfig.restVersion = version.version;
+        [super restKitDidLoadObjects:[mappingResult array]];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [super restKitDidFailWithError:error];
+    }];
+    
+  
+}
 
 @end

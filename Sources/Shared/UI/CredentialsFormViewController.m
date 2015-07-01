@@ -43,7 +43,7 @@ static NSString* CredentialsFormCellIdentifier = @"CredentialItem";
 
 #pragma mark Initialization
 
-- (id)initWithAccount:(ServerObj*)selectedAccount andDelegate:(id<CredentialsFormResultDelegate>)dlg
+- (instancetype)initWithAccount:(ServerObj*)selectedAccount andDelegate:(id<CredentialsFormResultDelegate>)dlg
 {
     self = [super initWithNibName:@"CredentialsFormViewController" bundle:nil];
     if (self) {
@@ -196,8 +196,9 @@ static NSString* CredentialsFormCellIdentifier = @"CredentialItem";
         textLabel.text = Localize(@"Password");
         [cell.contentView addSubview:self.password];
     }
-    
-    [cell setBackgroundForRow:indexPath.row inSectionSize:[self tableView:tableView numberOfRowsInSection:indexPath.section]];
+    int row = (int)indexPath.row;
+    int size = (int)[self tableView:tableView numberOfRowsInSection:indexPath.section];
+    [cell setBackgroundForRow:row inSectionSize:size];
     
     return cell;
 }
