@@ -20,7 +20,7 @@
 
 "PasswordPlaceholder" = "Contraseña";
 
-"Last Login" = "Last login";
+"Last Login" = "Último inicio de sesión";
 
 "Connected" = "Conectado";
 
@@ -122,15 +122,15 @@
 
 "Spanish" = "Español";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Portugués (Brasil)";
 
-"Greek"= "Greek";
+"Greek" = "Griego";
 
 "Send" = "Enviar";
 
 "ServerList" = "Lista de servidores";
 
-"Account" = "Account";
+"Account" = "Cuenta";
 
 "NewServer" = "Nuevo servidor";
 
@@ -426,15 +426,15 @@
 
 "Public" = "Mis Actividades";
 
-"CannotLoadSpaceID" = "Unable to load the space's identity";
+"CannotLoadSpaceID" = "No se puede cargar la identidad del espacio";
 
-"PostActivityTo" = "Post activity to";
+"PostActivityTo" = "Publicar la actividad en";
 
-"You didn't join any space" = "You didn't join any space";
+"You didn't join any space" = "No se unió a ningún espacio";
 
-"CannotLoadSpace" = "Unable to load information about your spaces";
+"CannotLoadSpace" = "No se puede cargar información acerca de tus espacios";
 
-"Loading spaces" = "Loading spaces ...";
+"Loading spaces" = "Cargando espacios ...";
 
 "To" = "Para";
 
