@@ -107,8 +107,9 @@
     
     NSString * linkMessage =[NSString stringWithFormat:@"Source : %@",[socialActivityDetail.templateParams valueForKey:@"link"]];
     NSMutableAttributedString * attributedLinkMessage =  [[NSMutableAttributedString alloc] initWithString:linkMessage];
-
-    [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityDetail.templateParams valueForKey:@"link"]]];    
+    if ( [socialActivityDetail.templateParams valueForKey:@"link"]){
+        [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityDetail.templateParams valueForKey:@"link"]]];
+    }
     _htmlLinkMessage.attributedText = attributedLinkMessage;
 }
 

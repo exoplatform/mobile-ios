@@ -73,7 +73,9 @@
     _htmlLinkDescription.text =[socialActivityStream.templateParams valueForKey:@"description"];
     NSString * linkMessage =[NSString stringWithFormat:@"Source : %@",[socialActivityStream.templateParams valueForKey:@"link"]];
     NSMutableAttributedString * attributedLinkMessage =  [[NSMutableAttributedString alloc] initWithString:linkMessage];
-    [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityStream.templateParams valueForKey:@"link"]]];
+    if ([socialActivityStream.templateParams valueForKey:@"link"]){
+        [attributedLinkMessage setAttributes:kAttributeURL range:[linkMessage rangeOfString:[socialActivityStream.templateParams valueForKey:@"link"]]];
+    }
     
     _htmlLinkMessage.attributedText = attributedLinkMessage;
 
