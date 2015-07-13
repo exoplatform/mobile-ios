@@ -54,6 +54,7 @@
 @synthesize activityDetailsProxy = _activityDetailsProxy;
 
 - (void)dealloc {
+    _activityDetailsProxy.delegate = nil;
     [_activityDetailsProxy release];
     [_socialActivity release];
     [_avatarViews release];

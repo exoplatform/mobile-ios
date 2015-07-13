@@ -80,6 +80,7 @@
     [_userProfile release];
     [_avatarView release];
     [_fullNameLabel release];
+    _userProfileProxy.delegate = nil;
     [_userProfileProxy release];
     [super dealloc];
 }
