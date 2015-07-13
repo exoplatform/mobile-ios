@@ -67,6 +67,8 @@ static NSString *PUBLIC_DRIVE = @"Public";
 @synthesize popoverPhotoLibraryController = _popoverPhotoLibraryController;
 
 @synthesize popoverProperties = _popoverProperties;
+@synthesize fileToApplyAction;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -995,7 +997,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
 {
-    [_filesProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
+    [_filesProxy uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:fileToApplyAction.currentFolder ofDrive:fileToApplyAction.driveName];
     //Need to reload the content of the folder
     [self startRetrieveDirectoryContent];
 }
@@ -1068,15 +1070,15 @@ static NSString *PUBLIC_DRIVE = @"Public";
                 
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
-                imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+                imageName = [NSString stringWithFormat:@"mobile_image_%@.png", tmp];
                 
             }
             
-            _stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
-            [self sendImageInBackgroundForDirectory:_stringForUploadPhoto data:imageData];
+            [_filesProxy uploadFile:imageData asFileName:imageName inFolder:fileToApplyAction.currentFolder ofDrive:fileToApplyAction.driveName];
+            
         }
         dispatch_sync(dispatch_get_main_queue(), ^(void) {
-            [self hideLoader:YES]; 
+            [self hideLoader:YES];
         });
     });
     

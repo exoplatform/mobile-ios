@@ -193,7 +193,7 @@
                 
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
-                imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+                imageName = [NSString stringWithFormat:@"mobile_image_%@.png", tmp];
                 
             }
             NSString *_stringForUploadPhoto = [[((DocumentsViewController *)_delegate) stringForUploadPhoto] stringByAppendingFormat:@"/%@", imageName];
@@ -223,7 +223,8 @@
 
 - (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
 {
-    [[FilesProxy sharedInstance] fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
+    DocumentsViewController * docVC = (DocumentsViewController*)_delegate;    
+    [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:docVC.fileToApplyAction.currentFolder ofDrive:docVC.fileToApplyAction.driveName];
     //Need to reload the content of the folder
     [(DocumentsViewController*)_delegate startRetrieveDirectoryContent];
 }

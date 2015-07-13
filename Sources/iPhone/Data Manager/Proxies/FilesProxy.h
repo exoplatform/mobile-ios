@@ -57,6 +57,8 @@
 //Return en error Message
 -(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data;
 
+-(void) uploadFile:(NSData *) fileData asFileName:(NSString *) fileAttachName inFolder:(NSString *) currentFolder ofDrive:(NSString *) driveName;
+
 -(BOOL)createNewFolderWithURL:(NSString *)strUrl folderName:(NSString *)name;
 -(BOOL)isExistedUrl:(NSString *)strUrl;
 

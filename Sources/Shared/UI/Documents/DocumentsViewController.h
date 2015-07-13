@@ -39,7 +39,7 @@
     
     FilesProxy *_filesProxy;
     
-    File *fileToApplyAction;
+    File * fileToApplyAction;
         
     NSString *_stringForUploadPhoto;
     
@@ -59,7 +59,7 @@
 @property(nonatomic, assign) DocumentsViewController *parentController;
 @property(nonatomic, retain) UIPopoverController *popoverPhotoLibraryController;
 @property (nonatomic, assign) BOOL actionVisibleOnFolder;
-
+@property (nonatomic, retain) File * fileToApplyAction;
 @property BOOL isRoot;
 
 // Check whether user can execute actions on the folder or not. 

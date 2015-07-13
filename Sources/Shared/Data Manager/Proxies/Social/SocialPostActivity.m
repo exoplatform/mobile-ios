@@ -98,11 +98,16 @@
         ApplicationPreferencesManager *serverPM = [ApplicationPreferencesManager sharedInstance];
         activity.type = @"DOC_ACTIVITY"; 
         
+        NSString* docPath;
+        if (space){
+            docPath = [NSString stringWithFormat:@"/Groups%@/Documents/Mobile/%@",space.groupId,fileName];
+        } else {
+            docPath = [NSString stringWithFormat:@"%@/Public/Mobile/%@",serverPM.userHomeJcrPath,fileName];
+        }
+        
         NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr"];
         NSString* docLink = [NSString stringWithFormat:@"/rest/%@", [fileURL substringFromIndex:rangeOfDocLink.location]];
-
-        NSString* docPath = [fileURL substringFromIndex:[fileURL rangeOfString:serverPM.userHomeJcrPath].location];
-        
+                
         activity.title = [NSString stringWithFormat:@"Shared a document <a href=\"%@\">%@</a>\"", docLink, fileName];
         
 

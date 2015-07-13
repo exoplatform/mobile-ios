@@ -26,7 +26,9 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 #import "SpaceTableViewCell.h"
-// Horizontal margin to subviews.
+#import "ApplicationPreferencesManager.h"
+
+// Horizontal margin to subviews. 
 #define kHorizontalMargin 10.0
 // Vertical margin to subviews.
 #define kVerticalMargin 10.0
@@ -348,8 +350,14 @@
         if(self.attPhotoView.image)
         {
             FilesProxy *fileProxy = [FilesProxy sharedInstance];
+            NSString * photosFolderPath;
+            if (selectedSpace && selectedSpace.spaceId) {
+               photosFolderPath = [NSString stringWithFormat:@"%@/rest/private/jcr/%@/%@/Groups%@/Documents",[ApplicationPreferencesManager sharedInstance].selectedAccount.serverUrl,[ApplicationPreferencesManager sharedInstance].currentRepository, [ApplicationPreferencesManager sharedInstance].defaultWorkspace, selectedSpace.groupId];
+            } else {
+                photosFolderPath =  [NSString stringWithFormat:@"%@/Public", fileProxy._strUserRepository];
+            }
             
-            BOOL storageFolder = [fileProxy createNewFolderWithURL:[NSString stringWithFormat:@"%@/Public", fileProxy._strUserRepository] folderName:@"Mobile"];
+            BOOL storageFolder = [fileProxy createNewFolderWithURL:photosFolderPath folderName:@"Mobile"];
             
             if(storageFolder)
             {
@@ -360,17 +368,17 @@
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
 
-                fileAttachName = [NSString stringWithFormat:@"MobileImage_%@.png", fileAttachName];
+                fileAttachName = [NSString stringWithFormat:@"mobile_image_%@.png", fileAttachName];
                 fileAttachName = [fileAttachName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 NSLog(@"uploading file: %@",fileAttachName);
                 
-                fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
+                fileAttachURL = [NSString stringWithFormat:@"%@/Mobile/%@",photosFolderPath,fileAttachName];
                 
                 NSData *imageData = UIImagePNGRepresentation(self.attPhotoView.image);
                 
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                            [fileProxy methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
-                [invocation setTarget:fileProxy];
+                                            [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
+                [invocation setTarget:self];
                 [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
                 [invocation setArgument:&fileAttachURL atIndex:2];
                 [invocation setArgument:&imageData atIndex:3];
@@ -410,6 +418,18 @@
             alert.message = Localize(@"NoMessagePosting");
         
         [alert release];
+    }
+    
+}
+
+- (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
+{
+    if (selectedSpace){
+        NSString * driverName = [selectedSpace.groupId stringByReplacingOccurrencesOfString:@"/" withString:@"."];
+        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:@"Mobile" ofDrive:driverName];
+        
+    } else {
+        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:@"Public/Mobile" ofDrive:@"Personal Documents"];
     }
     
 }
