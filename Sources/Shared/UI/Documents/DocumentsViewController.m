@@ -67,6 +67,8 @@ static NSString *PUBLIC_DRIVE = @"Public";
 @synthesize popoverPhotoLibraryController = _popoverPhotoLibraryController;
 
 @synthesize popoverProperties = _popoverProperties;
+@synthesize fileToApplyAction;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -222,11 +224,15 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)dealloc
 {
-     
-    [_dicContentOfFolder release];
+    
+    fileToApplyAction = nil;
+    _popoverPhotoLibraryController = nil;
     _dicContentOfFolder = nil;
+    _stringForUploadPhoto = nil;
+    _popoverProperties = nil;
     
     //Release the FileProxy of the Controller.
+    _filesProxy.delegate  =nil;
     _filesProxy = nil;
     
     //Release the rootFile
@@ -573,7 +579,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)showErrorForFileAction:(NSString *)errorMessage {
     [self hideLoader:NO];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:Localize(errorMessage) delegate:self 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:Localize(errorMessage) delegate:self
                                           cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -995,11 +1001,18 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
 {
-    [_filesProxy fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
-    //Need to reload the content of the folder
-    [self startRetrieveDirectoryContent];
+    _filesProxy.delegate = self;
+    [_filesProxy uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:fileToApplyAction.currentFolder ofDrive:fileToApplyAction.driveName];
 }
-
+-(void) fileProxy:(FilesProxy *)fileProxy didUploadImage:(BOOL)finished {
+    if (finished) {
+        [self startRetrieveDirectoryContent];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:Localize(@"Upload failed") message:Localize(@"Please try again later") delegate:nil cancelButtonTitle:Localize(@"Close") otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
 
 #pragma mark - ActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -1068,15 +1081,16 @@ static NSString *PUBLIC_DRIVE = @"Public";
                 
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
-                imageName = [NSString stringWithFormat:@"MobileImage_%@.png", tmp];
+                imageName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, tmp];
                 
             }
+            _filesProxy.delegate = self;
             
-            _stringForUploadPhoto = [_stringForUploadPhoto stringByAppendingFormat:@"/%@", imageName];
-            [self sendImageInBackgroundForDirectory:_stringForUploadPhoto data:imageData];
+            [_filesProxy uploadFile:imageData asFileName:imageName inFolder:fileToApplyAction.currentFolder ofDrive:fileToApplyAction.driveName];
+            
         }
         dispatch_sync(dispatch_get_main_queue(), ^(void) {
-            [self hideLoader:YES]; 
+            [self hideLoader:YES];
         });
     });
     

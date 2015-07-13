@@ -34,9 +34,19 @@
 @implementation FilesProxy
 
 @synthesize _isWorkingWithMultipeUserLevel, _strUserRepository;
-
+@synthesize delegate;
 #pragma mark -
 #pragma mark Utils method for files
+
+-(NSString *) authentificationBase64 {
+    NSString *username = [[UserPreferencesManager sharedInstance] username];
+    NSString *password = [[UserPreferencesManager sharedInstance] password];
+    
+    NSString * basicAuth = @"Basic ";
+    NSString * authorizationHead = [basicAuth stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@",username, password]]];
+    
+    return authorizationHead;
+}
 
 + (NSString*)stringEncodedWithBase64:(NSString*)str
 {
@@ -280,16 +290,10 @@
     self._strUserRepository = [NSString stringWithString:urlForUserRepo];    
 }
 
-- (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
-{
-    [self fileAction:kFileProtocolForUpload source:directory destination:nil data:imageData];
-}
-
 -(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
 {	
     NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
 
-    
 	source = [source stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	destination = [destination stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
@@ -370,6 +374,91 @@
 	return nil;
 }
 
+
+-(void) uploadFile:(NSData *) fileData asFileName:(NSString *) fileAttachName inFolder:(NSString *) currentFolder ofDrive:(NSString *) driveName {
+    /*
+     ECMS web service
+     1. Upload file POST
+     Query params: uploadId= : An arbitrary value to keep until the end &  action=upload
+     Content type: multipart/form-data; boundary= with an arbitrary boundary.
+     Body:
+     --BOUNDARY
+     Content-Disposition: form-data; name="file"; filename="..."  /!\ name must be "file"
+     Content-Type: the content type of the file to upload
+     
+     // File content
+     --BOUNDARY
+     2. save file GET /portal/rest/managedocument/uploadFile/control
+     uploadId= : the value chosen at step 1
+     action=save
+     workspaceName= : the workspace in which to move the file
+     driveName= : the drive, within the workspace, in which to move the file
+     currentFolder= : the folder, within the drive, in which to move the file
+     fileName= : the name of the file (can be different than the original)
+     */
+    NSString * serverURL = [ApplicationPreferencesManager sharedInstance].selectedAccount.serverUrl;
+    
+    NSString * uploadId = [NSUUID UUID].UUIDString;
+    uploadId = [uploadId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * boundary = [NSString stringWithFormat:@"-----%@",uploadId];
+    
+    NSString * postRESTURL = [NSString stringWithFormat:@"%@%@?uploadId=%@&action=upload", serverURL, DOCUMENT_UPLOAD_SERVICE_PATH, uploadId];
+    
+    NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postRESTURL]];
+    [request setHTTPMethod:@"POST"];
+    
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary] forHTTPHeaderField:@"Content-Type"];
+    request.HTTPShouldHandleCookies = YES;
+    NSString * bodyBegin = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n\r\n",boundary,fileAttachName];
+    NSString * bodyEnd = [NSString stringWithFormat:@"\r\n--%@--\r\n",boundary];
+    
+    NSMutableData * bodyData = [[NSMutableData alloc] init];
+    
+    [bodyData appendData:[bodyBegin dataUsingEncoding:NSUTF8StringEncoding]];
+    [bodyData appendData:fileData];
+    [bodyData appendData:[bodyEnd dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setHTTPBody:bodyData];
+    NSURLSessionConfiguration * config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [config setHTTPAdditionalHeaders:@{@"Authorization":[self authentificationBase64]}];
+
+    NSURLSession * aSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
+
+    NSURLSessionDataTask * uploadTask = [aSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
+        if(statusCode >= 200 && statusCode < 300) {
+            // save the file to mobile folder
+            
+            NSString * saveRESTURL;
+            
+            saveRESTURL  = [NSString stringWithFormat:@"%@%@?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", serverURL, DOCUMENT_SAVE_SERVICE_PATH,uploadId,[ApplicationPreferencesManager sharedInstance].defaultWorkspace,driveName,currentFolder,fileAttachName];
+            saveRESTURL = [saveRESTURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
+            [request setURL:[NSURL URLWithString:saveRESTURL]];
+            [request setHTTPMethod:@"GET"];
+            NSURLSessionDataTask *dataTask = [aSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
+                if(statusCode >= 200 && statusCode < 300) {
+                    if (delegate && [delegate respondsToSelector:@selector(fileProxy:didUploadImage:)]) {
+                        [delegate fileProxy:self didUploadImage:YES];
+                    }
+                } else {
+                    if (delegate && [delegate respondsToSelector:@selector(fileProxy:didUploadImage:)]) {                        
+                        [delegate fileProxy:self didUploadImage:NO];
+                    }
+                }
+            }];
+            [dataTask resume];
+            
+        }
+    }];
+    
+    [uploadTask resume];
+
+}
+
+
+
 -(BOOL)createNewFolderWithURL:(NSString *)strUrl folderName:(NSString *)name
 {
     BOOL returnValue = NO;
@@ -385,7 +474,7 @@
     
     if(isExistedUrl)
     {
-        returnValue = YES; 
+        returnValue = YES;
     }
     else
     {

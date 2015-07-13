@@ -85,7 +85,12 @@
 #define DOCUMENT_WORKSPACE_NAME             @"&workspaceName="
 #define DOCUMENT_CURRENT_FOLDER             @"&currentFolder=" 
 
+#define MOBILE_UPLOAD_FILE_PREFIX           @"mobile_image_"
+#define MOBILE_UPLOAD_DEST_FOLDER           @"Mobile"
+#define MOBILE_UPLOAD_PERSONAL_DRIVE        @"Personal Documents"
 
+#define DOCUMENT_UPLOAD_SERVICE_PATH        @"/portal/rest/managedocument/uploadFile/upload"
+#define DOCUMENT_SAVE_SERVICE_PATH          @"/portal/rest/managedocument/uploadFile/control"
 /*
  *  System Versioning Preprocessor Macros
  */ 
@@ -113,6 +118,7 @@
 //#define EXO_CLOUD_HOST @"wks-acc.exoplatform.org"
 //#define EXO_CLOUD_URL @"http://wks-acc.exoplatform.org"
 #define scrollHeight 50 /* how much should we scroll up/down when the keyboard is displayed/hidden */
+
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
