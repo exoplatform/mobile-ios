@@ -99,7 +99,7 @@
             break;
         case ACTIVITY_CONTENTS_SPACE:{
             // check the mimetype of the document
-            if ([[_templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
+            if ([_templateParams valueForKey:@"mimeType"] && [[_templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
                 self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
             } else {
                 self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
@@ -124,12 +124,17 @@
 
             if (message){
                 NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];
-                
-                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"contentName"]]];
-                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"author"]]];
+                if ([socialActivityDetail.templateParams valueForKey:@"contentName"]){
+                    [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"contentName"]]];
+                }
+                if ([socialActivityDetail.templateParams valueForKey:@"author"]){
+                    [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"author"]]];
+                }
                 
                 if(plfVersion < 4.0) {
-                    [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"state"]]];
+                    if ([socialActivityDetail.templateParams valueForKey:@"state"]){
+                        [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityDetail.templateParams valueForKey:@"state"]]];
+                    }
                 }
                 
                 self.lbMessage.attributedText = attributedMessage;

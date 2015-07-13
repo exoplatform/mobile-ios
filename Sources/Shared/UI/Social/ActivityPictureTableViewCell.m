@@ -106,12 +106,17 @@
             }
             if (message){
                 NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];
-                
-                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"contentName"]]];
-                [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
+                if ([socialActivityStream.templateParams valueForKey:@"contentName"]){
+                    [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"contentName"]]];
+                }
+                if ([socialActivityStream.templateParams valueForKey:@"author"]){
+                    [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"author"]]];
+                }
    
                 if(plfVersion < 4.0) {
-                 [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
+                    if ([socialActivityStream.templateParams valueForKey:@"state"]){
+                        [attributedMessage setAttributes:kAttributeText range:[message rangeOfString:[socialActivityStream.templateParams valueForKey:@"state"]]];
+                    }
                 }
                 
                 self.activityMessage.attributedText = attributedMessage;
@@ -120,7 +125,7 @@
             }
             
             _lbFileName.text = @"";
-            if ([[socialActivityStream.templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
+            if ([socialActivityStream.templateParams valueForKey:@"mimeType"] && [[socialActivityStream.templateParams valueForKey:@"mimeType"] rangeOfString:@"image"].location != NSNotFound) {
                 self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForPlaceholderImage.png"];
             } else {
                 self.imgvAttach.placeholderImage = [UIImage imageNamed:@"IconForUnreadableFile.png"];
