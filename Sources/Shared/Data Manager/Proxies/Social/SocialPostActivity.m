@@ -100,9 +100,9 @@
         
         NSString* docPath;
         if (space){
-            docPath = [NSString stringWithFormat:@"/Groups%@/Documents/Mobile/%@",space.groupId,fileName];
+            docPath = [NSString stringWithFormat:@"/Groups%@/Documents/%@/%@",space.groupId,MOBILE_UPLOAD_DEST_FOLDER, fileName];
         } else {
-            docPath = [NSString stringWithFormat:@"%@/Public/Mobile/%@",serverPM.userHomeJcrPath,fileName];
+            docPath = [NSString stringWithFormat:@"%@/Public/%@/%@",serverPM.userHomeJcrPath,MOBILE_UPLOAD_DEST_FOLDER,fileName];
         }
         
         NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr"];

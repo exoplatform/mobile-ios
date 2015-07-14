@@ -193,7 +193,7 @@
                 
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
-                imageName = [NSString stringWithFormat:@"mobile_image_%@.png", tmp];
+                imageName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, tmp];
                 
             }
             NSString *_stringForUploadPhoto = [[((DocumentsViewController *)_delegate) stringForUploadPhoto] stringByAppendingFormat:@"/%@", imageName];

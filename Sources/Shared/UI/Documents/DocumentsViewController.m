@@ -224,11 +224,15 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)dealloc
 {
-     
-    [_dicContentOfFolder release];
+    
+    fileToApplyAction = nil;
+    _popoverPhotoLibraryController = nil;
     _dicContentOfFolder = nil;
+    _stringForUploadPhoto = nil;
+    _popoverProperties = nil;
     
     //Release the FileProxy of the Controller.
+    _filesProxy.delegate  =nil;
     _filesProxy = nil;
     
     //Release the rootFile
@@ -575,7 +579,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)showErrorForFileAction:(NSString *)errorMessage {
     [self hideLoader:NO];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:Localize(errorMessage) delegate:self 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:Localize(errorMessage) delegate:self
                                           cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -997,11 +1001,18 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
 {
+    _filesProxy.delegate = self;
     [_filesProxy uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:fileToApplyAction.currentFolder ofDrive:fileToApplyAction.driveName];
-    //Need to reload the content of the folder
-    [self startRetrieveDirectoryContent];
 }
-
+-(void) fileProxy:(FilesProxy *)fileProxy didUploadImage:(BOOL)finished {
+    if (finished) {
+        [self startRetrieveDirectoryContent];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:Localize(@"Upload failed") message:Localize(@"Please try again later") delegate:nil cancelButtonTitle:Localize(@"Close") otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
 
 #pragma mark - ActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -1070,9 +1081,10 @@ static NSString *PUBLIC_DRIVE = @"Public";
                 
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
-                imageName = [NSString stringWithFormat:@"mobile_image_%@.png", tmp];
+                imageName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, tmp];
                 
             }
+            _filesProxy.delegate = self;
             
             [_filesProxy uploadFile:imageData asFileName:imageName inFolder:fileToApplyAction.currentFolder ofDrive:fileToApplyAction.driveName];
             

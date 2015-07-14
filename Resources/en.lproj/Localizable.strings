@@ -442,3 +442,11 @@
 "in" = "in";
 
 "space" = "space";
+
+/*
+ Upload
+ */
+
+"Upload failed" = "Upload failed";
+
+"Please try again later" = "Please try again later";

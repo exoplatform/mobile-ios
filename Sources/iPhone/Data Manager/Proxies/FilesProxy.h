@@ -31,6 +31,7 @@
 #define kFileProtocolForMove @"MOVE"
 #define kFileProtocolForCreateFolder @"MKCOL"
 
+@protocol FilesProxyDelegate;
 
 @interface FilesProxy : NSObject {    
 
@@ -39,6 +40,7 @@
 
 }
 
+@property (nonatomic, assign) id<FilesProxyDelegate> delegate;
 @property BOOL _isWorkingWithMultipeUserLevel;
 @property(nonatomic, retain) NSString *_strUserRepository;
 
@@ -61,5 +63,13 @@
 
 -(BOOL)createNewFolderWithURL:(NSString *)strUrl folderName:(NSString *)name;
 -(BOOL)isExistedUrl:(NSString *)strUrl;
+
+@end
+
+
+@protocol FilesProxyDelegate <NSObject>
+
+@optional
+-(void) fileProxy:(FilesProxy *)fileProxy didUploadImage:(BOOL) finished;
 
 @end

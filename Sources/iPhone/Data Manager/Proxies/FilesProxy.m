@@ -34,7 +34,7 @@
 @implementation FilesProxy
 
 @synthesize _isWorkingWithMultipeUserLevel, _strUserRepository;
-
+@synthesize delegate;
 #pragma mark -
 #pragma mark Utils method for files
 
@@ -402,7 +402,7 @@
     uploadId = [uploadId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString * boundary = [NSString stringWithFormat:@"-----%@",uploadId];
     
-    NSString * postRESTURL = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/upload?uploadId=%@&action=upload", serverURL, uploadId];
+    NSString * postRESTURL = [NSString stringWithFormat:@"%@%@?uploadId=%@&action=upload", serverURL, DOCUMENT_UPLOAD_SERVICE_PATH, uploadId];
     
     NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postRESTURL]];
     [request setHTTPMethod:@"POST"];
@@ -431,7 +431,7 @@
             
             NSString * saveRESTURL;
             
-            saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", serverURL,uploadId,[ApplicationPreferencesManager sharedInstance].defaultWorkspace,driveName,currentFolder,fileAttachName];
+            saveRESTURL  = [NSString stringWithFormat:@"%@%@?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", serverURL, DOCUMENT_SAVE_SERVICE_PATH,uploadId,[ApplicationPreferencesManager sharedInstance].defaultWorkspace,driveName,currentFolder,fileAttachName];
             saveRESTURL = [saveRESTURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
             [request setURL:[NSURL URLWithString:saveRESTURL]];
@@ -439,6 +439,13 @@
             NSURLSessionDataTask *dataTask = [aSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
                 if(statusCode >= 200 && statusCode < 300) {
+                    if (delegate && [delegate respondsToSelector:@selector(fileProxy:didUploadImage:)]) {
+                        [delegate fileProxy:self didUploadImage:YES];
+                    }
+                } else {
+                    if (delegate && [delegate respondsToSelector:@selector(fileProxy:didUploadImage:)]) {                        
+                        [delegate fileProxy:self didUploadImage:NO];
+                    }
                 }
             }];
             [dataTask resume];

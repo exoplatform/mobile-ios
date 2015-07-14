@@ -357,7 +357,7 @@
                 photosFolderPath =  [NSString stringWithFormat:@"%@/Public", fileProxy._strUserRepository];
             }
             
-            BOOL storageFolder = [fileProxy createNewFolderWithURL:photosFolderPath folderName:@"Mobile"];
+            BOOL storageFolder = [fileProxy createNewFolderWithURL:photosFolderPath folderName:MOBILE_UPLOAD_DEST_FOLDER];
             
             if(storageFolder)
             {
@@ -368,11 +368,11 @@
                 //release the date formatter because, not needed after that piece of code
                 [dateFormatter release];
 
-                fileAttachName = [NSString stringWithFormat:@"mobile_image_%@.png", fileAttachName];
+                fileAttachName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, fileAttachName];
                 fileAttachName = [fileAttachName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 NSLog(@"uploading file: %@",fileAttachName);
                 
-                fileAttachURL = [NSString stringWithFormat:@"%@/Mobile/%@",photosFolderPath,fileAttachName];
+                fileAttachURL = [NSString stringWithFormat:@"%@/%@/%@",photosFolderPath,MOBILE_UPLOAD_DEST_FOLDER,fileAttachName];
                 
                 NSData *imageData = UIImagePNGRepresentation(self.attPhotoView.image);
                 
@@ -426,10 +426,10 @@
 {
     if (selectedSpace){
         NSString * driverName = [selectedSpace.groupId stringByReplacingOccurrencesOfString:@"/" withString:@"."];
-        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:@"Mobile" ofDrive:driverName];
+        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:MOBILE_UPLOAD_DEST_FOLDER ofDrive:driverName];
         
     } else {
-        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:@"Public/Mobile" ofDrive:@"Personal Documents"];
+        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:@"Public/Mobile" ofDrive:MOBILE_UPLOAD_PERSONAL_DRIVE];
     }
     
 }

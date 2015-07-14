@@ -632,7 +632,7 @@ NSMutableData * data;
                         saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,driverName,@"Mobile",fileAttachName];
                         
                     } else {
-                        saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,@"Personal Documents",@"Public/Mobile",fileAttachName];
+                        saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,MOBILE_UPLOAD_PERSONAL_DRIVE, @"Public/Mobile",fileAttachName];
 
                     }
                     saveRESTURL = [saveRESTURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
