@@ -185,7 +185,7 @@
 
 //	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
 	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
-    
+
     [fileActionsViewController release];
 }
 
@@ -272,8 +272,8 @@
     [_actionPopoverController setContainerViewProperties:self.popoverProperties];
     
     //present the popover from the rightBarButtonItem of the navigationBar
-	[_actionPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
-                                     permittedArrowDirections:UIPopoverArrowDirectionUp 
+	[_actionPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem
+                                     permittedArrowDirections:UIPopoverArrowDirectionUp
                                                      animated:YES];
     
     //Release the useless controller
@@ -352,7 +352,7 @@
 - (void)showActionSheetForPhotoAttachment
 {
     [_actionPopoverController dismissPopoverAnimated:YES];
- 
+    
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto")
                                                              delegate:self 
@@ -364,25 +364,32 @@
 
     if(displayActionDialogAtRect.size.width == 0) {
         
-        //present the popover from the rightBarButtonItem of the navigationBar        
-//        [actionSheet showFromBarButtonItem:_navigation.topItem.rightBarButtonItem animated:YES];
+        int offset = [[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending? 15 : 10;
+        CGRect originRect = [_navigation.topItem.rightBarButtonItem frameInView:self.view];
+        originRect.origin.x += offset;
+        originRect.origin.y = CGRectGetMaxY(originRect);
+        originRect.size.width = 0;
+        originRect.size.height = 0;
         
-        CGRect rect = [_navigation.topItem.rightBarButtonItem frameInView:self.view];
-        rect.origin.x += 10;
-        rect.origin.y += 20;
-        rect.size.width = 0;
-        rect.size.height = 0;
-        LogDebug(@"rect info %f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
-        
-        [actionSheet showFromRect:rect inView:self.view animated:YES];
+        [actionSheet showFromRect:originRect inView:self.view animated:YES];
+
     }
     else {
-        [actionSheet showFromRect:displayActionDialogAtRect inView:_currentCell animated:YES];
+        CGRect originRect = _currentCell.accessoryView.frame;
+        originRect.origin.x += originRect.size.width/2;
+        originRect.origin.y = _currentCell.frame.size.height/2;
+        originRect.size = CGSizeZero;
+        [actionSheet showFromRect:originRect inView:_currentCell animated:YES];
+        
     }
+    
+    
     
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
     [self.popoverPhotoLibraryController dismissPopoverAnimated:YES];

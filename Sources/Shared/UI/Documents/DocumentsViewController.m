@@ -1004,7 +1004,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 #pragma mark - ActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex < 2)
+    if(buttonIndex < 2 && buttonIndex >=0)
     {
         UIImagePickerController *thePicker = [[UIImagePickerController alloc] init];
         thePicker.delegate = self;
