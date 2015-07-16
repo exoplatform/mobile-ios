@@ -222,7 +222,7 @@
 		46ABBE8A13890C260077809B /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE8913890C260077809B /* File.m */; };
 		46ABBE95138914200077809B /* DocumentsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ABBE931389141F0077809B /* DocumentsViewController_iPhone.m */; };
 		46ADAEE11406881B005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ADAEE014068819005ABA79 /* ActivityStreamBrowseViewController_iPhone.xib */; };
-		46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAEE414068EAF005ABA79 /* DashboardViewController.m */; };
+		46ADAEE514068EAF005ABA79 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46ADAEE414068EAF005ABA79 /* DashboardViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		46BE69DB13D5B30E00F62614 /* SocialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69D413D5B30E00F62614 /* SocialComment.m */; };
 		46BE69E013D5B33E00F62614 /* SocialPostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69DF13D5B33E00F62614 /* SocialPostActivity.m */; };
 		46BE69E313D5B38300F62614 /* SocialActivityDetailsProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE69E213D5B38300F62614 /* SocialActivityDetailsProxy.m */; };
@@ -435,12 +435,12 @@
 		7C34684513C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34683F13C2DB770030DC23 /* ActivityStreamBrowseViewController_iPhone.m */; };
 		7C34684613C2DB770030DC23 /* MessageComposerViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C34684113C2DB770030DC23 /* MessageComposerViewController_iPhone.m */; };
 		7C34684713C2DB770030DC23 /* MessageComposerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C34684213C2DB770030DC23 /* MessageComposerViewController_iPhone.xib */; };
-		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; };
+		7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BD19B1370FE1700380828 /* DashboardViewController_iPad.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		7C3DF00613F1212700640BDB /* PhotoActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C3DF00513F1212700640BDB /* PhotoActionViewController.xib */; };
 		7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3DF00813F1217100640BDB /* PhotoActionViewController.m */; };
 		7C5053EC13E2AF3600FA73CD /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5053EA13E2AF3600FA73CD /* default-avatar.png */; };
 		7C5053ED13E2AF3600FA73CD /* default-avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5053EB13E2AF3600FA73CD /* default-avatar@2x.png */; };
-		7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */; };
+		7C57648A1368032800C5F028 /* DashboardViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5764871368032800C5F028 /* DashboardViewController_iPhone.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		7CA74B1213C30C330006306D /* ActivityDetailViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA74B0B13C30C330006306D /* ActivityDetailViewController_iPad.m */; };
 		7CA74B1313C30C330006306D /* ActivityDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74B0C13C30C330006306D /* ActivityDetailViewController_iPad.xib */; };
 		7CA74B1413C30C330006306D /* ActivityStreamBrowseViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA74B0E13C30C330006306D /* ActivityStreamBrowseViewController_iPad.m */; };
@@ -1689,8 +1689,6 @@
 		9CE6E3EE1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityForumTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3F01B01E02800B2EA36 /* ActivityForumDetailMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityForumDetailMessageTableViewCell.xib; path = Social/ActivityForumDetailMessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CF1F7621ADB827300E89909 /* libPods-eXo-RestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-eXo-RestKit.a"; path = "Pods/../build/Debug-iphoneos/libPods-eXo-RestKit.a"; sourceTree = "<group>"; };
-		9CFED9081B3ABFE70049B9CC /* eXo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eXo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CFED90A1B3ABFE70049B9CC /* eXoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eXoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CFED90B1B3AC57D0049B9CC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		A60C63C6152968F900F5A52A /* ImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePreviewViewController.h; path = Social/ImagePreviewViewController.h; sourceTree = "<group>"; };
 		A60C63C7152968FA00F5A52A /* ImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePreviewViewController.m; path = Social/ImagePreviewViewController.m; sourceTree = "<group>"; };
