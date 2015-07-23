@@ -26,8 +26,7 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 #import "SpaceTableViewCell.h"
-
-// Horizontal margin to subviews. 
+// Horizontal margin to subviews.
 #define kHorizontalMargin 10.0
 // Vertical margin to subviews.
 #define kVerticalMargin 10.0
@@ -366,7 +365,6 @@
                 NSLog(@"uploading file: %@",fileAttachName);
                 
                 fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
-                
                 
                 NSData *imageData = UIImagePNGRepresentation(self.attPhotoView.image);
                 

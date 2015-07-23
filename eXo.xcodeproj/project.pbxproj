@@ -660,6 +660,7 @@
 		9CBF86E91B205BE000106F1B /* SocialSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF86E81B205BE000106F1B /* SocialSpace.m */; };
 		9CBF86EC1B215F2100106F1B /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF86EB1B215F2100106F1B /* AccountViewController.m */; };
 		9CBF87031B26A0DC00106F1B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBF87021B26A0DC00106F1B /* MobileCoreServices.framework */; };
+		9CDCF1E61B5E3C420086C480 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CDCF1E41B5DF5700086C480 /* ImageIO.framework */; };
 		9CE6E3E91B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3E81B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib */; };
 		9CE6E3ED1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3EC1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib */; };
 		9CE6E3EF1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3EE1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib */; };
@@ -1685,6 +1686,7 @@
 		9CBF86EA1B215F2100106F1B /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		9CBF86EB1B215F2100106F1B /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		9CBF87021B26A0DC00106F1B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9CDCF1E41B5DF5700086C480 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		9CE6E3E81B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityAnswerTableViewCell.xib; path = Social/ActivityAnswerTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3EC1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityCalendarTableViewCell.xib; path = Social/ActivityCalendarTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3EE1B01DDB700B2EA36 /* ActivityForumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityForumTableViewCell.xib; sourceTree = "<group>"; };
@@ -1837,6 +1839,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CDCF1E61B5E3C420086C480 /* ImageIO.framework in Frameworks */,
 				9CBF87031B26A0DC00106F1B /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2069,6 +2072,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CDCF1E41B5DF5700086C480 /* ImageIO.framework */,
 				9CBF87021B26A0DC00106F1B /* MobileCoreServices.framework */,
 				9CF1F7621ADB827300E89909 /* libPods-eXo-RestKit.a */,
 				57A9191B190E10AE008CFD6B /* XCTest.framework */,

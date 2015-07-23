@@ -23,6 +23,9 @@
 #import "PostActivity.h"
 #import "UploadViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <ImageIO/ImageIO.h>
+
+#define kJPEGCompressionLevel 1.0 // 0.0 for maximun compression & 1.0 minimun compression. Actually the image is aready JPEG so we keep the same quality while making new image.
 
 
 @interface ShareViewController () {
@@ -162,11 +165,19 @@ enum {
                     if ([url isKindOfClass:[NSURL class]]){
                         postActivity.url = url;
                     } else if ([url isKindOfClass:[UIImage class]]){
-                        postActivity.fileData = UIImagePNGRepresentation((UIImage*)item);
+                        if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePNG]){
+                            postActivity.fileData = UIImagePNGRepresentation((UIImage*)item);
+                            postActivity.fileExtension = @"png";
+                        } else {
+                            postActivity.fileData = UIImageJPEGRepresentation((UIImage*)item, kJPEGCompressionLevel);
+                            postActivity.fileExtension = @"jpg";
+                        }
+                        
                     } else if ([url isKindOfClass:[NSData class]]){
                         postActivity.fileData = (NSData*)url;
+                        postActivity.fileExtension = [itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePNG]?@"png": @"jpg";
                     }
-                    postActivity.fileExtension = @"png";
+                    [self checkForImageOrientation];
                 }
             }];
         } else if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeAudio]) {
@@ -868,5 +879,100 @@ NSMutableData * data;
 
 /**/
 
+-(void) checkForImageOrientation {
+    dispatch_queue_t concurrent_queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(concurrent_queue, ^{
+        if (postActivity.url!=nil || postActivity.fileData!=nil){
+            /*
+             A portrait photo is store as a landscape with orientation rotated 90d. The problem is the portal unable to detect this case. Solution creat a real portrait photo from this:
+             Get the metadata (TIFF, GPS, ...).
+             if Orientation is not normal (=1)
+             1. Save the metadata to mutable dictionary
+             2. Change property orientation to Normal
+             3. Creat a portrait photo from the provided photo.
+             4. Assign the metadata to this new photo.
+             */
+
+            
+            // Get the metadata (TIFF, GPS, ...).
+            CGImageSourceRef providedImageSourceRef;
+            if (postActivity.url != nil){
+                providedImageSourceRef = CGImageSourceCreateWithURL((CFURLRef)postActivity.url, NULL);
+            } else if (postActivity.fileData != nil){
+                providedImageSourceRef = CGImageSourceCreateWithData((CFDataRef) postActivity.fileData, NULL);
+            }
+            
+            NSDictionary * providedImageMetadata = (NSDictionary *) CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(providedImageSourceRef,0,NULL));
+            CFStringRef UTI = CGImageSourceGetType(providedImageSourceRef); //this is the type of image (e.g., public.jpeg)
+            NSDictionary *tiffDic =providedImageMetadata? [providedImageMetadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary] : nil;
+            
+            int orientation = (tiffDic == nil) ? kCGImagePropertyOrientationUp : [[tiffDic objectForKey:(NSString*)kCGImagePropertyOrientation] intValue];
+            
+            if (orientation != kCGImagePropertyOrientationUp) {
+                
+                //1. Save the metadata to mutable dictionary (tobe able to change the orientation value)
+                NSMutableDictionary *metadataAsMutable = [providedImageMetadata mutableCopy];
+                NSMutableDictionary * tiffMutableDic = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyTIFFDictionary]mutableCopy];
+                
+                // 2. Change property orientation to Normal
+                [metadataAsMutable setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+                [tiffMutableDic setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+                
+                [metadataAsMutable setValue:tiffMutableDic forKey:(NSString *)kCGImagePropertyTIFFDictionary];
+                
+                // 3. Creat a portrait photo from the provided photo.
+                NSData * photoData;
+                if (postActivity.url != nil){
+                    photoData = [NSData dataWithContentsOfURL:postActivity.url];
+                } else {
+                    photoData = postActivity.fileData;
+                }
+                UIImage * image = [UIImage imageWithData:photoData];
+                UIImage * img = [self rotateImage:image];
+                NSString * typeFile = (__bridge NSString *)(UTI);
+                if ([typeFile isEqualToString:@"public.png"]){
+                    photoData = UIImagePNGRepresentation(img);
+                    postActivity.fileExtension = @"png";
+                } else {
+                    photoData = UIImageJPEGRepresentation(img, kJPEGCompressionLevel);
+                    postActivity.fileExtension = @"jpg";
+                }
+                
+                //4. Assign the metadata to this new photo.
+                
+                CGImageSourceRef newPhotoSourceRef = CGImageSourceCreateWithData((CFDataRef)photoData,NULL);
+                //this will be the data CGImageDestinationRef will write into
+                NSMutableData * new_photoData = [NSMutableData data];
+                CGImageDestinationRef destination = CGImageDestinationCreateWithData((CFMutableDataRef)new_photoData,UTI,1,NULL);
+                
+                if(destination) {
+                    //add the image contained in the image source to the destination, overidding the old metadata with our modified metadata
+                    CGImageDestinationAddImageFromSource(destination,newPhotoSourceRef,0, (CFDictionaryRef) metadataAsMutable);
+                    
+                    //tell the destination to write the image data and metadata into our data object.
+                    //It will return false if something goes wrong
+                    BOOL success = NO;
+                    success = CGImageDestinationFinalize(destination);
+                    
+                    if(success) {
+                        postActivity.fileData = new_photoData;
+                        postActivity.url = nil;
+                    }
+                }
+                
+            }
+        }
+    });
+
+}
+- (UIImage *) rotateImage:(UIImage *)image {
+    // Create new image with the same size.    
+    CGSize newImageSize = image.size;
+    UIGraphicsBeginImageContext(newImageSize);
+    [image drawInRect:CGRectMake(0,0,newImageSize.width,newImageSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 @end
