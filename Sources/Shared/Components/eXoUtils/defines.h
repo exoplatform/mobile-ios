@@ -52,7 +52,7 @@
 #define EXO_IS_USER_LOGGED                  @"sigin"
 #define EXO_PREFERENCE_VERSION_SERVER       @"version_server"
 #define EXO_PREFERENCE_EDITION_SERVER       @"edition_server"
-#define EXO_PREFERENCE_VERSION_APPLICATION  @"version_application"
+#define EXO_PREFERENCE_VERSION_APPLICATION  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 #define EXO_NOTIFICATION_ACTIVITY_UPDATED   @"notification-activity-updated"
 #define EXO_NOTIFICATION_CHANGE_LANGUAGE    @"notification-change-language"
 #define EXO_NOTIFICATION_SHOW_PRIVATE_DRIVE @"notification-show-private-drive"
@@ -124,4 +124,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define kAttributeText @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor darkGrayColor]}
 
 #define kAttributeNameSpace @{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRed:17.0/255.0 green:94.0/255 blue:174.0/255.0 alpha:1] }
+
+// User-Agent
+#define kUserAgentHeader [NSString stringWithFormat:@"eXo/%@ (iOS)", EXO_PREFERENCE_VERSION_APPLICATION]
 

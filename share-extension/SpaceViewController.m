@@ -19,7 +19,6 @@
 
 
 #import "SpaceViewController.h"
-#define BASEURL @"rest/private/portal/social/spaces/mySpaces/show.json"
 
 @interface SpaceViewController () {
     NSMutableArray * _mySpaces;
@@ -69,6 +68,8 @@
     NSString * stringURL = [NSString stringWithFormat:@"%@/%@",self.account.serverURL, BASEURL];
     NSURL * url = [NSURL URLWithString:stringURL];
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     //set default request timeout = 100 ms.
     [request setTimeoutInterval:100];
     [request setHTTPMethod:@"GET"];

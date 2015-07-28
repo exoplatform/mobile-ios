@@ -1352,6 +1352,7 @@
 		57E47618193447C000C3140E /* FilesProxyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesProxyTestCase.m; sourceTree = "<group>"; };
 		57E4761A19344E2700C3140E /* GetDrivesResponse-4.0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GetDrivesResponse-4.0.xml"; sourceTree = "<group>"; };
 		57E4761C1935C47000C3140E /* GetFoldersAndFilesResponse-4.0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GetFoldersAndFilesResponse-4.0.xml"; sourceTree = "<group>"; };
+		57EC8D1E1B673E81007A6187 /* extension-defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "extension-defines.h"; sourceTree = "<group>"; };
 		57ED5A1315BFEA8E0007C49F /* CredentialsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController_iPhone.xib; sourceTree = "<group>"; };
 		57ED5A1515BFEA9F0007C49F /* ServerListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController_iPhone.xib; sourceTree = "<group>"; };
 		57EEB3D418B1BC3D00C6B2E8 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -4173,6 +4174,7 @@
 			isa = PBXGroup;
 			children = (
 				9C202AA91B1F000000FEC82B /* Info.plist */,
+				57EC8D1E1B673E81007A6187 /* extension-defines.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

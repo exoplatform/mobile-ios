@@ -17,22 +17,17 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
+// General REST information
+#define kRestVersion @"v1-alpha3"
+#define kRestContextName @"rest"
+#define kPortalContainerName @"portal"
+#define BASEURL @"rest/private/portal/social/spaces/mySpaces/show.json"
 
-#import <UIKit/UIKit.h>
-#import "SocialSpace.h"
-#import "Account.h"
-#import "extension-defines.h"
-@protocol SpaceDelegate;
+// Maximum upload size (10MB)
+#define kMaxSize    10000000
 
-@interface SpaceViewController : UITableViewController <NSURLConnectionDelegate>
-@property (nonatomic, assign) id<SpaceDelegate> delegate;
-@property (nonatomic, retain) Account * account;
-@end
+// App version
+#define EXO_PREFERENCE_VERSION_APPLICATION  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 
-
-@protocol SpaceDelegate <NSObject>
-
-@optional
--(void) spaceSelection:(SpaceViewController *) spaceSelection didSelectSpace:(SocialSpace*) space;
-
-@end
+// User-Agent
+#define kUserAgentHeader [NSString stringWithFormat:@"eXo/%@ (iOS)", EXO_PREFERENCE_VERSION_APPLICATION]

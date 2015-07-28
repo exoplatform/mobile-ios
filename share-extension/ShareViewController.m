@@ -21,16 +21,9 @@
 #import "AccountViewController.h"
 #import "Account.h"
 #import "PostActivity.h"
-
-#import "defines.h"
-
 #import "UploadViewController.h"
-
 #import <MobileCoreServices/MobileCoreServices.h>
-#define kRestVersion @"v1-alpha3"
-#define kRestContextName @"rest"
-#define kPortalContainerName @"portal"
-#define kMaxSize    10000000
+
 
 @interface ShareViewController () {
     // IHM part
@@ -339,7 +332,8 @@ NSMutableData * data;
         //set default request timeout = 100 ms.
         [request setTimeoutInterval:100];
         [request setHTTPMethod:@"GET"];
-        
+        [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
         data = [[NSMutableData alloc] init];
         connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [connection start];
@@ -467,7 +461,8 @@ NSMutableData * data;
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:mobileFolderPath]];
     [request setHTTPMethod:@"HEAD"];
-    
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
@@ -479,7 +474,8 @@ NSMutableData * data;
                 NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
                 [request setURL:[NSURL URLWithString:[self mobileFolderPath]]];
                 [request setHTTPMethod:@"MKCOL"];
-                
+                [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
                 NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                     NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
                     if(statusCode >= 200 && statusCode < 300) {
@@ -598,7 +594,8 @@ NSMutableData * data;
             
             NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postRESTURL]];
             [request setHTTPMethod:@"POST"];
-            
+            [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
             [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary] forHTTPHeaderField:@"Content-Type"];
             request.HTTPShouldHandleCookies = YES;
             NSString * bodyBegin = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n\r\n",boundary,fileAttachName];
@@ -631,7 +628,8 @@ NSMutableData * data;
                     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
                     [request setURL:[NSURL URLWithString:saveRESTURL]];
                     [request setHTTPMethod:@"GET"];
-                    
+                    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
                     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                         NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
                         if(statusCode >= 200 && statusCode < 300) {
@@ -711,6 +709,7 @@ NSMutableData * data;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postURL]];
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
 
     
     if (fileURL) {
@@ -796,6 +795,7 @@ NSMutableData * data;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postURL]];
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
 
     [request setHTTPBody:data];
 

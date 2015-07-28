@@ -161,7 +161,8 @@
     [request setURL:[NSURL URLWithString:urlStr]];
     
     [request setHTTPMethod:@"HEAD"];
-    
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     if(userName != nil)
     {
         NSString *s = @"Basic ";
@@ -237,7 +238,8 @@
 	[loginRequest setTimeoutInterval:60.0];
 	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
 	[loginRequest setHTTPShouldHandleCookies:NO];
-	
+    [loginRequest setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
 	NSDictionary* postDictionary = [NSMutableDictionary dictionaryWithCapacity:2];
 	[postDictionary setValue:username forKey:@"j_username"];
 	[postDictionary setValue:password forKey:@"j_password"];
@@ -289,6 +291,8 @@
 	[request setHTTPShouldHandleCookies:YES];	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:[self stringOfAuthorizationHeaderWithUsername:_username password:_password] forHTTPHeaderField:@"Authorization"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
 	dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	
 	return dataResponse;
@@ -327,7 +331,8 @@
 	[loginRequest setTimeoutInterval:60.0];
 	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
 	[loginRequest setHTTPShouldHandleCookies:NO];
-	
+    [loginRequest setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
 	NSDictionary* postDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
 	[postDictionary setValue:_username forKey:@"username"];
 	[postDictionary setValue:_password forKey:@"password"];
