@@ -21,16 +21,9 @@
 #import "AccountViewController.h"
 #import "Account.h"
 #import "PostActivity.h"
-
-#import "defines.h"
-
 #import "UploadViewController.h"
-
 #import <MobileCoreServices/MobileCoreServices.h>
-#define kRestVersion @"v1-alpha3"
-#define kRestContextName @"rest"
-#define kPortalContainerName @"portal"
-#define kMaxSize    10000000
+
 
 @interface ShareViewController () {
     // IHM part

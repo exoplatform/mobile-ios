@@ -19,10 +19,6 @@
 
 
 #import "SpaceViewController.h"
-#define BASEURL @"rest/private/portal/social/spaces/mySpaces/show.json"
-#define EXO_PREFERENCE_VERSION_APPLICATION  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
-// User-Agent
-#define kUserAgentHeader [NSString stringWithFormat:@"eXo/%@ (iOS)", EXO_PREFERENCE_VERSION_APPLICATION]
 
 @interface SpaceViewController () {
     NSMutableArray * _mySpaces;
