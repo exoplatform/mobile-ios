@@ -50,12 +50,7 @@
     [Fabric with:@[CrashlyticsKit]];
     
     application.statusBarHidden = YES;
-    
-    // Override point for customization after application launch.
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    // version application
-    [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
-    
+        
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3
     //Configuring the Navigation Bar for iOS 5

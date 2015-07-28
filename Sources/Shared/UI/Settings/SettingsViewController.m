@@ -584,7 +584,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_EDITION_SERVER];
             }
             if(indexPath.row == 2){
-                cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
+                cell.detailTextLabel.text = EXO_PREFERENCE_VERSION_APPLICATION;
             }
             break;
         }

@@ -21,9 +21,6 @@
 #import "AuthenticateProxy.h"
 #import "File.h"
 
-// User-Agent
-#define kUserAgentHeader @"eXo/2.5.4 (iOS)"
-
 //--------------------------------------
 //-        Actions Definition          -
 //--------------------------------------

@@ -163,6 +163,8 @@
     NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName, DOCUMENT_DRIVE_SHOW_PRIVATE_OPT, showPrivate ? @"true" : @"false"]];
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     NSData *data = [self sendSynchronizedHTTPRequest:request];
     [request release];
     
@@ -394,7 +396,8 @@
         [request setURL:url];
         
         [request setHTTPMethod:@"MKCOL"];
-        
+        [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
         NSString *username = [[UserPreferencesManager sharedInstance] username];
         NSString *password = [[UserPreferencesManager sharedInstance] password];
         
