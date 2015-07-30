@@ -647,7 +647,6 @@
 		9C01DF011ADFBA5200E3C578 /* global-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */; };
 		9C0A6D561AD505D500287C26 /* WEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		9C202AAC1B1F000000FEC82B /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C202AAB1B1F000000FEC82B /* ShareViewController.m */; };
-		9C202AAE1B1F000000FEC82B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C202AAD1B1F000000FEC82B /* MainInterface.storyboard */; };
 		9C202AB21B1F000000FEC82B /* share-extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C202AA61B1EFFFF00FEC82B /* share-extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C202AC01B200BC100FEC82B /* SpaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C202ABF1B200BC100FEC82B /* SpaceViewController.m */; };
 		9C202AC71B20459D00FEC82B /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C202AC61B20459D00FEC82B /* Account.m */; };
@@ -656,10 +655,13 @@
 		9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */; };
 		9C4F7D921B2E8F9D003ACCFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4F7D911B2E8F9D003ACCFD /* Images.xcassets */; };
 		9C4F7D951B317C0B003ACCFD /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F7D941B317C0B003ACCFD /* UploadViewController.m */; };
+		9C5B3A0F1BA01107008C8C7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C5B3A111BA01107008C8C7B /* Localizable.strings */; };
+		9C5B3A131BA0126F008C8C7B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5B3A151BA0126F008C8C7B /* MainInterface.storyboard */; };
 		9C8BCC151B393C20009EDC06 /* PostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BCC141B393C20009EDC06 /* PostActivity.m */; };
 		9CBF86E91B205BE000106F1B /* SocialSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF86E81B205BE000106F1B /* SocialSpace.m */; };
 		9CBF86EC1B215F2100106F1B /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF86EB1B215F2100106F1B /* AccountViewController.m */; };
 		9CBF87031B26A0DC00106F1B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBF87021B26A0DC00106F1B /* MobileCoreServices.framework */; };
+		9CC9EEA81B6A25E4000B237A /* PostItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC9EEA71B6A25E3000B237A /* PostItem.m */; };
 		9CDCF1E61B5E3C420086C480 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CDCF1E41B5DF5700086C480 /* ImageIO.framework */; };
 		9CE6E3E91B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3E81B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib */; };
 		9CE6E3ED1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6E3EC1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib */; };
@@ -1664,7 +1666,6 @@
 		9C202AA91B1F000000FEC82B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C202AAA1B1F000000FEC82B /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		9C202AAB1B1F000000FEC82B /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		9C202AAD1B1F000000FEC82B /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		9C202ABE1B200BC100FEC82B /* SpaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceViewController.h; sourceTree = "<group>"; };
 		9C202ABF1B200BC100FEC82B /* SpaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceViewController.m; sourceTree = "<group>"; };
 		9C202AC11B20316600FEC82B /* share-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "share-extension.entitlements"; sourceTree = "<group>"; };
@@ -1679,6 +1680,10 @@
 		9C4F7D911B2E8F9D003ACCFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9C4F7D931B317C0B003ACCFD /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		9C4F7D941B317C0B003ACCFD /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		9C5B3A101BA01107008C8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9C5B3A141BA0126F008C8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		9C5B3A161BA01276008C8C7B /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		9C5B3A171BA0178F008C8C7B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9C8BCC131B393C20009EDC06 /* PostActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostActivity.h; sourceTree = "<group>"; };
 		9C8BCC141B393C20009EDC06 /* PostActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostActivity.m; sourceTree = "<group>"; };
 		9CBF86E71B205BE000106F1B /* SocialSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialSpace.h; sourceTree = "<group>"; };
@@ -1686,6 +1691,8 @@
 		9CBF86EA1B215F2100106F1B /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		9CBF86EB1B215F2100106F1B /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		9CBF87021B26A0DC00106F1B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9CC9EEA61B6A25E3000B237A /* PostItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostItem.h; sourceTree = "<group>"; };
+		9CC9EEA71B6A25E3000B237A /* PostItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostItem.m; sourceTree = "<group>"; };
 		9CDCF1E41B5DF5700086C480 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		9CE6E3E81B01DD2D00B2EA36 /* ActivityAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityAnswerTableViewCell.xib; path = Social/ActivityAnswerTableViewCell.xib; sourceTree = "<group>"; };
 		9CE6E3EC1B01DD5A00B2EA36 /* ActivityCalendarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActivityCalendarTableViewCell.xib; path = Social/ActivityCalendarTableViewCell.xib; sourceTree = "<group>"; };
@@ -4167,7 +4174,7 @@
 				9C8BCC171B393C54009EDC06 /* Controllers */,
 				9C8BCC161B393C32009EDC06 /* Classes */,
 				9C202AC11B20316600FEC82B /* share-extension.entitlements */,
-				9C202AAD1B1F000000FEC82B /* MainInterface.storyboard */,
+				9C5B3A151BA0126F008C8C7B /* MainInterface.storyboard */,
 				9C202AA81B1F000000FEC82B /* Supporting Files */,
 				9C4F7D911B2E8F9D003ACCFD /* Images.xcassets */,
 			);
@@ -4179,6 +4186,7 @@
 			children = (
 				9C202AA91B1F000000FEC82B /* Info.plist */,
 				57EC8D1E1B673E81007A6187 /* extension-defines.h */,
+				9C5B3A111BA01107008C8C7B /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -4188,6 +4196,8 @@
 			children = (
 				9C8BCC131B393C20009EDC06 /* PostActivity.h */,
 				9C8BCC141B393C20009EDC06 /* PostActivity.m */,
+				9CC9EEA61B6A25E3000B237A /* PostItem.h */,
+				9CC9EEA71B6A25E3000B237A /* PostItem.m */,
 				9C202AC51B20459D00FEC82B /* Account.h */,
 				9C202AC61B20459D00FEC82B /* Account.m */,
 				9CBF86E71B205BE000106F1B /* SocialSpace.h */,
@@ -4900,7 +4910,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C202AAE1B1F000000FEC82B /* MainInterface.storyboard in Resources */,
+				9C5B3A131BA0126F008C8C7B /* MainInterface.storyboard in Resources */,
+				9C5B3A0F1BA01107008C8C7B /* Localizable.strings in Resources */,
 				9C4F7D921B2E8F9D003ACCFD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5236,6 +5247,7 @@
 			files = (
 				9C8BCC151B393C20009EDC06 /* PostActivity.m in Sources */,
 				9C202AC01B200BC100FEC82B /* SpaceViewController.m in Sources */,
+				9CC9EEA81B6A25E4000B237A /* PostItem.m in Sources */,
 				9C202AC71B20459D00FEC82B /* Account.m in Sources */,
 				9C202AAC1B1F000000FEC82B /* ShareViewController.m in Sources */,
 				9C4F7D951B317C0B003ACCFD /* UploadViewController.m in Sources */,
@@ -5260,6 +5272,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9C5B3A111BA01107008C8C7B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C5B3A101BA01107008C8C7B /* en */,
+				9C5B3A171BA0178F008C8C7B /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		9C5B3A151BA0126F008C8C7B /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C5B3A141BA0126F008C8C7B /* en */,
+				9C5B3A161BA01276008C8C7B /* fr */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		A66B7F2915AAC1D700218C06 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

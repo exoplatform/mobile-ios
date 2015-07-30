@@ -56,6 +56,9 @@
     // Upload View Controller
     UploadViewController * uploadVC;
     NSString * uploadId;
+    int uploadingIndex;
+    BOOL hasCheckForOrientation;
+    int nbItemMissing; // the number of items that cannot be uploaded
 
 }
 
@@ -66,7 +69,7 @@
 enum {
     eXoStatusNotLogin = 0,
     eXoStatusLoggingIn = 1,
-    eXoStatusLoggedFail = 2,
+    eXoStatusLoggedFailed = 2,
     eXoStatusLoggInAuthentificationFail = 3,
     eXoStatusLoggedIn = 4,
     eXoStatusLoadingSpaceId = 5,
@@ -143,41 +146,46 @@ enum {
 -(void) getPostInfos {
     
     postActivity = [[PostActivity alloc] init];
-    postActivity.type = @"DOC_ACTIVITY";
     //Check All UTI Type Hierachy https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_conc/understand_utis_conc.html
     
     NSExtensionItem *inputItem = self.extensionContext.inputItems.firstObject;
 
+    hasCheckForOrientation = NO;
     for (NSItemProvider * itemProvider in inputItem.attachments){
+
+        PostItem * postItem = [[PostItem alloc] init];
         // All file in local (file URL)
         // -> All file share from email for example should be catch in this one.
         if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeFileURL]) {
             [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeFileURL options:nil completionHandler:^(NSURL *url, NSError *error) {
                 if (!error && url) {
-                    postActivity.url = url;
+                    postItem.url = url;
                 }
             }];
             // Image Type.
         } else if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeImage]) {
             [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeImage options:nil completionHandler:^(id<NSSecureCoding> item, NSError *error) {
                 if (!error && item) {
+                    postItem.isImageItem = YES;
                     NSURL * url = (NSURL *) item;
                     if ([url isKindOfClass:[NSURL class]]){
-                        postActivity.url = url;
+                        postItem.url = url;
                     } else if ([url isKindOfClass:[UIImage class]]){
                         if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePNG]){
-                            postActivity.fileData = UIImagePNGRepresentation((UIImage*)item);
-                            postActivity.fileExtension = @"png";
+                            postItem.fileData = UIImagePNGRepresentation((UIImage*)item);
+                            postItem.fileExtension = @"png";
                         } else {
-                            postActivity.fileData = UIImageJPEGRepresentation((UIImage*)item, kJPEGCompressionLevel);
-                            postActivity.fileExtension = @"jpg";
+                            postItem.fileData = UIImageJPEGRepresentation((UIImage*)item, kJPEGCompressionLevel);
+                            postItem.fileExtension = @"jpg";
                         }
                         
                     } else if ([url isKindOfClass:[NSData class]]){
-                        postActivity.fileData = (NSData*)url;
-                        postActivity.fileExtension = [itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePNG]?@"png": @"jpg";
+                        postItem.fileData = (NSData*)url;
+                        postItem.fileExtension = [itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePNG]?@"png": @"jpg";
                     }
-                    [self checkForImageOrientation];
+
+                    [self checkForImageOrientationOfItem:postItem];
+
                 }
             }];
         } else if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeAudio]) {
@@ -186,10 +194,10 @@ enum {
                 if (!error && item) {
                     NSURL * url = (NSURL *) item;
                     if ([url isKindOfClass:[NSURL class]]){
-                        postActivity.url = url;
+                        postItem.url = url;
                     } else if ([url isKindOfClass:[NSData class]]){
-                        postActivity.fileData = (NSData*)url;
-                        postActivity.fileExtension = @"mp3";
+                        postItem.fileData = (NSData*)url;
+                        postItem.fileExtension = @"mp3";
                     }
                 }
             }];
@@ -199,10 +207,10 @@ enum {
                 if (!error && item) {
                     NSURL * url = (NSURL *) item;
                     if ([url isKindOfClass:[NSURL class]]){
-                        postActivity.url = url;
+                        postItem.url = url;
                     } else if ([url isKindOfClass:[NSData class]]){
-                        postActivity.fileData = (NSData*)url;
-                        postActivity.fileExtension = @"MOV";
+                        postItem.fileData = (NSData*)url;
+                        postItem.fileExtension = @"MOV";
                     }
                 }
             }];
@@ -212,10 +220,10 @@ enum {
                 if (!error && item) {
                     NSURL * url = (NSURL *) item;
                     if ([url isKindOfClass:[NSURL class]]){
-                        postActivity.url = url;
+                        postItem.url = url;
                     } else if ([url isKindOfClass:[NSData class]]){
-                        postActivity.fileData = (NSData*)url;
-                        postActivity.fileExtension = @"pdf";
+                        postItem.fileData = (NSData*)url;
+                        postItem.fileExtension = @"pdf";
                     }
                 }
             }];
@@ -223,10 +231,10 @@ enum {
             // case URL: the post message is the text in text field + the URL.
             [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeURL options:nil completionHandler:^(NSURL *url, NSError *error) {
                 if (!error && url) {
-                    postActivity.pageWebTitle = self.contentText;
-                    postActivity.url = url;
-                    postActivity.type = @"LINK_ACTIVITY";
-                    [postActivity imageFromPageWeb];
+                    postItem.pageWebTitle = self.contentText;
+                    postItem.url = url;
+                    postItem.type = @"LINK_ACTIVITY";
+                    [postItem searchForImageInURL];
                 }
             }];
         }  else if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePlainText]) {
@@ -236,6 +244,10 @@ enum {
                 }
             }];
         }
+        if (postItem.type == nil || postItem.type.length ==0){
+            postItem.type = @"DOC_ACTIVITY";
+        }
+        [postActivity.items addObject:postItem];
     }
     
 }
@@ -388,7 +400,7 @@ NSMutableData * data;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    loggingStatus = eXoStatusLoggedFail;
+    loggingStatus = eXoStatusLoggedFailed;
     [self reloadConfigurationItems];
 }
 
@@ -429,7 +441,7 @@ NSMutableData * data;
             }
             loggingStatus = eXoStatusLoggedIn;
         } else {
-            loggingStatus = eXoStatusLoggedFail;
+            loggingStatus = eXoStatusLoggedFailed;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self reloadConfigurationItems];
@@ -514,10 +526,8 @@ NSMutableData * data;
     postActivity.message = self.contentText;
     
     if (loggingStatus == eXoStatusLoggedIn){
-        if ([postActivity.type isEqualToString:@"DOC_ACTIVITY"]){
-            [self postDocActivity:postActivity];
-        } else if ([postActivity.type isEqualToString:@"LINK_ACTIVITY"] ) {
-            [self postLinkActivity:postActivity];
+        if (postActivity.items.count >0){
+            [self uploadPostItemAtIndex:0];
         } else {
             [self postMessage:postActivity.message fileURL:nil fileName:nil];
         }
@@ -557,119 +567,141 @@ NSMutableData * data;
     }
     return uploadSession;
 }
--(void) postDocActivity:(PostActivity *) activity {
-    if (activity.url || activity.fileData) {
-        
-        /*
-         In case of the photo attach in e-mail the fileURL is NSData.
-         */
-        if (activity.url){
-            activity.fileExtension =[[activity.url absoluteString] lastPathComponent];
-            activity.fileExtension = [activity.fileExtension stringByRemovingPercentEncoding];
-            if (!activity.fileData){
-                activity.fileData = [NSData dataWithContentsOfURL:activity.url];
-            }
-        }
-        if (activity.fileData.length < kMaxSize){
-            uploadVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UploadViewController"];
-            uploadVC.delegate = self;
-            [self presentViewController:uploadVC animated:YES completion:nil];
+
+/*
+ Upload the item (file) @itemIndex of the list items of the Post Activity.
+ After finish the upload, the upload for the next item (@itemIndex+1) will be call.
+ @param: itemIndex the position of the item in the list of items of the Post Activity
+ */
+-(void) uploadPostItemAtIndex:(int) itemIndex {
+    
+    if (itemIndex < postActivity.items.count){
+        uploadingIndex = itemIndex;
+        PostItem * item = postActivity.items[itemIndex];
+        if (item.url || item.fileData) {
             /*
-             ECMS web service
-             1. Upload file POST
-             Query params: uploadId= : An arbitrary value to keep until the end &  action=upload
-             Content type: multipart/form-data; boundary= with an arbitrary boundary.
-             Body:
-             --BOUNDARY
-             Content-Disposition: form-data; name="file"; filename="..."  /!\ name must be "file"
-             Content-Type: the content type of the file to upload
-             
-             // File content
-             --BOUNDARY
-             2. save file GET /portal/rest/managedocument/uploadFile/control
-             uploadId= : the value chosen at step 1
-             action=save
-             workspaceName= : the workspace in which to move the file
-             driveName= : the drive, within the workspace, in which to move the file
-             currentFolder= : the folder, within the drive, in which to move the file
-             fileName= : the name of the file (can be different than the original)
+             In case of the photo attach in e-mail the fileURL is NSData.
              */
-            
-            NSString * fileAttachName = [activity makeUploadFileName];
-
-            uploadId = [NSUUID UUID].UUIDString;
-            uploadId = [uploadId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSString * boundary = [NSString stringWithFormat:@"-----%@",uploadId];
-            
-            NSString * postRESTURL = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/upload?uploadId=%@&action=upload", selectedAccount.serverURL,uploadId];
-            
-            NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postRESTURL]];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
-
-            [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary] forHTTPHeaderField:@"Content-Type"];
-            request.HTTPShouldHandleCookies = YES;
-            NSString * bodyBegin = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n\r\n",boundary,fileAttachName];
-            NSString * bodyEnd = [NSString stringWithFormat:@"\r\n--%@--\r\n",boundary];
-
-            NSMutableData * bodyData = [[NSMutableData alloc] init];
-            
-            [bodyData appendData:[bodyBegin dataUsingEncoding:NSUTF8StringEncoding]];
-            [bodyData appendData:activity.fileData];
-            [bodyData appendData:[bodyEnd dataUsingEncoding:NSUTF8StringEncoding]];
-
-            [request setHTTPBody:bodyData];
-            NSURLSession * aSession = [self uploadSession];
-            uploadTask = [aSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
-                if(statusCode >= 200 && statusCode < 300) {
-                    // save the file to mobile folder
-                    
-                    NSString * postFileURL = [NSString stringWithFormat:@"%@/%@", [self mobileFolderPath], fileAttachName];
-                    NSString * saveRESTURL;
-                    if (selectedSpace){
-                        NSString * driverName = [selectedSpace.groupId stringByReplacingOccurrencesOfString:@"/" withString:@"."];
-                        saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,driverName,@"Mobile",fileAttachName];
-                        
-                    } else {
-                        saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,MOBILE_UPLOAD_PERSONAL_DRIVE, @"Public/Mobile",fileAttachName];
-
-                    }
-                    saveRESTURL = [saveRESTURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
-                    [request setURL:[NSURL URLWithString:saveRESTURL]];
-                    [request setHTTPMethod:@"GET"];
-                    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
-
-                    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                        NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
-                        if(statusCode >= 200 && statusCode < 300) {
-                            [self postMessage:activity.message fileURL:postFileURL fileName:fileAttachName];
+            if (item.url){
+                item.fileExtension =[[item.url absoluteString] lastPathComponent];
+                item.fileExtension = [item.fileExtension stringByRemovingPercentEncoding];
+                if (!item.fileData){
+                    item.fileData = [NSData dataWithContentsOfURL:item.url];
+                }
+            }
+            if (item.fileData.length < kMaxSize){
+                if (uploadVC == nil){
+                    uploadVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UploadViewController"];
+                    uploadVC.delegate = self;
+                    uploadVC.errorMessage.text = @"";
+                    nbItemMissing = 0;
+                    [self presentViewController:uploadVC animated:YES completion:nil];
+                }
+                /*
+                 ECMS web service
+                 1. Upload file POST
+                 Query params: uploadId= : An arbitrary value to keep until the end &  action=upload
+                 Content type: multipart/form-data; boundary= with an arbitrary boundary.
+                 Body:
+                 --BOUNDARY
+                 Content-Disposition: form-data; name="file"; filename="..."  /!\ name must be "file"
+                 Content-Type: the content type of the file to upload
+                 
+                 // File content
+                 --BOUNDARY
+                 2. save file GET /portal/rest/managedocument/uploadFile/control
+                 uploadId= : the value chosen at step 1
+                 action=save
+                 workspaceName= : the workspace in which to move the file
+                 driveName= : the drive, within the workspace, in which to move the file
+                 currentFolder= : the folder, within the drive, in which to move the file
+                 fileName= : the name of the file (can be different than the original)
+                 */
+                
+                NSString * fileAttachName = [item generateUploadFileName];
+                
+                uploadId = [NSUUID UUID].UUIDString;
+                uploadId = [uploadId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                NSString * boundary = [NSString stringWithFormat:@"-----%@",uploadId];
+                
+                NSString * postRESTURL = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/upload?uploadId=%@&action=upload", selectedAccount.serverURL,uploadId];
+                
+                NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postRESTURL]];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+                
+                [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary] forHTTPHeaderField:@"Content-Type"];
+                request.HTTPShouldHandleCookies = YES;
+                NSString * bodyBegin = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n\r\n",boundary,fileAttachName];
+                NSString * bodyEnd = [NSString stringWithFormat:@"\r\n--%@--\r\n",boundary];
+                
+                NSMutableData * bodyData = [[NSMutableData alloc] init];
+                
+                [bodyData appendData:[bodyBegin dataUsingEncoding:NSUTF8StringEncoding]];
+                [bodyData appendData:item.fileData];
+                [bodyData appendData:[bodyEnd dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                [request setHTTPBody:bodyData];
+                NSURLSession * aSession = [self uploadSession];
+                uploadTask = [aSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                    NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
+                    if(statusCode >= 200 && statusCode < 300) {
+                        // save the file to mobile folder
+                        NSString * postFileURL = [NSString stringWithFormat:@"%@/%@",[self mobileFolderPath], fileAttachName];
+                        NSString * saveRESTURL;
+                        if (selectedSpace){
+                            NSString * driverName = [selectedSpace.groupId stringByReplacingOccurrencesOfString:@"/" withString:@"."];
+                            saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,driverName,@"Mobile",fileAttachName];
+                            
                         } else {
-                            [uploadVC dismissViewControllerAnimated:YES completion:nil];
-                            [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+                            saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,@"Personal Documents",@"Public/Mobile",fileAttachName];
                             
                         }
-                    }];
-                    [dataTask resume];
-                    
-                }
-            }];
-            
-            [uploadTask resume];
-            
+                        saveRESTURL = [saveRESTURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
+                        [request setURL:[NSURL URLWithString:saveRESTURL]];
+                        [request setHTTPMethod:@"GET"];
+                        [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+                        
+                        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                            NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
+                            if(statusCode >= 200 && statusCode < 300) {
+                                item.uploadStatus = eXoItemStatusUploadSuccess;
+                                item.fileUploadedName = fileAttachName;
+                                item.fileUploadedURL = postFileURL;
+                                [postActivity.successfulUploads addObject:item];
+                            } else {
+                                item.uploadStatus = eXoItemStatusUploadFailed;
+                                nbItemMissing ++;
+                                uploadVC.errorMessage.text = [NSString stringWithFormat: NSLocalizedString(@"%d item(s) cannot be uploaded", nil), nbItemMissing];
+                            }
+                            [self uploadPostItemAtIndex:itemIndex+1];
+                        }];
+                        [dataTask resume];
+                        
+                    } else {
+                        item.uploadStatus = eXoItemStatusUploadFailed;
+                        nbItemMissing ++;
+                        uploadVC.errorMessage.text = [NSString stringWithFormat: NSLocalizedString(@"%d item(s) cannot be uploaded", nil), nbItemMissing];
+                        [self uploadPostItemAtIndex:itemIndex+1];
+                    }
+                }];
+                
+                [uploadTask resume];
+                
+            } else {
+                item.uploadStatus = eXoItemStatusUploadFileTooLarge;
+                nbItemMissing ++;
+                uploadVC.errorMessage.text = [NSString stringWithFormat: NSLocalizedString(@"%d item(s) cannot be uploaded", nil), nbItemMissing];
+                [self uploadPostItemAtIndex:itemIndex+1];
+            }
         } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Cannot post",nil) message:NSLocalizedString(@"File is too large", nil) preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                [alert dismissViewControllerAnimated:YES completion:nil];
-                [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
-            }];
-            [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
-
+            [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
         }
+
     } else {
-        [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+        
+        [self postActivityAction];
     }
 }
 
@@ -677,7 +709,7 @@ NSMutableData * data;
 
 -(void) URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
     dispatch_async(dispatch_get_main_queue(), ^{
-        uploadVC.progressBar.progress = (float)totalBytesSent/(float)totalBytesExpectedToSend;
+        uploadVC.progressBar.progress = (float)uploadingIndex/(float)postActivity.items.count + (float)totalBytesSent/((float)totalBytesExpectedToSend *(float)postActivity.items.count );
     });
     
 }
@@ -693,9 +725,130 @@ NSMutableData * data;
 }
 
 #pragma mark - POST Activity.
-
 /*
- Post un Doc activity: 
+ Post Activity. 
+ - If there are no item in post activity. Post Only the message as activity
+ - If there are items to post, but all uploads failed --> Ask user if continue anyway.
+ - If there are items & uploads succes, post the first success item as activity (with message of couse)
+ */
+-(void) postActivityAction {
+    if (postActivity.items.count >0) {
+        if (postActivity.successfulUploads.count == postActivity.items.count){
+            PostItem * firstItem = postActivity.successfulUploads[0];
+            if ([firstItem.type isEqualToString:@"DOC_ACTIVITY"]){
+                [self postMessage:postActivity.message fileURL:firstItem.fileUploadedURL fileName:firstItem.fileUploadedName];
+            } else if ([firstItem.type isEqualToString:@"LINK_ACTIVITY"]){
+                [self postLinkActivity:firstItem];
+            }
+        } else {
+
+            NSString * title;
+
+            if (postActivity.successfulUploads.count ==0) {
+                title = NSLocalizedString(@"All uploads failed",nil);
+            } else {
+                if (postActivity.items.count-postActivity.successfulUploads.count ==1){
+                    title = [NSString stringWithFormat:@"%lu %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"upload failed",nil)];
+                } else {
+                    title = [NSString stringWithFormat:@"%lu %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"uploads failed",nil)];
+                }
+            }
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:postActivity.getMessageError preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                [alert dismissViewControllerAnimated:YES completion:nil];
+                [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+            }];
+            [alert addAction:cancelAction];
+            UIAlertAction* postAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Post",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                if (postActivity.successfulUploads.count >0){
+                    PostItem * firstItem = postActivity.successfulUploads[0];
+                    if ([firstItem.type isEqualToString:@"DOC_ACTIVITY"]){
+                        [self postMessage:postActivity.message fileURL:firstItem.fileUploadedURL fileName:firstItem.fileUploadedName];
+                    } else if ([firstItem.type isEqualToString:@"LINK_ACTIVITY"]){
+                        [self postLinkActivity:firstItem];
+                    }
+                } else {
+                    [self postMessage:postActivity.message fileURL:nil fileName:nil];
+                }
+            }];
+            [alert addAction:postAction];
+            if (uploadVC !=nil){
+                [uploadVC presentViewController:alert animated:YES completion:nil];
+            } else {
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+
+
+        }
+    } else {
+        [self postMessage:postActivity.message fileURL:nil fileName:nil];
+    }
+    
+}
+
+-(void) postCommentForItemAtIndex:(int) index {
+    if (index < postActivity.successfulUploads.count && postActivity.activityId != nil) {
+        PostItem * postItem = postActivity.successfulUploads[index];
+        
+        NSString * postURL = [NSString stringWithFormat:@"%@/rest/private/api/social/%@/%@/activity/%@/comment.json",selectedAccount.serverURL, kRestVersion, kPortalContainerName, postActivity.activityId];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postURL]];
+        request.HTTPMethod = @"POST";
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
+        
+        NSString * message =@"";
+        if ([postItem.type isEqualToString:@"DOC_ACTIVITY"]) {
+            if (postItem.fileUploadedName!=nil && postItem.fileUploadedURL!=nil){
+                message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.fileUploadedURL, postItem.fileUploadedName];
+                NSString * thumbnailURL = [postItem.fileUploadedURL stringByReplacingOccurrencesOfString:@"/jcr/" withString:@"/thumbnailImage/small/"];
+                if (postItem.isImageItem){
+                    message = [message stringByAppendingString:[NSString stringWithFormat:@"\n<img src=\"%@\" width=200px height=auto/>",thumbnailURL]];
+                }
+            }
+        } else if ([postItem.type isEqualToString:@"LINK_ACTIVITY"]) {
+            message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.url, postItem.pageWebTitle];
+            
+        }
+
+        NSDictionary * dictionary = @{
+                                      @"text":message
+                                      };
+        
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                       options:kNilOptions error:&error];
+        [request setHTTPBody:data];
+
+        if (!error) {
+            NSURLSessionDataTask *postTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
+                if(statusCode >= 200 && statusCode < 300) {
+                    [self postCommentForItemAtIndex:index+1];
+                    
+                } else {
+                    [uploadVC dismissViewControllerAnimated:YES completion:nil];
+                    [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+                    
+                }
+            }];
+            [postTask resume];
+        } else {
+            [uploadVC dismissViewControllerAnimated:YES completion:nil];
+            [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+            
+        }
+
+    } else {
+        [uploadVC dismissViewControllerAnimated:YES completion:nil];
+        [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+
+    }
+}
+/*
+ Post un Doc activity:
  @param 
     - message: the post message
     - fileURL, fileName (optional): The Path to file upload file & its name.
@@ -762,8 +915,8 @@ NSMutableData * data;
     
     if (!error) {
         NSURLSessionDataTask *postTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            [uploadVC dismissViewControllerAnimated:YES completion:nil];
-            [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+            postActivity.activityId = [self getPostActivityFromData:data];
+            [self postCommentForItemAtIndex:1];
         }];
         [postTask resume];
     } else {
@@ -779,23 +932,23 @@ NSMutableData * data;
  URL: the URL to the page 
  title: the title of the page
  */
--(void) postLinkActivity:(PostActivity*) activity {
+-(void) postLinkActivity:(PostItem*) item {
     NSString * postURL = [NSString stringWithFormat:@"%@/rest/private/api/social/%@/%@/activity.json",selectedAccount.serverURL, kRestVersion, kPortalContainerName];
 
     if (selectedSpace && selectedSpace.spaceId.length > 0){
         postURL = [NSString stringWithFormat:@"%@?identity_id=%@", postURL, selectedSpace.spaceId];
     }
-    NSString * imgSrc = activity.imageFromURL? activity.imageFromURL : @"";
+    NSString * imgSrc = item.imageURLFromLink? item.imageURLFromLink : @"";
     
     NSDictionary * templateParams = @{
-                       @"comment":activity.message,
-                       @"link":activity.url.absoluteString,
+                       @"comment":postActivity.message,
+                       @"link":item.url.absoluteString,
                        @"description":@"",
                        @"image":imgSrc,
-                       @"title":activity.pageWebTitle
+                       @"title":item.pageWebTitle
                        };
-    NSDictionary * dictionary = @{@"type": activity.type,
-                                  @"title":activity.pageWebTitle,
+    NSDictionary * dictionary = @{@"type": item.type,
+                                  @"title":item.pageWebTitle,
                                   @"templateParams": templateParams
                                   };
     NSError *error = nil;
@@ -812,8 +965,8 @@ NSMutableData * data;
 
     if (!error) {
         NSURLSessionDataTask *postTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            [uploadVC dismissViewControllerAnimated:YES completion:nil];
-            [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+            postActivity.activityId = [self getPostActivityFromData:data];
+            [self postCommentForItemAtIndex:1];
         }];
         [postTask resume];
     } else {
@@ -823,6 +976,21 @@ NSMutableData * data;
     }
 
 }
+
+/*
+ archive the id of the activity after upload
+ */
+-(NSString *) getPostActivityFromData:(NSData *) data {
+    // convert the JSON to Space object (JSON string --> Dictionary --> Object.
+    NSError * error = nil;
+    id jsonObjects = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSString * activityId = [jsonObjects objectForKey:@"id"];
+    return activityId;
+}
+
+
+/*
+ */
 #pragma mark - BASE 64
 
 -(NSString *) authentificationBase64 {
@@ -879,90 +1047,95 @@ NSMutableData * data;
 
 /**/
 
--(void) checkForImageOrientation {
-    dispatch_queue_t concurrent_queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(concurrent_queue, ^{
-        if (postActivity.url!=nil || postActivity.fileData!=nil){
-            /*
-             A portrait photo is store as a landscape with orientation rotated 90d. The problem is the portal unable to detect this case. Solution creat a real portrait photo from this:
-             Get the metadata (TIFF, GPS, ...).
-             if Orientation is not normal (=1)
-             1. Save the metadata to mutable dictionary
-             2. Change property orientation to Normal
-             3. Creat a portrait photo from the provided photo.
-             4. Assign the metadata to this new photo.
-             */
-
-            
-            // Get the metadata (TIFF, GPS, ...).
-            CGImageSourceRef providedImageSourceRef;
-            if (postActivity.url != nil){
-                providedImageSourceRef = CGImageSourceCreateWithURL((CFURLRef)postActivity.url, NULL);
-            } else if (postActivity.fileData != nil){
-                providedImageSourceRef = CGImageSourceCreateWithData((CFDataRef) postActivity.fileData, NULL);
-            }
-            
-            NSDictionary * providedImageMetadata = (NSDictionary *) CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(providedImageSourceRef,0,NULL));
-            CFStringRef UTI = CGImageSourceGetType(providedImageSourceRef); //this is the type of image (e.g., public.jpeg)
-            NSDictionary *tiffDic =providedImageMetadata? [providedImageMetadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary] : nil;
-            
-            int orientation = (tiffDic == nil) ? kCGImagePropertyOrientationUp : [[tiffDic objectForKey:(NSString*)kCGImagePropertyOrientation] intValue];
-            
-            if (orientation != kCGImagePropertyOrientationUp) {
+-(void) checkForImageOrientationOfItem:(PostItem *) postItem {
+    // the check for orientation process only 1 time due on the limite of memory in extension.
+    if (!hasCheckForOrientation){
+        hasCheckForOrientation = YES;
+        dispatch_queue_t concurrent_queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(concurrent_queue, ^{
+            if (postItem.url!=nil || postItem.fileData!=nil){
+                /*
+                 A portrait photo is store as a landscape with orientation rotated 90d. The problem is the portal unable to detect this case. Solution creat a real portrait photo from this:
+                 Get the metadata (TIFF, GPS, ...).
+                 if Orientation is not normal (=1)
+                 1. Save the metadata to mutable dictionary
+                 2. Change property orientation to Normal
+                 3. Creat a portrait photo from the provided photo.
+                 4. Assign the metadata to this new photo.
+                 */
                 
-                //1. Save the metadata to mutable dictionary (tobe able to change the orientation value)
-                NSMutableDictionary *metadataAsMutable = [providedImageMetadata mutableCopy];
-                NSMutableDictionary * tiffMutableDic = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyTIFFDictionary]mutableCopy];
                 
-                // 2. Change property orientation to Normal
-                [metadataAsMutable setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
-                [tiffMutableDic setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
-                
-                [metadataAsMutable setValue:tiffMutableDic forKey:(NSString *)kCGImagePropertyTIFFDictionary];
-                
-                // 3. Creat a portrait photo from the provided photo.
-                NSData * photoData;
-                if (postActivity.url != nil){
-                    photoData = [NSData dataWithContentsOfURL:postActivity.url];
-                } else {
-                    photoData = postActivity.fileData;
-                }
-                UIImage * image = [UIImage imageWithData:photoData];
-                UIImage * img = [self rotateImage:image];
-                NSString * typeFile = (__bridge NSString *)(UTI);
-                if ([typeFile isEqualToString:@"public.png"]){
-                    photoData = UIImagePNGRepresentation(img);
-                    postActivity.fileExtension = @"png";
-                } else {
-                    photoData = UIImageJPEGRepresentation(img, kJPEGCompressionLevel);
-                    postActivity.fileExtension = @"jpg";
+                // Get the metadata (TIFF, GPS, ...).
+                CGImageSourceRef providedImageSourceRef;
+                if (postItem.url != nil){
+                    providedImageSourceRef = CGImageSourceCreateWithURL((CFURLRef)postItem.url, NULL);
+                } else if (postItem.fileData != nil){
+                    providedImageSourceRef = CGImageSourceCreateWithData((CFDataRef) postItem.fileData, NULL);
                 }
                 
-                //4. Assign the metadata to this new photo.
+                NSDictionary * providedImageMetadata = (NSDictionary *) CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(providedImageSourceRef,0,NULL));
+                CFStringRef UTI = CGImageSourceGetType(providedImageSourceRef); //this is the type of image (e.g., public.jpeg)
+                NSDictionary *tiffDic =providedImageMetadata? [providedImageMetadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary] : nil;
                 
-                CGImageSourceRef newPhotoSourceRef = CGImageSourceCreateWithData((CFDataRef)photoData,NULL);
-                //this will be the data CGImageDestinationRef will write into
-                NSMutableData * new_photoData = [NSMutableData data];
-                CGImageDestinationRef destination = CGImageDestinationCreateWithData((CFMutableDataRef)new_photoData,UTI,1,NULL);
+                int orientation = (tiffDic == nil) ? kCGImagePropertyOrientationUp : [[tiffDic objectForKey:(NSString*)kCGImagePropertyOrientation] intValue];
                 
-                if(destination) {
-                    //add the image contained in the image source to the destination, overidding the old metadata with our modified metadata
-                    CGImageDestinationAddImageFromSource(destination,newPhotoSourceRef,0, (CFDictionaryRef) metadataAsMutable);
+                if (orientation != kCGImagePropertyOrientationUp) {
                     
-                    //tell the destination to write the image data and metadata into our data object.
-                    //It will return false if something goes wrong
-                    BOOL success = NO;
-                    success = CGImageDestinationFinalize(destination);
+                    //1. Save the metadata to mutable dictionary (tobe able to change the orientation value)
+                    NSMutableDictionary *metadataAsMutable = [providedImageMetadata mutableCopy];
+                    NSMutableDictionary * tiffMutableDic = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyTIFFDictionary]mutableCopy];
                     
-                    if(success) {
-                        postActivity.fileData = new_photoData;
-                        postActivity.url = nil;
+                    // 2. Change property orientation to Normal
+                    [metadataAsMutable setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+                    [tiffMutableDic setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+                    
+                    [metadataAsMutable setValue:tiffMutableDic forKey:(NSString *)kCGImagePropertyTIFFDictionary];
+                    
+                    // 3. Creat a portrait photo from the provided photo.
+                    NSData * photoData;
+                    if (postItem.url != nil){
+                        photoData = [NSData dataWithContentsOfURL:postItem.url];
+                    } else {
+                        photoData = postItem.fileData;
                     }
+                    UIImage * image = [UIImage imageWithData:photoData];
+                    UIImage * img = [self rotateImage:image];
+                    NSString * typeFile = (__bridge NSString *)(UTI);
+                    if ([typeFile isEqualToString:@"public.png"]){
+                        photoData = UIImagePNGRepresentation(img);
+                        postItem.fileExtension = @"png";
+                    } else {
+                        photoData = UIImageJPEGRepresentation(img, kJPEGCompressionLevel);
+                        postItem.fileExtension = @"jpg";
+                    }
+                    
+                    //4. Assign the metadata to this new photo.
+                    
+                    CGImageSourceRef newPhotoSourceRef = CGImageSourceCreateWithData((CFDataRef)photoData,NULL);
+                    //this will be the data CGImageDestinationRef will write into
+                    NSMutableData * new_photoData = [NSMutableData data];
+                    CGImageDestinationRef destination = CGImageDestinationCreateWithData((CFMutableDataRef)new_photoData,UTI,1,NULL);
+                    
+                    if(destination) {
+                        //add the image contained in the image source to the destination, overidding the old metadata with our modified metadata
+                        CGImageDestinationAddImageFromSource(destination,newPhotoSourceRef,0, (CFDictionaryRef) metadataAsMutable);
+                        
+                        //tell the destination to write the image data and metadata into our data object.
+                        //It will return false if something goes wrong
+                        BOOL success = NO;
+                        success = CGImageDestinationFinalize(destination);
+                        
+                        if(success) {
+                            postItem.fileData = new_photoData;
+                            postItem.url = nil;
+                        }
+                    }
+                    
                 }
-                
             }
-        }
-    });
+        });
+        
+    }
 
 }
 - (UIImage *) rotateImage:(UIImage *)image {

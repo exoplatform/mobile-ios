@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  eXo
+
+  Created by Nguyen Manh Toan on 9/9/15.
+  Copyright (c) 2015 eXo Platform. All rights reserved.
+*/
+
+
+"All uploads failed" = "All uploads failed";
+
+"uploads failed" = "uploads failed";
+
+"upload failed" = "upload failed";
+
+"Cancel" = "Cancel";
+
+"Post" = "Post";
+
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
+
+"File too large" = "File too large";
+
+"Network error" = "Network error";
+
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";

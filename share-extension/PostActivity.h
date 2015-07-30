@@ -19,19 +19,13 @@
 
 
 #import <Foundation/Foundation.h>
-
+#import "PostItem.h"
 @interface PostActivity : NSObject
 
-@property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) NSURL * url; // could be URL in LINK Activity, FileURL or NSData for Post File Activity
-@property (nonatomic, retain) NSString * imageFromURL;
-@property (nonatomic, retain) NSData * fileData;
-@property (nonatomic, retain) NSString * fileExtension;
+@property (nonatomic, retain) NSMutableArray * items;
+@property (nonatomic, retain) NSMutableArray * successfulUploads;
 @property (nonatomic, retain) NSString * message;
-@property (nonatomic, retain) NSString * pageWebTitle; // in LINK Activty
-
--(NSString *) makeUploadFileName;
-#pragma mark - link activity
--(void) imageFromPageWeb;
-
+@property (nonatomic, retain) NSString * activityId;
+-(id) init;
+-(NSString *) getMessageError;
 @end

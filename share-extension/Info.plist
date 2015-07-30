@@ -26,6 +26,13 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>2.6.20150727</string>
+	<key>LSHasLocalizedDisplayName</key>
+	<true/>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>fr</string>
+	</array>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -33,17 +40,17 @@
 			<key>NSExtensionActivationRule</key>
 			<dict>
 				<key>NSExtensionActivationSupportsFileWithMaxCount</key>
-				<integer>1</integer>
+				<integer>10</integer>
 				<key>NSExtensionActivationSupportsImageWithMaxCount</key>
-				<integer>1</integer>
+				<integer>10</integer>
 				<key>NSExtensionActivationSupportsMovieWithMaxCount</key>
-				<integer>1</integer>
+				<integer>10</integer>
 				<key>NSExtensionActivationSupportsText</key>
 				<true/>
 				<key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
-				<integer>1</integer>
+				<integer>10</integer>
 				<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-				<integer>1</integer>
+				<integer>10</integer>
 			</dict>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
