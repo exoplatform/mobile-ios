@@ -20,4 +20,5 @@
 #import "AlreadyAccountViewController.h"
 
 @interface AlreadyAccountViewController_iPhone : AlreadyAccountViewController
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @end

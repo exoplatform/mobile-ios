@@ -23,6 +23,7 @@
 #import "eXoViewController.h"
 
 @interface OnPremiseViewController_iPhone ()
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -53,20 +54,16 @@
     [self.view addGestureRecognizer:tapGesure];
 
     // Notifies when the keyboard is shown/hidden
-//    if(![eXoViewController isHighScreen]) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidShowNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidHideNotification object:nil];
-//    }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide) name:UIKeyboardDidHideNotification object:nil];
+
+    self.scrollView.contentSize  =  CGRectInset(self.scrollView.frame,0,50).size;
+    self.scrollView.scrollEnabled = YES;
 }
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    // Notifies when the keyboard is shown/hidden
-    if(![eXoViewController isHighScreen]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(manageKeyboardPremise:) name:UIKeyboardDidHideNotification object:nil];
-    }
     
     CGRect viewRect = self.view.frame;
     viewRect.origin.y = 0;
@@ -84,7 +81,12 @@
 }
 
 
-
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
+    [_scrollView release];
+    [super dealloc];
+}
 #pragma mark LoginProxyDelegate methods
 
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
@@ -104,36 +106,11 @@
 }
 
 #pragma mark - Keyboard management
-
--(void)manageKeyboardPremise:(NSNotification *) notif {
-    if (notif.name == UIKeyboardDidShowNotification) {
-        [self setViewMovedUpPremise:YES];
-    } else if (notif.name == UIKeyboardDidHideNotification) {
-        [self setViewMovedUpPremise:NO];
-    }
+- (void) keyboardDidShow {
+    [self.scrollView setContentOffset:CGPointMake(0, scrollHeight) animated:YES];
 }
-
--(void)setViewMovedUpPremise:(BOOL)movedUp
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    CGRect viewRect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        viewRect.origin.y -= scrollHeight;
-    }
-    else
-    {
-        if (viewRect.origin.y < 0) {
-            viewRect.origin.y += scrollHeight;
-        }
-        
-    }
-    self.view.frame = viewRect;
-    [UIView commitAnimations];
+- (void) keyboardDidHide {
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void) dismissKeyboards
