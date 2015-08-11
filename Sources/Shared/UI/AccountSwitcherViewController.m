@@ -112,6 +112,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     [[ApplicationPreferencesManager sharedInstance] setSelectedServerIndex:index];
     self.login = [[LoginProxy alloc] initWithDelegate:self username:account.username password:account.password serverUrl:account.serverUrl];
     [self.login authenticate];
+    [self doneAction];
 }
 
 #pragma mark Table View methods
