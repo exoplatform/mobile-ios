@@ -54,7 +54,7 @@
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
-    NSArray *colors = @[(id) startColor, (id) endColor];
+    NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
@@ -97,12 +97,7 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
-    [_viewControllers release];
-    [_revealView release];
-    [_tableView release];
-    [_userProfileViewController release];
     self.accountSwitcherButton = nil;
-    [super dealloc];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -144,13 +139,13 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]];
     
     // Create a default style RevealSidebarView
-    _revealView = [[JTRevealSidebarView defaultViewWithFrame:self.view.bounds] retain];
+    _revealView = [JTRevealSidebarView defaultViewWithFrame:self.view.bounds];
 
     // This hack to handle the navigation actions.
     _revealView.contentView.navigationBar.delegate = self;
     
     CGRect sidebarBounds = _revealView.sidebarView.bounds;
-    UIView *containerView = [[[UIView alloc] initWithFrame:sidebarBounds] autorelease];
+                   UIView *containerView = [[UIView alloc] initWithFrame:sidebarBounds];
     containerView.backgroundColor = [UIColor clearColor];
 
     [_revealView.sidebarView pushView:containerView animated:NO];
@@ -168,7 +163,7 @@
     // Setup a view to be the rootView of the sidebar
     CGRect tableFrame = CGRectOffset(sidebarBounds, 0, profileFrame.size.height);
     tableFrame.size.height -= profileFrame.size.height;
-    self.tableView = [[[UITableView alloc] initWithFrame:tableFrame] autorelease];
+    self.tableView = [[UITableView alloc] initWithFrame:tableFrame];
     self.tableView.scrollsToTop = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.rowHeight = [UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"].size.height;
@@ -180,7 +175,6 @@
     //Add the ActivityStream as main view
     ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
     [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
-    [_activityStreamBrowseViewController_iPhone release];
     [_revealView revealSidebar:NO];
     rowType = eXoActivityStream;
     
@@ -245,7 +239,6 @@
     UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kFooterViewWidth, 1)];
     topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
     [footer addSubview:topLine];
-    [topLine release];
     
     [_revealView.sidebarView addSubview:footer];
     
@@ -255,7 +248,7 @@
     tmpButton.frame = CGRectMake(0, 0, barButtonImage.size.width, barButtonImage.size.height);
     [tmpButton setImage:barButtonImage forState:UIControlStateNormal];
     [tmpButton addTarget:self action:@selector(toggleButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
-    _revealView.contentView.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:tmpButton] autorelease];
+    _revealView.contentView.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tmpButton];
     
     [self.view addSubview:_revealView];
     
@@ -292,8 +285,7 @@
     AccountSwitcherViewController_iPhone* accountSwitcher = [[AccountSwitcherViewController_iPhone alloc] initWithStyle:UITableViewStyleGrouped];
     accountSwitcher.accountSwitcherDelegate = self;
     
-    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:accountSwitcher] autorelease];
-    [accountSwitcher release];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountSwitcher];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:navController animated:YES completion:nil];
@@ -306,13 +298,13 @@
 - (void)toggleButtonPressed:(id)sender {
     [_revealView revealSidebar: ! [_revealView isSidebarShowing]];
     if ([_revealView isSidebarShowing]){
-        UIView * coverView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
-        UITapGestureRecognizer * tapGesture = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)] autorelease];
+        UIView * coverView = [[UIView alloc] initWithFrame:self.view.frame];
+        UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)];
         tapGesture.numberOfTapsRequired =1;
         [coverView addGestureRecognizer:tapGesture];
         coverView.backgroundColor = [UIColor clearColor];
         
-        UISwipeGestureRecognizer * swipeGesture = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)] autorelease];
+        UISwipeGestureRecognizer * swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeLeftMenu:)];
         swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
         [coverView addGestureRecognizer:swipeGesture];
 
@@ -336,7 +328,6 @@
     subview.backgroundColor = [UIColor blueColor];
     subview.title           = @"Pushed Subview";
     [_revealView.contentView pushView:subview animated:YES];
-    [subview release];
 }
 
 
@@ -365,7 +356,7 @@
 }
 
 - (void)initAndSelectDocumentsViewController {
-    DocumentsViewController_iPhone *documentsViewController = [[[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil] autorelease];
+    DocumentsViewController_iPhone *documentsViewController = [[DocumentsViewController_iPhone alloc] initWithNibName:@"DocumentsViewController_iPhone" bundle:nil];
     documentsViewController.isRoot = YES;
     [self setRootViewController:documentsViewController animated:NO];
 }
@@ -491,14 +482,13 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
            
             cell.clipsToBounds = YES;
             
             UIView* bgView = [[UIView alloc] init];
             bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"]];
             cell.selectedBackgroundView = bgView;
-            [bgView release];
             cell.backgroundColor = [UIColor clearColor];
             cell.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
             cell.textLabel.shadowOffset = CGSizeMake(0, 2);
@@ -514,7 +504,6 @@
             bottomLine.frame = CGRectMake(0, cell.bounds.size.height - lineImg.size.height, cell.bounds.size.width, lineImg.size.height);
             bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
             [cell addSubview:bottomLine];
-            [bottomLine release];
         }
         if ([(datasource.sections)[0] indexOfObject:object] == 0) {
             // Generate the top separator line for the first cell 
@@ -525,7 +514,6 @@
             topLine.frame = CGRectMake(0, 0, cell.bounds.size.width, lineImg.size.height);
             topLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
             [cell addSubview:topLine];
-            [topLine release];
         } else {
             [[cell viewWithTag:999] removeFromSuperview];
         }
@@ -535,7 +523,7 @@
         if ([(JTTableViewCellModalSimpleType *)object type] == eXoSettings) {
             cell.accessoryView = nil;
         } else {
-            cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]] autorelease];
+            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]];
         }
         
         switch ([(JTTableViewCellModalSimpleType *)object type]) {
@@ -585,7 +573,7 @@
             
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if (cell == nil) {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [custom info][@"title"];
@@ -600,7 +588,7 @@
         id <JTTableViewCellModalCustom> custom = (id)object;
         JTTableViewDatasource *datasource = (JTTableViewDatasource *)[custom info][@"datasource"];
         if (datasource) {
-            UITableView *tableView = [[[UITableView alloc] initWithFrame:_revealView.sidebarView.bounds] autorelease];
+            UITableView *tableView = [[UITableView alloc] initWithFrame:_revealView.sidebarView.bounds];
             tableView.delegate   = datasource;
             tableView.dataSource = datasource;
             tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -617,14 +605,13 @@
                 ActivityStreamBrowseViewController_iPhone* _activityStreamBrowseViewController_iPhone = [[ActivityStreamBrowseViewController_iPhone alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPhone" bundle:nil];
                 
                 [self setRootViewController:_activityStreamBrowseViewController_iPhone animated:YES];
-                [_activityStreamBrowseViewController_iPhone release];
                 [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
             }
                 break;
             case eXoDashboard:
             {
-                DashboardViewController_iPhone *dashboardController = [[[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil] autorelease];
+                DashboardViewController_iPhone *dashboardController = [[DashboardViewController_iPhone alloc] initWithNibName:@"DashboardViewController_iPhone" bundle:nil];
                 [self setRootViewController:dashboardController animated:NO];
                 [self closeLeftMenu:nil];
                 rowType = [(JTTableViewCellModalSimpleType *)object type];
@@ -635,8 +622,7 @@
                 SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 settingsViewController.settingsDelegate = self;
                 [settingsViewController startRetrieve];
-                UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:settingsViewController] autorelease];
-                [settingsViewController release];
+                UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
                 
                 navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
                 

@@ -63,21 +63,11 @@
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = button;
-    [button release];
 }
 
 - (void)dealloc
 {
-    [super dealloc];
-    [passwordTf release];
-    [usernameTf release];
-    [serverUrlTf release];
-   
     _hud = nil;
-    [_hud release];
-    
-    [_loginButton release];
-    [containerView release];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -97,7 +87,7 @@
         LoginProxy *loginProxy = [[LoginProxy alloc] initWithDelegate:self username:self.usernameTf.text password:self.passwordTf.text serverUrl:correctUrl];
         [loginProxy authenticate];
     } else {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"Please enter a valid url" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:@"Please enter a valid url" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
 }
@@ -119,7 +109,6 @@
     UIAlertView *alert = [LoginProxyAlert alertWithError:error andDelegate:self];
     alert.tag = kAlertViewTag;
     [alert show];
-    [alert release];
 }
 
 - (void)loginProxy:(LoginProxy *)proxy platformVersionCompatibleWithSocialFeatures:(BOOL)compatibleWithSocial withServerInformation:(PlatformServerVersion *)platformServerVersion
@@ -203,8 +192,6 @@
     [self.containerView addSubview:serverInstruction];
     [self.containerView addSubview:credentialsIntruction];
     
-    [serverInstruction release];
-    [credentialsIntruction release];
 }
 #pragma mark - Keyboard management
 

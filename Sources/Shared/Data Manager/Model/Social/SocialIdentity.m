@@ -25,11 +25,6 @@
 @synthesize identity = _identity;
 
 
-- (void)dealloc {
-    [_identity release];
-    [super dealloc];
-}
-
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@",_identity];

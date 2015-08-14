@@ -76,7 +76,6 @@
 - (void)dealloc {
     self.first = nil;
     self.orientation = nil;
-    [super dealloc];
 }
 
 @end

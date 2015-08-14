@@ -24,7 +24,6 @@
 @class SocialActivity;
 @class SocialUserProfile;
 @interface ActivityDetailLikeTableViewCell : UITableViewCell {
-    id                      _delegate;
 }
 
 @property (retain, nonatomic) SocialActivity *socialActivity;

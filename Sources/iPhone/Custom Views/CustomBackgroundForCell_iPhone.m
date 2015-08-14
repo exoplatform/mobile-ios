@@ -112,10 +112,6 @@
     [self setBackgroundView:imgVCellBGNormal];
     [self setSelectedBackgroundView:imgVCellBGSelected];
 
-    
-    [imgVCellBGNormal release];
-    [imgVCellBGSelected release];
-    
 }
 
 

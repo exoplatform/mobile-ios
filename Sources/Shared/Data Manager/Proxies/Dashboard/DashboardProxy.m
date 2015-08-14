@@ -43,9 +43,6 @@
         
     _delegate = nil;
     _gadgetsProxy.delegate = nil;
-    [_gadgetsProxy release];
-    [_setOfDashboardsToRetrieveGadgets release];
-    [super dealloc];
 }
 
 

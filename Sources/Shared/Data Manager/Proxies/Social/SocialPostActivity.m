@@ -27,23 +27,17 @@
 @implementation SocialPostActivity
 
 @synthesize text=_text;
-
 #pragma - Object Management
 
 -(instancetype)init {
     if ((self=[super init])) {
         //Default behavior
-        _text = [@"" retain];
+        _text = @"";
     }
     return self;
 }
 
 
-
-- (void) dealloc {
-    [_text release];
-    [super dealloc];
-}
 
 
 #pragma mark - helper methods
@@ -60,8 +54,8 @@
     }
     
     if (space && !space.spaceId){
-        if (delegate && [delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
-            [delegate proxy:self didFailWithError:nil];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
+            [self.delegate proxy:self didFailWithError:nil];
         }
         return;
     }
@@ -184,7 +178,6 @@
                  }
      ];
     
-    [activity release];
 }
 
 @end

@@ -53,7 +53,7 @@ static short fileActionMode = 0;//1:copy, 2:move
         self.preferredContentSize = kPreferredContentSize;
         fileActionsDelegate = actionsDelegate;
         
-		_file = [fileForActions retain];
+        _file = fileForActions;
 		_deleteFolderEnable = enableDeleteFolder;
         _createFolderEnable = enableCreateFolder;
         _renameFileEnable = enableRenameFile;
@@ -74,26 +74,11 @@ static short fileActionMode = 0;//1:copy, 2:move
 
 - (void)setFileToApplyAction:(File *)fileToApplyAction {
     
-    [_file release];
-    _file = [fileToApplyAction retain];
+    _file = fileToApplyAction;
     [self.tblFileAction reloadData];
     
 }
 
-
-- (void)dealloc
-{
-    
-    [_file release];	//file, folder info
-    _file = nil;
-    
-    [_tblFileAction release]; 
-	_tblFileAction = nil;
-    
-    fileActionsDelegate = nil;
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -161,7 +146,7 @@ static short fileActionMode = 0;//1:copy, 2:move
 	long row = indexPath.row;
     
 	if(cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier]autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
         if(section == 0) {
             [cell.textLabel setFont:[UIFont fontWithName:@"Helvetica" size:15.0]];
             [cell.textLabel setBackgroundColor:[UIColor clearColor]];
@@ -171,7 +156,6 @@ static short fileActionMode = 0;//1:copy, 2:move
             [tmpButton setBackgroundImage:[UIImage imageNamed:@"cancelitem"] forState:UIControlStateNormal];
             [tmpButton setTitle:_strCancel forState:UIControlStateNormal];
             [cell setBackgroundView:tmpButton];
-            [tmpButton release];
         }
     }
     
@@ -263,7 +247,6 @@ static short fileActionMode = 0;//1:copy, 2:move
     UIView *view = [[UIView alloc] initWithFrame:cell.frame];
     view.backgroundColor = [UIColor lightGrayColor];
 	cell.selectedBackgroundView = view;
-    [view release];
 	
 	return cell;
 }
@@ -283,15 +266,13 @@ static short fileActionMode = 0;//1:copy, 2:move
 		else if(row == 1)
 		{
             fileActionMode = 1;
-            [copyMoveFile release];
-			copyMoveFile = [_file retain];
+            copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
 		else if(row == 2)
 		{
 			fileActionMode = 2;
-            [copyMoveFile release];
-			copyMoveFile = [_file retain];
+            copyMoveFile = _file;
             [fileActionsDelegate moveOrCopyActionIsSelected];
 		}
 		else if(row == 3)
@@ -308,8 +289,7 @@ static short fileActionMode = 0;//1:copy, 2:move
                                       toDestination:[NSString stringWithFormat:@"%@/%@", _file.path, [copyMoveFile.path lastPathComponent]]];
 				
 			}
-            [copyMoveFile release];
-            copyMoveFile = nil;
+
             fileActionMode = 0;
 			
 		}

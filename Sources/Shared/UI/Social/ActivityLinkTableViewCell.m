@@ -98,12 +98,6 @@
     self.htmlLinkDescription = nil;
     self.htmlLinkMessage = nil;
     
-    [_imageViewHeightConstraint release];
-    [_htmlActivityMessage release];
-    [_htmlLinkTitle release];
-    [_htmlLinkDescription release];
-    [_htmlLinkMessage release];
-    [super dealloc];
 }
 
 

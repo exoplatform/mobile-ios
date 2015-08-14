@@ -41,11 +41,6 @@
 @synthesize noCommentCell = _noCommentCell;
 @synthesize likeViewCell = _likeViewCell;
 
-- (void)dealloc {
-    [_noCommentCell release];
-    [_likeViewCell release];
-    [super dealloc];
-}
 
 - (UITableViewCell *)noCommentCell {
     if (!_noCommentCell) {
@@ -53,7 +48,7 @@
         _noCommentCell = [[UITableViewCell alloc] init];
         _noCommentCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _noCommentCell.bounds = cellBounds;
-        EmptyView *emptyView = [[[EmptyView alloc] initWithFrame:_noCommentCell.bounds withImageName:@"IconForNoActivities" andContent:Localize(@"NoComment")] autorelease];
+        EmptyView *emptyView = [[EmptyView alloc] initWithFrame:_noCommentCell.bounds withImageName:@"IconForNoActivities" andContent:Localize(@"NoComment")];
         emptyView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
         [_noCommentCell.contentView addSubview:emptyView];
     }
@@ -104,8 +99,7 @@
     messageComposerViewController.isPostMessage = NO;
     messageComposerViewController.strActivityID = self.socialActivity.activityId;
     
-    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
-    [messageComposerViewController release];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
@@ -156,10 +150,10 @@
             break;
     }
     
-    ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] 
+    ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc]
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
-                                                                       url:url] autorelease];
+                                                                       url:url];
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
     
@@ -169,7 +163,7 @@
 -(void) gotoEmbededURL:(UITapGestureRecognizer *)gesture {
     if (self.socialActivity.embeddedURL) {
         NSURL *url = [NSURL URLWithString:self.socialActivity.embeddedURL];
-        ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone" bundle:nil url:url] autorelease];
+        ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone" bundle:nil url:url];
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
     }
@@ -179,10 +173,10 @@
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     //CAPTURE USER LINK-CLICK.
     if(navigationType == UIWebViewNavigationTypeLinkClicked) {
-		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] 
+		ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[ActivityLinkDisplayViewController_iPhone alloc]
                                                                        initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone"
                                                                        bundle:nil 
-                                                                       url:[request URL]] autorelease];
+                                                                       url:[request URL]];
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES]; 
         return NO;
@@ -248,7 +242,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {        
-        ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
+        ActivityLikersViewController *likersView = [[ActivityLikersViewController alloc] init];
         likersView.socialActivity = self.socialActivity;
         NSString *likerLabel = (self.socialActivity.totalNumberOfLikes <= 1) ? @"numOfLiker" : @"numOfLikers";
         likersView.view.title = [NSString stringWithFormat:Localize(likerLabel), self.socialActivity.totalNumberOfLikes];

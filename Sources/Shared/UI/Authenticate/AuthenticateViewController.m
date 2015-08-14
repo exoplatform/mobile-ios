@@ -36,21 +36,6 @@
 @synthesize credentialsViewController = _credViewController;
 @synthesize accountListViewController = _servListViewController;
 
-- (void)dealloc 
-{
-    [_tabView release];
-    _loginProxy.delegate = nil;
-    [_loginProxy release];
-    [_hud release];
-    [_tempUsername release];
-    [_tempPassword release];
-    self.credentialsViewController = nil;
-    self.accountListViewController = nil;
-    self.loginProxy = nil;
-    self.tabView = nil;
-    [super dealloc];	
-}
-
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -82,7 +67,7 @@
     self.tabView = [[AuthenticateTabView alloc] initWithFrame:CGRectZero];
     self.tabView.delegate = self;
     [self.tabView setBackgroundLayer:nil];
-    [self.tabView setSelectionView:[[[AuthSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
+    [self.tabView setSelectionView:[[AuthSelectionView alloc] initWithFrame:CGRectZero]];
     
     // Initializing the tabs and corresponding sub views
     [self initTabsAndViews];
@@ -102,7 +87,7 @@
     _strBSuccessful = @"NO";
 
     //Add tap gesture to dismiss keyboard
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
+    UITapGestureRecognizer *tapGesure = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [tapGesure setCancelsTouchesInView:NO]; // Do not cancel touch processes on subviews
     [self.view addGestureRecognizer:tapGesure];
     
@@ -173,7 +158,6 @@
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _hud = nil; // release here so it will be re-init next login to avoid orientation issue in MOB-1452
-    [_hud release];
 }
 
 -(void) initTabsAndViews
@@ -185,13 +169,13 @@
 {
     [self.tabView setShowSwitcherTab:[[ApplicationPreferencesManager sharedInstance] twoOrMoreAccountsExist]];
 }
-
+-(void) dealloc {
+    _loginProxy.delegate = nil;
+}
 #pragma mark - Username Password textfields management
 
 -(void) saveTempUsernamePassword {
-    [_tempUsername release];
     _tempUsername = [_credViewController.txtfUsername.text copy];
-    [_tempPassword release];
     _tempPassword = [_credViewController.txtfPassword.text copy];
 }
 
@@ -231,7 +215,6 @@
 
 - (void)didReceiveMemoryWarning 
 {
-    [_hud release];
     _hud = nil;
     [super didReceiveMemoryWarning];
 }
@@ -272,7 +255,6 @@
     [self.hud setHidden:YES];
     UIAlertView *alert = [LoginProxyAlert alertWithError:error andDelegate:self];
     [alert show];
-    [alert release];
 }
 
 #pragma mark - authentication process 
@@ -290,7 +272,7 @@
     NSString* username = [_credViewController.txtfUsername text];
     NSString* password = [_credViewController.txtfPassword text];
     
-    self.loginProxy = [[[LoginProxy alloc] initWithDelegate:self username:username password:password] autorelease];
+    self.loginProxy = [[LoginProxy alloc] initWithDelegate:self username:username password:password];
     
 	NSString *selectedServer = [[ApplicationPreferencesManager sharedInstance] selectedDomain];
     if([selectedServer rangeOfString:EXO_CLOUD_HOST].location != NSNotFound) {
@@ -417,7 +399,7 @@
 
 - (void)showAlert:(NSString *)message
 {
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 @end

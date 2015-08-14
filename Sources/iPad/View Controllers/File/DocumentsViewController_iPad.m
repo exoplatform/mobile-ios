@@ -82,8 +82,6 @@
         UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithCustomView:bt];
         actionButton.width = image.size.width;
         [_navigation.topItem setRightBarButtonItem:actionButton];
-        
-        [actionButton release];
     }
 }
 
@@ -92,12 +90,10 @@
     ExoStackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
     NSInteger viewIndex = [stackScrollVC.viewControllersStack indexOfObject:self];
     if (viewIndex != NSNotFound) {
-        DocumentsViewController *parentController = viewIndex > 0 ? [(stackScrollVC.viewControllersStack)[viewIndex - 1] retain] : nil;
+        DocumentsViewController *parentController = viewIndex > 0 ? (stackScrollVC.viewControllersStack)[viewIndex - 1] : nil;
         [stackScrollVC removeViewFromController:parentController];
         // Reload the content of the parent view.
         [parentController startRetrieveDirectoryContent];
-        [parentController release];
-        
     }
 }
 
@@ -109,7 +105,7 @@
     picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationFormSheet;
-    self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:picker] autorelease];
+    self.popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:picker];
     self.popoverPhotoLibraryController.delegate = self;
     
     if(displayActionDialogAtRect.size.width == 0) {
@@ -147,11 +143,7 @@
 }
 
 -(void)dealloc {
-    if(_actionPopoverController != nil){
-        [_actionPopoverController release];
-    }
     [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
-    [super dealloc];
 }
 
 
@@ -176,7 +168,6 @@
     
     //Display the UIPopoverController
     [_actionPopoverController dismissPopoverAnimated:NO];
-    [_actionPopoverController release];
 	_actionPopoverController = [[WEPopoverController alloc] initWithContentViewController:fileActionsViewController];
     _actionPopoverController.delegate = self;
     // set Properties (Border in black gradient)
@@ -185,7 +176,6 @@
 //	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
 	[_actionPopoverController presentPopoverFromRect:frame inView:cell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 
-    [fileActionsViewController release];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -218,8 +208,7 @@
         newViewControllerForFilesBrowsing.title = fileToBrowse.name;
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:newViewControllerForFilesBrowsing invokeByController:self isStackStartView:FALSE];
         
-        [newViewControllerForFilesBrowsing release];
-	}
+    }
 	else
 	{
          NSURL *urlOfTheFileToOpen = [NSURL URLWithString:[fileToBrowse.path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -231,8 +220,6 @@
 		
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:contentViewController invokeByController:self isStackStartView:FALSE];
         
-        [contentViewController release];
-        
     }
 }
 
@@ -242,7 +229,6 @@
 -(void) showActionsPanelFromNavigationBarButton:(id)sender {
     if (_actionPopoverController.popoverVisible) {
         [_actionPopoverController dismissPopoverAnimated:YES];
-        [_actionPopoverController release];
         _actionPopoverController = nil;
         return;
     }
@@ -261,7 +247,6 @@
     fileToApplyAction = _rootFile;
     //Create the Popover to display potential actions to the user
     [_actionPopoverController dismissPopoverAnimated:NO];
-    [_actionPopoverController release];
     _actionPopoverController = [[WEPopoverController alloc] initWithContentViewController:fileActionsViewController];
     //set its size
 //	[_actionPopoverController setPopoverContentSize:CGSizeMake(240, 280) animated:YES];
@@ -274,9 +259,6 @@
 	[_actionPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem
                                      permittedArrowDirections:UIPopoverArrowDirectionUp
                                                      animated:YES];
-    
-    //Release the useless controller
-    [fileActionsViewController release];
     
     //Prevent any new tap on the button
 //    _navigation.topItem.rightBarButtonItem.enabled = YES;
@@ -302,7 +284,7 @@
         _fileFolderActionsPopoverController = nil;
     }
     
-    FileFolderActionsViewController_iPad *fileFolderActionsController = [[[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil] autorelease];
+    FileFolderActionsViewController_iPad *fileFolderActionsController = [[FileFolderActionsViewController_iPad alloc] initWithNibName:@"FileFolderActionsViewController_iPad" bundle:nil];
     //[_optionsViewController setDelegate:self];
     [fileFolderActionsController setIsNewFolder:createNewFolder];
     [fileFolderActionsController setNameInputStr:@""];
@@ -336,11 +318,6 @@
     //Enable the button on the navigationBar
     _navigation.topItem.rightBarButtonItem.enabled = YES;
     
-    
-    //Release the _actionPopoverController
-    [_actionPopoverController release];
-    _actionPopoverController = nil;
-
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(WEPopoverController *)thePopoverController {

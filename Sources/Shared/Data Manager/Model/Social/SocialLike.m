@@ -25,8 +25,4 @@
 @synthesize like=_like;
 
 
--(void)dealloc {
-    [super dealloc];
-}
-
 @end
