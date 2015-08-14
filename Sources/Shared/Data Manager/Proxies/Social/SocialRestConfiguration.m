@@ -80,18 +80,6 @@
 	return self;
 }
 
-- (void) dealloc
-{
-	[_domainName release];
-    [_portalContainerName release];
-    [_restContextName release];
-    [_restVersion release];
-    [_username release];
-    [_password release];
-	[super dealloc];
-}
-
-
 
 
 @end

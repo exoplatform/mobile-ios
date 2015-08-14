@@ -62,22 +62,6 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
 }
 
 
-- (void)dealloc {
-    
-    [_path release];
-    [_name release];
-    [_currentFolder release];
-    [_driveName release];
-    [_workspaceName release];
-    [_nodeType release];
-    [_creator release];
-    [_dateCreated release];
-    [_dateModified release];
-    [_naturalName release];
-    _naturalName = nil;
-    [super dealloc];
-}
-
 /*!
  @return the title of the folder/file
  */
@@ -122,10 +106,6 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
         }
     }
    [s replaceOccurrencesOfString:@"EXo" withString:@"eXo" options:NSLiteralSearch range:NSMakeRange(0,s.length)];
-
-    if (_naturalName) {
-        [_naturalName release];
-    }
     
     NSRange spaceRange = [s rangeOfString:@"Spaces"];
     if (spaceRange.location !=NSNotFound && spaceRange.location == 0 && spaceRange.length+1<s.length){
@@ -133,7 +113,6 @@ creator=_creator, dateCreated=_dateCreated, dateModified=_dateModified, size=_si
     } else {
         _naturalName = s;
     }
-    [_naturalName retain];
     return _naturalName;
 }
 

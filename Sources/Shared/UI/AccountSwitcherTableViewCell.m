@@ -76,7 +76,6 @@
     self.accountUserFullNameLabel = nil;
     self.accountUsernameLabel = nil;
     self.accountLastLoginDateLabel = nil;
-    [super dealloc];
 }
 
 @end

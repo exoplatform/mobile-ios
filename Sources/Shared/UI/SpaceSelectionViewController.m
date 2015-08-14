@@ -54,7 +54,6 @@
     self.socialSpaceProxy = nil;
     self.mySpaces = nil;
     self.headerTitle = nil;
-    [super dealloc];
 }
 #pragma mark - Table view data source
 
@@ -117,7 +116,7 @@
 -(void) proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {
     [self hideLoaderImmediately:NO];
     NSString * alertMessage = Localize(@"CannotLoadSpace");
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil];
     
     [alertView show];
 

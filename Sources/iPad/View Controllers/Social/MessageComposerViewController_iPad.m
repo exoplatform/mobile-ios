@@ -41,10 +41,6 @@
     self.hudLoadWaiting.center = CGPointMake(self.view.center.x, self.view.center.y-70);
 }
 
--(void)dealloc 
-{
-    [super dealloc];
-}
 
 - (void)showActionSheetForPhotoAttachment
 {
@@ -74,9 +70,7 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakeAPicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
     }
-    [thePicker release];
 }
 
 - (void)onBtnPhotoLibrary

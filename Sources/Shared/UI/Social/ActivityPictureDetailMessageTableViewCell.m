@@ -147,8 +147,4 @@
     
 }
 
--(void) dealloc {
-    [_lbFileName release];
-    [super dealloc];
-}
 @end

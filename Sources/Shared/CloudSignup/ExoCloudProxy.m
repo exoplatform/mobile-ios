@@ -211,7 +211,6 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 
 - (void)dealloc
 {
-    [super dealloc];
     self.email = nil;
     self.tenantName = nil;
     self.username = nil;

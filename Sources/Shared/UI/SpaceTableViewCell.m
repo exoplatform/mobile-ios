@@ -39,7 +39,6 @@
     _prefixLabel = nil;
     _spaceAvatar = nil;
     _spaceName = nil;
-    [super dealloc];
 }
 
 -(void) setSpace:(SocialSpace *)space {

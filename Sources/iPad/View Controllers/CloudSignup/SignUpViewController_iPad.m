@@ -43,7 +43,6 @@
     self.title = @"Get Started";
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     self.navigationItem.rightBarButtonItem = button;
-    [button release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,9 +69,6 @@
     
     [self.view addSubview:viewContainer];
     
-    [mailInputViewController release];
-    [greetingViewController release];
-    [viewContainer release];
 }
 
 - (BOOL)disablesAutomaticKeyboardDismissal

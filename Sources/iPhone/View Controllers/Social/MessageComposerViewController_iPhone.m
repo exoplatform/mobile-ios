@@ -37,7 +37,6 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto") delegate:self cancelButtonTitle:Localize(@"Cancel") destructiveButtonTitle:nil  otherButtonTitles:Localize(@"TakeAPicture"), Localize(@"PhotoLibrary"), nil, nil];
     [actionSheet showInView:self.view];
     
-    [actionSheet release];
 }
 
 - (void)updateHudPosition {

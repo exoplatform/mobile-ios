@@ -89,9 +89,6 @@
 
 - (void)dealloc {
     _lbTitle = nil;
-    [_lbTitle release];
-
-    [super dealloc];
 }
 
 @end

@@ -32,7 +32,6 @@
     self.displayName = nil;
     self.url = nil;
     self.spaceUrl = nil;
-    [super dealloc];
 }
 -(NSString *) description {
     return [NSString stringWithFormat:@"[name : %@] [url : %@] [id : %@]", self.name, self.url, self.spaceId];

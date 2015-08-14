@@ -38,13 +38,7 @@
 @synthesize panelBackground = _panelBackground;
 
 -(void)dealloc {
-    [_txtfPassword release];
-    [_txtfUsername release];
-    [_btnLogin release];
-    [_authViewController release];
-    [_panelBackground release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -67,7 +61,7 @@
     
     
     /* Add tap gesture to dismiss keyboard */
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)] autorelease];
+    UITapGestureRecognizer *tapGesure = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
     
@@ -154,7 +148,7 @@
 
 - (IBAction)onSignInBtn:(id)sender
 {
-    NSMutableString* errorMessage = [[[NSMutableString alloc] initWithString:@""] autorelease];
+    NSMutableString* errorMessage = [[NSMutableString alloc] initWithString:@""];
     BOOL shouldSignIn = YES;
     
     if ([self.txtfUsername.text isEqualToString:@""]) {
@@ -185,7 +179,6 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles: nil];
 		[alert show];
-		[alert release];
     }
 }
 

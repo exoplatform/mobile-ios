@@ -87,7 +87,6 @@
     if(!accountConfigured) {
         WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
-        [welcomeVC release];
     }
     
     navigationController.navigationBarHidden = YES;
@@ -146,21 +145,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
-
-- (void)dealloc {
-	
-	[navigationController release];
-    navigationController = nil;
-    
-    [_authenticateViewController release];
-    _authenticateViewController = nil;
-    
-        
-    [window release];
-    window = nil;
-    
-    [super dealloc];
-}
 
 - (void)onBtnSigtOutDelegate {
     

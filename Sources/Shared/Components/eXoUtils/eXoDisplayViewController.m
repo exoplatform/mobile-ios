@@ -104,8 +104,6 @@
                                           completion:^(BOOL finished){
                                           }];
                      }];
-    
-    [viewController release];
 }
 
 
@@ -148,7 +146,7 @@
         // Fullscreen feature is available only on iPad
         // So we must display the fullscreen button instead of the indicator
         self.navigation.topItem.rightBarButtonItem = nil;
-        self.navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)] autorelease];
+        self.navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Fullscreen") style:UIBarButtonItemStylePlain target:self action:@selector(fullScreen)];
     } else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) {
         // On iPhone we just remove the indicator
         JTNavigationBar* _iPhoneNavBar = [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar;
@@ -167,10 +165,10 @@
     self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     // Position the indicator at the right of the navigation bar
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.navigation.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator] autorelease];
+        self.navigation.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator];
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         JTNavigationBar* _iPhoneNavBar = [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar;
-        _iPhoneNavBar.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator] autorelease];
+        _iPhoneNavBar.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.loadingIndicator];
     }
     // Start the animation
     [self.loadingIndicator startAnimating];
@@ -193,7 +191,6 @@
     self.navigationBar = nil;
     self.loadingIndicator = nil;
     self.fullscreen = nil;
-    [super dealloc];
 }
 
 //Test for rotation management
@@ -242,9 +239,7 @@
 	{
         EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForUnreadableFile.png" andContent:Localize(@"UnreadableFile")];
         emptyView.tag = TAG_EMPTY;
-        [self.view addSubview:emptyView];
-        [emptyView release];
-        
+        [self.view addSubview:emptyView];        
     }
 }
 
