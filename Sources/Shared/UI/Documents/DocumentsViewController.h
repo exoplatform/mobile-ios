@@ -31,7 +31,6 @@
 
 @interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate, FilesProxyDelegate> {
     
-    DocumentsViewController *_parentController;
     File *_rootFile;
     
     NSMutableDictionary *_dicContentOfFolder;

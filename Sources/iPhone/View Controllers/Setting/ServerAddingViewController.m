@@ -42,17 +42,6 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     return self;
 }
 
-- (void)dealloc
-{
-    [_strServerName release];
-    [_strServerUrl release];
-    [_txtfServerName release];
-    [_txtfServerUrl release];
-    [_usernameTf release];
-    [_passwordTf release];
-    [super dealloc];
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -127,7 +116,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 + (UITextField*)textInputFieldForCellWithSecure:(BOOL)secure andRequired:(BOOL)isRequired
 {
-    UITextField* textField = [[[UITextField alloc] initWithFrame:CGRectMake(120, 14, 190, 21)] autorelease];
+    UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(120, 14, 190, 21)];
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.autoresizingMask =  UIViewAutoresizingFlexibleWidth;
     textField.placeholder = isRequired ? Localize(@"Required") : Localize(@"Optional");
@@ -163,8 +152,8 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
         [_passwordTf becomeFirstResponder];
     } else {
         [_passwordTf resignFirstResponder];
-        _strServerName = [[_txtfServerName text] retain];
-        _strServerUrl = [[_txtfServerUrl text] retain];
+        _strServerName = [_txtfServerName text];
+        _strServerUrl = [_txtfServerUrl text];
         [self onBbtnDone];
     }
     return YES;
@@ -210,10 +199,10 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
     CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone*)[tableView  dequeueReusableCellWithIdentifier:ServerObjCellIdentifier];
     
     if(cell == nil){
-        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier] autorelease];
+        cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ServerObjCellIdentifier];
         CGRect cellBounds = cell.bounds;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UILabel *textLabel = [[[UILabel alloc] init] autorelease];
+        UILabel *textLabel = [[UILabel alloc] init];
         textLabel.backgroundColor = [UIColor clearColor];
         textLabel.textColor = [UIColor darkGrayColor];
         textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
@@ -260,27 +249,23 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 #pragma mark Text fields helper
 - (void) initTextFields
 {
-    [_txtfServerName release];
-    _txtfServerName = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES] retain];
+    _txtfServerName = [ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES];
     [_txtfServerName setReturnKeyType:UIReturnKeyNext];
 	_txtfServerName.delegate = self;
     
-    [_txtfServerUrl release];
-	_txtfServerUrl = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES] retain];
+	_txtfServerUrl = [ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES];
     [_txtfServerUrl setReturnKeyType:UIReturnKeyNext];
     //Customize the style of the texfield
     _txtfServerUrl.font = [UIFont fontWithName:@"Helvetica" size:14.0];
 	_txtfServerUrl.delegate = self;
     
     // credentials text fields
-    [_usernameTf release];
-    _usernameTf = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:NO] retain];
+    _usernameTf = [ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:NO];
     [_usernameTf setReturnKeyType:UIReturnKeyNext];
 	_usernameTf.delegate = self;
     
     
-    [_passwordTf release];
-    _passwordTf = [[ServerAddingViewController textInputFieldForCellWithSecure:YES andRequired:NO] retain];
+    _passwordTf = [ServerAddingViewController textInputFieldForCellWithSecure:YES andRequired:NO];
     [_passwordTf setReturnKeyType:UIReturnKeyDone];
 	_passwordTf.delegate = self;
 }

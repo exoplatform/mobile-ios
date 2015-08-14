@@ -24,11 +24,6 @@
 @synthesize version = _version;
 
 
-- (void)dealloc {
-    [_version release];
-    [super dealloc];
-}
-
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@",_version];

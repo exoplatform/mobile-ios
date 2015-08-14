@@ -46,7 +46,7 @@
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
-    NSArray *colors = @[(id) startColor, (id) endColor];
+    NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
@@ -107,12 +107,12 @@
 }
 
 - (void)loadView {
-    UIView *view = [[[UIView alloc] initWithFrame:_viewFrame] autorelease];
+    UIView *view = [[UIView alloc] initWithFrame:_viewFrame];
     view.backgroundColor = [UIColor clearColor];
     self.view = view;
     
     CGRect viewBounds = self.view.bounds;
-    self.userProfileViewController = [[[UserProfileViewController alloc] initWithFrame:CGRectMake(0, 0, viewBounds.size.width, kMenuViewHeaderHeight)] autorelease];
+    self.userProfileViewController = [[UserProfileViewController alloc] initWithFrame:CGRectMake(0, 0, viewBounds.size.width, kMenuViewHeaderHeight)];
     self.userProfileViewController.username = [SocialRestConfiguration sharedInstance].username;
     [self.userProfileViewController startUpdateCurrentUserProfile];
     [self.view addSubview:self.userProfileViewController.view];
@@ -128,10 +128,10 @@
     [self.view addSubview:_tableView];
 
     //Add the footer of the View for Logout, Account Switcher and Settings buttons
-    UIView *footer = [[[FooterView alloc] initWithFrame:CGRectMake(0,
+    UIView *footer = [[FooterView alloc] initWithFrame:CGRectMake(0,
                                                                    viewBounds.size.height - kHeightForFooter,
                                                                    viewBounds.size.width,
-                                                                   kHeightForFooter)] autorelease];
+                                                                   kHeightForFooter)];
     footer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:footer];
     // Create the Logout button
@@ -172,7 +172,6 @@
     UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMenuViewWidth, 1)];
     topLine.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.25];
     [footer addSubview:topLine];
-    [topLine release];
     
 }
 
@@ -245,7 +244,7 @@
 -(void)showSettings {
 
     // Settings
-    SettingsViewController_iPad *iPadSettingViewController = [[[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    SettingsViewController_iPad *iPadSettingViewController = [[SettingsViewController_iPad alloc] initWithStyle:UITableViewStyleGrouped];
     iPadSettingViewController.settingsDelegate = self;
     [iPadSettingViewController startRetrieve];
     
@@ -283,7 +282,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.clipsToBounds = YES;
         cell.indentationLevel = 1;
         cell.backgroundColor = [UIColor clearColor];
@@ -293,13 +292,12 @@
         cell.textLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
         cell.textLabel.textColor = [UIColor whiteColor];
 
-        cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]] autorelease];
+        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeFeatureAccessory.png"]];
         
         // selected background view 
         UIView* bgView = [[UIView alloc] init];
         bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuFeatureSelectedBg.png"]];
         cell.selectedBackgroundView = bgView;
-        [bgView release];
         
         // add bottom line
         UIImage *lineImg = [UIImage imageNamed:@"HomeFeatureSeparator.png"];
@@ -308,7 +306,6 @@
         bottomLine.frame = CGRectMake(0, cell.bounds.size.height - lineImg.size.height, cell.bounds.size.width, lineImg.size.height);
         bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         [cell addSubview:bottomLine];
-        [bottomLine release];
         
     }
     
@@ -320,7 +317,6 @@
         topLine.tag = 999;
         topLine.frame = CGRectMake(0, 0, cell.bounds.size.width, lineImg.size.height);
         [cell addSubview:topLine];
-        [topLine release];
         
     } else {
         [[cell viewWithTag:999] removeFromSuperview];
@@ -345,7 +341,7 @@
     switch (index) {
         case EXO_ACTIVITY_STREAM_ROW: {
             //Activity Stream
-            ActivityStreamBrowseViewController_iPad *activityViewController = [[[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil] autorelease];
+            ActivityStreamBrowseViewController_iPad *activityViewController = [[ActivityStreamBrowseViewController_iPad alloc] initWithNibName:@"ActivityStreamBrowseViewController_iPad" bundle:nil];
             
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:activityViewController invokeByController:self isStackStartView:TRUE];
             
@@ -361,7 +357,7 @@
         }
         case EXO_DASHBOARD_ROW: {
             // dashboard
-            DashboardViewController_iPad *dashboardViewController_iPad = [[[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil] autorelease];
+            DashboardViewController_iPad *dashboardViewController_iPad = [[DashboardViewController_iPad alloc] initWithNibName:@"DashboardViewController_iPad" bundle:nil];
             
             
             [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:dashboardViewController_iPad invokeByController:self isStackStartView:TRUE];
@@ -386,18 +382,12 @@
 
 
 - (void)dealloc {
-	[_cellContents release];
-    [_tableView release];
-    [_userProfileViewController release];
-    self.modalNavigationViewController = nil;
-    self.accountSwitcherButton = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
-    [super dealloc];
 }
 
 - (void)initAndSelectDocumentsViewController {
     NSIndexPath *selectedIndex = _tableView.indexPathForSelectedRow;
-    DocumentsViewController_iPad *documentsViewController = [[[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil] autorelease];
+    DocumentsViewController_iPad *documentsViewController = [[DocumentsViewController_iPad alloc] initWithNibName:@"DocumentsViewController_iPad" bundle:nil];
     documentsViewController.isRoot = YES;
     documentsViewController.title = _cellContents[selectedIndex.row][kCellText];
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:documentsViewController invokeByController:self isStackStartView:TRUE];

@@ -98,11 +98,6 @@
 
 #pragma mark - initilization
 
-- (void)dealloc {
-    [_listOfItems release];
-    [_tabView release];
-    [super dealloc];
-}
 
 - (void)initData {
     _listOfItems = [[NSMutableArray alloc] init];
@@ -119,7 +114,7 @@
         } else {
             break;
         }
-        CustomFilterItem *item = [[[CustomFilterItem alloc] initWithTitle:Localize(title) icon:nil] autorelease];
+        CustomFilterItem *item = [[CustomFilterItem alloc] initWithTitle:Localize(title) icon:nil];
         [self.tabView addTabItem:item];
         NSDictionary *dict = @{kActivityStreamTabItemTitle: title,
                               kActivityStreamTabItem: item};
@@ -135,14 +130,14 @@
         self.backgroundColor = [UIColor whiteColor];
         UIImage *image = [UIImage imageNamed:@"activity-stream-filter-tabbar-bg.png"];
         image = [image stretchableImageWithLeftCapWidth:image.size.width/2 topCapHeight:image.size.height/2];
-        UIImageView *backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
         backgroundView.frame = self.bounds;
         backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:backgroundView];
         
-        self.tabView = [[[JMTabView alloc] initWithFrame:CGRectInset(self.bounds, kFilterTabLeftRightPadding, kFilterTabTopBottomPadding)] autorelease];
+        self.tabView = [[JMTabView alloc] initWithFrame:CGRectInset(self.bounds, kFilterTabLeftRightPadding, kFilterTabTopBottomPadding)];
         [self initData];
-        [self.tabView setSelectionView:[[[CustomActivityFilterSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
+        [self.tabView setSelectionView:[[CustomActivityFilterSelectionView alloc] initWithFrame:CGRectZero]];
         [self.tabView setBackgroundLayer:nil];
         CGRect contentRect = self.tabView.bounds;
         float itemSpacing = (contentRect.size.width - [self calculateItemSpacing]) / ([_listOfItems count] - 1);

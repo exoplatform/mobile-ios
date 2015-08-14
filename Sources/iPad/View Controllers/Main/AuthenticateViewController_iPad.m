@@ -196,17 +196,6 @@
 }
 
 
-- (void)dealloc 
-{
-    if (_iPadSettingViewController) 
-    {
-        [_iPadSettingViewController release];
-    }
-    [_dictLocalize release];
-    
-    [super dealloc];
-}
-
 - (void)setDelegate:(id)delegate
 {
 	_delegate = delegate;

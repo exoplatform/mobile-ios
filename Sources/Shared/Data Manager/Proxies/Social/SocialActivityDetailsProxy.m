@@ -63,12 +63,6 @@
 
 
 
-- (void) dealloc {
-    [_activityIdentity release];
-    [_socialActivityDetails release];
-    [super dealloc];
-}
-
 
 #pragma mark - helper methods
 
@@ -88,7 +82,7 @@
 //Helper to add Parameters to the request
 //Conform to the RestKit Documentation
 - (NSDictionary*)createParamDictionary {
-    NSMutableDictionary *dicForParams = [[[NSMutableDictionary alloc] init] autorelease];
+    NSMutableDictionary *dicForParams = [[NSMutableDictionary alloc] init];
     
     BOOL hasParams = NO;
     

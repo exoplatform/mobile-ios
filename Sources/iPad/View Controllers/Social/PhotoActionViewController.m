@@ -37,11 +37,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -110,9 +105,7 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakeAPicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
     }
-    [thePicker release];
 }
 
 - (IBAction)onBtnPhotoLibrary:(id)sender
@@ -153,7 +146,6 @@
 
     _rectForPresentView = CGRectZero;
     
-    [thePicker release];
 }
 
 //- (IBAction)onBtnCancel:(id)sender
@@ -191,8 +183,6 @@
                 [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
                 NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
                 
-                //release the date formatter because, not needed after that piece of code
-                [dateFormatter release];
                 imageName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, tmp];
                 
             }

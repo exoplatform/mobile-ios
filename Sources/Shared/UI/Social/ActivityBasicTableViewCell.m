@@ -78,22 +78,6 @@
 
 
 
-- (void)dealloc
-{
-    self.imgvAvatar = nil;
-    self.btnLike = nil;
-    self.btnComment = nil;
-    self.imgvMessageBg = nil;
-    self.socialActivytyStream = nil;
-    self.delegate = nil;
-    self.imgType = nil;
-    self.lbDate = nil;
-    self.lbName = nil;
-    self.activityType = nil;
-    [_lbMessage release];
-    [super dealloc];
-}
-
 
 #pragma mark - Activity Cell methods 
 

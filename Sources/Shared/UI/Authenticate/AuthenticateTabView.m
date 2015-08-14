@@ -41,7 +41,6 @@
 -(void)dealloc
 {
     self.accountSwitcherTabItem = nil;
-    [super dealloc];
 }
 
 -(void)setShowSwitcherTab:(BOOL)show

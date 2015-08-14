@@ -53,16 +53,6 @@
 @synthesize myAccessoryView = _myAccessoryView;
 @synthesize indicatorForLikeButton = _indicatorForLikeButton;
 
-- (void)dealloc
-{
-    [_lbMessage release];
-    [_btnLike release];
-    [_socialActivity release];
-    [_likerAvatarImageViews release];
-    [_myAccessoryView release];
-    [_indicatorForLikeButton release];
-    [super dealloc];
-}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -70,8 +60,8 @@
     if (self) {
         UIImage *backgroundImage = [UIImage imageNamed:@"activityDetailLikeBg"];
         UIImage *selectedBGImage = [UIImage imageNamed:@"activityDetailLikeBgSelected"];
-        self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
-        self.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectedBGImage] autorelease];
+        self.backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];
+        self.selectedBackgroundView = [[UIImageView alloc] initWithImage:selectedBGImage];
         self.likerAvatarImageViews = [NSMutableArray arrayWithCapacity:kNumberOfDisplayedAvatars];
         
         [self.contentView addSubview:self.myAccessoryView];
@@ -186,7 +176,7 @@
 
 #pragma mark - Liker avatar management
 - (AvatarView *)newAvatarView {
-    AvatarView *imageView = [[[AvatarView alloc] init] autorelease];
+    AvatarView *imageView = [[AvatarView alloc] init];
     // Update the CornerRadius
     [[imageView layer] setMasksToBounds:YES];
     return imageView;
@@ -257,8 +247,7 @@
 
 - (void)setSocialActivity:(SocialActivity *)socialActivity
 {
-    [_socialActivity release];
-    _socialActivity = [socialActivity retain];
+    _socialActivity = socialActivity;
     
     [self setUserLikeThisActivity:_socialActivity.liked];
     [self reloadAvatarViews:NO];

@@ -25,13 +25,11 @@
 
 - (void)dealloc {
     
-    [_idDashboard release]; _idDashboard = nil;
-    [_link release]; _link = nil;
-    [_html release]; _html = nil;
-    [_label release]; _label = nil;
-    [_arrayOfGadgets release]; _arrayOfGadgets = nil;
-    
-    [super dealloc];
+    _idDashboard = nil;
+    _link = nil;
+    _html = nil;
+    _label = nil;
+    _arrayOfGadgets = nil;
 }
 
 

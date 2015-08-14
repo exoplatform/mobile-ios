@@ -33,13 +33,6 @@
 @synthesize backgroundImage = _backgroundImage;
 
 #pragma mark - Object Management
--(void)dealloc {
-    
-    [_settingsViewController release];
-    _settingsViewController = nil;
-    [_backgroundImage release];
-    [super dealloc];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

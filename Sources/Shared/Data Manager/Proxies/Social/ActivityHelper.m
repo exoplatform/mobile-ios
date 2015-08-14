@@ -42,8 +42,6 @@
     
     long nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
     
-    [textMutable release];
-    
     
     //Search the width available to display the text
     if (fWidth > 320) 
@@ -81,9 +79,7 @@
     if (text) [textMutable setString:text];
     
     long nbBR = [textMutable replaceOccurrencesOfString:@"<br />" withString:@"<br />" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [text length])];
-    
-    [textMutable release];
-    
+        
     
     //Search the width available to display the text
     if (fWidth > 320) 
