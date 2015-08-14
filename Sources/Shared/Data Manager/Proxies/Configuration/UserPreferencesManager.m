@@ -88,12 +88,6 @@
 	return self;
 }
 
-- (void) dealloc
-{
-    [_username release];
-    [_password release];
-	[super dealloc];
-}
 
 #pragma mark * Username & Password management
 - (void)persistUsernameAndPasswod {
@@ -109,8 +103,6 @@
     self.username = tmpUsername != nil ? tmpUsername : @"";
     NSString* tmpPassword = [userDefaults objectForKey:EXO_PREFERENCE_PASSWORD];
     self.password = tmpPassword != nil ? tmpPassword : @"";
-    [tmpUsername release];
-    [tmpPassword release];
 }
 
 #pragma mark * Remember My Stream

@@ -35,9 +35,6 @@
 
 @implementation ActivityStreamBrowseViewController_iPad
 
-- (void)dealloc{
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {
@@ -112,16 +109,15 @@
     
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
+
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    UIViewController * menuVC =(UIViewController *)[AppDelegate_iPad instance].rootViewController.menuViewController;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController
-        presentViewController:navController animated:YES completion:nil];
-
-    
+    [menuVC presentViewController:navController animated:YES completion:nil];
+        
     int x, y;
     
     if( [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || 
@@ -154,9 +150,9 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    [[AppDelegate_iPad instance].rootViewController.menuViewController
-        presentViewController:navController animated:YES completion:nil];
-    [messageComposerViewController release];
+    UIViewController * menuVC =(UIViewController *)[AppDelegate_iPad instance].rootViewController.menuViewController;
+    [menuVC presentViewController:navController animated:YES completion:nil];
+
         
     int x, y;
     
@@ -186,8 +182,6 @@
     if (_activityDetailViewController != nil) 
     {
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController removeViewFromController:_activityDetailViewController];
-
-        [_activityDetailViewController release];
     } 
     
     _activityDetailViewController = [[ActivityDetailViewController_iPad alloc] initWithNibName:@"ActivityDetailViewController_iPad" bundle:nil];

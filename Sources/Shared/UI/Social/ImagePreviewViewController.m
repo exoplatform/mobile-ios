@@ -54,7 +54,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // navigation bar items: buttons and title
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"OK") style:UIBarButtonItemStyleBordered target:self action:@selector(selectImage:)] autorelease];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"OK") style:UIBarButtonItemStyleBordered target:self action:@selector(selectImage:)];
         self.navigationItem.title = Localize(@"Image Preview");
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
         
@@ -70,9 +70,6 @@
         
         self.toolbarItems = @[changeButton, flexItem, removeButton];
         self.preferredContentSize = kPopoverContentSize;
-        [changeButton release];
-        [removeButton release];
-        [flexItem release];
     }
     return self;
 }
@@ -123,9 +120,6 @@
 
 - (void)dealloc {
     [self releaseBlocks];
-    [scrollView release];
-    [imageView release];
-    [super dealloc];
 }
 
 #pragma mark - implementation

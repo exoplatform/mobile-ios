@@ -39,25 +39,8 @@
 - (void)setObjectWithName:(NSString*)name andURL:(NSURL*)url andGadgets:(NSArray*)arrGadgets
 {
 	_strDbItemName = name;
-	[_strDbItemName retain];
 	_urlDbItem = url;
-	[_urlDbItem retain];
 	_arrGadgetsInItem = arrGadgets;
-	[_arrGadgetsInItem retain];
-}
-
-
-- (void)dealloc {
-    [_strDbItemName release];
-    _strDbItemName = nil;
-    
-    [_urlDbItem release];
-    _urlDbItem = nil;
-    
-    [_arrGadgetsInItem release];
-    _arrGadgetsInItem = nil;
-    
-    [super dealloc];
 }
 
 
@@ -90,30 +73,7 @@
 	}
 	return self;
 }
-
-- (void)dealloc {
-    [_strName release];
-    _strName = nil;
-    
-    [_strDescription release];
-    _strDescription = nil;
-    
-    [_urlContent release];
-    _urlContent = nil;
-    
-    [_urlIcon release];
-    _urlIcon = nil;
-    
-    [_imgIcon release];
-    _imgIcon = nil;
-    
-    [_strID release];
-    _strID = nil;
-    
-    [super dealloc];
-}
-
-- (void)setObjectWithName:(NSString*)name 
+- (void)setObjectWithName:(NSString*)name
 			  description:(NSString*)description 
 			   urlContent:(NSURL*)urlContent 
 				  urlIcon:(NSURL*)urlIcon 
@@ -121,31 +81,31 @@
 {
 	if(name)
 	{
-		_strName = [name retain];
+        _strName = name;
 	}
 	
 	if(description != nil && ![description isEqualToString:@""])
 	{	
-		_strDescription = [description retain];
+        _strDescription = description;
 	}
 	
 	if(urlContent)
 	{	
-		_urlContent = [urlContent retain];
+        _urlContent = urlContent;
 	}
 	
 	if(urlIcon)
 	{	
-		_urlIcon = [urlIcon retain];
+        _urlIcon = urlIcon;
 	}
 	
 	if(imageIcon)
 	{
-		_imgIcon = [imageIcon retain];
+        _imgIcon = imageIcon;
 	}	
 	else
 	{
-		_imgIcon = [[UIImage imageNamed:@"GadgetsIcon.png"] retain];
+		_imgIcon = [UIImage imageNamed:@"GadgetsIcon.png"];
 	}
 }
 

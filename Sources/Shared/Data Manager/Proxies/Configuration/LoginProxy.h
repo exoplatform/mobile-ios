@@ -27,7 +27,6 @@
 
 @interface LoginProxy : NSObject<NSURLConnectionDataDelegate> {
         
-    id<LoginProxyDelegate> _delegate;
 }
 
 @property (nonatomic, assign) id<LoginProxyDelegate> delegate;

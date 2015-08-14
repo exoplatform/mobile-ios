@@ -50,11 +50,6 @@
 	return self;
 }
 
-- (void)dealloc {
-    [_localCacheInMemory release];
-    [super dealloc];
-}
-
 
 -(SocialUserProfile *)cachedProfileForIdentity:(NSString *)identityId
 {

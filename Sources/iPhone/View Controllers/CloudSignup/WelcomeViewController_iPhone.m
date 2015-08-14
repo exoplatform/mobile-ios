@@ -58,14 +58,13 @@
         AppDelegate_iPhone *appDelegate = [AppDelegate_iPhone instance];
         AuthenticateViewController_iPhone *authenticateVC = [[AuthenticateViewController_iPhone alloc] initWithNibName:@"AuthenticateViewController_iPhone" bundle:nil];
         [appDelegate.navigationController setViewControllers:@[authenticateVC]];
-        [authenticateVC release];
     }
 }
 
 
 - (void)signup:(id)sender
 {
-    SignUpViewController_iPhone *signupViewController = [[[SignUpViewController_iPhone alloc] initWithNibName:@"SignUpViewController_iPhone" bundle:nil] autorelease];
+    SignUpViewController_iPhone *signupViewController = [[SignUpViewController_iPhone alloc] initWithNibName:@"SignUpViewController_iPhone" bundle:nil];
     signupViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:signupViewController animated:YES completion:nil];
 }

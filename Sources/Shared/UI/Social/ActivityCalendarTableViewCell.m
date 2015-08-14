@@ -82,11 +82,6 @@
 
 
 
-- (void)dealloc {
-    
-    [_lbTitle release];
-    [super dealloc];
-}
 
 @end
 
