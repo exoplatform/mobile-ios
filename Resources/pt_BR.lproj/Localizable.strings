@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Conectado";
+"Connected" = "Connected";
 
-"Sign In" = "Conectar";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -319,13 +319,13 @@
 
 "Remove" = "Remover";
 
-"All Updates" = "Todas as atividades";
+"All Updates" = "All Activities";
 
-"My Connections" = "Minhas conexões";
+"My Connections" = "My Connections";
 
-"My Spaces" = "Meus Espaços";
+"My Spaces" = "My Spaces";
 
-"My Status" = "Minhas Atividades";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "Minhas Atividades";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,5 +436,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "a";
+"To" = "To";
 
