@@ -1657,7 +1657,7 @@
 		9C01DEFF1ADFBA5200E3C578 /* global-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "global-icon@2x.png"; sourceTree = "<group>"; };
 		9C0A6D541AD505D500287C26 /* WEBlockingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEBlockingGestureRecognizer.h; sourceTree = "<group>"; };
 		9C0A6D551AD505D500287C26 /* WEBlockingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEBlockingGestureRecognizer.m; sourceTree = "<group>"; };
-		9C202A9F1B1EFB7C00FEC82B /* eXo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eXo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C202A9F1B1EFB7C00FEC82B /* eXo (TC eXo Cloud).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eXo (TC eXo Cloud).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C202AA11B1EFB7C00FEC82B /* eXoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eXoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C202AA61B1EFFFF00FEC82B /* share-extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "share-extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C202AA91B1F000000FEC82B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -4153,7 +4153,7 @@
 		9C202AA01B1EFB7C00FEC82B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C202A9F1B1EFB7C00FEC82B /* eXo.app */,
+				9C202A9F1B1EFB7C00FEC82B /* eXo (TC eXo Cloud).app */,
 				9C202AA11B1EFB7C00FEC82B /* eXoTests.xctest */,
 				9C202AA61B1EFFFF00FEC82B /* share-extension.appex */,
 			);
@@ -4270,7 +4270,7 @@
 			);
 			name = eXo;
 			productName = "eXo Platform";
-			productReference = 9C202A9F1B1EFB7C00FEC82B /* eXo.app */;
+			productReference = 9C202A9F1B1EFB7C00FEC82B /* eXo (TC eXo Cloud).app */;
 			productType = "com.apple.product-type.application";
 		};
 		57A91902190E0A15008CFD6B /* eXoTests */ = {
@@ -5343,7 +5343,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (TC eXo Cloud)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -5391,7 +5391,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (TC eXo Cloud)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -5475,7 +5475,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (TC eXo Cloud)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -5560,7 +5560,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = eXo;
+				PRODUCT_NAME = "eXo (TC eXo Cloud)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

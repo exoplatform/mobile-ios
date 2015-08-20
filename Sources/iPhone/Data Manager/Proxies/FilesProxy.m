@@ -94,8 +94,12 @@
 {	
 	NSRange range;
 	range = [url rangeOfString:@"http://"];
-	if(range.length == 0)
-		url = [url stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+    if(range.length == 0){
+        range = [url rangeOfString:@"https://"];
+        if (range.location==NSNotFound) {
+            url = [url stringByReplacingOccurrencesOfString:@":/" withString:@"://"];
+        }
+    }		
 	
 	return url;
 	

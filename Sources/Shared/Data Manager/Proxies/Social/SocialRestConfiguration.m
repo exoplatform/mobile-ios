@@ -62,7 +62,7 @@
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer
     NSString *domainWithoutHttp = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN] stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-    
+    domainWithoutHttp = [domainWithoutHttp stringByReplacingOccurrencesOfString:@"https://" withString:@""];
     //TODO SLM
     //REmove this line and provide a true Server URL analyzer
     domainWithoutHttp = [domainWithoutHttp stringByReplacingOccurrencesOfString:@"/portal" withString:@""];

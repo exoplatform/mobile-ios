@@ -39,11 +39,11 @@
 
 + (NSString *)serverUrlByTenant:(NSString *)tenantName
 {
-    return  [NSString stringWithFormat:@"http://%@.%@",tenantName, EXO_CLOUD_HOST];
+    return  [NSString stringWithFormat:@"https://%@.%@",tenantName, EXO_CLOUD_HOST];
 }
 
 //gets the tenant name from server url, returns nil if not exist
-//the cloud tenant is in form: http://abc.exoplatform.net
+//the cloud tenant is in form: https://abc.uxpacc02.exoplatform.org
 //so if the url contains cloud host (exoplatform.net), returns 'abc' as tenant name
 + (NSString *)tenantFromServerUrl:(NSString *)serverUrl
 {

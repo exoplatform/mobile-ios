@@ -112,7 +112,7 @@
 #define EXO_CLOUD_ACCOUNT_CONFIGURED @"exo_cloud_account_configured"
 #define EXO_NOT_COMPILANT_ERROR_DOMAIN @"exo_not_compliant"
 
-#define EXO_CLOUD_URL  @"http://exoplatform.net"
+#define EXO_CLOUD_URL  @"https://exoplatform.net"
 #define EXO_CLOUD_HOST @"exoplatform.net"
 #define EXO_CLOUD_TENANT_SERVICE_PATH @"rest/cloud-admin/cloudworkspaces/tenant-service"
 //#define EXO_CLOUD_HOST @"netstg.exoplatform.org"
