@@ -21,16 +21,12 @@
 #import "AccountViewController.h"
 #import "Account.h"
 #import "PostActivity.h"
-
-#import "defines.h"
-
 #import "UploadViewController.h"
-
 #import <MobileCoreServices/MobileCoreServices.h>
-#define kRestVersion @"v1-alpha3"
-#define kRestContextName @"rest"
-#define kPortalContainerName @"portal"
-#define kMaxSize    10000000
+#import <ImageIO/ImageIO.h>
+
+#define kJPEGCompressionLevel 1.0 // 0.0 for maximun compression & 1.0 minimun compression. Actually the image is aready JPEG so we keep the same quality while making new image.
+
 
 @interface ShareViewController () {
     // IHM part
@@ -169,11 +165,19 @@ enum {
                     if ([url isKindOfClass:[NSURL class]]){
                         postActivity.url = url;
                     } else if ([url isKindOfClass:[UIImage class]]){
-                        postActivity.fileData = UIImagePNGRepresentation((UIImage*)item);
+                        if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePNG]){
+                            postActivity.fileData = UIImagePNGRepresentation((UIImage*)item);
+                            postActivity.fileExtension = @"png";
+                        } else {
+                            postActivity.fileData = UIImageJPEGRepresentation((UIImage*)item, kJPEGCompressionLevel);
+                            postActivity.fileExtension = @"jpg";
+                        }
+                        
                     } else if ([url isKindOfClass:[NSData class]]){
                         postActivity.fileData = (NSData*)url;
+                        postActivity.fileExtension = [itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePNG]?@"png": @"jpg";
                     }
-                    postActivity.fileExtension = @"png";
+                    [self checkForImageOrientation];
                 }
             }];
         } else if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeAudio]) {
@@ -339,7 +343,8 @@ NSMutableData * data;
         //set default request timeout = 100 ms.
         [request setTimeoutInterval:100];
         [request setHTTPMethod:@"GET"];
-        
+        [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
         data = [[NSMutableData alloc] init];
         connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [connection start];
@@ -467,7 +472,8 @@ NSMutableData * data;
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:mobileFolderPath]];
     [request setHTTPMethod:@"HEAD"];
-    
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
@@ -479,7 +485,8 @@ NSMutableData * data;
                 NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
                 [request setURL:[NSURL URLWithString:[self mobileFolderPath]]];
                 [request setHTTPMethod:@"MKCOL"];
-                
+                [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
                 NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                     NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
                     if(statusCode >= 200 && statusCode < 300) {
@@ -598,7 +605,8 @@ NSMutableData * data;
             
             NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postRESTURL]];
             [request setHTTPMethod:@"POST"];
-            
+            [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
             [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary] forHTTPHeaderField:@"Content-Type"];
             request.HTTPShouldHandleCookies = YES;
             NSString * bodyBegin = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n\r\n",boundary,fileAttachName];
@@ -624,14 +632,15 @@ NSMutableData * data;
                         saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,driverName,@"Mobile",fileAttachName];
                         
                     } else {
-                        saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,@"Personal Documents",@"Public/Mobile",fileAttachName];
+                        saveRESTURL  = [NSString stringWithFormat:@"%@/portal/rest/managedocument/uploadFile/control?uploadId=%@&action=save&workspaceName=%@&driveName=%@&currentFolder=%@&fileName=%@", selectedAccount.serverURL,uploadId,defaultWorkspace,MOBILE_UPLOAD_PERSONAL_DRIVE, @"Public/Mobile",fileAttachName];
 
                     }
                     saveRESTURL = [saveRESTURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
                     [request setURL:[NSURL URLWithString:saveRESTURL]];
                     [request setHTTPMethod:@"GET"];
-                    
+                    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
                     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                         NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
                         if(statusCode >= 200 && statusCode < 300) {
@@ -711,6 +720,7 @@ NSMutableData * data;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postURL]];
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
 
     
     if (fileURL) {
@@ -796,6 +806,7 @@ NSMutableData * data;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postURL]];
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
 
     [request setHTTPBody:data];
 
@@ -868,5 +879,100 @@ NSMutableData * data;
 
 /**/
 
+-(void) checkForImageOrientation {
+    dispatch_queue_t concurrent_queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(concurrent_queue, ^{
+        if (postActivity.url!=nil || postActivity.fileData!=nil){
+            /*
+             A portrait photo is store as a landscape with orientation rotated 90d. The problem is the portal unable to detect this case. Solution creat a real portrait photo from this:
+             Get the metadata (TIFF, GPS, ...).
+             if Orientation is not normal (=1)
+             1. Save the metadata to mutable dictionary
+             2. Change property orientation to Normal
+             3. Creat a portrait photo from the provided photo.
+             4. Assign the metadata to this new photo.
+             */
+
+            
+            // Get the metadata (TIFF, GPS, ...).
+            CGImageSourceRef providedImageSourceRef;
+            if (postActivity.url != nil){
+                providedImageSourceRef = CGImageSourceCreateWithURL((CFURLRef)postActivity.url, NULL);
+            } else if (postActivity.fileData != nil){
+                providedImageSourceRef = CGImageSourceCreateWithData((CFDataRef) postActivity.fileData, NULL);
+            }
+            
+            NSDictionary * providedImageMetadata = (NSDictionary *) CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(providedImageSourceRef,0,NULL));
+            CFStringRef UTI = CGImageSourceGetType(providedImageSourceRef); //this is the type of image (e.g., public.jpeg)
+            NSDictionary *tiffDic =providedImageMetadata? [providedImageMetadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary] : nil;
+            
+            int orientation = (tiffDic == nil) ? kCGImagePropertyOrientationUp : [[tiffDic objectForKey:(NSString*)kCGImagePropertyOrientation] intValue];
+            
+            if (orientation != kCGImagePropertyOrientationUp) {
+                
+                //1. Save the metadata to mutable dictionary (tobe able to change the orientation value)
+                NSMutableDictionary *metadataAsMutable = [providedImageMetadata mutableCopy];
+                NSMutableDictionary * tiffMutableDic = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyTIFFDictionary]mutableCopy];
+                
+                // 2. Change property orientation to Normal
+                [metadataAsMutable setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+                [tiffMutableDic setValue:[NSNumber numberWithInt:kCGImagePropertyOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+                
+                [metadataAsMutable setValue:tiffMutableDic forKey:(NSString *)kCGImagePropertyTIFFDictionary];
+                
+                // 3. Creat a portrait photo from the provided photo.
+                NSData * photoData;
+                if (postActivity.url != nil){
+                    photoData = [NSData dataWithContentsOfURL:postActivity.url];
+                } else {
+                    photoData = postActivity.fileData;
+                }
+                UIImage * image = [UIImage imageWithData:photoData];
+                UIImage * img = [self rotateImage:image];
+                NSString * typeFile = (__bridge NSString *)(UTI);
+                if ([typeFile isEqualToString:@"public.png"]){
+                    photoData = UIImagePNGRepresentation(img);
+                    postActivity.fileExtension = @"png";
+                } else {
+                    photoData = UIImageJPEGRepresentation(img, kJPEGCompressionLevel);
+                    postActivity.fileExtension = @"jpg";
+                }
+                
+                //4. Assign the metadata to this new photo.
+                
+                CGImageSourceRef newPhotoSourceRef = CGImageSourceCreateWithData((CFDataRef)photoData,NULL);
+                //this will be the data CGImageDestinationRef will write into
+                NSMutableData * new_photoData = [NSMutableData data];
+                CGImageDestinationRef destination = CGImageDestinationCreateWithData((CFMutableDataRef)new_photoData,UTI,1,NULL);
+                
+                if(destination) {
+                    //add the image contained in the image source to the destination, overidding the old metadata with our modified metadata
+                    CGImageDestinationAddImageFromSource(destination,newPhotoSourceRef,0, (CFDictionaryRef) metadataAsMutable);
+                    
+                    //tell the destination to write the image data and metadata into our data object.
+                    //It will return false if something goes wrong
+                    BOOL success = NO;
+                    success = CGImageDestinationFinalize(destination);
+                    
+                    if(success) {
+                        postActivity.fileData = new_photoData;
+                        postActivity.url = nil;
+                    }
+                }
+                
+            }
+        }
+    });
+
+}
+- (UIImage *) rotateImage:(UIImage *)image {
+    // Create new image with the same size.    
+    CGSize newImageSize = image.size;
+    UIGraphicsBeginImageContext(newImageSize);
+    [image drawInRect:CGRectMake(0,0,newImageSize.width,newImageSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 @end

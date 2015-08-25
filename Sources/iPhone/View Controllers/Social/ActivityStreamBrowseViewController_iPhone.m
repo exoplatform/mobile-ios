@@ -77,8 +77,7 @@
     messageComposerViewController.isPostMessage = NO;
     messageComposerViewController.strActivityID = activity;
     
-    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
-    [messageComposerViewController release];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
     
@@ -96,8 +95,7 @@
     messageComposerViewController.delegate = self;
     messageComposerViewController.isPostMessage = YES;
     
-    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:messageComposerViewController] autorelease];
-    [messageComposerViewController release];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 
@@ -111,10 +109,6 @@
  
     _indexpathSelectedActivity = [indexPath copy];
     
-    if (_activityDetailViewController != nil) 
-    {
-        [_activityDetailViewController release];
-    }
     _activityDetailViewController = [[ActivityDetailViewController_iPhone alloc] initWithNibName:@"ActivityDetailViewController_iPhone" bundle:nil];
     _activityDetailViewController.iconType = [self getIconForType:socialActivityStream.type];
     [_activityDetailViewController setSocialActivityStream:socialActivityStream 

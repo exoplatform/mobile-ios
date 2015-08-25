@@ -50,12 +50,7 @@
     [Fabric with:@[CrashlyticsKit]];
     
     application.statusBarHidden = YES;
-    
-    // Override point for customization after application launch.
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    // version application
-    [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
-    
+        
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3
     //Configuring the Navigation Bar for iOS 5
@@ -111,7 +106,7 @@
 
     
     [UserPreferencesManager sharedInstance].isUserLogged = YES;
-    self.rootViewController = [[[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial] autorelease];
+    self.rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromLeft
@@ -178,14 +173,6 @@
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
-}
-
-
-- (void)dealloc {
-    [rootViewController release];
-    [welcomeVC release];
-    [window release];
-    [super dealloc];
 }
 
 

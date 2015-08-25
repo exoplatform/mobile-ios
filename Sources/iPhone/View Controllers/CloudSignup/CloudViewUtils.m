@@ -54,10 +54,7 @@
     
     [paddingView addSubview:imageView];
     tf.leftView = paddingView;
-    
-    [imageView release];
-    [paddingView release];
-    
+        
 }
 
 // configure background for a button
@@ -84,7 +81,6 @@
     [titleLabel setFrame:CGRectMake(titleX, -titleXMinus, button.frame.size.width, button.frame.size.height)];
     
     [button addSubview:titleLabel];
-    [titleLabel  release];
     
     /*
     UIFont *subTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:8];
@@ -212,11 +208,6 @@
     [view addSubview:bgView];
     [view addSubview:orderView];
     [view addSubview:titleLabel];
-    
-    [orderLabel release];
-    [titleLabel release];
-    [bgView release];
-    [orderView release];
     
     return view;
 }

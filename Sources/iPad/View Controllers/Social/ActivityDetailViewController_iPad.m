@@ -38,12 +38,6 @@
 @synthesize extraActionsCell = _extraActionsCell;
 @synthesize advancedInfoController = _advancedInfoController;
 
-- (void)dealloc {
-    [_extraActionsCell release];
-    [_advancedInfoController release];
-    [super dealloc];
-}
-
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -59,7 +53,7 @@
     [super viewDidLoad];    
     self.view.backgroundColor = [UIColor clearColor];
     ((RoundRectView *) [self.view subviews][0]).squareCorners = YES;
-    self.tblvActivityDetail.backgroundView = [[[CustomBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
+    self.tblvActivityDetail.backgroundView = [[CustomBackgroundView alloc] initWithFrame:CGRectZero];
     _navigation.topItem.title = Localize(@"Details");
     _navigation.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
@@ -92,14 +86,12 @@
     
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:messageComposerViewController];
-    [messageComposerViewController release];
     
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    [[AppDelegate_iPad instance].rootViewController.menuViewController
-        presentViewController:navController animated:YES completion:nil];
+    UIViewController * menuVC = (UIViewController *)[AppDelegate_iPad instance].rootViewController.menuViewController;
+    [menuVC presentViewController:navController animated:YES completion:nil];
     
     int x, y;
     
@@ -166,7 +158,6 @@
 		
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
         
-        [linkWebViewController release];
         return NO;
     }
     
@@ -196,7 +187,6 @@
                                                                      url:url];
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];   
     
-    [linkWebViewController release];
 }
 
 -(void) gotoEmbededURL:(UITapGestureRecognizer *)gesture {
@@ -207,8 +197,6 @@
                                                                          bundle:nil
                                                                          url:url];
         [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:self isStackStartView:FALSE];
-        
-        [linkWebViewController release];
         
     }
     
@@ -264,7 +252,7 @@
     } else if (indexPath.section == 2) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailAdvancedInfoTableViewCell];
         if (!cell) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailAdvancedInfoTableViewCell] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailAdvancedInfoTableViewCell];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.contentView addSubview:self.advancedInfoController.view];
         }

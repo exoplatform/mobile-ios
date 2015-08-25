@@ -148,6 +148,7 @@ return self;
 {
     NSString *dest = [NSString stringWithFormat:@"%@/rest/private/",self.serverUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:dest] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10.0];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
 
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self] ;
     
@@ -216,7 +217,7 @@ return self;
                 if([_delegate isKindOfClass:[AlreadyAccountViewController class]] || [_delegate isKindOfClass:[OnPremiseViewController class]]) {
                     // add the server url to server list
                     NSString* accountName = [AccountInfoUtils extractAccountNameFromURL:self.serverUrl];
-                    ServerObj* account = [[[ServerObj alloc] init] autorelease];
+                    ServerObj* account = [[ServerObj alloc] init];
                     account.accountName = accountName;
                     account.serverUrl = self.serverUrl;
                     account.username = self.username;
@@ -267,11 +268,7 @@ return self;
 
 
 - (void) dealloc {
-    _delegate = nil;
-    [self.username release];
-    [self.password release];
-    [self.serverUrl release];
-    [super dealloc];
+    self.delegate = nil;
 }
 
 #pragma mark NSURLConnection delegate methods
@@ -321,25 +318,25 @@ return self;
     
     if([error.domain isEqualToString:NSURLErrorDomain] && error.code == kCFURLErrorNotConnectedToInternet) {
         // network connection problem
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+        alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
                                             message:Localize(@"NetworkConnectionFailed")
                                            delegate:delegate
                                   cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+                                  otherButtonTitles: nil];
     } else if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorCannotFindHost || error.code == kCFURLErrorTimedOut)) {
         // cant connect to server
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+        alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
                                             message:Localize(@"InvalidServer")
                                            delegate:delegate
                                   cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+                                  otherButtonTitles: nil];
     } else if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication) {
         // wrong username/password
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+        alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
                                             message:Localize(@"WrongUserNamePassword")
                                            delegate:delegate
                                   cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+                                  otherButtonTitles: nil];
 //    } else if ([error.domain isEqualToString:RKErrorDomain] && error.code == RKRequestBaseURLOfflineError) {
 //        // error getting platform info by restkit
 //        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
@@ -349,11 +346,11 @@ return self;
 //                                  otherButtonTitles: nil] autorelease];
     } else if([error.domain isEqualToString:EXO_NOT_COMPILANT_ERROR_DOMAIN]) {
         // target version of Platform is not mobile compliant
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Error")
+        alert = [[UIAlertView alloc] initWithTitle:Localize(@"Error")
                                             message:Localize(@"NotCompliant")
                                            delegate:nil
                                   cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil] autorelease];
+                                  otherButtonTitles:nil];
         
 //    } else if([error.domain isEqualToString:RKErrorDomain] && error.code == RKObjectLoaderUnexpectedResponseError) {
 //        // incorrect server error response
@@ -363,14 +360,14 @@ return self;
 //                                  cancelButtonTitle:@"OK"
 //                                  otherButtonTitles: nil] autorelease];
     } else {
-        alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
+        alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization")
                                             message:@""
                                            delegate:delegate
                                   cancelButtonTitle:@"OK"
-                                  otherButtonTitles: nil] autorelease];
+                                  otherButtonTitles: nil];
     }
     
-    return [alert retain];
+    return alert;
 }
 
 @end

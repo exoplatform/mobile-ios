@@ -47,7 +47,7 @@
 {
     if ((self = [super init])) 
     {
-        self.international = [[[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", @"el", nil] autorelease];
+        self.international = [[NSArray alloc] initWithObjects:@"en", @"fr", @"de", @"es-ES", @"pt-BR", @"el", nil];
         //Intialisation, load the current dictionnary for localizable strings
         [self loadLocalizableStringsForCurrentLanguage];
     }	
@@ -58,7 +58,6 @@
 - (void) dealloc
 {
     self.international = nil;
-	[super dealloc];
 }
 
 #pragma mark - LanguageHelper Methods

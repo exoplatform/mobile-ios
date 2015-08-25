@@ -22,6 +22,9 @@
 #import "SpaceViewController.h"
 #import "AccountViewController.h"
 #import "UploadViewController.h"
+#import "defines.h"
+#import "extension-defines.h"
+
 @interface ShareViewController : SLComposeServiceViewController<SpaceDelegate, AccountSelectorDelegate, NSURLConnectionDataDelegate , NSURLConnectionDelegate, NSURLSessionDelegate, NSURLSessionTaskDelegate, UploadViewControllerDelegate>
 
 @end

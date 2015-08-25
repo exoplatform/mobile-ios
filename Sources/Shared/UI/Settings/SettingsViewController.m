@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
         
       
         
-        _listOfSections = [[NSMutableArray arrayWithObjects:
+        _listOfSections = [NSMutableArray arrayWithObjects:
                             @{settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionLogin],
                               settingViewSectionTitleKey: @"SignInButton",
                               settingViewRowsKey: [NSArray arrayWithObjects:@"RememberMe", @"AutoLogin", nil]},
@@ -122,7 +122,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                              settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionAppsInfo],
                              settingViewSectionTitleKey: @"ApplicationsInformation",
                              settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
-                            nil] retain];
+                            nil];
         
         
         float plfVersion = [[ApplicationPreferencesManager sharedInstance].platformVersion floatValue];
@@ -132,7 +132,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
             [_listOfSections removeObjectAtIndex:2];
         }
     } else {
-        _listOfSections = [[NSMutableArray arrayWithObjects:
+        _listOfSections = [NSMutableArray arrayWithObjects:
                             @{
                               settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionLanguage],
                               settingViewSectionTitleKey: @"Language",
@@ -146,7 +146,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                               settingViewSectionIdKey: [NSString stringWithFormat:@"%d", (int)SettingViewControllerSectionAppsInfo],
                               settingViewSectionTitleKey: @"ApplicationsInformation",
                               settingViewRowsKey: [NSArray arrayWithObjects:@"ServerVersion", @"ApplicationEdition", @"ApplicationVersion",nil]},
-                            nil] retain];
+                            nil];
         
     }
 }
@@ -183,13 +183,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
 
 - (void)dealloc
 {
-    [_plfVersionProxy release];
-    [rememberMe release];
-    [autoLogin release];
-    [_rememberSelectedStream release];
-    [_showPrivateDrive release];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_SERVER_ADDED object:nil];
-    [super dealloc];
 }
 
 
@@ -234,7 +228,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
 }
 
 -(void)retrievePlatformVersion{
-    self.plfVersionProxy = [[[LoginProxy alloc] initWithDelegate:self] autorelease];
+    self.plfVersionProxy = [[LoginProxy alloc] initWithDelegate:self];
     [self.plfVersionProxy retrievePlatformInformations];
 }
 
@@ -281,14 +275,14 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
 
 -(UIImageView *) makeCheckmarkOffAccessoryView
 {
-    return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+    return [[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]];
 }
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
 {
-    return [[[UIImageView alloc] initWithImage:
-             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+    return [[UIImageView alloc] initWithImage:
+             [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]];
 }
 
 
@@ -374,7 +368,6 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     headerLabel.text = Localize(_listOfSections[section][settingViewSectionTitleKey]);
     
 	[customView addSubview:headerLabel];
-    [headerLabel release];
     
 	return customView;
 }
@@ -417,7 +410,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLogin];
             if(cell == nil) 
             {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLogin] autorelease];
+                cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLogin];
                 
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
@@ -448,7 +441,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierSocial];
             if(cell == nil) 
             {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierSocial] autorelease];
+                cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierSocial];
                 
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
@@ -462,8 +455,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierDocuments];
             if (cell == nil) {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierDocuments]
-                        autorelease];
+                cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierDocuments];
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -478,7 +470,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierLanguage];
             if(cell == nil) 
             {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLanguage] autorelease];
+                cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierLanguage];
                 
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
@@ -523,7 +515,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
         {
             cell = (CustomBackgroundForCell_iPhone *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServer];
             if (cell == nil) {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierServer] autorelease];
+                cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierServer];
                 
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
@@ -545,7 +537,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
             else
             {
                 
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"] autorelease];
+                cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ModifyList"];
                 cell.textLabel.text = Localize(_listOfSections[indexPath.section][settingViewRowsKey][0]);
                 [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
@@ -561,7 +553,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
         {
             cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CellIdentifierServerInformation];
             if(cell == nil) {
-                cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierServerInformation] autorelease];
+                cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierServerInformation];
                 cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
                 cell.textLabel.textColor = [UIColor darkGrayColor];
                 
@@ -584,7 +576,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                 cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_EDITION_SERVER];
             }
             if(indexPath.row == 2){
-                cell.detailTextLabel.text = [userDefaults objectForKey:EXO_PREFERENCE_VERSION_APPLICATION];
+                cell.detailTextLabel.text = EXO_PREFERENCE_VERSION_APPLICATION;
             }
             break;
         }
@@ -643,7 +635,6 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
             welcomeVC.shouldBackToSetting = YES;
             [self dismissViewControllerAnimated:YES completion:nil];
             [appDelegate.window.rootViewController presentViewController:welcomeVC animated:YES completion:nil];
-            [welcomeVC release];
 
         } else {
             ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
@@ -654,7 +645,6 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
                 [serverEditingViewController setServerObj:tmpServerObj andIndex:(int)indexPath.row];
                 
                 [self.navigationController pushViewController:serverEditingViewController animated:YES];
-                [serverEditingViewController release];
         }
 	}
 }
@@ -690,26 +680,22 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     if (strServerName == nil || [strServerName length] == 0){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return NO;
     }
     // Check if the name contains only alpha-numeric characters
     if (![AccountInfoUtils accountNameIsValid:strServerName]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return NO;
     }
     // Check if the server URL is null or only contains the protocol
     if(strServerUrl == nil || [strServerUrl isEqualToString:@"http://"] || [strServerUrl isEqualToString:@"https://"]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorServer") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return NO;
     } else if ([URLAnalyzer parserURL:strServerUrl] == nil) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"InvalidUrl")delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return NO;
     }
     
@@ -718,7 +704,6 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return NO;
     }
     
@@ -749,7 +734,6 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
     if ([appPrefManager checkServerAlreadyExistsWithName:cleanServerName andURL:cleanServerUrl andUsername:username ignoringIndex:index] > -1) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"MessageErrorExist") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return NO;
     }
 

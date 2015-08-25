@@ -21,6 +21,7 @@
 #import <UIKit/UIKit.h>
 #import "SocialSpace.h"
 #import "Account.h"
+#import "extension-defines.h"
 @protocol SpaceDelegate;
 
 @interface SpaceViewController : UITableViewController <NSURLConnectionDelegate>

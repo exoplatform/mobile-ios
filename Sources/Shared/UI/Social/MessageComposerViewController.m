@@ -26,6 +26,7 @@
 #import "defines.h"
 #import "LanguageHelper.h"
 #import "SpaceTableViewCell.h"
+#import "ApplicationPreferencesManager.h"
 
 // Horizontal margin to subviews. 
 #define kHorizontalMargin 10.0
@@ -79,33 +80,11 @@
     return self;
 }
 
-- (void)dealloc
-{
-    _postActivityProxy.delegate = nil;
-    [_postActivityProxy release];
-    _postCommentProxy.delegate = nil;
-    [_postCommentProxy release];
-    [_strActivityID release];
-    [_tblvActivityDetail release];
-    [_btnAttachPhoto release];
-    [_txtMessage release];
-    [_attPhotoView release];
-    [_photoFrameView release];
-    [_attPhotoButton release];
-    [_spacesTableView release];
-    _socialSpaceProxy.delegate = nil;
-    [_socialSpaceProxy release];
-    if (selectedSpace) [selectedSpace release];
-    [_spaceTableViewHeightConstraint release];
-    [super dealloc];
-}
-
 - (void)didReceiveMemoryWarning
 {
     self.btnAttachPhoto = nil;
     self.txtMessage = nil;
     self.attPhotoView = nil;
-    [_photoFrameView release];
     _photoFrameView = nil;
     [super didReceiveMemoryWarning];
 }
@@ -133,10 +112,10 @@
     UIImage *strechTextViewBg = [[UIImage imageNamed:@"MessageComposerTextfieldBackground.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:20];
     [_imgvTextViewBg setImage:strechTextViewBg];
     
-    UIBarButtonItem* bbtnSend = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Send") style:UIBarButtonItemStylePlain target:self action:@selector(onBtnSend:)] autorelease];
+    UIBarButtonItem* bbtnSend = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Send") style:UIBarButtonItemStylePlain target:self action:@selector(onBtnSend:)];
     self.navigationItem.rightBarButtonItem = bbtnSend;
     
-    UIBarButtonItem* bbtnCancel = [[[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)] autorelease];
+    UIBarButtonItem* bbtnCancel = [[UIBarButtonItem alloc] initWithTitle:Localize(@"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(onBtnCancel:)];
     self.navigationItem.leftBarButtonItem = bbtnCancel;
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
@@ -192,6 +171,12 @@
     [super viewDidUnload];
 }
 
+-(void) dealloc {
+    _postActivityProxy.delegate = nil;
+    _postCommentProxy.delegate = nil;
+    _socialSpaceProxy.delegate = nil;
+    
+}
 #pragma mark - subviews management
 /*
  rearrange text field, button and attachment component in relevant position.
@@ -248,7 +233,7 @@
 #pragma mark - getters & setters
 - (UIButton *)btnAttachPhoto {
     if (!_btnAttachPhoto) {
-        _btnAttachPhoto = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _btnAttachPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
         _btnAttachPhoto.imageView.image = [UIImage imageNamed:@"SocialAddPhotoButton.png"];
         [_btnAttachPhoto addTarget:self action:@selector(onBtnAttachment:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -302,8 +287,7 @@
             thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
         }
     }
-    
-    return [thePicker autorelease];
+    return thePicker;
 }
 
 #pragma mark UIImagePickerDelegate
@@ -336,7 +320,7 @@
     
     if (selectedSpace && (!selectedSpace.spaceId ||selectedSpace.spaceId.length ==0)){
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"CannotLoadSpaceID") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil] autorelease];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"CannotLoadSpaceID") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
@@ -349,8 +333,14 @@
         if(self.attPhotoView.image)
         {
             FilesProxy *fileProxy = [FilesProxy sharedInstance];
+            NSString * photosFolderPath;
+            if (selectedSpace && selectedSpace.spaceId) {
+               photosFolderPath = [NSString stringWithFormat:@"%@/rest/private/jcr/%@/%@/Groups%@/Documents",[ApplicationPreferencesManager sharedInstance].selectedAccount.serverUrl,[ApplicationPreferencesManager sharedInstance].currentRepository, [ApplicationPreferencesManager sharedInstance].defaultWorkspace, selectedSpace.groupId];
+            } else {
+                photosFolderPath =  [NSString stringWithFormat:@"%@/Public", fileProxy._strUserRepository];
+            }
             
-            BOOL storageFolder = [fileProxy createNewFolderWithURL:[NSString stringWithFormat:@"%@/Public", fileProxy._strUserRepository] folderName:@"Mobile"];
+            BOOL storageFolder = [fileProxy createNewFolderWithURL:photosFolderPath folderName:MOBILE_UPLOAD_DEST_FOLDER];
             
             if(storageFolder)
             {
@@ -359,20 +349,18 @@
                 fileAttachName = [dateFormatter stringFromDate:[NSDate date]];
                 
                 //release the date formatter because, not needed after that piece of code
-                [dateFormatter release];
 
-                fileAttachName = [NSString stringWithFormat:@"MobileImage_%@.png", fileAttachName];
+                fileAttachName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, fileAttachName];
                 fileAttachName = [fileAttachName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 NSLog(@"uploading file: %@",fileAttachName);
                 
-                fileAttachURL = [NSString stringWithFormat:@"%@/Public/Mobile/%@", fileProxy._strUserRepository, fileAttachName];
-                
+                fileAttachURL = [NSString stringWithFormat:@"%@/%@/%@",photosFolderPath,MOBILE_UPLOAD_DEST_FOLDER,fileAttachName];
                 
                 NSData *imageData = UIImagePNGRepresentation(self.attPhotoView.image);
                 
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                            [fileProxy methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
-                [invocation setTarget:fileProxy];
+                                            [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
+                [invocation setTarget:self];
                 [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
                 [invocation setArgument:&fileAttachURL atIndex:2];
                 [invocation setArgument:&imageData atIndex:3];
@@ -386,7 +374,7 @@
         {
             [self displayHudLoader];
             
-            self.postActivityProxy = [[[SocialPostActivity alloc] init] autorelease];
+            self.postActivityProxy = [[SocialPostActivity alloc] init];
             self.postActivityProxy.delegate = self;
 
             [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName toSpace:selectedSpace];
@@ -395,7 +383,7 @@
         {
             [self displayHudLoader];
             
-            self.postCommentProxy = [[[SocialPostCommentProxy alloc] init] autorelease];
+            self.postCommentProxy = [[SocialPostCommentProxy alloc] init];
             self.postCommentProxy.delegate = self;
             [self.postCommentProxy postComment:_txtvMessageComposer.text forActivity:_strActivityID];
             
@@ -408,10 +396,22 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageComposer") message:Localize(@"NoMessageComment") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil] ;
         [alert show];
         
-        if(_isPostMessage)
+        if(_isPostMessage) {
             alert.message = Localize(@"NoMessagePosting");
+        }
         
-        [alert release];
+    }
+    
+}
+
+- (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
+{
+    if (selectedSpace){
+        NSString * driverName = [selectedSpace.groupId stringByReplacingOccurrencesOfString:@"/" withString:@"."];
+        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:MOBILE_UPLOAD_DEST_FOLDER ofDrive:driverName];
+        
+    } else {
+        [[FilesProxy sharedInstance] uploadFile:imageData asFileName:[directory lastPathComponent] inFolder:@"Public/Mobile" ofDrive:MOBILE_UPLOAD_PERSONAL_DRIVE];
     }
     
 }
@@ -477,7 +477,7 @@
 // i.e. user edits the photo
 - (void)editPhoto
 {
-    ImagePreviewViewController *imagePreview = [[[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil] autorelease];
+    ImagePreviewViewController *imagePreview = [[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil];
     __block __typeof__(imagePreview) bImagePreview = imagePreview; // create a weak reference to avoid retain cycle.
     [imagePreview changeImageWithCompletion:^(void) {
         // called when user change existing photo (edit -> change)
@@ -519,8 +519,8 @@
         }
     }];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:imagePreview] autorelease];
-        self._popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:navController] autorelease];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:imagePreview];
+        self._popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:navController];
         [self._popoverPhotoLibraryController presentPopoverFromRect:self.attPhotoButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
         // set style for navigation bar because the popover using the default style if it is not set.
         navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
@@ -576,7 +576,7 @@
         else
             alertMessage = Localize(@"CommentActionCannotBeCompleted");
         
-        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil] autorelease];
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil];
         
         [alertView show];
 
@@ -619,7 +619,6 @@
             if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture") message:Localize(@"CameraNotAvailable") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
                 [alert show];
-                [alert release];
                 return;
             }
         } else {
@@ -631,7 +630,7 @@
             _previousStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
             [self presentViewController:thePicker animated:YES completion:nil];
         } else {
-            self._popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:thePicker] autorelease];
+            self._popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
             // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self._popoverPhotoLibraryController presentPopoverFromRect:_btnAttach.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
@@ -649,7 +648,7 @@
 // i.e. user chooses an image for the 1st time
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    ImagePreviewViewController *imagePreview = [[[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil] autorelease];
+    ImagePreviewViewController *imagePreview = [[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil];
     __block __typeof__(imagePreview) bImagePreview = imagePreview; // create a weak reference to avoid retain cycle.
     [imagePreview changeImageWithCompletion:^(void) {
         // called when the user has chosen a photo and decides to change it (tap Change)
@@ -728,7 +727,7 @@
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SpaceSelectionViewController  * spaceSelectionVC = [[[SpaceSelectionViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    SpaceSelectionViewController  * spaceSelectionVC = [[SpaceSelectionViewController alloc] initWithStyle:UITableViewStyleGrouped];
     spaceSelectionVC.delegate = self;
     [self.navigationController pushViewController:spaceSelectionVC animated:YES];
     

@@ -43,9 +43,7 @@
 -(void)dealloc {
 //    self.navigation = nil;
 //    self.label = nil;
-    [_hudLoadWaiting release];
     _hudLoadWaiting = nil;
-    [super dealloc];
 }
 
 - (void)viewDidUnload
@@ -54,7 +52,6 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [_hudLoadWaiting release];
     _hudLoadWaiting = nil;
     [super didReceiveMemoryWarning];
 }

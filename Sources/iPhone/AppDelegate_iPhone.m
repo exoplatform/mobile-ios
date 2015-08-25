@@ -52,9 +52,6 @@
     [Fabric with:@[CrashlyticsKit]];
     application.statusBarHidden = YES;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:EXO_PREFERENCE_VERSION_APPLICATION];
-    
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3    
     //Configuring the Navigation Bar for iOS 5
@@ -90,7 +87,6 @@
     if(!accountConfigured) {
         WelcomeViewController_iPhone *welcomeVC = [[WelcomeViewController_iPhone alloc] initWithNibName:@"WelcomeViewController_iPhone" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
-        [welcomeVC release];
     }
     
     navigationController.navigationBarHidden = YES;
@@ -149,21 +145,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
-
-- (void)dealloc {
-	
-	[navigationController release];
-    navigationController = nil;
-    
-    [_authenticateViewController release];
-    _authenticateViewController = nil;
-    
-        
-    [window release];
-    window = nil;
-    
-    [super dealloc];
-}
 
 - (void)onBtnSigtOutDelegate {
     

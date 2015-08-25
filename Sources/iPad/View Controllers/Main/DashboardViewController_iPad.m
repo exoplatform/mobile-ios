@@ -55,7 +55,7 @@
     GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
 
     
-    GadgetDisplayViewController_iPad* gadgetDisplayViewController = [[[GadgetDisplayViewController_iPad alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPad" bundle:nil gadget:gadgetTmp] autorelease];
+    GadgetDisplayViewController_iPad* gadgetDisplayViewController = [[GadgetDisplayViewController_iPad alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPad" bundle:nil gadget:gadgetTmp];
     
     // push the gadgets
     [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:gadgetDisplayViewController invokeByController:self isStackStartView:FALSE];

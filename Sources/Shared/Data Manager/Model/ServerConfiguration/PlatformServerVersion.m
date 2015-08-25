@@ -28,16 +28,4 @@
 @synthesize userHomeNodePath = _userHomeNodePath;
 
 
-- (void) dealloc {
-    [_platformVersion release]; _platformVersion = nil;
-    [_platformRevision release]; _platformRevision = nil;
-    [_platformBuildNumber release]; _platformBuildNumber = nil;
-    [_isMobileCompliant release]; _isMobileCompliant = nil;
-    [_platformEdition release]; _platformEdition = nil;
-    [_currentRepoName release];
-    [_defaultWorkSpaceName release];
-    [_userHomeNodePath release];
-    [super dealloc];
-}
-
 @end

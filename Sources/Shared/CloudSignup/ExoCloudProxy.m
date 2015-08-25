@@ -69,7 +69,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     
     [request setHTTPBody:postData];
     [request setHTTPMethod:@"POST"];
-    
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     NSURLConnection *connectinon = [NSURLConnection connectionWithRequest:request delegate:self];
     
     [connectinon start];
@@ -82,6 +83,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     NSString *requestLink = [NSString stringWithFormat:@"%@/%@",[self tenantStatusRestUrl], self.tenantName];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestLink]];
     [request setHTTPMethod:@"GET"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     [connection start];
 }
@@ -92,6 +95,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     NSString *requestLink = [NSString stringWithFormat:@"%@/%@/%@", [self userExistRestUrl], self.tenantName,self.username];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestLink]];
     [request setHTTPMethod:@"GET"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     [connection start];
     
@@ -206,7 +211,6 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 
 - (void)dealloc
 {
-    [super dealloc];
     self.email = nil;
     self.tenantName = nil;
     self.username = nil;
@@ -241,7 +245,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     NSString *requestLink = [NSString stringWithFormat:@"%@/%@", [self usermailInfoRestUrl], email];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestLink]];
     [request setHTTPMethod:@"GET"];
-    
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if(error) {
@@ -280,7 +285,8 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:payload];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(error) {
           LogError(@"create marketo lead failed for email: %@", email);

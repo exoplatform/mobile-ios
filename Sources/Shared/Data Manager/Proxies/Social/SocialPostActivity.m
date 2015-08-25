@@ -27,23 +27,17 @@
 @implementation SocialPostActivity
 
 @synthesize text=_text;
-
 #pragma - Object Management
 
 -(instancetype)init {
     if ((self=[super init])) {
         //Default behavior
-        _text = [@"" retain];
+        _text = @"";
     }
     return self;
 }
 
 
-
-- (void) dealloc {
-    [_text release];
-    [super dealloc];
-}
 
 
 #pragma mark - helper methods
@@ -60,8 +54,8 @@
     }
     
     if (space && !space.spaceId){
-        if (delegate && [delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
-            [delegate proxy:self didFailWithError:nil];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(proxy:didFailWithError:)]) {
+            [self.delegate proxy:self didFailWithError:nil];
         }
         return;
     }
@@ -98,11 +92,16 @@
         ApplicationPreferencesManager *serverPM = [ApplicationPreferencesManager sharedInstance];
         activity.type = @"DOC_ACTIVITY"; 
         
+        NSString* docPath;
+        if (space){
+            docPath = [NSString stringWithFormat:@"/Groups%@/Documents/%@/%@",space.groupId,MOBILE_UPLOAD_DEST_FOLDER, fileName];
+        } else {
+            docPath = [NSString stringWithFormat:@"%@/Public/%@/%@",serverPM.userHomeJcrPath,MOBILE_UPLOAD_DEST_FOLDER,fileName];
+        }
+        
         NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr"];
         NSString* docLink = [NSString stringWithFormat:@"/rest/%@", [fileURL substringFromIndex:rangeOfDocLink.location]];
-
-        NSString* docPath = [fileURL substringFromIndex:[fileURL rangeOfString:serverPM.userHomeJcrPath].location];
-        
+                
         activity.title = [NSString stringWithFormat:@"Shared a document <a href=\"%@\">%@</a>\"", docLink, fileName];
         
 
@@ -179,7 +178,6 @@
                  }
      ];
     
-    [activity release];
 }
 
 @end

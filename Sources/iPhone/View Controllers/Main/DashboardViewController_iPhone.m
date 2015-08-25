@@ -63,7 +63,7 @@
     
     GadgetItem* gadgetTmp = [(DashboardItem *)_arrDashboard[indexPath.section] arrayOfGadgets][indexPath.row]; 
 
-	GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[[GadgetDisplayViewController_iPhone alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone"  bundle:nil gadget:gadgetTmp] autorelease];
+    GadgetDisplayViewController_iPhone* gadgetDisplayViewController = [[GadgetDisplayViewController_iPhone alloc] initWithNibAndUrl:@"GadgetDisplayViewController_iPhone"  bundle:nil gadget:gadgetTmp];
 
     //[self.navigationController pushViewController:gadgetDisplayViewController animated:YES];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone  pushViewController:gadgetDisplayViewController animated:YES];

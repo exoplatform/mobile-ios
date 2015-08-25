@@ -82,15 +82,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     return _hud;
 }
 
-- (void)dealloc
-{
-    self.listOfAccounts = nil;
-    self.accountSwitcherDelegate = nil;
-    self.hud = nil;
-    self.login = nil;
-    [super dealloc];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -186,7 +177,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
             CredentialsFormViewController* credentialsForm =
                  [[CredentialsFormViewController alloc] initWithAccount:selectedAccount andDelegate:self];
             [self.navigationController pushViewController:credentialsForm animated:YES];
-            [credentialsForm release];
         }
         // When the form is submitted, the method onCredentialsFormSubmittedWithAccount will be called
     }
@@ -222,7 +212,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     [self view].userInteractionEnabled = YES;
     UIAlertView *alert = [LoginProxyAlert alertWithError:error andDelegate:self];
     [alert show];
-    [alert release];
     
     [self restartAppDelegateAfterFailure];
 }

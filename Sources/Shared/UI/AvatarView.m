@@ -69,10 +69,6 @@
 
 @synthesize userProfile = _userProfile;
 
-- (void)dealloc {
-    [_userProfile release];
-    [super dealloc];
-}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -96,8 +92,6 @@
 }
 
 - (void)setUserProfile:(SocialUserProfile *)userProfile {
-    [userProfile retain];
-    [_userProfile release];
     _userProfile = userProfile;
     self.imageURL = [NSURL URLWithString:_userProfile.avatarUrl];
 }
@@ -118,7 +112,6 @@
     innerShadowView.backgroundColor = [UIColor clearColor];
     innerShadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:innerShadowView];
-    [innerShadowView release];
 }
 
 - (void)imageLoaderDidLoad:(NSNotification *)notification {

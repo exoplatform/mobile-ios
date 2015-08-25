@@ -80,7 +80,6 @@
     SignUpViewController_iPad *signUpVC = [[SignUpViewController_iPad alloc] initWithNibName:@"SignUpViewController_iPad" bundle:nil];
     //need a navigation controller to fix some bugs related to keyboard
     eXoNavigationController *navCon = [[eXoNavigationController alloc] initWithRootViewController:signUpVC];
-    [signUpVC release];
     navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:navCon animated:YES completion:nil];
@@ -88,9 +87,9 @@
 
 - (void)login:(id)sender
 {
-    AlreadyAccountViewController_iPad *alreadyVC = [[[AlreadyAccountViewController_iPad alloc] initWithNibName:@"AlreadyAccountViewController_iPad" bundle:nil] autorelease];
+    AlreadyAccountViewController_iPad *alreadyVC = [[AlreadyAccountViewController_iPad alloc] initWithNibName:@"AlreadyAccountViewController_iPad" bundle:nil];
     //need a navigation controller to fix some bugs related to keyboard
-    eXoNavigationController *navCon = [[[eXoNavigationController alloc] initWithRootViewController:alreadyVC] autorelease];
+    eXoNavigationController *navCon = [[eXoNavigationController alloc] initWithRootViewController:alreadyVC];
     
     navCon.modalPresentationStyle = UIModalPresentationFormSheet;
     navCon.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

@@ -62,38 +62,8 @@
 
 - (void)dealloc
 {
-    [_arrDashboard release];
-	_arrDashboard = nil;
-    
-    _tblGadgets = nil;
-    
-    [_refreshHeaderView release];
-    _refreshHeaderView = nil;
-    
-    [_dateOfLastUpdate release];
-    _dateOfLastUpdate = nil;
-    
-    [_refreshHeaderView release];
-    _refreshHeaderView = nil;
-    
-    _dashboardProxy.delegate = nil;
-    [_dashboardProxy release];
-    _dashboardProxy = nil;
-    
-    [_errorForRetrievingDashboard release];
-    _errorForRetrievingDashboard = nil;
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [super dealloc];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+    _dashboardProxy.delegate = nil;
 }
 
 
@@ -103,8 +73,6 @@
 {
     [super viewDidLoad];
     
-    //Reset the  content of the view 
-    [_arrDashboard release];
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     
     // Do any additional setup after loading the view from its nib.
@@ -114,10 +82,6 @@
 	[self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     
     //Set the background Color of the view
-    //UIView *background = [[UIView alloc] initWithFrame:self.view.frame];
-    //background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGlobal.png"]];
-    //_tblGadgets.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgGlobal.png"]] autorelease];
-    //[background release];
     _tblGadgets.backgroundView = nil;
     _tblGadgets.backgroundColor = [UIColor clearColor];
         
@@ -135,7 +99,6 @@
 		view.delegate = self;
 		[_tblGadgets addSubview:view];
 		_refreshHeaderView = view;
-		[view release];
         _reloading = FALSE;
         
 	}
@@ -144,15 +107,6 @@
     self.dateOfLastUpdate = [NSDate date];
     // Observe the change language notif to update the labels
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelsWithNewLanguage) name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
-}
-
-- (void)viewDidUnload
-{
-    [_refreshHeaderView release]; _refreshHeaderView =nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 #pragma UIHelper methods
@@ -165,7 +119,6 @@
         EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
         emptyView.tag = TAG_EMPTY;
         [self.view insertSubview:emptyView belowSubview:_tblGadgets];
-        [emptyView release];        
     } else {
         [[self.view viewWithTag:TAG_EMPTY] removeFromSuperview];
     }
@@ -179,7 +132,6 @@
     //add empty view to the view 
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForNoGadgets.png" andContent:Localize(@"NoGadget")];
     [self.view insertSubview:emptyView aboveSubview:_tblGadgets];
-    [emptyView release];
 }
 
 
@@ -245,7 +197,6 @@
 {
     return kHeightForSectionHeader;
 }
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	
@@ -279,10 +230,8 @@
     imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 30, kHeightForSectionHeader-15);
     
 	[customView addSubview:imgVBackground];
-    [imgVBackground release];
     
     [customView addSubview:headerLabel];
-    [headerLabel release];
     
 	return customView;
 }
@@ -371,11 +320,11 @@
         NSString *alertMessage = [NSString stringWithFormat:@"%@: %@, %@",Localize(@"Dashboard"),_errorForRetrievingDashboard,Localize(@"GadgetsCannotBeRetrieved")];
         
         //Display an UIAlert to the user
-        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:Localize(@"Error")
                                                              message:alertMessage 
                                                             delegate:self 
                                                    cancelButtonTitle:Localize(@"OK") 
-                                                   otherButtonTitles:nil] autorelease];
+                                                   otherButtonTitles:nil];
         
         [alertView show];
     }
@@ -393,11 +342,11 @@
     
     
     //Display an UIAlert to the user
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") 
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:Localize(@"Error")
                                                          message:Localize(@"DashboardsCannotBeRetrieved") 
                                                         delegate:self 
                                                cancelButtonTitle:Localize(@"OK") 
-                                               otherButtonTitles:nil] autorelease];
+                                               otherButtonTitles:nil];
     
     [alertView show];
 }

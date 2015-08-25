@@ -29,9 +29,8 @@
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 #define kHeightForSectionHeader 40
 
-@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate> {
+@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate, FilesProxyDelegate> {
     
-    DocumentsViewController *_parentController;
     File *_rootFile;
     
     NSMutableDictionary *_dicContentOfFolder;
@@ -39,7 +38,7 @@
     
     FilesProxy *_filesProxy;
     
-    File *fileToApplyAction;
+    File * fileToApplyAction;
         
     NSString *_stringForUploadPhoto;
     
@@ -59,7 +58,7 @@
 @property(nonatomic, assign) DocumentsViewController *parentController;
 @property(nonatomic, retain) UIPopoverController *popoverPhotoLibraryController;
 @property (nonatomic, assign) BOOL actionVisibleOnFolder;
-
+@property (nonatomic, retain) File * fileToApplyAction;
 @property BOOL isRoot;
 
 // Check whether user can execute actions on the folder or not. 

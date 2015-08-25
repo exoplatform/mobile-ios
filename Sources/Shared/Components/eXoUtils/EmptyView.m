@@ -33,7 +33,7 @@
         //add empty image to the view
         self.imagename = imageName;
         UIImage *image = [UIImage imageNamed:imageName];
-        self.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        self.imageView = [[UIImageView alloc] initWithImage:image];
         self.imageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin| UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin;
         [self addSubview:self.imageView];
         
@@ -51,7 +51,7 @@
             self.distance = 110;
         }
         
-        self.label = [[[UILabel alloc] initWithFrame:CGRectMake(0, imageView.frame.origin.y + imageView.frame.size.height + distance, frame.size.width, 40)] autorelease];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.frame.origin.y + imageView.frame.size.height + distance, frame.size.width, 40)];
         self.label.backgroundColor = [UIColor clearColor];//
         self.label.textAlignment = NSTextAlignmentCenter;
         self.label.textColor = [UIColor colorWithRed:112./255 green:112./255 blue:112./255 alpha:1.];
@@ -90,7 +90,6 @@
     self.imageView = nil;
     self.imagename = nil;
     self.distance = nil;
-    [super dealloc];
 }
 
 @end

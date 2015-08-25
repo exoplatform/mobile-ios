@@ -23,9 +23,7 @@
 @protocol SocialProxyDelegate;
 
 
-@interface SocialProxy : NSObject {
-    
-    id<SocialProxyDelegate> delegate;
+@interface SocialProxy : NSObject {    
     
 }
 

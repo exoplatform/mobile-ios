@@ -39,17 +39,11 @@ static DataProcess *_instance;
 {
     if(_instance)
 	{
-        [_instance release];
         _instance = nil;
     }
     
     _instance = [[DataProcess alloc] init];
     return _instance;
-}
-
-- (void) dealloc
-{
-    [super dealloc];
 }
 
 - (NSString*)escapeString:(NSString*)str withEncoding:(NSStringEncoding)encoding
@@ -59,7 +53,6 @@ static DataProcess *_instance;
 	NSData* data = [str dataUsingEncoding:encoding allowLossyConversion:YES];
 	NSString* lossyString = [[NSString alloc] initWithData:data encoding:encoding];
 	NSString* tempString = [lossyString stringByAddingPercentEscapesUsingEncoding:encoding];
-	[lossyString release];
 	
 	NSMutableString *mutableString = [NSMutableString stringWithString:tempString];
 	
@@ -95,7 +88,7 @@ static DataProcess *_instance;
 + (NSMutableArray*)parseData:(NSData*)data
 {
 	NSError* error;
-	NSString* strData = [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
+    NSString* strData = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
 
 	
 	CXMLDocument* xmldoc = [[CXMLDocument alloc] initWithXMLString:strData options:1 << 9 error:&error];
@@ -179,7 +172,7 @@ static DataProcess *_instance;
 	
 	
 	
-    return [temp autorelease];
+    return temp;
 }
 
 @end

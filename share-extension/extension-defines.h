@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2003-2014 eXo Platform SAS.
+// Copyright (C) 2003-2015 eXo Platform SAS.
 //
 // This is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
@@ -17,12 +17,17 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
-#import "SocialLike.h"
+// General REST information
+#define kRestVersion @"v1-alpha3"
+#define kRestContextName @"rest"
+#define kPortalContainerName @"portal"
+#define BASEURL @"rest/private/portal/social/spaces/mySpaces/show.json"
 
+// Maximum upload size (10MB)
+#define kMaxSize    10000000
 
-@implementation SocialLike
+// App version
+#define EXO_PREFERENCE_VERSION_APPLICATION  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 
-@synthesize like=_like;
-
-
-@end
+// User-Agent
+#define kUserAgentHeader [NSString stringWithFormat:@"eXo/%@ (iOS)", EXO_PREFERENCE_VERSION_APPLICATION]

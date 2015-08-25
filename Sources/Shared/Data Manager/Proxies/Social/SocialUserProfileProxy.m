@@ -36,11 +36,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [_userProfile release];
-    [super dealloc];
-}
-
 #pragma mark - helper methods
 
 //Helper to create the path to get the ressources
@@ -86,7 +81,7 @@
 #pragma mark - RKObjectLoaderDelegate methods
 -(void) restKitDidLoadObjects:(NSArray*)objects {
     // We receive the response from the server
-    _userProfile = [objects[0] retain];
+    _userProfile = objects[0];
     // Saving the current user's full name and avatar URL in the ServerObj that represents him
     ServerObj* currentAccount = [[ApplicationPreferencesManager sharedInstance] getSelectedAccount];
     currentAccount.avatarUrl = _userProfile.avatarUrl;

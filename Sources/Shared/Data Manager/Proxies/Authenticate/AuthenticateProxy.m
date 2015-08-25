@@ -75,12 +75,7 @@
 //Dealloc method
 - (void) dealloc
 {
-	[_domainName release];
-    [_firstLoginContent release];
     _firstLoginContent = nil;
-    [_username release];
-    [_password release];
-	[super dealloc];
 }
 
 
@@ -161,7 +156,8 @@
     [request setURL:[NSURL URLWithString:urlStr]];
     
     [request setHTTPMethod:@"HEAD"];
-    
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
     if(userName != nil)
     {
         NSString *s = @"Basic ";
@@ -169,8 +165,7 @@
         [request setValue:author forHTTPHeaderField:@"Authorization"];    
     }
     
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
-    [request release];
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSUInteger statusCode = [response statusCode];
     if(statusCode >= 200 && statusCode < 300)
@@ -194,7 +189,6 @@
 	if(tmpCheck == nil || tmpRange.length > 0) 
 	{
 		tmpURL = nil;
-		[tmpURL release];
 		return @"ERROR";
 	}
 	
@@ -214,7 +208,6 @@
 	if(checkUrlStr == nil) 
 	{
 		redirectURL1 = nil;
-		[redirectURL1 release];
 		return @"ERROR";
 	}
 	
@@ -237,7 +230,8 @@
 	[loginRequest setTimeoutInterval:60.0];
 	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
 	[loginRequest setHTTPShouldHandleCookies:NO];
-	
+    [loginRequest setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
 	NSDictionary* postDictionary = [NSMutableDictionary dictionaryWithCapacity:2];
 	[postDictionary setValue:username forKey:@"j_username"];
 	[postDictionary setValue:password forKey:@"j_password"];
@@ -254,7 +248,6 @@
 	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
 	if([dataResponse bytes] == nil) 
 	{
-		[loginRequest release];
 		return @"ERROR";
 	}
 	
@@ -263,12 +256,10 @@
 	NSRange rgCheck = [_firstLoginContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
-		[loginRequest release];
 		return @"NO";
 	}
 	else
 	{
-		[loginRequest release];
 		return @"YES";
 	}
 }
@@ -289,6 +280,8 @@
 	[request setHTTPShouldHandleCookies:YES];	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:[self stringOfAuthorizationHeaderWithUsername:_username password:_password] forHTTPHeaderField:@"Authorization"];
+    [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
 	dataResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	
 	return dataResponse;
@@ -309,7 +302,6 @@
 	if(tmpCheck == nil || tmpRange.length > 0) 
 	{
 		tmpURL = nil;
-		[tmpURL release];
 		return @"ERROR";
 	}
 	
@@ -327,7 +319,8 @@
 	[loginRequest setTimeoutInterval:60.0];
 	[loginRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
 	[loginRequest setHTTPShouldHandleCookies:NO];
-	
+    [loginRequest setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
+
 	NSDictionary* postDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
 	[postDictionary setValue:_username forKey:@"username"];
 	[postDictionary setValue:_password forKey:@"password"];
@@ -345,7 +338,6 @@
 	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
 	if([dataResponse bytes] == nil) 
 	{
-		[loginRequest release];
 		return @"ERROR";
 	}
 	urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
@@ -353,15 +345,10 @@
 	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
-		[loginRequest release];
-        [urlContent release];
 		return @"NO";
 	}
 	else
 	{
-		[loginRequest release];
-//		_firstLoginContent = urlContent;
-        [urlContent release];
 		return @"YES";
 	}
 }
