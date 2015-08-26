@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "ورود";
+"SignInButton" = "Login";
 
-"SignInButton_In" = "به";
+"SignInButton_In" = "to";
 
-"UsernamePlaceholder" = "نام کاربری";
+"UsernamePlaceholder" = "Username";
 
-"PasswordPlaceholder" = "رمز عبور";
+"PasswordPlaceholder" = "Password";
 
 "Last Login" = "Last login";
 
-"Connected" = "مرتبط";
+"Connected" = "Connected";
 
-"Sign In" = "ورود";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -34,15 +34,15 @@
 
 "NewFolderTitle" = "New folder";
 
-"RenameTitle" = "تغییر نام";
+"RenameTitle" = "Rename";
 
-"Copy" = "کپی";
+"Copy" = "Copy";
 
-"Move" = "برش";
+"Move" = "Cut";
 
-"Paste" = "الحاق";
+"Paste" = "Paste";
 
-"Documents" = "اسناد";
+"Documents" = "Documents";
 
 "TakeAPicture" = "Take a picture";
 
@@ -65,23 +65,23 @@
  * General
  */
 
-"Cancel" = "انصراف";
+"Cancel" = "Cancel";
 
 "DoneButton" = "Done";
 
-"Delete" = "حذف";
+"Delete" = "Delete";
 
 "Success" = "Success";
 
-"Home" = "صفحه اصلی";
+"Home" = "Home";
 
-"Loading" = "در حال بارگذاری...";
+"Loading" = "Loading...";
 
 "LoadingURL" = "Loading URL";
 
-"OK" = "تایید";
+"OK" = "OK";
 
-"Disconnect" = "قطع ارتباط";
+"Disconnect" = "Disconnect";
 
 "Pull down to refresh..." = "Pull down to refresh...";
 
@@ -93,16 +93,16 @@
 
 "Optional" = "Optional";
 
-"Fullscreen" = "تمام صفحه";
+"Fullscreen" = "Fullscreen";
 
-"Close" = "بستن";
+"Close" = "Close";
 
 
 /*
  * Settings
  */
 
-"Settings" = "تنظیمات";
+"Settings" = "Settings";
 
 "RememberMe" = "Remember me";
 
@@ -112,13 +112,13 @@
 
 "ShowPrivateDrive" = "Show my private drive";
 
-"Language" = "زبان‌‌‌‌‌‌ها";
+"Language" = "Languages";
 
-"English" = "انگلیسی";
+"English" = "English";
 
-"French" = "فرانسوی";
+"French" = "French";
 
-"German" = "آلمانی";
+"German" = "German";
 
 "Spanish" = "Spanish";
 
@@ -126,7 +126,7 @@
 
 "Greek"= "Greek";
 
-"Send" = "ارسال";
+"Send" = "Send";
 
 "ServerList" = "Server list";
 
@@ -181,7 +181,7 @@
 
 "NoGadget" = "You have no gadgets in your Apps";
 
-"MessageInfo" = "اطلاعات";
+"MessageInfo" = "Information";
 
 "MessageErrorServer" = "You cannot add a server with an empty name or URL";
 
@@ -189,13 +189,13 @@
 
 "InvalidUrl" = "Invalid URL";
 
-"FileError" = "خطا";
+"FileError" = "Error";
 
 "CameraNotAvailable" = "The camera is not available";
 
 "GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
 
-"Error" = "خطا";
+"Error" = "Error";
 
 "NoMessageComment" = "You must enter some text to comment";
 
@@ -255,9 +255,9 @@
 
 "ActivityStream" = "Activity stream";
 
-"News" = "اخبار";
+"News" = "News";
 
-"Details" = "جزئیات";
+"Details" = "Details";
 
 "comments(%d)" = "Comments(%d)";
 
@@ -269,9 +269,9 @@
 
 "UpdatingActivity" = "Updating activity";
 
-"PostingActivity" = "پست";
+"PostingActivity" = "Post";
 
-"CommentActivity" = "نظر";
+"CommentActivity" = "Comment";
 
 "GettingActivityDetail" = "Getting activity detail";
 
@@ -303,9 +303,9 @@
 
 "TaskUpdated" = "has just updated the task:";
 
-"Description" = "شرح";
+"Description" = "Description";
 
-"Location" = "محل";
+"Location" = "Location";
 
 "StartTime" = "Start time";
 
@@ -315,23 +315,23 @@
 
 "Image Preview" = "Image preview";
 
-"Change" = "تغییر";
+"Change" = "Change";
 
 "Remove" = "Remove";
 
-"All Updates" = "تمام فعالیت ها";
+"All Updates" = "All Activities";
 
-"My Connections" = "ارتباطات من";
+"My Connections" = "My Connections";
 
-"My Spaces" = "فضاهاي من";
+"My Spaces" = "My Spaces";
 
-"My Status" = "فعالیت های من";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
  */
 
-"Today" = "امروز";
+"Today" = "Today";
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "فعالیت های من";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,5 +436,5 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "به";
+"To" = "To";
 
