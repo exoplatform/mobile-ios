@@ -641,10 +641,10 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
             }
             
             welcomeVC.shouldBackToSetting = YES;
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [appDelegate.window.rootViewController presentViewController:welcomeVC animated:YES completion:nil];
-            [welcomeVC release];
-
+            [self dismissViewControllerAnimated:YES completion:^{
+                [appDelegate.window.rootViewController presentViewController:welcomeVC animated:YES completion:nil];
+                [welcomeVC release];
+            }];
         } else {
             ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
                 ServerObj* tmpServerObj = (appPrefManager.serverList)[indexPath.row];
