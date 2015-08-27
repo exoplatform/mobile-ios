@@ -80,7 +80,7 @@
 #pragma mark - Call methods
 
 /*
- * Load the 100 most recent activities of the given type:
+ * Load the 25 (NUMBER_OF_ACTIVITIES) most recent activities of the given type:
  * ActivityStreamProxyActivityTypeAllUpdates    : All updates 
  * ActivityStreamProxyActivityTypeMyConnections : My connections only
  * ActivityStreamProxyActivityTypeMySpaces      : My spaces only
@@ -130,7 +130,8 @@
                                             statusCodes:[NSIndexSet indexSetWithIndex:200]];
     [manager addResponseDescriptor:responseDescriptor];
     
-    [manager getObjectsAtPath:[self createPathForType:activitytype] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [manager getObjectsAtPath:[NSString stringWithFormat:@"%@?limit=%d", [self createPathForType:activitytype], NUMBER_OF_ACTIVITIES]
+                   parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         self.arrActivityStreams = [mappingResult array];
         [super restKitDidLoadObjects:[mappingResult array]];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -140,7 +141,7 @@
 }
 
 /*
- * Loads the 100 activities of the given type that were published before the given activity
+ * Loads the 25 (NUMBER_OF_MORE_ACTIVITIES) activities of the given type that were published before the given activity
  * Cf method above for explanation of the types and the RK mapping
  */
 - (void)getActivitiesOfType:(ActivityStreamProxyActivityType)activitytype BeforeActivity:(SocialActivity*)activity {
@@ -182,15 +183,14 @@
                                             statusCodes:[NSIndexSet indexSetWithIndex:200]];
     [manager addResponseDescriptor:responseDescriptor];
     
-    [manager getObjectsAtPath:[NSString stringWithFormat:@"%@?max_id=%@",[self createPathForType:activitytype], activity.activityId] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [manager getObjectsAtPath:[NSString stringWithFormat:@"%@?limit=%d&max_id=%@", [self createPathForType:activitytype], NUMBER_OF_MORE_ACTIVITIES, activity.activityId]
+                   parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         self.arrActivityStreams = [mappingResult array];
         [super restKitDidLoadObjects:[mappingResult array]];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         [super restKitDidFailWithError:error];
     }];
     
-    
 }
-
 
 @end

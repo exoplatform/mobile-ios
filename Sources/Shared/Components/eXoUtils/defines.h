@@ -134,3 +134,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 // User-Agent
 #define kUserAgentHeader [NSString stringWithFormat:@"eXo/%@ (iOS)", EXO_PREFERENCE_VERSION_APPLICATION]
 
+// Number of activities to load and load more
+#define NUMBER_OF_ACTIVITIES 25
+#define NUMBER_OF_MORE_ACTIVITIES 25
+
