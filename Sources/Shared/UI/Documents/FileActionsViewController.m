@@ -23,13 +23,18 @@
 
 #import "LanguageHelper.h"
 
+#define fileDeleteConfirmationBoxTag 100
 
 
 static NSString *kCellIdentifier = @"MyIdentifier";
 static File *copyMoveFile;
 static short fileActionMode = 0;//1:copy, 2:move
 
+@interface FileActionsViewController () {
+    
+}
 
+@end
 
 @implementation FileActionsViewController
 
@@ -314,8 +319,11 @@ static short fileActionMode = 0;//1:copy, 2:move
 			
 		}
 		else if (row == 4)
-		{            
-			[fileActionsDelegate deleteFile:_file.path];
+		{
+            UIAlertView * fileDeleteConfirmationBox = [[UIAlertView alloc] initWithTitle:Localize(@"Delete") message:Localize(@"Confirm Delete") delegate:self cancelButtonTitle:Localize(@"Cancel") otherButtonTitles:Localize(@"Delete"), nil];
+            fileDeleteConfirmationBox.tag = fileDeleteConfirmationBoxTag;
+            [fileDeleteConfirmationBox show];
+            [fileDeleteConfirmationBox release];
 
 		}
         else if (row == 5)
@@ -329,7 +337,13 @@ static short fileActionMode = 0;//1:copy, 2:move
         }
 	}
 }
-
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == fileDeleteConfirmationBoxTag){
+        if (buttonIndex == 1){
+            [fileActionsDelegate deleteFile:_file.path];
+        }
+    }
+}
 
 
 @end

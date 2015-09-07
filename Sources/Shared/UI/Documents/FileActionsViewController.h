@@ -52,7 +52,7 @@
 @class File;
 
 
-@interface FileActionsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface FileActionsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate> {
     
 	File *_file;	//file, folder info
 	IBOutlet UITableView *_tblFileAction;	//file action list
