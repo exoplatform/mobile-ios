@@ -19,8 +19,8 @@
 
 
 #import <Foundation/Foundation.h>
-
-@interface PostItem : NSObject
+#import <UIKit/UIKit.h>
+@interface PostItem : NSObject <UIWebViewDelegate>
 enum {
     eXoItemStatusReadyToUpload = 0,
     eXoItemStatusUploadSuccess = 1,
@@ -47,6 +47,5 @@ enum {
 
 #pragma mark - link activity
 -(void) searchForImageInURL;
-
 
 @end

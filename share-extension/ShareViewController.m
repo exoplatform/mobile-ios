@@ -231,7 +231,6 @@ enum {
             // case URL: the post message is the text in text field + the URL.
             [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeURL options:nil completionHandler:^(NSURL *url, NSError *error) {
                 if (!error && url) {
-                    postItem.pageWebTitle = self.contentText;
                     postItem.url = url;
                     postItem.type = @"LINK_ACTIVITY";
                     [postItem searchForImageInURL];
@@ -248,6 +247,7 @@ enum {
             postItem.type = @"DOC_ACTIVITY";
         }
         [postActivity.items addObject:postItem];
+
     }
     
 }
@@ -696,7 +696,9 @@ NSMutableData * data;
                 [self uploadPostItemAtIndex:itemIndex+1];
             }
         } else {
-            [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+            [postActivity.items removeObject:item];
+            [self uploadPostItemAtIndex:itemIndex];
+            
         }
 
     } else {
@@ -728,8 +730,8 @@ NSMutableData * data;
 /*
  Post Activity. 
  - If there are no item in post activity. Post Only the message as activity
- - If there are items to post, but all uploads failed --> Ask user if continue anyway.
- - If there are items & uploads succes, post the first success item as activity (with message of couse)
+ - If all items uploaded succesfully, post the first success item as activity (with message of couse)
+ - If there are items to post, atleast one upload failed --> Ask user if continue anyway.
  */
 -(void) postActivityAction {
     if (postActivity.items.count >0) {
@@ -809,7 +811,11 @@ NSMutableData * data;
                 }
             }
         } else if ([postItem.type isEqualToString:@"LINK_ACTIVITY"]) {
-            message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.url, postItem.pageWebTitle];
+            NSString * title = postItem.pageWebTitle;
+            if (!title || title.length ==0){
+                title = postItem.url.absoluteString;
+            }
+            message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.url, title];
             
         }
 
@@ -824,15 +830,7 @@ NSMutableData * data;
 
         if (!error) {
             NSURLSessionDataTask *postTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                NSUInteger statusCode = [((NSHTTPURLResponse*) response) statusCode];
-                if(statusCode >= 200 && statusCode < 300) {
-                    [self postCommentForItemAtIndex:index+1];
-                    
-                } else {
-                    [uploadVC dismissViewControllerAnimated:YES completion:nil];
-                    [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
-                    
-                }
+                [self postCommentForItemAtIndex:index+1];
             }];
             [postTask resume];
         } else {
@@ -939,16 +937,20 @@ NSMutableData * data;
         postURL = [NSString stringWithFormat:@"%@?identity_id=%@", postURL, selectedSpace.spaceId];
     }
     NSString * imgSrc = item.imageURLFromLink? item.imageURLFromLink : @"";
+    NSString * pageWebTitle = item.pageWebTitle;
+    if (pageWebTitle==nil || pageWebTitle.length ==0){
+        pageWebTitle = postActivity.message;
+    }
     
     NSDictionary * templateParams = @{
                        @"comment":postActivity.message,
                        @"link":item.url.absoluteString,
                        @"description":@"",
                        @"image":imgSrc,
-                       @"title":item.pageWebTitle
+                       @"title":pageWebTitle
                        };
     NSDictionary * dictionary = @{@"type": item.type,
-                                  @"title":item.pageWebTitle,
+                                  @"title":postActivity.message,
                                   @"templateParams": templateParams
                                   };
     NSError *error = nil;

@@ -82,15 +82,25 @@
 
 -(void) searchForImageInURL {
     NSURLSession *session = [NSURLSession sharedSession];
-
+    
     [[session dataTaskWithURL:self.url
             completionHandler:^(NSData *data,
                                 NSURLResponse *response,
                                 NSError *error) {
                 
                 NSString * pagesource = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSRange range;
                 
-                NSRange range = [pagesource rangeOfString:@"=\"container\""];
+                range = [pagesource rangeOfString:@"<title>"];
+                NSRange endTagRange  = [pagesource rangeOfString:@"</title>"];
+                if (range.location!= NSNotFound && endTagRange.location != NSNotFound && endTagRange.location > range.location + range.length){
+                        NSString * title = [pagesource substringWithRange:NSMakeRange(range.location+range.length, endTagRange.location-range.location)];
+                    if (title.length >0) {
+                        self.pageWebTitle = title;
+                    }
+                }
+
+                range = [pagesource rangeOfString:@"=\"container\""];
                 if (range.location== NSNotFound){
                     range = [pagesource rangeOfString:@"=\"content\""];
                 }
@@ -124,6 +134,6 @@
                 
             }] resume];
     
-    
 }
+
 @end
