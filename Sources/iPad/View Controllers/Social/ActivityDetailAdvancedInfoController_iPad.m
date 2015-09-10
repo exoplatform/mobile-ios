@@ -222,18 +222,6 @@ static NSString *kTabItem = @"kTabItem";
 @synthesize infoContainer = _infoContainer;
 @synthesize delegateToProcessClickAction = _delegateToProcessClickAction;
 
-- (void)dealloc {
-    [_tabView release];
-    [_infoView release];
-    [_socialActivity release];
-    [_likersViewController release];
-    [_emptyView release];
-    [_commentButton release];
-    [_infoContainer release];
-    [_dataSourceArray release];
-    [super dealloc];
-}
-
 - (void)didReceiveMemoryWarning {
     self.emptyView = nil;
     self.likersViewController = nil;
@@ -244,12 +232,12 @@ static NSString *kTabItem = @"kTabItem";
 }
 
 - (void)doInit {
-    _dataSourceArray = [@[@{kTabType: @(ActivityAdvancedInfoCellTabComment),
+    _dataSourceArray = @[@{kTabType: @(ActivityAdvancedInfoCellTabComment),
                             kTabTitle: @"comments(%d)", 
-                            kTabItem: [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-comment-icon"]] autorelease]},
+                            kTabItem: [[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-comment-icon"]]},
                         @{kTabType: @(ActivityAdvancedInfoCellTabLike),
                             kTabTitle: @"likes(%d)", 
-                            kTabItem: [[[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-likers-icon"]] autorelease]}] retain];
+                            kTabItem: [[CustomTabItem alloc] initWithTitle:@"" icon:[UIImage imageNamed:@"activity-detail-tabs-likers-icon"]]}];
 }
 
 - (instancetype)init {
@@ -294,7 +282,7 @@ static NSString *kTabItem = @"kTabItem";
         _tabView = [[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kAdvancedCellTabBarHeight)];
         _tabView.delegate = self;
         [_tabView setBackgroundLayer:nil];
-        [_tabView setSelectionView:[[[CustomSelectionView alloc] initWithFrame:CGRectZero] autorelease]];
+        [_tabView setSelectionView:[[CustomSelectionView alloc] initWithFrame:CGRectZero]];
         [_tabView setItemPadding:CGSizeMake(16.0, 7.0)];
     }
     return _tabView;
@@ -360,8 +348,6 @@ static NSString *kTabItem = @"kTabItem";
 }
 
 - (void)setSocialActivity:(SocialActivity *)socialActivity {
-    [socialActivity retain];
-    [_socialActivity release];
     _socialActivity = socialActivity;
     self.likersViewController.socialActivity = socialActivity;
     [self updateTabLabels];
@@ -450,7 +436,7 @@ static NSString *kTabItem = @"kTabItem";
         if (self.socialActivity.totalNumberOfComments == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailEmptyViewCell];
             if (cell == nil) {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailEmptyViewCell] autorelease];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailEmptyViewCell];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.backgroundColor = [UIColor clearColor];
             }
@@ -473,7 +459,7 @@ static NSString *kTabItem = @"kTabItem";
     } else if (_selectedTab == ActivityAdvancedInfoCellTabLike) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikersTableViewCell];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailLikersTableViewCell] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifierActivityDetailLikersTableViewCell];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor clearColor];
         }

@@ -65,7 +65,7 @@
 
     [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialLike class] pathPattern:[self createPathWithActivityId:activity] method:RKRequestMethodPOST]];
     
-    SocialLike* likeToPost = [[[SocialLike alloc] init] autorelease];
+    SocialLike* likeToPost = [[SocialLike alloc] init];
     likeToPost.like = YES;
     
     RKObjectMapping* postSimpleMapping = [RKObjectMapping requestMapping];
@@ -108,7 +108,7 @@
     [manager.router.routeSet addRoute:[RKRoute routeWithClass:[SocialLike class] pathPattern:[self createPathWithActivityId:activity] method:RKRequestMethodDELETE]];
     
     // Let's create an SocialActivityDetails
-    SocialLike* likeToPost = [[[SocialLike alloc] init] autorelease];
+    SocialLike* likeToPost = [[SocialLike alloc] init];
     likeToPost.like = NO;
     
     //Register our mappings with the provider FOR SERIALIZATION

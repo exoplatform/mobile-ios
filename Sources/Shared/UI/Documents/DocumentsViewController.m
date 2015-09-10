@@ -85,7 +85,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 - (instancetype) initWithRootFile:(File *)rootFile withNibName:(NSString *)nibName  {
     if ((self = [self initWithNibName:nibName bundle:nil])) {
         //Set the rootFile 
-        _rootFile = [rootFile retain];
+        _rootFile = rootFile;
     }
     return self;
 }
@@ -114,8 +114,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 -(void)startRetrieveDirectoryContent {
     
-    NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
-//    
     if (_filesProxy == nil) _filesProxy = [FilesProxy sharedInstance];
     [_dicContentOfFolder removeAllObjects];
     
@@ -139,10 +137,9 @@ static NSString *PUBLIC_DRIVE = @"Public";
                 
         NSArray *folderContent = [_filesProxy getContentOfFolder:_rootFile];
         if([folderContent count] > 0)
-            [_dicContentOfFolder setValue:[[folderContent copy] autorelease] forKey:_rootFile.name];
+            [_dicContentOfFolder setValue:[folderContent copy] forKey:_rootFile.name];
     }
     
-    [pool release];
     
     if(stop){
         return;
@@ -181,7 +178,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForEmptyFolder.png" andContent:Localize(@"EmptyFolder")];
     emptyView.tag = TAG_EMPTY;
     [_tblFiles addSubview:emptyView];
-    [emptyView release];
 }
 
 - (void)hideActionsPanel{
@@ -225,35 +221,8 @@ static NSString *PUBLIC_DRIVE = @"Public";
 - (void)dealloc
 {
     
-    fileToApplyAction = nil;
-    _popoverPhotoLibraryController = nil;
-    _dicContentOfFolder = nil;
-    _stringForUploadPhoto = nil;
-    _popoverProperties = nil;
-    
-    //Release the FileProxy of the Controller.
-    _filesProxy.delegate  =nil;
-    _filesProxy = nil;
-    
-    //Release the rootFile
-    [_rootFile release];
-    _rootFile = nil;
-    
-    //Release the content of rootFile
-    [_arrayContentOfRootFile release];
-    _arrayContentOfRootFile = nil;
-    
-    _stringForUploadPhoto = nil;
-    
-    [_tblFiles release];
-    _tblFiles = nil;
-    
-    if (_popoverProperties)
-        [_popoverProperties release];
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
-    
-    [super dealloc];
+    _filesProxy.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -338,7 +307,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
     
     //Hack for the tableview backgroung
     [_tblFiles setBackgroundView:nil];
-    [_tblFiles setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [_tblFiles setBackgroundView:[[UIView alloc] init]];
     if (_rootFile) {
         self.title = _rootFile.naturalName;
     } else {
@@ -468,10 +437,8 @@ static NSString *PUBLIC_DRIVE = @"Public";
     imgVBackground.frame = CGRectMake(headerLabel.frame.origin.x - 10, 16.0, theSize.width + 30, kHeightForSectionHeader-15);
     
 	[customView addSubview:imgVBackground];
-    [imgVBackground release];
     
     [customView addSubview:headerLabel];
-    [headerLabel release];
     
 	return customView;
 }
@@ -495,7 +462,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
     CustomBackgroundForCell_iPhone *cell =  (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     if(cell == nil) {
-        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
+        cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
         
         //Configure font for the cell
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
@@ -582,7 +549,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"FileError") message:Localize(errorMessage) delegate:self
                                           cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
     [alert show];
-    [alert release];
     
 }
 
@@ -728,10 +694,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
         else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture")  message:Localize(@"CameraNotAvailable") delegate:self cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
             [alert show];
-            [alert release];
             
-            [thePicker release];
-            thePicker = nil;
         }
 	}
 
@@ -746,7 +709,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
             thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
             
-            self.popoverPhotoLibraryController = [[[UIPopoverController alloc] initWithContentViewController:thePicker] autorelease];
+            self.popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
             self.popoverPhotoLibraryController.delegate = self;
             [self.popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
             
@@ -768,7 +731,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
             displayActionDialogAtRect = CGRectZero;
         }
         
-        [thePicker release];
         
     }
     
@@ -830,7 +792,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
         if ([self nameContainSpecialCharacter:newFolderName inSet:SPECIAL_CHAR_NAME_SET]) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
-            [alert release];
             
             return;
         }
@@ -851,7 +812,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
                                       cancelButtonTitle:@"OK" 
                                       otherButtonTitles:nil, nil];
                 [alert show];
-                [alert release];
                 break;
             }
         }
@@ -881,7 +841,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
                               cancelButtonTitle:@"OK" 
                               otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
     }
     
 }
@@ -918,7 +877,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
         if ([self nameContainSpecialCharacter:newFolderName inSet:SPECIAL_CHAR_NAME_SET]) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:Localize(@"MessageInfo") message:Localize(@"SpecialCharacters") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
-            [alert release];
             
             return;
         }
@@ -943,8 +901,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
                                       cancelButtonTitle:@"OK" 
                                       otherButtonTitles:nil, nil];
                 [alert show];
-                [alert release];
-
                 
                 break;
             }
@@ -976,7 +932,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
                               cancelButtonTitle:@"OK" 
                               otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
+
     }
     
 }
@@ -1010,7 +966,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:Localize(@"Upload failed") message:Localize(@"Please try again later") delegate:nil cancelButtonTitle:Localize(@"Close") otherButtonTitles:nil];
         [alert show];
-        [alert release];
     }
 }
 
@@ -1033,7 +988,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
             {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"TakePicture") message:Localize(@"CameraNotAvailable") delegate:nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil, nil];
                 [alert show];
-                [alert release];
+
             }
         }
         else
@@ -1042,7 +997,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
         }
         
         [self showImagePickerForAddPhotoAction:thePicker];
-        [thePicker release];
+
     }
     
 }
@@ -1079,8 +1034,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
                 [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
                 NSString* tmp = [dateFormatter stringFromDate:[NSDate date]];
                 
-                //release the date formatter because, not needed after that piece of code
-                [dateFormatter release];
                 imageName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, tmp];
                 
             }
@@ -1094,7 +1047,6 @@ static NSString *PUBLIC_DRIVE = @"Public";
         });
     });
     
-    dispatch_release(uploadQueue);
     
 }
 

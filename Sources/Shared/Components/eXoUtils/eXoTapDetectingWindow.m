@@ -37,7 +37,6 @@
     self.viewToObserve = nil;
     self.controllerThatObserves = nil;
     self.multipleTouches = nil;
-    [super dealloc];
 }
 
 - (void)forwardTap:(id)touch {

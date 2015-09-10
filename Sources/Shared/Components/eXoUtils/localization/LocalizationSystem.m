@@ -80,7 +80,7 @@ static NSBundle *bundle = nil;
 		//in case the language does not exists
 		[self resetLocalization];
 	else
-		bundle = [[NSBundle bundleWithPath:path] retain];
+        bundle = [NSBundle bundleWithPath:path];
 }
 
 // Just gets the current setted up language.

@@ -95,7 +95,7 @@
 
 - (void)adjustMask {
 	if (nil == self.mask) {
-		self.mask = [[[RoundRectViewMask alloc] initWithFrame:CGRectZero] autorelease];
+        self.mask = [[RoundRectViewMask alloc] initWithFrame:CGRectZero];
 		self.mask.squareCorners = self.squareCorners;
 		self.layer.mask = mask.layer;
 	}
@@ -117,7 +117,6 @@
 - (void)dealloc {
     self.mask = nil;
     self.squareCorners = nil;
-    [super dealloc];
 }
 
 

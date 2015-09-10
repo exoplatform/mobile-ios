@@ -43,7 +43,6 @@
     NSString*                           _strActivityID;
     NSString*                           _strTitle;
     
-    id<SocialMessageComposerDelegate>   delegate;
     UITableView*                        _tblvActivityDetail;
     
     UIPopoverController*                _popoverPhotoLibraryController;

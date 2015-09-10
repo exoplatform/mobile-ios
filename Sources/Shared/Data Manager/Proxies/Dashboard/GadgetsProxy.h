@@ -28,8 +28,6 @@
 
     DashboardItem *_dashboard;
     
-    id<GadgetsProxyDelegate> _delegate;
-    
 }
 
 @property (retain, nonatomic) DashboardItem *dashboard;

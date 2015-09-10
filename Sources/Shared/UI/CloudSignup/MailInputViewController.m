@@ -79,19 +79,12 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 
 - (void)dealloc
 {
-    [super dealloc];
      _errorLabel = nil;
-    [_errorLabel release];
    _mailTf = nil;
-    [_mailTf release];
     _hud = nil;
-    [_hud release];
     _instructionLabel = nil;
-    [_instructionLabel release];
     _createButton = nil;
-    [_createButton release];
     _warningIcon = nil;
-    [_warningIcon release];
 }
 
 - (SSHUDView *)hud {
@@ -144,7 +137,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
         case ACCOUNT_CREATED: {
             [self.hud setHidden:YES];
             emailAddress = email;
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(@"AccountAlreadyExists") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:Localize(@"AccountAlreadyExists") delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert setTag:ALERT_VIEW_ALREADY_ACCOUNT_TAG];
             [alert show];
             break;
@@ -270,7 +263,7 @@ int const SIGNUP_NAVIGATION_BAR_TAG = 1001;
 
 - (void)showAlert:(NSString *)message
 {
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 
 }

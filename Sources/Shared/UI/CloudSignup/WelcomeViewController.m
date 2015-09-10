@@ -62,14 +62,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-    [scrollView release];
-    [pageControl release];
-    [skipButton release];
-    [captions release];
-}
 
 - (void)skipCloudSignup:(id)sender
 {
@@ -121,7 +113,6 @@
         swipedView.frame = frame;
         swipedView.tag = i+1;
         [self.scrollView addSubview:swipedView];
-        [swipedView release];
     }
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * self.pageControl.numberOfPages , self.scrollView.frame.size.height);
     [self.view addSubview:self.scrollView];
@@ -181,10 +172,6 @@
     [view addSubview:loginButton];
     [view addSubview:orLabel];
     
-    [orLabel release];
-    [signupButton release];
-    [loginButton release];
-    
     frame = view.frame;
     frame.origin.x = (self.view.frame.size.width - frame.size.width)/2;
     frame.origin.y = containerY;
@@ -212,7 +199,6 @@
     imageView.frame = frame;
     imageView.tag = WELCOME_SEPARATOR_TAG;
     [self.view addSubview:imageView];
-    [imageView release];
 }
 #pragma mark Utils
 - (UIView *)logoView
@@ -250,8 +236,7 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? SCREENSHOT_Y_iPad : SCREENSHOT_Y, image.size.width, image.size.height)];
     imageView.image = image;
     [view addSubview:imageView];
-    [imageView release];
-    
+
     UILabel *captionLabel = [[UILabel alloc] init];
     captionLabel.text = caption;
     captionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 23 : 13];
@@ -263,8 +248,6 @@
     [captionLabel setFrame:CGRectMake(captionX, CAPTION_Y, labelSize.width, labelSize.height)];
     
     [view addSubview:captionLabel];
-    [captionLabel release];
-    
     return view;
 }
 

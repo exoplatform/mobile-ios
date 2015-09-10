@@ -75,10 +75,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 @end
 
 
@@ -149,11 +145,6 @@
     [self adjustMask];
 }
 
-
-- (void)dealloc {
-    [mask release];
-    [super dealloc];
-}
 
 
 @end

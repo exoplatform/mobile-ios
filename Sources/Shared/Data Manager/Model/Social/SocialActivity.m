@@ -47,24 +47,6 @@
 @synthesize templateParams = _templateParams;
 @synthesize activityType = _activityType;
 @synthesize embeddedURL = _embeddedURL;
-- (void)dealloc {
-    [_identityId release];
-    [_activityId release];
-    [_type release];
-    [_activityStream release];
-    [_title release];
-    [_embeddedURL release];
-    [_body release];
-    [_createdAt release];
-    [_likedByIdentities release];
-    [_titleId release];
-    [_posterIdentity release];
-    [_posterPicture release];
-    [_comments release];
-    [_postedTimeInWords release];
-    [_templateParams release];
-    [super dealloc];
-}
 
 - (void)getActivityType {
     /* in plf 4, there is just activity for creating action

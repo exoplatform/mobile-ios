@@ -82,17 +82,17 @@
     willFixLaunchInLandscape = YES;
     runningiOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
     
-	UIViewExt *rootView = [[[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] autorelease];
+	UIViewExt *rootView = [[UIViewExt alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
 	[rootView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeMenuBg.png"]]];
 	
-	UIView *leftMenuView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)] autorelease];
+	UIView *leftMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, self.view.frame.size.height)];
 	leftMenuView.autoresizingMask = UIViewAutoresizingFlexibleHeight;	
 	menuViewController = [[MenuViewController alloc] initWithFrame:CGRectMake(0, 0, leftMenuView.frame.size.width, leftMenuView.frame.size.height) isCompatibleWithSocial: _isCompatibleWithSocial];
     menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
 	[leftMenuView addSubview:menuViewController.view];
 	
-	UIView *rightSlideView = [[[UIView alloc] initWithFrame:CGRectMake(leftMenuView.frame.size.width, 0, rootView.frame.size.width - leftMenuView.frame.size.width, rootView.frame.size.height)] autorelease];
+	UIView *rightSlideView = [[UIView alloc] initWithFrame:CGRectMake(leftMenuView.frame.size.width, 0, rootView.frame.size.width - leftMenuView.frame.size.width, rootView.frame.size.height)];
 	rightSlideView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
 	stackScrollViewController = [[ExoStackScrollViewController alloc] init];	
 	[stackScrollViewController.view setFrame:CGRectMake(0, 0, rightSlideView.frame.size.width, rightSlideView.frame.size.height)];
@@ -201,11 +201,7 @@
 
 
 - (void)dealloc {
-    [menuViewController release];
-    [stackScrollViewController release];
-    [imageForBackground release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 @end

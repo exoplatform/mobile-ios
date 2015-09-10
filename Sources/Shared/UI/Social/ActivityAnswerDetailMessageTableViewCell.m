@@ -90,9 +90,5 @@
     _lbMessage.text = [[socialActivityDetail.body stringByConvertingHTMLToPlainText] stringByEncodeWithHTML];
 }
 
-- (void)dealloc {
-    [self.lbTitle release];
-    [super dealloc];
-}
 
 @end

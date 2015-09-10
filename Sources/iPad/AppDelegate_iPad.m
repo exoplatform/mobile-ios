@@ -106,7 +106,7 @@
 
     
     [UserPreferencesManager sharedInstance].isUserLogged = YES;
-    self.rootViewController = [[[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial] autorelease];
+    self.rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil isCompatibleWithSocial:_isCompatibleWithSocial];
     [UIView transitionWithView:self.window
                       duration:1
                        options:UIViewAnimationOptionTransitionFlipFromLeft
@@ -173,14 +173,6 @@
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
-}
-
-
-- (void)dealloc {
-    [rootViewController release];
-    [welcomeVC release];
-    [window release];
-    [super dealloc];
 }
 
 

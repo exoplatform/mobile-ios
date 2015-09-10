@@ -58,8 +58,7 @@
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
     self.navigationItem.rightBarButtonItem = button;
-    [button release];
-    
+
     [self configElements];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_texture"]];
@@ -87,23 +86,14 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     emailTf = nil;
-    [emailTf release];
     mailErrorLabel = nil;
-    [mailErrorLabel release];
     autoFilledEmail = nil;
-    [autoFilledEmail release];
     _hud = nil;
-    [_hud release];
     loginButton = nil;
-    [loginButton release];
     _containerView = nil;
-    [_containerView release];
     onpremiseButton = nil;
-    [onpremiseButton release];
     _warningIcon = nil;
-    [_warningIcon release];
 }
 
 - (void)cancel:(id)sender
@@ -280,7 +270,7 @@
 
 - (void)showAlert:(NSString *)message
 {
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localize(@"Authorization") message:Localize(message) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 @end

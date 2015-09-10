@@ -53,13 +53,13 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 		viewControllersStack = [[NSMutableArray alloc] init]; 
 		borderViews = [[UIView alloc] initWithFrame:CGRectMake(SLIDE_VIEWS_MINUS_X_POSITION - 2, -2, 2, self.view.frame.size.height)];
 		[borderViews setBackgroundColor:[UIColor clearColor]];
-		UIView* verticalLineView1 = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, borderViews.frame.size.height)] autorelease];
+		UIView* verticalLineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, borderViews.frame.size.height)];
 		[verticalLineView1 setBackgroundColor:[UIColor whiteColor]];
 		[verticalLineView1 setTag:1];
 		[verticalLineView1 setHidden:TRUE];
 		[borderViews addSubview:verticalLineView1];
 		
-		UIView* verticalLineView2 = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, borderViews.frame.size.height)] autorelease];
+		UIView* verticalLineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, borderViews.frame.size.height)];
 		[verticalLineView2 setBackgroundColor:[UIColor grayColor]];
 		[verticalLineView2 setTag:2];
 		[verticalLineView2 setHidden:TRUE];		
@@ -90,8 +90,6 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 		[panRecognizer setDelaysTouchesEnded:TRUE];
 		[panRecognizer setCancelsTouchesInView:TRUE];
 		[self.view addGestureRecognizer:panRecognizer];
-		[panRecognizer release];
-		
 		[self.view addSubview:slideViews];
 		
 	}
@@ -671,11 +669,9 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
     NSInteger index = [viewControllersStack indexOfObject:controller];
     
     if (index != NSNotFound) {
-        [controller retain];
         UIViewController *invokingController = index > 0 ? viewControllersStack[(index - 1)] : nil;
         // Add the specified view controller again to pop all views above it in the stack
         [self addViewInSlider:controller invokeByController:invokingController isStackStartView:(index == 0)];
-        [controller release];
     }
 }
 
@@ -686,11 +682,9 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
         // get the parent view if it's avaiable
         UIViewController *parentViewController = index > 0 ? viewControllersStack[(index - 1)] : nil;
         // retain the parent view to be ensured that it isn't deallocated before kept by the stack.
-        [parentViewController retain];
         UIViewController *invokingViewController = index > 1 ? viewControllersStack[(index - 2)] : nil;
         // To pop the view controller, add its parent view controller again to renew the stack.
         [self addViewInSlider:parentViewController invokeByController:invokingViewController isStackStartView:(index == 1)];
-        [parentViewController release];
     }
 }
 
@@ -739,7 +733,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	}
 	
 	if ([slideViews.subviews count] != 0) {
-		UIViewWithShadow* verticalLineView = [[[UIViewWithShadow alloc] initWithFrame:CGRectMake(-40, 0, 40 , self.view.frame.size.height)] autorelease];
+		UIViewWithShadow* verticalLineView = [[UIViewWithShadow alloc] initWithFrame:CGRectMake(-40, 0, 40 , self.view.frame.size.height)];
 		[verticalLineView setBackgroundColor:[UIColor clearColor]];
 		[verticalLineView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
 		[verticalLineView setClipsToBounds:NO];
@@ -905,12 +899,6 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 	if (viewAtLeft2 !=nil) {
 		[viewAtLeft2 setHidden:FALSE];
 	}	
-}
-
-- (void)dealloc {
-	[slideViews release];
-	[viewControllersStack release];
-    [super dealloc];
 }
 
 

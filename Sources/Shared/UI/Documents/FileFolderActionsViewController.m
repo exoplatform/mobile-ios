@@ -102,15 +102,6 @@
 	// e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc 
-{
-	[_txtfNameInput release]; _txtfNameInput = nil; 
-
-    _delegate = nil;
-    
-    [super dealloc];
-}
-
 - (void)updateUI {
     
 }

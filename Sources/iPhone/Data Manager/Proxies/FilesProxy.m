@@ -108,10 +108,10 @@
         // re-authenticate when timeout
         NSString *username = [[UserPreferencesManager sharedInstance] username];
         NSString *password = [[UserPreferencesManager sharedInstance] password];
-        CFHTTPMessageRef dummyRequest = CFHTTPMessageCreateRequest(kCFAllocatorDefault, (CFStringRef)request.HTTPMethod, (CFURLRef)request.URL, kCFHTTPVersion1_1);
-        CFHTTPMessageAddAuthentication(dummyRequest, nil, (CFStringRef)username, (CFStringRef)password,kCFHTTPAuthenticationSchemeBasic, FALSE);
+        CFHTTPMessageRef dummyRequest = CFHTTPMessageCreateRequest(kCFAllocatorDefault, (__bridge CFStringRef)request.HTTPMethod, (__bridge CFURLRef)request.URL, kCFHTTPVersion1_1);
+        CFHTTPMessageAddAuthentication(dummyRequest, nil, (__bridge CFStringRef)username, (__bridge CFStringRef)password,kCFHTTPAuthenticationSchemeBasic, FALSE);
         CFStringRef authorizationString = CFHTTPMessageCopyHeaderFieldValue(dummyRequest, CFSTR("Authorization"));
-        [request setValue:(NSString *)authorizationString forHTTPHeaderField:@"Authorization"];
+        [request setValue:(__bridge NSString *)authorizationString forHTTPHeaderField:@"Authorization"];
         CFRelease(dummyRequest);
         CFRelease(authorizationString);
         data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -147,9 +147,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 - (void)calculateAbsPath:(NSString *)relativePath forItem:(File *)item {
@@ -167,7 +164,7 @@
     
 
     // Initialize the array of files
-    NSMutableArray *folderArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *folderArray = [[NSMutableArray alloc] init];
 	
     // Create URL for getting data
     NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%@%@%@", domain, DOCUMENT_DRIVE_PATH_REST, driveName, DOCUMENT_DRIVE_SHOW_PRIVATE_OPT, showPrivate ? @"true" : @"false"]];
@@ -176,10 +173,9 @@
     [request setValue:kUserAgentHeader forHTTPHeaderField:@"User-Agent"];
 
     NSData *data = [self sendSynchronizedHTTPRequest:request];
-    [request release];
     
     // Create a new parser object based on the TouchXML "CXMLDocument" class
-    CXMLDocument *parser = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
+    CXMLDocument *parser = [[CXMLDocument alloc] initWithData:data options:0 error:nil];
 	
     // Create a new Array object to be used with the looping of the results from the parser
     NSArray *resultNodes = NULL;
@@ -205,7 +201,6 @@
         }
         // Add the file to the global Array so that the view can access it.
         [folderArray addObject:file];
-        [file release];
     }
 
     return folderArray;
@@ -217,14 +212,14 @@
     NSString *domain = [userDefaults objectForKey:EXO_PREFERENCE_DOMAIN];
     
     // Initialize the array of files
-    NSMutableArray *folderArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *folderArray = [[NSMutableArray alloc] init];
 	
     // Create URL for getting data
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", domain, DOCUMENT_FILE_PATH_REST, file.driveName, DOCUMENT_WORKSPACE_NAME, file.workspaceName, DOCUMENT_CURRENT_FOLDER, file.currentFolder];
     NSURL *url = [NSURL URLWithString: [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	
     // Create a new parser object based on the TouchXML "CXMLDocument" class
-    CXMLDocument *parser = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:nil] autorelease];
+    CXMLDocument *parser = [[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:nil];
 	
     // Create a new Array object to be used with the looping of the results from the parser
     NSArray *resultNodes = NULL;
@@ -255,7 +250,6 @@
         [self calculateAbsPath:[[resultElement attributeForName:@"path"] stringValue] forItem:file];
         // Add the file to the global Array so that the view can access it.
         [folderArray addObject:file];
-        [file release];
     }
     
     resultNodes = [parser nodesForXPath:@"//Folder/Files/File" error:nil];
@@ -274,7 +268,6 @@
 		file.canRemove = [[[resultElement attributeForName:@"canRemove"] stringValue] isEqualToString:@"true"]; 
         // Add the file to the global Array so that the view can access it.
         [folderArray addObject:file];
-        [file release];
     }
     
     return folderArray; 
@@ -291,9 +284,7 @@
 }
 
 -(NSString *)fileAction:(NSString *)protocol source:(NSString *)source destination:(NSString *)destination data:(NSData *)data
-{	
-    NSAutoreleasePool *pool =  [[NSAutoreleasePool alloc] init];
-
+{
 	source = [source stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	destination = [destination stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
@@ -343,8 +334,6 @@
             //Put the label into the error
             // TODO Localize this label
             errorMessage = [NSString stringWithFormat:@"Cannot move file to its location"];
-             
-            [request release];
             
 			return errorMessage;
 		}
@@ -354,8 +343,7 @@
     NSString *author = [s stringByAppendingString: [FilesProxy stringEncodedWithBase64:[NSString stringWithFormat:@"%@:%@", username, password]]];
 	[request setValue:author forHTTPHeaderField:@"Authorization"];
 	
-	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
-    [request release];
+	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
 	NSUInteger statusCode = [response statusCode];
 	if(!(statusCode >= 200 && statusCode < 300))
@@ -367,8 +355,7 @@
         return errorMessage;
 		        
     }
-    
-    [pool release];
+
     
     
 	return nil;
@@ -495,7 +482,6 @@
         [request setValue:author forHTTPHeaderField:@"Authorization"];
         
         [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
-        [request release];
         
         NSUInteger statusCode = [response statusCode];
         if(statusCode >= 200 && statusCode < 300)

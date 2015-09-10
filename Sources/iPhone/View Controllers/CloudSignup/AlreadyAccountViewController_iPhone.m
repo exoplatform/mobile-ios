@@ -47,7 +47,7 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     /* Add tap gesture to dismiss keyboard */
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
+    UITapGestureRecognizer *tapGesure = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] ;
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
 
