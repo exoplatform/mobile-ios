@@ -253,7 +253,7 @@
             
             CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
             
-            return size.height + 1.0f; // Add 1.0f for the cell separator height
+            return size.height + 20.0f; // Add 20.0f for the cell separator & margin
         }
 
     }
