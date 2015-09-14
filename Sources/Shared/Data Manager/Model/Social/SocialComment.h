@@ -40,7 +40,13 @@
     NSString*           _postedTimeInWords;
     
     SocialUserProfile*  _userProfile;
+    
 }
+
+@property (nonatomic, retain) NSString * message;
+@property (nonatomic, retain) NSMutableArray * linkURLs;
+@property (nonatomic, retain) NSMutableArray * imageURLs;
+
 
 @property (nonatomic, retain) NSString* text;
 @property (nonatomic, retain) NSString* identityId;
@@ -51,6 +57,7 @@
 
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
-
+- (void)parseHTML;
+- (NSString *) toHTML;
 
 @end

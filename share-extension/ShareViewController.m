@@ -807,9 +807,9 @@ NSMutableData * data;
         if ([postItem.type isEqualToString:@"DOC_ACTIVITY"]) {
             if (postItem.fileUploadedName!=nil && postItem.fileUploadedURL!=nil){
                 message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.fileUploadedURL, postItem.fileUploadedName];
-                NSString * thumbnailURL = [postItem.fileUploadedURL stringByReplacingOccurrencesOfString:@"/jcr/" withString:@"/thumbnailImage/small/"];
+//                NSString * thumbnailURL = [postItem.fileUploadedURL stringByReplacingOccurrencesOfString:@"/jcr/" withString:@"/thumbnailImage/custom:/"];
                 if (postItem.isImageItem){
-                    message = [message stringByAppendingString:[NSString stringWithFormat:@"\n<img src=\"%@\" width=200px height=auto/>",thumbnailURL]];
+                    message = [message stringByAppendingString:[NSString stringWithFormat:@"\n<img src=\"%@\" width=600px height=auto/>",postItem.fileUploadedURL]];
                 }
             }
         } else if ([postItem.type isEqualToString:@"LINK_ACTIVITY"]) {

@@ -275,6 +275,7 @@ static NSString *kTabItem = @"kTabItem";
     [self.view addSubview:self.tabView];
     [self.view insertSubview:self.infoContainer belowSubview:self.tabView];
     [self selectTab:ActivityAdvancedInfoCellTabComment];
+
 }
 
 - (void)viewDidUnload
@@ -463,8 +464,6 @@ static NSString *kTabItem = @"kTabItem";
             
             //Create a cell, need to do some configurations
             [cell configureCell];
-            cell.width = tableView.frame.size.width;
-            cell.extraDelegateForWebView = self.delegateToProcessClickAction;
         }
         SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
         [cell setSocialComment:socialComment];
@@ -490,8 +489,20 @@ static NSString *kTabItem = @"kTabItem";
         }
         case ActivityAdvancedInfoCellTabComment: {
             if (self.socialActivity.totalNumberOfComments > 0) {
-                SocialComment *comment = (self.socialActivity.comments)[indexPath.row];
-                return [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];                
+                SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
+                
+                static ActivityDetailCommentTableViewCell *sizingCell = nil;
+                
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
+                sizingCell = (ActivityDetailCommentTableViewCell *)nib[0];
+                
+                [sizingCell setSocialComment:socialComment];
+                [sizingCell setNeedsLayout];
+                [sizingCell layoutIfNeeded];
+                
+                CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+                
+                return size.height + 1.0f; // Add 1.0f for the cell separator height
             } else {
                 return self.infoView.frame.size.height;
             }

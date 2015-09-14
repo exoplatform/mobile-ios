@@ -25,14 +25,16 @@
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
+#define kImageViewHeight 100
+@interface ActivityDetailCommentTableViewCell ()
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightContraint;
+@end
 
 @implementation ActivityDetailCommentTableViewCell
 
 @synthesize lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize imgvMessageBg=_imgvMessageBg;
-@synthesize imgvCellBg = _imgvCellBg;
-@synthesize webViewForContent = _webViewForContent;
-@synthesize extraDelegateForWebView;
+@synthesize imageView = _imageView;
 @synthesize width;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -58,16 +60,15 @@
 
 - (void)dealloc
 {
-    self.webViewForContent.delegate = nil;
-    [self.webViewForContent stopLoading];
-    self.webViewForContent = nil;
     self.lbDate = nil;
     self.lbName = nil;
     self.imgvAvatar = nil;
     
     self.imgvMessageBg = nil;
-    self.imgvCellBg = nil;
     
+    [_imageView release];
+    [_lbMessage release];
+    [_imageViewHeightContraint release];
     [super dealloc];
 }
 
@@ -94,14 +95,6 @@
     _imgvMessageBg.image = strechBg;
     self.backgroundColor = [UIColor clearColor];
     
-    [(_webViewForContent.subviews)[0] setScrollEnabled:NO];
-    [_webViewForContent setBackgroundColor:[UIColor clearColor]];
-    UIScrollView *scrollView = (UIScrollView *)[_webViewForContent subviews][0];
-    scrollView.bounces = NO;
-    [scrollView flashScrollIndicators];
-    scrollView.scrollsToTop = YES;
-    
-    [_webViewForContent setOpaque:NO];
 }
 
 
@@ -116,39 +109,57 @@
         tmp = [NSString stringWithFormat:@"%@%@",domainName,tmp];
     }
     
-    
     _imgvAvatar.imageURL = [NSURL URLWithString:tmp];  
     _lbName.text = [socialComment.userProfile.fullName copy];
-    
-    
-    NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialComment.text ? socialComment.text : @""];
-    
-    [_webViewForContent loadHTMLString:htmlStr ? htmlStr :@""
-                               baseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_DOMAIN]]
-     ];
-    
+    NSString * message = socialComment.message;
+    if (socialComment.linkURLs!=nil && socialComment.linkURLs.count>0) {
+        NSRange linkURLRange = [message rangeOfString:socialComment.linkURLs[0]];
+        if (linkURLRange.location==NSNotFound){
+            message = [NSString stringWithFormat:@"%@\n%@",message, socialComment.linkURLs[0]];
+            linkURLRange = [message rangeOfString:socialComment.linkURLs[0]];
+        }
+        NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];
+        [attributedMessage addAttributes:kAttributeURL range:linkURLRange];
+        self.lbMessage.attributedText = attributedMessage;
+    } else {
+        self.lbMessage.text = message;
+    }
     
     _lbDate.text = socialComment.postedTimeInWords;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    CGRect frame = webView.frame;
-    frame.size.height = 1;
-    webView.frame = frame;
-    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-    frame.size = fittingSize;
-    frame.origin.y = _lbName.frame.origin.y + _lbName.frame.size.height;
-    frame.size.height += 10.;
-    webView.frame = frame;
-
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if ([self.extraDelegateForWebView respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
-        return [self.extraDelegateForWebView webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    if (socialComment.imageURLs!=nil && socialComment.imageURLs.count>0){
+        NSURL * url = [NSURL URLWithString:socialComment.imageURLs[0]];
+        if (url){
+            self.imageView.imageURL = url;
+            self.imageViewHeightContraint.constant = kImageViewHeight;
+        } else {
+            // Remove part of the string that is not actual data
+            NSString * base64StringOfImage = [socialComment.imageURLs[0] stringByReplacingOccurrencesOfString:@"data:<;base64," withString:@""];
+            int b64ImageStringLength = [base64StringOfImage length];
+            if (b64ImageStringLength % 4 != 0) {
+                // Append missing '=' so the string's length is a factor of 4
+                // http://stackoverflow.com/a/21407393
+                int missingChars = b64ImageStringLength % 4;
+                for (int i = 4; i > missingChars; i--) {
+                    base64StringOfImage = [base64StringOfImage stringByAppendingString:@"="];
+                }
+            }
+            UIImage * image;
+            if (base64StringOfImage){
+                NSData* imageData = [[NSData alloc] initWithBase64EncodedString:base64StringOfImage options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                image = [UIImage imageWithData:imageData];
+            }
+            if (image){
+                self.imageView.image = image;
+                self.imageViewHeightContraint.constant = kImageViewHeight;
+            } else {
+                self.imageViewHeightContraint.constant = 0;
+            }
+        }
     } else {
-        return NO;
+            self.imageViewHeightContraint.constant = 0;
     }
+
+    
 }
 
 @end

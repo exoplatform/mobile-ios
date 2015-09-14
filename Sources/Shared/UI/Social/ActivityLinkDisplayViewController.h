@@ -26,6 +26,8 @@
 }
 @property (nonatomic, copy) NSString *titleForActivityLink;
 - (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL;
+- (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle html:(NSString *) htmlString AndTitle:(NSString *) title;
+
 -(NSString *) shortString : (NSString *) myString withMaxCharacter: (int) range;
 
 @end

@@ -32,19 +32,16 @@
     EGOImageView*          _imgvAvatar;
 
     UIImageView*           _imgvMessageBg;
-    UIImageView*           _imgvCellBg;
-    
-    UIWebView*             _webViewForContent;
+    EGOImageView*           _imageView;
     
 }
+
+@property (retain, nonatomic) IBOutlet EGOImageView *imageView;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
-@property (retain, nonatomic) IBOutlet UIWebView* webViewForContent;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
+@property (retain, nonatomic) IBOutlet UILabel *lbMessage;
 @property (retain, nonatomic) IBOutlet UIImageView* imgvMessageBg;
-@property (retain, nonatomic) IBOutlet UIImageView* imgvCellBg;
-// this delegate is used to handle the click action of user on the link
-@property (nonatomic, assign) id<UIWebViewDelegate> extraDelegateForWebView;
 @property (nonatomic) CGFloat width;
 
 //Use this method after create the cell to customize the appearance of the Avatar
