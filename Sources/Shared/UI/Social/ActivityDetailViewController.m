@@ -406,6 +406,9 @@
     if (proxy == self.getCommentsProxy) {
         SocialActivity *socialActivityDetails = [(SocialActivityDetailsProxy*)proxy socialActivityDetails];
         self.socialActivity.comments = socialActivityDetails.comments;
+        for (SocialComment * comment in self.socialActivity.comments) {
+            [comment parseTextHTML];
+        }
         self.socialActivity.totalNumberOfComments = socialActivityDetails.totalNumberOfComments;
         self.getCommentsProxy = nil;
         [self.socialActivity convertToPostedTimeInWords];

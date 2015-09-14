@@ -29,6 +29,7 @@
 #import "AppDelegate_iPad.h"
 #import "RootViewController.h"
 #import "defines.h"
+#import "ExoStackScrollViewController.h"
 
 #define kAdvancedCellLeftRightMargin 20.0
 #define kAdvancedCellLeftRightPadding 1.0
@@ -37,6 +38,7 @@
 #define kAdvancedCellTabBarHeight 60.0
 #define kCommentButtonHeight 50.0
 #define kInfoViewCornerRadius 8.0
+#define kMaxMessageCommentLenght 1000
 
 #pragma mark - Customize JMSelectionView & JMTabItem
 
@@ -275,6 +277,7 @@ static NSString *kTabItem = @"kTabItem";
     [self.view addSubview:self.tabView];
     [self.view insertSubview:self.infoContainer belowSubview:self.tabView];
     [self selectTab:ActivityAdvancedInfoCellTabComment];
+
 }
 
 - (void)viewDidUnload
@@ -463,12 +466,12 @@ static NSString *kTabItem = @"kTabItem";
             
             //Create a cell, need to do some configurations
             [cell configureCell];
-            cell.width = tableView.frame.size.width;
-            cell.extraDelegateForWebView = self.delegateToProcessClickAction;
         }
         SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
         [cell setSocialComment:socialComment];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         return cell;        
     } else if (_selectedTab == ActivityAdvancedInfoCellTabLike) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikersTableViewCell];
@@ -490,8 +493,20 @@ static NSString *kTabItem = @"kTabItem";
         }
         case ActivityAdvancedInfoCellTabComment: {
             if (self.socialActivity.totalNumberOfComments > 0) {
-                SocialComment *comment = (self.socialActivity.comments)[indexPath.row];
-                return [ActivityHelper calculateCellHeighForTableView:tableView andText:comment.text];                
+                SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
+                
+                static ActivityDetailCommentTableViewCell *sizingCell = nil;
+                
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
+                sizingCell = (ActivityDetailCommentTableViewCell *)nib[0];
+                
+                [sizingCell setSocialComment:socialComment];
+                [sizingCell setNeedsLayout];
+                [sizingCell layoutIfNeeded];
+                
+                CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+                
+                return size.height + 20.0f; // Add 20.0f for the cell separator & margin 
             } else {
                 return self.infoView.frame.size.height;
             }
@@ -516,7 +531,39 @@ static NSString *kTabItem = @"kTabItem";
             return 0;
     }
 }
-#pragma mark - JMTabViewDelegate 
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    switch (_selectedTab) {
+        case ActivityAdvancedInfoCellTabLike:
+            break;
+        case ActivityAdvancedInfoCellTabComment:
+        {
+            SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
+            if ( (socialComment.linkURLs && socialComment.linkURLs.count>1) || (socialComment.imageURLs && socialComment.imageURLs.count>1) || socialComment.message.length > kMaxMessageCommentLenght){
+                NSString * htmlString = [socialComment toHTML];
+                ActivityLinkDisplayViewController_iPad* linkWebViewController = [[[ActivityLinkDisplayViewController_iPad alloc] initWithNibName:@"ActivityLinkDisplayViewController_iPad" bundle:nil html:htmlString AndTitle:@"Comment"] autorelease];
+                [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:(UIViewController*)self.delegateToProcessClickAction isStackStartView:FALSE];
+
+            } else if ((socialComment.linkURLs && socialComment.linkURLs.count==1) || (socialComment.imageURLs && socialComment.imageURLs.count==1)){
+                NSString * urlString =  (socialComment.linkURLs && socialComment.linkURLs.count==1)? socialComment.linkURLs[0] : socialComment.imageURLs[0];
+                NSURL * url = [NSURL URLWithString:urlString];
+                if (url){
+                    ActivityLinkDisplayViewController_iPad* linkWebViewController = [[[ActivityLinkDisplayViewController_iPad alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPad" bundle:nil url:[NSURL URLWithString:urlString]] autorelease];
+                    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:(UIViewController*)self.delegateToProcessClickAction isStackStartView:FALSE];
+                } else {
+                    NSString * htmlString = [socialComment toHTML];
+                    ActivityLinkDisplayViewController_iPad* linkWebViewController = [[[ActivityLinkDisplayViewController_iPad alloc] initWithNibName:@"ActivityLinkDisplayViewController_iPad" bundle:nil html:htmlString AndTitle:@"Comment"] autorelease];
+                    [[AppDelegate_iPad instance].rootViewController.stackScrollViewController addViewInSlider:linkWebViewController invokeByController:(UIViewController*)self.delegateToProcessClickAction isStackStartView:FALSE];
+
+                }
+            }
+        }
+            break;
+    }
+}
+
+#pragma mark - JMTabViewDelegate
 - (void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex {
     ActivityAdvancedInfoCellTab selectedTab = [[_dataSourceArray[itemIndex] valueForKey:kTabType] intValue];
     if (_selectedTab != selectedTab) {

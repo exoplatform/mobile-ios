@@ -40,7 +40,13 @@
     NSString*           _postedTimeInWords;
     
     SocialUserProfile*  _userProfile;
+    
 }
+
+@property (nonatomic, retain) NSString * message;
+@property (nonatomic, retain) NSMutableArray * linkURLs;
+@property (nonatomic, retain) NSMutableArray * imageURLs;
+
 
 @property (nonatomic, retain) NSString* text;
 @property (nonatomic, retain) NSString* identityId;
@@ -48,9 +54,12 @@
 @property double postedTime;
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) SocialUserProfile* userProfile;
+@property (nonatomic) CGFloat cellHeight;
+
 
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
-
+- (void)parseTextHTML;
+- (NSString *) toHTML;
 
 @end

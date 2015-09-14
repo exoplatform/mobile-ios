@@ -24,15 +24,18 @@
 
 
 @interface ActivityLinkDisplayViewController (PrivateMethods)
+
 - (void)showLoader;
 - (void)hideLoader;
 @end
 
+@interface ActivityLinkDisplayViewController()
+@property (nonatomic, retain) NSString * html;
+@end
 
 @implementation ActivityLinkDisplayViewController
 
-@synthesize  titleForActivityLink;
-
+@synthesize  titleForActivityLink, html;
 
 // custom init method to allow URL to be passed
 - (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle url:(NSURL *)defaultURL
@@ -47,6 +50,18 @@
 	return self;
 }
 
+- (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle html:(NSString *) htmlString AndTitle:(NSString *) title {
+    self = [super initWithNibName:nibName bundle:nibBundle];
+    if(self){
+        html = htmlString;
+        [htmlString writeToFile:[NSTemporaryDirectory() stringByAppendingPathComponent:@"comment.html"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        self.url = [[NSURL alloc] initFileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"comment.html"]];
+        [self.webView setDelegate:self];
+    }
+    return self;
+    
+}
+
 - (void)dealloc 
 {
     [super dealloc];
@@ -56,7 +71,12 @@
 {
     
     [super viewDidLoad];
-    self.title = [self.url lastPathComponent];
+    if (self.url){
+        self.title = [self.url lastPathComponent];
+    } else if (self.titleForActivityLink) {
+        self.title = self.titleForActivityLink;
+    }
+
 }
 
 -(NSString *) shortString : (NSString *) myString withMaxCharacter: (int) range {

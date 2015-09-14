@@ -32,10 +32,11 @@
 #import "ActivityDetailLikeTableViewCell.h"
 #import "ActivityDetailCommentTableViewCell.h"
 #import "EmptyView.h"
+#import "SocialComment.h"
 
 #define kLikeCellHeight (self.socialActivity.totalNumberOfLikes > 0 ? 70.0 : 50.0)
 #define kNoCommentCellHeight 200.0
-
+#define kMaxMessageCommentLenght 200
 @implementation ActivityDetailViewController_iPhone
 
 @synthesize noCommentCell = _noCommentCell;
@@ -92,6 +93,8 @@
     [_btnMsgComposer setBackgroundImage:strechBg forState:UIControlStateNormal];
     [_btnMsgComposer setTitleEdgeInsets:UIEdgeInsetsMake(5.0f, 0.0f, 0.0f, 0.0f)];
     [_btnMsgComposer setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
+    [_tblvActivityDetail registerNib: [UINib nibWithNibName:@"ActivityDetailCommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityDetailCommentTableViewCell"];
+
 }
 
 
@@ -213,23 +216,16 @@
         if (self.socialActivity.totalNumberOfComments == 0) {
             return self.noCommentCell;
         } else {
-            ActivityDetailCommentTableViewCell* cell = (ActivityDetailCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailCommentTableViewCell];
-            
-            //Check if we found a cell
-            if (cell == nil) 
-            {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActivityDetailCommentTableViewCell" owner:self options:nil];
-                cell = (ActivityDetailCommentTableViewCell *)nib[0];
-                
-                //Create a cell, need to do some configurations
-                [cell configureCell];
-                cell.width = tableView.frame.size.width;
-                cell.extraDelegateForWebView = self;
-            }
-            
             SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
+            
+            static ActivityDetailCommentTableViewCell *cell = nil;
+            NSString * identCell = @"ActivityDetailCommentTableViewCell";
+            
+            cell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
+            [cell configureCell];
             [cell setSocialComment:socialComment];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell setNeedsLayout];
+            [cell layoutIfNeeded];
             return cell;
         }
     } else {
@@ -240,8 +236,28 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1)
         return kLikeCellHeight;
-    else if (indexPath.section == 2 && self.socialActivity.totalNumberOfComments == 0) {
-        return self.noCommentCell.bounds.size.height;
+    else if (indexPath.section == 2) {
+        if ( self.socialActivity.totalNumberOfComments == 0) {
+            return self.noCommentCell.bounds.size.height;
+        } else {
+            SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
+            if (socialComment.cellHeight > 0){
+                return socialComment.cellHeight;
+            }
+            static ActivityDetailCommentTableViewCell *sizingCell = nil;
+            NSString * identCell = @"ActivityDetailCommentTableViewCell";
+            
+            sizingCell = [self.tblvActivityDetail dequeueReusableCellWithIdentifier:identCell];
+            
+            [sizingCell setSocialComment:socialComment];
+            [sizingCell setNeedsLayout];
+            [sizingCell layoutIfNeeded];
+            
+            CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+            socialComment.cellHeight = size.height +20.0f;
+            return size.height + 20.0f; // Add 20.0f for the cell separator & margin
+        }
+
     }
     else return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
@@ -253,7 +269,26 @@
         NSString *likerLabel = (self.socialActivity.totalNumberOfLikes <= 1) ? @"numOfLiker" : @"numOfLikers";
         likersView.view.title = [NSString stringWithFormat:Localize(likerLabel), self.socialActivity.totalNumberOfLikes];
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:likersView animated:YES];
-    } else {
+    } if (indexPath.section == 2) {
+        SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
+        if ( (socialComment.linkURLs && socialComment.linkURLs.count>1) || (socialComment.imageURLs && socialComment.imageURLs.count>1) || socialComment.message.length > kMaxMessageCommentLenght){
+            NSString * htmlString = [socialComment toHTML];
+            ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibName:@"ActivityLinkDisplayViewController_iPhone" bundle:nil html:htmlString AndTitle:@"Comment"] autorelease];
+            [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
+        } else if ((socialComment.linkURLs && socialComment.linkURLs.count==1) || (socialComment.imageURLs && socialComment.imageURLs.count==1)){
+            NSString * urlString =  (socialComment.linkURLs && socialComment.linkURLs.count==1)? socialComment.linkURLs[0] : socialComment.imageURLs[0];
+            NSURL * url = [NSURL URLWithString:urlString];
+            if (url){
+                ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone" bundle:nil url:[NSURL URLWithString:urlString]] autorelease];
+                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
+            } else {
+                NSString * htmlString = [socialComment toHTML];
+                ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibName:@"ActivityLinkDisplayViewController_iPhone" bundle:nil html:htmlString AndTitle:@"Comment"] autorelease];
+                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
+            }
+        }
+
+    }else {
         [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
 }
