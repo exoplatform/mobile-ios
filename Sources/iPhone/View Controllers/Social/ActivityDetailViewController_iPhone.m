@@ -279,6 +279,10 @@
             if (url){
                 ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibAndUrl:@"ActivityLinkDisplayViewController_iPhone" bundle:nil url:[NSURL URLWithString:urlString]] autorelease];
                 [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
+            } else {
+                NSString * htmlString = [socialComment toHTML];
+                ActivityLinkDisplayViewController_iPhone* linkWebViewController = [[[ActivityLinkDisplayViewController_iPhone alloc] initWithNibName:@"ActivityLinkDisplayViewController_iPhone" bundle:nil html:htmlString AndTitle:@"Comment"] autorelease];
+                [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
             }
         }
 
