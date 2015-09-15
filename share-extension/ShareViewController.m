@@ -685,11 +685,13 @@ NSMutableData * data;
                         uploadVC.errorMessage.text = [NSString stringWithFormat: NSLocalizedString(@"%d item(s) cannot be uploaded", nil), nbItemMissing];
                         [self uploadPostItemAtIndex:itemIndex+1];
                     }
+                    item.fileData = nil;
                 }];
                 
                 [uploadTask resume];
                 
             } else {
+                item.fileData = nil;
                 item.uploadStatus = eXoItemStatusUploadFileTooLarge;
                 nbItemMissing ++;
                 uploadVC.errorMessage.text = [NSString stringWithFormat: NSLocalizedString(@"%d item(s) cannot be uploaded", nil), nbItemMissing];
