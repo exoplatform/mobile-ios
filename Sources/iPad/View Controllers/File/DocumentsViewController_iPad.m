@@ -424,4 +424,12 @@
     _navigation.topItem.title = Localize(@"Documents") ;
 }
 
+#pragma mark - handle orientation
+
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, SCREEN_HEIGHT)];
+}
+
+
 @end

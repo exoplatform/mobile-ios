@@ -219,4 +219,11 @@
     _navigation.topItem.title = Localize(@"News");
 }
 
+#pragma mark - handle orientation
+
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, SCREEN_HEIGHT)];    
+}
+
 @end

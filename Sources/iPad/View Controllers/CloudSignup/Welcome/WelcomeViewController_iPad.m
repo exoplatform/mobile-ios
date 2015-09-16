@@ -22,6 +22,7 @@
 #import "AlreadyAccountViewController_iPad.h"
 #import "eXoNavigationController.h"
 #import "AppDelegate_iPad.h"
+#import "RootViewController.h"
 #import "defines.h"
 @interface WelcomeViewController_iPad ()
 
@@ -117,6 +118,10 @@
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     scrollingLocked = NO;
+    if ([AppDelegate_iPad instance] && [AppDelegate_iPad instance].rootViewController){
+        [[AppDelegate_iPad instance].rootViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    }
+
 }
 - (void)repositionSwipedElements:(UIInterfaceOrientation)toInterfaceOrientation
 {

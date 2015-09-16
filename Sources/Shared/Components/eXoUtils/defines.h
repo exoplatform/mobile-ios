@@ -63,6 +63,8 @@
 #define HTTP_PROTOCOL                       @"http://"
 #define HTTPS_PROTOCOL                       @"https://"
 
+#define SCREEN_HEIGHT UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])? MAX([UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height):MIN([UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height)
+
 #define SCR_WIDTH_LSCP_IPAD                 1024
 #define SCR_HEIGHT_LSCP_IPAD                748
 
