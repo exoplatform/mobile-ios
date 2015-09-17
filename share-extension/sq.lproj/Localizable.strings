@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  eXo
+
+  Created by Nguyen Manh Toan on 9/9/15.
+  Copyright (c) 2015 eXo Platform. All rights reserved.
+*/
+
+
+"All uploads failed" = "crwdns6824520:0crwdne6824520:0";
+
+"uploads failed" = "crwdns6824521:0crwdne6824521:0";
+
+"upload failed" = "crwdns6824522:0crwdne6824522:0";
+
+"Cancel" = "crwdns6824523:0crwdne6824523:0";
+
+"Post" = "crwdns6824524:0crwdne6824524:0";
+
+"%d item(s) cannot be uploaded" = "crwdns6824525:0%dcrwdne6824525:0";
+
+"File too large" = "crwdns6824526:0crwdne6824526:0";
+
+"Network error" = "crwdns6824527:0crwdne6824527:0";
+
+"Do you want to post the message anyway?" = "crwdns6824528:0crwdne6824528:0";
