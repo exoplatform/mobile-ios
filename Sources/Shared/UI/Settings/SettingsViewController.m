@@ -773,7 +773,9 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
 - (BOOL)deleteServerObjAtIndex:(int)index;
 {
     ApplicationPreferencesManager *appPrefManager = [ApplicationPreferencesManager sharedInstance];
-    [appPrefManager deleteServerObjAtIndex:index];
+    if (!([UserPreferencesManager sharedInstance].isUserLogged && appPrefManager.selectedServerIndex == index) && index < [appPrefManager.serverList count]){
+        [appPrefManager deleteServerObjAtIndex:index];
+    }
     [self.tableView reloadData];
     return YES;
 }
