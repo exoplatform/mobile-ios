@@ -19,6 +19,7 @@
 
 #import "FilesProxy.h"
 #import "NSString+HTML.h"
+#import "GTMNSString+HTML.h"
 #import "DataProcess.h"
 #import "TouchXML.h"
 #import "defines.h"
@@ -246,6 +247,7 @@
         
         File *file = [[File alloc] init];
         file.name = [[resultElement attributeForName:@"name"] stringValue];
+        file.name = [file.name gtm_stringByUnescapingFromHTML];
         file.workspaceName = [[resultElement attributeForName:@"workspaceName"] stringValue];
         file.driveName = [[resultElement attributeForName:@"driveName"] stringValue];
         file.currentFolder = [[resultElement attributeForName:@"currentFolder"] stringValue];
