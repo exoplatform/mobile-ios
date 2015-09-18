@@ -438,16 +438,16 @@
 
 "To" = "crwdns6812306:0crwdne6812306:0";
 
-"in" = "in";
+"in" = "crwdns6824529:0crwdne6824529:0";
 
-"space" = "space";
+"space" = "crwdns6824530:0crwdne6824530:0";
 
 /*
  Upload
  */
 
-"Upload failed" = "Upload failed";
+"Upload failed" = "crwdns6824531:0crwdne6824531:0";
 
-"Please try again later" = "Please try again later";
+"Please try again later" = "crwdns6824532:0crwdne6824532:0";
 
-"Confirm Delete" = "Are you sure you want to delete this item ?";
+"Confirm Delete" = "crwdns6824533:0crwdne6824533:0";
