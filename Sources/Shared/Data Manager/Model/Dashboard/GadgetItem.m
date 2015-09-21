@@ -25,12 +25,10 @@
 
 - (void)dealloc {
 
-    [_gadgetUrl release]; _gadgetUrl = nil;
-    [_gadgetIcon release]; _gadgetIcon = nil;
-    [_gadgetName release]; _gadgetName = nil;
-    [_gadgetDescription release]; _gadgetDescription = nil;
-    
-    [super dealloc];
+    _gadgetUrl = nil;
+    _gadgetIcon = nil;
+    _gadgetName = nil;
+    _gadgetDescription = nil;
 }
 
 

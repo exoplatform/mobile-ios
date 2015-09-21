@@ -78,12 +78,11 @@ static NSString* CredentialsFormCellIdentifier = @"CredentialItem";
     self.password = nil;
     self.account = nil;
     self.delegate = nil;
-    [super dealloc];
 }
 
 - (void) initTextFields
 {
-    self.username = [[ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES] retain];
+    self.username = [ServerAddingViewController textInputFieldForCellWithSecure:NO andRequired:YES];
     [self.username setReturnKeyType:UIReturnKeyNext];
 	self.username.delegate = self;
     if (![self.account.username isEqualToString:@""])
@@ -91,7 +90,7 @@ static NSString* CredentialsFormCellIdentifier = @"CredentialItem";
     [self.username addTarget:self action:@selector(setDoneButtonVisible)
                    forControlEvents:UIControlEventEditingChanged];
     
-    self.password = [[ServerAddingViewController textInputFieldForCellWithSecure:YES andRequired:YES] retain];
+    self.password = [ServerAddingViewController textInputFieldForCellWithSecure:YES andRequired:YES];
     [self.password setReturnKeyType:UIReturnKeyDone];
 	self.password.delegate = self;
     if (![self.account.password isEqualToString:@""])
@@ -176,10 +175,10 @@ static NSString* CredentialsFormCellIdentifier = @"CredentialItem";
 {
     CustomBackgroundForCell_iPhone *cell = (CustomBackgroundForCell_iPhone*)[tableView dequeueReusableCellWithIdentifier:CredentialsFormCellIdentifier];
     if (cell == nil) {
-        cell = [[[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CredentialsFormCellIdentifier] autorelease];
+        cell = [[CustomBackgroundForCell_iPhone alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CredentialsFormCellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         CGRect cellBounds = cell.bounds;
-        UILabel *textLabel = [[[UILabel alloc] init] autorelease];
+        UILabel *textLabel = [[UILabel alloc] init];
         textLabel.backgroundColor = [UIColor clearColor];
         textLabel.textColor = [UIColor darkGrayColor];
         textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];

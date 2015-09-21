@@ -29,8 +29,6 @@
     
     BOOL _isPlatformCompatibleWithSocialFeatures;
     
-    id<DashboardProxyDelegate> _delegate;
-    
     NSArray *_arrayOfDashboards; //Array of dashboards retrieved
     
     NSMutableSet *_setOfDashboardsToRetrieveGadgets; //Set used to make request to retrieve gadgets

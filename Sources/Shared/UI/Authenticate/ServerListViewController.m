@@ -35,11 +35,6 @@
 @synthesize tbvlServerList = _tbvlServerList;
 @synthesize panelBackground = _panelBackground;
 
--(void) dealloc {
-    [_tbvlServerList release];
-    [_panelBackground release];
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -53,13 +48,13 @@
 #pragma mark - UITableView Utils
 
 -(UIImageView *) makeCheckmarkOffAccessoryView
-{        return [[[UIImageView alloc] initWithImage:
-                 [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]] autorelease];
+{        return [[UIImageView alloc] initWithImage:
+                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOff.png"]];
 }
 
 -(UIImageView *) makeCheckmarkOnAccessoryView
-{        return [[[UIImageView alloc] initWithImage:
-                 [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]] autorelease];
+{        return [[UIImageView alloc] initWithImage:
+                  [UIImage imageNamed:@"AuthenticateCheckmarkiPhoneOn.png"]];
 }
 
 #pragma mark - UITableView Delegate
@@ -89,7 +84,7 @@
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellNib];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellNib] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellNib];
         
         //Some customize of the cell background :-)
         [cell setBackgroundColor:[UIColor clearColor]];
@@ -108,11 +103,9 @@
         
         //Define the ImageView as background of the cell
         [cell setBackgroundView:ImgVCellBGNormal];
-        [ImgVCellBGNormal release];
         
         //Define the ImageView as background of the cell
         [cell setSelectedBackgroundView:ImgVBGSelected];
-        [ImgVBGSelected release];
         
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13.0];
         cell.textLabel.textColor = [UIColor darkGrayColor];

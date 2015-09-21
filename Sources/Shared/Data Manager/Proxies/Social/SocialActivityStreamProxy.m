@@ -38,14 +38,6 @@
     return self;
 }
 
-- (void)dealloc 
-{
-    delegate = nil;
-    [_arrActivityStreams release];
-    [_userProfile release];
-    [super dealloc];
-}
-
 
 #pragma mark - helper methods
 

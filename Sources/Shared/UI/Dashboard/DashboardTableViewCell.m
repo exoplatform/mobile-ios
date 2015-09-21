@@ -45,7 +45,7 @@
     _imgvIcon = nil;
     
     
-    [super dealloc];
+
 }
 
 

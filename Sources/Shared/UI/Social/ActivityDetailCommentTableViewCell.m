@@ -60,15 +60,6 @@
 {
     self.webViewForContent.delegate = nil;
     [self.webViewForContent stopLoading];
-    self.webViewForContent = nil;
-    self.lbDate = nil;
-    self.lbName = nil;
-    self.imgvAvatar = nil;
-    
-    self.imgvMessageBg = nil;
-    self.imgvCellBg = nil;
-    
-    [super dealloc];
 }
 
 

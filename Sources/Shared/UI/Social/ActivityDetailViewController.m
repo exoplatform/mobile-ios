@@ -83,28 +83,9 @@
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:EXO_NOTIFICATION_CHANGE_LANGUAGE object:nil];
     _getCommentsProxy.delegate = nil;
-    [_getCommentsProxy release];
-    _getLikersProxy.delegate = nil;
-    [_getLikersProxy release];
+     _getLikersProxy.delegate = nil;
     _likeActivityProxy.delegate = nil;
-    [_likeActivityProxy release];
     
-    _tblvActivityDetail.delegate = nil;
-    _tblvActivityDetail.dataSource = nil;
-    [_tblvActivityDetail release];
-    [_navigation release];
-    [_activityDetailCell release];
-    
-    [_txtvMsgComposer release];
-    [_btnMsgComposer release];    
-    
-    [_refreshHeaderView release];
-    [_dateOfLastUpdate release];
-    
-    [_socialActivity release];
-    
-        
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,7 +128,7 @@
     //Add the pull to refresh header
     if (self.refreshHeaderView == nil) {
 		
-		self.refreshHeaderView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityDetail.bounds.size.height, self.view.frame.size.width, _tblvActivityDetail.bounds.size.height)] autorelease];
+		self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _tblvActivityDetail.bounds.size.height, self.view.frame.size.width, _tblvActivityDetail.bounds.size.height)];
 		self.refreshHeaderView.delegate = self;
 		[_tblvActivityDetail addSubview:self.refreshHeaderView];
         _reloading = FALSE;
@@ -273,7 +254,6 @@
 
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
                 [_activityDetailCell.imgvAttach addGestureRecognizer:tapGesture];
-                [tapGesture release];
             
                 break;
             }
@@ -312,7 +292,6 @@
                 
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showContent:)];
                 [_activityDetailCell addGestureRecognizer:tapGesture];
-                [tapGesture release];
 
                 break;
             }
@@ -326,14 +305,13 @@
         if (self.socialActivity.embeddedURL){
             UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoEmbededURL:)];
             [_activityDetailCell.lbMessage addGestureRecognizer:tapGesture];
-            [tapGesture release];
-            _activityDetailCell.lbMessage.userInteractionEnabled = YES;        }
+            _activityDetailCell.lbMessage.userInteractionEnabled = YES;
+        }
         _activityDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _activityDetailCell.imgType.image = [UIImage imageNamed:_iconType];
         [_activityDetailCell setSocialActivityDetail:self.socialActivity];
         [_activityDetailCell setNeedsLayout];
         [_activityDetailCell layoutIfNeeded];
-        [_activityDetailCell retain];
 
     }
     
@@ -382,11 +360,11 @@
 - (void)startLoadingActivityDetail
 {
     _reloading = YES;
-    self.getCommentsProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0] autorelease];
+    self.getCommentsProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0];
     self.getCommentsProxy.delegate = self;
     [self.getCommentsProxy getAllOfComments:self.socialActivity.activityId];
     // Refresh list of likers 
-    self.getLikersProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0] autorelease];
+    self.getLikersProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0];
     self.getLikersProxy.delegate = self;
     [self.getLikersProxy getLikers:self.socialActivity.activityId];
 }
@@ -428,7 +406,7 @@
         [self didFinishedLikeAction];
         self.likeActivityProxy = nil;
         // Refresh list of likers 
-        self.getLikersProxy = [[[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0] autorelease];
+        self.getLikersProxy = [[SocialActivityDetailsProxy alloc] initWithNumberOfComments:0 andNumberOfLikes:0];
         self.getLikersProxy.delegate = self;
         [self.getLikersProxy getLikers:self.socialActivity.activityId];
     } else if (proxy == self.getLikersProxy) {
@@ -453,7 +431,7 @@
         [self didFailedLikeAction];
     }
     
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
      
     [alertView show];
 }
@@ -466,7 +444,7 @@
 - (void)likeDislikeActivity:(NSString *)activity
 {
     
-    self.likeActivityProxy = [[[SocialLikeActivityProxy alloc] init] autorelease];
+    self.likeActivityProxy = [[SocialLikeActivityProxy alloc] init];
     self.likeActivityProxy.delegate = self;
     
     if(self.socialActivity.liked)

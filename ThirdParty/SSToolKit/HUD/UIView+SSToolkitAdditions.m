@@ -99,7 +99,7 @@
 		view = superview;
 	}
 	
-	return [superviews autorelease];
+    return superview;
 }
 
 

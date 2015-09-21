@@ -51,7 +51,6 @@
 - (void)dealloc {
     self.accountName = nil;  self.serverUrl = nil; self.bSystemServer = nil; self.avatarUrl = nil;
     self.userFullname = nil; self.username = nil;  self.password = nil;      self.lastLoginDate = nil;
-    [super dealloc];
 }
 @end
 
@@ -96,16 +95,6 @@
         self.selectedServerIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_SELECTED_SEVER] intValue];
     }	
 	return self;
-}
-
-- (void) dealloc
-{
-    [_selectedDomain release];
-	[_arrServerList release];
-    [_currentRepository release];
-    [_defaultWorkspace release];
-    [_userHomeJcrPath release];
-	[super dealloc];
 }
 
 #pragma mark * Server management
@@ -211,8 +200,7 @@
         tmpDomain = selectedObj.serverUrl;
     }
     
-    [_selectedDomain release];
-    _selectedDomain = [tmpDomain retain];
+    _selectedDomain = tmpDomain;
     _selectedServerIndex = tmpIndex;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSString stringWithFormat:@"%ld", (long)_selectedServerIndex]
@@ -226,7 +214,7 @@
     if (!_selectedDomain) {
         _selectedDomain = [[NSUserDefaults standardUserDefaults] objectForKey:EXO_PREFERENCE_DOMAIN];
     }
-    return [[_selectedDomain copy] autorelease];
+    return [_selectedDomain copy];
 }
 
 - (ServerObj*)getSelectedAccount
@@ -279,7 +267,6 @@
         NSMutableArray* arrAddedServer = [self loadUserConfiguration];
         [arrAddedServer addObject:serverObj];
         [self writeUserConfiguration:arrAddedServer];
-        [serverObj release];
         [self loadServerList]; // reload list of servers
     }
     // Edit the server specified by index
@@ -359,7 +346,7 @@
 
 - (BOOL)deleteServerObjAtIndex:(int)index
 {
-    ServerObj* deletedServerObj = [(self.serverList)[index] retain];
+    ServerObj* deletedServerObj = (self.serverList)[index];
     
     [self.serverList removeObjectAtIndex:index];
     NSInteger currentIndex = self.selectedServerIndex;
@@ -391,8 +378,6 @@
     {
         [self writeUserConfiguration:arrTmp];
     }
-    [deletedServerObj release];
-    [arrTmp release];
     
     [self loadServerList]; // reload list of servers
     
@@ -435,7 +420,7 @@
 - (NSMutableArray*)parseConfiguration:(NSData*)data withBSystemSever:(BOOL)bSystemServer
 {
     NSError* error;
-    NSMutableArray* arrServerList = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* arrServerList = [[NSMutableArray alloc] init];
     CXMLDocument* doc = [[CXMLDocument alloc] initWithData:data options:0 error:&error];
     if(doc != nil) 
     {
@@ -465,13 +450,11 @@
                         serverObj.lastLoginDate = [[self getNodeValue:tmpNode withName:@"lastLoginDate"] longLongValue];
                         serverObj.bSystemServer = bSystemServer;
                         [arrServerList addObject:serverObj];
-                        [serverObj release];
                     }
                 }
             }
         }
     }
-    [doc release];
     return arrServerList;
 }
 
@@ -611,15 +594,9 @@
 #pragma mark * JCR storage
 
 - (void)setJcrRepositoryName:(NSString *)repositoryName defaultWorkspace:(NSString *)defaultWorkspace userHomePath:(NSString *)userHomePath {
-    [repositoryName retain];
-    [_currentRepository release];
-    _currentRepository = repositoryName ? repositoryName : [@"repository" retain];
-    [defaultWorkspace retain];
-    [_defaultWorkspace release];
-    _defaultWorkspace = defaultWorkspace ? defaultWorkspace : [@"collaboration" retain];
-    [userHomePath retain];
-    [_userHomeJcrPath release];
-    _userHomeJcrPath = userHomePath ? userHomePath : [[self makeUserHomePath:CURRENT_USER_NAME] retain];
+    _currentRepository = repositoryName ? repositoryName : @"repository";
+    _defaultWorkspace = defaultWorkspace ? defaultWorkspace : @"collaboration";
+    _userHomeJcrPath = userHomePath ? userHomePath : [self makeUserHomePath:CURRENT_USER_NAME];
 }
 
 - (NSString *)makeUserHomePath:(NSString *)username; 
@@ -688,7 +665,7 @@
         //encode server link
         serverLink = [serverLink stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         // add server to list and set it to be selected
-        ServerObj* account = [[[ServerObj alloc] init] autorelease];
+        ServerObj* account = [[ServerObj alloc] init];
         account.accountName = nil;
         account.serverUrl = serverLink;
         account.username = username;

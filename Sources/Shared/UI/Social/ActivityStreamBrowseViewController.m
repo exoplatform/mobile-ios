@@ -109,57 +109,19 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
         _bIsPostClicked = NO;
         _activityAction = ActivityActionLoad;
         _selectedTabItem = -1;
-        self.arrActivityStreams = [[[NSMutableArray alloc] init] autorelease];
+        self.arrActivityStreams = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    _tblvActivityStream = nil;
-    [_filterTabbar release];
-    [_userProfile release];
-    
-    [_arrayOfSectionsTitle release];
-    _arrayOfSectionsTitle = nil;
-    
-    [_sortedActivities release];
-    _sortedActivities=nil;
-    
-    [_arrActivityStreams release];
-    
-    [_bbtnPost release];
-    
-    [_refreshHeaderView release];
-    _refreshHeaderView = nil;
-    
-    [_dateOfLastUpdate release];
-    _dateOfLastUpdate = nil;
-    
-    
-    if (_activityDetailViewController != nil) 
-    {
-        [_activityDetailViewController release];
-    }
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [_indexpathSelectedActivity release];
-
-    // release proxies
     _socialActivityStreamProxy.delegate = nil;
-    [_socialActivityStreamProxy release];
-
     _socialRestProxy.delegate = nil;
-    [_socialRestProxy release];
-
     _likeActivityProxy.delegate = nil;
-    [_likeActivityProxy release];
-
     _userProfileProxy.delegate = nil;
-    [_userProfileProxy release];
     
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -290,7 +252,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 //            [alertMessages appendString:Localize(@"NetworkConnection")];
 //        }
 
-        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:Localize(@"Error") message:alertMessages delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }
 }
@@ -382,7 +344,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     // filter tab bar
     CGRect activityStreamFrame = _tblvActivityStream.frame;
-    self.filterTabbar = [[[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)] autorelease];
+    self.filterTabbar = [[ActivityStreamTabbar alloc] initWithFrame:CGRectMake(activityStreamFrame.origin.x, activityStreamFrame.origin.y, activityStreamFrame.size.width, kStreamTabbarHeight)];
     self.filterTabbar.tabView.delegate = self;    
     [self.view insertSubview:self.filterTabbar aboveSubview:_tblvActivityStream];
 
@@ -393,8 +355,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 		view.delegate = self;
         view.originalContentInset = _tblvActivityStream.contentInset;
 		[_tblvActivityStream addSubview:view];
-		_refreshHeaderView = [view retain];
-		[view release];
+        _refreshHeaderView = view;
         _reloading = FALSE;
         
 	}
@@ -418,8 +379,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 }
 - (void)viewDidUnload
 {
-    [_refreshHeaderView release];
-    _refreshHeaderView =nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -462,16 +421,16 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)sortActivities 
 {
-    self.arrayOfSectionsTitle = [[[NSMutableArray alloc] init] autorelease];
+    self.arrayOfSectionsTitle = [[NSMutableArray alloc] init];
     
-    self.sortedActivities = [[[NSMutableDictionary alloc] init] autorelease];
+    self.sortedActivities = [[NSMutableDictionary alloc] init];
     
     //from Plf 4, the activities are sorted by last updated time
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:(plfVersion < 4) ? @"postedTime" : @"lastUpdated"
-                                                                    ascending:NO] autorelease];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:(plfVersion < 4) ? @"postedTime" : @"lastUpdated"
+                                                                    ascending:NO];
     
     NSArray *sortDescriptors = @[sortDescriptor];
-    self.arrActivityStreams = [[[NSMutableArray alloc] initWithArray:[self.arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]] autorelease];
+    self.arrActivityStreams = [[NSMutableArray alloc] initWithArray:[self.arrActivityStreams sortedArrayUsingDescriptors:sortDescriptors]];
     
     //Browse each activities
     for (SocialActivity *a in _arrActivityStreams) {
@@ -489,7 +448,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             // if the array not yet exist, we create it
             if (arrayOfToday == nil) {
                 //create the array
-                arrayOfToday = [[[NSMutableArray alloc] init] autorelease];
+                arrayOfToday = [[NSMutableArray alloc] init];
                 //set it into the dictonary
                 _sortedActivities[@"Today"] = arrayOfToday;
                 
@@ -508,7 +467,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             // if the array not yet exist, we create it
             if (arrayOfCurrentKeys == nil) {
                 //create the array
-                arrayOfCurrentKeys = [[[NSMutableArray alloc] init] autorelease];
+                arrayOfCurrentKeys = [[NSMutableArray alloc] init];
                 //set it into the dictonary
                 _sortedActivities[(plfVersion < 4) ? a.postedTimeInWords : a.updatedTimeInWords] = arrayOfCurrentKeys;
                 
@@ -618,10 +577,8 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     imgVBackground.frame = CGRectMake(_tblvActivityStream.frame.size.width-5 - theSize.width-10, 2, theSize.width+20, kHeightForSectionHeader-4);
     
 	[customView addSubview:imgVBackground];
-    [imgVBackground release];
     
     [customView addSubview:headerLabel];
-    [headerLabel release];
     
     
 	return customView;
@@ -769,7 +726,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 
 - (void)likeDislikeActivity:(NSString *)activity like:(BOOL)isLike
 {
-    self.likeActivityProxy = [[[SocialLikeActivityProxy alloc] init] autorelease];
+    self.likeActivityProxy = [[SocialLikeActivityProxy alloc] init];
     self.likeActivityProxy.delegate = self;
     
     if(!isLike)
@@ -799,9 +756,9 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
 }
 
 - (void)setupActivityIndicator {
-    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, _tblvActivityStream.frame.size.width, 44)]autorelease];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tblvActivityStream.frame.size.width, 44)];
     footerView.backgroundColor = [UIColor clearColor];
-    _loadingMoreActivitiesIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]autorelease];
+    _loadingMoreActivitiesIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [footerView addSubview:_loadingMoreActivitiesIndicator];
     _loadingMoreActivitiesIndicator.center = CGPointMake(footerView.center.x, footerView.center.y);
     _tblvActivityStream.tableFooterView = footerView;
@@ -815,7 +772,7 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     
     [self displayHudLoader];
     
-    self.socialRestProxy = [[[SocialRestProxy alloc] init] autorelease];
+    self.socialRestProxy = [[SocialRestProxy alloc] init];
     self.socialRestProxy.delegate = self;
     [self.socialRestProxy getVersion];    
 }
@@ -889,7 +846,6 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     EmptyView *emptyView = [[EmptyView alloc] initWithFrame:_tblvActivityStream.frame withImageName:@"IconForNoActivities.png" andContent:Localize(@"NoActivities")];
     emptyView.tag = TAG_EMPTY;
     [self.view insertSubview:emptyView belowSubview:_filterTabbar];
-    [emptyView release];
 }
 
 - (UITableView*) tblvActivityStream {

@@ -32,11 +32,6 @@
 @synthesize alternateIcon = _alternateIcon;
 
 
--(void) dealloc {
-    [_alternateIcon release];
-    [super dealloc];
-}
-
 // Set the dimension of the tabs for the iPhone (50x48) and the iPad (80x73)
 - (CGSize)sizeThatFits:(CGSize)size {
     return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(iPadCellWidth, iPadCellHeight) : CGSizeMake(iPhoneCellWidth, iPhoneCellHeight);
@@ -55,7 +50,7 @@
 
 + (AuthTabItem *)tabItemWithTitle:(NSString *)title icon:(UIImage *)icon alternateIcon:(UIImage *)alternativeIcon;
 {
-    AuthTabItem * tabItem = [[[AuthTabItem alloc] initWithTitle:title icon:icon] autorelease];
+    AuthTabItem * tabItem = [[AuthTabItem alloc] initWithTitle:title icon:icon];
     tabItem.alternateIcon = alternativeIcon;
     return tabItem;
 }

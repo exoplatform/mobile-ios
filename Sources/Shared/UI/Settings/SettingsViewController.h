@@ -47,8 +47,6 @@
     UISwitch*                       _rememberSelectedStream;
     UISwitch*                       _showPrivateDrive;
     
-    id<SettingsDelegateProcotol>    _settingsDelegate;
-    
     NSMutableArray*                 _listOfSections;
     
 }
