@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "ha actualitzat la pregunta:";
 
-"Answered" = "has answered the question:";
+"Answered" = "ha respost la pregunta:";
 
 "Asked" = "ha preguntat:";
 
@@ -440,14 +440,14 @@
 
 "in" = "en";
 
-"space" = "space";
+"space" = "espai";
 
 /*
  Upload
  */
 
-"Upload failed" = "Upload failed";
+"Upload failed" = "Pujada fallida";
 
-"Please try again later" = "Please try again later";
+"Please try again later" = "Si us plau, prova-ho més tard";
 
-"Confirm Delete" = "Are you sure you want to delete this item ?";
+"Confirm Delete" = "Segur de vol suprimir aquest element ?";
