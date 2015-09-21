@@ -241,7 +241,9 @@
             return self.noCommentCell.bounds.size.height;
         } else {
             SocialComment* socialComment = (self.socialActivity.comments)[indexPath.row];
-            
+            if (socialComment.cellHeight > 0){
+                return socialComment.cellHeight;
+            }
             static ActivityDetailCommentTableViewCell *sizingCell = nil;
             NSString * identCell = @"ActivityDetailCommentTableViewCell";
             
@@ -252,7 +254,7 @@
             [sizingCell layoutIfNeeded];
             
             CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-            
+            socialComment.cellHeight = size.height +20.0f;
             return size.height + 20.0f; // Add 20.0f for the cell separator & margin
         }
 

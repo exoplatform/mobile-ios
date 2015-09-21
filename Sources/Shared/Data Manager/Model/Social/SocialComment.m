@@ -53,7 +53,7 @@
     self.text = [self.text gtm_stringByUnescapingFromHTML];
 } 
 
--(void) parseHTML {
+-(void) parseTextHTML {
     NSRange range;
     NSString * htmlString = self.text;
     
@@ -85,6 +85,7 @@
     }
  
     self.message = [self.text stringByConvertingHTMLToPlainText];
+    self.cellHeight = 0;
 }
 
 -(NSString *) toHTML {

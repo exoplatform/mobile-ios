@@ -156,7 +156,8 @@
             }
         }
     } else {
-            self.imageViewHeightContraint.constant = 0;
+        self.imageView.image = nil;
+        self.imageViewHeightContraint.constant = 0;
     }
 
     

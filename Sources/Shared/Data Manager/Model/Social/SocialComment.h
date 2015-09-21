@@ -54,10 +54,12 @@
 @property double postedTime;
 @property (nonatomic, retain) NSString* postedTimeInWords;
 @property (nonatomic, retain) SocialUserProfile* userProfile;
+@property (nonatomic) CGFloat cellHeight;
+
 
 - (void)convertToPostedTimeInWords;
 - (void)convertHTMLEncoding;
-- (void)parseHTML;
+- (void)parseTextHTML;
 - (NSString *) toHTML;
 
 @end
