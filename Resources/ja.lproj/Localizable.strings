@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "私のアクティビティ";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "終了日";
+"To" = "To";
 
-"in" = "で";
+"in" = "in";
 
 "space" = "space";
 
