@@ -175,7 +175,6 @@
     } else {
         self.btnComment.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
     }
- 
     [self setSocialActivityStreamForSpecificContent:socialActivityStream];
 }
 
@@ -208,13 +207,13 @@
         
         //Add images for Like button
         [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButton.png"]
-                                      stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                                      stretchableImageWithLeftCapWidth:14 topCapHeight:0]
                             forState:UIControlStateNormal];
         [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
-                                      stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                                      stretchableImageWithLeftCapWidth:14 topCapHeight:0]
                             forState:UIControlStateSelected];
         [_btnLike setBackgroundImage:[[UIImage imageNamed:@"SocialActivityBrowserLikeButtonSelected.png"]
-                                      stretchableImageWithLeftCapWidth:15 topCapHeight:0]
+                                      stretchableImageWithLeftCapWidth:14 topCapHeight:0]
                             forState:UIControlStateHighlighted];
         
     }
