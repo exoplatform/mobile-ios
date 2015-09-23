@@ -7,7 +7,8 @@ target "eXo" do
 
     pod 'RestKit', '~> 0.24'
     pod 'UIImage-Categories', '0.0.1'
-	
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 target "eXoTests" do

@@ -1,5 +1,9 @@
 PODS:
   - AFNetworking (1.3.4)
+  - Crashlytics (3.3.1)
+  - Fabric (1.5.1):
+    - Fabric/Base (= 1.5.1)
+  - Fabric/Base (1.5.1)
   - ISO8601DateFormatterValueTransformer (0.6.0):
     - RKValueTransformers (~> 1.1.0)
   - OHHTTPStubs (3.1.2)
@@ -28,12 +32,16 @@ PODS:
   - UIImage-Categories (0.0.1)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - OHHTTPStubs (~> 3.1.2)
   - RestKit (~> 0.24)
   - UIImage-Categories (= 0.0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  Crashlytics: 0e61bdda9def51f1e99720f804eebe94865442b2
+  Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
   ISO8601DateFormatterValueTransformer: 3ac3a721381697cab4e792d8049ce2f2e9ad3036
   OHHTTPStubs: c93230597bc5c8b74bcfdb403cc8773515b8b08c
   RestKit: 1987b5efef289c6b27bd980714d6ca48d3871b78
@@ -42,4 +50,4 @@ SPEC CHECKSUMS:
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
   UIImage-Categories: 5103b772ae91894f4d650eb696b006f4a2487ec3
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.38.2
