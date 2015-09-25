@@ -362,7 +362,7 @@
             if(storageFolder)
             {
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy_MM_dd_hh_mm_ss"];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd-hh-mm-ss"];
                 fileAttachName = [dateFormatter stringFromDate:[NSDate date]];
                 
                 //release the date formatter because, not needed after that piece of code

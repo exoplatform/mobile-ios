@@ -277,7 +277,7 @@ static NSString *TENANT_WAITING_CREATION_RESPONSE = @"waiting_creation";
 
 - (void)createLeadForEmail:(NSString *)email andTenant:(NSString *)tenant
 {
-    NSString *actionLink = @"http://learn.exoplatform.com/index.php/leadCapture/save";
+    NSString *actionLink = @"https://learn.exoplatform.com/index.php/leadCapture/save";
     NSString *encodedEmail = [email stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     NSString *params = [NSString stringWithFormat:@"Email=%@&lpId=1967&subId=46&munchkinId=577-PCT-880&formid=1167&returnLPId=-1&eXo_Cloud_Tenant_Name__c=%@", encodedEmail, tenant];
     NSData *payload = [params dataUsingEncoding:NSUTF8StringEncoding];

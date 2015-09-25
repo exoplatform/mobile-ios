@@ -87,7 +87,7 @@
 #define DOCUMENT_WORKSPACE_NAME             @"&workspaceName="
 #define DOCUMENT_CURRENT_FOLDER             @"&currentFolder=" 
 
-#define MOBILE_UPLOAD_FILE_PREFIX           @"mobile_image_"
+#define MOBILE_UPLOAD_FILE_PREFIX           @"mobile-image-"
 #define MOBILE_UPLOAD_DEST_FOLDER           @"Mobile"
 #define MOBILE_UPLOAD_PERSONAL_DRIVE        @"Personal Documents"
 
