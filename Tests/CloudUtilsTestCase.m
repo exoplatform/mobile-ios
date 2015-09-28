@@ -60,7 +60,7 @@
 - (void)testGetServerURLFromTenantName
 {
     NSString *tenant = @"mytenant";
-    NSString *expectedUrl = @"http://mytenant.exoplatform.net";
+    NSString *expectedUrl = @"https://mytenant.exoplatform.net";
     XCTAssertEqualObjects([CloudUtils serverUrlByTenant:tenant], expectedUrl , @"URL from %@ should be %@", tenant, expectedUrl);
     
 }
