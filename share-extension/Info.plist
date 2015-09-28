@@ -16,23 +16,23 @@
 	<string>com.exoplatform.mob.eXoPlatformiPHone.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>XPC!</string>
-	<key>CFBundleShortVersionString</key>
-	<string>2.6</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>2.6.20150727</string>
-	<key>LSHasLocalizedDisplayName</key>
-	<true/>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
 		<string>fr</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.7</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>2.7</string>
+	<key>LSHasLocalizedDisplayName</key>
+	<true/>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -40,7 +40,7 @@
 			<key>NSExtensionActivationRule</key>
 			<dict>
 				<key>NSExtensionActivationSupportsAttachmentsWithMaxCount</key>
-				<string>10</string>
+				<integer>10</integer>
 				<key>NSExtensionActivationSupportsFileWithMaxCount</key>
 				<integer>10</integer>
 				<key>NSExtensionActivationSupportsImageWithMaxCount</key>
