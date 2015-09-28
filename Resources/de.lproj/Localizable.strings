@@ -14,7 +14,7 @@
 
 "SignInButton" = "Anmelden";
 
-"SignInButton_In" = "in";
+"SignInButton_In" = "bis";
 
 "UsernamePlaceholder" = "Benutzername";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Verbunden";
 
-"Sign In" = "Sign In";
+"Sign In" = "Anmelden";
 
 /* 
  * Documents
@@ -122,17 +122,17 @@
 
 "Spanish" = "Spanisch";
 
-"Portuguese-Brazil" = "Portugiesisch (Brasilien)";
+"Portuguese-Brazil" = "Portuguese (Brazil)";
 
-"Greek"= "Griechisch";
+"Greek"= "Greek";
 
 "Send" = "Senden";
 
-"ServerList" = "Accounts";
+"ServerList" = "Serverliste";
 
 "Account" = "Account";
 
-"NewServer" = "New account";
+"NewServer" = "Neuer Server";
 
 "ServerModify" = "Server ändern";
 
@@ -148,7 +148,7 @@
 
 "ServerUrl" = "Adresse des Servers";
 
-"Social" = "Sozial";
+"Social" = "Social";
 
 
 /*
@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "hat die Frage wurde aktualisiert:";
 
-"Answered" = "hat auf die Frage geantwortet:";
+"Answered" = "has answered the question:";
 
 "Asked" = "hat gefragt:";
 
@@ -319,14 +319,13 @@
 
 "Remove" = "Entfernen";
 
-"All Updates" = "Alle Aktualisierungen";
+"All Updates" = "Alle Aktivitäten";
 
 "My Connections" = "Meine Verbindungen";
 
 "My Spaces" = "Meine Räume";
 
-"My Status" = "Mein Status";
-
+"My Status" = "Meine Aktivitäten";
 
 /*
  * Date message converter
@@ -415,8 +414,40 @@
 
 "EnterCredentials" = "Enter your credentials and Login";
 
-"My intranet" = "My Intranet";
+"My intranet" = "My intranet";
 
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
 "NoTenantName" = "There is no tenant name";
+
+/*
+ Post Activity to Space
+ */
+
+"Public" = "Meine Aktivitäten";
+
+"CannotLoadSpaceID" = "Unable to load the space's identity";
+
+"PostActivityTo" = "Post activity to";
+
+"You didn't join any space" = "You didn't join any space";
+
+"CannotLoadSpace" = "Unable to load information about your spaces";
+
+"Loading spaces" = "Loading spaces ...";
+
+"To" = "An";
+
+"in" = "in";
+
+"space" = "space";
+
+/*
+ Upload
+ */
+
+"Upload failed" = "Upload failed";
+
+"Please try again later" = "Please try again later";
+
+"Confirm Delete" = "Are you sure you want to delete this item ?";

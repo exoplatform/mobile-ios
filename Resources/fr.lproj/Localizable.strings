@@ -14,15 +14,15 @@
 
 "SignInButton" = "Connexion";
 
-"SignInButton_In" = "à";
+"SignInButton_In" = "jusqu'au";
 
 "UsernamePlaceholder" = "Utilisateur";
 
 "PasswordPlaceholder" = "Mot de passe";
 
-"Last Login" = "Last login";
+"Last Login" = "Dernière connexion";
 
-"Connected" = "Connected";
+"Connected" = "Connecté";
 
 "Sign In" = "Connexion";
 
@@ -124,15 +124,15 @@
 
 "Portuguese-Brazil" = "Portugais (Brésil)";
 
-"Greek"= "Grec";
+"Greek" = "Grec";
 
 "Send" = "Envoyer";
 
-"ServerList" = "Comptes";
+"ServerList" = "Liste des serveurs";
 
 "Account" = "Compte";
 
-"NewServer" = "Nouveau compte";
+"NewServer" = "Nouveau serveur";
 
 "ServerModify" = "Modifier le serveur";
 
@@ -327,7 +327,6 @@
 
 "My Status" = "Mes Activités";
 
-
 /* 
  * Date message converter
  */
@@ -415,7 +414,7 @@
 
 "EnterCredentials" = "Enter your credentials and Login";
 
-"My intranet" = "My Intranet";
+"My intranet" = "My intranet";
 
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
@@ -425,20 +424,30 @@
  Post Activity to Space
  */
 
+"Public" = "Mes Activités";
 
-"CannotLoadSpaceID" = "Impossible de charger les détails de l'espace";
+"CannotLoadSpaceID" = "Impossible de charger l'identité de l'espace";
 
-"PostActivityTo" = "Envoyer à";
+"PostActivityTo" = "Poster l'activité dans";
 
-"Loading spaces" = "Chargement de vos espaces ...";
+"You didn't join any space" = "Vous n'avez rejoint aucun espace";
 
-"You didn't join any space" = "Vous n'êtes dans aucun espace";
+"CannotLoadSpace" = "Impossible de charger les informations sur vos espaces";
 
-"CannotLoadSpace" = "Erreur pendant le chargement de vos espaces";
+"Loading spaces" = "Chargement des espaces...";
 
-"To" = "À";
+"To" = "à";
 
 "in" = "dans";
 
-//we cannot translate in french
-"space" = "";
+"space" = "espace";
+
+/*
+ Upload
+ */
+
+"Upload failed" = "L'envoi a échoué";
+
+"Please try again later" = "Veuillez réessayer plus tard";
+
+"Confirm Delete" = "Êtes-vous sûr de vouloir supprimer cet élément ?";

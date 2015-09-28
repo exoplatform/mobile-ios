@@ -14,17 +14,17 @@
 
 "SignInButton" = "Iniciar sesión";
 
-"SignInButton_In" = "in";
+"SignInButton_In" = "Para";
 
 "UsernamePlaceholder" = "Nombre de usuario";
 
 "PasswordPlaceholder" = "Contraseña";
 
-"Last Login" = "Last login";
+"Last Login" = "Último inicio de sesión";
 
-"Connected" = "Connected";
+"Connected" = "Conectado";
 
-"Sign In" = "Sign In";
+"Sign In" = "Ingresar";
 
 /* 
  * Documents
@@ -104,7 +104,7 @@
 
 "Settings" = "Configuración";
 
-"RememberMe" = "Recordarme";
+"RememberMe" = "Remember me";
 
 "AutoLogin" = "Auto login";
 
@@ -124,15 +124,15 @@
 
 "Portuguese-Brazil" = "Portugués (Brasil)";
 
-"Greek"= "Griego";
+"Greek" = "Griego";
 
 "Send" = "Enviar";
 
-"ServerList" = "Accounts";
+"ServerList" = "Lista de servidores";
 
-"Account" = "Account";
+"Account" = "Cuenta";
 
-"NewServer" = "New account";
+"NewServer" = "Nuevo servidor";
 
 "ServerModify" = "Modificar el servidor";
 
@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "ha actualizado la pregunta:";
 
-"Answered" = "ha respondido a la pregunta:";
+"Answered" = "has answered the question:";
 
 "Asked" = "ha preguntado:";
 
@@ -299,7 +299,7 @@
 
 "EventUpdated" = "acaba de actualizar el evento:";
 
-"TaskAdded" = "tarea agregada:";
+"TaskAdded" = "tarea añadida:";
 
 "TaskUpdated" = "acaba de actualizar la tarea:";
 
@@ -319,14 +319,13 @@
 
 "Remove" = "Eliminar";
 
-"All Updates" = "Todas las actualizaciones";
+"All Updates" = "Todas las Actividades";
 
 "My Connections" = "Mis conexiones";
 
-"My Spaces" = "Mis espacios";
+"My Spaces" = "Mis Espacios";
 
-"My Status" = "Mi estatus";
-
+"My Status" = "Mis Actividades";
 
 /*
  * Date message converter
@@ -345,7 +344,7 @@
 
 "DateFmt Less than" = "Menos de ";
 
-"DateFmt About" = "Acerca de ";
+"DateFmt About" = "Cerca de ";
 
 "DateFmt Over" = "Sobre ";
 
@@ -409,14 +408,46 @@
 
 "Password" = "Contraseña";
 
-"Your credentials" = "Sus credenciales";
+"Your credentials" = "Your credentials";
 
 "EnterServerUrl" = "Enter the URL of your intranet";
 
 "EnterCredentials" = "Enter your credentials and Login";
 
-"My intranet" = "My Intranet";
+"My intranet" = "My intranet";
 
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
 "NoTenantName" = "There is no tenant name";
+
+/*
+ Post Activity to Space
+ */
+
+"Public" = "Mis Actividades";
+
+"CannotLoadSpaceID" = "No se puede cargar la identidad del espacio";
+
+"PostActivityTo" = "Publicar la actividad en";
+
+"You didn't join any space" = "No se unió a ningún espacio";
+
+"CannotLoadSpace" = "No se puede cargar información acerca de tus espacios";
+
+"Loading spaces" = "Cargando espacios ...";
+
+"To" = "Para";
+
+"in" = "en";
+
+"space" = "space";
+
+/*
+ Upload
+ */
+
+"Upload failed" = "Upload failed";
+
+"Please try again later" = "Please try again later";
+
+"Confirm Delete" = "Are you sure you want to delete this item ?";

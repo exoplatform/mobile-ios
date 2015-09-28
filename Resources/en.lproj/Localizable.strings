@@ -12,7 +12,7 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Login";
 
 "SignInButton_In" = "to";
 
@@ -128,11 +128,11 @@
 
 "Send" = "Send";
 
-"ServerList" = "Accounts";
+"ServerList" = "Server list";
 
 "Account" = "Account";
 
-"NewServer" = "New Account";
+"NewServer" = "New server";
 
 "ServerModify" = "Modify server";
 
@@ -144,9 +144,9 @@
 
 "ApplicationVersion" = "Application version";
 
-"ServerName" = "Name";
+"ServerName" = "Server name";
 
-"ServerUrl" = "Server";
+"ServerUrl" = "Server URL";
 
 "Social" = "Social";
 
@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "has updated the question:";
 
-"Answered" = "has answered to the question:";
+"Answered" = "has answered the question:";
 
 "Asked" = "has asked:";
 
@@ -326,7 +326,6 @@
 "My Spaces" = "My Spaces";
 
 "My Status" = "My Activities";
-
 
 /*
  * Date message converter
@@ -415,17 +414,17 @@
 
 "EnterCredentials" = "Enter your credentials and Login";
 
-"My intranet" = "My Intranet";
+"My intranet" = "My intranet";
 
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
 "NoTenantName" = "There is no tenant name";
 
-
 /*
  Post Activity to Space
  */
 
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 

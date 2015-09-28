@@ -1,10 +1,10 @@
-/*
- Localizable.strings
- eXo Platform
- 
- Created by Le Thanh Quang on 7/9/12.
- Copyright (c) 2012 eXoPlatform. All rights reserved.
- */
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
 
 /*
  * Authenticate
@@ -26,7 +26,7 @@
 
 "Sign In" = "Sign In";
 
-/*
+/* 
  * Documents
  */
 
@@ -122,9 +122,9 @@
 
 "Spanish" = "Espanhol";
 
-"Portuguese-Brazil" = "Português (Brasil)";
+"Portuguese-Brazil" = "Portuguese (Brazil)";
 
-"Greek"= "Grego";
+"Greek"= "Greek";
 
 "Send" = "Enviar";
 
@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "atualizou a questão:";
 
-"Answered" = "respondeu à pergunta:";
+"Answered" = "has answered the question:";
 
 "Asked" = "perguntou:";
 
@@ -319,14 +319,13 @@
 
 "Remove" = "Remover";
 
-"All Updates" = "Todas as atualizações";
+"All Updates" = "All Activities";
 
-"My Connections" = "Minhas conexões";
+"My Connections" = "My Connections";
 
-"My Spaces" = "Meus espaços";
+"My Spaces" = "My Spaces";
 
-"My Status" = "Meu status";
-
+"My Status" = "My Activities";
 
 /*
  * Date message converter
@@ -336,8 +335,8 @@
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
-//in english, Order of the message: modifier - number - measure - direction
-//in french, Order of the message: direction - modifier - number - measure
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
 
 "DateFmt ago" = "atrás";
 
@@ -375,7 +374,7 @@
 
 
 /*
- * Cloud sign up assistant
+ * Cloud sign up assistant 
  */
 "ServerNotAvailable" = "Impossível conectar a sua intranet, verifique a URL ou contate o administrador";
 
@@ -420,3 +419,35 @@
 "SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
 
 "NoTenantName" = "There is no tenant name";
+
+/*
+ Post Activity to Space
+ */
+
+"Public" = "My Activities";
+
+"CannotLoadSpaceID" = "Unable to load the space's identity";
+
+"PostActivityTo" = "Post activity to";
+
+"You didn't join any space" = "You didn't join any space";
+
+"CannotLoadSpace" = "Unable to load information about your spaces";
+
+"Loading spaces" = "Loading spaces ...";
+
+"To" = "To";
+
+"in" = "em";
+
+"space" = "space";
+
+/*
+ Upload
+ */
+
+"Upload failed" = "Upload failed";
+
+"Please try again later" = "Please try again later";
+
+"Confirm Delete" = "Are you sure you want to delete this item ?";
