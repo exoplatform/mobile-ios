@@ -52,7 +52,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.listOfAccounts = [[ApplicationPreferencesManager sharedInstance] serverList];
+
     }
     return self;
 }
@@ -70,7 +70,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     // Accounts title
     self.title = Localize(@"ServerList");
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-
+    self.listOfAccounts = [[ApplicationPreferencesManager sharedInstance] serverList];
 }
 
 - (SSHUDView *)hud {
