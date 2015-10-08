@@ -168,6 +168,9 @@ static NSString *PUBLIC_DRIVE = @"Public";
     }
     //And finally reload the content of the tableView
     [_tblFiles reloadData];
+
+    self.actionVisibleOnFolder = [self supportActionsForItem:_rootFile];
+    
 }
 
 // Empty State
@@ -190,29 +193,18 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
 - (void)hideFileFolderActionsController {}
 
-- (BOOL)supportActionsForItem:(File *)item ofGroup:(NSString *)driveGroup {
-    /*
-     This method is installed as a workaround for bug about action buttons on drive folders. 
-     A folder is not action-able if: 
-        + Its currentFolder is empty or nil.
-     */
-    NSMutableArray *exceptDrives = [NSMutableArray array];
-    if ([driveGroup isEqualToString:PERSONAL_GROUP] && !isRoot) {
-        // For public drive of personal group, action is supported when view its detail.
-        [exceptDrives addObject:PUBLIC_DRIVE];
-    }
-    if ([item isFolder]) {
-        NSString *currentfolder = [item currentFolder];
-        if (!currentfolder || [currentfolder length] == 0) {
-            if ([exceptDrives containsObject:[item name]]) {
-                return YES;
-            }
-            return NO; 
-        } else {
-            return YES;
-        }
-    } else {
+- (BOOL)supportActionsForItem:(File *)item {
+    if (![item isFolder]) {
         // actions are always supported for files.
+        return YES;
+    }
+    // The folders at first level cannot be remove
+    NSString *currentfolder = [item currentFolder];
+    if (!currentfolder || [currentfolder length] == 0) {
+        item.canRemove = NO;
+    }
+
+    if (item && (item.name && item.name.length>0) && (item.path && item.path.length >0)) {
         return YES;
     }
     return NO;
@@ -478,8 +470,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 
     //Retrieve the correct file corresponding to the indexPath
     File *file = [_dicContentOfFolder allValues][indexPath.section][indexPath.row];
-    NSString *driveGroup = [_dicContentOfFolder allKeys][indexPath.section];
-    if ([self supportActionsForItem:file ofGroup:driveGroup]) {
+    if ([self supportActionsForItem:file]) {
         //Add action button
         UIImage *image = [UIImage imageNamed:@"DocumentDisclosureActionButton"];
         UIButton *buttonAccessory = [UIButton buttonWithType:UIButtonTypeCustom];
