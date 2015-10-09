@@ -10,224 +10,224 @@
  * Authenticate
  */
 
-"SignInPageTitle" = "Login page";
+"SignInPageTitle" = "Loginpagina";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Verbinden";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "aan";
 
 "UsernamePlaceholder" = "Username";
 
-"PasswordPlaceholder" = "Password";
+"PasswordPlaceholder" = "#{word.password}";
 
-"Last Login" = "Last login";
+"Last Login" = "Laatste login";
 
-"Connected" = "Connected";
+"Connected" = "Verbonden";
 
-"Sign In" = "Sign In";
+"Sign In" = "Aanmelden";
 
 /* 
  * Documents
  */
 
-"TakePicture" = "Take a picture";
+"TakePicture" = "Neem een foto";
 
-"NewFolderTitle" = "New folder";
+"NewFolderTitle" = "Nieuwe map";
 
-"RenameTitle" = "Rename";
+"RenameTitle" = "Hernoem";
 
-"Copy" = "Copy";
+"Copy" = "Kopieren";
 
-"Move" = "Cut";
+"Move" = "Knippen";
 
-"Paste" = "Paste";
+"Paste" = "Plakken";
 
-"Documents" = "Documents";
+"Documents" = "Documenten";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "Neem een foto";
 
-"AttachedPhoto" = "Attached photo";
+"AttachedPhoto" = "Bijgevoegde foto";
 
-"AddAPhoto" = "Add a photo";
+"AddAPhoto" = "Voeg een foto toe";
 
-"PhotoLibrary" = "Photo library";
+"PhotoLibrary" = "Fotobibliotheek";
 
 // Drives types
 
-"general" = "general";
+"general" = "algemene";
 
-"personal" = "personal";
+"personal" = "persoonlijke";
 
-"group" = "group";
+"group" = "groep";
 
 
 /*
  * General
  */
 
-"Cancel" = "Cancel";
+"Cancel" = "Annuleren";
 
-"DoneButton" = "Done";
+"DoneButton" = "#{word.done} :";
 
-"Delete" = "Delete";
+"Delete" = "Verwijderen";
 
 "Success" = "Success";
 
 "Home" = "Home";
 
-"Loading" = "Loading...";
+"Loading" = "Aan het laden...";
 
-"LoadingURL" = "Loading URL";
+"LoadingURL" = "Laden URL";
 
 "OK" = "OK";
 
 "Disconnect" = "Disconnect";
 
-"Pull down to refresh..." = "Pull down to refresh...";
+"Pull down to refresh..." = "Pull-down om te vernieuwen...";
 
-"Release to refresh..." = "Release to refresh...";
+"Release to refresh..." = "Versie om te vernieuwen...";
 
-"Last Updated: %@" = "Last updated: %@";
+"Last Updated: %@" = "Laatst bijgewerkt: %@";
 
-"Required" = "Required";
+"Required" = "Vereist";
 
-"Optional" = "Optional";
+"Optional" = "Optioneel";
 
 "Fullscreen" = "Fullscreen";
 
-"Close" = "Close";
+"Close" = "Sluiten";
 
 
 /*
  * Settings
  */
 
-"Settings" = "Settings";
+"Settings" = "Instellingen";
 
 "RememberMe" = "Remember me";
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "Onthoud mijn filter";
 
-"ShowPrivateDrive" = "Show my private drive";
+"ShowPrivateDrive" = "Toon mijn privé drive";
 
-"Language" = "Languages";
+"Language" = "Talen";
 
-"English" = "English";
+"English" = "Engels";
 
-"French" = "French";
+"French" = "Frans";
 
-"German" = "German";
+"German" = "Duits";
 
-"Spanish" = "Spanish";
+"Spanish" = "Spaans";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Portugees (Brazilië)";
 
-"Greek" = "Greek";
+"Greek" = "Grieks";
 
-"Send" = "Send";
+"Send" = "#{word.send}";
 
-"ServerList" = "Server list";
+"ServerList" = "Serverlijst";
 
-"Account" = "Account";
+"Account" = "Rekening";
 
-"NewServer" = "New server";
+"NewServer" = "Nieuwe server";
 
-"ServerModify" = "Modify server";
+"ServerModify" = "Server wijzigen";
 
-"ApplicationsInformation" = "Application information";
+"ApplicationsInformation" = "Toepassingen informatie";
 
-"ServerVersion" = "Server version";
+"ServerVersion" = "Serverversie";
 
-"ApplicationEdition" = "Application edition";
+"ApplicationEdition" = "Uitgave van de toepassing";
 
-"ApplicationVersion" = "Application version";
+"ApplicationVersion" = "Versie van toepassing";
 
-"ServerName" = "Server name";
+"ServerName" = "Server naam";
 
-"ServerUrl" = "Server URL";
+"ServerUrl" = "URL van server";
 
-"Social" = "Social";
+"Social" = "Sociale";
 
 
 /*
  * Errors & Warnings
  */
 
-"BadResponse" = "The server returned invalid data.";
+"BadResponse" = "De server heeft ongeldige gegevens teruggestuurd.";
 
-"NetworkConnection" = "Connection error";
+"NetworkConnection" = "Verbindingsfout";
 
-"Authorization" = "Login failed";
+"Authorization" = "Aanmelden mislukt";
 
-"WrongUserNamePassword" = "Impossible to connect, check your username and password";
+"WrongUserNamePassword" = "Onmogelijk te verbinden, Controleer uw gebruikersbenaming en wachtwoord";
 
-"InvalidServer" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"InvalidServer" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
-"UserNameEmpty" = "Incorrect username";
+"UserNameEmpty" = "Onjuiste gebruikersnaam";
 
-"PasswordEmpty" = "Incorrect password";
+"PasswordEmpty" = "Onjuist wachtwoord";
 
-"SelectedDomainEmpty" = "No server specified";
+"SelectedDomainEmpty" = "Geen server die is opgegeven";
 
-"EmptyFolder" = "This folder is empty";
+"EmptyFolder" = "Deze map is leeg";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "Dit bestand kan niet worden geopend door de toepassing";
 
-"NoActivities" = "No activity has been posted on your activity stream";
+"NoActivities" = "Geen activiteit is geboekt op uw activity stream";
 
-"NoGadget" = "You have no gadgets in your Apps";
+"NoGadget" = "U hebt geen gadgets in uw Apps";
 
-"MessageInfo" = "Information";
+"MessageInfo" = "Informatie";
 
-"MessageErrorServer" = "You cannot add a server with an empty name or URL";
+"MessageErrorServer" = "U kunt geen een server met een lege naam of URL toevoegen";
 
-"MessageErrorExist" = "This server already exists";
+"MessageErrorExist" = "Deze server bestaat al";
 
-"InvalidUrl" = "Invalid URL";
+"InvalidUrl" = "Ongeldige URL";
 
-"FileError" = "Error";
+"FileError" = "Foutmelding";
 
-"CameraNotAvailable" = "The camera is not available";
+"CameraNotAvailable" = "De camera is niet beschikbaar";
 
-"GadgetsCannotBeRetrieved" = "Gadgets cannot be retrieved";
+"GadgetsCannotBeRetrieved" = "Gadgets kunnen niet worden opgehaald";
 
-"Error" = "Error";
+"Error" = "Foutmelding";
 
-"NoMessageComment" = "You must enter some text to comment";
+"NoMessageComment" = "Moet u sommige tekst om commentaar te invulen";
 
-"NoMessagePosting" = "You must enter some text to post";
+"NoMessagePosting" = "Moet u sommige tekst om te posten";
 
-"GettingActionCannotBeCompleted" = "You cannot get activities";
+"GettingActionCannotBeCompleted" = "Je kun niet krijgen activiteiten";
 
-"UpdatingActionCannotBeCompleted" = "You cannot update the activity";
+"UpdatingActionCannotBeCompleted" = "U kunt de activiteit niet bijwerken";
 
-"LikingActionCannotBeCompleted" = "You cannot like the activity";
+"LikingActionCannotBeCompleted" = "U kan niet Like de activiteit";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "U kunt niet unlike de activiteit";
 
-"PostingActionCannotBeCompleted" = "You cannot post a message";
+"PostingActionCannotBeCompleted" = "U kan niet een bericht posten";
 
-"CommentActionCannotBeCompleted" = "You cannot post a comment";
+"CommentActionCannotBeCompleted" = "U kunt een opmerking niet posten";
 
-"LoadMoreActionCannotBeCompleted" = "An error occurred, the activities are reloading.";
+"LoadMoreActionCannotBeCompleted" = "Er is een fout opgetreden, de activiteiten worden herladen.";
 
-"NotCompliant" = "The application can not run on the Platform edition";
+"NotCompliant" = "De toepassing kan niet worden uitgevoerd op de Platform editie";
 
-"SpecialCharacters" = "Special characters are not allowed";
+"SpecialCharacters" = "Speciale tekens zijn niet toegestaan";
 
-"DashboardsCannotBeRetrieved" = "Cannot retrieve the dashboards";
+"DashboardsCannotBeRetrieved" = "De dashboards kunnen niet ophalen";
 
-"FolderNameAlreadyExist" = "This folder already exists";
+"FolderNameAlreadyExist" = "Deze map bestaat al";
 
-"FolderNameEmpty" = "The folder name is empty";
+"FolderNameEmpty" = "Naam van de map is leeg";
 
-"Cannot move file to its location" = "Cannot move the file to the same location";
+"Cannot move file to its location" = "Het bestand verplaatsen niet naar dezelfde locatie";
 
-"Cannot transfer file" = "Cannot transfer the file";
+"Cannot transfer file" = "Het bestand overdragen niet";
 
 
 /*
@@ -245,132 +245,132 @@
 
 "numOfLiker" = "%d liker";
 
-"likeThisActivity" = "%d people like this";
+"likeThisActivity" = "%d personen vinden dit goed";
 
-"NoOneLikeThis" = "No one likes this";
+"NoOneLikeThis" = "Niemand houdt van dit";
 
-"ActivityDetails" = "Activity details";
+"ActivityDetails" = "Activiteit details";
 
-"MessageComposer" = "Message composer";
+"MessageComposer" = "Bericht samensteller";
 
-"ActivityStream" = "Activity stream";
+"ActivityStream" = "Activity streams";
 
-"News" = "News";
+"News" = "Nieuws";
 
-"Details" = "Details";
+"Details" = "Kalender details";
 
-"comments(%d)" = "Comments(%d)";
+"comments(%d)" = "Commentaren(%d)";
 
 "likes(%d)" = "Likes(%d)";
 
-"YourComment" = "Your comment";
+"YourComment" = "Uw commentaar";
 
-"GettingActivity" = "Getting activity";
+"GettingActivity" = "Krijgen van activiteit";
 
-"UpdatingActivity" = "Updating activity";
+"UpdatingActivity" = "Bijwerken van activiteit";
 
-"PostingActivity" = "Post";
+"PostingActivity" = "Posten";
 
-"CommentActivity" = "Comment";
+"CommentActivity" = "Commentaar";
 
-"GettingActivityDetail" = "Getting activity detail";
+"GettingActivityDetail" = "Krijgen activiteit detail";
 
-"UpdatingActivityDetail" = "Updating activity detail";
+"UpdatingActivityDetail" = "Bijwerken activiteit detail";
 
-"EditWiki" = "has edited the Wiki page:";
+"EditWiki" = "heeft de wikipagina heeft bewerkt:";
 
-"CreateWiki" = "has created the Wiki page:";
+"CreateWiki" = "de Wiki-pagina heeft gemaakt:";
 
-"NewPost" = "has added a new post:";
+"NewPost" = "heeft een nieuw bericht toegevoegd:";
 
-"UpdatePost" = "has updated a post:";
+"UpdatePost" = "heeft een bericht bijgewerkt:";
 
-"NewTopic" = "has posted a new topic:";
+"NewTopic" = "heeft een nieuw onderwerp gepost:";
 
-"UpdateTopic" = "has updated a topic:";
+"UpdateTopic" = "heeft een onderwerp bijgewerkt:";
 
-"UpdateQuestion" = "has updated the question:";
+"UpdateQuestion" = "heeft de vraag bijgewerkt:";
 
-"Answered" = "has answered the question:";
+"Answered" = "heeft de vraag beantwoord:";
 
-"Asked" = "has asked:";
+"Asked" = "heeft gevraagd:";
 
-"EventAdded" = "added an event:";
+"EventAdded" = "toegevoegd een evenement:";
 
-"EventUpdated" = "has just updated the event:";
+"EventUpdated" = "heeft zo juist het evenement bijgewerkt:";
 
-"TaskAdded" = "added a task:";
+"TaskAdded" = "voegde een taak toe:";
 
-"TaskUpdated" = "has just updated the task:";
+"TaskUpdated" = "heeft de taak bijgewerkt:";
 
-"Description" = "Description";
+"Description" = "Beschrijving";
 
-"Location" = "Location";
+"Location" = "Plaats";
 
-"StartTime" = "Start time";
+"StartTime" = "Begintijd";
 
-"EndTime" = "End time";
+"EndTime" = "Eindtijd";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "Niemand heeft gereageerd, wees de eerste";
 
-"Image Preview" = "Image preview";
+"Image Preview" = "Image voorbeeld";
 
-"Change" = "Change";
+"Change" = "Veranderen";
 
-"Remove" = "Remove";
+"Remove" = "Verwijderen";
 
-"All Updates" = "All Activities";
+"All Updates" = "Alle activiteiten";
 
-"My Connections" = "My Connections";
+"My Connections" = "Mijn verbindingen";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Mijn ruimten";
 
-"My Status" = "My Activities";
+"My Status" = "Mijn activiteiten";
 
 /*
  * Date message converter
  */
 
-"Today" = "Today";
+"Today" = "Vandaag";
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
  //in english, Order of the message: modifier - number - measure - direction
  //in french, Order of the message: direction - modifier - number - measure
 
-"DateFmt ago" = "ago";
+"DateFmt ago" = "geleden";
 
-"DateFmt from now" = "from now";
+"DateFmt from now" = "vanaf nu";
 
-"DateFmt Less than" = "Less than ";
+"DateFmt Less than" = "Minder dan ";
 
-"DateFmt About" = "About ";
+"DateFmt About" = "Over ";
 
 "DateFmt Over" = "Over ";
 
-"DateFmt Almost" = "Almost ";
+"DateFmt Almost" = "Bijna ";
 
-"DateFmt seconds" = " seconds ";
+"DateFmt seconds" = " seconden ";
 
-"DateFmt minute" = " minute ";
+"DateFmt minute" = " minuut ";
 
-"DateFmt minutes" = " minutes ";
+"DateFmt minutes" = " minuten ";
 
-"DateFmt hour" = " hour ";
+"DateFmt hour" = " uur ";
 
-"DateFmt hours" = " hours ";
+"DateFmt hours" = " uren ";
 
-"DateFmt day" = " day ";
+"DateFmt day" = " dag ";
 
-"DateFmt days" = " days ";
+"DateFmt days" = " dagen ";
 
-"DateFmt month" = " month ";
+"DateFmt month" = " maand ";
 
-"DateFmt months" = " months ";
+"DateFmt months" = " maanden ";
 
-"DateFmt year" = " year ";
+"DateFmt year" = " jaar ";
 
-"DateFmt years" = " years ";
+"DateFmt years" = " jaren ";
 
 
 /*
@@ -386,7 +386,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
@@ -424,30 +424,30 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Mijn activiteiten";
 
-"CannotLoadSpaceID" = "Unable to load the space's identity";
+"CannotLoadSpaceID" = "Onvermogend voor vracht van de space identiteit";
 
-"PostActivityTo" = "Post activity to";
+"PostActivityTo" = "Post activiteit";
 
-"You didn't join any space" = "You didn't join any space";
+"You didn't join any space" = "U niet deelnemen aan enige ruimte";
 
-"CannotLoadSpace" = "Unable to load information about your spaces";
+"CannotLoadSpace" = "Onvermogend voor vracht van informatie over uw spaces";
 
-"Loading spaces" = "Loading spaces ...";
+"Loading spaces" = "Spaties bezig met laden...";
 
-"To" = "To";
+"To" = "Aan";
 
 "in" = "in";
 
-"space" = "space";
+"space" = "ruimte";
 
 /*
  Upload
  */
 
-"Upload failed" = "Upload failed";
+"Upload failed" = "Uploaden mislukt";
 
-"Please try again later" = "Please try again later";
+"Please try again later" = "Probeer het later opnieuw";
 
-"Confirm Delete" = "Are you sure you want to delete this item ?";
+"Confirm Delete" = "Weet u zeker dat u wilt verwijderen van dit item?";
