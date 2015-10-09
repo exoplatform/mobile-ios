@@ -174,7 +174,6 @@
 		4656FD3313CCA25D00328E41 /* SocialProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3213CCA25D00328E41 /* SocialProxy.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4656FD3613CDC50600328E41 /* SocialUserProfileProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4656FD3913CDC54D00328E41 /* SocialUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656FD3813CDC54D00328E41 /* SocialUserProfile.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		466FD6FD148E5BF5005A1B78 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466FD6FC148E5BF5005A1B78 /* Crashlytics.framework */; };
 		467F4EF913AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EEE13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		467F4EFA13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467F4EEF13AB6F1300B2DCFA /* ActivityDetailMessageTableViewCell.xib */; };
 		467F4EFB13AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F4EF113AB6F1300B2DCFA /* ActivityDetailLikeTableViewCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -5637,6 +5636,7 @@
 				);
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -5685,6 +5685,7 @@
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -5733,6 +5734,7 @@
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Distribution AppStore";
@@ -5785,6 +5787,7 @@
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Distribution AdHoc";
