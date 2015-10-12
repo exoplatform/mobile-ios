@@ -26,6 +26,7 @@
 #import "SocialPictureAttach.h"
 #import "eXoViewController.h"
 #import "ActivityStreamTabbar.h"
+#import "ActivityHelper.h"
 
 typedef NS_ENUM(NSInteger, ActivityAction) {
     ActivityActionLoad       = 0, // Load activities

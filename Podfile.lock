@@ -1,30 +1,35 @@
 PODS:
   - AFNetworking (1.3.4)
-  - Crashlytics (3.3.1)
-  - Fabric (1.5.1):
-    - Fabric/Base (= 1.5.1)
-  - Fabric/Base (1.5.1)
-  - ISO8601DateFormatterValueTransformer (0.6.0):
+  - ASBPlayerScrubbing (0.1)
+  - ASMediaFocusManager (0.5):
+    - ASBPlayerScrubbing (~> 0.1)
+  - Crashlytics (3.3.4)
+  - Fabric (1.5.5):
+    - Fabric/Base (= 1.5.5)
+  - Fabric/Base (1.5.5)
+  - ISO8601DateFormatterValueTransformer (0.6.1):
     - RKValueTransformers (~> 1.1.0)
-  - OHHTTPStubs (3.1.2)
-  - RestKit (0.24.1):
-    - RestKit/Core (= 0.24.1)
-  - RestKit/Core (0.24.1):
+  - OHHTTPStubs (3.1.12):
+    - OHHTTPStubs/Core (= 3.1.12)
+  - OHHTTPStubs/Core (3.1.12)
+  - RestKit (0.25.0):
+    - RestKit/Core (= 0.25.0)
+  - RestKit/Core (0.25.0):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.24.1):
+  - RestKit/CoreData (0.25.0):
     - RestKit/ObjectMapping
-  - RestKit/Network (0.24.1):
+  - RestKit/Network (0.25.0):
     - AFNetworking (~> 1.3.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.24.1):
-    - ISO8601DateFormatterValueTransformer (~> 0.6.0)
+  - RestKit/ObjectMapping (0.25.0):
+    - ISO8601DateFormatterValueTransformer (~> 0.6.1)
     - RestKit/Support
     - RKValueTransformers (~> 1.1.0)
-  - RestKit/Support (0.24.1):
+  - RestKit/Support (0.25.0):
     - TransitionKit (~> 2.1.0)
   - RKValueTransformers (1.1.2)
   - SOCKit (1.1)
@@ -32,6 +37,7 @@ PODS:
   - UIImage-Categories (0.0.1)
 
 DEPENDENCIES:
+  - ASMediaFocusManager
   - Crashlytics
   - Fabric
   - OHHTTPStubs (~> 3.1.2)
@@ -40,11 +46,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
-  Crashlytics: 0e61bdda9def51f1e99720f804eebe94865442b2
-  Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
-  ISO8601DateFormatterValueTransformer: 3ac3a721381697cab4e792d8049ce2f2e9ad3036
-  OHHTTPStubs: c93230597bc5c8b74bcfdb403cc8773515b8b08c
-  RestKit: 1987b5efef289c6b27bd980714d6ca48d3871b78
+  ASBPlayerScrubbing: 0fc5e76aad6fdbcf14380734fb7f2c127cd28b66
+  ASMediaFocusManager: 5a071038ada1a79abf9d0c95b6b2b1c1e5cd3a87
+  Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
+  Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
+  ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
+  OHHTTPStubs: 8cf0cfe6f34f13fc88fdf5b2a1b2c2536e8c0261
+  RestKit: a4fcaf3d4bb2c204679856a46d596160bf208095
   RKValueTransformers: 66ac5e4f077fdbe3496e792d89eeff4c3eb67701
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1

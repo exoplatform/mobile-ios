@@ -1,0 +1,1 @@
+ASBPLAYERSCRUBBING_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreGraphics" -framework "Foundation" -framework "UIKit"

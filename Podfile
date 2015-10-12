@@ -9,6 +9,7 @@ target "eXo" do
     pod 'UIImage-Categories', '0.0.1'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'ASMediaFocusManager'
 end
 
 target "eXoTests" do

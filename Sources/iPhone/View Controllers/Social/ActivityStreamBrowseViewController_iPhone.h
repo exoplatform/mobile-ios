@@ -19,8 +19,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityStreamBrowseViewController.h"
+#import "ASMediaFocusManager.h"
 
-@interface ActivityStreamBrowseViewController_iPhone : ActivityStreamBrowseViewController
+@interface ActivityStreamBrowseViewController_iPhone : ActivityStreamBrowseViewController <ASMediasFocusDelegate>
 {
 
 }

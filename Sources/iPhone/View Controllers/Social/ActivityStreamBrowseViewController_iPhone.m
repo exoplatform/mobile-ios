@@ -30,8 +30,13 @@
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
 #import "UIImage+BlankImage.h"
+#import "ActivityPictureTableViewCell.h"
 
+@interface ActivityStreamBrowseViewController_iPhone (){
+    ASMediaFocusManager * mediaFocusManager;
+}
 
+@end
 @implementation ActivityStreamBrowseViewController_iPhone
 
 
@@ -55,7 +60,6 @@
     if (selection)
         [_tblvActivityStream deselectRowAtIndexPath:selection animated:YES];
     
-
 }
 
 
@@ -66,6 +70,10 @@
     
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    //Init media focus
+    mediaFocusManager = [[ASMediaFocusManager alloc] init];
+    mediaFocusManager.delegate = self;
+
 }
 
 
@@ -101,7 +109,26 @@
 
     [self presentViewController:navController animated:YES completion:nil];
 }
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (cell && [cell isKindOfClass:[ActivityPictureTableViewCell class]] ) {
+        // remove the Tap to focus gesture
+        for (UIGestureRecognizer * gesture in ((ActivityPictureTableViewCell*)cell).imgvAttach.gestureRecognizers ){
+            if ([gesture isKindOfClass:[UITapGestureRecognizer class]]){
+                [((ActivityPictureTableViewCell*)cell).imgvAttach removeGestureRecognizer:gesture];
+            }
+        }
+        // if this a picture cell & the file attachment is a picture, add top to focus gesture
+        SocialActivity *socialActivityStream = [self getSocialActivityStreamForIndexPath:indexPath];
+        if (socialActivityStream.activityType == ACTIVITY_DOC || socialActivityStream.activityType == ACTIVITY_CONTENTS_SPACE) {
+            NSString * mimeType = [socialActivityStream.templateParams valueForKey:@"mimeType"];
+            if (mimeType && [mimeType rangeOfString:@"image"].location != NSNotFound){
+                [mediaFocusManager installOnView:((ActivityPictureTableViewCell*)cell).imgvAttach];
+            }
+        }
+    }
+    return cell;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
@@ -118,5 +145,54 @@
 
 }
 
+
+#pragma mark - ASMediaFocusDelegate
+- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameforView:(UIView *)view
+{
+    return [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.view.bounds;
+}
+
+- (NSURL *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaURLForView:(UIView *)view
+{
+    UITableViewCell * cell = [self cellContainerForView:view];
+    if ([cell isKindOfClass:[ActivityPictureTableViewCell class]]){
+        NSString * stringURL = ((ActivityPictureTableViewCell *) cell).urlForAttachment.absoluteString;
+        stringURL = [stringURL stringByReplacingOccurrencesOfString:@"/thumbnailImage/large" withString:@"/jcr"];
+        return [NSURL URLWithString:stringURL];
+    }
+    return nil;
+    
+}
+
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
+{
+    return [AppDelegate_iPhone instance].homeSidebarViewController_iPhone;
+}
+
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager titleForView:(UIView *)view;
+{
+    UITableViewCell * cell = [self cellContainerForView:view];
+    if ([cell isKindOfClass:[ActivityPictureTableViewCell class]]){
+        return ((ActivityPictureTableViewCell *) cell).activityMessage.text;
+    }
+    return @"";
+}
+
+- (void)mediaFocusManagerDidDismiss:(ASMediaFocusManager *)mediaFocusManager
+{
+
+}
+
+/*
+ */
+-(UITableViewCell *) cellContainerForView:(UIView *) view {
+    while (view !=nil) {
+        if ([view isKindOfClass:[UITableViewCell class]]){
+            return (UITableViewCell*)view;
+        }
+        view = view.superview;
+    }
+    return nil;
+}
 
 @end

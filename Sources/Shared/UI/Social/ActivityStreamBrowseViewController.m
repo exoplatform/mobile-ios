@@ -42,7 +42,6 @@
 #import "SocialPictureAttach.h"
 #import "DocumentDisplayViewController_iPhone.h"
 #import "LanguageHelper.h"
-#import "ActivityHelper.h"
 #import "SocialRestProxy.h"
 #import "UserPreferencesManager.h"
 
