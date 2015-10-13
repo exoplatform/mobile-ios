@@ -94,7 +94,7 @@
                 range = [pagesource rangeOfString:@"<title>"];
                 NSRange endTagRange  = [pagesource rangeOfString:@"</title>"];
                 if (range.location!= NSNotFound && endTagRange.location != NSNotFound && endTagRange.location > range.location + range.length){
-                        NSString * title = [pagesource substringWithRange:NSMakeRange(range.location+range.length, endTagRange.location-range.location)];
+                        NSString * title = [pagesource substringWithRange:NSMakeRange(range.location+range.length, endTagRange.location-range.location-range.length)];
                     if (title.length >0) {
                         self.pageWebTitle = title;
                     }

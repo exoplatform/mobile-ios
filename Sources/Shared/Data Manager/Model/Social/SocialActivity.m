@@ -21,6 +21,7 @@
 #import "NSDate+Formatting.h"
 #import "GTMNSString+HTML.h"
 #import "ActivityHelper.h"
+#import "NSString+HTML.h"
 
 @implementation SocialActivity
 
@@ -152,13 +153,7 @@
     string = [string stringByReplacingOccurrencesOfString:@"</a>" withString:@""];
     
     //remove all others HTML TAG
-    NSRange range;
-    while ((range = [string rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound) {
-        string = [string stringByReplacingCharactersInRange:range withString:@""];
-        
-    }
-
-    string = [string gtm_stringByUnescapingFromHTML];
+    string = [string stringByConvertingHTMLToPlainText];
     NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
     for (NSString * link in links){
         [htmlAttributedString addAttributes:kAttributeURL range:[string rangeOfString:link]];
