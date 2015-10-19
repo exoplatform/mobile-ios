@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "ha actualizado la pregunta:";
 
-"Answered" = "has answered the question:";
+"Answered" = "ha respondido a la pregunta:";
 
 "Asked" = "ha preguntado:";
 
@@ -440,14 +440,14 @@
 
 "in" = "en";
 
-"space" = "space";
+"space" = "espacio";
 
 /*
  Upload
  */
 
-"Upload failed" = "Upload failed";
+"Upload failed" = "Error al subir";
 
-"Please try again later" = "Please try again later";
+"Please try again later" = "Por favor, inténtalo más tarde";
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
