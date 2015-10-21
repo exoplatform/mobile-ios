@@ -37,6 +37,7 @@
     [super setUp];
     serverManager = [ServerManagerHelper getInstance];
     [serverManager deleteAllAccounts];
+    
 }
 
 - (void)tearDown
@@ -66,6 +67,7 @@
 {
     [serverManager addDefaultAccount];
     [UserPreferencesManager sharedInstance].isUserLogged = YES;
+    [ApplicationPreferencesManager sharedInstance].platformVersion = @"4.1";
     controller = [[SettingsViewController alloc] init];
     
     [controller viewDidLoad];

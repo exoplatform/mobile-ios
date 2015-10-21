@@ -40,9 +40,9 @@
 - (SocialRestConfiguration *)createSocialRestConfiguration
 {
     SocialRestConfiguration *conf = [SocialRestConfiguration sharedInstance];
-    conf.restContextName = @"rest";
-    conf.restVersion = @"v1-alpha3";
-    conf.portalContainerName = @"portal";
+    conf.restContextName = kRestContextName;
+    conf.restVersion = kRestVersion;
+    conf.portalContainerName = kPortalContainerName;
     conf.username = TEST_USER_NAME;
     conf.password = TEST_USER_PASS;
     

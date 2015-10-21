@@ -22,7 +22,7 @@
 #import "AsyncProxyTestCase.h"
 #import "SocialLikeActivityProxy.h"
 #import "HTTPStubsHelper.h"
-
+#import "SocialTestsHelper.h"
 @interface SocialLikeActivityProxyTestCase : AsyncProxyTestCase<SocialProxyDelegate> {
     BOOL hasError;
     SocialLikeActivityProxy *likeProxy;
@@ -35,8 +35,13 @@
 - (void)setUp
 {
     [super setUp];
+
+    [[SocialTestsHelper getInstance] createSocialRestConfiguration];
+    
     likeProxy = [[SocialLikeActivityProxy alloc] init];
+    
     likeProxy.delegate = self;
+    
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
