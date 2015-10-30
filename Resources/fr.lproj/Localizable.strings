@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Flux d'activités";
 
-"News" = "Nouvelles";
+"News" = "Flux d'Activité";
 
 "Details" = "Détails";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Êtes-vous sûr de vouloir supprimer cet élément ?";
 
-"Done" = "Fin";
+"Done" = "Done";
