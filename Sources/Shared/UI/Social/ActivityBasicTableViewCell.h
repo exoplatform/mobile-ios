@@ -40,7 +40,6 @@
     UIImageView*                            _imgvMessageBg;
     
     SocialActivity*                         _socialActivytyStream;
-    ActivityStreamBrowseViewController*     _delegate;
     NSInteger                               _activityType;
     
     float                                   plfVersion;

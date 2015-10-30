@@ -43,12 +43,7 @@
 
 @synthesize popoverController;
 @synthesize popoverClass;
-
-- (void)dealloc
-{
-    [super dealloc];
-}
-
+@synthesize parentController = _parentController;
 
 -(void)setView:(UIView *)view {
     [super setView:view];
@@ -133,8 +128,7 @@
         actionButton.width = image.size.width;
         //[self.view.navigationItem setRightBarButtonItem:actionButton];
         
-        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.topItem setRightBarButtonItem:actionButton];        
-        [actionButton release];
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.topItem setRightBarButtonItem:actionButton];
     }
 }
 
@@ -180,8 +174,7 @@
         // Check the folder can be supported actions or not.
         if (!_rootFile) {
             // if the view is first document view.
-            NSString *driveGroup = [_dicContentOfFolder allKeys][indexPath.section];
-            newViewControllerForFilesBrowsing.actionVisibleOnFolder = [newViewControllerForFilesBrowsing supportActionsForItem:fileToBrowse ofGroup:driveGroup];
+            newViewControllerForFilesBrowsing.actionVisibleOnFolder = [newViewControllerForFilesBrowsing supportActionsForItem:fileToBrowse];
         } else {
             // support action for every folder which is not a drive.
             newViewControllerForFilesBrowsing.actionVisibleOnFolder = YES;
@@ -191,7 +184,6 @@
         
         [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:newViewControllerForFilesBrowsing animated:YES];
         //[self.navigationController pushViewController:newViewControllerForFilesBrowsing animated:YES];
-        [newViewControllerForFilesBrowsing release];
 	}
 	else
 	{
@@ -241,7 +233,7 @@
     frame = [cell convertRect:frame toView:_tblFiles];
     
 
-    self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
+    self.popoverController = [[WEPopoverController alloc] initWithContentViewController:_actionsViewController];
     
     [self.popoverController setContainerViewProperties:self.popoverProperties];
     /*
@@ -258,7 +250,6 @@
         [self.popoverController presentPopoverFromRect:frame inView:_tblFiles permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
     
-    [_actionsViewController release];
 }
 
 
@@ -286,8 +277,7 @@
 
     fileToApplyAction = _rootFile;
     
-    self.popoverClass = [[[WEPopoverController alloc] initWithContentViewController:_actionsViewController] autorelease];
-    [_actionsViewController release];
+    self.popoverClass = [[WEPopoverController alloc] initWithContentViewController:_actionsViewController];
     self.popoverClass.delegate = self;
     
     [self.popoverClass setContainerViewProperties:self.popoverProperties];
@@ -307,13 +297,11 @@
     fileFolderActionsController.delegate = self;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:fileFolderActionsController];
-    [fileFolderActionsController release];
     
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationBarHidden:YES animated:YES];
 
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone presentViewController:navController animated:YES completion:nil];
     
-    [navController release];
     
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
@@ -350,8 +338,6 @@
 {    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:Localize(@"AddAPhoto") delegate:self cancelButtonTitle:Localize(@"Cancel") destructiveButtonTitle:nil  otherButtonTitles:Localize(@"TakeAPicture"), Localize(@"PhotoLibrary"), nil, nil];
     [actionSheet showInView:self.view];
-    
-    [actionSheet release];
 }
  
 

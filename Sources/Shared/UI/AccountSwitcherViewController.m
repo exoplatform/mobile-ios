@@ -52,7 +52,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.listOfAccounts = [[ApplicationPreferencesManager sharedInstance] serverList];
+
     }
     return self;
 }
@@ -70,7 +70,7 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     // Accounts title
     self.title = Localize(@"ServerList");
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-
+    self.listOfAccounts = [[ApplicationPreferencesManager sharedInstance] serverList];
 }
 
 - (SSHUDView *)hud {
@@ -80,15 +80,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
         _hud.failImage = [UIImage imageNamed:@"11-x.png"];
     }
     return _hud;
-}
-
-- (void)dealloc
-{
-    self.listOfAccounts = nil;
-    self.accountSwitcherDelegate = nil;
-    self.hud = nil;
-    self.login = nil;
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -187,7 +178,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
             CredentialsFormViewController* credentialsForm =
                  [[CredentialsFormViewController alloc] initWithAccount:selectedAccount andDelegate:self];
             [self.navigationController pushViewController:credentialsForm animated:YES];
-            [credentialsForm release];
         }
         // When the form is submitted, the method onCredentialsFormSubmittedWithAccount will be called
     }
@@ -223,7 +213,6 @@ static NSString *CellIdentifierAccount = @"CellIdentifierAccount";
     [self view].userInteractionEnabled = YES;
     UIAlertView *alert = [LoginProxyAlert alertWithError:error andDelegate:self];
     [alert show];
-    [alert release];
     
     [self restartAppDelegateAfterFailure];
 }

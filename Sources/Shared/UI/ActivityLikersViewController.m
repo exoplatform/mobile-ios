@@ -55,13 +55,6 @@
 
 - (void)dealloc {
     _activityDetailsProxy.delegate = nil;
-    [_activityDetailsProxy release];
-    [_socialActivity release];
-    [_avatarViews release];
-    [_nameLabels release];
-    [_likersHeader release];
-    [_noLikerView release];
-    [super dealloc];
 }
 
 - (instancetype)init {
@@ -85,7 +78,7 @@
     scrollView.backgroundColor = EXO_BACKGROUND_COLOR;
     scrollView.scrollEnabled = YES;
     
-    self.view = [scrollView autorelease];
+    self.view = scrollView;
     
     [self.view addSubview:self.likersHeader];
 }
@@ -184,7 +177,7 @@
 }
 
 - (AvatarView *)newAvatarView {
-    AvatarView *imageView = [[[AvatarView alloc] init] autorelease];
+    AvatarView *imageView = [[AvatarView alloc] init];
     //Add the CornerRadius
     [[imageView layer] setCornerRadius:6.0];
     [[imageView layer] setMasksToBounds:YES];
@@ -202,11 +195,11 @@
     label.textColor = [UIColor colorWithRed:58.0/255 green:118.0/255 blue:178.0/255 alpha:1];
     label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = NSTextAlignmentCenter;
-    return [label autorelease];
+    return label;
 }
 
 - (void)updateListOfLikers {
-    self.activityDetailsProxy = [[[SocialActivityDetailsProxy alloc] init] autorelease];
+    self.activityDetailsProxy = [[SocialActivityDetailsProxy alloc] init];
     self.activityDetailsProxy.delegate = self;
     [self.activityDetailsProxy getLikers:self.socialActivity.activityId];
 }

@@ -75,12 +75,7 @@
 //Dealloc method
 - (void) dealloc
 {
-	[_domainName release];
-    [_firstLoginContent release];
     _firstLoginContent = nil;
-    [_username release];
-    [_password release];
-	[super dealloc];
 }
 
 
@@ -170,8 +165,7 @@
         [request setValue:author forHTTPHeaderField:@"Authorization"];    
     }
     
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
-    [request release];
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSUInteger statusCode = [response statusCode];
     if(statusCode >= 200 && statusCode < 300)
@@ -195,7 +189,6 @@
 	if(tmpCheck == nil || tmpRange.length > 0) 
 	{
 		tmpURL = nil;
-		[tmpURL release];
 		return @"ERROR";
 	}
 	
@@ -215,7 +208,6 @@
 	if(checkUrlStr == nil) 
 	{
 		redirectURL1 = nil;
-		[redirectURL1 release];
 		return @"ERROR";
 	}
 	
@@ -256,7 +248,6 @@
 	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
 	if([dataResponse bytes] == nil) 
 	{
-		[loginRequest release];
 		return @"ERROR";
 	}
 	
@@ -265,12 +256,10 @@
 	NSRange rgCheck = [_firstLoginContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
-		[loginRequest release];
 		return @"NO";
 	}
 	else
 	{
-		[loginRequest release];
 		return @"YES";
 	}
 }
@@ -313,7 +302,6 @@
 	if(tmpCheck == nil || tmpRange.length > 0) 
 	{
 		tmpURL = nil;
-		[tmpURL release];
 		return @"ERROR";
 	}
 	
@@ -350,7 +338,6 @@
 	dataResponse = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&error];
 	if([dataResponse bytes] == nil) 
 	{
-		[loginRequest release];
 		return @"ERROR";
 	}
 	urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
@@ -358,15 +345,10 @@
 	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)
 	{
-		[loginRequest release];
-        [urlContent release];
 		return @"NO";
 	}
 	else
 	{
-		[loginRequest release];
-//		_firstLoginContent = urlContent;
-        [urlContent release];
 		return @"YES";
 	}
 }

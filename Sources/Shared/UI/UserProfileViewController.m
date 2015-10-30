@@ -38,7 +38,7 @@
     // draw gradient 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
-    NSArray *colors = @[(id) startColor, (id) endColor];
+    NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) colors, locations);
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
@@ -76,13 +76,7 @@
 @synthesize accountNameLabel = _accountNameLabel;
 
 - (void)dealloc {
-    [_username release];
-    [_userProfile release];
-    [_avatarView release];
-    [_fullNameLabel release];
     _userProfileProxy.delegate = nil;
-    [_userProfileProxy release];
-    [super dealloc];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -93,12 +87,12 @@
 }
 
 - (void)loadView {
-    self.view = [[[UserProfileView alloc] initWithFrame:_viewFrame] autorelease];
+    self.view = [[UserProfileView alloc] initWithFrame:_viewFrame];
     self.view.layer.borderWidth = 1.0;
     self.view.layer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeFeatureSeparator.png"]].CGColor;
     CGRect viewBounds = self.view.bounds;
     float avatarHeight = viewBounds.size.height - kUserProfileViewTopBottomMargin * 2;
-    self.avatarView = [[[AvatarView alloc] init] autorelease];
+    self.avatarView = [[AvatarView alloc] init];
     self.avatarView.frame = CGRectMake(kUserProfileViewLefRightMargin, kUserProfileViewTopBottomMargin, avatarHeight, avatarHeight);
     [self.view addSubview:self.avatarView];
     
@@ -111,7 +105,7 @@
     fullnameFrame.origin.y = (viewBounds.size.height / 2) - labelHeight;
     fullnameFrame.size.width = viewBounds.size.width - fullnameFrame.origin.x - kUserProfileViewLefRightMargin;
     fullnameFrame.size.height = labelHeight;
-    self.fullNameLabel = [[[UILabel alloc] initWithFrame:fullnameFrame] autorelease];
+    self.fullNameLabel = [[UILabel alloc] initWithFrame:fullnameFrame];
     self.fullNameLabel.font = font;
     self.fullNameLabel.textColor = [UIColor whiteColor];
     self.fullNameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
@@ -124,7 +118,7 @@
     accountNameFrame.origin.y = fullnameFrame.origin.y + labelHeight;
     accountNameFrame.size.height = fullnameFrame.size.height;
     accountNameFrame.size.width = fullnameFrame.size.width;
-    self.accountNameLabel = [[[UILabel alloc] initWithFrame:accountNameFrame] autorelease];
+    self.accountNameLabel = [[UILabel alloc] initWithFrame:accountNameFrame];
     self.accountNameLabel.font = font;
     self.accountNameLabel.textColor = [UIColor whiteColor];
     self.accountNameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.25];
@@ -158,7 +152,7 @@
 
 #pragma mark - User profile management 
 - (void)startUpdateCurrentUserProfile {
-    self.userProfileProxy = [[[SocialUserProfileProxy alloc] init] autorelease];
+    self.userProfileProxy = [[SocialUserProfileProxy alloc] init];
     self.userProfileProxy.delegate = self;
     [self.userProfileProxy getUserProfileFromUsername:self.username];
 }

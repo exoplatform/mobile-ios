@@ -58,21 +58,6 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)dealloc
-{
-    self.lbDate = nil;
-    self.lbName = nil;
-    self.imgvAvatar = nil;
-    
-    self.imgvMessageBg = nil;
-    
-    [_imageView release];
-    [_lbMessage release];
-    [_imageViewHeightContraint release];
-    [super dealloc];
-}
-
-
 #pragma mark - Activity Cell methods 
 
 - (void)customizeAvatarDecorations {

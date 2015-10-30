@@ -43,7 +43,6 @@
     File*                                   _fileToApplyAction;
     
 	IBOutlet UITextField*					_txtfNameInput;	//Input name
-	id<FileFolderActionsProtocol>			_delegate;	//The delegate
 	BOOL									_isNewFolder;	//Is create new folder
 	
 }

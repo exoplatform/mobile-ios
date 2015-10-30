@@ -42,7 +42,7 @@
     // Do any additional setup after loading the view from its nib.
     
     /* Add tap gesture to dismiss keyboard */
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
+    UITapGestureRecognizer *tapGesure = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)];
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
 
@@ -67,7 +67,6 @@
     AlreadyAccountViewController_iPhone *alreadyVC = [[AlreadyAccountViewController_iPhone alloc] initWithNibName:@"AlreadyAccountViewController_iPhone" bundle:nil];
     alreadyVC.autoFilledEmail = email;
     UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:alreadyVC];
-    [alreadyVC release];
     
     [self.parentViewController dismissViewControllerAnimated:NO completion:^{
         [presentingVC presentViewController:navCon animated:YES completion:nil];

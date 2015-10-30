@@ -114,15 +114,8 @@
 }
 
 - (void)dealloc {
-    [_htmlLinkMessage release];
     _htmlLinkMessage = nil;
-    
-    [_htmlLinkTitle release];
     _htmlLinkTitle = nil;
-    
-    [_htmlDescriptionMessage release];
-    [_imageViewHeightConstaint release];
-    [super dealloc];
 }
 
 

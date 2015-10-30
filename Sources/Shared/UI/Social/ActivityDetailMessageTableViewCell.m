@@ -64,16 +64,6 @@
     [super setSelected:selected animated:animated];    
 }
 
-- (void)dealloc
-{
-    
-    self.lbMessage = nil;
-    self.lbDate = nil;
-    self.lbName = nil;
-    self.imgvAvatar = nil;
-    [super dealloc];
-}
-
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
     
 }

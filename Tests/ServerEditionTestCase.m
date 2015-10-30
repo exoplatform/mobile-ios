@@ -51,7 +51,7 @@
 {
     ServerObj* account = [serverManager addDefaultAccount];
     [UserPreferencesManager sharedInstance].isUserLogged = NO;
-    controller = [[ServerEditingViewController alloc] init];
+    controller = [[ServerEditingViewController alloc] initWithNibName:@"ServerEditingViewController" bundle:nil];
     [controller setServerObj:account andIndex:0];
     
     XCTAssertNotEqualObjects(controller.title, TEST_SERVER_NAME, @"Screen title should be the account name");

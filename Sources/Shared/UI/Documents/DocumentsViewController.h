@@ -31,7 +31,6 @@
 
 @interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate, FilesProxyDelegate> {
     
-    DocumentsViewController *_parentController;
     File *_rootFile;
     
     NSMutableDictionary *_dicContentOfFolder;
@@ -63,7 +62,7 @@
 @property BOOL isRoot;
 
 // Check whether user can execute actions on the folder or not. 
-- (BOOL)supportActionsForItem:(File *)item ofGroup:(NSString *)driveGroup;
+- (BOOL)supportActionsForItem:(File *)item;
 
 -(void)emptyState;
 - (void)showActionSheetForPhotoAttachment;

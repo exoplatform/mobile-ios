@@ -32,12 +32,6 @@
     [super viewDidLoad];
 }
 
--(void)dealloc {
-//    self.label = nil;
-//    self.navigation = nil;
-    [super dealloc];
-}
-
 #pragma mark - hudLoadWaiting
 - (ATMHud *)hudLoadWaiting {
     // lazy loading

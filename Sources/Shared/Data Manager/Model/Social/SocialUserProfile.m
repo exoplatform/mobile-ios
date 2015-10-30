@@ -35,13 +35,4 @@
     return [NSString stringWithFormat:@"Social User Profile : %@, %@, %@, %@, %@",_identity,_remoteId,_providerId,_avatarUrl,_fullName];
 }
 
-- (void)dealloc {
-    [_identity release];
-    [_remoteId release];
-    [_providerId release];
-    [_avatarUrl release];
-    [_fullName release];
-    [super dealloc];
-}
-
 @end

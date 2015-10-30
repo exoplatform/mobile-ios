@@ -47,10 +47,6 @@
 }
 
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -76,9 +72,6 @@
     
     [self.view addSubview:viewContainer];
     
-    [mailInputViewController release];
-    [greetingViewController release];
-    [viewContainer release];
 }
 
 @end

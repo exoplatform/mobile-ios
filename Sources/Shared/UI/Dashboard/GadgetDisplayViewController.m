@@ -31,17 +31,12 @@
 
 @synthesize gadget = _gadget;
 
-- (void)dealloc {
-    [_gadget release];
-    [super dealloc];
-}
-
 // custom init method
 - (instancetype)initWithNibAndUrl:(NSString *)nibName bundle:(NSBundle *)nibBundle gadget:(GadgetItem *)gadgetToLoad	
 {
 	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
         [self setGadget:gadgetToLoad];
-        self.url = [[NSURL URLWithString:_gadget.gadgetUrl] retain];
+        self.url = [NSURL URLWithString:_gadget.gadgetUrl];
 	}
     return self;
 }
@@ -54,6 +49,9 @@
     self.title = _gadget.gadgetName;
 }
 
+-(void) dealloc {
+
+}
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [super webViewDidFinishLoad:webView];

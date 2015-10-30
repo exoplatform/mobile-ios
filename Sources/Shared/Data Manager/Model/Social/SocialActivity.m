@@ -21,6 +21,7 @@
 #import "NSDate+Formatting.h"
 #import "GTMNSString+HTML.h"
 #import "ActivityHelper.h"
+#import "NSString+HTML.h"
 
 @implementation SocialActivity
 
@@ -47,24 +48,6 @@
 @synthesize templateParams = _templateParams;
 @synthesize activityType = _activityType;
 @synthesize embeddedURL = _embeddedURL;
-- (void)dealloc {
-    [_identityId release];
-    [_activityId release];
-    [_type release];
-    [_activityStream release];
-    [_title release];
-    [_embeddedURL release];
-    [_body release];
-    [_createdAt release];
-    [_likedByIdentities release];
-    [_titleId release];
-    [_posterIdentity release];
-    [_posterPicture release];
-    [_comments release];
-    [_postedTimeInWords release];
-    [_templateParams release];
-    [super dealloc];
-}
 
 - (void)getActivityType {
     /* in plf 4, there is just activity for creating action
@@ -170,13 +153,7 @@
     string = [string stringByReplacingOccurrencesOfString:@"</a>" withString:@""];
     
     //remove all others HTML TAG
-    NSRange range;
-    while ((range = [string rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound) {
-        string = [string stringByReplacingCharactersInRange:range withString:@""];
-        
-    }
-
-    string = [string gtm_stringByUnescapingFromHTML];
+    string = [string stringByConvertingHTMLToPlainText];
     NSMutableAttributedString * htmlAttributedString  = [[NSMutableAttributedString alloc] initWithString:string];
     for (NSString * link in links){
         [htmlAttributedString addAttributes:kAttributeURL range:[string rangeOfString:link]];

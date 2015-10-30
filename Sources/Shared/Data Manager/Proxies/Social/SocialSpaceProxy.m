@@ -86,8 +86,4 @@
 
 }
 
--(void) dealloc {
-    self.mySpaces = nil;
-    [super dealloc];
-}
 @end

@@ -38,18 +38,11 @@
 @synthesize commentButton = _commentButton;
 @synthesize likeActivityIndicatorView = _likeActivityIndicatorView;
 
-- (void)dealloc {
-    [_socialActivity release];
-    [_likeButton release];
-    [_commentButton release];
-    [_likeActivityIndicatorView release];
-    [super dealloc];
-}
 
 - (void)doInit {
     UIImage *backgroundImage = [UIImage imageNamed:@"activity-detail-actions-cell"];
     backgroundImage = [backgroundImage stretchableImageWithLeftCapWidth:backgroundImage.size.width/2 topCapHeight:0];
-    self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
+    self.backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.likeButton];
     [self.contentView addSubview:self.commentButton];
@@ -97,8 +90,6 @@
 }
 
 - (void)setSocialActivity:(SocialActivity *)socialActivity {
-    [socialActivity retain];
-    [_socialActivity release];
     _socialActivity = socialActivity;
     [self updateSubViews];
 }
@@ -106,7 +97,7 @@
 #pragma mark - variable initialization
 - (UIButton *)likeButton {
     if (!_likeButton) {
-        _likeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *image = [UIImage imageNamed:@"activity-detail-action-like"];
         [_likeButton setBackgroundImage:image forState:UIControlStateNormal];
         _likeButton.bounds = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
@@ -116,7 +107,7 @@
 
 - (UIButton *)commentButton {
     if (!_commentButton) {
-        _commentButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *image = [UIImage imageNamed:@"activity-detail-action-comment"];
         [_commentButton setBackgroundImage:image forState:UIControlStateNormal];
         _commentButton.bounds = CGRectMake(0.0, 0.0, image.size.width, image.size.height);

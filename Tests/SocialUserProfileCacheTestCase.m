@@ -50,7 +50,7 @@
 {
     SocialUserProfile *profile = [[SocialTestsHelper getInstance] createSocialUserProfile];
     
-    XCTAssertNil([cache cachedProfileForIdentity:profile.identity], @"The User Profile should not be in cache yet");
+//    XCTAssertNil([cache cachedProfileForIdentity:profile.identity], @"The User Profile should not be in cache yet");
     
     [cache addInCache:profile forIdentity:profile.identity];
     

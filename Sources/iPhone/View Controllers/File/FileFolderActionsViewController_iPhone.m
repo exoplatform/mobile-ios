@@ -52,9 +52,9 @@
 	strName = [strName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (_isNewFolder) {
-        [_delegate createNewFolder:strName];
+        [self.delegate createNewFolder:strName];
     } else {
-        [_delegate renameFolder:strName forFolder:_fileToApplyAction];
+        [self.delegate renameFolder:strName forFolder:_fileToApplyAction];
     }    
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -62,7 +62,7 @@
 
 - (void)CancelBtn {
 
-    [_delegate cancelFolderActions];
+    [self.delegate cancelFolderActions];
     
 }
 

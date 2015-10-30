@@ -64,10 +64,7 @@
 -(void)dealloc {
     
 //    [[RKRequestQueue sharedQueue] abortRequestsWithDelegate:self];
-    [_dashboard release];
     _delegate = nil;
-    [_manager release];
-    [super dealloc];
 }
 
 #pragma mark - Call methods

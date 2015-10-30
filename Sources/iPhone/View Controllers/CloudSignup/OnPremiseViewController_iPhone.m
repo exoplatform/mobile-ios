@@ -49,7 +49,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     
     /* Add tap gesture to dismiss keyboard */
-    UITapGestureRecognizer *tapGesure = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] autorelease];
+    UITapGestureRecognizer *tapGesure = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboards)] ;
     [tapGesure setCancelsTouchesInView:NO]; // Processes other events on the subviews
     [self.view addGestureRecognizer:tapGesure];
 
@@ -84,8 +84,6 @@
 -(void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
-    [_scrollView release];
-    [super dealloc];
 }
 #pragma mark LoginProxyDelegate methods
 

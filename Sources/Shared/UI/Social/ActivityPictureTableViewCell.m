@@ -154,11 +154,7 @@
 
 - (void)dealloc
 {
-    [_urlForAttachment release];
     _urlForAttachment = nil;
-    [_lbFileName release];
-    [_activityMessage release];
-    [super dealloc];
 }
 
 @end
