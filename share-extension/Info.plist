@@ -26,11 +26,11 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.8</string>
+	<string>2.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.8.20150929</string>
+	<string>2.9.20151102</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>NSExtension</key>
