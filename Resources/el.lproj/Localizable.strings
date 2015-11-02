@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Ιστορικό δραστηριοτήτων";
 
-"News" = "Νέα";
+"News" = "Ρεύμα δραστηριότητας";
 
 "Details" = "Λεπτομέρειες";
 
@@ -451,3 +451,6 @@
 "Please try again later" = "Please try again later";
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
+
+"Done" = "Ολοκλήρωση";
+
