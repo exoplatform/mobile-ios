@@ -255,7 +255,7 @@
 
 "ActivityStream" = "crwdns6795999:0crwdne6795999:0";
 
-"News" = "crwdns6796000:0crwdne6796000:0";
+"News" = "crwdns6825000:0crwdne6825000:0";
 
 "Details" = "crwdns6796001:0crwdne6796001:0";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "crwdns6824533:0crwdne6824533:0";
 
-"Done" = "Done";
+"Done" = "crwdns6825001:0crwdne6825001:0";
