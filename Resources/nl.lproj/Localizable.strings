@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Activity streams";
 
-"News" = "Nieuws";
+"News" = "Activiteiten Stream";
 
 "Details" = "Kalender details";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Weet u zeker dat u wilt verwijderen van dit item?";
 
-"Done" = "Done";
+"Done" = "#{word.done} :";
