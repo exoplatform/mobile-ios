@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2D86480F2F995FD9FBB47C54DC659C2"
+               BlueprintIdentifier = "96E8081890EC014ED295D0A06B8BA02D"
                BuildableName = "libPods-eXo.a"
                BlueprintName = "Pods-eXo"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -99,7 +99,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Distribution AdHoc"
+      buildConfiguration = "Distribution AppStore"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
