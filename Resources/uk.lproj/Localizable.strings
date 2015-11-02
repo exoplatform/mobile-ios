@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Стрічка діяльності";
 
-"News" = "Новини";
+"News" = "Потік діяльності";
 
 "Details" = "Подробиці";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Done";
+"Done" = "Виконано";
