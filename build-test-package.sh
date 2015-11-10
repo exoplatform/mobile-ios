@@ -19,5 +19,5 @@ xcodebuild archive -workspace eXo_Platform.xcworkspace -scheme eXo -archivePath 
 [ -f "${WORKSPACE}/eXo.ipa" ] && rm "${WORKSPACE}/eXo.ipa"
 
 # Create the final archive with credentials...
-xcodebuild -exportArchive -archivePath eXo.xcarchive -exportPath eXo -exportFormat ipa -exportProvisioningProfile "eXo Mobile AdHoc"
+xcodebuild -exportArchive -archivePath eXo.xcarchive -exportPath eXo -exportFormat ipa -exportProvisioningProfile "XC Ad Hoc: com.exoplatform.mob.eXoPlatformiPHone"
 
