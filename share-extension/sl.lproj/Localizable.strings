@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  eXo
+
+  Created by Nguyen Manh Toan on 9/9/15.
+  Copyright (c) 2015 eXo Platform. All rights reserved.
+*/
+
+
+"All uploads failed" = "Noben prenos ni uspel";
+
+"uploads failed" = "prenosi niso uspeli";
+
+"upload failed" = "prenos ni uspel";
+
+"Cancel" = "Prekliči";
+
+"Post" = "Objava";
+
+"%d item(s) cannot be uploaded" = "%d elementa(ov) ni mogoče prenesti";
+
+"File too large" = "Datoteka je prevelika";
+
+"Network error" = "Omrežna napaka";
+
+"Do you want to post the message anyway?" = "Ali želite vseeno objaviti sporočilo?";

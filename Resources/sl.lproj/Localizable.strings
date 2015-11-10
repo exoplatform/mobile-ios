@@ -1,0 +1,455 @@
+/* 
+  Localizable.strings
+  eXo Platform
+
+  Created by Le Thanh Quang on 7/9/12.
+  Copyright (c) 2012 eXoPlatform. All rights reserved.
+*/
+
+/*
+ * Authenticate
+ */
+
+"SignInPageTitle" = "Prijavna stran";
+
+"SignInButton" = "Poveži";
+
+"SignInButton_In" = "do";
+
+"UsernamePlaceholder" = "Uporabniško ime";
+
+"PasswordPlaceholder" = "Geslo";
+
+"Last Login" = "Zadnja prijava";
+
+"Connected" = "Povezan";
+
+"Sign In" = "Prijava";
+
+/* 
+ * Documents
+ */
+
+"TakePicture" = "Fotografiraj";
+
+"NewFolderTitle" = "Nova mapa";
+
+"RenameTitle" = "Preimenuj";
+
+"Copy" = "Kopiraj";
+
+"Move" = "Izreži";
+
+"Paste" = "Prilepi";
+
+"Documents" = "Dokumenti";
+
+"TakeAPicture" = "Fotografiraj";
+
+"AttachedPhoto" = "Priložena fotografija";
+
+"AddAPhoto" = "Dodaj fotografijo";
+
+"PhotoLibrary" = "Knjižnica fotografij";
+
+// Drives types
+
+"general" = "splošno";
+
+"personal" = "osebno";
+
+"group" = "Skupina";
+
+
+/*
+ * General
+ */
+
+"Cancel" = "Prekliči";
+
+"DoneButton" = "Dokončano";
+
+"Delete" = "Izbriši";
+
+"Success" = "Uspeh";
+
+"Home" = "Domov";
+
+"Loading" = "Nalagam...";
+
+"LoadingURL" = "Prenašanje URL";
+
+"OK" = "OK";
+
+"Disconnect" = "Prekini";
+
+"Pull down to refresh..." = "Povleci navzdol za posodobitev ...";
+
+"Release to refresh..." = "Izpusti za osvežitev...";
+
+"Last Updated: %@" = "Zadnja posodobitev: %@";
+
+"Required" = "Zahtevano";
+
+"Optional" = "Izbirno";
+
+"Fullscreen" = "Celozaslonski način";
+
+"Close" = "Zapri";
+
+
+/*
+ * Settings
+ */
+
+"Settings" = "Nastavitve";
+
+"RememberMe" = "Ostanite prijavljeni";
+
+"AutoLogin" = "Samodejna prijava";
+
+"KeepSelectedStream" = "Zapomni si moj filter";
+
+"ShowPrivateDrive" = "Prikaži moj zasebni pogon";
+
+"Language" = "Jeziki";
+
+"English" = "Angleščina";
+
+"French" = "Francoščina";
+
+"German" = "Nemščina";
+
+"Spanish" = "Španščina";
+
+"Portuguese-Brazil" = "Portugalščina (Brazilija)";
+
+"Greek" = "Grščina";
+
+"Send" = "Pošljite";
+
+"ServerList" = "Seznam strežnikov";
+
+"Account" = "Račun";
+
+"NewServer" = "Nov strežnik";
+
+"ServerModify" = "Spremeni strežnik";
+
+"ApplicationsInformation" = "Informacije o aplikaciji";
+
+"ServerVersion" = "Različica strežnika";
+
+"ApplicationEdition" = "Izdaja aplikacije";
+
+"ApplicationVersion" = "Različica aplikacije";
+
+"ServerName" = "Ime strežnika";
+
+"ServerUrl" = "URL strežnika";
+
+"Social" = "Družbeno";
+
+
+/*
+ * Errors & Warnings
+ */
+
+"BadResponse" = "Strežnik je vrnil neveljavne podatke.";
+
+"NetworkConnection" = "Napaka pri povezavi";
+
+"Authorization" = "Prijava ni uspela";
+
+"WrongUserNamePassword" = "Povezava z aplikacijo ni mogoča, preverite vaše uporabniško ime in geslo";
+
+"InvalidServer" = "Z intranetom se ni mogoče povezati, preverite URL ali se obrnite na skrbnika";
+
+"NetworkConnectionFailed" = "Z intranetom se ni mogoče povezati, preverite URL ali se obrnite na skrbnika";
+
+"UserNameEmpty" = "Nepravilno uporabniško ime";
+
+"PasswordEmpty" = "Nepravilno geslo";
+
+"SelectedDomainEmpty" = "Strežnik ni določen";
+
+"EmptyFolder" = "Ta mapa je prazna";
+
+"UnreadableFile" = "Te datoteke ni mogoče odpreti v aplikaciji";
+
+"NoActivities" = "Na vaši časovnici ni bilo objavljenih nobenih dejavnosti";
+
+"NoGadget" = "Nimate pripomočkov v vaših aplikacijah";
+
+"MessageInfo" = "Informacija";
+
+"MessageErrorServer" = "Ne morete dodati strežnika s praznim imenom ali URL-jem";
+
+"MessageErrorExist" = "Ta strežnik že obstaja";
+
+"InvalidUrl" = "Neveljaven URL";
+
+"FileError" = "Napaka";
+
+"CameraNotAvailable" = "Kamera ni na voljo";
+
+"GadgetsCannotBeRetrieved" = "Pripomočkov ni mogoče pridobiti";
+
+"Error" = "Napaka";
+
+"NoMessageComment" = "Vnesite nekaj besedila v komentar";
+
+"NoMessagePosting" = "Za objavo morate vnesti nekaj besedila";
+
+"GettingActionCannotBeCompleted" = "Ne morete pridobiti dejavnosti";
+
+"UpdatingActionCannotBeCompleted" = "Dejavnosti ni mogoče posodobiti";
+
+"LikingActionCannotBeCompleted" = "dejavnosti ne morete všečkati";
+
+"UnLikeActionCannotBeCompleted" = "Ne morete preklicati všečkanja dejavnosti";
+
+"PostingActionCannotBeCompleted" = "Ne morete objaviti sporočila";
+
+"CommentActionCannotBeCompleted" = "Ne morete objaviti komentarja";
+
+"LoadMoreActionCannotBeCompleted" = "Prišlo je do napake, dejavnosti se vnovično nalagajo.";
+
+"NotCompliant" = "Aplikacija ne more teči na tej izdaji platforme";
+
+"SpecialCharacters" = "Posebni znaki niso dovoljeni";
+
+"DashboardsCannotBeRetrieved" = "Nadzorne plošče ni mogoče pridobiti";
+
+"FolderNameAlreadyExist" = "Ta mapa že obstaja";
+
+"FolderNameEmpty" = "Ime mape je prazno";
+
+"Cannot move file to its location" = "Datoteke ni mogoče premakniti datoteke na isto lokacijo";
+
+"Cannot transfer file" = "Ne morete prenesti datoteke";
+
+
+/*
+ * Apps
+ */
+
+"Dashboard" = "Aplikacije";
+
+
+/*
+ * Activity stream
+ */
+
+"numOfLikers" = "%d všečkarjev";
+
+"numOfLiker" = "%d všečkar";
+
+"likeThisActivity" = "%d ljudi je všeč";
+
+"NoOneLikeThis" = "Nikomur ni všeč";
+
+"ActivityDetails" = "Podrobnosti dejavnosti";
+
+"MessageComposer" = "Skladatelj sporočil";
+
+"ActivityStream" = "Tok dejavnosti";
+
+"News" = "Tok dejavnosti";
+
+"Details" = "Podrobnosti";
+
+"comments(%d)" = "Komentarji(%d)";
+
+"likes(%d)" = "Všečki(%d)";
+
+"YourComment" = "Vaš komentar";
+
+"GettingActivity" = "Pridobivanje dejavnosti";
+
+"UpdatingActivity" = "Posodabljanje dejavnosti";
+
+"PostingActivity" = "Objava";
+
+"CommentActivity" = "Komentar";
+
+"GettingActivityDetail" = "Pridobivanje podrobnosti dejavnosti";
+
+"UpdatingActivityDetail" = "Posodabljanje podrobnosti dejavnosti";
+
+"EditWiki" = "je uredil Wiki stran:";
+
+"CreateWiki" = "Wiki stran je ustvaril:";
+
+"NewPost" = "je dodal(a) novo objavo:";
+
+"UpdatePost" = "je posodobil(a) objavo:";
+
+"NewTopic" = "je objavil(a) novo temo:";
+
+"UpdateTopic" = "je posodobil temo:";
+
+"UpdateQuestion" = "je posodobil vprašanje:";
+
+"Answered" = "je odgovoril na vprašanje:";
+
+"Asked" = "je vprašal:";
+
+"EventAdded" = "je dodal(a) dogodek:";
+
+"EventUpdated" = "je pravkar posodobil(a) dogodek:";
+
+"TaskAdded" = "je dodal(a) opravilo:";
+
+"TaskUpdated" = "je pravkar posodobil(a) opravilo:";
+
+"Description" = "Opis";
+
+"Location" = "Lokacija";
+
+"StartTime" = "Začetni čas";
+
+"EndTime" = "Končni čas";
+
+"NoComment" = "Nihče šeni komentiral, bodi prvi";
+
+"Image Preview" = "Predogled slike";
+
+"Change" = "Spremeni";
+
+"Remove" = "Odstrani";
+
+"All Updates" = "Vse dejavnosti";
+
+"My Connections" = "Moje povezave";
+
+"My Spaces" = "Moji prostori";
+
+"My Status" = "Moje dejavnosti";
+
+/*
+ * Date message converter
+ */
+
+"Today" = "Danes";
+
+"DateFmt" = "%1$@%2$@%3$@%4$@";
+
+ //in english, Order of the message: modifier - number - measure - direction
+ //in french, Order of the message: direction - modifier - number - measure
+
+"DateFmt ago" = "nazaj";
+
+"DateFmt from now" = "od zdaj";
+
+"DateFmt Less than" = "Manj kot ";
+
+"DateFmt About" = "O ";
+
+"DateFmt Over" = "Nad ";
+
+"DateFmt Almost" = "Skoraj ";
+
+"DateFmt seconds" = " sekund ";
+
+"DateFmt minute" = " minuta ";
+
+"DateFmt minutes" = " minut ";
+
+"DateFmt hour" = " ura ";
+
+"DateFmt hours" = " ur ";
+
+"DateFmt day" = " dan ";
+
+"DateFmt days" = " dni ";
+
+"DateFmt month" = " mesec ";
+
+"DateFmt months" = " mesecev ";
+
+"DateFmt year" = " leto ";
+
+"DateFmt years" = " let ";
+
+
+/*
+ * Cloud sign up assistant 
+ */
+"ServerNotAvailable" = "Z intranetom se ni mogoče povezati, preverite URL ali se obrnite na skrbnika";
+
+"AccountAlreadyExists" = "Za ta e-pošto že obstaja račun, preusmerjeni boste na prijavni zaslon";
+
+"NumberUsersExceed" = " Nemogoče ustvariti nov račun. Doseženo je bilo največje število uporabnikov za intranetu, obrnite se na skrbnika";
+
+"StartTheConfigurationAssistant" = "Zaženi pomočnika za vpis";
+
+"eXoCloudConfigurationAssistant" = "eXo";
+
+"ServiceUnavailable" = "Z intranetom se ni mogoče povezati, preverite URL ali se obrnite na skrbnika";
+
+"EmailIsBlacklisted" = "Za vpis uporabite vaš službeni e-poštni naslov";
+
+"NumberOfUsersExceed" = "Nemogoče ustvariti nov račun. Doseženo je bilo največje število uporabnikov za intranetu, obrnite se na skrbnika";
+
+"IncorrectEmailFormat" = "Prosimo, vnesite veljaven e-poštni naslov";
+
+"IncorrectPassword" = "Ni se mogoče povezati, preverite vaše geslo";
+
+"UserNotExist" = " Za ta e-pošto ne obstaja račun, preverite svoj e-potni naslov ali vpis";
+
+"TenantNotExist" = "Za ta e-pošto ne obstaja račun, preverite svoj e-potni naslov ali vpis";
+
+"TenantResuming" = "We are restoring your intranet, please retry in few minutes";
+
+"TenantCreation" = "Ustvarjamo vaš intranet. Prosimo, da se vrnete, ko prejmete našo pozdravno e-pošto";
+
+"Username" = "Uporabniško ime";
+
+"Password" = "Geslo";
+
+"Your credentials" = "Your credentials";
+
+"EnterServerUrl" = "Enter the URL of your intranet";
+
+"EnterCredentials" = "Enter your credentials and Login";
+
+"My intranet" = "My intranet";
+
+"SignupInternalServerError" = "The maximum number of users has been reached for your intranet, please contact your administrator";
+
+"NoTenantName" = "There is no tenant name";
+
+/*
+ Post Activity to Space
+ */
+
+"Public" = "Moje dejavnosti";
+
+"CannotLoadSpaceID" = "Ni mogoče naložiti identitete prostora";
+
+"PostActivityTo" = "Objavi dejavnost na/v";
+
+"You didn't join any space" = "Niste se pridružili nobenemu prostoru";
+
+"CannotLoadSpace" = "Ni mogoče naložiti informacije o vaših prostorih";
+
+"Loading spaces" = "Prenašanje prostorov ...";
+
+"To" = "do";
+
+"in" = "v";
+
+"space" = "presledek";
+
+/*
+ Upload
+ */
+
+"Upload failed" = "Prenos ni uspel";
+
+"Please try again later" = "Poskusite znova pozneje";
+
+"Confirm Delete" = "Ali ste prepričani, da želite izbrisati ta element ?";
+
+"Done" = "Dokončano";
